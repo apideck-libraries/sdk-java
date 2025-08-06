@@ -17,6 +17,7 @@ List Time Off Requests
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="hris.timeOffRequestsAll" method="get" path="/hris/time-off-requests" -->
 ```java
 package hello.world;
 
@@ -92,6 +93,7 @@ Create Time Off Request
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="hris.timeOffRequestsAdd" method="post" path="/hris/time-off-requests" -->
 ```java
 package hello.world;
 
@@ -186,6 +188,7 @@ Get Time Off Request
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="hris.timeOffRequestsOne" method="get" path="/hris/time-off-requests/employees/{employee_id}/time-off-requests/{id}" -->
 ```java
 package hello.world;
 
@@ -250,6 +253,7 @@ Update Time Off Request
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="hris.timeOffRequestsUpdate" method="patch" path="/hris/time-off-requests/employees/{employee_id}/time-off-requests/{id}" -->
 ```java
 package hello.world;
 
@@ -358,6 +362,7 @@ Delete Time Off Request
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="hris.timeOffRequestsDelete" method="delete" path="/hris/time-off-requests/employees/{employee_id}/time-off-requests/{id}" -->
 ```java
 package hello.world;
 

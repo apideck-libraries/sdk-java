@@ -17,6 +17,7 @@ List Ledger Accounts
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.ledgerAccountsAll" method="get" path="/accounting/ledger-accounts" -->
 ```java
 package hello.world;
 
@@ -91,6 +92,7 @@ Create Ledger Account
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.ledgerAccountsAdd" method="post" path="/accounting/ledger-accounts" -->
 ```java
 package hello.world;
 
@@ -237,6 +239,7 @@ Get Ledger Account
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.ledgerAccountsOne" method="get" path="/accounting/ledger-accounts/{id}" -->
 ```java
 package hello.world;
 
@@ -300,6 +303,7 @@ Update Ledger Account
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.ledgerAccountsUpdate" method="patch" path="/accounting/ledger-accounts/{id}" -->
 ```java
 package hello.world;
 
@@ -439,6 +443,7 @@ Delete Ledger Account
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.ledgerAccountsDelete" method="delete" path="/accounting/ledger-accounts/{id}" -->
 ```java
 package hello.world;
 

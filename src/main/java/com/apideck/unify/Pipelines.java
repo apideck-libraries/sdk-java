@@ -20,11 +20,11 @@ import com.apideck.unify.models.operations.CrmPipelinesOneResponse;
 import com.apideck.unify.models.operations.CrmPipelinesUpdateRequest;
 import com.apideck.unify.models.operations.CrmPipelinesUpdateRequestBuilder;
 import com.apideck.unify.models.operations.CrmPipelinesUpdateResponse;
-import com.apideck.unify.operations.CrmPipelinesAddOperation;
-import com.apideck.unify.operations.CrmPipelinesAllOperation;
-import com.apideck.unify.operations.CrmPipelinesDeleteOperation;
-import com.apideck.unify.operations.CrmPipelinesOneOperation;
-import com.apideck.unify.operations.CrmPipelinesUpdateOperation;
+import com.apideck.unify.operations.CrmPipelinesAdd;
+import com.apideck.unify.operations.CrmPipelinesAll;
+import com.apideck.unify.operations.CrmPipelinesDelete;
+import com.apideck.unify.operations.CrmPipelinesOne;
+import com.apideck.unify.operations.CrmPipelinesUpdate;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
@@ -73,7 +73,7 @@ public class Pipelines {
      */
     public CrmPipelinesAllResponse list(CrmPipelinesAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmPipelinesAllRequest, CrmPipelinesAllResponse> operation
-              = new CrmPipelinesAllOperation(sdkConfiguration, options);
+              = new CrmPipelinesAll.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -113,7 +113,7 @@ public class Pipelines {
      */
     public CrmPipelinesAddResponse create(CrmPipelinesAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmPipelinesAddRequest, CrmPipelinesAddResponse> operation
-              = new CrmPipelinesAddOperation(sdkConfiguration, options);
+              = new CrmPipelinesAdd.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -153,7 +153,7 @@ public class Pipelines {
      */
     public CrmPipelinesOneResponse get(CrmPipelinesOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmPipelinesOneRequest, CrmPipelinesOneResponse> operation
-              = new CrmPipelinesOneOperation(sdkConfiguration, options);
+              = new CrmPipelinesOne.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -193,7 +193,7 @@ public class Pipelines {
      */
     public CrmPipelinesUpdateResponse update(CrmPipelinesUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmPipelinesUpdateRequest, CrmPipelinesUpdateResponse> operation
-              = new CrmPipelinesUpdateOperation(sdkConfiguration, options);
+              = new CrmPipelinesUpdate.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -233,7 +233,7 @@ public class Pipelines {
      */
     public CrmPipelinesDeleteResponse delete(CrmPipelinesDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmPipelinesDeleteRequest, CrmPipelinesDeleteResponse> operation
-              = new CrmPipelinesDeleteOperation(sdkConfiguration, options);
+              = new CrmPipelinesDelete.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

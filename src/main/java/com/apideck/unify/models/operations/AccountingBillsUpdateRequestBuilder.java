@@ -6,7 +6,7 @@ package com.apideck.unify.models.operations;
 import static com.apideck.unify.operations.Operations.RequestOperation;
 
 import com.apideck.unify.SDKConfiguration;
-import com.apideck.unify.operations.AccountingBillsUpdateOperation;
+import com.apideck.unify.operations.AccountingBillsUpdate;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -47,7 +47,7 @@ public class AccountingBillsUpdateRequestBuilder {
             .build());
 
         RequestOperation<AccountingBillsUpdateRequest, AccountingBillsUpdateResponse> operation
-              = new AccountingBillsUpdateOperation(sdkConfiguration, options);
+              = new AccountingBillsUpdate.Sync(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

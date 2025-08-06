@@ -20,11 +20,11 @@ import com.apideck.unify.models.operations.AccountingTaxRatesOneResponse;
 import com.apideck.unify.models.operations.AccountingTaxRatesUpdateRequest;
 import com.apideck.unify.models.operations.AccountingTaxRatesUpdateRequestBuilder;
 import com.apideck.unify.models.operations.AccountingTaxRatesUpdateResponse;
-import com.apideck.unify.operations.AccountingTaxRatesAddOperation;
-import com.apideck.unify.operations.AccountingTaxRatesAllOperation;
-import com.apideck.unify.operations.AccountingTaxRatesDeleteOperation;
-import com.apideck.unify.operations.AccountingTaxRatesOneOperation;
-import com.apideck.unify.operations.AccountingTaxRatesUpdateOperation;
+import com.apideck.unify.operations.AccountingTaxRatesAdd;
+import com.apideck.unify.operations.AccountingTaxRatesAll;
+import com.apideck.unify.operations.AccountingTaxRatesDelete;
+import com.apideck.unify.operations.AccountingTaxRatesOne;
+import com.apideck.unify.operations.AccountingTaxRatesUpdate;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
@@ -73,7 +73,7 @@ public class TaxRates {
      */
     public AccountingTaxRatesAllResponse list(AccountingTaxRatesAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingTaxRatesAllRequest, AccountingTaxRatesAllResponse> operation
-              = new AccountingTaxRatesAllOperation(sdkConfiguration, options);
+              = new AccountingTaxRatesAll.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -113,7 +113,7 @@ public class TaxRates {
      */
     public AccountingTaxRatesAddResponse create(AccountingTaxRatesAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingTaxRatesAddRequest, AccountingTaxRatesAddResponse> operation
-              = new AccountingTaxRatesAddOperation(sdkConfiguration, options);
+              = new AccountingTaxRatesAdd.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -153,7 +153,7 @@ public class TaxRates {
      */
     public AccountingTaxRatesOneResponse get(AccountingTaxRatesOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingTaxRatesOneRequest, AccountingTaxRatesOneResponse> operation
-              = new AccountingTaxRatesOneOperation(sdkConfiguration, options);
+              = new AccountingTaxRatesOne.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -193,7 +193,7 @@ public class TaxRates {
      */
     public AccountingTaxRatesUpdateResponse update(AccountingTaxRatesUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingTaxRatesUpdateRequest, AccountingTaxRatesUpdateResponse> operation
-              = new AccountingTaxRatesUpdateOperation(sdkConfiguration, options);
+              = new AccountingTaxRatesUpdate.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -233,7 +233,7 @@ public class TaxRates {
      */
     public AccountingTaxRatesDeleteResponse delete(AccountingTaxRatesDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingTaxRatesDeleteRequest, AccountingTaxRatesDeleteResponse> operation
-              = new AccountingTaxRatesDeleteOperation(sdkConfiguration, options);
+              = new AccountingTaxRatesDelete.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

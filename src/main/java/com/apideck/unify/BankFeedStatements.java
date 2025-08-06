@@ -20,11 +20,11 @@ import com.apideck.unify.models.operations.AccountingBankFeedStatementsOneRespon
 import com.apideck.unify.models.operations.AccountingBankFeedStatementsUpdateRequest;
 import com.apideck.unify.models.operations.AccountingBankFeedStatementsUpdateRequestBuilder;
 import com.apideck.unify.models.operations.AccountingBankFeedStatementsUpdateResponse;
-import com.apideck.unify.operations.AccountingBankFeedStatementsAddOperation;
-import com.apideck.unify.operations.AccountingBankFeedStatementsAllOperation;
-import com.apideck.unify.operations.AccountingBankFeedStatementsDeleteOperation;
-import com.apideck.unify.operations.AccountingBankFeedStatementsOneOperation;
-import com.apideck.unify.operations.AccountingBankFeedStatementsUpdateOperation;
+import com.apideck.unify.operations.AccountingBankFeedStatementsAdd;
+import com.apideck.unify.operations.AccountingBankFeedStatementsAll;
+import com.apideck.unify.operations.AccountingBankFeedStatementsDelete;
+import com.apideck.unify.operations.AccountingBankFeedStatementsOne;
+import com.apideck.unify.operations.AccountingBankFeedStatementsUpdate;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
@@ -73,7 +73,7 @@ public class BankFeedStatements {
      */
     public AccountingBankFeedStatementsAllResponse list(AccountingBankFeedStatementsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingBankFeedStatementsAllRequest, AccountingBankFeedStatementsAllResponse> operation
-              = new AccountingBankFeedStatementsAllOperation(sdkConfiguration, options);
+              = new AccountingBankFeedStatementsAll.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -113,7 +113,7 @@ public class BankFeedStatements {
      */
     public AccountingBankFeedStatementsAddResponse create(AccountingBankFeedStatementsAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingBankFeedStatementsAddRequest, AccountingBankFeedStatementsAddResponse> operation
-              = new AccountingBankFeedStatementsAddOperation(sdkConfiguration, options);
+              = new AccountingBankFeedStatementsAdd.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -153,7 +153,7 @@ public class BankFeedStatements {
      */
     public AccountingBankFeedStatementsOneResponse get(AccountingBankFeedStatementsOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingBankFeedStatementsOneRequest, AccountingBankFeedStatementsOneResponse> operation
-              = new AccountingBankFeedStatementsOneOperation(sdkConfiguration, options);
+              = new AccountingBankFeedStatementsOne.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -193,7 +193,7 @@ public class BankFeedStatements {
      */
     public AccountingBankFeedStatementsUpdateResponse update(AccountingBankFeedStatementsUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingBankFeedStatementsUpdateRequest, AccountingBankFeedStatementsUpdateResponse> operation
-              = new AccountingBankFeedStatementsUpdateOperation(sdkConfiguration, options);
+              = new AccountingBankFeedStatementsUpdate.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -233,7 +233,7 @@ public class BankFeedStatements {
      */
     public AccountingBankFeedStatementsDeleteResponse delete(AccountingBankFeedStatementsDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingBankFeedStatementsDeleteRequest, AccountingBankFeedStatementsDeleteResponse> operation
-              = new AccountingBankFeedStatementsDeleteOperation(sdkConfiguration, options);
+              = new AccountingBankFeedStatementsDelete.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

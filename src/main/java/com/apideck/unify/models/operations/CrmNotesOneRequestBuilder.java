@@ -6,7 +6,7 @@ package com.apideck.unify.models.operations;
 import static com.apideck.unify.operations.Operations.RequestOperation;
 
 import com.apideck.unify.SDKConfiguration;
-import com.apideck.unify.operations.CrmNotesOneOperation;
+import com.apideck.unify.operations.CrmNotesOne;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -47,7 +47,7 @@ public class CrmNotesOneRequestBuilder {
             .build());
 
         RequestOperation<CrmNotesOneRequest, CrmNotesOneResponse> operation
-              = new CrmNotesOneOperation(sdkConfiguration, options);
+              = new CrmNotesOne.Sync(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

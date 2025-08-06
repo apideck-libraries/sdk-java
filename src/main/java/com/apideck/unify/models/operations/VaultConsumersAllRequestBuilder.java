@@ -9,7 +9,7 @@ import static com.apideck.unify.utils.Utils.transform;
 import static com.apideck.unify.utils.Utils.toStream;
 
 import com.apideck.unify.SDKConfiguration;
-import com.apideck.unify.operations.VaultConsumersAllOperation;
+import com.apideck.unify.operations.VaultConsumersAll;
 import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
@@ -110,7 +110,7 @@ public class VaultConsumersAllRequestBuilder {
             .build());
 
         RequestOperation<VaultConsumersAllRequest, VaultConsumersAllResponse> operation
-              = new VaultConsumersAllOperation(sdkConfiguration, options);
+              = new VaultConsumersAll.Sync(sdkConfiguration, options);
         VaultConsumersAllRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
@@ -135,7 +135,7 @@ public class VaultConsumersAllRequestBuilder {
             .build());
 
         RequestOperation<VaultConsumersAllRequest, VaultConsumersAllResponse> operation
-              = new VaultConsumersAllOperation(sdkConfiguration, options);
+              = new VaultConsumersAll.Sync(sdkConfiguration, options);
         VaultConsumersAllRequest request = buildRequest();
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,

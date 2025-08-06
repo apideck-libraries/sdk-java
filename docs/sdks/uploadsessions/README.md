@@ -17,6 +17,7 @@ Start an Upload Session. Upload sessions are used to upload large files, use the
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="fileStorage.uploadSessionsAdd" method="post" path="/file-storage/upload-sessions" -->
 ```java
 package hello.world;
 
@@ -155,6 +156,7 @@ Get Upload Session. Use the `part_size` to split your file into parts. Upload th
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="fileStorage.uploadSessionsOne" method="get" path="/file-storage/upload-sessions/{id}" -->
 ```java
 package hello.world;
 
@@ -219,6 +221,7 @@ Upload part of File to Upload Session (max 100MB). Get `part_size` from [Get Upl
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="fileStorage.uploadSessionsUpload" method="put" path="/file-storage/upload-sessions/{id}" -->
 ```java
 package hello.world;
 
@@ -286,6 +289,7 @@ Abort Upload Session. Note that the base URL is upload.apideck.com instead of un
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="fileStorage.uploadSessionsDelete" method="delete" path="/file-storage/upload-sessions/{id}" -->
 ```java
 package hello.world;
 
@@ -348,6 +352,7 @@ Finish Upload Session. Only call this endpoint after all File parts have been up
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="fileStorage.uploadSessionsFinish" method="post" path="/file-storage/upload-sessions/{id}/finish" -->
 ```java
 package hello.world;
 

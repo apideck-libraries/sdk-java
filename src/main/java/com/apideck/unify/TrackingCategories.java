@@ -20,11 +20,11 @@ import com.apideck.unify.models.operations.AccountingTrackingCategoriesOneRespon
 import com.apideck.unify.models.operations.AccountingTrackingCategoriesUpdateRequest;
 import com.apideck.unify.models.operations.AccountingTrackingCategoriesUpdateRequestBuilder;
 import com.apideck.unify.models.operations.AccountingTrackingCategoriesUpdateResponse;
-import com.apideck.unify.operations.AccountingTrackingCategoriesAddOperation;
-import com.apideck.unify.operations.AccountingTrackingCategoriesAllOperation;
-import com.apideck.unify.operations.AccountingTrackingCategoriesDeleteOperation;
-import com.apideck.unify.operations.AccountingTrackingCategoriesOneOperation;
-import com.apideck.unify.operations.AccountingTrackingCategoriesUpdateOperation;
+import com.apideck.unify.operations.AccountingTrackingCategoriesAdd;
+import com.apideck.unify.operations.AccountingTrackingCategoriesAll;
+import com.apideck.unify.operations.AccountingTrackingCategoriesDelete;
+import com.apideck.unify.operations.AccountingTrackingCategoriesOne;
+import com.apideck.unify.operations.AccountingTrackingCategoriesUpdate;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
@@ -73,7 +73,7 @@ public class TrackingCategories {
      */
     public AccountingTrackingCategoriesAllResponse list(AccountingTrackingCategoriesAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingTrackingCategoriesAllRequest, AccountingTrackingCategoriesAllResponse> operation
-              = new AccountingTrackingCategoriesAllOperation(sdkConfiguration, options);
+              = new AccountingTrackingCategoriesAll.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -113,7 +113,7 @@ public class TrackingCategories {
      */
     public AccountingTrackingCategoriesAddResponse create(AccountingTrackingCategoriesAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingTrackingCategoriesAddRequest, AccountingTrackingCategoriesAddResponse> operation
-              = new AccountingTrackingCategoriesAddOperation(sdkConfiguration, options);
+              = new AccountingTrackingCategoriesAdd.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -153,7 +153,7 @@ public class TrackingCategories {
      */
     public AccountingTrackingCategoriesOneResponse get(AccountingTrackingCategoriesOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingTrackingCategoriesOneRequest, AccountingTrackingCategoriesOneResponse> operation
-              = new AccountingTrackingCategoriesOneOperation(sdkConfiguration, options);
+              = new AccountingTrackingCategoriesOne.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -193,7 +193,7 @@ public class TrackingCategories {
      */
     public AccountingTrackingCategoriesUpdateResponse update(AccountingTrackingCategoriesUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingTrackingCategoriesUpdateRequest, AccountingTrackingCategoriesUpdateResponse> operation
-              = new AccountingTrackingCategoriesUpdateOperation(sdkConfiguration, options);
+              = new AccountingTrackingCategoriesUpdate.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -233,7 +233,7 @@ public class TrackingCategories {
      */
     public AccountingTrackingCategoriesDeleteResponse delete(AccountingTrackingCategoriesDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingTrackingCategoriesDeleteRequest, AccountingTrackingCategoriesDeleteResponse> operation
-              = new AccountingTrackingCategoriesDeleteOperation(sdkConfiguration, options);
+              = new AccountingTrackingCategoriesDelete.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

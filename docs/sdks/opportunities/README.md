@@ -17,6 +17,7 @@ List opportunities
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="crm.opportunitiesAll" method="get" path="/crm/opportunities" -->
 ```java
 package hello.world;
 
@@ -91,6 +92,7 @@ Create opportunity
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="crm.opportunitiesAdd" method="post" path="/crm/opportunities" -->
 ```java
 package hello.world;
 
@@ -224,6 +226,7 @@ Get opportunity
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="crm.opportunitiesOne" method="get" path="/crm/opportunities/{id}" -->
 ```java
 package hello.world;
 
@@ -287,6 +290,7 @@ Update opportunity
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="crm.opportunitiesUpdate" method="patch" path="/crm/opportunities/{id}" -->
 ```java
 package hello.world;
 
@@ -427,6 +431,7 @@ Delete opportunity
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="crm.opportunitiesDelete" method="delete" path="/crm/opportunities/{id}" -->
 ```java
 package hello.world;
 

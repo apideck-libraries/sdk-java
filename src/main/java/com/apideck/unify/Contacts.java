@@ -20,11 +20,11 @@ import com.apideck.unify.models.operations.CrmContactsOneResponse;
 import com.apideck.unify.models.operations.CrmContactsUpdateRequest;
 import com.apideck.unify.models.operations.CrmContactsUpdateRequestBuilder;
 import com.apideck.unify.models.operations.CrmContactsUpdateResponse;
-import com.apideck.unify.operations.CrmContactsAddOperation;
-import com.apideck.unify.operations.CrmContactsAllOperation;
-import com.apideck.unify.operations.CrmContactsDeleteOperation;
-import com.apideck.unify.operations.CrmContactsOneOperation;
-import com.apideck.unify.operations.CrmContactsUpdateOperation;
+import com.apideck.unify.operations.CrmContactsAdd;
+import com.apideck.unify.operations.CrmContactsAll;
+import com.apideck.unify.operations.CrmContactsDelete;
+import com.apideck.unify.operations.CrmContactsOne;
+import com.apideck.unify.operations.CrmContactsUpdate;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
@@ -73,7 +73,7 @@ public class Contacts {
      */
     public CrmContactsAllResponse list(CrmContactsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmContactsAllRequest, CrmContactsAllResponse> operation
-              = new CrmContactsAllOperation(sdkConfiguration, options);
+              = new CrmContactsAll.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -113,7 +113,7 @@ public class Contacts {
      */
     public CrmContactsAddResponse create(CrmContactsAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmContactsAddRequest, CrmContactsAddResponse> operation
-              = new CrmContactsAddOperation(sdkConfiguration, options);
+              = new CrmContactsAdd.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -153,7 +153,7 @@ public class Contacts {
      */
     public CrmContactsOneResponse get(CrmContactsOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmContactsOneRequest, CrmContactsOneResponse> operation
-              = new CrmContactsOneOperation(sdkConfiguration, options);
+              = new CrmContactsOne.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -193,7 +193,7 @@ public class Contacts {
      */
     public CrmContactsUpdateResponse update(CrmContactsUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmContactsUpdateRequest, CrmContactsUpdateResponse> operation
-              = new CrmContactsUpdateOperation(sdkConfiguration, options);
+              = new CrmContactsUpdate.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -233,7 +233,7 @@ public class Contacts {
      */
     public CrmContactsDeleteResponse delete(CrmContactsDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmContactsDeleteRequest, CrmContactsDeleteResponse> operation
-              = new CrmContactsDeleteOperation(sdkConfiguration, options);
+              = new CrmContactsDelete.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

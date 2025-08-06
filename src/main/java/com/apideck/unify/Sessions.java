@@ -9,7 +9,7 @@ import com.apideck.unify.models.components.Session;
 import com.apideck.unify.models.operations.VaultSessionsCreateRequest;
 import com.apideck.unify.models.operations.VaultSessionsCreateRequestBuilder;
 import com.apideck.unify.models.operations.VaultSessionsCreateResponse;
-import com.apideck.unify.operations.VaultSessionsCreateOperation;
+import com.apideck.unify.operations.VaultSessionsCreate;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
@@ -79,7 +79,7 @@ public class Sessions {
                 .session(session)
                 .build();
         RequestOperation<VaultSessionsCreateRequest, VaultSessionsCreateResponse> operation
-              = new VaultSessionsCreateOperation(sdkConfiguration, options);
+              = new VaultSessionsCreate.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

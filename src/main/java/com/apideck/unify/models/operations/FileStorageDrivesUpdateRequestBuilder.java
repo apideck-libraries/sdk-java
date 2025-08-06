@@ -6,7 +6,7 @@ package com.apideck.unify.models.operations;
 import static com.apideck.unify.operations.Operations.RequestOperation;
 
 import com.apideck.unify.SDKConfiguration;
-import com.apideck.unify.operations.FileStorageDrivesUpdateOperation;
+import com.apideck.unify.operations.FileStorageDrivesUpdate;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -47,7 +47,7 @@ public class FileStorageDrivesUpdateRequestBuilder {
             .build());
 
         RequestOperation<FileStorageDrivesUpdateRequest, FileStorageDrivesUpdateResponse> operation
-              = new FileStorageDrivesUpdateOperation(sdkConfiguration, options);
+              = new FileStorageDrivesUpdate.Sync(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

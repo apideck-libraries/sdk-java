@@ -17,6 +17,7 @@ List SharedLinks
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="fileStorage.sharedLinksAll" method="get" path="/file-storage/shared-links" -->
 ```java
 package hello.world;
 
@@ -82,6 +83,7 @@ Create Shared Link
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="fileStorage.sharedLinksAdd" method="post" path="/file-storage/shared-links" -->
 ```java
 package hello.world;
 
@@ -182,6 +184,7 @@ Get Shared Link
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="fileStorage.sharedLinksOne" method="get" path="/file-storage/shared-links/{id}" -->
 ```java
 package hello.world;
 
@@ -245,6 +248,7 @@ Update Shared Link
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="fileStorage.sharedLinksUpdate" method="patch" path="/file-storage/shared-links/{id}" -->
 ```java
 package hello.world;
 
@@ -348,6 +352,7 @@ Delete Shared Link
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="fileStorage.sharedLinksDelete" method="delete" path="/file-storage/shared-links/{id}" -->
 ```java
 package hello.world;
 

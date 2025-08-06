@@ -20,11 +20,11 @@ import com.apideck.unify.models.operations.FileStorageUploadSessionsOneResponse;
 import com.apideck.unify.models.operations.FileStorageUploadSessionsUploadRequest;
 import com.apideck.unify.models.operations.FileStorageUploadSessionsUploadRequestBuilder;
 import com.apideck.unify.models.operations.FileStorageUploadSessionsUploadResponse;
-import com.apideck.unify.operations.FileStorageUploadSessionsAddOperation;
-import com.apideck.unify.operations.FileStorageUploadSessionsDeleteOperation;
-import com.apideck.unify.operations.FileStorageUploadSessionsFinishOperation;
-import com.apideck.unify.operations.FileStorageUploadSessionsOneOperation;
-import com.apideck.unify.operations.FileStorageUploadSessionsUploadOperation;
+import com.apideck.unify.operations.FileStorageUploadSessionsAdd;
+import com.apideck.unify.operations.FileStorageUploadSessionsDelete;
+import com.apideck.unify.operations.FileStorageUploadSessionsFinish;
+import com.apideck.unify.operations.FileStorageUploadSessionsOne;
+import com.apideck.unify.operations.FileStorageUploadSessionsUpload;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
@@ -77,7 +77,7 @@ public class UploadSessions {
             FileStorageUploadSessionsAddRequest request, Optional<String> serverURL,
             Optional<Options> options) throws Exception {
         RequestOperation<FileStorageUploadSessionsAddRequest, FileStorageUploadSessionsAddResponse> operation
-              = new FileStorageUploadSessionsAddOperation(sdkConfiguration, serverURL, options);
+              = new FileStorageUploadSessionsAdd.Sync(sdkConfiguration, serverURL, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -120,7 +120,7 @@ public class UploadSessions {
             FileStorageUploadSessionsOneRequest request, Optional<String> serverURL,
             Optional<Options> options) throws Exception {
         RequestOperation<FileStorageUploadSessionsOneRequest, FileStorageUploadSessionsOneResponse> operation
-              = new FileStorageUploadSessionsOneOperation(sdkConfiguration, serverURL, options);
+              = new FileStorageUploadSessionsOne.Sync(sdkConfiguration, serverURL, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -163,7 +163,7 @@ public class UploadSessions {
             FileStorageUploadSessionsUploadRequest request, Optional<String> serverURL,
             Optional<Options> options) throws Exception {
         RequestOperation<FileStorageUploadSessionsUploadRequest, FileStorageUploadSessionsUploadResponse> operation
-              = new FileStorageUploadSessionsUploadOperation(sdkConfiguration, serverURL, options);
+              = new FileStorageUploadSessionsUpload.Sync(sdkConfiguration, serverURL, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -203,7 +203,7 @@ public class UploadSessions {
      */
     public FileStorageUploadSessionsDeleteResponse delete(FileStorageUploadSessionsDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageUploadSessionsDeleteRequest, FileStorageUploadSessionsDeleteResponse> operation
-              = new FileStorageUploadSessionsDeleteOperation(sdkConfiguration, options);
+              = new FileStorageUploadSessionsDelete.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -246,7 +246,7 @@ public class UploadSessions {
             FileStorageUploadSessionsFinishRequest request, Optional<String> serverURL,
             Optional<Options> options) throws Exception {
         RequestOperation<FileStorageUploadSessionsFinishRequest, FileStorageUploadSessionsFinishResponse> operation
-              = new FileStorageUploadSessionsFinishOperation(sdkConfiguration, serverURL, options);
+              = new FileStorageUploadSessionsFinish.Sync(sdkConfiguration, serverURL, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

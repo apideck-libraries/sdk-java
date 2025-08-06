@@ -20,11 +20,11 @@ import com.apideck.unify.models.operations.AccountingLocationsOneResponse;
 import com.apideck.unify.models.operations.AccountingLocationsUpdateRequest;
 import com.apideck.unify.models.operations.AccountingLocationsUpdateRequestBuilder;
 import com.apideck.unify.models.operations.AccountingLocationsUpdateResponse;
-import com.apideck.unify.operations.AccountingLocationsAddOperation;
-import com.apideck.unify.operations.AccountingLocationsAllOperation;
-import com.apideck.unify.operations.AccountingLocationsDeleteOperation;
-import com.apideck.unify.operations.AccountingLocationsOneOperation;
-import com.apideck.unify.operations.AccountingLocationsUpdateOperation;
+import com.apideck.unify.operations.AccountingLocationsAdd;
+import com.apideck.unify.operations.AccountingLocationsAll;
+import com.apideck.unify.operations.AccountingLocationsDelete;
+import com.apideck.unify.operations.AccountingLocationsOne;
+import com.apideck.unify.operations.AccountingLocationsUpdate;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
@@ -73,7 +73,7 @@ public class Locations {
      */
     public AccountingLocationsAllResponse list(AccountingLocationsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingLocationsAllRequest, AccountingLocationsAllResponse> operation
-              = new AccountingLocationsAllOperation(sdkConfiguration, options);
+              = new AccountingLocationsAll.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -113,7 +113,7 @@ public class Locations {
      */
     public AccountingLocationsAddResponse create(AccountingLocationsAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingLocationsAddRequest, AccountingLocationsAddResponse> operation
-              = new AccountingLocationsAddOperation(sdkConfiguration, options);
+              = new AccountingLocationsAdd.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -153,7 +153,7 @@ public class Locations {
      */
     public AccountingLocationsOneResponse get(AccountingLocationsOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingLocationsOneRequest, AccountingLocationsOneResponse> operation
-              = new AccountingLocationsOneOperation(sdkConfiguration, options);
+              = new AccountingLocationsOne.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -193,7 +193,7 @@ public class Locations {
      */
     public AccountingLocationsUpdateResponse update(AccountingLocationsUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingLocationsUpdateRequest, AccountingLocationsUpdateResponse> operation
-              = new AccountingLocationsUpdateOperation(sdkConfiguration, options);
+              = new AccountingLocationsUpdate.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -233,7 +233,7 @@ public class Locations {
      */
     public AccountingLocationsDeleteResponse delete(AccountingLocationsDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingLocationsDeleteRequest, AccountingLocationsDeleteResponse> operation
-              = new AccountingLocationsDeleteOperation(sdkConfiguration, options);
+              = new AccountingLocationsDelete.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

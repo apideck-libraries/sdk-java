@@ -6,7 +6,7 @@ package com.apideck.unify.models.operations;
 import static com.apideck.unify.operations.Operations.RequestOperation;
 
 import com.apideck.unify.SDKConfiguration;
-import com.apideck.unify.operations.SmsMessagesUpdateOperation;
+import com.apideck.unify.operations.SmsMessagesUpdate;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -47,7 +47,7 @@ public class SmsMessagesUpdateRequestBuilder {
             .build());
 
         RequestOperation<SmsMessagesUpdateRequest, SmsMessagesUpdateResponse> operation
-              = new SmsMessagesUpdateOperation(sdkConfiguration, options);
+              = new SmsMessagesUpdate.Sync(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

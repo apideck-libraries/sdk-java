@@ -8,7 +8,7 @@ import static com.apideck.unify.operations.Operations.RequestOperation;
 import com.apideck.unify.models.operations.VaultValidateConnectionStateRequest;
 import com.apideck.unify.models.operations.VaultValidateConnectionStateRequestBuilder;
 import com.apideck.unify.models.operations.VaultValidateConnectionStateResponse;
-import com.apideck.unify.operations.VaultValidateConnectionStateOperation;
+import com.apideck.unify.operations.VaultValidateConnectionState;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
@@ -72,7 +72,7 @@ public class ValidateConnection {
      */
     public VaultValidateConnectionStateResponse state(VaultValidateConnectionStateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<VaultValidateConnectionStateRequest, VaultValidateConnectionStateResponse> operation
-              = new VaultValidateConnectionStateOperation(sdkConfiguration, options);
+              = new VaultValidateConnectionState.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

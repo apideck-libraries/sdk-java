@@ -20,11 +20,11 @@ import com.apideck.unify.models.operations.AccountingJournalEntriesOneResponse;
 import com.apideck.unify.models.operations.AccountingJournalEntriesUpdateRequest;
 import com.apideck.unify.models.operations.AccountingJournalEntriesUpdateRequestBuilder;
 import com.apideck.unify.models.operations.AccountingJournalEntriesUpdateResponse;
-import com.apideck.unify.operations.AccountingJournalEntriesAddOperation;
-import com.apideck.unify.operations.AccountingJournalEntriesAllOperation;
-import com.apideck.unify.operations.AccountingJournalEntriesDeleteOperation;
-import com.apideck.unify.operations.AccountingJournalEntriesOneOperation;
-import com.apideck.unify.operations.AccountingJournalEntriesUpdateOperation;
+import com.apideck.unify.operations.AccountingJournalEntriesAdd;
+import com.apideck.unify.operations.AccountingJournalEntriesAll;
+import com.apideck.unify.operations.AccountingJournalEntriesDelete;
+import com.apideck.unify.operations.AccountingJournalEntriesOne;
+import com.apideck.unify.operations.AccountingJournalEntriesUpdate;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
@@ -73,7 +73,7 @@ public class JournalEntries {
      */
     public AccountingJournalEntriesAllResponse list(AccountingJournalEntriesAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingJournalEntriesAllRequest, AccountingJournalEntriesAllResponse> operation
-              = new AccountingJournalEntriesAllOperation(sdkConfiguration, options);
+              = new AccountingJournalEntriesAll.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -113,7 +113,7 @@ public class JournalEntries {
      */
     public AccountingJournalEntriesAddResponse create(AccountingJournalEntriesAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingJournalEntriesAddRequest, AccountingJournalEntriesAddResponse> operation
-              = new AccountingJournalEntriesAddOperation(sdkConfiguration, options);
+              = new AccountingJournalEntriesAdd.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -153,7 +153,7 @@ public class JournalEntries {
      */
     public AccountingJournalEntriesOneResponse get(AccountingJournalEntriesOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingJournalEntriesOneRequest, AccountingJournalEntriesOneResponse> operation
-              = new AccountingJournalEntriesOneOperation(sdkConfiguration, options);
+              = new AccountingJournalEntriesOne.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -193,7 +193,7 @@ public class JournalEntries {
      */
     public AccountingJournalEntriesUpdateResponse update(AccountingJournalEntriesUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingJournalEntriesUpdateRequest, AccountingJournalEntriesUpdateResponse> operation
-              = new AccountingJournalEntriesUpdateOperation(sdkConfiguration, options);
+              = new AccountingJournalEntriesUpdate.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -233,7 +233,7 @@ public class JournalEntries {
      */
     public AccountingJournalEntriesDeleteResponse delete(AccountingJournalEntriesDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingJournalEntriesDeleteRequest, AccountingJournalEntriesDeleteResponse> operation
-              = new AccountingJournalEntriesDeleteOperation(sdkConfiguration, options);
+              = new AccountingJournalEntriesDelete.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

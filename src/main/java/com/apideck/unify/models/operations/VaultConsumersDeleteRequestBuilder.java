@@ -6,7 +6,7 @@ package com.apideck.unify.models.operations;
 import static com.apideck.unify.operations.Operations.RequestOperation;
 
 import com.apideck.unify.SDKConfiguration;
-import com.apideck.unify.operations.VaultConsumersDeleteOperation;
+import com.apideck.unify.operations.VaultConsumersDelete;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -70,7 +70,7 @@ public class VaultConsumersDeleteRequestBuilder {
             .build());
 
         RequestOperation<VaultConsumersDeleteRequest, VaultConsumersDeleteResponse> operation
-              = new VaultConsumersDeleteOperation(sdkConfiguration, options);
+              = new VaultConsumersDelete.Sync(sdkConfiguration, options);
         VaultConsumersDeleteRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

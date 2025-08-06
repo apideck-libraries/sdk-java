@@ -17,6 +17,7 @@ List all webhook subscriptions
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="webhook.webhooksAll" method="get" path="/webhook/webhooks" -->
 ```java
 package hello.world;
 
@@ -74,6 +75,7 @@ Create a webhook subscription to receive events
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="webhook.webhooksAdd" method="post" path="/webhook/webhooks" -->
 ```java
 package hello.world;
 
@@ -140,6 +142,7 @@ Get the webhook subscription details
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="webhook.webhooksOne" method="get" path="/webhook/webhooks/{id}" -->
 ```java
 package hello.world;
 
@@ -196,6 +199,7 @@ Update a webhook subscription
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="webhook.webhooksUpdate" method="patch" path="/webhook/webhooks/{id}" -->
 ```java
 package hello.world;
 
@@ -263,6 +267,7 @@ Delete a webhook subscription
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="webhook.webhooksDelete" method="delete" path="/webhook/webhooks/{id}" -->
 ```java
 package hello.world;
 

@@ -6,7 +6,7 @@ package com.apideck.unify.models.operations;
 import static com.apideck.unify.operations.Operations.RequestOperation;
 
 import com.apideck.unify.SDKConfiguration;
-import com.apideck.unify.operations.IssueTrackingCollectionTicketCommentsDeleteOperation;
+import com.apideck.unify.operations.IssueTrackingCollectionTicketCommentsDelete;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -47,7 +47,7 @@ public class IssueTrackingCollectionTicketCommentsDeleteRequestBuilder {
             .build());
 
         RequestOperation<IssueTrackingCollectionTicketCommentsDeleteRequest, IssueTrackingCollectionTicketCommentsDeleteResponse> operation
-              = new IssueTrackingCollectionTicketCommentsDeleteOperation(sdkConfiguration, options);
+              = new IssueTrackingCollectionTicketCommentsDelete.Sync(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

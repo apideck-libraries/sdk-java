@@ -20,11 +20,11 @@ import com.apideck.unify.models.operations.HrisEmployeesOneResponse;
 import com.apideck.unify.models.operations.HrisEmployeesUpdateRequest;
 import com.apideck.unify.models.operations.HrisEmployeesUpdateRequestBuilder;
 import com.apideck.unify.models.operations.HrisEmployeesUpdateResponse;
-import com.apideck.unify.operations.HrisEmployeesAddOperation;
-import com.apideck.unify.operations.HrisEmployeesAllOperation;
-import com.apideck.unify.operations.HrisEmployeesDeleteOperation;
-import com.apideck.unify.operations.HrisEmployeesOneOperation;
-import com.apideck.unify.operations.HrisEmployeesUpdateOperation;
+import com.apideck.unify.operations.HrisEmployeesAdd;
+import com.apideck.unify.operations.HrisEmployeesAll;
+import com.apideck.unify.operations.HrisEmployeesDelete;
+import com.apideck.unify.operations.HrisEmployeesOne;
+import com.apideck.unify.operations.HrisEmployeesUpdate;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
@@ -73,7 +73,7 @@ public class Employees {
      */
     public HrisEmployeesAllResponse list(HrisEmployeesAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<HrisEmployeesAllRequest, HrisEmployeesAllResponse> operation
-              = new HrisEmployeesAllOperation(sdkConfiguration, options);
+              = new HrisEmployeesAll.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -113,7 +113,7 @@ public class Employees {
      */
     public HrisEmployeesAddResponse create(HrisEmployeesAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<HrisEmployeesAddRequest, HrisEmployeesAddResponse> operation
-              = new HrisEmployeesAddOperation(sdkConfiguration, options);
+              = new HrisEmployeesAdd.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -153,7 +153,7 @@ public class Employees {
      */
     public HrisEmployeesOneResponse get(HrisEmployeesOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<HrisEmployeesOneRequest, HrisEmployeesOneResponse> operation
-              = new HrisEmployeesOneOperation(sdkConfiguration, options);
+              = new HrisEmployeesOne.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -193,7 +193,7 @@ public class Employees {
      */
     public HrisEmployeesUpdateResponse update(HrisEmployeesUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<HrisEmployeesUpdateRequest, HrisEmployeesUpdateResponse> operation
-              = new HrisEmployeesUpdateOperation(sdkConfiguration, options);
+              = new HrisEmployeesUpdate.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -233,7 +233,7 @@ public class Employees {
      */
     public HrisEmployeesDeleteResponse delete(HrisEmployeesDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<HrisEmployeesDeleteRequest, HrisEmployeesDeleteResponse> operation
-              = new HrisEmployeesDeleteOperation(sdkConfiguration, options);
+              = new HrisEmployeesDelete.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

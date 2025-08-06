@@ -8,7 +8,7 @@ import static com.apideck.unify.operations.Operations.RequestOperation;
 import com.apideck.unify.models.operations.ConnectorApiResourceCoverageOneRequest;
 import com.apideck.unify.models.operations.ConnectorApiResourceCoverageOneRequestBuilder;
 import com.apideck.unify.models.operations.ConnectorApiResourceCoverageOneResponse;
-import com.apideck.unify.operations.ConnectorApiResourceCoverageOneOperation;
+import com.apideck.unify.operations.ConnectorApiResourceCoverageOne;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
@@ -71,7 +71,7 @@ public class ApiResourceCoverage {
                 .resourceId(resourceId)
                 .build();
         RequestOperation<ConnectorApiResourceCoverageOneRequest, ConnectorApiResourceCoverageOneResponse> operation
-              = new ConnectorApiResourceCoverageOneOperation(sdkConfiguration, options);
+              = new ConnectorApiResourceCoverageOne.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

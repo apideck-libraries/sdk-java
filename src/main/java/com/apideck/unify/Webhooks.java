@@ -22,11 +22,11 @@ import com.apideck.unify.models.operations.WebhookWebhooksOneResponse;
 import com.apideck.unify.models.operations.WebhookWebhooksUpdateRequest;
 import com.apideck.unify.models.operations.WebhookWebhooksUpdateRequestBuilder;
 import com.apideck.unify.models.operations.WebhookWebhooksUpdateResponse;
-import com.apideck.unify.operations.WebhookWebhooksAddOperation;
-import com.apideck.unify.operations.WebhookWebhooksAllOperation;
-import com.apideck.unify.operations.WebhookWebhooksDeleteOperation;
-import com.apideck.unify.operations.WebhookWebhooksOneOperation;
-import com.apideck.unify.operations.WebhookWebhooksUpdateOperation;
+import com.apideck.unify.operations.WebhookWebhooksAdd;
+import com.apideck.unify.operations.WebhookWebhooksAll;
+import com.apideck.unify.operations.WebhookWebhooksDelete;
+import com.apideck.unify.operations.WebhookWebhooksOne;
+import com.apideck.unify.operations.WebhookWebhooksUpdate;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.lang.Long;
@@ -89,7 +89,7 @@ public class Webhooks {
                 .limit(limit)
                 .build();
         RequestOperation<WebhookWebhooksAllRequest, WebhookWebhooksAllResponse> operation
-              = new WebhookWebhooksAllOperation(sdkConfiguration, options);
+              = new WebhookWebhooksAll.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -138,7 +138,7 @@ public class Webhooks {
                 .createWebhookRequest(createWebhookRequest)
                 .build();
         RequestOperation<WebhookWebhooksAddRequest, WebhookWebhooksAddResponse> operation
-              = new WebhookWebhooksAddOperation(sdkConfiguration, options);
+              = new WebhookWebhooksAdd.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -187,7 +187,7 @@ public class Webhooks {
                 .appId(appId)
                 .build();
         RequestOperation<WebhookWebhooksOneRequest, WebhookWebhooksOneResponse> operation
-              = new WebhookWebhooksOneOperation(sdkConfiguration, options);
+              = new WebhookWebhooksOne.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -240,7 +240,7 @@ public class Webhooks {
                 .updateWebhookRequest(updateWebhookRequest)
                 .build();
         RequestOperation<WebhookWebhooksUpdateRequest, WebhookWebhooksUpdateResponse> operation
-              = new WebhookWebhooksUpdateOperation(sdkConfiguration, options);
+              = new WebhookWebhooksUpdate.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -289,7 +289,7 @@ public class Webhooks {
                 .appId(appId)
                 .build();
         RequestOperation<WebhookWebhooksDeleteRequest, WebhookWebhooksDeleteResponse> operation
-              = new WebhookWebhooksDeleteOperation(sdkConfiguration, options);
+              = new WebhookWebhooksDelete.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

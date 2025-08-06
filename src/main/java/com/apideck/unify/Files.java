@@ -26,13 +26,13 @@ import com.apideck.unify.models.operations.FileStorageFilesSearchResponse;
 import com.apideck.unify.models.operations.FileStorageFilesUpdateRequest;
 import com.apideck.unify.models.operations.FileStorageFilesUpdateRequestBuilder;
 import com.apideck.unify.models.operations.FileStorageFilesUpdateResponse;
-import com.apideck.unify.operations.FileStorageFilesAllOperation;
-import com.apideck.unify.operations.FileStorageFilesDeleteOperation;
-import com.apideck.unify.operations.FileStorageFilesDownloadOperation;
-import com.apideck.unify.operations.FileStorageFilesExportOperation;
-import com.apideck.unify.operations.FileStorageFilesOneOperation;
-import com.apideck.unify.operations.FileStorageFilesSearchOperation;
-import com.apideck.unify.operations.FileStorageFilesUpdateOperation;
+import com.apideck.unify.operations.FileStorageFilesAll;
+import com.apideck.unify.operations.FileStorageFilesDelete;
+import com.apideck.unify.operations.FileStorageFilesDownload;
+import com.apideck.unify.operations.FileStorageFilesExport;
+import com.apideck.unify.operations.FileStorageFilesOne;
+import com.apideck.unify.operations.FileStorageFilesSearch;
+import com.apideck.unify.operations.FileStorageFilesUpdate;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
@@ -81,7 +81,7 @@ public class Files {
      */
     public FileStorageFilesAllResponse list(FileStorageFilesAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageFilesAllRequest, FileStorageFilesAllResponse> operation
-              = new FileStorageFilesAllOperation(sdkConfiguration, options);
+              = new FileStorageFilesAll.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -121,7 +121,7 @@ public class Files {
      */
     public FileStorageFilesSearchResponse search(FileStorageFilesSearchRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageFilesSearchRequest, FileStorageFilesSearchResponse> operation
-              = new FileStorageFilesSearchOperation(sdkConfiguration, options);
+              = new FileStorageFilesSearch.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -161,7 +161,7 @@ public class Files {
      */
     public FileStorageFilesOneResponse get(FileStorageFilesOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageFilesOneRequest, FileStorageFilesOneResponse> operation
-              = new FileStorageFilesOneOperation(sdkConfiguration, options);
+              = new FileStorageFilesOne.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -201,7 +201,7 @@ public class Files {
      */
     public FileStorageFilesUpdateResponse update(FileStorageFilesUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageFilesUpdateRequest, FileStorageFilesUpdateResponse> operation
-              = new FileStorageFilesUpdateOperation(sdkConfiguration, options);
+              = new FileStorageFilesUpdate.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -241,7 +241,7 @@ public class Files {
      */
     public FileStorageFilesDeleteResponse delete(FileStorageFilesDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageFilesDeleteRequest, FileStorageFilesDeleteResponse> operation
-              = new FileStorageFilesDeleteOperation(sdkConfiguration, options);
+              = new FileStorageFilesDelete.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -281,7 +281,7 @@ public class Files {
      */
     public FileStorageFilesDownloadResponse download(FileStorageFilesDownloadRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageFilesDownloadRequest, FileStorageFilesDownloadResponse> operation
-              = new FileStorageFilesDownloadOperation(sdkConfiguration, options);
+              = new FileStorageFilesDownload.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -321,7 +321,7 @@ public class Files {
      */
     public FileStorageFilesExportResponse export(FileStorageFilesExportRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageFilesExportRequest, FileStorageFilesExportResponse> operation
-              = new FileStorageFilesExportOperation(sdkConfiguration, options);
+              = new FileStorageFilesExport.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -20,11 +20,11 @@ import com.apideck.unify.models.operations.IssueTrackingCollectionTicketsOneResp
 import com.apideck.unify.models.operations.IssueTrackingCollectionTicketsUpdateRequest;
 import com.apideck.unify.models.operations.IssueTrackingCollectionTicketsUpdateRequestBuilder;
 import com.apideck.unify.models.operations.IssueTrackingCollectionTicketsUpdateResponse;
-import com.apideck.unify.operations.IssueTrackingCollectionTicketsAddOperation;
-import com.apideck.unify.operations.IssueTrackingCollectionTicketsAllOperation;
-import com.apideck.unify.operations.IssueTrackingCollectionTicketsDeleteOperation;
-import com.apideck.unify.operations.IssueTrackingCollectionTicketsOneOperation;
-import com.apideck.unify.operations.IssueTrackingCollectionTicketsUpdateOperation;
+import com.apideck.unify.operations.IssueTrackingCollectionTicketsAdd;
+import com.apideck.unify.operations.IssueTrackingCollectionTicketsAll;
+import com.apideck.unify.operations.IssueTrackingCollectionTicketsDelete;
+import com.apideck.unify.operations.IssueTrackingCollectionTicketsOne;
+import com.apideck.unify.operations.IssueTrackingCollectionTicketsUpdate;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
@@ -73,7 +73,7 @@ public class CollectionTickets {
      */
     public IssueTrackingCollectionTicketsAllResponse list(IssueTrackingCollectionTicketsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<IssueTrackingCollectionTicketsAllRequest, IssueTrackingCollectionTicketsAllResponse> operation
-              = new IssueTrackingCollectionTicketsAllOperation(sdkConfiguration, options);
+              = new IssueTrackingCollectionTicketsAll.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -113,7 +113,7 @@ public class CollectionTickets {
      */
     public IssueTrackingCollectionTicketsAddResponse create(IssueTrackingCollectionTicketsAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<IssueTrackingCollectionTicketsAddRequest, IssueTrackingCollectionTicketsAddResponse> operation
-              = new IssueTrackingCollectionTicketsAddOperation(sdkConfiguration, options);
+              = new IssueTrackingCollectionTicketsAdd.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -153,7 +153,7 @@ public class CollectionTickets {
      */
     public IssueTrackingCollectionTicketsOneResponse get(IssueTrackingCollectionTicketsOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<IssueTrackingCollectionTicketsOneRequest, IssueTrackingCollectionTicketsOneResponse> operation
-              = new IssueTrackingCollectionTicketsOneOperation(sdkConfiguration, options);
+              = new IssueTrackingCollectionTicketsOne.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -193,7 +193,7 @@ public class CollectionTickets {
      */
     public IssueTrackingCollectionTicketsUpdateResponse update(IssueTrackingCollectionTicketsUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<IssueTrackingCollectionTicketsUpdateRequest, IssueTrackingCollectionTicketsUpdateResponse> operation
-              = new IssueTrackingCollectionTicketsUpdateOperation(sdkConfiguration, options);
+              = new IssueTrackingCollectionTicketsUpdate.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -233,7 +233,7 @@ public class CollectionTickets {
      */
     public IssueTrackingCollectionTicketsDeleteResponse delete(IssueTrackingCollectionTicketsDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<IssueTrackingCollectionTicketsDeleteRequest, IssueTrackingCollectionTicketsDeleteResponse> operation
-              = new IssueTrackingCollectionTicketsDeleteOperation(sdkConfiguration, options);
+              = new IssueTrackingCollectionTicketsDelete.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

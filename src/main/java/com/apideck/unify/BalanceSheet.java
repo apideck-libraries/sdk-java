@@ -8,7 +8,7 @@ import static com.apideck.unify.operations.Operations.RequestOperation;
 import com.apideck.unify.models.operations.AccountingBalanceSheetOneRequest;
 import com.apideck.unify.models.operations.AccountingBalanceSheetOneRequestBuilder;
 import com.apideck.unify.models.operations.AccountingBalanceSheetOneResponse;
-import com.apideck.unify.operations.AccountingBalanceSheetOneOperation;
+import com.apideck.unify.operations.AccountingBalanceSheetOne;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
@@ -57,7 +57,7 @@ public class BalanceSheet {
      */
     public AccountingBalanceSheetOneResponse get(AccountingBalanceSheetOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingBalanceSheetOneRequest, AccountingBalanceSheetOneResponse> operation
-              = new AccountingBalanceSheetOneOperation(sdkConfiguration, options);
+              = new AccountingBalanceSheetOne.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

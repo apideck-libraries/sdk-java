@@ -17,6 +17,7 @@ List users
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="crm.usersAll" method="get" path="/crm/users" -->
 ```java
 package hello.world;
 
@@ -82,6 +83,7 @@ Create user
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="crm.usersAdd" method="post" path="/crm/users" -->
 ```java
 package hello.world;
 
@@ -299,6 +301,7 @@ Get user
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="crm.usersOne" method="get" path="/crm/users/{id}" -->
 ```java
 package hello.world;
 
@@ -362,6 +365,7 @@ Update user
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="crm.usersUpdate" method="patch" path="/crm/users/{id}" -->
 ```java
 package hello.world;
 
@@ -546,6 +550,7 @@ Delete user
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="crm.usersDelete" method="delete" path="/crm/users/{id}" -->
 ```java
 package hello.world;
 

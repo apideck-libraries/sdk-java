@@ -20,11 +20,11 @@ import com.apideck.unify.models.operations.IssueTrackingCollectionTicketComments
 import com.apideck.unify.models.operations.IssueTrackingCollectionTicketCommentsUpdateRequest;
 import com.apideck.unify.models.operations.IssueTrackingCollectionTicketCommentsUpdateRequestBuilder;
 import com.apideck.unify.models.operations.IssueTrackingCollectionTicketCommentsUpdateResponse;
-import com.apideck.unify.operations.IssueTrackingCollectionTicketCommentsAddOperation;
-import com.apideck.unify.operations.IssueTrackingCollectionTicketCommentsAllOperation;
-import com.apideck.unify.operations.IssueTrackingCollectionTicketCommentsDeleteOperation;
-import com.apideck.unify.operations.IssueTrackingCollectionTicketCommentsOneOperation;
-import com.apideck.unify.operations.IssueTrackingCollectionTicketCommentsUpdateOperation;
+import com.apideck.unify.operations.IssueTrackingCollectionTicketCommentsAdd;
+import com.apideck.unify.operations.IssueTrackingCollectionTicketCommentsAll;
+import com.apideck.unify.operations.IssueTrackingCollectionTicketCommentsDelete;
+import com.apideck.unify.operations.IssueTrackingCollectionTicketCommentsOne;
+import com.apideck.unify.operations.IssueTrackingCollectionTicketCommentsUpdate;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
@@ -73,7 +73,7 @@ public class CollectionTicketComments {
      */
     public IssueTrackingCollectionTicketCommentsAllResponse list(IssueTrackingCollectionTicketCommentsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<IssueTrackingCollectionTicketCommentsAllRequest, IssueTrackingCollectionTicketCommentsAllResponse> operation
-              = new IssueTrackingCollectionTicketCommentsAllOperation(sdkConfiguration, options);
+              = new IssueTrackingCollectionTicketCommentsAll.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -113,7 +113,7 @@ public class CollectionTicketComments {
      */
     public IssueTrackingCollectionTicketCommentsAddResponse create(IssueTrackingCollectionTicketCommentsAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<IssueTrackingCollectionTicketCommentsAddRequest, IssueTrackingCollectionTicketCommentsAddResponse> operation
-              = new IssueTrackingCollectionTicketCommentsAddOperation(sdkConfiguration, options);
+              = new IssueTrackingCollectionTicketCommentsAdd.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -153,7 +153,7 @@ public class CollectionTicketComments {
      */
     public IssueTrackingCollectionTicketCommentsOneResponse get(IssueTrackingCollectionTicketCommentsOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<IssueTrackingCollectionTicketCommentsOneRequest, IssueTrackingCollectionTicketCommentsOneResponse> operation
-              = new IssueTrackingCollectionTicketCommentsOneOperation(sdkConfiguration, options);
+              = new IssueTrackingCollectionTicketCommentsOne.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -193,7 +193,7 @@ public class CollectionTicketComments {
      */
     public IssueTrackingCollectionTicketCommentsUpdateResponse update(IssueTrackingCollectionTicketCommentsUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<IssueTrackingCollectionTicketCommentsUpdateRequest, IssueTrackingCollectionTicketCommentsUpdateResponse> operation
-              = new IssueTrackingCollectionTicketCommentsUpdateOperation(sdkConfiguration, options);
+              = new IssueTrackingCollectionTicketCommentsUpdate.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -233,7 +233,7 @@ public class CollectionTicketComments {
      */
     public IssueTrackingCollectionTicketCommentsDeleteResponse delete(IssueTrackingCollectionTicketCommentsDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<IssueTrackingCollectionTicketCommentsDeleteRequest, IssueTrackingCollectionTicketCommentsDeleteResponse> operation
-              = new IssueTrackingCollectionTicketCommentsDeleteOperation(sdkConfiguration, options);
+              = new IssueTrackingCollectionTicketCommentsDelete.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

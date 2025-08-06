@@ -7,7 +7,7 @@ import static com.apideck.unify.operations.Operations.RequestOperation;
 
 import com.apideck.unify.SDKConfiguration;
 import com.apideck.unify.models.components.UnifiedApiId;
-import com.apideck.unify.operations.ConnectorConnectorResourcesOneOperation;
+import com.apideck.unify.operations.ConnectorConnectorResourcesOne;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -93,7 +93,7 @@ public class ConnectorConnectorResourcesOneRequestBuilder {
             .build());
 
         RequestOperation<ConnectorConnectorResourcesOneRequest, ConnectorConnectorResourcesOneResponse> operation
-              = new ConnectorConnectorResourcesOneOperation(sdkConfiguration, options);
+              = new ConnectorConnectorResourcesOne.Sync(sdkConfiguration, options);
         ConnectorConnectorResourcesOneRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

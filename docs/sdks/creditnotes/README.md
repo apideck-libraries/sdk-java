@@ -17,6 +17,7 @@ List Credit Notes
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.creditNotesAll" method="get" path="/accounting/credit-notes" -->
 ```java
 package hello.world;
 
@@ -91,6 +92,7 @@ Create Credit Note
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.creditNotesAdd" method="post" path="/accounting/credit-notes" -->
 ```java
 package hello.world;
 
@@ -329,6 +331,7 @@ Get Credit Note
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.creditNotesOne" method="get" path="/accounting/credit-notes/{id}" -->
 ```java
 package hello.world;
 
@@ -392,6 +395,7 @@ Update Credit Note
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.creditNotesUpdate" method="patch" path="/accounting/credit-notes/{id}" -->
 ```java
 package hello.world;
 
@@ -642,6 +646,7 @@ Delete Credit Note
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.creditNotesDelete" method="delete" path="/accounting/credit-notes/{id}" -->
 ```java
 package hello.world;
 

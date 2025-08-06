@@ -3,7 +3,7 @@
  */
 package com.apideck.unify.models.operations;
 
-import com.apideck.unify.models.components.ConsumerInput;
+import com.apideck.unify.models.components.CreateConsumerRequest;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -22,21 +22,21 @@ public class VaultConsumersAddRequest {
 
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private ConsumerInput consumer;
+    private CreateConsumerRequest createConsumerRequest;
 
     @JsonCreator
     public VaultConsumersAddRequest(
             Optional<String> appId,
-            ConsumerInput consumer) {
+            CreateConsumerRequest createConsumerRequest) {
         Utils.checkNotNull(appId, "appId");
-        Utils.checkNotNull(consumer, "consumer");
+        Utils.checkNotNull(createConsumerRequest, "createConsumerRequest");
         this.appId = appId;
-        this.consumer = consumer;
+        this.createConsumerRequest = createConsumerRequest;
     }
     
     public VaultConsumersAddRequest(
-            ConsumerInput consumer) {
-        this(Optional.empty(), consumer);
+            CreateConsumerRequest createConsumerRequest) {
+        this(Optional.empty(), createConsumerRequest);
     }
 
     /**
@@ -48,8 +48,8 @@ public class VaultConsumersAddRequest {
     }
 
     @JsonIgnore
-    public ConsumerInput consumer() {
-        return consumer;
+    public CreateConsumerRequest createConsumerRequest() {
+        return createConsumerRequest;
     }
 
     public static Builder builder() {
@@ -76,9 +76,9 @@ public class VaultConsumersAddRequest {
         return this;
     }
 
-    public VaultConsumersAddRequest withConsumer(ConsumerInput consumer) {
-        Utils.checkNotNull(consumer, "consumer");
-        this.consumer = consumer;
+    public VaultConsumersAddRequest withCreateConsumerRequest(CreateConsumerRequest createConsumerRequest) {
+        Utils.checkNotNull(createConsumerRequest, "createConsumerRequest");
+        this.createConsumerRequest = createConsumerRequest;
         return this;
     }
 
@@ -93,20 +93,20 @@ public class VaultConsumersAddRequest {
         VaultConsumersAddRequest other = (VaultConsumersAddRequest) o;
         return 
             Utils.enhancedDeepEquals(this.appId, other.appId) &&
-            Utils.enhancedDeepEquals(this.consumer, other.consumer);
+            Utils.enhancedDeepEquals(this.createConsumerRequest, other.createConsumerRequest);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            appId, consumer);
+            appId, createConsumerRequest);
     }
     
     @Override
     public String toString() {
         return Utils.toString(VaultConsumersAddRequest.class,
                 "appId", appId,
-                "consumer", consumer);
+                "createConsumerRequest", createConsumerRequest);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -114,7 +114,7 @@ public class VaultConsumersAddRequest {
 
         private Optional<String> appId = Optional.empty();
 
-        private ConsumerInput consumer;
+        private CreateConsumerRequest createConsumerRequest;
 
         private Builder() {
           // force use of static builder() method
@@ -140,16 +140,16 @@ public class VaultConsumersAddRequest {
         }
 
 
-        public Builder consumer(ConsumerInput consumer) {
-            Utils.checkNotNull(consumer, "consumer");
-            this.consumer = consumer;
+        public Builder createConsumerRequest(CreateConsumerRequest createConsumerRequest) {
+            Utils.checkNotNull(createConsumerRequest, "createConsumerRequest");
+            this.createConsumerRequest = createConsumerRequest;
             return this;
         }
 
         public VaultConsumersAddRequest build() {
 
             return new VaultConsumersAddRequest(
-                appId, consumer);
+                appId, createConsumerRequest);
         }
 
     }

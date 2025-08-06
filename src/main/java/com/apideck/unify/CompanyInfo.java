@@ -8,7 +8,7 @@ import static com.apideck.unify.operations.Operations.RequestOperation;
 import com.apideck.unify.models.operations.AccountingCompanyInfoOneRequest;
 import com.apideck.unify.models.operations.AccountingCompanyInfoOneRequestBuilder;
 import com.apideck.unify.models.operations.AccountingCompanyInfoOneResponse;
-import com.apideck.unify.operations.AccountingCompanyInfoOneOperation;
+import com.apideck.unify.operations.AccountingCompanyInfoOne;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
@@ -57,7 +57,7 @@ public class CompanyInfo {
      */
     public AccountingCompanyInfoOneResponse get(AccountingCompanyInfoOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingCompanyInfoOneRequest, AccountingCompanyInfoOneResponse> operation
-              = new AccountingCompanyInfoOneOperation(sdkConfiguration, options);
+              = new AccountingCompanyInfoOne.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

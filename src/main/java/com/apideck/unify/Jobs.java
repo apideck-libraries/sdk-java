@@ -11,8 +11,8 @@ import com.apideck.unify.models.operations.AtsJobsAllResponse;
 import com.apideck.unify.models.operations.AtsJobsOneRequest;
 import com.apideck.unify.models.operations.AtsJobsOneRequestBuilder;
 import com.apideck.unify.models.operations.AtsJobsOneResponse;
-import com.apideck.unify.operations.AtsJobsAllOperation;
-import com.apideck.unify.operations.AtsJobsOneOperation;
+import com.apideck.unify.operations.AtsJobsAll;
+import com.apideck.unify.operations.AtsJobsOne;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
@@ -61,7 +61,7 @@ public class Jobs {
      */
     public AtsJobsAllResponse list(AtsJobsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AtsJobsAllRequest, AtsJobsAllResponse> operation
-              = new AtsJobsAllOperation(sdkConfiguration, options);
+              = new AtsJobsAll.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -101,7 +101,7 @@ public class Jobs {
      */
     public AtsJobsOneResponse get(AtsJobsOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AtsJobsOneRequest, AtsJobsOneResponse> operation
-              = new AtsJobsOneOperation(sdkConfiguration, options);
+              = new AtsJobsOne.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

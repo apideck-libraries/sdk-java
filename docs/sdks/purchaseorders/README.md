@@ -17,6 +17,7 @@ List Purchase Orders
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.purchaseOrdersAll" method="get" path="/accounting/purchase-orders" -->
 ```java
 package hello.world;
 
@@ -91,6 +92,7 @@ Create Purchase Order
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.purchaseOrdersAdd" method="post" path="/accounting/purchase-orders" -->
 ```java
 package hello.world;
 
@@ -449,6 +451,7 @@ Get Purchase Order
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.purchaseOrdersOne" method="get" path="/accounting/purchase-orders/{id}" -->
 ```java
 package hello.world;
 
@@ -511,6 +514,7 @@ Update Purchase Order
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.purchaseOrdersUpdate" method="patch" path="/accounting/purchase-orders/{id}" -->
 ```java
 package hello.world;
 
@@ -823,6 +827,7 @@ Delete Purchase Order
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.purchaseOrdersDelete" method="delete" path="/accounting/purchase-orders/{id}" -->
 ```java
 package hello.world;
 

@@ -6,7 +6,7 @@ package com.apideck.unify.models.operations;
 import static com.apideck.unify.operations.Operations.RequestOperation;
 
 import com.apideck.unify.SDKConfiguration;
-import com.apideck.unify.operations.AccountingBankFeedAccountsOneOperation;
+import com.apideck.unify.operations.AccountingBankFeedAccountsOne;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -47,7 +47,7 @@ public class AccountingBankFeedAccountsOneRequestBuilder {
             .build());
 
         RequestOperation<AccountingBankFeedAccountsOneRequest, AccountingBankFeedAccountsOneResponse> operation
-              = new AccountingBankFeedAccountsOneOperation(sdkConfiguration, options);
+              = new AccountingBankFeedAccountsOne.Sync(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

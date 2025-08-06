@@ -17,6 +17,7 @@ List Applicants
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="ats.applicantsAll" method="get" path="/ats/applicants" -->
 ```java
 package hello.world;
 
@@ -86,6 +87,7 @@ Create Applicant
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="ats.applicantsAdd" method="post" path="/ats/applicants" -->
 ```java
 package hello.world;
 
@@ -338,6 +340,7 @@ Get Applicant
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="ats.applicantsOne" method="get" path="/ats/applicants/{id}" -->
 ```java
 package hello.world;
 
@@ -401,6 +404,7 @@ Update Applicant
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="ats.applicantsUpdate" method="patch" path="/ats/applicants/{id}" -->
 ```java
 package hello.world;
 
@@ -670,6 +674,7 @@ Delete Applicant
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="ats.applicantsDelete" method="delete" path="/ats/applicants/{id}" -->
 ```java
 package hello.world;
 

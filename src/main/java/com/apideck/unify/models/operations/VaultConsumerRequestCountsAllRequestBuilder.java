@@ -6,7 +6,7 @@ package com.apideck.unify.models.operations;
 import static com.apideck.unify.operations.Operations.RequestOperation;
 
 import com.apideck.unify.SDKConfiguration;
-import com.apideck.unify.operations.VaultConsumerRequestCountsAllOperation;
+import com.apideck.unify.operations.VaultConsumerRequestCountsAll;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -86,7 +86,7 @@ public class VaultConsumerRequestCountsAllRequestBuilder {
             .build());
 
         RequestOperation<VaultConsumerRequestCountsAllRequest, VaultConsumerRequestCountsAllResponse> operation
-              = new VaultConsumerRequestCountsAllOperation(sdkConfiguration, options);
+              = new VaultConsumerRequestCountsAll.Sync(sdkConfiguration, options);
         VaultConsumerRequestCountsAllRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

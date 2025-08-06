@@ -17,6 +17,7 @@ List custom objects
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="crm.customObjectsAll" method="get" path="/crm/custom-objects/{object_id}" -->
 ```java
 package hello.world;
 
@@ -83,6 +84,7 @@ Create custom object
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="crm.customObjectsAdd" method="post" path="/crm/custom-objects/{object_id}" -->
 ```java
 package hello.world;
 
@@ -195,6 +197,7 @@ Get custom object
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="crm.customObjectsOne" method="get" path="/crm/custom-objects/{object_id}/{id}" -->
 ```java
 package hello.world;
 
@@ -258,6 +261,7 @@ Update custom object
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="crm.customObjectsUpdate" method="patch" path="/crm/custom-objects/{object_id}/{id}" -->
 ```java
 package hello.world;
 
@@ -353,6 +357,7 @@ Delete custom object
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="crm.customObjectsDelete" method="delete" path="/crm/custom-objects/{object_id}/{id}" -->
 ```java
 package hello.world;
 

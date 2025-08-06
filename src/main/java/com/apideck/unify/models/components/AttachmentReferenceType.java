@@ -11,7 +11,8 @@ import java.util.Optional;
 public enum AttachmentReferenceType {
     INVOICE("invoice"),
     BILL("bill"),
-    EXPENSE("expense");
+    EXPENSE("expense"),
+    QUOTE("quote");
 
     @JsonValue
     private final String value;

@@ -9,7 +9,7 @@ import static com.apideck.unify.utils.Utils.transform;
 import static com.apideck.unify.utils.Utils.toStream;
 
 import com.apideck.unify.SDKConfiguration;
-import com.apideck.unify.operations.CrmActivitiesAllOperation;
+import com.apideck.unify.operations.CrmActivitiesAll;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -58,7 +58,7 @@ public class CrmActivitiesAllRequestBuilder {
             .build());
 
         RequestOperation<CrmActivitiesAllRequest, CrmActivitiesAllResponse> operation
-              = new CrmActivitiesAllOperation(sdkConfiguration, options);
+              = new CrmActivitiesAll.Sync(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -82,7 +82,7 @@ public class CrmActivitiesAllRequestBuilder {
             .build());
 
         RequestOperation<CrmActivitiesAllRequest, CrmActivitiesAllResponse> operation
-              = new CrmActivitiesAllOperation(sdkConfiguration, options);
+              = new CrmActivitiesAll.Sync(sdkConfiguration, options);
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,
             new CursorTracker<>("$.meta.cursors.next", String.class),

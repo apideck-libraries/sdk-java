@@ -17,6 +17,7 @@ List Bank Feed Statements
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.bankFeedStatementsAll" method="get" path="/accounting/bank-feed-statements" -->
 ```java
 package hello.world;
 
@@ -82,6 +83,7 @@ Create Bank Feed Statement
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.bankFeedStatementsAdd" method="post" path="/accounting/bank-feed-statements" -->
 ```java
 package hello.world;
 
@@ -187,6 +189,7 @@ Get Bank Feed Statement
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.bankFeedStatementsOne" method="get" path="/accounting/bank-feed-statements/{id}" -->
 ```java
 package hello.world;
 
@@ -250,6 +253,7 @@ Update Bank Feed Statement
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.bankFeedStatementsUpdate" method="patch" path="/accounting/bank-feed-statements/{id}" -->
 ```java
 package hello.world;
 
@@ -346,6 +350,7 @@ Delete Bank Feed Statement
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.bankFeedStatementsDelete" method="delete" path="/accounting/bank-feed-statements/{id}" -->
 ```java
 package hello.world;
 

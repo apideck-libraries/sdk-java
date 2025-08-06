@@ -13,6 +13,7 @@ Get Store
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="ecommerce.storesOne" method="get" path="/ecommerce/store" -->
 ```java
 package hello.world;
 

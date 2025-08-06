@@ -17,6 +17,7 @@ List activities
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="crm.activitiesAll" method="get" path="/crm/activities" -->
 ```java
 package hello.world;
 
@@ -91,6 +92,7 @@ Create activity
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="crm.activitiesAdd" method="post" path="/crm/activities" -->
 ```java
 package hello.world;
 
@@ -254,6 +256,7 @@ Get activity
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="crm.activitiesOne" method="get" path="/crm/activities/{id}" -->
 ```java
 package hello.world;
 
@@ -317,6 +320,7 @@ Update activity
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="crm.activitiesUpdate" method="patch" path="/crm/activities/{id}" -->
 ```java
 package hello.world;
 
@@ -546,6 +550,7 @@ Delete activity
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="crm.activitiesDelete" method="delete" path="/crm/activities/{id}" -->
 ```java
 package hello.world;
 

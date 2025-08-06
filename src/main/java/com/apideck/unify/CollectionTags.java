@@ -8,7 +8,7 @@ import static com.apideck.unify.operations.Operations.RequestOperation;
 import com.apideck.unify.models.operations.IssueTrackingCollectionTagsAllRequest;
 import com.apideck.unify.models.operations.IssueTrackingCollectionTagsAllRequestBuilder;
 import com.apideck.unify.models.operations.IssueTrackingCollectionTagsAllResponse;
-import com.apideck.unify.operations.IssueTrackingCollectionTagsAllOperation;
+import com.apideck.unify.operations.IssueTrackingCollectionTagsAll;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
@@ -57,7 +57,7 @@ public class CollectionTags {
      */
     public IssueTrackingCollectionTagsAllResponse list(IssueTrackingCollectionTagsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<IssueTrackingCollectionTagsAllRequest, IssueTrackingCollectionTagsAllResponse> operation
-              = new IssueTrackingCollectionTagsAllOperation(sdkConfiguration, options);
+              = new IssueTrackingCollectionTagsAll.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

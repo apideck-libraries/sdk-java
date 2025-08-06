@@ -17,6 +17,7 @@ List Companies
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="hris.companiesAll" method="get" path="/hris/companies" -->
 ```java
 package hello.world;
 
@@ -82,6 +83,7 @@ Create Company
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="hris.companiesAdd" method="post" path="/hris/companies" -->
 ```java
 package hello.world;
 
@@ -296,6 +298,7 @@ Get Company
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="hris.companiesOne" method="get" path="/hris/companies/{id}" -->
 ```java
 package hello.world;
 
@@ -359,6 +362,7 @@ Update Company
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="hris.companiesUpdate" method="patch" path="/hris/companies/{id}" -->
 ```java
 package hello.world;
 
@@ -575,6 +579,7 @@ Delete Company
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="hris.companiesDelete" method="delete" path="/hris/companies/{id}" -->
 ```java
 package hello.world;
 

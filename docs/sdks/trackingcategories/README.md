@@ -17,6 +17,7 @@ List Tracking Categories
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.trackingCategoriesAll" method="get" path="/accounting/tracking-categories" -->
 ```java
 package hello.world;
 
@@ -82,6 +83,7 @@ Create Tracking Category
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.trackingCategoriesAdd" method="post" path="/accounting/tracking-categories" -->
 ```java
 package hello.world;
 
@@ -198,6 +200,7 @@ Get Tracking Category
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.trackingCategoriesOne" method="get" path="/accounting/tracking-categories/{id}" -->
 ```java
 package hello.world;
 
@@ -261,6 +264,7 @@ Update Tracking Category
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.trackingCategoriesUpdate" method="patch" path="/accounting/tracking-categories/{id}" -->
 ```java
 package hello.world;
 
@@ -350,6 +354,7 @@ Delete Tracking Category
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.trackingCategoriesDelete" method="delete" path="/accounting/tracking-categories/{id}" -->
 ```java
 package hello.world;
 

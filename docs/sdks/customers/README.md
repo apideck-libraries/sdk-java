@@ -17,6 +17,7 @@ List Customers
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.customersAll" method="get" path="/accounting/customers" -->
 ```java
 package hello.world;
 
@@ -98,6 +99,7 @@ Create Customer
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.customersAdd" method="post" path="/accounting/customers" -->
 ```java
 package hello.world;
 
@@ -317,6 +319,7 @@ Get Customer
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.customersOne" method="get" path="/accounting/customers/{id}" -->
 ```java
 package hello.world;
 
@@ -380,6 +383,7 @@ Update Customer
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.customersUpdate" method="patch" path="/accounting/customers/{id}" -->
 ```java
 package hello.world;
 
@@ -614,6 +618,7 @@ Delete Customer
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.customersDelete" method="delete" path="/accounting/customers/{id}" -->
 ```java
 package hello.world;
 

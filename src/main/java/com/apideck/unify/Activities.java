@@ -20,11 +20,11 @@ import com.apideck.unify.models.operations.CrmActivitiesOneResponse;
 import com.apideck.unify.models.operations.CrmActivitiesUpdateRequest;
 import com.apideck.unify.models.operations.CrmActivitiesUpdateRequestBuilder;
 import com.apideck.unify.models.operations.CrmActivitiesUpdateResponse;
-import com.apideck.unify.operations.CrmActivitiesAddOperation;
-import com.apideck.unify.operations.CrmActivitiesAllOperation;
-import com.apideck.unify.operations.CrmActivitiesDeleteOperation;
-import com.apideck.unify.operations.CrmActivitiesOneOperation;
-import com.apideck.unify.operations.CrmActivitiesUpdateOperation;
+import com.apideck.unify.operations.CrmActivitiesAdd;
+import com.apideck.unify.operations.CrmActivitiesAll;
+import com.apideck.unify.operations.CrmActivitiesDelete;
+import com.apideck.unify.operations.CrmActivitiesOne;
+import com.apideck.unify.operations.CrmActivitiesUpdate;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
@@ -73,7 +73,7 @@ public class Activities {
      */
     public CrmActivitiesAllResponse list(CrmActivitiesAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmActivitiesAllRequest, CrmActivitiesAllResponse> operation
-              = new CrmActivitiesAllOperation(sdkConfiguration, options);
+              = new CrmActivitiesAll.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -113,7 +113,7 @@ public class Activities {
      */
     public CrmActivitiesAddResponse create(CrmActivitiesAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmActivitiesAddRequest, CrmActivitiesAddResponse> operation
-              = new CrmActivitiesAddOperation(sdkConfiguration, options);
+              = new CrmActivitiesAdd.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -153,7 +153,7 @@ public class Activities {
      */
     public CrmActivitiesOneResponse get(CrmActivitiesOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmActivitiesOneRequest, CrmActivitiesOneResponse> operation
-              = new CrmActivitiesOneOperation(sdkConfiguration, options);
+              = new CrmActivitiesOne.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -193,7 +193,7 @@ public class Activities {
      */
     public CrmActivitiesUpdateResponse update(CrmActivitiesUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmActivitiesUpdateRequest, CrmActivitiesUpdateResponse> operation
-              = new CrmActivitiesUpdateOperation(sdkConfiguration, options);
+              = new CrmActivitiesUpdate.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -233,7 +233,7 @@ public class Activities {
      */
     public CrmActivitiesDeleteResponse delete(CrmActivitiesDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmActivitiesDeleteRequest, CrmActivitiesDeleteResponse> operation
-              = new CrmActivitiesDeleteOperation(sdkConfiguration, options);
+              = new CrmActivitiesDelete.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

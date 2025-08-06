@@ -20,11 +20,11 @@ import com.apideck.unify.models.operations.AccountingBankFeedAccountsOneResponse
 import com.apideck.unify.models.operations.AccountingBankFeedAccountsUpdateRequest;
 import com.apideck.unify.models.operations.AccountingBankFeedAccountsUpdateRequestBuilder;
 import com.apideck.unify.models.operations.AccountingBankFeedAccountsUpdateResponse;
-import com.apideck.unify.operations.AccountingBankFeedAccountsAddOperation;
-import com.apideck.unify.operations.AccountingBankFeedAccountsAllOperation;
-import com.apideck.unify.operations.AccountingBankFeedAccountsDeleteOperation;
-import com.apideck.unify.operations.AccountingBankFeedAccountsOneOperation;
-import com.apideck.unify.operations.AccountingBankFeedAccountsUpdateOperation;
+import com.apideck.unify.operations.AccountingBankFeedAccountsAdd;
+import com.apideck.unify.operations.AccountingBankFeedAccountsAll;
+import com.apideck.unify.operations.AccountingBankFeedAccountsDelete;
+import com.apideck.unify.operations.AccountingBankFeedAccountsOne;
+import com.apideck.unify.operations.AccountingBankFeedAccountsUpdate;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
@@ -73,7 +73,7 @@ public class BankFeedAccounts {
      */
     public AccountingBankFeedAccountsAllResponse list(AccountingBankFeedAccountsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingBankFeedAccountsAllRequest, AccountingBankFeedAccountsAllResponse> operation
-              = new AccountingBankFeedAccountsAllOperation(sdkConfiguration, options);
+              = new AccountingBankFeedAccountsAll.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -113,7 +113,7 @@ public class BankFeedAccounts {
      */
     public AccountingBankFeedAccountsAddResponse create(AccountingBankFeedAccountsAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingBankFeedAccountsAddRequest, AccountingBankFeedAccountsAddResponse> operation
-              = new AccountingBankFeedAccountsAddOperation(sdkConfiguration, options);
+              = new AccountingBankFeedAccountsAdd.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -153,7 +153,7 @@ public class BankFeedAccounts {
      */
     public AccountingBankFeedAccountsOneResponse get(AccountingBankFeedAccountsOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingBankFeedAccountsOneRequest, AccountingBankFeedAccountsOneResponse> operation
-              = new AccountingBankFeedAccountsOneOperation(sdkConfiguration, options);
+              = new AccountingBankFeedAccountsOne.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -193,7 +193,7 @@ public class BankFeedAccounts {
      */
     public AccountingBankFeedAccountsUpdateResponse update(AccountingBankFeedAccountsUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingBankFeedAccountsUpdateRequest, AccountingBankFeedAccountsUpdateResponse> operation
-              = new AccountingBankFeedAccountsUpdateOperation(sdkConfiguration, options);
+              = new AccountingBankFeedAccountsUpdate.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -233,7 +233,7 @@ public class BankFeedAccounts {
      */
     public AccountingBankFeedAccountsDeleteResponse delete(AccountingBankFeedAccountsDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingBankFeedAccountsDeleteRequest, AccountingBankFeedAccountsDeleteResponse> operation
-              = new AccountingBankFeedAccountsDeleteOperation(sdkConfiguration, options);
+              = new AccountingBankFeedAccountsDelete.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

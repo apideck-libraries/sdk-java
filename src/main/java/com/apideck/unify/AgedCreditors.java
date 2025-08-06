@@ -8,7 +8,7 @@ import static com.apideck.unify.operations.Operations.RequestOperation;
 import com.apideck.unify.models.operations.AccountingAgedCreditorsOneRequest;
 import com.apideck.unify.models.operations.AccountingAgedCreditorsOneRequestBuilder;
 import com.apideck.unify.models.operations.AccountingAgedCreditorsOneResponse;
-import com.apideck.unify.operations.AccountingAgedCreditorsOneOperation;
+import com.apideck.unify.operations.AccountingAgedCreditorsOne;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
@@ -57,7 +57,7 @@ public class AgedCreditors {
      */
     public AccountingAgedCreditorsOneResponse get(AccountingAgedCreditorsOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingAgedCreditorsOneRequest, AccountingAgedCreditorsOneResponse> operation
-              = new AccountingAgedCreditorsOneOperation(sdkConfiguration, options);
+              = new AccountingAgedCreditorsOne.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

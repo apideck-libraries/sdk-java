@@ -6,7 +6,7 @@ package com.apideck.unify.models.operations;
 import static com.apideck.unify.operations.Operations.RequestOperation;
 
 import com.apideck.unify.SDKConfiguration;
-import com.apideck.unify.operations.AccountingTaxRatesDeleteOperation;
+import com.apideck.unify.operations.AccountingTaxRatesDelete;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -47,7 +47,7 @@ public class AccountingTaxRatesDeleteRequestBuilder {
             .build());
 
         RequestOperation<AccountingTaxRatesDeleteRequest, AccountingTaxRatesDeleteResponse> operation
-              = new AccountingTaxRatesDeleteOperation(sdkConfiguration, options);
+              = new AccountingTaxRatesDelete.Sync(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

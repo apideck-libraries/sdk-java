@@ -23,12 +23,12 @@ import com.apideck.unify.models.operations.VaultConnectionsTokenResponse;
 import com.apideck.unify.models.operations.VaultConnectionsUpdateRequest;
 import com.apideck.unify.models.operations.VaultConnectionsUpdateRequestBuilder;
 import com.apideck.unify.models.operations.VaultConnectionsUpdateResponse;
-import com.apideck.unify.operations.VaultConnectionsAllOperation;
-import com.apideck.unify.operations.VaultConnectionsDeleteOperation;
-import com.apideck.unify.operations.VaultConnectionsImportOperation;
-import com.apideck.unify.operations.VaultConnectionsOneOperation;
-import com.apideck.unify.operations.VaultConnectionsTokenOperation;
-import com.apideck.unify.operations.VaultConnectionsUpdateOperation;
+import com.apideck.unify.operations.VaultConnectionsAll;
+import com.apideck.unify.operations.VaultConnectionsDelete;
+import com.apideck.unify.operations.VaultConnectionsImport;
+import com.apideck.unify.operations.VaultConnectionsOne;
+import com.apideck.unify.operations.VaultConnectionsToken;
+import com.apideck.unify.operations.VaultConnectionsUpdate;
 import com.apideck.unify.utils.Options;
 import java.lang.Boolean;
 import java.lang.Exception;
@@ -99,7 +99,7 @@ public class Connections {
                 .configured(configured)
                 .build();
         RequestOperation<VaultConnectionsAllRequest, VaultConnectionsAllResponse> operation
-              = new VaultConnectionsAllOperation(sdkConfiguration, options);
+              = new VaultConnectionsAll.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -155,7 +155,7 @@ public class Connections {
                 .unifiedApi(unifiedApi)
                 .build();
         RequestOperation<VaultConnectionsOneRequest, VaultConnectionsOneResponse> operation
-              = new VaultConnectionsOneOperation(sdkConfiguration, options);
+              = new VaultConnectionsOne.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -195,7 +195,7 @@ public class Connections {
      */
     public VaultConnectionsUpdateResponse update(VaultConnectionsUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<VaultConnectionsUpdateRequest, VaultConnectionsUpdateResponse> operation
-              = new VaultConnectionsUpdateOperation(sdkConfiguration, options);
+              = new VaultConnectionsUpdate.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -251,7 +251,7 @@ public class Connections {
                 .unifiedApi(unifiedApi)
                 .build();
         RequestOperation<VaultConnectionsDeleteRequest, VaultConnectionsDeleteResponse> operation
-              = new VaultConnectionsDeleteOperation(sdkConfiguration, options);
+              = new VaultConnectionsDelete.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -291,7 +291,7 @@ public class Connections {
      */
     public VaultConnectionsImportResponse imports(VaultConnectionsImportRequest request, Optional<Options> options) throws Exception {
         RequestOperation<VaultConnectionsImportRequest, VaultConnectionsImportResponse> operation
-              = new VaultConnectionsImportOperation(sdkConfiguration, options);
+              = new VaultConnectionsImport.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -346,7 +346,7 @@ public class Connections {
      */
     public VaultConnectionsTokenResponse token(VaultConnectionsTokenRequest request, Optional<Options> options) throws Exception {
         RequestOperation<VaultConnectionsTokenRequest, VaultConnectionsTokenResponse> operation
-              = new VaultConnectionsTokenOperation(sdkConfiguration, options);
+              = new VaultConnectionsToken.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

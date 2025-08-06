@@ -17,6 +17,7 @@ List Subsidiaries
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.subsidiariesAll" method="get" path="/accounting/subsidiaries" -->
 ```java
 package hello.world;
 
@@ -79,6 +80,7 @@ Create Subsidiary
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.subsidiariesAdd" method="post" path="/accounting/subsidiaries" -->
 ```java
 package hello.world;
 
@@ -180,6 +182,7 @@ Get Subsidiary
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.subsidiariesOne" method="get" path="/accounting/subsidiaries/{id}" -->
 ```java
 package hello.world;
 
@@ -243,6 +246,7 @@ Update Subsidiary
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.subsidiariesUpdate" method="patch" path="/accounting/subsidiaries/{id}" -->
 ```java
 package hello.world;
 
@@ -331,6 +335,7 @@ Delete Subsidiary
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.subsidiariesDelete" method="delete" path="/accounting/subsidiaries/{id}" -->
 ```java
 package hello.world;
 

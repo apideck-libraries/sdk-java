@@ -13,6 +13,7 @@ Get BalanceSheet
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.balanceSheetOne" method="get" path="/accounting/balance-sheet" -->
 ```java
 package hello.world;
 

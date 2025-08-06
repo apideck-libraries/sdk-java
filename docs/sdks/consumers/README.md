@@ -17,12 +17,13 @@ Create a consumer
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="vault.consumersAdd" method="post" path="/vault/consumers" -->
 ```java
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.ConsumerInput;
 import com.apideck.unify.models.components.ConsumerMetadata;
+import com.apideck.unify.models.components.CreateConsumerRequest;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.VaultConsumersAddResponse;
 import java.lang.Exception;
@@ -37,7 +38,7 @@ public class Application {
             .build();
 
         VaultConsumersAddResponse res = sdk.vault().consumers().create()
-                .consumer(ConsumerInput.builder()
+                .createConsumerRequest(CreateConsumerRequest.builder()
                     .consumerId("test_consumer_id")
                     .metadata(ConsumerMetadata.builder()
                         .accountName("SpaceX")
@@ -57,10 +58,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                 | Type                                                      | Required                                                  | Description                                               | Example                                                   |
-| --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
-| `appId`                                                   | *Optional\<String>*                                       | :heavy_minus_sign:                                        | The ID of your Unify application                          | dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX                   |
-| `consumer`                                                | [ConsumerInput](../../models/components/ConsumerInput.md) | :heavy_check_mark:                                        | N/A                                                       |                                                           |
+| Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               | Example                                                                   |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `appId`                                                                   | *Optional\<String>*                                                       | :heavy_minus_sign:                                                        | The ID of your Unify application                                          | dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX                                   |
+| `createConsumerRequest`                                                   | [CreateConsumerRequest](../../models/components/CreateConsumerRequest.md) | :heavy_check_mark:                                                        | N/A                                                                       |                                                                           |
 
 ### Response
 
@@ -84,6 +85,7 @@ This endpoint includes all application consumers, along with an aggregated count
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="vault.consumersAll" method="get" path="/vault/consumers" -->
 ```java
 package hello.world;
 
@@ -142,6 +144,7 @@ Consumer detail including their aggregated counts with the connections they have
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="vault.consumersOne" method="get" path="/vault/consumers/{consumer_id}" -->
 ```java
 package hello.world;
 
@@ -198,6 +201,7 @@ Update consumer metadata such as name and email.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="vault.consumersUpdate" method="patch" path="/vault/consumers/{consumer_id}" -->
 ```java
 package hello.world;
 
@@ -265,6 +269,7 @@ Delete consumer and all their connections, including credentials.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="vault.consumersDelete" method="delete" path="/vault/consumers/{consumer_id}" -->
 ```java
 package hello.world;
 

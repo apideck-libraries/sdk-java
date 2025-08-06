@@ -6,7 +6,7 @@ package com.apideck.unify.models.operations;
 import static com.apideck.unify.operations.Operations.RequestOperation;
 
 import com.apideck.unify.SDKConfiguration;
-import com.apideck.unify.operations.FileStorageUploadSessionsOneOperation;
+import com.apideck.unify.operations.FileStorageUploadSessionsOne;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -61,7 +61,7 @@ public class FileStorageUploadSessionsOneRequestBuilder {
             .build());
 
         RequestOperation<FileStorageUploadSessionsOneRequest, FileStorageUploadSessionsOneResponse> operation
-              = new FileStorageUploadSessionsOneOperation(sdkConfiguration, serverURL, options);
+              = new FileStorageUploadSessionsOne.Sync(sdkConfiguration, serverURL, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

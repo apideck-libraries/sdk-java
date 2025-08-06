@@ -6,7 +6,7 @@ package com.apideck.unify.models.operations;
 import static com.apideck.unify.operations.Operations.RequestOperation;
 
 import com.apideck.unify.SDKConfiguration;
-import com.apideck.unify.operations.AccountingAttachmentsOneOperation;
+import com.apideck.unify.operations.AccountingAttachmentsOne;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -47,7 +47,7 @@ public class AccountingAttachmentsOneRequestBuilder {
             .build());
 
         RequestOperation<AccountingAttachmentsOneRequest, AccountingAttachmentsOneResponse> operation
-              = new AccountingAttachmentsOneOperation(sdkConfiguration, options);
+              = new AccountingAttachmentsOne.Sync(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

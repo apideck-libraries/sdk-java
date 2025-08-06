@@ -20,11 +20,11 @@ import com.apideck.unify.models.operations.HrisTimeOffRequestsOneResponse;
 import com.apideck.unify.models.operations.HrisTimeOffRequestsUpdateRequest;
 import com.apideck.unify.models.operations.HrisTimeOffRequestsUpdateRequestBuilder;
 import com.apideck.unify.models.operations.HrisTimeOffRequestsUpdateResponse;
-import com.apideck.unify.operations.HrisTimeOffRequestsAddOperation;
-import com.apideck.unify.operations.HrisTimeOffRequestsAllOperation;
-import com.apideck.unify.operations.HrisTimeOffRequestsDeleteOperation;
-import com.apideck.unify.operations.HrisTimeOffRequestsOneOperation;
-import com.apideck.unify.operations.HrisTimeOffRequestsUpdateOperation;
+import com.apideck.unify.operations.HrisTimeOffRequestsAdd;
+import com.apideck.unify.operations.HrisTimeOffRequestsAll;
+import com.apideck.unify.operations.HrisTimeOffRequestsDelete;
+import com.apideck.unify.operations.HrisTimeOffRequestsOne;
+import com.apideck.unify.operations.HrisTimeOffRequestsUpdate;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
@@ -73,7 +73,7 @@ public class TimeOffRequests {
      */
     public HrisTimeOffRequestsAllResponse list(HrisTimeOffRequestsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<HrisTimeOffRequestsAllRequest, HrisTimeOffRequestsAllResponse> operation
-              = new HrisTimeOffRequestsAllOperation(sdkConfiguration, options);
+              = new HrisTimeOffRequestsAll.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -113,7 +113,7 @@ public class TimeOffRequests {
      */
     public HrisTimeOffRequestsAddResponse create(HrisTimeOffRequestsAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<HrisTimeOffRequestsAddRequest, HrisTimeOffRequestsAddResponse> operation
-              = new HrisTimeOffRequestsAddOperation(sdkConfiguration, options);
+              = new HrisTimeOffRequestsAdd.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -153,7 +153,7 @@ public class TimeOffRequests {
      */
     public HrisTimeOffRequestsOneResponse get(HrisTimeOffRequestsOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<HrisTimeOffRequestsOneRequest, HrisTimeOffRequestsOneResponse> operation
-              = new HrisTimeOffRequestsOneOperation(sdkConfiguration, options);
+              = new HrisTimeOffRequestsOne.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -193,7 +193,7 @@ public class TimeOffRequests {
      */
     public HrisTimeOffRequestsUpdateResponse update(HrisTimeOffRequestsUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<HrisTimeOffRequestsUpdateRequest, HrisTimeOffRequestsUpdateResponse> operation
-              = new HrisTimeOffRequestsUpdateOperation(sdkConfiguration, options);
+              = new HrisTimeOffRequestsUpdate.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -233,7 +233,7 @@ public class TimeOffRequests {
      */
     public HrisTimeOffRequestsDeleteResponse delete(HrisTimeOffRequestsDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<HrisTimeOffRequestsDeleteRequest, HrisTimeOffRequestsDeleteResponse> operation
-              = new HrisTimeOffRequestsDeleteOperation(sdkConfiguration, options);
+              = new HrisTimeOffRequestsDelete.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

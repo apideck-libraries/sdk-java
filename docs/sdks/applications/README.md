@@ -17,6 +17,7 @@ List Applications
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="ats.applicationsAll" method="get" path="/ats/applications" -->
 ```java
 package hello.world;
 
@@ -81,6 +82,7 @@ Create Application
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="ats.applicationsAdd" method="post" path="/ats/applications" -->
 ```java
 package hello.world;
 
@@ -171,6 +173,7 @@ Get Application
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="ats.applicationsOne" method="get" path="/ats/applications/{id}" -->
 ```java
 package hello.world;
 
@@ -233,6 +236,7 @@ Update Application
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="ats.applicationsUpdate" method="patch" path="/ats/applications/{id}" -->
 ```java
 package hello.world;
 
@@ -374,6 +378,7 @@ Delete Application
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="ats.applicationsDelete" method="delete" path="/ats/applications/{id}" -->
 ```java
 package hello.world;
 

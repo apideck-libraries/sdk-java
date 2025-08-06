@@ -6,7 +6,7 @@ package com.apideck.unify.models.operations;
 import static com.apideck.unify.operations.Operations.RequestOperation;
 
 import com.apideck.unify.SDKConfiguration;
-import com.apideck.unify.operations.VaultConnectionsAllOperation;
+import com.apideck.unify.operations.VaultConnectionsAll;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -105,7 +105,7 @@ public class VaultConnectionsAllRequestBuilder {
             .build());
 
         RequestOperation<VaultConnectionsAllRequest, VaultConnectionsAllResponse> operation
-              = new VaultConnectionsAllOperation(sdkConfiguration, options);
+              = new VaultConnectionsAll.Sync(sdkConfiguration, options);
         VaultConnectionsAllRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

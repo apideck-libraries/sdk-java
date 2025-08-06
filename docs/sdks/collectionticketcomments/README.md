@@ -17,6 +17,7 @@ List Comments
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="issueTracking.collectionTicketCommentsAll" method="get" path="/issue-tracking/collections/{collection_id}/tickets/{ticket_id}/comments" -->
 ```java
 package hello.world;
 
@@ -89,6 +90,7 @@ Create Comment
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="issueTracking.collectionTicketCommentsAdd" method="post" path="/issue-tracking/collections/{collection_id}/tickets/{ticket_id}/comments" -->
 ```java
 package hello.world;
 
@@ -203,6 +205,7 @@ Get Comment
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="issueTracking.collectionTicketCommentsOne" method="get" path="/issue-tracking/collections/{collection_id}/tickets/{ticket_id}/comments/{id}" -->
 ```java
 package hello.world;
 
@@ -268,6 +271,7 @@ Update Comment
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="issueTracking.collectionTicketCommentsUpdate" method="patch" path="/issue-tracking/collections/{collection_id}/tickets/{ticket_id}/comments/{id}" -->
 ```java
 package hello.world;
 
@@ -355,6 +359,7 @@ Delete Comment
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="issueTracking.collectionTicketCommentsDelete" method="delete" path="/issue-tracking/collections/{collection_id}/tickets/{ticket_id}/comments/{id}" -->
 ```java
 package hello.world;
 

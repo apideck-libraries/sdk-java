@@ -20,11 +20,11 @@ import com.apideck.unify.models.operations.AccountingSuppliersOneResponse;
 import com.apideck.unify.models.operations.AccountingSuppliersUpdateRequest;
 import com.apideck.unify.models.operations.AccountingSuppliersUpdateRequestBuilder;
 import com.apideck.unify.models.operations.AccountingSuppliersUpdateResponse;
-import com.apideck.unify.operations.AccountingSuppliersAddOperation;
-import com.apideck.unify.operations.AccountingSuppliersAllOperation;
-import com.apideck.unify.operations.AccountingSuppliersDeleteOperation;
-import com.apideck.unify.operations.AccountingSuppliersOneOperation;
-import com.apideck.unify.operations.AccountingSuppliersUpdateOperation;
+import com.apideck.unify.operations.AccountingSuppliersAdd;
+import com.apideck.unify.operations.AccountingSuppliersAll;
+import com.apideck.unify.operations.AccountingSuppliersDelete;
+import com.apideck.unify.operations.AccountingSuppliersOne;
+import com.apideck.unify.operations.AccountingSuppliersUpdate;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
@@ -73,7 +73,7 @@ public class Suppliers {
      */
     public AccountingSuppliersAllResponse list(AccountingSuppliersAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingSuppliersAllRequest, AccountingSuppliersAllResponse> operation
-              = new AccountingSuppliersAllOperation(sdkConfiguration, options);
+              = new AccountingSuppliersAll.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -113,7 +113,7 @@ public class Suppliers {
      */
     public AccountingSuppliersAddResponse create(AccountingSuppliersAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingSuppliersAddRequest, AccountingSuppliersAddResponse> operation
-              = new AccountingSuppliersAddOperation(sdkConfiguration, options);
+              = new AccountingSuppliersAdd.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -153,7 +153,7 @@ public class Suppliers {
      */
     public AccountingSuppliersOneResponse get(AccountingSuppliersOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingSuppliersOneRequest, AccountingSuppliersOneResponse> operation
-              = new AccountingSuppliersOneOperation(sdkConfiguration, options);
+              = new AccountingSuppliersOne.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -193,7 +193,7 @@ public class Suppliers {
      */
     public AccountingSuppliersUpdateResponse update(AccountingSuppliersUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingSuppliersUpdateRequest, AccountingSuppliersUpdateResponse> operation
-              = new AccountingSuppliersUpdateOperation(sdkConfiguration, options);
+              = new AccountingSuppliersUpdate.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -233,7 +233,7 @@ public class Suppliers {
      */
     public AccountingSuppliersDeleteResponse delete(AccountingSuppliersDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingSuppliersDeleteRequest, AccountingSuppliersDeleteResponse> operation
-              = new AccountingSuppliersDeleteOperation(sdkConfiguration, options);
+              = new AccountingSuppliersDelete.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

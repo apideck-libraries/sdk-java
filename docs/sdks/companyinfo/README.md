@@ -13,6 +13,7 @@ Get company info
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.companyInfoOne" method="get" path="/accounting/company-info" -->
 ```java
 package hello.world;
 

@@ -14,6 +14,7 @@ List Jobs
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="ats.jobsAll" method="get" path="/ats/jobs" -->
 ```java
 package hello.world;
 
@@ -79,6 +80,7 @@ Get Job
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="ats.jobsOne" method="get" path="/ats/jobs/{id}" -->
 ```java
 package hello.world;
 

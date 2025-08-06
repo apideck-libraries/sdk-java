@@ -20,11 +20,11 @@ import com.apideck.unify.models.operations.CrmUsersOneResponse;
 import com.apideck.unify.models.operations.CrmUsersUpdateRequest;
 import com.apideck.unify.models.operations.CrmUsersUpdateRequestBuilder;
 import com.apideck.unify.models.operations.CrmUsersUpdateResponse;
-import com.apideck.unify.operations.CrmUsersAddOperation;
-import com.apideck.unify.operations.CrmUsersAllOperation;
-import com.apideck.unify.operations.CrmUsersDeleteOperation;
-import com.apideck.unify.operations.CrmUsersOneOperation;
-import com.apideck.unify.operations.CrmUsersUpdateOperation;
+import com.apideck.unify.operations.CrmUsersAdd;
+import com.apideck.unify.operations.CrmUsersAll;
+import com.apideck.unify.operations.CrmUsersDelete;
+import com.apideck.unify.operations.CrmUsersOne;
+import com.apideck.unify.operations.CrmUsersUpdate;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
@@ -73,7 +73,7 @@ public class Users {
      */
     public CrmUsersAllResponse list(CrmUsersAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmUsersAllRequest, CrmUsersAllResponse> operation
-              = new CrmUsersAllOperation(sdkConfiguration, options);
+              = new CrmUsersAll.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -113,7 +113,7 @@ public class Users {
      */
     public CrmUsersAddResponse create(CrmUsersAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmUsersAddRequest, CrmUsersAddResponse> operation
-              = new CrmUsersAddOperation(sdkConfiguration, options);
+              = new CrmUsersAdd.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -153,7 +153,7 @@ public class Users {
      */
     public CrmUsersOneResponse get(CrmUsersOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmUsersOneRequest, CrmUsersOneResponse> operation
-              = new CrmUsersOneOperation(sdkConfiguration, options);
+              = new CrmUsersOne.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -193,7 +193,7 @@ public class Users {
      */
     public CrmUsersUpdateResponse update(CrmUsersUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmUsersUpdateRequest, CrmUsersUpdateResponse> operation
-              = new CrmUsersUpdateOperation(sdkConfiguration, options);
+              = new CrmUsersUpdate.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -233,7 +233,7 @@ public class Users {
      */
     public CrmUsersDeleteResponse delete(CrmUsersDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmUsersDeleteRequest, CrmUsersDeleteResponse> operation
-              = new CrmUsersDeleteOperation(sdkConfiguration, options);
+              = new CrmUsersDelete.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

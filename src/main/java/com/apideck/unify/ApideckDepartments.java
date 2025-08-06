@@ -20,11 +20,11 @@ import com.apideck.unify.models.operations.HrisDepartmentsOneResponse;
 import com.apideck.unify.models.operations.HrisDepartmentsUpdateRequest;
 import com.apideck.unify.models.operations.HrisDepartmentsUpdateRequestBuilder;
 import com.apideck.unify.models.operations.HrisDepartmentsUpdateResponse;
-import com.apideck.unify.operations.HrisDepartmentsAddOperation;
-import com.apideck.unify.operations.HrisDepartmentsAllOperation;
-import com.apideck.unify.operations.HrisDepartmentsDeleteOperation;
-import com.apideck.unify.operations.HrisDepartmentsOneOperation;
-import com.apideck.unify.operations.HrisDepartmentsUpdateOperation;
+import com.apideck.unify.operations.HrisDepartmentsAdd;
+import com.apideck.unify.operations.HrisDepartmentsAll;
+import com.apideck.unify.operations.HrisDepartmentsDelete;
+import com.apideck.unify.operations.HrisDepartmentsOne;
+import com.apideck.unify.operations.HrisDepartmentsUpdate;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
@@ -73,7 +73,7 @@ public class ApideckDepartments {
      */
     public HrisDepartmentsAllResponse list(HrisDepartmentsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<HrisDepartmentsAllRequest, HrisDepartmentsAllResponse> operation
-              = new HrisDepartmentsAllOperation(sdkConfiguration, options);
+              = new HrisDepartmentsAll.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -113,7 +113,7 @@ public class ApideckDepartments {
      */
     public HrisDepartmentsAddResponse create(HrisDepartmentsAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<HrisDepartmentsAddRequest, HrisDepartmentsAddResponse> operation
-              = new HrisDepartmentsAddOperation(sdkConfiguration, options);
+              = new HrisDepartmentsAdd.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -153,7 +153,7 @@ public class ApideckDepartments {
      */
     public HrisDepartmentsOneResponse get(HrisDepartmentsOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<HrisDepartmentsOneRequest, HrisDepartmentsOneResponse> operation
-              = new HrisDepartmentsOneOperation(sdkConfiguration, options);
+              = new HrisDepartmentsOne.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -193,7 +193,7 @@ public class ApideckDepartments {
      */
     public HrisDepartmentsUpdateResponse update(HrisDepartmentsUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<HrisDepartmentsUpdateRequest, HrisDepartmentsUpdateResponse> operation
-              = new HrisDepartmentsUpdateOperation(sdkConfiguration, options);
+              = new HrisDepartmentsUpdate.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -233,7 +233,7 @@ public class ApideckDepartments {
      */
     public HrisDepartmentsDeleteResponse delete(HrisDepartmentsDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<HrisDepartmentsDeleteRequest, HrisDepartmentsDeleteResponse> operation
-              = new HrisDepartmentsDeleteOperation(sdkConfiguration, options);
+              = new HrisDepartmentsDelete.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

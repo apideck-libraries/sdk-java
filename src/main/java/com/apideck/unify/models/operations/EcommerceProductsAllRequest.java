@@ -3,6 +3,7 @@
  */
 package com.apideck.unify.models.operations;
 
+import com.apideck.unify.models.components.EcommerceProductsFilter;
 import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
@@ -69,6 +70,12 @@ public class EcommerceProductsAllRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=fields")
     private JsonNullable<String> fields;
 
+    /**
+     * Apply filters
+     */
+    @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=filter")
+    private Optional<? extends EcommerceProductsFilter> filter;
+
     @JsonCreator
     public EcommerceProductsAllRequest(
             Optional<Boolean> raw,
@@ -78,7 +85,8 @@ public class EcommerceProductsAllRequest {
             JsonNullable<String> cursor,
             Optional<Long> limit,
             Optional<? extends Map<String, Object>> passThrough,
-            JsonNullable<String> fields) {
+            JsonNullable<String> fields,
+            Optional<? extends EcommerceProductsFilter> filter) {
         Utils.checkNotNull(raw, "raw");
         Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
@@ -87,6 +95,7 @@ public class EcommerceProductsAllRequest {
         Utils.checkNotNull(limit, "limit");
         Utils.checkNotNull(passThrough, "passThrough");
         Utils.checkNotNull(fields, "fields");
+        Utils.checkNotNull(filter, "filter");
         this.raw = raw;
         this.consumerId = consumerId;
         this.appId = appId;
@@ -95,12 +104,13 @@ public class EcommerceProductsAllRequest {
         this.limit = limit;
         this.passThrough = passThrough;
         this.fields = fields;
+        this.filter = filter;
     }
     
     public EcommerceProductsAllRequest() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined());
+            Optional.empty(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -166,6 +176,15 @@ public class EcommerceProductsAllRequest {
     @JsonIgnore
     public JsonNullable<String> fields() {
         return fields;
+    }
+
+    /**
+     * Apply filters
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<EcommerceProductsFilter> filter() {
+        return (Optional<EcommerceProductsFilter>) filter;
     }
 
     public static Builder builder() {
@@ -323,6 +342,25 @@ public class EcommerceProductsAllRequest {
         return this;
     }
 
+    /**
+     * Apply filters
+     */
+    public EcommerceProductsAllRequest withFilter(EcommerceProductsFilter filter) {
+        Utils.checkNotNull(filter, "filter");
+        this.filter = Optional.ofNullable(filter);
+        return this;
+    }
+
+
+    /**
+     * Apply filters
+     */
+    public EcommerceProductsAllRequest withFilter(Optional<? extends EcommerceProductsFilter> filter) {
+        Utils.checkNotNull(filter, "filter");
+        this.filter = filter;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -340,7 +378,8 @@ public class EcommerceProductsAllRequest {
             Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
             Utils.enhancedDeepEquals(this.limit, other.limit) &&
             Utils.enhancedDeepEquals(this.passThrough, other.passThrough) &&
-            Utils.enhancedDeepEquals(this.fields, other.fields);
+            Utils.enhancedDeepEquals(this.fields, other.fields) &&
+            Utils.enhancedDeepEquals(this.filter, other.filter);
     }
     
     @Override
@@ -348,7 +387,7 @@ public class EcommerceProductsAllRequest {
         return Utils.enhancedHash(
             raw, consumerId, appId,
             serviceId, cursor, limit,
-            passThrough, fields);
+            passThrough, fields, filter);
     }
     
     @Override
@@ -361,7 +400,8 @@ public class EcommerceProductsAllRequest {
                 "cursor", cursor,
                 "limit", limit,
                 "passThrough", passThrough,
-                "fields", fields);
+                "fields", fields,
+                "filter", filter);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -382,6 +422,8 @@ public class EcommerceProductsAllRequest {
         private Optional<? extends Map<String, Object>> passThrough = Optional.empty();
 
         private JsonNullable<String> fields = JsonNullable.undefined();
+
+        private Optional<? extends EcommerceProductsFilter> filter = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -539,6 +581,25 @@ public class EcommerceProductsAllRequest {
             return this;
         }
 
+
+        /**
+         * Apply filters
+         */
+        public Builder filter(EcommerceProductsFilter filter) {
+            Utils.checkNotNull(filter, "filter");
+            this.filter = Optional.ofNullable(filter);
+            return this;
+        }
+
+        /**
+         * Apply filters
+         */
+        public Builder filter(Optional<? extends EcommerceProductsFilter> filter) {
+            Utils.checkNotNull(filter, "filter");
+            this.filter = filter;
+            return this;
+        }
+
         public EcommerceProductsAllRequest build() {
             if (raw == null) {
                 raw = _SINGLETON_VALUE_Raw.value();
@@ -550,7 +611,7 @@ public class EcommerceProductsAllRequest {
             return new EcommerceProductsAllRequest(
                 raw, consumerId, appId,
                 serviceId, cursor, limit,
-                passThrough, fields);
+                passThrough, fields, filter);
         }
 
 

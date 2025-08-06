@@ -20,11 +20,11 @@ import com.apideck.unify.models.operations.AccountingPaymentsOneResponse;
 import com.apideck.unify.models.operations.AccountingPaymentsUpdateRequest;
 import com.apideck.unify.models.operations.AccountingPaymentsUpdateRequestBuilder;
 import com.apideck.unify.models.operations.AccountingPaymentsUpdateResponse;
-import com.apideck.unify.operations.AccountingPaymentsAddOperation;
-import com.apideck.unify.operations.AccountingPaymentsAllOperation;
-import com.apideck.unify.operations.AccountingPaymentsDeleteOperation;
-import com.apideck.unify.operations.AccountingPaymentsOneOperation;
-import com.apideck.unify.operations.AccountingPaymentsUpdateOperation;
+import com.apideck.unify.operations.AccountingPaymentsAdd;
+import com.apideck.unify.operations.AccountingPaymentsAll;
+import com.apideck.unify.operations.AccountingPaymentsDelete;
+import com.apideck.unify.operations.AccountingPaymentsOne;
+import com.apideck.unify.operations.AccountingPaymentsUpdate;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
@@ -73,7 +73,7 @@ public class Payments {
      */
     public AccountingPaymentsAllResponse list(AccountingPaymentsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingPaymentsAllRequest, AccountingPaymentsAllResponse> operation
-              = new AccountingPaymentsAllOperation(sdkConfiguration, options);
+              = new AccountingPaymentsAll.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -113,7 +113,7 @@ public class Payments {
      */
     public AccountingPaymentsAddResponse create(AccountingPaymentsAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingPaymentsAddRequest, AccountingPaymentsAddResponse> operation
-              = new AccountingPaymentsAddOperation(sdkConfiguration, options);
+              = new AccountingPaymentsAdd.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -153,7 +153,7 @@ public class Payments {
      */
     public AccountingPaymentsOneResponse get(AccountingPaymentsOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingPaymentsOneRequest, AccountingPaymentsOneResponse> operation
-              = new AccountingPaymentsOneOperation(sdkConfiguration, options);
+              = new AccountingPaymentsOne.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -193,7 +193,7 @@ public class Payments {
      */
     public AccountingPaymentsUpdateResponse update(AccountingPaymentsUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingPaymentsUpdateRequest, AccountingPaymentsUpdateResponse> operation
-              = new AccountingPaymentsUpdateOperation(sdkConfiguration, options);
+              = new AccountingPaymentsUpdate.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -233,7 +233,7 @@ public class Payments {
      */
     public AccountingPaymentsDeleteResponse delete(AccountingPaymentsDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingPaymentsDeleteRequest, AccountingPaymentsDeleteResponse> operation
-              = new AccountingPaymentsDeleteOperation(sdkConfiguration, options);
+              = new AccountingPaymentsDelete.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

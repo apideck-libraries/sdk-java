@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 38254260-287a-40b6-9ac5-c2fcb654c9cc
 management:
-  docChecksum: 94792ecd1973f11fb4355b737b6c3d63
-  docVersion: 10.18.4
-  speakeasyVersion: 1.584.0
-  generationVersion: 2.660.0
-  releaseVersion: 0.18.2
-  configChecksum: ce4834f0d8da03dc3fd150f9f8136916
+  docChecksum: ffad85289ecb22153e96c5201275a350
+  docVersion: 10.20.2
+  speakeasyVersion: 1.598.0
+  generationVersion: 2.674.1
+  releaseVersion: 0.19.0
+  configChecksum: 47c441c490f8246e208010d0b2c673ab
   repoURL: https://github.com/apideck-libraries/sdk-java.git
   published: true
 features:
@@ -14,7 +14,7 @@ features:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.1
-    core: 3.44.0
+    core: 3.45.2
     deprecations: 2.81.1
     downloadStreams: 0.1.1
     errors: 0.5.0
@@ -119,6 +119,7 @@ generatedFiles:
   - docs/models/components/BillsSort.md
   - docs/models/components/Blocks.md
   - docs/models/components/Branch.md
+  - docs/models/components/Budget.md
   - docs/models/components/By.md
   - docs/models/components/Categories.md
   - docs/models/components/CategoriesFilter.md
@@ -170,7 +171,6 @@ generatedFiles:
   - docs/models/components/ConnectorsFilter.md
   - docs/models/components/Consumer.md
   - docs/models/components/ConsumerConnection.md
-  - docs/models/components/ConsumerInput.md
   - docs/models/components/ConsumerMetadata.md
   - docs/models/components/ConsumerRequestCountsInDateRangeResponse.md
   - docs/models/components/ConsumerRequestCountsInDateRangeResponseData.md
@@ -200,6 +200,7 @@ generatedFiles:
   - docs/models/components/CreateCommentResponse.md
   - docs/models/components/CreateCompanyResponse.md
   - docs/models/components/CreateConnectionResponse.md
+  - docs/models/components/CreateConsumerRequest.md
   - docs/models/components/CreateConsumerResponse.md
   - docs/models/components/CreateContactResponse.md
   - docs/models/components/CreateCreditNoteResponse.md
@@ -225,6 +226,7 @@ generatedFiles:
   - docs/models/components/CreatePaymentResponse.md
   - docs/models/components/CreatePipelineResponse.md
   - docs/models/components/CreatePurchaseOrderResponse.md
+  - docs/models/components/CreateQuoteResponse.md
   - docs/models/components/CreateSessionResponse.md
   - docs/models/components/CreateSessionResponseData.md
   - docs/models/components/CreateSharedLinkResponse.md
@@ -309,6 +311,7 @@ generatedFiles:
   - docs/models/components/DeletePaymentResponse.md
   - docs/models/components/DeletePipelineResponse.md
   - docs/models/components/DeletePurchaseOrderResponse.md
+  - docs/models/components/DeleteQuoteResponse.md
   - docs/models/components/DeleteSharedLinkResponse.md
   - docs/models/components/DeleteSubsidiaryResponse.md
   - docs/models/components/DeleteSupplierResponse.md
@@ -350,6 +353,7 @@ generatedFiles:
   - docs/models/components/EcommerceProductImages.md
   - docs/models/components/EcommerceProductOptions.md
   - docs/models/components/EcommerceProductVariantsOptions.md
+  - docs/models/components/EcommerceProductsFilter.md
   - docs/models/components/EcommerceStore.md
   - docs/models/components/Email.md
   - docs/models/components/EmailType.md
@@ -511,6 +515,8 @@ generatedFiles:
   - docs/models/components/GetProfitAndLossResponse.md
   - docs/models/components/GetPurchaseOrderResponse.md
   - docs/models/components/GetPurchaseOrdersResponse.md
+  - docs/models/components/GetQuoteResponse.md
+  - docs/models/components/GetQuotesResponse.md
   - docs/models/components/GetSharedLinkResponse.md
   - docs/models/components/GetSharedLinksResponse.md
   - docs/models/components/GetStoreResponse.md
@@ -680,6 +686,12 @@ generatedFiles:
   - docs/models/components/PurchaseOrdersFilter.md
   - docs/models/components/PurchaseOrdersSort.md
   - docs/models/components/PurchaseOrdersSortBy.md
+  - docs/models/components/Quote.md
+  - docs/models/components/QuoteInput.md
+  - docs/models/components/QuoteLineItem.md
+  - docs/models/components/QuoteLineItemInput.md
+  - docs/models/components/QuoteLineItemType.md
+  - docs/models/components/QuoteStatus.md
   - docs/models/components/RebillStatus.md
   - docs/models/components/Rebilling.md
   - docs/models/components/Reports.md
@@ -802,6 +814,7 @@ generatedFiles:
   - docs/models/components/UpdatePaymentResponse.md
   - docs/models/components/UpdatePipelineResponse.md
   - docs/models/components/UpdatePurchaseOrderResponse.md
+  - docs/models/components/UpdateQuoteResponse.md
   - docs/models/components/UpdateSharedLinkResponse.md
   - docs/models/components/UpdateSubsidiaryResponse.md
   - docs/models/components/UpdateSupplierResponse.md
@@ -1015,6 +1028,16 @@ generatedFiles:
   - docs/models/operations/AccountingPurchaseOrdersOneResponse.md
   - docs/models/operations/AccountingPurchaseOrdersUpdateRequest.md
   - docs/models/operations/AccountingPurchaseOrdersUpdateResponse.md
+  - docs/models/operations/AccountingQuotesAddRequest.md
+  - docs/models/operations/AccountingQuotesAddResponse.md
+  - docs/models/operations/AccountingQuotesAllRequest.md
+  - docs/models/operations/AccountingQuotesAllResponse.md
+  - docs/models/operations/AccountingQuotesDeleteRequest.md
+  - docs/models/operations/AccountingQuotesDeleteResponse.md
+  - docs/models/operations/AccountingQuotesOneRequest.md
+  - docs/models/operations/AccountingQuotesOneResponse.md
+  - docs/models/operations/AccountingQuotesUpdateRequest.md
+  - docs/models/operations/AccountingQuotesUpdateResponse.md
   - docs/models/operations/AccountingSubsidiariesAddRequest.md
   - docs/models/operations/AccountingSubsidiariesAddResponse.md
   - docs/models/operations/AccountingSubsidiariesAllRequest.md
@@ -1495,6 +1518,7 @@ generatedFiles:
   - docs/sdks/products/README.md
   - docs/sdks/profitandloss/README.md
   - docs/sdks/purchaseorders/README.md
+  - docs/sdks/quotes/README.md
   - docs/sdks/sessions/README.md
   - docs/sdks/sharedlinks/README.md
   - docs/sdks/sms/README.md
@@ -1593,6 +1617,7 @@ generatedFiles:
   - src/main/java/com/apideck/unify/Products.java
   - src/main/java/com/apideck/unify/ProfitAndLoss.java
   - src/main/java/com/apideck/unify/PurchaseOrders.java
+  - src/main/java/com/apideck/unify/Quotes.java
   - src/main/java/com/apideck/unify/SDKConfiguration.java
   - src/main/java/com/apideck/unify/SecuritySource.java
   - src/main/java/com/apideck/unify/Sessions.java
@@ -1691,6 +1716,7 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/components/BillsSort.java
   - src/main/java/com/apideck/unify/models/components/Blocks.java
   - src/main/java/com/apideck/unify/models/components/Branch.java
+  - src/main/java/com/apideck/unify/models/components/Budget.java
   - src/main/java/com/apideck/unify/models/components/By.java
   - src/main/java/com/apideck/unify/models/components/Categories.java
   - src/main/java/com/apideck/unify/models/components/CategoriesFilter.java
@@ -1742,7 +1768,6 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/components/ConnectorsFilter.java
   - src/main/java/com/apideck/unify/models/components/Consumer.java
   - src/main/java/com/apideck/unify/models/components/ConsumerConnection.java
-  - src/main/java/com/apideck/unify/models/components/ConsumerInput.java
   - src/main/java/com/apideck/unify/models/components/ConsumerMetadata.java
   - src/main/java/com/apideck/unify/models/components/ConsumerRequestCountsInDateRangeResponse.java
   - src/main/java/com/apideck/unify/models/components/ConsumerRequestCountsInDateRangeResponseData.java
@@ -1772,6 +1797,7 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/components/CreateCommentResponse.java
   - src/main/java/com/apideck/unify/models/components/CreateCompanyResponse.java
   - src/main/java/com/apideck/unify/models/components/CreateConnectionResponse.java
+  - src/main/java/com/apideck/unify/models/components/CreateConsumerRequest.java
   - src/main/java/com/apideck/unify/models/components/CreateConsumerResponse.java
   - src/main/java/com/apideck/unify/models/components/CreateContactResponse.java
   - src/main/java/com/apideck/unify/models/components/CreateCreditNoteResponse.java
@@ -1797,6 +1823,7 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/components/CreatePaymentResponse.java
   - src/main/java/com/apideck/unify/models/components/CreatePipelineResponse.java
   - src/main/java/com/apideck/unify/models/components/CreatePurchaseOrderResponse.java
+  - src/main/java/com/apideck/unify/models/components/CreateQuoteResponse.java
   - src/main/java/com/apideck/unify/models/components/CreateSessionResponse.java
   - src/main/java/com/apideck/unify/models/components/CreateSessionResponseData.java
   - src/main/java/com/apideck/unify/models/components/CreateSharedLinkResponse.java
@@ -1881,6 +1908,7 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/components/DeletePaymentResponse.java
   - src/main/java/com/apideck/unify/models/components/DeletePipelineResponse.java
   - src/main/java/com/apideck/unify/models/components/DeletePurchaseOrderResponse.java
+  - src/main/java/com/apideck/unify/models/components/DeleteQuoteResponse.java
   - src/main/java/com/apideck/unify/models/components/DeleteSharedLinkResponse.java
   - src/main/java/com/apideck/unify/models/components/DeleteSubsidiaryResponse.java
   - src/main/java/com/apideck/unify/models/components/DeleteSupplierResponse.java
@@ -1922,6 +1950,7 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/components/EcommerceProductImages.java
   - src/main/java/com/apideck/unify/models/components/EcommerceProductOptions.java
   - src/main/java/com/apideck/unify/models/components/EcommerceProductVariantsOptions.java
+  - src/main/java/com/apideck/unify/models/components/EcommerceProductsFilter.java
   - src/main/java/com/apideck/unify/models/components/EcommerceStore.java
   - src/main/java/com/apideck/unify/models/components/Email.java
   - src/main/java/com/apideck/unify/models/components/EmailType.java
@@ -2083,6 +2112,8 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/components/GetProfitAndLossResponse.java
   - src/main/java/com/apideck/unify/models/components/GetPurchaseOrderResponse.java
   - src/main/java/com/apideck/unify/models/components/GetPurchaseOrdersResponse.java
+  - src/main/java/com/apideck/unify/models/components/GetQuoteResponse.java
+  - src/main/java/com/apideck/unify/models/components/GetQuotesResponse.java
   - src/main/java/com/apideck/unify/models/components/GetSharedLinkResponse.java
   - src/main/java/com/apideck/unify/models/components/GetSharedLinksResponse.java
   - src/main/java/com/apideck/unify/models/components/GetStoreResponse.java
@@ -2252,6 +2283,12 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/components/PurchaseOrdersFilter.java
   - src/main/java/com/apideck/unify/models/components/PurchaseOrdersSort.java
   - src/main/java/com/apideck/unify/models/components/PurchaseOrdersSortBy.java
+  - src/main/java/com/apideck/unify/models/components/Quote.java
+  - src/main/java/com/apideck/unify/models/components/QuoteInput.java
+  - src/main/java/com/apideck/unify/models/components/QuoteLineItem.java
+  - src/main/java/com/apideck/unify/models/components/QuoteLineItemInput.java
+  - src/main/java/com/apideck/unify/models/components/QuoteLineItemType.java
+  - src/main/java/com/apideck/unify/models/components/QuoteStatus.java
   - src/main/java/com/apideck/unify/models/components/RebillStatus.java
   - src/main/java/com/apideck/unify/models/components/Rebilling.java
   - src/main/java/com/apideck/unify/models/components/Reports.java
@@ -2374,6 +2411,7 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/components/UpdatePaymentResponse.java
   - src/main/java/com/apideck/unify/models/components/UpdatePipelineResponse.java
   - src/main/java/com/apideck/unify/models/components/UpdatePurchaseOrderResponse.java
+  - src/main/java/com/apideck/unify/models/components/UpdateQuoteResponse.java
   - src/main/java/com/apideck/unify/models/components/UpdateSharedLinkResponse.java
   - src/main/java/com/apideck/unify/models/components/UpdateSubsidiaryResponse.java
   - src/main/java/com/apideck/unify/models/components/UpdateSupplierResponse.java
@@ -2676,6 +2714,21 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/operations/AccountingPurchaseOrdersUpdateRequest.java
   - src/main/java/com/apideck/unify/models/operations/AccountingPurchaseOrdersUpdateRequestBuilder.java
   - src/main/java/com/apideck/unify/models/operations/AccountingPurchaseOrdersUpdateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/AccountingQuotesAddRequest.java
+  - src/main/java/com/apideck/unify/models/operations/AccountingQuotesAddRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations/AccountingQuotesAddResponse.java
+  - src/main/java/com/apideck/unify/models/operations/AccountingQuotesAllRequest.java
+  - src/main/java/com/apideck/unify/models/operations/AccountingQuotesAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations/AccountingQuotesAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/AccountingQuotesDeleteRequest.java
+  - src/main/java/com/apideck/unify/models/operations/AccountingQuotesDeleteRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations/AccountingQuotesDeleteResponse.java
+  - src/main/java/com/apideck/unify/models/operations/AccountingQuotesOneRequest.java
+  - src/main/java/com/apideck/unify/models/operations/AccountingQuotesOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations/AccountingQuotesOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/AccountingQuotesUpdateRequest.java
+  - src/main/java/com/apideck/unify/models/operations/AccountingQuotesUpdateRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations/AccountingQuotesUpdateResponse.java
   - src/main/java/com/apideck/unify/models/operations/AccountingSubsidiariesAddRequest.java
   - src/main/java/com/apideck/unify/models/operations/AccountingSubsidiariesAddRequestBuilder.java
   - src/main/java/com/apideck/unify/models/operations/AccountingSubsidiariesAddResponse.java
@@ -3279,294 +3332,299 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/operations/WebhookWebhooksUpdateRequest.java
   - src/main/java/com/apideck/unify/models/operations/WebhookWebhooksUpdateRequestBuilder.java
   - src/main/java/com/apideck/unify/models/operations/WebhookWebhooksUpdateResponse.java
-  - src/main/java/com/apideck/unify/operations/AccountingAgedCreditorsOneOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingAgedDebtorsOneOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingAttachmentsAllOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingAttachmentsDeleteOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingAttachmentsDownloadOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingAttachmentsOneOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingAttachmentsUploadOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingBalanceSheetOneOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingBankFeedAccountsAddOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingBankFeedAccountsAllOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingBankFeedAccountsDeleteOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingBankFeedAccountsOneOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingBankFeedAccountsUpdateOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingBankFeedStatementsAddOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingBankFeedStatementsAllOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingBankFeedStatementsDeleteOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingBankFeedStatementsOneOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingBankFeedStatementsUpdateOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingBillPaymentsAddOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingBillPaymentsAllOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingBillPaymentsDeleteOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingBillPaymentsOneOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingBillPaymentsUpdateOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingBillsAddOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingBillsAllOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingBillsDeleteOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingBillsOneOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingBillsUpdateOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingCategoriesAllOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingCategoriesOneOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingCompanyInfoOneOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingCreditNotesAddOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingCreditNotesAllOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingCreditNotesDeleteOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingCreditNotesOneOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingCreditNotesUpdateOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingCustomersAddOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingCustomersAllOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingCustomersDeleteOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingCustomersOneOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingCustomersUpdateOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingDepartmentsAddOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingDepartmentsAllOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingDepartmentsDeleteOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingDepartmentsOneOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingDepartmentsUpdateOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingExpensesAddOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingExpensesAllOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingExpensesDeleteOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingExpensesOneOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingExpensesUpdateOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingInvoiceItemsAddOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingInvoiceItemsAllOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingInvoiceItemsDeleteOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingInvoiceItemsOneOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingInvoiceItemsUpdateOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingInvoicesAddOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingInvoicesAllOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingInvoicesDeleteOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingInvoicesOneOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingInvoicesUpdateOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingJournalEntriesAddOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingJournalEntriesAllOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingJournalEntriesDeleteOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingJournalEntriesOneOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingJournalEntriesUpdateOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingLedgerAccountsAddOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingLedgerAccountsAllOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingLedgerAccountsDeleteOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingLedgerAccountsOneOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingLedgerAccountsUpdateOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingLocationsAddOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingLocationsAllOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingLocationsDeleteOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingLocationsOneOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingLocationsUpdateOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingPaymentsAddOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingPaymentsAllOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingPaymentsDeleteOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingPaymentsOneOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingPaymentsUpdateOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingProfitAndLossOneOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingPurchaseOrdersAddOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingPurchaseOrdersAllOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingPurchaseOrdersDeleteOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingPurchaseOrdersOneOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingPurchaseOrdersUpdateOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingSubsidiariesAddOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingSubsidiariesAllOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingSubsidiariesDeleteOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingSubsidiariesOneOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingSubsidiariesUpdateOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingSuppliersAddOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingSuppliersAllOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingSuppliersDeleteOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingSuppliersOneOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingSuppliersUpdateOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingTaxRatesAddOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingTaxRatesAllOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingTaxRatesDeleteOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingTaxRatesOneOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingTaxRatesUpdateOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingTrackingCategoriesAddOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingTrackingCategoriesAllOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingTrackingCategoriesDeleteOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingTrackingCategoriesOneOperation.java
-  - src/main/java/com/apideck/unify/operations/AccountingTrackingCategoriesUpdateOperation.java
-  - src/main/java/com/apideck/unify/operations/AtsApplicantsAddOperation.java
-  - src/main/java/com/apideck/unify/operations/AtsApplicantsAllOperation.java
-  - src/main/java/com/apideck/unify/operations/AtsApplicantsDeleteOperation.java
-  - src/main/java/com/apideck/unify/operations/AtsApplicantsOneOperation.java
-  - src/main/java/com/apideck/unify/operations/AtsApplicantsUpdateOperation.java
-  - src/main/java/com/apideck/unify/operations/AtsApplicationsAddOperation.java
-  - src/main/java/com/apideck/unify/operations/AtsApplicationsAllOperation.java
-  - src/main/java/com/apideck/unify/operations/AtsApplicationsDeleteOperation.java
-  - src/main/java/com/apideck/unify/operations/AtsApplicationsOneOperation.java
-  - src/main/java/com/apideck/unify/operations/AtsApplicationsUpdateOperation.java
-  - src/main/java/com/apideck/unify/operations/AtsJobsAllOperation.java
-  - src/main/java/com/apideck/unify/operations/AtsJobsOneOperation.java
-  - src/main/java/com/apideck/unify/operations/ConnectorApiResourceCoverageOneOperation.java
-  - src/main/java/com/apideck/unify/operations/ConnectorApiResourcesOneOperation.java
-  - src/main/java/com/apideck/unify/operations/ConnectorApisAllOperation.java
-  - src/main/java/com/apideck/unify/operations/ConnectorApisOneOperation.java
-  - src/main/java/com/apideck/unify/operations/ConnectorConnectorDocsOneOperation.java
-  - src/main/java/com/apideck/unify/operations/ConnectorConnectorResourcesOneOperation.java
-  - src/main/java/com/apideck/unify/operations/ConnectorConnectorsAllOperation.java
-  - src/main/java/com/apideck/unify/operations/ConnectorConnectorsOneOperation.java
-  - src/main/java/com/apideck/unify/operations/CrmActivitiesAddOperation.java
-  - src/main/java/com/apideck/unify/operations/CrmActivitiesAllOperation.java
-  - src/main/java/com/apideck/unify/operations/CrmActivitiesDeleteOperation.java
-  - src/main/java/com/apideck/unify/operations/CrmActivitiesOneOperation.java
-  - src/main/java/com/apideck/unify/operations/CrmActivitiesUpdateOperation.java
-  - src/main/java/com/apideck/unify/operations/CrmCompaniesAddOperation.java
-  - src/main/java/com/apideck/unify/operations/CrmCompaniesAllOperation.java
-  - src/main/java/com/apideck/unify/operations/CrmCompaniesDeleteOperation.java
-  - src/main/java/com/apideck/unify/operations/CrmCompaniesOneOperation.java
-  - src/main/java/com/apideck/unify/operations/CrmCompaniesUpdateOperation.java
-  - src/main/java/com/apideck/unify/operations/CrmContactsAddOperation.java
-  - src/main/java/com/apideck/unify/operations/CrmContactsAllOperation.java
-  - src/main/java/com/apideck/unify/operations/CrmContactsDeleteOperation.java
-  - src/main/java/com/apideck/unify/operations/CrmContactsOneOperation.java
-  - src/main/java/com/apideck/unify/operations/CrmContactsUpdateOperation.java
-  - src/main/java/com/apideck/unify/operations/CrmCustomObjectSchemasAddOperation.java
-  - src/main/java/com/apideck/unify/operations/CrmCustomObjectSchemasAllOperation.java
-  - src/main/java/com/apideck/unify/operations/CrmCustomObjectSchemasDeleteOperation.java
-  - src/main/java/com/apideck/unify/operations/CrmCustomObjectSchemasOneOperation.java
-  - src/main/java/com/apideck/unify/operations/CrmCustomObjectSchemasUpdateOperation.java
-  - src/main/java/com/apideck/unify/operations/CrmCustomObjectsAddOperation.java
-  - src/main/java/com/apideck/unify/operations/CrmCustomObjectsAllOperation.java
-  - src/main/java/com/apideck/unify/operations/CrmCustomObjectsDeleteOperation.java
-  - src/main/java/com/apideck/unify/operations/CrmCustomObjectsOneOperation.java
-  - src/main/java/com/apideck/unify/operations/CrmCustomObjectsUpdateOperation.java
-  - src/main/java/com/apideck/unify/operations/CrmLeadsAddOperation.java
-  - src/main/java/com/apideck/unify/operations/CrmLeadsAllOperation.java
-  - src/main/java/com/apideck/unify/operations/CrmLeadsDeleteOperation.java
-  - src/main/java/com/apideck/unify/operations/CrmLeadsOneOperation.java
-  - src/main/java/com/apideck/unify/operations/CrmLeadsUpdateOperation.java
-  - src/main/java/com/apideck/unify/operations/CrmNotesAddOperation.java
-  - src/main/java/com/apideck/unify/operations/CrmNotesAllOperation.java
-  - src/main/java/com/apideck/unify/operations/CrmNotesDeleteOperation.java
-  - src/main/java/com/apideck/unify/operations/CrmNotesOneOperation.java
-  - src/main/java/com/apideck/unify/operations/CrmNotesUpdateOperation.java
-  - src/main/java/com/apideck/unify/operations/CrmOpportunitiesAddOperation.java
-  - src/main/java/com/apideck/unify/operations/CrmOpportunitiesAllOperation.java
-  - src/main/java/com/apideck/unify/operations/CrmOpportunitiesDeleteOperation.java
-  - src/main/java/com/apideck/unify/operations/CrmOpportunitiesOneOperation.java
-  - src/main/java/com/apideck/unify/operations/CrmOpportunitiesUpdateOperation.java
-  - src/main/java/com/apideck/unify/operations/CrmPipelinesAddOperation.java
-  - src/main/java/com/apideck/unify/operations/CrmPipelinesAllOperation.java
-  - src/main/java/com/apideck/unify/operations/CrmPipelinesDeleteOperation.java
-  - src/main/java/com/apideck/unify/operations/CrmPipelinesOneOperation.java
-  - src/main/java/com/apideck/unify/operations/CrmPipelinesUpdateOperation.java
-  - src/main/java/com/apideck/unify/operations/CrmUsersAddOperation.java
-  - src/main/java/com/apideck/unify/operations/CrmUsersAllOperation.java
-  - src/main/java/com/apideck/unify/operations/CrmUsersDeleteOperation.java
-  - src/main/java/com/apideck/unify/operations/CrmUsersOneOperation.java
-  - src/main/java/com/apideck/unify/operations/CrmUsersUpdateOperation.java
-  - src/main/java/com/apideck/unify/operations/EcommerceCustomersAllOperation.java
-  - src/main/java/com/apideck/unify/operations/EcommerceCustomersOneOperation.java
-  - src/main/java/com/apideck/unify/operations/EcommerceOrdersAllOperation.java
-  - src/main/java/com/apideck/unify/operations/EcommerceOrdersOneOperation.java
-  - src/main/java/com/apideck/unify/operations/EcommerceProductsAllOperation.java
-  - src/main/java/com/apideck/unify/operations/EcommerceProductsOneOperation.java
-  - src/main/java/com/apideck/unify/operations/EcommerceStoresOneOperation.java
-  - src/main/java/com/apideck/unify/operations/FileStorageDriveGroupsAddOperation.java
-  - src/main/java/com/apideck/unify/operations/FileStorageDriveGroupsAllOperation.java
-  - src/main/java/com/apideck/unify/operations/FileStorageDriveGroupsDeleteOperation.java
-  - src/main/java/com/apideck/unify/operations/FileStorageDriveGroupsOneOperation.java
-  - src/main/java/com/apideck/unify/operations/FileStorageDriveGroupsUpdateOperation.java
-  - src/main/java/com/apideck/unify/operations/FileStorageDrivesAddOperation.java
-  - src/main/java/com/apideck/unify/operations/FileStorageDrivesAllOperation.java
-  - src/main/java/com/apideck/unify/operations/FileStorageDrivesDeleteOperation.java
-  - src/main/java/com/apideck/unify/operations/FileStorageDrivesOneOperation.java
-  - src/main/java/com/apideck/unify/operations/FileStorageDrivesUpdateOperation.java
-  - src/main/java/com/apideck/unify/operations/FileStorageFilesAllOperation.java
-  - src/main/java/com/apideck/unify/operations/FileStorageFilesDeleteOperation.java
-  - src/main/java/com/apideck/unify/operations/FileStorageFilesDownloadOperation.java
-  - src/main/java/com/apideck/unify/operations/FileStorageFilesExportOperation.java
-  - src/main/java/com/apideck/unify/operations/FileStorageFilesOneOperation.java
-  - src/main/java/com/apideck/unify/operations/FileStorageFilesSearchOperation.java
-  - src/main/java/com/apideck/unify/operations/FileStorageFilesUpdateOperation.java
-  - src/main/java/com/apideck/unify/operations/FileStorageFoldersAddOperation.java
-  - src/main/java/com/apideck/unify/operations/FileStorageFoldersCopyOperation.java
-  - src/main/java/com/apideck/unify/operations/FileStorageFoldersDeleteOperation.java
-  - src/main/java/com/apideck/unify/operations/FileStorageFoldersOneOperation.java
-  - src/main/java/com/apideck/unify/operations/FileStorageFoldersUpdateOperation.java
-  - src/main/java/com/apideck/unify/operations/FileStorageSharedLinksAddOperation.java
-  - src/main/java/com/apideck/unify/operations/FileStorageSharedLinksAllOperation.java
-  - src/main/java/com/apideck/unify/operations/FileStorageSharedLinksDeleteOperation.java
-  - src/main/java/com/apideck/unify/operations/FileStorageSharedLinksOneOperation.java
-  - src/main/java/com/apideck/unify/operations/FileStorageSharedLinksUpdateOperation.java
-  - src/main/java/com/apideck/unify/operations/FileStorageUploadSessionsAddOperation.java
-  - src/main/java/com/apideck/unify/operations/FileStorageUploadSessionsDeleteOperation.java
-  - src/main/java/com/apideck/unify/operations/FileStorageUploadSessionsFinishOperation.java
-  - src/main/java/com/apideck/unify/operations/FileStorageUploadSessionsOneOperation.java
-  - src/main/java/com/apideck/unify/operations/FileStorageUploadSessionsUploadOperation.java
-  - src/main/java/com/apideck/unify/operations/HrisCompaniesAddOperation.java
-  - src/main/java/com/apideck/unify/operations/HrisCompaniesAllOperation.java
-  - src/main/java/com/apideck/unify/operations/HrisCompaniesDeleteOperation.java
-  - src/main/java/com/apideck/unify/operations/HrisCompaniesOneOperation.java
-  - src/main/java/com/apideck/unify/operations/HrisCompaniesUpdateOperation.java
-  - src/main/java/com/apideck/unify/operations/HrisDepartmentsAddOperation.java
-  - src/main/java/com/apideck/unify/operations/HrisDepartmentsAllOperation.java
-  - src/main/java/com/apideck/unify/operations/HrisDepartmentsDeleteOperation.java
-  - src/main/java/com/apideck/unify/operations/HrisDepartmentsOneOperation.java
-  - src/main/java/com/apideck/unify/operations/HrisDepartmentsUpdateOperation.java
-  - src/main/java/com/apideck/unify/operations/HrisEmployeePayrollsAllOperation.java
-  - src/main/java/com/apideck/unify/operations/HrisEmployeePayrollsOneOperation.java
-  - src/main/java/com/apideck/unify/operations/HrisEmployeeSchedulesAllOperation.java
-  - src/main/java/com/apideck/unify/operations/HrisEmployeesAddOperation.java
-  - src/main/java/com/apideck/unify/operations/HrisEmployeesAllOperation.java
-  - src/main/java/com/apideck/unify/operations/HrisEmployeesDeleteOperation.java
-  - src/main/java/com/apideck/unify/operations/HrisEmployeesOneOperation.java
-  - src/main/java/com/apideck/unify/operations/HrisEmployeesUpdateOperation.java
-  - src/main/java/com/apideck/unify/operations/HrisPayrollsAllOperation.java
-  - src/main/java/com/apideck/unify/operations/HrisPayrollsOneOperation.java
-  - src/main/java/com/apideck/unify/operations/HrisTimeOffRequestsAddOperation.java
-  - src/main/java/com/apideck/unify/operations/HrisTimeOffRequestsAllOperation.java
-  - src/main/java/com/apideck/unify/operations/HrisTimeOffRequestsDeleteOperation.java
-  - src/main/java/com/apideck/unify/operations/HrisTimeOffRequestsOneOperation.java
-  - src/main/java/com/apideck/unify/operations/HrisTimeOffRequestsUpdateOperation.java
-  - src/main/java/com/apideck/unify/operations/IssueTrackingCollectionTagsAllOperation.java
-  - src/main/java/com/apideck/unify/operations/IssueTrackingCollectionTicketCommentsAddOperation.java
-  - src/main/java/com/apideck/unify/operations/IssueTrackingCollectionTicketCommentsAllOperation.java
-  - src/main/java/com/apideck/unify/operations/IssueTrackingCollectionTicketCommentsDeleteOperation.java
-  - src/main/java/com/apideck/unify/operations/IssueTrackingCollectionTicketCommentsOneOperation.java
-  - src/main/java/com/apideck/unify/operations/IssueTrackingCollectionTicketCommentsUpdateOperation.java
-  - src/main/java/com/apideck/unify/operations/IssueTrackingCollectionTicketsAddOperation.java
-  - src/main/java/com/apideck/unify/operations/IssueTrackingCollectionTicketsAllOperation.java
-  - src/main/java/com/apideck/unify/operations/IssueTrackingCollectionTicketsDeleteOperation.java
-  - src/main/java/com/apideck/unify/operations/IssueTrackingCollectionTicketsOneOperation.java
-  - src/main/java/com/apideck/unify/operations/IssueTrackingCollectionTicketsUpdateOperation.java
-  - src/main/java/com/apideck/unify/operations/IssueTrackingCollectionUsersAllOperation.java
-  - src/main/java/com/apideck/unify/operations/IssueTrackingCollectionUsersOneOperation.java
-  - src/main/java/com/apideck/unify/operations/IssueTrackingCollectionsAllOperation.java
-  - src/main/java/com/apideck/unify/operations/IssueTrackingCollectionsOneOperation.java
+  - src/main/java/com/apideck/unify/operations/AccountingAgedCreditorsOne.java
+  - src/main/java/com/apideck/unify/operations/AccountingAgedDebtorsOne.java
+  - src/main/java/com/apideck/unify/operations/AccountingAttachmentsAll.java
+  - src/main/java/com/apideck/unify/operations/AccountingAttachmentsDelete.java
+  - src/main/java/com/apideck/unify/operations/AccountingAttachmentsDownload.java
+  - src/main/java/com/apideck/unify/operations/AccountingAttachmentsOne.java
+  - src/main/java/com/apideck/unify/operations/AccountingAttachmentsUpload.java
+  - src/main/java/com/apideck/unify/operations/AccountingBalanceSheetOne.java
+  - src/main/java/com/apideck/unify/operations/AccountingBankFeedAccountsAdd.java
+  - src/main/java/com/apideck/unify/operations/AccountingBankFeedAccountsAll.java
+  - src/main/java/com/apideck/unify/operations/AccountingBankFeedAccountsDelete.java
+  - src/main/java/com/apideck/unify/operations/AccountingBankFeedAccountsOne.java
+  - src/main/java/com/apideck/unify/operations/AccountingBankFeedAccountsUpdate.java
+  - src/main/java/com/apideck/unify/operations/AccountingBankFeedStatementsAdd.java
+  - src/main/java/com/apideck/unify/operations/AccountingBankFeedStatementsAll.java
+  - src/main/java/com/apideck/unify/operations/AccountingBankFeedStatementsDelete.java
+  - src/main/java/com/apideck/unify/operations/AccountingBankFeedStatementsOne.java
+  - src/main/java/com/apideck/unify/operations/AccountingBankFeedStatementsUpdate.java
+  - src/main/java/com/apideck/unify/operations/AccountingBillPaymentsAdd.java
+  - src/main/java/com/apideck/unify/operations/AccountingBillPaymentsAll.java
+  - src/main/java/com/apideck/unify/operations/AccountingBillPaymentsDelete.java
+  - src/main/java/com/apideck/unify/operations/AccountingBillPaymentsOne.java
+  - src/main/java/com/apideck/unify/operations/AccountingBillPaymentsUpdate.java
+  - src/main/java/com/apideck/unify/operations/AccountingBillsAdd.java
+  - src/main/java/com/apideck/unify/operations/AccountingBillsAll.java
+  - src/main/java/com/apideck/unify/operations/AccountingBillsDelete.java
+  - src/main/java/com/apideck/unify/operations/AccountingBillsOne.java
+  - src/main/java/com/apideck/unify/operations/AccountingBillsUpdate.java
+  - src/main/java/com/apideck/unify/operations/AccountingCategoriesAll.java
+  - src/main/java/com/apideck/unify/operations/AccountingCategoriesOne.java
+  - src/main/java/com/apideck/unify/operations/AccountingCompanyInfoOne.java
+  - src/main/java/com/apideck/unify/operations/AccountingCreditNotesAdd.java
+  - src/main/java/com/apideck/unify/operations/AccountingCreditNotesAll.java
+  - src/main/java/com/apideck/unify/operations/AccountingCreditNotesDelete.java
+  - src/main/java/com/apideck/unify/operations/AccountingCreditNotesOne.java
+  - src/main/java/com/apideck/unify/operations/AccountingCreditNotesUpdate.java
+  - src/main/java/com/apideck/unify/operations/AccountingCustomersAdd.java
+  - src/main/java/com/apideck/unify/operations/AccountingCustomersAll.java
+  - src/main/java/com/apideck/unify/operations/AccountingCustomersDelete.java
+  - src/main/java/com/apideck/unify/operations/AccountingCustomersOne.java
+  - src/main/java/com/apideck/unify/operations/AccountingCustomersUpdate.java
+  - src/main/java/com/apideck/unify/operations/AccountingDepartmentsAdd.java
+  - src/main/java/com/apideck/unify/operations/AccountingDepartmentsAll.java
+  - src/main/java/com/apideck/unify/operations/AccountingDepartmentsDelete.java
+  - src/main/java/com/apideck/unify/operations/AccountingDepartmentsOne.java
+  - src/main/java/com/apideck/unify/operations/AccountingDepartmentsUpdate.java
+  - src/main/java/com/apideck/unify/operations/AccountingExpensesAdd.java
+  - src/main/java/com/apideck/unify/operations/AccountingExpensesAll.java
+  - src/main/java/com/apideck/unify/operations/AccountingExpensesDelete.java
+  - src/main/java/com/apideck/unify/operations/AccountingExpensesOne.java
+  - src/main/java/com/apideck/unify/operations/AccountingExpensesUpdate.java
+  - src/main/java/com/apideck/unify/operations/AccountingInvoiceItemsAdd.java
+  - src/main/java/com/apideck/unify/operations/AccountingInvoiceItemsAll.java
+  - src/main/java/com/apideck/unify/operations/AccountingInvoiceItemsDelete.java
+  - src/main/java/com/apideck/unify/operations/AccountingInvoiceItemsOne.java
+  - src/main/java/com/apideck/unify/operations/AccountingInvoiceItemsUpdate.java
+  - src/main/java/com/apideck/unify/operations/AccountingInvoicesAdd.java
+  - src/main/java/com/apideck/unify/operations/AccountingInvoicesAll.java
+  - src/main/java/com/apideck/unify/operations/AccountingInvoicesDelete.java
+  - src/main/java/com/apideck/unify/operations/AccountingInvoicesOne.java
+  - src/main/java/com/apideck/unify/operations/AccountingInvoicesUpdate.java
+  - src/main/java/com/apideck/unify/operations/AccountingJournalEntriesAdd.java
+  - src/main/java/com/apideck/unify/operations/AccountingJournalEntriesAll.java
+  - src/main/java/com/apideck/unify/operations/AccountingJournalEntriesDelete.java
+  - src/main/java/com/apideck/unify/operations/AccountingJournalEntriesOne.java
+  - src/main/java/com/apideck/unify/operations/AccountingJournalEntriesUpdate.java
+  - src/main/java/com/apideck/unify/operations/AccountingLedgerAccountsAdd.java
+  - src/main/java/com/apideck/unify/operations/AccountingLedgerAccountsAll.java
+  - src/main/java/com/apideck/unify/operations/AccountingLedgerAccountsDelete.java
+  - src/main/java/com/apideck/unify/operations/AccountingLedgerAccountsOne.java
+  - src/main/java/com/apideck/unify/operations/AccountingLedgerAccountsUpdate.java
+  - src/main/java/com/apideck/unify/operations/AccountingLocationsAdd.java
+  - src/main/java/com/apideck/unify/operations/AccountingLocationsAll.java
+  - src/main/java/com/apideck/unify/operations/AccountingLocationsDelete.java
+  - src/main/java/com/apideck/unify/operations/AccountingLocationsOne.java
+  - src/main/java/com/apideck/unify/operations/AccountingLocationsUpdate.java
+  - src/main/java/com/apideck/unify/operations/AccountingPaymentsAdd.java
+  - src/main/java/com/apideck/unify/operations/AccountingPaymentsAll.java
+  - src/main/java/com/apideck/unify/operations/AccountingPaymentsDelete.java
+  - src/main/java/com/apideck/unify/operations/AccountingPaymentsOne.java
+  - src/main/java/com/apideck/unify/operations/AccountingPaymentsUpdate.java
+  - src/main/java/com/apideck/unify/operations/AccountingProfitAndLossOne.java
+  - src/main/java/com/apideck/unify/operations/AccountingPurchaseOrdersAdd.java
+  - src/main/java/com/apideck/unify/operations/AccountingPurchaseOrdersAll.java
+  - src/main/java/com/apideck/unify/operations/AccountingPurchaseOrdersDelete.java
+  - src/main/java/com/apideck/unify/operations/AccountingPurchaseOrdersOne.java
+  - src/main/java/com/apideck/unify/operations/AccountingPurchaseOrdersUpdate.java
+  - src/main/java/com/apideck/unify/operations/AccountingQuotesAdd.java
+  - src/main/java/com/apideck/unify/operations/AccountingQuotesAll.java
+  - src/main/java/com/apideck/unify/operations/AccountingQuotesDelete.java
+  - src/main/java/com/apideck/unify/operations/AccountingQuotesOne.java
+  - src/main/java/com/apideck/unify/operations/AccountingQuotesUpdate.java
+  - src/main/java/com/apideck/unify/operations/AccountingSubsidiariesAdd.java
+  - src/main/java/com/apideck/unify/operations/AccountingSubsidiariesAll.java
+  - src/main/java/com/apideck/unify/operations/AccountingSubsidiariesDelete.java
+  - src/main/java/com/apideck/unify/operations/AccountingSubsidiariesOne.java
+  - src/main/java/com/apideck/unify/operations/AccountingSubsidiariesUpdate.java
+  - src/main/java/com/apideck/unify/operations/AccountingSuppliersAdd.java
+  - src/main/java/com/apideck/unify/operations/AccountingSuppliersAll.java
+  - src/main/java/com/apideck/unify/operations/AccountingSuppliersDelete.java
+  - src/main/java/com/apideck/unify/operations/AccountingSuppliersOne.java
+  - src/main/java/com/apideck/unify/operations/AccountingSuppliersUpdate.java
+  - src/main/java/com/apideck/unify/operations/AccountingTaxRatesAdd.java
+  - src/main/java/com/apideck/unify/operations/AccountingTaxRatesAll.java
+  - src/main/java/com/apideck/unify/operations/AccountingTaxRatesDelete.java
+  - src/main/java/com/apideck/unify/operations/AccountingTaxRatesOne.java
+  - src/main/java/com/apideck/unify/operations/AccountingTaxRatesUpdate.java
+  - src/main/java/com/apideck/unify/operations/AccountingTrackingCategoriesAdd.java
+  - src/main/java/com/apideck/unify/operations/AccountingTrackingCategoriesAll.java
+  - src/main/java/com/apideck/unify/operations/AccountingTrackingCategoriesDelete.java
+  - src/main/java/com/apideck/unify/operations/AccountingTrackingCategoriesOne.java
+  - src/main/java/com/apideck/unify/operations/AccountingTrackingCategoriesUpdate.java
+  - src/main/java/com/apideck/unify/operations/AtsApplicantsAdd.java
+  - src/main/java/com/apideck/unify/operations/AtsApplicantsAll.java
+  - src/main/java/com/apideck/unify/operations/AtsApplicantsDelete.java
+  - src/main/java/com/apideck/unify/operations/AtsApplicantsOne.java
+  - src/main/java/com/apideck/unify/operations/AtsApplicantsUpdate.java
+  - src/main/java/com/apideck/unify/operations/AtsApplicationsAdd.java
+  - src/main/java/com/apideck/unify/operations/AtsApplicationsAll.java
+  - src/main/java/com/apideck/unify/operations/AtsApplicationsDelete.java
+  - src/main/java/com/apideck/unify/operations/AtsApplicationsOne.java
+  - src/main/java/com/apideck/unify/operations/AtsApplicationsUpdate.java
+  - src/main/java/com/apideck/unify/operations/AtsJobsAll.java
+  - src/main/java/com/apideck/unify/operations/AtsJobsOne.java
+  - src/main/java/com/apideck/unify/operations/ConnectorApiResourceCoverageOne.java
+  - src/main/java/com/apideck/unify/operations/ConnectorApiResourcesOne.java
+  - src/main/java/com/apideck/unify/operations/ConnectorApisAll.java
+  - src/main/java/com/apideck/unify/operations/ConnectorApisOne.java
+  - src/main/java/com/apideck/unify/operations/ConnectorConnectorDocsOne.java
+  - src/main/java/com/apideck/unify/operations/ConnectorConnectorResourcesOne.java
+  - src/main/java/com/apideck/unify/operations/ConnectorConnectorsAll.java
+  - src/main/java/com/apideck/unify/operations/ConnectorConnectorsOne.java
+  - src/main/java/com/apideck/unify/operations/CrmActivitiesAdd.java
+  - src/main/java/com/apideck/unify/operations/CrmActivitiesAll.java
+  - src/main/java/com/apideck/unify/operations/CrmActivitiesDelete.java
+  - src/main/java/com/apideck/unify/operations/CrmActivitiesOne.java
+  - src/main/java/com/apideck/unify/operations/CrmActivitiesUpdate.java
+  - src/main/java/com/apideck/unify/operations/CrmCompaniesAdd.java
+  - src/main/java/com/apideck/unify/operations/CrmCompaniesAll.java
+  - src/main/java/com/apideck/unify/operations/CrmCompaniesDelete.java
+  - src/main/java/com/apideck/unify/operations/CrmCompaniesOne.java
+  - src/main/java/com/apideck/unify/operations/CrmCompaniesUpdate.java
+  - src/main/java/com/apideck/unify/operations/CrmContactsAdd.java
+  - src/main/java/com/apideck/unify/operations/CrmContactsAll.java
+  - src/main/java/com/apideck/unify/operations/CrmContactsDelete.java
+  - src/main/java/com/apideck/unify/operations/CrmContactsOne.java
+  - src/main/java/com/apideck/unify/operations/CrmContactsUpdate.java
+  - src/main/java/com/apideck/unify/operations/CrmCustomObjectSchemasAdd.java
+  - src/main/java/com/apideck/unify/operations/CrmCustomObjectSchemasAll.java
+  - src/main/java/com/apideck/unify/operations/CrmCustomObjectSchemasDelete.java
+  - src/main/java/com/apideck/unify/operations/CrmCustomObjectSchemasOne.java
+  - src/main/java/com/apideck/unify/operations/CrmCustomObjectSchemasUpdate.java
+  - src/main/java/com/apideck/unify/operations/CrmCustomObjectsAdd.java
+  - src/main/java/com/apideck/unify/operations/CrmCustomObjectsAll.java
+  - src/main/java/com/apideck/unify/operations/CrmCustomObjectsDelete.java
+  - src/main/java/com/apideck/unify/operations/CrmCustomObjectsOne.java
+  - src/main/java/com/apideck/unify/operations/CrmCustomObjectsUpdate.java
+  - src/main/java/com/apideck/unify/operations/CrmLeadsAdd.java
+  - src/main/java/com/apideck/unify/operations/CrmLeadsAll.java
+  - src/main/java/com/apideck/unify/operations/CrmLeadsDelete.java
+  - src/main/java/com/apideck/unify/operations/CrmLeadsOne.java
+  - src/main/java/com/apideck/unify/operations/CrmLeadsUpdate.java
+  - src/main/java/com/apideck/unify/operations/CrmNotesAdd.java
+  - src/main/java/com/apideck/unify/operations/CrmNotesAll.java
+  - src/main/java/com/apideck/unify/operations/CrmNotesDelete.java
+  - src/main/java/com/apideck/unify/operations/CrmNotesOne.java
+  - src/main/java/com/apideck/unify/operations/CrmNotesUpdate.java
+  - src/main/java/com/apideck/unify/operations/CrmOpportunitiesAdd.java
+  - src/main/java/com/apideck/unify/operations/CrmOpportunitiesAll.java
+  - src/main/java/com/apideck/unify/operations/CrmOpportunitiesDelete.java
+  - src/main/java/com/apideck/unify/operations/CrmOpportunitiesOne.java
+  - src/main/java/com/apideck/unify/operations/CrmOpportunitiesUpdate.java
+  - src/main/java/com/apideck/unify/operations/CrmPipelinesAdd.java
+  - src/main/java/com/apideck/unify/operations/CrmPipelinesAll.java
+  - src/main/java/com/apideck/unify/operations/CrmPipelinesDelete.java
+  - src/main/java/com/apideck/unify/operations/CrmPipelinesOne.java
+  - src/main/java/com/apideck/unify/operations/CrmPipelinesUpdate.java
+  - src/main/java/com/apideck/unify/operations/CrmUsersAdd.java
+  - src/main/java/com/apideck/unify/operations/CrmUsersAll.java
+  - src/main/java/com/apideck/unify/operations/CrmUsersDelete.java
+  - src/main/java/com/apideck/unify/operations/CrmUsersOne.java
+  - src/main/java/com/apideck/unify/operations/CrmUsersUpdate.java
+  - src/main/java/com/apideck/unify/operations/EcommerceCustomersAll.java
+  - src/main/java/com/apideck/unify/operations/EcommerceCustomersOne.java
+  - src/main/java/com/apideck/unify/operations/EcommerceOrdersAll.java
+  - src/main/java/com/apideck/unify/operations/EcommerceOrdersOne.java
+  - src/main/java/com/apideck/unify/operations/EcommerceProductsAll.java
+  - src/main/java/com/apideck/unify/operations/EcommerceProductsOne.java
+  - src/main/java/com/apideck/unify/operations/EcommerceStoresOne.java
+  - src/main/java/com/apideck/unify/operations/FileStorageDriveGroupsAdd.java
+  - src/main/java/com/apideck/unify/operations/FileStorageDriveGroupsAll.java
+  - src/main/java/com/apideck/unify/operations/FileStorageDriveGroupsDelete.java
+  - src/main/java/com/apideck/unify/operations/FileStorageDriveGroupsOne.java
+  - src/main/java/com/apideck/unify/operations/FileStorageDriveGroupsUpdate.java
+  - src/main/java/com/apideck/unify/operations/FileStorageDrivesAdd.java
+  - src/main/java/com/apideck/unify/operations/FileStorageDrivesAll.java
+  - src/main/java/com/apideck/unify/operations/FileStorageDrivesDelete.java
+  - src/main/java/com/apideck/unify/operations/FileStorageDrivesOne.java
+  - src/main/java/com/apideck/unify/operations/FileStorageDrivesUpdate.java
+  - src/main/java/com/apideck/unify/operations/FileStorageFilesAll.java
+  - src/main/java/com/apideck/unify/operations/FileStorageFilesDelete.java
+  - src/main/java/com/apideck/unify/operations/FileStorageFilesDownload.java
+  - src/main/java/com/apideck/unify/operations/FileStorageFilesExport.java
+  - src/main/java/com/apideck/unify/operations/FileStorageFilesOne.java
+  - src/main/java/com/apideck/unify/operations/FileStorageFilesSearch.java
+  - src/main/java/com/apideck/unify/operations/FileStorageFilesUpdate.java
+  - src/main/java/com/apideck/unify/operations/FileStorageFoldersAdd.java
+  - src/main/java/com/apideck/unify/operations/FileStorageFoldersCopy.java
+  - src/main/java/com/apideck/unify/operations/FileStorageFoldersDelete.java
+  - src/main/java/com/apideck/unify/operations/FileStorageFoldersOne.java
+  - src/main/java/com/apideck/unify/operations/FileStorageFoldersUpdate.java
+  - src/main/java/com/apideck/unify/operations/FileStorageSharedLinksAdd.java
+  - src/main/java/com/apideck/unify/operations/FileStorageSharedLinksAll.java
+  - src/main/java/com/apideck/unify/operations/FileStorageSharedLinksDelete.java
+  - src/main/java/com/apideck/unify/operations/FileStorageSharedLinksOne.java
+  - src/main/java/com/apideck/unify/operations/FileStorageSharedLinksUpdate.java
+  - src/main/java/com/apideck/unify/operations/FileStorageUploadSessionsAdd.java
+  - src/main/java/com/apideck/unify/operations/FileStorageUploadSessionsDelete.java
+  - src/main/java/com/apideck/unify/operations/FileStorageUploadSessionsFinish.java
+  - src/main/java/com/apideck/unify/operations/FileStorageUploadSessionsOne.java
+  - src/main/java/com/apideck/unify/operations/FileStorageUploadSessionsUpload.java
+  - src/main/java/com/apideck/unify/operations/HrisCompaniesAdd.java
+  - src/main/java/com/apideck/unify/operations/HrisCompaniesAll.java
+  - src/main/java/com/apideck/unify/operations/HrisCompaniesDelete.java
+  - src/main/java/com/apideck/unify/operations/HrisCompaniesOne.java
+  - src/main/java/com/apideck/unify/operations/HrisCompaniesUpdate.java
+  - src/main/java/com/apideck/unify/operations/HrisDepartmentsAdd.java
+  - src/main/java/com/apideck/unify/operations/HrisDepartmentsAll.java
+  - src/main/java/com/apideck/unify/operations/HrisDepartmentsDelete.java
+  - src/main/java/com/apideck/unify/operations/HrisDepartmentsOne.java
+  - src/main/java/com/apideck/unify/operations/HrisDepartmentsUpdate.java
+  - src/main/java/com/apideck/unify/operations/HrisEmployeePayrollsAll.java
+  - src/main/java/com/apideck/unify/operations/HrisEmployeePayrollsOne.java
+  - src/main/java/com/apideck/unify/operations/HrisEmployeeSchedulesAll.java
+  - src/main/java/com/apideck/unify/operations/HrisEmployeesAdd.java
+  - src/main/java/com/apideck/unify/operations/HrisEmployeesAll.java
+  - src/main/java/com/apideck/unify/operations/HrisEmployeesDelete.java
+  - src/main/java/com/apideck/unify/operations/HrisEmployeesOne.java
+  - src/main/java/com/apideck/unify/operations/HrisEmployeesUpdate.java
+  - src/main/java/com/apideck/unify/operations/HrisPayrollsAll.java
+  - src/main/java/com/apideck/unify/operations/HrisPayrollsOne.java
+  - src/main/java/com/apideck/unify/operations/HrisTimeOffRequestsAdd.java
+  - src/main/java/com/apideck/unify/operations/HrisTimeOffRequestsAll.java
+  - src/main/java/com/apideck/unify/operations/HrisTimeOffRequestsDelete.java
+  - src/main/java/com/apideck/unify/operations/HrisTimeOffRequestsOne.java
+  - src/main/java/com/apideck/unify/operations/HrisTimeOffRequestsUpdate.java
+  - src/main/java/com/apideck/unify/operations/IssueTrackingCollectionTagsAll.java
+  - src/main/java/com/apideck/unify/operations/IssueTrackingCollectionTicketCommentsAdd.java
+  - src/main/java/com/apideck/unify/operations/IssueTrackingCollectionTicketCommentsAll.java
+  - src/main/java/com/apideck/unify/operations/IssueTrackingCollectionTicketCommentsDelete.java
+  - src/main/java/com/apideck/unify/operations/IssueTrackingCollectionTicketCommentsOne.java
+  - src/main/java/com/apideck/unify/operations/IssueTrackingCollectionTicketCommentsUpdate.java
+  - src/main/java/com/apideck/unify/operations/IssueTrackingCollectionTicketsAdd.java
+  - src/main/java/com/apideck/unify/operations/IssueTrackingCollectionTicketsAll.java
+  - src/main/java/com/apideck/unify/operations/IssueTrackingCollectionTicketsDelete.java
+  - src/main/java/com/apideck/unify/operations/IssueTrackingCollectionTicketsOne.java
+  - src/main/java/com/apideck/unify/operations/IssueTrackingCollectionTicketsUpdate.java
+  - src/main/java/com/apideck/unify/operations/IssueTrackingCollectionUsersAll.java
+  - src/main/java/com/apideck/unify/operations/IssueTrackingCollectionUsersOne.java
+  - src/main/java/com/apideck/unify/operations/IssueTrackingCollectionsAll.java
+  - src/main/java/com/apideck/unify/operations/IssueTrackingCollectionsOne.java
   - src/main/java/com/apideck/unify/operations/Operations.java
-  - src/main/java/com/apideck/unify/operations/SmsMessagesAddOperation.java
-  - src/main/java/com/apideck/unify/operations/SmsMessagesAllOperation.java
-  - src/main/java/com/apideck/unify/operations/SmsMessagesDeleteOperation.java
-  - src/main/java/com/apideck/unify/operations/SmsMessagesOneOperation.java
-  - src/main/java/com/apideck/unify/operations/SmsMessagesUpdateOperation.java
-  - src/main/java/com/apideck/unify/operations/VaultConnectionCustomMappingsAllOperation.java
-  - src/main/java/com/apideck/unify/operations/VaultConnectionSettingsAllOperation.java
-  - src/main/java/com/apideck/unify/operations/VaultConnectionSettingsUpdateOperation.java
-  - src/main/java/com/apideck/unify/operations/VaultConnectionsAllOperation.java
-  - src/main/java/com/apideck/unify/operations/VaultConnectionsDeleteOperation.java
-  - src/main/java/com/apideck/unify/operations/VaultConnectionsImportOperation.java
-  - src/main/java/com/apideck/unify/operations/VaultConnectionsOneOperation.java
-  - src/main/java/com/apideck/unify/operations/VaultConnectionsTokenOperation.java
-  - src/main/java/com/apideck/unify/operations/VaultConnectionsUpdateOperation.java
-  - src/main/java/com/apideck/unify/operations/VaultConsumerRequestCountsAllOperation.java
-  - src/main/java/com/apideck/unify/operations/VaultConsumersAddOperation.java
-  - src/main/java/com/apideck/unify/operations/VaultConsumersAllOperation.java
-  - src/main/java/com/apideck/unify/operations/VaultConsumersDeleteOperation.java
-  - src/main/java/com/apideck/unify/operations/VaultConsumersOneOperation.java
-  - src/main/java/com/apideck/unify/operations/VaultConsumersUpdateOperation.java
-  - src/main/java/com/apideck/unify/operations/VaultCreateCallbackStateOperation.java
-  - src/main/java/com/apideck/unify/operations/VaultCustomFieldsAllOperation.java
-  - src/main/java/com/apideck/unify/operations/VaultCustomMappingsAllOperation.java
-  - src/main/java/com/apideck/unify/operations/VaultLogsAllOperation.java
-  - src/main/java/com/apideck/unify/operations/VaultSessionsCreateOperation.java
-  - src/main/java/com/apideck/unify/operations/VaultValidateConnectionStateOperation.java
-  - src/main/java/com/apideck/unify/operations/WebhookWebhooksAddOperation.java
-  - src/main/java/com/apideck/unify/operations/WebhookWebhooksAllOperation.java
-  - src/main/java/com/apideck/unify/operations/WebhookWebhooksDeleteOperation.java
-  - src/main/java/com/apideck/unify/operations/WebhookWebhooksOneOperation.java
-  - src/main/java/com/apideck/unify/operations/WebhookWebhooksUpdateOperation.java
+  - src/main/java/com/apideck/unify/operations/SmsMessagesAdd.java
+  - src/main/java/com/apideck/unify/operations/SmsMessagesAll.java
+  - src/main/java/com/apideck/unify/operations/SmsMessagesDelete.java
+  - src/main/java/com/apideck/unify/operations/SmsMessagesOne.java
+  - src/main/java/com/apideck/unify/operations/SmsMessagesUpdate.java
+  - src/main/java/com/apideck/unify/operations/VaultConnectionCustomMappingsAll.java
+  - src/main/java/com/apideck/unify/operations/VaultConnectionSettingsAll.java
+  - src/main/java/com/apideck/unify/operations/VaultConnectionSettingsUpdate.java
+  - src/main/java/com/apideck/unify/operations/VaultConnectionsAll.java
+  - src/main/java/com/apideck/unify/operations/VaultConnectionsDelete.java
+  - src/main/java/com/apideck/unify/operations/VaultConnectionsImport.java
+  - src/main/java/com/apideck/unify/operations/VaultConnectionsOne.java
+  - src/main/java/com/apideck/unify/operations/VaultConnectionsToken.java
+  - src/main/java/com/apideck/unify/operations/VaultConnectionsUpdate.java
+  - src/main/java/com/apideck/unify/operations/VaultConsumerRequestCountsAll.java
+  - src/main/java/com/apideck/unify/operations/VaultConsumersAdd.java
+  - src/main/java/com/apideck/unify/operations/VaultConsumersAll.java
+  - src/main/java/com/apideck/unify/operations/VaultConsumersDelete.java
+  - src/main/java/com/apideck/unify/operations/VaultConsumersOne.java
+  - src/main/java/com/apideck/unify/operations/VaultConsumersUpdate.java
+  - src/main/java/com/apideck/unify/operations/VaultCreateCallbackState.java
+  - src/main/java/com/apideck/unify/operations/VaultCustomFieldsAll.java
+  - src/main/java/com/apideck/unify/operations/VaultCustomMappingsAll.java
+  - src/main/java/com/apideck/unify/operations/VaultLogsAll.java
+  - src/main/java/com/apideck/unify/operations/VaultSessionsCreate.java
+  - src/main/java/com/apideck/unify/operations/VaultValidateConnectionState.java
+  - src/main/java/com/apideck/unify/operations/WebhookWebhooksAdd.java
+  - src/main/java/com/apideck/unify/operations/WebhookWebhooksAll.java
+  - src/main/java/com/apideck/unify/operations/WebhookWebhooksDelete.java
+  - src/main/java/com/apideck/unify/operations/WebhookWebhooksOne.java
+  - src/main/java/com/apideck/unify/operations/WebhookWebhooksUpdate.java
   - src/main/java/com/apideck/unify/utils/BackoffStrategy.java
   - src/main/java/com/apideck/unify/utils/BigDecimalString.java
   - src/main/java/com/apideck/unify/utils/BigIntegerString.java
@@ -3604,6 +3662,7 @@ generatedFiles:
   - src/main/java/com/apideck/unify/utils/RequestBody.java
   - src/main/java/com/apideck/unify/utils/RequestMetadata.java
   - src/main/java/com/apideck/unify/utils/Response.java
+  - src/main/java/com/apideck/unify/utils/ResponseWithBody.java
   - src/main/java/com/apideck/unify/utils/Retries.java
   - src/main/java/com/apideck/unify/utils/RetryConfig.java
   - src/main/java/com/apideck/unify/utils/Security.java
@@ -3621,7 +3680,6 @@ generatedFiles:
   - src/main/java/com/apideck/unify/utils/pagination/PageTracker.java
   - src/main/java/com/apideck/unify/utils/pagination/Paginator.java
   - src/main/java/com/apideck/unify/utils/pagination/ProgressTrackerStrategy.java
-  - src/main/java/com/apideck/unify/utils/pagination/ResponseWithBody.java
   - src/main/java/com/apideck/unify/utils/pagination/ResultsPageTracker.java
 examples:
   accounting.taxRatesAll:
@@ -5794,7 +5852,7 @@ examples:
         query:
           raw: false
           limit: 20
-          filter: {"updated_since": "2020-09-30T07:43:32.000Z", "invoice_id": "123"}
+          filter: {"updated_since": "2020-09-30T07:43:32.000Z", "invoice_id": "123", "supplier_id": "123"}
           sort: {"by": "updated_at", "direction": "desc"}
           pass_through: {"search": "San Francisco"}
           fields: "id,updated_at"
@@ -6537,7 +6595,7 @@ examples:
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
           x-apideck-service-id: "salesforce"
       requestBody:
-        application/json: {"po_number": "90000117", "reference": "123456", "supplier": {"id": "12345", "display_name": "Windsurf Shop", "address": {"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}}, "subsidiary_id": "12345", "company_id": "12345", "status": "open", "issued_date": "2020-09-30", "delivery_date": "2020-09-30", "expected_arrival_date": "2020-09-30", "currency": "USD", "currency_rate": 0.69, "sub_total": 27500, "total_tax": 2500, "total": 27500, "tax_inclusive": true, "line_items": [{"id": "12345", "row_id": "12345", "code": "120-C", "line_number": 1, "description": "Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.", "type": "sales_item", "tax_amount": 27500, "total_amount": 27500, "quantity": 1, "unit_price": 27500.5, "unit_of_measure": "pc.", "discount_percentage": 0.01, "discount_amount": 19.99, "location_id": "12345", "department_id": "12345", "item": {"id": "12344", "code": "120-C", "name": "Model Y"}, "tax_rate": {"id": "123456", "rate": 10}, "tracking_categories": [{"id": "123456", "name": "New York"}], "ledger_account": {"id": "123456", "nominal_code": "N091", "code": "453"}, "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "row_version": "1-12345"}], "shipping_address": {"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}, "ledger_account": {"id": "123456", "nominal_code": "N091", "code": "453"}, "template_id": "123456", "discount_percentage": 5.5, "bank_account": {"bank_name": "Monzo", "account_number": "123465", "account_name": "SPACEX LLC", "account_type": "credit_card", "iban": "CH2989144532982975332", "bic": "AUDSCHGGXXX", "routing_number": "012345678", "bsb_number": "062-001", "branch_identifier": "001", "bank_code": "BNH", "currency": "USD", "country": "US"}, "accounting_by_row": false, "due_date": "2020-10-30", "payment_method": "cash", "tax_code": "1234", "channel": "email", "memo": "Thank you for the partnership and have a great day!", "notes": "This is a test purchase order", "tracking_categories": [{"id": "123456", "name": "New York"}], "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "row_version": "1-12345", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
+        application/json: {"po_number": "90000117", "reference": "123456", "supplier": {"id": "12345", "display_name": "Windsurf Shop", "address": {"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}}, "subsidiary_id": "12345", "company_id": "12345", "status": "open", "issued_date": "2020-09-30", "delivery_date": "2020-09-30", "expected_arrival_date": "2020-09-30", "currency": "USD", "currency_rate": 0.69, "sub_total": 27500, "total_tax": 2500, "total": 27500, "tax_inclusive": true, "line_items": [{"id": "12345", "row_id": "12345", "code": "120-C", "line_number": 1, "description": "Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.", "type": "sales_item", "tax_amount": 27500, "total_amount": 27500, "quantity": 1, "unit_price": 27500.5, "unit_of_measure": "pc.", "discount_percentage": 0.01, "discount_amount": 19.99, "location_id": "12345", "department_id": "12345", "item": {"id": "12344", "code": "120-C", "name": "Model Y"}, "tax_rate": {"id": "123456", "rate": 10}, "tracking_categories": [{"id": "123456", "name": "New York"}], "ledger_account": {"id": "123456", "nominal_code": "N091", "code": "453"}, "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "row_version": "1-12345"}], "billing_address": {"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}, "shipping_address": {"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}, "ledger_account": {"id": "123456", "nominal_code": "N091", "code": "453"}, "template_id": "123456", "discount_percentage": 5.5, "bank_account": {"bank_name": "Monzo", "account_number": "123465", "account_name": "SPACEX LLC", "account_type": "credit_card", "iban": "CH2989144532982975332", "bic": "AUDSCHGGXXX", "routing_number": "012345678", "bsb_number": "062-001", "branch_identifier": "001", "bank_code": "BNH", "currency": "USD", "country": "US"}, "accounting_by_row": false, "due_date": "2020-10-30", "payment_method": "cash", "terms": "Net 30 days", "tax_code": "1234", "tax_method": "Due to supplier", "issued_method": "Email", "issued_email": "john.doe@example.com", "channel": "email", "memo": "Thank you for the partnership and have a great day!", "notes": "This is a test purchase order", "tracking_categories": [{"id": "123456", "name": "New York"}], "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "row_version": "1-12345", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
       responses:
         "201":
           application/json: {"status_code": 200, "status": "OK", "service": "quickbooks", "resource": "PurchaseOrders", "operation": "add", "data": {"id": "12345"}}
@@ -6591,7 +6649,7 @@ examples:
           x-apideck-service-id: "salesforce"
       responses:
         "200":
-          application/json: {"status_code": 200, "status": "OK", "service": "quickbooks", "resource": "PurchaseOrders", "operation": "one", "data": {"id": "12345", "downstream_id": "12345", "po_number": "90000117", "reference": "123456", "supplier": {"id": "12345", "display_id": "SUPP00101", "display_name": "Windsurf Shop", "company_name": "The boring company", "address": {"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}}, "subsidiary_id": "12345", "company_id": "12345", "status": "open", "issued_date": "2020-09-30", "delivery_date": "2020-09-30", "expected_arrival_date": "2020-09-30", "currency": "USD", "currency_rate": 0.69, "sub_total": 27500, "total_tax": 2500, "total": 27500, "tax_inclusive": true, "line_items": [{"id": "12345", "row_id": "12345", "code": "120-C", "line_number": 1, "description": "Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.", "type": "sales_item", "tax_amount": 27500, "total_amount": 27500, "quantity": 1, "unit_price": 27500.5, "unit_of_measure": "pc.", "discount_percentage": 0.01, "discount_amount": 19.99, "location_id": "12345", "department_id": "12345", "item": {"id": "12344", "code": "120-C", "name": "Model Y"}, "tax_rate": {"id": "123456", "code": "N-T", "name": "GST on Purchases", "rate": 10}, "tracking_categories": null, "ledger_account": {"id": "123456", "name": "Bank account", "nominal_code": "N091", "code": "453"}, "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "row_version": "1-12345", "updated_by": "12345", "created_by": "12345", "created_at": "2020-09-30T07:43:32.000Z", "updated_at": "2020-09-30T07:43:32.000Z"}], "shipping_address": {"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}, "ledger_account": {"id": "123456", "name": "Bank account", "nominal_code": "N091", "code": "453"}, "template_id": "123456", "discount_percentage": 5.5, "bank_account": {"bank_name": "Monzo", "account_number": "123465", "account_name": "SPACEX LLC", "account_type": "credit_card", "iban": "CH2989144532982975332", "bic": "AUDSCHGGXXX", "routing_number": "012345678", "bsb_number": "062-001", "branch_identifier": "001", "bank_code": "BNH", "currency": "USD", "country": "US"}, "accounting_by_row": false, "due_date": "2020-10-30", "payment_method": "cash", "tax_code": "1234", "channel": "email", "memo": "Thank you for the partnership and have a great day!", "notes": "This is a test purchase order", "tracking_categories": [{"id": "123456", "name": "New York"}], "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "row_version": "1-12345", "updated_by": "12345", "created_by": "12345", "updated_at": "2020-09-30T07:43:32.000Z", "created_at": "2020-09-30T07:43:32.000Z", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}}
+          application/json: {"status_code": 200, "status": "OK", "service": "quickbooks", "resource": "PurchaseOrders", "operation": "one", "data": {"id": "12345", "downstream_id": "12345", "po_number": "90000117", "reference": "123456", "supplier": {"id": "12345", "display_id": "SUPP00101", "display_name": "Windsurf Shop", "company_name": "The boring company", "address": {"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}}, "subsidiary_id": "12345", "company_id": "12345", "status": "open", "issued_date": "2020-09-30", "delivery_date": "2020-09-30", "expected_arrival_date": "2020-09-30", "currency": "USD", "currency_rate": 0.69, "sub_total": 27500, "total_tax": 2500, "total": 27500, "tax_inclusive": true, "line_items": [{"id": "12345", "row_id": "12345", "code": "120-C", "line_number": 1, "description": "Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.", "type": "sales_item", "tax_amount": 27500, "total_amount": 27500, "quantity": 1, "unit_price": 27500.5, "unit_of_measure": "pc.", "discount_percentage": 0.01, "discount_amount": 19.99, "location_id": "12345", "department_id": "12345", "item": {"id": "12344", "code": "120-C", "name": "Model Y"}, "tax_rate": {"id": "123456", "code": "N-T", "name": "GST on Purchases", "rate": 10}, "tracking_categories": null, "ledger_account": {"id": "123456", "name": "Bank account", "nominal_code": "N091", "code": "453"}, "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "row_version": "1-12345", "updated_by": "12345", "created_by": "12345", "created_at": "2020-09-30T07:43:32.000Z", "updated_at": "2020-09-30T07:43:32.000Z"}], "billing_address": {"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}, "shipping_address": {"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}, "ledger_account": {"id": "123456", "name": "Bank account", "nominal_code": "N091", "code": "453"}, "template_id": "123456", "discount_percentage": 5.5, "bank_account": {"bank_name": "Monzo", "account_number": "123465", "account_name": "SPACEX LLC", "account_type": "credit_card", "iban": "CH2989144532982975332", "bic": "AUDSCHGGXXX", "routing_number": "012345678", "bsb_number": "062-001", "branch_identifier": "001", "bank_code": "BNH", "currency": "USD", "country": "US"}, "accounting_by_row": false, "due_date": "2020-10-30", "payment_method": "cash", "terms": "Net 30 days", "tax_code": "1234", "tax_method": "Due to supplier", "issued_method": "Email", "issued_email": "john.doe@example.com", "channel": "email", "memo": "Thank you for the partnership and have a great day!", "notes": "This is a test purchase order", "tracking_categories": [{"id": "123456", "name": "New York"}], "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "row_version": "1-12345", "updated_by": "12345", "created_by": "12345", "updated_at": "2020-09-30T07:43:32.000Z", "created_at": "2020-09-30T07:43:32.000Z", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}}
         "400":
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror"}
         "401":
@@ -6643,7 +6701,7 @@ examples:
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
           x-apideck-service-id: "salesforce"
       requestBody:
-        application/json: {"po_number": "90000117", "reference": "123456", "supplier": {"id": "12345", "display_name": "Windsurf Shop", "address": {"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}}, "subsidiary_id": "12345", "company_id": "12345", "status": "open", "issued_date": "2020-09-30", "delivery_date": "2020-09-30", "expected_arrival_date": "2020-09-30", "currency": "USD", "currency_rate": 0.69, "sub_total": 27500, "total_tax": 2500, "total": 27500, "tax_inclusive": true, "line_items": [{"id": "12345", "row_id": "12345", "code": "120-C", "line_number": 1, "description": "Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.", "type": "sales_item", "tax_amount": 27500, "total_amount": 27500, "quantity": 1, "unit_price": 27500.5, "unit_of_measure": "pc.", "discount_percentage": 0.01, "discount_amount": 19.99, "location_id": "12345", "department_id": "12345", "item": {"id": "12344", "code": "120-C", "name": "Model Y"}, "tax_rate": {"id": "123456", "rate": 10}, "tracking_categories": [{"id": "123456", "name": "New York"}], "ledger_account": null, "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "row_version": "1-12345"}], "shipping_address": {"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}, "ledger_account": {"id": "123456", "nominal_code": "N091", "code": "453"}, "template_id": "123456", "discount_percentage": 5.5, "bank_account": {"bank_name": "Monzo", "account_number": "123465", "account_name": "SPACEX LLC", "account_type": "credit_card", "iban": "CH2989144532982975332", "bic": "AUDSCHGGXXX", "routing_number": "012345678", "bsb_number": "062-001", "branch_identifier": "001", "bank_code": "BNH", "currency": "USD", "country": "US"}, "accounting_by_row": false, "due_date": "2020-10-30", "payment_method": "cash", "tax_code": "1234", "channel": "email", "memo": "Thank you for the partnership and have a great day!", "notes": "This is a test purchase order", "tracking_categories": [{"id": "123456", "name": "New York"}], "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "row_version": "1-12345", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
+        application/json: {"po_number": "90000117", "reference": "123456", "supplier": {"id": "12345", "display_name": "Windsurf Shop", "address": {"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}}, "subsidiary_id": "12345", "company_id": "12345", "status": "open", "issued_date": "2020-09-30", "delivery_date": "2020-09-30", "expected_arrival_date": "2020-09-30", "currency": "USD", "currency_rate": 0.69, "sub_total": 27500, "total_tax": 2500, "total": 27500, "tax_inclusive": true, "line_items": [{"id": "12345", "row_id": "12345", "code": "120-C", "line_number": 1, "description": "Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.", "type": "sales_item", "tax_amount": 27500, "total_amount": 27500, "quantity": 1, "unit_price": 27500.5, "unit_of_measure": "pc.", "discount_percentage": 0.01, "discount_amount": 19.99, "location_id": "12345", "department_id": "12345", "item": {"id": "12344", "code": "120-C", "name": "Model Y"}, "tax_rate": {"id": "123456", "rate": 10}, "tracking_categories": [{"id": "123456", "name": "New York"}], "ledger_account": null, "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "row_version": "1-12345"}], "billing_address": {"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}, "shipping_address": {"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}, "ledger_account": {"id": "123456", "nominal_code": "N091", "code": "453"}, "template_id": "123456", "discount_percentage": 5.5, "bank_account": {"bank_name": "Monzo", "account_number": "123465", "account_name": "SPACEX LLC", "account_type": "credit_card", "iban": "CH2989144532982975332", "bic": "AUDSCHGGXXX", "routing_number": "012345678", "bsb_number": "062-001", "branch_identifier": "001", "bank_code": "BNH", "currency": "USD", "country": "US"}, "accounting_by_row": false, "due_date": "2020-10-30", "payment_method": "cash", "terms": "Net 30 days", "tax_code": "1234", "tax_method": "Due to supplier", "issued_method": "Email", "issued_email": "john.doe@example.com", "channel": "email", "memo": "Thank you for the partnership and have a great day!", "notes": "This is a test purchase order", "tracking_categories": [{"id": "123456", "name": "New York"}], "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "row_version": "1-12345", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
       responses:
         "200":
           application/json: {"status_code": 200, "status": "OK", "service": "quickbooks", "resource": "PurchaseOrders", "operation": "update", "data": {"id": "12345"}}
@@ -8104,7 +8162,7 @@ examples:
         query:
           raw: false
           limit: 20
-          filter: {"updated_since": "2020-09-30T07:43:32.000Z", "invoice_id": "123"}
+          filter: {"updated_since": "2020-09-30T07:43:32.000Z", "invoice_id": "123", "supplier_id": "123"}
           sort: {"by": "updated_at", "direction": "desc"}
           pass_through: {"search": "San Francisco"}
           fields: "id,updated_at"
@@ -9422,7 +9480,7 @@ examples:
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
           x-apideck-service-id: "salesforce"
       requestBody:
-        application/json: {"name": "Elon Musk", "first_name": "Elon", "last_name": "Musk", "middle_name": "D.", "initials": "EM", "birthday": "2000-08-12", "cover_letter": "I submit this application to express my sincere interest in the API developer position. In the previous role, I was responsible for leadership and ...", "photo_url": "https://unavatar.io/elon-musk", "headline": "PepsiCo, Inc, Central Perk", "title": "CEO", "emails": [{"id": "123", "email": "elon@musk.com", "type": "primary"}], "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": null}], "phone_numbers": [{"id": "12345", "country_code": "1", "area_code": "323", "number": "111-111-1111", "extension": "105", "type": "primary"}], "addresses": [{"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}], "websites": [{"id": "12345", "url": "http://example.com", "type": "primary"}], "social_links": [{"id": "12345", "url": "https://www.twitter.com/apideck", "type": "twitter"}], "stage_id": "12345", "recruiter_id": "12345", "coordinator_id": "12345", "application_ids": ["a0d636c6-43b3-4bde-8c70-85b707d992f4", "a98lfd96-43b3-4bde-8c70-85b707d992e6"], "applications": ["a0d636c6-43b3-4bde-8c70-85b707d992f4", "a98lfd96-43b3-4bde-8c70-85b707d992e6"], "followers": ["a0d636c6-43b3-4bde-8c70-85b707d992f4", "a98lfd96-43b3-4bde-8c70-85b707d992e6"], "sources": ["Job site"], "confidential": false, "anonymized": true, "tags": ["New"], "archived": false, "owner_id": "54321", "record_url": "https://app.intercom.io/contacts/12345", "deleted": true, "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
+        application/json: {"name": "Elon Musk", "first_name": "Elon", "last_name": "Musk", "middle_name": "D.", "initials": "EM", "birthday": "2000-08-12", "cover_letter": "I submit this application to express my sincere interest in the API developer position. In the previous role, I was responsible for leadership and ...", "photo_url": "https://unavatar.io/elon-musk", "headline": "PepsiCo, Inc, Central Perk", "title": "CEO", "emails": [{"id": "123", "email": "elon@musk.com", "type": "primary"}], "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": null}], "phone_numbers": [{"id": "12345", "country_code": "1", "area_code": "323", "number": "111-111-1111", "extension": "105", "type": "primary"}], "addresses": [{"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}], "websites": [{"id": "12345", "url": "http://example.com", "type": "primary"}], "social_links": [{"id": "12345", "url": "https://www.twitter.com/apideck", "type": "twitter"}], "stage_id": "12345", "recruiter_id": "12345", "coordinator_id": "12345", "application_ids": ["a0d636c6-43b3-4bde-8c70-85b707d992f4", "a98lfd96-43b3-4bde-8c70-85b707d992e6"], "followers": ["a0d636c6-43b3-4bde-8c70-85b707d992f4", "a98lfd96-43b3-4bde-8c70-85b707d992e6"], "sources": ["Job site"], "confidential": false, "anonymized": true, "tags": ["New"], "archived": false, "owner_id": "54321", "record_url": "https://app.intercom.io/contacts/12345", "deleted": true, "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
       responses:
         "201":
           application/json: {"status_code": 200, "status": "OK", "service": "lever", "resource": "Applicants", "operation": "add", "data": {"id": "12345"}}
@@ -9478,7 +9536,7 @@ examples:
           x-apideck-service-id: "salesforce"
       responses:
         "200":
-          application/json: {"status_code": 200, "status": "OK", "service": "lever", "resource": "Applicants", "operation": "one", "data": {"id": "12345", "name": "Elon Musk", "first_name": "Elon", "last_name": "Musk", "middle_name": "D.", "initials": "EM", "birthday": "2000-08-12", "cover_letter": "I submit this application to express my sincere interest in the API developer position. In the previous role, I was responsible for leadership and ...", "job_url": "https://democompany.recruitee.com/o/example-talent-pool", "photo_url": "https://unavatar.io/elon-musk", "headline": "PepsiCo, Inc, Central Perk", "title": "CEO", "emails": [{"id": "123", "email": "elon@musk.com", "type": "primary"}], "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "phone_numbers": [{"id": "12345", "country_code": "1", "area_code": "323", "number": "111-111-1111", "extension": "105", "type": "primary"}], "addresses": [{"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}], "websites": [{"id": "12345", "url": "http://example.com", "type": "primary"}], "social_links": [{"id": "12345", "url": "https://www.twitter.com/apideck", "type": "twitter"}], "stage_id": "12345", "recruiter_id": "12345", "coordinator_id": "12345", "application_ids": ["a0d636c6-43b3-4bde-8c70-85b707d992f4", "a98lfd96-43b3-4bde-8c70-85b707d992e6"], "applications": ["a0d636c6-43b3-4bde-8c70-85b707d992f4", "a98lfd96-43b3-4bde-8c70-85b707d992e6"], "followers": ["a0d636c6-43b3-4bde-8c70-85b707d992f4", "a98lfd96-43b3-4bde-8c70-85b707d992e6"], "sources": ["Job site"], "source_id": "12345", "confidential": false, "anonymized": true, "tags": ["New"], "archived": false, "last_interaction_at": "2020-09-30T07:43:32.000Z", "owner_id": "54321", "sourced_by": "12345", "cv_url": "https://recruitee-main.s3.eu-central-1.amazonaws.com/candidates/36615291/pdf_cv_38swhu4w42k1.pdf?response-content-disposition=inline&response-content-type=application%2Fpdf&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYHB7CA5RLR4Y3ON%2F20220514%2Feu-central-1%2Fs3%2Faws4_request&X-Amz-Date=20220514T235654Z&X-Amz-Expires=36000&X-Amz-SignedHeaders=host&X-Amz-Signature=72c0621f5976db75b54de487eb821a8e73480d7f2a6a4a9713ab997944b0561f", "record_url": "https://app.intercom.io/contacts/12345", "rejected_at": "2020-09-30T07:43:32.000Z", "deleted": true, "deleted_by": "12345", "deleted_at": "2020-09-30T07:43:32.000Z", "updated_by": "12345", "created_by": "12345", "updated_at": "2020-09-30T07:43:32.000Z", "created_at": "2020-09-30T07:43:32.000Z", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}}
+          application/json: {"status_code": 200, "status": "OK", "service": "lever", "resource": "Applicants", "operation": "one", "data": {"id": "12345", "name": "Elon Musk", "first_name": "Elon", "last_name": "Musk", "middle_name": "D.", "initials": "EM", "birthday": "2000-08-12", "cover_letter": "I submit this application to express my sincere interest in the API developer position. In the previous role, I was responsible for leadership and ...", "job_url": "https://democompany.recruitee.com/o/example-talent-pool", "photo_url": "https://unavatar.io/elon-musk", "headline": "PepsiCo, Inc, Central Perk", "title": "CEO", "emails": [{"id": "123", "email": "elon@musk.com", "type": "primary"}], "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "phone_numbers": [{"id": "12345", "country_code": "1", "area_code": "323", "number": "111-111-1111", "extension": "105", "type": "primary"}], "addresses": [{"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}], "websites": [{"id": "12345", "url": "http://example.com", "type": "primary"}], "social_links": [{"id": "12345", "url": "https://www.twitter.com/apideck", "type": "twitter"}], "stage_id": "12345", "recruiter_id": "12345", "coordinator_id": "12345", "application_ids": ["a0d636c6-43b3-4bde-8c70-85b707d992f4", "a98lfd96-43b3-4bde-8c70-85b707d992e6"], "followers": ["a0d636c6-43b3-4bde-8c70-85b707d992f4", "a98lfd96-43b3-4bde-8c70-85b707d992e6"], "sources": ["Job site"], "source_id": "12345", "confidential": false, "anonymized": true, "tags": ["New"], "archived": false, "last_interaction_at": "2020-09-30T07:43:32.000Z", "owner_id": "54321", "sourced_by": "12345", "cv_url": "https://recruitee-main.s3.eu-central-1.amazonaws.com/candidates/36615291/pdf_cv_38swhu4w42k1.pdf?response-content-disposition=inline&response-content-type=application%2Fpdf&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYHB7CA5RLR4Y3ON%2F20220514%2Feu-central-1%2Fs3%2Faws4_request&X-Amz-Date=20220514T235654Z&X-Amz-Expires=36000&X-Amz-SignedHeaders=host&X-Amz-Signature=72c0621f5976db75b54de487eb821a8e73480d7f2a6a4a9713ab997944b0561f", "record_url": "https://app.intercom.io/contacts/12345", "rejected_at": "2020-09-30T07:43:32.000Z", "deleted": true, "deleted_by": "12345", "deleted_at": "2020-09-30T07:43:32.000Z", "updated_by": "12345", "created_by": "12345", "updated_at": "2020-09-30T07:43:32.000Z", "created_at": "2020-09-30T07:43:32.000Z", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}}
         "400":
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror"}
         "401":
@@ -9530,7 +9588,7 @@ examples:
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
           x-apideck-service-id: "salesforce"
       requestBody:
-        application/json: {"name": "Elon Musk", "first_name": "Elon", "last_name": "Musk", "middle_name": "D.", "initials": "EM", "birthday": "2000-08-12", "cover_letter": "I submit this application to express my sincere interest in the API developer position. In the previous role, I was responsible for leadership and ...", "photo_url": "https://unavatar.io/elon-musk", "headline": "PepsiCo, Inc, Central Perk", "title": "CEO", "emails": [{"id": "123", "email": "elon@musk.com", "type": "primary"}], "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "phone_numbers": [{"id": "12345", "country_code": "1", "area_code": "323", "number": "111-111-1111", "extension": "105", "type": "primary"}], "addresses": [{"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}], "websites": [{"id": "12345", "url": "http://example.com", "type": "primary"}], "social_links": [{"id": "12345", "url": "https://www.twitter.com/apideck", "type": "twitter"}], "stage_id": "12345", "recruiter_id": "12345", "coordinator_id": "12345", "application_ids": ["a0d636c6-43b3-4bde-8c70-85b707d992f4", "a98lfd96-43b3-4bde-8c70-85b707d992e6"], "applications": ["a0d636c6-43b3-4bde-8c70-85b707d992f4", "a98lfd96-43b3-4bde-8c70-85b707d992e6"], "followers": ["a0d636c6-43b3-4bde-8c70-85b707d992f4", "a98lfd96-43b3-4bde-8c70-85b707d992e6"], "sources": ["Job site"], "confidential": false, "anonymized": true, "tags": ["New"], "archived": false, "owner_id": "54321", "record_url": "https://app.intercom.io/contacts/12345", "deleted": true, "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
+        application/json: {"name": "Elon Musk", "first_name": "Elon", "last_name": "Musk", "middle_name": "D.", "initials": "EM", "birthday": "2000-08-12", "cover_letter": "I submit this application to express my sincere interest in the API developer position. In the previous role, I was responsible for leadership and ...", "photo_url": "https://unavatar.io/elon-musk", "headline": "PepsiCo, Inc, Central Perk", "title": "CEO", "emails": [{"id": "123", "email": "elon@musk.com", "type": "primary"}], "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "phone_numbers": [{"id": "12345", "country_code": "1", "area_code": "323", "number": "111-111-1111", "extension": "105", "type": "primary"}], "addresses": [{"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}], "websites": [{"id": "12345", "url": "http://example.com", "type": "primary"}], "social_links": [{"id": "12345", "url": "https://www.twitter.com/apideck", "type": "twitter"}], "stage_id": "12345", "recruiter_id": "12345", "coordinator_id": "12345", "application_ids": ["a0d636c6-43b3-4bde-8c70-85b707d992f4", "a98lfd96-43b3-4bde-8c70-85b707d992e6"], "followers": ["a0d636c6-43b3-4bde-8c70-85b707d992f4", "a98lfd96-43b3-4bde-8c70-85b707d992e6"], "sources": ["Job site"], "confidential": false, "anonymized": true, "tags": ["New"], "archived": false, "owner_id": "54321", "record_url": "https://app.intercom.io/contacts/12345", "deleted": true, "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
       responses:
         "200":
           application/json: {"status_code": 200, "status": "OK", "service": "lever", "resource": "Applicants", "operation": "update", "data": {"id": "12345"}}
@@ -12126,6 +12184,7 @@ examples:
           limit: 20
           pass_through: {"search": "San Francisco"}
           fields: "id,updated_at"
+          filter: {"name": "Product Name", "updated_since": "2020-09-30T07:43:32.000Z", "created_since": "2020-09-30T07:43:32.000Z"}
         header:
           x-apideck-consumer-id: "test-consumer"
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
@@ -18603,6 +18662,137 @@ examples:
       responses:
         "200":
           application/json: {"status_code": 200, "status": "OK", "service": "xero", "resource": "categories", "operation": "one", "data": {"id": "12345", "name": "Insurance", "type": "expense", "status": "active", "row_version": "1-12345", "updated_by": "12345", "created_by": "12345", "updated_at": "2020-09-30T07:43:32.000Z", "created_at": "2020-09-30T07:43:32.000Z", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}}
+        "400":
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror"}
+        "401":
+          application/json: {"status_code": 401, "error": "Unauthorized", "type_name": "UnauthorizedError", "message": "Unauthorized Request", "detail": "Missing authentication", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+        "402":
+          application/json: {"status_code": 402, "error": "Payment Required", "type_name": "RequestLimitError", "message": "Request Limit Reached", "detail": "You have reached your limit of 2000", "ref": "https://developers.apideck.com/errors#requestlimiterror"}
+        "404":
+          application/json: {"status_code": 404, "error": "Not Found", "type_name": "EntityNotFoundError", "message": "Unknown Widget", "detail": "Could not find widget with id: '123'", "ref": "https://developers.apideck.com/errors#entitynotfounderror"}
+        "422":
+          application/json: {"status_code": 422, "error": "Unprocessable Entity", "type_name": "InvalidStateError", "message": "Invalid State", "detail": "Unprocessable request, please verify your request headers and body.", "ref": "https://developers.apideck.com/errors#invalidstateerror"}
+        default:
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+  accounting.quotesAll:
+    speakeasy-default-accounting-quotes-all:
+      parameters:
+        query:
+          raw: false
+          limit: 20
+        header:
+          x-apideck-consumer-id: "test-consumer"
+          x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+          x-apideck-service-id: "salesforce"
+      responses:
+        "200":
+          application/json: {"status_code": 200, "status": "OK", "service": "quickbooks", "resource": "Quotes", "operation": "all", "data": [], "meta": {"items_on_page": 50, "cursors": {"previous": "em9oby1jcm06OnBhZ2U6OjE=", "current": "em9oby1jcm06OnBhZ2U6OjI=", "next": "em9oby1jcm06OnBhZ2U6OjM="}}, "links": {"previous": "https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D", "current": "https://unify.apideck.com/crm/companies", "next": "https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM"}}
+        "400":
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror"}
+        "401":
+          application/json: {"status_code": 401, "error": "Unauthorized", "type_name": "UnauthorizedError", "message": "Unauthorized Request", "detail": "Missing authentication", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+        "402":
+          application/json: {"status_code": 402, "error": "Payment Required", "type_name": "RequestLimitError", "message": "Request Limit Reached", "detail": "You have reached your limit of 2000", "ref": "https://developers.apideck.com/errors#requestlimiterror"}
+        "404":
+          application/json: {"status_code": 404, "error": "Not Found", "type_name": "EntityNotFoundError", "message": "Unknown Widget", "detail": "Could not find widget with id: '123'", "ref": "https://developers.apideck.com/errors#entitynotfounderror"}
+        "422":
+          application/json: {"status_code": 422, "error": "Unprocessable Entity", "type_name": "InvalidStateError", "message": "Invalid State", "detail": "Unprocessable request, please verify your request headers and body.", "ref": "https://developers.apideck.com/errors#invalidstateerror"}
+        default:
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+  accounting.quotesAdd:
+    speakeasy-default-accounting-quotes-add:
+      parameters:
+        query:
+          raw: false
+        header:
+          x-apideck-consumer-id: "test-consumer"
+          x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+          x-apideck-service-id: "salesforce"
+      requestBody:
+        application/json: {"number": "QT00546", "customer": {"id": "12345", "display_name": "Windsurf Shop", "email": "boring@boring.com"}, "sales_order_id": "123456", "company_id": "12345", "project_id": "12345", "quote_date": "2020-09-30", "expiry_date": "2020-10-30", "terms": "Valid for 30 days", "reference": "INV-2024-001", "status": "draft", "currency": "USD", "currency_rate": 0.69, "tax_inclusive": true, "sub_total": 27500, "total_tax": 2500, "tax_code": "1234", "discount_percentage": 5.5, "discount_amount": 25, "total": 27500, "customer_memo": "Thank you for considering our services!", "line_items": [{"id": "12345", "row_id": "12345", "code": "120-C", "line_number": 1, "description": "Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.", "type": "sales_item", "tax_amount": 27500, "total_amount": 27500, "quantity": 1, "unit_price": 27500.5, "unit_of_measure": "pc.", "discount_percentage": 0.01, "discount_amount": 19.99, "category_id": "12345", "location_id": "12345", "department_id": "12345", "item": {"id": "12344", "code": "120-C", "name": "Model Y"}, "tax_rate": {"id": "123456", "rate": 10}, "tracking_categories": [{"id": "123456", "name": "New York", "parent_id": "123456", "parent_name": "New York"}], "ledger_account": {"id": "123456", "nominal_code": "N091", "code": "453"}, "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "row_version": "1-12345"}], "billing_address": {"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}, "shipping_address": {"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}, "tracking_categories": [{"id": "123456", "name": "New York", "parent_id": "123456", "parent_name": "New York"}], "template_id": "123456", "source_document_url": "https://www.quotesolution.com/quote/123456", "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "row_version": "1-12345", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
+      responses:
+        "201":
+          application/json: {"status_code": 200, "status": "OK", "service": "quickbooks", "resource": "Quotes", "operation": "add", "data": {"id": "12345"}}
+        "400":
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror"}
+        "401":
+          application/json: {"status_code": 401, "error": "Unauthorized", "type_name": "UnauthorizedError", "message": "Unauthorized Request", "detail": "Missing authentication", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+        "402":
+          application/json: {"status_code": 402, "error": "Payment Required", "type_name": "RequestLimitError", "message": "Request Limit Reached", "detail": "You have reached your limit of 2000", "ref": "https://developers.apideck.com/errors#requestlimiterror"}
+        "404":
+          application/json: {"status_code": 404, "error": "Not Found", "type_name": "EntityNotFoundError", "message": "Unknown Widget", "detail": "Could not find widget with id: '123'", "ref": "https://developers.apideck.com/errors#entitynotfounderror"}
+        "422":
+          application/json: {"status_code": 422, "error": "Unprocessable Entity", "type_name": "InvalidStateError", "message": "Invalid State", "detail": "Unprocessable request, please verify your request headers and body.", "ref": "https://developers.apideck.com/errors#invalidstateerror"}
+        default:
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+  accounting.quotesOne:
+    speakeasy-default-accounting-quotes-one:
+      parameters:
+        path:
+          id: "<id>"
+        query:
+          raw: false
+        header:
+          x-apideck-consumer-id: "test-consumer"
+          x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+          x-apideck-service-id: "salesforce"
+      responses:
+        "200":
+          application/json: {"status_code": 200, "status": "OK", "service": "quickbooks", "resource": "Quotes", "operation": "one", "data": {"id": "12345", "downstream_id": "12345", "number": "QT00546", "customer": {"id": "12345", "display_id": "CUST00101", "display_name": "Windsurf Shop", "company_name": "The boring company", "email": "boring@boring.com"}, "invoice_id": "123456", "sales_order_id": "123456", "company_id": "12345", "project_id": "12345", "quote_date": "2020-09-30", "expiry_date": "2020-10-30", "terms": "Valid for 30 days", "reference": "INV-2024-001", "status": "draft", "currency": "USD", "currency_rate": 0.69, "tax_inclusive": true, "sub_total": 27500, "total_tax": 2500, "tax_code": "1234", "discount_percentage": 5.5, "discount_amount": 25, "total": 27500, "customer_memo": "Thank you for considering our services!", "line_items": [{"id": "12345", "row_id": "12345", "code": "120-C", "line_number": 1, "description": "Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.", "type": "sales_item", "tax_amount": 27500, "total_amount": 27500, "quantity": 1, "unit_price": 27500.5, "unit_of_measure": "pc.", "discount_percentage": 0.01, "discount_amount": 19.99, "category_id": "12345", "location_id": "12345", "department_id": "12345", "item": {"id": "12344", "code": "120-C", "name": "Model Y"}, "tax_rate": {"id": "123456", "code": "N-T", "name": "GST on Purchases", "rate": 10}, "tracking_categories": [{"id": "123456", "name": "New York", "parent_id": "123456", "parent_name": "New York"}], "ledger_account": {"id": "123456", "name": "Bank account", "nominal_code": "N091", "code": "453"}, "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "row_version": "1-12345", "updated_by": "12345", "created_by": "12345", "created_at": "2020-09-30T07:43:32.000Z", "updated_at": "2020-09-30T07:43:32.000Z"}], "billing_address": {"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}, "shipping_address": {"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}, "tracking_categories": [{"id": "123456", "name": "New York", "parent_id": "123456", "parent_name": "New York"}], "template_id": "123456", "source_document_url": "https://www.quotesolution.com/quote/123456", "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "row_version": "1-12345", "updated_by": "12345", "created_by": "12345", "updated_at": "2020-09-30T07:43:32.000Z", "created_at": "2020-09-30T07:43:32.000Z", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}}
+        "400":
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror"}
+        "401":
+          application/json: {"status_code": 401, "error": "Unauthorized", "type_name": "UnauthorizedError", "message": "Unauthorized Request", "detail": "Missing authentication", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+        "402":
+          application/json: {"status_code": 402, "error": "Payment Required", "type_name": "RequestLimitError", "message": "Request Limit Reached", "detail": "You have reached your limit of 2000", "ref": "https://developers.apideck.com/errors#requestlimiterror"}
+        "404":
+          application/json: {"status_code": 404, "error": "Not Found", "type_name": "EntityNotFoundError", "message": "Unknown Widget", "detail": "Could not find widget with id: '123'", "ref": "https://developers.apideck.com/errors#entitynotfounderror"}
+        "422":
+          application/json: {"status_code": 422, "error": "Unprocessable Entity", "type_name": "InvalidStateError", "message": "Invalid State", "detail": "Unprocessable request, please verify your request headers and body.", "ref": "https://developers.apideck.com/errors#invalidstateerror"}
+        default:
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+  accounting.quotesUpdate:
+    speakeasy-default-accounting-quotes-update:
+      parameters:
+        path:
+          id: "<id>"
+        query:
+          raw: false
+        header:
+          x-apideck-consumer-id: "test-consumer"
+          x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+          x-apideck-service-id: "salesforce"
+      requestBody:
+        application/json: {"number": "QT00546", "customer": {"id": "12345", "display_name": "Windsurf Shop", "email": "boring@boring.com"}, "sales_order_id": "123456", "company_id": "12345", "project_id": "12345", "quote_date": "2020-09-30", "expiry_date": "2020-10-30", "terms": "Valid for 30 days", "reference": "INV-2024-001", "status": "draft", "currency": "USD", "currency_rate": 0.69, "tax_inclusive": true, "sub_total": 27500, "total_tax": 2500, "tax_code": "1234", "discount_percentage": 5.5, "discount_amount": 25, "total": 27500, "customer_memo": "Thank you for considering our services!", "line_items": [{"id": "12345", "row_id": "12345", "code": "120-C", "line_number": 1, "description": "Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.", "type": "sales_item", "tax_amount": 27500, "total_amount": 27500, "quantity": 1, "unit_price": 27500.5, "unit_of_measure": "pc.", "discount_percentage": 0.01, "discount_amount": 19.99, "category_id": "12345", "location_id": "12345", "department_id": "12345", "item": {"id": "12344", "code": "120-C", "name": "Model Y"}, "tax_rate": {"id": "123456", "rate": 10}, "tracking_categories": null, "ledger_account": {"id": "123456", "nominal_code": "N091", "code": "453"}, "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "row_version": "1-12345"}], "billing_address": {"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}, "shipping_address": {"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}, "tracking_categories": [{"id": "123456", "name": "New York", "parent_id": "123456", "parent_name": "New York"}], "template_id": "123456", "source_document_url": "https://www.quotesolution.com/quote/123456", "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "row_version": "1-12345", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
+      responses:
+        "200":
+          application/json: {"status_code": 200, "status": "OK", "service": "quickbooks", "resource": "Quotes", "operation": "update", "data": {"id": "12345"}}
+        "400":
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror"}
+        "401":
+          application/json: {"status_code": 401, "error": "Unauthorized", "type_name": "UnauthorizedError", "message": "Unauthorized Request", "detail": "Missing authentication", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+        "402":
+          application/json: {"status_code": 402, "error": "Payment Required", "type_name": "RequestLimitError", "message": "Request Limit Reached", "detail": "You have reached your limit of 2000", "ref": "https://developers.apideck.com/errors#requestlimiterror"}
+        "404":
+          application/json: {"status_code": 404, "error": "Not Found", "type_name": "EntityNotFoundError", "message": "Unknown Widget", "detail": "Could not find widget with id: '123'", "ref": "https://developers.apideck.com/errors#entitynotfounderror"}
+        "422":
+          application/json: {"status_code": 422, "error": "Unprocessable Entity", "type_name": "InvalidStateError", "message": "Invalid State", "detail": "Unprocessable request, please verify your request headers and body.", "ref": "https://developers.apideck.com/errors#invalidstateerror"}
+        default:
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+  accounting.quotesDelete:
+    speakeasy-default-accounting-quotes-delete:
+      parameters:
+        path:
+          id: "<id>"
+        query:
+          raw: false
+        header:
+          x-apideck-consumer-id: "test-consumer"
+          x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+          x-apideck-service-id: "salesforce"
+      responses:
+        "200":
+          application/json: {"status_code": 200, "status": "OK", "service": "quickbooks", "resource": "Quotes", "operation": "delete", "data": {"id": "12345"}}
         "400":
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror"}
         "401":

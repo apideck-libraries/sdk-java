@@ -17,6 +17,7 @@ List custom object schemas
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="crm.customObjectSchemasAll" method="get" path="/crm/custom-object-schemas" -->
 ```java
 package hello.world;
 
@@ -81,6 +82,7 @@ Create custom object schema
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="crm.customObjectSchemasAdd" method="post" path="/crm/custom-object-schemas" -->
 ```java
 package hello.world;
 
@@ -186,6 +188,7 @@ Get custom object schema
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="crm.customObjectSchemasOne" method="get" path="/crm/custom-object-schemas/{id}" -->
 ```java
 package hello.world;
 
@@ -248,6 +251,7 @@ Update custom object schema
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="crm.customObjectSchemasUpdate" method="patch" path="/crm/custom-object-schemas/{id}" -->
 ```java
 package hello.world;
 
@@ -438,6 +442,7 @@ Delete custom object schema
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="crm.customObjectSchemasDelete" method="delete" path="/crm/custom-object-schemas/{id}" -->
 ```java
 package hello.world;
 

@@ -6,7 +6,7 @@ package com.apideck.unify.models.operations;
 import static com.apideck.unify.operations.Operations.RequestOperation;
 
 import com.apideck.unify.SDKConfiguration;
-import com.apideck.unify.operations.VaultConnectionsDeleteOperation;
+import com.apideck.unify.operations.VaultConnectionsDelete;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -92,7 +92,7 @@ public class VaultConnectionsDeleteRequestBuilder {
             .build());
 
         RequestOperation<VaultConnectionsDeleteRequest, VaultConnectionsDeleteResponse> operation
-              = new VaultConnectionsDeleteOperation(sdkConfiguration, options);
+              = new VaultConnectionsDelete.Sync(sdkConfiguration, options);
         VaultConnectionsDeleteRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

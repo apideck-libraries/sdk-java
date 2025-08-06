@@ -14,6 +14,7 @@ List Categories
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.categoriesAll" method="get" path="/accounting/categories" -->
 ```java
 package hello.world;
 
@@ -81,6 +82,7 @@ Get Category
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.categoriesOne" method="get" path="/accounting/categories/{id}" -->
 ```java
 package hello.world;
 

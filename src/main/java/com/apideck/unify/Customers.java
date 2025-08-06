@@ -20,11 +20,11 @@ import com.apideck.unify.models.operations.AccountingCustomersOneResponse;
 import com.apideck.unify.models.operations.AccountingCustomersUpdateRequest;
 import com.apideck.unify.models.operations.AccountingCustomersUpdateRequestBuilder;
 import com.apideck.unify.models.operations.AccountingCustomersUpdateResponse;
-import com.apideck.unify.operations.AccountingCustomersAddOperation;
-import com.apideck.unify.operations.AccountingCustomersAllOperation;
-import com.apideck.unify.operations.AccountingCustomersDeleteOperation;
-import com.apideck.unify.operations.AccountingCustomersOneOperation;
-import com.apideck.unify.operations.AccountingCustomersUpdateOperation;
+import com.apideck.unify.operations.AccountingCustomersAdd;
+import com.apideck.unify.operations.AccountingCustomersAll;
+import com.apideck.unify.operations.AccountingCustomersDelete;
+import com.apideck.unify.operations.AccountingCustomersOne;
+import com.apideck.unify.operations.AccountingCustomersUpdate;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
@@ -73,7 +73,7 @@ public class Customers {
      */
     public AccountingCustomersAllResponse list(AccountingCustomersAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingCustomersAllRequest, AccountingCustomersAllResponse> operation
-              = new AccountingCustomersAllOperation(sdkConfiguration, options);
+              = new AccountingCustomersAll.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -113,7 +113,7 @@ public class Customers {
      */
     public AccountingCustomersAddResponse create(AccountingCustomersAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingCustomersAddRequest, AccountingCustomersAddResponse> operation
-              = new AccountingCustomersAddOperation(sdkConfiguration, options);
+              = new AccountingCustomersAdd.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -153,7 +153,7 @@ public class Customers {
      */
     public AccountingCustomersOneResponse get(AccountingCustomersOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingCustomersOneRequest, AccountingCustomersOneResponse> operation
-              = new AccountingCustomersOneOperation(sdkConfiguration, options);
+              = new AccountingCustomersOne.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -193,7 +193,7 @@ public class Customers {
      */
     public AccountingCustomersUpdateResponse update(AccountingCustomersUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingCustomersUpdateRequest, AccountingCustomersUpdateResponse> operation
-              = new AccountingCustomersUpdateOperation(sdkConfiguration, options);
+              = new AccountingCustomersUpdate.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -233,7 +233,7 @@ public class Customers {
      */
     public AccountingCustomersDeleteResponse delete(AccountingCustomersDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingCustomersDeleteRequest, AccountingCustomersDeleteResponse> operation
-              = new AccountingCustomersDeleteOperation(sdkConfiguration, options);
+              = new AccountingCustomersDelete.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

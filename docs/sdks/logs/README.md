@@ -14,6 +14,7 @@ This endpoint includes all consumer request logs.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="vault.logsAll" method="get" path="/vault/logs" -->
 ```java
 package hello.world;
 

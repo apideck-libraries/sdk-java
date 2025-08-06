@@ -9,7 +9,7 @@ import com.apideck.unify.models.components.UnifiedApiId;
 import com.apideck.unify.models.operations.ConnectorConnectorResourcesOneRequest;
 import com.apideck.unify.models.operations.ConnectorConnectorResourcesOneRequestBuilder;
 import com.apideck.unify.models.operations.ConnectorConnectorResourcesOneResponse;
-import com.apideck.unify.operations.ConnectorConnectorResourcesOneOperation;
+import com.apideck.unify.operations.ConnectorConnectorResourcesOne;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
@@ -75,7 +75,7 @@ public class ConnectorResources {
                 .unifiedApi(unifiedApi)
                 .build();
         RequestOperation<ConnectorConnectorResourcesOneRequest, ConnectorConnectorResourcesOneResponse> operation
-              = new ConnectorConnectorResourcesOneOperation(sdkConfiguration, options);
+              = new ConnectorConnectorResourcesOne.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

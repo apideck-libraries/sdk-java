@@ -15,6 +15,7 @@ This endpoint returns custom settings and their defaults required by connection 
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="vault.connectionSettingsAll" method="get" path="/vault/connections/{unified_api}/{service_id}/{resource}/config" -->
 ```java
 package hello.world;
 
@@ -78,6 +79,7 @@ Update default values for a connection's resource settings
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="vault.connectionSettingsUpdate" method="patch" path="/vault/connections/{unified_api}/{service_id}/{resource}/config" -->
 ```java
 package hello.world;
 

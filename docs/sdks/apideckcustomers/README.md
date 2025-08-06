@@ -14,6 +14,7 @@ List Customers
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="ecommerce.customersAll" method="get" path="/ecommerce/customers" -->
 ```java
 package hello.world;
 
@@ -84,6 +85,7 @@ Get Customer
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="ecommerce.customersOne" method="get" path="/ecommerce/customers/{id}" -->
 ```java
 package hello.world;
 

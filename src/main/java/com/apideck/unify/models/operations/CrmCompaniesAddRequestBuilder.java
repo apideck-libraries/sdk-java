@@ -6,7 +6,7 @@ package com.apideck.unify.models.operations;
 import static com.apideck.unify.operations.Operations.RequestOperation;
 
 import com.apideck.unify.SDKConfiguration;
-import com.apideck.unify.operations.CrmCompaniesAddOperation;
+import com.apideck.unify.operations.CrmCompaniesAdd;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -47,7 +47,7 @@ public class CrmCompaniesAddRequestBuilder {
             .build());
 
         RequestOperation<CrmCompaniesAddRequest, CrmCompaniesAddResponse> operation
-              = new CrmCompaniesAddOperation(sdkConfiguration, options);
+              = new CrmCompaniesAdd.Sync(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

@@ -8,7 +8,7 @@ import static com.apideck.unify.operations.Operations.RequestOperation;
 import com.apideck.unify.models.operations.ConnectorConnectorDocsOneRequest;
 import com.apideck.unify.models.operations.ConnectorConnectorDocsOneRequestBuilder;
 import com.apideck.unify.models.operations.ConnectorConnectorDocsOneResponse;
-import com.apideck.unify.operations.ConnectorConnectorDocsOneOperation;
+import com.apideck.unify.operations.ConnectorConnectorDocsOne;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
@@ -71,7 +71,7 @@ public class ConnectorDocs {
                 .docId(docId)
                 .build();
         RequestOperation<ConnectorConnectorDocsOneRequest, ConnectorConnectorDocsOneResponse> operation
-              = new ConnectorConnectorDocsOneOperation(sdkConfiguration, options);
+              = new ConnectorConnectorDocsOne.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

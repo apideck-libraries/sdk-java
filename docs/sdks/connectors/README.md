@@ -14,6 +14,7 @@ List Connectors
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="connector.connectorsAll" method="get" path="/connector/connectors" -->
 ```java
 package hello.world;
 
@@ -75,6 +76,7 @@ Get Connector
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="connector.connectorsOne" method="get" path="/connector/connectors/{id}" -->
 ```java
 package hello.world;
 

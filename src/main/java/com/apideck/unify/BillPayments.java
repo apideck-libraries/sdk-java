@@ -20,11 +20,11 @@ import com.apideck.unify.models.operations.AccountingBillPaymentsOneResponse;
 import com.apideck.unify.models.operations.AccountingBillPaymentsUpdateRequest;
 import com.apideck.unify.models.operations.AccountingBillPaymentsUpdateRequestBuilder;
 import com.apideck.unify.models.operations.AccountingBillPaymentsUpdateResponse;
-import com.apideck.unify.operations.AccountingBillPaymentsAddOperation;
-import com.apideck.unify.operations.AccountingBillPaymentsAllOperation;
-import com.apideck.unify.operations.AccountingBillPaymentsDeleteOperation;
-import com.apideck.unify.operations.AccountingBillPaymentsOneOperation;
-import com.apideck.unify.operations.AccountingBillPaymentsUpdateOperation;
+import com.apideck.unify.operations.AccountingBillPaymentsAdd;
+import com.apideck.unify.operations.AccountingBillPaymentsAll;
+import com.apideck.unify.operations.AccountingBillPaymentsDelete;
+import com.apideck.unify.operations.AccountingBillPaymentsOne;
+import com.apideck.unify.operations.AccountingBillPaymentsUpdate;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
@@ -73,7 +73,7 @@ public class BillPayments {
      */
     public AccountingBillPaymentsAllResponse list(AccountingBillPaymentsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingBillPaymentsAllRequest, AccountingBillPaymentsAllResponse> operation
-              = new AccountingBillPaymentsAllOperation(sdkConfiguration, options);
+              = new AccountingBillPaymentsAll.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -113,7 +113,7 @@ public class BillPayments {
      */
     public AccountingBillPaymentsAddResponse create(AccountingBillPaymentsAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingBillPaymentsAddRequest, AccountingBillPaymentsAddResponse> operation
-              = new AccountingBillPaymentsAddOperation(sdkConfiguration, options);
+              = new AccountingBillPaymentsAdd.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -153,7 +153,7 @@ public class BillPayments {
      */
     public AccountingBillPaymentsOneResponse get(AccountingBillPaymentsOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingBillPaymentsOneRequest, AccountingBillPaymentsOneResponse> operation
-              = new AccountingBillPaymentsOneOperation(sdkConfiguration, options);
+              = new AccountingBillPaymentsOne.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -193,7 +193,7 @@ public class BillPayments {
      */
     public AccountingBillPaymentsUpdateResponse update(AccountingBillPaymentsUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingBillPaymentsUpdateRequest, AccountingBillPaymentsUpdateResponse> operation
-              = new AccountingBillPaymentsUpdateOperation(sdkConfiguration, options);
+              = new AccountingBillPaymentsUpdate.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -233,7 +233,7 @@ public class BillPayments {
      */
     public AccountingBillPaymentsDeleteResponse delete(AccountingBillPaymentsDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingBillPaymentsDeleteRequest, AccountingBillPaymentsDeleteResponse> operation
-              = new AccountingBillPaymentsDeleteOperation(sdkConfiguration, options);
+              = new AccountingBillPaymentsDelete.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

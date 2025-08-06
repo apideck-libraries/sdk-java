@@ -6,7 +6,7 @@ package com.apideck.unify.models.operations;
 import static com.apideck.unify.operations.Operations.RequestOperation;
 
 import com.apideck.unify.SDKConfiguration;
-import com.apideck.unify.operations.AccountingLocationsDeleteOperation;
+import com.apideck.unify.operations.AccountingLocationsDelete;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -47,7 +47,7 @@ public class AccountingLocationsDeleteRequestBuilder {
             .build());
 
         RequestOperation<AccountingLocationsDeleteRequest, AccountingLocationsDeleteResponse> operation
-              = new AccountingLocationsDeleteOperation(sdkConfiguration, options);
+              = new AccountingLocationsDelete.Sync(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

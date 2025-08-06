@@ -30,18 +30,39 @@ public class LinkedTrackingCategory {
     @JsonProperty("name")
     private JsonNullable<String> name;
 
+    /**
+     * The unique identifier for the parent tracking category.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("parent_id")
+    private Optional<String> parentId;
+
+    /**
+     * The name of the parent tracking category.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("parent_name")
+    private JsonNullable<String> parentName;
+
     @JsonCreator
     public LinkedTrackingCategory(
             @JsonProperty("id") Optional<String> id,
-            @JsonProperty("name") JsonNullable<String> name) {
+            @JsonProperty("name") JsonNullable<String> name,
+            @JsonProperty("parent_id") Optional<String> parentId,
+            @JsonProperty("parent_name") JsonNullable<String> parentName) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(name, "name");
+        Utils.checkNotNull(parentId, "parentId");
+        Utils.checkNotNull(parentName, "parentName");
         this.id = id;
         this.name = name;
+        this.parentId = parentId;
+        this.parentName = parentName;
     }
     
     public LinkedTrackingCategory() {
-        this(Optional.empty(), JsonNullable.undefined());
+        this(Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -58,6 +79,22 @@ public class LinkedTrackingCategory {
     @JsonIgnore
     public JsonNullable<String> name() {
         return name;
+    }
+
+    /**
+     * The unique identifier for the parent tracking category.
+     */
+    @JsonIgnore
+    public Optional<String> parentId() {
+        return parentId;
+    }
+
+    /**
+     * The name of the parent tracking category.
+     */
+    @JsonIgnore
+    public JsonNullable<String> parentName() {
+        return parentName;
     }
 
     public static Builder builder() {
@@ -102,6 +139,43 @@ public class LinkedTrackingCategory {
         return this;
     }
 
+    /**
+     * The unique identifier for the parent tracking category.
+     */
+    public LinkedTrackingCategory withParentId(String parentId) {
+        Utils.checkNotNull(parentId, "parentId");
+        this.parentId = Optional.ofNullable(parentId);
+        return this;
+    }
+
+
+    /**
+     * The unique identifier for the parent tracking category.
+     */
+    public LinkedTrackingCategory withParentId(Optional<String> parentId) {
+        Utils.checkNotNull(parentId, "parentId");
+        this.parentId = parentId;
+        return this;
+    }
+
+    /**
+     * The name of the parent tracking category.
+     */
+    public LinkedTrackingCategory withParentName(String parentName) {
+        Utils.checkNotNull(parentName, "parentName");
+        this.parentName = JsonNullable.of(parentName);
+        return this;
+    }
+
+    /**
+     * The name of the parent tracking category.
+     */
+    public LinkedTrackingCategory withParentName(JsonNullable<String> parentName) {
+        Utils.checkNotNull(parentName, "parentName");
+        this.parentName = parentName;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -113,20 +187,25 @@ public class LinkedTrackingCategory {
         LinkedTrackingCategory other = (LinkedTrackingCategory) o;
         return 
             Utils.enhancedDeepEquals(this.id, other.id) &&
-            Utils.enhancedDeepEquals(this.name, other.name);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.parentId, other.parentId) &&
+            Utils.enhancedDeepEquals(this.parentName, other.parentName);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, name);
+            id, name, parentId,
+            parentName);
     }
     
     @Override
     public String toString() {
         return Utils.toString(LinkedTrackingCategory.class,
                 "id", id,
-                "name", name);
+                "name", name,
+                "parentId", parentId,
+                "parentName", parentName);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -135,6 +214,10 @@ public class LinkedTrackingCategory {
         private Optional<String> id = Optional.empty();
 
         private JsonNullable<String> name = JsonNullable.undefined();
+
+        private Optional<String> parentId = Optional.empty();
+
+        private JsonNullable<String> parentName = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -178,10 +261,49 @@ public class LinkedTrackingCategory {
             return this;
         }
 
+
+        /**
+         * The unique identifier for the parent tracking category.
+         */
+        public Builder parentId(String parentId) {
+            Utils.checkNotNull(parentId, "parentId");
+            this.parentId = Optional.ofNullable(parentId);
+            return this;
+        }
+
+        /**
+         * The unique identifier for the parent tracking category.
+         */
+        public Builder parentId(Optional<String> parentId) {
+            Utils.checkNotNull(parentId, "parentId");
+            this.parentId = parentId;
+            return this;
+        }
+
+
+        /**
+         * The name of the parent tracking category.
+         */
+        public Builder parentName(String parentName) {
+            Utils.checkNotNull(parentName, "parentName");
+            this.parentName = JsonNullable.of(parentName);
+            return this;
+        }
+
+        /**
+         * The name of the parent tracking category.
+         */
+        public Builder parentName(JsonNullable<String> parentName) {
+            Utils.checkNotNull(parentName, "parentName");
+            this.parentName = parentName;
+            return this;
+        }
+
         public LinkedTrackingCategory build() {
 
             return new LinkedTrackingCategory(
-                id, name);
+                id, name, parentId,
+                parentName);
         }
 
     }

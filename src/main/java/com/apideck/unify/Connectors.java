@@ -12,8 +12,8 @@ import com.apideck.unify.models.operations.ConnectorConnectorsAllResponse;
 import com.apideck.unify.models.operations.ConnectorConnectorsOneRequest;
 import com.apideck.unify.models.operations.ConnectorConnectorsOneRequestBuilder;
 import com.apideck.unify.models.operations.ConnectorConnectorsOneResponse;
-import com.apideck.unify.operations.ConnectorConnectorsAllOperation;
-import com.apideck.unify.operations.ConnectorConnectorsOneOperation;
+import com.apideck.unify.operations.ConnectorConnectorsAll;
+import com.apideck.unify.operations.ConnectorConnectorsOne;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.lang.Long;
@@ -79,7 +79,7 @@ public class Connectors {
                 .filter(filter)
                 .build();
         RequestOperation<ConnectorConnectorsAllRequest, ConnectorConnectorsAllResponse> operation
-              = new ConnectorConnectorsAllOperation(sdkConfiguration, options);
+              = new ConnectorConnectorsAll.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -128,7 +128,7 @@ public class Connectors {
                 .id(id)
                 .build();
         RequestOperation<ConnectorConnectorsOneRequest, ConnectorConnectorsOneResponse> operation
-              = new ConnectorConnectorsOneOperation(sdkConfiguration, options);
+              = new ConnectorConnectorsOne.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

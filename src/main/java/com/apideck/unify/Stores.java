@@ -8,7 +8,7 @@ import static com.apideck.unify.operations.Operations.RequestOperation;
 import com.apideck.unify.models.operations.EcommerceStoresOneRequest;
 import com.apideck.unify.models.operations.EcommerceStoresOneRequestBuilder;
 import com.apideck.unify.models.operations.EcommerceStoresOneResponse;
-import com.apideck.unify.operations.EcommerceStoresOneOperation;
+import com.apideck.unify.operations.EcommerceStoresOne;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
@@ -57,7 +57,7 @@ public class Stores {
      */
     public EcommerceStoresOneResponse get(EcommerceStoresOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<EcommerceStoresOneRequest, EcommerceStoresOneResponse> operation
-              = new EcommerceStoresOneOperation(sdkConfiguration, options);
+              = new EcommerceStoresOne.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

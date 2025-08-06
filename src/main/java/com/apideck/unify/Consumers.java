@@ -5,7 +5,7 @@ package com.apideck.unify;
 
 import static com.apideck.unify.operations.Operations.RequestOperation;
 
-import com.apideck.unify.models.components.ConsumerInput;
+import com.apideck.unify.models.components.CreateConsumerRequest;
 import com.apideck.unify.models.components.UpdateConsumerRequest;
 import com.apideck.unify.models.operations.VaultConsumersAddRequest;
 import com.apideck.unify.models.operations.VaultConsumersAddRequestBuilder;
@@ -22,11 +22,11 @@ import com.apideck.unify.models.operations.VaultConsumersOneResponse;
 import com.apideck.unify.models.operations.VaultConsumersUpdateRequest;
 import com.apideck.unify.models.operations.VaultConsumersUpdateRequestBuilder;
 import com.apideck.unify.models.operations.VaultConsumersUpdateResponse;
-import com.apideck.unify.operations.VaultConsumersAddOperation;
-import com.apideck.unify.operations.VaultConsumersAllOperation;
-import com.apideck.unify.operations.VaultConsumersDeleteOperation;
-import com.apideck.unify.operations.VaultConsumersOneOperation;
-import com.apideck.unify.operations.VaultConsumersUpdateOperation;
+import com.apideck.unify.operations.VaultConsumersAdd;
+import com.apideck.unify.operations.VaultConsumersAll;
+import com.apideck.unify.operations.VaultConsumersDelete;
+import com.apideck.unify.operations.VaultConsumersOne;
+import com.apideck.unify.operations.VaultConsumersUpdate;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.lang.Long;
@@ -58,12 +58,12 @@ public class Consumers {
      * 
      * <p>Create a consumer
      * 
-     * @param consumer 
+     * @param createConsumerRequest 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public VaultConsumersAddResponse create(ConsumerInput consumer) throws Exception {
-        return create(Optional.empty(), consumer, Optional.empty());
+    public VaultConsumersAddResponse create(CreateConsumerRequest createConsumerRequest) throws Exception {
+        return create(Optional.empty(), createConsumerRequest, Optional.empty());
     }
 
     /**
@@ -72,22 +72,22 @@ public class Consumers {
      * <p>Create a consumer
      * 
      * @param appId The ID of your Unify application
-     * @param consumer 
+     * @param createConsumerRequest 
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public VaultConsumersAddResponse create(
-            Optional<String> appId, ConsumerInput consumer,
+            Optional<String> appId, CreateConsumerRequest createConsumerRequest,
             Optional<Options> options) throws Exception {
         VaultConsumersAddRequest request =
             VaultConsumersAddRequest
                 .builder()
                 .appId(appId)
-                .consumer(consumer)
+                .createConsumerRequest(createConsumerRequest)
                 .build();
         RequestOperation<VaultConsumersAddRequest, VaultConsumersAddResponse> operation
-              = new VaultConsumersAddOperation(sdkConfiguration, options);
+              = new VaultConsumersAdd.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -138,7 +138,7 @@ public class Consumers {
                 .limit(limit)
                 .build();
         RequestOperation<VaultConsumersAllRequest, VaultConsumersAllResponse> operation
-              = new VaultConsumersAllOperation(sdkConfiguration, options);
+              = new VaultConsumersAll.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -187,7 +187,7 @@ public class Consumers {
                 .consumerId(consumerId)
                 .build();
         RequestOperation<VaultConsumersOneRequest, VaultConsumersOneResponse> operation
-              = new VaultConsumersOneOperation(sdkConfiguration, options);
+              = new VaultConsumersOne.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -240,7 +240,7 @@ public class Consumers {
                 .updateConsumerRequest(updateConsumerRequest)
                 .build();
         RequestOperation<VaultConsumersUpdateRequest, VaultConsumersUpdateResponse> operation
-              = new VaultConsumersUpdateOperation(sdkConfiguration, options);
+              = new VaultConsumersUpdate.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -289,7 +289,7 @@ public class Consumers {
                 .consumerId(consumerId)
                 .build();
         RequestOperation<VaultConsumersDeleteRequest, VaultConsumersDeleteResponse> operation
-              = new VaultConsumersDeleteOperation(sdkConfiguration, options);
+              = new VaultConsumersDelete.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

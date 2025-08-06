@@ -20,11 +20,11 @@ import com.apideck.unify.models.operations.CrmLeadsOneResponse;
 import com.apideck.unify.models.operations.CrmLeadsUpdateRequest;
 import com.apideck.unify.models.operations.CrmLeadsUpdateRequestBuilder;
 import com.apideck.unify.models.operations.CrmLeadsUpdateResponse;
-import com.apideck.unify.operations.CrmLeadsAddOperation;
-import com.apideck.unify.operations.CrmLeadsAllOperation;
-import com.apideck.unify.operations.CrmLeadsDeleteOperation;
-import com.apideck.unify.operations.CrmLeadsOneOperation;
-import com.apideck.unify.operations.CrmLeadsUpdateOperation;
+import com.apideck.unify.operations.CrmLeadsAdd;
+import com.apideck.unify.operations.CrmLeadsAll;
+import com.apideck.unify.operations.CrmLeadsDelete;
+import com.apideck.unify.operations.CrmLeadsOne;
+import com.apideck.unify.operations.CrmLeadsUpdate;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
@@ -73,7 +73,7 @@ public class Leads {
      */
     public CrmLeadsAllResponse list(CrmLeadsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmLeadsAllRequest, CrmLeadsAllResponse> operation
-              = new CrmLeadsAllOperation(sdkConfiguration, options);
+              = new CrmLeadsAll.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -113,7 +113,7 @@ public class Leads {
      */
     public CrmLeadsAddResponse create(CrmLeadsAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmLeadsAddRequest, CrmLeadsAddResponse> operation
-              = new CrmLeadsAddOperation(sdkConfiguration, options);
+              = new CrmLeadsAdd.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -153,7 +153,7 @@ public class Leads {
      */
     public CrmLeadsOneResponse get(CrmLeadsOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmLeadsOneRequest, CrmLeadsOneResponse> operation
-              = new CrmLeadsOneOperation(sdkConfiguration, options);
+              = new CrmLeadsOne.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -193,7 +193,7 @@ public class Leads {
      */
     public CrmLeadsUpdateResponse update(CrmLeadsUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmLeadsUpdateRequest, CrmLeadsUpdateResponse> operation
-              = new CrmLeadsUpdateOperation(sdkConfiguration, options);
+              = new CrmLeadsUpdate.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -233,7 +233,7 @@ public class Leads {
      */
     public CrmLeadsDeleteResponse delete(CrmLeadsDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmLeadsDeleteRequest, CrmLeadsDeleteResponse> operation
-              = new CrmLeadsDeleteOperation(sdkConfiguration, options);
+              = new CrmLeadsDelete.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

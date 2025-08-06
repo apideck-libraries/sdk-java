@@ -20,11 +20,11 @@ import com.apideck.unify.models.operations.AccountingCreditNotesOneResponse;
 import com.apideck.unify.models.operations.AccountingCreditNotesUpdateRequest;
 import com.apideck.unify.models.operations.AccountingCreditNotesUpdateRequestBuilder;
 import com.apideck.unify.models.operations.AccountingCreditNotesUpdateResponse;
-import com.apideck.unify.operations.AccountingCreditNotesAddOperation;
-import com.apideck.unify.operations.AccountingCreditNotesAllOperation;
-import com.apideck.unify.operations.AccountingCreditNotesDeleteOperation;
-import com.apideck.unify.operations.AccountingCreditNotesOneOperation;
-import com.apideck.unify.operations.AccountingCreditNotesUpdateOperation;
+import com.apideck.unify.operations.AccountingCreditNotesAdd;
+import com.apideck.unify.operations.AccountingCreditNotesAll;
+import com.apideck.unify.operations.AccountingCreditNotesDelete;
+import com.apideck.unify.operations.AccountingCreditNotesOne;
+import com.apideck.unify.operations.AccountingCreditNotesUpdate;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
@@ -73,7 +73,7 @@ public class CreditNotes {
      */
     public AccountingCreditNotesAllResponse list(AccountingCreditNotesAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingCreditNotesAllRequest, AccountingCreditNotesAllResponse> operation
-              = new AccountingCreditNotesAllOperation(sdkConfiguration, options);
+              = new AccountingCreditNotesAll.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -113,7 +113,7 @@ public class CreditNotes {
      */
     public AccountingCreditNotesAddResponse create(AccountingCreditNotesAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingCreditNotesAddRequest, AccountingCreditNotesAddResponse> operation
-              = new AccountingCreditNotesAddOperation(sdkConfiguration, options);
+              = new AccountingCreditNotesAdd.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -153,7 +153,7 @@ public class CreditNotes {
      */
     public AccountingCreditNotesOneResponse get(AccountingCreditNotesOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingCreditNotesOneRequest, AccountingCreditNotesOneResponse> operation
-              = new AccountingCreditNotesOneOperation(sdkConfiguration, options);
+              = new AccountingCreditNotesOne.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -193,7 +193,7 @@ public class CreditNotes {
      */
     public AccountingCreditNotesUpdateResponse update(AccountingCreditNotesUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingCreditNotesUpdateRequest, AccountingCreditNotesUpdateResponse> operation
-              = new AccountingCreditNotesUpdateOperation(sdkConfiguration, options);
+              = new AccountingCreditNotesUpdate.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -233,7 +233,7 @@ public class CreditNotes {
      */
     public AccountingCreditNotesDeleteResponse delete(AccountingCreditNotesDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingCreditNotesDeleteRequest, AccountingCreditNotesDeleteResponse> operation
-              = new AccountingCreditNotesDeleteOperation(sdkConfiguration, options);
+              = new AccountingCreditNotesDelete.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

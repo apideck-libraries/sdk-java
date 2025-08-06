@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Boolean;
+import java.lang.Deprecated;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -138,9 +139,14 @@ public class ApplicantInput {
     @JsonProperty("application_ids")
     private JsonNullable<? extends List<String>> applicationIds;
 
-
+    /**
+     * Deprecated: Use application_ids instead. Array of application IDs associated with the applicant.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("applications")
+    @Deprecated
     private JsonNullable<? extends List<String>> applications;
 
 
@@ -442,6 +448,12 @@ public class ApplicantInput {
         return (JsonNullable<List<String>>) applicationIds;
     }
 
+    /**
+     * Deprecated: Use application_ids instead. Array of application IDs associated with the applicant.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public JsonNullable<List<String>> applications() {
@@ -819,12 +831,24 @@ public class ApplicantInput {
         return this;
     }
 
+    /**
+     * Deprecated: Use application_ids instead. Array of application IDs associated with the applicant.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
     public ApplicantInput withApplications(List<String> applications) {
         Utils.checkNotNull(applications, "applications");
         this.applications = JsonNullable.of(applications);
         return this;
     }
 
+    /**
+     * Deprecated: Use application_ids instead. Array of application IDs associated with the applicant.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
     public ApplicantInput withApplications(JsonNullable<? extends List<String>> applications) {
         Utils.checkNotNull(applications, "applications");
         this.applications = applications;
@@ -1104,6 +1128,7 @@ public class ApplicantInput {
 
         private JsonNullable<? extends List<String>> applicationIds = JsonNullable.undefined();
 
+        @Deprecated
         private JsonNullable<? extends List<String>> applications = JsonNullable.undefined();
 
         private JsonNullable<? extends List<String>> followers = JsonNullable.undefined();
@@ -1445,12 +1470,24 @@ public class ApplicantInput {
         }
 
 
+        /**
+         * Deprecated: Use application_ids instead. Array of application IDs associated with the applicant.
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         */
+        @Deprecated
         public Builder applications(List<String> applications) {
             Utils.checkNotNull(applications, "applications");
             this.applications = JsonNullable.of(applications);
             return this;
         }
 
+        /**
+         * Deprecated: Use application_ids instead. Array of application IDs associated with the applicant.
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         */
+        @Deprecated
         public Builder applications(JsonNullable<? extends List<String>> applications) {
             Utils.checkNotNull(applications, "applications");
             this.applications = applications;

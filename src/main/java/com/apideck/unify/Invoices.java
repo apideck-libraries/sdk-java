@@ -20,11 +20,11 @@ import com.apideck.unify.models.operations.AccountingInvoicesOneResponse;
 import com.apideck.unify.models.operations.AccountingInvoicesUpdateRequest;
 import com.apideck.unify.models.operations.AccountingInvoicesUpdateRequestBuilder;
 import com.apideck.unify.models.operations.AccountingInvoicesUpdateResponse;
-import com.apideck.unify.operations.AccountingInvoicesAddOperation;
-import com.apideck.unify.operations.AccountingInvoicesAllOperation;
-import com.apideck.unify.operations.AccountingInvoicesDeleteOperation;
-import com.apideck.unify.operations.AccountingInvoicesOneOperation;
-import com.apideck.unify.operations.AccountingInvoicesUpdateOperation;
+import com.apideck.unify.operations.AccountingInvoicesAdd;
+import com.apideck.unify.operations.AccountingInvoicesAll;
+import com.apideck.unify.operations.AccountingInvoicesDelete;
+import com.apideck.unify.operations.AccountingInvoicesOne;
+import com.apideck.unify.operations.AccountingInvoicesUpdate;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
@@ -73,7 +73,7 @@ public class Invoices {
      */
     public AccountingInvoicesAllResponse list(AccountingInvoicesAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingInvoicesAllRequest, AccountingInvoicesAllResponse> operation
-              = new AccountingInvoicesAllOperation(sdkConfiguration, options);
+              = new AccountingInvoicesAll.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -113,7 +113,7 @@ public class Invoices {
      */
     public AccountingInvoicesAddResponse create(AccountingInvoicesAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingInvoicesAddRequest, AccountingInvoicesAddResponse> operation
-              = new AccountingInvoicesAddOperation(sdkConfiguration, options);
+              = new AccountingInvoicesAdd.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -153,7 +153,7 @@ public class Invoices {
      */
     public AccountingInvoicesOneResponse get(AccountingInvoicesOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingInvoicesOneRequest, AccountingInvoicesOneResponse> operation
-              = new AccountingInvoicesOneOperation(sdkConfiguration, options);
+              = new AccountingInvoicesOne.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -193,7 +193,7 @@ public class Invoices {
      */
     public AccountingInvoicesUpdateResponse update(AccountingInvoicesUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingInvoicesUpdateRequest, AccountingInvoicesUpdateResponse> operation
-              = new AccountingInvoicesUpdateOperation(sdkConfiguration, options);
+              = new AccountingInvoicesUpdate.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -233,7 +233,7 @@ public class Invoices {
      */
     public AccountingInvoicesDeleteResponse delete(AccountingInvoicesDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingInvoicesDeleteRequest, AccountingInvoicesDeleteResponse> operation
-              = new AccountingInvoicesDeleteOperation(sdkConfiguration, options);
+              = new AccountingInvoicesDelete.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

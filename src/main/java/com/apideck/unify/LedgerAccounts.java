@@ -20,11 +20,11 @@ import com.apideck.unify.models.operations.AccountingLedgerAccountsOneResponse;
 import com.apideck.unify.models.operations.AccountingLedgerAccountsUpdateRequest;
 import com.apideck.unify.models.operations.AccountingLedgerAccountsUpdateRequestBuilder;
 import com.apideck.unify.models.operations.AccountingLedgerAccountsUpdateResponse;
-import com.apideck.unify.operations.AccountingLedgerAccountsAddOperation;
-import com.apideck.unify.operations.AccountingLedgerAccountsAllOperation;
-import com.apideck.unify.operations.AccountingLedgerAccountsDeleteOperation;
-import com.apideck.unify.operations.AccountingLedgerAccountsOneOperation;
-import com.apideck.unify.operations.AccountingLedgerAccountsUpdateOperation;
+import com.apideck.unify.operations.AccountingLedgerAccountsAdd;
+import com.apideck.unify.operations.AccountingLedgerAccountsAll;
+import com.apideck.unify.operations.AccountingLedgerAccountsDelete;
+import com.apideck.unify.operations.AccountingLedgerAccountsOne;
+import com.apideck.unify.operations.AccountingLedgerAccountsUpdate;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
@@ -73,7 +73,7 @@ public class LedgerAccounts {
      */
     public AccountingLedgerAccountsAllResponse list(AccountingLedgerAccountsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingLedgerAccountsAllRequest, AccountingLedgerAccountsAllResponse> operation
-              = new AccountingLedgerAccountsAllOperation(sdkConfiguration, options);
+              = new AccountingLedgerAccountsAll.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -113,7 +113,7 @@ public class LedgerAccounts {
      */
     public AccountingLedgerAccountsAddResponse create(AccountingLedgerAccountsAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingLedgerAccountsAddRequest, AccountingLedgerAccountsAddResponse> operation
-              = new AccountingLedgerAccountsAddOperation(sdkConfiguration, options);
+              = new AccountingLedgerAccountsAdd.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -153,7 +153,7 @@ public class LedgerAccounts {
      */
     public AccountingLedgerAccountsOneResponse get(AccountingLedgerAccountsOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingLedgerAccountsOneRequest, AccountingLedgerAccountsOneResponse> operation
-              = new AccountingLedgerAccountsOneOperation(sdkConfiguration, options);
+              = new AccountingLedgerAccountsOne.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -193,7 +193,7 @@ public class LedgerAccounts {
      */
     public AccountingLedgerAccountsUpdateResponse update(AccountingLedgerAccountsUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingLedgerAccountsUpdateRequest, AccountingLedgerAccountsUpdateResponse> operation
-              = new AccountingLedgerAccountsUpdateOperation(sdkConfiguration, options);
+              = new AccountingLedgerAccountsUpdate.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -233,7 +233,7 @@ public class LedgerAccounts {
      */
     public AccountingLedgerAccountsDeleteResponse delete(AccountingLedgerAccountsDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingLedgerAccountsDeleteRequest, AccountingLedgerAccountsDeleteResponse> operation
-              = new AccountingLedgerAccountsDeleteOperation(sdkConfiguration, options);
+              = new AccountingLedgerAccountsDelete.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

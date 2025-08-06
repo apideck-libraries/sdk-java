@@ -17,6 +17,7 @@ List Attachments
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.attachmentsAll" method="get" path="/accounting/attachments/{reference_type}/{reference_id}" -->
 ```java
 package hello.world;
 
@@ -82,6 +83,7 @@ Upload attachment
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.attachmentsUpload" method="post" path="/accounting/attachments/{reference_type}/{reference_id}" -->
 ```java
 package hello.world;
 
@@ -150,6 +152,7 @@ Get Attachment
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.attachmentsOne" method="get" path="/accounting/attachments/{reference_type}/{reference_id}/{id}" -->
 ```java
 package hello.world;
 
@@ -216,6 +219,7 @@ Delete Attachment
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.attachmentsDelete" method="delete" path="/accounting/attachments/{reference_type}/{reference_id}/{id}" -->
 ```java
 package hello.world;
 
@@ -281,6 +285,7 @@ Download Attachment
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.attachmentsDownload" method="get" path="/accounting/attachments/{reference_type}/{reference_id}/{id}/download" -->
 ```java
 package hello.world;
 

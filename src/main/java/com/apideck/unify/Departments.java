@@ -20,11 +20,11 @@ import com.apideck.unify.models.operations.AccountingDepartmentsOneResponse;
 import com.apideck.unify.models.operations.AccountingDepartmentsUpdateRequest;
 import com.apideck.unify.models.operations.AccountingDepartmentsUpdateRequestBuilder;
 import com.apideck.unify.models.operations.AccountingDepartmentsUpdateResponse;
-import com.apideck.unify.operations.AccountingDepartmentsAddOperation;
-import com.apideck.unify.operations.AccountingDepartmentsAllOperation;
-import com.apideck.unify.operations.AccountingDepartmentsDeleteOperation;
-import com.apideck.unify.operations.AccountingDepartmentsOneOperation;
-import com.apideck.unify.operations.AccountingDepartmentsUpdateOperation;
+import com.apideck.unify.operations.AccountingDepartmentsAdd;
+import com.apideck.unify.operations.AccountingDepartmentsAll;
+import com.apideck.unify.operations.AccountingDepartmentsDelete;
+import com.apideck.unify.operations.AccountingDepartmentsOne;
+import com.apideck.unify.operations.AccountingDepartmentsUpdate;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
@@ -73,7 +73,7 @@ public class Departments {
      */
     public AccountingDepartmentsAllResponse list(AccountingDepartmentsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingDepartmentsAllRequest, AccountingDepartmentsAllResponse> operation
-              = new AccountingDepartmentsAllOperation(sdkConfiguration, options);
+              = new AccountingDepartmentsAll.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -113,7 +113,7 @@ public class Departments {
      */
     public AccountingDepartmentsAddResponse create(AccountingDepartmentsAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingDepartmentsAddRequest, AccountingDepartmentsAddResponse> operation
-              = new AccountingDepartmentsAddOperation(sdkConfiguration, options);
+              = new AccountingDepartmentsAdd.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -153,7 +153,7 @@ public class Departments {
      */
     public AccountingDepartmentsOneResponse get(AccountingDepartmentsOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingDepartmentsOneRequest, AccountingDepartmentsOneResponse> operation
-              = new AccountingDepartmentsOneOperation(sdkConfiguration, options);
+              = new AccountingDepartmentsOne.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -193,7 +193,7 @@ public class Departments {
      */
     public AccountingDepartmentsUpdateResponse update(AccountingDepartmentsUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingDepartmentsUpdateRequest, AccountingDepartmentsUpdateResponse> operation
-              = new AccountingDepartmentsUpdateOperation(sdkConfiguration, options);
+              = new AccountingDepartmentsUpdate.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -233,7 +233,7 @@ public class Departments {
      */
     public AccountingDepartmentsDeleteResponse delete(AccountingDepartmentsDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingDepartmentsDeleteRequest, AccountingDepartmentsDeleteResponse> operation
-              = new AccountingDepartmentsDeleteOperation(sdkConfiguration, options);
+              = new AccountingDepartmentsDelete.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

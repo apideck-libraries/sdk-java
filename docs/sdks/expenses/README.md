@@ -17,6 +17,7 @@ List Expenses
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.expensesAll" method="get" path="/accounting/expenses" -->
 ```java
 package hello.world;
 
@@ -78,6 +79,7 @@ Create Expense
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.expensesAdd" method="post" path="/accounting/expenses" -->
 ```java
 package hello.world;
 
@@ -256,6 +258,7 @@ Get Expense
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.expensesOne" method="get" path="/accounting/expenses/{id}" -->
 ```java
 package hello.world;
 
@@ -318,6 +321,7 @@ Update Expense
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.expensesUpdate" method="patch" path="/accounting/expenses/{id}" -->
 ```java
 package hello.world;
 
@@ -471,6 +475,7 @@ Delete Expense
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.expensesDelete" method="delete" path="/accounting/expenses/{id}" -->
 ```java
 package hello.world;
 

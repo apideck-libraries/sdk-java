@@ -18,6 +18,7 @@ List Tax Rates. Note: Not all connectors return the actual rate/percentage value
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.taxRatesAll" method="get" path="/accounting/tax-rates" -->
 ```java
 package hello.world;
 
@@ -91,6 +92,7 @@ Create Tax Rate
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.taxRatesAdd" method="post" path="/accounting/tax-rates" -->
 ```java
 package hello.world;
 
@@ -216,6 +218,7 @@ Get Tax Rate. Note: Not all connectors return the actual rate/percentage value. 
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.taxRatesOne" method="get" path="/accounting/tax-rates/{id}" -->
 ```java
 package hello.world;
 
@@ -279,6 +282,7 @@ Update Tax Rate
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.taxRatesUpdate" method="patch" path="/accounting/tax-rates/{id}" -->
 ```java
 package hello.world;
 
@@ -436,6 +440,7 @@ Delete Tax Rate
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.taxRatesDelete" method="delete" path="/accounting/tax-rates/{id}" -->
 ```java
 package hello.world;
 

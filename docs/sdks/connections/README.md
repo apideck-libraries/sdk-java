@@ -21,6 +21,7 @@ OAuth2 supported integrations will contain authorize and revoke links to handle 
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="vault.connectionsAll" method="get" path="/vault/connections" -->
 ```java
 package hello.world;
 
@@ -81,6 +82,7 @@ Get a connection
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="vault.connectionsOne" method="get" path="/vault/connections/{unified_api}/{service_id}" -->
 ```java
 package hello.world;
 
@@ -141,6 +143,7 @@ Update a connection
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="vault.connectionsUpdate" method="patch" path="/vault/connections/{unified_api}/{service_id}" -->
 ```java
 package hello.world;
 
@@ -292,6 +295,7 @@ Deletes a connection
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="vault.connectionsDelete" method="delete" path="/vault/connections/{unified_api}/{service_id}" -->
 ```java
 package hello.world;
 
@@ -351,6 +355,7 @@ Import an authorized connection.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="vault.connectionsImport" method="post" path="/vault/connections/{unified_api}/{service_id}/import" -->
 ```java
 package hello.world;
 
@@ -435,6 +440,7 @@ Note:
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="vault.connectionsToken" method="post" path="/vault/connections/{unified_api}/{service_id}/token" -->
 ```java
 package hello.world;
 

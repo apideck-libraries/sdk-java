@@ -6,7 +6,7 @@ package com.apideck.unify.models.operations;
 import static com.apideck.unify.operations.Operations.RequestOperation;
 
 import com.apideck.unify.SDKConfiguration;
-import com.apideck.unify.operations.VaultConsumersOneOperation;
+import com.apideck.unify.operations.VaultConsumersOne;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -70,7 +70,7 @@ public class VaultConsumersOneRequestBuilder {
             .build());
 
         RequestOperation<VaultConsumersOneRequest, VaultConsumersOneResponse> operation
-              = new VaultConsumersOneOperation(sdkConfiguration, options);
+              = new VaultConsumersOne.Sync(sdkConfiguration, options);
         VaultConsumersOneRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

@@ -6,7 +6,7 @@ package com.apideck.unify.models.operations;
 import static com.apideck.unify.operations.Operations.RequestOperation;
 
 import com.apideck.unify.SDKConfiguration;
-import com.apideck.unify.operations.AtsApplicantsUpdateOperation;
+import com.apideck.unify.operations.AtsApplicantsUpdate;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -47,7 +47,7 @@ public class AtsApplicantsUpdateRequestBuilder {
             .build());
 
         RequestOperation<AtsApplicantsUpdateRequest, AtsApplicantsUpdateResponse> operation
-              = new AtsApplicantsUpdateOperation(sdkConfiguration, options);
+              = new AtsApplicantsUpdate.Sync(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

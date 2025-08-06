@@ -16,6 +16,7 @@ import java.util.Optional;
 public enum ConnectorStatus {
     LIVE("live"),
     BETA("beta"),
+    EARLY_ACCESS("early-access"),
     DEVELOPMENT("development"),
     CONSIDERING("considering");
 

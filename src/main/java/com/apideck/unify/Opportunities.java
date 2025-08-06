@@ -20,11 +20,11 @@ import com.apideck.unify.models.operations.CrmOpportunitiesOneResponse;
 import com.apideck.unify.models.operations.CrmOpportunitiesUpdateRequest;
 import com.apideck.unify.models.operations.CrmOpportunitiesUpdateRequestBuilder;
 import com.apideck.unify.models.operations.CrmOpportunitiesUpdateResponse;
-import com.apideck.unify.operations.CrmOpportunitiesAddOperation;
-import com.apideck.unify.operations.CrmOpportunitiesAllOperation;
-import com.apideck.unify.operations.CrmOpportunitiesDeleteOperation;
-import com.apideck.unify.operations.CrmOpportunitiesOneOperation;
-import com.apideck.unify.operations.CrmOpportunitiesUpdateOperation;
+import com.apideck.unify.operations.CrmOpportunitiesAdd;
+import com.apideck.unify.operations.CrmOpportunitiesAll;
+import com.apideck.unify.operations.CrmOpportunitiesDelete;
+import com.apideck.unify.operations.CrmOpportunitiesOne;
+import com.apideck.unify.operations.CrmOpportunitiesUpdate;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
@@ -73,7 +73,7 @@ public class Opportunities {
      */
     public CrmOpportunitiesAllResponse list(CrmOpportunitiesAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmOpportunitiesAllRequest, CrmOpportunitiesAllResponse> operation
-              = new CrmOpportunitiesAllOperation(sdkConfiguration, options);
+              = new CrmOpportunitiesAll.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -113,7 +113,7 @@ public class Opportunities {
      */
     public CrmOpportunitiesAddResponse create(CrmOpportunitiesAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmOpportunitiesAddRequest, CrmOpportunitiesAddResponse> operation
-              = new CrmOpportunitiesAddOperation(sdkConfiguration, options);
+              = new CrmOpportunitiesAdd.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -153,7 +153,7 @@ public class Opportunities {
      */
     public CrmOpportunitiesOneResponse get(CrmOpportunitiesOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmOpportunitiesOneRequest, CrmOpportunitiesOneResponse> operation
-              = new CrmOpportunitiesOneOperation(sdkConfiguration, options);
+              = new CrmOpportunitiesOne.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -193,7 +193,7 @@ public class Opportunities {
      */
     public CrmOpportunitiesUpdateResponse update(CrmOpportunitiesUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmOpportunitiesUpdateRequest, CrmOpportunitiesUpdateResponse> operation
-              = new CrmOpportunitiesUpdateOperation(sdkConfiguration, options);
+              = new CrmOpportunitiesUpdate.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -233,7 +233,7 @@ public class Opportunities {
      */
     public CrmOpportunitiesDeleteResponse delete(CrmOpportunitiesDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmOpportunitiesDeleteRequest, CrmOpportunitiesDeleteResponse> operation
-              = new CrmOpportunitiesDeleteOperation(sdkConfiguration, options);
+              = new CrmOpportunitiesDelete.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

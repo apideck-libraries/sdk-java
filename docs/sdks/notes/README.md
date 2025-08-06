@@ -17,6 +17,7 @@ List notes
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="crm.notesAll" method="get" path="/crm/notes" -->
 ```java
 package hello.world;
 
@@ -82,6 +83,7 @@ Create note
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="crm.notesAdd" method="post" path="/crm/notes" -->
 ```java
 package hello.world;
 
@@ -206,6 +208,7 @@ Get note
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="crm.notesOne" method="get" path="/crm/notes/{id}" -->
 ```java
 package hello.world;
 
@@ -269,6 +272,7 @@ Update note
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="crm.notesUpdate" method="patch" path="/crm/notes/{id}" -->
 ```java
 package hello.world;
 
@@ -394,6 +398,7 @@ Delete note
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="crm.notesDelete" method="delete" path="/crm/notes/{id}" -->
 ```java
 package hello.world;
 

@@ -11,8 +11,8 @@ import com.apideck.unify.models.operations.HrisPayrollsAllResponse;
 import com.apideck.unify.models.operations.HrisPayrollsOneRequest;
 import com.apideck.unify.models.operations.HrisPayrollsOneRequestBuilder;
 import com.apideck.unify.models.operations.HrisPayrollsOneResponse;
-import com.apideck.unify.operations.HrisPayrollsAllOperation;
-import com.apideck.unify.operations.HrisPayrollsOneOperation;
+import com.apideck.unify.operations.HrisPayrollsAll;
+import com.apideck.unify.operations.HrisPayrollsOne;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
@@ -61,7 +61,7 @@ public class Payrolls {
      */
     public HrisPayrollsAllResponse list(HrisPayrollsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<HrisPayrollsAllRequest, HrisPayrollsAllResponse> operation
-              = new HrisPayrollsAllOperation(sdkConfiguration, options);
+              = new HrisPayrollsAll.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -101,7 +101,7 @@ public class Payrolls {
      */
     public HrisPayrollsOneResponse get(HrisPayrollsOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<HrisPayrollsOneRequest, HrisPayrollsOneResponse> operation
-              = new HrisPayrollsOneOperation(sdkConfiguration, options);
+              = new HrisPayrollsOne.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

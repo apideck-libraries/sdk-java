@@ -8,7 +8,7 @@ import static com.apideck.unify.operations.Operations.RequestOperation;
 import com.apideck.unify.models.operations.ConnectorApiResourcesOneRequest;
 import com.apideck.unify.models.operations.ConnectorApiResourcesOneRequestBuilder;
 import com.apideck.unify.models.operations.ConnectorApiResourcesOneResponse;
-import com.apideck.unify.operations.ConnectorApiResourcesOneOperation;
+import com.apideck.unify.operations.ConnectorApiResourcesOne;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
@@ -71,7 +71,7 @@ public class ApiResources {
                 .resourceId(resourceId)
                 .build();
         RequestOperation<ConnectorApiResourcesOneRequest, ConnectorApiResourcesOneResponse> operation
-              = new ConnectorApiResourcesOneOperation(sdkConfiguration, options);
+              = new ConnectorApiResourcesOne.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

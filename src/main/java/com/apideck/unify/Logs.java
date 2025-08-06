@@ -8,7 +8,7 @@ import static com.apideck.unify.operations.Operations.RequestOperation;
 import com.apideck.unify.models.operations.VaultLogsAllRequest;
 import com.apideck.unify.models.operations.VaultLogsAllRequestBuilder;
 import com.apideck.unify.models.operations.VaultLogsAllResponse;
-import com.apideck.unify.operations.VaultLogsAllOperation;
+import com.apideck.unify.operations.VaultLogsAll;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
@@ -57,7 +57,7 @@ public class Logs {
      */
     public VaultLogsAllResponse list(VaultLogsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<VaultLogsAllRequest, VaultLogsAllResponse> operation
-              = new VaultLogsAllOperation(sdkConfiguration, options);
+              = new VaultLogsAll.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -6,8 +6,8 @@ package com.apideck.unify.models.operations;
 import static com.apideck.unify.operations.Operations.RequestOperation;
 
 import com.apideck.unify.SDKConfiguration;
-import com.apideck.unify.models.components.ConsumerInput;
-import com.apideck.unify.operations.VaultConsumersAddOperation;
+import com.apideck.unify.models.components.CreateConsumerRequest;
+import com.apideck.unify.operations.VaultConsumersAdd;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -18,7 +18,7 @@ import java.util.Optional;
 public class VaultConsumersAddRequestBuilder {
 
     private Optional<String> appId = Optional.empty();
-    private ConsumerInput consumer;
+    private CreateConsumerRequest createConsumerRequest;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
 
@@ -38,9 +38,9 @@ public class VaultConsumersAddRequestBuilder {
         return this;
     }
 
-    public VaultConsumersAddRequestBuilder consumer(ConsumerInput consumer) {
-        Utils.checkNotNull(consumer, "consumer");
-        this.consumer = consumer;
+    public VaultConsumersAddRequestBuilder createConsumerRequest(CreateConsumerRequest createConsumerRequest) {
+        Utils.checkNotNull(createConsumerRequest, "createConsumerRequest");
+        this.createConsumerRequest = createConsumerRequest;
         return this;
     }
                 
@@ -60,7 +60,7 @@ public class VaultConsumersAddRequestBuilder {
     private VaultConsumersAddRequest buildRequest() {
 
         VaultConsumersAddRequest request = new VaultConsumersAddRequest(appId,
-            consumer);
+            createConsumerRequest);
 
         return request;
     }
@@ -71,7 +71,7 @@ public class VaultConsumersAddRequestBuilder {
             .build());
 
         RequestOperation<VaultConsumersAddRequest, VaultConsumersAddResponse> operation
-              = new VaultConsumersAddOperation(sdkConfiguration, options);
+              = new VaultConsumersAdd.Sync(sdkConfiguration, options);
         VaultConsumersAddRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

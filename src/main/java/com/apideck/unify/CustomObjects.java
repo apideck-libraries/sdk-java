@@ -20,11 +20,11 @@ import com.apideck.unify.models.operations.CrmCustomObjectsOneResponse;
 import com.apideck.unify.models.operations.CrmCustomObjectsUpdateRequest;
 import com.apideck.unify.models.operations.CrmCustomObjectsUpdateRequestBuilder;
 import com.apideck.unify.models.operations.CrmCustomObjectsUpdateResponse;
-import com.apideck.unify.operations.CrmCustomObjectsAddOperation;
-import com.apideck.unify.operations.CrmCustomObjectsAllOperation;
-import com.apideck.unify.operations.CrmCustomObjectsDeleteOperation;
-import com.apideck.unify.operations.CrmCustomObjectsOneOperation;
-import com.apideck.unify.operations.CrmCustomObjectsUpdateOperation;
+import com.apideck.unify.operations.CrmCustomObjectsAdd;
+import com.apideck.unify.operations.CrmCustomObjectsAll;
+import com.apideck.unify.operations.CrmCustomObjectsDelete;
+import com.apideck.unify.operations.CrmCustomObjectsOne;
+import com.apideck.unify.operations.CrmCustomObjectsUpdate;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
@@ -73,7 +73,7 @@ public class CustomObjects {
      */
     public CrmCustomObjectsAllResponse list(CrmCustomObjectsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmCustomObjectsAllRequest, CrmCustomObjectsAllResponse> operation
-              = new CrmCustomObjectsAllOperation(sdkConfiguration, options);
+              = new CrmCustomObjectsAll.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -113,7 +113,7 @@ public class CustomObjects {
      */
     public CrmCustomObjectsAddResponse create(CrmCustomObjectsAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmCustomObjectsAddRequest, CrmCustomObjectsAddResponse> operation
-              = new CrmCustomObjectsAddOperation(sdkConfiguration, options);
+              = new CrmCustomObjectsAdd.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -153,7 +153,7 @@ public class CustomObjects {
      */
     public CrmCustomObjectsOneResponse get(CrmCustomObjectsOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmCustomObjectsOneRequest, CrmCustomObjectsOneResponse> operation
-              = new CrmCustomObjectsOneOperation(sdkConfiguration, options);
+              = new CrmCustomObjectsOne.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -193,7 +193,7 @@ public class CustomObjects {
      */
     public CrmCustomObjectsUpdateResponse update(CrmCustomObjectsUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmCustomObjectsUpdateRequest, CrmCustomObjectsUpdateResponse> operation
-              = new CrmCustomObjectsUpdateOperation(sdkConfiguration, options);
+              = new CrmCustomObjectsUpdate.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -233,7 +233,7 @@ public class CustomObjects {
      */
     public CrmCustomObjectsDeleteResponse delete(CrmCustomObjectsDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmCustomObjectsDeleteRequest, CrmCustomObjectsDeleteResponse> operation
-              = new CrmCustomObjectsDeleteOperation(sdkConfiguration, options);
+              = new CrmCustomObjectsDelete.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -14,6 +14,7 @@ List APIs
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="connector.apisAll" method="get" path="/connector/apis" -->
 ```java
 package hello.world;
 
@@ -75,6 +76,7 @@ Get API
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="connector.apisOne" method="get" path="/connector/apis/{id}" -->
 ```java
 package hello.world;
 

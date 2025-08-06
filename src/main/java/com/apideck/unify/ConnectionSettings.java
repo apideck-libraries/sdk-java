@@ -11,8 +11,8 @@ import com.apideck.unify.models.operations.VaultConnectionSettingsAllResponse;
 import com.apideck.unify.models.operations.VaultConnectionSettingsUpdateRequest;
 import com.apideck.unify.models.operations.VaultConnectionSettingsUpdateRequestBuilder;
 import com.apideck.unify.models.operations.VaultConnectionSettingsUpdateResponse;
-import com.apideck.unify.operations.VaultConnectionSettingsAllOperation;
-import com.apideck.unify.operations.VaultConnectionSettingsUpdateOperation;
+import com.apideck.unify.operations.VaultConnectionSettingsAll;
+import com.apideck.unify.operations.VaultConnectionSettingsUpdate;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
@@ -61,7 +61,7 @@ public class ConnectionSettings {
      */
     public VaultConnectionSettingsAllResponse list(VaultConnectionSettingsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<VaultConnectionSettingsAllRequest, VaultConnectionSettingsAllResponse> operation
-              = new VaultConnectionSettingsAllOperation(sdkConfiguration, options);
+              = new VaultConnectionSettingsAll.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -101,7 +101,7 @@ public class ConnectionSettings {
      */
     public VaultConnectionSettingsUpdateResponse update(VaultConnectionSettingsUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<VaultConnectionSettingsUpdateRequest, VaultConnectionSettingsUpdateResponse> operation
-              = new VaultConnectionSettingsUpdateOperation(sdkConfiguration, options);
+              = new VaultConnectionSettingsUpdate.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

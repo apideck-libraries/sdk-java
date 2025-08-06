@@ -17,6 +17,7 @@ List Invoice Items
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.invoiceItemsAll" method="get" path="/accounting/invoice-items" -->
 ```java
 package hello.world;
 
@@ -91,6 +92,7 @@ Create Invoice Item
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.invoiceItemsAdd" method="post" path="/accounting/invoice-items" -->
 ```java
 package hello.world;
 
@@ -227,6 +229,7 @@ Get Invoice Item
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.invoiceItemsOne" method="get" path="/accounting/invoice-items/{id}" -->
 ```java
 package hello.world;
 
@@ -295,6 +298,7 @@ Update Invoice Item
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.invoiceItemsUpdate" method="patch" path="/accounting/invoice-items/{id}" -->
 ```java
 package hello.world;
 
@@ -440,6 +444,7 @@ Delete Invoice Item
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.invoiceItemsDelete" method="delete" path="/accounting/invoice-items/{id}" -->
 ```java
 package hello.world;
 

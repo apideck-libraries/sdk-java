@@ -8,7 +8,7 @@ import static com.apideck.unify.operations.Operations.RequestOperation;
 import com.apideck.unify.models.operations.VaultConsumerRequestCountsAllRequest;
 import com.apideck.unify.models.operations.VaultConsumerRequestCountsAllRequestBuilder;
 import com.apideck.unify.models.operations.VaultConsumerRequestCountsAllResponse;
-import com.apideck.unify.operations.VaultConsumerRequestCountsAllOperation;
+import com.apideck.unify.operations.VaultConsumerRequestCountsAll;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
@@ -77,7 +77,7 @@ public class ConsumerRequestCounts {
                 .endDatetime(endDatetime)
                 .build();
         RequestOperation<VaultConsumerRequestCountsAllRequest, VaultConsumerRequestCountsAllResponse> operation
-              = new VaultConsumerRequestCountsAllOperation(sdkConfiguration, options);
+              = new VaultConsumerRequestCountsAll.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

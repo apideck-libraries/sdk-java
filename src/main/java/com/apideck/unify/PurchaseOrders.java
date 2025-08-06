@@ -20,11 +20,11 @@ import com.apideck.unify.models.operations.AccountingPurchaseOrdersOneResponse;
 import com.apideck.unify.models.operations.AccountingPurchaseOrdersUpdateRequest;
 import com.apideck.unify.models.operations.AccountingPurchaseOrdersUpdateRequestBuilder;
 import com.apideck.unify.models.operations.AccountingPurchaseOrdersUpdateResponse;
-import com.apideck.unify.operations.AccountingPurchaseOrdersAddOperation;
-import com.apideck.unify.operations.AccountingPurchaseOrdersAllOperation;
-import com.apideck.unify.operations.AccountingPurchaseOrdersDeleteOperation;
-import com.apideck.unify.operations.AccountingPurchaseOrdersOneOperation;
-import com.apideck.unify.operations.AccountingPurchaseOrdersUpdateOperation;
+import com.apideck.unify.operations.AccountingPurchaseOrdersAdd;
+import com.apideck.unify.operations.AccountingPurchaseOrdersAll;
+import com.apideck.unify.operations.AccountingPurchaseOrdersDelete;
+import com.apideck.unify.operations.AccountingPurchaseOrdersOne;
+import com.apideck.unify.operations.AccountingPurchaseOrdersUpdate;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
@@ -73,7 +73,7 @@ public class PurchaseOrders {
      */
     public AccountingPurchaseOrdersAllResponse list(AccountingPurchaseOrdersAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingPurchaseOrdersAllRequest, AccountingPurchaseOrdersAllResponse> operation
-              = new AccountingPurchaseOrdersAllOperation(sdkConfiguration, options);
+              = new AccountingPurchaseOrdersAll.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -113,7 +113,7 @@ public class PurchaseOrders {
      */
     public AccountingPurchaseOrdersAddResponse create(AccountingPurchaseOrdersAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingPurchaseOrdersAddRequest, AccountingPurchaseOrdersAddResponse> operation
-              = new AccountingPurchaseOrdersAddOperation(sdkConfiguration, options);
+              = new AccountingPurchaseOrdersAdd.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -153,7 +153,7 @@ public class PurchaseOrders {
      */
     public AccountingPurchaseOrdersOneResponse get(AccountingPurchaseOrdersOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingPurchaseOrdersOneRequest, AccountingPurchaseOrdersOneResponse> operation
-              = new AccountingPurchaseOrdersOneOperation(sdkConfiguration, options);
+              = new AccountingPurchaseOrdersOne.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -193,7 +193,7 @@ public class PurchaseOrders {
      */
     public AccountingPurchaseOrdersUpdateResponse update(AccountingPurchaseOrdersUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingPurchaseOrdersUpdateRequest, AccountingPurchaseOrdersUpdateResponse> operation
-              = new AccountingPurchaseOrdersUpdateOperation(sdkConfiguration, options);
+              = new AccountingPurchaseOrdersUpdate.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -233,7 +233,7 @@ public class PurchaseOrders {
      */
     public AccountingPurchaseOrdersDeleteResponse delete(AccountingPurchaseOrdersDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingPurchaseOrdersDeleteRequest, AccountingPurchaseOrdersDeleteResponse> operation
-              = new AccountingPurchaseOrdersDeleteOperation(sdkConfiguration, options);
+              = new AccountingPurchaseOrdersDelete.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

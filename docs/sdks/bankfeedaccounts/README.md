@@ -17,6 +17,7 @@ List Bank Feed Accounts
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.bankFeedAccountsAll" method="get" path="/accounting/bank-feed-accounts" -->
 ```java
 package hello.world;
 
@@ -82,6 +83,7 @@ Create Bank Feed Account
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.bankFeedAccountsAdd" method="post" path="/accounting/bank-feed-accounts" -->
 ```java
 package hello.world;
 
@@ -174,6 +176,7 @@ Get Bank Feed Account
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.bankFeedAccountsOne" method="get" path="/accounting/bank-feed-accounts/{id}" -->
 ```java
 package hello.world;
 
@@ -237,6 +240,7 @@ Update Bank Feed Account
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.bankFeedAccountsUpdate" method="patch" path="/accounting/bank-feed-accounts/{id}" -->
 ```java
 package hello.world;
 
@@ -324,6 +328,7 @@ Delete Bank Feed Account
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.bankFeedAccountsDelete" method="delete" path="/accounting/bank-feed-accounts/{id}" -->
 ```java
 package hello.world;
 

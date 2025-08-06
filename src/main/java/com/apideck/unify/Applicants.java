@@ -20,11 +20,11 @@ import com.apideck.unify.models.operations.AtsApplicantsOneResponse;
 import com.apideck.unify.models.operations.AtsApplicantsUpdateRequest;
 import com.apideck.unify.models.operations.AtsApplicantsUpdateRequestBuilder;
 import com.apideck.unify.models.operations.AtsApplicantsUpdateResponse;
-import com.apideck.unify.operations.AtsApplicantsAddOperation;
-import com.apideck.unify.operations.AtsApplicantsAllOperation;
-import com.apideck.unify.operations.AtsApplicantsDeleteOperation;
-import com.apideck.unify.operations.AtsApplicantsOneOperation;
-import com.apideck.unify.operations.AtsApplicantsUpdateOperation;
+import com.apideck.unify.operations.AtsApplicantsAdd;
+import com.apideck.unify.operations.AtsApplicantsAll;
+import com.apideck.unify.operations.AtsApplicantsDelete;
+import com.apideck.unify.operations.AtsApplicantsOne;
+import com.apideck.unify.operations.AtsApplicantsUpdate;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
@@ -73,7 +73,7 @@ public class Applicants {
      */
     public AtsApplicantsAllResponse list(AtsApplicantsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AtsApplicantsAllRequest, AtsApplicantsAllResponse> operation
-              = new AtsApplicantsAllOperation(sdkConfiguration, options);
+              = new AtsApplicantsAll.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -113,7 +113,7 @@ public class Applicants {
      */
     public AtsApplicantsAddResponse create(AtsApplicantsAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AtsApplicantsAddRequest, AtsApplicantsAddResponse> operation
-              = new AtsApplicantsAddOperation(sdkConfiguration, options);
+              = new AtsApplicantsAdd.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -153,7 +153,7 @@ public class Applicants {
      */
     public AtsApplicantsOneResponse get(AtsApplicantsOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AtsApplicantsOneRequest, AtsApplicantsOneResponse> operation
-              = new AtsApplicantsOneOperation(sdkConfiguration, options);
+              = new AtsApplicantsOne.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -193,7 +193,7 @@ public class Applicants {
      */
     public AtsApplicantsUpdateResponse update(AtsApplicantsUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AtsApplicantsUpdateRequest, AtsApplicantsUpdateResponse> operation
-              = new AtsApplicantsUpdateOperation(sdkConfiguration, options);
+              = new AtsApplicantsUpdate.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -233,7 +233,7 @@ public class Applicants {
      */
     public AtsApplicantsDeleteResponse delete(AtsApplicantsDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AtsApplicantsDeleteRequest, AtsApplicantsDeleteResponse> operation
-              = new AtsApplicantsDeleteOperation(sdkConfiguration, options);
+              = new AtsApplicantsDelete.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

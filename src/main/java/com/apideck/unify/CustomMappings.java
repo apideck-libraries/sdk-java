@@ -8,7 +8,7 @@ import static com.apideck.unify.operations.Operations.RequestOperation;
 import com.apideck.unify.models.operations.VaultCustomMappingsAllRequest;
 import com.apideck.unify.models.operations.VaultCustomMappingsAllRequestBuilder;
 import com.apideck.unify.models.operations.VaultCustomMappingsAllResponse;
-import com.apideck.unify.operations.VaultCustomMappingsAllOperation;
+import com.apideck.unify.operations.VaultCustomMappingsAll;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
@@ -74,7 +74,7 @@ public class CustomMappings {
                 .serviceId(serviceId)
                 .build();
         RequestOperation<VaultCustomMappingsAllRequest, VaultCustomMappingsAllResponse> operation
-              = new VaultCustomMappingsAllOperation(sdkConfiguration, options);
+              = new VaultCustomMappingsAll.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

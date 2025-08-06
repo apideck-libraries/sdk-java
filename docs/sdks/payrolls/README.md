@@ -14,6 +14,7 @@ List Payroll
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="hris.payrollsAll" method="get" path="/hris/payrolls" -->
 ```java
 package hello.world;
 
@@ -84,6 +85,7 @@ Get Payroll
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="hris.payrollsOne" method="get" path="/hris/payrolls/{payroll_id}" -->
 ```java
 package hello.world;
 

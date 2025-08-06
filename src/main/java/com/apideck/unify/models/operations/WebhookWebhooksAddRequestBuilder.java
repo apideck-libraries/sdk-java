@@ -7,7 +7,7 @@ import static com.apideck.unify.operations.Operations.RequestOperation;
 
 import com.apideck.unify.SDKConfiguration;
 import com.apideck.unify.models.components.CreateWebhookRequest;
-import com.apideck.unify.operations.WebhookWebhooksAddOperation;
+import com.apideck.unify.operations.WebhookWebhooksAdd;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -71,7 +71,7 @@ public class WebhookWebhooksAddRequestBuilder {
             .build());
 
         RequestOperation<WebhookWebhooksAddRequest, WebhookWebhooksAddResponse> operation
-              = new WebhookWebhooksAddOperation(sdkConfiguration, options);
+              = new WebhookWebhooksAdd.Sync(sdkConfiguration, options);
         WebhookWebhooksAddRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

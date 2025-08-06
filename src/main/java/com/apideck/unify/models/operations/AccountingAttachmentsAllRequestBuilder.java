@@ -9,7 +9,7 @@ import static com.apideck.unify.utils.Utils.transform;
 import static com.apideck.unify.utils.Utils.toStream;
 
 import com.apideck.unify.SDKConfiguration;
-import com.apideck.unify.operations.AccountingAttachmentsAllOperation;
+import com.apideck.unify.operations.AccountingAttachmentsAll;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -58,7 +58,7 @@ public class AccountingAttachmentsAllRequestBuilder {
             .build());
 
         RequestOperation<AccountingAttachmentsAllRequest, AccountingAttachmentsAllResponse> operation
-              = new AccountingAttachmentsAllOperation(sdkConfiguration, options);
+              = new AccountingAttachmentsAll.Sync(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -82,7 +82,7 @@ public class AccountingAttachmentsAllRequestBuilder {
             .build());
 
         RequestOperation<AccountingAttachmentsAllRequest, AccountingAttachmentsAllResponse> operation
-              = new AccountingAttachmentsAllOperation(sdkConfiguration, options);
+              = new AccountingAttachmentsAll.Sync(sdkConfiguration, options);
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,
             new CursorTracker<>("$.meta.cursors.next", String.class),

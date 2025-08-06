@@ -20,11 +20,11 @@ import com.apideck.unify.models.operations.FileStorageFoldersOneResponse;
 import com.apideck.unify.models.operations.FileStorageFoldersUpdateRequest;
 import com.apideck.unify.models.operations.FileStorageFoldersUpdateRequestBuilder;
 import com.apideck.unify.models.operations.FileStorageFoldersUpdateResponse;
-import com.apideck.unify.operations.FileStorageFoldersAddOperation;
-import com.apideck.unify.operations.FileStorageFoldersCopyOperation;
-import com.apideck.unify.operations.FileStorageFoldersDeleteOperation;
-import com.apideck.unify.operations.FileStorageFoldersOneOperation;
-import com.apideck.unify.operations.FileStorageFoldersUpdateOperation;
+import com.apideck.unify.operations.FileStorageFoldersAdd;
+import com.apideck.unify.operations.FileStorageFoldersCopy;
+import com.apideck.unify.operations.FileStorageFoldersDelete;
+import com.apideck.unify.operations.FileStorageFoldersOne;
+import com.apideck.unify.operations.FileStorageFoldersUpdate;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
@@ -73,7 +73,7 @@ public class Folders {
      */
     public FileStorageFoldersAddResponse create(FileStorageFoldersAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageFoldersAddRequest, FileStorageFoldersAddResponse> operation
-              = new FileStorageFoldersAddOperation(sdkConfiguration, options);
+              = new FileStorageFoldersAdd.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -113,7 +113,7 @@ public class Folders {
      */
     public FileStorageFoldersOneResponse get(FileStorageFoldersOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageFoldersOneRequest, FileStorageFoldersOneResponse> operation
-              = new FileStorageFoldersOneOperation(sdkConfiguration, options);
+              = new FileStorageFoldersOne.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -153,7 +153,7 @@ public class Folders {
      */
     public FileStorageFoldersUpdateResponse update(FileStorageFoldersUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageFoldersUpdateRequest, FileStorageFoldersUpdateResponse> operation
-              = new FileStorageFoldersUpdateOperation(sdkConfiguration, options);
+              = new FileStorageFoldersUpdate.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -193,7 +193,7 @@ public class Folders {
      */
     public FileStorageFoldersDeleteResponse delete(FileStorageFoldersDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageFoldersDeleteRequest, FileStorageFoldersDeleteResponse> operation
-              = new FileStorageFoldersDeleteOperation(sdkConfiguration, options);
+              = new FileStorageFoldersDelete.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -233,7 +233,7 @@ public class Folders {
      */
     public FileStorageFoldersCopyResponse copy(FileStorageFoldersCopyRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageFoldersCopyRequest, FileStorageFoldersCopyResponse> operation
-              = new FileStorageFoldersCopyOperation(sdkConfiguration, options);
+              = new FileStorageFoldersCopy.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

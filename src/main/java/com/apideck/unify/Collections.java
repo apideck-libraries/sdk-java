@@ -11,8 +11,8 @@ import com.apideck.unify.models.operations.IssueTrackingCollectionsAllResponse;
 import com.apideck.unify.models.operations.IssueTrackingCollectionsOneRequest;
 import com.apideck.unify.models.operations.IssueTrackingCollectionsOneRequestBuilder;
 import com.apideck.unify.models.operations.IssueTrackingCollectionsOneResponse;
-import com.apideck.unify.operations.IssueTrackingCollectionsAllOperation;
-import com.apideck.unify.operations.IssueTrackingCollectionsOneOperation;
+import com.apideck.unify.operations.IssueTrackingCollectionsAll;
+import com.apideck.unify.operations.IssueTrackingCollectionsOne;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
@@ -61,7 +61,7 @@ public class Collections {
      */
     public IssueTrackingCollectionsAllResponse list(IssueTrackingCollectionsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<IssueTrackingCollectionsAllRequest, IssueTrackingCollectionsAllResponse> operation
-              = new IssueTrackingCollectionsAllOperation(sdkConfiguration, options);
+              = new IssueTrackingCollectionsAll.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -101,7 +101,7 @@ public class Collections {
      */
     public IssueTrackingCollectionsOneResponse get(IssueTrackingCollectionsOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<IssueTrackingCollectionsOneRequest, IssueTrackingCollectionsOneResponse> operation
-              = new IssueTrackingCollectionsOneOperation(sdkConfiguration, options);
+              = new IssueTrackingCollectionsOne.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

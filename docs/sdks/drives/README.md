@@ -17,6 +17,7 @@ List Drives
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="fileStorage.drivesAll" method="get" path="/file-storage/drives" -->
 ```java
 package hello.world;
 
@@ -83,6 +84,7 @@ Create Drive
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="fileStorage.drivesAdd" method="post" path="/file-storage/drives" -->
 ```java
 package hello.world;
 
@@ -182,6 +184,7 @@ Get Drive
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="fileStorage.drivesOne" method="get" path="/file-storage/drives/{id}" -->
 ```java
 package hello.world;
 
@@ -245,6 +248,7 @@ Update Drive
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="fileStorage.drivesUpdate" method="patch" path="/file-storage/drives/{id}" -->
 ```java
 package hello.world;
 
@@ -325,6 +329,7 @@ Delete Drive
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="fileStorage.drivesDelete" method="delete" path="/file-storage/drives/{id}" -->
 ```java
 package hello.world;
 

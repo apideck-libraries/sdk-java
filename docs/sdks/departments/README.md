@@ -17,6 +17,7 @@ List Departments
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.departmentsAll" method="get" path="/accounting/departments" -->
 ```java
 package hello.world;
 
@@ -83,6 +84,7 @@ Create Department
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.departmentsAdd" method="post" path="/accounting/departments" -->
 ```java
 package hello.world;
 
@@ -175,6 +177,7 @@ Get Department
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.departmentsOne" method="get" path="/accounting/departments/{id}" -->
 ```java
 package hello.world;
 
@@ -238,6 +241,7 @@ Update Department
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.departmentsUpdate" method="patch" path="/accounting/departments/{id}" -->
 ```java
 package hello.world;
 
@@ -343,6 +347,7 @@ Delete Department
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.departmentsDelete" method="delete" path="/accounting/departments/{id}" -->
 ```java
 package hello.world;
 

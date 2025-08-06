@@ -8,7 +8,7 @@ import static com.apideck.unify.operations.Operations.RequestOperation;
 import com.apideck.unify.models.operations.HrisEmployeeSchedulesAllRequest;
 import com.apideck.unify.models.operations.HrisEmployeeSchedulesAllRequestBuilder;
 import com.apideck.unify.models.operations.HrisEmployeeSchedulesAllResponse;
-import com.apideck.unify.operations.HrisEmployeeSchedulesAllOperation;
+import com.apideck.unify.operations.HrisEmployeeSchedulesAll;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
@@ -57,7 +57,7 @@ public class EmployeeSchedules {
      */
     public HrisEmployeeSchedulesAllResponse list(HrisEmployeeSchedulesAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<HrisEmployeeSchedulesAllRequest, HrisEmployeeSchedulesAllResponse> operation
-              = new HrisEmployeeSchedulesAllOperation(sdkConfiguration, options);
+              = new HrisEmployeeSchedulesAll.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

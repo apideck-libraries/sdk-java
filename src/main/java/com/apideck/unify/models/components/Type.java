@@ -20,6 +20,7 @@ public enum Type {
     OFFICE("office"),
     SHIPPING("shipping"),
     BILLING("billing"),
+    WORK("work"),
     OTHER("other");
 
     @JsonValue

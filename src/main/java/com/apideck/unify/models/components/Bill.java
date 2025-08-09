@@ -39,6 +39,13 @@ public class Bill {
     private JsonNullable<String> downstreamId;
 
     /**
+     * Id to be displayed.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("display_id")
+    private JsonNullable<String> displayId;
+
+    /**
      * Reference to supplier bill number
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -305,6 +312,7 @@ public class Bill {
     public Bill(
             @JsonProperty("id") Optional<String> id,
             @JsonProperty("downstream_id") JsonNullable<String> downstreamId,
+            @JsonProperty("display_id") JsonNullable<String> displayId,
             @JsonProperty("bill_number") JsonNullable<String> billNumber,
             @JsonProperty("supplier") JsonNullable<? extends LinkedSupplier> supplier,
             @JsonProperty("company_id") JsonNullable<String> companyId,
@@ -346,6 +354,7 @@ public class Bill {
             @JsonProperty("accounting_period") JsonNullable<String> accountingPeriod) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(downstreamId, "downstreamId");
+        Utils.checkNotNull(displayId, "displayId");
         Utils.checkNotNull(billNumber, "billNumber");
         Utils.checkNotNull(supplier, "supplier");
         Utils.checkNotNull(companyId, "companyId");
@@ -387,6 +396,7 @@ public class Bill {
         Utils.checkNotNull(accountingPeriod, "accountingPeriod");
         this.id = id;
         this.downstreamId = downstreamId;
+        this.displayId = displayId;
         this.billNumber = billNumber;
         this.supplier = supplier;
         this.companyId = companyId;
@@ -433,16 +443,16 @@ public class Bill {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -459,6 +469,14 @@ public class Bill {
     @JsonIgnore
     public JsonNullable<String> downstreamId() {
         return downstreamId;
+    }
+
+    /**
+     * Id to be displayed.
+     */
+    @JsonIgnore
+    public JsonNullable<String> displayId() {
+        return displayId;
     }
 
     /**
@@ -807,6 +825,24 @@ public class Bill {
     public Bill withDownstreamId(JsonNullable<String> downstreamId) {
         Utils.checkNotNull(downstreamId, "downstreamId");
         this.downstreamId = downstreamId;
+        return this;
+    }
+
+    /**
+     * Id to be displayed.
+     */
+    public Bill withDisplayId(String displayId) {
+        Utils.checkNotNull(displayId, "displayId");
+        this.displayId = JsonNullable.of(displayId);
+        return this;
+    }
+
+    /**
+     * Id to be displayed.
+     */
+    public Bill withDisplayId(JsonNullable<String> displayId) {
+        Utils.checkNotNull(displayId, "displayId");
+        this.displayId = displayId;
         return this;
     }
 
@@ -1498,6 +1534,7 @@ public class Bill {
         return 
             Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.downstreamId, other.downstreamId) &&
+            Utils.enhancedDeepEquals(this.displayId, other.displayId) &&
             Utils.enhancedDeepEquals(this.billNumber, other.billNumber) &&
             Utils.enhancedDeepEquals(this.supplier, other.supplier) &&
             Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
@@ -1542,20 +1579,20 @@ public class Bill {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, downstreamId, billNumber,
-            supplier, companyId, currency,
-            currencyRate, taxInclusive, billDate,
-            dueDate, paidDate, poNumber,
-            reference, lineItems, terms,
-            balance, deposit, subTotal,
-            totalTax, total, taxCode,
-            notes, status, ledgerAccount,
-            paymentMethod, channel, language,
-            accountingByRow, bankAccount, discountPercentage,
-            sourceDocumentUrl, trackingCategories, updatedBy,
-            createdBy, updatedAt, createdAt,
-            rowVersion, customFields, customMappings,
-            passThrough, accountingPeriod);
+            id, downstreamId, displayId,
+            billNumber, supplier, companyId,
+            currency, currencyRate, taxInclusive,
+            billDate, dueDate, paidDate,
+            poNumber, reference, lineItems,
+            terms, balance, deposit,
+            subTotal, totalTax, total,
+            taxCode, notes, status,
+            ledgerAccount, paymentMethod, channel,
+            language, accountingByRow, bankAccount,
+            discountPercentage, sourceDocumentUrl, trackingCategories,
+            updatedBy, createdBy, updatedAt,
+            createdAt, rowVersion, customFields,
+            customMappings, passThrough, accountingPeriod);
     }
     
     @Override
@@ -1563,6 +1600,7 @@ public class Bill {
         return Utils.toString(Bill.class,
                 "id", id,
                 "downstreamId", downstreamId,
+                "displayId", displayId,
                 "billNumber", billNumber,
                 "supplier", supplier,
                 "companyId", companyId,
@@ -1610,6 +1648,8 @@ public class Bill {
         private Optional<String> id = Optional.empty();
 
         private JsonNullable<String> downstreamId = JsonNullable.undefined();
+
+        private JsonNullable<String> displayId = JsonNullable.undefined();
 
         private JsonNullable<String> billNumber = JsonNullable.undefined();
 
@@ -1728,6 +1768,25 @@ public class Bill {
         public Builder downstreamId(JsonNullable<String> downstreamId) {
             Utils.checkNotNull(downstreamId, "downstreamId");
             this.downstreamId = downstreamId;
+            return this;
+        }
+
+
+        /**
+         * Id to be displayed.
+         */
+        public Builder displayId(String displayId) {
+            Utils.checkNotNull(displayId, "displayId");
+            this.displayId = JsonNullable.of(displayId);
+            return this;
+        }
+
+        /**
+         * Id to be displayed.
+         */
+        public Builder displayId(JsonNullable<String> displayId) {
+            Utils.checkNotNull(displayId, "displayId");
+            this.displayId = displayId;
             return this;
         }
 
@@ -2445,20 +2504,20 @@ public class Bill {
         public Bill build() {
 
             return new Bill(
-                id, downstreamId, billNumber,
-                supplier, companyId, currency,
-                currencyRate, taxInclusive, billDate,
-                dueDate, paidDate, poNumber,
-                reference, lineItems, terms,
-                balance, deposit, subTotal,
-                totalTax, total, taxCode,
-                notes, status, ledgerAccount,
-                paymentMethod, channel, language,
-                accountingByRow, bankAccount, discountPercentage,
-                sourceDocumentUrl, trackingCategories, updatedBy,
-                createdBy, updatedAt, createdAt,
-                rowVersion, customFields, customMappings,
-                passThrough, accountingPeriod);
+                id, downstreamId, displayId,
+                billNumber, supplier, companyId,
+                currency, currencyRate, taxInclusive,
+                billDate, dueDate, paidDate,
+                poNumber, reference, lineItems,
+                terms, balance, deposit,
+                subTotal, totalTax, total,
+                taxCode, notes, status,
+                ledgerAccount, paymentMethod, channel,
+                language, accountingByRow, bankAccount,
+                discountPercentage, sourceDocumentUrl, trackingCategories,
+                updatedBy, createdBy, updatedAt,
+                createdAt, rowVersion, customFields,
+                customMappings, passThrough, accountingPeriod);
         }
 
     }

@@ -23,6 +23,13 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class InvoiceInput {
     /**
+     * Id to be displayed.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("display_id")
+    private JsonNullable<String> displayId;
+
+    /**
      * Invoice type
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -294,6 +301,7 @@ public class InvoiceInput {
 
     @JsonCreator
     public InvoiceInput(
+            @JsonProperty("display_id") JsonNullable<String> displayId,
             @JsonProperty("type") JsonNullable<? extends InvoiceType> type,
             @JsonProperty("number") JsonNullable<String> number,
             @JsonProperty("customer") JsonNullable<? extends LinkedCustomerInput> customer,
@@ -334,6 +342,7 @@ public class InvoiceInput {
             @JsonProperty("custom_fields") Optional<? extends List<CustomField>> customFields,
             @JsonProperty("row_version") JsonNullable<String> rowVersion,
             @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
+        Utils.checkNotNull(displayId, "displayId");
         Utils.checkNotNull(type, "type");
         Utils.checkNotNull(number, "number");
         Utils.checkNotNull(customer, "customer");
@@ -374,6 +383,7 @@ public class InvoiceInput {
         Utils.checkNotNull(customFields, "customFields");
         Utils.checkNotNull(rowVersion, "rowVersion");
         Utils.checkNotNull(passThrough, "passThrough");
+        this.displayId = displayId;
         this.type = type;
         this.number = number;
         this.customer = customer;
@@ -420,17 +430,25 @@ public class InvoiceInput {
         this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty());
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), Optional.empty());
+    }
+
+    /**
+     * Id to be displayed.
+     */
+    @JsonIgnore
+    public JsonNullable<String> displayId() {
+        return displayId;
     }
 
     /**
@@ -755,6 +773,24 @@ public class InvoiceInput {
         return new Builder();
     }
 
+
+    /**
+     * Id to be displayed.
+     */
+    public InvoiceInput withDisplayId(String displayId) {
+        Utils.checkNotNull(displayId, "displayId");
+        this.displayId = JsonNullable.of(displayId);
+        return this;
+    }
+
+    /**
+     * Id to be displayed.
+     */
+    public InvoiceInput withDisplayId(JsonNullable<String> displayId) {
+        Utils.checkNotNull(displayId, "displayId");
+        this.displayId = displayId;
+        return this;
+    }
 
     /**
      * Invoice type
@@ -1461,6 +1497,7 @@ public class InvoiceInput {
         }
         InvoiceInput other = (InvoiceInput) o;
         return 
+            Utils.enhancedDeepEquals(this.displayId, other.displayId) &&
             Utils.enhancedDeepEquals(this.type, other.type) &&
             Utils.enhancedDeepEquals(this.number, other.number) &&
             Utils.enhancedDeepEquals(this.customer, other.customer) &&
@@ -1506,25 +1543,26 @@ public class InvoiceInput {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type, number, customer,
-            companyId, invoiceDate, dueDate,
-            terms, poNumber, reference,
-            status, invoiceSent, currency,
-            currencyRate, taxInclusive, subTotal,
-            totalTax, taxCode, discountPercentage,
-            discountAmount, total, balance,
-            deposit, customerMemo, trackingCategory,
-            trackingCategories, lineItems, billingAddress,
-            shippingAddress, templateId, sourceDocumentUrl,
-            paymentAllocations, paymentMethod, channel,
-            language, accountingByRow, bankAccount,
-            ledgerAccount, customFields, rowVersion,
-            passThrough);
+            displayId, type, number,
+            customer, companyId, invoiceDate,
+            dueDate, terms, poNumber,
+            reference, status, invoiceSent,
+            currency, currencyRate, taxInclusive,
+            subTotal, totalTax, taxCode,
+            discountPercentage, discountAmount, total,
+            balance, deposit, customerMemo,
+            trackingCategory, trackingCategories, lineItems,
+            billingAddress, shippingAddress, templateId,
+            sourceDocumentUrl, paymentAllocations, paymentMethod,
+            channel, language, accountingByRow,
+            bankAccount, ledgerAccount, customFields,
+            rowVersion, passThrough);
     }
     
     @Override
     public String toString() {
         return Utils.toString(InvoiceInput.class,
+                "displayId", displayId,
                 "type", type,
                 "number", number,
                 "customer", customer,
@@ -1569,6 +1607,8 @@ public class InvoiceInput {
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
+
+        private JsonNullable<String> displayId = JsonNullable.undefined();
 
         private JsonNullable<? extends InvoiceType> type = JsonNullable.undefined();
 
@@ -1653,6 +1693,25 @@ public class InvoiceInput {
 
         private Builder() {
           // force use of static builder() method
+        }
+
+
+        /**
+         * Id to be displayed.
+         */
+        public Builder displayId(String displayId) {
+            Utils.checkNotNull(displayId, "displayId");
+            this.displayId = JsonNullable.of(displayId);
+            return this;
+        }
+
+        /**
+         * Id to be displayed.
+         */
+        public Builder displayId(JsonNullable<String> displayId) {
+            Utils.checkNotNull(displayId, "displayId");
+            this.displayId = displayId;
+            return this;
         }
 
 
@@ -2386,20 +2445,20 @@ public class InvoiceInput {
         public InvoiceInput build() {
 
             return new InvoiceInput(
-                type, number, customer,
-                companyId, invoiceDate, dueDate,
-                terms, poNumber, reference,
-                status, invoiceSent, currency,
-                currencyRate, taxInclusive, subTotal,
-                totalTax, taxCode, discountPercentage,
-                discountAmount, total, balance,
-                deposit, customerMemo, trackingCategory,
-                trackingCategories, lineItems, billingAddress,
-                shippingAddress, templateId, sourceDocumentUrl,
-                paymentAllocations, paymentMethod, channel,
-                language, accountingByRow, bankAccount,
-                ledgerAccount, customFields, rowVersion,
-                passThrough);
+                displayId, type, number,
+                customer, companyId, invoiceDate,
+                dueDate, terms, poNumber,
+                reference, status, invoiceSent,
+                currency, currencyRate, taxInclusive,
+                subTotal, totalTax, taxCode,
+                discountPercentage, discountAmount, total,
+                balance, deposit, customerMemo,
+                trackingCategory, trackingCategories, lineItems,
+                billingAddress, shippingAddress, templateId,
+                sourceDocumentUrl, paymentAllocations, paymentMethod,
+                channel, language, accountingByRow,
+                bankAccount, ledgerAccount, customFields,
+                rowVersion, passThrough);
         }
 
     }

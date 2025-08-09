@@ -40,6 +40,13 @@ public class Invoice {
     private JsonNullable<String> downstreamId;
 
     /**
+     * Id to be displayed.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("display_id")
+    private JsonNullable<String> displayId;
+
+    /**
      * Invoice type
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -348,6 +355,7 @@ public class Invoice {
     public Invoice(
             @JsonProperty("id") Optional<String> id,
             @JsonProperty("downstream_id") JsonNullable<String> downstreamId,
+            @JsonProperty("display_id") JsonNullable<String> displayId,
             @JsonProperty("type") JsonNullable<? extends InvoiceType> type,
             @JsonProperty("number") JsonNullable<String> number,
             @JsonProperty("customer") JsonNullable<? extends LinkedCustomer> customer,
@@ -395,6 +403,7 @@ public class Invoice {
             @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(downstreamId, "downstreamId");
+        Utils.checkNotNull(displayId, "displayId");
         Utils.checkNotNull(type, "type");
         Utils.checkNotNull(number, "number");
         Utils.checkNotNull(customer, "customer");
@@ -442,6 +451,7 @@ public class Invoice {
         Utils.checkNotNull(passThrough, "passThrough");
         this.id = id;
         this.downstreamId = downstreamId;
+        this.displayId = displayId;
         this.type = type;
         this.number = number;
         this.customer = customer;
@@ -494,18 +504,18 @@ public class Invoice {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
             Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty());
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -522,6 +532,14 @@ public class Invoice {
     @JsonIgnore
     public JsonNullable<String> downstreamId() {
         return downstreamId;
+    }
+
+    /**
+     * Id to be displayed.
+     */
+    @JsonIgnore
+    public JsonNullable<String> displayId() {
+        return displayId;
     }
 
     /**
@@ -922,6 +940,24 @@ public class Invoice {
     public Invoice withDownstreamId(JsonNullable<String> downstreamId) {
         Utils.checkNotNull(downstreamId, "downstreamId");
         this.downstreamId = downstreamId;
+        return this;
+    }
+
+    /**
+     * Id to be displayed.
+     */
+    public Invoice withDisplayId(String displayId) {
+        Utils.checkNotNull(displayId, "displayId");
+        this.displayId = JsonNullable.of(displayId);
+        return this;
+    }
+
+    /**
+     * Id to be displayed.
+     */
+    public Invoice withDisplayId(JsonNullable<String> displayId) {
+        Utils.checkNotNull(displayId, "displayId");
+        this.displayId = displayId;
         return this;
     }
 
@@ -1722,6 +1758,7 @@ public class Invoice {
         return 
             Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.downstreamId, other.downstreamId) &&
+            Utils.enhancedDeepEquals(this.displayId, other.displayId) &&
             Utils.enhancedDeepEquals(this.type, other.type) &&
             Utils.enhancedDeepEquals(this.number, other.number) &&
             Utils.enhancedDeepEquals(this.customer, other.customer) &&
@@ -1772,22 +1809,22 @@ public class Invoice {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, downstreamId, type,
-            number, customer, companyId,
-            invoiceDate, dueDate, terms,
-            poNumber, reference, status,
-            invoiceSent, currency, currencyRate,
-            taxInclusive, subTotal, totalTax,
-            taxCode, discountPercentage, discountAmount,
-            total, balance, deposit,
-            customerMemo, trackingCategory, trackingCategories,
-            lineItems, billingAddress, shippingAddress,
-            templateId, sourceDocumentUrl, paymentAllocations,
-            paymentMethod, channel, language,
-            accountingByRow, bankAccount, ledgerAccount,
-            customMappings, customFields, rowVersion,
-            updatedBy, createdBy, updatedAt,
-            createdAt, passThrough);
+            id, downstreamId, displayId,
+            type, number, customer,
+            companyId, invoiceDate, dueDate,
+            terms, poNumber, reference,
+            status, invoiceSent, currency,
+            currencyRate, taxInclusive, subTotal,
+            totalTax, taxCode, discountPercentage,
+            discountAmount, total, balance,
+            deposit, customerMemo, trackingCategory,
+            trackingCategories, lineItems, billingAddress,
+            shippingAddress, templateId, sourceDocumentUrl,
+            paymentAllocations, paymentMethod, channel,
+            language, accountingByRow, bankAccount,
+            ledgerAccount, customMappings, customFields,
+            rowVersion, updatedBy, createdBy,
+            updatedAt, createdAt, passThrough);
     }
     
     @Override
@@ -1795,6 +1832,7 @@ public class Invoice {
         return Utils.toString(Invoice.class,
                 "id", id,
                 "downstreamId", downstreamId,
+                "displayId", displayId,
                 "type", type,
                 "number", number,
                 "customer", customer,
@@ -1848,6 +1886,8 @@ public class Invoice {
         private Optional<String> id = Optional.empty();
 
         private JsonNullable<String> downstreamId = JsonNullable.undefined();
+
+        private JsonNullable<String> displayId = JsonNullable.undefined();
 
         private JsonNullable<? extends InvoiceType> type = JsonNullable.undefined();
 
@@ -1979,6 +2019,25 @@ public class Invoice {
         public Builder downstreamId(JsonNullable<String> downstreamId) {
             Utils.checkNotNull(downstreamId, "downstreamId");
             this.downstreamId = downstreamId;
+            return this;
+        }
+
+
+        /**
+         * Id to be displayed.
+         */
+        public Builder displayId(String displayId) {
+            Utils.checkNotNull(displayId, "displayId");
+            this.displayId = JsonNullable.of(displayId);
+            return this;
+        }
+
+        /**
+         * Id to be displayed.
+         */
+        public Builder displayId(JsonNullable<String> displayId) {
+            Utils.checkNotNull(displayId, "displayId");
+            this.displayId = displayId;
             return this;
         }
 
@@ -2808,22 +2867,22 @@ public class Invoice {
         public Invoice build() {
 
             return new Invoice(
-                id, downstreamId, type,
-                number, customer, companyId,
-                invoiceDate, dueDate, terms,
-                poNumber, reference, status,
-                invoiceSent, currency, currencyRate,
-                taxInclusive, subTotal, totalTax,
-                taxCode, discountPercentage, discountAmount,
-                total, balance, deposit,
-                customerMemo, trackingCategory, trackingCategories,
-                lineItems, billingAddress, shippingAddress,
-                templateId, sourceDocumentUrl, paymentAllocations,
-                paymentMethod, channel, language,
-                accountingByRow, bankAccount, ledgerAccount,
-                customMappings, customFields, rowVersion,
-                updatedBy, createdBy, updatedAt,
-                createdAt, passThrough);
+                id, downstreamId, displayId,
+                type, number, customer,
+                companyId, invoiceDate, dueDate,
+                terms, poNumber, reference,
+                status, invoiceSent, currency,
+                currencyRate, taxInclusive, subTotal,
+                totalTax, taxCode, discountPercentage,
+                discountAmount, total, balance,
+                deposit, customerMemo, trackingCategory,
+                trackingCategories, lineItems, billingAddress,
+                shippingAddress, templateId, sourceDocumentUrl,
+                paymentAllocations, paymentMethod, channel,
+                language, accountingByRow, bankAccount,
+                ledgerAccount, customMappings, customFields,
+                rowVersion, updatedBy, createdBy,
+                updatedAt, createdAt, passThrough);
         }
 
     }

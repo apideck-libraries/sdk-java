@@ -184,18 +184,11 @@ public class InvoiceLineItemInput {
     private JsonNullable<String> taxMethod;
 
     /**
-     * Budget of the line item
+     * Worktags of the line item. This is currently only supported in Workday.
      */
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("budget")
-    private JsonNullable<? extends Budget> budget;
-
-    /**
-     * ID of the project of the line item
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("project_id")
-    private JsonNullable<String> projectId;
+    @JsonProperty("worktags")
+    private Optional<? extends List<LinkedWorktag>> worktags;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -252,8 +245,7 @@ public class InvoiceLineItemInput {
             @JsonProperty("tax_applicable_on") JsonNullable<String> taxApplicableOn,
             @JsonProperty("tax_recoverability") JsonNullable<String> taxRecoverability,
             @JsonProperty("tax_method") JsonNullable<String> taxMethod,
-            @JsonProperty("budget") JsonNullable<? extends Budget> budget,
-            @JsonProperty("project_id") JsonNullable<String> projectId,
+            @JsonProperty("worktags") Optional<? extends List<LinkedWorktag>> worktags,
             @JsonProperty("tax_rate") Optional<? extends LinkedTaxRateInput> taxRate,
             @JsonProperty("tracking_categories") JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories,
             @JsonProperty("ledger_account") JsonNullable<? extends LinkedLedgerAccountInput> ledgerAccount,
@@ -283,8 +275,7 @@ public class InvoiceLineItemInput {
         Utils.checkNotNull(taxApplicableOn, "taxApplicableOn");
         Utils.checkNotNull(taxRecoverability, "taxRecoverability");
         Utils.checkNotNull(taxMethod, "taxMethod");
-        Utils.checkNotNull(budget, "budget");
-        Utils.checkNotNull(projectId, "projectId");
+        Utils.checkNotNull(worktags, "worktags");
         Utils.checkNotNull(taxRate, "taxRate");
         Utils.checkNotNull(trackingCategories, "trackingCategories");
         Utils.checkNotNull(ledgerAccount, "ledgerAccount");
@@ -314,8 +305,7 @@ public class InvoiceLineItemInput {
         this.taxApplicableOn = taxApplicableOn;
         this.taxRecoverability = taxRecoverability;
         this.taxMethod = taxMethod;
-        this.budget = budget;
-        this.projectId = projectId;
+        this.worktags = worktags;
         this.taxRate = taxRate;
         this.trackingCategories = trackingCategories;
         this.ledgerAccount = ledgerAccount;
@@ -332,9 +322,8 @@ public class InvoiceLineItemInput {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined());
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -523,20 +512,12 @@ public class InvoiceLineItemInput {
     }
 
     /**
-     * Budget of the line item
+     * Worktags of the line item. This is currently only supported in Workday.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<Budget> budget() {
-        return (JsonNullable<Budget>) budget;
-    }
-
-    /**
-     * ID of the project of the line item
-     */
-    @JsonIgnore
-    public JsonNullable<String> projectId() {
-        return projectId;
+    public Optional<List<LinkedWorktag>> worktags() {
+        return (Optional<List<LinkedWorktag>>) worktags;
     }
 
     @SuppressWarnings("unchecked")
@@ -996,38 +977,21 @@ public class InvoiceLineItemInput {
     }
 
     /**
-     * Budget of the line item
+     * Worktags of the line item. This is currently only supported in Workday.
      */
-    public InvoiceLineItemInput withBudget(Budget budget) {
-        Utils.checkNotNull(budget, "budget");
-        this.budget = JsonNullable.of(budget);
+    public InvoiceLineItemInput withWorktags(List<LinkedWorktag> worktags) {
+        Utils.checkNotNull(worktags, "worktags");
+        this.worktags = Optional.ofNullable(worktags);
         return this;
     }
 
-    /**
-     * Budget of the line item
-     */
-    public InvoiceLineItemInput withBudget(JsonNullable<? extends Budget> budget) {
-        Utils.checkNotNull(budget, "budget");
-        this.budget = budget;
-        return this;
-    }
 
     /**
-     * ID of the project of the line item
+     * Worktags of the line item. This is currently only supported in Workday.
      */
-    public InvoiceLineItemInput withProjectId(String projectId) {
-        Utils.checkNotNull(projectId, "projectId");
-        this.projectId = JsonNullable.of(projectId);
-        return this;
-    }
-
-    /**
-     * ID of the project of the line item
-     */
-    public InvoiceLineItemInput withProjectId(JsonNullable<String> projectId) {
-        Utils.checkNotNull(projectId, "projectId");
-        this.projectId = projectId;
+    public InvoiceLineItemInput withWorktags(Optional<? extends List<LinkedWorktag>> worktags) {
+        Utils.checkNotNull(worktags, "worktags");
+        this.worktags = worktags;
         return this;
     }
 
@@ -1139,8 +1103,7 @@ public class InvoiceLineItemInput {
             Utils.enhancedDeepEquals(this.taxApplicableOn, other.taxApplicableOn) &&
             Utils.enhancedDeepEquals(this.taxRecoverability, other.taxRecoverability) &&
             Utils.enhancedDeepEquals(this.taxMethod, other.taxMethod) &&
-            Utils.enhancedDeepEquals(this.budget, other.budget) &&
-            Utils.enhancedDeepEquals(this.projectId, other.projectId) &&
+            Utils.enhancedDeepEquals(this.worktags, other.worktags) &&
             Utils.enhancedDeepEquals(this.taxRate, other.taxRate) &&
             Utils.enhancedDeepEquals(this.trackingCategories, other.trackingCategories) &&
             Utils.enhancedDeepEquals(this.ledgerAccount, other.ledgerAccount) &&
@@ -1159,9 +1122,8 @@ public class InvoiceLineItemInput {
             departmentId, subsidiaryId, shippingId,
             memo, prepaid, item,
             taxApplicableOn, taxRecoverability, taxMethod,
-            budget, projectId, taxRate,
-            trackingCategories, ledgerAccount, customFields,
-            rowVersion);
+            worktags, taxRate, trackingCategories,
+            ledgerAccount, customFields, rowVersion);
     }
     
     @Override
@@ -1191,8 +1153,7 @@ public class InvoiceLineItemInput {
                 "taxApplicableOn", taxApplicableOn,
                 "taxRecoverability", taxRecoverability,
                 "taxMethod", taxMethod,
-                "budget", budget,
-                "projectId", projectId,
+                "worktags", worktags,
                 "taxRate", taxRate,
                 "trackingCategories", trackingCategories,
                 "ledgerAccount", ledgerAccount,
@@ -1251,9 +1212,7 @@ public class InvoiceLineItemInput {
 
         private JsonNullable<String> taxMethod = JsonNullable.undefined();
 
-        private JsonNullable<? extends Budget> budget = JsonNullable.undefined();
-
-        private JsonNullable<String> projectId = JsonNullable.undefined();
+        private Optional<? extends List<LinkedWorktag>> worktags = Optional.empty();
 
         private Optional<? extends LinkedTaxRateInput> taxRate = Optional.empty();
 
@@ -1709,39 +1668,20 @@ public class InvoiceLineItemInput {
 
 
         /**
-         * Budget of the line item
+         * Worktags of the line item. This is currently only supported in Workday.
          */
-        public Builder budget(Budget budget) {
-            Utils.checkNotNull(budget, "budget");
-            this.budget = JsonNullable.of(budget);
+        public Builder worktags(List<LinkedWorktag> worktags) {
+            Utils.checkNotNull(worktags, "worktags");
+            this.worktags = Optional.ofNullable(worktags);
             return this;
         }
 
         /**
-         * Budget of the line item
+         * Worktags of the line item. This is currently only supported in Workday.
          */
-        public Builder budget(JsonNullable<? extends Budget> budget) {
-            Utils.checkNotNull(budget, "budget");
-            this.budget = budget;
-            return this;
-        }
-
-
-        /**
-         * ID of the project of the line item
-         */
-        public Builder projectId(String projectId) {
-            Utils.checkNotNull(projectId, "projectId");
-            this.projectId = JsonNullable.of(projectId);
-            return this;
-        }
-
-        /**
-         * ID of the project of the line item
-         */
-        public Builder projectId(JsonNullable<String> projectId) {
-            Utils.checkNotNull(projectId, "projectId");
-            this.projectId = projectId;
+        public Builder worktags(Optional<? extends List<LinkedWorktag>> worktags) {
+            Utils.checkNotNull(worktags, "worktags");
+            this.worktags = worktags;
             return this;
         }
 
@@ -1833,9 +1773,8 @@ public class InvoiceLineItemInput {
                 departmentId, subsidiaryId, shippingId,
                 memo, prepaid, item,
                 taxApplicableOn, taxRecoverability, taxMethod,
-                budget, projectId, taxRate,
-                trackingCategories, ledgerAccount, customFields,
-                rowVersion);
+                worktags, taxRate, trackingCategories,
+                ledgerAccount, customFields, rowVersion);
         }
 
     }

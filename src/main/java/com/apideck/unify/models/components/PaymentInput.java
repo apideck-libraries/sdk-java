@@ -121,7 +121,7 @@ public class PaymentInput {
     private JsonNullable<? extends DeprecatedLinkedSupplierInput> supplier;
 
     /**
-     * The company or subsidiary id the transaction belongs to
+     * The company ID the transaction belongs to
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("company_id")
@@ -406,7 +406,7 @@ public class PaymentInput {
     }
 
     /**
-     * The company or subsidiary id the transaction belongs to
+     * The company ID the transaction belongs to
      */
     @JsonIgnore
     public JsonNullable<String> companyId() {
@@ -755,7 +755,7 @@ public class PaymentInput {
     }
 
     /**
-     * The company or subsidiary id the transaction belongs to
+     * The company ID the transaction belongs to
      */
     public PaymentInput withCompanyId(String companyId) {
         Utils.checkNotNull(companyId, "companyId");
@@ -764,7 +764,7 @@ public class PaymentInput {
     }
 
     /**
-     * The company or subsidiary id the transaction belongs to
+     * The company ID the transaction belongs to
      */
     public PaymentInput withCompanyId(JsonNullable<String> companyId) {
         Utils.checkNotNull(companyId, "companyId");
@@ -1365,7 +1365,7 @@ public class PaymentInput {
 
 
         /**
-         * The company or subsidiary id the transaction belongs to
+         * The company ID the transaction belongs to
          */
         public Builder companyId(String companyId) {
             Utils.checkNotNull(companyId, "companyId");
@@ -1374,7 +1374,7 @@ public class PaymentInput {
         }
 
         /**
-         * The company or subsidiary id the transaction belongs to
+         * The company ID the transaction belongs to
          */
         public Builder companyId(JsonNullable<String> companyId) {
             Utils.checkNotNull(companyId, "companyId");

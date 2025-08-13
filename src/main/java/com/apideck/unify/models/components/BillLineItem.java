@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Long;
 import java.lang.Override;
@@ -136,6 +137,62 @@ public class BillLineItem {
     @JsonProperty("category_id")
     private JsonNullable<String> categoryId;
 
+    /**
+     * ID of the shipping of the line item
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("shipping_id")
+    private JsonNullable<String> shippingId;
+
+    /**
+     * Memo
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("memo")
+    private JsonNullable<String> memo;
+
+    /**
+     * Whether the line item is prepaid
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("prepaid")
+    private JsonNullable<Boolean> prepaid;
+
+    /**
+     * Tax applicable on
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("tax_applicable_on")
+    private JsonNullable<String> taxApplicableOn;
+
+    /**
+     * Tax recoverability
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("tax_recoverability")
+    private JsonNullable<String> taxRecoverability;
+
+    /**
+     * Method of tax calculation
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("tax_method")
+    private JsonNullable<String> taxMethod;
+
+    /**
+     * Retention amount
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("retention_amount")
+    private JsonNullable<Double> retentionAmount;
+
+    /**
+     * Payment amount
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("payment_amount")
+    private JsonNullable<Double> paymentAmount;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("item")
@@ -212,6 +269,13 @@ public class BillLineItem {
     @JsonProperty("updated_at")
     private JsonNullable<OffsetDateTime> updatedAt;
 
+    /**
+     * A list of linked worktags. This is only supported for Workday.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("worktags")
+    private Optional<? extends List<LinkedWorktag>> worktags;
+
     @JsonCreator
     public BillLineItem(
             @JsonProperty("id") Optional<String> id,
@@ -231,6 +295,14 @@ public class BillLineItem {
             @JsonProperty("department_id") JsonNullable<String> departmentId,
             @JsonProperty("subsidiary_id") JsonNullable<String> subsidiaryId,
             @JsonProperty("category_id") JsonNullable<String> categoryId,
+            @JsonProperty("shipping_id") JsonNullable<String> shippingId,
+            @JsonProperty("memo") JsonNullable<String> memo,
+            @JsonProperty("prepaid") JsonNullable<Boolean> prepaid,
+            @JsonProperty("tax_applicable_on") JsonNullable<String> taxApplicableOn,
+            @JsonProperty("tax_recoverability") JsonNullable<String> taxRecoverability,
+            @JsonProperty("tax_method") JsonNullable<String> taxMethod,
+            @JsonProperty("retention_amount") JsonNullable<Double> retentionAmount,
+            @JsonProperty("payment_amount") JsonNullable<Double> paymentAmount,
             @JsonProperty("item") Optional<? extends LinkedInvoiceItem> item,
             @JsonProperty("tax_rate") Optional<? extends LinkedTaxRate> taxRate,
             @JsonProperty("ledger_account") JsonNullable<? extends LinkedLedgerAccount> ledgerAccount,
@@ -242,7 +314,8 @@ public class BillLineItem {
             @JsonProperty("updated_by") JsonNullable<String> updatedBy,
             @JsonProperty("created_by") JsonNullable<String> createdBy,
             @JsonProperty("created_at") JsonNullable<OffsetDateTime> createdAt,
-            @JsonProperty("updated_at") JsonNullable<OffsetDateTime> updatedAt) {
+            @JsonProperty("updated_at") JsonNullable<OffsetDateTime> updatedAt,
+            @JsonProperty("worktags") Optional<? extends List<LinkedWorktag>> worktags) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(rowId, "rowId");
         Utils.checkNotNull(code, "code");
@@ -260,6 +333,14 @@ public class BillLineItem {
         Utils.checkNotNull(departmentId, "departmentId");
         Utils.checkNotNull(subsidiaryId, "subsidiaryId");
         Utils.checkNotNull(categoryId, "categoryId");
+        Utils.checkNotNull(shippingId, "shippingId");
+        Utils.checkNotNull(memo, "memo");
+        Utils.checkNotNull(prepaid, "prepaid");
+        Utils.checkNotNull(taxApplicableOn, "taxApplicableOn");
+        Utils.checkNotNull(taxRecoverability, "taxRecoverability");
+        Utils.checkNotNull(taxMethod, "taxMethod");
+        Utils.checkNotNull(retentionAmount, "retentionAmount");
+        Utils.checkNotNull(paymentAmount, "paymentAmount");
         Utils.checkNotNull(item, "item");
         Utils.checkNotNull(taxRate, "taxRate");
         Utils.checkNotNull(ledgerAccount, "ledgerAccount");
@@ -272,6 +353,7 @@ public class BillLineItem {
         Utils.checkNotNull(createdBy, "createdBy");
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(updatedAt, "updatedAt");
+        Utils.checkNotNull(worktags, "worktags");
         this.id = id;
         this.rowId = rowId;
         this.code = code;
@@ -289,6 +371,14 @@ public class BillLineItem {
         this.departmentId = departmentId;
         this.subsidiaryId = subsidiaryId;
         this.categoryId = categoryId;
+        this.shippingId = shippingId;
+        this.memo = memo;
+        this.prepaid = prepaid;
+        this.taxApplicableOn = taxApplicableOn;
+        this.taxRecoverability = taxRecoverability;
+        this.taxMethod = taxMethod;
+        this.retentionAmount = retentionAmount;
+        this.paymentAmount = paymentAmount;
         this.item = item;
         this.taxRate = taxRate;
         this.ledgerAccount = ledgerAccount;
@@ -301,6 +391,7 @@ public class BillLineItem {
         this.createdBy = createdBy;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.worktags = worktags;
     }
     
     public BillLineItem() {
@@ -309,11 +400,14 @@ public class BillLineItem {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -447,6 +541,70 @@ public class BillLineItem {
         return categoryId;
     }
 
+    /**
+     * ID of the shipping of the line item
+     */
+    @JsonIgnore
+    public JsonNullable<String> shippingId() {
+        return shippingId;
+    }
+
+    /**
+     * Memo
+     */
+    @JsonIgnore
+    public JsonNullable<String> memo() {
+        return memo;
+    }
+
+    /**
+     * Whether the line item is prepaid
+     */
+    @JsonIgnore
+    public JsonNullable<Boolean> prepaid() {
+        return prepaid;
+    }
+
+    /**
+     * Tax applicable on
+     */
+    @JsonIgnore
+    public JsonNullable<String> taxApplicableOn() {
+        return taxApplicableOn;
+    }
+
+    /**
+     * Tax recoverability
+     */
+    @JsonIgnore
+    public JsonNullable<String> taxRecoverability() {
+        return taxRecoverability;
+    }
+
+    /**
+     * Method of tax calculation
+     */
+    @JsonIgnore
+    public JsonNullable<String> taxMethod() {
+        return taxMethod;
+    }
+
+    /**
+     * Retention amount
+     */
+    @JsonIgnore
+    public JsonNullable<Double> retentionAmount() {
+        return retentionAmount;
+    }
+
+    /**
+     * Payment amount
+     */
+    @JsonIgnore
+    public JsonNullable<Double> paymentAmount() {
+        return paymentAmount;
+    }
+
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<LinkedInvoiceItem> item() {
@@ -536,6 +694,15 @@ public class BillLineItem {
     @JsonIgnore
     public JsonNullable<OffsetDateTime> updatedAt() {
         return updatedAt;
+    }
+
+    /**
+     * A list of linked worktags. This is only supported for Workday.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<LinkedWorktag>> worktags() {
+        return (Optional<List<LinkedWorktag>>) worktags;
     }
 
     public static Builder builder() {
@@ -839,6 +1006,150 @@ public class BillLineItem {
         return this;
     }
 
+    /**
+     * ID of the shipping of the line item
+     */
+    public BillLineItem withShippingId(String shippingId) {
+        Utils.checkNotNull(shippingId, "shippingId");
+        this.shippingId = JsonNullable.of(shippingId);
+        return this;
+    }
+
+    /**
+     * ID of the shipping of the line item
+     */
+    public BillLineItem withShippingId(JsonNullable<String> shippingId) {
+        Utils.checkNotNull(shippingId, "shippingId");
+        this.shippingId = shippingId;
+        return this;
+    }
+
+    /**
+     * Memo
+     */
+    public BillLineItem withMemo(String memo) {
+        Utils.checkNotNull(memo, "memo");
+        this.memo = JsonNullable.of(memo);
+        return this;
+    }
+
+    /**
+     * Memo
+     */
+    public BillLineItem withMemo(JsonNullable<String> memo) {
+        Utils.checkNotNull(memo, "memo");
+        this.memo = memo;
+        return this;
+    }
+
+    /**
+     * Whether the line item is prepaid
+     */
+    public BillLineItem withPrepaid(boolean prepaid) {
+        Utils.checkNotNull(prepaid, "prepaid");
+        this.prepaid = JsonNullable.of(prepaid);
+        return this;
+    }
+
+    /**
+     * Whether the line item is prepaid
+     */
+    public BillLineItem withPrepaid(JsonNullable<Boolean> prepaid) {
+        Utils.checkNotNull(prepaid, "prepaid");
+        this.prepaid = prepaid;
+        return this;
+    }
+
+    /**
+     * Tax applicable on
+     */
+    public BillLineItem withTaxApplicableOn(String taxApplicableOn) {
+        Utils.checkNotNull(taxApplicableOn, "taxApplicableOn");
+        this.taxApplicableOn = JsonNullable.of(taxApplicableOn);
+        return this;
+    }
+
+    /**
+     * Tax applicable on
+     */
+    public BillLineItem withTaxApplicableOn(JsonNullable<String> taxApplicableOn) {
+        Utils.checkNotNull(taxApplicableOn, "taxApplicableOn");
+        this.taxApplicableOn = taxApplicableOn;
+        return this;
+    }
+
+    /**
+     * Tax recoverability
+     */
+    public BillLineItem withTaxRecoverability(String taxRecoverability) {
+        Utils.checkNotNull(taxRecoverability, "taxRecoverability");
+        this.taxRecoverability = JsonNullable.of(taxRecoverability);
+        return this;
+    }
+
+    /**
+     * Tax recoverability
+     */
+    public BillLineItem withTaxRecoverability(JsonNullable<String> taxRecoverability) {
+        Utils.checkNotNull(taxRecoverability, "taxRecoverability");
+        this.taxRecoverability = taxRecoverability;
+        return this;
+    }
+
+    /**
+     * Method of tax calculation
+     */
+    public BillLineItem withTaxMethod(String taxMethod) {
+        Utils.checkNotNull(taxMethod, "taxMethod");
+        this.taxMethod = JsonNullable.of(taxMethod);
+        return this;
+    }
+
+    /**
+     * Method of tax calculation
+     */
+    public BillLineItem withTaxMethod(JsonNullable<String> taxMethod) {
+        Utils.checkNotNull(taxMethod, "taxMethod");
+        this.taxMethod = taxMethod;
+        return this;
+    }
+
+    /**
+     * Retention amount
+     */
+    public BillLineItem withRetentionAmount(double retentionAmount) {
+        Utils.checkNotNull(retentionAmount, "retentionAmount");
+        this.retentionAmount = JsonNullable.of(retentionAmount);
+        return this;
+    }
+
+    /**
+     * Retention amount
+     */
+    public BillLineItem withRetentionAmount(JsonNullable<Double> retentionAmount) {
+        Utils.checkNotNull(retentionAmount, "retentionAmount");
+        this.retentionAmount = retentionAmount;
+        return this;
+    }
+
+    /**
+     * Payment amount
+     */
+    public BillLineItem withPaymentAmount(double paymentAmount) {
+        Utils.checkNotNull(paymentAmount, "paymentAmount");
+        this.paymentAmount = JsonNullable.of(paymentAmount);
+        return this;
+    }
+
+    /**
+     * Payment amount
+     */
+    public BillLineItem withPaymentAmount(JsonNullable<Double> paymentAmount) {
+        Utils.checkNotNull(paymentAmount, "paymentAmount");
+        this.paymentAmount = paymentAmount;
+        return this;
+    }
+
     public BillLineItem withItem(LinkedInvoiceItem item) {
         Utils.checkNotNull(item, "item");
         this.item = Optional.ofNullable(item);
@@ -1033,6 +1344,25 @@ public class BillLineItem {
         return this;
     }
 
+    /**
+     * A list of linked worktags. This is only supported for Workday.
+     */
+    public BillLineItem withWorktags(List<LinkedWorktag> worktags) {
+        Utils.checkNotNull(worktags, "worktags");
+        this.worktags = Optional.ofNullable(worktags);
+        return this;
+    }
+
+
+    /**
+     * A list of linked worktags. This is only supported for Workday.
+     */
+    public BillLineItem withWorktags(Optional<? extends List<LinkedWorktag>> worktags) {
+        Utils.checkNotNull(worktags, "worktags");
+        this.worktags = worktags;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -1060,6 +1390,14 @@ public class BillLineItem {
             Utils.enhancedDeepEquals(this.departmentId, other.departmentId) &&
             Utils.enhancedDeepEquals(this.subsidiaryId, other.subsidiaryId) &&
             Utils.enhancedDeepEquals(this.categoryId, other.categoryId) &&
+            Utils.enhancedDeepEquals(this.shippingId, other.shippingId) &&
+            Utils.enhancedDeepEquals(this.memo, other.memo) &&
+            Utils.enhancedDeepEquals(this.prepaid, other.prepaid) &&
+            Utils.enhancedDeepEquals(this.taxApplicableOn, other.taxApplicableOn) &&
+            Utils.enhancedDeepEquals(this.taxRecoverability, other.taxRecoverability) &&
+            Utils.enhancedDeepEquals(this.taxMethod, other.taxMethod) &&
+            Utils.enhancedDeepEquals(this.retentionAmount, other.retentionAmount) &&
+            Utils.enhancedDeepEquals(this.paymentAmount, other.paymentAmount) &&
             Utils.enhancedDeepEquals(this.item, other.item) &&
             Utils.enhancedDeepEquals(this.taxRate, other.taxRate) &&
             Utils.enhancedDeepEquals(this.ledgerAccount, other.ledgerAccount) &&
@@ -1071,7 +1409,8 @@ public class BillLineItem {
             Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
             Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
-            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt);
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.worktags, other.worktags);
     }
     
     @Override
@@ -1082,11 +1421,14 @@ public class BillLineItem {
             taxAmount, totalAmount, quantity,
             unitPrice, unitOfMeasure, discountPercentage,
             discountAmount, locationId, departmentId,
-            subsidiaryId, categoryId, item,
-            taxRate, ledgerAccount, purchaseOrder,
-            trackingCategories, customer, rebilling,
-            rowVersion, updatedBy, createdBy,
-            createdAt, updatedAt);
+            subsidiaryId, categoryId, shippingId,
+            memo, prepaid, taxApplicableOn,
+            taxRecoverability, taxMethod, retentionAmount,
+            paymentAmount, item, taxRate,
+            ledgerAccount, purchaseOrder, trackingCategories,
+            customer, rebilling, rowVersion,
+            updatedBy, createdBy, createdAt,
+            updatedAt, worktags);
     }
     
     @Override
@@ -1109,6 +1451,14 @@ public class BillLineItem {
                 "departmentId", departmentId,
                 "subsidiaryId", subsidiaryId,
                 "categoryId", categoryId,
+                "shippingId", shippingId,
+                "memo", memo,
+                "prepaid", prepaid,
+                "taxApplicableOn", taxApplicableOn,
+                "taxRecoverability", taxRecoverability,
+                "taxMethod", taxMethod,
+                "retentionAmount", retentionAmount,
+                "paymentAmount", paymentAmount,
                 "item", item,
                 "taxRate", taxRate,
                 "ledgerAccount", ledgerAccount,
@@ -1120,7 +1470,8 @@ public class BillLineItem {
                 "updatedBy", updatedBy,
                 "createdBy", createdBy,
                 "createdAt", createdAt,
-                "updatedAt", updatedAt);
+                "updatedAt", updatedAt,
+                "worktags", worktags);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -1160,6 +1511,22 @@ public class BillLineItem {
 
         private JsonNullable<String> categoryId = JsonNullable.undefined();
 
+        private JsonNullable<String> shippingId = JsonNullable.undefined();
+
+        private JsonNullable<String> memo = JsonNullable.undefined();
+
+        private JsonNullable<Boolean> prepaid = JsonNullable.undefined();
+
+        private JsonNullable<String> taxApplicableOn = JsonNullable.undefined();
+
+        private JsonNullable<String> taxRecoverability = JsonNullable.undefined();
+
+        private JsonNullable<String> taxMethod = JsonNullable.undefined();
+
+        private JsonNullable<Double> retentionAmount = JsonNullable.undefined();
+
+        private JsonNullable<Double> paymentAmount = JsonNullable.undefined();
+
         private Optional<? extends LinkedInvoiceItem> item = Optional.empty();
 
         private Optional<? extends LinkedTaxRate> taxRate = Optional.empty();
@@ -1183,6 +1550,8 @@ public class BillLineItem {
         private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
 
         private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
+
+        private Optional<? extends List<LinkedWorktag>> worktags = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -1500,6 +1869,158 @@ public class BillLineItem {
         }
 
 
+        /**
+         * ID of the shipping of the line item
+         */
+        public Builder shippingId(String shippingId) {
+            Utils.checkNotNull(shippingId, "shippingId");
+            this.shippingId = JsonNullable.of(shippingId);
+            return this;
+        }
+
+        /**
+         * ID of the shipping of the line item
+         */
+        public Builder shippingId(JsonNullable<String> shippingId) {
+            Utils.checkNotNull(shippingId, "shippingId");
+            this.shippingId = shippingId;
+            return this;
+        }
+
+
+        /**
+         * Memo
+         */
+        public Builder memo(String memo) {
+            Utils.checkNotNull(memo, "memo");
+            this.memo = JsonNullable.of(memo);
+            return this;
+        }
+
+        /**
+         * Memo
+         */
+        public Builder memo(JsonNullable<String> memo) {
+            Utils.checkNotNull(memo, "memo");
+            this.memo = memo;
+            return this;
+        }
+
+
+        /**
+         * Whether the line item is prepaid
+         */
+        public Builder prepaid(boolean prepaid) {
+            Utils.checkNotNull(prepaid, "prepaid");
+            this.prepaid = JsonNullable.of(prepaid);
+            return this;
+        }
+
+        /**
+         * Whether the line item is prepaid
+         */
+        public Builder prepaid(JsonNullable<Boolean> prepaid) {
+            Utils.checkNotNull(prepaid, "prepaid");
+            this.prepaid = prepaid;
+            return this;
+        }
+
+
+        /**
+         * Tax applicable on
+         */
+        public Builder taxApplicableOn(String taxApplicableOn) {
+            Utils.checkNotNull(taxApplicableOn, "taxApplicableOn");
+            this.taxApplicableOn = JsonNullable.of(taxApplicableOn);
+            return this;
+        }
+
+        /**
+         * Tax applicable on
+         */
+        public Builder taxApplicableOn(JsonNullable<String> taxApplicableOn) {
+            Utils.checkNotNull(taxApplicableOn, "taxApplicableOn");
+            this.taxApplicableOn = taxApplicableOn;
+            return this;
+        }
+
+
+        /**
+         * Tax recoverability
+         */
+        public Builder taxRecoverability(String taxRecoverability) {
+            Utils.checkNotNull(taxRecoverability, "taxRecoverability");
+            this.taxRecoverability = JsonNullable.of(taxRecoverability);
+            return this;
+        }
+
+        /**
+         * Tax recoverability
+         */
+        public Builder taxRecoverability(JsonNullable<String> taxRecoverability) {
+            Utils.checkNotNull(taxRecoverability, "taxRecoverability");
+            this.taxRecoverability = taxRecoverability;
+            return this;
+        }
+
+
+        /**
+         * Method of tax calculation
+         */
+        public Builder taxMethod(String taxMethod) {
+            Utils.checkNotNull(taxMethod, "taxMethod");
+            this.taxMethod = JsonNullable.of(taxMethod);
+            return this;
+        }
+
+        /**
+         * Method of tax calculation
+         */
+        public Builder taxMethod(JsonNullable<String> taxMethod) {
+            Utils.checkNotNull(taxMethod, "taxMethod");
+            this.taxMethod = taxMethod;
+            return this;
+        }
+
+
+        /**
+         * Retention amount
+         */
+        public Builder retentionAmount(double retentionAmount) {
+            Utils.checkNotNull(retentionAmount, "retentionAmount");
+            this.retentionAmount = JsonNullable.of(retentionAmount);
+            return this;
+        }
+
+        /**
+         * Retention amount
+         */
+        public Builder retentionAmount(JsonNullable<Double> retentionAmount) {
+            Utils.checkNotNull(retentionAmount, "retentionAmount");
+            this.retentionAmount = retentionAmount;
+            return this;
+        }
+
+
+        /**
+         * Payment amount
+         */
+        public Builder paymentAmount(double paymentAmount) {
+            Utils.checkNotNull(paymentAmount, "paymentAmount");
+            this.paymentAmount = JsonNullable.of(paymentAmount);
+            return this;
+        }
+
+        /**
+         * Payment amount
+         */
+        public Builder paymentAmount(JsonNullable<Double> paymentAmount) {
+            Utils.checkNotNull(paymentAmount, "paymentAmount");
+            this.paymentAmount = paymentAmount;
+            return this;
+        }
+
+
         public Builder item(LinkedInvoiceItem item) {
             Utils.checkNotNull(item, "item");
             this.item = Optional.ofNullable(item);
@@ -1703,6 +2224,25 @@ public class BillLineItem {
             return this;
         }
 
+
+        /**
+         * A list of linked worktags. This is only supported for Workday.
+         */
+        public Builder worktags(List<LinkedWorktag> worktags) {
+            Utils.checkNotNull(worktags, "worktags");
+            this.worktags = Optional.ofNullable(worktags);
+            return this;
+        }
+
+        /**
+         * A list of linked worktags. This is only supported for Workday.
+         */
+        public Builder worktags(Optional<? extends List<LinkedWorktag>> worktags) {
+            Utils.checkNotNull(worktags, "worktags");
+            this.worktags = worktags;
+            return this;
+        }
+
         public BillLineItem build() {
 
             return new BillLineItem(
@@ -1711,11 +2251,14 @@ public class BillLineItem {
                 taxAmount, totalAmount, quantity,
                 unitPrice, unitOfMeasure, discountPercentage,
                 discountAmount, locationId, departmentId,
-                subsidiaryId, categoryId, item,
-                taxRate, ledgerAccount, purchaseOrder,
-                trackingCategories, customer, rebilling,
-                rowVersion, updatedBy, createdBy,
-                createdAt, updatedAt);
+                subsidiaryId, categoryId, shippingId,
+                memo, prepaid, taxApplicableOn,
+                taxRecoverability, taxMethod, retentionAmount,
+                paymentAmount, item, taxRate,
+                ledgerAccount, purchaseOrder, trackingCategories,
+                customer, rebilling, rowVersion,
+                updatedBy, createdBy, createdAt,
+                updatedAt, worktags);
         }
 
     }

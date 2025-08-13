@@ -51,7 +51,7 @@ public class JournalEntry {
     private JsonNullable<? extends Currency> currency;
 
     /**
-     * The company or subsidiary id the transaction belongs to
+     * The company ID the transaction belongs to
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("company_id")
@@ -299,7 +299,7 @@ public class JournalEntry {
     }
 
     /**
-     * The company or subsidiary id the transaction belongs to
+     * The company ID the transaction belongs to
      */
     @JsonIgnore
     public JsonNullable<String> companyId() {
@@ -532,7 +532,7 @@ public class JournalEntry {
     }
 
     /**
-     * The company or subsidiary id the transaction belongs to
+     * The company ID the transaction belongs to
      */
     public JournalEntry withCompanyId(String companyId) {
         Utils.checkNotNull(companyId, "companyId");
@@ -541,7 +541,7 @@ public class JournalEntry {
     }
 
     /**
-     * The company or subsidiary id the transaction belongs to
+     * The company ID the transaction belongs to
      */
     public JournalEntry withCompanyId(JsonNullable<String> companyId) {
         Utils.checkNotNull(companyId, "companyId");
@@ -1078,7 +1078,7 @@ public class JournalEntry {
 
 
         /**
-         * The company or subsidiary id the transaction belongs to
+         * The company ID the transaction belongs to
          */
         public Builder companyId(String companyId) {
             Utils.checkNotNull(companyId, "companyId");
@@ -1087,7 +1087,7 @@ public class JournalEntry {
         }
 
         /**
-         * The company or subsidiary id the transaction belongs to
+         * The company ID the transaction belongs to
          */
         public Builder companyId(JsonNullable<String> companyId) {
             Utils.checkNotNull(companyId, "companyId");

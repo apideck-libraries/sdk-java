@@ -29,6 +29,13 @@ public class ApplicantInput {
     private Optional<String> name;
 
     /**
+     * A formal salutation for the person. For example, 'Mr', 'Mrs'
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("salutation")
+    private JsonNullable<String> salutation;
+
+    /**
      * The first name of the person.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -62,6 +69,25 @@ public class ApplicantInput {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("birthday")
     private JsonNullable<LocalDate> birthday;
+
+    /**
+     * The gender represents the gender identity of a person.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("gender")
+    private JsonNullable<? extends ApplicantGender> gender;
+
+    /**
+     * A unique identifier assigned by the government. This field is considered sensitive information and may be subject to special security and privacy restrictions.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("social_security_number")
+    private JsonNullable<String> socialSecurityNumber;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("type")
+    private Optional<String> type;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -206,11 +232,15 @@ public class ApplicantInput {
     @JsonCreator
     public ApplicantInput(
             @JsonProperty("name") Optional<String> name,
+            @JsonProperty("salutation") JsonNullable<String> salutation,
             @JsonProperty("first_name") JsonNullable<String> firstName,
             @JsonProperty("last_name") JsonNullable<String> lastName,
             @JsonProperty("middle_name") JsonNullable<String> middleName,
             @JsonProperty("initials") JsonNullable<String> initials,
             @JsonProperty("birthday") JsonNullable<LocalDate> birthday,
+            @JsonProperty("gender") JsonNullable<? extends ApplicantGender> gender,
+            @JsonProperty("social_security_number") JsonNullable<String> socialSecurityNumber,
+            @JsonProperty("type") Optional<String> type,
             @JsonProperty("cover_letter") Optional<String> coverLetter,
             @JsonProperty("photo_url") JsonNullable<String> photoUrl,
             @JsonProperty("headline") Optional<String> headline,
@@ -237,11 +267,15 @@ public class ApplicantInput {
             @JsonProperty("deleted") JsonNullable<Boolean> deleted,
             @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
         Utils.checkNotNull(name, "name");
+        Utils.checkNotNull(salutation, "salutation");
         Utils.checkNotNull(firstName, "firstName");
         Utils.checkNotNull(lastName, "lastName");
         Utils.checkNotNull(middleName, "middleName");
         Utils.checkNotNull(initials, "initials");
         Utils.checkNotNull(birthday, "birthday");
+        Utils.checkNotNull(gender, "gender");
+        Utils.checkNotNull(socialSecurityNumber, "socialSecurityNumber");
+        Utils.checkNotNull(type, "type");
         Utils.checkNotNull(coverLetter, "coverLetter");
         Utils.checkNotNull(photoUrl, "photoUrl");
         Utils.checkNotNull(headline, "headline");
@@ -268,11 +302,15 @@ public class ApplicantInput {
         Utils.checkNotNull(deleted, "deleted");
         Utils.checkNotNull(passThrough, "passThrough");
         this.name = name;
+        this.salutation = salutation;
         this.firstName = firstName;
         this.lastName = lastName;
         this.middleName = middleName;
         this.initials = initials;
         this.birthday = birthday;
+        this.gender = gender;
+        this.socialSecurityNumber = socialSecurityNumber;
+        this.type = type;
         this.coverLetter = coverLetter;
         this.photoUrl = photoUrl;
         this.headline = headline;
@@ -303,15 +341,16 @@ public class ApplicantInput {
     public ApplicantInput() {
         this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty());
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -320,6 +359,14 @@ public class ApplicantInput {
     @JsonIgnore
     public Optional<String> name() {
         return name;
+    }
+
+    /**
+     * A formal salutation for the person. For example, 'Mr', 'Mrs'
+     */
+    @JsonIgnore
+    public JsonNullable<String> salutation() {
+        return salutation;
     }
 
     /**
@@ -360,6 +407,28 @@ public class ApplicantInput {
     @JsonIgnore
     public JsonNullable<LocalDate> birthday() {
         return birthday;
+    }
+
+    /**
+     * The gender represents the gender identity of a person.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<ApplicantGender> gender() {
+        return (JsonNullable<ApplicantGender>) gender;
+    }
+
+    /**
+     * A unique identifier assigned by the government. This field is considered sensitive information and may be subject to special security and privacy restrictions.
+     */
+    @JsonIgnore
+    public JsonNullable<String> socialSecurityNumber() {
+        return socialSecurityNumber;
+    }
+
+    @JsonIgnore
+    public Optional<String> type() {
+        return type;
     }
 
     @JsonIgnore
@@ -545,6 +614,24 @@ public class ApplicantInput {
     }
 
     /**
+     * A formal salutation for the person. For example, 'Mr', 'Mrs'
+     */
+    public ApplicantInput withSalutation(String salutation) {
+        Utils.checkNotNull(salutation, "salutation");
+        this.salutation = JsonNullable.of(salutation);
+        return this;
+    }
+
+    /**
+     * A formal salutation for the person. For example, 'Mr', 'Mrs'
+     */
+    public ApplicantInput withSalutation(JsonNullable<String> salutation) {
+        Utils.checkNotNull(salutation, "salutation");
+        this.salutation = salutation;
+        return this;
+    }
+
+    /**
      * The first name of the person.
      */
     public ApplicantInput withFirstName(String firstName) {
@@ -631,6 +718,55 @@ public class ApplicantInput {
     public ApplicantInput withBirthday(JsonNullable<LocalDate> birthday) {
         Utils.checkNotNull(birthday, "birthday");
         this.birthday = birthday;
+        return this;
+    }
+
+    /**
+     * The gender represents the gender identity of a person.
+     */
+    public ApplicantInput withGender(ApplicantGender gender) {
+        Utils.checkNotNull(gender, "gender");
+        this.gender = JsonNullable.of(gender);
+        return this;
+    }
+
+    /**
+     * The gender represents the gender identity of a person.
+     */
+    public ApplicantInput withGender(JsonNullable<? extends ApplicantGender> gender) {
+        Utils.checkNotNull(gender, "gender");
+        this.gender = gender;
+        return this;
+    }
+
+    /**
+     * A unique identifier assigned by the government. This field is considered sensitive information and may be subject to special security and privacy restrictions.
+     */
+    public ApplicantInput withSocialSecurityNumber(String socialSecurityNumber) {
+        Utils.checkNotNull(socialSecurityNumber, "socialSecurityNumber");
+        this.socialSecurityNumber = JsonNullable.of(socialSecurityNumber);
+        return this;
+    }
+
+    /**
+     * A unique identifier assigned by the government. This field is considered sensitive information and may be subject to special security and privacy restrictions.
+     */
+    public ApplicantInput withSocialSecurityNumber(JsonNullable<String> socialSecurityNumber) {
+        Utils.checkNotNull(socialSecurityNumber, "socialSecurityNumber");
+        this.socialSecurityNumber = socialSecurityNumber;
+        return this;
+    }
+
+    public ApplicantInput withType(String type) {
+        Utils.checkNotNull(type, "type");
+        this.type = Optional.ofNullable(type);
+        return this;
+    }
+
+
+    public ApplicantInput withType(Optional<String> type) {
+        Utils.checkNotNull(type, "type");
+        this.type = type;
         return this;
     }
 
@@ -1001,11 +1137,15 @@ public class ApplicantInput {
         ApplicantInput other = (ApplicantInput) o;
         return 
             Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.salutation, other.salutation) &&
             Utils.enhancedDeepEquals(this.firstName, other.firstName) &&
             Utils.enhancedDeepEquals(this.lastName, other.lastName) &&
             Utils.enhancedDeepEquals(this.middleName, other.middleName) &&
             Utils.enhancedDeepEquals(this.initials, other.initials) &&
             Utils.enhancedDeepEquals(this.birthday, other.birthday) &&
+            Utils.enhancedDeepEquals(this.gender, other.gender) &&
+            Utils.enhancedDeepEquals(this.socialSecurityNumber, other.socialSecurityNumber) &&
+            Utils.enhancedDeepEquals(this.type, other.type) &&
             Utils.enhancedDeepEquals(this.coverLetter, other.coverLetter) &&
             Utils.enhancedDeepEquals(this.photoUrl, other.photoUrl) &&
             Utils.enhancedDeepEquals(this.headline, other.headline) &&
@@ -1036,28 +1176,33 @@ public class ApplicantInput {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name, firstName, lastName,
-            middleName, initials, birthday,
-            coverLetter, photoUrl, headline,
-            title, emails, customFields,
-            phoneNumbers, addresses, websites,
-            socialLinks, stageId, recruiterId,
-            coordinatorId, applicationIds, applications,
-            followers, sources, confidential,
-            anonymized, tags, archived,
-            ownerId, recordUrl, deleted,
-            passThrough);
+            name, salutation, firstName,
+            lastName, middleName, initials,
+            birthday, gender, socialSecurityNumber,
+            type, coverLetter, photoUrl,
+            headline, title, emails,
+            customFields, phoneNumbers, addresses,
+            websites, socialLinks, stageId,
+            recruiterId, coordinatorId, applicationIds,
+            applications, followers, sources,
+            confidential, anonymized, tags,
+            archived, ownerId, recordUrl,
+            deleted, passThrough);
     }
     
     @Override
     public String toString() {
         return Utils.toString(ApplicantInput.class,
                 "name", name,
+                "salutation", salutation,
                 "firstName", firstName,
                 "lastName", lastName,
                 "middleName", middleName,
                 "initials", initials,
                 "birthday", birthday,
+                "gender", gender,
+                "socialSecurityNumber", socialSecurityNumber,
+                "type", type,
                 "coverLetter", coverLetter,
                 "photoUrl", photoUrl,
                 "headline", headline,
@@ -1090,6 +1235,8 @@ public class ApplicantInput {
 
         private Optional<String> name = Optional.empty();
 
+        private JsonNullable<String> salutation = JsonNullable.undefined();
+
         private JsonNullable<String> firstName = JsonNullable.undefined();
 
         private JsonNullable<String> lastName = JsonNullable.undefined();
@@ -1099,6 +1246,12 @@ public class ApplicantInput {
         private JsonNullable<String> initials = JsonNullable.undefined();
 
         private JsonNullable<LocalDate> birthday = JsonNullable.undefined();
+
+        private JsonNullable<? extends ApplicantGender> gender = JsonNullable.undefined();
+
+        private JsonNullable<String> socialSecurityNumber = JsonNullable.undefined();
+
+        private Optional<String> type = Optional.empty();
 
         private Optional<String> coverLetter = Optional.empty();
 
@@ -1171,6 +1324,25 @@ public class ApplicantInput {
         public Builder name(Optional<String> name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
+            return this;
+        }
+
+
+        /**
+         * A formal salutation for the person. For example, 'Mr', 'Mrs'
+         */
+        public Builder salutation(String salutation) {
+            Utils.checkNotNull(salutation, "salutation");
+            this.salutation = JsonNullable.of(salutation);
+            return this;
+        }
+
+        /**
+         * A formal salutation for the person. For example, 'Mr', 'Mrs'
+         */
+        public Builder salutation(JsonNullable<String> salutation) {
+            Utils.checkNotNull(salutation, "salutation");
+            this.salutation = salutation;
             return this;
         }
 
@@ -1266,6 +1438,57 @@ public class ApplicantInput {
         public Builder birthday(JsonNullable<LocalDate> birthday) {
             Utils.checkNotNull(birthday, "birthday");
             this.birthday = birthday;
+            return this;
+        }
+
+
+        /**
+         * The gender represents the gender identity of a person.
+         */
+        public Builder gender(ApplicantGender gender) {
+            Utils.checkNotNull(gender, "gender");
+            this.gender = JsonNullable.of(gender);
+            return this;
+        }
+
+        /**
+         * The gender represents the gender identity of a person.
+         */
+        public Builder gender(JsonNullable<? extends ApplicantGender> gender) {
+            Utils.checkNotNull(gender, "gender");
+            this.gender = gender;
+            return this;
+        }
+
+
+        /**
+         * A unique identifier assigned by the government. This field is considered sensitive information and may be subject to special security and privacy restrictions.
+         */
+        public Builder socialSecurityNumber(String socialSecurityNumber) {
+            Utils.checkNotNull(socialSecurityNumber, "socialSecurityNumber");
+            this.socialSecurityNumber = JsonNullable.of(socialSecurityNumber);
+            return this;
+        }
+
+        /**
+         * A unique identifier assigned by the government. This field is considered sensitive information and may be subject to special security and privacy restrictions.
+         */
+        public Builder socialSecurityNumber(JsonNullable<String> socialSecurityNumber) {
+            Utils.checkNotNull(socialSecurityNumber, "socialSecurityNumber");
+            this.socialSecurityNumber = socialSecurityNumber;
+            return this;
+        }
+
+
+        public Builder type(String type) {
+            Utils.checkNotNull(type, "type");
+            this.type = Optional.ofNullable(type);
+            return this;
+        }
+
+        public Builder type(Optional<String> type) {
+            Utils.checkNotNull(type, "type");
+            this.type = type;
             return this;
         }
 
@@ -1639,17 +1862,18 @@ public class ApplicantInput {
         public ApplicantInput build() {
 
             return new ApplicantInput(
-                name, firstName, lastName,
-                middleName, initials, birthday,
-                coverLetter, photoUrl, headline,
-                title, emails, customFields,
-                phoneNumbers, addresses, websites,
-                socialLinks, stageId, recruiterId,
-                coordinatorId, applicationIds, applications,
-                followers, sources, confidential,
-                anonymized, tags, archived,
-                ownerId, recordUrl, deleted,
-                passThrough);
+                name, salutation, firstName,
+                lastName, middleName, initials,
+                birthday, gender, socialSecurityNumber,
+                type, coverLetter, photoUrl,
+                headline, title, emails,
+                customFields, phoneNumbers, addresses,
+                websites, socialLinks, stageId,
+                recruiterId, coordinatorId, applicationIds,
+                applications, followers, sources,
+                confidential, anonymized, tags,
+                archived, ownerId, recordUrl,
+                deleted, passThrough);
         }
 
     }

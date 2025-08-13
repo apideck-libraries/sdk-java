@@ -43,11 +43,18 @@ public class QuoteInput {
     private JsonNullable<String> salesOrderId;
 
     /**
-     * The company or subsidiary id the transaction belongs to
+     * The company ID the transaction belongs to
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("company_id")
     private JsonNullable<String> companyId;
+
+    /**
+     * The ID of the department
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("department_id")
+    private JsonNullable<String> departmentId;
 
     /**
      * The unique identifier for the linked project.
@@ -222,6 +229,7 @@ public class QuoteInput {
             @JsonProperty("customer") JsonNullable<? extends LinkedCustomerInput> customer,
             @JsonProperty("sales_order_id") JsonNullable<String> salesOrderId,
             @JsonProperty("company_id") JsonNullable<String> companyId,
+            @JsonProperty("department_id") JsonNullable<String> departmentId,
             @JsonProperty("project_id") Optional<String> projectId,
             @JsonProperty("quote_date") JsonNullable<LocalDate> quoteDate,
             @JsonProperty("expiry_date") JsonNullable<LocalDate> expiryDate,
@@ -251,6 +259,7 @@ public class QuoteInput {
         Utils.checkNotNull(customer, "customer");
         Utils.checkNotNull(salesOrderId, "salesOrderId");
         Utils.checkNotNull(companyId, "companyId");
+        Utils.checkNotNull(departmentId, "departmentId");
         Utils.checkNotNull(projectId, "projectId");
         Utils.checkNotNull(quoteDate, "quoteDate");
         Utils.checkNotNull(expiryDate, "expiryDate");
@@ -280,6 +289,7 @@ public class QuoteInput {
         this.customer = customer;
         this.salesOrderId = salesOrderId;
         this.companyId = companyId;
+        this.departmentId = departmentId;
         this.projectId = projectId;
         this.quoteDate = quoteDate;
         this.expiryDate = expiryDate;
@@ -309,15 +319,15 @@ public class QuoteInput {
     
     public QuoteInput() {
         this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined(), Optional.empty());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -346,11 +356,19 @@ public class QuoteInput {
     }
 
     /**
-     * The company or subsidiary id the transaction belongs to
+     * The company ID the transaction belongs to
      */
     @JsonIgnore
     public JsonNullable<String> companyId() {
         return companyId;
+    }
+
+    /**
+     * The ID of the department
+     */
+    @JsonIgnore
+    public JsonNullable<String> departmentId() {
+        return departmentId;
     }
 
     /**
@@ -609,7 +627,7 @@ public class QuoteInput {
     }
 
     /**
-     * The company or subsidiary id the transaction belongs to
+     * The company ID the transaction belongs to
      */
     public QuoteInput withCompanyId(String companyId) {
         Utils.checkNotNull(companyId, "companyId");
@@ -618,11 +636,29 @@ public class QuoteInput {
     }
 
     /**
-     * The company or subsidiary id the transaction belongs to
+     * The company ID the transaction belongs to
      */
     public QuoteInput withCompanyId(JsonNullable<String> companyId) {
         Utils.checkNotNull(companyId, "companyId");
         this.companyId = companyId;
+        return this;
+    }
+
+    /**
+     * The ID of the department
+     */
+    public QuoteInput withDepartmentId(String departmentId) {
+        Utils.checkNotNull(departmentId, "departmentId");
+        this.departmentId = JsonNullable.of(departmentId);
+        return this;
+    }
+
+    /**
+     * The ID of the department
+     */
+    public QuoteInput withDepartmentId(JsonNullable<String> departmentId) {
+        Utils.checkNotNull(departmentId, "departmentId");
+        this.departmentId = departmentId;
         return this;
     }
 
@@ -1072,6 +1108,7 @@ public class QuoteInput {
             Utils.enhancedDeepEquals(this.customer, other.customer) &&
             Utils.enhancedDeepEquals(this.salesOrderId, other.salesOrderId) &&
             Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
+            Utils.enhancedDeepEquals(this.departmentId, other.departmentId) &&
             Utils.enhancedDeepEquals(this.projectId, other.projectId) &&
             Utils.enhancedDeepEquals(this.quoteDate, other.quoteDate) &&
             Utils.enhancedDeepEquals(this.expiryDate, other.expiryDate) &&
@@ -1103,15 +1140,15 @@ public class QuoteInput {
     public int hashCode() {
         return Utils.enhancedHash(
             number, customer, salesOrderId,
-            companyId, projectId, quoteDate,
-            expiryDate, terms, reference,
-            status, currency, currencyRate,
-            taxInclusive, subTotal, totalTax,
-            taxCode, discountPercentage, discountAmount,
-            total, customerMemo, lineItems,
-            billingAddress, shippingAddress, trackingCategories,
-            templateId, sourceDocumentUrl, customFields,
-            rowVersion, passThrough);
+            companyId, departmentId, projectId,
+            quoteDate, expiryDate, terms,
+            reference, status, currency,
+            currencyRate, taxInclusive, subTotal,
+            totalTax, taxCode, discountPercentage,
+            discountAmount, total, customerMemo,
+            lineItems, billingAddress, shippingAddress,
+            trackingCategories, templateId, sourceDocumentUrl,
+            customFields, rowVersion, passThrough);
     }
     
     @Override
@@ -1121,6 +1158,7 @@ public class QuoteInput {
                 "customer", customer,
                 "salesOrderId", salesOrderId,
                 "companyId", companyId,
+                "departmentId", departmentId,
                 "projectId", projectId,
                 "quoteDate", quoteDate,
                 "expiryDate", expiryDate,
@@ -1158,6 +1196,8 @@ public class QuoteInput {
         private JsonNullable<String> salesOrderId = JsonNullable.undefined();
 
         private JsonNullable<String> companyId = JsonNullable.undefined();
+
+        private JsonNullable<String> departmentId = JsonNullable.undefined();
 
         private Optional<String> projectId = Optional.empty();
 
@@ -1272,7 +1312,7 @@ public class QuoteInput {
 
 
         /**
-         * The company or subsidiary id the transaction belongs to
+         * The company ID the transaction belongs to
          */
         public Builder companyId(String companyId) {
             Utils.checkNotNull(companyId, "companyId");
@@ -1281,11 +1321,30 @@ public class QuoteInput {
         }
 
         /**
-         * The company or subsidiary id the transaction belongs to
+         * The company ID the transaction belongs to
          */
         public Builder companyId(JsonNullable<String> companyId) {
             Utils.checkNotNull(companyId, "companyId");
             this.companyId = companyId;
+            return this;
+        }
+
+
+        /**
+         * The ID of the department
+         */
+        public Builder departmentId(String departmentId) {
+            Utils.checkNotNull(departmentId, "departmentId");
+            this.departmentId = JsonNullable.of(departmentId);
+            return this;
+        }
+
+        /**
+         * The ID of the department
+         */
+        public Builder departmentId(JsonNullable<String> departmentId) {
+            Utils.checkNotNull(departmentId, "departmentId");
+            this.departmentId = departmentId;
             return this;
         }
 
@@ -1744,15 +1803,15 @@ public class QuoteInput {
 
             return new QuoteInput(
                 number, customer, salesOrderId,
-                companyId, projectId, quoteDate,
-                expiryDate, terms, reference,
-                status, currency, currencyRate,
-                taxInclusive, subTotal, totalTax,
-                taxCode, discountPercentage, discountAmount,
-                total, customerMemo, lineItems,
-                billingAddress, shippingAddress, trackingCategories,
-                templateId, sourceDocumentUrl, customFields,
-                rowVersion, passThrough);
+                companyId, departmentId, projectId,
+                quoteDate, expiryDate, terms,
+                reference, status, currency,
+                currencyRate, taxInclusive, subTotal,
+                totalTax, taxCode, discountPercentage,
+                discountAmount, total, customerMemo,
+                lineItems, billingAddress, shippingAddress,
+                trackingCategories, templateId, sourceDocumentUrl,
+                customFields, rowVersion, passThrough);
         }
 
     }

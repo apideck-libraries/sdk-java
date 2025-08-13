@@ -57,7 +57,7 @@ public class Customer {
     private JsonNullable<String> companyName;
 
     /**
-     * The company or subsidiary id the transaction belongs to
+     * The company ID the transaction belongs to
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("company_id")
@@ -412,7 +412,7 @@ public class Customer {
     }
 
     /**
-     * The company or subsidiary id the transaction belongs to
+     * The company ID the transaction belongs to
      */
     @JsonIgnore
     public JsonNullable<String> companyId() {
@@ -721,7 +721,7 @@ public class Customer {
     }
 
     /**
-     * The company or subsidiary id the transaction belongs to
+     * The company ID the transaction belongs to
      */
     public Customer withCompanyId(String companyId) {
         Utils.checkNotNull(companyId, "companyId");
@@ -730,7 +730,7 @@ public class Customer {
     }
 
     /**
-     * The company or subsidiary id the transaction belongs to
+     * The company ID the transaction belongs to
      */
     public Customer withCompanyId(JsonNullable<String> companyId) {
         Utils.checkNotNull(companyId, "companyId");
@@ -1477,7 +1477,7 @@ public class Customer {
 
 
         /**
-         * The company or subsidiary id the transaction belongs to
+         * The company ID the transaction belongs to
          */
         public Builder companyId(String companyId) {
             Utils.checkNotNull(companyId, "companyId");
@@ -1486,7 +1486,7 @@ public class Customer {
         }
 
         /**
-         * The company or subsidiary id the transaction belongs to
+         * The company ID the transaction belongs to
          */
         public Builder companyId(JsonNullable<String> companyId) {
             Utils.checkNotNull(companyId, "companyId");

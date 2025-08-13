@@ -22,6 +22,13 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class BillInput {
     /**
+     * Id to be displayed.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("display_id")
+    private JsonNullable<String> displayId;
+
+    /**
      * Reference to supplier bill number
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -36,11 +43,18 @@ public class BillInput {
     private JsonNullable<? extends LinkedSupplierInput> supplier;
 
     /**
-     * The company or subsidiary id the transaction belongs to
+     * The company ID the transaction belongs to
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("company_id")
     private JsonNullable<String> companyId;
+
+    /**
+     * The ID of the department
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("department_id")
+    private JsonNullable<String> departmentId;
 
     /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
@@ -210,6 +224,41 @@ public class BillInput {
     private JsonNullable<Double> discountPercentage;
 
     /**
+     * Optional bill template
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("template_id")
+    private JsonNullable<String> templateId;
+
+    /**
+     * The user who approved the bill
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("approved_by")
+    private JsonNullable<String> approvedBy;
+
+    /**
+     * Type of amortization
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("amortization_type")
+    private JsonNullable<? extends AmortizationType> amortizationType;
+
+    /**
+     * Method of tax calculation
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("tax_method")
+    private JsonNullable<String> taxMethod;
+
+    /**
+     * Whether the document has been received
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("document_received")
+    private JsonNullable<Boolean> documentReceived;
+
+    /**
      * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -249,11 +298,18 @@ public class BillInput {
     @JsonProperty("accounting_period")
     private JsonNullable<String> accountingPeriod;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("attachments")
+    private Optional<? extends List<LinkedAttachment>> attachments;
+
     @JsonCreator
     public BillInput(
+            @JsonProperty("display_id") JsonNullable<String> displayId,
             @JsonProperty("bill_number") JsonNullable<String> billNumber,
             @JsonProperty("supplier") JsonNullable<? extends LinkedSupplierInput> supplier,
             @JsonProperty("company_id") JsonNullable<String> companyId,
+            @JsonProperty("department_id") JsonNullable<String> departmentId,
             @JsonProperty("currency") JsonNullable<? extends Currency> currency,
             @JsonProperty("currency_rate") JsonNullable<Double> currencyRate,
             @JsonProperty("tax_inclusive") JsonNullable<Boolean> taxInclusive,
@@ -279,15 +335,23 @@ public class BillInput {
             @JsonProperty("accounting_by_row") JsonNullable<Boolean> accountingByRow,
             @JsonProperty("bank_account") Optional<? extends BankAccount> bankAccount,
             @JsonProperty("discount_percentage") JsonNullable<Double> discountPercentage,
+            @JsonProperty("template_id") JsonNullable<String> templateId,
+            @JsonProperty("approved_by") JsonNullable<String> approvedBy,
+            @JsonProperty("amortization_type") JsonNullable<? extends AmortizationType> amortizationType,
+            @JsonProperty("tax_method") JsonNullable<String> taxMethod,
+            @JsonProperty("document_received") JsonNullable<Boolean> documentReceived,
             @JsonProperty("source_document_url") JsonNullable<String> sourceDocumentUrl,
             @JsonProperty("tracking_categories") JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories,
             @JsonProperty("row_version") JsonNullable<String> rowVersion,
             @JsonProperty("custom_fields") Optional<? extends List<CustomField>> customFields,
             @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough,
-            @JsonProperty("accounting_period") JsonNullable<String> accountingPeriod) {
+            @JsonProperty("accounting_period") JsonNullable<String> accountingPeriod,
+            @JsonProperty("attachments") Optional<? extends List<LinkedAttachment>> attachments) {
+        Utils.checkNotNull(displayId, "displayId");
         Utils.checkNotNull(billNumber, "billNumber");
         Utils.checkNotNull(supplier, "supplier");
         Utils.checkNotNull(companyId, "companyId");
+        Utils.checkNotNull(departmentId, "departmentId");
         Utils.checkNotNull(currency, "currency");
         Utils.checkNotNull(currencyRate, "currencyRate");
         Utils.checkNotNull(taxInclusive, "taxInclusive");
@@ -313,15 +377,23 @@ public class BillInput {
         Utils.checkNotNull(accountingByRow, "accountingByRow");
         Utils.checkNotNull(bankAccount, "bankAccount");
         Utils.checkNotNull(discountPercentage, "discountPercentage");
+        Utils.checkNotNull(templateId, "templateId");
+        Utils.checkNotNull(approvedBy, "approvedBy");
+        Utils.checkNotNull(amortizationType, "amortizationType");
+        Utils.checkNotNull(taxMethod, "taxMethod");
+        Utils.checkNotNull(documentReceived, "documentReceived");
         Utils.checkNotNull(sourceDocumentUrl, "sourceDocumentUrl");
         Utils.checkNotNull(trackingCategories, "trackingCategories");
         Utils.checkNotNull(rowVersion, "rowVersion");
         Utils.checkNotNull(customFields, "customFields");
         Utils.checkNotNull(passThrough, "passThrough");
         Utils.checkNotNull(accountingPeriod, "accountingPeriod");
+        Utils.checkNotNull(attachments, "attachments");
+        this.displayId = displayId;
         this.billNumber = billNumber;
         this.supplier = supplier;
         this.companyId = companyId;
+        this.departmentId = departmentId;
         this.currency = currency;
         this.currencyRate = currencyRate;
         this.taxInclusive = taxInclusive;
@@ -347,27 +419,43 @@ public class BillInput {
         this.accountingByRow = accountingByRow;
         this.bankAccount = bankAccount;
         this.discountPercentage = discountPercentage;
+        this.templateId = templateId;
+        this.approvedBy = approvedBy;
+        this.amortizationType = amortizationType;
+        this.taxMethod = taxMethod;
+        this.documentReceived = documentReceived;
         this.sourceDocumentUrl = sourceDocumentUrl;
         this.trackingCategories = trackingCategories;
         this.rowVersion = rowVersion;
         this.customFields = customFields;
         this.passThrough = passThrough;
         this.accountingPeriod = accountingPeriod;
+        this.attachments = attachments;
     }
     
     public BillInput() {
         this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
-            JsonNullable.undefined());
+            Optional.empty(), JsonNullable.undefined(), Optional.empty());
+    }
+
+    /**
+     * Id to be displayed.
+     */
+    @JsonIgnore
+    public JsonNullable<String> displayId() {
+        return displayId;
     }
 
     /**
@@ -388,11 +476,19 @@ public class BillInput {
     }
 
     /**
-     * The company or subsidiary id the transaction belongs to
+     * The company ID the transaction belongs to
      */
     @JsonIgnore
     public JsonNullable<String> companyId() {
         return companyId;
+    }
+
+    /**
+     * The ID of the department
+     */
+    @JsonIgnore
+    public JsonNullable<String> departmentId() {
+        return departmentId;
     }
 
     /**
@@ -589,6 +685,47 @@ public class BillInput {
     }
 
     /**
+     * Optional bill template
+     */
+    @JsonIgnore
+    public JsonNullable<String> templateId() {
+        return templateId;
+    }
+
+    /**
+     * The user who approved the bill
+     */
+    @JsonIgnore
+    public JsonNullable<String> approvedBy() {
+        return approvedBy;
+    }
+
+    /**
+     * Type of amortization
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<AmortizationType> amortizationType() {
+        return (JsonNullable<AmortizationType>) amortizationType;
+    }
+
+    /**
+     * Method of tax calculation
+     */
+    @JsonIgnore
+    public JsonNullable<String> taxMethod() {
+        return taxMethod;
+    }
+
+    /**
+     * Whether the document has been received
+     */
+    @JsonIgnore
+    public JsonNullable<Boolean> documentReceived() {
+        return documentReceived;
+    }
+
+    /**
      * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
      */
     @JsonIgnore
@@ -636,10 +773,34 @@ public class BillInput {
         return accountingPeriod;
     }
 
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<LinkedAttachment>> attachments() {
+        return (Optional<List<LinkedAttachment>>) attachments;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
 
+
+    /**
+     * Id to be displayed.
+     */
+    public BillInput withDisplayId(String displayId) {
+        Utils.checkNotNull(displayId, "displayId");
+        this.displayId = JsonNullable.of(displayId);
+        return this;
+    }
+
+    /**
+     * Id to be displayed.
+     */
+    public BillInput withDisplayId(JsonNullable<String> displayId) {
+        Utils.checkNotNull(displayId, "displayId");
+        this.displayId = displayId;
+        return this;
+    }
 
     /**
      * Reference to supplier bill number
@@ -678,7 +839,7 @@ public class BillInput {
     }
 
     /**
-     * The company or subsidiary id the transaction belongs to
+     * The company ID the transaction belongs to
      */
     public BillInput withCompanyId(String companyId) {
         Utils.checkNotNull(companyId, "companyId");
@@ -687,11 +848,29 @@ public class BillInput {
     }
 
     /**
-     * The company or subsidiary id the transaction belongs to
+     * The company ID the transaction belongs to
      */
     public BillInput withCompanyId(JsonNullable<String> companyId) {
         Utils.checkNotNull(companyId, "companyId");
         this.companyId = companyId;
+        return this;
+    }
+
+    /**
+     * The ID of the department
+     */
+    public BillInput withDepartmentId(String departmentId) {
+        Utils.checkNotNull(departmentId, "departmentId");
+        this.departmentId = JsonNullable.of(departmentId);
+        return this;
+    }
+
+    /**
+     * The ID of the department
+     */
+    public BillInput withDepartmentId(JsonNullable<String> departmentId) {
+        Utils.checkNotNull(departmentId, "departmentId");
+        this.departmentId = departmentId;
         return this;
     }
 
@@ -1124,6 +1303,96 @@ public class BillInput {
     }
 
     /**
+     * Optional bill template
+     */
+    public BillInput withTemplateId(String templateId) {
+        Utils.checkNotNull(templateId, "templateId");
+        this.templateId = JsonNullable.of(templateId);
+        return this;
+    }
+
+    /**
+     * Optional bill template
+     */
+    public BillInput withTemplateId(JsonNullable<String> templateId) {
+        Utils.checkNotNull(templateId, "templateId");
+        this.templateId = templateId;
+        return this;
+    }
+
+    /**
+     * The user who approved the bill
+     */
+    public BillInput withApprovedBy(String approvedBy) {
+        Utils.checkNotNull(approvedBy, "approvedBy");
+        this.approvedBy = JsonNullable.of(approvedBy);
+        return this;
+    }
+
+    /**
+     * The user who approved the bill
+     */
+    public BillInput withApprovedBy(JsonNullable<String> approvedBy) {
+        Utils.checkNotNull(approvedBy, "approvedBy");
+        this.approvedBy = approvedBy;
+        return this;
+    }
+
+    /**
+     * Type of amortization
+     */
+    public BillInput withAmortizationType(AmortizationType amortizationType) {
+        Utils.checkNotNull(amortizationType, "amortizationType");
+        this.amortizationType = JsonNullable.of(amortizationType);
+        return this;
+    }
+
+    /**
+     * Type of amortization
+     */
+    public BillInput withAmortizationType(JsonNullable<? extends AmortizationType> amortizationType) {
+        Utils.checkNotNull(amortizationType, "amortizationType");
+        this.amortizationType = amortizationType;
+        return this;
+    }
+
+    /**
+     * Method of tax calculation
+     */
+    public BillInput withTaxMethod(String taxMethod) {
+        Utils.checkNotNull(taxMethod, "taxMethod");
+        this.taxMethod = JsonNullable.of(taxMethod);
+        return this;
+    }
+
+    /**
+     * Method of tax calculation
+     */
+    public BillInput withTaxMethod(JsonNullable<String> taxMethod) {
+        Utils.checkNotNull(taxMethod, "taxMethod");
+        this.taxMethod = taxMethod;
+        return this;
+    }
+
+    /**
+     * Whether the document has been received
+     */
+    public BillInput withDocumentReceived(boolean documentReceived) {
+        Utils.checkNotNull(documentReceived, "documentReceived");
+        this.documentReceived = JsonNullable.of(documentReceived);
+        return this;
+    }
+
+    /**
+     * Whether the document has been received
+     */
+    public BillInput withDocumentReceived(JsonNullable<Boolean> documentReceived) {
+        Utils.checkNotNull(documentReceived, "documentReceived");
+        this.documentReceived = documentReceived;
+        return this;
+    }
+
+    /**
      * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
      */
     public BillInput withSourceDocumentUrl(String sourceDocumentUrl) {
@@ -1227,6 +1496,19 @@ public class BillInput {
         return this;
     }
 
+    public BillInput withAttachments(List<LinkedAttachment> attachments) {
+        Utils.checkNotNull(attachments, "attachments");
+        this.attachments = Optional.ofNullable(attachments);
+        return this;
+    }
+
+
+    public BillInput withAttachments(Optional<? extends List<LinkedAttachment>> attachments) {
+        Utils.checkNotNull(attachments, "attachments");
+        this.attachments = attachments;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -1237,9 +1519,11 @@ public class BillInput {
         }
         BillInput other = (BillInput) o;
         return 
+            Utils.enhancedDeepEquals(this.displayId, other.displayId) &&
             Utils.enhancedDeepEquals(this.billNumber, other.billNumber) &&
             Utils.enhancedDeepEquals(this.supplier, other.supplier) &&
             Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
+            Utils.enhancedDeepEquals(this.departmentId, other.departmentId) &&
             Utils.enhancedDeepEquals(this.currency, other.currency) &&
             Utils.enhancedDeepEquals(this.currencyRate, other.currencyRate) &&
             Utils.enhancedDeepEquals(this.taxInclusive, other.taxInclusive) &&
@@ -1265,37 +1549,47 @@ public class BillInput {
             Utils.enhancedDeepEquals(this.accountingByRow, other.accountingByRow) &&
             Utils.enhancedDeepEquals(this.bankAccount, other.bankAccount) &&
             Utils.enhancedDeepEquals(this.discountPercentage, other.discountPercentage) &&
+            Utils.enhancedDeepEquals(this.templateId, other.templateId) &&
+            Utils.enhancedDeepEquals(this.approvedBy, other.approvedBy) &&
+            Utils.enhancedDeepEquals(this.amortizationType, other.amortizationType) &&
+            Utils.enhancedDeepEquals(this.taxMethod, other.taxMethod) &&
+            Utils.enhancedDeepEquals(this.documentReceived, other.documentReceived) &&
             Utils.enhancedDeepEquals(this.sourceDocumentUrl, other.sourceDocumentUrl) &&
             Utils.enhancedDeepEquals(this.trackingCategories, other.trackingCategories) &&
             Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion) &&
             Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
             Utils.enhancedDeepEquals(this.passThrough, other.passThrough) &&
-            Utils.enhancedDeepEquals(this.accountingPeriod, other.accountingPeriod);
+            Utils.enhancedDeepEquals(this.accountingPeriod, other.accountingPeriod) &&
+            Utils.enhancedDeepEquals(this.attachments, other.attachments);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            billNumber, supplier, companyId,
-            currency, currencyRate, taxInclusive,
-            billDate, dueDate, paidDate,
-            poNumber, reference, lineItems,
-            terms, balance, deposit,
-            subTotal, totalTax, total,
-            taxCode, notes, status,
-            ledgerAccount, paymentMethod, channel,
-            language, accountingByRow, bankAccount,
-            discountPercentage, sourceDocumentUrl, trackingCategories,
-            rowVersion, customFields, passThrough,
-            accountingPeriod);
+            displayId, billNumber, supplier,
+            companyId, departmentId, currency,
+            currencyRate, taxInclusive, billDate,
+            dueDate, paidDate, poNumber,
+            reference, lineItems, terms,
+            balance, deposit, subTotal,
+            totalTax, total, taxCode,
+            notes, status, ledgerAccount,
+            paymentMethod, channel, language,
+            accountingByRow, bankAccount, discountPercentage,
+            templateId, approvedBy, amortizationType,
+            taxMethod, documentReceived, sourceDocumentUrl,
+            trackingCategories, rowVersion, customFields,
+            passThrough, accountingPeriod, attachments);
     }
     
     @Override
     public String toString() {
         return Utils.toString(BillInput.class,
+                "displayId", displayId,
                 "billNumber", billNumber,
                 "supplier", supplier,
                 "companyId", companyId,
+                "departmentId", departmentId,
                 "currency", currency,
                 "currencyRate", currencyRate,
                 "taxInclusive", taxInclusive,
@@ -1321,22 +1615,32 @@ public class BillInput {
                 "accountingByRow", accountingByRow,
                 "bankAccount", bankAccount,
                 "discountPercentage", discountPercentage,
+                "templateId", templateId,
+                "approvedBy", approvedBy,
+                "amortizationType", amortizationType,
+                "taxMethod", taxMethod,
+                "documentReceived", documentReceived,
                 "sourceDocumentUrl", sourceDocumentUrl,
                 "trackingCategories", trackingCategories,
                 "rowVersion", rowVersion,
                 "customFields", customFields,
                 "passThrough", passThrough,
-                "accountingPeriod", accountingPeriod);
+                "accountingPeriod", accountingPeriod,
+                "attachments", attachments);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
+
+        private JsonNullable<String> displayId = JsonNullable.undefined();
 
         private JsonNullable<String> billNumber = JsonNullable.undefined();
 
         private JsonNullable<? extends LinkedSupplierInput> supplier = JsonNullable.undefined();
 
         private JsonNullable<String> companyId = JsonNullable.undefined();
+
+        private JsonNullable<String> departmentId = JsonNullable.undefined();
 
         private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
 
@@ -1388,6 +1692,16 @@ public class BillInput {
 
         private JsonNullable<Double> discountPercentage = JsonNullable.undefined();
 
+        private JsonNullable<String> templateId = JsonNullable.undefined();
+
+        private JsonNullable<String> approvedBy = JsonNullable.undefined();
+
+        private JsonNullable<? extends AmortizationType> amortizationType = JsonNullable.undefined();
+
+        private JsonNullable<String> taxMethod = JsonNullable.undefined();
+
+        private JsonNullable<Boolean> documentReceived = JsonNullable.undefined();
+
         private JsonNullable<String> sourceDocumentUrl = JsonNullable.undefined();
 
         private JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories = JsonNullable.undefined();
@@ -1400,8 +1714,29 @@ public class BillInput {
 
         private JsonNullable<String> accountingPeriod = JsonNullable.undefined();
 
+        private Optional<? extends List<LinkedAttachment>> attachments = Optional.empty();
+
         private Builder() {
           // force use of static builder() method
+        }
+
+
+        /**
+         * Id to be displayed.
+         */
+        public Builder displayId(String displayId) {
+            Utils.checkNotNull(displayId, "displayId");
+            this.displayId = JsonNullable.of(displayId);
+            return this;
+        }
+
+        /**
+         * Id to be displayed.
+         */
+        public Builder displayId(JsonNullable<String> displayId) {
+            Utils.checkNotNull(displayId, "displayId");
+            this.displayId = displayId;
+            return this;
         }
 
 
@@ -1444,7 +1779,7 @@ public class BillInput {
 
 
         /**
-         * The company or subsidiary id the transaction belongs to
+         * The company ID the transaction belongs to
          */
         public Builder companyId(String companyId) {
             Utils.checkNotNull(companyId, "companyId");
@@ -1453,11 +1788,30 @@ public class BillInput {
         }
 
         /**
-         * The company or subsidiary id the transaction belongs to
+         * The company ID the transaction belongs to
          */
         public Builder companyId(JsonNullable<String> companyId) {
             Utils.checkNotNull(companyId, "companyId");
             this.companyId = companyId;
+            return this;
+        }
+
+
+        /**
+         * The ID of the department
+         */
+        public Builder departmentId(String departmentId) {
+            Utils.checkNotNull(departmentId, "departmentId");
+            this.departmentId = JsonNullable.of(departmentId);
+            return this;
+        }
+
+        /**
+         * The ID of the department
+         */
+        public Builder departmentId(JsonNullable<String> departmentId) {
+            Utils.checkNotNull(departmentId, "departmentId");
+            this.departmentId = departmentId;
             return this;
         }
 
@@ -1914,6 +2268,101 @@ public class BillInput {
 
 
         /**
+         * Optional bill template
+         */
+        public Builder templateId(String templateId) {
+            Utils.checkNotNull(templateId, "templateId");
+            this.templateId = JsonNullable.of(templateId);
+            return this;
+        }
+
+        /**
+         * Optional bill template
+         */
+        public Builder templateId(JsonNullable<String> templateId) {
+            Utils.checkNotNull(templateId, "templateId");
+            this.templateId = templateId;
+            return this;
+        }
+
+
+        /**
+         * The user who approved the bill
+         */
+        public Builder approvedBy(String approvedBy) {
+            Utils.checkNotNull(approvedBy, "approvedBy");
+            this.approvedBy = JsonNullable.of(approvedBy);
+            return this;
+        }
+
+        /**
+         * The user who approved the bill
+         */
+        public Builder approvedBy(JsonNullable<String> approvedBy) {
+            Utils.checkNotNull(approvedBy, "approvedBy");
+            this.approvedBy = approvedBy;
+            return this;
+        }
+
+
+        /**
+         * Type of amortization
+         */
+        public Builder amortizationType(AmortizationType amortizationType) {
+            Utils.checkNotNull(amortizationType, "amortizationType");
+            this.amortizationType = JsonNullable.of(amortizationType);
+            return this;
+        }
+
+        /**
+         * Type of amortization
+         */
+        public Builder amortizationType(JsonNullable<? extends AmortizationType> amortizationType) {
+            Utils.checkNotNull(amortizationType, "amortizationType");
+            this.amortizationType = amortizationType;
+            return this;
+        }
+
+
+        /**
+         * Method of tax calculation
+         */
+        public Builder taxMethod(String taxMethod) {
+            Utils.checkNotNull(taxMethod, "taxMethod");
+            this.taxMethod = JsonNullable.of(taxMethod);
+            return this;
+        }
+
+        /**
+         * Method of tax calculation
+         */
+        public Builder taxMethod(JsonNullable<String> taxMethod) {
+            Utils.checkNotNull(taxMethod, "taxMethod");
+            this.taxMethod = taxMethod;
+            return this;
+        }
+
+
+        /**
+         * Whether the document has been received
+         */
+        public Builder documentReceived(boolean documentReceived) {
+            Utils.checkNotNull(documentReceived, "documentReceived");
+            this.documentReceived = JsonNullable.of(documentReceived);
+            return this;
+        }
+
+        /**
+         * Whether the document has been received
+         */
+        public Builder documentReceived(JsonNullable<Boolean> documentReceived) {
+            Utils.checkNotNull(documentReceived, "documentReceived");
+            this.documentReceived = documentReceived;
+            return this;
+        }
+
+
+        /**
          * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
          */
         public Builder sourceDocumentUrl(String sourceDocumentUrl) {
@@ -2020,21 +2469,36 @@ public class BillInput {
             return this;
         }
 
+
+        public Builder attachments(List<LinkedAttachment> attachments) {
+            Utils.checkNotNull(attachments, "attachments");
+            this.attachments = Optional.ofNullable(attachments);
+            return this;
+        }
+
+        public Builder attachments(Optional<? extends List<LinkedAttachment>> attachments) {
+            Utils.checkNotNull(attachments, "attachments");
+            this.attachments = attachments;
+            return this;
+        }
+
         public BillInput build() {
 
             return new BillInput(
-                billNumber, supplier, companyId,
-                currency, currencyRate, taxInclusive,
-                billDate, dueDate, paidDate,
-                poNumber, reference, lineItems,
-                terms, balance, deposit,
-                subTotal, totalTax, total,
-                taxCode, notes, status,
-                ledgerAccount, paymentMethod, channel,
-                language, accountingByRow, bankAccount,
-                discountPercentage, sourceDocumentUrl, trackingCategories,
-                rowVersion, customFields, passThrough,
-                accountingPeriod);
+                displayId, billNumber, supplier,
+                companyId, departmentId, currency,
+                currencyRate, taxInclusive, billDate,
+                dueDate, paidDate, poNumber,
+                reference, lineItems, terms,
+                balance, deposit, subTotal,
+                totalTax, total, taxCode,
+                notes, status, ledgerAccount,
+                paymentMethod, channel, language,
+                accountingByRow, bankAccount, discountPercentage,
+                templateId, approvedBy, amortizationType,
+                taxMethod, documentReceived, sourceDocumentUrl,
+                trackingCategories, rowVersion, customFields,
+                passThrough, accountingPeriod, attachments);
         }
 
     }

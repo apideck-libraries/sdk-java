@@ -67,11 +67,18 @@ public class PurchaseOrder {
     private JsonNullable<String> subsidiaryId;
 
     /**
-     * The company or subsidiary id the transaction belongs to
+     * The company ID the transaction belongs to
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("company_id")
     private JsonNullable<String> companyId;
+
+    /**
+     * The ID of the department
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("department_id")
+    private JsonNullable<String> departmentId;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -213,7 +220,7 @@ public class PurchaseOrder {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amortization_type")
-    private JsonNullable<? extends AmortizationType> amortizationType;
+    private JsonNullable<? extends PurchaseOrderAmortizationType> amortizationType;
 
     /**
      * Applicable tax id/code override if tax is not supplied on a line item basis.
@@ -334,6 +341,7 @@ public class PurchaseOrder {
             @JsonProperty("supplier") JsonNullable<? extends LinkedSupplier> supplier,
             @JsonProperty("subsidiary_id") JsonNullable<String> subsidiaryId,
             @JsonProperty("company_id") JsonNullable<String> companyId,
+            @JsonProperty("department_id") JsonNullable<String> departmentId,
             @JsonProperty("status") JsonNullable<? extends PurchaseOrderStatus> status,
             @JsonProperty("issued_date") JsonNullable<LocalDate> issuedDate,
             @JsonProperty("delivery_date") JsonNullable<LocalDate> deliveryDate,
@@ -355,7 +363,7 @@ public class PurchaseOrder {
             @JsonProperty("due_date") JsonNullable<LocalDate> dueDate,
             @JsonProperty("payment_method") JsonNullable<String> paymentMethod,
             @JsonProperty("terms") JsonNullable<String> terms,
-            @JsonProperty("amortization_type") JsonNullable<? extends AmortizationType> amortizationType,
+            @JsonProperty("amortization_type") JsonNullable<? extends PurchaseOrderAmortizationType> amortizationType,
             @JsonProperty("tax_code") JsonNullable<String> taxCode,
             @JsonProperty("tax_method") JsonNullable<String> taxMethod,
             @JsonProperty("issued_method") JsonNullable<String> issuedMethod,
@@ -379,6 +387,7 @@ public class PurchaseOrder {
         Utils.checkNotNull(supplier, "supplier");
         Utils.checkNotNull(subsidiaryId, "subsidiaryId");
         Utils.checkNotNull(companyId, "companyId");
+        Utils.checkNotNull(departmentId, "departmentId");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(issuedDate, "issuedDate");
         Utils.checkNotNull(deliveryDate, "deliveryDate");
@@ -424,6 +433,7 @@ public class PurchaseOrder {
         this.supplier = supplier;
         this.subsidiaryId = subsidiaryId;
         this.companyId = companyId;
+        this.departmentId = departmentId;
         this.status = status;
         this.issuedDate = issuedDate;
         this.deliveryDate = deliveryDate;
@@ -470,16 +480,17 @@ public class PurchaseOrder {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+            Optional.empty());
     }
 
     /**
@@ -532,11 +543,19 @@ public class PurchaseOrder {
     }
 
     /**
-     * The company or subsidiary id the transaction belongs to
+     * The company ID the transaction belongs to
      */
     @JsonIgnore
     public JsonNullable<String> companyId() {
         return companyId;
+    }
+
+    /**
+     * The ID of the department
+     */
+    @JsonIgnore
+    public JsonNullable<String> departmentId() {
+        return departmentId;
     }
 
     @SuppressWarnings("unchecked")
@@ -701,8 +720,8 @@ public class PurchaseOrder {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<AmortizationType> amortizationType() {
-        return (JsonNullable<AmortizationType>) amortizationType;
+    public JsonNullable<PurchaseOrderAmortizationType> amortizationType() {
+        return (JsonNullable<PurchaseOrderAmortizationType>) amortizationType;
     }
 
     /**
@@ -949,7 +968,7 @@ public class PurchaseOrder {
     }
 
     /**
-     * The company or subsidiary id the transaction belongs to
+     * The company ID the transaction belongs to
      */
     public PurchaseOrder withCompanyId(String companyId) {
         Utils.checkNotNull(companyId, "companyId");
@@ -958,11 +977,29 @@ public class PurchaseOrder {
     }
 
     /**
-     * The company or subsidiary id the transaction belongs to
+     * The company ID the transaction belongs to
      */
     public PurchaseOrder withCompanyId(JsonNullable<String> companyId) {
         Utils.checkNotNull(companyId, "companyId");
         this.companyId = companyId;
+        return this;
+    }
+
+    /**
+     * The ID of the department
+     */
+    public PurchaseOrder withDepartmentId(String departmentId) {
+        Utils.checkNotNull(departmentId, "departmentId");
+        this.departmentId = JsonNullable.of(departmentId);
+        return this;
+    }
+
+    /**
+     * The ID of the department
+     */
+    public PurchaseOrder withDepartmentId(JsonNullable<String> departmentId) {
+        Utils.checkNotNull(departmentId, "departmentId");
+        this.departmentId = departmentId;
         return this;
     }
 
@@ -1315,7 +1352,7 @@ public class PurchaseOrder {
     /**
      * Type of amortization
      */
-    public PurchaseOrder withAmortizationType(AmortizationType amortizationType) {
+    public PurchaseOrder withAmortizationType(PurchaseOrderAmortizationType amortizationType) {
         Utils.checkNotNull(amortizationType, "amortizationType");
         this.amortizationType = JsonNullable.of(amortizationType);
         return this;
@@ -1324,7 +1361,7 @@ public class PurchaseOrder {
     /**
      * Type of amortization
      */
-    public PurchaseOrder withAmortizationType(JsonNullable<? extends AmortizationType> amortizationType) {
+    public PurchaseOrder withAmortizationType(JsonNullable<? extends PurchaseOrderAmortizationType> amortizationType) {
         Utils.checkNotNull(amortizationType, "amortizationType");
         this.amortizationType = amortizationType;
         return this;
@@ -1631,6 +1668,7 @@ public class PurchaseOrder {
             Utils.enhancedDeepEquals(this.supplier, other.supplier) &&
             Utils.enhancedDeepEquals(this.subsidiaryId, other.subsidiaryId) &&
             Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
+            Utils.enhancedDeepEquals(this.departmentId, other.departmentId) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.issuedDate, other.issuedDate) &&
             Utils.enhancedDeepEquals(this.deliveryDate, other.deliveryDate) &&
@@ -1676,19 +1714,20 @@ public class PurchaseOrder {
         return Utils.enhancedHash(
             id, downstreamId, poNumber,
             reference, supplier, subsidiaryId,
-            companyId, status, issuedDate,
-            deliveryDate, expectedArrivalDate, currency,
-            currencyRate, subTotal, totalTax,
-            total, taxInclusive, lineItems,
-            billingAddress, shippingAddress, ledgerAccount,
-            templateId, discountPercentage, bankAccount,
-            accountingByRow, dueDate, paymentMethod,
-            terms, amortizationType, taxCode,
-            taxMethod, issuedMethod, issuedEmail,
-            channel, memo, notes,
-            trackingCategories, customMappings, customFields,
-            rowVersion, updatedBy, createdBy,
-            updatedAt, createdAt, passThrough);
+            companyId, departmentId, status,
+            issuedDate, deliveryDate, expectedArrivalDate,
+            currency, currencyRate, subTotal,
+            totalTax, total, taxInclusive,
+            lineItems, billingAddress, shippingAddress,
+            ledgerAccount, templateId, discountPercentage,
+            bankAccount, accountingByRow, dueDate,
+            paymentMethod, terms, amortizationType,
+            taxCode, taxMethod, issuedMethod,
+            issuedEmail, channel, memo,
+            notes, trackingCategories, customMappings,
+            customFields, rowVersion, updatedBy,
+            createdBy, updatedAt, createdAt,
+            passThrough);
     }
     
     @Override
@@ -1701,6 +1740,7 @@ public class PurchaseOrder {
                 "supplier", supplier,
                 "subsidiaryId", subsidiaryId,
                 "companyId", companyId,
+                "departmentId", departmentId,
                 "status", status,
                 "issuedDate", issuedDate,
                 "deliveryDate", deliveryDate,
@@ -1758,6 +1798,8 @@ public class PurchaseOrder {
 
         private JsonNullable<String> companyId = JsonNullable.undefined();
 
+        private JsonNullable<String> departmentId = JsonNullable.undefined();
+
         private JsonNullable<? extends PurchaseOrderStatus> status = JsonNullable.undefined();
 
         private JsonNullable<LocalDate> issuedDate = JsonNullable.undefined();
@@ -1800,7 +1842,7 @@ public class PurchaseOrder {
 
         private JsonNullable<String> terms = JsonNullable.undefined();
 
-        private JsonNullable<? extends AmortizationType> amortizationType = JsonNullable.undefined();
+        private JsonNullable<? extends PurchaseOrderAmortizationType> amortizationType = JsonNullable.undefined();
 
         private JsonNullable<String> taxCode = JsonNullable.undefined();
 
@@ -1954,7 +1996,7 @@ public class PurchaseOrder {
 
 
         /**
-         * The company or subsidiary id the transaction belongs to
+         * The company ID the transaction belongs to
          */
         public Builder companyId(String companyId) {
             Utils.checkNotNull(companyId, "companyId");
@@ -1963,11 +2005,30 @@ public class PurchaseOrder {
         }
 
         /**
-         * The company or subsidiary id the transaction belongs to
+         * The company ID the transaction belongs to
          */
         public Builder companyId(JsonNullable<String> companyId) {
             Utils.checkNotNull(companyId, "companyId");
             this.companyId = companyId;
+            return this;
+        }
+
+
+        /**
+         * The ID of the department
+         */
+        public Builder departmentId(String departmentId) {
+            Utils.checkNotNull(departmentId, "departmentId");
+            this.departmentId = JsonNullable.of(departmentId);
+            return this;
+        }
+
+        /**
+         * The ID of the department
+         */
+        public Builder departmentId(JsonNullable<String> departmentId) {
+            Utils.checkNotNull(departmentId, "departmentId");
+            this.departmentId = departmentId;
             return this;
         }
 
@@ -2338,7 +2399,7 @@ public class PurchaseOrder {
         /**
          * Type of amortization
          */
-        public Builder amortizationType(AmortizationType amortizationType) {
+        public Builder amortizationType(PurchaseOrderAmortizationType amortizationType) {
             Utils.checkNotNull(amortizationType, "amortizationType");
             this.amortizationType = JsonNullable.of(amortizationType);
             return this;
@@ -2347,7 +2408,7 @@ public class PurchaseOrder {
         /**
          * Type of amortization
          */
-        public Builder amortizationType(JsonNullable<? extends AmortizationType> amortizationType) {
+        public Builder amortizationType(JsonNullable<? extends PurchaseOrderAmortizationType> amortizationType) {
             Utils.checkNotNull(amortizationType, "amortizationType");
             this.amortizationType = amortizationType;
             return this;
@@ -2656,19 +2717,20 @@ public class PurchaseOrder {
             return new PurchaseOrder(
                 id, downstreamId, poNumber,
                 reference, supplier, subsidiaryId,
-                companyId, status, issuedDate,
-                deliveryDate, expectedArrivalDate, currency,
-                currencyRate, subTotal, totalTax,
-                total, taxInclusive, lineItems,
-                billingAddress, shippingAddress, ledgerAccount,
-                templateId, discountPercentage, bankAccount,
-                accountingByRow, dueDate, paymentMethod,
-                terms, amortizationType, taxCode,
-                taxMethod, issuedMethod, issuedEmail,
-                channel, memo, notes,
-                trackingCategories, customMappings, customFields,
-                rowVersion, updatedBy, createdBy,
-                updatedAt, createdAt, passThrough);
+                companyId, departmentId, status,
+                issuedDate, deliveryDate, expectedArrivalDate,
+                currency, currencyRate, subTotal,
+                totalTax, total, taxInclusive,
+                lineItems, billingAddress, shippingAddress,
+                ledgerAccount, templateId, discountPercentage,
+                bankAccount, accountingByRow, dueDate,
+                paymentMethod, terms, amortizationType,
+                taxCode, taxMethod, issuedMethod,
+                issuedEmail, channel, memo,
+                notes, trackingCategories, customMappings,
+                customFields, rowVersion, updatedBy,
+                createdBy, updatedAt, createdAt,
+                passThrough);
         }
 
     }

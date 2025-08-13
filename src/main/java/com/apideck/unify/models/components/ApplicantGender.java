@@ -9,19 +9,21 @@ import java.util.Objects;
 import java.util.Optional;
 
 /**
- * Budget
+ * ApplicantGender
  * 
- * <p>Budget of the line item
+ * <p>The gender represents the gender identity of a person.
  */
-public enum Budget {
-    OUT_OF_BUDGET("out_of_budget"),
-    IN_BUDGET("in_budget"),
-    OTHER("other");
+public enum ApplicantGender {
+    MALE("male"),
+    FEMALE("female"),
+    UNISEX("unisex"),
+    OTHER("other"),
+    NOT_SPECIFIED("not_specified");
 
     @JsonValue
     private final String value;
 
-    Budget(String value) {
+    ApplicantGender(String value) {
         this.value = value;
     }
     
@@ -29,8 +31,8 @@ public enum Budget {
         return value;
     }
     
-    public static Optional<Budget> fromValue(String value) {
-        for (Budget o: Budget.values()) {
+    public static Optional<ApplicantGender> fromValue(String value) {
+        for (ApplicantGender o: ApplicantGender.values()) {
             if (Objects.deepEquals(o.value, value)) {
                 return Optional.of(o);
             }

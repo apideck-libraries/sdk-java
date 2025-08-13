@@ -136,7 +136,7 @@ public class Payment {
     private JsonNullable<? extends DeprecatedLinkedSupplier> supplier;
 
     /**
-     * The company or subsidiary id the transaction belongs to
+     * The company ID the transaction belongs to
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("company_id")
@@ -496,7 +496,7 @@ public class Payment {
     }
 
     /**
-     * The company or subsidiary id the transaction belongs to
+     * The company ID the transaction belongs to
      */
     @JsonIgnore
     public JsonNullable<String> companyId() {
@@ -913,7 +913,7 @@ public class Payment {
     }
 
     /**
-     * The company or subsidiary id the transaction belongs to
+     * The company ID the transaction belongs to
      */
     public Payment withCompanyId(String companyId) {
         Utils.checkNotNull(companyId, "companyId");
@@ -922,7 +922,7 @@ public class Payment {
     }
 
     /**
-     * The company or subsidiary id the transaction belongs to
+     * The company ID the transaction belongs to
      */
     public Payment withCompanyId(JsonNullable<String> companyId) {
         Utils.checkNotNull(companyId, "companyId");
@@ -1672,7 +1672,7 @@ public class Payment {
 
 
         /**
-         * The company or subsidiary id the transaction belongs to
+         * The company ID the transaction belongs to
          */
         public Builder companyId(String companyId) {
             Utils.checkNotNull(companyId, "companyId");
@@ -1681,7 +1681,7 @@ public class Payment {
         }
 
         /**
-         * The company or subsidiary id the transaction belongs to
+         * The company ID the transaction belongs to
          */
         public Builder companyId(JsonNullable<String> companyId) {
             Utils.checkNotNull(companyId, "companyId");

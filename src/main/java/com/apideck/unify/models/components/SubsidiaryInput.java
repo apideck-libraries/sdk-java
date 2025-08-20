@@ -40,6 +40,13 @@ public class SubsidiaryInput {
     private Optional<? extends SubsidiaryStatus> status;
 
     /**
+     * List of currencies supported by this subsidiary
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("currencies")
+    private JsonNullable<? extends List<Currency>> currencies;
+
+    /**
      * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -58,23 +65,26 @@ public class SubsidiaryInput {
             @JsonProperty("parent_id") JsonNullable<String> parentId,
             @JsonProperty("name") JsonNullable<String> name,
             @JsonProperty("status") Optional<? extends SubsidiaryStatus> status,
+            @JsonProperty("currencies") JsonNullable<? extends List<Currency>> currencies,
             @JsonProperty("row_version") JsonNullable<String> rowVersion,
             @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
         Utils.checkNotNull(parentId, "parentId");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(status, "status");
+        Utils.checkNotNull(currencies, "currencies");
         Utils.checkNotNull(rowVersion, "rowVersion");
         Utils.checkNotNull(passThrough, "passThrough");
         this.parentId = parentId;
         this.name = name;
         this.status = status;
+        this.currencies = currencies;
         this.rowVersion = rowVersion;
         this.passThrough = passThrough;
     }
     
     public SubsidiaryInput() {
         this(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined(), Optional.empty());
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -100,6 +110,15 @@ public class SubsidiaryInput {
     @JsonIgnore
     public Optional<SubsidiaryStatus> status() {
         return (Optional<SubsidiaryStatus>) status;
+    }
+
+    /**
+     * List of currencies supported by this subsidiary
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<List<Currency>> currencies() {
+        return (JsonNullable<List<Currency>>) currencies;
     }
 
     /**
@@ -180,6 +199,24 @@ public class SubsidiaryInput {
     }
 
     /**
+     * List of currencies supported by this subsidiary
+     */
+    public SubsidiaryInput withCurrencies(List<Currency> currencies) {
+        Utils.checkNotNull(currencies, "currencies");
+        this.currencies = JsonNullable.of(currencies);
+        return this;
+    }
+
+    /**
+     * List of currencies supported by this subsidiary
+     */
+    public SubsidiaryInput withCurrencies(JsonNullable<? extends List<Currency>> currencies) {
+        Utils.checkNotNull(currencies, "currencies");
+        this.currencies = currencies;
+        return this;
+    }
+
+    /**
      * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
      */
     public SubsidiaryInput withRowVersion(String rowVersion) {
@@ -229,6 +266,7 @@ public class SubsidiaryInput {
             Utils.enhancedDeepEquals(this.parentId, other.parentId) &&
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.currencies, other.currencies) &&
             Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion) &&
             Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
@@ -237,7 +275,7 @@ public class SubsidiaryInput {
     public int hashCode() {
         return Utils.enhancedHash(
             parentId, name, status,
-            rowVersion, passThrough);
+            currencies, rowVersion, passThrough);
     }
     
     @Override
@@ -246,6 +284,7 @@ public class SubsidiaryInput {
                 "parentId", parentId,
                 "name", name,
                 "status", status,
+                "currencies", currencies,
                 "rowVersion", rowVersion,
                 "passThrough", passThrough);
     }
@@ -258,6 +297,8 @@ public class SubsidiaryInput {
         private JsonNullable<String> name = JsonNullable.undefined();
 
         private Optional<? extends SubsidiaryStatus> status = Optional.empty();
+
+        private JsonNullable<? extends List<Currency>> currencies = JsonNullable.undefined();
 
         private JsonNullable<String> rowVersion = JsonNullable.undefined();
 
@@ -326,6 +367,25 @@ public class SubsidiaryInput {
 
 
         /**
+         * List of currencies supported by this subsidiary
+         */
+        public Builder currencies(List<Currency> currencies) {
+            Utils.checkNotNull(currencies, "currencies");
+            this.currencies = JsonNullable.of(currencies);
+            return this;
+        }
+
+        /**
+         * List of currencies supported by this subsidiary
+         */
+        public Builder currencies(JsonNullable<? extends List<Currency>> currencies) {
+            Utils.checkNotNull(currencies, "currencies");
+            this.currencies = currencies;
+            return this;
+        }
+
+
+        /**
          * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
          */
         public Builder rowVersion(String rowVersion) {
@@ -366,7 +426,7 @@ public class SubsidiaryInput {
 
             return new SubsidiaryInput(
                 parentId, name, status,
-                rowVersion, passThrough);
+                currencies, rowVersion, passThrough);
         }
 
     }

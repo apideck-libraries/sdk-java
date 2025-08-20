@@ -78,6 +78,33 @@ public class AccountingBillPaymentsUpdate {
             return Optional.ofNullable(this.securitySource);
         }
 
+        BeforeRequestContextImpl createBeforeRequestContext() {
+            return new BeforeRequestContextImpl(
+                    this.sdkConfiguration,
+                    this.baseUrl,
+                    "accounting.billPaymentsUpdate",
+                    java.util.Optional.of(java.util.List.of()),
+                    securitySource());
+        }
+
+        AfterSuccessContextImpl createAfterSuccessContext() {
+            return new AfterSuccessContextImpl(
+                    this.sdkConfiguration,
+                    this.baseUrl,
+                    "accounting.billPaymentsUpdate",
+                    java.util.Optional.of(java.util.List.of()),
+                    securitySource());
+        }
+
+        AfterErrorContextImpl createAfterErrorContext() {
+            return new AfterErrorContextImpl(
+                    this.sdkConfiguration,
+                    this.baseUrl,
+                    "accounting.billPaymentsUpdate",
+                    java.util.Optional.of(java.util.List.of()),
+                    securitySource());
+        }
+
         HttpRequest buildRequest(AccountingBillPaymentsUpdateRequest request) throws Exception {
             String url = Utils.generateURL(
                     AccountingBillPaymentsUpdateRequest.class,
@@ -109,14 +136,7 @@ public class AccountingBillPaymentsUpdate {
             req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
-            return sdkConfiguration.hooks().beforeRequest(
-                    new BeforeRequestContextImpl(
-                            this.sdkConfiguration,
-                            this.baseUrl,
-                            "accounting.billPaymentsUpdate",
-                            java.util.Optional.of(java.util.List.of()),
-                            securitySource()),
-                    req.build());
+            return req.build();
         }
     }
 
@@ -126,29 +146,20 @@ public class AccountingBillPaymentsUpdate {
             super(sdkConfiguration, options);
         }
 
+        private HttpRequest onBuildRequest(AccountingBillPaymentsUpdateRequest request) throws Exception {
+            HttpRequest req = buildRequest(request);
+            return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
+        }
+
         private HttpResponse<InputStream> onError(HttpResponse<InputStream> response, Exception error) throws Exception {
-            return sdkConfiguration.hooks()
-                    .afterError(
-                            new AfterErrorContextImpl(
-                                    this.sdkConfiguration,
-                                    this.baseUrl,
-                                    "accounting.billPaymentsUpdate",
-                                    java.util.Optional.of(java.util.List.of()),
-                                    securitySource()),
-                            Optional.ofNullable(response),
-                            Optional.ofNullable(error));
+            return sdkConfiguration.hooks().afterError(
+                    createAfterErrorContext(),
+                    Optional.ofNullable(response),
+                    Optional.ofNullable(error));
         }
 
         private HttpResponse<InputStream> onSuccess(HttpResponse<InputStream> response) throws Exception {
-            return sdkConfiguration.hooks()
-                    .afterSuccess(
-                            new AfterSuccessContextImpl(
-                                    this.sdkConfiguration,
-                                    this.baseUrl,
-                                    "accounting.billPaymentsUpdate",
-                                    java.util.Optional.of(java.util.List.of()),
-                                    securitySource()),
-                            response);
+            return sdkConfiguration.hooks().afterSuccess(createAfterSuccessContext(), response);
         }
 
         @Override
@@ -157,12 +168,16 @@ public class AccountingBillPaymentsUpdate {
                     .action(() -> {
                         HttpRequest r;
                         try {
-                            r = buildRequest(request);
+                            r = onBuildRequest(request);
                         } catch (Exception e) {
                             throw new NonRetryableException(e);
                         }
                         try {
-                            return client.send(r);
+                            HttpResponse<InputStream> httpRes = client.send(r);
+                            if (Utils.statusCodeMatches(httpRes.statusCode(), "400", "401", "402", "404", "422", "4XX", "5XX")) {
+                                return onError(httpRes, null);
+                            }
+                            return httpRes;
                         } catch (Exception e) {
                             return onError(null, e);
                         }

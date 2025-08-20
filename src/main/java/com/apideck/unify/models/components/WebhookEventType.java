@@ -108,6 +108,7 @@ public enum WebhookEventType {
     FILE_STORAGE_FILE_CREATED("file-storage.file.created"),
     FILE_STORAGE_FILE_UPDATED("file-storage.file.updated"),
     FILE_STORAGE_FILE_DELETED("file-storage.file.deleted"),
+    FILE_STORAGE_DRIVE_UPDATED("file-storage.drive.updated"),
     ISSUE_TRACKING_TICKET_CREATED("issue-tracking.ticket.created"),
     ISSUE_TRACKING_TICKET_UPDATED("issue-tracking.ticket.updated"),
     ISSUE_TRACKING_TICKET_DELETED("issue-tracking.ticket.deleted"),

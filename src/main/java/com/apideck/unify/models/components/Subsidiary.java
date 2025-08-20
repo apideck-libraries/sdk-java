@@ -50,6 +50,13 @@ public class Subsidiary {
     private Optional<? extends SubsidiaryStatus> status;
 
     /**
+     * List of currencies supported by this subsidiary
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("currencies")
+    private JsonNullable<? extends List<Currency>> currencies;
+
+    /**
      * When custom mappings are configured on the resource, the result is included here.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -104,6 +111,7 @@ public class Subsidiary {
             @JsonProperty("parent_id") JsonNullable<String> parentId,
             @JsonProperty("name") JsonNullable<String> name,
             @JsonProperty("status") Optional<? extends SubsidiaryStatus> status,
+            @JsonProperty("currencies") JsonNullable<? extends List<Currency>> currencies,
             @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings,
             @JsonProperty("row_version") JsonNullable<String> rowVersion,
             @JsonProperty("updated_by") JsonNullable<String> updatedBy,
@@ -115,6 +123,7 @@ public class Subsidiary {
         Utils.checkNotNull(parentId, "parentId");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(status, "status");
+        Utils.checkNotNull(currencies, "currencies");
         Utils.checkNotNull(customMappings, "customMappings");
         Utils.checkNotNull(rowVersion, "rowVersion");
         Utils.checkNotNull(updatedBy, "updatedBy");
@@ -126,6 +135,7 @@ public class Subsidiary {
         this.parentId = parentId;
         this.name = name;
         this.status = status;
+        this.currencies = currencies;
         this.customMappings = customMappings;
         this.rowVersion = rowVersion;
         this.updatedBy = updatedBy;
@@ -139,7 +149,7 @@ public class Subsidiary {
         this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty());
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -173,6 +183,15 @@ public class Subsidiary {
     @JsonIgnore
     public Optional<SubsidiaryStatus> status() {
         return (Optional<SubsidiaryStatus>) status;
+    }
+
+    /**
+     * List of currencies supported by this subsidiary
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<List<Currency>> currencies() {
+        return (JsonNullable<List<Currency>>) currencies;
     }
 
     /**
@@ -309,6 +328,24 @@ public class Subsidiary {
     public Subsidiary withStatus(Optional<? extends SubsidiaryStatus> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
+        return this;
+    }
+
+    /**
+     * List of currencies supported by this subsidiary
+     */
+    public Subsidiary withCurrencies(List<Currency> currencies) {
+        Utils.checkNotNull(currencies, "currencies");
+        this.currencies = JsonNullable.of(currencies);
+        return this;
+    }
+
+    /**
+     * List of currencies supported by this subsidiary
+     */
+    public Subsidiary withCurrencies(JsonNullable<? extends List<Currency>> currencies) {
+        Utils.checkNotNull(currencies, "currencies");
+        this.currencies = currencies;
         return this;
     }
 
@@ -453,6 +490,7 @@ public class Subsidiary {
             Utils.enhancedDeepEquals(this.parentId, other.parentId) &&
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.currencies, other.currencies) &&
             Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
             Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion) &&
             Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
@@ -466,9 +504,9 @@ public class Subsidiary {
     public int hashCode() {
         return Utils.enhancedHash(
             id, parentId, name,
-            status, customMappings, rowVersion,
-            updatedBy, createdBy, updatedAt,
-            createdAt, passThrough);
+            status, currencies, customMappings,
+            rowVersion, updatedBy, createdBy,
+            updatedAt, createdAt, passThrough);
     }
     
     @Override
@@ -478,6 +516,7 @@ public class Subsidiary {
                 "parentId", parentId,
                 "name", name,
                 "status", status,
+                "currencies", currencies,
                 "customMappings", customMappings,
                 "rowVersion", rowVersion,
                 "updatedBy", updatedBy,
@@ -497,6 +536,8 @@ public class Subsidiary {
         private JsonNullable<String> name = JsonNullable.undefined();
 
         private Optional<? extends SubsidiaryStatus> status = Optional.empty();
+
+        private JsonNullable<? extends List<Currency>> currencies = JsonNullable.undefined();
 
         private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
 
@@ -589,6 +630,25 @@ public class Subsidiary {
         public Builder status(Optional<? extends SubsidiaryStatus> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
+            return this;
+        }
+
+
+        /**
+         * List of currencies supported by this subsidiary
+         */
+        public Builder currencies(List<Currency> currencies) {
+            Utils.checkNotNull(currencies, "currencies");
+            this.currencies = JsonNullable.of(currencies);
+            return this;
+        }
+
+        /**
+         * List of currencies supported by this subsidiary
+         */
+        public Builder currencies(JsonNullable<? extends List<Currency>> currencies) {
+            Utils.checkNotNull(currencies, "currencies");
+            this.currencies = currencies;
             return this;
         }
 
@@ -729,9 +789,9 @@ public class Subsidiary {
 
             return new Subsidiary(
                 id, parentId, name,
-                status, customMappings, rowVersion,
-                updatedBy, createdBy, updatedAt,
-                createdAt, passThrough);
+                status, currencies, customMappings,
+                rowVersion, updatedBy, createdBy,
+                updatedAt, createdAt, passThrough);
         }
 
     }

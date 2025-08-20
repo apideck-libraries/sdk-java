@@ -18,6 +18,7 @@ public enum JobStatus {
     INTERNAL("internal"),
     PUBLISHED("published"),
     COMPLETED("completed"),
+    PLACED("placed"),
     ON_HOLD("on-hold"),
     PRIVATE("private");
 

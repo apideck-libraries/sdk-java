@@ -24,6 +24,7 @@ public enum PhoneNumberType {
     FAX("fax"),
     DIRECT_DIAL_IN("direct-dial-in"),
     PERSONAL("personal"),
+    BILLING("billing"),
     OTHER("other");
 
     @JsonValue

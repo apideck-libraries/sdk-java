@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 38254260-287a-40b6-9ac5-c2fcb654c9cc
 management:
-  docChecksum: adbe8651971e100ed9d43a08042577ad
-  docVersion: 10.20.8
+  docChecksum: c2033f5fd8c53756c6569f4d0088bb52
+  docVersion: 10.20.9
   speakeasyVersion: 1.606.0
   generationVersion: 2.686.7
-  releaseVersion: 0.19.3
-  configChecksum: f497919a0900fbb3d388c92b4f2d613f
+  releaseVersion: 0.19.4
+  configChecksum: 3dde29befed385c5584be443c85d2e80
   repoURL: https://github.com/apideck-libraries/sdk-java.git
   published: true
 features:
@@ -18813,4 +18813,3 @@ examples:
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## SDK Changes Detected:\n* `apideck.accounting.subsidiaries.list()`:  `response.data.[].currencies` **Added**\n* `apideck.accounting.subsidiaries.create()`: \n  *  `request.subsidiary.currencies` **Added**\n* `apideck.accounting.subsidiaries.get()`:  `response.data.currencies` **Added**\n* `apideck.accounting.subsidiaries.update()`: \n  *  `request.subsidiary.currencies` **Added**\n"

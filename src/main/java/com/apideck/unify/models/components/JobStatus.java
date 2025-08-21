@@ -20,7 +20,11 @@ public enum JobStatus {
     COMPLETED("completed"),
     PLACED("placed"),
     ON_HOLD("on-hold"),
-    PRIVATE("private");
+    PRIVATE("private"),
+    ACCEPTING_CANDIDATES("accepting_candidates"),
+    OPEN("open"),
+    CLOSED("closed"),
+    ARCHIVED("archived");
 
     @JsonValue
     private final String value;

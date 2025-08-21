@@ -176,10 +176,34 @@ public class SupplierInput {
     @JsonProperty("channel")
     private JsonNullable<String> channel;
 
+    /**
+     * Method of issuance of the purchase order for the supplier
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("issued_method")
+    private JsonNullable<String> issuedMethod;
+
+    /**
+     * Email address of the person who issued the purchase order for the supplier
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("issued_email")
+    private JsonNullable<String> issuedEmail;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_fields")
     private Optional<? extends List<CustomField>> customFields;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("tax_details")
+    private Optional<? extends List<LinkedTaxDetail>> taxDetails;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("tax_status_details")
+    private Optional<? extends List<LinkedTaxStatusDetail>> taxStatusDetails;
 
     /**
      * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
@@ -201,6 +225,13 @@ public class SupplierInput {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("subsidiary_id")
     private Optional<String> subsidiaryId;
+
+    /**
+     * The integration system the supplier belongs to.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("integration_system_id")
+    private Optional<String> integrationSystemId;
 
     @JsonCreator
     public SupplierInput(
@@ -229,10 +260,15 @@ public class SupplierInput {
             @JsonProperty("payment_method") JsonNullable<String> paymentMethod,
             @JsonProperty("terms") JsonNullable<String> terms,
             @JsonProperty("channel") JsonNullable<String> channel,
+            @JsonProperty("issued_method") JsonNullable<String> issuedMethod,
+            @JsonProperty("issued_email") JsonNullable<String> issuedEmail,
             @JsonProperty("custom_fields") Optional<? extends List<CustomField>> customFields,
+            @JsonProperty("tax_details") Optional<? extends List<LinkedTaxDetail>> taxDetails,
+            @JsonProperty("tax_status_details") Optional<? extends List<LinkedTaxStatusDetail>> taxStatusDetails,
             @JsonProperty("row_version") JsonNullable<String> rowVersion,
             @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough,
-            @JsonProperty("subsidiary_id") Optional<String> subsidiaryId) {
+            @JsonProperty("subsidiary_id") Optional<String> subsidiaryId,
+            @JsonProperty("integration_system_id") Optional<String> integrationSystemId) {
         Utils.checkNotNull(displayId, "displayId");
         Utils.checkNotNull(displayName, "displayName");
         Utils.checkNotNull(companyName, "companyName");
@@ -258,10 +294,15 @@ public class SupplierInput {
         Utils.checkNotNull(paymentMethod, "paymentMethod");
         Utils.checkNotNull(terms, "terms");
         Utils.checkNotNull(channel, "channel");
+        Utils.checkNotNull(issuedMethod, "issuedMethod");
+        Utils.checkNotNull(issuedEmail, "issuedEmail");
         Utils.checkNotNull(customFields, "customFields");
+        Utils.checkNotNull(taxDetails, "taxDetails");
+        Utils.checkNotNull(taxStatusDetails, "taxStatusDetails");
         Utils.checkNotNull(rowVersion, "rowVersion");
         Utils.checkNotNull(passThrough, "passThrough");
         Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+        Utils.checkNotNull(integrationSystemId, "integrationSystemId");
         this.displayId = displayId;
         this.displayName = displayName;
         this.companyName = companyName;
@@ -287,10 +328,15 @@ public class SupplierInput {
         this.paymentMethod = paymentMethod;
         this.terms = terms;
         this.channel = channel;
+        this.issuedMethod = issuedMethod;
+        this.issuedEmail = issuedEmail;
         this.customFields = customFields;
+        this.taxDetails = taxDetails;
+        this.taxStatusDetails = taxStatusDetails;
         this.rowVersion = rowVersion;
         this.passThrough = passThrough;
         this.subsidiaryId = subsidiaryId;
+        this.integrationSystemId = integrationSystemId;
     }
     
     public SupplierInput() {
@@ -302,8 +348,10 @@ public class SupplierInput {
             Optional.empty(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -488,10 +536,38 @@ public class SupplierInput {
         return channel;
     }
 
+    /**
+     * Method of issuance of the purchase order for the supplier
+     */
+    @JsonIgnore
+    public JsonNullable<String> issuedMethod() {
+        return issuedMethod;
+    }
+
+    /**
+     * Email address of the person who issued the purchase order for the supplier
+     */
+    @JsonIgnore
+    public JsonNullable<String> issuedEmail() {
+        return issuedEmail;
+    }
+
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<List<CustomField>> customFields() {
         return (Optional<List<CustomField>>) customFields;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<LinkedTaxDetail>> taxDetails() {
+        return (Optional<List<LinkedTaxDetail>>) taxDetails;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<LinkedTaxStatusDetail>> taxStatusDetails() {
+        return (Optional<List<LinkedTaxStatusDetail>>) taxStatusDetails;
     }
 
     /**
@@ -517,6 +593,14 @@ public class SupplierInput {
     @JsonIgnore
     public Optional<String> subsidiaryId() {
         return subsidiaryId;
+    }
+
+    /**
+     * The integration system the supplier belongs to.
+     */
+    @JsonIgnore
+    public Optional<String> integrationSystemId() {
+        return integrationSystemId;
     }
 
     public static Builder builder() {
@@ -926,6 +1010,42 @@ public class SupplierInput {
         return this;
     }
 
+    /**
+     * Method of issuance of the purchase order for the supplier
+     */
+    public SupplierInput withIssuedMethod(String issuedMethod) {
+        Utils.checkNotNull(issuedMethod, "issuedMethod");
+        this.issuedMethod = JsonNullable.of(issuedMethod);
+        return this;
+    }
+
+    /**
+     * Method of issuance of the purchase order for the supplier
+     */
+    public SupplierInput withIssuedMethod(JsonNullable<String> issuedMethod) {
+        Utils.checkNotNull(issuedMethod, "issuedMethod");
+        this.issuedMethod = issuedMethod;
+        return this;
+    }
+
+    /**
+     * Email address of the person who issued the purchase order for the supplier
+     */
+    public SupplierInput withIssuedEmail(String issuedEmail) {
+        Utils.checkNotNull(issuedEmail, "issuedEmail");
+        this.issuedEmail = JsonNullable.of(issuedEmail);
+        return this;
+    }
+
+    /**
+     * Email address of the person who issued the purchase order for the supplier
+     */
+    public SupplierInput withIssuedEmail(JsonNullable<String> issuedEmail) {
+        Utils.checkNotNull(issuedEmail, "issuedEmail");
+        this.issuedEmail = issuedEmail;
+        return this;
+    }
+
     public SupplierInput withCustomFields(List<CustomField> customFields) {
         Utils.checkNotNull(customFields, "customFields");
         this.customFields = Optional.ofNullable(customFields);
@@ -936,6 +1056,32 @@ public class SupplierInput {
     public SupplierInput withCustomFields(Optional<? extends List<CustomField>> customFields) {
         Utils.checkNotNull(customFields, "customFields");
         this.customFields = customFields;
+        return this;
+    }
+
+    public SupplierInput withTaxDetails(List<LinkedTaxDetail> taxDetails) {
+        Utils.checkNotNull(taxDetails, "taxDetails");
+        this.taxDetails = Optional.ofNullable(taxDetails);
+        return this;
+    }
+
+
+    public SupplierInput withTaxDetails(Optional<? extends List<LinkedTaxDetail>> taxDetails) {
+        Utils.checkNotNull(taxDetails, "taxDetails");
+        this.taxDetails = taxDetails;
+        return this;
+    }
+
+    public SupplierInput withTaxStatusDetails(List<LinkedTaxStatusDetail> taxStatusDetails) {
+        Utils.checkNotNull(taxStatusDetails, "taxStatusDetails");
+        this.taxStatusDetails = Optional.ofNullable(taxStatusDetails);
+        return this;
+    }
+
+
+    public SupplierInput withTaxStatusDetails(Optional<? extends List<LinkedTaxStatusDetail>> taxStatusDetails) {
+        Utils.checkNotNull(taxStatusDetails, "taxStatusDetails");
+        this.taxStatusDetails = taxStatusDetails;
         return this;
     }
 
@@ -995,6 +1141,25 @@ public class SupplierInput {
         return this;
     }
 
+    /**
+     * The integration system the supplier belongs to.
+     */
+    public SupplierInput withIntegrationSystemId(String integrationSystemId) {
+        Utils.checkNotNull(integrationSystemId, "integrationSystemId");
+        this.integrationSystemId = Optional.ofNullable(integrationSystemId);
+        return this;
+    }
+
+
+    /**
+     * The integration system the supplier belongs to.
+     */
+    public SupplierInput withIntegrationSystemId(Optional<String> integrationSystemId) {
+        Utils.checkNotNull(integrationSystemId, "integrationSystemId");
+        this.integrationSystemId = integrationSystemId;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -1030,10 +1195,15 @@ public class SupplierInput {
             Utils.enhancedDeepEquals(this.paymentMethod, other.paymentMethod) &&
             Utils.enhancedDeepEquals(this.terms, other.terms) &&
             Utils.enhancedDeepEquals(this.channel, other.channel) &&
+            Utils.enhancedDeepEquals(this.issuedMethod, other.issuedMethod) &&
+            Utils.enhancedDeepEquals(this.issuedEmail, other.issuedEmail) &&
             Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
+            Utils.enhancedDeepEquals(this.taxDetails, other.taxDetails) &&
+            Utils.enhancedDeepEquals(this.taxStatusDetails, other.taxStatusDetails) &&
             Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion) &&
             Utils.enhancedDeepEquals(this.passThrough, other.passThrough) &&
-            Utils.enhancedDeepEquals(this.subsidiaryId, other.subsidiaryId);
+            Utils.enhancedDeepEquals(this.subsidiaryId, other.subsidiaryId) &&
+            Utils.enhancedDeepEquals(this.integrationSystemId, other.integrationSystemId);
     }
     
     @Override
@@ -1047,8 +1217,10 @@ public class SupplierInput {
             bankAccounts, notes, taxRate,
             taxNumber, currency, account,
             status, paymentMethod, terms,
-            channel, customFields, rowVersion,
-            passThrough, subsidiaryId);
+            channel, issuedMethod, issuedEmail,
+            customFields, taxDetails, taxStatusDetails,
+            rowVersion, passThrough, subsidiaryId,
+            integrationSystemId);
     }
     
     @Override
@@ -1079,10 +1251,15 @@ public class SupplierInput {
                 "paymentMethod", paymentMethod,
                 "terms", terms,
                 "channel", channel,
+                "issuedMethod", issuedMethod,
+                "issuedEmail", issuedEmail,
                 "customFields", customFields,
+                "taxDetails", taxDetails,
+                "taxStatusDetails", taxStatusDetails,
                 "rowVersion", rowVersion,
                 "passThrough", passThrough,
-                "subsidiaryId", subsidiaryId);
+                "subsidiaryId", subsidiaryId,
+                "integrationSystemId", integrationSystemId);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -1138,13 +1315,23 @@ public class SupplierInput {
 
         private JsonNullable<String> channel = JsonNullable.undefined();
 
+        private JsonNullable<String> issuedMethod = JsonNullable.undefined();
+
+        private JsonNullable<String> issuedEmail = JsonNullable.undefined();
+
         private Optional<? extends List<CustomField>> customFields = Optional.empty();
+
+        private Optional<? extends List<LinkedTaxDetail>> taxDetails = Optional.empty();
+
+        private Optional<? extends List<LinkedTaxStatusDetail>> taxStatusDetails = Optional.empty();
 
         private JsonNullable<String> rowVersion = JsonNullable.undefined();
 
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
 
         private Optional<String> subsidiaryId = Optional.empty();
+
+        private Optional<String> integrationSystemId = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -1572,6 +1759,44 @@ public class SupplierInput {
         }
 
 
+        /**
+         * Method of issuance of the purchase order for the supplier
+         */
+        public Builder issuedMethod(String issuedMethod) {
+            Utils.checkNotNull(issuedMethod, "issuedMethod");
+            this.issuedMethod = JsonNullable.of(issuedMethod);
+            return this;
+        }
+
+        /**
+         * Method of issuance of the purchase order for the supplier
+         */
+        public Builder issuedMethod(JsonNullable<String> issuedMethod) {
+            Utils.checkNotNull(issuedMethod, "issuedMethod");
+            this.issuedMethod = issuedMethod;
+            return this;
+        }
+
+
+        /**
+         * Email address of the person who issued the purchase order for the supplier
+         */
+        public Builder issuedEmail(String issuedEmail) {
+            Utils.checkNotNull(issuedEmail, "issuedEmail");
+            this.issuedEmail = JsonNullable.of(issuedEmail);
+            return this;
+        }
+
+        /**
+         * Email address of the person who issued the purchase order for the supplier
+         */
+        public Builder issuedEmail(JsonNullable<String> issuedEmail) {
+            Utils.checkNotNull(issuedEmail, "issuedEmail");
+            this.issuedEmail = issuedEmail;
+            return this;
+        }
+
+
         public Builder customFields(List<CustomField> customFields) {
             Utils.checkNotNull(customFields, "customFields");
             this.customFields = Optional.ofNullable(customFields);
@@ -1581,6 +1806,32 @@ public class SupplierInput {
         public Builder customFields(Optional<? extends List<CustomField>> customFields) {
             Utils.checkNotNull(customFields, "customFields");
             this.customFields = customFields;
+            return this;
+        }
+
+
+        public Builder taxDetails(List<LinkedTaxDetail> taxDetails) {
+            Utils.checkNotNull(taxDetails, "taxDetails");
+            this.taxDetails = Optional.ofNullable(taxDetails);
+            return this;
+        }
+
+        public Builder taxDetails(Optional<? extends List<LinkedTaxDetail>> taxDetails) {
+            Utils.checkNotNull(taxDetails, "taxDetails");
+            this.taxDetails = taxDetails;
+            return this;
+        }
+
+
+        public Builder taxStatusDetails(List<LinkedTaxStatusDetail> taxStatusDetails) {
+            Utils.checkNotNull(taxStatusDetails, "taxStatusDetails");
+            this.taxStatusDetails = Optional.ofNullable(taxStatusDetails);
+            return this;
+        }
+
+        public Builder taxStatusDetails(Optional<? extends List<LinkedTaxStatusDetail>> taxStatusDetails) {
+            Utils.checkNotNull(taxStatusDetails, "taxStatusDetails");
+            this.taxStatusDetails = taxStatusDetails;
             return this;
         }
 
@@ -1641,6 +1892,25 @@ public class SupplierInput {
             return this;
         }
 
+
+        /**
+         * The integration system the supplier belongs to.
+         */
+        public Builder integrationSystemId(String integrationSystemId) {
+            Utils.checkNotNull(integrationSystemId, "integrationSystemId");
+            this.integrationSystemId = Optional.ofNullable(integrationSystemId);
+            return this;
+        }
+
+        /**
+         * The integration system the supplier belongs to.
+         */
+        public Builder integrationSystemId(Optional<String> integrationSystemId) {
+            Utils.checkNotNull(integrationSystemId, "integrationSystemId");
+            this.integrationSystemId = integrationSystemId;
+            return this;
+        }
+
         public SupplierInput build() {
 
             return new SupplierInput(
@@ -1652,8 +1922,10 @@ public class SupplierInput {
                 bankAccounts, notes, taxRate,
                 taxNumber, currency, account,
                 status, paymentMethod, terms,
-                channel, customFields, rowVersion,
-                passThrough, subsidiaryId);
+                channel, issuedMethod, issuedEmail,
+                customFields, taxDetails, taxStatusDetails,
+                rowVersion, passThrough, subsidiaryId,
+                integrationSystemId);
         }
 
     }

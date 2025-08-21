@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class Blocks {
@@ -23,12 +24,12 @@ public class Blocks {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("content")
-    private Optional<String> content;
+    private JsonNullable<String> content;
 
     @JsonCreator
     public Blocks(
             @JsonProperty("title") Optional<String> title,
-            @JsonProperty("content") Optional<String> content) {
+            @JsonProperty("content") JsonNullable<String> content) {
         Utils.checkNotNull(title, "title");
         Utils.checkNotNull(content, "content");
         this.title = title;
@@ -36,7 +37,7 @@ public class Blocks {
     }
     
     public Blocks() {
-        this(Optional.empty(), Optional.empty());
+        this(Optional.empty(), JsonNullable.undefined());
     }
 
     @JsonIgnore
@@ -45,7 +46,7 @@ public class Blocks {
     }
 
     @JsonIgnore
-    public Optional<String> content() {
+    public JsonNullable<String> content() {
         return content;
     }
 
@@ -69,12 +70,11 @@ public class Blocks {
 
     public Blocks withContent(String content) {
         Utils.checkNotNull(content, "content");
-        this.content = Optional.ofNullable(content);
+        this.content = JsonNullable.of(content);
         return this;
     }
 
-
-    public Blocks withContent(Optional<String> content) {
+    public Blocks withContent(JsonNullable<String> content) {
         Utils.checkNotNull(content, "content");
         this.content = content;
         return this;
@@ -112,7 +112,7 @@ public class Blocks {
 
         private Optional<String> title = Optional.empty();
 
-        private Optional<String> content = Optional.empty();
+        private JsonNullable<String> content = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -134,11 +134,11 @@ public class Blocks {
 
         public Builder content(String content) {
             Utils.checkNotNull(content, "content");
-            this.content = Optional.ofNullable(content);
+            this.content = JsonNullable.of(content);
             return this;
         }
 
-        public Builder content(Optional<String> content) {
+        public Builder content(JsonNullable<String> content) {
             Utils.checkNotNull(content, "content");
             this.content = content;
             return this;

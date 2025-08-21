@@ -193,6 +193,20 @@ public class Supplier {
     private JsonNullable<String> channel;
 
     /**
+     * Method of issuance of the purchase order for the supplier
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("issued_method")
+    private JsonNullable<String> issuedMethod;
+
+    /**
+     * Email address of the person who issued the purchase order for the supplier
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("issued_email")
+    private JsonNullable<String> issuedEmail;
+
+    /**
      * When custom mappings are configured on the resource, the result is included here.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -203,6 +217,16 @@ public class Supplier {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_fields")
     private Optional<? extends List<CustomField>> customFields;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("tax_details")
+    private Optional<? extends List<LinkedTaxDetail>> taxDetails;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("tax_status_details")
+    private Optional<? extends List<LinkedTaxStatusDetail>> taxStatusDetails;
 
     /**
      * The user who last updated the object.
@@ -253,6 +277,13 @@ public class Supplier {
     @JsonProperty("subsidiary_id")
     private Optional<String> subsidiaryId;
 
+    /**
+     * The integration system the supplier belongs to.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("integration_system_id")
+    private Optional<String> integrationSystemId;
+
     @JsonCreator
     public Supplier(
             @JsonProperty("id") String id,
@@ -282,15 +313,20 @@ public class Supplier {
             @JsonProperty("payment_method") JsonNullable<String> paymentMethod,
             @JsonProperty("terms") JsonNullable<String> terms,
             @JsonProperty("channel") JsonNullable<String> channel,
+            @JsonProperty("issued_method") JsonNullable<String> issuedMethod,
+            @JsonProperty("issued_email") JsonNullable<String> issuedEmail,
             @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings,
             @JsonProperty("custom_fields") Optional<? extends List<CustomField>> customFields,
+            @JsonProperty("tax_details") Optional<? extends List<LinkedTaxDetail>> taxDetails,
+            @JsonProperty("tax_status_details") Optional<? extends List<LinkedTaxStatusDetail>> taxStatusDetails,
             @JsonProperty("updated_by") JsonNullable<String> updatedBy,
             @JsonProperty("created_by") JsonNullable<String> createdBy,
             @JsonProperty("updated_at") JsonNullable<OffsetDateTime> updatedAt,
             @JsonProperty("created_at") JsonNullable<OffsetDateTime> createdAt,
             @JsonProperty("row_version") JsonNullable<String> rowVersion,
             @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough,
-            @JsonProperty("subsidiary_id") Optional<String> subsidiaryId) {
+            @JsonProperty("subsidiary_id") Optional<String> subsidiaryId,
+            @JsonProperty("integration_system_id") Optional<String> integrationSystemId) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(downstreamId, "downstreamId");
         Utils.checkNotNull(displayId, "displayId");
@@ -318,8 +354,12 @@ public class Supplier {
         Utils.checkNotNull(paymentMethod, "paymentMethod");
         Utils.checkNotNull(terms, "terms");
         Utils.checkNotNull(channel, "channel");
+        Utils.checkNotNull(issuedMethod, "issuedMethod");
+        Utils.checkNotNull(issuedEmail, "issuedEmail");
         Utils.checkNotNull(customMappings, "customMappings");
         Utils.checkNotNull(customFields, "customFields");
+        Utils.checkNotNull(taxDetails, "taxDetails");
+        Utils.checkNotNull(taxStatusDetails, "taxStatusDetails");
         Utils.checkNotNull(updatedBy, "updatedBy");
         Utils.checkNotNull(createdBy, "createdBy");
         Utils.checkNotNull(updatedAt, "updatedAt");
@@ -327,6 +367,7 @@ public class Supplier {
         Utils.checkNotNull(rowVersion, "rowVersion");
         Utils.checkNotNull(passThrough, "passThrough");
         Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+        Utils.checkNotNull(integrationSystemId, "integrationSystemId");
         this.id = id;
         this.downstreamId = downstreamId;
         this.displayId = displayId;
@@ -354,8 +395,12 @@ public class Supplier {
         this.paymentMethod = paymentMethod;
         this.terms = terms;
         this.channel = channel;
+        this.issuedMethod = issuedMethod;
+        this.issuedEmail = issuedEmail;
         this.customMappings = customMappings;
         this.customFields = customFields;
+        this.taxDetails = taxDetails;
+        this.taxStatusDetails = taxStatusDetails;
         this.updatedBy = updatedBy;
         this.createdBy = createdBy;
         this.updatedAt = updatedAt;
@@ -363,6 +408,7 @@ public class Supplier {
         this.rowVersion = rowVersion;
         this.passThrough = passThrough;
         this.subsidiaryId = subsidiaryId;
+        this.integrationSystemId = integrationSystemId;
     }
     
     public Supplier(
@@ -376,9 +422,11 @@ public class Supplier {
             JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -580,6 +628,22 @@ public class Supplier {
     }
 
     /**
+     * Method of issuance of the purchase order for the supplier
+     */
+    @JsonIgnore
+    public JsonNullable<String> issuedMethod() {
+        return issuedMethod;
+    }
+
+    /**
+     * Email address of the person who issued the purchase order for the supplier
+     */
+    @JsonIgnore
+    public JsonNullable<String> issuedEmail() {
+        return issuedEmail;
+    }
+
+    /**
      * When custom mappings are configured on the resource, the result is included here.
      */
     @SuppressWarnings("unchecked")
@@ -592,6 +656,18 @@ public class Supplier {
     @JsonIgnore
     public Optional<List<CustomField>> customFields() {
         return (Optional<List<CustomField>>) customFields;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<LinkedTaxDetail>> taxDetails() {
+        return (Optional<List<LinkedTaxDetail>>) taxDetails;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<LinkedTaxStatusDetail>> taxStatusDetails() {
+        return (Optional<List<LinkedTaxStatusDetail>>) taxStatusDetails;
     }
 
     /**
@@ -649,6 +725,14 @@ public class Supplier {
     @JsonIgnore
     public Optional<String> subsidiaryId() {
         return subsidiaryId;
+    }
+
+    /**
+     * The integration system the supplier belongs to.
+     */
+    @JsonIgnore
+    public Optional<String> integrationSystemId() {
+        return integrationSystemId;
     }
 
     public static Builder builder() {
@@ -1086,6 +1170,42 @@ public class Supplier {
     }
 
     /**
+     * Method of issuance of the purchase order for the supplier
+     */
+    public Supplier withIssuedMethod(String issuedMethod) {
+        Utils.checkNotNull(issuedMethod, "issuedMethod");
+        this.issuedMethod = JsonNullable.of(issuedMethod);
+        return this;
+    }
+
+    /**
+     * Method of issuance of the purchase order for the supplier
+     */
+    public Supplier withIssuedMethod(JsonNullable<String> issuedMethod) {
+        Utils.checkNotNull(issuedMethod, "issuedMethod");
+        this.issuedMethod = issuedMethod;
+        return this;
+    }
+
+    /**
+     * Email address of the person who issued the purchase order for the supplier
+     */
+    public Supplier withIssuedEmail(String issuedEmail) {
+        Utils.checkNotNull(issuedEmail, "issuedEmail");
+        this.issuedEmail = JsonNullable.of(issuedEmail);
+        return this;
+    }
+
+    /**
+     * Email address of the person who issued the purchase order for the supplier
+     */
+    public Supplier withIssuedEmail(JsonNullable<String> issuedEmail) {
+        Utils.checkNotNull(issuedEmail, "issuedEmail");
+        this.issuedEmail = issuedEmail;
+        return this;
+    }
+
+    /**
      * When custom mappings are configured on the resource, the result is included here.
      */
     public Supplier withCustomMappings(Map<String, Object> customMappings) {
@@ -1113,6 +1233,32 @@ public class Supplier {
     public Supplier withCustomFields(Optional<? extends List<CustomField>> customFields) {
         Utils.checkNotNull(customFields, "customFields");
         this.customFields = customFields;
+        return this;
+    }
+
+    public Supplier withTaxDetails(List<LinkedTaxDetail> taxDetails) {
+        Utils.checkNotNull(taxDetails, "taxDetails");
+        this.taxDetails = Optional.ofNullable(taxDetails);
+        return this;
+    }
+
+
+    public Supplier withTaxDetails(Optional<? extends List<LinkedTaxDetail>> taxDetails) {
+        Utils.checkNotNull(taxDetails, "taxDetails");
+        this.taxDetails = taxDetails;
+        return this;
+    }
+
+    public Supplier withTaxStatusDetails(List<LinkedTaxStatusDetail> taxStatusDetails) {
+        Utils.checkNotNull(taxStatusDetails, "taxStatusDetails");
+        this.taxStatusDetails = Optional.ofNullable(taxStatusDetails);
+        return this;
+    }
+
+
+    public Supplier withTaxStatusDetails(Optional<? extends List<LinkedTaxStatusDetail>> taxStatusDetails) {
+        Utils.checkNotNull(taxStatusDetails, "taxStatusDetails");
+        this.taxStatusDetails = taxStatusDetails;
         return this;
     }
 
@@ -1244,6 +1390,25 @@ public class Supplier {
         return this;
     }
 
+    /**
+     * The integration system the supplier belongs to.
+     */
+    public Supplier withIntegrationSystemId(String integrationSystemId) {
+        Utils.checkNotNull(integrationSystemId, "integrationSystemId");
+        this.integrationSystemId = Optional.ofNullable(integrationSystemId);
+        return this;
+    }
+
+
+    /**
+     * The integration system the supplier belongs to.
+     */
+    public Supplier withIntegrationSystemId(Optional<String> integrationSystemId) {
+        Utils.checkNotNull(integrationSystemId, "integrationSystemId");
+        this.integrationSystemId = integrationSystemId;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -1281,15 +1446,20 @@ public class Supplier {
             Utils.enhancedDeepEquals(this.paymentMethod, other.paymentMethod) &&
             Utils.enhancedDeepEquals(this.terms, other.terms) &&
             Utils.enhancedDeepEquals(this.channel, other.channel) &&
+            Utils.enhancedDeepEquals(this.issuedMethod, other.issuedMethod) &&
+            Utils.enhancedDeepEquals(this.issuedEmail, other.issuedEmail) &&
             Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
             Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
+            Utils.enhancedDeepEquals(this.taxDetails, other.taxDetails) &&
+            Utils.enhancedDeepEquals(this.taxStatusDetails, other.taxStatusDetails) &&
             Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
             Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
             Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
             Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion) &&
             Utils.enhancedDeepEquals(this.passThrough, other.passThrough) &&
-            Utils.enhancedDeepEquals(this.subsidiaryId, other.subsidiaryId);
+            Utils.enhancedDeepEquals(this.subsidiaryId, other.subsidiaryId) &&
+            Utils.enhancedDeepEquals(this.integrationSystemId, other.integrationSystemId);
     }
     
     @Override
@@ -1304,9 +1474,11 @@ public class Supplier {
             notes, taxRate, taxNumber,
             currency, account, status,
             paymentMethod, terms, channel,
-            customMappings, customFields, updatedBy,
-            createdBy, updatedAt, createdAt,
-            rowVersion, passThrough, subsidiaryId);
+            issuedMethod, issuedEmail, customMappings,
+            customFields, taxDetails, taxStatusDetails,
+            updatedBy, createdBy, updatedAt,
+            createdAt, rowVersion, passThrough,
+            subsidiaryId, integrationSystemId);
     }
     
     @Override
@@ -1339,15 +1511,20 @@ public class Supplier {
                 "paymentMethod", paymentMethod,
                 "terms", terms,
                 "channel", channel,
+                "issuedMethod", issuedMethod,
+                "issuedEmail", issuedEmail,
                 "customMappings", customMappings,
                 "customFields", customFields,
+                "taxDetails", taxDetails,
+                "taxStatusDetails", taxStatusDetails,
                 "updatedBy", updatedBy,
                 "createdBy", createdBy,
                 "updatedAt", updatedAt,
                 "createdAt", createdAt,
                 "rowVersion", rowVersion,
                 "passThrough", passThrough,
-                "subsidiaryId", subsidiaryId);
+                "subsidiaryId", subsidiaryId,
+                "integrationSystemId", integrationSystemId);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -1407,9 +1584,17 @@ public class Supplier {
 
         private JsonNullable<String> channel = JsonNullable.undefined();
 
+        private JsonNullable<String> issuedMethod = JsonNullable.undefined();
+
+        private JsonNullable<String> issuedEmail = JsonNullable.undefined();
+
         private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
 
         private Optional<? extends List<CustomField>> customFields = Optional.empty();
+
+        private Optional<? extends List<LinkedTaxDetail>> taxDetails = Optional.empty();
+
+        private Optional<? extends List<LinkedTaxStatusDetail>> taxStatusDetails = Optional.empty();
 
         private JsonNullable<String> updatedBy = JsonNullable.undefined();
 
@@ -1424,6 +1609,8 @@ public class Supplier {
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
 
         private Optional<String> subsidiaryId = Optional.empty();
+
+        private Optional<String> integrationSystemId = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -1881,6 +2068,44 @@ public class Supplier {
 
 
         /**
+         * Method of issuance of the purchase order for the supplier
+         */
+        public Builder issuedMethod(String issuedMethod) {
+            Utils.checkNotNull(issuedMethod, "issuedMethod");
+            this.issuedMethod = JsonNullable.of(issuedMethod);
+            return this;
+        }
+
+        /**
+         * Method of issuance of the purchase order for the supplier
+         */
+        public Builder issuedMethod(JsonNullable<String> issuedMethod) {
+            Utils.checkNotNull(issuedMethod, "issuedMethod");
+            this.issuedMethod = issuedMethod;
+            return this;
+        }
+
+
+        /**
+         * Email address of the person who issued the purchase order for the supplier
+         */
+        public Builder issuedEmail(String issuedEmail) {
+            Utils.checkNotNull(issuedEmail, "issuedEmail");
+            this.issuedEmail = JsonNullable.of(issuedEmail);
+            return this;
+        }
+
+        /**
+         * Email address of the person who issued the purchase order for the supplier
+         */
+        public Builder issuedEmail(JsonNullable<String> issuedEmail) {
+            Utils.checkNotNull(issuedEmail, "issuedEmail");
+            this.issuedEmail = issuedEmail;
+            return this;
+        }
+
+
+        /**
          * When custom mappings are configured on the resource, the result is included here.
          */
         public Builder customMappings(Map<String, Object> customMappings) {
@@ -1908,6 +2133,32 @@ public class Supplier {
         public Builder customFields(Optional<? extends List<CustomField>> customFields) {
             Utils.checkNotNull(customFields, "customFields");
             this.customFields = customFields;
+            return this;
+        }
+
+
+        public Builder taxDetails(List<LinkedTaxDetail> taxDetails) {
+            Utils.checkNotNull(taxDetails, "taxDetails");
+            this.taxDetails = Optional.ofNullable(taxDetails);
+            return this;
+        }
+
+        public Builder taxDetails(Optional<? extends List<LinkedTaxDetail>> taxDetails) {
+            Utils.checkNotNull(taxDetails, "taxDetails");
+            this.taxDetails = taxDetails;
+            return this;
+        }
+
+
+        public Builder taxStatusDetails(List<LinkedTaxStatusDetail> taxStatusDetails) {
+            Utils.checkNotNull(taxStatusDetails, "taxStatusDetails");
+            this.taxStatusDetails = Optional.ofNullable(taxStatusDetails);
+            return this;
+        }
+
+        public Builder taxStatusDetails(Optional<? extends List<LinkedTaxStatusDetail>> taxStatusDetails) {
+            Utils.checkNotNull(taxStatusDetails, "taxStatusDetails");
+            this.taxStatusDetails = taxStatusDetails;
             return this;
         }
 
@@ -2044,6 +2295,25 @@ public class Supplier {
             return this;
         }
 
+
+        /**
+         * The integration system the supplier belongs to.
+         */
+        public Builder integrationSystemId(String integrationSystemId) {
+            Utils.checkNotNull(integrationSystemId, "integrationSystemId");
+            this.integrationSystemId = Optional.ofNullable(integrationSystemId);
+            return this;
+        }
+
+        /**
+         * The integration system the supplier belongs to.
+         */
+        public Builder integrationSystemId(Optional<String> integrationSystemId) {
+            Utils.checkNotNull(integrationSystemId, "integrationSystemId");
+            this.integrationSystemId = integrationSystemId;
+            return this;
+        }
+
         public Supplier build() {
 
             return new Supplier(
@@ -2056,9 +2326,11 @@ public class Supplier {
                 notes, taxRate, taxNumber,
                 currency, account, status,
                 paymentMethod, terms, channel,
-                customMappings, customFields, updatedBy,
-                createdBy, updatedAt, createdAt,
-                rowVersion, passThrough, subsidiaryId);
+                issuedMethod, issuedEmail, customMappings,
+                customFields, taxDetails, taxStatusDetails,
+                updatedBy, createdBy, updatedAt,
+                createdAt, rowVersion, passThrough,
+                subsidiaryId, integrationSystemId);
         }
 
     }

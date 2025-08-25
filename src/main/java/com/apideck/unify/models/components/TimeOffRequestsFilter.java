@@ -15,13 +15,13 @@ import java.util.Optional;
 
 public class TimeOffRequestsFilter {
     /**
-     * Start date
+     * Start date of the date range to filter time off requests. When used with end_date, filters for requests within the specified date range.
      */
     @SpeakeasyMetadata("queryParam:name=start_date")
     private Optional<String> startDate;
 
     /**
-     * End date
+     * End date of the date range to filter time off requests. When used with start_date, filters for requests within the specified date range.
      */
     @SpeakeasyMetadata("queryParam:name=end_date")
     private Optional<String> endDate;
@@ -78,7 +78,7 @@ public class TimeOffRequestsFilter {
     }
 
     /**
-     * Start date
+     * Start date of the date range to filter time off requests. When used with end_date, filters for requests within the specified date range.
      */
     @JsonIgnore
     public Optional<String> startDate() {
@@ -86,7 +86,7 @@ public class TimeOffRequestsFilter {
     }
 
     /**
-     * End date
+     * End date of the date range to filter time off requests. When used with start_date, filters for requests within the specified date range.
      */
     @JsonIgnore
     public Optional<String> endDate() {
@@ -132,7 +132,7 @@ public class TimeOffRequestsFilter {
 
 
     /**
-     * Start date
+     * Start date of the date range to filter time off requests. When used with end_date, filters for requests within the specified date range.
      */
     public TimeOffRequestsFilter withStartDate(String startDate) {
         Utils.checkNotNull(startDate, "startDate");
@@ -142,7 +142,7 @@ public class TimeOffRequestsFilter {
 
 
     /**
-     * Start date
+     * Start date of the date range to filter time off requests. When used with end_date, filters for requests within the specified date range.
      */
     public TimeOffRequestsFilter withStartDate(Optional<String> startDate) {
         Utils.checkNotNull(startDate, "startDate");
@@ -151,7 +151,7 @@ public class TimeOffRequestsFilter {
     }
 
     /**
-     * End date
+     * End date of the date range to filter time off requests. When used with start_date, filters for requests within the specified date range.
      */
     public TimeOffRequestsFilter withEndDate(String endDate) {
         Utils.checkNotNull(endDate, "endDate");
@@ -161,7 +161,7 @@ public class TimeOffRequestsFilter {
 
 
     /**
-     * End date
+     * End date of the date range to filter time off requests. When used with start_date, filters for requests within the specified date range.
      */
     public TimeOffRequestsFilter withEndDate(Optional<String> endDate) {
         Utils.checkNotNull(endDate, "endDate");
@@ -302,7 +302,7 @@ public class TimeOffRequestsFilter {
 
 
         /**
-         * Start date
+         * Start date of the date range to filter time off requests. When used with end_date, filters for requests within the specified date range.
          */
         public Builder startDate(String startDate) {
             Utils.checkNotNull(startDate, "startDate");
@@ -311,7 +311,7 @@ public class TimeOffRequestsFilter {
         }
 
         /**
-         * Start date
+         * Start date of the date range to filter time off requests. When used with end_date, filters for requests within the specified date range.
          */
         public Builder startDate(Optional<String> startDate) {
             Utils.checkNotNull(startDate, "startDate");
@@ -321,7 +321,7 @@ public class TimeOffRequestsFilter {
 
 
         /**
-         * End date
+         * End date of the date range to filter time off requests. When used with start_date, filters for requests within the specified date range.
          */
         public Builder endDate(String endDate) {
             Utils.checkNotNull(endDate, "endDate");
@@ -330,7 +330,7 @@ public class TimeOffRequestsFilter {
         }
 
         /**
-         * End date
+         * End date of the date range to filter time off requests. When used with start_date, filters for requests within the specified date range.
          */
         public Builder endDate(Optional<String> endDate) {
             Utils.checkNotNull(endDate, "endDate");

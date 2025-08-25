@@ -105,6 +105,13 @@ public class InvoiceItemInput {
     @JsonProperty("unit_price")
     private JsonNullable<Double> unitPrice;
 
+    /**
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("currency")
+    private JsonNullable<? extends Currency> currency;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("asset_account")
@@ -198,6 +205,7 @@ public class InvoiceItemInput {
             @JsonProperty("purchase_details") Optional<? extends InvoiceItemPurchaseDetails> purchaseDetails,
             @JsonProperty("quantity") JsonNullable<Double> quantity,
             @JsonProperty("unit_price") JsonNullable<Double> unitPrice,
+            @JsonProperty("currency") JsonNullable<? extends Currency> currency,
             @JsonProperty("asset_account") JsonNullable<? extends LinkedLedgerAccountInput> assetAccount,
             @JsonProperty("income_account") JsonNullable<? extends LinkedLedgerAccountInput> incomeAccount,
             @JsonProperty("expense_account") JsonNullable<? extends LinkedLedgerAccountInput> expenseAccount,
@@ -223,6 +231,7 @@ public class InvoiceItemInput {
         Utils.checkNotNull(purchaseDetails, "purchaseDetails");
         Utils.checkNotNull(quantity, "quantity");
         Utils.checkNotNull(unitPrice, "unitPrice");
+        Utils.checkNotNull(currency, "currency");
         Utils.checkNotNull(assetAccount, "assetAccount");
         Utils.checkNotNull(incomeAccount, "incomeAccount");
         Utils.checkNotNull(expenseAccount, "expenseAccount");
@@ -248,6 +257,7 @@ public class InvoiceItemInput {
         this.purchaseDetails = purchaseDetails;
         this.quantity = quantity;
         this.unitPrice = unitPrice;
+        this.currency = currency;
         this.assetAccount = assetAccount;
         this.incomeAccount = incomeAccount;
         this.expenseAccount = expenseAccount;
@@ -271,7 +281,7 @@ public class InvoiceItemInput {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty());
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -367,6 +377,15 @@ public class InvoiceItemInput {
     @JsonIgnore
     public JsonNullable<Double> unitPrice() {
         return unitPrice;
+    }
+
+    /**
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<Currency> currency() {
+        return (JsonNullable<Currency>) currency;
     }
 
     @SuppressWarnings("unchecked")
@@ -678,6 +697,24 @@ public class InvoiceItemInput {
         return this;
     }
 
+    /**
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     */
+    public InvoiceItemInput withCurrency(Currency currency) {
+        Utils.checkNotNull(currency, "currency");
+        this.currency = JsonNullable.of(currency);
+        return this;
+    }
+
+    /**
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     */
+    public InvoiceItemInput withCurrency(JsonNullable<? extends Currency> currency) {
+        Utils.checkNotNull(currency, "currency");
+        this.currency = currency;
+        return this;
+    }
+
     public InvoiceItemInput withAssetAccount(LinkedLedgerAccountInput assetAccount) {
         Utils.checkNotNull(assetAccount, "assetAccount");
         this.assetAccount = JsonNullable.of(assetAccount);
@@ -898,6 +935,7 @@ public class InvoiceItemInput {
             Utils.enhancedDeepEquals(this.purchaseDetails, other.purchaseDetails) &&
             Utils.enhancedDeepEquals(this.quantity, other.quantity) &&
             Utils.enhancedDeepEquals(this.unitPrice, other.unitPrice) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
             Utils.enhancedDeepEquals(this.assetAccount, other.assetAccount) &&
             Utils.enhancedDeepEquals(this.incomeAccount, other.incomeAccount) &&
             Utils.enhancedDeepEquals(this.expenseAccount, other.expenseAccount) &&
@@ -919,11 +957,11 @@ public class InvoiceItemInput {
             sold, purchased, tracked,
             taxable, inventoryDate, type,
             salesDetails, purchaseDetails, quantity,
-            unitPrice, assetAccount, incomeAccount,
-            expenseAccount, trackingCategory, trackingCategories,
-            active, departmentId, locationId,
-            subsidiaryId, taxScheduleId, rowVersion,
-            passThrough);
+            unitPrice, currency, assetAccount,
+            incomeAccount, expenseAccount, trackingCategory,
+            trackingCategories, active, departmentId,
+            locationId, subsidiaryId, taxScheduleId,
+            rowVersion, passThrough);
     }
     
     @Override
@@ -942,6 +980,7 @@ public class InvoiceItemInput {
                 "purchaseDetails", purchaseDetails,
                 "quantity", quantity,
                 "unitPrice", unitPrice,
+                "currency", currency,
                 "assetAccount", assetAccount,
                 "incomeAccount", incomeAccount,
                 "expenseAccount", expenseAccount,
@@ -984,6 +1023,8 @@ public class InvoiceItemInput {
         private JsonNullable<Double> quantity = JsonNullable.undefined();
 
         private JsonNullable<Double> unitPrice = JsonNullable.undefined();
+
+        private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
 
         private JsonNullable<? extends LinkedLedgerAccountInput> assetAccount = JsonNullable.undefined();
 
@@ -1238,6 +1279,25 @@ public class InvoiceItemInput {
         }
 
 
+        /**
+         * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+         */
+        public Builder currency(Currency currency) {
+            Utils.checkNotNull(currency, "currency");
+            this.currency = JsonNullable.of(currency);
+            return this;
+        }
+
+        /**
+         * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+         */
+        public Builder currency(JsonNullable<? extends Currency> currency) {
+            Utils.checkNotNull(currency, "currency");
+            this.currency = currency;
+            return this;
+        }
+
+
         public Builder assetAccount(LinkedLedgerAccountInput assetAccount) {
             Utils.checkNotNull(assetAccount, "assetAccount");
             this.assetAccount = JsonNullable.of(assetAccount);
@@ -1452,11 +1512,11 @@ public class InvoiceItemInput {
                 sold, purchased, tracked,
                 taxable, inventoryDate, type,
                 salesDetails, purchaseDetails, quantity,
-                unitPrice, assetAccount, incomeAccount,
-                expenseAccount, trackingCategory, trackingCategories,
-                active, departmentId, locationId,
-                subsidiaryId, taxScheduleId, rowVersion,
-                passThrough);
+                unitPrice, currency, assetAccount,
+                incomeAccount, expenseAccount, trackingCategory,
+                trackingCategories, active, departmentId,
+                locationId, subsidiaryId, taxScheduleId,
+                rowVersion, passThrough);
         }
 
     }

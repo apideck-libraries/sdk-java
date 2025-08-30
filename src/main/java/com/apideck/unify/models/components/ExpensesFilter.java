@@ -14,26 +14,26 @@ import java.time.OffsetDateTime;
 import java.util.Optional;
 
 
-public class JournalEntriesFilter {
+public class ExpensesFilter {
 
     @SpeakeasyMetadata("queryParam:name=updated_since")
     private Optional<OffsetDateTime> updatedSince;
 
 
     @SpeakeasyMetadata("queryParam:name=status")
-    private Optional<? extends JournalEntriesFilterStatus> status;
+    private Optional<? extends ExpensesFilterStatus> status;
 
     @JsonCreator
-    public JournalEntriesFilter(
+    public ExpensesFilter(
             Optional<OffsetDateTime> updatedSince,
-            Optional<? extends JournalEntriesFilterStatus> status) {
+            Optional<? extends ExpensesFilterStatus> status) {
         Utils.checkNotNull(updatedSince, "updatedSince");
         Utils.checkNotNull(status, "status");
         this.updatedSince = updatedSince;
         this.status = status;
     }
     
-    public JournalEntriesFilter() {
+    public ExpensesFilter() {
         this(Optional.empty(), Optional.empty());
     }
 
@@ -44,8 +44,8 @@ public class JournalEntriesFilter {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<JournalEntriesFilterStatus> status() {
-        return (Optional<JournalEntriesFilterStatus>) status;
+    public Optional<ExpensesFilterStatus> status() {
+        return (Optional<ExpensesFilterStatus>) status;
     }
 
     public static Builder builder() {
@@ -53,27 +53,27 @@ public class JournalEntriesFilter {
     }
 
 
-    public JournalEntriesFilter withUpdatedSince(OffsetDateTime updatedSince) {
+    public ExpensesFilter withUpdatedSince(OffsetDateTime updatedSince) {
         Utils.checkNotNull(updatedSince, "updatedSince");
         this.updatedSince = Optional.ofNullable(updatedSince);
         return this;
     }
 
 
-    public JournalEntriesFilter withUpdatedSince(Optional<OffsetDateTime> updatedSince) {
+    public ExpensesFilter withUpdatedSince(Optional<OffsetDateTime> updatedSince) {
         Utils.checkNotNull(updatedSince, "updatedSince");
         this.updatedSince = updatedSince;
         return this;
     }
 
-    public JournalEntriesFilter withStatus(JournalEntriesFilterStatus status) {
+    public ExpensesFilter withStatus(ExpensesFilterStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = Optional.ofNullable(status);
         return this;
     }
 
 
-    public JournalEntriesFilter withStatus(Optional<? extends JournalEntriesFilterStatus> status) {
+    public ExpensesFilter withStatus(Optional<? extends ExpensesFilterStatus> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -87,7 +87,7 @@ public class JournalEntriesFilter {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        JournalEntriesFilter other = (JournalEntriesFilter) o;
+        ExpensesFilter other = (ExpensesFilter) o;
         return 
             Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince) &&
             Utils.enhancedDeepEquals(this.status, other.status);
@@ -101,7 +101,7 @@ public class JournalEntriesFilter {
     
     @Override
     public String toString() {
-        return Utils.toString(JournalEntriesFilter.class,
+        return Utils.toString(ExpensesFilter.class,
                 "updatedSince", updatedSince,
                 "status", status);
     }
@@ -111,7 +111,7 @@ public class JournalEntriesFilter {
 
         private Optional<OffsetDateTime> updatedSince = Optional.empty();
 
-        private Optional<? extends JournalEntriesFilterStatus> status = Optional.empty();
+        private Optional<? extends ExpensesFilterStatus> status = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -131,21 +131,21 @@ public class JournalEntriesFilter {
         }
 
 
-        public Builder status(JournalEntriesFilterStatus status) {
+        public Builder status(ExpensesFilterStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = Optional.ofNullable(status);
             return this;
         }
 
-        public Builder status(Optional<? extends JournalEntriesFilterStatus> status) {
+        public Builder status(Optional<? extends ExpensesFilterStatus> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
         }
 
-        public JournalEntriesFilter build() {
+        public ExpensesFilter build() {
 
-            return new JournalEntriesFilter(
+            return new ExpensesFilter(
                 updatedSince, status);
         }
 

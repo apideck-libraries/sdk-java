@@ -157,6 +157,13 @@ public class Expense {
     private JsonNullable<? extends Map<String, Object>> customMappings;
 
     /**
+     * Expense status
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("status")
+    private JsonNullable<? extends ExpenseStatus> status;
+
+    /**
      * The date and time when the object was last updated.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -220,6 +227,7 @@ public class Expense {
             @JsonProperty("source_document_url") JsonNullable<String> sourceDocumentUrl,
             @JsonProperty("custom_fields") Optional<? extends List<CustomField>> customFields,
             @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings,
+            @JsonProperty("status") JsonNullable<? extends ExpenseStatus> status,
             @JsonProperty("updated_at") JsonNullable<OffsetDateTime> updatedAt,
             @JsonProperty("created_at") JsonNullable<OffsetDateTime> createdAt,
             @JsonProperty("row_version") JsonNullable<String> rowVersion,
@@ -246,6 +254,7 @@ public class Expense {
         Utils.checkNotNull(sourceDocumentUrl, "sourceDocumentUrl");
         Utils.checkNotNull(customFields, "customFields");
         Utils.checkNotNull(customMappings, "customMappings");
+        Utils.checkNotNull(status, "status");
         Utils.checkNotNull(updatedAt, "updatedAt");
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(rowVersion, "rowVersion");
@@ -272,6 +281,7 @@ public class Expense {
         this.sourceDocumentUrl = sourceDocumentUrl;
         this.customFields = customFields;
         this.customMappings = customMappings;
+        this.status = status;
         this.updatedAt = updatedAt;
         this.createdAt = createdAt;
         this.rowVersion = rowVersion;
@@ -291,7 +301,7 @@ public class Expense {
             lineItems, JsonNullable.undefined(), JsonNullable.undefined(),
             Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty());
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -452,6 +462,15 @@ public class Expense {
     @JsonIgnore
     public JsonNullable<Map<String, Object>> customMappings() {
         return (JsonNullable<Map<String, Object>>) customMappings;
+    }
+
+    /**
+     * Expense status
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<ExpenseStatus> status() {
+        return (JsonNullable<ExpenseStatus>) status;
     }
 
     /**
@@ -845,6 +864,24 @@ public class Expense {
     }
 
     /**
+     * Expense status
+     */
+    public Expense withStatus(ExpenseStatus status) {
+        Utils.checkNotNull(status, "status");
+        this.status = JsonNullable.of(status);
+        return this;
+    }
+
+    /**
+     * Expense status
+     */
+    public Expense withStatus(JsonNullable<? extends ExpenseStatus> status) {
+        Utils.checkNotNull(status, "status");
+        this.status = status;
+        return this;
+    }
+
+    /**
      * The date and time when the object was last updated.
      */
     public Expense withUpdatedAt(OffsetDateTime updatedAt) {
@@ -983,6 +1020,7 @@ public class Expense {
             Utils.enhancedDeepEquals(this.sourceDocumentUrl, other.sourceDocumentUrl) &&
             Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
             Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
             Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion) &&
@@ -1000,9 +1038,9 @@ public class Expense {
             currency, currencyRate, type,
             memo, taxRate, totalAmount,
             lineItems, reference, sourceDocumentUrl,
-            customFields, customMappings, updatedAt,
-            createdAt, rowVersion, updatedBy,
-            createdBy, passThrough);
+            customFields, customMappings, status,
+            updatedAt, createdAt, rowVersion,
+            updatedBy, createdBy, passThrough);
     }
     
     @Override
@@ -1028,6 +1066,7 @@ public class Expense {
                 "sourceDocumentUrl", sourceDocumentUrl,
                 "customFields", customFields,
                 "customMappings", customMappings,
+                "status", status,
                 "updatedAt", updatedAt,
                 "createdAt", createdAt,
                 "rowVersion", rowVersion,
@@ -1078,6 +1117,8 @@ public class Expense {
         private Optional<? extends List<CustomField>> customFields = Optional.empty();
 
         private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
+
+        private JsonNullable<? extends ExpenseStatus> status = JsonNullable.undefined();
 
         private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
 
@@ -1447,6 +1488,25 @@ public class Expense {
 
 
         /**
+         * Expense status
+         */
+        public Builder status(ExpenseStatus status) {
+            Utils.checkNotNull(status, "status");
+            this.status = JsonNullable.of(status);
+            return this;
+        }
+
+        /**
+         * Expense status
+         */
+        public Builder status(JsonNullable<? extends ExpenseStatus> status) {
+            Utils.checkNotNull(status, "status");
+            this.status = status;
+            return this;
+        }
+
+
+        /**
          * The date and time when the object was last updated.
          */
         public Builder updatedAt(OffsetDateTime updatedAt) {
@@ -1568,9 +1628,9 @@ public class Expense {
                 currency, currencyRate, type,
                 memo, taxRate, totalAmount,
                 lineItems, reference, sourceDocumentUrl,
-                customFields, customMappings, updatedAt,
-                createdAt, rowVersion, updatedBy,
-                createdBy, passThrough);
+                customFields, customMappings, status,
+                updatedAt, createdAt, rowVersion,
+                updatedBy, createdBy, passThrough);
         }
 
     }

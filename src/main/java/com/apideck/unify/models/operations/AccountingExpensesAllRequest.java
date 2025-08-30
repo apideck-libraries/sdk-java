@@ -3,6 +3,7 @@
  */
 package com.apideck.unify.models.operations;
 
+import com.apideck.unify.models.components.ExpensesFilter;
 import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
@@ -13,6 +14,7 @@ import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -54,6 +56,12 @@ public class AccountingExpensesAllRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=limit")
     private Optional<Long> limit;
 
+    /**
+     * Apply filters
+     */
+    @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=filter")
+    private Optional<? extends ExpensesFilter> filter;
+
     @JsonCreator
     public AccountingExpensesAllRequest(
             Optional<Boolean> raw,
@@ -61,24 +69,28 @@ public class AccountingExpensesAllRequest {
             Optional<String> appId,
             Optional<String> serviceId,
             JsonNullable<String> cursor,
-            Optional<Long> limit) {
+            Optional<Long> limit,
+            Optional<? extends ExpensesFilter> filter) {
         Utils.checkNotNull(raw, "raw");
         Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(serviceId, "serviceId");
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(limit, "limit");
+        Utils.checkNotNull(filter, "filter");
         this.raw = raw;
         this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
         this.cursor = cursor;
         this.limit = limit;
+        this.filter = filter;
     }
     
     public AccountingExpensesAllRequest() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), Optional.empty());
+            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -127,6 +139,15 @@ public class AccountingExpensesAllRequest {
     @JsonIgnore
     public Optional<Long> limit() {
         return limit;
+    }
+
+    /**
+     * Apply filters
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<ExpensesFilter> filter() {
+        return (Optional<ExpensesFilter>) filter;
     }
 
     public static Builder builder() {
@@ -247,6 +268,25 @@ public class AccountingExpensesAllRequest {
         return this;
     }
 
+    /**
+     * Apply filters
+     */
+    public AccountingExpensesAllRequest withFilter(ExpensesFilter filter) {
+        Utils.checkNotNull(filter, "filter");
+        this.filter = Optional.ofNullable(filter);
+        return this;
+    }
+
+
+    /**
+     * Apply filters
+     */
+    public AccountingExpensesAllRequest withFilter(Optional<? extends ExpensesFilter> filter) {
+        Utils.checkNotNull(filter, "filter");
+        this.filter = filter;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -262,14 +302,16 @@ public class AccountingExpensesAllRequest {
             Utils.enhancedDeepEquals(this.appId, other.appId) &&
             Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
             Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
-            Utils.enhancedDeepEquals(this.limit, other.limit);
+            Utils.enhancedDeepEquals(this.limit, other.limit) &&
+            Utils.enhancedDeepEquals(this.filter, other.filter);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             raw, consumerId, appId,
-            serviceId, cursor, limit);
+            serviceId, cursor, limit,
+            filter);
     }
     
     @Override
@@ -280,7 +322,8 @@ public class AccountingExpensesAllRequest {
                 "appId", appId,
                 "serviceId", serviceId,
                 "cursor", cursor,
-                "limit", limit);
+                "limit", limit,
+                "filter", filter);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -297,6 +340,8 @@ public class AccountingExpensesAllRequest {
         private JsonNullable<String> cursor = JsonNullable.undefined();
 
         private Optional<Long> limit;
+
+        private Optional<? extends ExpensesFilter> filter = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -416,6 +461,25 @@ public class AccountingExpensesAllRequest {
             return this;
         }
 
+
+        /**
+         * Apply filters
+         */
+        public Builder filter(ExpensesFilter filter) {
+            Utils.checkNotNull(filter, "filter");
+            this.filter = Optional.ofNullable(filter);
+            return this;
+        }
+
+        /**
+         * Apply filters
+         */
+        public Builder filter(Optional<? extends ExpensesFilter> filter) {
+            Utils.checkNotNull(filter, "filter");
+            this.filter = filter;
+            return this;
+        }
+
         public AccountingExpensesAllRequest build() {
             if (raw == null) {
                 raw = _SINGLETON_VALUE_Raw.value();
@@ -426,7 +490,8 @@ public class AccountingExpensesAllRequest {
 
             return new AccountingExpensesAllRequest(
                 raw, consumerId, appId,
-                serviceId, cursor, limit);
+                serviceId, cursor, limit,
+                filter);
         }
 
 

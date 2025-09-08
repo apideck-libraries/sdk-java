@@ -49,8 +49,8 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
+
         sdk.ats().applicants().list()
-                .request(req)
                 .callAsStream()
                 .forEach((AtsApplicantsAllResponse item) -> {
                    // handle page

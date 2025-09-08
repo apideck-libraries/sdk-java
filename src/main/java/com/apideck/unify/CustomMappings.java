@@ -17,9 +17,20 @@ import java.util.Optional;
 
 public class CustomMappings {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncCustomMappings asyncSDK;
 
     CustomMappings(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncCustomMappings(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncCustomMappings async() {
+        return asyncSDK;
     }
 
     /**

@@ -20,9 +20,20 @@ import java.util.Optional;
 
 public class EmployeePayrolls {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncEmployeePayrolls asyncSDK;
 
     EmployeePayrolls(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncEmployeePayrolls(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncEmployeePayrolls async() {
+        return asyncSDK;
     }
 
     /**

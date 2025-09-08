@@ -32,9 +32,20 @@ import java.util.Optional;
 
 public class Subsidiaries {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncSubsidiaries asyncSDK;
 
     Subsidiaries(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncSubsidiaries(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncSubsidiaries async() {
+        return asyncSDK;
     }
 
     /**

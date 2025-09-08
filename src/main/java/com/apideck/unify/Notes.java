@@ -32,9 +32,20 @@ import java.util.Optional;
 
 public class Notes {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncNotes asyncSDK;
 
     Notes(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncNotes(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncNotes async() {
+        return asyncSDK;
     }
 
     /**

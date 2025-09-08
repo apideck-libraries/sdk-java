@@ -20,9 +20,20 @@ import java.util.Optional;
 
 public class ApideckCustomers {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncApideckCustomers asyncSDK;
 
     ApideckCustomers(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncApideckCustomers(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncApideckCustomers async() {
+        return asyncSDK;
     }
 
     /**

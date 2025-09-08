@@ -16,9 +16,20 @@ import java.util.Optional;
 
 public class AgedCreditors {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncAgedCreditors asyncSDK;
 
     AgedCreditors(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncAgedCreditors(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncAgedCreditors async() {
+        return asyncSDK;
     }
 
     /**

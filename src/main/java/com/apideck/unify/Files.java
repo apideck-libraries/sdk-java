@@ -40,9 +40,20 @@ import java.util.Optional;
 
 public class Files {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncFiles asyncSDK;
 
     Files(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncFiles(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncFiles async() {
+        return asyncSDK;
     }
 
     /**

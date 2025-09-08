@@ -5,6 +5,7 @@ package com.apideck.unify;
 
 public class IssueTracking {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncIssueTracking asyncSDK;
     private final Collections collections;
     private final CollectionTickets collectionTickets;
     private final CollectionTicketComments collectionTicketComments;
@@ -18,6 +19,7 @@ public class IssueTracking {
         this.collectionTicketComments = new CollectionTicketComments(this.sdkConfiguration);
         this.collectionUsers = new CollectionUsers(this.sdkConfiguration);
         this.collectionTags = new CollectionTags(this.sdkConfiguration);
+        this.asyncSDK = new AsyncIssueTracking(this, sdkConfiguration);
     }
 
     public final Collections collections() {
@@ -38,6 +40,15 @@ public class IssueTracking {
 
     public final CollectionTags collectionTags() {
         return collectionTags;
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncIssueTracking async() {
+        return asyncSDK;
     }
 
 }

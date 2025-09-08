@@ -54,8 +54,8 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
+
         sdk.accounting().ledgerAccounts().list()
-                .request(req)
                 .callAsStream()
                 .forEach((AccountingLedgerAccountsAllResponse item) -> {
                    // handle page

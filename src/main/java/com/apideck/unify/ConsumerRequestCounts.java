@@ -17,9 +17,20 @@ import java.util.Optional;
 
 public class ConsumerRequestCounts {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncConsumerRequestCounts asyncSDK;
 
     ConsumerRequestCounts(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncConsumerRequestCounts(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncConsumerRequestCounts async() {
+        return asyncSDK;
     }
 
     /**

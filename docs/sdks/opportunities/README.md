@@ -54,8 +54,8 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
+
         sdk.crm().opportunities().list()
-                .request(req)
                 .callAsStream()
                 .forEach((CrmOpportunitiesAllResponse item) -> {
                    // handle page

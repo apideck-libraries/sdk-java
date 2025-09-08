@@ -44,8 +44,8 @@ public class Application {
                     .build())
                 .build();
 
+
         sdk.accounting().categories().list()
-                .request(req)
                 .callAsStream()
                 .forEach((AccountingCategoriesAllResponse item) -> {
                    // handle page

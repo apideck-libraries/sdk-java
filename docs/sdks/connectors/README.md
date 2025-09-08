@@ -34,6 +34,7 @@ public class Application {
                 .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
+
         sdk.connector().connectors().list()
                 .limit(20L)
                 .filter(ConnectorsFilter.builder()

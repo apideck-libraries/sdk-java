@@ -46,8 +46,8 @@ public class Application {
                     .build())
                 .build();
 
+
         sdk.accounting().locations().list()
-                .request(req)
                 .callAsStream()
                 .forEach((AccountingLocationsAllResponse item) -> {
                    // handle page

@@ -32,9 +32,20 @@ import java.util.Optional;
 
 public class Suppliers {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncSuppliers asyncSDK;
 
     Suppliers(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncSuppliers(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncSuppliers async() {
+        return asyncSDK;
     }
 
     /**

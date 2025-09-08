@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 38254260-287a-40b6-9ac5-c2fcb654c9cc
 management:
-  docChecksum: 7a914b0b2af437b34e915b6e6c6d1834
-  docVersion: 10.20.11
-  speakeasyVersion: 1.606.4
-  generationVersion: 2.687.1
-  releaseVersion: 0.19.6
-  configChecksum: 7e9648ae91537d26a68ab4420e76ff20
+  docChecksum: a66063e3c32337bb9f66b137be728988
+  docVersion: 10.20.13
+  speakeasyVersion: 1.611.1
+  generationVersion: 2.694.1
+  releaseVersion: 0.20.0
+  configChecksum: 20d732207e53807165cf07024de98725
   repoURL: https://github.com/apideck-libraries/sdk-java.git
   published: true
 features:
@@ -14,7 +14,7 @@ features:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.1
-    core: 3.45.4
+    core: 3.47.1
     deprecations: 2.81.1
     downloadStreams: 0.1.1
     errors: 0.5.0
@@ -34,6 +34,7 @@ features:
     sdkHooks: 1.1.0
     typeOverrides: 2.81.1
     unions: 0.0.6
+    uploadStreams: 0.1.0
 generatedFiles:
   - .gitattributes
   - USAGE.md
@@ -169,6 +170,9 @@ generatedFiles:
   - docs/models/components/ConnectorSettingType.md
   - docs/models/components/ConnectorStatus.md
   - docs/models/components/ConnectorsFilter.md
+  - docs/models/components/ConsentRecord.md
+  - docs/models/components/ConsentRecordInput.md
+  - docs/models/components/ConsentState.md
   - docs/models/components/Consumer.md
   - docs/models/components/ConsumerConnection.md
   - docs/models/components/ConsumerMetadata.md
@@ -272,6 +276,11 @@ generatedFiles:
   - docs/models/components/CustomersSort.md
   - docs/models/components/CustomersSortBy.md
   - docs/models/components/Data.md
+  - docs/models/components/DataScopes.md
+  - docs/models/components/DataScopesInput.md
+  - docs/models/components/DataScopesResources.md
+  - docs/models/components/DataScopesResources1.md
+  - docs/models/components/DataScopesResources2.md
   - docs/models/components/Deduction.md
   - docs/models/components/Defaults.md
   - docs/models/components/DeleteAccountingDepartmentResponse.md
@@ -384,8 +393,11 @@ generatedFiles:
   - docs/models/components/ExpenseLineItem.md
   - docs/models/components/ExpenseLineItemInput.md
   - docs/models/components/ExpensePaymentType.md
+  - docs/models/components/ExpenseStatus.md
   - docs/models/components/ExpenseType.md
   - docs/models/components/Expenses.md
+  - docs/models/components/ExpensesFilter.md
+  - docs/models/components/ExpensesFilterStatus.md
   - docs/models/components/ExtendPaths.md
   - docs/models/components/FeedStatus.md
   - docs/models/components/Fields.md
@@ -449,6 +461,7 @@ generatedFiles:
   - docs/models/components/GetConnectorResourceResponse.md
   - docs/models/components/GetConnectorResponse.md
   - docs/models/components/GetConnectorsResponse.md
+  - docs/models/components/GetConsentRecordsResponse.md
   - docs/models/components/GetConsumerResponse.md
   - docs/models/components/GetConsumersResponse.md
   - docs/models/components/GetContactResponse.md
@@ -571,6 +584,7 @@ generatedFiles:
   - docs/models/components/JobStatus.md
   - docs/models/components/JobType.md
   - docs/models/components/JournalEntriesFilter.md
+  - docs/models/components/JournalEntriesFilterStatus.md
   - docs/models/components/JournalEntriesSort.md
   - docs/models/components/JournalEntriesSortBy.md
   - docs/models/components/JournalEntry.md
@@ -633,6 +647,7 @@ generatedFiles:
   - docs/models/components/OauthCredentialsSource.md
   - docs/models/components/OauthScopes.md
   - docs/models/components/OddWeeks.md
+  - docs/models/components/One.md
   - docs/models/components/Operation.md
   - docs/models/components/OpportunitiesFilter.md
   - docs/models/components/OpportunitiesSort.md
@@ -762,6 +777,7 @@ generatedFiles:
   - docs/models/components/TimeOffRequestStatusStatus.md
   - docs/models/components/TimeOffRequestsFilter.md
   - docs/models/components/TlsSupport.md
+  - docs/models/components/TrackingCategoriesMode.md
   - docs/models/components/TrackingCategory.md
   - docs/models/components/TrackingCategoryInput.md
   - docs/models/components/TrackingCategoryStatus.md
@@ -769,6 +785,7 @@ generatedFiles:
   - docs/models/components/TrackingItem.md
   - docs/models/components/TransactionType.md
   - docs/models/components/Transactions.md
+  - docs/models/components/Two.md
   - docs/models/components/Type.md
   - docs/models/components/UncategorizedAccounts.md
   - docs/models/components/UnexpectedErrorResponse.md
@@ -791,6 +808,9 @@ generatedFiles:
   - docs/models/components/UpdateCommentResponse.md
   - docs/models/components/UpdateCompanyResponse.md
   - docs/models/components/UpdateConnectionResponse.md
+  - docs/models/components/UpdateConsentRequest.md
+  - docs/models/components/UpdateConsentRequestResources.md
+  - docs/models/components/UpdateConsentResponse.md
   - docs/models/components/UpdateConsumerRequest.md
   - docs/models/components/UpdateConsumerResponse.md
   - docs/models/components/UpdateContactResponse.md
@@ -1392,6 +1412,10 @@ generatedFiles:
   - docs/models/operations/SmsMessagesOneResponse.md
   - docs/models/operations/SmsMessagesUpdateRequest.md
   - docs/models/operations/SmsMessagesUpdateResponse.md
+  - docs/models/operations/VaultConnectionConsentUpdateRequest.md
+  - docs/models/operations/VaultConnectionConsentUpdateResponse.md
+  - docs/models/operations/VaultConnectionConsentsAllRequest.md
+  - docs/models/operations/VaultConnectionConsentsAllResponse.md
   - docs/models/operations/VaultConnectionCustomMappingsAllRequest.md
   - docs/models/operations/VaultConnectionCustomMappingsAllResponse.md
   - docs/models/operations/VaultConnectionSettingsAllRequest.md
@@ -1474,6 +1498,8 @@ generatedFiles:
   - docs/sdks/collectionusers/README.md
   - docs/sdks/companies/README.md
   - docs/sdks/companyinfo/README.md
+  - docs/sdks/connectionconsent/README.md
+  - docs/sdks/connectionconsents/README.md
   - docs/sdks/connectioncustommappings/README.md
   - docs/sdks/connections/README.md
   - docs/sdks/connectionsettings/README.md
@@ -1539,6 +1565,7 @@ generatedFiles:
   - docs/sdks/vault/README.md
   - docs/sdks/webhook/README.md
   - docs/sdks/webhooks/README.md
+  - docs/utils/Blob.md
   - gradle.properties
   - gradle/wrapper/gradle-wrapper.jar
   - gradle/wrapper/gradle-wrapper.properties
@@ -1558,6 +1585,101 @@ generatedFiles:
   - src/main/java/com/apideck/unify/Apis.java
   - src/main/java/com/apideck/unify/Applicants.java
   - src/main/java/com/apideck/unify/Applications.java
+  - src/main/java/com/apideck/unify/AsyncAccounting.java
+  - src/main/java/com/apideck/unify/AsyncActivities.java
+  - src/main/java/com/apideck/unify/AsyncAgedCreditors.java
+  - src/main/java/com/apideck/unify/AsyncAgedDebtors.java
+  - src/main/java/com/apideck/unify/AsyncApiResourceCoverage.java
+  - src/main/java/com/apideck/unify/AsyncApiResources.java
+  - src/main/java/com/apideck/unify/AsyncApideck.java
+  - src/main/java/com/apideck/unify/AsyncApideckCompanies.java
+  - src/main/java/com/apideck/unify/AsyncApideckCustomers.java
+  - src/main/java/com/apideck/unify/AsyncApideckDepartments.java
+  - src/main/java/com/apideck/unify/AsyncApis.java
+  - src/main/java/com/apideck/unify/AsyncApplicants.java
+  - src/main/java/com/apideck/unify/AsyncApplications.java
+  - src/main/java/com/apideck/unify/AsyncAts.java
+  - src/main/java/com/apideck/unify/AsyncAttachments.java
+  - src/main/java/com/apideck/unify/AsyncBalanceSheet.java
+  - src/main/java/com/apideck/unify/AsyncBankFeedAccounts.java
+  - src/main/java/com/apideck/unify/AsyncBankFeedStatements.java
+  - src/main/java/com/apideck/unify/AsyncBillPayments.java
+  - src/main/java/com/apideck/unify/AsyncBills.java
+  - src/main/java/com/apideck/unify/AsyncCategories.java
+  - src/main/java/com/apideck/unify/AsyncCollectionTags.java
+  - src/main/java/com/apideck/unify/AsyncCollectionTicketComments.java
+  - src/main/java/com/apideck/unify/AsyncCollectionTickets.java
+  - src/main/java/com/apideck/unify/AsyncCollectionUsers.java
+  - src/main/java/com/apideck/unify/AsyncCollections.java
+  - src/main/java/com/apideck/unify/AsyncCompanies.java
+  - src/main/java/com/apideck/unify/AsyncCompanyInfo.java
+  - src/main/java/com/apideck/unify/AsyncConnectionConsent.java
+  - src/main/java/com/apideck/unify/AsyncConnectionConsents.java
+  - src/main/java/com/apideck/unify/AsyncConnectionCustomMappings.java
+  - src/main/java/com/apideck/unify/AsyncConnectionSettings.java
+  - src/main/java/com/apideck/unify/AsyncConnections.java
+  - src/main/java/com/apideck/unify/AsyncConnector.java
+  - src/main/java/com/apideck/unify/AsyncConnectorDocs.java
+  - src/main/java/com/apideck/unify/AsyncConnectorResources.java
+  - src/main/java/com/apideck/unify/AsyncConnectors.java
+  - src/main/java/com/apideck/unify/AsyncConsumerRequestCounts.java
+  - src/main/java/com/apideck/unify/AsyncConsumers.java
+  - src/main/java/com/apideck/unify/AsyncContacts.java
+  - src/main/java/com/apideck/unify/AsyncCreateCallback.java
+  - src/main/java/com/apideck/unify/AsyncCreditNotes.java
+  - src/main/java/com/apideck/unify/AsyncCrm.java
+  - src/main/java/com/apideck/unify/AsyncCustomFields.java
+  - src/main/java/com/apideck/unify/AsyncCustomMappings.java
+  - src/main/java/com/apideck/unify/AsyncCustomObjectSchemas.java
+  - src/main/java/com/apideck/unify/AsyncCustomObjects.java
+  - src/main/java/com/apideck/unify/AsyncCustomers.java
+  - src/main/java/com/apideck/unify/AsyncDepartments.java
+  - src/main/java/com/apideck/unify/AsyncDriveGroups.java
+  - src/main/java/com/apideck/unify/AsyncDrives.java
+  - src/main/java/com/apideck/unify/AsyncEcommerce.java
+  - src/main/java/com/apideck/unify/AsyncEmployeePayrolls.java
+  - src/main/java/com/apideck/unify/AsyncEmployeeSchedules.java
+  - src/main/java/com/apideck/unify/AsyncEmployees.java
+  - src/main/java/com/apideck/unify/AsyncExpenses.java
+  - src/main/java/com/apideck/unify/AsyncFileStorage.java
+  - src/main/java/com/apideck/unify/AsyncFiles.java
+  - src/main/java/com/apideck/unify/AsyncFolders.java
+  - src/main/java/com/apideck/unify/AsyncHris.java
+  - src/main/java/com/apideck/unify/AsyncInvoiceItems.java
+  - src/main/java/com/apideck/unify/AsyncInvoices.java
+  - src/main/java/com/apideck/unify/AsyncIssueTracking.java
+  - src/main/java/com/apideck/unify/AsyncJobs.java
+  - src/main/java/com/apideck/unify/AsyncJournalEntries.java
+  - src/main/java/com/apideck/unify/AsyncLeads.java
+  - src/main/java/com/apideck/unify/AsyncLedgerAccounts.java
+  - src/main/java/com/apideck/unify/AsyncLocations.java
+  - src/main/java/com/apideck/unify/AsyncLogs.java
+  - src/main/java/com/apideck/unify/AsyncMessages.java
+  - src/main/java/com/apideck/unify/AsyncNotes.java
+  - src/main/java/com/apideck/unify/AsyncOpportunities.java
+  - src/main/java/com/apideck/unify/AsyncOrders.java
+  - src/main/java/com/apideck/unify/AsyncPayments.java
+  - src/main/java/com/apideck/unify/AsyncPayrolls.java
+  - src/main/java/com/apideck/unify/AsyncPipelines.java
+  - src/main/java/com/apideck/unify/AsyncProducts.java
+  - src/main/java/com/apideck/unify/AsyncProfitAndLoss.java
+  - src/main/java/com/apideck/unify/AsyncPurchaseOrders.java
+  - src/main/java/com/apideck/unify/AsyncQuotes.java
+  - src/main/java/com/apideck/unify/AsyncSessions.java
+  - src/main/java/com/apideck/unify/AsyncSharedLinks.java
+  - src/main/java/com/apideck/unify/AsyncSms.java
+  - src/main/java/com/apideck/unify/AsyncStores.java
+  - src/main/java/com/apideck/unify/AsyncSubsidiaries.java
+  - src/main/java/com/apideck/unify/AsyncSuppliers.java
+  - src/main/java/com/apideck/unify/AsyncTaxRates.java
+  - src/main/java/com/apideck/unify/AsyncTimeOffRequests.java
+  - src/main/java/com/apideck/unify/AsyncTrackingCategories.java
+  - src/main/java/com/apideck/unify/AsyncUploadSessions.java
+  - src/main/java/com/apideck/unify/AsyncUsers.java
+  - src/main/java/com/apideck/unify/AsyncValidateConnection.java
+  - src/main/java/com/apideck/unify/AsyncVault.java
+  - src/main/java/com/apideck/unify/AsyncWebhook.java
+  - src/main/java/com/apideck/unify/AsyncWebhooks.java
   - src/main/java/com/apideck/unify/Ats.java
   - src/main/java/com/apideck/unify/Attachments.java
   - src/main/java/com/apideck/unify/BalanceSheet.java
@@ -1573,6 +1695,8 @@ generatedFiles:
   - src/main/java/com/apideck/unify/Collections.java
   - src/main/java/com/apideck/unify/Companies.java
   - src/main/java/com/apideck/unify/CompanyInfo.java
+  - src/main/java/com/apideck/unify/ConnectionConsent.java
+  - src/main/java/com/apideck/unify/ConnectionConsents.java
   - src/main/java/com/apideck/unify/ConnectionCustomMappings.java
   - src/main/java/com/apideck/unify/ConnectionSettings.java
   - src/main/java/com/apideck/unify/Connections.java
@@ -1771,6 +1895,9 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/components/ConnectorSettingType.java
   - src/main/java/com/apideck/unify/models/components/ConnectorStatus.java
   - src/main/java/com/apideck/unify/models/components/ConnectorsFilter.java
+  - src/main/java/com/apideck/unify/models/components/ConsentRecord.java
+  - src/main/java/com/apideck/unify/models/components/ConsentRecordInput.java
+  - src/main/java/com/apideck/unify/models/components/ConsentState.java
   - src/main/java/com/apideck/unify/models/components/Consumer.java
   - src/main/java/com/apideck/unify/models/components/ConsumerConnection.java
   - src/main/java/com/apideck/unify/models/components/ConsumerMetadata.java
@@ -1874,6 +2001,11 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/components/CustomersSort.java
   - src/main/java/com/apideck/unify/models/components/CustomersSortBy.java
   - src/main/java/com/apideck/unify/models/components/Data.java
+  - src/main/java/com/apideck/unify/models/components/DataScopes.java
+  - src/main/java/com/apideck/unify/models/components/DataScopesInput.java
+  - src/main/java/com/apideck/unify/models/components/DataScopesResources.java
+  - src/main/java/com/apideck/unify/models/components/DataScopesResources1.java
+  - src/main/java/com/apideck/unify/models/components/DataScopesResources2.java
   - src/main/java/com/apideck/unify/models/components/Deduction.java
   - src/main/java/com/apideck/unify/models/components/Defaults.java
   - src/main/java/com/apideck/unify/models/components/DeleteAccountingDepartmentResponse.java
@@ -1986,8 +2118,11 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/components/ExpenseLineItem.java
   - src/main/java/com/apideck/unify/models/components/ExpenseLineItemInput.java
   - src/main/java/com/apideck/unify/models/components/ExpensePaymentType.java
+  - src/main/java/com/apideck/unify/models/components/ExpenseStatus.java
   - src/main/java/com/apideck/unify/models/components/ExpenseType.java
   - src/main/java/com/apideck/unify/models/components/Expenses.java
+  - src/main/java/com/apideck/unify/models/components/ExpensesFilter.java
+  - src/main/java/com/apideck/unify/models/components/ExpensesFilterStatus.java
   - src/main/java/com/apideck/unify/models/components/ExtendPaths.java
   - src/main/java/com/apideck/unify/models/components/FeedStatus.java
   - src/main/java/com/apideck/unify/models/components/Fields.java
@@ -2051,6 +2186,7 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/components/GetConnectorResourceResponse.java
   - src/main/java/com/apideck/unify/models/components/GetConnectorResponse.java
   - src/main/java/com/apideck/unify/models/components/GetConnectorsResponse.java
+  - src/main/java/com/apideck/unify/models/components/GetConsentRecordsResponse.java
   - src/main/java/com/apideck/unify/models/components/GetConsumerResponse.java
   - src/main/java/com/apideck/unify/models/components/GetConsumersResponse.java
   - src/main/java/com/apideck/unify/models/components/GetContactResponse.java
@@ -2173,6 +2309,7 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/components/JobStatus.java
   - src/main/java/com/apideck/unify/models/components/JobType.java
   - src/main/java/com/apideck/unify/models/components/JournalEntriesFilter.java
+  - src/main/java/com/apideck/unify/models/components/JournalEntriesFilterStatus.java
   - src/main/java/com/apideck/unify/models/components/JournalEntriesSort.java
   - src/main/java/com/apideck/unify/models/components/JournalEntriesSortBy.java
   - src/main/java/com/apideck/unify/models/components/JournalEntry.java
@@ -2235,6 +2372,7 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/components/OauthCredentialsSource.java
   - src/main/java/com/apideck/unify/models/components/OauthScopes.java
   - src/main/java/com/apideck/unify/models/components/OddWeeks.java
+  - src/main/java/com/apideck/unify/models/components/One.java
   - src/main/java/com/apideck/unify/models/components/Operation.java
   - src/main/java/com/apideck/unify/models/components/OpportunitiesFilter.java
   - src/main/java/com/apideck/unify/models/components/OpportunitiesSort.java
@@ -2364,6 +2502,7 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/components/TimeOffRequestStatusStatus.java
   - src/main/java/com/apideck/unify/models/components/TimeOffRequestsFilter.java
   - src/main/java/com/apideck/unify/models/components/TlsSupport.java
+  - src/main/java/com/apideck/unify/models/components/TrackingCategoriesMode.java
   - src/main/java/com/apideck/unify/models/components/TrackingCategory.java
   - src/main/java/com/apideck/unify/models/components/TrackingCategoryInput.java
   - src/main/java/com/apideck/unify/models/components/TrackingCategoryStatus.java
@@ -2371,6 +2510,7 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/components/TrackingItem.java
   - src/main/java/com/apideck/unify/models/components/TransactionType.java
   - src/main/java/com/apideck/unify/models/components/Transactions.java
+  - src/main/java/com/apideck/unify/models/components/Two.java
   - src/main/java/com/apideck/unify/models/components/Type.java
   - src/main/java/com/apideck/unify/models/components/UncategorizedAccounts.java
   - src/main/java/com/apideck/unify/models/components/UnexpectedErrorResponse.java
@@ -2393,6 +2533,9 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/components/UpdateCommentResponse.java
   - src/main/java/com/apideck/unify/models/components/UpdateCompanyResponse.java
   - src/main/java/com/apideck/unify/models/components/UpdateConnectionResponse.java
+  - src/main/java/com/apideck/unify/models/components/UpdateConsentRequest.java
+  - src/main/java/com/apideck/unify/models/components/UpdateConsentRequestResources.java
+  - src/main/java/com/apideck/unify/models/components/UpdateConsentResponse.java
   - src/main/java/com/apideck/unify/models/components/UpdateConsumerRequest.java
   - src/main/java/com/apideck/unify/models/components/UpdateConsumerResponse.java
   - src/main/java/com/apideck/unify/models/components/UpdateContactResponse.java
@@ -2461,8 +2604,308 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/errors/PaymentRequiredResponse.java
   - src/main/java/com/apideck/unify/models/errors/UnauthorizedResponse.java
   - src/main/java/com/apideck/unify/models/errors/UnauthorizedResponseDetail.java
+  - src/main/java/com/apideck/unify/models/errors/UncheckedAPIException.java
   - src/main/java/com/apideck/unify/models/errors/UnprocessableResponse.java
   - src/main/java/com/apideck/unify/models/errors/UnprocessableResponseDetail.java
+  - src/main/java/com/apideck/unify/models/errors/async/BadRequestResponse.java
+  - src/main/java/com/apideck/unify/models/errors/async/NotFoundResponse.java
+  - src/main/java/com/apideck/unify/models/errors/async/PaymentRequiredResponse.java
+  - src/main/java/com/apideck/unify/models/errors/async/UnauthorizedResponse.java
+  - src/main/java/com/apideck/unify/models/errors/async/UnprocessableResponse.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingAgedCreditorsOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingAgedDebtorsOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingAttachmentsAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingAttachmentsDeleteRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingAttachmentsDownloadRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingAttachmentsOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingAttachmentsUploadRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingBalanceSheetOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingBankFeedAccountsAddRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingBankFeedAccountsAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingBankFeedAccountsDeleteRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingBankFeedAccountsOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingBankFeedAccountsUpdateRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingBankFeedStatementsAddRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingBankFeedStatementsAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingBankFeedStatementsDeleteRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingBankFeedStatementsOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingBankFeedStatementsUpdateRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingBillPaymentsAddRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingBillPaymentsAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingBillPaymentsDeleteRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingBillPaymentsOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingBillPaymentsUpdateRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingBillsAddRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingBillsAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingBillsDeleteRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingBillsOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingBillsUpdateRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingCategoriesAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingCategoriesOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingCompanyInfoOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingCreditNotesAddRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingCreditNotesAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingCreditNotesDeleteRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingCreditNotesOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingCreditNotesUpdateRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingCustomersAddRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingCustomersAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingCustomersDeleteRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingCustomersOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingCustomersUpdateRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingDepartmentsAddRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingDepartmentsAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingDepartmentsDeleteRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingDepartmentsOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingDepartmentsUpdateRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingExpensesAddRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingExpensesAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingExpensesDeleteRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingExpensesOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingExpensesUpdateRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingInvoiceItemsAddRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingInvoiceItemsAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingInvoiceItemsDeleteRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingInvoiceItemsOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingInvoiceItemsUpdateRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingInvoicesAddRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingInvoicesAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingInvoicesDeleteRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingInvoicesOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingInvoicesUpdateRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingJournalEntriesAddRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingJournalEntriesAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingJournalEntriesDeleteRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingJournalEntriesOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingJournalEntriesUpdateRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingLedgerAccountsAddRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingLedgerAccountsAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingLedgerAccountsDeleteRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingLedgerAccountsOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingLedgerAccountsUpdateRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingLocationsAddRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingLocationsAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingLocationsDeleteRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingLocationsOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingLocationsUpdateRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingPaymentsAddRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingPaymentsAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingPaymentsDeleteRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingPaymentsOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingPaymentsUpdateRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingProfitAndLossOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingPurchaseOrdersAddRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingPurchaseOrdersAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingPurchaseOrdersDeleteRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingPurchaseOrdersOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingPurchaseOrdersUpdateRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingQuotesAddRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingQuotesAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingQuotesDeleteRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingQuotesOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingQuotesUpdateRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingSubsidiariesAddRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingSubsidiariesAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingSubsidiariesDeleteRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingSubsidiariesOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingSubsidiariesUpdateRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingSuppliersAddRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingSuppliersAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingSuppliersDeleteRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingSuppliersOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingSuppliersUpdateRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingTaxRatesAddRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingTaxRatesAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingTaxRatesDeleteRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingTaxRatesOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingTaxRatesUpdateRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingTrackingCategoriesAddRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingTrackingCategoriesAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingTrackingCategoriesDeleteRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingTrackingCategoriesOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingTrackingCategoriesUpdateRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AtsApplicantsAddRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AtsApplicantsAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AtsApplicantsDeleteRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AtsApplicantsOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AtsApplicantsUpdateRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AtsApplicationsAddRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AtsApplicationsAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AtsApplicationsDeleteRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AtsApplicationsOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AtsApplicationsUpdateRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AtsJobsAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AtsJobsOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/ConnectorApiResourceCoverageOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/ConnectorApiResourcesOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/ConnectorApisAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/ConnectorApisOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/ConnectorConnectorDocsOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/ConnectorConnectorResourcesOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/ConnectorConnectorsAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/ConnectorConnectorsOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/CrmActivitiesAddRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/CrmActivitiesAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/CrmActivitiesDeleteRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/CrmActivitiesOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/CrmActivitiesUpdateRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/CrmCompaniesAddRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/CrmCompaniesAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/CrmCompaniesDeleteRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/CrmCompaniesOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/CrmCompaniesUpdateRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/CrmContactsAddRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/CrmContactsAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/CrmContactsDeleteRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/CrmContactsOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/CrmContactsUpdateRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/CrmCustomObjectSchemasAddRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/CrmCustomObjectSchemasAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/CrmCustomObjectSchemasDeleteRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/CrmCustomObjectSchemasOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/CrmCustomObjectSchemasUpdateRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/CrmCustomObjectsAddRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/CrmCustomObjectsAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/CrmCustomObjectsDeleteRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/CrmCustomObjectsOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/CrmCustomObjectsUpdateRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/CrmLeadsAddRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/CrmLeadsAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/CrmLeadsDeleteRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/CrmLeadsOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/CrmLeadsUpdateRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/CrmNotesAddRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/CrmNotesAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/CrmNotesDeleteRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/CrmNotesOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/CrmNotesUpdateRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/CrmOpportunitiesAddRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/CrmOpportunitiesAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/CrmOpportunitiesDeleteRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/CrmOpportunitiesOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/CrmOpportunitiesUpdateRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/CrmPipelinesAddRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/CrmPipelinesAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/CrmPipelinesDeleteRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/CrmPipelinesOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/CrmPipelinesUpdateRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/CrmUsersAddRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/CrmUsersAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/CrmUsersDeleteRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/CrmUsersOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/CrmUsersUpdateRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/EcommerceCustomersAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/EcommerceCustomersOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/EcommerceOrdersAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/EcommerceOrdersOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/EcommerceProductsAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/EcommerceProductsOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/EcommerceStoresOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/FileStorageDriveGroupsAddRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/FileStorageDriveGroupsAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/FileStorageDriveGroupsDeleteRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/FileStorageDriveGroupsOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/FileStorageDriveGroupsUpdateRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/FileStorageDrivesAddRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/FileStorageDrivesAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/FileStorageDrivesDeleteRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/FileStorageDrivesOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/FileStorageDrivesUpdateRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/FileStorageFilesAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/FileStorageFilesDeleteRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/FileStorageFilesDownloadRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/FileStorageFilesExportRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/FileStorageFilesOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/FileStorageFilesSearchRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/FileStorageFilesUpdateRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/FileStorageFoldersAddRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/FileStorageFoldersCopyRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/FileStorageFoldersDeleteRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/FileStorageFoldersOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/FileStorageFoldersUpdateRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/FileStorageSharedLinksAddRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/FileStorageSharedLinksAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/FileStorageSharedLinksDeleteRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/FileStorageSharedLinksOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/FileStorageSharedLinksUpdateRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/FileStorageUploadSessionsAddRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/FileStorageUploadSessionsDeleteRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/FileStorageUploadSessionsFinishRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/FileStorageUploadSessionsOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/FileStorageUploadSessionsUploadRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/HrisCompaniesAddRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/HrisCompaniesAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/HrisCompaniesDeleteRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/HrisCompaniesOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/HrisCompaniesUpdateRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/HrisDepartmentsAddRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/HrisDepartmentsAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/HrisDepartmentsDeleteRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/HrisDepartmentsOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/HrisDepartmentsUpdateRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/HrisEmployeePayrollsAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/HrisEmployeePayrollsOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/HrisEmployeeSchedulesAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/HrisEmployeesAddRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/HrisEmployeesAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/HrisEmployeesDeleteRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/HrisEmployeesOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/HrisEmployeesUpdateRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/HrisPayrollsAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/HrisPayrollsOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/HrisTimeOffRequestsAddRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/HrisTimeOffRequestsAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/HrisTimeOffRequestsDeleteRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/HrisTimeOffRequestsOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/HrisTimeOffRequestsUpdateRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/IssueTrackingCollectionTagsAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/IssueTrackingCollectionTicketCommentsAddRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/IssueTrackingCollectionTicketCommentsAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/IssueTrackingCollectionTicketCommentsDeleteRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/IssueTrackingCollectionTicketCommentsOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/IssueTrackingCollectionTicketCommentsUpdateRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/IssueTrackingCollectionTicketsAddRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/IssueTrackingCollectionTicketsAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/IssueTrackingCollectionTicketsDeleteRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/IssueTrackingCollectionTicketsOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/IssueTrackingCollectionTicketsUpdateRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/IssueTrackingCollectionUsersAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/IssueTrackingCollectionUsersOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/IssueTrackingCollectionsAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/IssueTrackingCollectionsOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/SmsMessagesAddRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/SmsMessagesAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/SmsMessagesDeleteRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/SmsMessagesOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/SmsMessagesUpdateRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/VaultConnectionConsentUpdateRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/VaultConnectionConsentsAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/VaultConnectionCustomMappingsAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/VaultConnectionSettingsAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/VaultConnectionSettingsUpdateRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/VaultConnectionsAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/VaultConnectionsDeleteRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/VaultConnectionsImportRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/VaultConnectionsOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/VaultConnectionsTokenRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/VaultConnectionsUpdateRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/VaultConsumerRequestCountsAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/VaultConsumersAddRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/VaultConsumersAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/VaultConsumersDeleteRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/VaultConsumersOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/VaultConsumersUpdateRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/VaultCreateCallbackStateRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/VaultCustomFieldsAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/VaultCustomMappingsAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/VaultLogsAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/VaultSessionsCreateRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/VaultValidateConnectionStateRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/WebhookWebhooksAddRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/WebhookWebhooksAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/WebhookWebhooksDeleteRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/WebhookWebhooksOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/WebhookWebhooksUpdateRequestBuilder.java
   - src/main/java/com/apideck/unify/models/operations/AccountingAgedCreditorsOneRequest.java
   - src/main/java/com/apideck/unify/models/operations/AccountingAgedCreditorsOneRequestBuilder.java
   - src/main/java/com/apideck/unify/models/operations/AccountingAgedCreditorsOneResponse.java
@@ -3262,6 +3705,12 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/operations/SmsMessagesUpdateRequest.java
   - src/main/java/com/apideck/unify/models/operations/SmsMessagesUpdateRequestBuilder.java
   - src/main/java/com/apideck/unify/models/operations/SmsMessagesUpdateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/VaultConnectionConsentUpdateRequest.java
+  - src/main/java/com/apideck/unify/models/operations/VaultConnectionConsentUpdateRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations/VaultConnectionConsentUpdateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/VaultConnectionConsentsAllRequest.java
+  - src/main/java/com/apideck/unify/models/operations/VaultConnectionConsentsAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations/VaultConnectionConsentsAllResponse.java
   - src/main/java/com/apideck/unify/models/operations/VaultConnectionCustomMappingsAllRequest.java
   - src/main/java/com/apideck/unify/models/operations/VaultConnectionCustomMappingsAllRequestBuilder.java
   - src/main/java/com/apideck/unify/models/operations/VaultConnectionCustomMappingsAllResponse.java
@@ -3342,6 +3791,300 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/operations/WebhookWebhooksUpdateRequest.java
   - src/main/java/com/apideck/unify/models/operations/WebhookWebhooksUpdateRequestBuilder.java
   - src/main/java/com/apideck/unify/models/operations/WebhookWebhooksUpdateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingAgedCreditorsOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingAgedDebtorsOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingAttachmentsAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingAttachmentsDeleteResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingAttachmentsDownloadResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingAttachmentsOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingAttachmentsUploadResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingBalanceSheetOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingBankFeedAccountsAddResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingBankFeedAccountsAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingBankFeedAccountsDeleteResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingBankFeedAccountsOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingBankFeedAccountsUpdateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingBankFeedStatementsAddResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingBankFeedStatementsAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingBankFeedStatementsDeleteResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingBankFeedStatementsOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingBankFeedStatementsUpdateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingBillPaymentsAddResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingBillPaymentsAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingBillPaymentsDeleteResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingBillPaymentsOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingBillPaymentsUpdateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingBillsAddResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingBillsAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingBillsDeleteResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingBillsOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingBillsUpdateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingCategoriesAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingCategoriesOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingCompanyInfoOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingCreditNotesAddResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingCreditNotesAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingCreditNotesDeleteResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingCreditNotesOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingCreditNotesUpdateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingCustomersAddResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingCustomersAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingCustomersDeleteResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingCustomersOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingCustomersUpdateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingDepartmentsAddResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingDepartmentsAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingDepartmentsDeleteResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingDepartmentsOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingDepartmentsUpdateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingExpensesAddResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingExpensesAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingExpensesDeleteResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingExpensesOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingExpensesUpdateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingInvoiceItemsAddResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingInvoiceItemsAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingInvoiceItemsDeleteResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingInvoiceItemsOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingInvoiceItemsUpdateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingInvoicesAddResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingInvoicesAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingInvoicesDeleteResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingInvoicesOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingInvoicesUpdateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingJournalEntriesAddResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingJournalEntriesAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingJournalEntriesDeleteResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingJournalEntriesOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingJournalEntriesUpdateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingLedgerAccountsAddResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingLedgerAccountsAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingLedgerAccountsDeleteResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingLedgerAccountsOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingLedgerAccountsUpdateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingLocationsAddResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingLocationsAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingLocationsDeleteResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingLocationsOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingLocationsUpdateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingPaymentsAddResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingPaymentsAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingPaymentsDeleteResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingPaymentsOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingPaymentsUpdateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingProfitAndLossOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingPurchaseOrdersAddResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingPurchaseOrdersAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingPurchaseOrdersDeleteResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingPurchaseOrdersOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingPurchaseOrdersUpdateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingQuotesAddResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingQuotesAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingQuotesDeleteResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingQuotesOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingQuotesUpdateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingSubsidiariesAddResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingSubsidiariesAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingSubsidiariesDeleteResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingSubsidiariesOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingSubsidiariesUpdateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingSuppliersAddResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingSuppliersAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingSuppliersDeleteResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingSuppliersOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingSuppliersUpdateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingTaxRatesAddResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingTaxRatesAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingTaxRatesDeleteResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingTaxRatesOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingTaxRatesUpdateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingTrackingCategoriesAddResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingTrackingCategoriesAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingTrackingCategoriesDeleteResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingTrackingCategoriesOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingTrackingCategoriesUpdateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AtsApplicantsAddResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AtsApplicantsAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AtsApplicantsDeleteResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AtsApplicantsOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AtsApplicantsUpdateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AtsApplicationsAddResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AtsApplicationsAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AtsApplicationsDeleteResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AtsApplicationsOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AtsApplicationsUpdateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AtsJobsAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AtsJobsOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/ConnectorApiResourceCoverageOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/ConnectorApiResourcesOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/ConnectorApisAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/ConnectorApisOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/ConnectorConnectorDocsOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/ConnectorConnectorResourcesOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/ConnectorConnectorsAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/ConnectorConnectorsOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/CrmActivitiesAddResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/CrmActivitiesAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/CrmActivitiesDeleteResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/CrmActivitiesOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/CrmActivitiesUpdateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/CrmCompaniesAddResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/CrmCompaniesAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/CrmCompaniesDeleteResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/CrmCompaniesOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/CrmCompaniesUpdateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/CrmContactsAddResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/CrmContactsAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/CrmContactsDeleteResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/CrmContactsOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/CrmContactsUpdateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/CrmCustomObjectSchemasAddResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/CrmCustomObjectSchemasAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/CrmCustomObjectSchemasDeleteResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/CrmCustomObjectSchemasOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/CrmCustomObjectSchemasUpdateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/CrmCustomObjectsAddResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/CrmCustomObjectsAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/CrmCustomObjectsDeleteResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/CrmCustomObjectsOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/CrmCustomObjectsUpdateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/CrmLeadsAddResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/CrmLeadsAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/CrmLeadsDeleteResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/CrmLeadsOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/CrmLeadsUpdateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/CrmNotesAddResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/CrmNotesAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/CrmNotesDeleteResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/CrmNotesOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/CrmNotesUpdateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/CrmOpportunitiesAddResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/CrmOpportunitiesAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/CrmOpportunitiesDeleteResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/CrmOpportunitiesOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/CrmOpportunitiesUpdateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/CrmPipelinesAddResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/CrmPipelinesAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/CrmPipelinesDeleteResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/CrmPipelinesOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/CrmPipelinesUpdateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/CrmUsersAddResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/CrmUsersAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/CrmUsersDeleteResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/CrmUsersOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/CrmUsersUpdateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/EcommerceCustomersAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/EcommerceCustomersOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/EcommerceOrdersAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/EcommerceOrdersOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/EcommerceProductsAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/EcommerceProductsOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/EcommerceStoresOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/FileStorageDriveGroupsAddResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/FileStorageDriveGroupsAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/FileStorageDriveGroupsDeleteResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/FileStorageDriveGroupsOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/FileStorageDriveGroupsUpdateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/FileStorageDrivesAddResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/FileStorageDrivesAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/FileStorageDrivesDeleteResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/FileStorageDrivesOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/FileStorageDrivesUpdateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/FileStorageFilesAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/FileStorageFilesDeleteResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/FileStorageFilesDownloadResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/FileStorageFilesExportResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/FileStorageFilesOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/FileStorageFilesSearchResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/FileStorageFilesUpdateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/FileStorageFoldersAddResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/FileStorageFoldersCopyResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/FileStorageFoldersDeleteResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/FileStorageFoldersOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/FileStorageFoldersUpdateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/FileStorageSharedLinksAddResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/FileStorageSharedLinksAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/FileStorageSharedLinksDeleteResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/FileStorageSharedLinksOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/FileStorageSharedLinksUpdateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/FileStorageUploadSessionsAddResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/FileStorageUploadSessionsDeleteResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/FileStorageUploadSessionsFinishResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/FileStorageUploadSessionsOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/FileStorageUploadSessionsUploadResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/HrisCompaniesAddResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/HrisCompaniesAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/HrisCompaniesDeleteResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/HrisCompaniesOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/HrisCompaniesUpdateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/HrisDepartmentsAddResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/HrisDepartmentsAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/HrisDepartmentsDeleteResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/HrisDepartmentsOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/HrisDepartmentsUpdateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/HrisEmployeePayrollsAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/HrisEmployeePayrollsOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/HrisEmployeeSchedulesAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/HrisEmployeesAddResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/HrisEmployeesAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/HrisEmployeesDeleteResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/HrisEmployeesOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/HrisEmployeesUpdateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/HrisPayrollsAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/HrisPayrollsOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/HrisTimeOffRequestsAddResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/HrisTimeOffRequestsAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/HrisTimeOffRequestsDeleteResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/HrisTimeOffRequestsOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/HrisTimeOffRequestsUpdateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/IssueTrackingCollectionTagsAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/IssueTrackingCollectionTicketCommentsAddResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/IssueTrackingCollectionTicketCommentsAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/IssueTrackingCollectionTicketCommentsDeleteResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/IssueTrackingCollectionTicketCommentsOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/IssueTrackingCollectionTicketCommentsUpdateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/IssueTrackingCollectionTicketsAddResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/IssueTrackingCollectionTicketsAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/IssueTrackingCollectionTicketsDeleteResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/IssueTrackingCollectionTicketsOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/IssueTrackingCollectionTicketsUpdateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/IssueTrackingCollectionUsersAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/IssueTrackingCollectionUsersOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/IssueTrackingCollectionsAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/IssueTrackingCollectionsOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/SmsMessagesAddResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/SmsMessagesAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/SmsMessagesDeleteResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/SmsMessagesOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/SmsMessagesUpdateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/VaultConnectionConsentUpdateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/VaultConnectionConsentsAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/VaultConnectionCustomMappingsAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/VaultConnectionSettingsAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/VaultConnectionSettingsUpdateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/VaultConnectionsAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/VaultConnectionsDeleteResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/VaultConnectionsImportResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/VaultConnectionsOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/VaultConnectionsTokenResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/VaultConnectionsUpdateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/VaultConsumerRequestCountsAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/VaultConsumersAddResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/VaultConsumersAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/VaultConsumersDeleteResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/VaultConsumersOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/VaultConsumersUpdateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/VaultCreateCallbackStateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/VaultCustomFieldsAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/VaultCustomMappingsAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/VaultLogsAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/VaultSessionsCreateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/VaultValidateConnectionStateResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/WebhookWebhooksAddResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/WebhookWebhooksAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/WebhookWebhooksDeleteResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/WebhookWebhooksOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/WebhookWebhooksUpdateResponse.java
   - src/main/java/com/apideck/unify/operations/AccountingAgedCreditorsOne.java
   - src/main/java/com/apideck/unify/operations/AccountingAgedDebtorsOne.java
   - src/main/java/com/apideck/unify/operations/AccountingAttachmentsAll.java
@@ -3609,6 +4352,8 @@ generatedFiles:
   - src/main/java/com/apideck/unify/operations/SmsMessagesDelete.java
   - src/main/java/com/apideck/unify/operations/SmsMessagesOne.java
   - src/main/java/com/apideck/unify/operations/SmsMessagesUpdate.java
+  - src/main/java/com/apideck/unify/operations/VaultConnectionConsentUpdate.java
+  - src/main/java/com/apideck/unify/operations/VaultConnectionConsentsAll.java
   - src/main/java/com/apideck/unify/operations/VaultConnectionCustomMappingsAll.java
   - src/main/java/com/apideck/unify/operations/VaultConnectionSettingsAll.java
   - src/main/java/com/apideck/unify/operations/VaultConnectionSettingsUpdate.java
@@ -3635,9 +4380,15 @@ generatedFiles:
   - src/main/java/com/apideck/unify/operations/WebhookWebhooksDelete.java
   - src/main/java/com/apideck/unify/operations/WebhookWebhooksOne.java
   - src/main/java/com/apideck/unify/operations/WebhookWebhooksUpdate.java
+  - src/main/java/com/apideck/unify/utils/AsyncHook.java
+  - src/main/java/com/apideck/unify/utils/AsyncHooks.java
+  - src/main/java/com/apideck/unify/utils/AsyncResponse.java
+  - src/main/java/com/apideck/unify/utils/AsyncRetries.java
+  - src/main/java/com/apideck/unify/utils/AsyncRetryableException.java
   - src/main/java/com/apideck/unify/utils/BackoffStrategy.java
   - src/main/java/com/apideck/unify/utils/BigDecimalString.java
   - src/main/java/com/apideck/unify/utils/BigIntegerString.java
+  - src/main/java/com/apideck/unify/utils/Blob.java
   - src/main/java/com/apideck/unify/utils/BlockingParser.java
   - src/main/java/com/apideck/unify/utils/Constants.java
   - src/main/java/com/apideck/unify/utils/CopiableInputStream.java
@@ -3653,6 +4404,7 @@ generatedFiles:
   - src/main/java/com/apideck/unify/utils/HeaderMetadata.java
   - src/main/java/com/apideck/unify/utils/Helpers.java
   - src/main/java/com/apideck/unify/utils/Hook.java
+  - src/main/java/com/apideck/unify/utils/HookAdapters.java
   - src/main/java/com/apideck/unify/utils/Hooks.java
   - src/main/java/com/apideck/unify/utils/JSON.java
   - src/main/java/com/apideck/unify/utils/LazySingletonValue.java
@@ -3660,6 +4412,7 @@ generatedFiles:
   - src/main/java/com/apideck/unify/utils/Multipart.java
   - src/main/java/com/apideck/unify/utils/MultipartFormMetadata.java
   - src/main/java/com/apideck/unify/utils/NameValue.java
+  - src/main/java/com/apideck/unify/utils/NonRetryableException.java
   - src/main/java/com/apideck/unify/utils/OneOfDeserializer.java
   - src/main/java/com/apideck/unify/utils/Options.java
   - src/main/java/com/apideck/unify/utils/PathParamsMetadata.java
@@ -3668,12 +4421,14 @@ generatedFiles:
   - src/main/java/com/apideck/unify/utils/QueryParameters.java
   - src/main/java/com/apideck/unify/utils/QueryParamsMetadata.java
   - src/main/java/com/apideck/unify/utils/RecordingClient.java
+  - src/main/java/com/apideck/unify/utils/Reflections.java
   - src/main/java/com/apideck/unify/utils/RequestBody.java
   - src/main/java/com/apideck/unify/utils/RequestMetadata.java
   - src/main/java/com/apideck/unify/utils/Response.java
   - src/main/java/com/apideck/unify/utils/ResponseWithBody.java
   - src/main/java/com/apideck/unify/utils/Retries.java
   - src/main/java/com/apideck/unify/utils/RetryConfig.java
+  - src/main/java/com/apideck/unify/utils/RetryableException.java
   - src/main/java/com/apideck/unify/utils/Security.java
   - src/main/java/com/apideck/unify/utils/SecurityMetadata.java
   - src/main/java/com/apideck/unify/utils/SerializedBody.java
@@ -3685,12 +4440,15 @@ generatedFiles:
   - src/main/java/com/apideck/unify/utils/Types.java
   - src/main/java/com/apideck/unify/utils/Utf8UrlEncoder.java
   - src/main/java/com/apideck/unify/utils/Utils.java
+  - src/main/java/com/apideck/unify/utils/pagination/AsyncPaginator.java
   - src/main/java/com/apideck/unify/utils/pagination/CursorTracker.java
   - src/main/java/com/apideck/unify/utils/pagination/OffsetTracker.java
   - src/main/java/com/apideck/unify/utils/pagination/PageTracker.java
   - src/main/java/com/apideck/unify/utils/pagination/Paginator.java
   - src/main/java/com/apideck/unify/utils/pagination/ProgressTrackerStrategy.java
   - src/main/java/com/apideck/unify/utils/pagination/ResultsPageTracker.java
+  - src/main/java/com/apideck/unify/utils/reactive/EventStream.java
+  - src/main/java/com/apideck/unify/utils/reactive/ReactiveUtils.java
 examples:
   accounting.taxRatesAll:
     "":
@@ -6131,7 +6889,7 @@ examples:
           x-apideck-service-id: "salesforce"
       responses:
         "200":
-          application/json: {"status_code": 200, "status": "OK", "service": "xero", "resource": "company-info", "operation": "one", "data": {"id": "12345", "company_name": "SpaceX", "status": "active", "legal_name": "SpaceX Inc.", "country": "US", "sales_tax_number": "111.222.333", "default_sales_tax": {"id": "1234", "name": "GST on Purchases", "code": "ABN", "description": "Reduced rate GST Purchases", "effective_tax_rate": 10, "total_tax_rate": 10, "tax_payable_account_id": "123456", "tax_remitted_account_id": "123456", "components": [{"id": "10", "name": "GST", "rate": 10, "compound": true}], "type": "NONE", "report_tax_type": "NONE", "original_tax_rate_id": "12345", "status": "active", "row_version": "1-12345", "updated_by": "12345", "created_by": "12345", "updated_at": "2020-09-30T07:43:32.000Z", "created_at": "2020-09-30T07:43:32.000Z", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}], "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}]}, "currency": "USD", "language": "EN", "fiscal_year_start_month": "January", "company_start_date": "2015-06-05", "addresses": [{"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}], "phone_numbers": [{"id": "12345", "country_code": "1", "area_code": "323", "number": "111-111-1111", "extension": "105", "type": "primary"}], "emails": [{"id": "123", "email": "elon@musk.com", "type": "primary"}], "row_version": "1-12345", "updated_by": "12345", "created_by": "12345", "updated_at": "2020-09-30T07:43:32.000Z", "created_at": "2020-09-30T07:43:32.000Z"}}
+          application/json: {"status_code": 200, "status": "OK", "service": "xero", "resource": "company-info", "operation": "one", "data": {"id": "12345", "company_name": "SpaceX", "status": "active", "legal_name": "SpaceX Inc.", "country": "US", "sales_tax_number": "111.222.333", "default_sales_tax": {"id": "1234", "name": "GST on Purchases", "code": "ABN", "description": "Reduced rate GST Purchases", "effective_tax_rate": 10, "total_tax_rate": 10, "tax_payable_account_id": "123456", "tax_remitted_account_id": "123456", "components": [{"id": "10", "name": "GST", "rate": 10, "compound": true}], "type": "NONE", "report_tax_type": "NONE", "original_tax_rate_id": "12345", "status": "active", "row_version": "1-12345", "updated_by": "12345", "created_by": "12345", "updated_at": "2020-09-30T07:43:32.000Z", "created_at": "2020-09-30T07:43:32.000Z", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}], "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}]}, "currency": "USD", "language": "EN", "fiscal_year_start_month": "January", "company_start_date": "2015-06-05", "addresses": [{"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}], "phone_numbers": [{"id": "12345", "country_code": "1", "area_code": "323", "number": "111-111-1111", "extension": "105", "type": "primary"}], "emails": [{"id": "123", "email": "elon@musk.com", "type": "primary"}], "tracking_categories_mode": "disabled", "row_version": "1-12345", "updated_by": "12345", "created_by": "12345", "updated_at": "2020-09-30T07:43:32.000Z", "created_at": "2020-09-30T07:43:32.000Z"}}
         "400":
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror"}
         "401":
@@ -6282,7 +7040,7 @@ examples:
         query:
           raw: false
           limit: 20
-          filter: {"updated_since": "2020-09-30T07:43:32.000Z"}
+          filter: {"updated_since": "2020-09-30T07:43:32.000Z", "status": "draft"}
           sort: {"by": "updated_at", "direction": "desc"}
           pass_through: {"search": "San Francisco"}
           fields: "id,updated_at"
@@ -7963,7 +8721,7 @@ examples:
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
           x-apideck-service-id: "salesforce"
       requestBody:
-        application/json: {"parent_id": "12345", "name": "Department", "code": "100", "status": "active", "row_version": "1-12345", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
+        application/json: {"parent_id": "12345", "parent_name": "Area", "name": "Department", "code": "100", "status": "active", "row_version": "1-12345", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
       responses:
         "201":
           application/json: {"status_code": 200, "status": "OK", "service": "quickbooks", "resource": "tracking-categories", "operation": "add", "data": {"id": "12345"}}
@@ -8019,7 +8777,7 @@ examples:
           x-apideck-service-id: "salesforce"
       responses:
         "200":
-          application/json: {"status_code": 200, "status": "OK", "service": "xero", "resource": "tracking-categories", "operation": "one", "data": {"id": "12345", "parent_id": "12345", "name": "Department", "code": "100", "status": "active", "row_version": "1-12345", "updated_by": "12345", "created_by": "12345", "updated_at": "2020-09-30T07:43:32.000Z", "created_at": "2020-09-30T07:43:32.000Z", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}}
+          application/json: {"status_code": 200, "status": "OK", "service": "xero", "resource": "tracking-categories", "operation": "one", "data": {"id": "12345", "parent_id": "12345", "parent_name": "Area", "name": "Department", "code": "100", "status": "active", "row_version": "1-12345", "updated_by": "12345", "created_by": "12345", "updated_at": "2020-09-30T07:43:32.000Z", "created_at": "2020-09-30T07:43:32.000Z", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}}
         "400":
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror"}
         "401":
@@ -8071,7 +8829,7 @@ examples:
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
           x-apideck-service-id: "salesforce"
       requestBody:
-        application/json: {"parent_id": "12345", "name": "Department", "code": "100", "status": "active", "row_version": "1-12345", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
+        application/json: {"parent_id": "12345", "parent_name": "Area", "name": "Department", "code": "100", "status": "active", "row_version": "1-12345", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
       responses:
         "200":
           application/json: {"status_code": 200, "status": "OK", "service": "quickbooks", "resource": "tracking-categories", "operation": "update", "data": {"id": "12345"}}
@@ -8435,6 +9193,7 @@ examples:
         query:
           raw: false
           limit: 20
+          filter: {"updated_since": "2020-09-30T07:43:32.000Z", "status": "draft"}
         header:
           x-apideck-consumer-id: "test-consumer"
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
@@ -8489,7 +9248,7 @@ examples:
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
           x-apideck-service-id: "salesforce"
       requestBody:
-        application/json: {"number": "OIT00546", "transaction_date": "2021-05-01T12:00:00.000Z", "account_id": "123456", "customer_id": "12345", "supplier_id": "12345", "company_id": "12345", "department_id": "12345", "payment_type": "cash", "currency": "USD", "currency_rate": 0.69, "type": "expense", "memo": "For travel expenses incurred on 2024-05-15", "tax_rate": {"id": "123456", "rate": 10}, "total_amount": 275, "line_items": [], "reference": "INV-2024-001", "source_document_url": "https://www.invoicesolution.com/expense/123456", "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "row_version": "1-12345", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
+        application/json: {"number": "OIT00546", "transaction_date": "2021-05-01T12:00:00.000Z", "account_id": "123456", "customer_id": "12345", "supplier_id": "12345", "company_id": "12345", "department_id": "12345", "payment_type": "cash", "currency": "USD", "currency_rate": 0.69, "type": "expense", "memo": "For travel expenses incurred on 2024-05-15", "tax_rate": {"id": "123456", "rate": 10}, "total_amount": 275, "line_items": [], "reference": "INV-2024-001", "source_document_url": "https://www.invoicesolution.com/expense/123456", "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "status": "draft", "row_version": "1-12345", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
       responses:
         "201":
           application/json: {"status_code": 200, "status": "OK", "service": "quickbooks", "resource": "Expenses", "operation": "add", "data": {"id": "12345"}}
@@ -8543,7 +9302,7 @@ examples:
           x-apideck-service-id: "salesforce"
       responses:
         "200":
-          application/json: {"status_code": 200, "status": "OK", "service": "quickbooks", "resource": "Expenses", "operation": "one", "data": {"id": "12345", "number": "OIT00546", "transaction_date": "2021-05-01T12:00:00.000Z", "account_id": "123456", "customer_id": "12345", "supplier_id": "12345", "company_id": "12345", "department_id": "12345", "payment_type": "cash", "currency": "USD", "currency_rate": 0.69, "type": "expense", "memo": "For travel expenses incurred on 2024-05-15", "tax_rate": {"id": "123456", "code": "N-T", "name": "GST on Purchases", "rate": 10}, "total_amount": 275, "line_items": [{"id": "12345", "tracking_categories": [{"id": "123456", "name": "New York"}], "account_id": "123456", "customer_id": "12345", "department_id": "12345", "location_id": "12345", "subsidiary_id": "12345", "tax_rate": {"id": "123456", "code": "N-T", "name": "GST on Purchases", "rate": 10}, "description": "Travel US.", "total_amount": 275, "billable": true, "line_number": 1}], "reference": "INV-2024-001", "source_document_url": "https://www.invoicesolution.com/expense/123456", "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "updated_at": "2020-09-30T07:43:32.000Z", "created_at": "2020-09-30T07:43:32.000Z", "row_version": "1-12345", "updated_by": "12345", "created_by": "12345", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}}
+          application/json: {"status_code": 200, "status": "OK", "service": "quickbooks", "resource": "Expenses", "operation": "one", "data": {"id": "12345", "number": "OIT00546", "transaction_date": "2021-05-01T12:00:00.000Z", "account_id": "123456", "customer_id": "12345", "supplier_id": "12345", "company_id": "12345", "department_id": "12345", "payment_type": "cash", "currency": "USD", "currency_rate": 0.69, "type": "expense", "memo": "For travel expenses incurred on 2024-05-15", "tax_rate": {"id": "123456", "code": "N-T", "name": "GST on Purchases", "rate": 10}, "total_amount": 275, "line_items": [{"id": "12345", "tracking_categories": [{"id": "123456", "name": "New York"}], "account_id": "123456", "customer_id": "12345", "department_id": "12345", "location_id": "12345", "subsidiary_id": "12345", "tax_rate": {"id": "123456", "code": "N-T", "name": "GST on Purchases", "rate": 10}, "description": "Travel US.", "total_amount": 275, "billable": true, "line_number": 1}], "reference": "INV-2024-001", "source_document_url": "https://www.invoicesolution.com/expense/123456", "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "status": "draft", "updated_at": "2020-09-30T07:43:32.000Z", "created_at": "2020-09-30T07:43:32.000Z", "row_version": "1-12345", "updated_by": "12345", "created_by": "12345", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}}
         "400":
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror"}
         "401":
@@ -8595,7 +9354,7 @@ examples:
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
           x-apideck-service-id: "salesforce"
       requestBody:
-        application/json: {"number": "OIT00546", "transaction_date": "2021-05-01T12:00:00.000Z", "account_id": "123456", "customer_id": "12345", "supplier_id": "12345", "company_id": "12345", "department_id": "12345", "payment_type": "cash", "currency": "USD", "currency_rate": 0.69, "type": "expense", "memo": "For travel expenses incurred on 2024-05-15", "tax_rate": {"id": "123456", "rate": 10}, "total_amount": 275, "line_items": [], "reference": "INV-2024-001", "source_document_url": "https://www.invoicesolution.com/expense/123456", "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "row_version": "1-12345", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
+        application/json: {"number": "OIT00546", "transaction_date": "2021-05-01T12:00:00.000Z", "account_id": "123456", "customer_id": "12345", "supplier_id": "12345", "company_id": "12345", "department_id": "12345", "payment_type": "cash", "currency": "USD", "currency_rate": 0.69, "type": "expense", "memo": "For travel expenses incurred on 2024-05-15", "tax_rate": {"id": "123456", "rate": 10}, "total_amount": 275, "line_items": [], "reference": "INV-2024-001", "source_document_url": "https://www.invoicesolution.com/expense/123456", "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "status": "draft", "row_version": "1-12345", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
       responses:
         "200":
           application/json: {"status_code": 200, "status": "OK", "service": "quickbooks", "resource": "Expenses", "operation": "update", "data": {"id": "12345"}}
@@ -17226,7 +17985,7 @@ examples:
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
       responses:
         "200":
-          application/json: {"status_code": 200, "status": "OK", "data": {"id": "crm+salesforce", "service_id": "salesforce", "name": "Salesforce", "tag_line": "CRM software solutions and enterprise cloud computing from Salesforce, the leader in customer relationship management (CRM) and PaaS. Free 30 day trial.", "unified_api": "crm", "state": "authorized", "integration_state": "configured", "auth_type": "oauth2", "oauth_grant_type": "authorization_code", "enabled": true, "website": "https://www.salesforce.com", "icon": "https://res.cloudinary.com/apideck/image/upload/v1529456047/catalog/salesforce/icon128x128.png", "logo": "https://c1.sfdcstatic.com/content/dam/web/en_us/www/images/home/logo-salesforce-m.svg", "authorize_url": "https://unify.apideck.com/vault/authorize/salesforce/<application-id>?state=<state>", "revoke_url": "https://unify.apideck.com/vault/revoke/salesforce/<application-id>?state=<state>", "settings": {"instance_url": "https://eu28.salesforce.com", "api_key": "12345xxxxxx"}, "metadata": {"account": {"name": "My Company", "id": "c01458a5-7276-41ce-bc19-639906b0450a"}, "plan": "enterprise"}, "form_fields": [{"id": "instance_url", "label": "Instance url", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": false}, {"id": "api_key", "label": "API Key", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": true}], "configuration": [{"resource": "leads", "defaults": [{"target": "custom_fields", "id": "ProductInterest", "options": [{"label": "General Channel", "options": [], "option_type": "group"}], "value": "GC5000 series"}]}], "configurable_resources": ["opportunities", "companies", "contacts", "leads"], "resource_schema_support": ["leads"], "resource_settings_support": ["leads"], "settings_required_for_authorization": ["client_id", "client_secret"], "subscriptions": [{"downstream_id": "5f5f5f5f5f5f5f5f5f5f5f5f", "unify_event_types": ["crm.contact.created"], "downstream_event_types": ["contacts.CREATED"], "execute_url": "https://unify.apideck.com/webhook/w/{lookupIdToken}/{serviceId}?e={downstreamEventType}", "created_at": "2020-10-01T12:00:00.000Z"}], "has_guide": true, "created_at": 1615563533390, "custom_mappings": [{"id": "hris+employees+first_aid_training", "label": "First Aid Training", "description": "First Aid Training completed after 2019-01-01", "value": "$.root.training.first_aid", "key": "first_aid_training", "required": false, "custom_field": true, "consumer_id": "test_user_id", "example": "Some value"}], "updated_at": 1616662325753}}
+          application/json: {"status_code": 200, "status": "OK", "data": {"id": "crm+salesforce", "service_id": "salesforce", "name": "Salesforce", "tag_line": "CRM software solutions and enterprise cloud computing from Salesforce, the leader in customer relationship management (CRM) and PaaS. Free 30 day trial.", "unified_api": "crm", "state": "authorized", "integration_state": "configured", "auth_type": "oauth2", "oauth_grant_type": "authorization_code", "enabled": true, "website": "https://www.salesforce.com", "icon": "https://res.cloudinary.com/apideck/image/upload/v1529456047/catalog/salesforce/icon128x128.png", "logo": "https://c1.sfdcstatic.com/content/dam/web/en_us/www/images/home/logo-salesforce-m.svg", "authorize_url": "https://unify.apideck.com/vault/authorize/salesforce/<application-id>?state=<state>", "revoke_url": "https://unify.apideck.com/vault/revoke/salesforce/<application-id>?state=<state>", "settings": {"instance_url": "https://eu28.salesforce.com", "api_key": "12345xxxxxx"}, "metadata": {"account": {"name": "My Company", "id": "c01458a5-7276-41ce-bc19-639906b0450a"}, "plan": "enterprise"}, "form_fields": [{"id": "instance_url", "label": "Instance url", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": false}, {"id": "api_key", "label": "API Key", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": true}], "configuration": [{"resource": "leads", "defaults": [{"target": "custom_fields", "id": "ProductInterest", "options": [{"label": "General Channel", "options": [], "option_type": "group"}], "value": "GC5000 series"}]}], "configurable_resources": ["opportunities", "companies", "contacts", "leads"], "resource_schema_support": ["leads"], "resource_settings_support": ["leads"], "settings_required_for_authorization": ["client_id", "client_secret"], "subscriptions": [{"downstream_id": "5f5f5f5f5f5f5f5f5f5f5f5f", "unify_event_types": ["crm.contact.created"], "downstream_event_types": ["contacts.CREATED"], "execute_url": "https://unify.apideck.com/webhook/w/{lookupIdToken}/{serviceId}?e={downstreamEventType}", "created_at": "2020-10-01T12:00:00.000Z"}], "has_guide": true, "created_at": 1615563533390, "custom_mappings": [{"id": "hris+employees+first_aid_training", "label": "First Aid Training", "description": "First Aid Training completed after 2019-01-01", "value": "$.root.training.first_aid", "key": "first_aid_training", "required": false, "custom_field": true, "consumer_id": "test_user_id", "example": "Some value"}], "consent_state": "granted", "consents": [{"id": "con_1234567890", "created_at": "2025-04-15T14:30:00Z", "granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}], "latest_consent": {"id": "con_1234567890", "created_at": "2025-04-15T14:30:00Z", "granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "application_data_scopes": {"enabled": true, "updated_at": "2025-04-15T14:30:00Z", "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "updated_at": 1616662325753}}
         "400":
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror"}
         "401":
@@ -17274,10 +18033,10 @@ examples:
           x-apideck-consumer-id: "test-consumer"
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
       requestBody:
-        application/json: {"enabled": true, "settings": {"instance_url": "https://eu28.salesforce.com", "api_key": "12345xxxxxx"}, "metadata": {"account": {"name": "My Company", "id": "c01458a5-7276-41ce-bc19-639906b0450a"}, "plan": "enterprise"}, "configuration": [{"resource": "leads", "defaults": [{"id": "ProductInterest", "options": [{"label": "General Channel", "option_type": "simple"}], "value": "GC5000 series"}]}], "custom_mappings": [{"value": "$.root.training.first_aid"}]}
+        application/json: {"enabled": true, "settings": {"instance_url": "https://eu28.salesforce.com", "api_key": "12345xxxxxx"}, "metadata": {"account": {"name": "My Company", "id": "c01458a5-7276-41ce-bc19-639906b0450a"}, "plan": "enterprise"}, "configuration": [{"resource": "leads", "defaults": [{"id": "ProductInterest", "options": [{"label": "General Channel", "option_type": "simple"}], "value": "GC5000 series"}]}], "custom_mappings": [{"value": "$.root.training.first_aid"}], "consent_state": "granted", "latest_consent": {"granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "application_data_scopes": {"enabled": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}}
       responses:
         "200":
-          application/json: {"status_code": 200, "status": "OK", "data": {"id": "crm+salesforce", "service_id": "salesforce", "name": "Salesforce", "tag_line": "CRM software solutions and enterprise cloud computing from Salesforce, the leader in customer relationship management (CRM) and PaaS. Free 30 day trial.", "unified_api": "crm", "state": "authorized", "integration_state": "configured", "auth_type": "oauth2", "oauth_grant_type": "authorization_code", "enabled": true, "website": "https://www.salesforce.com", "icon": "https://res.cloudinary.com/apideck/image/upload/v1529456047/catalog/salesforce/icon128x128.png", "logo": "https://c1.sfdcstatic.com/content/dam/web/en_us/www/images/home/logo-salesforce-m.svg", "authorize_url": "https://unify.apideck.com/vault/authorize/salesforce/<application-id>?state=<state>", "revoke_url": "https://unify.apideck.com/vault/revoke/salesforce/<application-id>?state=<state>", "settings": {"instance_url": "https://eu28.salesforce.com", "api_key": "12345xxxxxx"}, "metadata": {"account": {"name": "My Company", "id": "c01458a5-7276-41ce-bc19-639906b0450a"}, "plan": "enterprise"}, "form_fields": [{"id": "instance_url", "label": "Instance url", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": false}, {"id": "api_key", "label": "API Key", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": true}], "configuration": [{"resource": "leads", "defaults": [{"target": "custom_fields", "id": "ProductInterest", "options": [{"label": "General Channel", "option_type": "simple"}], "value": "GC5000 series"}]}], "configurable_resources": ["opportunities", "companies", "contacts", "leads"], "resource_schema_support": ["leads"], "resource_settings_support": ["leads"], "settings_required_for_authorization": ["client_id", "client_secret"], "subscriptions": [{"downstream_id": "5f5f5f5f5f5f5f5f5f5f5f5f", "unify_event_types": ["crm.contact.created"], "downstream_event_types": ["contacts.CREATED"], "execute_url": "https://unify.apideck.com/webhook/w/{lookupIdToken}/{serviceId}?e={downstreamEventType}", "created_at": "2020-10-01T12:00:00.000Z"}], "has_guide": true, "created_at": 1615563533390, "custom_mappings": [{"id": "hris+employees+first_aid_training", "label": "First Aid Training", "description": "First Aid Training completed after 2019-01-01", "value": "$.root.training.first_aid", "key": "first_aid_training", "required": false, "custom_field": true, "consumer_id": "test_user_id", "example": "Some value"}], "updated_at": 1616662325753}}
+          application/json: {"status_code": 200, "status": "OK", "data": {"id": "crm+salesforce", "service_id": "salesforce", "name": "Salesforce", "tag_line": "CRM software solutions and enterprise cloud computing from Salesforce, the leader in customer relationship management (CRM) and PaaS. Free 30 day trial.", "unified_api": "crm", "state": "authorized", "integration_state": "configured", "auth_type": "oauth2", "oauth_grant_type": "authorization_code", "enabled": true, "website": "https://www.salesforce.com", "icon": "https://res.cloudinary.com/apideck/image/upload/v1529456047/catalog/salesforce/icon128x128.png", "logo": "https://c1.sfdcstatic.com/content/dam/web/en_us/www/images/home/logo-salesforce-m.svg", "authorize_url": "https://unify.apideck.com/vault/authorize/salesforce/<application-id>?state=<state>", "revoke_url": "https://unify.apideck.com/vault/revoke/salesforce/<application-id>?state=<state>", "settings": {"instance_url": "https://eu28.salesforce.com", "api_key": "12345xxxxxx"}, "metadata": {"account": {"name": "My Company", "id": "c01458a5-7276-41ce-bc19-639906b0450a"}, "plan": "enterprise"}, "form_fields": [{"id": "instance_url", "label": "Instance url", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": false}, {"id": "api_key", "label": "API Key", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": true}], "configuration": [{"resource": "leads", "defaults": [{"target": "custom_fields", "id": "ProductInterest", "options": [{"label": "General Channel", "option_type": "simple"}], "value": "GC5000 series"}]}], "configurable_resources": ["opportunities", "companies", "contacts", "leads"], "resource_schema_support": ["leads"], "resource_settings_support": ["leads"], "settings_required_for_authorization": ["client_id", "client_secret"], "subscriptions": [{"downstream_id": "5f5f5f5f5f5f5f5f5f5f5f5f", "unify_event_types": ["crm.contact.created"], "downstream_event_types": ["contacts.CREATED"], "execute_url": "https://unify.apideck.com/webhook/w/{lookupIdToken}/{serviceId}?e={downstreamEventType}", "created_at": "2020-10-01T12:00:00.000Z"}], "has_guide": true, "created_at": 1615563533390, "custom_mappings": [{"id": "hris+employees+first_aid_training", "label": "First Aid Training", "description": "First Aid Training completed after 2019-01-01", "value": "$.root.training.first_aid", "key": "first_aid_training", "required": false, "custom_field": true, "consumer_id": "test_user_id", "example": "Some value"}], "consent_state": "granted", "consents": [{"id": "con_1234567890", "created_at": "2025-04-15T14:30:00Z", "granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}], "latest_consent": {"id": "con_1234567890", "created_at": "2025-04-15T14:30:00Z", "granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "application_data_scopes": {"enabled": true, "updated_at": "2025-04-15T14:30:00Z", "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "updated_at": 1616662325753}}
         "400":
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror"}
         "401":
@@ -17371,7 +18130,7 @@ examples:
         application/json: {"credentials": {"refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.cThIIoDvwdueQB468K5xDc5633seEFoqwxjF_xSJyQQ", "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"}, "settings": {"instance_url": "https://eu28.salesforce.com"}, "metadata": {"account": {"name": "My Company", "id": "c01458a5-7276-41ce-bc19-639906b0450a"}, "plan": "enterprise"}}
       responses:
         "200":
-          application/json: {"status_code": 201, "status": "OK", "data": {"id": "crm+salesforce", "service_id": "salesforce", "name": "Salesforce", "tag_line": "CRM software solutions and enterprise cloud computing from Salesforce, the leader in customer relationship management (CRM) and PaaS. Free 30 day trial.", "unified_api": "crm", "state": "authorized", "integration_state": "configured", "auth_type": "oauth2", "oauth_grant_type": "authorization_code", "enabled": true, "website": "https://www.salesforce.com", "icon": "https://res.cloudinary.com/apideck/image/upload/v1529456047/catalog/salesforce/icon128x128.png", "logo": "https://c1.sfdcstatic.com/content/dam/web/en_us/www/images/home/logo-salesforce-m.svg", "authorize_url": "https://unify.apideck.com/vault/authorize/salesforce/<application-id>?state=<state>", "revoke_url": "https://unify.apideck.com/vault/revoke/salesforce/<application-id>?state=<state>", "settings": {"instance_url": "https://eu28.salesforce.com", "api_key": "12345xxxxxx"}, "metadata": {"account": {"name": "My Company", "id": "c01458a5-7276-41ce-bc19-639906b0450a"}, "plan": "enterprise"}, "form_fields": [{"id": "instance_url", "label": "Instance url", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": false}, {"id": "api_key", "label": "API Key", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": true}], "configuration": [{"resource": "leads", "defaults": [{"target": "custom_fields", "id": "ProductInterest", "options": [{"label": "General Channel", "option_type": "simple"}], "value": "GC5000 series"}]}], "configurable_resources": ["opportunities", "companies", "contacts", "leads"], "resource_schema_support": ["leads"], "resource_settings_support": ["leads"], "settings_required_for_authorization": ["client_id", "client_secret"], "subscriptions": [{"downstream_id": "5f5f5f5f5f5f5f5f5f5f5f5f", "unify_event_types": ["crm.contact.created"], "downstream_event_types": ["contacts.CREATED"], "execute_url": "https://unify.apideck.com/webhook/w/{lookupIdToken}/{serviceId}?e={downstreamEventType}", "created_at": "2020-10-01T12:00:00.000Z"}], "has_guide": true, "created_at": 1615563533390, "custom_mappings": [{"id": "hris+employees+first_aid_training", "label": "First Aid Training", "description": "First Aid Training completed after 2019-01-01", "value": "$.root.training.first_aid", "key": "first_aid_training", "required": false, "custom_field": true, "consumer_id": "test_user_id", "example": "Some value"}], "updated_at": 1616662325753}}
+          application/json: {"status_code": 201, "status": "OK", "data": {"id": "crm+salesforce", "service_id": "salesforce", "name": "Salesforce", "tag_line": "CRM software solutions and enterprise cloud computing from Salesforce, the leader in customer relationship management (CRM) and PaaS. Free 30 day trial.", "unified_api": "crm", "state": "authorized", "integration_state": "configured", "auth_type": "oauth2", "oauth_grant_type": "authorization_code", "enabled": true, "website": "https://www.salesforce.com", "icon": "https://res.cloudinary.com/apideck/image/upload/v1529456047/catalog/salesforce/icon128x128.png", "logo": "https://c1.sfdcstatic.com/content/dam/web/en_us/www/images/home/logo-salesforce-m.svg", "authorize_url": "https://unify.apideck.com/vault/authorize/salesforce/<application-id>?state=<state>", "revoke_url": "https://unify.apideck.com/vault/revoke/salesforce/<application-id>?state=<state>", "settings": {"instance_url": "https://eu28.salesforce.com", "api_key": "12345xxxxxx"}, "metadata": {"account": {"name": "My Company", "id": "c01458a5-7276-41ce-bc19-639906b0450a"}, "plan": "enterprise"}, "form_fields": [{"id": "instance_url", "label": "Instance url", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": false}, {"id": "api_key", "label": "API Key", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": true}], "configuration": [{"resource": "leads", "defaults": [{"target": "custom_fields", "id": "ProductInterest", "options": [{"label": "General Channel", "option_type": "simple"}], "value": "GC5000 series"}]}], "configurable_resources": ["opportunities", "companies", "contacts", "leads"], "resource_schema_support": ["leads"], "resource_settings_support": ["leads"], "settings_required_for_authorization": ["client_id", "client_secret"], "subscriptions": [{"downstream_id": "5f5f5f5f5f5f5f5f5f5f5f5f", "unify_event_types": ["crm.contact.created"], "downstream_event_types": ["contacts.CREATED"], "execute_url": "https://unify.apideck.com/webhook/w/{lookupIdToken}/{serviceId}?e={downstreamEventType}", "created_at": "2020-10-01T12:00:00.000Z"}], "has_guide": true, "created_at": 1615563533390, "custom_mappings": [{"id": "hris+employees+first_aid_training", "label": "First Aid Training", "description": "First Aid Training completed after 2019-01-01", "value": "$.root.training.first_aid", "key": "first_aid_training", "required": false, "custom_field": true, "consumer_id": "test_user_id", "example": "Some value"}], "consent_state": "granted", "consents": [{"id": "con_1234567890", "created_at": "2025-04-15T14:30:00Z", "granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}], "latest_consent": {"id": "con_1234567890", "created_at": "2025-04-15T14:30:00Z", "granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "application_data_scopes": {"enabled": true, "updated_at": "2025-04-15T14:30:00Z", "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "updated_at": 1616662325753}}
         "400":
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror"}
         "401":
@@ -17418,7 +18177,7 @@ examples:
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
       responses:
         "200":
-          application/json: {"status_code": 200, "status": "OK", "data": {"id": "crm+salesforce", "service_id": "salesforce", "name": "Salesforce", "tag_line": "CRM software solutions and enterprise cloud computing from Salesforce, the leader in customer relationship management (CRM) and PaaS. Free 30 day trial.", "unified_api": "crm", "state": "authorized", "integration_state": "configured", "auth_type": "oauth2", "oauth_grant_type": "authorization_code", "enabled": true, "website": "https://www.salesforce.com", "icon": "https://res.cloudinary.com/apideck/image/upload/v1529456047/catalog/salesforce/icon128x128.png", "logo": "https://c1.sfdcstatic.com/content/dam/web/en_us/www/images/home/logo-salesforce-m.svg", "authorize_url": "https://unify.apideck.com/vault/authorize/salesforce/<application-id>?state=<state>", "revoke_url": "https://unify.apideck.com/vault/revoke/salesforce/<application-id>?state=<state>", "settings": {"instance_url": "https://eu28.salesforce.com", "api_key": "12345xxxxxx"}, "metadata": {"account": {"name": "My Company", "id": "c01458a5-7276-41ce-bc19-639906b0450a"}, "plan": "enterprise"}, "form_fields": [{"id": "instance_url", "label": "Instance url", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": false}, {"id": "api_key", "label": "API Key", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": true}], "configuration": [{"resource": "leads", "defaults": [{"target": "custom_fields", "id": "ProductInterest", "options": [{"label": "General Channel", "options": [], "option_type": "group"}], "value": "GC5000 series"}]}], "configurable_resources": ["opportunities", "companies", "contacts", "leads"], "resource_schema_support": ["leads"], "resource_settings_support": ["leads"], "settings_required_for_authorization": ["client_id", "client_secret"], "subscriptions": [{"downstream_id": "5f5f5f5f5f5f5f5f5f5f5f5f", "unify_event_types": ["crm.contact.created"], "downstream_event_types": ["contacts.CREATED"], "execute_url": "https://unify.apideck.com/webhook/w/{lookupIdToken}/{serviceId}?e={downstreamEventType}", "created_at": "2020-10-01T12:00:00.000Z"}], "has_guide": true, "created_at": 1615563533390, "custom_mappings": [{"id": "hris+employees+first_aid_training", "label": "First Aid Training", "description": "First Aid Training completed after 2019-01-01", "value": "$.root.training.first_aid", "key": "first_aid_training", "required": false, "custom_field": true, "consumer_id": "test_user_id", "example": "Some value"}], "updated_at": 1616662325753}}
+          application/json: {"status_code": 200, "status": "OK", "data": {"id": "crm+salesforce", "service_id": "salesforce", "name": "Salesforce", "tag_line": "CRM software solutions and enterprise cloud computing from Salesforce, the leader in customer relationship management (CRM) and PaaS. Free 30 day trial.", "unified_api": "crm", "state": "authorized", "integration_state": "configured", "auth_type": "oauth2", "oauth_grant_type": "authorization_code", "enabled": true, "website": "https://www.salesforce.com", "icon": "https://res.cloudinary.com/apideck/image/upload/v1529456047/catalog/salesforce/icon128x128.png", "logo": "https://c1.sfdcstatic.com/content/dam/web/en_us/www/images/home/logo-salesforce-m.svg", "authorize_url": "https://unify.apideck.com/vault/authorize/salesforce/<application-id>?state=<state>", "revoke_url": "https://unify.apideck.com/vault/revoke/salesforce/<application-id>?state=<state>", "settings": {"instance_url": "https://eu28.salesforce.com", "api_key": "12345xxxxxx"}, "metadata": {"account": {"name": "My Company", "id": "c01458a5-7276-41ce-bc19-639906b0450a"}, "plan": "enterprise"}, "form_fields": [{"id": "instance_url", "label": "Instance url", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": false}, {"id": "api_key", "label": "API Key", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": true}], "configuration": [{"resource": "leads", "defaults": [{"target": "custom_fields", "id": "ProductInterest", "options": [{"label": "General Channel", "options": [], "option_type": "group"}], "value": "GC5000 series"}]}], "configurable_resources": ["opportunities", "companies", "contacts", "leads"], "resource_schema_support": ["leads"], "resource_settings_support": ["leads"], "settings_required_for_authorization": ["client_id", "client_secret"], "subscriptions": [{"downstream_id": "5f5f5f5f5f5f5f5f5f5f5f5f", "unify_event_types": ["crm.contact.created"], "downstream_event_types": ["contacts.CREATED"], "execute_url": "https://unify.apideck.com/webhook/w/{lookupIdToken}/{serviceId}?e={downstreamEventType}", "created_at": "2020-10-01T12:00:00.000Z"}], "has_guide": true, "created_at": 1615563533390, "custom_mappings": [{"id": "hris+employees+first_aid_training", "label": "First Aid Training", "description": "First Aid Training completed after 2019-01-01", "value": "$.root.training.first_aid", "key": "first_aid_training", "required": false, "custom_field": true, "consumer_id": "test_user_id", "example": "Some value"}], "consent_state": "granted", "consents": [{"id": "con_1234567890", "created_at": "2025-04-15T14:30:00Z", "granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}], "latest_consent": {"id": "con_1234567890", "created_at": "2025-04-15T14:30:00Z", "granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "application_data_scopes": {"enabled": true, "updated_at": "2025-04-15T14:30:00Z", "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "updated_at": 1616662325753}}
         "400":
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror"}
         "401":
@@ -17565,7 +18324,7 @@ examples:
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
       responses:
         "200":
-          application/json: {"status_code": 200, "status": "OK", "data": {"id": "crm+salesforce", "service_id": "salesforce", "name": "Salesforce", "tag_line": "CRM software solutions and enterprise cloud computing from Salesforce, the leader in customer relationship management (CRM) and PaaS. Free 30 day trial.", "unified_api": "crm", "state": "authorized", "integration_state": "configured", "auth_type": "oauth2", "oauth_grant_type": "authorization_code", "enabled": true, "website": "https://www.salesforce.com", "icon": "https://res.cloudinary.com/apideck/image/upload/v1529456047/catalog/salesforce/icon128x128.png", "logo": "https://c1.sfdcstatic.com/content/dam/web/en_us/www/images/home/logo-salesforce-m.svg", "authorize_url": "https://unify.apideck.com/vault/authorize/salesforce/<application-id>?state=<state>", "revoke_url": "https://unify.apideck.com/vault/revoke/salesforce/<application-id>?state=<state>", "settings": {"instance_url": "https://eu28.salesforce.com", "api_key": "12345xxxxxx"}, "metadata": {"account": {"name": "My Company", "id": "c01458a5-7276-41ce-bc19-639906b0450a"}, "plan": "enterprise"}, "form_fields": [{"id": "instance_url", "label": "Instance url", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": false}, {"id": "api_key", "label": "API Key", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": true}], "configuration": [{"resource": "leads", "defaults": [{"target": "custom_fields", "id": "ProductInterest", "options": [{"label": "General Channel", "options": [], "option_type": "group"}], "value": "GC5000 series"}]}], "configurable_resources": ["opportunities", "companies", "contacts", "leads"], "resource_schema_support": ["leads"], "resource_settings_support": ["leads"], "settings_required_for_authorization": ["client_id", "client_secret"], "subscriptions": [{"downstream_id": "5f5f5f5f5f5f5f5f5f5f5f5f", "unify_event_types": ["crm.contact.created"], "downstream_event_types": ["contacts.CREATED"], "execute_url": "https://unify.apideck.com/webhook/w/{lookupIdToken}/{serviceId}?e={downstreamEventType}", "created_at": "2020-10-01T12:00:00.000Z"}], "has_guide": true, "created_at": 1615563533390, "custom_mappings": [{"id": "hris+employees+first_aid_training", "label": "First Aid Training", "description": "First Aid Training completed after 2019-01-01", "value": "$.root.training.first_aid", "key": "first_aid_training", "required": false, "custom_field": true, "consumer_id": "test_user_id", "example": "Some value"}], "updated_at": 1616662325753}}
+          application/json: {"status_code": 200, "status": "OK", "data": {"id": "crm+salesforce", "service_id": "salesforce", "name": "Salesforce", "tag_line": "CRM software solutions and enterprise cloud computing from Salesforce, the leader in customer relationship management (CRM) and PaaS. Free 30 day trial.", "unified_api": "crm", "state": "authorized", "integration_state": "configured", "auth_type": "oauth2", "oauth_grant_type": "authorization_code", "enabled": true, "website": "https://www.salesforce.com", "icon": "https://res.cloudinary.com/apideck/image/upload/v1529456047/catalog/salesforce/icon128x128.png", "logo": "https://c1.sfdcstatic.com/content/dam/web/en_us/www/images/home/logo-salesforce-m.svg", "authorize_url": "https://unify.apideck.com/vault/authorize/salesforce/<application-id>?state=<state>", "revoke_url": "https://unify.apideck.com/vault/revoke/salesforce/<application-id>?state=<state>", "settings": {"instance_url": "https://eu28.salesforce.com", "api_key": "12345xxxxxx"}, "metadata": {"account": {"name": "My Company", "id": "c01458a5-7276-41ce-bc19-639906b0450a"}, "plan": "enterprise"}, "form_fields": [{"id": "instance_url", "label": "Instance url", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": false}, {"id": "api_key", "label": "API Key", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": true}], "configuration": [{"resource": "leads", "defaults": [{"target": "custom_fields", "id": "ProductInterest", "options": [{"label": "General Channel", "options": [], "option_type": "group"}], "value": "GC5000 series"}]}], "configurable_resources": ["opportunities", "companies", "contacts", "leads"], "resource_schema_support": ["leads"], "resource_settings_support": ["leads"], "settings_required_for_authorization": ["client_id", "client_secret"], "subscriptions": [{"downstream_id": "5f5f5f5f5f5f5f5f5f5f5f5f", "unify_event_types": ["crm.contact.created"], "downstream_event_types": ["contacts.CREATED"], "execute_url": "https://unify.apideck.com/webhook/w/{lookupIdToken}/{serviceId}?e={downstreamEventType}", "created_at": "2020-10-01T12:00:00.000Z"}], "has_guide": true, "created_at": 1615563533390, "custom_mappings": [{"id": "hris+employees+first_aid_training", "label": "First Aid Training", "description": "First Aid Training completed after 2019-01-01", "value": "$.root.training.first_aid", "key": "first_aid_training", "required": false, "custom_field": true, "consumer_id": "test_user_id", "example": "Some value"}], "consent_state": "granted", "consents": [{"id": "con_1234567890", "created_at": "2025-04-15T14:30:00Z", "granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}], "latest_consent": {"id": "con_1234567890", "created_at": "2025-04-15T14:30:00Z", "granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "application_data_scopes": {"enabled": true, "updated_at": "2025-04-15T14:30:00Z", "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "updated_at": 1616662325753}}
         "400":
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror"}
         "401":
@@ -17615,10 +18374,10 @@ examples:
           x-apideck-consumer-id: "test-consumer"
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
       requestBody:
-        application/json: {"enabled": true, "settings": {"instance_url": "https://eu28.salesforce.com", "api_key": "12345xxxxxx"}, "metadata": {"account": {"name": "My Company", "id": "c01458a5-7276-41ce-bc19-639906b0450a"}, "plan": "enterprise"}, "configuration": [{"resource": "leads", "defaults": [{"id": "ProductInterest", "options": [{"label": "General Channel", "options": [{"label": "General Channel", "value": "general", "option_type": "simple"}], "option_type": "group"}], "value": "GC5000 series"}]}], "custom_mappings": [{"value": "$.root.training.first_aid"}]}
+        application/json: {"enabled": true, "settings": {"instance_url": "https://eu28.salesforce.com", "api_key": "12345xxxxxx"}, "metadata": {"account": {"name": "My Company", "id": "c01458a5-7276-41ce-bc19-639906b0450a"}, "plan": "enterprise"}, "configuration": [{"resource": "leads", "defaults": [{"id": "ProductInterest", "options": [{"label": "General Channel", "options": [{"label": "General Channel", "value": "general", "option_type": "simple"}], "option_type": "group"}], "value": "GC5000 series"}]}], "custom_mappings": [{"value": "$.root.training.first_aid"}], "consent_state": "granted", "latest_consent": {"granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "application_data_scopes": {"enabled": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}}
       responses:
         "200":
-          application/json: {"status_code": 200, "status": "OK", "data": {"id": "crm+salesforce", "service_id": "salesforce", "name": "Salesforce", "tag_line": "CRM software solutions and enterprise cloud computing from Salesforce, the leader in customer relationship management (CRM) and PaaS. Free 30 day trial.", "unified_api": "crm", "state": "authorized", "integration_state": "configured", "auth_type": "oauth2", "oauth_grant_type": "authorization_code", "enabled": true, "website": "https://www.salesforce.com", "icon": "https://res.cloudinary.com/apideck/image/upload/v1529456047/catalog/salesforce/icon128x128.png", "logo": "https://c1.sfdcstatic.com/content/dam/web/en_us/www/images/home/logo-salesforce-m.svg", "authorize_url": "https://unify.apideck.com/vault/authorize/salesforce/<application-id>?state=<state>", "revoke_url": "https://unify.apideck.com/vault/revoke/salesforce/<application-id>?state=<state>", "settings": {"instance_url": "https://eu28.salesforce.com", "api_key": "12345xxxxxx"}, "metadata": {"account": {"name": "My Company", "id": "c01458a5-7276-41ce-bc19-639906b0450a"}, "plan": "enterprise"}, "form_fields": [{"id": "instance_url", "label": "Instance url", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": false}, {"id": "api_key", "label": "API Key", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": true}], "configuration": [{"resource": "leads", "defaults": [{"target": "custom_fields", "id": "ProductInterest", "options": [{"label": "General Channel", "option_type": "simple"}], "value": "GC5000 series"}]}], "configurable_resources": ["opportunities", "companies", "contacts", "leads"], "resource_schema_support": ["leads"], "resource_settings_support": ["leads"], "settings_required_for_authorization": ["client_id", "client_secret"], "subscriptions": [{"downstream_id": "5f5f5f5f5f5f5f5f5f5f5f5f", "unify_event_types": ["crm.contact.created"], "downstream_event_types": ["contacts.CREATED"], "execute_url": "https://unify.apideck.com/webhook/w/{lookupIdToken}/{serviceId}?e={downstreamEventType}", "created_at": "2020-10-01T12:00:00.000Z"}], "has_guide": true, "created_at": 1615563533390, "custom_mappings": [{"id": "hris+employees+first_aid_training", "label": "First Aid Training", "description": "First Aid Training completed after 2019-01-01", "value": "$.root.training.first_aid", "key": "first_aid_training", "required": false, "custom_field": true, "consumer_id": "test_user_id", "example": "Some value"}], "updated_at": 1616662325753}}
+          application/json: {"status_code": 200, "status": "OK", "data": {"id": "crm+salesforce", "service_id": "salesforce", "name": "Salesforce", "tag_line": "CRM software solutions and enterprise cloud computing from Salesforce, the leader in customer relationship management (CRM) and PaaS. Free 30 day trial.", "unified_api": "crm", "state": "authorized", "integration_state": "configured", "auth_type": "oauth2", "oauth_grant_type": "authorization_code", "enabled": true, "website": "https://www.salesforce.com", "icon": "https://res.cloudinary.com/apideck/image/upload/v1529456047/catalog/salesforce/icon128x128.png", "logo": "https://c1.sfdcstatic.com/content/dam/web/en_us/www/images/home/logo-salesforce-m.svg", "authorize_url": "https://unify.apideck.com/vault/authorize/salesforce/<application-id>?state=<state>", "revoke_url": "https://unify.apideck.com/vault/revoke/salesforce/<application-id>?state=<state>", "settings": {"instance_url": "https://eu28.salesforce.com", "api_key": "12345xxxxxx"}, "metadata": {"account": {"name": "My Company", "id": "c01458a5-7276-41ce-bc19-639906b0450a"}, "plan": "enterprise"}, "form_fields": [{"id": "instance_url", "label": "Instance url", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": false}, {"id": "api_key", "label": "API Key", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": true}], "configuration": [{"resource": "leads", "defaults": [{"target": "custom_fields", "id": "ProductInterest", "options": [{"label": "General Channel", "option_type": "simple"}], "value": "GC5000 series"}]}], "configurable_resources": ["opportunities", "companies", "contacts", "leads"], "resource_schema_support": ["leads"], "resource_settings_support": ["leads"], "settings_required_for_authorization": ["client_id", "client_secret"], "subscriptions": [{"downstream_id": "5f5f5f5f5f5f5f5f5f5f5f5f", "unify_event_types": ["crm.contact.created"], "downstream_event_types": ["contacts.CREATED"], "execute_url": "https://unify.apideck.com/webhook/w/{lookupIdToken}/{serviceId}?e={downstreamEventType}", "created_at": "2020-10-01T12:00:00.000Z"}], "has_guide": true, "created_at": 1615563533390, "custom_mappings": [{"id": "hris+employees+first_aid_training", "label": "First Aid Training", "description": "First Aid Training completed after 2019-01-01", "value": "$.root.training.first_aid", "key": "first_aid_training", "required": false, "custom_field": true, "consumer_id": "test_user_id", "example": "Some value"}], "consent_state": "granted", "consents": [{"id": "con_1234567890", "created_at": "2025-04-15T14:30:00Z", "granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}], "latest_consent": {"id": "con_1234567890", "created_at": "2025-04-15T14:30:00Z", "granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "application_data_scopes": {"enabled": true, "updated_at": "2025-04-15T14:30:00Z", "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "updated_at": 1616662325753}}
         "400":
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror"}
         "401":
@@ -18815,6 +19574,56 @@ examples:
           application/json: {"status_code": 422, "error": "Unprocessable Entity", "type_name": "InvalidStateError", "message": "Invalid State", "detail": "Unprocessable request, please verify your request headers and body.", "ref": "https://developers.apideck.com/errors#invalidstateerror"}
         default:
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+  vault.connectionConsentsAll:
+    speakeasy-default-vault-connection-consents-all:
+      parameters:
+        path:
+          service_id: "pipedrive"
+          unified_api: "crm"
+        header:
+          x-apideck-consumer-id: "test-consumer"
+          x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+      responses:
+        "200":
+          application/json: {"status_code": 200, "status": "OK", "data": []}
+        "400":
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror"}
+        "401":
+          application/json: {"status_code": 401, "error": "Unauthorized", "type_name": "UnauthorizedError", "message": "Unauthorized Request", "detail": "Missing authentication", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+        "402":
+          application/json: {"status_code": 402, "error": "Payment Required", "type_name": "RequestLimitError", "message": "Request Limit Reached", "detail": "You have reached your limit of 2000", "ref": "https://developers.apideck.com/errors#requestlimiterror"}
+        "404":
+          application/json: {"status_code": 404, "error": "Not Found", "type_name": "EntityNotFoundError", "message": "Unknown Widget", "detail": "Could not find widget with id: '123'", "ref": "https://developers.apideck.com/errors#entitynotfounderror"}
+        "422":
+          application/json: {"status_code": 422, "error": "Unprocessable Entity", "type_name": "InvalidStateError", "message": "Invalid State", "detail": "Unprocessable request, please verify your request headers and body.", "ref": "https://developers.apideck.com/errors#invalidstateerror"}
+        default:
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+  vault.connectionConsentUpdate:
+    speakeasy-default-vault-connection-consent-update:
+      parameters:
+        path:
+          service_id: "pipedrive"
+          unified_api: "crm"
+        header:
+          x-apideck-consumer-id: "test-consumer"
+          x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+      requestBody:
+        application/json: {"resources": "*", "granted": true}
+      responses:
+        "200":
+          application/json: {"status_code": 200, "status": "OK", "data": {"id": "con_1234567890", "created_at": "2025-04-15T14:30:00Z", "granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}}
+        "400":
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror"}
+        "401":
+          application/json: {"status_code": 401, "error": "Unauthorized", "type_name": "UnauthorizedError", "message": "Unauthorized Request", "detail": "Missing authentication", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+        "402":
+          application/json: {"status_code": 402, "error": "Payment Required", "type_name": "RequestLimitError", "message": "Request Limit Reached", "detail": "You have reached your limit of 2000", "ref": "https://developers.apideck.com/errors#requestlimiterror"}
+        "404":
+          application/json: {"status_code": 404, "error": "Not Found", "type_name": "EntityNotFoundError", "message": "Unknown Widget", "detail": "Could not find widget with id: '123'", "ref": "https://developers.apideck.com/errors#entitynotfounderror"}
+        "422":
+          application/json: {"status_code": 422, "error": "Unprocessable Entity", "type_name": "InvalidStateError", "message": "Invalid State", "detail": "Unprocessable request, please verify your request headers and body.", "ref": "https://developers.apideck.com/errors#invalidstateerror"}
+        default:
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## SDK Changes Detected:\n* `apideck.accounting.invoiceItems.list()`:  `response.data.[].currency` **Added**\n* `apideck.accounting.invoiceItems.create()`: \n  *  `request.invoiceItem.currency` **Added**\n* `apideck.accounting.invoiceItems.get()`:  `response.data.currency` **Added**\n* `apideck.accounting.invoiceItems.update()`: \n  *  `request.invoiceItem.currency` **Added**\n"
+releaseNotes: "## Java SDK Changes Detected:\n* `apideck.vault.connectionConsents.list()`: **Added**\n* `apideck.vault.connectionConsent.update()`: **Added**\n* `apideck.accounting.companyInfo.get()`:  `response.data.trackingCategoriesMode` **Added**\n* `apideck.accounting.journalEntries.list()`: \n  *  `request.filter` **Changed**\n* `apideck.accounting.trackingCategories.list()`:  `response.data.[].parentName` **Added**\n* `apideck.accounting.trackingCategories.create()`: \n  *  `request.trackingCategory.parentName` **Added**\n* `apideck.accounting.trackingCategories.get()`:  `response.data.parentName` **Added**\n* `apideck.accounting.trackingCategories.update()`: \n  *  `request.trackingCategory.parentName` **Added**\n* `apideck.accounting.expenses.list()`: \n  *  `request.filter` **Added**\n  *  `response.data.[].status` **Added**\n* `apideck.accounting.expenses.create()`: \n  *  `request.expense.status` **Added**\n* `apideck.accounting.expenses.get()`:  `response.data.status` **Added**\n* `apideck.accounting.expenses.update()`: \n  *  `request.expense.status` **Added**\n* `apideck.vault.connections.list()`:  `response.data.[]` **Changed**\n* `apideck.vault.connections.get()`:  `response.data` **Changed**\n* `apideck.vault.connections.update()`: \n  *  `request.connection` **Changed**\n  *  `response.data` **Changed**\n* `apideck.vault.connections.imports()`:  `response.data` **Changed**\n* `apideck.vault.connections.token()`:  `response.data` **Changed**\n* `apideck.vault.connectionSettings.list()`:  `response.data` **Changed**\n* `apideck.vault.connectionSettings.update()`: \n  *  `request.connection` **Changed**\n  *  `response.data` **Changed**\n"

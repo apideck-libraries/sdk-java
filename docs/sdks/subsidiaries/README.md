@@ -42,8 +42,8 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
+
         sdk.accounting().subsidiaries().list()
-                .request(req)
                 .callAsStream()
                 .forEach((AccountingSubsidiariesAllResponse item) -> {
                    // handle page

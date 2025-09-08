@@ -33,9 +33,20 @@ import java.util.Optional;
 
 public class Attachments {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncAttachments asyncSDK;
 
     Attachments(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncAttachments(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncAttachments async() {
+        return asyncSDK;
     }
 
     /**

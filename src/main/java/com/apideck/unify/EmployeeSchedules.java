@@ -16,9 +16,20 @@ import java.util.Optional;
 
 public class EmployeeSchedules {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncEmployeeSchedules asyncSDK;
 
     EmployeeSchedules(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncEmployeeSchedules(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncEmployeeSchedules async() {
+        return asyncSDK;
     }
 
     /**

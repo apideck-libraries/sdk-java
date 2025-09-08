@@ -52,8 +52,8 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
+
         sdk.issueTracking().collectionTicketComments().list()
-                .request(req)
                 .callAsStream()
                 .forEach((IssueTrackingCollectionTicketCommentsAllResponse item) -> {
                    // handle page
@@ -233,8 +233,8 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
+
         sdk.issueTracking().collectionTicketComments().get()
-                .request(req)
                 .callAsStream()
                 .forEach((IssueTrackingCollectionTicketCommentsOneResponse item) -> {
                    // handle page

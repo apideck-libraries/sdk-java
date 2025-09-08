@@ -32,9 +32,20 @@ import java.util.Optional;
 
 public class Departments {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncDepartments asyncSDK;
 
     Departments(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncDepartments(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncDepartments async() {
+        return asyncSDK;
     }
 
     /**

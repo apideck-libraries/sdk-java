@@ -18,9 +18,20 @@ import java.util.Optional;
 
 public class Sessions {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncSessions asyncSDK;
 
     Sessions(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncSessions(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncSessions async() {
+        return asyncSDK;
     }
 
     /**

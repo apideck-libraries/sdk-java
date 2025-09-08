@@ -5,6 +5,7 @@ package com.apideck.unify;
 
 public class Ecommerce {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncEcommerce asyncSDK;
     private final Orders orders;
     private final Products products;
     private final ApideckCustomers customers;
@@ -16,6 +17,7 @@ public class Ecommerce {
         this.products = new Products(this.sdkConfiguration);
         this.customers = new ApideckCustomers(this.sdkConfiguration);
         this.stores = new Stores(this.sdkConfiguration);
+        this.asyncSDK = new AsyncEcommerce(this, sdkConfiguration);
     }
 
     public final Orders orders() {
@@ -32,6 +34,15 @@ public class Ecommerce {
 
     public final Stores stores() {
         return stores;
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncEcommerce async() {
+        return asyncSDK;
     }
 
 }

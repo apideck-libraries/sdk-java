@@ -32,9 +32,20 @@ import java.util.Optional;
 
 public class CustomObjects {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncCustomObjects asyncSDK;
 
     CustomObjects(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncCustomObjects(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncCustomObjects async() {
+        return asyncSDK;
     }
 
     /**

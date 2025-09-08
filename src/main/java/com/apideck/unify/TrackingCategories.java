@@ -32,9 +32,20 @@ import java.util.Optional;
 
 public class TrackingCategories {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncTrackingCategories asyncSDK;
 
     TrackingCategories(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncTrackingCategories(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncTrackingCategories async() {
+        return asyncSDK;
     }
 
     /**

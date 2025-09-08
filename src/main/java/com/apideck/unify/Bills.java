@@ -32,9 +32,20 @@ import java.util.Optional;
 
 public class Bills {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncBills asyncSDK;
 
     Bills(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncBills(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncBills async() {
+        return asyncSDK;
     }
 
     /**

@@ -32,9 +32,20 @@ import java.util.Optional;
 
 public class Locations {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncLocations asyncSDK;
 
     Locations(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncLocations(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncLocations async() {
+        return asyncSDK;
     }
 
     /**

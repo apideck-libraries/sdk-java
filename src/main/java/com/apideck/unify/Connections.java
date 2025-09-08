@@ -38,9 +38,20 @@ import java.util.Optional;
 
 public class Connections {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncConnections asyncSDK;
 
     Connections(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncConnections(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncConnections async() {
+        return asyncSDK;
     }
 
     /**

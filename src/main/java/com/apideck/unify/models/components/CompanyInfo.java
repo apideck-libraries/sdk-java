@@ -140,6 +140,13 @@ public class CompanyInfo {
     private Optional<Boolean> trackingCategoriesEnabled;
 
     /**
+     * The mode of tracking categories for the company on transactions
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("tracking_categories_mode")
+    private Optional<? extends TrackingCategoriesMode> trackingCategoriesMode;
+
+    /**
      * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -194,6 +201,7 @@ public class CompanyInfo {
             @JsonProperty("emails") Optional<? extends List<Email>> emails,
             @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings,
             @JsonProperty("tracking_categories_enabled") Optional<Boolean> trackingCategoriesEnabled,
+            @JsonProperty("tracking_categories_mode") Optional<? extends TrackingCategoriesMode> trackingCategoriesMode,
             @JsonProperty("row_version") JsonNullable<String> rowVersion,
             @JsonProperty("updated_by") JsonNullable<String> updatedBy,
             @JsonProperty("created_by") JsonNullable<String> createdBy,
@@ -217,6 +225,7 @@ public class CompanyInfo {
         Utils.checkNotNull(emails, "emails");
         Utils.checkNotNull(customMappings, "customMappings");
         Utils.checkNotNull(trackingCategoriesEnabled, "trackingCategoriesEnabled");
+        Utils.checkNotNull(trackingCategoriesMode, "trackingCategoriesMode");
         Utils.checkNotNull(rowVersion, "rowVersion");
         Utils.checkNotNull(updatedBy, "updatedBy");
         Utils.checkNotNull(createdBy, "createdBy");
@@ -240,6 +249,7 @@ public class CompanyInfo {
         this.emails = emails;
         this.customMappings = customMappings;
         this.trackingCategoriesEnabled = trackingCategoriesEnabled;
+        this.trackingCategoriesMode = trackingCategoriesMode;
         this.rowVersion = rowVersion;
         this.updatedBy = updatedBy;
         this.createdBy = createdBy;
@@ -254,8 +264,8 @@ public class CompanyInfo {
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined());
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -393,6 +403,15 @@ public class CompanyInfo {
     @JsonIgnore
     public Optional<Boolean> trackingCategoriesEnabled() {
         return trackingCategoriesEnabled;
+    }
+
+    /**
+     * The mode of tracking categories for the company on transactions
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<TrackingCategoriesMode> trackingCategoriesMode() {
+        return (Optional<TrackingCategoriesMode>) trackingCategoriesMode;
     }
 
     /**
@@ -747,6 +766,25 @@ public class CompanyInfo {
     }
 
     /**
+     * The mode of tracking categories for the company on transactions
+     */
+    public CompanyInfo withTrackingCategoriesMode(TrackingCategoriesMode trackingCategoriesMode) {
+        Utils.checkNotNull(trackingCategoriesMode, "trackingCategoriesMode");
+        this.trackingCategoriesMode = Optional.ofNullable(trackingCategoriesMode);
+        return this;
+    }
+
+
+    /**
+     * The mode of tracking categories for the company on transactions
+     */
+    public CompanyInfo withTrackingCategoriesMode(Optional<? extends TrackingCategoriesMode> trackingCategoriesMode) {
+        Utils.checkNotNull(trackingCategoriesMode, "trackingCategoriesMode");
+        this.trackingCategoriesMode = trackingCategoriesMode;
+        return this;
+    }
+
+    /**
      * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
      */
     public CompanyInfo withRowVersion(String rowVersion) {
@@ -864,6 +902,7 @@ public class CompanyInfo {
             Utils.enhancedDeepEquals(this.emails, other.emails) &&
             Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
             Utils.enhancedDeepEquals(this.trackingCategoriesEnabled, other.trackingCategoriesEnabled) &&
+            Utils.enhancedDeepEquals(this.trackingCategoriesMode, other.trackingCategoriesMode) &&
             Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion) &&
             Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
             Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
@@ -880,8 +919,8 @@ public class CompanyInfo {
             currency, language, fiscalYearStartMonth,
             companyStartDate, addresses, phoneNumbers,
             emails, customMappings, trackingCategoriesEnabled,
-            rowVersion, updatedBy, createdBy,
-            updatedAt, createdAt);
+            trackingCategoriesMode, rowVersion, updatedBy,
+            createdBy, updatedAt, createdAt);
     }
     
     @Override
@@ -905,6 +944,7 @@ public class CompanyInfo {
                 "emails", emails,
                 "customMappings", customMappings,
                 "trackingCategoriesEnabled", trackingCategoriesEnabled,
+                "trackingCategoriesMode", trackingCategoriesMode,
                 "rowVersion", rowVersion,
                 "updatedBy", updatedBy,
                 "createdBy", createdBy,
@@ -950,6 +990,8 @@ public class CompanyInfo {
         private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
 
         private Optional<Boolean> trackingCategoriesEnabled = Optional.empty();
+
+        private Optional<? extends TrackingCategoriesMode> trackingCategoriesMode = Optional.empty();
 
         private JsonNullable<String> rowVersion = JsonNullable.undefined();
 
@@ -1279,6 +1321,25 @@ public class CompanyInfo {
 
 
         /**
+         * The mode of tracking categories for the company on transactions
+         */
+        public Builder trackingCategoriesMode(TrackingCategoriesMode trackingCategoriesMode) {
+            Utils.checkNotNull(trackingCategoriesMode, "trackingCategoriesMode");
+            this.trackingCategoriesMode = Optional.ofNullable(trackingCategoriesMode);
+            return this;
+        }
+
+        /**
+         * The mode of tracking categories for the company on transactions
+         */
+        public Builder trackingCategoriesMode(Optional<? extends TrackingCategoriesMode> trackingCategoriesMode) {
+            Utils.checkNotNull(trackingCategoriesMode, "trackingCategoriesMode");
+            this.trackingCategoriesMode = trackingCategoriesMode;
+            return this;
+        }
+
+
+        /**
          * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
          */
         public Builder rowVersion(String rowVersion) {
@@ -1381,8 +1442,8 @@ public class CompanyInfo {
                 currency, language, fiscalYearStartMonth,
                 companyStartDate, addresses, phoneNumbers,
                 emails, customMappings, trackingCategoriesEnabled,
-                rowVersion, updatedBy, createdBy,
-                updatedAt, createdAt);
+                trackingCategoriesMode, rowVersion, updatedBy,
+                createdBy, updatedAt, createdAt);
         }
 
     }

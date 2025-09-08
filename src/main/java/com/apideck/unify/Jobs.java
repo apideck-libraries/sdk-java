@@ -20,9 +20,20 @@ import java.util.Optional;
 
 public class Jobs {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncJobs asyncSDK;
 
     Jobs(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncJobs(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncJobs async() {
+        return asyncSDK;
     }
 
     /**

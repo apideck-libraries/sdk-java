@@ -32,9 +32,20 @@ import java.util.Optional;
 
 public class Pipelines {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncPipelines asyncSDK;
 
     Pipelines(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncPipelines(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncPipelines async() {
+        return asyncSDK;
     }
 
     /**

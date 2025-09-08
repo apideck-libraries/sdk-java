@@ -45,8 +45,8 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
+
         sdk.fileStorage().sharedLinks().list()
-                .request(req)
                 .callAsStream()
                 .forEach((FileStorageSharedLinksAllResponse item) -> {
                    // handle page

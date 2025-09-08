@@ -53,8 +53,8 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
+
         sdk.ecommerce().orders().list()
-                .request(req)
                 .callAsStream()
                 .forEach((EcommerceOrdersAllResponse item) -> {
                    // handle page

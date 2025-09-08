@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
@@ -18,20 +19,33 @@ public class JournalEntriesFilter {
     @SpeakeasyMetadata("queryParam:name=updated_since")
     private Optional<OffsetDateTime> updatedSince;
 
+
+    @SpeakeasyMetadata("queryParam:name=status")
+    private Optional<? extends JournalEntriesFilterStatus> status;
+
     @JsonCreator
     public JournalEntriesFilter(
-            Optional<OffsetDateTime> updatedSince) {
+            Optional<OffsetDateTime> updatedSince,
+            Optional<? extends JournalEntriesFilterStatus> status) {
         Utils.checkNotNull(updatedSince, "updatedSince");
+        Utils.checkNotNull(status, "status");
         this.updatedSince = updatedSince;
+        this.status = status;
     }
     
     public JournalEntriesFilter() {
-        this(Optional.empty());
+        this(Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
     public Optional<OffsetDateTime> updatedSince() {
         return updatedSince;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<JournalEntriesFilterStatus> status() {
+        return (Optional<JournalEntriesFilterStatus>) status;
     }
 
     public static Builder builder() {
@@ -52,6 +66,19 @@ public class JournalEntriesFilter {
         return this;
     }
 
+    public JournalEntriesFilter withStatus(JournalEntriesFilterStatus status) {
+        Utils.checkNotNull(status, "status");
+        this.status = Optional.ofNullable(status);
+        return this;
+    }
+
+
+    public JournalEntriesFilter withStatus(Optional<? extends JournalEntriesFilterStatus> status) {
+        Utils.checkNotNull(status, "status");
+        this.status = status;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -62,25 +89,29 @@ public class JournalEntriesFilter {
         }
         JournalEntriesFilter other = (JournalEntriesFilter) o;
         return 
-            Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince);
+            Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince) &&
+            Utils.enhancedDeepEquals(this.status, other.status);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            updatedSince);
+            updatedSince, status);
     }
     
     @Override
     public String toString() {
         return Utils.toString(JournalEntriesFilter.class,
-                "updatedSince", updatedSince);
+                "updatedSince", updatedSince,
+                "status", status);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
         private Optional<OffsetDateTime> updatedSince = Optional.empty();
+
+        private Optional<? extends JournalEntriesFilterStatus> status = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -99,10 +130,23 @@ public class JournalEntriesFilter {
             return this;
         }
 
+
+        public Builder status(JournalEntriesFilterStatus status) {
+            Utils.checkNotNull(status, "status");
+            this.status = Optional.ofNullable(status);
+            return this;
+        }
+
+        public Builder status(Optional<? extends JournalEntriesFilterStatus> status) {
+            Utils.checkNotNull(status, "status");
+            this.status = status;
+            return this;
+        }
+
         public JournalEntriesFilter build() {
 
             return new JournalEntriesFilter(
-                updatedSince);
+                updatedSince, status);
         }
 
     }

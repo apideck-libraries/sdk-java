@@ -20,9 +20,20 @@ import java.util.Optional;
 
 public class CollectionUsers {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncCollectionUsers asyncSDK;
 
     CollectionUsers(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncCollectionUsers(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncCollectionUsers async() {
+        return asyncSDK;
     }
 
     /**

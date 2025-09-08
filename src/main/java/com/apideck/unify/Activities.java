@@ -32,9 +32,20 @@ import java.util.Optional;
 
 public class Activities {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncActivities asyncSDK;
 
     Activities(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncActivities(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncActivities async() {
+        return asyncSDK;
     }
 
     /**

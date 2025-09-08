@@ -49,8 +49,8 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
+
         sdk.fileStorage().driveGroups().list()
-                .request(req)
                 .callAsStream()
                 .forEach((FileStorageDriveGroupsAllResponse item) -> {
                    // handle page

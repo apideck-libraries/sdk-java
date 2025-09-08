@@ -20,9 +20,20 @@ import java.util.Optional;
 
 public class Collections {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncCollections asyncSDK;
 
     Collections(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncCollections(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncCollections async() {
+        return asyncSDK;
     }
 
     /**

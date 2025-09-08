@@ -43,8 +43,8 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
+
         sdk.issueTracking().collectionUsers().list()
-                .request(req)
                 .callAsStream()
                 .forEach((IssueTrackingCollectionUsersAllResponse item) -> {
                    // handle page

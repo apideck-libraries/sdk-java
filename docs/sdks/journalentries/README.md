@@ -54,8 +54,8 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
+
         sdk.accounting().journalEntries().list()
-                .request(req)
                 .callAsStream()
                 .forEach((AccountingJournalEntriesAllResponse item) -> {
                    // handle page

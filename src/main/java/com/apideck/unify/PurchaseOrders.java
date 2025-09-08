@@ -32,9 +32,20 @@ import java.util.Optional;
 
 public class PurchaseOrders {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncPurchaseOrders asyncSDK;
 
     PurchaseOrders(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncPurchaseOrders(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncPurchaseOrders async() {
+        return asyncSDK;
     }
 
     /**

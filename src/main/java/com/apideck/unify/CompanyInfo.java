@@ -16,9 +16,20 @@ import java.util.Optional;
 
 public class CompanyInfo {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncCompanyInfo asyncSDK;
 
     CompanyInfo(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncCompanyInfo(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncCompanyInfo async() {
+        return asyncSDK;
     }
 
     /**

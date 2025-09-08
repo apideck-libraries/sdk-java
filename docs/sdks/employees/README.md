@@ -63,8 +63,8 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
+
         sdk.hris().employees().list()
-                .request(req)
                 .callAsStream()
                 .forEach((HrisEmployeesAllResponse item) -> {
                    // handle page

@@ -33,9 +33,20 @@ import java.util.Optional;
 
 public class UploadSessions {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncUploadSessions asyncSDK;
 
     UploadSessions(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncUploadSessions(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncUploadSessions async() {
+        return asyncSDK;
     }
 
     /**

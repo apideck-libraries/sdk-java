@@ -32,9 +32,20 @@ import java.util.Optional;
 
 public class Leads {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncLeads asyncSDK;
 
     Leads(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncLeads(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncLeads async() {
+        return asyncSDK;
     }
 
     /**

@@ -45,8 +45,8 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
+
         sdk.hris().companies().list()
-                .request(req)
                 .callAsStream()
                 .forEach((HrisCompaniesAllResponse item) -> {
                    // handle page

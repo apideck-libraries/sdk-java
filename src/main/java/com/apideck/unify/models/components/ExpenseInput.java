@@ -141,6 +141,13 @@ public class ExpenseInput {
     private Optional<? extends List<CustomField>> customFields;
 
     /**
+     * Expense status
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("status")
+    private JsonNullable<? extends ExpenseStatus> status;
+
+    /**
      * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -174,6 +181,7 @@ public class ExpenseInput {
             @JsonProperty("reference") JsonNullable<String> reference,
             @JsonProperty("source_document_url") JsonNullable<String> sourceDocumentUrl,
             @JsonProperty("custom_fields") Optional<? extends List<CustomField>> customFields,
+            @JsonProperty("status") JsonNullable<? extends ExpenseStatus> status,
             @JsonProperty("row_version") JsonNullable<String> rowVersion,
             @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
         Utils.checkNotNull(number, "number");
@@ -194,6 +202,7 @@ public class ExpenseInput {
         Utils.checkNotNull(reference, "reference");
         Utils.checkNotNull(sourceDocumentUrl, "sourceDocumentUrl");
         Utils.checkNotNull(customFields, "customFields");
+        Utils.checkNotNull(status, "status");
         Utils.checkNotNull(rowVersion, "rowVersion");
         Utils.checkNotNull(passThrough, "passThrough");
         this.number = number;
@@ -214,6 +223,7 @@ public class ExpenseInput {
         this.reference = reference;
         this.sourceDocumentUrl = sourceDocumentUrl;
         this.customFields = customFields;
+        this.status = status;
         this.rowVersion = rowVersion;
         this.passThrough = passThrough;
     }
@@ -227,7 +237,7 @@ public class ExpenseInput {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             Optional.empty(), JsonNullable.undefined(), lineItems,
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined(), Optional.empty());
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -371,6 +381,15 @@ public class ExpenseInput {
     @JsonIgnore
     public Optional<List<CustomField>> customFields() {
         return (Optional<List<CustomField>>) customFields;
+    }
+
+    /**
+     * Expense status
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<ExpenseStatus> status() {
+        return (JsonNullable<ExpenseStatus>) status;
     }
 
     /**
@@ -695,6 +714,24 @@ public class ExpenseInput {
     }
 
     /**
+     * Expense status
+     */
+    public ExpenseInput withStatus(ExpenseStatus status) {
+        Utils.checkNotNull(status, "status");
+        this.status = JsonNullable.of(status);
+        return this;
+    }
+
+    /**
+     * Expense status
+     */
+    public ExpenseInput withStatus(JsonNullable<? extends ExpenseStatus> status) {
+        Utils.checkNotNull(status, "status");
+        this.status = status;
+        return this;
+    }
+
+    /**
      * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
      */
     public ExpenseInput withRowVersion(String rowVersion) {
@@ -759,6 +796,7 @@ public class ExpenseInput {
             Utils.enhancedDeepEquals(this.reference, other.reference) &&
             Utils.enhancedDeepEquals(this.sourceDocumentUrl, other.sourceDocumentUrl) &&
             Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion) &&
             Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
@@ -772,7 +810,7 @@ public class ExpenseInput {
             currencyRate, type, memo,
             taxRate, totalAmount, lineItems,
             reference, sourceDocumentUrl, customFields,
-            rowVersion, passThrough);
+            status, rowVersion, passThrough);
     }
     
     @Override
@@ -796,6 +834,7 @@ public class ExpenseInput {
                 "reference", reference,
                 "sourceDocumentUrl", sourceDocumentUrl,
                 "customFields", customFields,
+                "status", status,
                 "rowVersion", rowVersion,
                 "passThrough", passThrough);
     }
@@ -838,6 +877,8 @@ public class ExpenseInput {
         private JsonNullable<String> sourceDocumentUrl = JsonNullable.undefined();
 
         private Optional<? extends List<CustomField>> customFields = Optional.empty();
+
+        private JsonNullable<? extends ExpenseStatus> status = JsonNullable.undefined();
 
         private JsonNullable<String> rowVersion = JsonNullable.undefined();
 
@@ -1161,6 +1202,25 @@ public class ExpenseInput {
 
 
         /**
+         * Expense status
+         */
+        public Builder status(ExpenseStatus status) {
+            Utils.checkNotNull(status, "status");
+            this.status = JsonNullable.of(status);
+            return this;
+        }
+
+        /**
+         * Expense status
+         */
+        public Builder status(JsonNullable<? extends ExpenseStatus> status) {
+            Utils.checkNotNull(status, "status");
+            this.status = status;
+            return this;
+        }
+
+
+        /**
          * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
          */
         public Builder rowVersion(String rowVersion) {
@@ -1206,7 +1266,7 @@ public class ExpenseInput {
                 currencyRate, type, memo,
                 taxRate, totalAmount, lineItems,
                 reference, sourceDocumentUrl, customFields,
-                rowVersion, passThrough);
+                status, rowVersion, passThrough);
         }
 
     }

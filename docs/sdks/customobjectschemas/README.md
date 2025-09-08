@@ -44,8 +44,8 @@ public class Application {
                     Map.entry("search", "San Francisco")))
                 .build();
 
+
         sdk.crm().customObjectSchemas().list()
-                .request(req)
                 .callAsStream()
                 .forEach((CrmCustomObjectSchemasAllResponse item) -> {
                    // handle page

@@ -48,8 +48,8 @@ public class Application {
                     .build())
                 .build();
 
+
         sdk.ecommerce().products().list()
-                .request(req)
                 .callAsStream()
                 .forEach((EcommerceProductsAllResponse item) -> {
                    // handle page

@@ -5,6 +5,7 @@ package com.apideck.unify;
 
 public class Connector {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncConnector asyncSDK;
     private final Connectors connectors;
     private final ConnectorDocs connectorDocs;
     private final ConnectorResources connectorResources;
@@ -20,6 +21,7 @@ public class Connector {
         this.apis = new Apis(this.sdkConfiguration);
         this.apiResources = new ApiResources(this.sdkConfiguration);
         this.apiResourceCoverage = new ApiResourceCoverage(this.sdkConfiguration);
+        this.asyncSDK = new AsyncConnector(this, sdkConfiguration);
     }
 
     public final Connectors connectors() {
@@ -44,6 +46,15 @@ public class Connector {
 
     public final ApiResourceCoverage apiResourceCoverage() {
         return apiResourceCoverage;
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncConnector async() {
+        return asyncSDK;
     }
 
 }

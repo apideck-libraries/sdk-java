@@ -32,9 +32,20 @@ import java.util.Optional;
 
 public class Expenses {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncExpenses asyncSDK;
 
     Expenses(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncExpenses(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncExpenses async() {
+        return asyncSDK;
     }
 
     /**

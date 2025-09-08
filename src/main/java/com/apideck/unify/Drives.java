@@ -32,9 +32,20 @@ import java.util.Optional;
 
 public class Drives {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncDrives asyncSDK;
 
     Drives(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncDrives(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncDrives async() {
+        return asyncSDK;
     }
 
     /**

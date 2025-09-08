@@ -32,9 +32,20 @@ import java.util.Optional;
 
 public class LedgerAccounts {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncLedgerAccounts asyncSDK;
 
     LedgerAccounts(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncLedgerAccounts(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncLedgerAccounts async() {
+        return asyncSDK;
     }
 
     /**

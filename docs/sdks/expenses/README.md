@@ -22,10 +22,13 @@ List Expenses
 package hello.world;
 
 import com.apideck.unify.Apideck;
+import com.apideck.unify.models.components.ExpensesFilter;
+import com.apideck.unify.models.components.ExpensesFilterStatus;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingExpensesAllRequest;
 import com.apideck.unify.models.operations.AccountingExpensesAllResponse;
 import java.lang.Exception;
+import java.time.OffsetDateTime;
 
 public class Application {
 
@@ -39,10 +42,14 @@ public class Application {
 
         AccountingExpensesAllRequest req = AccountingExpensesAllRequest.builder()
                 .serviceId("salesforce")
+                .filter(ExpensesFilter.builder()
+                    .updatedSince(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
+                    .status(ExpensesFilterStatus.DRAFT)
+                    .build())
                 .build();
 
+
         sdk.accounting().expenses().list()
-                .request(req)
                 .callAsStream()
                 .forEach((AccountingExpensesAllResponse item) -> {
                    // handle page

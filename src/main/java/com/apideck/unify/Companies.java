@@ -32,9 +32,20 @@ import java.util.Optional;
 
 public class Companies {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncCompanies asyncSDK;
 
     Companies(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncCompanies(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncCompanies async() {
+        return asyncSDK;
     }
 
     /**

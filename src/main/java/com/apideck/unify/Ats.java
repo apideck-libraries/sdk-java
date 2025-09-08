@@ -5,6 +5,7 @@ package com.apideck.unify;
 
 public class Ats {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncAts asyncSDK;
     private final Jobs jobs;
     private final Applicants applicants;
     private final Applications applications;
@@ -14,6 +15,7 @@ public class Ats {
         this.jobs = new Jobs(this.sdkConfiguration);
         this.applicants = new Applicants(this.sdkConfiguration);
         this.applications = new Applications(this.sdkConfiguration);
+        this.asyncSDK = new AsyncAts(this, sdkConfiguration);
     }
 
     public final Jobs jobs() {
@@ -26,6 +28,15 @@ public class Ats {
 
     public final Applications applications() {
         return applications;
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncAts async() {
+        return asyncSDK;
     }
 
 }

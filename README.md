@@ -29,6 +29,7 @@ For more information about the API: [Apideck Developer Docs](https://developers.
   * [Retries](#retries)
   * [Error Handling](#error-handling)
   * [Server Selection](#server-selection)
+  * [Asynchronous Support](#asynchronous-support)
   * [Authentication](#authentication)
   * [Debugging](#debugging)
 * [Development](#development)
@@ -48,7 +49,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.apideck:unify:0.19.6'
+implementation 'com.apideck:unify:0.20.0'
 ```
 
 Maven:
@@ -56,7 +57,7 @@ Maven:
 <dependency>
     <groupId>com.apideck</groupId>
     <artifactId>unify</artifactId>
-    <version>0.19.6</version>
+    <version>0.20.0</version>
 </dependency>
 ```
 
@@ -115,8 +116,8 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
+
         sdk.accounting().taxRates().list()
-                .request(req)
                 .callAsStream()
                 .forEach((AccountingTaxRatesAllResponse item) -> {
                    // handle page
@@ -125,6 +126,60 @@ public class Application {
     }
 }
 ```
+#### Asynchronous Call
+An asynchronous SDK client is also available that returns a [`CompletableFuture<T>`][comp-fut]. See [Asynchronous Support](#asynchronous-support) for more details on async benefits and reactive library integration.
+```java
+package hello.world;
+
+import com.apideck.unify.Apideck;
+import com.apideck.unify.AsyncApideck;
+import com.apideck.unify.models.components.TaxRatesFilter;
+import com.apideck.unify.models.operations.AccountingTaxRatesAllRequest;
+import com.apideck.unify.models.operations.async.AccountingTaxRatesAllResponse;
+import java.util.Map;
+import reactor.core.publisher.Flux;
+
+public class Application {
+
+    public static void main(String[] args) {
+
+        AsyncApideck sdk = Apideck.builder()
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+            .build()
+            .async();
+
+        AccountingTaxRatesAllRequest req = AccountingTaxRatesAllRequest.builder()
+                .serviceId("salesforce")
+                .filter(TaxRatesFilter.builder()
+                    .assets(true)
+                    .equity(true)
+                    .expenses(true)
+                    .liabilities(true)
+                    .revenue(true)
+                    .build())
+                .passThrough(Map.ofEntries(
+                    Map.entry("search", "San Francisco")))
+                .fields("id,updated_at")
+                .build();
+
+
+        var b = sdk.accounting().taxRates().list();
+
+        // Example using Project Reactor (illustrative) - pages
+        Flux<AccountingTaxRatesAllResponse> pageFlux = Flux.from(b.callAsPublisher());
+        pageFlux.subscribe(
+            page -> System.out.println(page),
+            error -> error.printStackTrace(),
+            () -> System.out.println("Pagination completed")
+        );
+
+    }
+}
+```
+
+[comp-fut]: https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html
 <!-- End SDK Example Usage [usage] -->
 
 <!-- Start Available Resources and Operations [operations] -->
@@ -637,6 +692,14 @@ public class Application {
 ### [vault()](docs/sdks/vault/README.md)
 
 
+#### [vault().connectionConsent()](docs/sdks/connectionconsent/README.md)
+
+* [update](docs/sdks/connectionconsent/README.md#update) - Update consent state
+
+#### [vault().connectionConsents()](docs/sdks/connectionconsents/README.md)
+
+* [list](docs/sdks/connectionconsents/README.md#list) - Get consent records
+
 #### [vault().connectionCustomMappings()](docs/sdks/connectioncustommappings/README.md)
 
 * [list](docs/sdks/connectioncustommappings/README.md#list) - List connection custom mappings
@@ -713,7 +776,6 @@ For certain operations, you can also use the `callAsStreamUnwrapped` method that
 
 Here's an example depicting the different ways to use pagination:
 
-
 ```java
 package hello.world;
 
@@ -750,8 +812,8 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
-        var b = sdk.accounting().taxRates().list()
-                .request(req);
+
+        var b = sdk.accounting().taxRates().list();
 
         // Iterate through all pages using a traditional for-each loop
         // Each iteration returns a complete page response
@@ -772,6 +834,60 @@ public class Application {
     }
 }
 ```
+#### Asynchronous Pagination
+An asynchronous SDK client is also available for pagination that returns a [`Flow.Publisher<T>`][flow-pub]. For async pagination, you can use `callAsPublisher()` to get pages as a publisher, or `callAsPublisherUnwrapped()` to get individual items directly. See [Asynchronous Support](#asynchronous-support) for more details on async benefits and reactive library integration.
+```java
+package hello.world;
+
+import com.apideck.unify.Apideck;
+import com.apideck.unify.AsyncApideck;
+import com.apideck.unify.models.components.TaxRatesFilter;
+import com.apideck.unify.models.operations.AccountingTaxRatesAllRequest;
+import com.apideck.unify.models.operations.async.AccountingTaxRatesAllResponse;
+import java.util.Map;
+import reactor.core.publisher.Flux;
+
+public class Application {
+
+    public static void main(String[] args) {
+
+        AsyncApideck sdk = Apideck.builder()
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+            .build()
+            .async();
+
+        AccountingTaxRatesAllRequest req = AccountingTaxRatesAllRequest.builder()
+                .serviceId("salesforce")
+                .filter(TaxRatesFilter.builder()
+                    .assets(true)
+                    .equity(true)
+                    .expenses(true)
+                    .liabilities(true)
+                    .revenue(true)
+                    .build())
+                .passThrough(Map.ofEntries(
+                    Map.entry("search", "San Francisco")))
+                .fields("id,updated_at")
+                .build();
+
+
+        var b = sdk.accounting().taxRates().list();
+
+        // Example using Project Reactor (illustrative) - pages
+        Flux<AccountingTaxRatesAllResponse> pageFlux = Flux.from(b.callAsPublisher());
+        pageFlux.subscribe(
+            page -> System.out.println(page),
+            error -> error.printStackTrace(),
+            () -> System.out.println("Pagination completed")
+        );
+
+    }
+}
+```
+
+[flow-pub]: https://docs.oracle.com/javase/9/docs/api/java/util/concurrent/Flow.Publisher.html
 <!-- End Pagination [pagination] -->
 
 <!-- Start Retries [retries] -->
@@ -818,8 +934,8 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
+
         sdk.accounting().taxRates().list()
-                .request(req)
                 .retryConfig(RetryConfig.builder()
                     .backoff(BackoffStrategy.builder()
                         .initialInterval(1L, TimeUnit.MILLISECONDS)
@@ -888,8 +1004,8 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
+
         sdk.accounting().taxRates().list()
-                .request(req)
                 .callAsStream()
                 .forEach((AccountingTaxRatesAllResponse item) -> {
                    // handle page
@@ -953,8 +1069,8 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
+
         sdk.accounting().taxRates().list()
-                .request(req)
                 .callAsStream()
                 .forEach((AccountingTaxRatesAllResponse item) -> {
                    // handle page
@@ -1007,8 +1123,8 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
+
         sdk.accounting().taxRates().list()
-                .request(req)
                 .callAsStream()
                 .forEach((AccountingTaxRatesAllResponse item) -> {
                    // handle page
@@ -1055,13 +1171,76 @@ public class Application {
                 .serverURL("https://upload.apideck.com")
                 .call();
 
-        if (res.createAttachmentResponse().isPresent()) {
-            // handle response
-        }
     }
 }
 ```
 <!-- End Server Selection [server] -->
+
+<!-- Start Asynchronous Support [async-support] -->
+## Asynchronous Support
+
+The SDK provides comprehensive asynchronous support using Java's [`CompletableFuture<T>`][comp-fut] and [Reactive Streams `Publisher<T>`][reactive-streams] APIs. This design makes no assumptions about your choice of reactive toolkit, allowing seamless integration with any reactive library.
+
+<details>
+<summary>Why Use Async?</summary>
+
+Asynchronous operations provide several key benefits:
+
+- **Non-blocking I/O**: Your threads stay free for other work while operations are in flight
+- **Better resource utilization**: Handle more concurrent operations with fewer threads
+- **Improved scalability**: Build highly responsive applications that can handle thousands of concurrent requests
+- **Reactive integration**: Works seamlessly with reactive streams and backpressure handling
+
+</details>
+
+<details>
+<summary>Reactive Library Integration</summary>
+
+The SDK returns [Reactive Streams `Publisher<T>`][reactive-streams] instances for operations dealing with streams involving multiple I/O interactions. We use Reactive Streams instead of JDK Flow API to provide broader compatibility with the reactive ecosystem, as most reactive libraries natively support Reactive Streams.
+
+**Why Reactive Streams over JDK Flow?**
+- **Broader ecosystem compatibility**: Most reactive libraries (Project Reactor, RxJava, Akka Streams, etc.) natively support Reactive Streams
+- **Industry standard**: Reactive Streams is the de facto standard for reactive programming in Java
+- **Better interoperability**: Seamless integration without additional adapters for most use cases
+
+**Integration with Popular Libraries:**
+- **Project Reactor**: Use `Flux.from(publisher)` to convert to Reactor types
+- **RxJava**: Use `Flowable.fromPublisher(publisher)` for RxJava integration
+- **Akka Streams**: Use `Source.fromPublisher(publisher)` for Akka Streams integration
+- **Vert.x**: Use `ReadStream.fromPublisher(vertx, publisher)` for Vert.x reactive streams
+- **Mutiny**: Use `Multi.createFrom().publisher(publisher)` for Quarkus Mutiny integration
+
+**For JDK Flow API Integration:**
+If you need JDK Flow API compatibility (e.g., for Quarkus/Mutiny 2), you can use adapters:
+```java
+// Convert Reactive Streams Publisher to Flow Publisher
+Flow.Publisher<T> flowPublisher = FlowAdapters.toFlowPublisher(reactiveStreamsPublisher);
+
+// Convert Flow Publisher to Reactive Streams Publisher
+Publisher<T> reactiveStreamsPublisher = FlowAdapters.toPublisher(flowPublisher);
+```
+
+For standard single-response operations, the SDK returns `CompletableFuture<T>` for straightforward async execution.
+
+</details>
+
+<details>
+<summary>Supported Operations</summary>
+
+Async support is available for:
+
+- **[Server-sent Events](#server-sent-event-streaming)**: Stream real-time events with Reactive Streams `Publisher<T>`
+- **[JSONL Streaming](#jsonl-streaming)**: Process streaming JSON lines asynchronously
+- **[Pagination](#pagination)**: Iterate through paginated results using `callAsPublisher()` and `callAsPublisherUnwrapped()`
+- **[File Uploads](#file-uploads)**: Upload files asynchronously with progress tracking
+- **[File Downloads](#file-downloads)**: Download files asynchronously with streaming support
+- **[Standard Operations](#example)**: All regular API calls return `CompletableFuture<T>` for async execution
+
+</details>
+
+[comp-fut]: https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html
+[reactive-streams]: https://www.reactive-streams.org/
+<!-- End Asynchronous Support [async-support] -->
 
 <!-- Start Authentication [security] -->
 ## Authentication
@@ -1110,8 +1289,8 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
+
         sdk.accounting().taxRates().list()
-                .request(req)
                 .callAsStream()
                 .forEach((AccountingTaxRatesAllResponse item) -> {
                    // handle page

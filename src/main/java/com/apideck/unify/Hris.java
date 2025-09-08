@@ -5,6 +5,7 @@ package com.apideck.unify;
 
 public class Hris {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncHris asyncSDK;
     private final Employees employees;
     private final ApideckCompanies companies;
     private final ApideckDepartments departments;
@@ -22,6 +23,7 @@ public class Hris {
         this.employeePayrolls = new EmployeePayrolls(this.sdkConfiguration);
         this.employeeSchedules = new EmployeeSchedules(this.sdkConfiguration);
         this.timeOffRequests = new TimeOffRequests(this.sdkConfiguration);
+        this.asyncSDK = new AsyncHris(this, sdkConfiguration);
     }
 
     public final Employees employees() {
@@ -50,6 +52,15 @@ public class Hris {
 
     public final TimeOffRequests timeOffRequests() {
         return timeOffRequests;
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncHris async() {
+        return asyncSDK;
     }
 
 }

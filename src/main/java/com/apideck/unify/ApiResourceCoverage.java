@@ -17,9 +17,20 @@ import java.util.Optional;
 
 public class ApiResourceCoverage {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncApiResourceCoverage asyncSDK;
 
     ApiResourceCoverage(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncApiResourceCoverage(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncApiResourceCoverage async() {
+        return asyncSDK;
     }
 
     /**

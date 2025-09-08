@@ -21,18 +21,19 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 java:
-  version: 0.19.6
+  version: 0.20.0
   additionalDependencies: []
   additionalPlugins: []
   artifactID: unify
+  asyncMode: enabled
   baseErrorName: ApideckError
   clientServerStatusCodesAsErrors: true
   companyEmail: support@apideck.com
   companyName: Apideck
   companyURL: www.apideck.com
   defaultErrorName: APIException
-  enableAsync: false
   enableCustomCodeRegions: false
+  enableStreamingUploads: false
   flattenGlobalSecurity: true
   githubURL: github.com/apideck-libraries/sdk-java
   groupID: com.apideck

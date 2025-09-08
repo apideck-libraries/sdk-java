@@ -5,15 +5,26 @@ package com.apideck.unify;
 
 public class Webhook {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncWebhook asyncSDK;
     private final Webhooks webhooks;
 
     Webhook(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
         this.webhooks = new Webhooks(this.sdkConfiguration);
+        this.asyncSDK = new AsyncWebhook(this, sdkConfiguration);
     }
 
     public final Webhooks webhooks() {
         return webhooks;
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncWebhook async() {
+        return asyncSDK;
     }
 
 }

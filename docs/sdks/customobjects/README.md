@@ -46,8 +46,8 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
+
         sdk.crm().customObjects().list()
-                .request(req)
                 .callAsStream()
                 .forEach((CrmCustomObjectsAllResponse item) -> {
                    // handle page

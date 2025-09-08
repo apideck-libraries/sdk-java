@@ -103,6 +103,7 @@ public class Application {
                 .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
+
         sdk.vault().consumers().list()
                 .limit(20L)
                 .callAsStream()

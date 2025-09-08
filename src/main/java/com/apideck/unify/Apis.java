@@ -24,9 +24,20 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Apis {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncApis asyncSDK;
 
     Apis(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncApis(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncApis async() {
+        return asyncSDK;
     }
 
     /**

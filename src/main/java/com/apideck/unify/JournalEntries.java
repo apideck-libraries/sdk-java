@@ -32,9 +32,20 @@ import java.util.Optional;
 
 public class JournalEntries {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncJournalEntries asyncSDK;
 
     JournalEntries(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncJournalEntries(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncJournalEntries async() {
+        return asyncSDK;
     }
 
     /**

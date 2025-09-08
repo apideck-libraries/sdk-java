@@ -16,9 +16,20 @@ import java.util.Optional;
 
 public class CollectionTags {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncCollectionTags asyncSDK;
 
     CollectionTags(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncCollectionTags(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncCollectionTags async() {
+        return asyncSDK;
     }
 
     /**

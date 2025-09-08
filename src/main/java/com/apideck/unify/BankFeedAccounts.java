@@ -32,9 +32,20 @@ import java.util.Optional;
 
 public class BankFeedAccounts {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncBankFeedAccounts asyncSDK;
 
     BankFeedAccounts(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncBankFeedAccounts(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncBankFeedAccounts async() {
+        return asyncSDK;
     }
 
     /**

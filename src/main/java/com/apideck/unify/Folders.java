@@ -32,9 +32,20 @@ import java.util.Optional;
 
 public class Folders {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncFolders asyncSDK;
 
     Folders(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncFolders(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncFolders async() {
+        return asyncSDK;
     }
 
     /**

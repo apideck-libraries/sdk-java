@@ -41,8 +41,8 @@ public class Application {
                 .serviceId("salesforce")
                 .build();
 
+
         sdk.accounting().quotes().list()
-                .request(req)
                 .callAsStream()
                 .forEach((AccountingQuotesAllResponse item) -> {
                    // handle page

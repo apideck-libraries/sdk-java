@@ -53,8 +53,8 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
+
         sdk.crm().companies().list()
-                .request(req)
                 .callAsStream()
                 .forEach((CrmCompaniesAllResponse item) -> {
                    // handle page

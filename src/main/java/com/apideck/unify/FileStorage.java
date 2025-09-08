@@ -5,6 +5,7 @@ package com.apideck.unify;
 
 public class FileStorage {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncFileStorage asyncSDK;
     private final Files files;
     private final Folders folders;
     private final SharedLinks sharedLinks;
@@ -20,6 +21,7 @@ public class FileStorage {
         this.uploadSessions = new UploadSessions(this.sdkConfiguration);
         this.drives = new Drives(this.sdkConfiguration);
         this.driveGroups = new DriveGroups(this.sdkConfiguration);
+        this.asyncSDK = new AsyncFileStorage(this, sdkConfiguration);
     }
 
     public final Files files() {
@@ -44,6 +46,15 @@ public class FileStorage {
 
     public final DriveGroups driveGroups() {
         return driveGroups;
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncFileStorage async() {
+        return asyncSDK;
     }
 
 }

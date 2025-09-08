@@ -21,7 +21,8 @@ public enum FormFieldType {
     DATETIME("datetime"),
     DATE("date"),
     TIME("time"),
-    NUMBER("number");
+    NUMBER("number"),
+    PASSWORD("password");
 
     @JsonValue
     private final String value;

@@ -5,6 +5,7 @@ package com.apideck.unify;
 
 public class Crm {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncCrm asyncSDK;
     private final Companies companies;
     private final Contacts contacts;
     private final Opportunities opportunities;
@@ -28,6 +29,7 @@ public class Crm {
         this.activities = new Activities(this.sdkConfiguration);
         this.customObjectSchemas = new CustomObjectSchemas(this.sdkConfiguration);
         this.customObjects = new CustomObjects(this.sdkConfiguration);
+        this.asyncSDK = new AsyncCrm(this, sdkConfiguration);
     }
 
     public final Companies companies() {
@@ -68,6 +70,15 @@ public class Crm {
 
     public final CustomObjects customObjects() {
         return customObjects;
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncCrm async() {
+        return asyncSDK;
     }
 
 }

@@ -42,8 +42,8 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
+
         sdk.issueTracking().collectionTags().list()
-                .request(req)
                 .callAsStream()
                 .forEach((IssueTrackingCollectionTagsAllResponse item) -> {
                    // handle page

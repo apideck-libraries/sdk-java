@@ -20,9 +20,20 @@ import java.util.Optional;
 
 public class Categories {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncCategories asyncSDK;
 
     Categories(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncCategories(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncCategories async() {
+        return asyncSDK;
     }
 
     /**

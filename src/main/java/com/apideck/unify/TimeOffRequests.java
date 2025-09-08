@@ -32,9 +32,20 @@ import java.util.Optional;
 
 public class TimeOffRequests {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncTimeOffRequests asyncSDK;
 
     TimeOffRequests(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncTimeOffRequests(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncTimeOffRequests async() {
+        return asyncSDK;
     }
 
     /**

@@ -32,9 +32,20 @@ import java.util.Optional;
 
 public class Opportunities {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncOpportunities asyncSDK;
 
     Opportunities(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncOpportunities(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncOpportunities async() {
+        return asyncSDK;
     }
 
     /**

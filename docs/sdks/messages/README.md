@@ -42,8 +42,8 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
+
         sdk.sms().messages().list()
-                .request(req)
                 .callAsStream()
                 .forEach((SmsMessagesAllResponse item) -> {
                    // handle page

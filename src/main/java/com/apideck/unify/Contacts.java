@@ -32,9 +32,20 @@ import java.util.Optional;
 
 public class Contacts {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncContacts asyncSDK;
 
     Contacts(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncContacts(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncContacts async() {
+        return asyncSDK;
     }
 
     /**

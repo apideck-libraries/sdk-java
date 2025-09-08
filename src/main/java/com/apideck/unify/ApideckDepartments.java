@@ -32,9 +32,20 @@ import java.util.Optional;
 
 public class ApideckDepartments {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncApideckDepartments asyncSDK;
 
     ApideckDepartments(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncApideckDepartments(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncApideckDepartments async() {
+        return asyncSDK;
     }
 
     /**

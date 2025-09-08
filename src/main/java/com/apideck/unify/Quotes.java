@@ -32,9 +32,20 @@ import java.util.Optional;
 
 public class Quotes {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncQuotes asyncSDK;
 
     Quotes(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncQuotes(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncQuotes async() {
+        return asyncSDK;
     }
 
     /**

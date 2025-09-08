@@ -16,9 +16,20 @@ import java.util.Optional;
 
 public class CreateCallback {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncCreateCallback asyncSDK;
 
     CreateCallback(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncCreateCallback(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncCreateCallback async() {
+        return asyncSDK;
     }
 
     /**

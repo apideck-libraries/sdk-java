@@ -54,27 +54,54 @@ public class ConnectionInput {
     @JsonProperty("custom_mappings")
     private Optional<? extends List<CustomMappingInput>> customMappings;
 
+    /**
+     * The current consent state of the connection
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("consent_state")
+    private Optional<? extends ConsentState> consentState;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("latest_consent")
+    private Optional<? extends ConsentRecordInput> latestConsent;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("application_data_scopes")
+    private Optional<? extends DataScopesInput> applicationDataScopes;
+
     @JsonCreator
     public ConnectionInput(
             @JsonProperty("enabled") Optional<Boolean> enabled,
             @JsonProperty("settings") JsonNullable<? extends Map<String, Object>> settings,
             @JsonProperty("metadata") JsonNullable<? extends Map<String, Object>> metadata,
             @JsonProperty("configuration") Optional<? extends List<ConnectionConfiguration>> configuration,
-            @JsonProperty("custom_mappings") Optional<? extends List<CustomMappingInput>> customMappings) {
+            @JsonProperty("custom_mappings") Optional<? extends List<CustomMappingInput>> customMappings,
+            @JsonProperty("consent_state") Optional<? extends ConsentState> consentState,
+            @JsonProperty("latest_consent") Optional<? extends ConsentRecordInput> latestConsent,
+            @JsonProperty("application_data_scopes") Optional<? extends DataScopesInput> applicationDataScopes) {
         Utils.checkNotNull(enabled, "enabled");
         Utils.checkNotNull(settings, "settings");
         Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(configuration, "configuration");
         Utils.checkNotNull(customMappings, "customMappings");
+        Utils.checkNotNull(consentState, "consentState");
+        Utils.checkNotNull(latestConsent, "latestConsent");
+        Utils.checkNotNull(applicationDataScopes, "applicationDataScopes");
         this.enabled = enabled;
         this.settings = settings;
         this.metadata = metadata;
         this.configuration = configuration;
         this.customMappings = customMappings;
+        this.consentState = consentState;
+        this.latestConsent = latestConsent;
+        this.applicationDataScopes = applicationDataScopes;
     }
     
     public ConnectionInput() {
         this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty());
     }
 
@@ -117,6 +144,27 @@ public class ConnectionInput {
     @JsonIgnore
     public Optional<List<CustomMappingInput>> customMappings() {
         return (Optional<List<CustomMappingInput>>) customMappings;
+    }
+
+    /**
+     * The current consent state of the connection
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<ConsentState> consentState() {
+        return (Optional<ConsentState>) consentState;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<ConsentRecordInput> latestConsent() {
+        return (Optional<ConsentRecordInput>) latestConsent;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<DataScopesInput> applicationDataScopes() {
+        return (Optional<DataScopesInput>) applicationDataScopes;
     }
 
     public static Builder builder() {
@@ -211,6 +259,51 @@ public class ConnectionInput {
         return this;
     }
 
+    /**
+     * The current consent state of the connection
+     */
+    public ConnectionInput withConsentState(ConsentState consentState) {
+        Utils.checkNotNull(consentState, "consentState");
+        this.consentState = Optional.ofNullable(consentState);
+        return this;
+    }
+
+
+    /**
+     * The current consent state of the connection
+     */
+    public ConnectionInput withConsentState(Optional<? extends ConsentState> consentState) {
+        Utils.checkNotNull(consentState, "consentState");
+        this.consentState = consentState;
+        return this;
+    }
+
+    public ConnectionInput withLatestConsent(ConsentRecordInput latestConsent) {
+        Utils.checkNotNull(latestConsent, "latestConsent");
+        this.latestConsent = Optional.ofNullable(latestConsent);
+        return this;
+    }
+
+
+    public ConnectionInput withLatestConsent(Optional<? extends ConsentRecordInput> latestConsent) {
+        Utils.checkNotNull(latestConsent, "latestConsent");
+        this.latestConsent = latestConsent;
+        return this;
+    }
+
+    public ConnectionInput withApplicationDataScopes(DataScopesInput applicationDataScopes) {
+        Utils.checkNotNull(applicationDataScopes, "applicationDataScopes");
+        this.applicationDataScopes = Optional.ofNullable(applicationDataScopes);
+        return this;
+    }
+
+
+    public ConnectionInput withApplicationDataScopes(Optional<? extends DataScopesInput> applicationDataScopes) {
+        Utils.checkNotNull(applicationDataScopes, "applicationDataScopes");
+        this.applicationDataScopes = applicationDataScopes;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -225,14 +318,18 @@ public class ConnectionInput {
             Utils.enhancedDeepEquals(this.settings, other.settings) &&
             Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
             Utils.enhancedDeepEquals(this.configuration, other.configuration) &&
-            Utils.enhancedDeepEquals(this.customMappings, other.customMappings);
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
+            Utils.enhancedDeepEquals(this.consentState, other.consentState) &&
+            Utils.enhancedDeepEquals(this.latestConsent, other.latestConsent) &&
+            Utils.enhancedDeepEquals(this.applicationDataScopes, other.applicationDataScopes);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             enabled, settings, metadata,
-            configuration, customMappings);
+            configuration, customMappings, consentState,
+            latestConsent, applicationDataScopes);
     }
     
     @Override
@@ -242,7 +339,10 @@ public class ConnectionInput {
                 "settings", settings,
                 "metadata", metadata,
                 "configuration", configuration,
-                "customMappings", customMappings);
+                "customMappings", customMappings,
+                "consentState", consentState,
+                "latestConsent", latestConsent,
+                "applicationDataScopes", applicationDataScopes);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -257,6 +357,12 @@ public class ConnectionInput {
         private Optional<? extends List<ConnectionConfiguration>> configuration = Optional.empty();
 
         private Optional<? extends List<CustomMappingInput>> customMappings = Optional.empty();
+
+        private Optional<? extends ConsentState> consentState = Optional.empty();
+
+        private Optional<? extends ConsentRecordInput> latestConsent = Optional.empty();
+
+        private Optional<? extends DataScopesInput> applicationDataScopes = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -351,11 +457,57 @@ public class ConnectionInput {
             return this;
         }
 
+
+        /**
+         * The current consent state of the connection
+         */
+        public Builder consentState(ConsentState consentState) {
+            Utils.checkNotNull(consentState, "consentState");
+            this.consentState = Optional.ofNullable(consentState);
+            return this;
+        }
+
+        /**
+         * The current consent state of the connection
+         */
+        public Builder consentState(Optional<? extends ConsentState> consentState) {
+            Utils.checkNotNull(consentState, "consentState");
+            this.consentState = consentState;
+            return this;
+        }
+
+
+        public Builder latestConsent(ConsentRecordInput latestConsent) {
+            Utils.checkNotNull(latestConsent, "latestConsent");
+            this.latestConsent = Optional.ofNullable(latestConsent);
+            return this;
+        }
+
+        public Builder latestConsent(Optional<? extends ConsentRecordInput> latestConsent) {
+            Utils.checkNotNull(latestConsent, "latestConsent");
+            this.latestConsent = latestConsent;
+            return this;
+        }
+
+
+        public Builder applicationDataScopes(DataScopesInput applicationDataScopes) {
+            Utils.checkNotNull(applicationDataScopes, "applicationDataScopes");
+            this.applicationDataScopes = Optional.ofNullable(applicationDataScopes);
+            return this;
+        }
+
+        public Builder applicationDataScopes(Optional<? extends DataScopesInput> applicationDataScopes) {
+            Utils.checkNotNull(applicationDataScopes, "applicationDataScopes");
+            this.applicationDataScopes = applicationDataScopes;
+            return this;
+        }
+
         public ConnectionInput build() {
 
             return new ConnectionInput(
                 enabled, settings, metadata,
-                configuration, customMappings);
+                configuration, customMappings, consentState,
+                latestConsent, applicationDataScopes);
         }
 
     }

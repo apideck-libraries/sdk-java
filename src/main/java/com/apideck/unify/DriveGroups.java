@@ -32,9 +32,20 @@ import java.util.Optional;
 
 public class DriveGroups {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncDriveGroups asyncSDK;
 
     DriveGroups(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncDriveGroups(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncDriveGroups async() {
+        return asyncSDK;
     }
 
     /**

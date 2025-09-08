@@ -16,9 +16,20 @@ import java.util.Optional;
 
 public class ValidateConnection {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncValidateConnection asyncSDK;
 
     ValidateConnection(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncValidateConnection(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncValidateConnection async() {
+        return asyncSDK;
     }
 
     /**

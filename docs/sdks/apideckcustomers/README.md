@@ -47,8 +47,8 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
+
         sdk.ecommerce().customers().list()
-                .request(req)
                 .callAsStream()
                 .forEach((EcommerceCustomersAllResponse item) -> {
                    // handle page

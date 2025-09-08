@@ -57,8 +57,8 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
+
         sdk.fileStorage().files().list()
-                .request(req)
                 .callAsStream()
                 .forEach((FileStorageFilesAllResponse item) -> {
                    // handle page

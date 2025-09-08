@@ -45,8 +45,8 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
+
         sdk.hris().departments().list()
-                .request(req)
                 .callAsStream()
                 .forEach((HrisDepartmentsAllResponse item) -> {
                    // handle page

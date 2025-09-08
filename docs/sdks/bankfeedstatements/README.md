@@ -45,8 +45,8 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
+
         sdk.accounting().bankFeedStatements().list()
-                .request(req)
                 .callAsStream()
                 .forEach((AccountingBankFeedStatementsAllResponse item) -> {
                    // handle page

@@ -16,9 +16,20 @@ import java.util.Optional;
 
 public class BalanceSheet {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncBalanceSheet asyncSDK;
 
     BalanceSheet(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncBalanceSheet(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncBalanceSheet async() {
+        return asyncSDK;
     }
 
     /**

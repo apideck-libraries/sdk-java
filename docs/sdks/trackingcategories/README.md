@@ -45,8 +45,8 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
+
         sdk.accounting().trackingCategories().list()
-                .request(req)
                 .callAsStream()
                 .forEach((AccountingTrackingCategoriesAllResponse item) -> {
                    // handle page

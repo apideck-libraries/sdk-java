@@ -55,8 +55,8 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
+
         sdk.hris().timeOffRequests().list()
-                .request(req)
                 .callAsStream()
                 .forEach((HrisTimeOffRequestsAllResponse item) -> {
                    // handle page

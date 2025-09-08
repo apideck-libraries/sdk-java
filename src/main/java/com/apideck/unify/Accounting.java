@@ -5,6 +5,7 @@ package com.apideck.unify;
 
 public class Accounting {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncAccounting asyncSDK;
     private final TaxRates taxRates;
     private final Bills bills;
     private final Invoices invoices;
@@ -62,6 +63,7 @@ public class Accounting {
         this.bankFeedStatements = new BankFeedStatements(this.sdkConfiguration);
         this.categories = new Categories(this.sdkConfiguration);
         this.quotes = new Quotes(this.sdkConfiguration);
+        this.asyncSDK = new AsyncAccounting(this, sdkConfiguration);
     }
 
     public final TaxRates taxRates() {
@@ -170,6 +172,15 @@ public class Accounting {
 
     public final Quotes quotes() {
         return quotes;
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncAccounting async() {
+        return asyncSDK;
     }
 
 }

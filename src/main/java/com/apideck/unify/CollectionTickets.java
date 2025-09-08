@@ -32,9 +32,20 @@ import java.util.Optional;
 
 public class CollectionTickets {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncCollectionTickets asyncSDK;
 
     CollectionTickets(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncCollectionTickets(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncCollectionTickets async() {
+        return asyncSDK;
     }
 
     /**

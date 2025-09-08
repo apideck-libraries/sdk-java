@@ -26,6 +26,13 @@ public class TrackingCategoryInput {
     private JsonNullable<String> parentId;
 
     /**
+     * The name of the parent tracking category.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("parent_name")
+    private JsonNullable<String> parentName;
+
+    /**
      * The name of the tracking category.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -70,6 +77,7 @@ public class TrackingCategoryInput {
     @JsonCreator
     public TrackingCategoryInput(
             @JsonProperty("parent_id") JsonNullable<String> parentId,
+            @JsonProperty("parent_name") JsonNullable<String> parentName,
             @JsonProperty("name") Optional<String> name,
             @JsonProperty("code") JsonNullable<String> code,
             @JsonProperty("status") Optional<? extends TrackingCategoryStatus> status,
@@ -77,6 +85,7 @@ public class TrackingCategoryInput {
             @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough,
             @JsonProperty("subsidiaries") Optional<? extends List<TrackingCategorySubsidiaries>> subsidiaries) {
         Utils.checkNotNull(parentId, "parentId");
+        Utils.checkNotNull(parentName, "parentName");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(code, "code");
         Utils.checkNotNull(status, "status");
@@ -84,6 +93,7 @@ public class TrackingCategoryInput {
         Utils.checkNotNull(passThrough, "passThrough");
         Utils.checkNotNull(subsidiaries, "subsidiaries");
         this.parentId = parentId;
+        this.parentName = parentName;
         this.name = name;
         this.code = code;
         this.status = status;
@@ -93,9 +103,9 @@ public class TrackingCategoryInput {
     }
     
     public TrackingCategoryInput() {
-        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -104,6 +114,14 @@ public class TrackingCategoryInput {
     @JsonIgnore
     public JsonNullable<String> parentId() {
         return parentId;
+    }
+
+    /**
+     * The name of the parent tracking category.
+     */
+    @JsonIgnore
+    public JsonNullable<String> parentName() {
+        return parentName;
     }
 
     /**
@@ -177,6 +195,24 @@ public class TrackingCategoryInput {
     public TrackingCategoryInput withParentId(JsonNullable<String> parentId) {
         Utils.checkNotNull(parentId, "parentId");
         this.parentId = parentId;
+        return this;
+    }
+
+    /**
+     * The name of the parent tracking category.
+     */
+    public TrackingCategoryInput withParentName(String parentName) {
+        Utils.checkNotNull(parentName, "parentName");
+        this.parentName = JsonNullable.of(parentName);
+        return this;
+    }
+
+    /**
+     * The name of the parent tracking category.
+     */
+    public TrackingCategoryInput withParentName(JsonNullable<String> parentName) {
+        Utils.checkNotNull(parentName, "parentName");
+        this.parentName = parentName;
         return this;
     }
 
@@ -303,6 +339,7 @@ public class TrackingCategoryInput {
         TrackingCategoryInput other = (TrackingCategoryInput) o;
         return 
             Utils.enhancedDeepEquals(this.parentId, other.parentId) &&
+            Utils.enhancedDeepEquals(this.parentName, other.parentName) &&
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.code, other.code) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
@@ -314,15 +351,16 @@ public class TrackingCategoryInput {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            parentId, name, code,
-            status, rowVersion, passThrough,
-            subsidiaries);
+            parentId, parentName, name,
+            code, status, rowVersion,
+            passThrough, subsidiaries);
     }
     
     @Override
     public String toString() {
         return Utils.toString(TrackingCategoryInput.class,
                 "parentId", parentId,
+                "parentName", parentName,
                 "name", name,
                 "code", code,
                 "status", status,
@@ -335,6 +373,8 @@ public class TrackingCategoryInput {
     public final static class Builder {
 
         private JsonNullable<String> parentId = JsonNullable.undefined();
+
+        private JsonNullable<String> parentName = JsonNullable.undefined();
 
         private Optional<String> name = Optional.empty();
 
@@ -368,6 +408,25 @@ public class TrackingCategoryInput {
         public Builder parentId(JsonNullable<String> parentId) {
             Utils.checkNotNull(parentId, "parentId");
             this.parentId = parentId;
+            return this;
+        }
+
+
+        /**
+         * The name of the parent tracking category.
+         */
+        public Builder parentName(String parentName) {
+            Utils.checkNotNull(parentName, "parentName");
+            this.parentName = JsonNullable.of(parentName);
+            return this;
+        }
+
+        /**
+         * The name of the parent tracking category.
+         */
+        public Builder parentName(JsonNullable<String> parentName) {
+            Utils.checkNotNull(parentName, "parentName");
+            this.parentName = parentName;
             return this;
         }
 
@@ -488,9 +547,9 @@ public class TrackingCategoryInput {
         public TrackingCategoryInput build() {
 
             return new TrackingCategoryInput(
-                parentId, name, code,
-                status, rowVersion, passThrough,
-                subsidiaries);
+                parentId, parentName, name,
+                code, status, rowVersion,
+                passThrough, subsidiaries);
         }
 
     }

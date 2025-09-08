@@ -118,6 +118,7 @@ public class Apideck {
     }
 
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncApideck asyncSDK;
 
     /**
      * The Builder class allows the configuration of a new instance of the SDK.
@@ -307,5 +308,16 @@ public class Apideck {
                         this.sdkConfiguration.client()));
         this.sdkConfiguration.setServerUrl(data.baseUrl());
         this.sdkConfiguration.setClient(data.client());
+        this.asyncSDK = new AsyncApideck(this, sdkConfiguration);
     }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncApideck async() {
+        return asyncSDK;
+    }
+
 }

@@ -16,9 +16,20 @@ import java.util.Optional;
 
 public class ProfitAndLoss {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncProfitAndLoss asyncSDK;
 
     ProfitAndLoss(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncProfitAndLoss(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncProfitAndLoss async() {
+        return asyncSDK;
     }
 
     /**

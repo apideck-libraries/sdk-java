@@ -5,15 +5,26 @@ package com.apideck.unify;
 
 public class Sms {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncSms asyncSDK;
     private final Messages messages;
 
     Sms(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
         this.messages = new Messages(this.sdkConfiguration);
+        this.asyncSDK = new AsyncSms(this, sdkConfiguration);
     }
 
     public final Messages messages() {
         return messages;
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncSms async() {
+        return asyncSDK;
     }
 
 }

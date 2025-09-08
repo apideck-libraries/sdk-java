@@ -32,9 +32,20 @@ import java.util.Optional;
 
 public class TaxRates {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncTaxRates asyncSDK;
 
     TaxRates(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncTaxRates(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncTaxRates async() {
+        return asyncSDK;
     }
 
     /**

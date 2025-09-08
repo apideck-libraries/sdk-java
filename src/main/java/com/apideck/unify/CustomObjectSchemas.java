@@ -32,9 +32,20 @@ import java.util.Optional;
 
 public class CustomObjectSchemas {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncCustomObjectSchemas asyncSDK;
 
     CustomObjectSchemas(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncCustomObjectSchemas(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncCustomObjectSchemas async() {
+        return asyncSDK;
     }
 
     /**

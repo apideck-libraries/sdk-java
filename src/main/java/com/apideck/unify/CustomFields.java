@@ -16,9 +16,20 @@ import java.util.Optional;
 
 public class CustomFields {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncCustomFields asyncSDK;
 
     CustomFields(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncCustomFields(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncCustomFields async() {
+        return asyncSDK;
     }
 
     /**

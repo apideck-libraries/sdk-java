@@ -45,8 +45,8 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
+
         sdk.accounting().attachments().list()
-                .request(req)
                 .callAsStream()
                 .forEach((AccountingAttachmentsAllResponse item) -> {
                    // handle page
@@ -117,9 +117,6 @@ public class Application {
                 .request(req)
                 .call();
 
-        if (res.createAttachmentResponse().isPresent()) {
-            // handle response
-        }
     }
 }
 ```

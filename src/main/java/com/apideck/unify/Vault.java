@@ -5,10 +5,13 @@ package com.apideck.unify;
 
 public class Vault {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncVault asyncSDK;
     private final Consumers consumers;
     private final ConsumerRequestCounts consumerRequestCounts;
     private final Connections connections;
     private final ValidateConnection validateConnection;
+    private final ConnectionConsents connectionConsents;
+    private final ConnectionConsent connectionConsent;
     private final CreateCallback createCallback;
     private final ConnectionSettings connectionSettings;
     private final CustomFields customFields;
@@ -23,6 +26,8 @@ public class Vault {
         this.consumerRequestCounts = new ConsumerRequestCounts(this.sdkConfiguration);
         this.connections = new Connections(this.sdkConfiguration);
         this.validateConnection = new ValidateConnection(this.sdkConfiguration);
+        this.connectionConsents = new ConnectionConsents(this.sdkConfiguration);
+        this.connectionConsent = new ConnectionConsent(this.sdkConfiguration);
         this.createCallback = new CreateCallback(this.sdkConfiguration);
         this.connectionSettings = new ConnectionSettings(this.sdkConfiguration);
         this.customFields = new CustomFields(this.sdkConfiguration);
@@ -30,6 +35,7 @@ public class Vault {
         this.customMappings = new CustomMappings(this.sdkConfiguration);
         this.sessions = new Sessions(this.sdkConfiguration);
         this.logs = new Logs(this.sdkConfiguration);
+        this.asyncSDK = new AsyncVault(this, sdkConfiguration);
     }
 
     public final Consumers consumers() {
@@ -46,6 +52,14 @@ public class Vault {
 
     public final ValidateConnection validateConnection() {
         return validateConnection;
+    }
+
+    public final ConnectionConsents connectionConsents() {
+        return connectionConsents;
+    }
+
+    public final ConnectionConsent connectionConsent() {
+        return connectionConsent;
     }
 
     public final CreateCallback createCallback() {
@@ -74,6 +88,15 @@ public class Vault {
 
     public final Logs logs() {
         return logs;
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncVault async() {
+        return asyncSDK;
     }
 
 }

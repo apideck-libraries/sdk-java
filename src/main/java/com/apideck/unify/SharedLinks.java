@@ -32,9 +32,20 @@ import java.util.Optional;
 
 public class SharedLinks {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncSharedLinks asyncSDK;
 
     SharedLinks(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncSharedLinks(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncSharedLinks async() {
+        return asyncSDK;
     }
 
     /**

@@ -17,9 +17,20 @@ import java.util.Optional;
 
 public class ApiResources {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncApiResources asyncSDK;
 
     ApiResources(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncApiResources(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncApiResources async() {
+        return asyncSDK;
     }
 
     /**

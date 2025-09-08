@@ -214,6 +214,30 @@ public class Connection {
     @JsonProperty("custom_mappings")
     private Optional<? extends List<CustomMapping>> customMappings;
 
+    /**
+     * The current consent state of the connection
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("consent_state")
+    private Optional<? extends ConsentState> consentState;
+
+    /**
+     * Immutable array of consent records for compliance and audit purposes
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("consents")
+    private Optional<? extends List<ConsentRecord>> consents;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("latest_consent")
+    private Optional<? extends ConsentRecord> latestConsent;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("application_data_scopes")
+    private Optional<? extends DataScopes> applicationDataScopes;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("updated_at")
@@ -251,6 +275,10 @@ public class Connection {
             @JsonProperty("has_guide") Optional<Boolean> hasGuide,
             @JsonProperty("created_at") Optional<Double> createdAt,
             @JsonProperty("custom_mappings") Optional<? extends List<CustomMapping>> customMappings,
+            @JsonProperty("consent_state") Optional<? extends ConsentState> consentState,
+            @JsonProperty("consents") Optional<? extends List<ConsentRecord>> consents,
+            @JsonProperty("latest_consent") Optional<? extends ConsentRecord> latestConsent,
+            @JsonProperty("application_data_scopes") Optional<? extends DataScopes> applicationDataScopes,
             @JsonProperty("updated_at") JsonNullable<Double> updatedAt) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(serviceId, "serviceId");
@@ -282,6 +310,10 @@ public class Connection {
         Utils.checkNotNull(hasGuide, "hasGuide");
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(customMappings, "customMappings");
+        Utils.checkNotNull(consentState, "consentState");
+        Utils.checkNotNull(consents, "consents");
+        Utils.checkNotNull(latestConsent, "latestConsent");
+        Utils.checkNotNull(applicationDataScopes, "applicationDataScopes");
         Utils.checkNotNull(updatedAt, "updatedAt");
         this.id = id;
         this.serviceId = serviceId;
@@ -313,6 +345,10 @@ public class Connection {
         this.hasGuide = hasGuide;
         this.createdAt = createdAt;
         this.customMappings = customMappings;
+        this.consentState = consentState;
+        this.consents = consents;
+        this.latestConsent = latestConsent;
+        this.applicationDataScopes = applicationDataScopes;
         this.updatedAt = updatedAt;
     }
     
@@ -327,7 +363,8 @@ public class Connection {
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            JsonNullable.undefined());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -556,6 +593,36 @@ public class Connection {
     @JsonIgnore
     public Optional<List<CustomMapping>> customMappings() {
         return (Optional<List<CustomMapping>>) customMappings;
+    }
+
+    /**
+     * The current consent state of the connection
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<ConsentState> consentState() {
+        return (Optional<ConsentState>) consentState;
+    }
+
+    /**
+     * Immutable array of consent records for compliance and audit purposes
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<ConsentRecord>> consents() {
+        return (Optional<List<ConsentRecord>>) consents;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<ConsentRecord> latestConsent() {
+        return (Optional<ConsentRecord>) latestConsent;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<DataScopes> applicationDataScopes() {
+        return (Optional<DataScopes>) applicationDataScopes;
     }
 
     @JsonIgnore
@@ -1080,6 +1147,70 @@ public class Connection {
         return this;
     }
 
+    /**
+     * The current consent state of the connection
+     */
+    public Connection withConsentState(ConsentState consentState) {
+        Utils.checkNotNull(consentState, "consentState");
+        this.consentState = Optional.ofNullable(consentState);
+        return this;
+    }
+
+
+    /**
+     * The current consent state of the connection
+     */
+    public Connection withConsentState(Optional<? extends ConsentState> consentState) {
+        Utils.checkNotNull(consentState, "consentState");
+        this.consentState = consentState;
+        return this;
+    }
+
+    /**
+     * Immutable array of consent records for compliance and audit purposes
+     */
+    public Connection withConsents(List<ConsentRecord> consents) {
+        Utils.checkNotNull(consents, "consents");
+        this.consents = Optional.ofNullable(consents);
+        return this;
+    }
+
+
+    /**
+     * Immutable array of consent records for compliance and audit purposes
+     */
+    public Connection withConsents(Optional<? extends List<ConsentRecord>> consents) {
+        Utils.checkNotNull(consents, "consents");
+        this.consents = consents;
+        return this;
+    }
+
+    public Connection withLatestConsent(ConsentRecord latestConsent) {
+        Utils.checkNotNull(latestConsent, "latestConsent");
+        this.latestConsent = Optional.ofNullable(latestConsent);
+        return this;
+    }
+
+
+    public Connection withLatestConsent(Optional<? extends ConsentRecord> latestConsent) {
+        Utils.checkNotNull(latestConsent, "latestConsent");
+        this.latestConsent = latestConsent;
+        return this;
+    }
+
+    public Connection withApplicationDataScopes(DataScopes applicationDataScopes) {
+        Utils.checkNotNull(applicationDataScopes, "applicationDataScopes");
+        this.applicationDataScopes = Optional.ofNullable(applicationDataScopes);
+        return this;
+    }
+
+
+    public Connection withApplicationDataScopes(Optional<? extends DataScopes> applicationDataScopes) {
+        Utils.checkNotNull(applicationDataScopes, "applicationDataScopes");
+        this.applicationDataScopes = applicationDataScopes;
+        return this;
+    }
+
     public Connection withUpdatedAt(double updatedAt) {
         Utils.checkNotNull(updatedAt, "updatedAt");
         this.updatedAt = JsonNullable.of(updatedAt);
@@ -1132,6 +1263,10 @@ public class Connection {
             Utils.enhancedDeepEquals(this.hasGuide, other.hasGuide) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
             Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
+            Utils.enhancedDeepEquals(this.consentState, other.consentState) &&
+            Utils.enhancedDeepEquals(this.consents, other.consents) &&
+            Utils.enhancedDeepEquals(this.latestConsent, other.latestConsent) &&
+            Utils.enhancedDeepEquals(this.applicationDataScopes, other.applicationDataScopes) &&
             Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt);
     }
     
@@ -1148,7 +1283,8 @@ public class Connection {
             resourceSchemaSupport, resourceSettingsSupport, validationSupport,
             schemaSupport, settingsRequiredForAuthorization, subscriptions,
             hasGuide, createdAt, customMappings,
-            updatedAt);
+            consentState, consents, latestConsent,
+            applicationDataScopes, updatedAt);
     }
     
     @Override
@@ -1184,6 +1320,10 @@ public class Connection {
                 "hasGuide", hasGuide,
                 "createdAt", createdAt,
                 "customMappings", customMappings,
+                "consentState", consentState,
+                "consents", consents,
+                "latestConsent", latestConsent,
+                "applicationDataScopes", applicationDataScopes,
                 "updatedAt", updatedAt);
     }
 
@@ -1249,6 +1389,14 @@ public class Connection {
         private Optional<Double> createdAt = Optional.empty();
 
         private Optional<? extends List<CustomMapping>> customMappings = Optional.empty();
+
+        private Optional<? extends ConsentState> consentState = Optional.empty();
+
+        private Optional<? extends List<ConsentRecord>> consents = Optional.empty();
+
+        private Optional<? extends ConsentRecord> latestConsent = Optional.empty();
+
+        private Optional<? extends DataScopes> applicationDataScopes = Optional.empty();
 
         private JsonNullable<Double> updatedAt = JsonNullable.undefined();
 
@@ -1773,6 +1921,70 @@ public class Connection {
         }
 
 
+        /**
+         * The current consent state of the connection
+         */
+        public Builder consentState(ConsentState consentState) {
+            Utils.checkNotNull(consentState, "consentState");
+            this.consentState = Optional.ofNullable(consentState);
+            return this;
+        }
+
+        /**
+         * The current consent state of the connection
+         */
+        public Builder consentState(Optional<? extends ConsentState> consentState) {
+            Utils.checkNotNull(consentState, "consentState");
+            this.consentState = consentState;
+            return this;
+        }
+
+
+        /**
+         * Immutable array of consent records for compliance and audit purposes
+         */
+        public Builder consents(List<ConsentRecord> consents) {
+            Utils.checkNotNull(consents, "consents");
+            this.consents = Optional.ofNullable(consents);
+            return this;
+        }
+
+        /**
+         * Immutable array of consent records for compliance and audit purposes
+         */
+        public Builder consents(Optional<? extends List<ConsentRecord>> consents) {
+            Utils.checkNotNull(consents, "consents");
+            this.consents = consents;
+            return this;
+        }
+
+
+        public Builder latestConsent(ConsentRecord latestConsent) {
+            Utils.checkNotNull(latestConsent, "latestConsent");
+            this.latestConsent = Optional.ofNullable(latestConsent);
+            return this;
+        }
+
+        public Builder latestConsent(Optional<? extends ConsentRecord> latestConsent) {
+            Utils.checkNotNull(latestConsent, "latestConsent");
+            this.latestConsent = latestConsent;
+            return this;
+        }
+
+
+        public Builder applicationDataScopes(DataScopes applicationDataScopes) {
+            Utils.checkNotNull(applicationDataScopes, "applicationDataScopes");
+            this.applicationDataScopes = Optional.ofNullable(applicationDataScopes);
+            return this;
+        }
+
+        public Builder applicationDataScopes(Optional<? extends DataScopes> applicationDataScopes) {
+            Utils.checkNotNull(applicationDataScopes, "applicationDataScopes");
+            this.applicationDataScopes = applicationDataScopes;
+            return this;
+        }
+
+
         public Builder updatedAt(double updatedAt) {
             Utils.checkNotNull(updatedAt, "updatedAt");
             this.updatedAt = JsonNullable.of(updatedAt);
@@ -1798,7 +2010,8 @@ public class Connection {
                 resourceSchemaSupport, resourceSettingsSupport, validationSupport,
                 schemaSupport, settingsRequiredForAuthorization, subscriptions,
                 hasGuide, createdAt, customMappings,
-                updatedAt);
+                consentState, consents, latestConsent,
+                applicationDataScopes, updatedAt);
         }
 
     }

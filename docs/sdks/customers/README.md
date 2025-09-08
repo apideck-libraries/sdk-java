@@ -61,8 +61,8 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
+
         sdk.accounting().customers().list()
-                .request(req)
                 .callAsStream()
                 .forEach((AccountingCustomersAllResponse item) -> {
                    // handle page

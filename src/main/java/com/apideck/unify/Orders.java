@@ -20,9 +20,20 @@ import java.util.Optional;
 
 public class Orders {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncOrders asyncSDK;
 
     Orders(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncOrders(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncOrders async() {
+        return asyncSDK;
     }
 
     /**

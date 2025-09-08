@@ -43,8 +43,8 @@ public class Application {
                     .build())
                 .build();
 
+
         sdk.vault().logs().list()
-                .request(req)
                 .callAsStream()
                 .forEach((VaultLogsAllResponse item) -> {
                    // handle page

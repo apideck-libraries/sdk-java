@@ -16,9 +16,20 @@ import java.util.Optional;
 
 public class Stores {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncStores asyncSDK;
 
     Stores(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncStores(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncStores async() {
+        return asyncSDK;
     }
 
     /**

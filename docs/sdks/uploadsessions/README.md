@@ -254,9 +254,6 @@ public class Application {
                 .request(req)
                 .call();
 
-        if (res.updateUploadSessionResponse().isPresent()) {
-            // handle response
-        }
     }
 }
 ```

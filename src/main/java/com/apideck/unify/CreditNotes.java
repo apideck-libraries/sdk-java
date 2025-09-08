@@ -32,9 +32,20 @@ import java.util.Optional;
 
 public class CreditNotes {
     private final SDKConfiguration sdkConfiguration;
+    private final AsyncCreditNotes asyncSDK;
 
     CreditNotes(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.asyncSDK = new AsyncCreditNotes(this, sdkConfiguration);
+    }
+
+    /**
+     * Switches to the async SDK.
+     * 
+     * @return The async SDK
+     */
+    public AsyncCreditNotes async() {
+        return asyncSDK;
     }
 
     /**

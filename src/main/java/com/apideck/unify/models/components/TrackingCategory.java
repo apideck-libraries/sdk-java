@@ -36,6 +36,13 @@ public class TrackingCategory {
     private JsonNullable<String> parentId;
 
     /**
+     * The name of the parent tracking category.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("parent_name")
+    private JsonNullable<String> parentName;
+
+    /**
      * The name of the tracking category.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -116,6 +123,7 @@ public class TrackingCategory {
     public TrackingCategory(
             @JsonProperty("id") Optional<String> id,
             @JsonProperty("parent_id") JsonNullable<String> parentId,
+            @JsonProperty("parent_name") JsonNullable<String> parentName,
             @JsonProperty("name") Optional<String> name,
             @JsonProperty("code") JsonNullable<String> code,
             @JsonProperty("status") Optional<? extends TrackingCategoryStatus> status,
@@ -129,6 +137,7 @@ public class TrackingCategory {
             @JsonProperty("subsidiaries") Optional<? extends List<TrackingCategorySubsidiaries>> subsidiaries) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(parentId, "parentId");
+        Utils.checkNotNull(parentName, "parentName");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(code, "code");
         Utils.checkNotNull(status, "status");
@@ -142,6 +151,7 @@ public class TrackingCategory {
         Utils.checkNotNull(subsidiaries, "subsidiaries");
         this.id = id;
         this.parentId = parentId;
+        this.parentName = parentName;
         this.name = name;
         this.code = code;
         this.status = status;
@@ -156,11 +166,11 @@ public class TrackingCategory {
     }
     
     public TrackingCategory() {
-        this(Optional.empty(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -177,6 +187,14 @@ public class TrackingCategory {
     @JsonIgnore
     public JsonNullable<String> parentId() {
         return parentId;
+    }
+
+    /**
+     * The name of the parent tracking category.
+     */
+    @JsonIgnore
+    public JsonNullable<String> parentName() {
+        return parentName;
     }
 
     /**
@@ -310,6 +328,24 @@ public class TrackingCategory {
     public TrackingCategory withParentId(JsonNullable<String> parentId) {
         Utils.checkNotNull(parentId, "parentId");
         this.parentId = parentId;
+        return this;
+    }
+
+    /**
+     * The name of the parent tracking category.
+     */
+    public TrackingCategory withParentName(String parentName) {
+        Utils.checkNotNull(parentName, "parentName");
+        this.parentName = JsonNullable.of(parentName);
+        return this;
+    }
+
+    /**
+     * The name of the parent tracking category.
+     */
+    public TrackingCategory withParentName(JsonNullable<String> parentName) {
+        Utils.checkNotNull(parentName, "parentName");
+        this.parentName = parentName;
         return this;
     }
 
@@ -527,6 +563,7 @@ public class TrackingCategory {
         return 
             Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.parentId, other.parentId) &&
+            Utils.enhancedDeepEquals(this.parentName, other.parentName) &&
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.code, other.code) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
@@ -543,11 +580,11 @@ public class TrackingCategory {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, parentId, name,
-            code, status, customMappings,
-            rowVersion, updatedBy, createdBy,
-            updatedAt, createdAt, passThrough,
-            subsidiaries);
+            id, parentId, parentName,
+            name, code, status,
+            customMappings, rowVersion, updatedBy,
+            createdBy, updatedAt, createdAt,
+            passThrough, subsidiaries);
     }
     
     @Override
@@ -555,6 +592,7 @@ public class TrackingCategory {
         return Utils.toString(TrackingCategory.class,
                 "id", id,
                 "parentId", parentId,
+                "parentName", parentName,
                 "name", name,
                 "code", code,
                 "status", status,
@@ -574,6 +612,8 @@ public class TrackingCategory {
         private Optional<String> id = Optional.empty();
 
         private JsonNullable<String> parentId = JsonNullable.undefined();
+
+        private JsonNullable<String> parentName = JsonNullable.undefined();
 
         private Optional<String> name = Optional.empty();
 
@@ -636,6 +676,25 @@ public class TrackingCategory {
         public Builder parentId(JsonNullable<String> parentId) {
             Utils.checkNotNull(parentId, "parentId");
             this.parentId = parentId;
+            return this;
+        }
+
+
+        /**
+         * The name of the parent tracking category.
+         */
+        public Builder parentName(String parentName) {
+            Utils.checkNotNull(parentName, "parentName");
+            this.parentName = JsonNullable.of(parentName);
+            return this;
+        }
+
+        /**
+         * The name of the parent tracking category.
+         */
+        public Builder parentName(JsonNullable<String> parentName) {
+            Utils.checkNotNull(parentName, "parentName");
+            this.parentName = parentName;
             return this;
         }
 
@@ -851,11 +910,11 @@ public class TrackingCategory {
         public TrackingCategory build() {
 
             return new TrackingCategory(
-                id, parentId, name,
-                code, status, customMappings,
-                rowVersion, updatedBy, createdBy,
-                updatedAt, createdAt, passThrough,
-                subsidiaries);
+                id, parentId, parentName,
+                name, code, status,
+                customMappings, rowVersion, updatedBy,
+                createdBy, updatedAt, createdAt,
+                passThrough, subsidiaries);
         }
 
     }

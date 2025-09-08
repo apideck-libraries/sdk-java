@@ -54,8 +54,8 @@ public class Application {
                     .build())
                 .build();
 
+
         sdk.accounting().purchaseOrders().list()
-                .request(req)
                 .callAsStream()
                 .forEach((AccountingPurchaseOrdersAllResponse item) -> {
                    // handle page

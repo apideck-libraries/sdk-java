@@ -25,12 +25,14 @@ import com.apideck.unify.operations.AccountingPurchaseOrdersAll;
 import com.apideck.unify.operations.AccountingPurchaseOrdersDelete;
 import com.apideck.unify.operations.AccountingPurchaseOrdersOne;
 import com.apideck.unify.operations.AccountingPurchaseOrdersUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncPurchaseOrders {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final PurchaseOrders syncSDK;
 
@@ -83,7 +85,9 @@ public class AsyncPurchaseOrders {
      */
     public CompletableFuture<AccountingPurchaseOrdersAllResponse> list(AccountingPurchaseOrdersAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingPurchaseOrdersAllRequest, AccountingPurchaseOrdersAllResponse> operation
-              = new AccountingPurchaseOrdersAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingPurchaseOrdersAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -123,7 +127,9 @@ public class AsyncPurchaseOrders {
      */
     public CompletableFuture<AccountingPurchaseOrdersAddResponse> create(AccountingPurchaseOrdersAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingPurchaseOrdersAddRequest, AccountingPurchaseOrdersAddResponse> operation
-              = new AccountingPurchaseOrdersAdd.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingPurchaseOrdersAdd.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -163,7 +169,9 @@ public class AsyncPurchaseOrders {
      */
     public CompletableFuture<AccountingPurchaseOrdersOneResponse> get(AccountingPurchaseOrdersOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingPurchaseOrdersOneRequest, AccountingPurchaseOrdersOneResponse> operation
-              = new AccountingPurchaseOrdersOne.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingPurchaseOrdersOne.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -203,7 +211,9 @@ public class AsyncPurchaseOrders {
      */
     public CompletableFuture<AccountingPurchaseOrdersUpdateResponse> update(AccountingPurchaseOrdersUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingPurchaseOrdersUpdateRequest, AccountingPurchaseOrdersUpdateResponse> operation
-              = new AccountingPurchaseOrdersUpdate.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingPurchaseOrdersUpdate.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -243,7 +253,9 @@ public class AsyncPurchaseOrders {
      */
     public CompletableFuture<AccountingPurchaseOrdersDeleteResponse> delete(AccountingPurchaseOrdersDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingPurchaseOrdersDeleteRequest, AccountingPurchaseOrdersDeleteResponse> operation
-              = new AccountingPurchaseOrdersDelete.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingPurchaseOrdersDelete.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

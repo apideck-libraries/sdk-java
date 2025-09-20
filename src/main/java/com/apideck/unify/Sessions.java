@@ -10,6 +10,7 @@ import com.apideck.unify.models.operations.VaultSessionsCreateRequest;
 import com.apideck.unify.models.operations.VaultSessionsCreateRequestBuilder;
 import com.apideck.unify.models.operations.VaultSessionsCreateResponse;
 import com.apideck.unify.operations.VaultSessionsCreate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
@@ -17,6 +18,7 @@ import java.util.Optional;
 
 
 public class Sessions {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncSessions asyncSDK;
 
@@ -90,7 +92,7 @@ public class Sessions {
                 .session(session)
                 .build();
         RequestOperation<VaultSessionsCreateRequest, VaultSessionsCreateResponse> operation
-              = new VaultSessionsCreate.Sync(sdkConfiguration, options);
+              = new VaultSessionsCreate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

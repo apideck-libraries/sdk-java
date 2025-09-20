@@ -25,12 +25,14 @@ import com.apideck.unify.operations.AccountingBankFeedAccountsAll;
 import com.apideck.unify.operations.AccountingBankFeedAccountsDelete;
 import com.apideck.unify.operations.AccountingBankFeedAccountsOne;
 import com.apideck.unify.operations.AccountingBankFeedAccountsUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncBankFeedAccounts {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final BankFeedAccounts syncSDK;
 
@@ -83,7 +85,9 @@ public class AsyncBankFeedAccounts {
      */
     public CompletableFuture<AccountingBankFeedAccountsAllResponse> list(AccountingBankFeedAccountsAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingBankFeedAccountsAllRequest, AccountingBankFeedAccountsAllResponse> operation
-              = new AccountingBankFeedAccountsAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingBankFeedAccountsAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -123,7 +127,9 @@ public class AsyncBankFeedAccounts {
      */
     public CompletableFuture<AccountingBankFeedAccountsAddResponse> create(AccountingBankFeedAccountsAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingBankFeedAccountsAddRequest, AccountingBankFeedAccountsAddResponse> operation
-              = new AccountingBankFeedAccountsAdd.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingBankFeedAccountsAdd.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -163,7 +169,9 @@ public class AsyncBankFeedAccounts {
      */
     public CompletableFuture<AccountingBankFeedAccountsOneResponse> get(AccountingBankFeedAccountsOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingBankFeedAccountsOneRequest, AccountingBankFeedAccountsOneResponse> operation
-              = new AccountingBankFeedAccountsOne.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingBankFeedAccountsOne.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -203,7 +211,9 @@ public class AsyncBankFeedAccounts {
      */
     public CompletableFuture<AccountingBankFeedAccountsUpdateResponse> update(AccountingBankFeedAccountsUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingBankFeedAccountsUpdateRequest, AccountingBankFeedAccountsUpdateResponse> operation
-              = new AccountingBankFeedAccountsUpdate.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingBankFeedAccountsUpdate.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -243,7 +253,9 @@ public class AsyncBankFeedAccounts {
      */
     public CompletableFuture<AccountingBankFeedAccountsDeleteResponse> delete(AccountingBankFeedAccountsDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingBankFeedAccountsDeleteRequest, AccountingBankFeedAccountsDeleteResponse> operation
-              = new AccountingBankFeedAccountsDelete.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingBankFeedAccountsDelete.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

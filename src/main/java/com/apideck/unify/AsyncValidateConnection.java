@@ -9,12 +9,14 @@ import com.apideck.unify.models.operations.VaultValidateConnectionStateRequest;
 import com.apideck.unify.models.operations.async.VaultValidateConnectionStateRequestBuilder;
 import com.apideck.unify.models.operations.async.VaultValidateConnectionStateResponse;
 import com.apideck.unify.operations.VaultValidateConnectionState;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncValidateConnection {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final ValidateConnection syncSDK;
 
@@ -82,7 +84,9 @@ public class AsyncValidateConnection {
      */
     public CompletableFuture<VaultValidateConnectionStateResponse> state(VaultValidateConnectionStateRequest request, Optional<Options> options) {
         AsyncRequestOperation<VaultValidateConnectionStateRequest, VaultValidateConnectionStateResponse> operation
-              = new VaultValidateConnectionState.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new VaultValidateConnectionState.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

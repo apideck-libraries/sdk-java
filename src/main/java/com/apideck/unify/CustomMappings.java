@@ -9,6 +9,7 @@ import com.apideck.unify.models.operations.VaultCustomMappingsAllRequest;
 import com.apideck.unify.models.operations.VaultCustomMappingsAllRequestBuilder;
 import com.apideck.unify.models.operations.VaultCustomMappingsAllResponse;
 import com.apideck.unify.operations.VaultCustomMappingsAll;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
@@ -16,6 +17,7 @@ import java.util.Optional;
 
 
 public class CustomMappings {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncCustomMappings asyncSDK;
 
@@ -85,7 +87,7 @@ public class CustomMappings {
                 .serviceId(serviceId)
                 .build();
         RequestOperation<VaultCustomMappingsAllRequest, VaultCustomMappingsAllResponse> operation
-              = new VaultCustomMappingsAll.Sync(sdkConfiguration, options);
+              = new VaultCustomMappingsAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

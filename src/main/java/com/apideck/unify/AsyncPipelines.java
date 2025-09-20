@@ -25,12 +25,14 @@ import com.apideck.unify.operations.CrmPipelinesAll;
 import com.apideck.unify.operations.CrmPipelinesDelete;
 import com.apideck.unify.operations.CrmPipelinesOne;
 import com.apideck.unify.operations.CrmPipelinesUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncPipelines {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final Pipelines syncSDK;
 
@@ -83,7 +85,9 @@ public class AsyncPipelines {
      */
     public CompletableFuture<CrmPipelinesAllResponse> list(CrmPipelinesAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmPipelinesAllRequest, CrmPipelinesAllResponse> operation
-              = new CrmPipelinesAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new CrmPipelinesAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -123,7 +127,9 @@ public class AsyncPipelines {
      */
     public CompletableFuture<CrmPipelinesAddResponse> create(CrmPipelinesAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmPipelinesAddRequest, CrmPipelinesAddResponse> operation
-              = new CrmPipelinesAdd.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new CrmPipelinesAdd.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -163,7 +169,9 @@ public class AsyncPipelines {
      */
     public CompletableFuture<CrmPipelinesOneResponse> get(CrmPipelinesOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmPipelinesOneRequest, CrmPipelinesOneResponse> operation
-              = new CrmPipelinesOne.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new CrmPipelinesOne.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -203,7 +211,9 @@ public class AsyncPipelines {
      */
     public CompletableFuture<CrmPipelinesUpdateResponse> update(CrmPipelinesUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmPipelinesUpdateRequest, CrmPipelinesUpdateResponse> operation
-              = new CrmPipelinesUpdate.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new CrmPipelinesUpdate.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -243,7 +253,9 @@ public class AsyncPipelines {
      */
     public CompletableFuture<CrmPipelinesDeleteResponse> delete(CrmPipelinesDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmPipelinesDeleteRequest, CrmPipelinesDeleteResponse> operation
-              = new CrmPipelinesDelete.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new CrmPipelinesDelete.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

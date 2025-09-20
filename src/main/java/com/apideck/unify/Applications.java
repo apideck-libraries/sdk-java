@@ -25,12 +25,14 @@ import com.apideck.unify.operations.AtsApplicationsAll;
 import com.apideck.unify.operations.AtsApplicationsDelete;
 import com.apideck.unify.operations.AtsApplicationsOne;
 import com.apideck.unify.operations.AtsApplicationsUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
 
 
 public class Applications {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncApplications asyncSDK;
 
@@ -84,7 +86,7 @@ public class Applications {
      */
     public AtsApplicationsAllResponse list(AtsApplicationsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AtsApplicationsAllRequest, AtsApplicationsAllResponse> operation
-              = new AtsApplicationsAll.Sync(sdkConfiguration, options);
+              = new AtsApplicationsAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -124,7 +126,7 @@ public class Applications {
      */
     public AtsApplicationsAddResponse create(AtsApplicationsAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AtsApplicationsAddRequest, AtsApplicationsAddResponse> operation
-              = new AtsApplicationsAdd.Sync(sdkConfiguration, options);
+              = new AtsApplicationsAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -164,7 +166,7 @@ public class Applications {
      */
     public AtsApplicationsOneResponse get(AtsApplicationsOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AtsApplicationsOneRequest, AtsApplicationsOneResponse> operation
-              = new AtsApplicationsOne.Sync(sdkConfiguration, options);
+              = new AtsApplicationsOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -204,7 +206,7 @@ public class Applications {
      */
     public AtsApplicationsUpdateResponse update(AtsApplicationsUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AtsApplicationsUpdateRequest, AtsApplicationsUpdateResponse> operation
-              = new AtsApplicationsUpdate.Sync(sdkConfiguration, options);
+              = new AtsApplicationsUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -244,7 +246,7 @@ public class Applications {
      */
     public AtsApplicationsDeleteResponse delete(AtsApplicationsDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AtsApplicationsDeleteRequest, AtsApplicationsDeleteResponse> operation
-              = new AtsApplicationsDelete.Sync(sdkConfiguration, options);
+              = new AtsApplicationsDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

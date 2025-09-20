@@ -13,12 +13,14 @@ import com.apideck.unify.models.operations.async.HrisPayrollsOneRequestBuilder;
 import com.apideck.unify.models.operations.async.HrisPayrollsOneResponse;
 import com.apideck.unify.operations.HrisPayrollsAll;
 import com.apideck.unify.operations.HrisPayrollsOne;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncPayrolls {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final Payrolls syncSDK;
 
@@ -71,7 +73,9 @@ public class AsyncPayrolls {
      */
     public CompletableFuture<HrisPayrollsAllResponse> list(HrisPayrollsAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<HrisPayrollsAllRequest, HrisPayrollsAllResponse> operation
-              = new HrisPayrollsAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new HrisPayrollsAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -111,7 +115,9 @@ public class AsyncPayrolls {
      */
     public CompletableFuture<HrisPayrollsOneResponse> get(HrisPayrollsOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<HrisPayrollsOneRequest, HrisPayrollsOneResponse> operation
-              = new HrisPayrollsOne.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new HrisPayrollsOne.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

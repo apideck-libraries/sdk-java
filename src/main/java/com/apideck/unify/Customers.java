@@ -25,12 +25,14 @@ import com.apideck.unify.operations.AccountingCustomersAll;
 import com.apideck.unify.operations.AccountingCustomersDelete;
 import com.apideck.unify.operations.AccountingCustomersOne;
 import com.apideck.unify.operations.AccountingCustomersUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
 
 
 public class Customers {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncCustomers asyncSDK;
 
@@ -84,7 +86,7 @@ public class Customers {
      */
     public AccountingCustomersAllResponse list(AccountingCustomersAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingCustomersAllRequest, AccountingCustomersAllResponse> operation
-              = new AccountingCustomersAll.Sync(sdkConfiguration, options);
+              = new AccountingCustomersAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -124,7 +126,7 @@ public class Customers {
      */
     public AccountingCustomersAddResponse create(AccountingCustomersAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingCustomersAddRequest, AccountingCustomersAddResponse> operation
-              = new AccountingCustomersAdd.Sync(sdkConfiguration, options);
+              = new AccountingCustomersAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -164,7 +166,7 @@ public class Customers {
      */
     public AccountingCustomersOneResponse get(AccountingCustomersOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingCustomersOneRequest, AccountingCustomersOneResponse> operation
-              = new AccountingCustomersOne.Sync(sdkConfiguration, options);
+              = new AccountingCustomersOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -204,7 +206,7 @@ public class Customers {
      */
     public AccountingCustomersUpdateResponse update(AccountingCustomersUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingCustomersUpdateRequest, AccountingCustomersUpdateResponse> operation
-              = new AccountingCustomersUpdate.Sync(sdkConfiguration, options);
+              = new AccountingCustomersUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -244,7 +246,7 @@ public class Customers {
      */
     public AccountingCustomersDeleteResponse delete(AccountingCustomersDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingCustomersDeleteRequest, AccountingCustomersDeleteResponse> operation
-              = new AccountingCustomersDelete.Sync(sdkConfiguration, options);
+              = new AccountingCustomersDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

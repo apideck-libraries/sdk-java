@@ -11,6 +11,7 @@ import static com.apideck.unify.utils.Utils.toStream;
 import com.apideck.unify.SDKConfiguration;
 import com.apideck.unify.models.components.ApisFilter;
 import com.apideck.unify.operations.ConnectorApisAll;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
@@ -40,6 +41,7 @@ public class ConnectorApisAllRequestBuilder {
     private Optional<? extends ApisFilter> filter = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public ConnectorApisAllRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -125,7 +127,7 @@ public class ConnectorApisAllRequestBuilder {
             .build());
 
         RequestOperation<ConnectorApisAllRequest, ConnectorApisAllResponse> operation
-              = new ConnectorApisAll.Sync(sdkConfiguration, options);
+              = new ConnectorApisAll.Sync(sdkConfiguration, options, _headers);
         ConnectorApisAllRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
@@ -150,7 +152,7 @@ public class ConnectorApisAllRequestBuilder {
             .build());
 
         RequestOperation<ConnectorApisAllRequest, ConnectorApisAllResponse> operation
-              = new ConnectorApisAll.Sync(sdkConfiguration, options);
+              = new ConnectorApisAll.Sync(sdkConfiguration, options, _headers);
         ConnectorApisAllRequest request = buildRequest();
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,

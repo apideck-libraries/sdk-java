@@ -25,12 +25,14 @@ import com.apideck.unify.operations.CrmNotesAll;
 import com.apideck.unify.operations.CrmNotesDelete;
 import com.apideck.unify.operations.CrmNotesOne;
 import com.apideck.unify.operations.CrmNotesUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncNotes {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final Notes syncSDK;
 
@@ -83,7 +85,9 @@ public class AsyncNotes {
      */
     public CompletableFuture<CrmNotesAllResponse> list(CrmNotesAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmNotesAllRequest, CrmNotesAllResponse> operation
-              = new CrmNotesAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new CrmNotesAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -123,7 +127,9 @@ public class AsyncNotes {
      */
     public CompletableFuture<CrmNotesAddResponse> create(CrmNotesAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmNotesAddRequest, CrmNotesAddResponse> operation
-              = new CrmNotesAdd.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new CrmNotesAdd.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -163,7 +169,9 @@ public class AsyncNotes {
      */
     public CompletableFuture<CrmNotesOneResponse> get(CrmNotesOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmNotesOneRequest, CrmNotesOneResponse> operation
-              = new CrmNotesOne.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new CrmNotesOne.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -203,7 +211,9 @@ public class AsyncNotes {
      */
     public CompletableFuture<CrmNotesUpdateResponse> update(CrmNotesUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmNotesUpdateRequest, CrmNotesUpdateResponse> operation
-              = new CrmNotesUpdate.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new CrmNotesUpdate.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -243,7 +253,9 @@ public class AsyncNotes {
      */
     public CompletableFuture<CrmNotesDeleteResponse> delete(CrmNotesDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmNotesDeleteRequest, CrmNotesDeleteResponse> operation
-              = new CrmNotesDelete.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new CrmNotesDelete.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

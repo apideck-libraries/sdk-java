@@ -9,6 +9,7 @@ import com.apideck.unify.models.operations.ConnectorApiResourceCoverageOneReques
 import com.apideck.unify.models.operations.async.ConnectorApiResourceCoverageOneRequestBuilder;
 import com.apideck.unify.models.operations.async.ConnectorApiResourceCoverageOneResponse;
 import com.apideck.unify.operations.ConnectorApiResourceCoverageOne;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.String;
 import java.util.Optional;
@@ -16,6 +17,7 @@ import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncApiResourceCoverage {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final ApiResourceCoverage syncSDK;
 
@@ -82,7 +84,9 @@ public class AsyncApiResourceCoverage {
                 .resourceId(resourceId)
                 .build();
         AsyncRequestOperation<ConnectorApiResourceCoverageOneRequest, ConnectorApiResourceCoverageOneResponse> operation
-              = new ConnectorApiResourceCoverageOne.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ConnectorApiResourceCoverageOne.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

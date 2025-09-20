@@ -13,12 +13,14 @@ import com.apideck.unify.models.operations.async.AtsJobsOneRequestBuilder;
 import com.apideck.unify.models.operations.async.AtsJobsOneResponse;
 import com.apideck.unify.operations.AtsJobsAll;
 import com.apideck.unify.operations.AtsJobsOne;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncJobs {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final Jobs syncSDK;
 
@@ -71,7 +73,9 @@ public class AsyncJobs {
      */
     public CompletableFuture<AtsJobsAllResponse> list(AtsJobsAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<AtsJobsAllRequest, AtsJobsAllResponse> operation
-              = new AtsJobsAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AtsJobsAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -111,7 +115,9 @@ public class AsyncJobs {
      */
     public CompletableFuture<AtsJobsOneResponse> get(AtsJobsOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<AtsJobsOneRequest, AtsJobsOneResponse> operation
-              = new AtsJobsOne.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AtsJobsOne.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

@@ -7,6 +7,7 @@ import static com.apideck.unify.operations.Operations.RequestOperation;
 
 import com.apideck.unify.SDKConfiguration;
 import com.apideck.unify.operations.VaultCustomMappingsAll;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -22,6 +23,7 @@ public class VaultCustomMappingsAllRequestBuilder {
     private String serviceId;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public VaultCustomMappingsAllRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -92,7 +94,7 @@ public class VaultCustomMappingsAllRequestBuilder {
             .build());
 
         RequestOperation<VaultCustomMappingsAllRequest, VaultCustomMappingsAllResponse> operation
-              = new VaultCustomMappingsAll.Sync(sdkConfiguration, options);
+              = new VaultCustomMappingsAll.Sync(sdkConfiguration, options, _headers);
         VaultCustomMappingsAllRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

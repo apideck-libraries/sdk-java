@@ -25,6 +25,7 @@ import com.apideck.unify.operations.AccountingAttachmentsDelete;
 import com.apideck.unify.operations.AccountingAttachmentsDownload;
 import com.apideck.unify.operations.AccountingAttachmentsOne;
 import com.apideck.unify.operations.AccountingAttachmentsUpload;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.String;
 import java.util.Optional;
@@ -32,6 +33,7 @@ import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncAttachments {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final Attachments syncSDK;
 
@@ -84,7 +86,9 @@ public class AsyncAttachments {
      */
     public CompletableFuture<AccountingAttachmentsAllResponse> list(AccountingAttachmentsAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingAttachmentsAllRequest, AccountingAttachmentsAllResponse> operation
-              = new AccountingAttachmentsAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingAttachmentsAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -129,7 +133,7 @@ public class AsyncAttachments {
         AsyncRequestOperation<AccountingAttachmentsUploadRequest, AccountingAttachmentsUploadResponse> operation
               = new AccountingAttachmentsUpload.Async(
                                     sdkConfiguration, serverURL, options,
-                                    sdkConfiguration.retryScheduler());
+                                    sdkConfiguration.retryScheduler(), _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -169,7 +173,9 @@ public class AsyncAttachments {
      */
     public CompletableFuture<AccountingAttachmentsOneResponse> get(AccountingAttachmentsOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingAttachmentsOneRequest, AccountingAttachmentsOneResponse> operation
-              = new AccountingAttachmentsOne.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingAttachmentsOne.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -209,7 +215,9 @@ public class AsyncAttachments {
      */
     public CompletableFuture<AccountingAttachmentsDeleteResponse> delete(AccountingAttachmentsDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingAttachmentsDeleteRequest, AccountingAttachmentsDeleteResponse> operation
-              = new AccountingAttachmentsDelete.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingAttachmentsDelete.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -249,7 +257,9 @@ public class AsyncAttachments {
      */
     public CompletableFuture<AccountingAttachmentsDownloadResponse> download(AccountingAttachmentsDownloadRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingAttachmentsDownloadRequest, AccountingAttachmentsDownloadResponse> operation
-              = new AccountingAttachmentsDownload.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingAttachmentsDownload.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

@@ -8,3 +8,9 @@
  */
 
 rootProject.name = 'unify'
+
+include 'unify-spring-boot-autoconfigure'
+include 'unify-spring-boot-starter'
+
+project(':unify-spring-boot-autoconfigure').projectDir = file('spring/unify-spring-boot-autoconfigure')
+project(':unify-spring-boot-starter').projectDir = file('spring/unify-spring-boot-starter')

@@ -9,12 +9,14 @@ import com.apideck.unify.models.operations.AccountingBalanceSheetOneRequest;
 import com.apideck.unify.models.operations.async.AccountingBalanceSheetOneRequestBuilder;
 import com.apideck.unify.models.operations.async.AccountingBalanceSheetOneResponse;
 import com.apideck.unify.operations.AccountingBalanceSheetOne;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncBalanceSheet {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final BalanceSheet syncSDK;
 
@@ -67,7 +69,9 @@ public class AsyncBalanceSheet {
      */
     public CompletableFuture<AccountingBalanceSheetOneResponse> get(AccountingBalanceSheetOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingBalanceSheetOneRequest, AccountingBalanceSheetOneResponse> operation
-              = new AccountingBalanceSheetOne.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingBalanceSheetOne.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

@@ -10,6 +10,7 @@ import com.apideck.unify.models.operations.ConnectorConnectorResourcesOneRequest
 import com.apideck.unify.models.operations.async.ConnectorConnectorResourcesOneRequestBuilder;
 import com.apideck.unify.models.operations.async.ConnectorConnectorResourcesOneResponse;
 import com.apideck.unify.operations.ConnectorConnectorResourcesOne;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.String;
 import java.util.Optional;
@@ -17,6 +18,7 @@ import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncConnectorResources {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final ConnectorResources syncSDK;
 
@@ -86,7 +88,9 @@ public class AsyncConnectorResources {
                 .unifiedApi(unifiedApi)
                 .build();
         AsyncRequestOperation<ConnectorConnectorResourcesOneRequest, ConnectorConnectorResourcesOneResponse> operation
-              = new ConnectorConnectorResourcesOne.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ConnectorConnectorResourcesOne.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

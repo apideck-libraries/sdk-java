@@ -25,12 +25,14 @@ import com.apideck.unify.operations.AccountingSubsidiariesAll;
 import com.apideck.unify.operations.AccountingSubsidiariesDelete;
 import com.apideck.unify.operations.AccountingSubsidiariesOne;
 import com.apideck.unify.operations.AccountingSubsidiariesUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
 
 
 public class Subsidiaries {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncSubsidiaries asyncSDK;
 
@@ -84,7 +86,7 @@ public class Subsidiaries {
      */
     public AccountingSubsidiariesAllResponse list(AccountingSubsidiariesAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingSubsidiariesAllRequest, AccountingSubsidiariesAllResponse> operation
-              = new AccountingSubsidiariesAll.Sync(sdkConfiguration, options);
+              = new AccountingSubsidiariesAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -124,7 +126,7 @@ public class Subsidiaries {
      */
     public AccountingSubsidiariesAddResponse create(AccountingSubsidiariesAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingSubsidiariesAddRequest, AccountingSubsidiariesAddResponse> operation
-              = new AccountingSubsidiariesAdd.Sync(sdkConfiguration, options);
+              = new AccountingSubsidiariesAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -164,7 +166,7 @@ public class Subsidiaries {
      */
     public AccountingSubsidiariesOneResponse get(AccountingSubsidiariesOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingSubsidiariesOneRequest, AccountingSubsidiariesOneResponse> operation
-              = new AccountingSubsidiariesOne.Sync(sdkConfiguration, options);
+              = new AccountingSubsidiariesOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -204,7 +206,7 @@ public class Subsidiaries {
      */
     public AccountingSubsidiariesUpdateResponse update(AccountingSubsidiariesUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingSubsidiariesUpdateRequest, AccountingSubsidiariesUpdateResponse> operation
-              = new AccountingSubsidiariesUpdate.Sync(sdkConfiguration, options);
+              = new AccountingSubsidiariesUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -244,7 +246,7 @@ public class Subsidiaries {
      */
     public AccountingSubsidiariesDeleteResponse delete(AccountingSubsidiariesDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingSubsidiariesDeleteRequest, AccountingSubsidiariesDeleteResponse> operation
-              = new AccountingSubsidiariesDelete.Sync(sdkConfiguration, options);
+              = new AccountingSubsidiariesDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

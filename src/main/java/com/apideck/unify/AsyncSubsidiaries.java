@@ -25,12 +25,14 @@ import com.apideck.unify.operations.AccountingSubsidiariesAll;
 import com.apideck.unify.operations.AccountingSubsidiariesDelete;
 import com.apideck.unify.operations.AccountingSubsidiariesOne;
 import com.apideck.unify.operations.AccountingSubsidiariesUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncSubsidiaries {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final Subsidiaries syncSDK;
 
@@ -83,7 +85,9 @@ public class AsyncSubsidiaries {
      */
     public CompletableFuture<AccountingSubsidiariesAllResponse> list(AccountingSubsidiariesAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingSubsidiariesAllRequest, AccountingSubsidiariesAllResponse> operation
-              = new AccountingSubsidiariesAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingSubsidiariesAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -123,7 +127,9 @@ public class AsyncSubsidiaries {
      */
     public CompletableFuture<AccountingSubsidiariesAddResponse> create(AccountingSubsidiariesAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingSubsidiariesAddRequest, AccountingSubsidiariesAddResponse> operation
-              = new AccountingSubsidiariesAdd.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingSubsidiariesAdd.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -163,7 +169,9 @@ public class AsyncSubsidiaries {
      */
     public CompletableFuture<AccountingSubsidiariesOneResponse> get(AccountingSubsidiariesOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingSubsidiariesOneRequest, AccountingSubsidiariesOneResponse> operation
-              = new AccountingSubsidiariesOne.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingSubsidiariesOne.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -203,7 +211,9 @@ public class AsyncSubsidiaries {
      */
     public CompletableFuture<AccountingSubsidiariesUpdateResponse> update(AccountingSubsidiariesUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingSubsidiariesUpdateRequest, AccountingSubsidiariesUpdateResponse> operation
-              = new AccountingSubsidiariesUpdate.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingSubsidiariesUpdate.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -243,7 +253,9 @@ public class AsyncSubsidiaries {
      */
     public CompletableFuture<AccountingSubsidiariesDeleteResponse> delete(AccountingSubsidiariesDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingSubsidiariesDeleteRequest, AccountingSubsidiariesDeleteResponse> operation
-              = new AccountingSubsidiariesDelete.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingSubsidiariesDelete.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

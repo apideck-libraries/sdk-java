@@ -25,12 +25,14 @@ import com.apideck.unify.operations.FileStorageDriveGroupsAll;
 import com.apideck.unify.operations.FileStorageDriveGroupsDelete;
 import com.apideck.unify.operations.FileStorageDriveGroupsOne;
 import com.apideck.unify.operations.FileStorageDriveGroupsUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncDriveGroups {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final DriveGroups syncSDK;
 
@@ -83,7 +85,9 @@ public class AsyncDriveGroups {
      */
     public CompletableFuture<FileStorageDriveGroupsAllResponse> list(FileStorageDriveGroupsAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<FileStorageDriveGroupsAllRequest, FileStorageDriveGroupsAllResponse> operation
-              = new FileStorageDriveGroupsAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new FileStorageDriveGroupsAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -123,7 +127,9 @@ public class AsyncDriveGroups {
      */
     public CompletableFuture<FileStorageDriveGroupsAddResponse> create(FileStorageDriveGroupsAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<FileStorageDriveGroupsAddRequest, FileStorageDriveGroupsAddResponse> operation
-              = new FileStorageDriveGroupsAdd.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new FileStorageDriveGroupsAdd.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -163,7 +169,9 @@ public class AsyncDriveGroups {
      */
     public CompletableFuture<FileStorageDriveGroupsOneResponse> get(FileStorageDriveGroupsOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<FileStorageDriveGroupsOneRequest, FileStorageDriveGroupsOneResponse> operation
-              = new FileStorageDriveGroupsOne.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new FileStorageDriveGroupsOne.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -203,7 +211,9 @@ public class AsyncDriveGroups {
      */
     public CompletableFuture<FileStorageDriveGroupsUpdateResponse> update(FileStorageDriveGroupsUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<FileStorageDriveGroupsUpdateRequest, FileStorageDriveGroupsUpdateResponse> operation
-              = new FileStorageDriveGroupsUpdate.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new FileStorageDriveGroupsUpdate.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -243,7 +253,9 @@ public class AsyncDriveGroups {
      */
     public CompletableFuture<FileStorageDriveGroupsDeleteResponse> delete(FileStorageDriveGroupsDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<FileStorageDriveGroupsDeleteRequest, FileStorageDriveGroupsDeleteResponse> operation
-              = new FileStorageDriveGroupsDelete.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new FileStorageDriveGroupsDelete.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

@@ -24,6 +24,7 @@ import com.apideck.unify.utils.Blob;
 import com.apideck.unify.utils.Exceptions;
 import com.apideck.unify.utils.HTTPClient;
 import com.apideck.unify.utils.HTTPRequest;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Hook.AfterErrorContextImpl;
 import com.apideck.unify.utils.Hook.AfterSuccessContextImpl;
 import com.apideck.unify.utils.Hook.BeforeRequestContextImpl;
@@ -65,11 +66,13 @@ public class FileStorageUploadSessionsOne {
         final List<String> retryStatusCodes;
         final RetryConfig retryConfig;
         final HTTPClient client;
+        final Headers _headers;
 
         public Base(
                 SDKConfiguration sdkConfiguration, Optional<String> serverURL,
-                Optional<Options> options) {
+                Optional<Options> options, Headers _headers) {
             this.sdkConfiguration = sdkConfiguration;
+            this._headers =_headers;
             this.baseUrl = serverURL
                     .filter(u -> !u.isBlank())
                     .orElse(Utils.templateUrl(
@@ -132,6 +135,7 @@ public class FileStorageUploadSessionsOne {
             HTTPRequest req = new HTTPRequest(url, "GET");
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
+            _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
 
             req.addQueryParams(Utils.getQueryParams(
                     klass,
@@ -148,10 +152,10 @@ public class FileStorageUploadSessionsOne {
             implements RequestOperation<FileStorageUploadSessionsOneRequest, FileStorageUploadSessionsOneResponse> {
         public Sync(
                 SDKConfiguration sdkConfiguration, Optional<String> serverURL,
-                Optional<Options> options) {
+                Optional<Options> options, Headers _headers) {
             super(
                   sdkConfiguration, serverURL,
-                  options);
+                  options, _headers);
         }
 
         private HttpRequest onBuildRequest(FileStorageUploadSessionsOneRequest request) throws Exception {
@@ -357,10 +361,11 @@ public class FileStorageUploadSessionsOne {
 
         public Async(
                 SDKConfiguration sdkConfiguration, Optional<String> serverURL,
-                Optional<Options> options, ScheduledExecutorService retryScheduler) {
+                Optional<Options> options, ScheduledExecutorService retryScheduler,
+                Headers _headers) {
             super(
                   sdkConfiguration, serverURL,
-                  options);
+                  options, _headers);
             this.retryScheduler = retryScheduler;
         }
 

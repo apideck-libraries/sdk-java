@@ -25,12 +25,14 @@ import com.apideck.unify.operations.SmsMessagesAll;
 import com.apideck.unify.operations.SmsMessagesDelete;
 import com.apideck.unify.operations.SmsMessagesOne;
 import com.apideck.unify.operations.SmsMessagesUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
 
 
 public class Messages {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncMessages asyncSDK;
 
@@ -84,7 +86,7 @@ public class Messages {
      */
     public SmsMessagesAllResponse list(SmsMessagesAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<SmsMessagesAllRequest, SmsMessagesAllResponse> operation
-              = new SmsMessagesAll.Sync(sdkConfiguration, options);
+              = new SmsMessagesAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -124,7 +126,7 @@ public class Messages {
      */
     public SmsMessagesAddResponse create(SmsMessagesAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<SmsMessagesAddRequest, SmsMessagesAddResponse> operation
-              = new SmsMessagesAdd.Sync(sdkConfiguration, options);
+              = new SmsMessagesAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -164,7 +166,7 @@ public class Messages {
      */
     public SmsMessagesOneResponse get(SmsMessagesOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<SmsMessagesOneRequest, SmsMessagesOneResponse> operation
-              = new SmsMessagesOne.Sync(sdkConfiguration, options);
+              = new SmsMessagesOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -204,7 +206,7 @@ public class Messages {
      */
     public SmsMessagesUpdateResponse update(SmsMessagesUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<SmsMessagesUpdateRequest, SmsMessagesUpdateResponse> operation
-              = new SmsMessagesUpdate.Sync(sdkConfiguration, options);
+              = new SmsMessagesUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -244,7 +246,7 @@ public class Messages {
      */
     public SmsMessagesDeleteResponse delete(SmsMessagesDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<SmsMessagesDeleteRequest, SmsMessagesDeleteResponse> operation
-              = new SmsMessagesDelete.Sync(sdkConfiguration, options);
+              = new SmsMessagesDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

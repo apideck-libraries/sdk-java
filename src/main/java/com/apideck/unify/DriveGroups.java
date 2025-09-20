@@ -25,12 +25,14 @@ import com.apideck.unify.operations.FileStorageDriveGroupsAll;
 import com.apideck.unify.operations.FileStorageDriveGroupsDelete;
 import com.apideck.unify.operations.FileStorageDriveGroupsOne;
 import com.apideck.unify.operations.FileStorageDriveGroupsUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
 
 
 public class DriveGroups {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncDriveGroups asyncSDK;
 
@@ -84,7 +86,7 @@ public class DriveGroups {
      */
     public FileStorageDriveGroupsAllResponse list(FileStorageDriveGroupsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageDriveGroupsAllRequest, FileStorageDriveGroupsAllResponse> operation
-              = new FileStorageDriveGroupsAll.Sync(sdkConfiguration, options);
+              = new FileStorageDriveGroupsAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -124,7 +126,7 @@ public class DriveGroups {
      */
     public FileStorageDriveGroupsAddResponse create(FileStorageDriveGroupsAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageDriveGroupsAddRequest, FileStorageDriveGroupsAddResponse> operation
-              = new FileStorageDriveGroupsAdd.Sync(sdkConfiguration, options);
+              = new FileStorageDriveGroupsAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -164,7 +166,7 @@ public class DriveGroups {
      */
     public FileStorageDriveGroupsOneResponse get(FileStorageDriveGroupsOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageDriveGroupsOneRequest, FileStorageDriveGroupsOneResponse> operation
-              = new FileStorageDriveGroupsOne.Sync(sdkConfiguration, options);
+              = new FileStorageDriveGroupsOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -204,7 +206,7 @@ public class DriveGroups {
      */
     public FileStorageDriveGroupsUpdateResponse update(FileStorageDriveGroupsUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageDriveGroupsUpdateRequest, FileStorageDriveGroupsUpdateResponse> operation
-              = new FileStorageDriveGroupsUpdate.Sync(sdkConfiguration, options);
+              = new FileStorageDriveGroupsUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -244,7 +246,7 @@ public class DriveGroups {
      */
     public FileStorageDriveGroupsDeleteResponse delete(FileStorageDriveGroupsDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageDriveGroupsDeleteRequest, FileStorageDriveGroupsDeleteResponse> operation
-              = new FileStorageDriveGroupsDelete.Sync(sdkConfiguration, options);
+              = new FileStorageDriveGroupsDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

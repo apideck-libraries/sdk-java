@@ -25,12 +25,14 @@ import com.apideck.unify.operations.IssueTrackingCollectionTicketCommentsAll;
 import com.apideck.unify.operations.IssueTrackingCollectionTicketCommentsDelete;
 import com.apideck.unify.operations.IssueTrackingCollectionTicketCommentsOne;
 import com.apideck.unify.operations.IssueTrackingCollectionTicketCommentsUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
 
 
 public class CollectionTicketComments {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncCollectionTicketComments asyncSDK;
 
@@ -84,7 +86,7 @@ public class CollectionTicketComments {
      */
     public IssueTrackingCollectionTicketCommentsAllResponse list(IssueTrackingCollectionTicketCommentsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<IssueTrackingCollectionTicketCommentsAllRequest, IssueTrackingCollectionTicketCommentsAllResponse> operation
-              = new IssueTrackingCollectionTicketCommentsAll.Sync(sdkConfiguration, options);
+              = new IssueTrackingCollectionTicketCommentsAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -124,7 +126,7 @@ public class CollectionTicketComments {
      */
     public IssueTrackingCollectionTicketCommentsAddResponse create(IssueTrackingCollectionTicketCommentsAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<IssueTrackingCollectionTicketCommentsAddRequest, IssueTrackingCollectionTicketCommentsAddResponse> operation
-              = new IssueTrackingCollectionTicketCommentsAdd.Sync(sdkConfiguration, options);
+              = new IssueTrackingCollectionTicketCommentsAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -164,7 +166,7 @@ public class CollectionTicketComments {
      */
     public IssueTrackingCollectionTicketCommentsOneResponse get(IssueTrackingCollectionTicketCommentsOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<IssueTrackingCollectionTicketCommentsOneRequest, IssueTrackingCollectionTicketCommentsOneResponse> operation
-              = new IssueTrackingCollectionTicketCommentsOne.Sync(sdkConfiguration, options);
+              = new IssueTrackingCollectionTicketCommentsOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -204,7 +206,7 @@ public class CollectionTicketComments {
      */
     public IssueTrackingCollectionTicketCommentsUpdateResponse update(IssueTrackingCollectionTicketCommentsUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<IssueTrackingCollectionTicketCommentsUpdateRequest, IssueTrackingCollectionTicketCommentsUpdateResponse> operation
-              = new IssueTrackingCollectionTicketCommentsUpdate.Sync(sdkConfiguration, options);
+              = new IssueTrackingCollectionTicketCommentsUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -244,7 +246,7 @@ public class CollectionTicketComments {
      */
     public IssueTrackingCollectionTicketCommentsDeleteResponse delete(IssueTrackingCollectionTicketCommentsDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<IssueTrackingCollectionTicketCommentsDeleteRequest, IssueTrackingCollectionTicketCommentsDeleteResponse> operation
-              = new IssueTrackingCollectionTicketCommentsDelete.Sync(sdkConfiguration, options);
+              = new IssueTrackingCollectionTicketCommentsDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

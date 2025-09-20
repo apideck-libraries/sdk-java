@@ -25,12 +25,14 @@ import com.apideck.unify.operations.HrisTimeOffRequestsAll;
 import com.apideck.unify.operations.HrisTimeOffRequestsDelete;
 import com.apideck.unify.operations.HrisTimeOffRequestsOne;
 import com.apideck.unify.operations.HrisTimeOffRequestsUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncTimeOffRequests {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final TimeOffRequests syncSDK;
 
@@ -83,7 +85,9 @@ public class AsyncTimeOffRequests {
      */
     public CompletableFuture<HrisTimeOffRequestsAllResponse> list(HrisTimeOffRequestsAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<HrisTimeOffRequestsAllRequest, HrisTimeOffRequestsAllResponse> operation
-              = new HrisTimeOffRequestsAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new HrisTimeOffRequestsAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -123,7 +127,9 @@ public class AsyncTimeOffRequests {
      */
     public CompletableFuture<HrisTimeOffRequestsAddResponse> create(HrisTimeOffRequestsAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<HrisTimeOffRequestsAddRequest, HrisTimeOffRequestsAddResponse> operation
-              = new HrisTimeOffRequestsAdd.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new HrisTimeOffRequestsAdd.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -163,7 +169,9 @@ public class AsyncTimeOffRequests {
      */
     public CompletableFuture<HrisTimeOffRequestsOneResponse> get(HrisTimeOffRequestsOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<HrisTimeOffRequestsOneRequest, HrisTimeOffRequestsOneResponse> operation
-              = new HrisTimeOffRequestsOne.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new HrisTimeOffRequestsOne.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -203,7 +211,9 @@ public class AsyncTimeOffRequests {
      */
     public CompletableFuture<HrisTimeOffRequestsUpdateResponse> update(HrisTimeOffRequestsUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<HrisTimeOffRequestsUpdateRequest, HrisTimeOffRequestsUpdateResponse> operation
-              = new HrisTimeOffRequestsUpdate.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new HrisTimeOffRequestsUpdate.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -243,7 +253,9 @@ public class AsyncTimeOffRequests {
      */
     public CompletableFuture<HrisTimeOffRequestsDeleteResponse> delete(HrisTimeOffRequestsDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<HrisTimeOffRequestsDeleteRequest, HrisTimeOffRequestsDeleteResponse> operation
-              = new HrisTimeOffRequestsDelete.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new HrisTimeOffRequestsDelete.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

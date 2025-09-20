@@ -9,12 +9,14 @@ import com.apideck.unify.models.operations.VaultCreateCallbackStateRequest;
 import com.apideck.unify.models.operations.VaultCreateCallbackStateRequestBuilder;
 import com.apideck.unify.models.operations.VaultCreateCallbackStateResponse;
 import com.apideck.unify.operations.VaultCreateCallbackState;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
 
 
 public class CreateCallback {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncCreateCallback asyncSDK;
 
@@ -68,7 +70,7 @@ public class CreateCallback {
      */
     public VaultCreateCallbackStateResponse state(VaultCreateCallbackStateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<VaultCreateCallbackStateRequest, VaultCreateCallbackStateResponse> operation
-              = new VaultCreateCallbackState.Sync(sdkConfiguration, options);
+              = new VaultCreateCallbackState.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

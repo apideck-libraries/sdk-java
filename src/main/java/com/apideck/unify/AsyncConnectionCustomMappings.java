@@ -9,12 +9,14 @@ import com.apideck.unify.models.operations.VaultConnectionCustomMappingsAllReque
 import com.apideck.unify.models.operations.async.VaultConnectionCustomMappingsAllRequestBuilder;
 import com.apideck.unify.models.operations.async.VaultConnectionCustomMappingsAllResponse;
 import com.apideck.unify.operations.VaultConnectionCustomMappingsAll;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncConnectionCustomMappings {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final ConnectionCustomMappings syncSDK;
 
@@ -67,7 +69,9 @@ public class AsyncConnectionCustomMappings {
      */
     public CompletableFuture<VaultConnectionCustomMappingsAllResponse> list(VaultConnectionCustomMappingsAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<VaultConnectionCustomMappingsAllRequest, VaultConnectionCustomMappingsAllResponse> operation
-              = new VaultConnectionCustomMappingsAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new VaultConnectionCustomMappingsAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

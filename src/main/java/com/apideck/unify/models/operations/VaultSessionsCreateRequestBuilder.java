@@ -8,6 +8,7 @@ import static com.apideck.unify.operations.Operations.RequestOperation;
 import com.apideck.unify.SDKConfiguration;
 import com.apideck.unify.models.components.Session;
 import com.apideck.unify.operations.VaultSessionsCreate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -22,6 +23,7 @@ public class VaultSessionsCreateRequestBuilder {
     private Optional<? extends Session> session = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public VaultSessionsCreateRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -91,7 +93,7 @@ public class VaultSessionsCreateRequestBuilder {
             .build());
 
         RequestOperation<VaultSessionsCreateRequest, VaultSessionsCreateResponse> operation
-              = new VaultSessionsCreate.Sync(sdkConfiguration, options);
+              = new VaultSessionsCreate.Sync(sdkConfiguration, options, _headers);
         VaultSessionsCreateRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

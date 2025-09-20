@@ -25,12 +25,14 @@ import com.apideck.unify.operations.CrmOpportunitiesAll;
 import com.apideck.unify.operations.CrmOpportunitiesDelete;
 import com.apideck.unify.operations.CrmOpportunitiesOne;
 import com.apideck.unify.operations.CrmOpportunitiesUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncOpportunities {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final Opportunities syncSDK;
 
@@ -83,7 +85,9 @@ public class AsyncOpportunities {
      */
     public CompletableFuture<CrmOpportunitiesAllResponse> list(CrmOpportunitiesAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmOpportunitiesAllRequest, CrmOpportunitiesAllResponse> operation
-              = new CrmOpportunitiesAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new CrmOpportunitiesAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -123,7 +127,9 @@ public class AsyncOpportunities {
      */
     public CompletableFuture<CrmOpportunitiesAddResponse> create(CrmOpportunitiesAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmOpportunitiesAddRequest, CrmOpportunitiesAddResponse> operation
-              = new CrmOpportunitiesAdd.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new CrmOpportunitiesAdd.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -163,7 +169,9 @@ public class AsyncOpportunities {
      */
     public CompletableFuture<CrmOpportunitiesOneResponse> get(CrmOpportunitiesOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmOpportunitiesOneRequest, CrmOpportunitiesOneResponse> operation
-              = new CrmOpportunitiesOne.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new CrmOpportunitiesOne.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -203,7 +211,9 @@ public class AsyncOpportunities {
      */
     public CompletableFuture<CrmOpportunitiesUpdateResponse> update(CrmOpportunitiesUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmOpportunitiesUpdateRequest, CrmOpportunitiesUpdateResponse> operation
-              = new CrmOpportunitiesUpdate.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new CrmOpportunitiesUpdate.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -243,7 +253,9 @@ public class AsyncOpportunities {
      */
     public CompletableFuture<CrmOpportunitiesDeleteResponse> delete(CrmOpportunitiesDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmOpportunitiesDeleteRequest, CrmOpportunitiesDeleteResponse> operation
-              = new CrmOpportunitiesDelete.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new CrmOpportunitiesDelete.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

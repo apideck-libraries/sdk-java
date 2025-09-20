@@ -11,6 +11,7 @@ import com.apideck.unify.models.components.ApisFilter;
 import com.apideck.unify.models.operations.ConnectorApisAllRequest;
 import com.apideck.unify.operations.ConnectorApisAll;
 import com.apideck.unify.utils.Blob;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
@@ -40,6 +41,7 @@ public class ConnectorApisAllRequestBuilder {
     private Optional<? extends ApisFilter> filter = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public ConnectorApisAllRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -125,7 +127,9 @@ public class ConnectorApisAllRequestBuilder {
             .build());
 
         AsyncRequestOperation<ConnectorApisAllRequest, ConnectorApisAllResponse> operation
-              = new ConnectorApisAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ConnectorApisAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         ConnectorApisAllRequest request = buildRequest();
 
         return operation.doRequest(request)
@@ -153,7 +157,9 @@ public class ConnectorApisAllRequestBuilder {
             .build());
 
         AsyncRequestOperation<ConnectorApisAllRequest, ConnectorApisAllResponse> operation
-              = new ConnectorApisAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ConnectorApisAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
 
         Flow.Publisher<HttpResponse<Blob>> asyncPaginator = new AsyncPaginator<>(
             request,

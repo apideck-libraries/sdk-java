@@ -25,12 +25,14 @@ import com.apideck.unify.operations.CrmContactsAll;
 import com.apideck.unify.operations.CrmContactsDelete;
 import com.apideck.unify.operations.CrmContactsOne;
 import com.apideck.unify.operations.CrmContactsUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncContacts {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final Contacts syncSDK;
 
@@ -83,7 +85,9 @@ public class AsyncContacts {
      */
     public CompletableFuture<CrmContactsAllResponse> list(CrmContactsAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmContactsAllRequest, CrmContactsAllResponse> operation
-              = new CrmContactsAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new CrmContactsAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -123,7 +127,9 @@ public class AsyncContacts {
      */
     public CompletableFuture<CrmContactsAddResponse> create(CrmContactsAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmContactsAddRequest, CrmContactsAddResponse> operation
-              = new CrmContactsAdd.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new CrmContactsAdd.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -163,7 +169,9 @@ public class AsyncContacts {
      */
     public CompletableFuture<CrmContactsOneResponse> get(CrmContactsOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmContactsOneRequest, CrmContactsOneResponse> operation
-              = new CrmContactsOne.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new CrmContactsOne.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -203,7 +211,9 @@ public class AsyncContacts {
      */
     public CompletableFuture<CrmContactsUpdateResponse> update(CrmContactsUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmContactsUpdateRequest, CrmContactsUpdateResponse> operation
-              = new CrmContactsUpdate.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new CrmContactsUpdate.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -243,7 +253,9 @@ public class AsyncContacts {
      */
     public CompletableFuture<CrmContactsDeleteResponse> delete(CrmContactsDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmContactsDeleteRequest, CrmContactsDeleteResponse> operation
-              = new CrmContactsDelete.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new CrmContactsDelete.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

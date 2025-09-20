@@ -25,12 +25,14 @@ import com.apideck.unify.operations.AccountingTaxRatesAll;
 import com.apideck.unify.operations.AccountingTaxRatesDelete;
 import com.apideck.unify.operations.AccountingTaxRatesOne;
 import com.apideck.unify.operations.AccountingTaxRatesUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncTaxRates {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final TaxRates syncSDK;
 
@@ -83,7 +85,9 @@ public class AsyncTaxRates {
      */
     public CompletableFuture<AccountingTaxRatesAllResponse> list(AccountingTaxRatesAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingTaxRatesAllRequest, AccountingTaxRatesAllResponse> operation
-              = new AccountingTaxRatesAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingTaxRatesAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -123,7 +127,9 @@ public class AsyncTaxRates {
      */
     public CompletableFuture<AccountingTaxRatesAddResponse> create(AccountingTaxRatesAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingTaxRatesAddRequest, AccountingTaxRatesAddResponse> operation
-              = new AccountingTaxRatesAdd.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingTaxRatesAdd.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -163,7 +169,9 @@ public class AsyncTaxRates {
      */
     public CompletableFuture<AccountingTaxRatesOneResponse> get(AccountingTaxRatesOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingTaxRatesOneRequest, AccountingTaxRatesOneResponse> operation
-              = new AccountingTaxRatesOne.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingTaxRatesOne.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -203,7 +211,9 @@ public class AsyncTaxRates {
      */
     public CompletableFuture<AccountingTaxRatesUpdateResponse> update(AccountingTaxRatesUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingTaxRatesUpdateRequest, AccountingTaxRatesUpdateResponse> operation
-              = new AccountingTaxRatesUpdate.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingTaxRatesUpdate.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -243,7 +253,9 @@ public class AsyncTaxRates {
      */
     public CompletableFuture<AccountingTaxRatesDeleteResponse> delete(AccountingTaxRatesDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingTaxRatesDeleteRequest, AccountingTaxRatesDeleteResponse> operation
-              = new AccountingTaxRatesDelete.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingTaxRatesDelete.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

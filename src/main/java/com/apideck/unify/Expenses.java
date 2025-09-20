@@ -25,12 +25,14 @@ import com.apideck.unify.operations.AccountingExpensesAll;
 import com.apideck.unify.operations.AccountingExpensesDelete;
 import com.apideck.unify.operations.AccountingExpensesOne;
 import com.apideck.unify.operations.AccountingExpensesUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
 
 
 public class Expenses {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncExpenses asyncSDK;
 
@@ -84,7 +86,7 @@ public class Expenses {
      */
     public AccountingExpensesAllResponse list(AccountingExpensesAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingExpensesAllRequest, AccountingExpensesAllResponse> operation
-              = new AccountingExpensesAll.Sync(sdkConfiguration, options);
+              = new AccountingExpensesAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -124,7 +126,7 @@ public class Expenses {
      */
     public AccountingExpensesAddResponse create(AccountingExpensesAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingExpensesAddRequest, AccountingExpensesAddResponse> operation
-              = new AccountingExpensesAdd.Sync(sdkConfiguration, options);
+              = new AccountingExpensesAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -164,7 +166,7 @@ public class Expenses {
      */
     public AccountingExpensesOneResponse get(AccountingExpensesOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingExpensesOneRequest, AccountingExpensesOneResponse> operation
-              = new AccountingExpensesOne.Sync(sdkConfiguration, options);
+              = new AccountingExpensesOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -204,7 +206,7 @@ public class Expenses {
      */
     public AccountingExpensesUpdateResponse update(AccountingExpensesUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingExpensesUpdateRequest, AccountingExpensesUpdateResponse> operation
-              = new AccountingExpensesUpdate.Sync(sdkConfiguration, options);
+              = new AccountingExpensesUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -244,7 +246,7 @@ public class Expenses {
      */
     public AccountingExpensesDeleteResponse delete(AccountingExpensesDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingExpensesDeleteRequest, AccountingExpensesDeleteResponse> operation
-              = new AccountingExpensesDelete.Sync(sdkConfiguration, options);
+              = new AccountingExpensesDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

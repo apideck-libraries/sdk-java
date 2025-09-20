@@ -10,6 +10,7 @@ import com.apideck.unify.SDKConfiguration;
 import com.apideck.unify.models.operations.WebhookWebhooksAllRequest;
 import com.apideck.unify.operations.WebhookWebhooksAll;
 import com.apideck.unify.utils.Blob;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
@@ -38,6 +39,7 @@ public class WebhookWebhooksAllRequestBuilder {
                             new TypeReference<Optional<Long>>() {});
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public WebhookWebhooksAllRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -110,7 +112,9 @@ public class WebhookWebhooksAllRequestBuilder {
             .build());
 
         AsyncRequestOperation<WebhookWebhooksAllRequest, WebhookWebhooksAllResponse> operation
-              = new WebhookWebhooksAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new WebhookWebhooksAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         WebhookWebhooksAllRequest request = buildRequest();
 
         return operation.doRequest(request)
@@ -138,7 +142,9 @@ public class WebhookWebhooksAllRequestBuilder {
             .build());
 
         AsyncRequestOperation<WebhookWebhooksAllRequest, WebhookWebhooksAllResponse> operation
-              = new WebhookWebhooksAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new WebhookWebhooksAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
 
         Flow.Publisher<HttpResponse<Blob>> asyncPaginator = new AsyncPaginator<>(
             request,

@@ -25,12 +25,14 @@ import com.apideck.unify.operations.FileStorageSharedLinksAll;
 import com.apideck.unify.operations.FileStorageSharedLinksDelete;
 import com.apideck.unify.operations.FileStorageSharedLinksOne;
 import com.apideck.unify.operations.FileStorageSharedLinksUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncSharedLinks {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final SharedLinks syncSDK;
 
@@ -83,7 +85,9 @@ public class AsyncSharedLinks {
      */
     public CompletableFuture<FileStorageSharedLinksAllResponse> list(FileStorageSharedLinksAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<FileStorageSharedLinksAllRequest, FileStorageSharedLinksAllResponse> operation
-              = new FileStorageSharedLinksAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new FileStorageSharedLinksAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -123,7 +127,9 @@ public class AsyncSharedLinks {
      */
     public CompletableFuture<FileStorageSharedLinksAddResponse> create(FileStorageSharedLinksAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<FileStorageSharedLinksAddRequest, FileStorageSharedLinksAddResponse> operation
-              = new FileStorageSharedLinksAdd.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new FileStorageSharedLinksAdd.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -163,7 +169,9 @@ public class AsyncSharedLinks {
      */
     public CompletableFuture<FileStorageSharedLinksOneResponse> get(FileStorageSharedLinksOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<FileStorageSharedLinksOneRequest, FileStorageSharedLinksOneResponse> operation
-              = new FileStorageSharedLinksOne.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new FileStorageSharedLinksOne.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -203,7 +211,9 @@ public class AsyncSharedLinks {
      */
     public CompletableFuture<FileStorageSharedLinksUpdateResponse> update(FileStorageSharedLinksUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<FileStorageSharedLinksUpdateRequest, FileStorageSharedLinksUpdateResponse> operation
-              = new FileStorageSharedLinksUpdate.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new FileStorageSharedLinksUpdate.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -243,7 +253,9 @@ public class AsyncSharedLinks {
      */
     public CompletableFuture<FileStorageSharedLinksDeleteResponse> delete(FileStorageSharedLinksDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<FileStorageSharedLinksDeleteRequest, FileStorageSharedLinksDeleteResponse> operation
-              = new FileStorageSharedLinksDelete.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new FileStorageSharedLinksDelete.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

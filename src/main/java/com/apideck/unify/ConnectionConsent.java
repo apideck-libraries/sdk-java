@@ -9,12 +9,14 @@ import com.apideck.unify.models.operations.VaultConnectionConsentUpdateRequest;
 import com.apideck.unify.models.operations.VaultConnectionConsentUpdateRequestBuilder;
 import com.apideck.unify.models.operations.VaultConnectionConsentUpdateResponse;
 import com.apideck.unify.operations.VaultConnectionConsentUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
 
 
 public class ConnectionConsent {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncConnectionConsent asyncSDK;
 
@@ -68,7 +70,7 @@ public class ConnectionConsent {
      */
     public VaultConnectionConsentUpdateResponse update(VaultConnectionConsentUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<VaultConnectionConsentUpdateRequest, VaultConnectionConsentUpdateResponse> operation
-              = new VaultConnectionConsentUpdate.Sync(sdkConfiguration, options);
+              = new VaultConnectionConsentUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

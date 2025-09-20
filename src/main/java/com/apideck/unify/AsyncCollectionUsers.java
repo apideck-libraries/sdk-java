@@ -13,12 +13,14 @@ import com.apideck.unify.models.operations.async.IssueTrackingCollectionUsersOne
 import com.apideck.unify.models.operations.async.IssueTrackingCollectionUsersOneResponse;
 import com.apideck.unify.operations.IssueTrackingCollectionUsersAll;
 import com.apideck.unify.operations.IssueTrackingCollectionUsersOne;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncCollectionUsers {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final CollectionUsers syncSDK;
 
@@ -71,7 +73,9 @@ public class AsyncCollectionUsers {
      */
     public CompletableFuture<IssueTrackingCollectionUsersAllResponse> list(IssueTrackingCollectionUsersAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<IssueTrackingCollectionUsersAllRequest, IssueTrackingCollectionUsersAllResponse> operation
-              = new IssueTrackingCollectionUsersAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new IssueTrackingCollectionUsersAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -111,7 +115,9 @@ public class AsyncCollectionUsers {
      */
     public CompletableFuture<IssueTrackingCollectionUsersOneResponse> get(IssueTrackingCollectionUsersOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<IssueTrackingCollectionUsersOneRequest, IssueTrackingCollectionUsersOneResponse> operation
-              = new IssueTrackingCollectionUsersOne.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new IssueTrackingCollectionUsersOne.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

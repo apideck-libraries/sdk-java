@@ -33,12 +33,14 @@ import com.apideck.unify.operations.FileStorageFilesExport;
 import com.apideck.unify.operations.FileStorageFilesOne;
 import com.apideck.unify.operations.FileStorageFilesSearch;
 import com.apideck.unify.operations.FileStorageFilesUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncFiles {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final Files syncSDK;
 
@@ -91,7 +93,9 @@ public class AsyncFiles {
      */
     public CompletableFuture<FileStorageFilesAllResponse> list(FileStorageFilesAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<FileStorageFilesAllRequest, FileStorageFilesAllResponse> operation
-              = new FileStorageFilesAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new FileStorageFilesAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -131,7 +135,9 @@ public class AsyncFiles {
      */
     public CompletableFuture<FileStorageFilesSearchResponse> search(FileStorageFilesSearchRequest request, Optional<Options> options) {
         AsyncRequestOperation<FileStorageFilesSearchRequest, FileStorageFilesSearchResponse> operation
-              = new FileStorageFilesSearch.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new FileStorageFilesSearch.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -171,7 +177,9 @@ public class AsyncFiles {
      */
     public CompletableFuture<FileStorageFilesOneResponse> get(FileStorageFilesOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<FileStorageFilesOneRequest, FileStorageFilesOneResponse> operation
-              = new FileStorageFilesOne.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new FileStorageFilesOne.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -211,7 +219,9 @@ public class AsyncFiles {
      */
     public CompletableFuture<FileStorageFilesUpdateResponse> update(FileStorageFilesUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<FileStorageFilesUpdateRequest, FileStorageFilesUpdateResponse> operation
-              = new FileStorageFilesUpdate.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new FileStorageFilesUpdate.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -251,7 +261,9 @@ public class AsyncFiles {
      */
     public CompletableFuture<FileStorageFilesDeleteResponse> delete(FileStorageFilesDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<FileStorageFilesDeleteRequest, FileStorageFilesDeleteResponse> operation
-              = new FileStorageFilesDelete.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new FileStorageFilesDelete.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -291,7 +303,9 @@ public class AsyncFiles {
      */
     public CompletableFuture<FileStorageFilesDownloadResponse> download(FileStorageFilesDownloadRequest request, Optional<Options> options) {
         AsyncRequestOperation<FileStorageFilesDownloadRequest, FileStorageFilesDownloadResponse> operation
-              = new FileStorageFilesDownload.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new FileStorageFilesDownload.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -331,7 +345,9 @@ public class AsyncFiles {
      */
     public CompletableFuture<FileStorageFilesExportResponse> export(FileStorageFilesExportRequest request, Optional<Options> options) {
         AsyncRequestOperation<FileStorageFilesExportRequest, FileStorageFilesExportResponse> operation
-              = new FileStorageFilesExport.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new FileStorageFilesExport.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

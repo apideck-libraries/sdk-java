@@ -25,12 +25,14 @@ import com.apideck.unify.operations.AccountingInvoiceItemsAll;
 import com.apideck.unify.operations.AccountingInvoiceItemsDelete;
 import com.apideck.unify.operations.AccountingInvoiceItemsOne;
 import com.apideck.unify.operations.AccountingInvoiceItemsUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
 
 
 public class InvoiceItems {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncInvoiceItems asyncSDK;
 
@@ -84,7 +86,7 @@ public class InvoiceItems {
      */
     public AccountingInvoiceItemsAllResponse list(AccountingInvoiceItemsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingInvoiceItemsAllRequest, AccountingInvoiceItemsAllResponse> operation
-              = new AccountingInvoiceItemsAll.Sync(sdkConfiguration, options);
+              = new AccountingInvoiceItemsAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -124,7 +126,7 @@ public class InvoiceItems {
      */
     public AccountingInvoiceItemsAddResponse create(AccountingInvoiceItemsAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingInvoiceItemsAddRequest, AccountingInvoiceItemsAddResponse> operation
-              = new AccountingInvoiceItemsAdd.Sync(sdkConfiguration, options);
+              = new AccountingInvoiceItemsAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -164,7 +166,7 @@ public class InvoiceItems {
      */
     public AccountingInvoiceItemsOneResponse get(AccountingInvoiceItemsOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingInvoiceItemsOneRequest, AccountingInvoiceItemsOneResponse> operation
-              = new AccountingInvoiceItemsOne.Sync(sdkConfiguration, options);
+              = new AccountingInvoiceItemsOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -204,7 +206,7 @@ public class InvoiceItems {
      */
     public AccountingInvoiceItemsUpdateResponse update(AccountingInvoiceItemsUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingInvoiceItemsUpdateRequest, AccountingInvoiceItemsUpdateResponse> operation
-              = new AccountingInvoiceItemsUpdate.Sync(sdkConfiguration, options);
+              = new AccountingInvoiceItemsUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -244,7 +246,7 @@ public class InvoiceItems {
      */
     public AccountingInvoiceItemsDeleteResponse delete(AccountingInvoiceItemsDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingInvoiceItemsDeleteRequest, AccountingInvoiceItemsDeleteResponse> operation
-              = new AccountingInvoiceItemsDelete.Sync(sdkConfiguration, options);
+              = new AccountingInvoiceItemsDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

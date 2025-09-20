@@ -25,12 +25,14 @@ import com.apideck.unify.operations.FileStorageSharedLinksAll;
 import com.apideck.unify.operations.FileStorageSharedLinksDelete;
 import com.apideck.unify.operations.FileStorageSharedLinksOne;
 import com.apideck.unify.operations.FileStorageSharedLinksUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
 
 
 public class SharedLinks {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncSharedLinks asyncSDK;
 
@@ -84,7 +86,7 @@ public class SharedLinks {
      */
     public FileStorageSharedLinksAllResponse list(FileStorageSharedLinksAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageSharedLinksAllRequest, FileStorageSharedLinksAllResponse> operation
-              = new FileStorageSharedLinksAll.Sync(sdkConfiguration, options);
+              = new FileStorageSharedLinksAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -124,7 +126,7 @@ public class SharedLinks {
      */
     public FileStorageSharedLinksAddResponse create(FileStorageSharedLinksAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageSharedLinksAddRequest, FileStorageSharedLinksAddResponse> operation
-              = new FileStorageSharedLinksAdd.Sync(sdkConfiguration, options);
+              = new FileStorageSharedLinksAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -164,7 +166,7 @@ public class SharedLinks {
      */
     public FileStorageSharedLinksOneResponse get(FileStorageSharedLinksOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageSharedLinksOneRequest, FileStorageSharedLinksOneResponse> operation
-              = new FileStorageSharedLinksOne.Sync(sdkConfiguration, options);
+              = new FileStorageSharedLinksOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -204,7 +206,7 @@ public class SharedLinks {
      */
     public FileStorageSharedLinksUpdateResponse update(FileStorageSharedLinksUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageSharedLinksUpdateRequest, FileStorageSharedLinksUpdateResponse> operation
-              = new FileStorageSharedLinksUpdate.Sync(sdkConfiguration, options);
+              = new FileStorageSharedLinksUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -244,7 +246,7 @@ public class SharedLinks {
      */
     public FileStorageSharedLinksDeleteResponse delete(FileStorageSharedLinksDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageSharedLinksDeleteRequest, FileStorageSharedLinksDeleteResponse> operation
-              = new FileStorageSharedLinksDelete.Sync(sdkConfiguration, options);
+              = new FileStorageSharedLinksDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

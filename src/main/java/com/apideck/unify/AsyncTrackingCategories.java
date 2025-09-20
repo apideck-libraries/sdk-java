@@ -25,12 +25,14 @@ import com.apideck.unify.operations.AccountingTrackingCategoriesAll;
 import com.apideck.unify.operations.AccountingTrackingCategoriesDelete;
 import com.apideck.unify.operations.AccountingTrackingCategoriesOne;
 import com.apideck.unify.operations.AccountingTrackingCategoriesUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncTrackingCategories {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final TrackingCategories syncSDK;
 
@@ -83,7 +85,9 @@ public class AsyncTrackingCategories {
      */
     public CompletableFuture<AccountingTrackingCategoriesAllResponse> list(AccountingTrackingCategoriesAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingTrackingCategoriesAllRequest, AccountingTrackingCategoriesAllResponse> operation
-              = new AccountingTrackingCategoriesAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingTrackingCategoriesAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -123,7 +127,9 @@ public class AsyncTrackingCategories {
      */
     public CompletableFuture<AccountingTrackingCategoriesAddResponse> create(AccountingTrackingCategoriesAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingTrackingCategoriesAddRequest, AccountingTrackingCategoriesAddResponse> operation
-              = new AccountingTrackingCategoriesAdd.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingTrackingCategoriesAdd.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -163,7 +169,9 @@ public class AsyncTrackingCategories {
      */
     public CompletableFuture<AccountingTrackingCategoriesOneResponse> get(AccountingTrackingCategoriesOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingTrackingCategoriesOneRequest, AccountingTrackingCategoriesOneResponse> operation
-              = new AccountingTrackingCategoriesOne.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingTrackingCategoriesOne.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -203,7 +211,9 @@ public class AsyncTrackingCategories {
      */
     public CompletableFuture<AccountingTrackingCategoriesUpdateResponse> update(AccountingTrackingCategoriesUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingTrackingCategoriesUpdateRequest, AccountingTrackingCategoriesUpdateResponse> operation
-              = new AccountingTrackingCategoriesUpdate.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingTrackingCategoriesUpdate.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -243,7 +253,9 @@ public class AsyncTrackingCategories {
      */
     public CompletableFuture<AccountingTrackingCategoriesDeleteResponse> delete(AccountingTrackingCategoriesDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingTrackingCategoriesDeleteRequest, AccountingTrackingCategoriesDeleteResponse> operation
-              = new AccountingTrackingCategoriesDelete.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingTrackingCategoriesDelete.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

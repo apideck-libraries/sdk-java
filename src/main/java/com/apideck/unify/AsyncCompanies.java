@@ -25,12 +25,14 @@ import com.apideck.unify.operations.CrmCompaniesAll;
 import com.apideck.unify.operations.CrmCompaniesDelete;
 import com.apideck.unify.operations.CrmCompaniesOne;
 import com.apideck.unify.operations.CrmCompaniesUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncCompanies {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final Companies syncSDK;
 
@@ -83,7 +85,9 @@ public class AsyncCompanies {
      */
     public CompletableFuture<CrmCompaniesAllResponse> list(CrmCompaniesAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmCompaniesAllRequest, CrmCompaniesAllResponse> operation
-              = new CrmCompaniesAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new CrmCompaniesAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -123,7 +127,9 @@ public class AsyncCompanies {
      */
     public CompletableFuture<CrmCompaniesAddResponse> create(CrmCompaniesAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmCompaniesAddRequest, CrmCompaniesAddResponse> operation
-              = new CrmCompaniesAdd.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new CrmCompaniesAdd.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -163,7 +169,9 @@ public class AsyncCompanies {
      */
     public CompletableFuture<CrmCompaniesOneResponse> get(CrmCompaniesOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmCompaniesOneRequest, CrmCompaniesOneResponse> operation
-              = new CrmCompaniesOne.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new CrmCompaniesOne.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -203,7 +211,9 @@ public class AsyncCompanies {
      */
     public CompletableFuture<CrmCompaniesUpdateResponse> update(CrmCompaniesUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmCompaniesUpdateRequest, CrmCompaniesUpdateResponse> operation
-              = new CrmCompaniesUpdate.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new CrmCompaniesUpdate.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -243,7 +253,9 @@ public class AsyncCompanies {
      */
     public CompletableFuture<CrmCompaniesDeleteResponse> delete(CrmCompaniesDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmCompaniesDeleteRequest, CrmCompaniesDeleteResponse> operation
-              = new CrmCompaniesDelete.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new CrmCompaniesDelete.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

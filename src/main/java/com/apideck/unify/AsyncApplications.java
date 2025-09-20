@@ -25,12 +25,14 @@ import com.apideck.unify.operations.AtsApplicationsAll;
 import com.apideck.unify.operations.AtsApplicationsDelete;
 import com.apideck.unify.operations.AtsApplicationsOne;
 import com.apideck.unify.operations.AtsApplicationsUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncApplications {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final Applications syncSDK;
 
@@ -83,7 +85,9 @@ public class AsyncApplications {
      */
     public CompletableFuture<AtsApplicationsAllResponse> list(AtsApplicationsAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<AtsApplicationsAllRequest, AtsApplicationsAllResponse> operation
-              = new AtsApplicationsAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AtsApplicationsAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -123,7 +127,9 @@ public class AsyncApplications {
      */
     public CompletableFuture<AtsApplicationsAddResponse> create(AtsApplicationsAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<AtsApplicationsAddRequest, AtsApplicationsAddResponse> operation
-              = new AtsApplicationsAdd.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AtsApplicationsAdd.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -163,7 +169,9 @@ public class AsyncApplications {
      */
     public CompletableFuture<AtsApplicationsOneResponse> get(AtsApplicationsOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<AtsApplicationsOneRequest, AtsApplicationsOneResponse> operation
-              = new AtsApplicationsOne.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AtsApplicationsOne.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -203,7 +211,9 @@ public class AsyncApplications {
      */
     public CompletableFuture<AtsApplicationsUpdateResponse> update(AtsApplicationsUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<AtsApplicationsUpdateRequest, AtsApplicationsUpdateResponse> operation
-              = new AtsApplicationsUpdate.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AtsApplicationsUpdate.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -243,7 +253,9 @@ public class AsyncApplications {
      */
     public CompletableFuture<AtsApplicationsDeleteResponse> delete(AtsApplicationsDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<AtsApplicationsDeleteRequest, AtsApplicationsDeleteResponse> operation
-              = new AtsApplicationsDelete.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AtsApplicationsDelete.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

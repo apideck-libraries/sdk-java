@@ -9,12 +9,14 @@ import com.apideck.unify.models.operations.VaultLogsAllRequest;
 import com.apideck.unify.models.operations.async.VaultLogsAllRequestBuilder;
 import com.apideck.unify.models.operations.async.VaultLogsAllResponse;
 import com.apideck.unify.operations.VaultLogsAll;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncLogs {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final Logs syncSDK;
 
@@ -67,7 +69,9 @@ public class AsyncLogs {
      */
     public CompletableFuture<VaultLogsAllResponse> list(VaultLogsAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<VaultLogsAllRequest, VaultLogsAllResponse> operation
-              = new VaultLogsAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new VaultLogsAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

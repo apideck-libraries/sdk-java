@@ -8,6 +8,7 @@ import static com.apideck.unify.operations.Operations.AsyncRequestOperation;
 import com.apideck.unify.SDKConfiguration;
 import com.apideck.unify.models.operations.VaultConnectionsDeleteRequest;
 import com.apideck.unify.operations.VaultConnectionsDelete;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -24,6 +25,7 @@ public class VaultConnectionsDeleteRequestBuilder {
     private String unifiedApi;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public VaultConnectionsDeleteRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -94,7 +96,9 @@ public class VaultConnectionsDeleteRequestBuilder {
             .build());
 
         AsyncRequestOperation<VaultConnectionsDeleteRequest, VaultConnectionsDeleteResponse> operation
-              = new VaultConnectionsDelete.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new VaultConnectionsDelete.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         VaultConnectionsDeleteRequest request = buildRequest();
 
         return operation.doRequest(request)

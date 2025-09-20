@@ -13,12 +13,14 @@ import com.apideck.unify.models.operations.async.EcommerceCustomersOneRequestBui
 import com.apideck.unify.models.operations.async.EcommerceCustomersOneResponse;
 import com.apideck.unify.operations.EcommerceCustomersAll;
 import com.apideck.unify.operations.EcommerceCustomersOne;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncApideckCustomers {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final ApideckCustomers syncSDK;
 
@@ -71,7 +73,9 @@ public class AsyncApideckCustomers {
      */
     public CompletableFuture<EcommerceCustomersAllResponse> list(EcommerceCustomersAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<EcommerceCustomersAllRequest, EcommerceCustomersAllResponse> operation
-              = new EcommerceCustomersAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new EcommerceCustomersAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -111,7 +115,9 @@ public class AsyncApideckCustomers {
      */
     public CompletableFuture<EcommerceCustomersOneResponse> get(EcommerceCustomersOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<EcommerceCustomersOneRequest, EcommerceCustomersOneResponse> operation
-              = new EcommerceCustomersOne.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new EcommerceCustomersOne.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

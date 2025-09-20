@@ -9,12 +9,14 @@ import com.apideck.unify.models.operations.AccountingAgedCreditorsOneRequest;
 import com.apideck.unify.models.operations.AccountingAgedCreditorsOneRequestBuilder;
 import com.apideck.unify.models.operations.AccountingAgedCreditorsOneResponse;
 import com.apideck.unify.operations.AccountingAgedCreditorsOne;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
 
 
 public class AgedCreditors {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncAgedCreditors asyncSDK;
 
@@ -68,7 +70,7 @@ public class AgedCreditors {
      */
     public AccountingAgedCreditorsOneResponse get(AccountingAgedCreditorsOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingAgedCreditorsOneRequest, AccountingAgedCreditorsOneResponse> operation
-              = new AccountingAgedCreditorsOne.Sync(sdkConfiguration, options);
+              = new AccountingAgedCreditorsOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

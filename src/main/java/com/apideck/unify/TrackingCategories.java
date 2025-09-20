@@ -25,12 +25,14 @@ import com.apideck.unify.operations.AccountingTrackingCategoriesAll;
 import com.apideck.unify.operations.AccountingTrackingCategoriesDelete;
 import com.apideck.unify.operations.AccountingTrackingCategoriesOne;
 import com.apideck.unify.operations.AccountingTrackingCategoriesUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
 
 
 public class TrackingCategories {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncTrackingCategories asyncSDK;
 
@@ -84,7 +86,7 @@ public class TrackingCategories {
      */
     public AccountingTrackingCategoriesAllResponse list(AccountingTrackingCategoriesAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingTrackingCategoriesAllRequest, AccountingTrackingCategoriesAllResponse> operation
-              = new AccountingTrackingCategoriesAll.Sync(sdkConfiguration, options);
+              = new AccountingTrackingCategoriesAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -124,7 +126,7 @@ public class TrackingCategories {
      */
     public AccountingTrackingCategoriesAddResponse create(AccountingTrackingCategoriesAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingTrackingCategoriesAddRequest, AccountingTrackingCategoriesAddResponse> operation
-              = new AccountingTrackingCategoriesAdd.Sync(sdkConfiguration, options);
+              = new AccountingTrackingCategoriesAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -164,7 +166,7 @@ public class TrackingCategories {
      */
     public AccountingTrackingCategoriesOneResponse get(AccountingTrackingCategoriesOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingTrackingCategoriesOneRequest, AccountingTrackingCategoriesOneResponse> operation
-              = new AccountingTrackingCategoriesOne.Sync(sdkConfiguration, options);
+              = new AccountingTrackingCategoriesOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -204,7 +206,7 @@ public class TrackingCategories {
      */
     public AccountingTrackingCategoriesUpdateResponse update(AccountingTrackingCategoriesUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingTrackingCategoriesUpdateRequest, AccountingTrackingCategoriesUpdateResponse> operation
-              = new AccountingTrackingCategoriesUpdate.Sync(sdkConfiguration, options);
+              = new AccountingTrackingCategoriesUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -244,7 +246,7 @@ public class TrackingCategories {
      */
     public AccountingTrackingCategoriesDeleteResponse delete(AccountingTrackingCategoriesDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingTrackingCategoriesDeleteRequest, AccountingTrackingCategoriesDeleteResponse> operation
-              = new AccountingTrackingCategoriesDelete.Sync(sdkConfiguration, options);
+              = new AccountingTrackingCategoriesDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

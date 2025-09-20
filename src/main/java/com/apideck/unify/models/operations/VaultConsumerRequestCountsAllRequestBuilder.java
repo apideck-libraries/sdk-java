@@ -7,6 +7,7 @@ import static com.apideck.unify.operations.Operations.RequestOperation;
 
 import com.apideck.unify.SDKConfiguration;
 import com.apideck.unify.operations.VaultConsumerRequestCountsAll;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -22,6 +23,7 @@ public class VaultConsumerRequestCountsAllRequestBuilder {
     private String endDatetime;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public VaultConsumerRequestCountsAllRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -86,7 +88,7 @@ public class VaultConsumerRequestCountsAllRequestBuilder {
             .build());
 
         RequestOperation<VaultConsumerRequestCountsAllRequest, VaultConsumerRequestCountsAllResponse> operation
-              = new VaultConsumerRequestCountsAll.Sync(sdkConfiguration, options);
+              = new VaultConsumerRequestCountsAll.Sync(sdkConfiguration, options, _headers);
         VaultConsumerRequestCountsAllRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

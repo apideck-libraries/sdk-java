@@ -11,6 +11,7 @@ import com.apideck.unify.models.components.ConnectorsFilter;
 import com.apideck.unify.models.operations.ConnectorConnectorsAllRequest;
 import com.apideck.unify.operations.ConnectorConnectorsAll;
 import com.apideck.unify.utils.Blob;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
@@ -40,6 +41,7 @@ public class ConnectorConnectorsAllRequestBuilder {
     private Optional<? extends ConnectorsFilter> filter = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public ConnectorConnectorsAllRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -125,7 +127,9 @@ public class ConnectorConnectorsAllRequestBuilder {
             .build());
 
         AsyncRequestOperation<ConnectorConnectorsAllRequest, ConnectorConnectorsAllResponse> operation
-              = new ConnectorConnectorsAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ConnectorConnectorsAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         ConnectorConnectorsAllRequest request = buildRequest();
 
         return operation.doRequest(request)
@@ -153,7 +157,9 @@ public class ConnectorConnectorsAllRequestBuilder {
             .build());
 
         AsyncRequestOperation<ConnectorConnectorsAllRequest, ConnectorConnectorsAllResponse> operation
-              = new ConnectorConnectorsAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ConnectorConnectorsAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
 
         Flow.Publisher<HttpResponse<Blob>> asyncPaginator = new AsyncPaginator<>(
             request,

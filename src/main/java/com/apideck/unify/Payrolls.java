@@ -13,12 +13,14 @@ import com.apideck.unify.models.operations.HrisPayrollsOneRequestBuilder;
 import com.apideck.unify.models.operations.HrisPayrollsOneResponse;
 import com.apideck.unify.operations.HrisPayrollsAll;
 import com.apideck.unify.operations.HrisPayrollsOne;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
 
 
 public class Payrolls {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncPayrolls asyncSDK;
 
@@ -72,7 +74,7 @@ public class Payrolls {
      */
     public HrisPayrollsAllResponse list(HrisPayrollsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<HrisPayrollsAllRequest, HrisPayrollsAllResponse> operation
-              = new HrisPayrollsAll.Sync(sdkConfiguration, options);
+              = new HrisPayrollsAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -112,7 +114,7 @@ public class Payrolls {
      */
     public HrisPayrollsOneResponse get(HrisPayrollsOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<HrisPayrollsOneRequest, HrisPayrollsOneResponse> operation
-              = new HrisPayrollsOne.Sync(sdkConfiguration, options);
+              = new HrisPayrollsOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

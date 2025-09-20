@@ -8,6 +8,7 @@ import static com.apideck.unify.operations.Operations.AsyncRequestOperation;
 import com.apideck.unify.SDKConfiguration;
 import com.apideck.unify.models.operations.AtsApplicantsDeleteRequest;
 import com.apideck.unify.operations.AtsApplicantsDelete;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -20,6 +21,7 @@ public class AtsApplicantsDeleteRequestBuilder {
     private AtsApplicantsDeleteRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public AtsApplicantsDeleteRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -49,7 +51,9 @@ public class AtsApplicantsDeleteRequestBuilder {
             .build());
 
         AsyncRequestOperation<AtsApplicantsDeleteRequest, AtsApplicantsDeleteResponse> operation
-              = new AtsApplicantsDelete.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AtsApplicantsDelete.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
 
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

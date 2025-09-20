@@ -25,12 +25,14 @@ import com.apideck.unify.operations.AccountingQuotesAll;
 import com.apideck.unify.operations.AccountingQuotesDelete;
 import com.apideck.unify.operations.AccountingQuotesOne;
 import com.apideck.unify.operations.AccountingQuotesUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
 
 
 public class Quotes {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncQuotes asyncSDK;
 
@@ -84,7 +86,7 @@ public class Quotes {
      */
     public AccountingQuotesAllResponse list(AccountingQuotesAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingQuotesAllRequest, AccountingQuotesAllResponse> operation
-              = new AccountingQuotesAll.Sync(sdkConfiguration, options);
+              = new AccountingQuotesAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -124,7 +126,7 @@ public class Quotes {
      */
     public AccountingQuotesAddResponse create(AccountingQuotesAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingQuotesAddRequest, AccountingQuotesAddResponse> operation
-              = new AccountingQuotesAdd.Sync(sdkConfiguration, options);
+              = new AccountingQuotesAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -164,7 +166,7 @@ public class Quotes {
      */
     public AccountingQuotesOneResponse get(AccountingQuotesOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingQuotesOneRequest, AccountingQuotesOneResponse> operation
-              = new AccountingQuotesOne.Sync(sdkConfiguration, options);
+              = new AccountingQuotesOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -204,7 +206,7 @@ public class Quotes {
      */
     public AccountingQuotesUpdateResponse update(AccountingQuotesUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingQuotesUpdateRequest, AccountingQuotesUpdateResponse> operation
-              = new AccountingQuotesUpdate.Sync(sdkConfiguration, options);
+              = new AccountingQuotesUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -244,7 +246,7 @@ public class Quotes {
      */
     public AccountingQuotesDeleteResponse delete(AccountingQuotesDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingQuotesDeleteRequest, AccountingQuotesDeleteResponse> operation
-              = new AccountingQuotesDelete.Sync(sdkConfiguration, options);
+              = new AccountingQuotesDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

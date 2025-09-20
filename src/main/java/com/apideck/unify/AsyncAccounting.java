@@ -3,7 +3,11 @@
  */
 package com.apideck.unify;
 
+import com.apideck.unify.utils.Headers;
+
+
 public class AsyncAccounting {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncTaxRates taxRates;
     private final AsyncBills bills;
@@ -23,6 +27,7 @@ public class AsyncAccounting {
     private final AsyncLocations locations;
     private final AsyncDepartments departments;
     private final AsyncAttachments attachments;
+    private final AsyncBankAccounts bankAccounts;
     private final AsyncTrackingCategories trackingCategories;
     private final AsyncBillPayments billPayments;
     private final AsyncExpenses expenses;
@@ -54,6 +59,7 @@ public class AsyncAccounting {
         this.locations = new AsyncLocations(syncSDK.locations(), this.sdkConfiguration);
         this.departments = new AsyncDepartments(syncSDK.departments(), this.sdkConfiguration);
         this.attachments = new AsyncAttachments(syncSDK.attachments(), this.sdkConfiguration);
+        this.bankAccounts = new AsyncBankAccounts(syncSDK.bankAccounts(), this.sdkConfiguration);
         this.trackingCategories = new AsyncTrackingCategories(syncSDK.trackingCategories(), this.sdkConfiguration);
         this.billPayments = new AsyncBillPayments(syncSDK.billPayments(), this.sdkConfiguration);
         this.expenses = new AsyncExpenses(syncSDK.expenses(), this.sdkConfiguration);
@@ -136,6 +142,10 @@ public class AsyncAccounting {
 
     public final AsyncAttachments attachments() {
         return attachments;
+    }
+
+    public final AsyncBankAccounts bankAccounts() {
+        return bankAccounts;
     }
 
     public final AsyncTrackingCategories trackingCategories() {

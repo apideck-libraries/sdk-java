@@ -25,12 +25,14 @@ import com.apideck.unify.operations.AccountingBankFeedAccountsAll;
 import com.apideck.unify.operations.AccountingBankFeedAccountsDelete;
 import com.apideck.unify.operations.AccountingBankFeedAccountsOne;
 import com.apideck.unify.operations.AccountingBankFeedAccountsUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
 
 
 public class BankFeedAccounts {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncBankFeedAccounts asyncSDK;
 
@@ -84,7 +86,7 @@ public class BankFeedAccounts {
      */
     public AccountingBankFeedAccountsAllResponse list(AccountingBankFeedAccountsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingBankFeedAccountsAllRequest, AccountingBankFeedAccountsAllResponse> operation
-              = new AccountingBankFeedAccountsAll.Sync(sdkConfiguration, options);
+              = new AccountingBankFeedAccountsAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -124,7 +126,7 @@ public class BankFeedAccounts {
      */
     public AccountingBankFeedAccountsAddResponse create(AccountingBankFeedAccountsAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingBankFeedAccountsAddRequest, AccountingBankFeedAccountsAddResponse> operation
-              = new AccountingBankFeedAccountsAdd.Sync(sdkConfiguration, options);
+              = new AccountingBankFeedAccountsAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -164,7 +166,7 @@ public class BankFeedAccounts {
      */
     public AccountingBankFeedAccountsOneResponse get(AccountingBankFeedAccountsOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingBankFeedAccountsOneRequest, AccountingBankFeedAccountsOneResponse> operation
-              = new AccountingBankFeedAccountsOne.Sync(sdkConfiguration, options);
+              = new AccountingBankFeedAccountsOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -204,7 +206,7 @@ public class BankFeedAccounts {
      */
     public AccountingBankFeedAccountsUpdateResponse update(AccountingBankFeedAccountsUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingBankFeedAccountsUpdateRequest, AccountingBankFeedAccountsUpdateResponse> operation
-              = new AccountingBankFeedAccountsUpdate.Sync(sdkConfiguration, options);
+              = new AccountingBankFeedAccountsUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -244,7 +246,7 @@ public class BankFeedAccounts {
      */
     public AccountingBankFeedAccountsDeleteResponse delete(AccountingBankFeedAccountsDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingBankFeedAccountsDeleteRequest, AccountingBankFeedAccountsDeleteResponse> operation
-              = new AccountingBankFeedAccountsDelete.Sync(sdkConfiguration, options);
+              = new AccountingBankFeedAccountsDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

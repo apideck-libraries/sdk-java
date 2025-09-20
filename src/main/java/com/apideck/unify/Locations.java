@@ -25,12 +25,14 @@ import com.apideck.unify.operations.AccountingLocationsAll;
 import com.apideck.unify.operations.AccountingLocationsDelete;
 import com.apideck.unify.operations.AccountingLocationsOne;
 import com.apideck.unify.operations.AccountingLocationsUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
 
 
 public class Locations {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncLocations asyncSDK;
 
@@ -84,7 +86,7 @@ public class Locations {
      */
     public AccountingLocationsAllResponse list(AccountingLocationsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingLocationsAllRequest, AccountingLocationsAllResponse> operation
-              = new AccountingLocationsAll.Sync(sdkConfiguration, options);
+              = new AccountingLocationsAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -124,7 +126,7 @@ public class Locations {
      */
     public AccountingLocationsAddResponse create(AccountingLocationsAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingLocationsAddRequest, AccountingLocationsAddResponse> operation
-              = new AccountingLocationsAdd.Sync(sdkConfiguration, options);
+              = new AccountingLocationsAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -164,7 +166,7 @@ public class Locations {
      */
     public AccountingLocationsOneResponse get(AccountingLocationsOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingLocationsOneRequest, AccountingLocationsOneResponse> operation
-              = new AccountingLocationsOne.Sync(sdkConfiguration, options);
+              = new AccountingLocationsOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -204,7 +206,7 @@ public class Locations {
      */
     public AccountingLocationsUpdateResponse update(AccountingLocationsUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingLocationsUpdateRequest, AccountingLocationsUpdateResponse> operation
-              = new AccountingLocationsUpdate.Sync(sdkConfiguration, options);
+              = new AccountingLocationsUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -244,7 +246,7 @@ public class Locations {
      */
     public AccountingLocationsDeleteResponse delete(AccountingLocationsDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingLocationsDeleteRequest, AccountingLocationsDeleteResponse> operation
-              = new AccountingLocationsDelete.Sync(sdkConfiguration, options);
+              = new AccountingLocationsDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

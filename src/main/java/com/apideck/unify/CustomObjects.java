@@ -25,12 +25,14 @@ import com.apideck.unify.operations.CrmCustomObjectsAll;
 import com.apideck.unify.operations.CrmCustomObjectsDelete;
 import com.apideck.unify.operations.CrmCustomObjectsOne;
 import com.apideck.unify.operations.CrmCustomObjectsUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
 
 
 public class CustomObjects {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncCustomObjects asyncSDK;
 
@@ -84,7 +86,7 @@ public class CustomObjects {
      */
     public CrmCustomObjectsAllResponse list(CrmCustomObjectsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmCustomObjectsAllRequest, CrmCustomObjectsAllResponse> operation
-              = new CrmCustomObjectsAll.Sync(sdkConfiguration, options);
+              = new CrmCustomObjectsAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -124,7 +126,7 @@ public class CustomObjects {
      */
     public CrmCustomObjectsAddResponse create(CrmCustomObjectsAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmCustomObjectsAddRequest, CrmCustomObjectsAddResponse> operation
-              = new CrmCustomObjectsAdd.Sync(sdkConfiguration, options);
+              = new CrmCustomObjectsAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -164,7 +166,7 @@ public class CustomObjects {
      */
     public CrmCustomObjectsOneResponse get(CrmCustomObjectsOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmCustomObjectsOneRequest, CrmCustomObjectsOneResponse> operation
-              = new CrmCustomObjectsOne.Sync(sdkConfiguration, options);
+              = new CrmCustomObjectsOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -204,7 +206,7 @@ public class CustomObjects {
      */
     public CrmCustomObjectsUpdateResponse update(CrmCustomObjectsUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmCustomObjectsUpdateRequest, CrmCustomObjectsUpdateResponse> operation
-              = new CrmCustomObjectsUpdate.Sync(sdkConfiguration, options);
+              = new CrmCustomObjectsUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -244,7 +246,7 @@ public class CustomObjects {
      */
     public CrmCustomObjectsDeleteResponse delete(CrmCustomObjectsDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmCustomObjectsDeleteRequest, CrmCustomObjectsDeleteResponse> operation
-              = new CrmCustomObjectsDelete.Sync(sdkConfiguration, options);
+              = new CrmCustomObjectsDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

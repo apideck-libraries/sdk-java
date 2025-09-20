@@ -25,12 +25,14 @@ import com.apideck.unify.operations.FileStorageDrivesAll;
 import com.apideck.unify.operations.FileStorageDrivesDelete;
 import com.apideck.unify.operations.FileStorageDrivesOne;
 import com.apideck.unify.operations.FileStorageDrivesUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
 
 
 public class Drives {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncDrives asyncSDK;
 
@@ -84,7 +86,7 @@ public class Drives {
      */
     public FileStorageDrivesAllResponse list(FileStorageDrivesAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageDrivesAllRequest, FileStorageDrivesAllResponse> operation
-              = new FileStorageDrivesAll.Sync(sdkConfiguration, options);
+              = new FileStorageDrivesAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -124,7 +126,7 @@ public class Drives {
      */
     public FileStorageDrivesAddResponse create(FileStorageDrivesAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageDrivesAddRequest, FileStorageDrivesAddResponse> operation
-              = new FileStorageDrivesAdd.Sync(sdkConfiguration, options);
+              = new FileStorageDrivesAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -164,7 +166,7 @@ public class Drives {
      */
     public FileStorageDrivesOneResponse get(FileStorageDrivesOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageDrivesOneRequest, FileStorageDrivesOneResponse> operation
-              = new FileStorageDrivesOne.Sync(sdkConfiguration, options);
+              = new FileStorageDrivesOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -204,7 +206,7 @@ public class Drives {
      */
     public FileStorageDrivesUpdateResponse update(FileStorageDrivesUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageDrivesUpdateRequest, FileStorageDrivesUpdateResponse> operation
-              = new FileStorageDrivesUpdate.Sync(sdkConfiguration, options);
+              = new FileStorageDrivesUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -244,7 +246,7 @@ public class Drives {
      */
     public FileStorageDrivesDeleteResponse delete(FileStorageDrivesDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageDrivesDeleteRequest, FileStorageDrivesDeleteResponse> operation
-              = new FileStorageDrivesDelete.Sync(sdkConfiguration, options);
+              = new FileStorageDrivesDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

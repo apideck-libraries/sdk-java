@@ -1,0 +1,22 @@
+description = 'Apideck Spring Boot Starter'
+
+// Publishing configuration overrides
+ext {
+    publishingConfig = [
+        groupId: rootProject.group,
+        artifactId: 'unify-spring-boot-starter',
+        version: rootProject.version,
+        name: 'Apideck Java SDK - Spring Boot Starter',
+        description: 'Spring Boot starter for the Apideck Java SDK.',
+    ]
+}
+
+dependencies {
+    api project(':')
+    api project(':unify-spring-boot-autoconfigure')
+    api "org.springframework.boot:spring-boot-starter:${rootProject.springBootVersion}"
+}
+
+jar {
+    archiveBaseName = 'unify-spring-boot-starter'
+}

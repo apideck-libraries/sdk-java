@@ -13,12 +13,14 @@ import com.apideck.unify.models.operations.async.HrisEmployeePayrollsOneRequestB
 import com.apideck.unify.models.operations.async.HrisEmployeePayrollsOneResponse;
 import com.apideck.unify.operations.HrisEmployeePayrollsAll;
 import com.apideck.unify.operations.HrisEmployeePayrollsOne;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncEmployeePayrolls {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final EmployeePayrolls syncSDK;
 
@@ -71,7 +73,9 @@ public class AsyncEmployeePayrolls {
      */
     public CompletableFuture<HrisEmployeePayrollsAllResponse> list(HrisEmployeePayrollsAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<HrisEmployeePayrollsAllRequest, HrisEmployeePayrollsAllResponse> operation
-              = new HrisEmployeePayrollsAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new HrisEmployeePayrollsAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -111,7 +115,9 @@ public class AsyncEmployeePayrolls {
      */
     public CompletableFuture<HrisEmployeePayrollsOneResponse> get(HrisEmployeePayrollsOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<HrisEmployeePayrollsOneRequest, HrisEmployeePayrollsOneResponse> operation
-              = new HrisEmployeePayrollsOne.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new HrisEmployeePayrollsOne.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

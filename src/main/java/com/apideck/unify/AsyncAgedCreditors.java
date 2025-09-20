@@ -9,12 +9,14 @@ import com.apideck.unify.models.operations.AccountingAgedCreditorsOneRequest;
 import com.apideck.unify.models.operations.async.AccountingAgedCreditorsOneRequestBuilder;
 import com.apideck.unify.models.operations.async.AccountingAgedCreditorsOneResponse;
 import com.apideck.unify.operations.AccountingAgedCreditorsOne;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncAgedCreditors {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AgedCreditors syncSDK;
 
@@ -67,7 +69,9 @@ public class AsyncAgedCreditors {
      */
     public CompletableFuture<AccountingAgedCreditorsOneResponse> get(AccountingAgedCreditorsOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingAgedCreditorsOneRequest, AccountingAgedCreditorsOneResponse> operation
-              = new AccountingAgedCreditorsOne.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingAgedCreditorsOne.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

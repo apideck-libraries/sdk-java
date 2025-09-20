@@ -9,6 +9,7 @@ import com.apideck.unify.models.operations.ConnectorConnectorDocsOneRequest;
 import com.apideck.unify.models.operations.ConnectorConnectorDocsOneRequestBuilder;
 import com.apideck.unify.models.operations.ConnectorConnectorDocsOneResponse;
 import com.apideck.unify.operations.ConnectorConnectorDocsOne;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
@@ -16,6 +17,7 @@ import java.util.Optional;
 
 
 public class ConnectorDocs {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncConnectorDocs asyncSDK;
 
@@ -82,7 +84,7 @@ public class ConnectorDocs {
                 .docId(docId)
                 .build();
         RequestOperation<ConnectorConnectorDocsOneRequest, ConnectorConnectorDocsOneResponse> operation
-              = new ConnectorConnectorDocsOne.Sync(sdkConfiguration, options);
+              = new ConnectorConnectorDocsOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

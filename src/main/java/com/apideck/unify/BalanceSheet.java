@@ -9,12 +9,14 @@ import com.apideck.unify.models.operations.AccountingBalanceSheetOneRequest;
 import com.apideck.unify.models.operations.AccountingBalanceSheetOneRequestBuilder;
 import com.apideck.unify.models.operations.AccountingBalanceSheetOneResponse;
 import com.apideck.unify.operations.AccountingBalanceSheetOne;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
 
 
 public class BalanceSheet {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncBalanceSheet asyncSDK;
 
@@ -68,7 +70,7 @@ public class BalanceSheet {
      */
     public AccountingBalanceSheetOneResponse get(AccountingBalanceSheetOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingBalanceSheetOneRequest, AccountingBalanceSheetOneResponse> operation
-              = new AccountingBalanceSheetOne.Sync(sdkConfiguration, options);
+              = new AccountingBalanceSheetOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -25,12 +25,14 @@ import com.apideck.unify.operations.AccountingCreditNotesAll;
 import com.apideck.unify.operations.AccountingCreditNotesDelete;
 import com.apideck.unify.operations.AccountingCreditNotesOne;
 import com.apideck.unify.operations.AccountingCreditNotesUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
 
 
 public class CreditNotes {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncCreditNotes asyncSDK;
 
@@ -84,7 +86,7 @@ public class CreditNotes {
      */
     public AccountingCreditNotesAllResponse list(AccountingCreditNotesAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingCreditNotesAllRequest, AccountingCreditNotesAllResponse> operation
-              = new AccountingCreditNotesAll.Sync(sdkConfiguration, options);
+              = new AccountingCreditNotesAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -124,7 +126,7 @@ public class CreditNotes {
      */
     public AccountingCreditNotesAddResponse create(AccountingCreditNotesAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingCreditNotesAddRequest, AccountingCreditNotesAddResponse> operation
-              = new AccountingCreditNotesAdd.Sync(sdkConfiguration, options);
+              = new AccountingCreditNotesAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -164,7 +166,7 @@ public class CreditNotes {
      */
     public AccountingCreditNotesOneResponse get(AccountingCreditNotesOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingCreditNotesOneRequest, AccountingCreditNotesOneResponse> operation
-              = new AccountingCreditNotesOne.Sync(sdkConfiguration, options);
+              = new AccountingCreditNotesOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -204,7 +206,7 @@ public class CreditNotes {
      */
     public AccountingCreditNotesUpdateResponse update(AccountingCreditNotesUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingCreditNotesUpdateRequest, AccountingCreditNotesUpdateResponse> operation
-              = new AccountingCreditNotesUpdate.Sync(sdkConfiguration, options);
+              = new AccountingCreditNotesUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -244,7 +246,7 @@ public class CreditNotes {
      */
     public AccountingCreditNotesDeleteResponse delete(AccountingCreditNotesDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingCreditNotesDeleteRequest, AccountingCreditNotesDeleteResponse> operation
-              = new AccountingCreditNotesDelete.Sync(sdkConfiguration, options);
+              = new AccountingCreditNotesDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -9,12 +9,14 @@ import com.apideck.unify.models.operations.VaultConnectionConsentUpdateRequest;
 import com.apideck.unify.models.operations.async.VaultConnectionConsentUpdateRequestBuilder;
 import com.apideck.unify.models.operations.async.VaultConnectionConsentUpdateResponse;
 import com.apideck.unify.operations.VaultConnectionConsentUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncConnectionConsent {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final ConnectionConsent syncSDK;
 
@@ -67,7 +69,9 @@ public class AsyncConnectionConsent {
      */
     public CompletableFuture<VaultConnectionConsentUpdateResponse> update(VaultConnectionConsentUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<VaultConnectionConsentUpdateRequest, VaultConnectionConsentUpdateResponse> operation
-              = new VaultConnectionConsentUpdate.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new VaultConnectionConsentUpdate.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

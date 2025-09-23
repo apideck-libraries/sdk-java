@@ -13,12 +13,14 @@ import com.apideck.unify.models.operations.async.AccountingCategoriesOneRequestB
 import com.apideck.unify.models.operations.async.AccountingCategoriesOneResponse;
 import com.apideck.unify.operations.AccountingCategoriesAll;
 import com.apideck.unify.operations.AccountingCategoriesOne;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncCategories {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final Categories syncSDK;
 
@@ -71,7 +73,9 @@ public class AsyncCategories {
      */
     public CompletableFuture<AccountingCategoriesAllResponse> list(AccountingCategoriesAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingCategoriesAllRequest, AccountingCategoriesAllResponse> operation
-              = new AccountingCategoriesAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingCategoriesAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -111,7 +115,9 @@ public class AsyncCategories {
      */
     public CompletableFuture<AccountingCategoriesOneResponse> get(AccountingCategoriesOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingCategoriesOneRequest, AccountingCategoriesOneResponse> operation
-              = new AccountingCategoriesOne.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingCategoriesOne.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

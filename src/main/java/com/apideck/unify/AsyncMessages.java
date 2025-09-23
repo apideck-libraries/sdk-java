@@ -25,12 +25,14 @@ import com.apideck.unify.operations.SmsMessagesAll;
 import com.apideck.unify.operations.SmsMessagesDelete;
 import com.apideck.unify.operations.SmsMessagesOne;
 import com.apideck.unify.operations.SmsMessagesUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncMessages {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final Messages syncSDK;
 
@@ -83,7 +85,9 @@ public class AsyncMessages {
      */
     public CompletableFuture<SmsMessagesAllResponse> list(SmsMessagesAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<SmsMessagesAllRequest, SmsMessagesAllResponse> operation
-              = new SmsMessagesAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new SmsMessagesAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -123,7 +127,9 @@ public class AsyncMessages {
      */
     public CompletableFuture<SmsMessagesAddResponse> create(SmsMessagesAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<SmsMessagesAddRequest, SmsMessagesAddResponse> operation
-              = new SmsMessagesAdd.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new SmsMessagesAdd.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -163,7 +169,9 @@ public class AsyncMessages {
      */
     public CompletableFuture<SmsMessagesOneResponse> get(SmsMessagesOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<SmsMessagesOneRequest, SmsMessagesOneResponse> operation
-              = new SmsMessagesOne.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new SmsMessagesOne.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -203,7 +211,9 @@ public class AsyncMessages {
      */
     public CompletableFuture<SmsMessagesUpdateResponse> update(SmsMessagesUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<SmsMessagesUpdateRequest, SmsMessagesUpdateResponse> operation
-              = new SmsMessagesUpdate.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new SmsMessagesUpdate.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -243,7 +253,9 @@ public class AsyncMessages {
      */
     public CompletableFuture<SmsMessagesDeleteResponse> delete(SmsMessagesDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<SmsMessagesDeleteRequest, SmsMessagesDeleteResponse> operation
-              = new SmsMessagesDelete.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new SmsMessagesDelete.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

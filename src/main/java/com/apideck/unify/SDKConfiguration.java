@@ -20,9 +20,9 @@ import java.util.concurrent.ScheduledExecutorService;
 public class SDKConfiguration {
 
     private static final String LANGUAGE = "java";
-    public static final String OPENAPI_DOC_VERSION = "10.20.13";
-    public static final String SDK_VERSION = "0.20.0";
-    public static final String GEN_VERSION = "2.694.1";
+    public static final String OPENAPI_DOC_VERSION = "10.20.16";
+    public static final String SDK_VERSION = "0.21.0";
+    public static final String GEN_VERSION = "2.709.0";
     private static final String BASE_PACKAGE = "com.apideck.unify";
     public static final String USER_AGENT = 
             String.format("speakeasy-sdk/%s %s %s %s %s",
@@ -111,6 +111,15 @@ public class SDKConfiguration {
 
     @SuppressWarnings("serial")
     public Globals globals = new Globals();
+    /**
+     * Sets the globals configuration. Used by Spring Boot auto-configuration.
+     *
+     * @param globals The globals configuration to set.
+     */
+    public void setGlobals(Globals globals) {
+        Utils.checkNotNull(globals, "globals");
+        this.globals = globals;
+    }
     
     private Optional<RetryConfig> retryConfig = Optional.empty();
     

@@ -13,12 +13,14 @@ import com.apideck.unify.models.operations.async.VaultConnectionSettingsUpdateRe
 import com.apideck.unify.models.operations.async.VaultConnectionSettingsUpdateResponse;
 import com.apideck.unify.operations.VaultConnectionSettingsAll;
 import com.apideck.unify.operations.VaultConnectionSettingsUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncConnectionSettings {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final ConnectionSettings syncSDK;
 
@@ -71,7 +73,9 @@ public class AsyncConnectionSettings {
      */
     public CompletableFuture<VaultConnectionSettingsAllResponse> list(VaultConnectionSettingsAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<VaultConnectionSettingsAllRequest, VaultConnectionSettingsAllResponse> operation
-              = new VaultConnectionSettingsAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new VaultConnectionSettingsAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -111,7 +115,9 @@ public class AsyncConnectionSettings {
      */
     public CompletableFuture<VaultConnectionSettingsUpdateResponse> update(VaultConnectionSettingsUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<VaultConnectionSettingsUpdateRequest, VaultConnectionSettingsUpdateResponse> operation
-              = new VaultConnectionSettingsUpdate.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new VaultConnectionSettingsUpdate.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

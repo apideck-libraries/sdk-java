@@ -8,6 +8,7 @@ import static com.apideck.unify.operations.Operations.AsyncRequestOperation;
 import com.apideck.unify.SDKConfiguration;
 import com.apideck.unify.models.operations.ConnectorApisOneRequest;
 import com.apideck.unify.operations.ConnectorApisOne;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -22,6 +23,7 @@ public class ConnectorApisOneRequestBuilder {
     private String id;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public ConnectorApisOneRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -72,7 +74,9 @@ public class ConnectorApisOneRequestBuilder {
             .build());
 
         AsyncRequestOperation<ConnectorApisOneRequest, ConnectorApisOneResponse> operation
-              = new ConnectorApisOne.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ConnectorApisOne.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         ConnectorApisOneRequest request = buildRequest();
 
         return operation.doRequest(request)

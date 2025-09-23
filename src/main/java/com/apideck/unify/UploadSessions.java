@@ -25,6 +25,7 @@ import com.apideck.unify.operations.FileStorageUploadSessionsDelete;
 import com.apideck.unify.operations.FileStorageUploadSessionsFinish;
 import com.apideck.unify.operations.FileStorageUploadSessionsOne;
 import com.apideck.unify.operations.FileStorageUploadSessionsUpload;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
@@ -32,6 +33,7 @@ import java.util.Optional;
 
 
 public class UploadSessions {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncUploadSessions asyncSDK;
 
@@ -88,7 +90,9 @@ public class UploadSessions {
             FileStorageUploadSessionsAddRequest request, Optional<String> serverURL,
             Optional<Options> options) throws Exception {
         RequestOperation<FileStorageUploadSessionsAddRequest, FileStorageUploadSessionsAddResponse> operation
-              = new FileStorageUploadSessionsAdd.Sync(sdkConfiguration, serverURL, options);
+              = new FileStorageUploadSessionsAdd.Sync(
+                                    sdkConfiguration, serverURL, options,
+                                    _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -131,7 +135,9 @@ public class UploadSessions {
             FileStorageUploadSessionsOneRequest request, Optional<String> serverURL,
             Optional<Options> options) throws Exception {
         RequestOperation<FileStorageUploadSessionsOneRequest, FileStorageUploadSessionsOneResponse> operation
-              = new FileStorageUploadSessionsOne.Sync(sdkConfiguration, serverURL, options);
+              = new FileStorageUploadSessionsOne.Sync(
+                                    sdkConfiguration, serverURL, options,
+                                    _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -174,7 +180,9 @@ public class UploadSessions {
             FileStorageUploadSessionsUploadRequest request, Optional<String> serverURL,
             Optional<Options> options) throws Exception {
         RequestOperation<FileStorageUploadSessionsUploadRequest, FileStorageUploadSessionsUploadResponse> operation
-              = new FileStorageUploadSessionsUpload.Sync(sdkConfiguration, serverURL, options);
+              = new FileStorageUploadSessionsUpload.Sync(
+                                    sdkConfiguration, serverURL, options,
+                                    _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -214,7 +222,7 @@ public class UploadSessions {
      */
     public FileStorageUploadSessionsDeleteResponse delete(FileStorageUploadSessionsDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageUploadSessionsDeleteRequest, FileStorageUploadSessionsDeleteResponse> operation
-              = new FileStorageUploadSessionsDelete.Sync(sdkConfiguration, options);
+              = new FileStorageUploadSessionsDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -257,7 +265,9 @@ public class UploadSessions {
             FileStorageUploadSessionsFinishRequest request, Optional<String> serverURL,
             Optional<Options> options) throws Exception {
         RequestOperation<FileStorageUploadSessionsFinishRequest, FileStorageUploadSessionsFinishResponse> operation
-              = new FileStorageUploadSessionsFinish.Sync(sdkConfiguration, serverURL, options);
+              = new FileStorageUploadSessionsFinish.Sync(
+                                    sdkConfiguration, serverURL, options,
+                                    _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

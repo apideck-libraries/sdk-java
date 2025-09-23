@@ -25,12 +25,14 @@ import com.apideck.unify.operations.AccountingPaymentsAll;
 import com.apideck.unify.operations.AccountingPaymentsDelete;
 import com.apideck.unify.operations.AccountingPaymentsOne;
 import com.apideck.unify.operations.AccountingPaymentsUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
 
 
 public class Payments {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncPayments asyncSDK;
 
@@ -84,7 +86,7 @@ public class Payments {
      */
     public AccountingPaymentsAllResponse list(AccountingPaymentsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingPaymentsAllRequest, AccountingPaymentsAllResponse> operation
-              = new AccountingPaymentsAll.Sync(sdkConfiguration, options);
+              = new AccountingPaymentsAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -124,7 +126,7 @@ public class Payments {
      */
     public AccountingPaymentsAddResponse create(AccountingPaymentsAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingPaymentsAddRequest, AccountingPaymentsAddResponse> operation
-              = new AccountingPaymentsAdd.Sync(sdkConfiguration, options);
+              = new AccountingPaymentsAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -164,7 +166,7 @@ public class Payments {
      */
     public AccountingPaymentsOneResponse get(AccountingPaymentsOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingPaymentsOneRequest, AccountingPaymentsOneResponse> operation
-              = new AccountingPaymentsOne.Sync(sdkConfiguration, options);
+              = new AccountingPaymentsOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -204,7 +206,7 @@ public class Payments {
      */
     public AccountingPaymentsUpdateResponse update(AccountingPaymentsUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingPaymentsUpdateRequest, AccountingPaymentsUpdateResponse> operation
-              = new AccountingPaymentsUpdate.Sync(sdkConfiguration, options);
+              = new AccountingPaymentsUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -244,7 +246,7 @@ public class Payments {
      */
     public AccountingPaymentsDeleteResponse delete(AccountingPaymentsDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingPaymentsDeleteRequest, AccountingPaymentsDeleteResponse> operation
-              = new AccountingPaymentsDelete.Sync(sdkConfiguration, options);
+              = new AccountingPaymentsDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

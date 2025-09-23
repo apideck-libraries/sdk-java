@@ -25,12 +25,14 @@ import com.apideck.unify.operations.HrisDepartmentsAll;
 import com.apideck.unify.operations.HrisDepartmentsDelete;
 import com.apideck.unify.operations.HrisDepartmentsOne;
 import com.apideck.unify.operations.HrisDepartmentsUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncApideckDepartments {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final ApideckDepartments syncSDK;
 
@@ -83,7 +85,9 @@ public class AsyncApideckDepartments {
      */
     public CompletableFuture<HrisDepartmentsAllResponse> list(HrisDepartmentsAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<HrisDepartmentsAllRequest, HrisDepartmentsAllResponse> operation
-              = new HrisDepartmentsAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new HrisDepartmentsAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -123,7 +127,9 @@ public class AsyncApideckDepartments {
      */
     public CompletableFuture<HrisDepartmentsAddResponse> create(HrisDepartmentsAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<HrisDepartmentsAddRequest, HrisDepartmentsAddResponse> operation
-              = new HrisDepartmentsAdd.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new HrisDepartmentsAdd.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -163,7 +169,9 @@ public class AsyncApideckDepartments {
      */
     public CompletableFuture<HrisDepartmentsOneResponse> get(HrisDepartmentsOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<HrisDepartmentsOneRequest, HrisDepartmentsOneResponse> operation
-              = new HrisDepartmentsOne.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new HrisDepartmentsOne.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -203,7 +211,9 @@ public class AsyncApideckDepartments {
      */
     public CompletableFuture<HrisDepartmentsUpdateResponse> update(HrisDepartmentsUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<HrisDepartmentsUpdateRequest, HrisDepartmentsUpdateResponse> operation
-              = new HrisDepartmentsUpdate.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new HrisDepartmentsUpdate.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -243,7 +253,9 @@ public class AsyncApideckDepartments {
      */
     public CompletableFuture<HrisDepartmentsDeleteResponse> delete(HrisDepartmentsDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<HrisDepartmentsDeleteRequest, HrisDepartmentsDeleteResponse> operation
-              = new HrisDepartmentsDelete.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new HrisDepartmentsDelete.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

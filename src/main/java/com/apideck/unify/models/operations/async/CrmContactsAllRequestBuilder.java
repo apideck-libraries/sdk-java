@@ -10,6 +10,7 @@ import com.apideck.unify.SDKConfiguration;
 import com.apideck.unify.models.operations.CrmContactsAllRequest;
 import com.apideck.unify.operations.CrmContactsAll;
 import com.apideck.unify.utils.Blob;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -29,6 +30,7 @@ public class CrmContactsAllRequestBuilder {
     private CrmContactsAllRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public CrmContactsAllRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -58,7 +60,9 @@ public class CrmContactsAllRequestBuilder {
             .build());
 
         AsyncRequestOperation<CrmContactsAllRequest, CrmContactsAllResponse> operation
-              = new CrmContactsAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new CrmContactsAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
 
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
@@ -85,7 +89,9 @@ public class CrmContactsAllRequestBuilder {
             .build());
 
         AsyncRequestOperation<CrmContactsAllRequest, CrmContactsAllResponse> operation
-              = new CrmContactsAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new CrmContactsAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
 
         Flow.Publisher<HttpResponse<Blob>> asyncPaginator = new AsyncPaginator<>(
             request,

@@ -14,6 +14,7 @@ import com.apideck.unify.models.operations.async.ConnectorConnectorsOneRequestBu
 import com.apideck.unify.models.operations.async.ConnectorConnectorsOneResponse;
 import com.apideck.unify.operations.ConnectorConnectorsAll;
 import com.apideck.unify.operations.ConnectorConnectorsOne;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Long;
 import java.lang.String;
@@ -23,6 +24,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncConnectors {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final Connectors syncSDK;
 
@@ -90,7 +92,9 @@ public class AsyncConnectors {
                 .filter(filter)
                 .build();
         AsyncRequestOperation<ConnectorConnectorsAllRequest, ConnectorConnectorsAllResponse> operation
-              = new ConnectorConnectorsAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ConnectorConnectorsAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -139,7 +143,9 @@ public class AsyncConnectors {
                 .id(id)
                 .build();
         AsyncRequestOperation<ConnectorConnectorsOneRequest, ConnectorConnectorsOneResponse> operation
-              = new ConnectorConnectorsOne.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ConnectorConnectorsOne.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

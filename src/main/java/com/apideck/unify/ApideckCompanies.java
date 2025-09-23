@@ -25,12 +25,14 @@ import com.apideck.unify.operations.HrisCompaniesAll;
 import com.apideck.unify.operations.HrisCompaniesDelete;
 import com.apideck.unify.operations.HrisCompaniesOne;
 import com.apideck.unify.operations.HrisCompaniesUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
 
 
 public class ApideckCompanies {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncApideckCompanies asyncSDK;
 
@@ -84,7 +86,7 @@ public class ApideckCompanies {
      */
     public HrisCompaniesAllResponse list(HrisCompaniesAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<HrisCompaniesAllRequest, HrisCompaniesAllResponse> operation
-              = new HrisCompaniesAll.Sync(sdkConfiguration, options);
+              = new HrisCompaniesAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -124,7 +126,7 @@ public class ApideckCompanies {
      */
     public HrisCompaniesAddResponse create(HrisCompaniesAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<HrisCompaniesAddRequest, HrisCompaniesAddResponse> operation
-              = new HrisCompaniesAdd.Sync(sdkConfiguration, options);
+              = new HrisCompaniesAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -164,7 +166,7 @@ public class ApideckCompanies {
      */
     public HrisCompaniesOneResponse get(HrisCompaniesOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<HrisCompaniesOneRequest, HrisCompaniesOneResponse> operation
-              = new HrisCompaniesOne.Sync(sdkConfiguration, options);
+              = new HrisCompaniesOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -204,7 +206,7 @@ public class ApideckCompanies {
      */
     public HrisCompaniesUpdateResponse update(HrisCompaniesUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<HrisCompaniesUpdateRequest, HrisCompaniesUpdateResponse> operation
-              = new HrisCompaniesUpdate.Sync(sdkConfiguration, options);
+              = new HrisCompaniesUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -244,7 +246,7 @@ public class ApideckCompanies {
      */
     public HrisCompaniesDeleteResponse delete(HrisCompaniesDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<HrisCompaniesDeleteRequest, HrisCompaniesDeleteResponse> operation
-              = new HrisCompaniesDelete.Sync(sdkConfiguration, options);
+              = new HrisCompaniesDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -29,6 +29,7 @@ import com.apideck.unify.operations.VaultConnectionsImport;
 import com.apideck.unify.operations.VaultConnectionsOne;
 import com.apideck.unify.operations.VaultConnectionsToken;
 import com.apideck.unify.operations.VaultConnectionsUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Boolean;
 import java.lang.String;
@@ -37,6 +38,7 @@ import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncConnections {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final Connections syncSDK;
 
@@ -110,7 +112,9 @@ public class AsyncConnections {
                 .configured(configured)
                 .build();
         AsyncRequestOperation<VaultConnectionsAllRequest, VaultConnectionsAllResponse> operation
-              = new VaultConnectionsAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new VaultConnectionsAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -167,7 +171,9 @@ public class AsyncConnections {
                 .unifiedApi(unifiedApi)
                 .build();
         AsyncRequestOperation<VaultConnectionsOneRequest, VaultConnectionsOneResponse> operation
-              = new VaultConnectionsOne.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new VaultConnectionsOne.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -207,7 +213,9 @@ public class AsyncConnections {
      */
     public CompletableFuture<VaultConnectionsUpdateResponse> update(VaultConnectionsUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<VaultConnectionsUpdateRequest, VaultConnectionsUpdateResponse> operation
-              = new VaultConnectionsUpdate.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new VaultConnectionsUpdate.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -264,7 +272,9 @@ public class AsyncConnections {
                 .unifiedApi(unifiedApi)
                 .build();
         AsyncRequestOperation<VaultConnectionsDeleteRequest, VaultConnectionsDeleteResponse> operation
-              = new VaultConnectionsDelete.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new VaultConnectionsDelete.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -304,7 +314,9 @@ public class AsyncConnections {
      */
     public CompletableFuture<VaultConnectionsImportResponse> imports(VaultConnectionsImportRequest request, Optional<Options> options) {
         AsyncRequestOperation<VaultConnectionsImportRequest, VaultConnectionsImportResponse> operation
-              = new VaultConnectionsImport.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new VaultConnectionsImport.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -359,7 +371,9 @@ public class AsyncConnections {
      */
     public CompletableFuture<VaultConnectionsTokenResponse> token(VaultConnectionsTokenRequest request, Optional<Options> options) {
         AsyncRequestOperation<VaultConnectionsTokenRequest, VaultConnectionsTokenResponse> operation
-              = new VaultConnectionsToken.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new VaultConnectionsToken.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

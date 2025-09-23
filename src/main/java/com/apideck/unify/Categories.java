@@ -13,12 +13,14 @@ import com.apideck.unify.models.operations.AccountingCategoriesOneRequestBuilder
 import com.apideck.unify.models.operations.AccountingCategoriesOneResponse;
 import com.apideck.unify.operations.AccountingCategoriesAll;
 import com.apideck.unify.operations.AccountingCategoriesOne;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
 
 
 public class Categories {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncCategories asyncSDK;
 
@@ -72,7 +74,7 @@ public class Categories {
      */
     public AccountingCategoriesAllResponse list(AccountingCategoriesAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingCategoriesAllRequest, AccountingCategoriesAllResponse> operation
-              = new AccountingCategoriesAll.Sync(sdkConfiguration, options);
+              = new AccountingCategoriesAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -112,7 +114,7 @@ public class Categories {
      */
     public AccountingCategoriesOneResponse get(AccountingCategoriesOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingCategoriesOneRequest, AccountingCategoriesOneResponse> operation
-              = new AccountingCategoriesOne.Sync(sdkConfiguration, options);
+              = new AccountingCategoriesOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

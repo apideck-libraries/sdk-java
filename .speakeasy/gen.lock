@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 38254260-287a-40b6-9ac5-c2fcb654c9cc
 management:
-  docChecksum: a66063e3c32337bb9f66b137be728988
-  docVersion: 10.20.13
-  speakeasyVersion: 1.611.1
-  generationVersion: 2.694.1
-  releaseVersion: 0.20.0
-  configChecksum: 20d732207e53807165cf07024de98725
+  docChecksum: 14b5eaa4ac48d4336800b2e5e5f40937
+  docVersion: 10.20.16
+  speakeasyVersion: 1.622.1
+  generationVersion: 2.709.0
+  releaseVersion: 0.21.0
+  configChecksum: fa396b5b4d607982a4aa149446043675
   repoURL: https://github.com/apideck-libraries/sdk-java.git
   published: true
 features:
@@ -14,12 +14,12 @@ features:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.1
-    core: 3.47.1
+    core: 3.50.0
     deprecations: 2.81.1
     downloadStreams: 0.1.1
     errors: 0.5.0
     flattening: 2.81.1
-    globalSecurity: 2.83.0
+    globalSecurity: 2.83.1
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.2
@@ -41,6 +41,10 @@ generatedFiles:
   - build.gradle
   - docs/models/components/AccountStatus.md
   - docs/models/components/AccountType.md
+  - docs/models/components/AccountingBankAccount.md
+  - docs/models/components/AccountingBankAccountAccountType.md
+  - docs/models/components/AccountingBankAccountInput.md
+  - docs/models/components/AccountingBankAccountStatus.md
   - docs/models/components/AccountingDepartment.md
   - docs/models/components/AccountingDepartmentInput.md
   - docs/models/components/AccountingDepartmentsFilter.md
@@ -100,6 +104,9 @@ generatedFiles:
   - docs/models/components/BankAccount1.md
   - docs/models/components/BankAccount1AccountType.md
   - docs/models/components/BankAccountType.md
+  - docs/models/components/BankAccountsFilter.md
+  - docs/models/components/BankAccountsFilterStatus.md
+  - docs/models/components/BankAccountsSort.md
   - docs/models/components/BankFeedAccount.md
   - docs/models/components/BankFeedAccountInput.md
   - docs/models/components/BankFeedStatement.md
@@ -194,6 +201,7 @@ generatedFiles:
   - docs/models/components/CreateApplicantResponse.md
   - docs/models/components/CreateApplicationResponse.md
   - docs/models/components/CreateAttachmentResponse.md
+  - docs/models/components/CreateBankAccountResponse.md
   - docs/models/components/CreateBankFeedAccountResponse.md
   - docs/models/components/CreateBankFeedStatementResponse.md
   - docs/models/components/CreateBillPaymentResponse.md
@@ -289,6 +297,7 @@ generatedFiles:
   - docs/models/components/DeleteApplicantResponse.md
   - docs/models/components/DeleteApplicationResponse.md
   - docs/models/components/DeleteAttachmentResponse.md
+  - docs/models/components/DeleteBankAccountResponse.md
   - docs/models/components/DeleteBankFeedAccountResponse.md
   - docs/models/components/DeleteBankFeedStatementResponse.md
   - docs/models/components/DeleteBillPaymentResponse.md
@@ -436,6 +445,8 @@ generatedFiles:
   - docs/models/components/GetAttachmentResponse.md
   - docs/models/components/GetAttachmentsResponse.md
   - docs/models/components/GetBalanceSheetResponse.md
+  - docs/models/components/GetBankAccountResponse.md
+  - docs/models/components/GetBankAccountsResponse.md
   - docs/models/components/GetBankFeedAccountResponse.md
   - docs/models/components/GetBankFeedAccountsResponse.md
   - docs/models/components/GetBankFeedStatementResponse.md
@@ -738,6 +749,7 @@ generatedFiles:
   - docs/models/components/SimpleFormFieldOptionValue.md
   - docs/models/components/SocialLink.md
   - docs/models/components/SocialLinks.md
+  - docs/models/components/SortBy.md
   - docs/models/components/SortDirection.md
   - docs/models/components/Stage.md
   - docs/models/components/Stages.md
@@ -801,6 +813,7 @@ generatedFiles:
   - docs/models/components/UpdateActivityResponse.md
   - docs/models/components/UpdateApplicantResponse.md
   - docs/models/components/UpdateApplicationResponse.md
+  - docs/models/components/UpdateBankAccountResponse.md
   - docs/models/components/UpdateBankFeedAccountResponse.md
   - docs/models/components/UpdateBankFeedStatementResponse.md
   - docs/models/components/UpdateBillPaymentResponse.md
@@ -895,6 +908,16 @@ generatedFiles:
   - docs/models/operations/AccountingAttachmentsUploadResponse.md
   - docs/models/operations/AccountingBalanceSheetOneRequest.md
   - docs/models/operations/AccountingBalanceSheetOneResponse.md
+  - docs/models/operations/AccountingBankAccountsAddRequest.md
+  - docs/models/operations/AccountingBankAccountsAddResponse.md
+  - docs/models/operations/AccountingBankAccountsAllRequest.md
+  - docs/models/operations/AccountingBankAccountsAllResponse.md
+  - docs/models/operations/AccountingBankAccountsDeleteRequest.md
+  - docs/models/operations/AccountingBankAccountsDeleteResponse.md
+  - docs/models/operations/AccountingBankAccountsOneRequest.md
+  - docs/models/operations/AccountingBankAccountsOneResponse.md
+  - docs/models/operations/AccountingBankAccountsUpdateRequest.md
+  - docs/models/operations/AccountingBankAccountsUpdateResponse.md
   - docs/models/operations/AccountingBankFeedAccountsAddRequest.md
   - docs/models/operations/AccountingBankFeedAccountsAddResponse.md
   - docs/models/operations/AccountingBankFeedAccountsAllRequest.md
@@ -1486,6 +1509,7 @@ generatedFiles:
   - docs/sdks/ats/README.md
   - docs/sdks/attachments/README.md
   - docs/sdks/balancesheet/README.md
+  - docs/sdks/bankaccounts/README.md
   - docs/sdks/bankfeedaccounts/README.md
   - docs/sdks/bankfeedstatements/README.md
   - docs/sdks/billpayments/README.md
@@ -1571,7 +1595,15 @@ generatedFiles:
   - gradle/wrapper/gradle-wrapper.properties
   - gradlew
   - gradlew.bat
+  - publishing.gradle
   - settings.gradle
+  - spring/unify-spring-boot-autoconfigure/build.gradle
+  - spring/unify-spring-boot-autoconfigure/src/main/java/com/apideck/unify/ConditionalOnPropertyPrefix.java
+  - spring/unify-spring-boot-autoconfigure/src/main/java/com/apideck/unify/OnPropertyPrefixCondition.java
+  - spring/unify-spring-boot-autoconfigure/src/main/java/com/apideck/unify/UnifyAutoConfig.java
+  - spring/unify-spring-boot-autoconfigure/src/main/java/com/apideck/unify/UnifyAutoConfigProperties.java
+  - spring/unify-spring-boot-autoconfigure/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports
+  - spring/unify-spring-boot-starter/build.gradle
   - src/main/java/com/apideck/unify/Accounting.java
   - src/main/java/com/apideck/unify/Activities.java
   - src/main/java/com/apideck/unify/AgedCreditors.java
@@ -1601,6 +1633,7 @@ generatedFiles:
   - src/main/java/com/apideck/unify/AsyncAts.java
   - src/main/java/com/apideck/unify/AsyncAttachments.java
   - src/main/java/com/apideck/unify/AsyncBalanceSheet.java
+  - src/main/java/com/apideck/unify/AsyncBankAccounts.java
   - src/main/java/com/apideck/unify/AsyncBankFeedAccounts.java
   - src/main/java/com/apideck/unify/AsyncBankFeedStatements.java
   - src/main/java/com/apideck/unify/AsyncBillPayments.java
@@ -1683,6 +1716,7 @@ generatedFiles:
   - src/main/java/com/apideck/unify/Ats.java
   - src/main/java/com/apideck/unify/Attachments.java
   - src/main/java/com/apideck/unify/BalanceSheet.java
+  - src/main/java/com/apideck/unify/BankAccounts.java
   - src/main/java/com/apideck/unify/BankFeedAccounts.java
   - src/main/java/com/apideck/unify/BankFeedStatements.java
   - src/main/java/com/apideck/unify/BillPayments.java
@@ -1766,6 +1800,10 @@ generatedFiles:
   - src/main/java/com/apideck/unify/Webhooks.java
   - src/main/java/com/apideck/unify/models/components/AccountStatus.java
   - src/main/java/com/apideck/unify/models/components/AccountType.java
+  - src/main/java/com/apideck/unify/models/components/AccountingBankAccount.java
+  - src/main/java/com/apideck/unify/models/components/AccountingBankAccountAccountType.java
+  - src/main/java/com/apideck/unify/models/components/AccountingBankAccountInput.java
+  - src/main/java/com/apideck/unify/models/components/AccountingBankAccountStatus.java
   - src/main/java/com/apideck/unify/models/components/AccountingDepartment.java
   - src/main/java/com/apideck/unify/models/components/AccountingDepartmentInput.java
   - src/main/java/com/apideck/unify/models/components/AccountingDepartmentsFilter.java
@@ -1825,6 +1863,9 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/components/BankAccount1.java
   - src/main/java/com/apideck/unify/models/components/BankAccount1AccountType.java
   - src/main/java/com/apideck/unify/models/components/BankAccountType.java
+  - src/main/java/com/apideck/unify/models/components/BankAccountsFilter.java
+  - src/main/java/com/apideck/unify/models/components/BankAccountsFilterStatus.java
+  - src/main/java/com/apideck/unify/models/components/BankAccountsSort.java
   - src/main/java/com/apideck/unify/models/components/BankFeedAccount.java
   - src/main/java/com/apideck/unify/models/components/BankFeedAccountInput.java
   - src/main/java/com/apideck/unify/models/components/BankFeedStatement.java
@@ -1919,6 +1960,7 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/components/CreateApplicantResponse.java
   - src/main/java/com/apideck/unify/models/components/CreateApplicationResponse.java
   - src/main/java/com/apideck/unify/models/components/CreateAttachmentResponse.java
+  - src/main/java/com/apideck/unify/models/components/CreateBankAccountResponse.java
   - src/main/java/com/apideck/unify/models/components/CreateBankFeedAccountResponse.java
   - src/main/java/com/apideck/unify/models/components/CreateBankFeedStatementResponse.java
   - src/main/java/com/apideck/unify/models/components/CreateBillPaymentResponse.java
@@ -2014,6 +2056,7 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/components/DeleteApplicantResponse.java
   - src/main/java/com/apideck/unify/models/components/DeleteApplicationResponse.java
   - src/main/java/com/apideck/unify/models/components/DeleteAttachmentResponse.java
+  - src/main/java/com/apideck/unify/models/components/DeleteBankAccountResponse.java
   - src/main/java/com/apideck/unify/models/components/DeleteBankFeedAccountResponse.java
   - src/main/java/com/apideck/unify/models/components/DeleteBankFeedStatementResponse.java
   - src/main/java/com/apideck/unify/models/components/DeleteBillPaymentResponse.java
@@ -2161,6 +2204,8 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/components/GetAttachmentResponse.java
   - src/main/java/com/apideck/unify/models/components/GetAttachmentsResponse.java
   - src/main/java/com/apideck/unify/models/components/GetBalanceSheetResponse.java
+  - src/main/java/com/apideck/unify/models/components/GetBankAccountResponse.java
+  - src/main/java/com/apideck/unify/models/components/GetBankAccountsResponse.java
   - src/main/java/com/apideck/unify/models/components/GetBankFeedAccountResponse.java
   - src/main/java/com/apideck/unify/models/components/GetBankFeedAccountsResponse.java
   - src/main/java/com/apideck/unify/models/components/GetBankFeedStatementResponse.java
@@ -2463,6 +2508,7 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/components/SimpleFormFieldOptionValue.java
   - src/main/java/com/apideck/unify/models/components/SocialLink.java
   - src/main/java/com/apideck/unify/models/components/SocialLinks.java
+  - src/main/java/com/apideck/unify/models/components/SortBy.java
   - src/main/java/com/apideck/unify/models/components/SortDirection.java
   - src/main/java/com/apideck/unify/models/components/Stage.java
   - src/main/java/com/apideck/unify/models/components/Stages.java
@@ -2526,6 +2572,7 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/components/UpdateActivityResponse.java
   - src/main/java/com/apideck/unify/models/components/UpdateApplicantResponse.java
   - src/main/java/com/apideck/unify/models/components/UpdateApplicationResponse.java
+  - src/main/java/com/apideck/unify/models/components/UpdateBankAccountResponse.java
   - src/main/java/com/apideck/unify/models/components/UpdateBankFeedAccountResponse.java
   - src/main/java/com/apideck/unify/models/components/UpdateBankFeedStatementResponse.java
   - src/main/java/com/apideck/unify/models/components/UpdateBillPaymentResponse.java
@@ -2620,6 +2667,11 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/operations//async/AccountingAttachmentsOneRequestBuilder.java
   - src/main/java/com/apideck/unify/models/operations//async/AccountingAttachmentsUploadRequestBuilder.java
   - src/main/java/com/apideck/unify/models/operations//async/AccountingBalanceSheetOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingBankAccountsAddRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingBankAccountsAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingBankAccountsDeleteRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingBankAccountsOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations//async/AccountingBankAccountsUpdateRequestBuilder.java
   - src/main/java/com/apideck/unify/models/operations//async/AccountingBankFeedAccountsAddRequestBuilder.java
   - src/main/java/com/apideck/unify/models/operations//async/AccountingBankFeedAccountsAllRequestBuilder.java
   - src/main/java/com/apideck/unify/models/operations//async/AccountingBankFeedAccountsDeleteRequestBuilder.java
@@ -2930,6 +2982,21 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/operations/AccountingBalanceSheetOneRequest.java
   - src/main/java/com/apideck/unify/models/operations/AccountingBalanceSheetOneRequestBuilder.java
   - src/main/java/com/apideck/unify/models/operations/AccountingBalanceSheetOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/AccountingBankAccountsAddRequest.java
+  - src/main/java/com/apideck/unify/models/operations/AccountingBankAccountsAddRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations/AccountingBankAccountsAddResponse.java
+  - src/main/java/com/apideck/unify/models/operations/AccountingBankAccountsAllRequest.java
+  - src/main/java/com/apideck/unify/models/operations/AccountingBankAccountsAllRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations/AccountingBankAccountsAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/AccountingBankAccountsDeleteRequest.java
+  - src/main/java/com/apideck/unify/models/operations/AccountingBankAccountsDeleteRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations/AccountingBankAccountsDeleteResponse.java
+  - src/main/java/com/apideck/unify/models/operations/AccountingBankAccountsOneRequest.java
+  - src/main/java/com/apideck/unify/models/operations/AccountingBankAccountsOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations/AccountingBankAccountsOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/AccountingBankAccountsUpdateRequest.java
+  - src/main/java/com/apideck/unify/models/operations/AccountingBankAccountsUpdateRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations/AccountingBankAccountsUpdateResponse.java
   - src/main/java/com/apideck/unify/models/operations/AccountingBankFeedAccountsAddRequest.java
   - src/main/java/com/apideck/unify/models/operations/AccountingBankFeedAccountsAddRequestBuilder.java
   - src/main/java/com/apideck/unify/models/operations/AccountingBankFeedAccountsAddResponse.java
@@ -3799,6 +3866,11 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/operations/async/AccountingAttachmentsOneResponse.java
   - src/main/java/com/apideck/unify/models/operations/async/AccountingAttachmentsUploadResponse.java
   - src/main/java/com/apideck/unify/models/operations/async/AccountingBalanceSheetOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingBankAccountsAddResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingBankAccountsAllResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingBankAccountsDeleteResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingBankAccountsOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/async/AccountingBankAccountsUpdateResponse.java
   - src/main/java/com/apideck/unify/models/operations/async/AccountingBankFeedAccountsAddResponse.java
   - src/main/java/com/apideck/unify/models/operations/async/AccountingBankFeedAccountsAllResponse.java
   - src/main/java/com/apideck/unify/models/operations/async/AccountingBankFeedAccountsDeleteResponse.java
@@ -4093,6 +4165,11 @@ generatedFiles:
   - src/main/java/com/apideck/unify/operations/AccountingAttachmentsOne.java
   - src/main/java/com/apideck/unify/operations/AccountingAttachmentsUpload.java
   - src/main/java/com/apideck/unify/operations/AccountingBalanceSheetOne.java
+  - src/main/java/com/apideck/unify/operations/AccountingBankAccountsAdd.java
+  - src/main/java/com/apideck/unify/operations/AccountingBankAccountsAll.java
+  - src/main/java/com/apideck/unify/operations/AccountingBankAccountsDelete.java
+  - src/main/java/com/apideck/unify/operations/AccountingBankAccountsOne.java
+  - src/main/java/com/apideck/unify/operations/AccountingBankAccountsUpdate.java
   - src/main/java/com/apideck/unify/operations/AccountingBankFeedAccountsAdd.java
   - src/main/java/com/apideck/unify/operations/AccountingBankFeedAccountsAll.java
   - src/main/java/com/apideck/unify/operations/AccountingBankFeedAccountsDelete.java
@@ -4402,6 +4479,7 @@ generatedFiles:
   - src/main/java/com/apideck/unify/utils/HTTPRequest.java
   - src/main/java/com/apideck/unify/utils/HasSecurity.java
   - src/main/java/com/apideck/unify/utils/HeaderMetadata.java
+  - src/main/java/com/apideck/unify/utils/Headers.java
   - src/main/java/com/apideck/unify/utils/Helpers.java
   - src/main/java/com/apideck/unify/utils/Hook.java
   - src/main/java/com/apideck/unify/utils/HookAdapters.java
@@ -18615,7 +18693,7 @@ examples:
     speakeasy-default-vault-logs-all:
       parameters:
         query:
-          filter: {"connector_id": "crm+salesforce", "status_code": 201, "exclude_unified_apis": "vault,proxy"}
+          filter: {"connector_id": "crm+salesforce", "status_code": 201, "status_codes": [200, 201, 204], "exclude_unified_apis": "vault,proxy"}
           limit: 20
         header:
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
@@ -19624,6 +19702,142 @@ examples:
           application/json: {"status_code": 422, "error": "Unprocessable Entity", "type_name": "InvalidStateError", "message": "Invalid State", "detail": "Unprocessable request, please verify your request headers and body.", "ref": "https://developers.apideck.com/errors#invalidstateerror"}
         default:
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+  accounting.bankAccountsAll:
+    speakeasy-default-accounting-bank-accounts-all:
+      parameters:
+        query:
+          raw: false
+          limit: 20
+          filter: {"name": "Main Operating", "status": "active"}
+          sort: {"by": "updated_at", "direction": "asc"}
+          pass_through: {"search": "San Francisco"}
+          fields: "id,updated_at"
+        header:
+          x-apideck-consumer-id: "test-consumer"
+          x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+          x-apideck-service-id: "salesforce"
+      responses:
+        "200":
+          application/json: {"status_code": 200, "status": "OK", "service": "quickbooks", "resource": "bank-accounts", "operation": "all", "data": [{"id": "12345", "display_id": "BA-001", "name": "Main Operating Account", "account_number": "1234567890", "account_type": "checking", "bank_name": "Chase Bank", "currency": "USD", "balance": 25000, "available_balance": 24500, "overdraft_limit": 5000, "routing_number": "021000021", "iban": "GB33BUKB20201555555555", "bic": "CHASUS33", "bsb_number": "062-001", "branch_identifier": "001", "bank_code": "BNH", "country": "US", "status": "active", "description": "Primary operating account for daily transactions", "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "created_at": "2020-09-30T07:43:32.000Z", "updated_at": "2020-09-30T07:43:32.000Z", "created_by": "12345", "updated_by": "12345"}], "meta": {"items_on_page": 50, "cursors": {"previous": "em9oby1jcm06OnBhZ2U6OjE=", "current": "em9oby1jcm06OnBhZ2U6OjI=", "next": "em9oby1jcm06OnBhZ2U6OjM="}}, "links": {"previous": "https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D", "current": "https://unify.apideck.com/crm/companies", "next": "https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM"}}
+        "400":
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror"}
+        "401":
+          application/json: {"status_code": 401, "error": "Unauthorized", "type_name": "UnauthorizedError", "message": "Unauthorized Request", "detail": "Missing authentication", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+        "402":
+          application/json: {"status_code": 402, "error": "Payment Required", "type_name": "RequestLimitError", "message": "Request Limit Reached", "detail": "You have reached your limit of 2000", "ref": "https://developers.apideck.com/errors#requestlimiterror"}
+        "404":
+          application/json: {"status_code": 404, "error": "Not Found", "type_name": "EntityNotFoundError", "message": "Unknown Widget", "detail": "Could not find widget with id: '123'", "ref": "https://developers.apideck.com/errors#entitynotfounderror"}
+        "422":
+          application/json: {"status_code": 422, "error": "Unprocessable Entity", "type_name": "InvalidStateError", "message": "Invalid State", "detail": "Unprocessable request, please verify your request headers and body.", "ref": "https://developers.apideck.com/errors#invalidstateerror"}
+        default:
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+  accounting.bankAccountsAdd:
+    speakeasy-default-accounting-bank-accounts-add:
+      parameters:
+        query:
+          raw: false
+        header:
+          x-apideck-consumer-id: "test-consumer"
+          x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+          x-apideck-service-id: "salesforce"
+      requestBody:
+        application/json: {"display_id": "BA-001", "name": "Main Operating Account", "account_number": "1234567890", "account_type": "checking", "bank_name": "Chase Bank", "currency": "USD", "balance": 25000, "available_balance": 24500, "overdraft_limit": 5000, "routing_number": "021000021", "iban": "GB33BUKB20201555555555", "bic": "CHASUS33", "bsb_number": "062-001", "branch_identifier": "001", "bank_code": "BNH", "country": "US", "status": "active", "description": "Primary operating account for daily transactions", "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}]}
+      responses:
+        "201":
+          application/json: {"status_code": 201, "status": "Created", "service": "quickbooks", "resource": "bank-accounts", "operation": "add", "data": {"id": "12345"}}
+        "400":
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror"}
+        "401":
+          application/json: {"status_code": 401, "error": "Unauthorized", "type_name": "UnauthorizedError", "message": "Unauthorized Request", "detail": "Missing authentication", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+        "402":
+          application/json: {"status_code": 402, "error": "Payment Required", "type_name": "RequestLimitError", "message": "Request Limit Reached", "detail": "You have reached your limit of 2000", "ref": "https://developers.apideck.com/errors#requestlimiterror"}
+        "404":
+          application/json: {"status_code": 404, "error": "Not Found", "type_name": "EntityNotFoundError", "message": "Unknown Widget", "detail": "Could not find widget with id: '123'", "ref": "https://developers.apideck.com/errors#entitynotfounderror"}
+        "422":
+          application/json: {"status_code": 422, "error": "Unprocessable Entity", "type_name": "InvalidStateError", "message": "Invalid State", "detail": "Unprocessable request, please verify your request headers and body.", "ref": "https://developers.apideck.com/errors#invalidstateerror"}
+        default:
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+  accounting.bankAccountsOne:
+    speakeasy-default-accounting-bank-accounts-one:
+      parameters:
+        path:
+          id: "<id>"
+        query:
+          raw: false
+          fields: "id,updated_at"
+        header:
+          x-apideck-consumer-id: "test-consumer"
+          x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+          x-apideck-service-id: "salesforce"
+      responses:
+        "200":
+          application/json: {"status_code": 200, "status": "OK", "service": "quickbooks", "resource": "bank-accounts", "operation": "one", "data": {"id": "12345", "display_id": "BA-001", "name": "Main Operating Account", "account_number": "1234567890", "account_type": "checking", "bank_name": "Chase Bank", "currency": "USD", "balance": 25000, "available_balance": 24500, "overdraft_limit": 5000, "routing_number": "021000021", "iban": "GB33BUKB20201555555555", "bic": "CHASUS33", "bsb_number": "062-001", "branch_identifier": "001", "bank_code": "BNH", "country": "US", "status": "active", "description": "Primary operating account for daily transactions", "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "created_at": "2020-09-30T07:43:32.000Z", "updated_at": "2020-09-30T07:43:32.000Z", "created_by": "12345", "updated_by": "12345"}}
+        "400":
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror"}
+        "401":
+          application/json: {"status_code": 401, "error": "Unauthorized", "type_name": "UnauthorizedError", "message": "Unauthorized Request", "detail": "Missing authentication", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+        "402":
+          application/json: {"status_code": 402, "error": "Payment Required", "type_name": "RequestLimitError", "message": "Request Limit Reached", "detail": "You have reached your limit of 2000", "ref": "https://developers.apideck.com/errors#requestlimiterror"}
+        "404":
+          application/json: {"status_code": 404, "error": "Not Found", "type_name": "EntityNotFoundError", "message": "Unknown Widget", "detail": "Could not find widget with id: '123'", "ref": "https://developers.apideck.com/errors#entitynotfounderror"}
+        "422":
+          application/json: {"status_code": 422, "error": "Unprocessable Entity", "type_name": "InvalidStateError", "message": "Invalid State", "detail": "Unprocessable request, please verify your request headers and body.", "ref": "https://developers.apideck.com/errors#invalidstateerror"}
+        default:
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+  accounting.bankAccountsUpdate:
+    speakeasy-default-accounting-bank-accounts-update:
+      parameters:
+        path:
+          id: "<id>"
+        query:
+          raw: false
+        header:
+          x-apideck-consumer-id: "test-consumer"
+          x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+          x-apideck-service-id: "salesforce"
+      requestBody:
+        application/json: {"display_id": "BA-001", "name": "Main Operating Account", "account_number": "1234567890", "account_type": "checking", "bank_name": "Chase Bank", "currency": "USD", "balance": 25000, "available_balance": 24500, "overdraft_limit": 5000, "routing_number": "021000021", "iban": "GB33BUKB20201555555555", "bic": "CHASUS33", "bsb_number": "062-001", "branch_identifier": "001", "bank_code": "BNH", "country": "US", "status": "active", "description": "Primary operating account for daily transactions", "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}]}
+      responses:
+        "200":
+          application/json: {"status_code": 200, "status": "OK", "service": "quickbooks", "resource": "bank-accounts", "operation": "update", "data": {"id": "12345"}}
+        "400":
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror"}
+        "401":
+          application/json: {"status_code": 401, "error": "Unauthorized", "type_name": "UnauthorizedError", "message": "Unauthorized Request", "detail": "Missing authentication", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+        "402":
+          application/json: {"status_code": 402, "error": "Payment Required", "type_name": "RequestLimitError", "message": "Request Limit Reached", "detail": "You have reached your limit of 2000", "ref": "https://developers.apideck.com/errors#requestlimiterror"}
+        "404":
+          application/json: {"status_code": 404, "error": "Not Found", "type_name": "EntityNotFoundError", "message": "Unknown Widget", "detail": "Could not find widget with id: '123'", "ref": "https://developers.apideck.com/errors#entitynotfounderror"}
+        "422":
+          application/json: {"status_code": 422, "error": "Unprocessable Entity", "type_name": "InvalidStateError", "message": "Invalid State", "detail": "Unprocessable request, please verify your request headers and body.", "ref": "https://developers.apideck.com/errors#invalidstateerror"}
+        default:
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+  accounting.bankAccountsDelete:
+    speakeasy-default-accounting-bank-accounts-delete:
+      parameters:
+        path:
+          id: "<id>"
+        query:
+          raw: false
+        header:
+          x-apideck-consumer-id: "test-consumer"
+          x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+          x-apideck-service-id: "salesforce"
+      responses:
+        "200":
+          application/json: {"status_code": 200, "status": "OK", "service": "quickbooks", "resource": "bank-accounts", "operation": "delete", "data": {"id": "12345"}}
+        "400":
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror"}
+        "401":
+          application/json: {"status_code": 401, "error": "Unauthorized", "type_name": "UnauthorizedError", "message": "Unauthorized Request", "detail": "Missing authentication", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+        "402":
+          application/json: {"status_code": 402, "error": "Payment Required", "type_name": "RequestLimitError", "message": "Request Limit Reached", "detail": "You have reached your limit of 2000", "ref": "https://developers.apideck.com/errors#requestlimiterror"}
+        "404":
+          application/json: {"status_code": 404, "error": "Not Found", "type_name": "EntityNotFoundError", "message": "Unknown Widget", "detail": "Could not find widget with id: '123'", "ref": "https://developers.apideck.com/errors#entitynotfounderror"}
+        "422":
+          application/json: {"status_code": 422, "error": "Unprocessable Entity", "type_name": "InvalidStateError", "message": "Invalid State", "detail": "Unprocessable request, please verify your request headers and body.", "ref": "https://developers.apideck.com/errors#invalidstateerror"}
+        default:
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Java SDK Changes Detected:\n* `apideck.vault.connectionConsents.list()`: **Added**\n* `apideck.vault.connectionConsent.update()`: **Added**\n* `apideck.accounting.companyInfo.get()`:  `response.data.trackingCategoriesMode` **Added**\n* `apideck.accounting.journalEntries.list()`: \n  *  `request.filter` **Changed**\n* `apideck.accounting.trackingCategories.list()`:  `response.data.[].parentName` **Added**\n* `apideck.accounting.trackingCategories.create()`: \n  *  `request.trackingCategory.parentName` **Added**\n* `apideck.accounting.trackingCategories.get()`:  `response.data.parentName` **Added**\n* `apideck.accounting.trackingCategories.update()`: \n  *  `request.trackingCategory.parentName` **Added**\n* `apideck.accounting.expenses.list()`: \n  *  `request.filter` **Added**\n  *  `response.data.[].status` **Added**\n* `apideck.accounting.expenses.create()`: \n  *  `request.expense.status` **Added**\n* `apideck.accounting.expenses.get()`:  `response.data.status` **Added**\n* `apideck.accounting.expenses.update()`: \n  *  `request.expense.status` **Added**\n* `apideck.vault.connections.list()`:  `response.data.[]` **Changed**\n* `apideck.vault.connections.get()`:  `response.data` **Changed**\n* `apideck.vault.connections.update()`: \n  *  `request.connection` **Changed**\n  *  `response.data` **Changed**\n* `apideck.vault.connections.imports()`:  `response.data` **Changed**\n* `apideck.vault.connections.token()`:  `response.data` **Changed**\n* `apideck.vault.connectionSettings.list()`:  `response.data` **Changed**\n* `apideck.vault.connectionSettings.update()`: \n  *  `request.connection` **Changed**\n  *  `response.data` **Changed**\n"
+releaseNotes: "## Java SDK Changes Detected:\n* `apideck.accounting.bankAccounts.list()`: **Added**\n* `apideck.accounting.bankAccounts.create()`: **Added**\n* `apideck.accounting.bankAccounts.get()`: **Added**\n* `apideck.accounting.bankAccounts.update()`: **Added**\n* `apideck.accounting.bankAccounts.delete()`: **Added**\n* `apideck.vault.logs.list()`: \n  *  `request.filter` **Changed**\n"

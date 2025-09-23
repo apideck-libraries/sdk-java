@@ -25,12 +25,14 @@ import com.apideck.unify.operations.CrmUsersAll;
 import com.apideck.unify.operations.CrmUsersDelete;
 import com.apideck.unify.operations.CrmUsersOne;
 import com.apideck.unify.operations.CrmUsersUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
 
 
 public class Users {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncUsers asyncSDK;
 
@@ -84,7 +86,7 @@ public class Users {
      */
     public CrmUsersAllResponse list(CrmUsersAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmUsersAllRequest, CrmUsersAllResponse> operation
-              = new CrmUsersAll.Sync(sdkConfiguration, options);
+              = new CrmUsersAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -124,7 +126,7 @@ public class Users {
      */
     public CrmUsersAddResponse create(CrmUsersAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmUsersAddRequest, CrmUsersAddResponse> operation
-              = new CrmUsersAdd.Sync(sdkConfiguration, options);
+              = new CrmUsersAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -164,7 +166,7 @@ public class Users {
      */
     public CrmUsersOneResponse get(CrmUsersOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmUsersOneRequest, CrmUsersOneResponse> operation
-              = new CrmUsersOne.Sync(sdkConfiguration, options);
+              = new CrmUsersOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -204,7 +206,7 @@ public class Users {
      */
     public CrmUsersUpdateResponse update(CrmUsersUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmUsersUpdateRequest, CrmUsersUpdateResponse> operation
-              = new CrmUsersUpdate.Sync(sdkConfiguration, options);
+              = new CrmUsersUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -244,7 +246,7 @@ public class Users {
      */
     public CrmUsersDeleteResponse delete(CrmUsersDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmUsersDeleteRequest, CrmUsersDeleteResponse> operation
-              = new CrmUsersDelete.Sync(sdkConfiguration, options);
+              = new CrmUsersDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

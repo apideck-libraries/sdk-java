@@ -7,6 +7,7 @@ import static com.apideck.unify.operations.Operations.RequestOperation;
 
 import com.apideck.unify.SDKConfiguration;
 import com.apideck.unify.operations.ConnectorApisOne;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -20,6 +21,7 @@ public class ConnectorApisOneRequestBuilder {
     private String id;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public ConnectorApisOneRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -70,7 +72,7 @@ public class ConnectorApisOneRequestBuilder {
             .build());
 
         RequestOperation<ConnectorApisOneRequest, ConnectorApisOneResponse> operation
-              = new ConnectorApisOne.Sync(sdkConfiguration, options);
+              = new ConnectorApisOne.Sync(sdkConfiguration, options, _headers);
         ConnectorApisOneRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

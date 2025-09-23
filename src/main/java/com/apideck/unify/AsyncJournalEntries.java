@@ -25,12 +25,14 @@ import com.apideck.unify.operations.AccountingJournalEntriesAll;
 import com.apideck.unify.operations.AccountingJournalEntriesDelete;
 import com.apideck.unify.operations.AccountingJournalEntriesOne;
 import com.apideck.unify.operations.AccountingJournalEntriesUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncJournalEntries {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final JournalEntries syncSDK;
 
@@ -83,7 +85,9 @@ public class AsyncJournalEntries {
      */
     public CompletableFuture<AccountingJournalEntriesAllResponse> list(AccountingJournalEntriesAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingJournalEntriesAllRequest, AccountingJournalEntriesAllResponse> operation
-              = new AccountingJournalEntriesAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingJournalEntriesAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -123,7 +127,9 @@ public class AsyncJournalEntries {
      */
     public CompletableFuture<AccountingJournalEntriesAddResponse> create(AccountingJournalEntriesAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingJournalEntriesAddRequest, AccountingJournalEntriesAddResponse> operation
-              = new AccountingJournalEntriesAdd.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingJournalEntriesAdd.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -163,7 +169,9 @@ public class AsyncJournalEntries {
      */
     public CompletableFuture<AccountingJournalEntriesOneResponse> get(AccountingJournalEntriesOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingJournalEntriesOneRequest, AccountingJournalEntriesOneResponse> operation
-              = new AccountingJournalEntriesOne.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingJournalEntriesOne.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -203,7 +211,9 @@ public class AsyncJournalEntries {
      */
     public CompletableFuture<AccountingJournalEntriesUpdateResponse> update(AccountingJournalEntriesUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingJournalEntriesUpdateRequest, AccountingJournalEntriesUpdateResponse> operation
-              = new AccountingJournalEntriesUpdate.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingJournalEntriesUpdate.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -243,7 +253,9 @@ public class AsyncJournalEntries {
      */
     public CompletableFuture<AccountingJournalEntriesDeleteResponse> delete(AccountingJournalEntriesDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingJournalEntriesDeleteRequest, AccountingJournalEntriesDeleteResponse> operation
-              = new AccountingJournalEntriesDelete.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingJournalEntriesDelete.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

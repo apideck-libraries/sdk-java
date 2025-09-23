@@ -3,7 +3,11 @@
  */
 package com.apideck.unify;
 
+import com.apideck.unify.utils.Headers;
+
+
 public class AsyncWebhook {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncWebhooks webhooks;
     private final Webhook syncSDK;

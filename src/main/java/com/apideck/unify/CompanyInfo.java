@@ -9,12 +9,14 @@ import com.apideck.unify.models.operations.AccountingCompanyInfoOneRequest;
 import com.apideck.unify.models.operations.AccountingCompanyInfoOneRequestBuilder;
 import com.apideck.unify.models.operations.AccountingCompanyInfoOneResponse;
 import com.apideck.unify.operations.AccountingCompanyInfoOne;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
 
 
 public class CompanyInfo {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncCompanyInfo asyncSDK;
 
@@ -68,7 +70,7 @@ public class CompanyInfo {
      */
     public AccountingCompanyInfoOneResponse get(AccountingCompanyInfoOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingCompanyInfoOneRequest, AccountingCompanyInfoOneResponse> operation
-              = new AccountingCompanyInfoOne.Sync(sdkConfiguration, options);
+              = new AccountingCompanyInfoOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

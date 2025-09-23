@@ -25,12 +25,14 @@ import com.apideck.unify.operations.FileStorageFoldersCopy;
 import com.apideck.unify.operations.FileStorageFoldersDelete;
 import com.apideck.unify.operations.FileStorageFoldersOne;
 import com.apideck.unify.operations.FileStorageFoldersUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncFolders {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final Folders syncSDK;
 
@@ -83,7 +85,9 @@ public class AsyncFolders {
      */
     public CompletableFuture<FileStorageFoldersAddResponse> create(FileStorageFoldersAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<FileStorageFoldersAddRequest, FileStorageFoldersAddResponse> operation
-              = new FileStorageFoldersAdd.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new FileStorageFoldersAdd.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -123,7 +127,9 @@ public class AsyncFolders {
      */
     public CompletableFuture<FileStorageFoldersOneResponse> get(FileStorageFoldersOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<FileStorageFoldersOneRequest, FileStorageFoldersOneResponse> operation
-              = new FileStorageFoldersOne.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new FileStorageFoldersOne.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -163,7 +169,9 @@ public class AsyncFolders {
      */
     public CompletableFuture<FileStorageFoldersUpdateResponse> update(FileStorageFoldersUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<FileStorageFoldersUpdateRequest, FileStorageFoldersUpdateResponse> operation
-              = new FileStorageFoldersUpdate.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new FileStorageFoldersUpdate.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -203,7 +211,9 @@ public class AsyncFolders {
      */
     public CompletableFuture<FileStorageFoldersDeleteResponse> delete(FileStorageFoldersDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<FileStorageFoldersDeleteRequest, FileStorageFoldersDeleteResponse> operation
-              = new FileStorageFoldersDelete.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new FileStorageFoldersDelete.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -243,7 +253,9 @@ public class AsyncFolders {
      */
     public CompletableFuture<FileStorageFoldersCopyResponse> copy(FileStorageFoldersCopyRequest request, Optional<Options> options) {
         AsyncRequestOperation<FileStorageFoldersCopyRequest, FileStorageFoldersCopyResponse> operation
-              = new FileStorageFoldersCopy.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new FileStorageFoldersCopy.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

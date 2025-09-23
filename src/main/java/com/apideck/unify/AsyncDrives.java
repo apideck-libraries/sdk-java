@@ -25,12 +25,14 @@ import com.apideck.unify.operations.FileStorageDrivesAll;
 import com.apideck.unify.operations.FileStorageDrivesDelete;
 import com.apideck.unify.operations.FileStorageDrivesOne;
 import com.apideck.unify.operations.FileStorageDrivesUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncDrives {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final Drives syncSDK;
 
@@ -83,7 +85,9 @@ public class AsyncDrives {
      */
     public CompletableFuture<FileStorageDrivesAllResponse> list(FileStorageDrivesAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<FileStorageDrivesAllRequest, FileStorageDrivesAllResponse> operation
-              = new FileStorageDrivesAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new FileStorageDrivesAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -123,7 +127,9 @@ public class AsyncDrives {
      */
     public CompletableFuture<FileStorageDrivesAddResponse> create(FileStorageDrivesAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<FileStorageDrivesAddRequest, FileStorageDrivesAddResponse> operation
-              = new FileStorageDrivesAdd.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new FileStorageDrivesAdd.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -163,7 +169,9 @@ public class AsyncDrives {
      */
     public CompletableFuture<FileStorageDrivesOneResponse> get(FileStorageDrivesOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<FileStorageDrivesOneRequest, FileStorageDrivesOneResponse> operation
-              = new FileStorageDrivesOne.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new FileStorageDrivesOne.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -203,7 +211,9 @@ public class AsyncDrives {
      */
     public CompletableFuture<FileStorageDrivesUpdateResponse> update(FileStorageDrivesUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<FileStorageDrivesUpdateRequest, FileStorageDrivesUpdateResponse> operation
-              = new FileStorageDrivesUpdate.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new FileStorageDrivesUpdate.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -243,7 +253,9 @@ public class AsyncDrives {
      */
     public CompletableFuture<FileStorageDrivesDeleteResponse> delete(FileStorageDrivesDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<FileStorageDrivesDeleteRequest, FileStorageDrivesDeleteResponse> operation
-              = new FileStorageDrivesDelete.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new FileStorageDrivesDelete.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

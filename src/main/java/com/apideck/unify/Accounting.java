@@ -3,7 +3,11 @@
  */
 package com.apideck.unify;
 
+import com.apideck.unify.utils.Headers;
+
+
 public class Accounting {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncAccounting asyncSDK;
     private final TaxRates taxRates;
@@ -24,6 +28,7 @@ public class Accounting {
     private final Locations locations;
     private final Departments departments;
     private final Attachments attachments;
+    private final BankAccounts bankAccounts;
     private final TrackingCategories trackingCategories;
     private final BillPayments billPayments;
     private final Expenses expenses;
@@ -54,6 +59,7 @@ public class Accounting {
         this.locations = new Locations(this.sdkConfiguration);
         this.departments = new Departments(this.sdkConfiguration);
         this.attachments = new Attachments(this.sdkConfiguration);
+        this.bankAccounts = new BankAccounts(this.sdkConfiguration);
         this.trackingCategories = new TrackingCategories(this.sdkConfiguration);
         this.billPayments = new BillPayments(this.sdkConfiguration);
         this.expenses = new Expenses(this.sdkConfiguration);
@@ -136,6 +142,10 @@ public class Accounting {
 
     public final Attachments attachments() {
         return attachments;
+    }
+
+    public final BankAccounts bankAccounts() {
+        return bankAccounts;
     }
 
     public final TrackingCategories trackingCategories() {

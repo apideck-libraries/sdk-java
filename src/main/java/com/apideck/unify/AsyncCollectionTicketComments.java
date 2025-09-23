@@ -25,12 +25,14 @@ import com.apideck.unify.operations.IssueTrackingCollectionTicketCommentsAll;
 import com.apideck.unify.operations.IssueTrackingCollectionTicketCommentsDelete;
 import com.apideck.unify.operations.IssueTrackingCollectionTicketCommentsOne;
 import com.apideck.unify.operations.IssueTrackingCollectionTicketCommentsUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncCollectionTicketComments {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final CollectionTicketComments syncSDK;
 
@@ -83,7 +85,9 @@ public class AsyncCollectionTicketComments {
      */
     public CompletableFuture<IssueTrackingCollectionTicketCommentsAllResponse> list(IssueTrackingCollectionTicketCommentsAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<IssueTrackingCollectionTicketCommentsAllRequest, IssueTrackingCollectionTicketCommentsAllResponse> operation
-              = new IssueTrackingCollectionTicketCommentsAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new IssueTrackingCollectionTicketCommentsAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -123,7 +127,9 @@ public class AsyncCollectionTicketComments {
      */
     public CompletableFuture<IssueTrackingCollectionTicketCommentsAddResponse> create(IssueTrackingCollectionTicketCommentsAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<IssueTrackingCollectionTicketCommentsAddRequest, IssueTrackingCollectionTicketCommentsAddResponse> operation
-              = new IssueTrackingCollectionTicketCommentsAdd.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new IssueTrackingCollectionTicketCommentsAdd.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -163,7 +169,9 @@ public class AsyncCollectionTicketComments {
      */
     public CompletableFuture<IssueTrackingCollectionTicketCommentsOneResponse> get(IssueTrackingCollectionTicketCommentsOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<IssueTrackingCollectionTicketCommentsOneRequest, IssueTrackingCollectionTicketCommentsOneResponse> operation
-              = new IssueTrackingCollectionTicketCommentsOne.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new IssueTrackingCollectionTicketCommentsOne.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -203,7 +211,9 @@ public class AsyncCollectionTicketComments {
      */
     public CompletableFuture<IssueTrackingCollectionTicketCommentsUpdateResponse> update(IssueTrackingCollectionTicketCommentsUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<IssueTrackingCollectionTicketCommentsUpdateRequest, IssueTrackingCollectionTicketCommentsUpdateResponse> operation
-              = new IssueTrackingCollectionTicketCommentsUpdate.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new IssueTrackingCollectionTicketCommentsUpdate.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -243,7 +253,9 @@ public class AsyncCollectionTicketComments {
      */
     public CompletableFuture<IssueTrackingCollectionTicketCommentsDeleteResponse> delete(IssueTrackingCollectionTicketCommentsDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<IssueTrackingCollectionTicketCommentsDeleteRequest, IssueTrackingCollectionTicketCommentsDeleteResponse> operation
-              = new IssueTrackingCollectionTicketCommentsDelete.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new IssueTrackingCollectionTicketCommentsDelete.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

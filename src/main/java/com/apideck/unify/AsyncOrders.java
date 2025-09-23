@@ -13,12 +13,14 @@ import com.apideck.unify.models.operations.async.EcommerceOrdersOneRequestBuilde
 import com.apideck.unify.models.operations.async.EcommerceOrdersOneResponse;
 import com.apideck.unify.operations.EcommerceOrdersAll;
 import com.apideck.unify.operations.EcommerceOrdersOne;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncOrders {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final Orders syncSDK;
 
@@ -71,7 +73,9 @@ public class AsyncOrders {
      */
     public CompletableFuture<EcommerceOrdersAllResponse> list(EcommerceOrdersAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<EcommerceOrdersAllRequest, EcommerceOrdersAllResponse> operation
-              = new EcommerceOrdersAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new EcommerceOrdersAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -111,7 +115,9 @@ public class AsyncOrders {
      */
     public CompletableFuture<EcommerceOrdersOneResponse> get(EcommerceOrdersOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<EcommerceOrdersOneRequest, EcommerceOrdersOneResponse> operation
-              = new EcommerceOrdersOne.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new EcommerceOrdersOne.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

@@ -25,12 +25,14 @@ import com.apideck.unify.operations.AccountingTaxRatesAll;
 import com.apideck.unify.operations.AccountingTaxRatesDelete;
 import com.apideck.unify.operations.AccountingTaxRatesOne;
 import com.apideck.unify.operations.AccountingTaxRatesUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
 
 
 public class TaxRates {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncTaxRates asyncSDK;
 
@@ -84,7 +86,7 @@ public class TaxRates {
      */
     public AccountingTaxRatesAllResponse list(AccountingTaxRatesAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingTaxRatesAllRequest, AccountingTaxRatesAllResponse> operation
-              = new AccountingTaxRatesAll.Sync(sdkConfiguration, options);
+              = new AccountingTaxRatesAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -124,7 +126,7 @@ public class TaxRates {
      */
     public AccountingTaxRatesAddResponse create(AccountingTaxRatesAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingTaxRatesAddRequest, AccountingTaxRatesAddResponse> operation
-              = new AccountingTaxRatesAdd.Sync(sdkConfiguration, options);
+              = new AccountingTaxRatesAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -164,7 +166,7 @@ public class TaxRates {
      */
     public AccountingTaxRatesOneResponse get(AccountingTaxRatesOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingTaxRatesOneRequest, AccountingTaxRatesOneResponse> operation
-              = new AccountingTaxRatesOne.Sync(sdkConfiguration, options);
+              = new AccountingTaxRatesOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -204,7 +206,7 @@ public class TaxRates {
      */
     public AccountingTaxRatesUpdateResponse update(AccountingTaxRatesUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingTaxRatesUpdateRequest, AccountingTaxRatesUpdateResponse> operation
-              = new AccountingTaxRatesUpdate.Sync(sdkConfiguration, options);
+              = new AccountingTaxRatesUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -244,7 +246,7 @@ public class TaxRates {
      */
     public AccountingTaxRatesDeleteResponse delete(AccountingTaxRatesDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingTaxRatesDeleteRequest, AccountingTaxRatesDeleteResponse> operation
-              = new AccountingTaxRatesDelete.Sync(sdkConfiguration, options);
+              = new AccountingTaxRatesDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

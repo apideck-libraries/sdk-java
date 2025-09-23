@@ -27,6 +27,7 @@ import com.apideck.unify.operations.WebhookWebhooksAll;
 import com.apideck.unify.operations.WebhookWebhooksDelete;
 import com.apideck.unify.operations.WebhookWebhooksOne;
 import com.apideck.unify.operations.WebhookWebhooksUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.lang.Long;
@@ -36,6 +37,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class Webhooks {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncWebhooks asyncSDK;
 
@@ -100,7 +102,7 @@ public class Webhooks {
                 .limit(limit)
                 .build();
         RequestOperation<WebhookWebhooksAllRequest, WebhookWebhooksAllResponse> operation
-              = new WebhookWebhooksAll.Sync(sdkConfiguration, options);
+              = new WebhookWebhooksAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -149,7 +151,7 @@ public class Webhooks {
                 .createWebhookRequest(createWebhookRequest)
                 .build();
         RequestOperation<WebhookWebhooksAddRequest, WebhookWebhooksAddResponse> operation
-              = new WebhookWebhooksAdd.Sync(sdkConfiguration, options);
+              = new WebhookWebhooksAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -198,7 +200,7 @@ public class Webhooks {
                 .appId(appId)
                 .build();
         RequestOperation<WebhookWebhooksOneRequest, WebhookWebhooksOneResponse> operation
-              = new WebhookWebhooksOne.Sync(sdkConfiguration, options);
+              = new WebhookWebhooksOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -251,7 +253,7 @@ public class Webhooks {
                 .updateWebhookRequest(updateWebhookRequest)
                 .build();
         RequestOperation<WebhookWebhooksUpdateRequest, WebhookWebhooksUpdateResponse> operation
-              = new WebhookWebhooksUpdate.Sync(sdkConfiguration, options);
+              = new WebhookWebhooksUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -300,7 +302,7 @@ public class Webhooks {
                 .appId(appId)
                 .build();
         RequestOperation<WebhookWebhooksDeleteRequest, WebhookWebhooksDeleteResponse> operation
-              = new WebhookWebhooksDelete.Sync(sdkConfiguration, options);
+              = new WebhookWebhooksDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

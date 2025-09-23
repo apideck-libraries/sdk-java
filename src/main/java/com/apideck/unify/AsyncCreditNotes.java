@@ -25,12 +25,14 @@ import com.apideck.unify.operations.AccountingCreditNotesAll;
 import com.apideck.unify.operations.AccountingCreditNotesDelete;
 import com.apideck.unify.operations.AccountingCreditNotesOne;
 import com.apideck.unify.operations.AccountingCreditNotesUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncCreditNotes {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final CreditNotes syncSDK;
 
@@ -83,7 +85,9 @@ public class AsyncCreditNotes {
      */
     public CompletableFuture<AccountingCreditNotesAllResponse> list(AccountingCreditNotesAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingCreditNotesAllRequest, AccountingCreditNotesAllResponse> operation
-              = new AccountingCreditNotesAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingCreditNotesAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -123,7 +127,9 @@ public class AsyncCreditNotes {
      */
     public CompletableFuture<AccountingCreditNotesAddResponse> create(AccountingCreditNotesAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingCreditNotesAddRequest, AccountingCreditNotesAddResponse> operation
-              = new AccountingCreditNotesAdd.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingCreditNotesAdd.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -163,7 +169,9 @@ public class AsyncCreditNotes {
      */
     public CompletableFuture<AccountingCreditNotesOneResponse> get(AccountingCreditNotesOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingCreditNotesOneRequest, AccountingCreditNotesOneResponse> operation
-              = new AccountingCreditNotesOne.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingCreditNotesOne.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -203,7 +211,9 @@ public class AsyncCreditNotes {
      */
     public CompletableFuture<AccountingCreditNotesUpdateResponse> update(AccountingCreditNotesUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingCreditNotesUpdateRequest, AccountingCreditNotesUpdateResponse> operation
-              = new AccountingCreditNotesUpdate.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingCreditNotesUpdate.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -243,7 +253,9 @@ public class AsyncCreditNotes {
      */
     public CompletableFuture<AccountingCreditNotesDeleteResponse> delete(AccountingCreditNotesDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingCreditNotesDeleteRequest, AccountingCreditNotesDeleteResponse> operation
-              = new AccountingCreditNotesDelete.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingCreditNotesDelete.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

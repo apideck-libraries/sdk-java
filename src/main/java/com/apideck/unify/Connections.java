@@ -29,6 +29,7 @@ import com.apideck.unify.operations.VaultConnectionsImport;
 import com.apideck.unify.operations.VaultConnectionsOne;
 import com.apideck.unify.operations.VaultConnectionsToken;
 import com.apideck.unify.operations.VaultConnectionsUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Boolean;
 import java.lang.Exception;
@@ -37,6 +38,7 @@ import java.util.Optional;
 
 
 public class Connections {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncConnections asyncSDK;
 
@@ -110,7 +112,7 @@ public class Connections {
                 .configured(configured)
                 .build();
         RequestOperation<VaultConnectionsAllRequest, VaultConnectionsAllResponse> operation
-              = new VaultConnectionsAll.Sync(sdkConfiguration, options);
+              = new VaultConnectionsAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -166,7 +168,7 @@ public class Connections {
                 .unifiedApi(unifiedApi)
                 .build();
         RequestOperation<VaultConnectionsOneRequest, VaultConnectionsOneResponse> operation
-              = new VaultConnectionsOne.Sync(sdkConfiguration, options);
+              = new VaultConnectionsOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -206,7 +208,7 @@ public class Connections {
      */
     public VaultConnectionsUpdateResponse update(VaultConnectionsUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<VaultConnectionsUpdateRequest, VaultConnectionsUpdateResponse> operation
-              = new VaultConnectionsUpdate.Sync(sdkConfiguration, options);
+              = new VaultConnectionsUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -262,7 +264,7 @@ public class Connections {
                 .unifiedApi(unifiedApi)
                 .build();
         RequestOperation<VaultConnectionsDeleteRequest, VaultConnectionsDeleteResponse> operation
-              = new VaultConnectionsDelete.Sync(sdkConfiguration, options);
+              = new VaultConnectionsDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -302,7 +304,7 @@ public class Connections {
      */
     public VaultConnectionsImportResponse imports(VaultConnectionsImportRequest request, Optional<Options> options) throws Exception {
         RequestOperation<VaultConnectionsImportRequest, VaultConnectionsImportResponse> operation
-              = new VaultConnectionsImport.Sync(sdkConfiguration, options);
+              = new VaultConnectionsImport.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -357,7 +359,7 @@ public class Connections {
      */
     public VaultConnectionsTokenResponse token(VaultConnectionsTokenRequest request, Optional<Options> options) throws Exception {
         RequestOperation<VaultConnectionsTokenRequest, VaultConnectionsTokenResponse> operation
-              = new VaultConnectionsToken.Sync(sdkConfiguration, options);
+              = new VaultConnectionsToken.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

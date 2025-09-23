@@ -8,6 +8,7 @@ import static com.apideck.unify.operations.Operations.RequestOperation;
 import com.apideck.unify.SDKConfiguration;
 import com.apideck.unify.models.components.UpdateConsumerRequest;
 import com.apideck.unify.operations.VaultConsumersUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -22,6 +23,7 @@ public class VaultConsumersUpdateRequestBuilder {
     private UpdateConsumerRequest updateConsumerRequest;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public VaultConsumersUpdateRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -79,7 +81,7 @@ public class VaultConsumersUpdateRequestBuilder {
             .build());
 
         RequestOperation<VaultConsumersUpdateRequest, VaultConsumersUpdateResponse> operation
-              = new VaultConsumersUpdate.Sync(sdkConfiguration, options);
+              = new VaultConsumersUpdate.Sync(sdkConfiguration, options, _headers);
         VaultConsumersUpdateRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

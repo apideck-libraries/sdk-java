@@ -25,6 +25,7 @@ import com.apideck.unify.operations.FileStorageUploadSessionsDelete;
 import com.apideck.unify.operations.FileStorageUploadSessionsFinish;
 import com.apideck.unify.operations.FileStorageUploadSessionsOne;
 import com.apideck.unify.operations.FileStorageUploadSessionsUpload;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.String;
 import java.util.Optional;
@@ -32,6 +33,7 @@ import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncUploadSessions {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final UploadSessions syncSDK;
 
@@ -89,7 +91,7 @@ public class AsyncUploadSessions {
         AsyncRequestOperation<FileStorageUploadSessionsAddRequest, FileStorageUploadSessionsAddResponse> operation
               = new FileStorageUploadSessionsAdd.Async(
                                     sdkConfiguration, serverURL, options,
-                                    sdkConfiguration.retryScheduler());
+                                    sdkConfiguration.retryScheduler(), _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -134,7 +136,7 @@ public class AsyncUploadSessions {
         AsyncRequestOperation<FileStorageUploadSessionsOneRequest, FileStorageUploadSessionsOneResponse> operation
               = new FileStorageUploadSessionsOne.Async(
                                     sdkConfiguration, serverURL, options,
-                                    sdkConfiguration.retryScheduler());
+                                    sdkConfiguration.retryScheduler(), _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -179,7 +181,7 @@ public class AsyncUploadSessions {
         AsyncRequestOperation<FileStorageUploadSessionsUploadRequest, FileStorageUploadSessionsUploadResponse> operation
               = new FileStorageUploadSessionsUpload.Async(
                                     sdkConfiguration, serverURL, options,
-                                    sdkConfiguration.retryScheduler());
+                                    sdkConfiguration.retryScheduler(), _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -219,7 +221,9 @@ public class AsyncUploadSessions {
      */
     public CompletableFuture<FileStorageUploadSessionsDeleteResponse> delete(FileStorageUploadSessionsDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<FileStorageUploadSessionsDeleteRequest, FileStorageUploadSessionsDeleteResponse> operation
-              = new FileStorageUploadSessionsDelete.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new FileStorageUploadSessionsDelete.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -264,7 +268,7 @@ public class AsyncUploadSessions {
         AsyncRequestOperation<FileStorageUploadSessionsFinishRequest, FileStorageUploadSessionsFinishResponse> operation
               = new FileStorageUploadSessionsFinish.Async(
                                     sdkConfiguration, serverURL, options,
-                                    sdkConfiguration.retryScheduler());
+                                    sdkConfiguration.retryScheduler(), _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

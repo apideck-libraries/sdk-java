@@ -25,12 +25,14 @@ import com.apideck.unify.operations.AccountingLedgerAccountsAll;
 import com.apideck.unify.operations.AccountingLedgerAccountsDelete;
 import com.apideck.unify.operations.AccountingLedgerAccountsOne;
 import com.apideck.unify.operations.AccountingLedgerAccountsUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncLedgerAccounts {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final LedgerAccounts syncSDK;
 
@@ -83,7 +85,9 @@ public class AsyncLedgerAccounts {
      */
     public CompletableFuture<AccountingLedgerAccountsAllResponse> list(AccountingLedgerAccountsAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingLedgerAccountsAllRequest, AccountingLedgerAccountsAllResponse> operation
-              = new AccountingLedgerAccountsAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingLedgerAccountsAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -123,7 +127,9 @@ public class AsyncLedgerAccounts {
      */
     public CompletableFuture<AccountingLedgerAccountsAddResponse> create(AccountingLedgerAccountsAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingLedgerAccountsAddRequest, AccountingLedgerAccountsAddResponse> operation
-              = new AccountingLedgerAccountsAdd.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingLedgerAccountsAdd.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -163,7 +169,9 @@ public class AsyncLedgerAccounts {
      */
     public CompletableFuture<AccountingLedgerAccountsOneResponse> get(AccountingLedgerAccountsOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingLedgerAccountsOneRequest, AccountingLedgerAccountsOneResponse> operation
-              = new AccountingLedgerAccountsOne.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingLedgerAccountsOne.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -203,7 +211,9 @@ public class AsyncLedgerAccounts {
      */
     public CompletableFuture<AccountingLedgerAccountsUpdateResponse> update(AccountingLedgerAccountsUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingLedgerAccountsUpdateRequest, AccountingLedgerAccountsUpdateResponse> operation
-              = new AccountingLedgerAccountsUpdate.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingLedgerAccountsUpdate.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -243,7 +253,9 @@ public class AsyncLedgerAccounts {
      */
     public CompletableFuture<AccountingLedgerAccountsDeleteResponse> delete(AccountingLedgerAccountsDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingLedgerAccountsDeleteRequest, AccountingLedgerAccountsDeleteResponse> operation
-              = new AccountingLedgerAccountsDelete.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingLedgerAccountsDelete.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

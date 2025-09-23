@@ -25,12 +25,14 @@ import com.apideck.unify.operations.AccountingJournalEntriesAll;
 import com.apideck.unify.operations.AccountingJournalEntriesDelete;
 import com.apideck.unify.operations.AccountingJournalEntriesOne;
 import com.apideck.unify.operations.AccountingJournalEntriesUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
 
 
 public class JournalEntries {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncJournalEntries asyncSDK;
 
@@ -84,7 +86,7 @@ public class JournalEntries {
      */
     public AccountingJournalEntriesAllResponse list(AccountingJournalEntriesAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingJournalEntriesAllRequest, AccountingJournalEntriesAllResponse> operation
-              = new AccountingJournalEntriesAll.Sync(sdkConfiguration, options);
+              = new AccountingJournalEntriesAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -124,7 +126,7 @@ public class JournalEntries {
      */
     public AccountingJournalEntriesAddResponse create(AccountingJournalEntriesAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingJournalEntriesAddRequest, AccountingJournalEntriesAddResponse> operation
-              = new AccountingJournalEntriesAdd.Sync(sdkConfiguration, options);
+              = new AccountingJournalEntriesAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -164,7 +166,7 @@ public class JournalEntries {
      */
     public AccountingJournalEntriesOneResponse get(AccountingJournalEntriesOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingJournalEntriesOneRequest, AccountingJournalEntriesOneResponse> operation
-              = new AccountingJournalEntriesOne.Sync(sdkConfiguration, options);
+              = new AccountingJournalEntriesOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -204,7 +206,7 @@ public class JournalEntries {
      */
     public AccountingJournalEntriesUpdateResponse update(AccountingJournalEntriesUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingJournalEntriesUpdateRequest, AccountingJournalEntriesUpdateResponse> operation
-              = new AccountingJournalEntriesUpdate.Sync(sdkConfiguration, options);
+              = new AccountingJournalEntriesUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -244,7 +246,7 @@ public class JournalEntries {
      */
     public AccountingJournalEntriesDeleteResponse delete(AccountingJournalEntriesDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingJournalEntriesDeleteRequest, AccountingJournalEntriesDeleteResponse> operation
-              = new AccountingJournalEntriesDelete.Sync(sdkConfiguration, options);
+              = new AccountingJournalEntriesDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

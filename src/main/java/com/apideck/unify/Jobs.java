@@ -13,12 +13,14 @@ import com.apideck.unify.models.operations.AtsJobsOneRequestBuilder;
 import com.apideck.unify.models.operations.AtsJobsOneResponse;
 import com.apideck.unify.operations.AtsJobsAll;
 import com.apideck.unify.operations.AtsJobsOne;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
 
 
 public class Jobs {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncJobs asyncSDK;
 
@@ -72,7 +74,7 @@ public class Jobs {
      */
     public AtsJobsAllResponse list(AtsJobsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AtsJobsAllRequest, AtsJobsAllResponse> operation
-              = new AtsJobsAll.Sync(sdkConfiguration, options);
+              = new AtsJobsAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -112,7 +114,7 @@ public class Jobs {
      */
     public AtsJobsOneResponse get(AtsJobsOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AtsJobsOneRequest, AtsJobsOneResponse> operation
-              = new AtsJobsOne.Sync(sdkConfiguration, options);
+              = new AtsJobsOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -33,12 +33,14 @@ import com.apideck.unify.operations.FileStorageFilesExport;
 import com.apideck.unify.operations.FileStorageFilesOne;
 import com.apideck.unify.operations.FileStorageFilesSearch;
 import com.apideck.unify.operations.FileStorageFilesUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
 
 
 public class Files {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncFiles asyncSDK;
 
@@ -92,7 +94,7 @@ public class Files {
      */
     public FileStorageFilesAllResponse list(FileStorageFilesAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageFilesAllRequest, FileStorageFilesAllResponse> operation
-              = new FileStorageFilesAll.Sync(sdkConfiguration, options);
+              = new FileStorageFilesAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -132,7 +134,7 @@ public class Files {
      */
     public FileStorageFilesSearchResponse search(FileStorageFilesSearchRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageFilesSearchRequest, FileStorageFilesSearchResponse> operation
-              = new FileStorageFilesSearch.Sync(sdkConfiguration, options);
+              = new FileStorageFilesSearch.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -172,7 +174,7 @@ public class Files {
      */
     public FileStorageFilesOneResponse get(FileStorageFilesOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageFilesOneRequest, FileStorageFilesOneResponse> operation
-              = new FileStorageFilesOne.Sync(sdkConfiguration, options);
+              = new FileStorageFilesOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -212,7 +214,7 @@ public class Files {
      */
     public FileStorageFilesUpdateResponse update(FileStorageFilesUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageFilesUpdateRequest, FileStorageFilesUpdateResponse> operation
-              = new FileStorageFilesUpdate.Sync(sdkConfiguration, options);
+              = new FileStorageFilesUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -252,7 +254,7 @@ public class Files {
      */
     public FileStorageFilesDeleteResponse delete(FileStorageFilesDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageFilesDeleteRequest, FileStorageFilesDeleteResponse> operation
-              = new FileStorageFilesDelete.Sync(sdkConfiguration, options);
+              = new FileStorageFilesDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -292,7 +294,7 @@ public class Files {
      */
     public FileStorageFilesDownloadResponse download(FileStorageFilesDownloadRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageFilesDownloadRequest, FileStorageFilesDownloadResponse> operation
-              = new FileStorageFilesDownload.Sync(sdkConfiguration, options);
+              = new FileStorageFilesDownload.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -332,7 +334,7 @@ public class Files {
      */
     public FileStorageFilesExportResponse export(FileStorageFilesExportRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageFilesExportRequest, FileStorageFilesExportResponse> operation
-              = new FileStorageFilesExport.Sync(sdkConfiguration, options);
+              = new FileStorageFilesExport.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

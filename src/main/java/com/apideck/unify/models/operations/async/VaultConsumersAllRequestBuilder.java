@@ -10,6 +10,7 @@ import com.apideck.unify.SDKConfiguration;
 import com.apideck.unify.models.operations.VaultConsumersAllRequest;
 import com.apideck.unify.operations.VaultConsumersAll;
 import com.apideck.unify.utils.Blob;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
@@ -38,6 +39,7 @@ public class VaultConsumersAllRequestBuilder {
                             new TypeReference<Optional<Long>>() {});
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public VaultConsumersAllRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -110,7 +112,9 @@ public class VaultConsumersAllRequestBuilder {
             .build());
 
         AsyncRequestOperation<VaultConsumersAllRequest, VaultConsumersAllResponse> operation
-              = new VaultConsumersAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new VaultConsumersAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         VaultConsumersAllRequest request = buildRequest();
 
         return operation.doRequest(request)
@@ -138,7 +142,9 @@ public class VaultConsumersAllRequestBuilder {
             .build());
 
         AsyncRequestOperation<VaultConsumersAllRequest, VaultConsumersAllResponse> operation
-              = new VaultConsumersAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new VaultConsumersAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
 
         Flow.Publisher<HttpResponse<Blob>> asyncPaginator = new AsyncPaginator<>(
             request,

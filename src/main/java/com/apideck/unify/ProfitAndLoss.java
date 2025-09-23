@@ -9,12 +9,14 @@ import com.apideck.unify.models.operations.AccountingProfitAndLossOneRequest;
 import com.apideck.unify.models.operations.AccountingProfitAndLossOneRequestBuilder;
 import com.apideck.unify.models.operations.AccountingProfitAndLossOneResponse;
 import com.apideck.unify.operations.AccountingProfitAndLossOne;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
 
 
 public class ProfitAndLoss {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncProfitAndLoss asyncSDK;
 
@@ -68,7 +70,7 @@ public class ProfitAndLoss {
      */
     public AccountingProfitAndLossOneResponse get(AccountingProfitAndLossOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingProfitAndLossOneRequest, AccountingProfitAndLossOneResponse> operation
-              = new AccountingProfitAndLossOne.Sync(sdkConfiguration, options);
+              = new AccountingProfitAndLossOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

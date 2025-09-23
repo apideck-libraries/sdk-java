@@ -9,6 +9,7 @@ import com.apideck.unify.models.operations.ConnectorApiResourcesOneRequest;
 import com.apideck.unify.models.operations.ConnectorApiResourcesOneRequestBuilder;
 import com.apideck.unify.models.operations.ConnectorApiResourcesOneResponse;
 import com.apideck.unify.operations.ConnectorApiResourcesOne;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
@@ -16,6 +17,7 @@ import java.util.Optional;
 
 
 public class ApiResources {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncApiResources asyncSDK;
 
@@ -82,7 +84,7 @@ public class ApiResources {
                 .resourceId(resourceId)
                 .build();
         RequestOperation<ConnectorApiResourcesOneRequest, ConnectorApiResourcesOneResponse> operation
-              = new ConnectorApiResourcesOne.Sync(sdkConfiguration, options);
+              = new ConnectorApiResourcesOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

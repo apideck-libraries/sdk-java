@@ -8,6 +8,7 @@ import static com.apideck.unify.operations.Operations.AsyncRequestOperation;
 import com.apideck.unify.SDKConfiguration;
 import com.apideck.unify.models.operations.HrisEmployeePayrollsAllRequest;
 import com.apideck.unify.operations.HrisEmployeePayrollsAll;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -20,6 +21,7 @@ public class HrisEmployeePayrollsAllRequestBuilder {
     private HrisEmployeePayrollsAllRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public HrisEmployeePayrollsAllRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -49,7 +51,9 @@ public class HrisEmployeePayrollsAllRequestBuilder {
             .build());
 
         AsyncRequestOperation<HrisEmployeePayrollsAllRequest, HrisEmployeePayrollsAllResponse> operation
-              = new HrisEmployeePayrollsAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new HrisEmployeePayrollsAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
 
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

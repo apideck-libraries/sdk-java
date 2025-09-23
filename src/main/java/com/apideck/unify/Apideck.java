@@ -4,6 +4,7 @@
 package com.apideck.unify;
 
 import com.apideck.unify.utils.HTTPClient;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Hook.SdkInitData;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.SpeakeasyHTTPClient;
@@ -19,6 +20,7 @@ import java.util.function.Consumer;
  * <p>https://developers.apideck.com - Apideck Developer Docs
  */
 public class Apideck {
+    private static final Headers _headers = Headers.EMPTY;
 
 
     /**
@@ -230,6 +232,7 @@ public class Apideck {
             return this;
         }
 
+
         /**
          * Allows setting the consumerId parameter for all supported operations.
          *
@@ -240,7 +243,7 @@ public class Apideck {
             this.sdkConfiguration.globals.putParam("header", "consumerId", consumerId);
             return this;
         }
-        
+
         /**
          * Allows setting the appId parameter for all supported operations.
          *
@@ -251,7 +254,6 @@ public class Apideck {
             this.sdkConfiguration.globals.putParam("header", "appId", appId);
             return this;
         }
-        
         // Visible for testing, may be accessed via reflection in tests
         Builder _hooks(com.apideck.unify.utils.Hooks hooks) {
             sdkConfiguration.setHooks(hooks);  
@@ -263,7 +265,7 @@ public class Apideck {
             consumer.accept(sdkConfiguration.hooks());
             return this;    
         }
-        
+
         /**
          * Builds a new instance of the SDK.
          *
@@ -278,7 +280,7 @@ public class Apideck {
             return new Apideck(sdkConfiguration);
         }
     }
-    
+
     /**
      * Get a new instance of the SDK builder to configure a new instance of the SDK.
      *
@@ -288,7 +290,7 @@ public class Apideck {
         return new Builder();
     }
 
-    private Apideck(SDKConfiguration sdkConfiguration) {
+    public Apideck(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
         this.sdkConfiguration.initialize();
         this.accounting = new Accounting(sdkConfiguration);

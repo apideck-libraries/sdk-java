@@ -22,6 +22,7 @@ import com.apideck.unify.utils.Blob;
 import com.apideck.unify.utils.Exceptions;
 import com.apideck.unify.utils.HTTPClient;
 import com.apideck.unify.utils.HTTPRequest;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Hook.AfterErrorContextImpl;
 import com.apideck.unify.utils.Hook.AfterSuccessContextImpl;
 import com.apideck.unify.utils.Hook.BeforeRequestContextImpl;
@@ -55,9 +56,13 @@ public class ConnectorApisOne {
         final List<String> retryStatusCodes;
         final RetryConfig retryConfig;
         final HTTPClient client;
+        final Headers _headers;
 
-        public Base(SDKConfiguration sdkConfiguration, Optional<Options> options) {
+        public Base(
+                SDKConfiguration sdkConfiguration, Optional<Options> options,
+                Headers _headers) {
             this.sdkConfiguration = sdkConfiguration;
+            this._headers =_headers;
             this.baseUrl = this.sdkConfiguration.serverUrl();
             this.securitySource = this.sdkConfiguration.securitySource();
             options
@@ -116,6 +121,7 @@ public class ConnectorApisOne {
             HTTPRequest req = new HTTPRequest(url, "GET");
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
+            _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
             req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
@@ -125,8 +131,12 @@ public class ConnectorApisOne {
 
     public static class Sync extends Base
             implements RequestOperation<ConnectorApisOneRequest, ConnectorApisOneResponse> {
-        public Sync(SDKConfiguration sdkConfiguration, Optional<Options> options) {
-            super(sdkConfiguration, options);
+        public Sync(
+                SDKConfiguration sdkConfiguration, Optional<Options> options,
+                Headers _headers) {
+            super(
+                  sdkConfiguration, options,
+                  _headers);
         }
 
         private HttpRequest onBuildRequest(ConnectorApisOneRequest request) throws Exception {
@@ -300,8 +310,10 @@ public class ConnectorApisOne {
 
         public Async(
                 SDKConfiguration sdkConfiguration, Optional<Options> options,
-                ScheduledExecutorService retryScheduler) {
-            super(sdkConfiguration, options);
+                ScheduledExecutorService retryScheduler, Headers _headers) {
+            super(
+                  sdkConfiguration, options,
+                  _headers);
             this.retryScheduler = retryScheduler;
         }
 

@@ -25,12 +25,14 @@ import com.apideck.unify.operations.IssueTrackingCollectionTicketsAll;
 import com.apideck.unify.operations.IssueTrackingCollectionTicketsDelete;
 import com.apideck.unify.operations.IssueTrackingCollectionTicketsOne;
 import com.apideck.unify.operations.IssueTrackingCollectionTicketsUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
 
 
 public class CollectionTickets {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncCollectionTickets asyncSDK;
 
@@ -84,7 +86,7 @@ public class CollectionTickets {
      */
     public IssueTrackingCollectionTicketsAllResponse list(IssueTrackingCollectionTicketsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<IssueTrackingCollectionTicketsAllRequest, IssueTrackingCollectionTicketsAllResponse> operation
-              = new IssueTrackingCollectionTicketsAll.Sync(sdkConfiguration, options);
+              = new IssueTrackingCollectionTicketsAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -124,7 +126,7 @@ public class CollectionTickets {
      */
     public IssueTrackingCollectionTicketsAddResponse create(IssueTrackingCollectionTicketsAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<IssueTrackingCollectionTicketsAddRequest, IssueTrackingCollectionTicketsAddResponse> operation
-              = new IssueTrackingCollectionTicketsAdd.Sync(sdkConfiguration, options);
+              = new IssueTrackingCollectionTicketsAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -164,7 +166,7 @@ public class CollectionTickets {
      */
     public IssueTrackingCollectionTicketsOneResponse get(IssueTrackingCollectionTicketsOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<IssueTrackingCollectionTicketsOneRequest, IssueTrackingCollectionTicketsOneResponse> operation
-              = new IssueTrackingCollectionTicketsOne.Sync(sdkConfiguration, options);
+              = new IssueTrackingCollectionTicketsOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -204,7 +206,7 @@ public class CollectionTickets {
      */
     public IssueTrackingCollectionTicketsUpdateResponse update(IssueTrackingCollectionTicketsUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<IssueTrackingCollectionTicketsUpdateRequest, IssueTrackingCollectionTicketsUpdateResponse> operation
-              = new IssueTrackingCollectionTicketsUpdate.Sync(sdkConfiguration, options);
+              = new IssueTrackingCollectionTicketsUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -244,7 +246,7 @@ public class CollectionTickets {
      */
     public IssueTrackingCollectionTicketsDeleteResponse delete(IssueTrackingCollectionTicketsDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<IssueTrackingCollectionTicketsDeleteRequest, IssueTrackingCollectionTicketsDeleteResponse> operation
-              = new IssueTrackingCollectionTicketsDelete.Sync(sdkConfiguration, options);
+              = new IssueTrackingCollectionTicketsDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

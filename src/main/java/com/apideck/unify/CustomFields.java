@@ -9,12 +9,14 @@ import com.apideck.unify.models.operations.VaultCustomFieldsAllRequest;
 import com.apideck.unify.models.operations.VaultCustomFieldsAllRequestBuilder;
 import com.apideck.unify.models.operations.VaultCustomFieldsAllResponse;
 import com.apideck.unify.operations.VaultCustomFieldsAll;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
 
 
 public class CustomFields {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncCustomFields asyncSDK;
 
@@ -68,7 +70,7 @@ public class CustomFields {
      */
     public VaultCustomFieldsAllResponse list(VaultCustomFieldsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<VaultCustomFieldsAllRequest, VaultCustomFieldsAllResponse> operation
-              = new VaultCustomFieldsAll.Sync(sdkConfiguration, options);
+              = new VaultCustomFieldsAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

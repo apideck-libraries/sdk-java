@@ -8,6 +8,7 @@ import static com.apideck.unify.operations.Operations.AsyncRequestOperation;
 import com.apideck.unify.SDKConfiguration;
 import com.apideck.unify.models.operations.AccountingSubsidiariesAddRequest;
 import com.apideck.unify.operations.AccountingSubsidiariesAdd;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -20,6 +21,7 @@ public class AccountingSubsidiariesAddRequestBuilder {
     private AccountingSubsidiariesAddRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public AccountingSubsidiariesAddRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -49,7 +51,9 @@ public class AccountingSubsidiariesAddRequestBuilder {
             .build());
 
         AsyncRequestOperation<AccountingSubsidiariesAddRequest, AccountingSubsidiariesAddResponse> operation
-              = new AccountingSubsidiariesAdd.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingSubsidiariesAdd.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
 
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

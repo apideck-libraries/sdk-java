@@ -25,12 +25,14 @@ import com.apideck.unify.operations.AccountingSuppliersAll;
 import com.apideck.unify.operations.AccountingSuppliersDelete;
 import com.apideck.unify.operations.AccountingSuppliersOne;
 import com.apideck.unify.operations.AccountingSuppliersUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncSuppliers {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final Suppliers syncSDK;
 
@@ -83,7 +85,9 @@ public class AsyncSuppliers {
      */
     public CompletableFuture<AccountingSuppliersAllResponse> list(AccountingSuppliersAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingSuppliersAllRequest, AccountingSuppliersAllResponse> operation
-              = new AccountingSuppliersAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingSuppliersAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -123,7 +127,9 @@ public class AsyncSuppliers {
      */
     public CompletableFuture<AccountingSuppliersAddResponse> create(AccountingSuppliersAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingSuppliersAddRequest, AccountingSuppliersAddResponse> operation
-              = new AccountingSuppliersAdd.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingSuppliersAdd.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -163,7 +169,9 @@ public class AsyncSuppliers {
      */
     public CompletableFuture<AccountingSuppliersOneResponse> get(AccountingSuppliersOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingSuppliersOneRequest, AccountingSuppliersOneResponse> operation
-              = new AccountingSuppliersOne.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingSuppliersOne.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -203,7 +211,9 @@ public class AsyncSuppliers {
      */
     public CompletableFuture<AccountingSuppliersUpdateResponse> update(AccountingSuppliersUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingSuppliersUpdateRequest, AccountingSuppliersUpdateResponse> operation
-              = new AccountingSuppliersUpdate.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingSuppliersUpdate.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -243,7 +253,9 @@ public class AsyncSuppliers {
      */
     public CompletableFuture<AccountingSuppliersDeleteResponse> delete(AccountingSuppliersDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingSuppliersDeleteRequest, AccountingSuppliersDeleteResponse> operation
-              = new AccountingSuppliersDelete.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingSuppliersDelete.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

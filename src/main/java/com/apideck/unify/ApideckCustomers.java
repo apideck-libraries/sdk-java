@@ -13,12 +13,14 @@ import com.apideck.unify.models.operations.EcommerceCustomersOneRequestBuilder;
 import com.apideck.unify.models.operations.EcommerceCustomersOneResponse;
 import com.apideck.unify.operations.EcommerceCustomersAll;
 import com.apideck.unify.operations.EcommerceCustomersOne;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
 
 
 public class ApideckCustomers {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncApideckCustomers asyncSDK;
 
@@ -72,7 +74,7 @@ public class ApideckCustomers {
      */
     public EcommerceCustomersAllResponse list(EcommerceCustomersAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<EcommerceCustomersAllRequest, EcommerceCustomersAllResponse> operation
-              = new EcommerceCustomersAll.Sync(sdkConfiguration, options);
+              = new EcommerceCustomersAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -112,7 +114,7 @@ public class ApideckCustomers {
      */
     public EcommerceCustomersOneResponse get(EcommerceCustomersOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<EcommerceCustomersOneRequest, EcommerceCustomersOneResponse> operation
-              = new EcommerceCustomersOne.Sync(sdkConfiguration, options);
+              = new EcommerceCustomersOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -25,12 +25,14 @@ import com.apideck.unify.operations.CrmNotesAll;
 import com.apideck.unify.operations.CrmNotesDelete;
 import com.apideck.unify.operations.CrmNotesOne;
 import com.apideck.unify.operations.CrmNotesUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
 
 
 public class Notes {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncNotes asyncSDK;
 
@@ -84,7 +86,7 @@ public class Notes {
      */
     public CrmNotesAllResponse list(CrmNotesAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmNotesAllRequest, CrmNotesAllResponse> operation
-              = new CrmNotesAll.Sync(sdkConfiguration, options);
+              = new CrmNotesAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -124,7 +126,7 @@ public class Notes {
      */
     public CrmNotesAddResponse create(CrmNotesAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmNotesAddRequest, CrmNotesAddResponse> operation
-              = new CrmNotesAdd.Sync(sdkConfiguration, options);
+              = new CrmNotesAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -164,7 +166,7 @@ public class Notes {
      */
     public CrmNotesOneResponse get(CrmNotesOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmNotesOneRequest, CrmNotesOneResponse> operation
-              = new CrmNotesOne.Sync(sdkConfiguration, options);
+              = new CrmNotesOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -204,7 +206,7 @@ public class Notes {
      */
     public CrmNotesUpdateResponse update(CrmNotesUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmNotesUpdateRequest, CrmNotesUpdateResponse> operation
-              = new CrmNotesUpdate.Sync(sdkConfiguration, options);
+              = new CrmNotesUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -244,7 +246,7 @@ public class Notes {
      */
     public CrmNotesDeleteResponse delete(CrmNotesDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmNotesDeleteRequest, CrmNotesDeleteResponse> operation
-              = new CrmNotesDelete.Sync(sdkConfiguration, options);
+              = new CrmNotesDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

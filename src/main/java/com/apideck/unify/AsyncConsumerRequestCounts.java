@@ -9,6 +9,7 @@ import com.apideck.unify.models.operations.VaultConsumerRequestCountsAllRequest;
 import com.apideck.unify.models.operations.async.VaultConsumerRequestCountsAllRequestBuilder;
 import com.apideck.unify.models.operations.async.VaultConsumerRequestCountsAllResponse;
 import com.apideck.unify.operations.VaultConsumerRequestCountsAll;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.String;
 import java.util.Optional;
@@ -16,6 +17,7 @@ import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncConsumerRequestCounts {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final ConsumerRequestCounts syncSDK;
 
@@ -88,7 +90,9 @@ public class AsyncConsumerRequestCounts {
                 .endDatetime(endDatetime)
                 .build();
         AsyncRequestOperation<VaultConsumerRequestCountsAllRequest, VaultConsumerRequestCountsAllResponse> operation
-              = new VaultConsumerRequestCountsAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new VaultConsumerRequestCountsAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

@@ -7,6 +7,7 @@ import static com.apideck.unify.operations.Operations.RequestOperation;
 
 import com.apideck.unify.SDKConfiguration;
 import com.apideck.unify.operations.CrmLeadsUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -18,6 +19,7 @@ public class CrmLeadsUpdateRequestBuilder {
     private CrmLeadsUpdateRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public CrmLeadsUpdateRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -47,7 +49,7 @@ public class CrmLeadsUpdateRequestBuilder {
             .build());
 
         RequestOperation<CrmLeadsUpdateRequest, CrmLeadsUpdateResponse> operation
-              = new CrmLeadsUpdate.Sync(sdkConfiguration, options);
+              = new CrmLeadsUpdate.Sync(sdkConfiguration, options, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

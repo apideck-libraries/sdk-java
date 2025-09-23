@@ -10,6 +10,7 @@ import static com.apideck.unify.utils.Utils.toStream;
 
 import com.apideck.unify.SDKConfiguration;
 import com.apideck.unify.operations.WebhookWebhooksAll;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
@@ -38,6 +39,7 @@ public class WebhookWebhooksAllRequestBuilder {
                             new TypeReference<Optional<Long>>() {});
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public WebhookWebhooksAllRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -110,7 +112,7 @@ public class WebhookWebhooksAllRequestBuilder {
             .build());
 
         RequestOperation<WebhookWebhooksAllRequest, WebhookWebhooksAllResponse> operation
-              = new WebhookWebhooksAll.Sync(sdkConfiguration, options);
+              = new WebhookWebhooksAll.Sync(sdkConfiguration, options, _headers);
         WebhookWebhooksAllRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
@@ -135,7 +137,7 @@ public class WebhookWebhooksAllRequestBuilder {
             .build());
 
         RequestOperation<WebhookWebhooksAllRequest, WebhookWebhooksAllResponse> operation
-              = new WebhookWebhooksAll.Sync(sdkConfiguration, options);
+              = new WebhookWebhooksAll.Sync(sdkConfiguration, options, _headers);
         WebhookWebhooksAllRequest request = buildRequest();
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,

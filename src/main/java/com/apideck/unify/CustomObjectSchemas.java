@@ -25,12 +25,14 @@ import com.apideck.unify.operations.CrmCustomObjectSchemasAll;
 import com.apideck.unify.operations.CrmCustomObjectSchemasDelete;
 import com.apideck.unify.operations.CrmCustomObjectSchemasOne;
 import com.apideck.unify.operations.CrmCustomObjectSchemasUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
 
 
 public class CustomObjectSchemas {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncCustomObjectSchemas asyncSDK;
 
@@ -84,7 +86,7 @@ public class CustomObjectSchemas {
      */
     public CrmCustomObjectSchemasAllResponse list(CrmCustomObjectSchemasAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmCustomObjectSchemasAllRequest, CrmCustomObjectSchemasAllResponse> operation
-              = new CrmCustomObjectSchemasAll.Sync(sdkConfiguration, options);
+              = new CrmCustomObjectSchemasAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -124,7 +126,7 @@ public class CustomObjectSchemas {
      */
     public CrmCustomObjectSchemasAddResponse create(CrmCustomObjectSchemasAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmCustomObjectSchemasAddRequest, CrmCustomObjectSchemasAddResponse> operation
-              = new CrmCustomObjectSchemasAdd.Sync(sdkConfiguration, options);
+              = new CrmCustomObjectSchemasAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -164,7 +166,7 @@ public class CustomObjectSchemas {
      */
     public CrmCustomObjectSchemasOneResponse get(CrmCustomObjectSchemasOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmCustomObjectSchemasOneRequest, CrmCustomObjectSchemasOneResponse> operation
-              = new CrmCustomObjectSchemasOne.Sync(sdkConfiguration, options);
+              = new CrmCustomObjectSchemasOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -204,7 +206,7 @@ public class CustomObjectSchemas {
      */
     public CrmCustomObjectSchemasUpdateResponse update(CrmCustomObjectSchemasUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmCustomObjectSchemasUpdateRequest, CrmCustomObjectSchemasUpdateResponse> operation
-              = new CrmCustomObjectSchemasUpdate.Sync(sdkConfiguration, options);
+              = new CrmCustomObjectSchemasUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -244,7 +246,7 @@ public class CustomObjectSchemas {
      */
     public CrmCustomObjectSchemasDeleteResponse delete(CrmCustomObjectSchemasDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmCustomObjectSchemasDeleteRequest, CrmCustomObjectSchemasDeleteResponse> operation
-              = new CrmCustomObjectSchemasDelete.Sync(sdkConfiguration, options);
+              = new CrmCustomObjectSchemasDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

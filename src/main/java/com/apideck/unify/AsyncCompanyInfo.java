@@ -9,12 +9,14 @@ import com.apideck.unify.models.operations.AccountingCompanyInfoOneRequest;
 import com.apideck.unify.models.operations.async.AccountingCompanyInfoOneRequestBuilder;
 import com.apideck.unify.models.operations.async.AccountingCompanyInfoOneResponse;
 import com.apideck.unify.operations.AccountingCompanyInfoOne;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncCompanyInfo {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final CompanyInfo syncSDK;
 
@@ -67,7 +69,9 @@ public class AsyncCompanyInfo {
      */
     public CompletableFuture<AccountingCompanyInfoOneResponse> get(AccountingCompanyInfoOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingCompanyInfoOneRequest, AccountingCompanyInfoOneResponse> operation
-              = new AccountingCompanyInfoOne.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingCompanyInfoOne.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

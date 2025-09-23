@@ -9,12 +9,14 @@ import com.apideck.unify.models.operations.EcommerceStoresOneRequest;
 import com.apideck.unify.models.operations.async.EcommerceStoresOneRequestBuilder;
 import com.apideck.unify.models.operations.async.EcommerceStoresOneResponse;
 import com.apideck.unify.operations.EcommerceStoresOne;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncStores {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final Stores syncSDK;
 
@@ -67,7 +69,9 @@ public class AsyncStores {
      */
     public CompletableFuture<EcommerceStoresOneResponse> get(EcommerceStoresOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<EcommerceStoresOneRequest, EcommerceStoresOneResponse> operation
-              = new EcommerceStoresOne.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new EcommerceStoresOne.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

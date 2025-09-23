@@ -27,6 +27,7 @@ import com.apideck.unify.operations.WebhookWebhooksAll;
 import com.apideck.unify.operations.WebhookWebhooksDelete;
 import com.apideck.unify.operations.WebhookWebhooksOne;
 import com.apideck.unify.operations.WebhookWebhooksUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Long;
 import java.lang.String;
@@ -36,6 +37,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncWebhooks {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final Webhooks syncSDK;
 
@@ -100,7 +102,9 @@ public class AsyncWebhooks {
                 .limit(limit)
                 .build();
         AsyncRequestOperation<WebhookWebhooksAllRequest, WebhookWebhooksAllResponse> operation
-              = new WebhookWebhooksAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new WebhookWebhooksAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -149,7 +153,9 @@ public class AsyncWebhooks {
                 .createWebhookRequest(createWebhookRequest)
                 .build();
         AsyncRequestOperation<WebhookWebhooksAddRequest, WebhookWebhooksAddResponse> operation
-              = new WebhookWebhooksAdd.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new WebhookWebhooksAdd.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -198,7 +204,9 @@ public class AsyncWebhooks {
                 .appId(appId)
                 .build();
         AsyncRequestOperation<WebhookWebhooksOneRequest, WebhookWebhooksOneResponse> operation
-              = new WebhookWebhooksOne.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new WebhookWebhooksOne.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -252,7 +260,9 @@ public class AsyncWebhooks {
                 .updateWebhookRequest(updateWebhookRequest)
                 .build();
         AsyncRequestOperation<WebhookWebhooksUpdateRequest, WebhookWebhooksUpdateResponse> operation
-              = new WebhookWebhooksUpdate.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new WebhookWebhooksUpdate.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -301,7 +311,9 @@ public class AsyncWebhooks {
                 .appId(appId)
                 .build();
         AsyncRequestOperation<WebhookWebhooksDeleteRequest, WebhookWebhooksDeleteResponse> operation
-              = new WebhookWebhooksDelete.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new WebhookWebhooksDelete.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

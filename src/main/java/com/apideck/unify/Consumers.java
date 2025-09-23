@@ -27,6 +27,7 @@ import com.apideck.unify.operations.VaultConsumersAll;
 import com.apideck.unify.operations.VaultConsumersDelete;
 import com.apideck.unify.operations.VaultConsumersOne;
 import com.apideck.unify.operations.VaultConsumersUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.lang.Long;
@@ -36,6 +37,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class Consumers {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncConsumers asyncSDK;
 
@@ -98,7 +100,7 @@ public class Consumers {
                 .createConsumerRequest(createConsumerRequest)
                 .build();
         RequestOperation<VaultConsumersAddRequest, VaultConsumersAddResponse> operation
-              = new VaultConsumersAdd.Sync(sdkConfiguration, options);
+              = new VaultConsumersAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -149,7 +151,7 @@ public class Consumers {
                 .limit(limit)
                 .build();
         RequestOperation<VaultConsumersAllRequest, VaultConsumersAllResponse> operation
-              = new VaultConsumersAll.Sync(sdkConfiguration, options);
+              = new VaultConsumersAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -198,7 +200,7 @@ public class Consumers {
                 .consumerId(consumerId)
                 .build();
         RequestOperation<VaultConsumersOneRequest, VaultConsumersOneResponse> operation
-              = new VaultConsumersOne.Sync(sdkConfiguration, options);
+              = new VaultConsumersOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -251,7 +253,7 @@ public class Consumers {
                 .updateConsumerRequest(updateConsumerRequest)
                 .build();
         RequestOperation<VaultConsumersUpdateRequest, VaultConsumersUpdateResponse> operation
-              = new VaultConsumersUpdate.Sync(sdkConfiguration, options);
+              = new VaultConsumersUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -300,7 +302,7 @@ public class Consumers {
                 .consumerId(consumerId)
                 .build();
         RequestOperation<VaultConsumersDeleteRequest, VaultConsumersDeleteResponse> operation
-              = new VaultConsumersDelete.Sync(sdkConfiguration, options);
+              = new VaultConsumersDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

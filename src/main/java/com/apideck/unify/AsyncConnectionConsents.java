@@ -9,6 +9,7 @@ import com.apideck.unify.models.operations.VaultConnectionConsentsAllRequest;
 import com.apideck.unify.models.operations.async.VaultConnectionConsentsAllRequestBuilder;
 import com.apideck.unify.models.operations.async.VaultConnectionConsentsAllResponse;
 import com.apideck.unify.operations.VaultConnectionConsentsAll;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.String;
 import java.util.Optional;
@@ -16,6 +17,7 @@ import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncConnectionConsents {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final ConnectionConsents syncSDK;
 
@@ -85,7 +87,9 @@ public class AsyncConnectionConsents {
                 .unifiedApi(unifiedApi)
                 .build();
         AsyncRequestOperation<VaultConnectionConsentsAllRequest, VaultConnectionConsentsAllResponse> operation
-              = new VaultConnectionConsentsAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new VaultConnectionConsentsAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

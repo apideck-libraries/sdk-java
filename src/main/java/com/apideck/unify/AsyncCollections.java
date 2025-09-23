@@ -13,12 +13,14 @@ import com.apideck.unify.models.operations.async.IssueTrackingCollectionsOneRequ
 import com.apideck.unify.models.operations.async.IssueTrackingCollectionsOneResponse;
 import com.apideck.unify.operations.IssueTrackingCollectionsAll;
 import com.apideck.unify.operations.IssueTrackingCollectionsOne;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncCollections {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final Collections syncSDK;
 
@@ -71,7 +73,9 @@ public class AsyncCollections {
      */
     public CompletableFuture<IssueTrackingCollectionsAllResponse> list(IssueTrackingCollectionsAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<IssueTrackingCollectionsAllRequest, IssueTrackingCollectionsAllResponse> operation
-              = new IssueTrackingCollectionsAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new IssueTrackingCollectionsAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -111,7 +115,9 @@ public class AsyncCollections {
      */
     public CompletableFuture<IssueTrackingCollectionsOneResponse> get(IssueTrackingCollectionsOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<IssueTrackingCollectionsOneRequest, IssueTrackingCollectionsOneResponse> operation
-              = new IssueTrackingCollectionsOne.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new IssueTrackingCollectionsOne.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

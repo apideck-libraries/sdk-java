@@ -8,6 +8,7 @@ import static com.apideck.unify.operations.Operations.AsyncRequestOperation;
 import com.apideck.unify.SDKConfiguration;
 import com.apideck.unify.models.operations.VaultConnectionsAllRequest;
 import com.apideck.unify.operations.VaultConnectionsAll;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -25,6 +26,7 @@ public class VaultConnectionsAllRequestBuilder {
     private Optional<Boolean> configured = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public VaultConnectionsAllRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -107,7 +109,9 @@ public class VaultConnectionsAllRequestBuilder {
             .build());
 
         AsyncRequestOperation<VaultConnectionsAllRequest, VaultConnectionsAllResponse> operation
-              = new VaultConnectionsAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new VaultConnectionsAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         VaultConnectionsAllRequest request = buildRequest();
 
         return operation.doRequest(request)

@@ -8,6 +8,7 @@ import static com.apideck.unify.operations.Operations.AsyncRequestOperation;
 import com.apideck.unify.SDKConfiguration;
 import com.apideck.unify.models.operations.AccountingInvoiceItemsUpdateRequest;
 import com.apideck.unify.operations.AccountingInvoiceItemsUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -20,6 +21,7 @@ public class AccountingInvoiceItemsUpdateRequestBuilder {
     private AccountingInvoiceItemsUpdateRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public AccountingInvoiceItemsUpdateRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -49,7 +51,9 @@ public class AccountingInvoiceItemsUpdateRequestBuilder {
             .build());
 
         AsyncRequestOperation<AccountingInvoiceItemsUpdateRequest, AccountingInvoiceItemsUpdateResponse> operation
-              = new AccountingInvoiceItemsUpdate.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingInvoiceItemsUpdate.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
 
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

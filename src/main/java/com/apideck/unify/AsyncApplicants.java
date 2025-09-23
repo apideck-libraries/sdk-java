@@ -25,12 +25,14 @@ import com.apideck.unify.operations.AtsApplicantsAll;
 import com.apideck.unify.operations.AtsApplicantsDelete;
 import com.apideck.unify.operations.AtsApplicantsOne;
 import com.apideck.unify.operations.AtsApplicantsUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncApplicants {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final Applicants syncSDK;
 
@@ -83,7 +85,9 @@ public class AsyncApplicants {
      */
     public CompletableFuture<AtsApplicantsAllResponse> list(AtsApplicantsAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<AtsApplicantsAllRequest, AtsApplicantsAllResponse> operation
-              = new AtsApplicantsAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AtsApplicantsAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -123,7 +127,9 @@ public class AsyncApplicants {
      */
     public CompletableFuture<AtsApplicantsAddResponse> create(AtsApplicantsAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<AtsApplicantsAddRequest, AtsApplicantsAddResponse> operation
-              = new AtsApplicantsAdd.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AtsApplicantsAdd.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -163,7 +169,9 @@ public class AsyncApplicants {
      */
     public CompletableFuture<AtsApplicantsOneResponse> get(AtsApplicantsOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<AtsApplicantsOneRequest, AtsApplicantsOneResponse> operation
-              = new AtsApplicantsOne.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AtsApplicantsOne.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -203,7 +211,9 @@ public class AsyncApplicants {
      */
     public CompletableFuture<AtsApplicantsUpdateResponse> update(AtsApplicantsUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<AtsApplicantsUpdateRequest, AtsApplicantsUpdateResponse> operation
-              = new AtsApplicantsUpdate.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AtsApplicantsUpdate.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -243,7 +253,9 @@ public class AsyncApplicants {
      */
     public CompletableFuture<AtsApplicantsDeleteResponse> delete(AtsApplicantsDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<AtsApplicantsDeleteRequest, AtsApplicantsDeleteResponse> operation
-              = new AtsApplicantsDelete.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AtsApplicantsDelete.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

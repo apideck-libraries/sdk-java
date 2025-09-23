@@ -25,6 +25,7 @@ import com.apideck.unify.operations.AccountingAttachmentsDelete;
 import com.apideck.unify.operations.AccountingAttachmentsDownload;
 import com.apideck.unify.operations.AccountingAttachmentsOne;
 import com.apideck.unify.operations.AccountingAttachmentsUpload;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
@@ -32,6 +33,7 @@ import java.util.Optional;
 
 
 public class Attachments {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncAttachments asyncSDK;
 
@@ -85,7 +87,7 @@ public class Attachments {
      */
     public AccountingAttachmentsAllResponse list(AccountingAttachmentsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingAttachmentsAllRequest, AccountingAttachmentsAllResponse> operation
-              = new AccountingAttachmentsAll.Sync(sdkConfiguration, options);
+              = new AccountingAttachmentsAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -128,7 +130,9 @@ public class Attachments {
             AccountingAttachmentsUploadRequest request, Optional<String> serverURL,
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingAttachmentsUploadRequest, AccountingAttachmentsUploadResponse> operation
-              = new AccountingAttachmentsUpload.Sync(sdkConfiguration, serverURL, options);
+              = new AccountingAttachmentsUpload.Sync(
+                                    sdkConfiguration, serverURL, options,
+                                    _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -168,7 +172,7 @@ public class Attachments {
      */
     public AccountingAttachmentsOneResponse get(AccountingAttachmentsOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingAttachmentsOneRequest, AccountingAttachmentsOneResponse> operation
-              = new AccountingAttachmentsOne.Sync(sdkConfiguration, options);
+              = new AccountingAttachmentsOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -208,7 +212,7 @@ public class Attachments {
      */
     public AccountingAttachmentsDeleteResponse delete(AccountingAttachmentsDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingAttachmentsDeleteRequest, AccountingAttachmentsDeleteResponse> operation
-              = new AccountingAttachmentsDelete.Sync(sdkConfiguration, options);
+              = new AccountingAttachmentsDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -248,7 +252,7 @@ public class Attachments {
      */
     public AccountingAttachmentsDownloadResponse download(AccountingAttachmentsDownloadRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingAttachmentsDownloadRequest, AccountingAttachmentsDownloadResponse> operation
-              = new AccountingAttachmentsDownload.Sync(sdkConfiguration, options);
+              = new AccountingAttachmentsDownload.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

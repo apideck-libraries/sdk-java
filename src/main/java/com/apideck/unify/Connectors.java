@@ -14,6 +14,7 @@ import com.apideck.unify.models.operations.ConnectorConnectorsOneRequestBuilder;
 import com.apideck.unify.models.operations.ConnectorConnectorsOneResponse;
 import com.apideck.unify.operations.ConnectorConnectorsAll;
 import com.apideck.unify.operations.ConnectorConnectorsOne;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.lang.Long;
@@ -23,6 +24,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class Connectors {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncConnectors asyncSDK;
 
@@ -90,7 +92,7 @@ public class Connectors {
                 .filter(filter)
                 .build();
         RequestOperation<ConnectorConnectorsAllRequest, ConnectorConnectorsAllResponse> operation
-              = new ConnectorConnectorsAll.Sync(sdkConfiguration, options);
+              = new ConnectorConnectorsAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -139,7 +141,7 @@ public class Connectors {
                 .id(id)
                 .build();
         RequestOperation<ConnectorConnectorsOneRequest, ConnectorConnectorsOneResponse> operation
-              = new ConnectorConnectorsOne.Sync(sdkConfiguration, options);
+              = new ConnectorConnectorsOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

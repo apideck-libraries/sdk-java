@@ -9,12 +9,14 @@ import com.apideck.unify.models.operations.VaultLogsAllRequest;
 import com.apideck.unify.models.operations.VaultLogsAllRequestBuilder;
 import com.apideck.unify.models.operations.VaultLogsAllResponse;
 import com.apideck.unify.operations.VaultLogsAll;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
 
 
 public class Logs {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncLogs asyncSDK;
 
@@ -68,7 +70,7 @@ public class Logs {
      */
     public VaultLogsAllResponse list(VaultLogsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<VaultLogsAllRequest, VaultLogsAllResponse> operation
-              = new VaultLogsAll.Sync(sdkConfiguration, options);
+              = new VaultLogsAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

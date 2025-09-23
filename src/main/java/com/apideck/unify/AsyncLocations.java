@@ -25,12 +25,14 @@ import com.apideck.unify.operations.AccountingLocationsAll;
 import com.apideck.unify.operations.AccountingLocationsDelete;
 import com.apideck.unify.operations.AccountingLocationsOne;
 import com.apideck.unify.operations.AccountingLocationsUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncLocations {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final Locations syncSDK;
 
@@ -83,7 +85,9 @@ public class AsyncLocations {
      */
     public CompletableFuture<AccountingLocationsAllResponse> list(AccountingLocationsAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingLocationsAllRequest, AccountingLocationsAllResponse> operation
-              = new AccountingLocationsAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingLocationsAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -123,7 +127,9 @@ public class AsyncLocations {
      */
     public CompletableFuture<AccountingLocationsAddResponse> create(AccountingLocationsAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingLocationsAddRequest, AccountingLocationsAddResponse> operation
-              = new AccountingLocationsAdd.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingLocationsAdd.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -163,7 +169,9 @@ public class AsyncLocations {
      */
     public CompletableFuture<AccountingLocationsOneResponse> get(AccountingLocationsOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingLocationsOneRequest, AccountingLocationsOneResponse> operation
-              = new AccountingLocationsOne.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingLocationsOne.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -203,7 +211,9 @@ public class AsyncLocations {
      */
     public CompletableFuture<AccountingLocationsUpdateResponse> update(AccountingLocationsUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingLocationsUpdateRequest, AccountingLocationsUpdateResponse> operation
-              = new AccountingLocationsUpdate.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingLocationsUpdate.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -243,7 +253,9 @@ public class AsyncLocations {
      */
     public CompletableFuture<AccountingLocationsDeleteResponse> delete(AccountingLocationsDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingLocationsDeleteRequest, AccountingLocationsDeleteResponse> operation
-              = new AccountingLocationsDelete.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingLocationsDelete.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

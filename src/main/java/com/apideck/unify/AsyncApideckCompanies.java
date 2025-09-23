@@ -25,12 +25,14 @@ import com.apideck.unify.operations.HrisCompaniesAll;
 import com.apideck.unify.operations.HrisCompaniesDelete;
 import com.apideck.unify.operations.HrisCompaniesOne;
 import com.apideck.unify.operations.HrisCompaniesUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncApideckCompanies {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final ApideckCompanies syncSDK;
 
@@ -83,7 +85,9 @@ public class AsyncApideckCompanies {
      */
     public CompletableFuture<HrisCompaniesAllResponse> list(HrisCompaniesAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<HrisCompaniesAllRequest, HrisCompaniesAllResponse> operation
-              = new HrisCompaniesAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new HrisCompaniesAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -123,7 +127,9 @@ public class AsyncApideckCompanies {
      */
     public CompletableFuture<HrisCompaniesAddResponse> create(HrisCompaniesAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<HrisCompaniesAddRequest, HrisCompaniesAddResponse> operation
-              = new HrisCompaniesAdd.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new HrisCompaniesAdd.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -163,7 +169,9 @@ public class AsyncApideckCompanies {
      */
     public CompletableFuture<HrisCompaniesOneResponse> get(HrisCompaniesOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<HrisCompaniesOneRequest, HrisCompaniesOneResponse> operation
-              = new HrisCompaniesOne.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new HrisCompaniesOne.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -203,7 +211,9 @@ public class AsyncApideckCompanies {
      */
     public CompletableFuture<HrisCompaniesUpdateResponse> update(HrisCompaniesUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<HrisCompaniesUpdateRequest, HrisCompaniesUpdateResponse> operation
-              = new HrisCompaniesUpdate.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new HrisCompaniesUpdate.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -243,7 +253,9 @@ public class AsyncApideckCompanies {
      */
     public CompletableFuture<HrisCompaniesDeleteResponse> delete(HrisCompaniesDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<HrisCompaniesDeleteRequest, HrisCompaniesDeleteResponse> operation
-              = new HrisCompaniesDelete.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new HrisCompaniesDelete.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

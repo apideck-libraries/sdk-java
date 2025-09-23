@@ -9,12 +9,14 @@ import com.apideck.unify.models.operations.IssueTrackingCollectionTagsAllRequest
 import com.apideck.unify.models.operations.async.IssueTrackingCollectionTagsAllRequestBuilder;
 import com.apideck.unify.models.operations.async.IssueTrackingCollectionTagsAllResponse;
 import com.apideck.unify.operations.IssueTrackingCollectionTagsAll;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncCollectionTags {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final CollectionTags syncSDK;
 
@@ -67,7 +69,9 @@ public class AsyncCollectionTags {
      */
     public CompletableFuture<IssueTrackingCollectionTagsAllResponse> list(IssueTrackingCollectionTagsAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<IssueTrackingCollectionTagsAllRequest, IssueTrackingCollectionTagsAllResponse> operation
-              = new IssueTrackingCollectionTagsAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new IssueTrackingCollectionTagsAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

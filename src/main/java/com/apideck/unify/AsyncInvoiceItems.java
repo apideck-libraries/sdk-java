@@ -25,12 +25,14 @@ import com.apideck.unify.operations.AccountingInvoiceItemsAll;
 import com.apideck.unify.operations.AccountingInvoiceItemsDelete;
 import com.apideck.unify.operations.AccountingInvoiceItemsOne;
 import com.apideck.unify.operations.AccountingInvoiceItemsUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncInvoiceItems {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final InvoiceItems syncSDK;
 
@@ -83,7 +85,9 @@ public class AsyncInvoiceItems {
      */
     public CompletableFuture<AccountingInvoiceItemsAllResponse> list(AccountingInvoiceItemsAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingInvoiceItemsAllRequest, AccountingInvoiceItemsAllResponse> operation
-              = new AccountingInvoiceItemsAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingInvoiceItemsAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -123,7 +127,9 @@ public class AsyncInvoiceItems {
      */
     public CompletableFuture<AccountingInvoiceItemsAddResponse> create(AccountingInvoiceItemsAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingInvoiceItemsAddRequest, AccountingInvoiceItemsAddResponse> operation
-              = new AccountingInvoiceItemsAdd.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingInvoiceItemsAdd.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -163,7 +169,9 @@ public class AsyncInvoiceItems {
      */
     public CompletableFuture<AccountingInvoiceItemsOneResponse> get(AccountingInvoiceItemsOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingInvoiceItemsOneRequest, AccountingInvoiceItemsOneResponse> operation
-              = new AccountingInvoiceItemsOne.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingInvoiceItemsOne.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -203,7 +211,9 @@ public class AsyncInvoiceItems {
      */
     public CompletableFuture<AccountingInvoiceItemsUpdateResponse> update(AccountingInvoiceItemsUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingInvoiceItemsUpdateRequest, AccountingInvoiceItemsUpdateResponse> operation
-              = new AccountingInvoiceItemsUpdate.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingInvoiceItemsUpdate.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -243,7 +253,9 @@ public class AsyncInvoiceItems {
      */
     public CompletableFuture<AccountingInvoiceItemsDeleteResponse> delete(AccountingInvoiceItemsDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingInvoiceItemsDeleteRequest, AccountingInvoiceItemsDeleteResponse> operation
-              = new AccountingInvoiceItemsDelete.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingInvoiceItemsDelete.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

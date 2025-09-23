@@ -9,12 +9,14 @@ import com.apideck.unify.models.operations.EcommerceStoresOneRequest;
 import com.apideck.unify.models.operations.EcommerceStoresOneRequestBuilder;
 import com.apideck.unify.models.operations.EcommerceStoresOneResponse;
 import com.apideck.unify.operations.EcommerceStoresOne;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
 
 
 public class Stores {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncStores asyncSDK;
 
@@ -68,7 +70,7 @@ public class Stores {
      */
     public EcommerceStoresOneResponse get(EcommerceStoresOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<EcommerceStoresOneRequest, EcommerceStoresOneResponse> operation
-              = new EcommerceStoresOne.Sync(sdkConfiguration, options);
+              = new EcommerceStoresOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

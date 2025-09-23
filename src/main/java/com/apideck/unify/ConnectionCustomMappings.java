@@ -9,12 +9,14 @@ import com.apideck.unify.models.operations.VaultConnectionCustomMappingsAllReque
 import com.apideck.unify.models.operations.VaultConnectionCustomMappingsAllRequestBuilder;
 import com.apideck.unify.models.operations.VaultConnectionCustomMappingsAllResponse;
 import com.apideck.unify.operations.VaultConnectionCustomMappingsAll;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
 
 
 public class ConnectionCustomMappings {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncConnectionCustomMappings asyncSDK;
 
@@ -68,7 +70,7 @@ public class ConnectionCustomMappings {
      */
     public VaultConnectionCustomMappingsAllResponse list(VaultConnectionCustomMappingsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<VaultConnectionCustomMappingsAllRequest, VaultConnectionCustomMappingsAllResponse> operation
-              = new VaultConnectionCustomMappingsAll.Sync(sdkConfiguration, options);
+              = new VaultConnectionCustomMappingsAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

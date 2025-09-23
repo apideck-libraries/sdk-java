@@ -25,12 +25,14 @@ import com.apideck.unify.operations.AccountingQuotesAll;
 import com.apideck.unify.operations.AccountingQuotesDelete;
 import com.apideck.unify.operations.AccountingQuotesOne;
 import com.apideck.unify.operations.AccountingQuotesUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncQuotes {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final Quotes syncSDK;
 
@@ -83,7 +85,9 @@ public class AsyncQuotes {
      */
     public CompletableFuture<AccountingQuotesAllResponse> list(AccountingQuotesAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingQuotesAllRequest, AccountingQuotesAllResponse> operation
-              = new AccountingQuotesAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingQuotesAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -123,7 +127,9 @@ public class AsyncQuotes {
      */
     public CompletableFuture<AccountingQuotesAddResponse> create(AccountingQuotesAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingQuotesAddRequest, AccountingQuotesAddResponse> operation
-              = new AccountingQuotesAdd.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingQuotesAdd.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -163,7 +169,9 @@ public class AsyncQuotes {
      */
     public CompletableFuture<AccountingQuotesOneResponse> get(AccountingQuotesOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingQuotesOneRequest, AccountingQuotesOneResponse> operation
-              = new AccountingQuotesOne.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingQuotesOne.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -203,7 +211,9 @@ public class AsyncQuotes {
      */
     public CompletableFuture<AccountingQuotesUpdateResponse> update(AccountingQuotesUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingQuotesUpdateRequest, AccountingQuotesUpdateResponse> operation
-              = new AccountingQuotesUpdate.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingQuotesUpdate.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -243,7 +253,9 @@ public class AsyncQuotes {
      */
     public CompletableFuture<AccountingQuotesDeleteResponse> delete(AccountingQuotesDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingQuotesDeleteRequest, AccountingQuotesDeleteResponse> operation
-              = new AccountingQuotesDelete.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new AccountingQuotesDelete.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

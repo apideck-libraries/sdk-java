@@ -25,12 +25,14 @@ import com.apideck.unify.operations.CrmCustomObjectSchemasAll;
 import com.apideck.unify.operations.CrmCustomObjectSchemasDelete;
 import com.apideck.unify.operations.CrmCustomObjectSchemasOne;
 import com.apideck.unify.operations.CrmCustomObjectSchemasUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncCustomObjectSchemas {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final CustomObjectSchemas syncSDK;
 
@@ -83,7 +85,9 @@ public class AsyncCustomObjectSchemas {
      */
     public CompletableFuture<CrmCustomObjectSchemasAllResponse> list(CrmCustomObjectSchemasAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmCustomObjectSchemasAllRequest, CrmCustomObjectSchemasAllResponse> operation
-              = new CrmCustomObjectSchemasAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new CrmCustomObjectSchemasAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -123,7 +127,9 @@ public class AsyncCustomObjectSchemas {
      */
     public CompletableFuture<CrmCustomObjectSchemasAddResponse> create(CrmCustomObjectSchemasAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmCustomObjectSchemasAddRequest, CrmCustomObjectSchemasAddResponse> operation
-              = new CrmCustomObjectSchemasAdd.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new CrmCustomObjectSchemasAdd.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -163,7 +169,9 @@ public class AsyncCustomObjectSchemas {
      */
     public CompletableFuture<CrmCustomObjectSchemasOneResponse> get(CrmCustomObjectSchemasOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmCustomObjectSchemasOneRequest, CrmCustomObjectSchemasOneResponse> operation
-              = new CrmCustomObjectSchemasOne.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new CrmCustomObjectSchemasOne.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -203,7 +211,9 @@ public class AsyncCustomObjectSchemas {
      */
     public CompletableFuture<CrmCustomObjectSchemasUpdateResponse> update(CrmCustomObjectSchemasUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmCustomObjectSchemasUpdateRequest, CrmCustomObjectSchemasUpdateResponse> operation
-              = new CrmCustomObjectSchemasUpdate.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new CrmCustomObjectSchemasUpdate.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -243,7 +253,9 @@ public class AsyncCustomObjectSchemas {
      */
     public CompletableFuture<CrmCustomObjectSchemasDeleteResponse> delete(CrmCustomObjectSchemasDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmCustomObjectSchemasDeleteRequest, CrmCustomObjectSchemasDeleteResponse> operation
-              = new CrmCustomObjectSchemasDelete.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new CrmCustomObjectSchemasDelete.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

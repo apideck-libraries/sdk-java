@@ -27,6 +27,7 @@ import com.apideck.unify.operations.VaultConsumersAll;
 import com.apideck.unify.operations.VaultConsumersDelete;
 import com.apideck.unify.operations.VaultConsumersOne;
 import com.apideck.unify.operations.VaultConsumersUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Long;
 import java.lang.String;
@@ -36,6 +37,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncConsumers {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final Consumers syncSDK;
 
@@ -97,7 +99,9 @@ public class AsyncConsumers {
                 .createConsumerRequest(createConsumerRequest)
                 .build();
         AsyncRequestOperation<VaultConsumersAddRequest, VaultConsumersAddResponse> operation
-              = new VaultConsumersAdd.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new VaultConsumersAdd.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -149,7 +153,9 @@ public class AsyncConsumers {
                 .limit(limit)
                 .build();
         AsyncRequestOperation<VaultConsumersAllRequest, VaultConsumersAllResponse> operation
-              = new VaultConsumersAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new VaultConsumersAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -198,7 +204,9 @@ public class AsyncConsumers {
                 .consumerId(consumerId)
                 .build();
         AsyncRequestOperation<VaultConsumersOneRequest, VaultConsumersOneResponse> operation
-              = new VaultConsumersOne.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new VaultConsumersOne.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -252,7 +260,9 @@ public class AsyncConsumers {
                 .updateConsumerRequest(updateConsumerRequest)
                 .build();
         AsyncRequestOperation<VaultConsumersUpdateRequest, VaultConsumersUpdateResponse> operation
-              = new VaultConsumersUpdate.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new VaultConsumersUpdate.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -301,7 +311,9 @@ public class AsyncConsumers {
                 .consumerId(consumerId)
                 .build();
         AsyncRequestOperation<VaultConsumersDeleteRequest, VaultConsumersDeleteResponse> operation
-              = new VaultConsumersDelete.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new VaultConsumersDelete.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

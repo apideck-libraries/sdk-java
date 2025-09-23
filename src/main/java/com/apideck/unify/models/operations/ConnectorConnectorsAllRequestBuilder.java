@@ -11,6 +11,7 @@ import static com.apideck.unify.utils.Utils.toStream;
 import com.apideck.unify.SDKConfiguration;
 import com.apideck.unify.models.components.ConnectorsFilter;
 import com.apideck.unify.operations.ConnectorConnectorsAll;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
@@ -40,6 +41,7 @@ public class ConnectorConnectorsAllRequestBuilder {
     private Optional<? extends ConnectorsFilter> filter = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public ConnectorConnectorsAllRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -125,7 +127,7 @@ public class ConnectorConnectorsAllRequestBuilder {
             .build());
 
         RequestOperation<ConnectorConnectorsAllRequest, ConnectorConnectorsAllResponse> operation
-              = new ConnectorConnectorsAll.Sync(sdkConfiguration, options);
+              = new ConnectorConnectorsAll.Sync(sdkConfiguration, options, _headers);
         ConnectorConnectorsAllRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
@@ -150,7 +152,7 @@ public class ConnectorConnectorsAllRequestBuilder {
             .build());
 
         RequestOperation<ConnectorConnectorsAllRequest, ConnectorConnectorsAllResponse> operation
-              = new ConnectorConnectorsAll.Sync(sdkConfiguration, options);
+              = new ConnectorConnectorsAll.Sync(sdkConfiguration, options, _headers);
         ConnectorConnectorsAllRequest request = buildRequest();
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,

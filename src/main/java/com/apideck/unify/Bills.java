@@ -25,12 +25,14 @@ import com.apideck.unify.operations.AccountingBillsAll;
 import com.apideck.unify.operations.AccountingBillsDelete;
 import com.apideck.unify.operations.AccountingBillsOne;
 import com.apideck.unify.operations.AccountingBillsUpdate;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
 
 
 public class Bills {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncBills asyncSDK;
 
@@ -84,7 +86,7 @@ public class Bills {
      */
     public AccountingBillsAllResponse list(AccountingBillsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingBillsAllRequest, AccountingBillsAllResponse> operation
-              = new AccountingBillsAll.Sync(sdkConfiguration, options);
+              = new AccountingBillsAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -124,7 +126,7 @@ public class Bills {
      */
     public AccountingBillsAddResponse create(AccountingBillsAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingBillsAddRequest, AccountingBillsAddResponse> operation
-              = new AccountingBillsAdd.Sync(sdkConfiguration, options);
+              = new AccountingBillsAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -164,7 +166,7 @@ public class Bills {
      */
     public AccountingBillsOneResponse get(AccountingBillsOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingBillsOneRequest, AccountingBillsOneResponse> operation
-              = new AccountingBillsOne.Sync(sdkConfiguration, options);
+              = new AccountingBillsOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -204,7 +206,7 @@ public class Bills {
      */
     public AccountingBillsUpdateResponse update(AccountingBillsUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingBillsUpdateRequest, AccountingBillsUpdateResponse> operation
-              = new AccountingBillsUpdate.Sync(sdkConfiguration, options);
+              = new AccountingBillsUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -244,7 +246,7 @@ public class Bills {
      */
     public AccountingBillsDeleteResponse delete(AccountingBillsDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingBillsDeleteRequest, AccountingBillsDeleteResponse> operation
-              = new AccountingBillsDelete.Sync(sdkConfiguration, options);
+              = new AccountingBillsDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

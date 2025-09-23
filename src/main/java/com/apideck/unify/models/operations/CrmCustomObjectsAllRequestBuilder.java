@@ -10,6 +10,7 @@ import static com.apideck.unify.utils.Utils.toStream;
 
 import com.apideck.unify.SDKConfiguration;
 import com.apideck.unify.operations.CrmCustomObjectsAll;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -29,6 +30,7 @@ public class CrmCustomObjectsAllRequestBuilder {
     private CrmCustomObjectsAllRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public CrmCustomObjectsAllRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -58,7 +60,7 @@ public class CrmCustomObjectsAllRequestBuilder {
             .build());
 
         RequestOperation<CrmCustomObjectsAllRequest, CrmCustomObjectsAllResponse> operation
-              = new CrmCustomObjectsAll.Sync(sdkConfiguration, options);
+              = new CrmCustomObjectsAll.Sync(sdkConfiguration, options, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -82,7 +84,7 @@ public class CrmCustomObjectsAllRequestBuilder {
             .build());
 
         RequestOperation<CrmCustomObjectsAllRequest, CrmCustomObjectsAllResponse> operation
-              = new CrmCustomObjectsAll.Sync(sdkConfiguration, options);
+              = new CrmCustomObjectsAll.Sync(sdkConfiguration, options, _headers);
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,
             new CursorTracker<>("$.meta.cursors.next", String.class),

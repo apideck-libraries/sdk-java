@@ -13,12 +13,14 @@ import com.apideck.unify.models.operations.async.EcommerceProductsOneRequestBuil
 import com.apideck.unify.models.operations.async.EcommerceProductsOneResponse;
 import com.apideck.unify.operations.EcommerceProductsAll;
 import com.apideck.unify.operations.EcommerceProductsOne;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncProducts {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final Products syncSDK;
 
@@ -71,7 +73,9 @@ public class AsyncProducts {
      */
     public CompletableFuture<EcommerceProductsAllResponse> list(EcommerceProductsAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<EcommerceProductsAllRequest, EcommerceProductsAllResponse> operation
-              = new EcommerceProductsAll.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new EcommerceProductsAll.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -111,7 +115,9 @@ public class AsyncProducts {
      */
     public CompletableFuture<EcommerceProductsOneResponse> get(EcommerceProductsOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<EcommerceProductsOneRequest, EcommerceProductsOneResponse> operation
-              = new EcommerceProductsOne.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new EcommerceProductsOne.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

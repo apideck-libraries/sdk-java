@@ -8,6 +8,7 @@ import static com.apideck.unify.operations.Operations.AsyncRequestOperation;
 import com.apideck.unify.SDKConfiguration;
 import com.apideck.unify.models.operations.WebhookWebhooksDeleteRequest;
 import com.apideck.unify.operations.WebhookWebhooksDelete;
+import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -22,6 +23,7 @@ public class WebhookWebhooksDeleteRequestBuilder {
     private Optional<String> appId = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public WebhookWebhooksDeleteRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -72,7 +74,9 @@ public class WebhookWebhooksDeleteRequestBuilder {
             .build());
 
         AsyncRequestOperation<WebhookWebhooksDeleteRequest, WebhookWebhooksDeleteResponse> operation
-              = new WebhookWebhooksDelete.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new WebhookWebhooksDelete.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         WebhookWebhooksDeleteRequest request = buildRequest();
 
         return operation.doRequest(request)

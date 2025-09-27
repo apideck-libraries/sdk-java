@@ -72,7 +72,8 @@ public class InvoiceInput {
     private JsonNullable<LocalDate> invoiceDate;
 
     /**
-     * The invoice due date is the date on which a payment or invoice is scheduled to be received by the seller - YYYY-MM-DD.
+     * The invoice due date is the date on which a payment or invoice is scheduled to be received by the
+     * seller - YYYY-MM-DD.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("due_date")
@@ -86,7 +87,8 @@ public class InvoiceInput {
     private JsonNullable<String> terms;
 
     /**
-     * A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer will match the PO number in the invoice to the Purchase Order.
+     * A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer
+     * will match the PO number in the invoice to the Purchase Order.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("po_number")
@@ -114,7 +116,8 @@ public class InvoiceInput {
     private Optional<Boolean> invoiceSent;
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("currency")
@@ -236,7 +239,8 @@ public class InvoiceInput {
     private JsonNullable<String> templateId;
 
     /**
-     * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
+     * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only
+     * supported for Xero.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("source_document_url")
@@ -271,7 +275,8 @@ public class InvoiceInput {
     private JsonNullable<String> language;
 
     /**
-     * Indicates if accounting by row is used (true) or not (false). Accounting by row means that a separate ledger transaction is created for each row.
+     * Indicates if accounting by row is used (true) or not (false). Accounting by row means that a
+     * separate ledger transaction is created for each row.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("accounting_by_row")
@@ -293,14 +298,16 @@ public class InvoiceInput {
     private Optional<? extends List<CustomField>> customFields;
 
     /**
-     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+     * time an update is made to the object.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("row_version")
     private JsonNullable<String> rowVersion;
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pass_through")
@@ -512,7 +519,8 @@ public class InvoiceInput {
     }
 
     /**
-     * The invoice due date is the date on which a payment or invoice is scheduled to be received by the seller - YYYY-MM-DD.
+     * The invoice due date is the date on which a payment or invoice is scheduled to be received by the
+     * seller - YYYY-MM-DD.
      */
     @JsonIgnore
     public JsonNullable<LocalDate> dueDate() {
@@ -528,7 +536,8 @@ public class InvoiceInput {
     }
 
     /**
-     * A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer will match the PO number in the invoice to the Purchase Order.
+     * A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer
+     * will match the PO number in the invoice to the Purchase Order.
      */
     @JsonIgnore
     public JsonNullable<String> poNumber() {
@@ -561,7 +570,8 @@ public class InvoiceInput {
     }
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -704,7 +714,8 @@ public class InvoiceInput {
     }
 
     /**
-     * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
+     * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only
+     * supported for Xero.
      */
     @JsonIgnore
     public JsonNullable<String> sourceDocumentUrl() {
@@ -745,7 +756,8 @@ public class InvoiceInput {
     }
 
     /**
-     * Indicates if accounting by row is used (true) or not (false). Accounting by row means that a separate ledger transaction is created for each row.
+     * Indicates if accounting by row is used (true) or not (false). Accounting by row means that a
+     * separate ledger transaction is created for each row.
      */
     @JsonIgnore
     public JsonNullable<Boolean> accountingByRow() {
@@ -771,7 +783,8 @@ public class InvoiceInput {
     }
 
     /**
-     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+     * time an update is made to the object.
      */
     @JsonIgnore
     public JsonNullable<String> rowVersion() {
@@ -779,7 +792,8 @@ public class InvoiceInput {
     }
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -919,7 +933,8 @@ public class InvoiceInput {
     }
 
     /**
-     * The invoice due date is the date on which a payment or invoice is scheduled to be received by the seller - YYYY-MM-DD.
+     * The invoice due date is the date on which a payment or invoice is scheduled to be received by the
+     * seller - YYYY-MM-DD.
      */
     public InvoiceInput withDueDate(LocalDate dueDate) {
         Utils.checkNotNull(dueDate, "dueDate");
@@ -928,7 +943,8 @@ public class InvoiceInput {
     }
 
     /**
-     * The invoice due date is the date on which a payment or invoice is scheduled to be received by the seller - YYYY-MM-DD.
+     * The invoice due date is the date on which a payment or invoice is scheduled to be received by the
+     * seller - YYYY-MM-DD.
      */
     public InvoiceInput withDueDate(JsonNullable<LocalDate> dueDate) {
         Utils.checkNotNull(dueDate, "dueDate");
@@ -955,7 +971,8 @@ public class InvoiceInput {
     }
 
     /**
-     * A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer will match the PO number in the invoice to the Purchase Order.
+     * A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer
+     * will match the PO number in the invoice to the Purchase Order.
      */
     public InvoiceInput withPoNumber(String poNumber) {
         Utils.checkNotNull(poNumber, "poNumber");
@@ -964,7 +981,8 @@ public class InvoiceInput {
     }
 
     /**
-     * A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer will match the PO number in the invoice to the Purchase Order.
+     * A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer
+     * will match the PO number in the invoice to the Purchase Order.
      */
     public InvoiceInput withPoNumber(JsonNullable<String> poNumber) {
         Utils.checkNotNull(poNumber, "poNumber");
@@ -1028,7 +1046,8 @@ public class InvoiceInput {
     }
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     public InvoiceInput withCurrency(Currency currency) {
         Utils.checkNotNull(currency, "currency");
@@ -1037,7 +1056,8 @@ public class InvoiceInput {
     }
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     public InvoiceInput withCurrency(JsonNullable<? extends Currency> currency) {
         Utils.checkNotNull(currency, "currency");
@@ -1341,7 +1361,8 @@ public class InvoiceInput {
     }
 
     /**
-     * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
+     * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only
+     * supported for Xero.
      */
     public InvoiceInput withSourceDocumentUrl(String sourceDocumentUrl) {
         Utils.checkNotNull(sourceDocumentUrl, "sourceDocumentUrl");
@@ -1350,7 +1371,8 @@ public class InvoiceInput {
     }
 
     /**
-     * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
+     * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only
+     * supported for Xero.
      */
     public InvoiceInput withSourceDocumentUrl(JsonNullable<String> sourceDocumentUrl) {
         Utils.checkNotNull(sourceDocumentUrl, "sourceDocumentUrl");
@@ -1431,7 +1453,8 @@ public class InvoiceInput {
     }
 
     /**
-     * Indicates if accounting by row is used (true) or not (false). Accounting by row means that a separate ledger transaction is created for each row.
+     * Indicates if accounting by row is used (true) or not (false). Accounting by row means that a
+     * separate ledger transaction is created for each row.
      */
     public InvoiceInput withAccountingByRow(boolean accountingByRow) {
         Utils.checkNotNull(accountingByRow, "accountingByRow");
@@ -1440,7 +1463,8 @@ public class InvoiceInput {
     }
 
     /**
-     * Indicates if accounting by row is used (true) or not (false). Accounting by row means that a separate ledger transaction is created for each row.
+     * Indicates if accounting by row is used (true) or not (false). Accounting by row means that a
+     * separate ledger transaction is created for each row.
      */
     public InvoiceInput withAccountingByRow(JsonNullable<Boolean> accountingByRow) {
         Utils.checkNotNull(accountingByRow, "accountingByRow");
@@ -1487,7 +1511,8 @@ public class InvoiceInput {
     }
 
     /**
-     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+     * time an update is made to the object.
      */
     public InvoiceInput withRowVersion(String rowVersion) {
         Utils.checkNotNull(rowVersion, "rowVersion");
@@ -1496,7 +1521,8 @@ public class InvoiceInput {
     }
 
     /**
-     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+     * time an update is made to the object.
      */
     public InvoiceInput withRowVersion(JsonNullable<String> rowVersion) {
         Utils.checkNotNull(rowVersion, "rowVersion");
@@ -1505,7 +1531,8 @@ public class InvoiceInput {
     }
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     public InvoiceInput withPassThrough(List<PassThroughBody> passThrough) {
         Utils.checkNotNull(passThrough, "passThrough");
@@ -1515,7 +1542,8 @@ public class InvoiceInput {
 
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     public InvoiceInput withPassThrough(Optional<? extends List<PassThroughBody>> passThrough) {
         Utils.checkNotNull(passThrough, "passThrough");
@@ -1870,7 +1898,8 @@ public class InvoiceInput {
 
 
         /**
-         * The invoice due date is the date on which a payment or invoice is scheduled to be received by the seller - YYYY-MM-DD.
+         * The invoice due date is the date on which a payment or invoice is scheduled to be received by the
+         * seller - YYYY-MM-DD.
          */
         public Builder dueDate(LocalDate dueDate) {
             Utils.checkNotNull(dueDate, "dueDate");
@@ -1879,7 +1908,8 @@ public class InvoiceInput {
         }
 
         /**
-         * The invoice due date is the date on which a payment or invoice is scheduled to be received by the seller - YYYY-MM-DD.
+         * The invoice due date is the date on which a payment or invoice is scheduled to be received by the
+         * seller - YYYY-MM-DD.
          */
         public Builder dueDate(JsonNullable<LocalDate> dueDate) {
             Utils.checkNotNull(dueDate, "dueDate");
@@ -1908,7 +1938,8 @@ public class InvoiceInput {
 
 
         /**
-         * A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer will match the PO number in the invoice to the Purchase Order.
+         * A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer
+         * will match the PO number in the invoice to the Purchase Order.
          */
         public Builder poNumber(String poNumber) {
             Utils.checkNotNull(poNumber, "poNumber");
@@ -1917,7 +1948,8 @@ public class InvoiceInput {
         }
 
         /**
-         * A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer will match the PO number in the invoice to the Purchase Order.
+         * A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer
+         * will match the PO number in the invoice to the Purchase Order.
          */
         public Builder poNumber(JsonNullable<String> poNumber) {
             Utils.checkNotNull(poNumber, "poNumber");
@@ -1984,7 +2016,8 @@ public class InvoiceInput {
 
 
         /**
-         * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+         * Indicates the associated currency for an amount of money. Values correspond to [ISO
+         * 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
         public Builder currency(Currency currency) {
             Utils.checkNotNull(currency, "currency");
@@ -1993,7 +2026,8 @@ public class InvoiceInput {
         }
 
         /**
-         * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+         * Indicates the associated currency for an amount of money. Values correspond to [ISO
+         * 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
         public Builder currency(JsonNullable<? extends Currency> currency) {
             Utils.checkNotNull(currency, "currency");
@@ -2312,7 +2346,8 @@ public class InvoiceInput {
 
 
         /**
-         * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
+         * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only
+         * supported for Xero.
          */
         public Builder sourceDocumentUrl(String sourceDocumentUrl) {
             Utils.checkNotNull(sourceDocumentUrl, "sourceDocumentUrl");
@@ -2321,7 +2356,8 @@ public class InvoiceInput {
         }
 
         /**
-         * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
+         * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only
+         * supported for Xero.
          */
         public Builder sourceDocumentUrl(JsonNullable<String> sourceDocumentUrl) {
             Utils.checkNotNull(sourceDocumentUrl, "sourceDocumentUrl");
@@ -2407,7 +2443,8 @@ public class InvoiceInput {
 
 
         /**
-         * Indicates if accounting by row is used (true) or not (false). Accounting by row means that a separate ledger transaction is created for each row.
+         * Indicates if accounting by row is used (true) or not (false). Accounting by row means that a
+         * separate ledger transaction is created for each row.
          */
         public Builder accountingByRow(boolean accountingByRow) {
             Utils.checkNotNull(accountingByRow, "accountingByRow");
@@ -2416,7 +2453,8 @@ public class InvoiceInput {
         }
 
         /**
-         * Indicates if accounting by row is used (true) or not (false). Accounting by row means that a separate ledger transaction is created for each row.
+         * Indicates if accounting by row is used (true) or not (false). Accounting by row means that a
+         * separate ledger transaction is created for each row.
          */
         public Builder accountingByRow(JsonNullable<Boolean> accountingByRow) {
             Utils.checkNotNull(accountingByRow, "accountingByRow");
@@ -2465,7 +2503,8 @@ public class InvoiceInput {
 
 
         /**
-         * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+         * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+         * time an update is made to the object.
          */
         public Builder rowVersion(String rowVersion) {
             Utils.checkNotNull(rowVersion, "rowVersion");
@@ -2474,7 +2513,8 @@ public class InvoiceInput {
         }
 
         /**
-         * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+         * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+         * time an update is made to the object.
          */
         public Builder rowVersion(JsonNullable<String> rowVersion) {
             Utils.checkNotNull(rowVersion, "rowVersion");
@@ -2484,7 +2524,8 @@ public class InvoiceInput {
 
 
         /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+         * The pass_through property allows passing service-specific, custom data or structured modifications
+         * in request body when creating or updating resources.
          */
         public Builder passThrough(List<PassThroughBody> passThrough) {
             Utils.checkNotNull(passThrough, "passThrough");
@@ -2493,7 +2534,8 @@ public class InvoiceInput {
         }
 
         /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+         * The pass_through property allows passing service-specific, custom data or structured modifications
+         * in request body when creating or updating resources.
          */
         public Builder passThrough(Optional<? extends List<PassThroughBody>> passThrough) {
             Utils.checkNotNull(passThrough, "passThrough");

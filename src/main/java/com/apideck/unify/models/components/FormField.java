@@ -55,7 +55,8 @@ public class FormField {
     private Optional<? extends FormFieldType> type;
 
     /**
-     * Indicates if the form field is required, which means it must be filled in before the form can be submitted
+     * Indicates if the form field is required, which means it must be filled in before the form can be
+     * submitted
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("required")
@@ -67,7 +68,8 @@ public class FormField {
     private Optional<Boolean> customField;
 
     /**
-     * Only applicable to select fields. Allow the user to add a custom value though the option select if the desired value is not in the option select list.
+     * Only applicable to select fields. Allow the user to add a custom value though the option select if
+     * the desired value is not in the option select list.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("allow_custom_values")
@@ -88,7 +90,8 @@ public class FormField {
     private JsonNullable<Boolean> hidden;
 
     /**
-     * When the setting is deprecated, it should be hidden from the user interface. The value will still be stored on the connection for the sake of backwards compatibility.
+     * When the setting is deprecated, it should be hidden from the user interface. The value will still be
+     * stored on the connection for the sake of backwards compatibility.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("deprecated")
@@ -216,7 +219,8 @@ public class FormField {
     }
 
     /**
-     * Indicates if the form field is required, which means it must be filled in before the form can be submitted
+     * Indicates if the form field is required, which means it must be filled in before the form can be
+     * submitted
      */
     @JsonIgnore
     public Optional<Boolean> required() {
@@ -229,7 +233,8 @@ public class FormField {
     }
 
     /**
-     * Only applicable to select fields. Allow the user to add a custom value though the option select if the desired value is not in the option select list.
+     * Only applicable to select fields. Allow the user to add a custom value though the option select if
+     * the desired value is not in the option select list.
      */
     @JsonIgnore
     public Optional<Boolean> allowCustomValues() {
@@ -253,7 +258,8 @@ public class FormField {
     }
 
     /**
-     * When the setting is deprecated, it should be hidden from the user interface. The value will still be stored on the connection for the sake of backwards compatibility.
+     * When the setting is deprecated, it should be hidden from the user interface. The value will still be
+     * stored on the connection for the sake of backwards compatibility.
      */
     @JsonIgnore
     public JsonNullable<Boolean> deprecated() {
@@ -383,7 +389,8 @@ public class FormField {
     }
 
     /**
-     * Indicates if the form field is required, which means it must be filled in before the form can be submitted
+     * Indicates if the form field is required, which means it must be filled in before the form can be
+     * submitted
      */
     public FormField withRequired(boolean required) {
         Utils.checkNotNull(required, "required");
@@ -393,7 +400,8 @@ public class FormField {
 
 
     /**
-     * Indicates if the form field is required, which means it must be filled in before the form can be submitted
+     * Indicates if the form field is required, which means it must be filled in before the form can be
+     * submitted
      */
     public FormField withRequired(Optional<Boolean> required) {
         Utils.checkNotNull(required, "required");
@@ -415,7 +423,8 @@ public class FormField {
     }
 
     /**
-     * Only applicable to select fields. Allow the user to add a custom value though the option select if the desired value is not in the option select list.
+     * Only applicable to select fields. Allow the user to add a custom value though the option select if
+     * the desired value is not in the option select list.
      */
     public FormField withAllowCustomValues(boolean allowCustomValues) {
         Utils.checkNotNull(allowCustomValues, "allowCustomValues");
@@ -425,7 +434,8 @@ public class FormField {
 
 
     /**
-     * Only applicable to select fields. Allow the user to add a custom value though the option select if the desired value is not in the option select list.
+     * Only applicable to select fields. Allow the user to add a custom value though the option select if
+     * the desired value is not in the option select list.
      */
     public FormField withAllowCustomValues(Optional<Boolean> allowCustomValues) {
         Utils.checkNotNull(allowCustomValues, "allowCustomValues");
@@ -470,7 +480,8 @@ public class FormField {
     }
 
     /**
-     * When the setting is deprecated, it should be hidden from the user interface. The value will still be stored on the connection for the sake of backwards compatibility.
+     * When the setting is deprecated, it should be hidden from the user interface. The value will still be
+     * stored on the connection for the sake of backwards compatibility.
      */
     public FormField withDeprecated(boolean deprecated) {
         Utils.checkNotNull(deprecated, "deprecated");
@@ -479,7 +490,8 @@ public class FormField {
     }
 
     /**
-     * When the setting is deprecated, it should be hidden from the user interface. The value will still be stored on the connection for the sake of backwards compatibility.
+     * When the setting is deprecated, it should be hidden from the user interface. The value will still be
+     * stored on the connection for the sake of backwards compatibility.
      */
     public FormField withDeprecated(JsonNullable<Boolean> deprecated) {
         Utils.checkNotNull(deprecated, "deprecated");
@@ -739,7 +751,8 @@ public class FormField {
 
 
         /**
-         * Indicates if the form field is required, which means it must be filled in before the form can be submitted
+         * Indicates if the form field is required, which means it must be filled in before the form can be
+         * submitted
          */
         public Builder required(boolean required) {
             Utils.checkNotNull(required, "required");
@@ -748,7 +761,8 @@ public class FormField {
         }
 
         /**
-         * Indicates if the form field is required, which means it must be filled in before the form can be submitted
+         * Indicates if the form field is required, which means it must be filled in before the form can be
+         * submitted
          */
         public Builder required(Optional<Boolean> required) {
             Utils.checkNotNull(required, "required");
@@ -771,7 +785,8 @@ public class FormField {
 
 
         /**
-         * Only applicable to select fields. Allow the user to add a custom value though the option select if the desired value is not in the option select list.
+         * Only applicable to select fields. Allow the user to add a custom value though the option select if
+         * the desired value is not in the option select list.
          */
         public Builder allowCustomValues(boolean allowCustomValues) {
             Utils.checkNotNull(allowCustomValues, "allowCustomValues");
@@ -780,7 +795,8 @@ public class FormField {
         }
 
         /**
-         * Only applicable to select fields. Allow the user to add a custom value though the option select if the desired value is not in the option select list.
+         * Only applicable to select fields. Allow the user to add a custom value though the option select if
+         * the desired value is not in the option select list.
          */
         public Builder allowCustomValues(Optional<Boolean> allowCustomValues) {
             Utils.checkNotNull(allowCustomValues, "allowCustomValues");
@@ -828,7 +844,8 @@ public class FormField {
 
 
         /**
-         * When the setting is deprecated, it should be hidden from the user interface. The value will still be stored on the connection for the sake of backwards compatibility.
+         * When the setting is deprecated, it should be hidden from the user interface. The value will still be
+         * stored on the connection for the sake of backwards compatibility.
          */
         public Builder deprecated(boolean deprecated) {
             Utils.checkNotNull(deprecated, "deprecated");
@@ -837,7 +854,8 @@ public class FormField {
         }
 
         /**
-         * When the setting is deprecated, it should be hidden from the user interface. The value will still be stored on the connection for the sake of backwards compatibility.
+         * When the setting is deprecated, it should be hidden from the user interface. The value will still be
+         * stored on the connection for the sake of backwards compatibility.
          */
         public Builder deprecated(JsonNullable<Boolean> deprecated) {
             Utils.checkNotNull(deprecated, "deprecated");

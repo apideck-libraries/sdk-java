@@ -60,7 +60,8 @@ public class Message {
     private Optional<? extends MessageType> type;
 
     /**
-     * The number of units that make up the complete message. Messages can be split up due to the constraints of the message size.
+     * The number of units that make up the complete message. Messages can be split up due to the
+     * constraints of the message size.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("number_of_units")
@@ -130,7 +131,8 @@ public class Message {
     private Optional<? extends Error> error;
 
     /**
-     * The ID of the Messaging Service used with the message. In case of Plivo this links to the Powerpack ID.
+     * The ID of the Messaging Service used with the message. In case of Plivo this links to the Powerpack
+     * ID.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("messaging_service_id")
@@ -172,7 +174,8 @@ public class Message {
     private JsonNullable<OffsetDateTime> createdAt;
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pass_through")
@@ -312,7 +315,8 @@ public class Message {
     }
 
     /**
-     * The number of units that make up the complete message. Messages can be split up due to the constraints of the message size.
+     * The number of units that make up the complete message. Messages can be split up due to the
+     * constraints of the message size.
      */
     @JsonIgnore
     public Optional<Long> numberOfUnits() {
@@ -396,7 +400,8 @@ public class Message {
     }
 
     /**
-     * The ID of the Messaging Service used with the message. In case of Plivo this links to the Powerpack ID.
+     * The ID of the Messaging Service used with the message. In case of Plivo this links to the Powerpack
+     * ID.
      */
     @JsonIgnore
     public Optional<String> messagingServiceId() {
@@ -445,7 +450,8 @@ public class Message {
     }
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -537,7 +543,8 @@ public class Message {
     }
 
     /**
-     * The number of units that make up the complete message. Messages can be split up due to the constraints of the message size.
+     * The number of units that make up the complete message. Messages can be split up due to the
+     * constraints of the message size.
      */
     public Message withNumberOfUnits(long numberOfUnits) {
         Utils.checkNotNull(numberOfUnits, "numberOfUnits");
@@ -547,7 +554,8 @@ public class Message {
 
 
     /**
-     * The number of units that make up the complete message. Messages can be split up due to the constraints of the message size.
+     * The number of units that make up the complete message. Messages can be split up due to the
+     * constraints of the message size.
      */
     public Message withNumberOfUnits(Optional<Long> numberOfUnits) {
         Utils.checkNotNull(numberOfUnits, "numberOfUnits");
@@ -727,7 +735,8 @@ public class Message {
     }
 
     /**
-     * The ID of the Messaging Service used with the message. In case of Plivo this links to the Powerpack ID.
+     * The ID of the Messaging Service used with the message. In case of Plivo this links to the Powerpack
+     * ID.
      */
     public Message withMessagingServiceId(String messagingServiceId) {
         Utils.checkNotNull(messagingServiceId, "messagingServiceId");
@@ -737,7 +746,8 @@ public class Message {
 
 
     /**
-     * The ID of the Messaging Service used with the message. In case of Plivo this links to the Powerpack ID.
+     * The ID of the Messaging Service used with the message. In case of Plivo this links to the Powerpack
+     * ID.
      */
     public Message withMessagingServiceId(Optional<String> messagingServiceId) {
         Utils.checkNotNull(messagingServiceId, "messagingServiceId");
@@ -836,7 +846,8 @@ public class Message {
     }
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     public Message withPassThrough(List<PassThroughBody> passThrough) {
         Utils.checkNotNull(passThrough, "passThrough");
@@ -846,7 +857,8 @@ public class Message {
 
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     public Message withPassThrough(Optional<? extends List<PassThroughBody>> passThrough) {
         Utils.checkNotNull(passThrough, "passThrough");
@@ -1066,7 +1078,8 @@ public class Message {
 
 
         /**
-         * The number of units that make up the complete message. Messages can be split up due to the constraints of the message size.
+         * The number of units that make up the complete message. Messages can be split up due to the
+         * constraints of the message size.
          */
         public Builder numberOfUnits(long numberOfUnits) {
             Utils.checkNotNull(numberOfUnits, "numberOfUnits");
@@ -1075,7 +1088,8 @@ public class Message {
         }
 
         /**
-         * The number of units that make up the complete message. Messages can be split up due to the constraints of the message size.
+         * The number of units that make up the complete message. Messages can be split up due to the
+         * constraints of the message size.
          */
         public Builder numberOfUnits(Optional<Long> numberOfUnits) {
             Utils.checkNotNull(numberOfUnits, "numberOfUnits");
@@ -1256,7 +1270,8 @@ public class Message {
 
 
         /**
-         * The ID of the Messaging Service used with the message. In case of Plivo this links to the Powerpack ID.
+         * The ID of the Messaging Service used with the message. In case of Plivo this links to the Powerpack
+         * ID.
          */
         public Builder messagingServiceId(String messagingServiceId) {
             Utils.checkNotNull(messagingServiceId, "messagingServiceId");
@@ -1265,7 +1280,8 @@ public class Message {
         }
 
         /**
-         * The ID of the Messaging Service used with the message. In case of Plivo this links to the Powerpack ID.
+         * The ID of the Messaging Service used with the message. In case of Plivo this links to the Powerpack
+         * ID.
          */
         public Builder messagingServiceId(Optional<String> messagingServiceId) {
             Utils.checkNotNull(messagingServiceId, "messagingServiceId");
@@ -1370,7 +1386,8 @@ public class Message {
 
 
         /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+         * The pass_through property allows passing service-specific, custom data or structured modifications
+         * in request body when creating or updating resources.
          */
         public Builder passThrough(List<PassThroughBody> passThrough) {
             Utils.checkNotNull(passThrough, "passThrough");
@@ -1379,7 +1396,8 @@ public class Message {
         }
 
         /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+         * The pass_through property allows passing service-specific, custom data or structured modifications
+         * in request body when creating or updating resources.
          */
         public Builder passThrough(Optional<? extends List<PassThroughBody>> passThrough) {
             Utils.checkNotNull(passThrough, "passThrough");

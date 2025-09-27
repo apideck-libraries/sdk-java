@@ -73,6 +73,13 @@ public class Address {
     private JsonNullable<String> line4;
 
     /**
+     * Line 5 of the address
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("line5")
+    private JsonNullable<String> line5;
+
+    /**
      * Street number
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -178,7 +185,8 @@ public class Address {
     private JsonNullable<String> notes;
 
     /**
-     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+     * time an update is made to the object.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("row_version")
@@ -194,6 +202,7 @@ public class Address {
             @JsonProperty("line2") JsonNullable<String> line2,
             @JsonProperty("line3") JsonNullable<String> line3,
             @JsonProperty("line4") JsonNullable<String> line4,
+            @JsonProperty("line5") JsonNullable<String> line5,
             @JsonProperty("street_number") JsonNullable<String> streetNumber,
             @JsonProperty("city") JsonNullable<String> city,
             @JsonProperty("state") JsonNullable<String> state,
@@ -218,6 +227,7 @@ public class Address {
         Utils.checkNotNull(line2, "line2");
         Utils.checkNotNull(line3, "line3");
         Utils.checkNotNull(line4, "line4");
+        Utils.checkNotNull(line5, "line5");
         Utils.checkNotNull(streetNumber, "streetNumber");
         Utils.checkNotNull(city, "city");
         Utils.checkNotNull(state, "state");
@@ -242,6 +252,7 @@ public class Address {
         this.line2 = line2;
         this.line3 = line3;
         this.line4 = line4;
+        this.line5 = line5;
         this.streetNumber = streetNumber;
         this.city = city;
         this.state = state;
@@ -268,7 +279,8 @@ public class Address {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -334,6 +346,14 @@ public class Address {
     @JsonIgnore
     public JsonNullable<String> line4() {
         return line4;
+    }
+
+    /**
+     * Line 5 of the address
+     */
+    @JsonIgnore
+    public JsonNullable<String> line5() {
+        return line5;
     }
 
     /**
@@ -457,7 +477,8 @@ public class Address {
     }
 
     /**
-     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+     * time an update is made to the object.
      */
     @JsonIgnore
     public JsonNullable<String> rowVersion() {
@@ -610,6 +631,24 @@ public class Address {
     public Address withLine4(JsonNullable<String> line4) {
         Utils.checkNotNull(line4, "line4");
         this.line4 = line4;
+        return this;
+    }
+
+    /**
+     * Line 5 of the address
+     */
+    public Address withLine5(String line5) {
+        Utils.checkNotNull(line5, "line5");
+        this.line5 = JsonNullable.of(line5);
+        return this;
+    }
+
+    /**
+     * Line 5 of the address
+     */
+    public Address withLine5(JsonNullable<String> line5) {
+        Utils.checkNotNull(line5, "line5");
+        this.line5 = line5;
         return this;
     }
 
@@ -884,7 +923,8 @@ public class Address {
     }
 
     /**
-     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+     * time an update is made to the object.
      */
     public Address withRowVersion(String rowVersion) {
         Utils.checkNotNull(rowVersion, "rowVersion");
@@ -893,7 +933,8 @@ public class Address {
     }
 
     /**
-     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+     * time an update is made to the object.
      */
     public Address withRowVersion(JsonNullable<String> rowVersion) {
         Utils.checkNotNull(rowVersion, "rowVersion");
@@ -919,6 +960,7 @@ public class Address {
             Utils.enhancedDeepEquals(this.line2, other.line2) &&
             Utils.enhancedDeepEquals(this.line3, other.line3) &&
             Utils.enhancedDeepEquals(this.line4, other.line4) &&
+            Utils.enhancedDeepEquals(this.line5, other.line5) &&
             Utils.enhancedDeepEquals(this.streetNumber, other.streetNumber) &&
             Utils.enhancedDeepEquals(this.city, other.city) &&
             Utils.enhancedDeepEquals(this.state, other.state) &&
@@ -942,12 +984,13 @@ public class Address {
         return Utils.enhancedHash(
             id, type, string,
             name, line1, line2,
-            line3, line4, streetNumber,
-            city, state, postalCode,
-            country, latitude, longitude,
-            county, contactName, salutation,
-            phoneNumber, fax, email,
-            website, notes, rowVersion);
+            line3, line4, line5,
+            streetNumber, city, state,
+            postalCode, country, latitude,
+            longitude, county, contactName,
+            salutation, phoneNumber, fax,
+            email, website, notes,
+            rowVersion);
     }
     
     @Override
@@ -961,6 +1004,7 @@ public class Address {
                 "line2", line2,
                 "line3", line3,
                 "line4", line4,
+                "line5", line5,
                 "streetNumber", streetNumber,
                 "city", city,
                 "state", state,
@@ -997,6 +1041,8 @@ public class Address {
         private JsonNullable<String> line3 = JsonNullable.undefined();
 
         private JsonNullable<String> line4 = JsonNullable.undefined();
+
+        private JsonNullable<String> line5 = JsonNullable.undefined();
 
         private JsonNullable<String> streetNumber = JsonNullable.undefined();
 
@@ -1183,6 +1229,25 @@ public class Address {
         public Builder line4(JsonNullable<String> line4) {
             Utils.checkNotNull(line4, "line4");
             this.line4 = line4;
+            return this;
+        }
+
+
+        /**
+         * Line 5 of the address
+         */
+        public Builder line5(String line5) {
+            Utils.checkNotNull(line5, "line5");
+            this.line5 = JsonNullable.of(line5);
+            return this;
+        }
+
+        /**
+         * Line 5 of the address
+         */
+        public Builder line5(JsonNullable<String> line5) {
+            Utils.checkNotNull(line5, "line5");
+            this.line5 = line5;
             return this;
         }
 
@@ -1473,7 +1538,8 @@ public class Address {
 
 
         /**
-         * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+         * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+         * time an update is made to the object.
          */
         public Builder rowVersion(String rowVersion) {
             Utils.checkNotNull(rowVersion, "rowVersion");
@@ -1482,7 +1548,8 @@ public class Address {
         }
 
         /**
-         * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+         * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+         * time an update is made to the object.
          */
         public Builder rowVersion(JsonNullable<String> rowVersion) {
             Utils.checkNotNull(rowVersion, "rowVersion");
@@ -1495,12 +1562,13 @@ public class Address {
             return new Address(
                 id, type, string,
                 name, line1, line2,
-                line3, line4, streetNumber,
-                city, state, postalCode,
-                country, latitude, longitude,
-                county, contactName, salutation,
-                phoneNumber, fax, email,
-                website, notes, rowVersion);
+                line3, line4, line5,
+                streetNumber, city, state,
+                postalCode, country, latitude,
+                longitude, county, contactName,
+                salutation, phoneNumber, fax,
+                email, website, notes,
+                rowVersion);
         }
 
     }

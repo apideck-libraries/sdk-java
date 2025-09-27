@@ -68,7 +68,7 @@ public class AsyncCompanies {
      * <p>List companies
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CrmCompaniesAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmCompaniesAllResponse>} - The async response
      */
     public CompletableFuture<CrmCompaniesAllResponse> list(CrmCompaniesAllRequest request) {
         return list(request, Optional.empty());
@@ -81,7 +81,7 @@ public class AsyncCompanies {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;CrmCompaniesAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmCompaniesAllResponse>} - The async response
      */
     public CompletableFuture<CrmCompaniesAllResponse> list(CrmCompaniesAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmCompaniesAllRequest, CrmCompaniesAllResponse> operation
@@ -110,7 +110,7 @@ public class AsyncCompanies {
      * <p>Create company
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CrmCompaniesAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmCompaniesAddResponse>} - The async response
      */
     public CompletableFuture<CrmCompaniesAddResponse> create(CrmCompaniesAddRequest request) {
         return create(request, Optional.empty());
@@ -123,7 +123,7 @@ public class AsyncCompanies {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;CrmCompaniesAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmCompaniesAddResponse>} - The async response
      */
     public CompletableFuture<CrmCompaniesAddResponse> create(CrmCompaniesAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmCompaniesAddRequest, CrmCompaniesAddResponse> operation
@@ -152,7 +152,7 @@ public class AsyncCompanies {
      * <p>Get company
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CrmCompaniesOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmCompaniesOneResponse>} - The async response
      */
     public CompletableFuture<CrmCompaniesOneResponse> get(CrmCompaniesOneRequest request) {
         return get(request, Optional.empty());
@@ -165,7 +165,7 @@ public class AsyncCompanies {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;CrmCompaniesOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmCompaniesOneResponse>} - The async response
      */
     public CompletableFuture<CrmCompaniesOneResponse> get(CrmCompaniesOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmCompaniesOneRequest, CrmCompaniesOneResponse> operation
@@ -194,7 +194,7 @@ public class AsyncCompanies {
      * <p>Update company
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CrmCompaniesUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmCompaniesUpdateResponse>} - The async response
      */
     public CompletableFuture<CrmCompaniesUpdateResponse> update(CrmCompaniesUpdateRequest request) {
         return update(request, Optional.empty());
@@ -207,7 +207,7 @@ public class AsyncCompanies {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;CrmCompaniesUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmCompaniesUpdateResponse>} - The async response
      */
     public CompletableFuture<CrmCompaniesUpdateResponse> update(CrmCompaniesUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmCompaniesUpdateRequest, CrmCompaniesUpdateResponse> operation
@@ -236,7 +236,7 @@ public class AsyncCompanies {
      * <p>Delete company
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CrmCompaniesDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmCompaniesDeleteResponse>} - The async response
      */
     public CompletableFuture<CrmCompaniesDeleteResponse> delete(CrmCompaniesDeleteRequest request) {
         return delete(request, Optional.empty());
@@ -249,7 +249,7 @@ public class AsyncCompanies {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;CrmCompaniesDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmCompaniesDeleteResponse>} - The async response
      */
     public CompletableFuture<CrmCompaniesDeleteResponse> delete(CrmCompaniesDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmCompaniesDeleteRequest, CrmCompaniesDeleteResponse> operation

@@ -24,7 +24,8 @@ public class WebhookWebhooksAllRequest {
     private Optional<String> appId;
 
     /**
-     * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
+     * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of
+     * the response.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=cursor")
     private JsonNullable<String> cursor;
@@ -61,7 +62,8 @@ public class WebhookWebhooksAllRequest {
     }
 
     /**
-     * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
+     * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of
+     * the response.
      */
     @JsonIgnore
     public JsonNullable<String> cursor() {
@@ -101,7 +103,8 @@ public class WebhookWebhooksAllRequest {
     }
 
     /**
-     * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
+     * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of
+     * the response.
      */
     public WebhookWebhooksAllRequest withCursor(String cursor) {
         Utils.checkNotNull(cursor, "cursor");
@@ -110,7 +113,8 @@ public class WebhookWebhooksAllRequest {
     }
 
     /**
-     * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
+     * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of
+     * the response.
      */
     public WebhookWebhooksAllRequest withCursor(JsonNullable<String> cursor) {
         Utils.checkNotNull(cursor, "cursor");
@@ -200,7 +204,8 @@ public class WebhookWebhooksAllRequest {
 
 
         /**
-         * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
+         * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of
+         * the response.
          */
         public Builder cursor(String cursor) {
             Utils.checkNotNull(cursor, "cursor");
@@ -209,7 +214,8 @@ public class WebhookWebhooksAllRequest {
         }
 
         /**
-         * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
+         * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of
+         * the response.
          */
         public Builder cursor(JsonNullable<String> cursor) {
             Utils.checkNotNull(cursor, "cursor");

@@ -34,7 +34,8 @@ public class PipelineInput {
     private String name;
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("currency")
@@ -76,7 +77,8 @@ public class PipelineInput {
     private Optional<? extends List<PipelineStages>> stages;
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pass_through")
@@ -137,7 +139,8 @@ public class PipelineInput {
     }
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -187,7 +190,8 @@ public class PipelineInput {
     }
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -229,7 +233,8 @@ public class PipelineInput {
     }
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     public PipelineInput withCurrency(Currency currency) {
         Utils.checkNotNull(currency, "currency");
@@ -238,7 +243,8 @@ public class PipelineInput {
     }
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     public PipelineInput withCurrency(JsonNullable<? extends Currency> currency) {
         Utils.checkNotNull(currency, "currency");
@@ -341,7 +347,8 @@ public class PipelineInput {
     }
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     public PipelineInput withPassThrough(List<PassThroughBody> passThrough) {
         Utils.checkNotNull(passThrough, "passThrough");
@@ -351,7 +358,8 @@ public class PipelineInput {
 
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     public PipelineInput withPassThrough(Optional<? extends List<PassThroughBody>> passThrough) {
         Utils.checkNotNull(passThrough, "passThrough");
@@ -458,7 +466,8 @@ public class PipelineInput {
 
 
         /**
-         * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+         * Indicates the associated currency for an amount of money. Values correspond to [ISO
+         * 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
         public Builder currency(Currency currency) {
             Utils.checkNotNull(currency, "currency");
@@ -467,7 +476,8 @@ public class PipelineInput {
         }
 
         /**
-         * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+         * Indicates the associated currency for an amount of money. Values correspond to [ISO
+         * 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
         public Builder currency(JsonNullable<? extends Currency> currency) {
             Utils.checkNotNull(currency, "currency");
@@ -572,7 +582,8 @@ public class PipelineInput {
 
 
         /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+         * The pass_through property allows passing service-specific, custom data or structured modifications
+         * in request body when creating or updating resources.
          */
         public Builder passThrough(List<PassThroughBody> passThrough) {
             Utils.checkNotNull(passThrough, "passThrough");
@@ -581,7 +592,8 @@ public class PipelineInput {
         }
 
         /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+         * The pass_through property allows passing service-specific, custom data or structured modifications
+         * in request body when creating or updating resources.
          */
         public Builder passThrough(Optional<? extends List<PassThroughBody>> passThrough) {
             Utils.checkNotNull(passThrough, "passThrough");

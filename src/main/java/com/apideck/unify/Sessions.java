@@ -39,7 +39,8 @@ public class Sessions {
     /**
      * Create Session
      * 
-     * <p>Making a POST request to this endpoint will initiate a Hosted Vault session. Redirect the consumer to the returned
+     * <p>Making a POST request to this endpoint will initiate a Hosted Vault session. Redirect the consumer
+     * to the returned
      * URL to allow temporary access to manage their integrations and settings.
      * 
      * <p>Note: This is a short lived token that will expire after 1 hour (TTL: 3600).
@@ -53,7 +54,8 @@ public class Sessions {
     /**
      * Create Session
      * 
-     * <p>Making a POST request to this endpoint will initiate a Hosted Vault session. Redirect the consumer to the returned
+     * <p>Making a POST request to this endpoint will initiate a Hosted Vault session. Redirect the consumer
+     * to the returned
      * URL to allow temporary access to manage their integrations and settings.
      * 
      * <p>Note: This is a short lived token that will expire after 1 hour (TTL: 3600).
@@ -69,7 +71,8 @@ public class Sessions {
     /**
      * Create Session
      * 
-     * <p>Making a POST request to this endpoint will initiate a Hosted Vault session. Redirect the consumer to the returned
+     * <p>Making a POST request to this endpoint will initiate a Hosted Vault session. Redirect the consumer
+     * to the returned
      * URL to allow temporary access to manage their integrations and settings.
      * 
      * <p>Note: This is a short lived token that will expire after 1 hour (TTL: 3600).

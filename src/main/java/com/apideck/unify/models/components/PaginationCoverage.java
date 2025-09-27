@@ -18,7 +18,9 @@ import java.util.Optional;
 
 public class PaginationCoverage {
     /**
-     * How pagination is implemented on this connector. Native mode means Apideck is using the pagination parameters of the connector. With virtual pagination, the connector does not support pagination, but Apideck emulates it.
+     * How pagination is implemented on this connector. Native mode means Apideck is using the pagination
+     * parameters of the connector. With virtual pagination, the connector does not support pagination, but
+     * Apideck emulates it.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mode")
@@ -56,7 +58,9 @@ public class PaginationCoverage {
     }
 
     /**
-     * How pagination is implemented on this connector. Native mode means Apideck is using the pagination parameters of the connector. With virtual pagination, the connector does not support pagination, but Apideck emulates it.
+     * How pagination is implemented on this connector. Native mode means Apideck is using the pagination
+     * parameters of the connector. With virtual pagination, the connector does not support pagination, but
+     * Apideck emulates it.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -86,7 +90,9 @@ public class PaginationCoverage {
 
 
     /**
-     * How pagination is implemented on this connector. Native mode means Apideck is using the pagination parameters of the connector. With virtual pagination, the connector does not support pagination, but Apideck emulates it.
+     * How pagination is implemented on this connector. Native mode means Apideck is using the pagination
+     * parameters of the connector. With virtual pagination, the connector does not support pagination, but
+     * Apideck emulates it.
      */
     public PaginationCoverage withMode(PaginationCoverageMode mode) {
         Utils.checkNotNull(mode, "mode");
@@ -96,7 +102,9 @@ public class PaginationCoverage {
 
 
     /**
-     * How pagination is implemented on this connector. Native mode means Apideck is using the pagination parameters of the connector. With virtual pagination, the connector does not support pagination, but Apideck emulates it.
+     * How pagination is implemented on this connector. Native mode means Apideck is using the pagination
+     * parameters of the connector. With virtual pagination, the connector does not support pagination, but
+     * Apideck emulates it.
      */
     public PaginationCoverage withMode(Optional<? extends PaginationCoverageMode> mode) {
         Utils.checkNotNull(mode, "mode");
@@ -186,7 +194,9 @@ public class PaginationCoverage {
 
 
         /**
-         * How pagination is implemented on this connector. Native mode means Apideck is using the pagination parameters of the connector. With virtual pagination, the connector does not support pagination, but Apideck emulates it.
+         * How pagination is implemented on this connector. Native mode means Apideck is using the pagination
+         * parameters of the connector. With virtual pagination, the connector does not support pagination, but
+         * Apideck emulates it.
          */
         public Builder mode(PaginationCoverageMode mode) {
             Utils.checkNotNull(mode, "mode");
@@ -195,7 +205,9 @@ public class PaginationCoverage {
         }
 
         /**
-         * How pagination is implemented on this connector. Native mode means Apideck is using the pagination parameters of the connector. With virtual pagination, the connector does not support pagination, but Apideck emulates it.
+         * How pagination is implemented on this connector. Native mode means Apideck is using the pagination
+         * parameters of the connector. With virtual pagination, the connector does not support pagination, but
+         * Apideck emulates it.
          */
         public Builder mode(Optional<? extends PaginationCoverageMode> mode) {
             Utils.checkNotNull(mode, "mode");

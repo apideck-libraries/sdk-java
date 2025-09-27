@@ -54,7 +54,10 @@ public class AsyncEmployees {
     /**
      * List Employees
      * 
-     * <p>Apideck operates as a stateless Unified API, which means that the list endpoint only provides a portion of the employee model. This is due to the fact that most HRIS systems do not readily provide all data in every call. However, you can access the complete employee model through an employee detail call.
+     * <p>Apideck operates as a stateless Unified API, which means that the list endpoint only provides a
+     * portion of the employee model. This is due to the fact that most HRIS systems do not readily provide
+     * all data in every call. However, you can access the complete employee model through an employee
+     * detail call.
      * 
      * @return The async call builder
      */
@@ -65,10 +68,13 @@ public class AsyncEmployees {
     /**
      * List Employees
      * 
-     * <p>Apideck operates as a stateless Unified API, which means that the list endpoint only provides a portion of the employee model. This is due to the fact that most HRIS systems do not readily provide all data in every call. However, you can access the complete employee model through an employee detail call.
+     * <p>Apideck operates as a stateless Unified API, which means that the list endpoint only provides a
+     * portion of the employee model. This is due to the fact that most HRIS systems do not readily provide
+     * all data in every call. However, you can access the complete employee model through an employee
+     * detail call.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;HrisEmployeesAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<HrisEmployeesAllResponse>} - The async response
      */
     public CompletableFuture<HrisEmployeesAllResponse> list(HrisEmployeesAllRequest request) {
         return list(request, Optional.empty());
@@ -77,11 +83,14 @@ public class AsyncEmployees {
     /**
      * List Employees
      * 
-     * <p>Apideck operates as a stateless Unified API, which means that the list endpoint only provides a portion of the employee model. This is due to the fact that most HRIS systems do not readily provide all data in every call. However, you can access the complete employee model through an employee detail call.
+     * <p>Apideck operates as a stateless Unified API, which means that the list endpoint only provides a
+     * portion of the employee model. This is due to the fact that most HRIS systems do not readily provide
+     * all data in every call. However, you can access the complete employee model through an employee
+     * detail call.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;HrisEmployeesAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<HrisEmployeesAllResponse>} - The async response
      */
     public CompletableFuture<HrisEmployeesAllResponse> list(HrisEmployeesAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<HrisEmployeesAllRequest, HrisEmployeesAllResponse> operation
@@ -110,7 +119,7 @@ public class AsyncEmployees {
      * <p>Create Employee
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;HrisEmployeesAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<HrisEmployeesAddResponse>} - The async response
      */
     public CompletableFuture<HrisEmployeesAddResponse> create(HrisEmployeesAddRequest request) {
         return create(request, Optional.empty());
@@ -123,7 +132,7 @@ public class AsyncEmployees {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;HrisEmployeesAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<HrisEmployeesAddResponse>} - The async response
      */
     public CompletableFuture<HrisEmployeesAddResponse> create(HrisEmployeesAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<HrisEmployeesAddRequest, HrisEmployeesAddResponse> operation
@@ -152,7 +161,7 @@ public class AsyncEmployees {
      * <p>Get Employee
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;HrisEmployeesOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<HrisEmployeesOneResponse>} - The async response
      */
     public CompletableFuture<HrisEmployeesOneResponse> get(HrisEmployeesOneRequest request) {
         return get(request, Optional.empty());
@@ -165,7 +174,7 @@ public class AsyncEmployees {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;HrisEmployeesOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<HrisEmployeesOneResponse>} - The async response
      */
     public CompletableFuture<HrisEmployeesOneResponse> get(HrisEmployeesOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<HrisEmployeesOneRequest, HrisEmployeesOneResponse> operation
@@ -194,7 +203,7 @@ public class AsyncEmployees {
      * <p>Update Employee
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;HrisEmployeesUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<HrisEmployeesUpdateResponse>} - The async response
      */
     public CompletableFuture<HrisEmployeesUpdateResponse> update(HrisEmployeesUpdateRequest request) {
         return update(request, Optional.empty());
@@ -207,7 +216,7 @@ public class AsyncEmployees {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;HrisEmployeesUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<HrisEmployeesUpdateResponse>} - The async response
      */
     public CompletableFuture<HrisEmployeesUpdateResponse> update(HrisEmployeesUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<HrisEmployeesUpdateRequest, HrisEmployeesUpdateResponse> operation
@@ -236,7 +245,7 @@ public class AsyncEmployees {
      * <p>Delete Employee
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;HrisEmployeesDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<HrisEmployeesDeleteResponse>} - The async response
      */
     public CompletableFuture<HrisEmployeesDeleteResponse> delete(HrisEmployeesDeleteRequest request) {
         return delete(request, Optional.empty());
@@ -249,7 +258,7 @@ public class AsyncEmployees {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;HrisEmployeesDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<HrisEmployeesDeleteResponse>} - The async response
      */
     public CompletableFuture<HrisEmployeesDeleteResponse> delete(HrisEmployeesDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<HrisEmployeesDeleteRequest, HrisEmployeesDeleteResponse> operation

@@ -68,7 +68,7 @@ public class AsyncFolders {
      * <p>Create Folder
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;FileStorageFoldersAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<FileStorageFoldersAddResponse>} - The async response
      */
     public CompletableFuture<FileStorageFoldersAddResponse> create(FileStorageFoldersAddRequest request) {
         return create(request, Optional.empty());
@@ -81,7 +81,7 @@ public class AsyncFolders {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;FileStorageFoldersAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<FileStorageFoldersAddResponse>} - The async response
      */
     public CompletableFuture<FileStorageFoldersAddResponse> create(FileStorageFoldersAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<FileStorageFoldersAddRequest, FileStorageFoldersAddResponse> operation
@@ -110,7 +110,7 @@ public class AsyncFolders {
      * <p>Get Folder
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;FileStorageFoldersOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<FileStorageFoldersOneResponse>} - The async response
      */
     public CompletableFuture<FileStorageFoldersOneResponse> get(FileStorageFoldersOneRequest request) {
         return get(request, Optional.empty());
@@ -123,7 +123,7 @@ public class AsyncFolders {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;FileStorageFoldersOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<FileStorageFoldersOneResponse>} - The async response
      */
     public CompletableFuture<FileStorageFoldersOneResponse> get(FileStorageFoldersOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<FileStorageFoldersOneRequest, FileStorageFoldersOneResponse> operation
@@ -152,7 +152,7 @@ public class AsyncFolders {
      * <p>Rename or move Folder
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;FileStorageFoldersUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<FileStorageFoldersUpdateResponse>} - The async response
      */
     public CompletableFuture<FileStorageFoldersUpdateResponse> update(FileStorageFoldersUpdateRequest request) {
         return update(request, Optional.empty());
@@ -165,7 +165,7 @@ public class AsyncFolders {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;FileStorageFoldersUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<FileStorageFoldersUpdateResponse>} - The async response
      */
     public CompletableFuture<FileStorageFoldersUpdateResponse> update(FileStorageFoldersUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<FileStorageFoldersUpdateRequest, FileStorageFoldersUpdateResponse> operation
@@ -194,7 +194,7 @@ public class AsyncFolders {
      * <p>Delete Folder
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;FileStorageFoldersDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<FileStorageFoldersDeleteResponse>} - The async response
      */
     public CompletableFuture<FileStorageFoldersDeleteResponse> delete(FileStorageFoldersDeleteRequest request) {
         return delete(request, Optional.empty());
@@ -207,7 +207,7 @@ public class AsyncFolders {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;FileStorageFoldersDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<FileStorageFoldersDeleteResponse>} - The async response
      */
     public CompletableFuture<FileStorageFoldersDeleteResponse> delete(FileStorageFoldersDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<FileStorageFoldersDeleteRequest, FileStorageFoldersDeleteResponse> operation
@@ -236,7 +236,7 @@ public class AsyncFolders {
      * <p>Copy Folder
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;FileStorageFoldersCopyResponse&gt; - The async response
+     * @return {@code CompletableFuture<FileStorageFoldersCopyResponse>} - The async response
      */
     public CompletableFuture<FileStorageFoldersCopyResponse> copy(FileStorageFoldersCopyRequest request) {
         return copy(request, Optional.empty());
@@ -249,7 +249,7 @@ public class AsyncFolders {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;FileStorageFoldersCopyResponse&gt; - The async response
+     * @return {@code CompletableFuture<FileStorageFoldersCopyResponse>} - The async response
      */
     public CompletableFuture<FileStorageFoldersCopyResponse> copy(FileStorageFoldersCopyRequest request, Optional<Options> options) {
         AsyncRequestOperation<FileStorageFoldersCopyRequest, FileStorageFoldersCopyResponse> operation

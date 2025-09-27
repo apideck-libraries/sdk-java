@@ -22,7 +22,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class BillPaymentInput {
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("currency")
@@ -149,7 +150,8 @@ public class BillPaymentInput {
     private Optional<? extends List<CustomField>> customFields;
 
     /**
-     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+     * time an update is made to the object.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("row_version")
@@ -163,7 +165,8 @@ public class BillPaymentInput {
     private JsonNullable<String> displayId;
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pass_through")
@@ -251,7 +254,8 @@ public class BillPaymentInput {
     }
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -402,7 +406,8 @@ public class BillPaymentInput {
     }
 
     /**
-     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+     * time an update is made to the object.
      */
     @JsonIgnore
     public JsonNullable<String> rowVersion() {
@@ -418,7 +423,8 @@ public class BillPaymentInput {
     }
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -432,7 +438,8 @@ public class BillPaymentInput {
 
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     public BillPaymentInput withCurrency(Currency currency) {
         Utils.checkNotNull(currency, "currency");
@@ -441,7 +448,8 @@ public class BillPaymentInput {
     }
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     public BillPaymentInput withCurrency(JsonNullable<? extends Currency> currency) {
         Utils.checkNotNull(currency, "currency");
@@ -762,7 +770,8 @@ public class BillPaymentInput {
     }
 
     /**
-     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+     * time an update is made to the object.
      */
     public BillPaymentInput withRowVersion(String rowVersion) {
         Utils.checkNotNull(rowVersion, "rowVersion");
@@ -771,7 +780,8 @@ public class BillPaymentInput {
     }
 
     /**
-     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+     * time an update is made to the object.
      */
     public BillPaymentInput withRowVersion(JsonNullable<String> rowVersion) {
         Utils.checkNotNull(rowVersion, "rowVersion");
@@ -798,7 +808,8 @@ public class BillPaymentInput {
     }
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     public BillPaymentInput withPassThrough(List<PassThroughBody> passThrough) {
         Utils.checkNotNull(passThrough, "passThrough");
@@ -808,7 +819,8 @@ public class BillPaymentInput {
 
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     public BillPaymentInput withPassThrough(Optional<? extends List<PassThroughBody>> passThrough) {
         Utils.checkNotNull(passThrough, "passThrough");
@@ -943,7 +955,8 @@ public class BillPaymentInput {
 
 
         /**
-         * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+         * Indicates the associated currency for an amount of money. Values correspond to [ISO
+         * 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
         public Builder currency(Currency currency) {
             Utils.checkNotNull(currency, "currency");
@@ -952,7 +965,8 @@ public class BillPaymentInput {
         }
 
         /**
-         * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+         * Indicates the associated currency for an amount of money. Values correspond to [ISO
+         * 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
         public Builder currency(JsonNullable<? extends Currency> currency) {
             Utils.checkNotNull(currency, "currency");
@@ -1286,7 +1300,8 @@ public class BillPaymentInput {
 
 
         /**
-         * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+         * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+         * time an update is made to the object.
          */
         public Builder rowVersion(String rowVersion) {
             Utils.checkNotNull(rowVersion, "rowVersion");
@@ -1295,7 +1310,8 @@ public class BillPaymentInput {
         }
 
         /**
-         * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+         * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+         * time an update is made to the object.
          */
         public Builder rowVersion(JsonNullable<String> rowVersion) {
             Utils.checkNotNull(rowVersion, "rowVersion");
@@ -1324,7 +1340,8 @@ public class BillPaymentInput {
 
 
         /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+         * The pass_through property allows passing service-specific, custom data or structured modifications
+         * in request body when creating or updating resources.
          */
         public Builder passThrough(List<PassThroughBody> passThrough) {
             Utils.checkNotNull(passThrough, "passThrough");
@@ -1333,7 +1350,8 @@ public class BillPaymentInput {
         }
 
         /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+         * The pass_through property allows passing service-specific, custom data or structured modifications
+         * in request body when creating or updating resources.
          */
         public Builder passThrough(Optional<? extends List<PassThroughBody>> passThrough) {
             Utils.checkNotNull(passThrough, "passThrough");

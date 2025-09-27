@@ -52,7 +52,7 @@ public class AsyncCustomFields {
      * <p>This endpoint returns an custom fields on a connection resource.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;VaultCustomFieldsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<VaultCustomFieldsAllResponse>} - The async response
      */
     public CompletableFuture<VaultCustomFieldsAllResponse> list(VaultCustomFieldsAllRequest request) {
         return list(request, Optional.empty());
@@ -65,7 +65,7 @@ public class AsyncCustomFields {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;VaultCustomFieldsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<VaultCustomFieldsAllResponse>} - The async response
      */
     public CompletableFuture<VaultCustomFieldsAllResponse> list(VaultCustomFieldsAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<VaultCustomFieldsAllRequest, VaultCustomFieldsAllResponse> operation

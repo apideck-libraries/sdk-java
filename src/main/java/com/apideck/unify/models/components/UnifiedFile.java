@@ -98,7 +98,8 @@ public class UnifiedFile {
     private Optional<? extends List<LinkedFolder>> parentFolders;
 
     /**
-     * Whether the list of parent folders is complete. Some connectors only return the direct parent of a file
+     * Whether the list of parent folders is complete. Some connectors only return the direct parent of a
+     * file
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("parent_folders_complete")
@@ -112,7 +113,8 @@ public class UnifiedFile {
     private Optional<? extends Permissions> permissions;
 
     /**
-     * Whether the current file is exportable to other file formats. This property is relevant for proprietary file formats such as Google Docs or Dropbox Paper.
+     * Whether the current file is exportable to other file formats. This property is relevant for
+     * proprietary file formats such as Google Docs or Dropbox Paper.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("exportable")
@@ -324,7 +326,8 @@ public class UnifiedFile {
     }
 
     /**
-     * Whether the list of parent folders is complete. Some connectors only return the direct parent of a file
+     * Whether the list of parent folders is complete. Some connectors only return the direct parent of a
+     * file
      */
     @JsonIgnore
     public Optional<Boolean> parentFoldersComplete() {
@@ -341,7 +344,8 @@ public class UnifiedFile {
     }
 
     /**
-     * Whether the current file is exportable to other file formats. This property is relevant for proprietary file formats such as Google Docs or Dropbox Paper.
+     * Whether the current file is exportable to other file formats. This property is relevant for
+     * proprietary file formats such as Google Docs or Dropbox Paper.
      */
     @JsonIgnore
     public Optional<Boolean> exportable() {
@@ -592,7 +596,8 @@ public class UnifiedFile {
     }
 
     /**
-     * Whether the list of parent folders is complete. Some connectors only return the direct parent of a file
+     * Whether the list of parent folders is complete. Some connectors only return the direct parent of a
+     * file
      */
     public UnifiedFile withParentFoldersComplete(boolean parentFoldersComplete) {
         Utils.checkNotNull(parentFoldersComplete, "parentFoldersComplete");
@@ -602,7 +607,8 @@ public class UnifiedFile {
 
 
     /**
-     * Whether the list of parent folders is complete. Some connectors only return the direct parent of a file
+     * Whether the list of parent folders is complete. Some connectors only return the direct parent of a
+     * file
      */
     public UnifiedFile withParentFoldersComplete(Optional<Boolean> parentFoldersComplete) {
         Utils.checkNotNull(parentFoldersComplete, "parentFoldersComplete");
@@ -630,7 +636,8 @@ public class UnifiedFile {
     }
 
     /**
-     * Whether the current file is exportable to other file formats. This property is relevant for proprietary file formats such as Google Docs or Dropbox Paper.
+     * Whether the current file is exportable to other file formats. This property is relevant for
+     * proprietary file formats such as Google Docs or Dropbox Paper.
      */
     public UnifiedFile withExportable(boolean exportable) {
         Utils.checkNotNull(exportable, "exportable");
@@ -640,7 +647,8 @@ public class UnifiedFile {
 
 
     /**
-     * Whether the current file is exportable to other file formats. This property is relevant for proprietary file formats such as Google Docs or Dropbox Paper.
+     * Whether the current file is exportable to other file formats. This property is relevant for
+     * proprietary file formats such as Google Docs or Dropbox Paper.
      */
     public UnifiedFile withExportable(Optional<Boolean> exportable) {
         Utils.checkNotNull(exportable, "exportable");
@@ -1068,7 +1076,8 @@ public class UnifiedFile {
 
 
         /**
-         * Whether the list of parent folders is complete. Some connectors only return the direct parent of a file
+         * Whether the list of parent folders is complete. Some connectors only return the direct parent of a
+         * file
          */
         public Builder parentFoldersComplete(boolean parentFoldersComplete) {
             Utils.checkNotNull(parentFoldersComplete, "parentFoldersComplete");
@@ -1077,7 +1086,8 @@ public class UnifiedFile {
         }
 
         /**
-         * Whether the list of parent folders is complete. Some connectors only return the direct parent of a file
+         * Whether the list of parent folders is complete. Some connectors only return the direct parent of a
+         * file
          */
         public Builder parentFoldersComplete(Optional<Boolean> parentFoldersComplete) {
             Utils.checkNotNull(parentFoldersComplete, "parentFoldersComplete");
@@ -1106,7 +1116,8 @@ public class UnifiedFile {
 
 
         /**
-         * Whether the current file is exportable to other file formats. This property is relevant for proprietary file formats such as Google Docs or Dropbox Paper.
+         * Whether the current file is exportable to other file formats. This property is relevant for
+         * proprietary file formats such as Google Docs or Dropbox Paper.
          */
         public Builder exportable(boolean exportable) {
             Utils.checkNotNull(exportable, "exportable");
@@ -1115,7 +1126,8 @@ public class UnifiedFile {
         }
 
         /**
-         * Whether the current file is exportable to other file formats. This property is relevant for proprietary file formats such as Google Docs or Dropbox Paper.
+         * Whether the current file is exportable to other file formats. This property is relevant for
+         * proprietary file formats such as Google Docs or Dropbox Paper.
          */
         public Builder exportable(Optional<Boolean> exportable) {
             Utils.checkNotNull(exportable, "exportable");

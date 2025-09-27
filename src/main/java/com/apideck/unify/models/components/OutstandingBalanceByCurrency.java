@@ -20,7 +20,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class OutstandingBalanceByCurrency {
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("currency")
@@ -56,7 +57,8 @@ public class OutstandingBalanceByCurrency {
     }
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -84,7 +86,8 @@ public class OutstandingBalanceByCurrency {
 
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     public OutstandingBalanceByCurrency withCurrency(Currency currency) {
         Utils.checkNotNull(currency, "currency");
@@ -93,7 +96,8 @@ public class OutstandingBalanceByCurrency {
     }
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     public OutstandingBalanceByCurrency withCurrency(JsonNullable<? extends Currency> currency) {
         Utils.checkNotNull(currency, "currency");
@@ -177,7 +181,8 @@ public class OutstandingBalanceByCurrency {
 
 
         /**
-         * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+         * Indicates the associated currency for an amount of money. Values correspond to [ISO
+         * 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
         public Builder currency(Currency currency) {
             Utils.checkNotNull(currency, "currency");
@@ -186,7 +191,8 @@ public class OutstandingBalanceByCurrency {
         }
 
         /**
-         * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+         * Indicates the associated currency for an amount of money. Values correspond to [ISO
+         * 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
         public Builder currency(JsonNullable<? extends Currency> currency) {
             Utils.checkNotNull(currency, "currency");

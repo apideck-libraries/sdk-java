@@ -37,7 +37,8 @@ public class EcommerceOrderRefund {
     private Optional<String> amount;
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("currency")
@@ -98,7 +99,8 @@ public class EcommerceOrderRefund {
     }
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -165,7 +167,8 @@ public class EcommerceOrderRefund {
     }
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     public EcommerceOrderRefund withCurrency(Currency currency) {
         Utils.checkNotNull(currency, "currency");
@@ -174,7 +177,8 @@ public class EcommerceOrderRefund {
     }
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     public EcommerceOrderRefund withCurrency(JsonNullable<? extends Currency> currency) {
         Utils.checkNotNull(currency, "currency");
@@ -310,7 +314,8 @@ public class EcommerceOrderRefund {
 
 
         /**
-         * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+         * Indicates the associated currency for an amount of money. Values correspond to [ISO
+         * 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
         public Builder currency(Currency currency) {
             Utils.checkNotNull(currency, "currency");
@@ -319,7 +324,8 @@ public class EcommerceOrderRefund {
         }
 
         /**
-         * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+         * Indicates the associated currency for an amount of money. Values correspond to [ISO
+         * 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
         public Builder currency(JsonNullable<? extends Currency> currency) {
             Utils.checkNotNull(currency, "currency");

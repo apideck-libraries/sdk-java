@@ -18,5 +18,12 @@ dependencies {
 }
 
 jar {
+    dependsOn 'generatePomFileForMavenPublication'
     archiveBaseName = 'unify-spring-boot-starter'
+    into("META-INF/maven/com.apideck/unify-spring-boot-starter") {
+        from(layout.buildDirectory.file("pom.xml")) {
+            // Only include if it exists to avoid build ordering issues
+            duplicatesStrategy = DuplicatesStrategy.INCLUDE
+        }
+    }
 }

@@ -11,7 +11,8 @@ import java.util.Optional;
 /**
  * Currency
  * 
- * <p>Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+ * <p>Indicates the associated currency for an amount of money. Values correspond to [ISO
+ * 4217](https://en.wikipedia.org/wiki/ISO_4217).
  */
 public enum Currency {
     UNKNOWN_CURRENCY("UNKNOWN_CURRENCY"),

@@ -19,7 +19,8 @@ import java.util.Optional;
 /**
  * BalanceSheetEquityAccount
  * 
- * <p>A balance sheet equity account represents the financial position of a company at a specific point in time.
+ * <p>A balance sheet equity account represents the financial position of a company at a specific point in
+ * time.
  */
 public class BalanceSheetEquityAccount {
     /**

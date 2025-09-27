@@ -61,7 +61,8 @@ public class Connections {
      * 
      * <p>This endpoint includes all the configured integrations and contains the required assets
      * to build an integrations page where your users can install integrations.
-     * OAuth2 supported integrations will contain authorize and revoke links to handle the authentication flows.
+     * OAuth2 supported integrations will contain authorize and revoke links to handle the authentication
+     * flows.
      * 
      * @return The call builder
      */
@@ -74,7 +75,8 @@ public class Connections {
      * 
      * <p>This endpoint includes all the configured integrations and contains the required assets
      * to build an integrations page where your users can install integrations.
-     * OAuth2 supported integrations will contain authorize and revoke links to handle the authentication flows.
+     * OAuth2 supported integrations will contain authorize and revoke links to handle the authentication
+     * flows.
      * 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -89,7 +91,8 @@ public class Connections {
      * 
      * <p>This endpoint includes all the configured integrations and contains the required assets
      * to build an integrations page where your users can install integrations.
-     * OAuth2 supported integrations will contain authorize and revoke links to handle the authentication flows.
+     * OAuth2 supported integrations will contain authorize and revoke links to handle the authentication
+     * flows.
      * 
      * @param consumerId ID of the consumer which you want to get or push data from
      * @param appId The ID of your Unify application
@@ -311,12 +314,15 @@ public class Connections {
     /**
      * Authorize Access Token
      * 
-     * <p>Triggers exchanging persisted connection credentials for an access token and store it in Vault. Currently supported for connections with the `client_credentials` or `password` OAuth grant type.
+     * <p>Triggers exchanging persisted connection credentials for an access token and store it in Vault.
+     * Currently supported for connections with the `client_credentials` or `password` OAuth grant type.
      * 
      * <p>Note:
-     *   - Do not include any credentials in the request body. This operation does not persist changes, but only triggers the exchange of persisted connection credentials for an access token.
-     *   - The access token will not be returned in the response. A 200 response code indicates the authorization was successful and that a valid access token was stored on the connection.
-     *   - The access token will be used for subsequent API requests.
+     * - Do not include any credentials in the request body. This operation does not persist changes, but
+     * only triggers the exchange of persisted connection credentials for an access token.
+     * - The access token will not be returned in the response. A 200 response code indicates the
+     * authorization was successful and that a valid access token was stored on the connection.
+     * - The access token will be used for subsequent API requests.
      * 
      * @return The call builder
      */
@@ -327,12 +333,15 @@ public class Connections {
     /**
      * Authorize Access Token
      * 
-     * <p>Triggers exchanging persisted connection credentials for an access token and store it in Vault. Currently supported for connections with the `client_credentials` or `password` OAuth grant type.
+     * <p>Triggers exchanging persisted connection credentials for an access token and store it in Vault.
+     * Currently supported for connections with the `client_credentials` or `password` OAuth grant type.
      * 
      * <p>Note:
-     *   - Do not include any credentials in the request body. This operation does not persist changes, but only triggers the exchange of persisted connection credentials for an access token.
-     *   - The access token will not be returned in the response. A 200 response code indicates the authorization was successful and that a valid access token was stored on the connection.
-     *   - The access token will be used for subsequent API requests.
+     * - Do not include any credentials in the request body. This operation does not persist changes, but
+     * only triggers the exchange of persisted connection credentials for an access token.
+     * - The access token will not be returned in the response. A 200 response code indicates the
+     * authorization was successful and that a valid access token was stored on the connection.
+     * - The access token will be used for subsequent API requests.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -345,12 +354,15 @@ public class Connections {
     /**
      * Authorize Access Token
      * 
-     * <p>Triggers exchanging persisted connection credentials for an access token and store it in Vault. Currently supported for connections with the `client_credentials` or `password` OAuth grant type.
+     * <p>Triggers exchanging persisted connection credentials for an access token and store it in Vault.
+     * Currently supported for connections with the `client_credentials` or `password` OAuth grant type.
      * 
      * <p>Note:
-     *   - Do not include any credentials in the request body. This operation does not persist changes, but only triggers the exchange of persisted connection credentials for an access token.
-     *   - The access token will not be returned in the response. A 200 response code indicates the authorization was successful and that a valid access token was stored on the connection.
-     *   - The access token will be used for subsequent API requests.
+     * - Do not include any credentials in the request body. This operation does not persist changes, but
+     * only triggers the exchange of persisted connection credentials for an access token.
+     * - The access token will not be returned in the response. A 200 response code indicates the
+     * authorization was successful and that a valid access token was stored on the connection.
+     * - The access token will be used for subsequent API requests.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options

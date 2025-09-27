@@ -39,13 +39,15 @@ public class AccountingExpensesAllRequest {
     private Optional<String> appId;
 
     /**
-     * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
+     * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated
+     * multiple integrations for a Unified API.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-service-id")
     private Optional<String> serviceId;
 
     /**
-     * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
+     * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of
+     * the response.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=cursor")
     private JsonNullable<String> cursor;
@@ -118,7 +120,8 @@ public class AccountingExpensesAllRequest {
     }
 
     /**
-     * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
+     * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated
+     * multiple integrations for a Unified API.
      */
     @JsonIgnore
     public Optional<String> serviceId() {
@@ -126,7 +129,8 @@ public class AccountingExpensesAllRequest {
     }
 
     /**
-     * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
+     * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of
+     * the response.
      */
     @JsonIgnore
     public JsonNullable<String> cursor() {
@@ -213,7 +217,8 @@ public class AccountingExpensesAllRequest {
     }
 
     /**
-     * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
+     * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated
+     * multiple integrations for a Unified API.
      */
     public AccountingExpensesAllRequest withServiceId(String serviceId) {
         Utils.checkNotNull(serviceId, "serviceId");
@@ -223,7 +228,8 @@ public class AccountingExpensesAllRequest {
 
 
     /**
-     * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
+     * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated
+     * multiple integrations for a Unified API.
      */
     public AccountingExpensesAllRequest withServiceId(Optional<String> serviceId) {
         Utils.checkNotNull(serviceId, "serviceId");
@@ -232,7 +238,8 @@ public class AccountingExpensesAllRequest {
     }
 
     /**
-     * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
+     * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of
+     * the response.
      */
     public AccountingExpensesAllRequest withCursor(String cursor) {
         Utils.checkNotNull(cursor, "cursor");
@@ -241,7 +248,8 @@ public class AccountingExpensesAllRequest {
     }
 
     /**
-     * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
+     * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of
+     * the response.
      */
     public AccountingExpensesAllRequest withCursor(JsonNullable<String> cursor) {
         Utils.checkNotNull(cursor, "cursor");
@@ -406,7 +414,8 @@ public class AccountingExpensesAllRequest {
 
 
         /**
-         * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
+         * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated
+         * multiple integrations for a Unified API.
          */
         public Builder serviceId(String serviceId) {
             Utils.checkNotNull(serviceId, "serviceId");
@@ -415,7 +424,8 @@ public class AccountingExpensesAllRequest {
         }
 
         /**
-         * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
+         * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated
+         * multiple integrations for a Unified API.
          */
         public Builder serviceId(Optional<String> serviceId) {
             Utils.checkNotNull(serviceId, "serviceId");
@@ -425,7 +435,8 @@ public class AccountingExpensesAllRequest {
 
 
         /**
-         * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
+         * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of
+         * the response.
          */
         public Builder cursor(String cursor) {
             Utils.checkNotNull(cursor, "cursor");
@@ -434,7 +445,8 @@ public class AccountingExpensesAllRequest {
         }
 
         /**
-         * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
+         * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of
+         * the response.
          */
         public Builder cursor(JsonNullable<String> cursor) {
             Utils.checkNotNull(cursor, "cursor");

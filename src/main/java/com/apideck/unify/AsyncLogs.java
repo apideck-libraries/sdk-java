@@ -52,7 +52,7 @@ public class AsyncLogs {
      * <p>This endpoint includes all consumer request logs.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;VaultLogsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<VaultLogsAllResponse>} - The async response
      */
     public CompletableFuture<VaultLogsAllResponse> list(VaultLogsAllRequest request) {
         return list(request, Optional.empty());
@@ -65,7 +65,7 @@ public class AsyncLogs {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;VaultLogsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<VaultLogsAllResponse>} - The async response
      */
     public CompletableFuture<VaultLogsAllResponse> list(VaultLogsAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<VaultLogsAllRequest, VaultLogsAllResponse> operation

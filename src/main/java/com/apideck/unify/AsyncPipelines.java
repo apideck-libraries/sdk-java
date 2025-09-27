@@ -68,7 +68,7 @@ public class AsyncPipelines {
      * <p>List pipelines
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CrmPipelinesAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmPipelinesAllResponse>} - The async response
      */
     public CompletableFuture<CrmPipelinesAllResponse> list(CrmPipelinesAllRequest request) {
         return list(request, Optional.empty());
@@ -81,7 +81,7 @@ public class AsyncPipelines {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;CrmPipelinesAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmPipelinesAllResponse>} - The async response
      */
     public CompletableFuture<CrmPipelinesAllResponse> list(CrmPipelinesAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmPipelinesAllRequest, CrmPipelinesAllResponse> operation
@@ -110,7 +110,7 @@ public class AsyncPipelines {
      * <p>Create pipeline
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CrmPipelinesAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmPipelinesAddResponse>} - The async response
      */
     public CompletableFuture<CrmPipelinesAddResponse> create(CrmPipelinesAddRequest request) {
         return create(request, Optional.empty());
@@ -123,7 +123,7 @@ public class AsyncPipelines {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;CrmPipelinesAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmPipelinesAddResponse>} - The async response
      */
     public CompletableFuture<CrmPipelinesAddResponse> create(CrmPipelinesAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmPipelinesAddRequest, CrmPipelinesAddResponse> operation
@@ -152,7 +152,7 @@ public class AsyncPipelines {
      * <p>Get pipeline
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CrmPipelinesOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmPipelinesOneResponse>} - The async response
      */
     public CompletableFuture<CrmPipelinesOneResponse> get(CrmPipelinesOneRequest request) {
         return get(request, Optional.empty());
@@ -165,7 +165,7 @@ public class AsyncPipelines {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;CrmPipelinesOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmPipelinesOneResponse>} - The async response
      */
     public CompletableFuture<CrmPipelinesOneResponse> get(CrmPipelinesOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmPipelinesOneRequest, CrmPipelinesOneResponse> operation
@@ -194,7 +194,7 @@ public class AsyncPipelines {
      * <p>Update pipeline
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CrmPipelinesUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmPipelinesUpdateResponse>} - The async response
      */
     public CompletableFuture<CrmPipelinesUpdateResponse> update(CrmPipelinesUpdateRequest request) {
         return update(request, Optional.empty());
@@ -207,7 +207,7 @@ public class AsyncPipelines {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;CrmPipelinesUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmPipelinesUpdateResponse>} - The async response
      */
     public CompletableFuture<CrmPipelinesUpdateResponse> update(CrmPipelinesUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmPipelinesUpdateRequest, CrmPipelinesUpdateResponse> operation
@@ -236,7 +236,7 @@ public class AsyncPipelines {
      * <p>Delete pipeline
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CrmPipelinesDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmPipelinesDeleteResponse>} - The async response
      */
     public CompletableFuture<CrmPipelinesDeleteResponse> delete(CrmPipelinesDeleteRequest request) {
         return delete(request, Optional.empty());
@@ -249,7 +249,7 @@ public class AsyncPipelines {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;CrmPipelinesDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmPipelinesDeleteResponse>} - The async response
      */
     public CompletableFuture<CrmPipelinesDeleteResponse> delete(CrmPipelinesDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmPipelinesDeleteRequest, CrmPipelinesDeleteResponse> operation

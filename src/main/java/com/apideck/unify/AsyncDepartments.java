@@ -68,7 +68,7 @@ public class AsyncDepartments {
      * <p>List Departments
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingDepartmentsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingDepartmentsAllResponse>} - The async response
      */
     public CompletableFuture<AccountingDepartmentsAllResponse> list(AccountingDepartmentsAllRequest request) {
         return list(request, Optional.empty());
@@ -81,7 +81,7 @@ public class AsyncDepartments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingDepartmentsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingDepartmentsAllResponse>} - The async response
      */
     public CompletableFuture<AccountingDepartmentsAllResponse> list(AccountingDepartmentsAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingDepartmentsAllRequest, AccountingDepartmentsAllResponse> operation
@@ -110,7 +110,7 @@ public class AsyncDepartments {
      * <p>Create Department
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingDepartmentsAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingDepartmentsAddResponse>} - The async response
      */
     public CompletableFuture<AccountingDepartmentsAddResponse> create(AccountingDepartmentsAddRequest request) {
         return create(request, Optional.empty());
@@ -123,7 +123,7 @@ public class AsyncDepartments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingDepartmentsAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingDepartmentsAddResponse>} - The async response
      */
     public CompletableFuture<AccountingDepartmentsAddResponse> create(AccountingDepartmentsAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingDepartmentsAddRequest, AccountingDepartmentsAddResponse> operation
@@ -152,7 +152,7 @@ public class AsyncDepartments {
      * <p>Get Department
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingDepartmentsOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingDepartmentsOneResponse>} - The async response
      */
     public CompletableFuture<AccountingDepartmentsOneResponse> get(AccountingDepartmentsOneRequest request) {
         return get(request, Optional.empty());
@@ -165,7 +165,7 @@ public class AsyncDepartments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingDepartmentsOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingDepartmentsOneResponse>} - The async response
      */
     public CompletableFuture<AccountingDepartmentsOneResponse> get(AccountingDepartmentsOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingDepartmentsOneRequest, AccountingDepartmentsOneResponse> operation
@@ -194,7 +194,7 @@ public class AsyncDepartments {
      * <p>Update Department
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingDepartmentsUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingDepartmentsUpdateResponse>} - The async response
      */
     public CompletableFuture<AccountingDepartmentsUpdateResponse> update(AccountingDepartmentsUpdateRequest request) {
         return update(request, Optional.empty());
@@ -207,7 +207,7 @@ public class AsyncDepartments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingDepartmentsUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingDepartmentsUpdateResponse>} - The async response
      */
     public CompletableFuture<AccountingDepartmentsUpdateResponse> update(AccountingDepartmentsUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingDepartmentsUpdateRequest, AccountingDepartmentsUpdateResponse> operation
@@ -236,7 +236,7 @@ public class AsyncDepartments {
      * <p>Delete Department
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingDepartmentsDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingDepartmentsDeleteResponse>} - The async response
      */
     public CompletableFuture<AccountingDepartmentsDeleteResponse> delete(AccountingDepartmentsDeleteRequest request) {
         return delete(request, Optional.empty());
@@ -249,7 +249,7 @@ public class AsyncDepartments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingDepartmentsDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingDepartmentsDeleteResponse>} - The async response
      */
     public CompletableFuture<AccountingDepartmentsDeleteResponse> delete(AccountingDepartmentsDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingDepartmentsDeleteRequest, AccountingDepartmentsDeleteResponse> operation

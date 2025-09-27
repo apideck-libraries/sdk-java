@@ -68,7 +68,7 @@ public class AsyncApplicants {
      * <p>List Applicants
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AtsApplicantsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<AtsApplicantsAllResponse>} - The async response
      */
     public CompletableFuture<AtsApplicantsAllResponse> list(AtsApplicantsAllRequest request) {
         return list(request, Optional.empty());
@@ -81,7 +81,7 @@ public class AsyncApplicants {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AtsApplicantsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<AtsApplicantsAllResponse>} - The async response
      */
     public CompletableFuture<AtsApplicantsAllResponse> list(AtsApplicantsAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<AtsApplicantsAllRequest, AtsApplicantsAllResponse> operation
@@ -110,7 +110,7 @@ public class AsyncApplicants {
      * <p>Create Applicant
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AtsApplicantsAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<AtsApplicantsAddResponse>} - The async response
      */
     public CompletableFuture<AtsApplicantsAddResponse> create(AtsApplicantsAddRequest request) {
         return create(request, Optional.empty());
@@ -123,7 +123,7 @@ public class AsyncApplicants {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AtsApplicantsAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<AtsApplicantsAddResponse>} - The async response
      */
     public CompletableFuture<AtsApplicantsAddResponse> create(AtsApplicantsAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<AtsApplicantsAddRequest, AtsApplicantsAddResponse> operation
@@ -152,7 +152,7 @@ public class AsyncApplicants {
      * <p>Get Applicant
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AtsApplicantsOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<AtsApplicantsOneResponse>} - The async response
      */
     public CompletableFuture<AtsApplicantsOneResponse> get(AtsApplicantsOneRequest request) {
         return get(request, Optional.empty());
@@ -165,7 +165,7 @@ public class AsyncApplicants {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AtsApplicantsOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<AtsApplicantsOneResponse>} - The async response
      */
     public CompletableFuture<AtsApplicantsOneResponse> get(AtsApplicantsOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<AtsApplicantsOneRequest, AtsApplicantsOneResponse> operation
@@ -194,7 +194,7 @@ public class AsyncApplicants {
      * <p>Update Applicant
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AtsApplicantsUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<AtsApplicantsUpdateResponse>} - The async response
      */
     public CompletableFuture<AtsApplicantsUpdateResponse> update(AtsApplicantsUpdateRequest request) {
         return update(request, Optional.empty());
@@ -207,7 +207,7 @@ public class AsyncApplicants {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AtsApplicantsUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<AtsApplicantsUpdateResponse>} - The async response
      */
     public CompletableFuture<AtsApplicantsUpdateResponse> update(AtsApplicantsUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<AtsApplicantsUpdateRequest, AtsApplicantsUpdateResponse> operation
@@ -236,7 +236,7 @@ public class AsyncApplicants {
      * <p>Delete Applicant
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AtsApplicantsDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<AtsApplicantsDeleteResponse>} - The async response
      */
     public CompletableFuture<AtsApplicantsDeleteResponse> delete(AtsApplicantsDeleteRequest request) {
         return delete(request, Optional.empty());
@@ -249,7 +249,7 @@ public class AsyncApplicants {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AtsApplicantsDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<AtsApplicantsDeleteResponse>} - The async response
      */
     public CompletableFuture<AtsApplicantsDeleteResponse> delete(AtsApplicantsDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<AtsApplicantsDeleteRequest, AtsApplicantsDeleteResponse> operation

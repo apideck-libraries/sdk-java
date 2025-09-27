@@ -68,7 +68,7 @@ public class AsyncCustomObjectSchemas {
      * <p>List custom object schemas
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CrmCustomObjectSchemasAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmCustomObjectSchemasAllResponse>} - The async response
      */
     public CompletableFuture<CrmCustomObjectSchemasAllResponse> list(CrmCustomObjectSchemasAllRequest request) {
         return list(request, Optional.empty());
@@ -81,7 +81,7 @@ public class AsyncCustomObjectSchemas {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;CrmCustomObjectSchemasAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmCustomObjectSchemasAllResponse>} - The async response
      */
     public CompletableFuture<CrmCustomObjectSchemasAllResponse> list(CrmCustomObjectSchemasAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmCustomObjectSchemasAllRequest, CrmCustomObjectSchemasAllResponse> operation
@@ -110,7 +110,7 @@ public class AsyncCustomObjectSchemas {
      * <p>Create custom object schema
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CrmCustomObjectSchemasAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmCustomObjectSchemasAddResponse>} - The async response
      */
     public CompletableFuture<CrmCustomObjectSchemasAddResponse> create(CrmCustomObjectSchemasAddRequest request) {
         return create(request, Optional.empty());
@@ -123,7 +123,7 @@ public class AsyncCustomObjectSchemas {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;CrmCustomObjectSchemasAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmCustomObjectSchemasAddResponse>} - The async response
      */
     public CompletableFuture<CrmCustomObjectSchemasAddResponse> create(CrmCustomObjectSchemasAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmCustomObjectSchemasAddRequest, CrmCustomObjectSchemasAddResponse> operation
@@ -152,7 +152,7 @@ public class AsyncCustomObjectSchemas {
      * <p>Get custom object schema
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CrmCustomObjectSchemasOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmCustomObjectSchemasOneResponse>} - The async response
      */
     public CompletableFuture<CrmCustomObjectSchemasOneResponse> get(CrmCustomObjectSchemasOneRequest request) {
         return get(request, Optional.empty());
@@ -165,7 +165,7 @@ public class AsyncCustomObjectSchemas {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;CrmCustomObjectSchemasOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmCustomObjectSchemasOneResponse>} - The async response
      */
     public CompletableFuture<CrmCustomObjectSchemasOneResponse> get(CrmCustomObjectSchemasOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmCustomObjectSchemasOneRequest, CrmCustomObjectSchemasOneResponse> operation
@@ -194,7 +194,7 @@ public class AsyncCustomObjectSchemas {
      * <p>Update custom object schema
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CrmCustomObjectSchemasUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmCustomObjectSchemasUpdateResponse>} - The async response
      */
     public CompletableFuture<CrmCustomObjectSchemasUpdateResponse> update(CrmCustomObjectSchemasUpdateRequest request) {
         return update(request, Optional.empty());
@@ -207,7 +207,7 @@ public class AsyncCustomObjectSchemas {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;CrmCustomObjectSchemasUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmCustomObjectSchemasUpdateResponse>} - The async response
      */
     public CompletableFuture<CrmCustomObjectSchemasUpdateResponse> update(CrmCustomObjectSchemasUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmCustomObjectSchemasUpdateRequest, CrmCustomObjectSchemasUpdateResponse> operation
@@ -236,7 +236,7 @@ public class AsyncCustomObjectSchemas {
      * <p>Delete custom object schema
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CrmCustomObjectSchemasDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmCustomObjectSchemasDeleteResponse>} - The async response
      */
     public CompletableFuture<CrmCustomObjectSchemasDeleteResponse> delete(CrmCustomObjectSchemasDeleteRequest request) {
         return delete(request, Optional.empty());
@@ -249,7 +249,7 @@ public class AsyncCustomObjectSchemas {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;CrmCustomObjectSchemasDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmCustomObjectSchemasDeleteResponse>} - The async response
      */
     public CompletableFuture<CrmCustomObjectSchemasDeleteResponse> delete(CrmCustomObjectSchemasDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmCustomObjectSchemasDeleteRequest, CrmCustomObjectSchemasDeleteResponse> operation

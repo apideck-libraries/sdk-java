@@ -59,7 +59,7 @@ public class AsyncConnectors {
      * 
      * <p>List Connectors
      * 
-     * @return CompletableFuture&lt;ConnectorConnectorsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<ConnectorConnectorsAllResponse>} - The async response
      */
     public CompletableFuture<ConnectorConnectorsAllResponse> listDirect() {
         return list(
@@ -77,7 +77,7 @@ public class AsyncConnectors {
      * @param limit Number of results to return. Minimum 1, Maximum 200, Default 20
      * @param filter 
      * @param options additional options
-     * @return CompletableFuture&lt;ConnectorConnectorsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<ConnectorConnectorsAllResponse>} - The async response
      */
     public CompletableFuture<ConnectorConnectorsAllResponse> list(
             Optional<String> appId, JsonNullable<String> cursor,
@@ -117,7 +117,7 @@ public class AsyncConnectors {
      * <p>Get Connector
      * 
      * @param id ID of the record you are acting upon.
-     * @return CompletableFuture&lt;ConnectorConnectorsOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<ConnectorConnectorsOneResponse>} - The async response
      */
     public CompletableFuture<ConnectorConnectorsOneResponse> get(String id) {
         return get(Optional.empty(), id, Optional.empty());
@@ -131,7 +131,7 @@ public class AsyncConnectors {
      * @param appId The ID of your Unify application
      * @param id ID of the record you are acting upon.
      * @param options additional options
-     * @return CompletableFuture&lt;ConnectorConnectorsOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<ConnectorConnectorsOneResponse>} - The async response
      */
     public CompletableFuture<ConnectorConnectorsOneResponse> get(
             Optional<String> appId, String id,

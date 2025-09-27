@@ -69,7 +69,8 @@ public class AccountingDepartment {
     private JsonNullable<? extends Map<String, Object>> customMappings;
 
     /**
-     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+     * time an update is made to the object.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("row_version")
@@ -104,7 +105,8 @@ public class AccountingDepartment {
     private JsonNullable<OffsetDateTime> createdAt;
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pass_through")
@@ -218,7 +220,8 @@ public class AccountingDepartment {
     }
 
     /**
-     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+     * time an update is made to the object.
      */
     @JsonIgnore
     public JsonNullable<String> rowVersion() {
@@ -258,7 +261,8 @@ public class AccountingDepartment {
     }
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -396,7 +400,8 @@ public class AccountingDepartment {
     }
 
     /**
-     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+     * time an update is made to the object.
      */
     public AccountingDepartment withRowVersion(String rowVersion) {
         Utils.checkNotNull(rowVersion, "rowVersion");
@@ -405,7 +410,8 @@ public class AccountingDepartment {
     }
 
     /**
-     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+     * time an update is made to the object.
      */
     public AccountingDepartment withRowVersion(JsonNullable<String> rowVersion) {
         Utils.checkNotNull(rowVersion, "rowVersion");
@@ -486,7 +492,8 @@ public class AccountingDepartment {
     }
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     public AccountingDepartment withPassThrough(List<PassThroughBody> passThrough) {
         Utils.checkNotNull(passThrough, "passThrough");
@@ -496,7 +503,8 @@ public class AccountingDepartment {
 
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     public AccountingDepartment withPassThrough(Optional<? extends List<PassThroughBody>> passThrough) {
         Utils.checkNotNull(passThrough, "passThrough");
@@ -719,7 +727,8 @@ public class AccountingDepartment {
 
 
         /**
-         * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+         * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+         * time an update is made to the object.
          */
         public Builder rowVersion(String rowVersion) {
             Utils.checkNotNull(rowVersion, "rowVersion");
@@ -728,7 +737,8 @@ public class AccountingDepartment {
         }
 
         /**
-         * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+         * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+         * time an update is made to the object.
          */
         public Builder rowVersion(JsonNullable<String> rowVersion) {
             Utils.checkNotNull(rowVersion, "rowVersion");
@@ -814,7 +824,8 @@ public class AccountingDepartment {
 
 
         /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+         * The pass_through property allows passing service-specific, custom data or structured modifications
+         * in request body when creating or updating resources.
          */
         public Builder passThrough(List<PassThroughBody> passThrough) {
             Utils.checkNotNull(passThrough, "passThrough");
@@ -823,7 +834,8 @@ public class AccountingDepartment {
         }
 
         /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+         * The pass_through property allows passing service-specific, custom data or structured modifications
+         * in request body when creating or updating resources.
          */
         public Builder passThrough(Optional<? extends List<PassThroughBody>> passThrough) {
             Utils.checkNotNull(passThrough, "passThrough");

@@ -68,7 +68,7 @@ public class AsyncApideckDepartments {
      * <p>List Departments
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;HrisDepartmentsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<HrisDepartmentsAllResponse>} - The async response
      */
     public CompletableFuture<HrisDepartmentsAllResponse> list(HrisDepartmentsAllRequest request) {
         return list(request, Optional.empty());
@@ -81,7 +81,7 @@ public class AsyncApideckDepartments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;HrisDepartmentsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<HrisDepartmentsAllResponse>} - The async response
      */
     public CompletableFuture<HrisDepartmentsAllResponse> list(HrisDepartmentsAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<HrisDepartmentsAllRequest, HrisDepartmentsAllResponse> operation
@@ -110,7 +110,7 @@ public class AsyncApideckDepartments {
      * <p>Create Department
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;HrisDepartmentsAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<HrisDepartmentsAddResponse>} - The async response
      */
     public CompletableFuture<HrisDepartmentsAddResponse> create(HrisDepartmentsAddRequest request) {
         return create(request, Optional.empty());
@@ -123,7 +123,7 @@ public class AsyncApideckDepartments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;HrisDepartmentsAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<HrisDepartmentsAddResponse>} - The async response
      */
     public CompletableFuture<HrisDepartmentsAddResponse> create(HrisDepartmentsAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<HrisDepartmentsAddRequest, HrisDepartmentsAddResponse> operation
@@ -152,7 +152,7 @@ public class AsyncApideckDepartments {
      * <p>Get Department
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;HrisDepartmentsOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<HrisDepartmentsOneResponse>} - The async response
      */
     public CompletableFuture<HrisDepartmentsOneResponse> get(HrisDepartmentsOneRequest request) {
         return get(request, Optional.empty());
@@ -165,7 +165,7 @@ public class AsyncApideckDepartments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;HrisDepartmentsOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<HrisDepartmentsOneResponse>} - The async response
      */
     public CompletableFuture<HrisDepartmentsOneResponse> get(HrisDepartmentsOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<HrisDepartmentsOneRequest, HrisDepartmentsOneResponse> operation
@@ -194,7 +194,7 @@ public class AsyncApideckDepartments {
      * <p>Update Department
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;HrisDepartmentsUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<HrisDepartmentsUpdateResponse>} - The async response
      */
     public CompletableFuture<HrisDepartmentsUpdateResponse> update(HrisDepartmentsUpdateRequest request) {
         return update(request, Optional.empty());
@@ -207,7 +207,7 @@ public class AsyncApideckDepartments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;HrisDepartmentsUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<HrisDepartmentsUpdateResponse>} - The async response
      */
     public CompletableFuture<HrisDepartmentsUpdateResponse> update(HrisDepartmentsUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<HrisDepartmentsUpdateRequest, HrisDepartmentsUpdateResponse> operation
@@ -236,7 +236,7 @@ public class AsyncApideckDepartments {
      * <p>Delete Department
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;HrisDepartmentsDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<HrisDepartmentsDeleteResponse>} - The async response
      */
     public CompletableFuture<HrisDepartmentsDeleteResponse> delete(HrisDepartmentsDeleteRequest request) {
         return delete(request, Optional.empty());
@@ -249,7 +249,7 @@ public class AsyncApideckDepartments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;HrisDepartmentsDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<HrisDepartmentsDeleteResponse>} - The async response
      */
     public CompletableFuture<HrisDepartmentsDeleteResponse> delete(HrisDepartmentsDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<HrisDepartmentsDeleteRequest, HrisDepartmentsDeleteResponse> operation

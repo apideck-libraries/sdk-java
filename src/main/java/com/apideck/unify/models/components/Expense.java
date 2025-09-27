@@ -50,7 +50,8 @@ public class Expense {
     private String accountId;
 
     /**
-     * The ID of the customer this entity is linked to. Used for expenses that should be marked as billable to customers.
+     * The ID of the customer this entity is linked to. Used for expenses that should be marked as billable
+     * to customers.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("customer_id")
@@ -85,7 +86,8 @@ public class Expense {
     private JsonNullable<? extends ExpensePaymentType> paymentType;
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("currency")
@@ -138,7 +140,8 @@ public class Expense {
     private JsonNullable<String> reference;
 
     /**
-     * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
+     * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only
+     * supported for Xero.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("source_document_url")
@@ -178,7 +181,8 @@ public class Expense {
     private JsonNullable<OffsetDateTime> createdAt;
 
     /**
-     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+     * time an update is made to the object.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("row_version")
@@ -199,7 +203,8 @@ public class Expense {
     private JsonNullable<String> createdBy;
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pass_through")
@@ -337,7 +342,8 @@ public class Expense {
     }
 
     /**
-     * The ID of the customer this entity is linked to. Used for expenses that should be marked as billable to customers.
+     * The ID of the customer this entity is linked to. Used for expenses that should be marked as billable
+     * to customers.
      */
     @JsonIgnore
     public Optional<String> customerId() {
@@ -378,7 +384,8 @@ public class Expense {
     }
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -442,7 +449,8 @@ public class Expense {
     }
 
     /**
-     * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
+     * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only
+     * supported for Xero.
      */
     @JsonIgnore
     public JsonNullable<String> sourceDocumentUrl() {
@@ -490,7 +498,8 @@ public class Expense {
     }
 
     /**
-     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+     * time an update is made to the object.
      */
     @JsonIgnore
     public JsonNullable<String> rowVersion() {
@@ -514,7 +523,8 @@ public class Expense {
     }
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -593,7 +603,8 @@ public class Expense {
     }
 
     /**
-     * The ID of the customer this entity is linked to. Used for expenses that should be marked as billable to customers.
+     * The ID of the customer this entity is linked to. Used for expenses that should be marked as billable
+     * to customers.
      */
     public Expense withCustomerId(String customerId) {
         Utils.checkNotNull(customerId, "customerId");
@@ -603,7 +614,8 @@ public class Expense {
 
 
     /**
-     * The ID of the customer this entity is linked to. Used for expenses that should be marked as billable to customers.
+     * The ID of the customer this entity is linked to. Used for expenses that should be marked as billable
+     * to customers.
      */
     public Expense withCustomerId(Optional<String> customerId) {
         Utils.checkNotNull(customerId, "customerId");
@@ -685,7 +697,8 @@ public class Expense {
     }
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     public Expense withCurrency(Currency currency) {
         Utils.checkNotNull(currency, "currency");
@@ -694,7 +707,8 @@ public class Expense {
     }
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     public Expense withCurrency(JsonNullable<? extends Currency> currency) {
         Utils.checkNotNull(currency, "currency");
@@ -815,7 +829,8 @@ public class Expense {
     }
 
     /**
-     * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
+     * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only
+     * supported for Xero.
      */
     public Expense withSourceDocumentUrl(String sourceDocumentUrl) {
         Utils.checkNotNull(sourceDocumentUrl, "sourceDocumentUrl");
@@ -824,7 +839,8 @@ public class Expense {
     }
 
     /**
-     * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
+     * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only
+     * supported for Xero.
      */
     public Expense withSourceDocumentUrl(JsonNullable<String> sourceDocumentUrl) {
         Utils.checkNotNull(sourceDocumentUrl, "sourceDocumentUrl");
@@ -918,7 +934,8 @@ public class Expense {
     }
 
     /**
-     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+     * time an update is made to the object.
      */
     public Expense withRowVersion(String rowVersion) {
         Utils.checkNotNull(rowVersion, "rowVersion");
@@ -927,7 +944,8 @@ public class Expense {
     }
 
     /**
-     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+     * time an update is made to the object.
      */
     public Expense withRowVersion(JsonNullable<String> rowVersion) {
         Utils.checkNotNull(rowVersion, "rowVersion");
@@ -972,7 +990,8 @@ public class Expense {
     }
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     public Expense withPassThrough(List<PassThroughBody> passThrough) {
         Utils.checkNotNull(passThrough, "passThrough");
@@ -982,7 +1001,8 @@ public class Expense {
 
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     public Expense withPassThrough(Optional<? extends List<PassThroughBody>> passThrough) {
         Utils.checkNotNull(passThrough, "passThrough");
@@ -1205,7 +1225,8 @@ public class Expense {
 
 
         /**
-         * The ID of the customer this entity is linked to. Used for expenses that should be marked as billable to customers.
+         * The ID of the customer this entity is linked to. Used for expenses that should be marked as billable
+         * to customers.
          */
         public Builder customerId(String customerId) {
             Utils.checkNotNull(customerId, "customerId");
@@ -1214,7 +1235,8 @@ public class Expense {
         }
 
         /**
-         * The ID of the customer this entity is linked to. Used for expenses that should be marked as billable to customers.
+         * The ID of the customer this entity is linked to. Used for expenses that should be marked as billable
+         * to customers.
          */
         public Builder customerId(Optional<String> customerId) {
             Utils.checkNotNull(customerId, "customerId");
@@ -1300,7 +1322,8 @@ public class Expense {
 
 
         /**
-         * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+         * Indicates the associated currency for an amount of money. Values correspond to [ISO
+         * 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
         public Builder currency(Currency currency) {
             Utils.checkNotNull(currency, "currency");
@@ -1309,7 +1332,8 @@ public class Expense {
         }
 
         /**
-         * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+         * Indicates the associated currency for an amount of money. Values correspond to [ISO
+         * 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
         public Builder currency(JsonNullable<? extends Currency> currency) {
             Utils.checkNotNull(currency, "currency");
@@ -1437,7 +1461,8 @@ public class Expense {
 
 
         /**
-         * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
+         * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only
+         * supported for Xero.
          */
         public Builder sourceDocumentUrl(String sourceDocumentUrl) {
             Utils.checkNotNull(sourceDocumentUrl, "sourceDocumentUrl");
@@ -1446,7 +1471,8 @@ public class Expense {
         }
 
         /**
-         * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
+         * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only
+         * supported for Xero.
          */
         public Builder sourceDocumentUrl(JsonNullable<String> sourceDocumentUrl) {
             Utils.checkNotNull(sourceDocumentUrl, "sourceDocumentUrl");
@@ -1545,7 +1571,8 @@ public class Expense {
 
 
         /**
-         * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+         * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+         * time an update is made to the object.
          */
         public Builder rowVersion(String rowVersion) {
             Utils.checkNotNull(rowVersion, "rowVersion");
@@ -1554,7 +1581,8 @@ public class Expense {
         }
 
         /**
-         * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+         * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+         * time an update is made to the object.
          */
         public Builder rowVersion(JsonNullable<String> rowVersion) {
             Utils.checkNotNull(rowVersion, "rowVersion");
@@ -1602,7 +1630,8 @@ public class Expense {
 
 
         /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+         * The pass_through property allows passing service-specific, custom data or structured modifications
+         * in request body when creating or updating resources.
          */
         public Builder passThrough(List<PassThroughBody> passThrough) {
             Utils.checkNotNull(passThrough, "passThrough");
@@ -1611,7 +1640,8 @@ public class Expense {
         }
 
         /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+         * The pass_through property allows passing service-specific, custom data or structured modifications
+         * in request body when creating or updating resources.
          */
         public Builder passThrough(Optional<? extends List<PassThroughBody>> passThrough) {
             Utils.checkNotNull(passThrough, "passThrough");

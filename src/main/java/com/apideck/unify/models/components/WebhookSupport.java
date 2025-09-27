@@ -17,7 +17,8 @@ import java.util.Optional;
 /**
  * WebhookSupport
  * 
- * <p>How webhooks are supported for the connector. Sometimes the connector natively supports webhooks, other times Apideck virtualizes them based on polling.
+ * <p>How webhooks are supported for the connector. Sometimes the connector natively supports webhooks,
+ * other times Apideck virtualizes them based on polling.
  */
 public class WebhookSupport {
     /**

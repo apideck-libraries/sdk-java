@@ -78,7 +78,8 @@ public class ApplicantInput {
     private JsonNullable<? extends ApplicantGender> gender;
 
     /**
-     * A unique identifier assigned by the government. This field is considered sensitive information and may be subject to special security and privacy restrictions.
+     * A unique identifier assigned by the government. This field is considered sensitive information and
+     * may be subject to special security and privacy restrictions.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("social_security_number")
@@ -102,7 +103,8 @@ public class ApplicantInput {
     private JsonNullable<String> photoUrl;
 
     /**
-     * Typically a list of previous companies where the contact has worked or schools that the contact has attended
+     * Typically a list of previous companies where the contact has worked or schools that the contact has
+     * attended
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("headline")
@@ -223,7 +225,8 @@ public class ApplicantInput {
     private JsonNullable<Boolean> deleted;
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pass_through")
@@ -419,7 +422,8 @@ public class ApplicantInput {
     }
 
     /**
-     * A unique identifier assigned by the government. This field is considered sensitive information and may be subject to special security and privacy restrictions.
+     * A unique identifier assigned by the government. This field is considered sensitive information and
+     * may be subject to special security and privacy restrictions.
      */
     @JsonIgnore
     public JsonNullable<String> socialSecurityNumber() {
@@ -445,7 +449,8 @@ public class ApplicantInput {
     }
 
     /**
-     * Typically a list of previous companies where the contact has worked or schools that the contact has attended
+     * Typically a list of previous companies where the contact has worked or schools that the contact has
+     * attended
      */
     @JsonIgnore
     public Optional<String> headline() {
@@ -581,7 +586,8 @@ public class ApplicantInput {
     }
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -740,7 +746,8 @@ public class ApplicantInput {
     }
 
     /**
-     * A unique identifier assigned by the government. This field is considered sensitive information and may be subject to special security and privacy restrictions.
+     * A unique identifier assigned by the government. This field is considered sensitive information and
+     * may be subject to special security and privacy restrictions.
      */
     public ApplicantInput withSocialSecurityNumber(String socialSecurityNumber) {
         Utils.checkNotNull(socialSecurityNumber, "socialSecurityNumber");
@@ -749,7 +756,8 @@ public class ApplicantInput {
     }
 
     /**
-     * A unique identifier assigned by the government. This field is considered sensitive information and may be subject to special security and privacy restrictions.
+     * A unique identifier assigned by the government. This field is considered sensitive information and
+     * may be subject to special security and privacy restrictions.
      */
     public ApplicantInput withSocialSecurityNumber(JsonNullable<String> socialSecurityNumber) {
         Utils.checkNotNull(socialSecurityNumber, "socialSecurityNumber");
@@ -802,7 +810,8 @@ public class ApplicantInput {
     }
 
     /**
-     * Typically a list of previous companies where the contact has worked or schools that the contact has attended
+     * Typically a list of previous companies where the contact has worked or schools that the contact has
+     * attended
      */
     public ApplicantInput withHeadline(String headline) {
         Utils.checkNotNull(headline, "headline");
@@ -812,7 +821,8 @@ public class ApplicantInput {
 
 
     /**
-     * Typically a list of previous companies where the contact has worked or schools that the contact has attended
+     * Typically a list of previous companies where the contact has worked or schools that the contact has
+     * attended
      */
     public ApplicantInput withHeadline(Optional<String> headline) {
         Utils.checkNotNull(headline, "headline");
@@ -1108,7 +1118,8 @@ public class ApplicantInput {
     }
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     public ApplicantInput withPassThrough(List<PassThroughBody> passThrough) {
         Utils.checkNotNull(passThrough, "passThrough");
@@ -1118,7 +1129,8 @@ public class ApplicantInput {
 
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     public ApplicantInput withPassThrough(Optional<? extends List<PassThroughBody>> passThrough) {
         Utils.checkNotNull(passThrough, "passThrough");
@@ -1462,7 +1474,8 @@ public class ApplicantInput {
 
 
         /**
-         * A unique identifier assigned by the government. This field is considered sensitive information and may be subject to special security and privacy restrictions.
+         * A unique identifier assigned by the government. This field is considered sensitive information and
+         * may be subject to special security and privacy restrictions.
          */
         public Builder socialSecurityNumber(String socialSecurityNumber) {
             Utils.checkNotNull(socialSecurityNumber, "socialSecurityNumber");
@@ -1471,7 +1484,8 @@ public class ApplicantInput {
         }
 
         /**
-         * A unique identifier assigned by the government. This field is considered sensitive information and may be subject to special security and privacy restrictions.
+         * A unique identifier assigned by the government. This field is considered sensitive information and
+         * may be subject to special security and privacy restrictions.
          */
         public Builder socialSecurityNumber(JsonNullable<String> socialSecurityNumber) {
             Utils.checkNotNull(socialSecurityNumber, "socialSecurityNumber");
@@ -1526,7 +1540,8 @@ public class ApplicantInput {
 
 
         /**
-         * Typically a list of previous companies where the contact has worked or schools that the contact has attended
+         * Typically a list of previous companies where the contact has worked or schools that the contact has
+         * attended
          */
         public Builder headline(String headline) {
             Utils.checkNotNull(headline, "headline");
@@ -1535,7 +1550,8 @@ public class ApplicantInput {
         }
 
         /**
-         * Typically a list of previous companies where the contact has worked or schools that the contact has attended
+         * Typically a list of previous companies where the contact has worked or schools that the contact has
+         * attended
          */
         public Builder headline(Optional<String> headline) {
             Utils.checkNotNull(headline, "headline");
@@ -1842,7 +1858,8 @@ public class ApplicantInput {
 
 
         /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+         * The pass_through property allows passing service-specific, custom data or structured modifications
+         * in request body when creating or updating resources.
          */
         public Builder passThrough(List<PassThroughBody> passThrough) {
             Utils.checkNotNull(passThrough, "passThrough");
@@ -1851,7 +1868,8 @@ public class ApplicantInput {
         }
 
         /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+         * The pass_through property allows passing service-specific, custom data or structured modifications
+         * in request body when creating or updating resources.
          */
         public Builder passThrough(Optional<? extends List<PassThroughBody>> passThrough) {
             Utils.checkNotNull(passThrough, "passThrough");

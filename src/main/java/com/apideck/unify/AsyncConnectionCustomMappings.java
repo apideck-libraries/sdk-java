@@ -52,7 +52,7 @@ public class AsyncConnectionCustomMappings {
      * <p>This endpoint returns a list of custom mappings for a connection.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;VaultConnectionCustomMappingsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<VaultConnectionCustomMappingsAllResponse>} - The async response
      */
     public CompletableFuture<VaultConnectionCustomMappingsAllResponse> list(VaultConnectionCustomMappingsAllRequest request) {
         return list(request, Optional.empty());
@@ -65,7 +65,7 @@ public class AsyncConnectionCustomMappings {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;VaultConnectionCustomMappingsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<VaultConnectionCustomMappingsAllResponse>} - The async response
      */
     public CompletableFuture<VaultConnectionCustomMappingsAllResponse> list(VaultConnectionCustomMappingsAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<VaultConnectionCustomMappingsAllRequest, VaultConnectionCustomMappingsAllResponse> operation

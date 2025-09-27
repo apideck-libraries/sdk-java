@@ -25,13 +25,15 @@ public class CopyFolderRequest {
     private Optional<String> name;
 
     /**
-     * The parent folder to create the new file within. This can be an ID or a path depending on the downstream folder. Please see the connector section below to see downstream specific gotchas.
+     * The parent folder to create the new file within. This can be an ID or a path depending on the
+     * downstream folder. Please see the connector section below to see downstream specific gotchas.
      */
     @JsonProperty("parent_folder_id")
     private String parentFolderId;
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pass_through")
@@ -64,7 +66,8 @@ public class CopyFolderRequest {
     }
 
     /**
-     * The parent folder to create the new file within. This can be an ID or a path depending on the downstream folder. Please see the connector section below to see downstream specific gotchas.
+     * The parent folder to create the new file within. This can be an ID or a path depending on the
+     * downstream folder. Please see the connector section below to see downstream specific gotchas.
      */
     @JsonIgnore
     public String parentFolderId() {
@@ -72,7 +75,8 @@ public class CopyFolderRequest {
     }
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -105,7 +109,8 @@ public class CopyFolderRequest {
     }
 
     /**
-     * The parent folder to create the new file within. This can be an ID or a path depending on the downstream folder. Please see the connector section below to see downstream specific gotchas.
+     * The parent folder to create the new file within. This can be an ID or a path depending on the
+     * downstream folder. Please see the connector section below to see downstream specific gotchas.
      */
     public CopyFolderRequest withParentFolderId(String parentFolderId) {
         Utils.checkNotNull(parentFolderId, "parentFolderId");
@@ -114,7 +119,8 @@ public class CopyFolderRequest {
     }
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     public CopyFolderRequest withPassThrough(List<PassThroughBody> passThrough) {
         Utils.checkNotNull(passThrough, "passThrough");
@@ -124,7 +130,8 @@ public class CopyFolderRequest {
 
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     public CopyFolderRequest withPassThrough(Optional<? extends List<PassThroughBody>> passThrough) {
         Utils.checkNotNull(passThrough, "passThrough");
@@ -195,7 +202,8 @@ public class CopyFolderRequest {
 
 
         /**
-         * The parent folder to create the new file within. This can be an ID or a path depending on the downstream folder. Please see the connector section below to see downstream specific gotchas.
+         * The parent folder to create the new file within. This can be an ID or a path depending on the
+         * downstream folder. Please see the connector section below to see downstream specific gotchas.
          */
         public Builder parentFolderId(String parentFolderId) {
             Utils.checkNotNull(parentFolderId, "parentFolderId");
@@ -205,7 +213,8 @@ public class CopyFolderRequest {
 
 
         /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+         * The pass_through property allows passing service-specific, custom data or structured modifications
+         * in request body when creating or updating resources.
          */
         public Builder passThrough(List<PassThroughBody> passThrough) {
             Utils.checkNotNull(passThrough, "passThrough");
@@ -214,7 +223,8 @@ public class CopyFolderRequest {
         }
 
         /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+         * The pass_through property allows passing service-specific, custom data or structured modifications
+         * in request body when creating or updating resources.
          */
         public Builder passThrough(Optional<? extends List<PassThroughBody>> passThrough) {
             Utils.checkNotNull(passThrough, "passThrough");

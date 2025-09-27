@@ -49,26 +49,30 @@ public class Reports {
     private String endDate;
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("currency")
     private JsonNullable<? extends Currency> currency;
 
     /**
-     * A balance sheet assets account represents the financial position of a company at a specific point in time.
+     * A balance sheet assets account represents the financial position of a company at a specific point in
+     * time.
      */
     @JsonProperty("assets")
     private BalanceSheetAssetsAccount assets;
 
     /**
-     * A balance sheet liabilities account represents the financial position of a company at a specific point in time.
+     * A balance sheet liabilities account represents the financial position of a company at a specific
+     * point in time.
      */
     @JsonProperty("liabilities")
     private BalanceSheetLiabilitiesAccount liabilities;
 
     /**
-     * A balance sheet equity account represents the financial position of a company at a specific point in time.
+     * A balance sheet equity account represents the financial position of a company at a specific point in
+     * time.
      */
     @JsonProperty("equity")
     private BalanceSheetEquityAccount equity;
@@ -116,7 +120,8 @@ public class Reports {
     private JsonNullable<OffsetDateTime> createdAt;
 
     /**
-     * A balance sheet uncategorized items account represents the financial position of a company at a specific point in time.
+     * A balance sheet uncategorized items account represents the financial position of a company at a
+     * specific point in time.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("uncategorized_items")
@@ -216,7 +221,8 @@ public class Reports {
     }
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -225,7 +231,8 @@ public class Reports {
     }
 
     /**
-     * A balance sheet assets account represents the financial position of a company at a specific point in time.
+     * A balance sheet assets account represents the financial position of a company at a specific point in
+     * time.
      */
     @JsonIgnore
     public BalanceSheetAssetsAccount assets() {
@@ -233,7 +240,8 @@ public class Reports {
     }
 
     /**
-     * A balance sheet liabilities account represents the financial position of a company at a specific point in time.
+     * A balance sheet liabilities account represents the financial position of a company at a specific
+     * point in time.
      */
     @JsonIgnore
     public BalanceSheetLiabilitiesAccount liabilities() {
@@ -241,7 +249,8 @@ public class Reports {
     }
 
     /**
-     * A balance sheet equity account represents the financial position of a company at a specific point in time.
+     * A balance sheet equity account represents the financial position of a company at a specific point in
+     * time.
      */
     @JsonIgnore
     public BalanceSheetEquityAccount equity() {
@@ -298,7 +307,8 @@ public class Reports {
     }
 
     /**
-     * A balance sheet uncategorized items account represents the financial position of a company at a specific point in time.
+     * A balance sheet uncategorized items account represents the financial position of a company at a
+     * specific point in time.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -378,7 +388,8 @@ public class Reports {
     }
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     public Reports withCurrency(Currency currency) {
         Utils.checkNotNull(currency, "currency");
@@ -387,7 +398,8 @@ public class Reports {
     }
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     public Reports withCurrency(JsonNullable<? extends Currency> currency) {
         Utils.checkNotNull(currency, "currency");
@@ -396,7 +408,8 @@ public class Reports {
     }
 
     /**
-     * A balance sheet assets account represents the financial position of a company at a specific point in time.
+     * A balance sheet assets account represents the financial position of a company at a specific point in
+     * time.
      */
     public Reports withAssets(BalanceSheetAssetsAccount assets) {
         Utils.checkNotNull(assets, "assets");
@@ -405,7 +418,8 @@ public class Reports {
     }
 
     /**
-     * A balance sheet liabilities account represents the financial position of a company at a specific point in time.
+     * A balance sheet liabilities account represents the financial position of a company at a specific
+     * point in time.
      */
     public Reports withLiabilities(BalanceSheetLiabilitiesAccount liabilities) {
         Utils.checkNotNull(liabilities, "liabilities");
@@ -414,7 +428,8 @@ public class Reports {
     }
 
     /**
-     * A balance sheet equity account represents the financial position of a company at a specific point in time.
+     * A balance sheet equity account represents the financial position of a company at a specific point in
+     * time.
      */
     public Reports withEquity(BalanceSheetEquityAccount equity) {
         Utils.checkNotNull(equity, "equity");
@@ -532,7 +547,8 @@ public class Reports {
     }
 
     /**
-     * A balance sheet uncategorized items account represents the financial position of a company at a specific point in time.
+     * A balance sheet uncategorized items account represents the financial position of a company at a
+     * specific point in time.
      */
     public Reports withUncategorizedItems(BalanceSheetUncategorizedItemsAccount uncategorizedItems) {
         Utils.checkNotNull(uncategorizedItems, "uncategorizedItems");
@@ -542,7 +558,8 @@ public class Reports {
 
 
     /**
-     * A balance sheet uncategorized items account represents the financial position of a company at a specific point in time.
+     * A balance sheet uncategorized items account represents the financial position of a company at a
+     * specific point in time.
      */
     public Reports withUncategorizedItems(Optional<? extends BalanceSheetUncategorizedItemsAccount> uncategorizedItems) {
         Utils.checkNotNull(uncategorizedItems, "uncategorizedItems");
@@ -713,7 +730,8 @@ public class Reports {
 
 
         /**
-         * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+         * Indicates the associated currency for an amount of money. Values correspond to [ISO
+         * 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
         public Builder currency(Currency currency) {
             Utils.checkNotNull(currency, "currency");
@@ -722,7 +740,8 @@ public class Reports {
         }
 
         /**
-         * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+         * Indicates the associated currency for an amount of money. Values correspond to [ISO
+         * 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
         public Builder currency(JsonNullable<? extends Currency> currency) {
             Utils.checkNotNull(currency, "currency");
@@ -732,7 +751,8 @@ public class Reports {
 
 
         /**
-         * A balance sheet assets account represents the financial position of a company at a specific point in time.
+         * A balance sheet assets account represents the financial position of a company at a specific point in
+         * time.
          */
         public Builder assets(BalanceSheetAssetsAccount assets) {
             Utils.checkNotNull(assets, "assets");
@@ -742,7 +762,8 @@ public class Reports {
 
 
         /**
-         * A balance sheet liabilities account represents the financial position of a company at a specific point in time.
+         * A balance sheet liabilities account represents the financial position of a company at a specific
+         * point in time.
          */
         public Builder liabilities(BalanceSheetLiabilitiesAccount liabilities) {
             Utils.checkNotNull(liabilities, "liabilities");
@@ -752,7 +773,8 @@ public class Reports {
 
 
         /**
-         * A balance sheet equity account represents the financial position of a company at a specific point in time.
+         * A balance sheet equity account represents the financial position of a company at a specific point in
+         * time.
          */
         public Builder equity(BalanceSheetEquityAccount equity) {
             Utils.checkNotNull(equity, "equity");
@@ -876,7 +898,8 @@ public class Reports {
 
 
         /**
-         * A balance sheet uncategorized items account represents the financial position of a company at a specific point in time.
+         * A balance sheet uncategorized items account represents the financial position of a company at a
+         * specific point in time.
          */
         public Builder uncategorizedItems(BalanceSheetUncategorizedItemsAccount uncategorizedItems) {
             Utils.checkNotNull(uncategorizedItems, "uncategorizedItems");
@@ -885,7 +908,8 @@ public class Reports {
         }
 
         /**
-         * A balance sheet uncategorized items account represents the financial position of a company at a specific point in time.
+         * A balance sheet uncategorized items account represents the financial position of a company at a
+         * specific point in time.
          */
         public Builder uncategorizedItems(Optional<? extends BalanceSheetUncategorizedItemsAccount> uncategorizedItems) {
             Utils.checkNotNull(uncategorizedItems, "uncategorizedItems");

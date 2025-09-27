@@ -17,13 +17,18 @@ import java.util.Optional;
 
 public class CreateConsumerRequest {
     /**
-     * Unique consumer identifier. You can freely choose a consumer ID yourself. Most of the time, this is an ID of your internal data model that represents a user or account in your system (for example account:12345). If the consumer doesn't exist yet, Vault will upsert a consumer based on your ID.
+     * Unique consumer identifier. You can freely choose a consumer ID yourself. Most of the time, this is
+     * an ID of your internal data model that represents a user or account in your system (for example
+     * account:12345).
+     * 
+     * <p>If the consumer doesn't exist yet, Vault will upsert a consumer based on your ID.
      */
     @JsonProperty("consumer_id")
     private String consumerId;
 
     /**
-     * The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional, but recommended.
+     * The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional,
+     * but recommended.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
@@ -45,7 +50,11 @@ public class CreateConsumerRequest {
     }
 
     /**
-     * Unique consumer identifier. You can freely choose a consumer ID yourself. Most of the time, this is an ID of your internal data model that represents a user or account in your system (for example account:12345). If the consumer doesn't exist yet, Vault will upsert a consumer based on your ID.
+     * Unique consumer identifier. You can freely choose a consumer ID yourself. Most of the time, this is
+     * an ID of your internal data model that represents a user or account in your system (for example
+     * account:12345).
+     * 
+     * <p>If the consumer doesn't exist yet, Vault will upsert a consumer based on your ID.
      */
     @JsonIgnore
     public String consumerId() {
@@ -53,7 +62,8 @@ public class CreateConsumerRequest {
     }
 
     /**
-     * The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional, but recommended.
+     * The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional,
+     * but recommended.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -67,7 +77,11 @@ public class CreateConsumerRequest {
 
 
     /**
-     * Unique consumer identifier. You can freely choose a consumer ID yourself. Most of the time, this is an ID of your internal data model that represents a user or account in your system (for example account:12345). If the consumer doesn't exist yet, Vault will upsert a consumer based on your ID.
+     * Unique consumer identifier. You can freely choose a consumer ID yourself. Most of the time, this is
+     * an ID of your internal data model that represents a user or account in your system (for example
+     * account:12345).
+     * 
+     * <p>If the consumer doesn't exist yet, Vault will upsert a consumer based on your ID.
      */
     public CreateConsumerRequest withConsumerId(String consumerId) {
         Utils.checkNotNull(consumerId, "consumerId");
@@ -76,7 +90,8 @@ public class CreateConsumerRequest {
     }
 
     /**
-     * The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional, but recommended.
+     * The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional,
+     * but recommended.
      */
     public CreateConsumerRequest withMetadata(ConsumerMetadata metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -86,7 +101,8 @@ public class CreateConsumerRequest {
 
 
     /**
-     * The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional, but recommended.
+     * The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional,
+     * but recommended.
      */
     public CreateConsumerRequest withMetadata(Optional<? extends ConsumerMetadata> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -134,7 +150,11 @@ public class CreateConsumerRequest {
 
 
         /**
-         * Unique consumer identifier. You can freely choose a consumer ID yourself. Most of the time, this is an ID of your internal data model that represents a user or account in your system (for example account:12345). If the consumer doesn't exist yet, Vault will upsert a consumer based on your ID.
+         * Unique consumer identifier. You can freely choose a consumer ID yourself. Most of the time, this is
+         * an ID of your internal data model that represents a user or account in your system (for example
+         * account:12345).
+         * 
+         * <p>If the consumer doesn't exist yet, Vault will upsert a consumer based on your ID.
          */
         public Builder consumerId(String consumerId) {
             Utils.checkNotNull(consumerId, "consumerId");
@@ -144,7 +164,8 @@ public class CreateConsumerRequest {
 
 
         /**
-         * The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional, but recommended.
+         * The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional,
+         * but recommended.
          */
         public Builder metadata(ConsumerMetadata metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -153,7 +174,8 @@ public class CreateConsumerRequest {
         }
 
         /**
-         * The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional, but recommended.
+         * The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional,
+         * but recommended.
          */
         public Builder metadata(Optional<? extends ConsumerMetadata> metadata) {
             Utils.checkNotNull(metadata, "metadata");

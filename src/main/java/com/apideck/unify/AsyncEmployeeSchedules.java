@@ -38,7 +38,8 @@ public class AsyncEmployeeSchedules {
     /**
      * List Employee Schedules
      * 
-     * <p>List schedules for employee, a schedule is a work pattern, not the actual worked hours, for an employee.
+     * <p>List schedules for employee, a schedule is a work pattern, not the actual worked hours, for an
+     * employee.
      * 
      * @return The async call builder
      */
@@ -49,10 +50,11 @@ public class AsyncEmployeeSchedules {
     /**
      * List Employee Schedules
      * 
-     * <p>List schedules for employee, a schedule is a work pattern, not the actual worked hours, for an employee.
+     * <p>List schedules for employee, a schedule is a work pattern, not the actual worked hours, for an
+     * employee.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;HrisEmployeeSchedulesAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<HrisEmployeeSchedulesAllResponse>} - The async response
      */
     public CompletableFuture<HrisEmployeeSchedulesAllResponse> list(HrisEmployeeSchedulesAllRequest request) {
         return list(request, Optional.empty());
@@ -61,11 +63,12 @@ public class AsyncEmployeeSchedules {
     /**
      * List Employee Schedules
      * 
-     * <p>List schedules for employee, a schedule is a work pattern, not the actual worked hours, for an employee.
+     * <p>List schedules for employee, a schedule is a work pattern, not the actual worked hours, for an
+     * employee.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;HrisEmployeeSchedulesAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<HrisEmployeeSchedulesAllResponse>} - The async response
      */
     public CompletableFuture<HrisEmployeeSchedulesAllResponse> list(HrisEmployeeSchedulesAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<HrisEmployeeSchedulesAllRequest, HrisEmployeeSchedulesAllResponse> operation

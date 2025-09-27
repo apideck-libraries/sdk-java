@@ -19,7 +19,8 @@ import java.util.Optional;
 /**
  * BalanceSheetAssetsAccount
  * 
- * <p>A balance sheet assets account represents the financial position of a company at a specific point in time.
+ * <p>A balance sheet assets account represents the financial position of a company at a specific point in
+ * time.
  */
 public class BalanceSheetAssetsAccount {
     /**

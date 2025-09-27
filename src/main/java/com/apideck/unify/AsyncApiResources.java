@@ -54,7 +54,7 @@ public class AsyncApiResources {
      * 
      * @param id ID of the record you are acting upon.
      * @param resourceId ID of the resource you are acting upon.
-     * @return CompletableFuture&lt;ConnectorApiResourcesOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<ConnectorApiResourcesOneResponse>} - The async response
      */
     public CompletableFuture<ConnectorApiResourcesOneResponse> get(String id, String resourceId) {
         return get(
@@ -71,7 +71,7 @@ public class AsyncApiResources {
      * @param id ID of the record you are acting upon.
      * @param resourceId ID of the resource you are acting upon.
      * @param options additional options
-     * @return CompletableFuture&lt;ConnectorApiResourcesOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<ConnectorApiResourcesOneResponse>} - The async response
      */
     public CompletableFuture<ConnectorApiResourcesOneResponse> get(
             Optional<String> appId, String id,

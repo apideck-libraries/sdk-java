@@ -40,7 +40,8 @@ public class AsyncSessions {
     /**
      * Create Session
      * 
-     * <p>Making a POST request to this endpoint will initiate a Hosted Vault session. Redirect the consumer to the returned
+     * <p>Making a POST request to this endpoint will initiate a Hosted Vault session. Redirect the consumer
+     * to the returned
      * URL to allow temporary access to manage their integrations and settings.
      * 
      * <p>Note: This is a short lived token that will expire after 1 hour (TTL: 3600).
@@ -54,12 +55,13 @@ public class AsyncSessions {
     /**
      * Create Session
      * 
-     * <p>Making a POST request to this endpoint will initiate a Hosted Vault session. Redirect the consumer to the returned
+     * <p>Making a POST request to this endpoint will initiate a Hosted Vault session. Redirect the consumer
+     * to the returned
      * URL to allow temporary access to manage their integrations and settings.
      * 
      * <p>Note: This is a short lived token that will expire after 1 hour (TTL: 3600).
      * 
-     * @return CompletableFuture&lt;VaultSessionsCreateResponse&gt; - The async response
+     * @return {@code CompletableFuture<VaultSessionsCreateResponse>} - The async response
      */
     public CompletableFuture<VaultSessionsCreateResponse> createDirect() {
         return create(
@@ -70,7 +72,8 @@ public class AsyncSessions {
     /**
      * Create Session
      * 
-     * <p>Making a POST request to this endpoint will initiate a Hosted Vault session. Redirect the consumer to the returned
+     * <p>Making a POST request to this endpoint will initiate a Hosted Vault session. Redirect the consumer
+     * to the returned
      * URL to allow temporary access to manage their integrations and settings.
      * 
      * <p>Note: This is a short lived token that will expire after 1 hour (TTL: 3600).
@@ -79,7 +82,7 @@ public class AsyncSessions {
      * @param appId The ID of your Unify application
      * @param session 
      * @param options additional options
-     * @return CompletableFuture&lt;VaultSessionsCreateResponse&gt; - The async response
+     * @return {@code CompletableFuture<VaultSessionsCreateResponse>} - The async response
      */
     public CompletableFuture<VaultSessionsCreateResponse> create(
             Optional<String> consumerId, Optional<String> appId,

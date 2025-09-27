@@ -54,7 +54,7 @@ public class AsyncConnectorDocs {
      * 
      * @param id ID of the record you are acting upon.
      * @param docId ID of the Doc
-     * @return CompletableFuture&lt;ConnectorConnectorDocsOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<ConnectorConnectorDocsOneResponse>} - The async response
      */
     public CompletableFuture<ConnectorConnectorDocsOneResponse> get(String id, String docId) {
         return get(
@@ -71,7 +71,7 @@ public class AsyncConnectorDocs {
      * @param id ID of the record you are acting upon.
      * @param docId ID of the Doc
      * @param options additional options
-     * @return CompletableFuture&lt;ConnectorConnectorDocsOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<ConnectorConnectorDocsOneResponse>} - The async response
      */
     public CompletableFuture<ConnectorConnectorDocsOneResponse> get(
             Optional<String> appId, String id,

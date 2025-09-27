@@ -11,7 +11,8 @@ import java.util.Optional;
 /**
  * DisabledReason
  * 
- * <p>Indicates if the webhook has has been disabled as it reached its retry limit or if account is over the usage allocated by it's plan.
+ * <p>Indicates if the webhook has has been disabled as it reached its retry limit or if account is over
+ * the usage allocated by it's plan.
  */
 public enum DisabledReason {
     NONE("none"),

@@ -91,7 +91,8 @@ public class Connection {
     private Optional<? extends ConnectionStatus> status;
 
     /**
-     * Whether the connection is enabled or not. You can enable or disable a connection using the Update Connection API.
+     * Whether the connection is enabled or not. You can enable or disable a connection using the Update
+     * Connection API.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("enabled")
@@ -119,14 +120,23 @@ public class Connection {
     private Optional<String> logo;
 
     /**
-     * The OAuth redirect URI. Redirect your users to this URI to let them authorize your app in the connector's UI. Before you can use this URI, you must add `redirect_uri` as a query parameter to the `authorize_url`. Be sure to URL encode the `redirect_uri` part. Your users will be redirected to this `redirect_uri` after they granted access to your app in the connector's UI.
+     * The OAuth redirect URI. Redirect your users to this URI to let them authorize your app in the
+     * connector's UI. Before you can use this URI, you must add `redirect_uri` as a query parameter to the
+     * `authorize_url`.
+     * 
+     * <p>Be sure to URL encode the `redirect_uri` part. Your users will be redirected to this `redirect_uri`
+     * after they granted access to your app in the connector's UI.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("authorize_url")
     private JsonNullable<String> authorizeUrl;
 
     /**
-     * The OAuth revoke URI. Redirect your users to this URI to revoke this connection. Before you can use this URI, you must add `redirect_uri` as a query parameter. Your users will be redirected to this `redirect_uri` after they granted access to your app in the connector's UI.
+     * The OAuth revoke URI. Redirect your users to this URI to revoke this connection. Before you can use
+     * this URI, you must add `redirect_uri` as a query parameter.
+     * 
+     * <p>Your users will be redirected to this `redirect_uri` after they granted access to your app in the
+     * connector's UI.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("revoke_url")
@@ -196,7 +206,8 @@ public class Connection {
     private Optional<? extends List<WebhookSubscription>> subscriptions;
 
     /**
-     * Whether the connector has a guide available in the developer docs or not (https://docs.apideck.com/connectors/{service_id}/docs/consumer+connection).
+     * Whether the connector has a guide available in the developer docs or not
+     * (https://docs.apideck.com/connectors/{service_id}/docs/consumer+connection).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("has_guide")
@@ -450,7 +461,8 @@ public class Connection {
     }
 
     /**
-     * Whether the connection is enabled or not. You can enable or disable a connection using the Update Connection API.
+     * Whether the connection is enabled or not. You can enable or disable a connection using the Update
+     * Connection API.
      */
     @JsonIgnore
     public Optional<Boolean> enabled() {
@@ -482,7 +494,12 @@ public class Connection {
     }
 
     /**
-     * The OAuth redirect URI. Redirect your users to this URI to let them authorize your app in the connector's UI. Before you can use this URI, you must add `redirect_uri` as a query parameter to the `authorize_url`. Be sure to URL encode the `redirect_uri` part. Your users will be redirected to this `redirect_uri` after they granted access to your app in the connector's UI.
+     * The OAuth redirect URI. Redirect your users to this URI to let them authorize your app in the
+     * connector's UI. Before you can use this URI, you must add `redirect_uri` as a query parameter to the
+     * `authorize_url`.
+     * 
+     * <p>Be sure to URL encode the `redirect_uri` part. Your users will be redirected to this `redirect_uri`
+     * after they granted access to your app in the connector's UI.
      */
     @JsonIgnore
     public JsonNullable<String> authorizeUrl() {
@@ -490,7 +507,11 @@ public class Connection {
     }
 
     /**
-     * The OAuth revoke URI. Redirect your users to this URI to revoke this connection. Before you can use this URI, you must add `redirect_uri` as a query parameter. Your users will be redirected to this `redirect_uri` after they granted access to your app in the connector's UI.
+     * The OAuth revoke URI. Redirect your users to this URI to revoke this connection. Before you can use
+     * this URI, you must add `redirect_uri` as a query parameter.
+     * 
+     * <p>Your users will be redirected to this `redirect_uri` after they granted access to your app in the
+     * connector's UI.
      */
     @JsonIgnore
     public JsonNullable<String> revokeUrl() {
@@ -574,7 +595,8 @@ public class Connection {
     }
 
     /**
-     * Whether the connector has a guide available in the developer docs or not (https://docs.apideck.com/connectors/{service_id}/docs/consumer+connection).
+     * Whether the connector has a guide available in the developer docs or not
+     * (https://docs.apideck.com/connectors/{service_id}/docs/consumer+connection).
      */
     @JsonIgnore
     public Optional<Boolean> hasGuide() {
@@ -820,7 +842,8 @@ public class Connection {
     }
 
     /**
-     * Whether the connection is enabled or not. You can enable or disable a connection using the Update Connection API.
+     * Whether the connection is enabled or not. You can enable or disable a connection using the Update
+     * Connection API.
      */
     public Connection withEnabled(boolean enabled) {
         Utils.checkNotNull(enabled, "enabled");
@@ -830,7 +853,8 @@ public class Connection {
 
 
     /**
-     * Whether the connection is enabled or not. You can enable or disable a connection using the Update Connection API.
+     * Whether the connection is enabled or not. You can enable or disable a connection using the Update
+     * Connection API.
      */
     public Connection withEnabled(Optional<Boolean> enabled) {
         Utils.checkNotNull(enabled, "enabled");
@@ -896,7 +920,12 @@ public class Connection {
     }
 
     /**
-     * The OAuth redirect URI. Redirect your users to this URI to let them authorize your app in the connector's UI. Before you can use this URI, you must add `redirect_uri` as a query parameter to the `authorize_url`. Be sure to URL encode the `redirect_uri` part. Your users will be redirected to this `redirect_uri` after they granted access to your app in the connector's UI.
+     * The OAuth redirect URI. Redirect your users to this URI to let them authorize your app in the
+     * connector's UI. Before you can use this URI, you must add `redirect_uri` as a query parameter to the
+     * `authorize_url`.
+     * 
+     * <p>Be sure to URL encode the `redirect_uri` part. Your users will be redirected to this `redirect_uri`
+     * after they granted access to your app in the connector's UI.
      */
     public Connection withAuthorizeUrl(String authorizeUrl) {
         Utils.checkNotNull(authorizeUrl, "authorizeUrl");
@@ -905,7 +934,12 @@ public class Connection {
     }
 
     /**
-     * The OAuth redirect URI. Redirect your users to this URI to let them authorize your app in the connector's UI. Before you can use this URI, you must add `redirect_uri` as a query parameter to the `authorize_url`. Be sure to URL encode the `redirect_uri` part. Your users will be redirected to this `redirect_uri` after they granted access to your app in the connector's UI.
+     * The OAuth redirect URI. Redirect your users to this URI to let them authorize your app in the
+     * connector's UI. Before you can use this URI, you must add `redirect_uri` as a query parameter to the
+     * `authorize_url`.
+     * 
+     * <p>Be sure to URL encode the `redirect_uri` part. Your users will be redirected to this `redirect_uri`
+     * after they granted access to your app in the connector's UI.
      */
     public Connection withAuthorizeUrl(JsonNullable<String> authorizeUrl) {
         Utils.checkNotNull(authorizeUrl, "authorizeUrl");
@@ -914,7 +948,11 @@ public class Connection {
     }
 
     /**
-     * The OAuth revoke URI. Redirect your users to this URI to revoke this connection. Before you can use this URI, you must add `redirect_uri` as a query parameter. Your users will be redirected to this `redirect_uri` after they granted access to your app in the connector's UI.
+     * The OAuth revoke URI. Redirect your users to this URI to revoke this connection. Before you can use
+     * this URI, you must add `redirect_uri` as a query parameter.
+     * 
+     * <p>Your users will be redirected to this `redirect_uri` after they granted access to your app in the
+     * connector's UI.
      */
     public Connection withRevokeUrl(String revokeUrl) {
         Utils.checkNotNull(revokeUrl, "revokeUrl");
@@ -923,7 +961,11 @@ public class Connection {
     }
 
     /**
-     * The OAuth revoke URI. Redirect your users to this URI to revoke this connection. Before you can use this URI, you must add `redirect_uri` as a query parameter. Your users will be redirected to this `redirect_uri` after they granted access to your app in the connector's UI.
+     * The OAuth revoke URI. Redirect your users to this URI to revoke this connection. Before you can use
+     * this URI, you must add `redirect_uri` as a query parameter.
+     * 
+     * <p>Your users will be redirected to this `redirect_uri` after they granted access to your app in the
+     * connector's UI.
      */
     public Connection withRevokeUrl(JsonNullable<String> revokeUrl) {
         Utils.checkNotNull(revokeUrl, "revokeUrl");
@@ -1097,7 +1139,8 @@ public class Connection {
     }
 
     /**
-     * Whether the connector has a guide available in the developer docs or not (https://docs.apideck.com/connectors/{service_id}/docs/consumer+connection).
+     * Whether the connector has a guide available in the developer docs or not
+     * (https://docs.apideck.com/connectors/{service_id}/docs/consumer+connection).
      */
     public Connection withHasGuide(boolean hasGuide) {
         Utils.checkNotNull(hasGuide, "hasGuide");
@@ -1107,7 +1150,8 @@ public class Connection {
 
 
     /**
-     * Whether the connector has a guide available in the developer docs or not (https://docs.apideck.com/connectors/{service_id}/docs/consumer+connection).
+     * Whether the connector has a guide available in the developer docs or not
+     * (https://docs.apideck.com/connectors/{service_id}/docs/consumer+connection).
      */
     public Connection withHasGuide(Optional<Boolean> hasGuide) {
         Utils.checkNotNull(hasGuide, "hasGuide");
@@ -1590,7 +1634,8 @@ public class Connection {
 
 
         /**
-         * Whether the connection is enabled or not. You can enable or disable a connection using the Update Connection API.
+         * Whether the connection is enabled or not. You can enable or disable a connection using the Update
+         * Connection API.
          */
         public Builder enabled(boolean enabled) {
             Utils.checkNotNull(enabled, "enabled");
@@ -1599,7 +1644,8 @@ public class Connection {
         }
 
         /**
-         * Whether the connection is enabled or not. You can enable or disable a connection using the Update Connection API.
+         * Whether the connection is enabled or not. You can enable or disable a connection using the Update
+         * Connection API.
          */
         public Builder enabled(Optional<Boolean> enabled) {
             Utils.checkNotNull(enabled, "enabled");
@@ -1666,7 +1712,12 @@ public class Connection {
 
 
         /**
-         * The OAuth redirect URI. Redirect your users to this URI to let them authorize your app in the connector's UI. Before you can use this URI, you must add `redirect_uri` as a query parameter to the `authorize_url`. Be sure to URL encode the `redirect_uri` part. Your users will be redirected to this `redirect_uri` after they granted access to your app in the connector's UI.
+         * The OAuth redirect URI. Redirect your users to this URI to let them authorize your app in the
+         * connector's UI. Before you can use this URI, you must add `redirect_uri` as a query parameter to the
+         * `authorize_url`.
+         * 
+         * <p>Be sure to URL encode the `redirect_uri` part. Your users will be redirected to this `redirect_uri`
+         * after they granted access to your app in the connector's UI.
          */
         public Builder authorizeUrl(String authorizeUrl) {
             Utils.checkNotNull(authorizeUrl, "authorizeUrl");
@@ -1675,7 +1726,12 @@ public class Connection {
         }
 
         /**
-         * The OAuth redirect URI. Redirect your users to this URI to let them authorize your app in the connector's UI. Before you can use this URI, you must add `redirect_uri` as a query parameter to the `authorize_url`. Be sure to URL encode the `redirect_uri` part. Your users will be redirected to this `redirect_uri` after they granted access to your app in the connector's UI.
+         * The OAuth redirect URI. Redirect your users to this URI to let them authorize your app in the
+         * connector's UI. Before you can use this URI, you must add `redirect_uri` as a query parameter to the
+         * `authorize_url`.
+         * 
+         * <p>Be sure to URL encode the `redirect_uri` part. Your users will be redirected to this `redirect_uri`
+         * after they granted access to your app in the connector's UI.
          */
         public Builder authorizeUrl(JsonNullable<String> authorizeUrl) {
             Utils.checkNotNull(authorizeUrl, "authorizeUrl");
@@ -1685,7 +1741,11 @@ public class Connection {
 
 
         /**
-         * The OAuth revoke URI. Redirect your users to this URI to revoke this connection. Before you can use this URI, you must add `redirect_uri` as a query parameter. Your users will be redirected to this `redirect_uri` after they granted access to your app in the connector's UI.
+         * The OAuth revoke URI. Redirect your users to this URI to revoke this connection. Before you can use
+         * this URI, you must add `redirect_uri` as a query parameter.
+         * 
+         * <p>Your users will be redirected to this `redirect_uri` after they granted access to your app in the
+         * connector's UI.
          */
         public Builder revokeUrl(String revokeUrl) {
             Utils.checkNotNull(revokeUrl, "revokeUrl");
@@ -1694,7 +1754,11 @@ public class Connection {
         }
 
         /**
-         * The OAuth revoke URI. Redirect your users to this URI to revoke this connection. Before you can use this URI, you must add `redirect_uri` as a query parameter. Your users will be redirected to this `redirect_uri` after they granted access to your app in the connector's UI.
+         * The OAuth revoke URI. Redirect your users to this URI to revoke this connection. Before you can use
+         * this URI, you must add `redirect_uri` as a query parameter.
+         * 
+         * <p>Your users will be redirected to this `redirect_uri` after they granted access to your app in the
+         * connector's UI.
          */
         public Builder revokeUrl(JsonNullable<String> revokeUrl) {
             Utils.checkNotNull(revokeUrl, "revokeUrl");
@@ -1871,7 +1935,8 @@ public class Connection {
 
 
         /**
-         * Whether the connector has a guide available in the developer docs or not (https://docs.apideck.com/connectors/{service_id}/docs/consumer+connection).
+         * Whether the connector has a guide available in the developer docs or not
+         * (https://docs.apideck.com/connectors/{service_id}/docs/consumer+connection).
          */
         public Builder hasGuide(boolean hasGuide) {
             Utils.checkNotNull(hasGuide, "hasGuide");
@@ -1880,7 +1945,8 @@ public class Connection {
         }
 
         /**
-         * Whether the connector has a guide available in the developer docs or not (https://docs.apideck.com/connectors/{service_id}/docs/consumer+connection).
+         * Whether the connector has a guide available in the developer docs or not
+         * (https://docs.apideck.com/connectors/{service_id}/docs/consumer+connection).
          */
         public Builder hasGuide(Optional<Boolean> hasGuide) {
             Utils.checkNotNull(hasGuide, "hasGuide");

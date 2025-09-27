@@ -32,14 +32,16 @@ public class UpdateFileRequest {
     private Optional<String> description;
 
     /**
-     * The parent folder to create the new file within. This can be an ID or a path depending on the downstream folder. Please see the connector section below to see downstream specific gotchas.
+     * The parent folder to create the new file within. This can be an ID or a path depending on the
+     * downstream folder. Please see the connector section below to see downstream specific gotchas.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("parent_folder_id")
     private Optional<String> parentFolderId;
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pass_through")
@@ -83,7 +85,8 @@ public class UpdateFileRequest {
     }
 
     /**
-     * The parent folder to create the new file within. This can be an ID or a path depending on the downstream folder. Please see the connector section below to see downstream specific gotchas.
+     * The parent folder to create the new file within. This can be an ID or a path depending on the
+     * downstream folder. Please see the connector section below to see downstream specific gotchas.
      */
     @JsonIgnore
     public Optional<String> parentFolderId() {
@@ -91,7 +94,8 @@ public class UpdateFileRequest {
     }
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -143,7 +147,8 @@ public class UpdateFileRequest {
     }
 
     /**
-     * The parent folder to create the new file within. This can be an ID or a path depending on the downstream folder. Please see the connector section below to see downstream specific gotchas.
+     * The parent folder to create the new file within. This can be an ID or a path depending on the
+     * downstream folder. Please see the connector section below to see downstream specific gotchas.
      */
     public UpdateFileRequest withParentFolderId(String parentFolderId) {
         Utils.checkNotNull(parentFolderId, "parentFolderId");
@@ -153,7 +158,8 @@ public class UpdateFileRequest {
 
 
     /**
-     * The parent folder to create the new file within. This can be an ID or a path depending on the downstream folder. Please see the connector section below to see downstream specific gotchas.
+     * The parent folder to create the new file within. This can be an ID or a path depending on the
+     * downstream folder. Please see the connector section below to see downstream specific gotchas.
      */
     public UpdateFileRequest withParentFolderId(Optional<String> parentFolderId) {
         Utils.checkNotNull(parentFolderId, "parentFolderId");
@@ -162,7 +168,8 @@ public class UpdateFileRequest {
     }
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     public UpdateFileRequest withPassThrough(List<PassThroughBody> passThrough) {
         Utils.checkNotNull(passThrough, "passThrough");
@@ -172,7 +179,8 @@ public class UpdateFileRequest {
 
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     public UpdateFileRequest withPassThrough(Optional<? extends List<PassThroughBody>> passThrough) {
         Utils.checkNotNull(passThrough, "passThrough");
@@ -267,7 +275,8 @@ public class UpdateFileRequest {
 
 
         /**
-         * The parent folder to create the new file within. This can be an ID or a path depending on the downstream folder. Please see the connector section below to see downstream specific gotchas.
+         * The parent folder to create the new file within. This can be an ID or a path depending on the
+         * downstream folder. Please see the connector section below to see downstream specific gotchas.
          */
         public Builder parentFolderId(String parentFolderId) {
             Utils.checkNotNull(parentFolderId, "parentFolderId");
@@ -276,7 +285,8 @@ public class UpdateFileRequest {
         }
 
         /**
-         * The parent folder to create the new file within. This can be an ID or a path depending on the downstream folder. Please see the connector section below to see downstream specific gotchas.
+         * The parent folder to create the new file within. This can be an ID or a path depending on the
+         * downstream folder. Please see the connector section below to see downstream specific gotchas.
          */
         public Builder parentFolderId(Optional<String> parentFolderId) {
             Utils.checkNotNull(parentFolderId, "parentFolderId");
@@ -286,7 +296,8 @@ public class UpdateFileRequest {
 
 
         /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+         * The pass_through property allows passing service-specific, custom data or structured modifications
+         * in request body when creating or updating resources.
          */
         public Builder passThrough(List<PassThroughBody> passThrough) {
             Utils.checkNotNull(passThrough, "passThrough");
@@ -295,7 +306,8 @@ public class UpdateFileRequest {
         }
 
         /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+         * The pass_through property allows passing service-specific, custom data or structured modifications
+         * in request body when creating or updating resources.
          */
         public Builder passThrough(Optional<? extends List<PassThroughBody>> passThrough) {
             Utils.checkNotNull(passThrough, "passThrough");

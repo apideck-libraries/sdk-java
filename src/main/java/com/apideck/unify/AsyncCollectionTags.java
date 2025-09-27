@@ -52,7 +52,7 @@ public class AsyncCollectionTags {
      * <p>List Tags
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;IssueTrackingCollectionTagsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<IssueTrackingCollectionTagsAllResponse>} - The async response
      */
     public CompletableFuture<IssueTrackingCollectionTagsAllResponse> list(IssueTrackingCollectionTagsAllRequest request) {
         return list(request, Optional.empty());
@@ -65,7 +65,7 @@ public class AsyncCollectionTags {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;IssueTrackingCollectionTagsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<IssueTrackingCollectionTagsAllResponse>} - The async response
      */
     public CompletableFuture<IssueTrackingCollectionTagsAllResponse> list(IssueTrackingCollectionTagsAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<IssueTrackingCollectionTagsAllRequest, IssueTrackingCollectionTagsAllResponse> operation

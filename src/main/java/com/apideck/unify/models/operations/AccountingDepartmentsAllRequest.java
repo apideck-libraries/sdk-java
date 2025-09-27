@@ -39,13 +39,15 @@ public class AccountingDepartmentsAllRequest {
     private Optional<String> appId;
 
     /**
-     * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
+     * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated
+     * multiple integrations for a Unified API.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-service-id")
     private Optional<String> serviceId;
 
     /**
-     * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
+     * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of
+     * the response.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=cursor")
     private JsonNullable<String> cursor;
@@ -57,7 +59,15 @@ public class AccountingDepartmentsAllRequest {
     private Optional<Long> limit;
 
     /**
-     * The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. &lt;br /&gt;&lt;br /&gt;Example: `fields=name,email,addresses.city`&lt;br /&gt;&lt;br /&gt;In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.
+     * The 'fields' parameter allows API users to specify the fields they want to include in the API
+     * response. If this parameter is not present, the API will return all available fields. If this
+     * parameter is present, only the fields specified in the comma-separated string will be included in
+     * the response.
+     * 
+     * <p>Nested properties can also be requested by using a dot notation. <br /><br />Example:
+     * `fields=name,email,addresses.city`<br /><br />In the example above, the response will only include
+     * the fields "name", "email" and "addresses.city". If any other fields are available, they will be
+     * excluded.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=fields")
     private JsonNullable<String> fields;
@@ -127,7 +137,8 @@ public class AccountingDepartmentsAllRequest {
     }
 
     /**
-     * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
+     * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated
+     * multiple integrations for a Unified API.
      */
     @JsonIgnore
     public Optional<String> serviceId() {
@@ -135,7 +146,8 @@ public class AccountingDepartmentsAllRequest {
     }
 
     /**
-     * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
+     * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of
+     * the response.
      */
     @JsonIgnore
     public JsonNullable<String> cursor() {
@@ -151,7 +163,15 @@ public class AccountingDepartmentsAllRequest {
     }
 
     /**
-     * The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. &lt;br /&gt;&lt;br /&gt;Example: `fields=name,email,addresses.city`&lt;br /&gt;&lt;br /&gt;In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.
+     * The 'fields' parameter allows API users to specify the fields they want to include in the API
+     * response. If this parameter is not present, the API will return all available fields. If this
+     * parameter is present, only the fields specified in the comma-separated string will be included in
+     * the response.
+     * 
+     * <p>Nested properties can also be requested by using a dot notation. <br /><br />Example:
+     * `fields=name,email,addresses.city`<br /><br />In the example above, the response will only include
+     * the fields "name", "email" and "addresses.city". If any other fields are available, they will be
+     * excluded.
      */
     @JsonIgnore
     public JsonNullable<String> fields() {
@@ -230,7 +250,8 @@ public class AccountingDepartmentsAllRequest {
     }
 
     /**
-     * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
+     * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated
+     * multiple integrations for a Unified API.
      */
     public AccountingDepartmentsAllRequest withServiceId(String serviceId) {
         Utils.checkNotNull(serviceId, "serviceId");
@@ -240,7 +261,8 @@ public class AccountingDepartmentsAllRequest {
 
 
     /**
-     * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
+     * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated
+     * multiple integrations for a Unified API.
      */
     public AccountingDepartmentsAllRequest withServiceId(Optional<String> serviceId) {
         Utils.checkNotNull(serviceId, "serviceId");
@@ -249,7 +271,8 @@ public class AccountingDepartmentsAllRequest {
     }
 
     /**
-     * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
+     * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of
+     * the response.
      */
     public AccountingDepartmentsAllRequest withCursor(String cursor) {
         Utils.checkNotNull(cursor, "cursor");
@@ -258,7 +281,8 @@ public class AccountingDepartmentsAllRequest {
     }
 
     /**
-     * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
+     * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of
+     * the response.
      */
     public AccountingDepartmentsAllRequest withCursor(JsonNullable<String> cursor) {
         Utils.checkNotNull(cursor, "cursor");
@@ -286,7 +310,15 @@ public class AccountingDepartmentsAllRequest {
     }
 
     /**
-     * The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. &lt;br /&gt;&lt;br /&gt;Example: `fields=name,email,addresses.city`&lt;br /&gt;&lt;br /&gt;In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.
+     * The 'fields' parameter allows API users to specify the fields they want to include in the API
+     * response. If this parameter is not present, the API will return all available fields. If this
+     * parameter is present, only the fields specified in the comma-separated string will be included in
+     * the response.
+     * 
+     * <p>Nested properties can also be requested by using a dot notation. <br /><br />Example:
+     * `fields=name,email,addresses.city`<br /><br />In the example above, the response will only include
+     * the fields "name", "email" and "addresses.city". If any other fields are available, they will be
+     * excluded.
      */
     public AccountingDepartmentsAllRequest withFields(String fields) {
         Utils.checkNotNull(fields, "fields");
@@ -295,7 +327,15 @@ public class AccountingDepartmentsAllRequest {
     }
 
     /**
-     * The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. &lt;br /&gt;&lt;br /&gt;Example: `fields=name,email,addresses.city`&lt;br /&gt;&lt;br /&gt;In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.
+     * The 'fields' parameter allows API users to specify the fields they want to include in the API
+     * response. If this parameter is not present, the API will return all available fields. If this
+     * parameter is present, only the fields specified in the comma-separated string will be included in
+     * the response.
+     * 
+     * <p>Nested properties can also be requested by using a dot notation. <br /><br />Example:
+     * `fields=name,email,addresses.city`<br /><br />In the example above, the response will only include
+     * the fields "name", "email" and "addresses.city". If any other fields are available, they will be
+     * excluded.
      */
     public AccountingDepartmentsAllRequest withFields(JsonNullable<String> fields) {
         Utils.checkNotNull(fields, "fields");
@@ -445,7 +485,8 @@ public class AccountingDepartmentsAllRequest {
 
 
         /**
-         * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
+         * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated
+         * multiple integrations for a Unified API.
          */
         public Builder serviceId(String serviceId) {
             Utils.checkNotNull(serviceId, "serviceId");
@@ -454,7 +495,8 @@ public class AccountingDepartmentsAllRequest {
         }
 
         /**
-         * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
+         * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated
+         * multiple integrations for a Unified API.
          */
         public Builder serviceId(Optional<String> serviceId) {
             Utils.checkNotNull(serviceId, "serviceId");
@@ -464,7 +506,8 @@ public class AccountingDepartmentsAllRequest {
 
 
         /**
-         * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
+         * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of
+         * the response.
          */
         public Builder cursor(String cursor) {
             Utils.checkNotNull(cursor, "cursor");
@@ -473,7 +516,8 @@ public class AccountingDepartmentsAllRequest {
         }
 
         /**
-         * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
+         * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of
+         * the response.
          */
         public Builder cursor(JsonNullable<String> cursor) {
             Utils.checkNotNull(cursor, "cursor");
@@ -502,7 +546,15 @@ public class AccountingDepartmentsAllRequest {
 
 
         /**
-         * The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. &lt;br /&gt;&lt;br /&gt;Example: `fields=name,email,addresses.city`&lt;br /&gt;&lt;br /&gt;In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.
+         * The 'fields' parameter allows API users to specify the fields they want to include in the API
+         * response. If this parameter is not present, the API will return all available fields. If this
+         * parameter is present, only the fields specified in the comma-separated string will be included in
+         * the response.
+         * 
+         * <p>Nested properties can also be requested by using a dot notation. <br /><br />Example:
+         * `fields=name,email,addresses.city`<br /><br />In the example above, the response will only include
+         * the fields "name", "email" and "addresses.city". If any other fields are available, they will be
+         * excluded.
          */
         public Builder fields(String fields) {
             Utils.checkNotNull(fields, "fields");
@@ -511,7 +563,15 @@ public class AccountingDepartmentsAllRequest {
         }
 
         /**
-         * The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. &lt;br /&gt;&lt;br /&gt;Example: `fields=name,email,addresses.city`&lt;br /&gt;&lt;br /&gt;In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.
+         * The 'fields' parameter allows API users to specify the fields they want to include in the API
+         * response. If this parameter is not present, the API will return all available fields. If this
+         * parameter is present, only the fields specified in the comma-separated string will be included in
+         * the response.
+         * 
+         * <p>Nested properties can also be requested by using a dot notation. <br /><br />Example:
+         * `fields=name,email,addresses.city`<br /><br />In the example above, the response will only include
+         * the fields "name", "email" and "addresses.city". If any other fields are available, they will be
+         * excluded.
          */
         public Builder fields(JsonNullable<String> fields) {
             Utils.checkNotNull(fields, "fields");

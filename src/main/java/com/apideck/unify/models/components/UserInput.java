@@ -62,7 +62,8 @@ public class UserInput {
     private JsonNullable<String> division;
 
     /**
-     * The department the person is currently in. [Deprecated](https://developers.apideck.com/changelog) in favor of the dedicated department_id and department_name field.
+     * The department the person is currently in. [Deprecated](https://developers.apideck.com/changelog) in
+     * favor of the dedicated department_id and department_name field.
      * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -79,7 +80,8 @@ public class UserInput {
     private JsonNullable<String> companyName;
 
     /**
-     * An Employee Number, Employee ID or Employee Code, is a unique number that has been assigned to each individual staff member within a company.
+     * An Employee Number, Employee ID or Employee Code, is a unique number that has been assigned to each
+     * individual staff member within a company.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("employee_number")
@@ -135,7 +137,8 @@ public class UserInput {
     private List<Email> emails;
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pass_through")
@@ -258,7 +261,8 @@ public class UserInput {
     }
 
     /**
-     * The department the person is currently in. [Deprecated](https://developers.apideck.com/changelog) in favor of the dedicated department_id and department_name field.
+     * The department the person is currently in. [Deprecated](https://developers.apideck.com/changelog) in
+     * favor of the dedicated department_id and department_name field.
      * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -277,7 +281,8 @@ public class UserInput {
     }
 
     /**
-     * An Employee Number, Employee ID or Employee Code, is a unique number that has been assigned to each individual staff member within a company.
+     * An Employee Number, Employee ID or Employee Code, is a unique number that has been assigned to each
+     * individual staff member within a company.
      */
     @JsonIgnore
     public JsonNullable<String> employeeNumber() {
@@ -342,7 +347,8 @@ public class UserInput {
     }
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -464,7 +470,8 @@ public class UserInput {
     }
 
     /**
-     * The department the person is currently in. [Deprecated](https://developers.apideck.com/changelog) in favor of the dedicated department_id and department_name field.
+     * The department the person is currently in. [Deprecated](https://developers.apideck.com/changelog) in
+     * favor of the dedicated department_id and department_name field.
      * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -476,7 +483,8 @@ public class UserInput {
     }
 
     /**
-     * The department the person is currently in. [Deprecated](https://developers.apideck.com/changelog) in favor of the dedicated department_id and department_name field.
+     * The department the person is currently in. [Deprecated](https://developers.apideck.com/changelog) in
+     * favor of the dedicated department_id and department_name field.
      * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -506,7 +514,8 @@ public class UserInput {
     }
 
     /**
-     * An Employee Number, Employee ID or Employee Code, is a unique number that has been assigned to each individual staff member within a company.
+     * An Employee Number, Employee ID or Employee Code, is a unique number that has been assigned to each
+     * individual staff member within a company.
      */
     public UserInput withEmployeeNumber(String employeeNumber) {
         Utils.checkNotNull(employeeNumber, "employeeNumber");
@@ -515,7 +524,8 @@ public class UserInput {
     }
 
     /**
-     * An Employee Number, Employee ID or Employee Code, is a unique number that has been assigned to each individual staff member within a company.
+     * An Employee Number, Employee ID or Employee Code, is a unique number that has been assigned to each
+     * individual staff member within a company.
      */
     public UserInput withEmployeeNumber(JsonNullable<String> employeeNumber) {
         Utils.checkNotNull(employeeNumber, "employeeNumber");
@@ -646,7 +656,8 @@ public class UserInput {
     }
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     public UserInput withPassThrough(List<PassThroughBody> passThrough) {
         Utils.checkNotNull(passThrough, "passThrough");
@@ -656,7 +667,8 @@ public class UserInput {
 
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     public UserInput withPassThrough(Optional<? extends List<PassThroughBody>> passThrough) {
         Utils.checkNotNull(passThrough, "passThrough");
@@ -888,7 +900,8 @@ public class UserInput {
 
 
         /**
-         * The department the person is currently in. [Deprecated](https://developers.apideck.com/changelog) in favor of the dedicated department_id and department_name field.
+         * The department the person is currently in. [Deprecated](https://developers.apideck.com/changelog) in
+         * favor of the dedicated department_id and department_name field.
          * 
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
@@ -900,7 +913,8 @@ public class UserInput {
         }
 
         /**
-         * The department the person is currently in. [Deprecated](https://developers.apideck.com/changelog) in favor of the dedicated department_id and department_name field.
+         * The department the person is currently in. [Deprecated](https://developers.apideck.com/changelog) in
+         * favor of the dedicated department_id and department_name field.
          * 
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
@@ -932,7 +946,8 @@ public class UserInput {
 
 
         /**
-         * An Employee Number, Employee ID or Employee Code, is a unique number that has been assigned to each individual staff member within a company.
+         * An Employee Number, Employee ID or Employee Code, is a unique number that has been assigned to each
+         * individual staff member within a company.
          */
         public Builder employeeNumber(String employeeNumber) {
             Utils.checkNotNull(employeeNumber, "employeeNumber");
@@ -941,7 +956,8 @@ public class UserInput {
         }
 
         /**
-         * An Employee Number, Employee ID or Employee Code, is a unique number that has been assigned to each individual staff member within a company.
+         * An Employee Number, Employee ID or Employee Code, is a unique number that has been assigned to each
+         * individual staff member within a company.
          */
         public Builder employeeNumber(JsonNullable<String> employeeNumber) {
             Utils.checkNotNull(employeeNumber, "employeeNumber");
@@ -1079,7 +1095,8 @@ public class UserInput {
 
 
         /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+         * The pass_through property allows passing service-specific, custom data or structured modifications
+         * in request body when creating or updating resources.
          */
         public Builder passThrough(List<PassThroughBody> passThrough) {
             Utils.checkNotNull(passThrough, "passThrough");
@@ -1088,7 +1105,8 @@ public class UserInput {
         }
 
         /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+         * The pass_through property allows passing service-specific, custom data or structured modifications
+         * in request body when creating or updating resources.
          */
         public Builder passThrough(Optional<? extends List<PassThroughBody>> passThrough) {
             Utils.checkNotNull(passThrough, "passThrough");

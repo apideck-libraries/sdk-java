@@ -38,7 +38,8 @@ public class VaultLogsAllRequest {
     private Optional<? extends LogsFilter> filter;
 
     /**
-     * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
+     * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of
+     * the response.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=cursor")
     private JsonNullable<String> cursor;
@@ -99,7 +100,8 @@ public class VaultLogsAllRequest {
     }
 
     /**
-     * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
+     * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of
+     * the response.
      */
     @JsonIgnore
     public JsonNullable<String> cursor() {
@@ -177,7 +179,8 @@ public class VaultLogsAllRequest {
     }
 
     /**
-     * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
+     * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of
+     * the response.
      */
     public VaultLogsAllRequest withCursor(String cursor) {
         Utils.checkNotNull(cursor, "cursor");
@@ -186,7 +189,8 @@ public class VaultLogsAllRequest {
     }
 
     /**
-     * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
+     * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of
+     * the response.
      */
     public VaultLogsAllRequest withCursor(JsonNullable<String> cursor) {
         Utils.checkNotNull(cursor, "cursor");
@@ -323,7 +327,8 @@ public class VaultLogsAllRequest {
 
 
         /**
-         * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
+         * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of
+         * the response.
          */
         public Builder cursor(String cursor) {
             Utils.checkNotNull(cursor, "cursor");
@@ -332,7 +337,8 @@ public class VaultLogsAllRequest {
         }
 
         /**
-         * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
+         * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of
+         * the response.
          */
         public Builder cursor(JsonNullable<String> cursor) {
             Utils.checkNotNull(cursor, "cursor");

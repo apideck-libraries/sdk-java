@@ -20,7 +20,8 @@ import java.util.Optional;
  */
 public class Error {
     /**
-     * The error_code provides more information about the failure. If the message was successful, this value is null
+     * The error_code provides more information about the failure. If the message was successful, this
+     * value is null
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("code")
@@ -46,7 +47,8 @@ public class Error {
     }
 
     /**
-     * The error_code provides more information about the failure. If the message was successful, this value is null
+     * The error_code provides more information about the failure. If the message was successful, this
+     * value is null
      */
     @JsonIgnore
     public Optional<String> code() {
@@ -64,7 +66,8 @@ public class Error {
 
 
     /**
-     * The error_code provides more information about the failure. If the message was successful, this value is null
+     * The error_code provides more information about the failure. If the message was successful, this
+     * value is null
      */
     public Error withCode(String code) {
         Utils.checkNotNull(code, "code");
@@ -74,7 +77,8 @@ public class Error {
 
 
     /**
-     * The error_code provides more information about the failure. If the message was successful, this value is null
+     * The error_code provides more information about the failure. If the message was successful, this
+     * value is null
      */
     public Error withCode(Optional<String> code) {
         Utils.checkNotNull(code, "code");
@@ -135,7 +139,8 @@ public class Error {
 
 
         /**
-         * The error_code provides more information about the failure. If the message was successful, this value is null
+         * The error_code provides more information about the failure. If the message was successful, this
+         * value is null
          */
         public Builder code(String code) {
             Utils.checkNotNull(code, "code");
@@ -144,7 +149,8 @@ public class Error {
         }
 
         /**
-         * The error_code provides more information about the failure. If the message was successful, this value is null
+         * The error_code provides more information about the failure. If the message was successful, this
+         * value is null
          */
         public Builder code(Optional<String> code) {
             Utils.checkNotNull(code, "code");

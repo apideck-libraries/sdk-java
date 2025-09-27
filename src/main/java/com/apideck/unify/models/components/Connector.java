@@ -97,14 +97,17 @@ public class Connector {
     private Optional<? extends ConnectorAuthType> authType;
 
     /**
-     * Indicates whether a connector only supports authentication. In this case the connector is not mapped to a Unified API, but can be used with the Proxy API
+     * Indicates whether a connector only supports authentication. In this case the connector is not mapped
+     * to a Unified API, but can be used with the Proxy API
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("auth_only")
     private Optional<Boolean> authOnly;
 
     /**
-     * Set to `true` when connector was implemented from downstream docs only and without API access. This state indicates that integration will require Apideck support, and access to downstream API to validate mapping quality.
+     * Set to `true` when connector was implemented from downstream docs only and without API access. This
+     * state indicates that integration will require Apideck support, and access to downstream API to
+     * validate mapping quality.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("blind_mapped")
@@ -118,7 +121,9 @@ public class Connector {
     private Optional<? extends ConnectorOauthGrantType> oauthGrantType;
 
     /**
-     * Location of the OAuth client credentials. For most connectors the OAuth client credentials are stored on integration and managed by the application owner. For others they are stored on connection and managed by the consumer in Vault.
+     * Location of the OAuth client credentials. For most connectors the OAuth client credentials are
+     * stored on integration and managed by the application owner. For others they are stored on connection
+     * and managed by the consumer in Vault.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("oauth_credentials_source")
@@ -186,14 +191,16 @@ public class Connector {
     private Optional<? extends List<ConnectorEvent>> supportedEvents;
 
     /**
-     * How webhooks are supported for the connector. Sometimes the connector natively supports webhooks, other times Apideck virtualizes them based on polling.
+     * How webhooks are supported for the connector. Sometimes the connector natively supports webhooks,
+     * other times Apideck virtualizes them based on polling.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("webhook_support")
     private Optional<? extends WebhookSupport> webhookSupport;
 
     /**
-     * When a connector has schema_support, a call can be made to retrieve a json schema that describes a downstream resource.
+     * When a connector has schema_support, a call can be made to retrieve a json schema that describes a
+     * downstream resource.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("schema_support")
@@ -401,7 +408,8 @@ public class Connector {
     }
 
     /**
-     * Indicates whether a connector only supports authentication. In this case the connector is not mapped to a Unified API, but can be used with the Proxy API
+     * Indicates whether a connector only supports authentication. In this case the connector is not mapped
+     * to a Unified API, but can be used with the Proxy API
      */
     @JsonIgnore
     public Optional<Boolean> authOnly() {
@@ -409,7 +417,9 @@ public class Connector {
     }
 
     /**
-     * Set to `true` when connector was implemented from downstream docs only and without API access. This state indicates that integration will require Apideck support, and access to downstream API to validate mapping quality.
+     * Set to `true` when connector was implemented from downstream docs only and without API access. This
+     * state indicates that integration will require Apideck support, and access to downstream API to
+     * validate mapping quality.
      */
     @JsonIgnore
     public Optional<Boolean> blindMapped() {
@@ -426,7 +436,9 @@ public class Connector {
     }
 
     /**
-     * Location of the OAuth client credentials. For most connectors the OAuth client credentials are stored on integration and managed by the application owner. For others they are stored on connection and managed by the consumer in Vault.
+     * Location of the OAuth client credentials. For most connectors the OAuth client credentials are
+     * stored on integration and managed by the application owner. For others they are stored on connection
+     * and managed by the consumer in Vault.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -510,7 +522,8 @@ public class Connector {
     }
 
     /**
-     * How webhooks are supported for the connector. Sometimes the connector natively supports webhooks, other times Apideck virtualizes them based on polling.
+     * How webhooks are supported for the connector. Sometimes the connector natively supports webhooks,
+     * other times Apideck virtualizes them based on polling.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -519,7 +532,8 @@ public class Connector {
     }
 
     /**
-     * When a connector has schema_support, a call can be made to retrieve a json schema that describes a downstream resource.
+     * When a connector has schema_support, a call can be made to retrieve a json schema that describes a
+     * downstream resource.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -753,7 +767,8 @@ public class Connector {
     }
 
     /**
-     * Indicates whether a connector only supports authentication. In this case the connector is not mapped to a Unified API, but can be used with the Proxy API
+     * Indicates whether a connector only supports authentication. In this case the connector is not mapped
+     * to a Unified API, but can be used with the Proxy API
      */
     public Connector withAuthOnly(boolean authOnly) {
         Utils.checkNotNull(authOnly, "authOnly");
@@ -763,7 +778,8 @@ public class Connector {
 
 
     /**
-     * Indicates whether a connector only supports authentication. In this case the connector is not mapped to a Unified API, but can be used with the Proxy API
+     * Indicates whether a connector only supports authentication. In this case the connector is not mapped
+     * to a Unified API, but can be used with the Proxy API
      */
     public Connector withAuthOnly(Optional<Boolean> authOnly) {
         Utils.checkNotNull(authOnly, "authOnly");
@@ -772,7 +788,9 @@ public class Connector {
     }
 
     /**
-     * Set to `true` when connector was implemented from downstream docs only and without API access. This state indicates that integration will require Apideck support, and access to downstream API to validate mapping quality.
+     * Set to `true` when connector was implemented from downstream docs only and without API access. This
+     * state indicates that integration will require Apideck support, and access to downstream API to
+     * validate mapping quality.
      */
     public Connector withBlindMapped(boolean blindMapped) {
         Utils.checkNotNull(blindMapped, "blindMapped");
@@ -782,7 +800,9 @@ public class Connector {
 
 
     /**
-     * Set to `true` when connector was implemented from downstream docs only and without API access. This state indicates that integration will require Apideck support, and access to downstream API to validate mapping quality.
+     * Set to `true` when connector was implemented from downstream docs only and without API access. This
+     * state indicates that integration will require Apideck support, and access to downstream API to
+     * validate mapping quality.
      */
     public Connector withBlindMapped(Optional<Boolean> blindMapped) {
         Utils.checkNotNull(blindMapped, "blindMapped");
@@ -810,7 +830,9 @@ public class Connector {
     }
 
     /**
-     * Location of the OAuth client credentials. For most connectors the OAuth client credentials are stored on integration and managed by the application owner. For others they are stored on connection and managed by the consumer in Vault.
+     * Location of the OAuth client credentials. For most connectors the OAuth client credentials are
+     * stored on integration and managed by the application owner. For others they are stored on connection
+     * and managed by the consumer in Vault.
      */
     public Connector withOauthCredentialsSource(OauthCredentialsSource oauthCredentialsSource) {
         Utils.checkNotNull(oauthCredentialsSource, "oauthCredentialsSource");
@@ -820,7 +842,9 @@ public class Connector {
 
 
     /**
-     * Location of the OAuth client credentials. For most connectors the OAuth client credentials are stored on integration and managed by the application owner. For others they are stored on connection and managed by the consumer in Vault.
+     * Location of the OAuth client credentials. For most connectors the OAuth client credentials are
+     * stored on integration and managed by the application owner. For others they are stored on connection
+     * and managed by the consumer in Vault.
      */
     public Connector withOauthCredentialsSource(Optional<? extends OauthCredentialsSource> oauthCredentialsSource) {
         Utils.checkNotNull(oauthCredentialsSource, "oauthCredentialsSource");
@@ -994,7 +1018,8 @@ public class Connector {
     }
 
     /**
-     * How webhooks are supported for the connector. Sometimes the connector natively supports webhooks, other times Apideck virtualizes them based on polling.
+     * How webhooks are supported for the connector. Sometimes the connector natively supports webhooks,
+     * other times Apideck virtualizes them based on polling.
      */
     public Connector withWebhookSupport(WebhookSupport webhookSupport) {
         Utils.checkNotNull(webhookSupport, "webhookSupport");
@@ -1004,7 +1029,8 @@ public class Connector {
 
 
     /**
-     * How webhooks are supported for the connector. Sometimes the connector natively supports webhooks, other times Apideck virtualizes them based on polling.
+     * How webhooks are supported for the connector. Sometimes the connector natively supports webhooks,
+     * other times Apideck virtualizes them based on polling.
      */
     public Connector withWebhookSupport(Optional<? extends WebhookSupport> webhookSupport) {
         Utils.checkNotNull(webhookSupport, "webhookSupport");
@@ -1013,7 +1039,8 @@ public class Connector {
     }
 
     /**
-     * When a connector has schema_support, a call can be made to retrieve a json schema that describes a downstream resource.
+     * When a connector has schema_support, a call can be made to retrieve a json schema that describes a
+     * downstream resource.
      */
     public Connector withSchemaSupport(SchemaSupport schemaSupport) {
         Utils.checkNotNull(schemaSupport, "schemaSupport");
@@ -1023,7 +1050,8 @@ public class Connector {
 
 
     /**
-     * When a connector has schema_support, a call can be made to retrieve a json schema that describes a downstream resource.
+     * When a connector has schema_support, a call can be made to retrieve a json schema that describes a
+     * downstream resource.
      */
     public Connector withSchemaSupport(Optional<? extends SchemaSupport> schemaSupport) {
         Utils.checkNotNull(schemaSupport, "schemaSupport");
@@ -1419,7 +1447,8 @@ public class Connector {
 
 
         /**
-         * Indicates whether a connector only supports authentication. In this case the connector is not mapped to a Unified API, but can be used with the Proxy API
+         * Indicates whether a connector only supports authentication. In this case the connector is not mapped
+         * to a Unified API, but can be used with the Proxy API
          */
         public Builder authOnly(boolean authOnly) {
             Utils.checkNotNull(authOnly, "authOnly");
@@ -1428,7 +1457,8 @@ public class Connector {
         }
 
         /**
-         * Indicates whether a connector only supports authentication. In this case the connector is not mapped to a Unified API, but can be used with the Proxy API
+         * Indicates whether a connector only supports authentication. In this case the connector is not mapped
+         * to a Unified API, but can be used with the Proxy API
          */
         public Builder authOnly(Optional<Boolean> authOnly) {
             Utils.checkNotNull(authOnly, "authOnly");
@@ -1438,7 +1468,9 @@ public class Connector {
 
 
         /**
-         * Set to `true` when connector was implemented from downstream docs only and without API access. This state indicates that integration will require Apideck support, and access to downstream API to validate mapping quality.
+         * Set to `true` when connector was implemented from downstream docs only and without API access. This
+         * state indicates that integration will require Apideck support, and access to downstream API to
+         * validate mapping quality.
          */
         public Builder blindMapped(boolean blindMapped) {
             Utils.checkNotNull(blindMapped, "blindMapped");
@@ -1447,7 +1479,9 @@ public class Connector {
         }
 
         /**
-         * Set to `true` when connector was implemented from downstream docs only and without API access. This state indicates that integration will require Apideck support, and access to downstream API to validate mapping quality.
+         * Set to `true` when connector was implemented from downstream docs only and without API access. This
+         * state indicates that integration will require Apideck support, and access to downstream API to
+         * validate mapping quality.
          */
         public Builder blindMapped(Optional<Boolean> blindMapped) {
             Utils.checkNotNull(blindMapped, "blindMapped");
@@ -1476,7 +1510,9 @@ public class Connector {
 
 
         /**
-         * Location of the OAuth client credentials. For most connectors the OAuth client credentials are stored on integration and managed by the application owner. For others they are stored on connection and managed by the consumer in Vault.
+         * Location of the OAuth client credentials. For most connectors the OAuth client credentials are
+         * stored on integration and managed by the application owner. For others they are stored on connection
+         * and managed by the consumer in Vault.
          */
         public Builder oauthCredentialsSource(OauthCredentialsSource oauthCredentialsSource) {
             Utils.checkNotNull(oauthCredentialsSource, "oauthCredentialsSource");
@@ -1485,7 +1521,9 @@ public class Connector {
         }
 
         /**
-         * Location of the OAuth client credentials. For most connectors the OAuth client credentials are stored on integration and managed by the application owner. For others they are stored on connection and managed by the consumer in Vault.
+         * Location of the OAuth client credentials. For most connectors the OAuth client credentials are
+         * stored on integration and managed by the application owner. For others they are stored on connection
+         * and managed by the consumer in Vault.
          */
         public Builder oauthCredentialsSource(Optional<? extends OauthCredentialsSource> oauthCredentialsSource) {
             Utils.checkNotNull(oauthCredentialsSource, "oauthCredentialsSource");
@@ -1660,7 +1698,8 @@ public class Connector {
 
 
         /**
-         * How webhooks are supported for the connector. Sometimes the connector natively supports webhooks, other times Apideck virtualizes them based on polling.
+         * How webhooks are supported for the connector. Sometimes the connector natively supports webhooks,
+         * other times Apideck virtualizes them based on polling.
          */
         public Builder webhookSupport(WebhookSupport webhookSupport) {
             Utils.checkNotNull(webhookSupport, "webhookSupport");
@@ -1669,7 +1708,8 @@ public class Connector {
         }
 
         /**
-         * How webhooks are supported for the connector. Sometimes the connector natively supports webhooks, other times Apideck virtualizes them based on polling.
+         * How webhooks are supported for the connector. Sometimes the connector natively supports webhooks,
+         * other times Apideck virtualizes them based on polling.
          */
         public Builder webhookSupport(Optional<? extends WebhookSupport> webhookSupport) {
             Utils.checkNotNull(webhookSupport, "webhookSupport");
@@ -1679,7 +1719,8 @@ public class Connector {
 
 
         /**
-         * When a connector has schema_support, a call can be made to retrieve a json schema that describes a downstream resource.
+         * When a connector has schema_support, a call can be made to retrieve a json schema that describes a
+         * downstream resource.
          */
         public Builder schemaSupport(SchemaSupport schemaSupport) {
             Utils.checkNotNull(schemaSupport, "schemaSupport");
@@ -1688,7 +1729,8 @@ public class Connector {
         }
 
         /**
-         * When a connector has schema_support, a call can be made to retrieve a json schema that describes a downstream resource.
+         * When a connector has schema_support, a call can be made to retrieve a json schema that describes a
+         * downstream resource.
          */
         public Builder schemaSupport(Optional<? extends SchemaSupport> schemaSupport) {
             Utils.checkNotNull(schemaSupport, "schemaSupport");

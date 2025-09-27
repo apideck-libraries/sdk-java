@@ -52,7 +52,7 @@ public class AsyncConnectionConsent {
      * <p>Update the consent state of a connection
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;VaultConnectionConsentUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<VaultConnectionConsentUpdateResponse>} - The async response
      */
     public CompletableFuture<VaultConnectionConsentUpdateResponse> update(VaultConnectionConsentUpdateRequest request) {
         return update(request, Optional.empty());
@@ -65,7 +65,7 @@ public class AsyncConnectionConsent {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;VaultConnectionConsentUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<VaultConnectionConsentUpdateResponse>} - The async response
      */
     public CompletableFuture<VaultConnectionConsentUpdateResponse> update(VaultConnectionConsentUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<VaultConnectionConsentUpdateRequest, VaultConnectionConsentUpdateResponse> operation

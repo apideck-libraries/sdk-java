@@ -68,7 +68,7 @@ public class AsyncSharedLinks {
      * <p>List SharedLinks
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;FileStorageSharedLinksAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<FileStorageSharedLinksAllResponse>} - The async response
      */
     public CompletableFuture<FileStorageSharedLinksAllResponse> list(FileStorageSharedLinksAllRequest request) {
         return list(request, Optional.empty());
@@ -81,7 +81,7 @@ public class AsyncSharedLinks {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;FileStorageSharedLinksAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<FileStorageSharedLinksAllResponse>} - The async response
      */
     public CompletableFuture<FileStorageSharedLinksAllResponse> list(FileStorageSharedLinksAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<FileStorageSharedLinksAllRequest, FileStorageSharedLinksAllResponse> operation
@@ -110,7 +110,7 @@ public class AsyncSharedLinks {
      * <p>Create Shared Link
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;FileStorageSharedLinksAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<FileStorageSharedLinksAddResponse>} - The async response
      */
     public CompletableFuture<FileStorageSharedLinksAddResponse> create(FileStorageSharedLinksAddRequest request) {
         return create(request, Optional.empty());
@@ -123,7 +123,7 @@ public class AsyncSharedLinks {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;FileStorageSharedLinksAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<FileStorageSharedLinksAddResponse>} - The async response
      */
     public CompletableFuture<FileStorageSharedLinksAddResponse> create(FileStorageSharedLinksAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<FileStorageSharedLinksAddRequest, FileStorageSharedLinksAddResponse> operation
@@ -152,7 +152,7 @@ public class AsyncSharedLinks {
      * <p>Get Shared Link
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;FileStorageSharedLinksOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<FileStorageSharedLinksOneResponse>} - The async response
      */
     public CompletableFuture<FileStorageSharedLinksOneResponse> get(FileStorageSharedLinksOneRequest request) {
         return get(request, Optional.empty());
@@ -165,7 +165,7 @@ public class AsyncSharedLinks {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;FileStorageSharedLinksOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<FileStorageSharedLinksOneResponse>} - The async response
      */
     public CompletableFuture<FileStorageSharedLinksOneResponse> get(FileStorageSharedLinksOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<FileStorageSharedLinksOneRequest, FileStorageSharedLinksOneResponse> operation
@@ -194,7 +194,7 @@ public class AsyncSharedLinks {
      * <p>Update Shared Link
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;FileStorageSharedLinksUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<FileStorageSharedLinksUpdateResponse>} - The async response
      */
     public CompletableFuture<FileStorageSharedLinksUpdateResponse> update(FileStorageSharedLinksUpdateRequest request) {
         return update(request, Optional.empty());
@@ -207,7 +207,7 @@ public class AsyncSharedLinks {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;FileStorageSharedLinksUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<FileStorageSharedLinksUpdateResponse>} - The async response
      */
     public CompletableFuture<FileStorageSharedLinksUpdateResponse> update(FileStorageSharedLinksUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<FileStorageSharedLinksUpdateRequest, FileStorageSharedLinksUpdateResponse> operation
@@ -236,7 +236,7 @@ public class AsyncSharedLinks {
      * <p>Delete Shared Link
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;FileStorageSharedLinksDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<FileStorageSharedLinksDeleteResponse>} - The async response
      */
     public CompletableFuture<FileStorageSharedLinksDeleteResponse> delete(FileStorageSharedLinksDeleteRequest request) {
         return delete(request, Optional.empty());
@@ -249,7 +249,7 @@ public class AsyncSharedLinks {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;FileStorageSharedLinksDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<FileStorageSharedLinksDeleteResponse>} - The async response
      */
     public CompletableFuture<FileStorageSharedLinksDeleteResponse> delete(FileStorageSharedLinksDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<FileStorageSharedLinksDeleteRequest, FileStorageSharedLinksDeleteResponse> operation

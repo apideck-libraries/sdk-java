@@ -32,7 +32,8 @@ public class OauthScopes {
     private Optional<String> label;
 
     /**
-     * List of Unified APIs that request this OAuth Scope by default. Application owners can customize the requested scopes.
+     * List of Unified APIs that request this OAuth Scope by default. Application owners can customize the
+     * requested scopes.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("default_apis")
@@ -72,7 +73,8 @@ public class OauthScopes {
     }
 
     /**
-     * List of Unified APIs that request this OAuth Scope by default. Application owners can customize the requested scopes.
+     * List of Unified APIs that request this OAuth Scope by default. Application owners can customize the
+     * requested scopes.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -124,7 +126,8 @@ public class OauthScopes {
     }
 
     /**
-     * List of Unified APIs that request this OAuth Scope by default. Application owners can customize the requested scopes.
+     * List of Unified APIs that request this OAuth Scope by default. Application owners can customize the
+     * requested scopes.
      */
     public OauthScopes withDefaultApis(List<String> defaultApis) {
         Utils.checkNotNull(defaultApis, "defaultApis");
@@ -134,7 +137,8 @@ public class OauthScopes {
 
 
     /**
-     * List of Unified APIs that request this OAuth Scope by default. Application owners can customize the requested scopes.
+     * List of Unified APIs that request this OAuth Scope by default. Application owners can customize the
+     * requested scopes.
      */
     public OauthScopes withDefaultApis(Optional<? extends List<String>> defaultApis) {
         Utils.checkNotNull(defaultApis, "defaultApis");
@@ -224,7 +228,8 @@ public class OauthScopes {
 
 
         /**
-         * List of Unified APIs that request this OAuth Scope by default. Application owners can customize the requested scopes.
+         * List of Unified APIs that request this OAuth Scope by default. Application owners can customize the
+         * requested scopes.
          */
         public Builder defaultApis(List<String> defaultApis) {
             Utils.checkNotNull(defaultApis, "defaultApis");
@@ -233,7 +238,8 @@ public class OauthScopes {
         }
 
         /**
-         * List of Unified APIs that request this OAuth Scope by default. Application owners can customize the requested scopes.
+         * List of Unified APIs that request this OAuth Scope by default. Application owners can customize the
+         * requested scopes.
          */
         public Builder defaultApis(Optional<? extends List<String>> defaultApis) {
             Utils.checkNotNull(defaultApis, "defaultApis");

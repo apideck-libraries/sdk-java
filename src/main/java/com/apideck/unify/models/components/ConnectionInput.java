@@ -22,7 +22,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ConnectionInput {
     /**
-     * Whether the connection is enabled or not. You can enable or disable a connection using the Update Connection API.
+     * Whether the connection is enabled or not. You can enable or disable a connection using the Update
+     * Connection API.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("enabled")
@@ -106,7 +107,8 @@ public class ConnectionInput {
     }
 
     /**
-     * Whether the connection is enabled or not. You can enable or disable a connection using the Update Connection API.
+     * Whether the connection is enabled or not. You can enable or disable a connection using the Update
+     * Connection API.
      */
     @JsonIgnore
     public Optional<Boolean> enabled() {
@@ -173,7 +175,8 @@ public class ConnectionInput {
 
 
     /**
-     * Whether the connection is enabled or not. You can enable or disable a connection using the Update Connection API.
+     * Whether the connection is enabled or not. You can enable or disable a connection using the Update
+     * Connection API.
      */
     public ConnectionInput withEnabled(boolean enabled) {
         Utils.checkNotNull(enabled, "enabled");
@@ -183,7 +186,8 @@ public class ConnectionInput {
 
 
     /**
-     * Whether the connection is enabled or not. You can enable or disable a connection using the Update Connection API.
+     * Whether the connection is enabled or not. You can enable or disable a connection using the Update
+     * Connection API.
      */
     public ConnectionInput withEnabled(Optional<Boolean> enabled) {
         Utils.checkNotNull(enabled, "enabled");
@@ -370,7 +374,8 @@ public class ConnectionInput {
 
 
         /**
-         * Whether the connection is enabled or not. You can enable or disable a connection using the Update Connection API.
+         * Whether the connection is enabled or not. You can enable or disable a connection using the Update
+         * Connection API.
          */
         public Builder enabled(boolean enabled) {
             Utils.checkNotNull(enabled, "enabled");
@@ -379,7 +384,8 @@ public class ConnectionInput {
         }
 
         /**
-         * Whether the connection is enabled or not. You can enable or disable a connection using the Update Connection API.
+         * Whether the connection is enabled or not. You can enable or disable a connection using the Update
+         * Connection API.
          */
         public Builder enabled(Optional<Boolean> enabled) {
             Utils.checkNotNull(enabled, "enabled");

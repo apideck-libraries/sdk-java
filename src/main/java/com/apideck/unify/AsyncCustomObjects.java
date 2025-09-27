@@ -68,7 +68,7 @@ public class AsyncCustomObjects {
      * <p>List custom objects
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CrmCustomObjectsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmCustomObjectsAllResponse>} - The async response
      */
     public CompletableFuture<CrmCustomObjectsAllResponse> list(CrmCustomObjectsAllRequest request) {
         return list(request, Optional.empty());
@@ -81,7 +81,7 @@ public class AsyncCustomObjects {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;CrmCustomObjectsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmCustomObjectsAllResponse>} - The async response
      */
     public CompletableFuture<CrmCustomObjectsAllResponse> list(CrmCustomObjectsAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmCustomObjectsAllRequest, CrmCustomObjectsAllResponse> operation
@@ -110,7 +110,7 @@ public class AsyncCustomObjects {
      * <p>Create custom object
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CrmCustomObjectsAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmCustomObjectsAddResponse>} - The async response
      */
     public CompletableFuture<CrmCustomObjectsAddResponse> create(CrmCustomObjectsAddRequest request) {
         return create(request, Optional.empty());
@@ -123,7 +123,7 @@ public class AsyncCustomObjects {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;CrmCustomObjectsAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmCustomObjectsAddResponse>} - The async response
      */
     public CompletableFuture<CrmCustomObjectsAddResponse> create(CrmCustomObjectsAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmCustomObjectsAddRequest, CrmCustomObjectsAddResponse> operation
@@ -152,7 +152,7 @@ public class AsyncCustomObjects {
      * <p>Get custom object
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CrmCustomObjectsOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmCustomObjectsOneResponse>} - The async response
      */
     public CompletableFuture<CrmCustomObjectsOneResponse> get(CrmCustomObjectsOneRequest request) {
         return get(request, Optional.empty());
@@ -165,7 +165,7 @@ public class AsyncCustomObjects {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;CrmCustomObjectsOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmCustomObjectsOneResponse>} - The async response
      */
     public CompletableFuture<CrmCustomObjectsOneResponse> get(CrmCustomObjectsOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmCustomObjectsOneRequest, CrmCustomObjectsOneResponse> operation
@@ -194,7 +194,7 @@ public class AsyncCustomObjects {
      * <p>Update custom object
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CrmCustomObjectsUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmCustomObjectsUpdateResponse>} - The async response
      */
     public CompletableFuture<CrmCustomObjectsUpdateResponse> update(CrmCustomObjectsUpdateRequest request) {
         return update(request, Optional.empty());
@@ -207,7 +207,7 @@ public class AsyncCustomObjects {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;CrmCustomObjectsUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmCustomObjectsUpdateResponse>} - The async response
      */
     public CompletableFuture<CrmCustomObjectsUpdateResponse> update(CrmCustomObjectsUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmCustomObjectsUpdateRequest, CrmCustomObjectsUpdateResponse> operation
@@ -236,7 +236,7 @@ public class AsyncCustomObjects {
      * <p>Delete custom object
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CrmCustomObjectsDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmCustomObjectsDeleteResponse>} - The async response
      */
     public CompletableFuture<CrmCustomObjectsDeleteResponse> delete(CrmCustomObjectsDeleteRequest request) {
         return delete(request, Optional.empty());
@@ -249,7 +249,7 @@ public class AsyncCustomObjects {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;CrmCustomObjectsDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmCustomObjectsDeleteResponse>} - The async response
      */
     public CompletableFuture<CrmCustomObjectsDeleteResponse> delete(CrmCustomObjectsDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmCustomObjectsDeleteRequest, CrmCustomObjectsDeleteResponse> operation

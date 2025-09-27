@@ -41,7 +41,8 @@ public class EmployeePayroll {
     private JsonNullable<String> companyId;
 
     /**
-     * Whether or not the payroll has been successfully processed. Note that processed payrolls cannot be updated.
+     * Whether or not the payroll has been successfully processed. Note that processed payrolls cannot be
+     * updated.
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("processed")
@@ -155,7 +156,8 @@ public class EmployeePayroll {
     }
 
     /**
-     * Whether or not the payroll has been successfully processed. Note that processed payrolls cannot be updated.
+     * Whether or not the payroll has been successfully processed. Note that processed payrolls cannot be
+     * updated.
      */
     @JsonIgnore
     public Optional<Boolean> processed() {
@@ -273,7 +275,8 @@ public class EmployeePayroll {
     }
 
     /**
-     * Whether or not the payroll has been successfully processed. Note that processed payrolls cannot be updated.
+     * Whether or not the payroll has been successfully processed. Note that processed payrolls cannot be
+     * updated.
      */
     public EmployeePayroll withProcessed(boolean processed) {
         Utils.checkNotNull(processed, "processed");
@@ -283,7 +286,8 @@ public class EmployeePayroll {
 
 
     /**
-     * Whether or not the payroll has been successfully processed. Note that processed payrolls cannot be updated.
+     * Whether or not the payroll has been successfully processed. Note that processed payrolls cannot be
+     * updated.
      */
     public EmployeePayroll withProcessed(Optional<Boolean> processed) {
         Utils.checkNotNull(processed, "processed");
@@ -536,7 +540,8 @@ public class EmployeePayroll {
 
 
         /**
-         * Whether or not the payroll has been successfully processed. Note that processed payrolls cannot be updated.
+         * Whether or not the payroll has been successfully processed. Note that processed payrolls cannot be
+         * updated.
          */
         public Builder processed(boolean processed) {
             Utils.checkNotNull(processed, "processed");
@@ -545,7 +550,8 @@ public class EmployeePayroll {
         }
 
         /**
-         * Whether or not the payroll has been successfully processed. Note that processed payrolls cannot be updated.
+         * Whether or not the payroll has been successfully processed. Note that processed payrolls cannot be
+         * updated.
          */
         public Builder processed(Optional<Boolean> processed) {
             Utils.checkNotNull(processed, "processed");

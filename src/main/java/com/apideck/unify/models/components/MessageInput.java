@@ -70,14 +70,16 @@ public class MessageInput {
     private Optional<String> reference;
 
     /**
-     * The ID of the Messaging Service used with the message. In case of Plivo this links to the Powerpack ID.
+     * The ID of the Messaging Service used with the message. In case of Plivo this links to the Powerpack
+     * ID.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("messaging_service_id")
     private Optional<String> messagingServiceId;
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pass_through")
@@ -190,7 +192,8 @@ public class MessageInput {
     }
 
     /**
-     * The ID of the Messaging Service used with the message. In case of Plivo this links to the Powerpack ID.
+     * The ID of the Messaging Service used with the message. In case of Plivo this links to the Powerpack
+     * ID.
      */
     @JsonIgnore
     public Optional<String> messagingServiceId() {
@@ -198,7 +201,8 @@ public class MessageInput {
     }
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -328,7 +332,8 @@ public class MessageInput {
     }
 
     /**
-     * The ID of the Messaging Service used with the message. In case of Plivo this links to the Powerpack ID.
+     * The ID of the Messaging Service used with the message. In case of Plivo this links to the Powerpack
+     * ID.
      */
     public MessageInput withMessagingServiceId(String messagingServiceId) {
         Utils.checkNotNull(messagingServiceId, "messagingServiceId");
@@ -338,7 +343,8 @@ public class MessageInput {
 
 
     /**
-     * The ID of the Messaging Service used with the message. In case of Plivo this links to the Powerpack ID.
+     * The ID of the Messaging Service used with the message. In case of Plivo this links to the Powerpack
+     * ID.
      */
     public MessageInput withMessagingServiceId(Optional<String> messagingServiceId) {
         Utils.checkNotNull(messagingServiceId, "messagingServiceId");
@@ -347,7 +353,8 @@ public class MessageInput {
     }
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     public MessageInput withPassThrough(List<PassThroughBody> passThrough) {
         Utils.checkNotNull(passThrough, "passThrough");
@@ -357,7 +364,8 @@ public class MessageInput {
 
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     public MessageInput withPassThrough(Optional<? extends List<PassThroughBody>> passThrough) {
         Utils.checkNotNull(passThrough, "passThrough");
@@ -559,7 +567,8 @@ public class MessageInput {
 
 
         /**
-         * The ID of the Messaging Service used with the message. In case of Plivo this links to the Powerpack ID.
+         * The ID of the Messaging Service used with the message. In case of Plivo this links to the Powerpack
+         * ID.
          */
         public Builder messagingServiceId(String messagingServiceId) {
             Utils.checkNotNull(messagingServiceId, "messagingServiceId");
@@ -568,7 +577,8 @@ public class MessageInput {
         }
 
         /**
-         * The ID of the Messaging Service used with the message. In case of Plivo this links to the Powerpack ID.
+         * The ID of the Messaging Service used with the message. In case of Plivo this links to the Powerpack
+         * ID.
          */
         public Builder messagingServiceId(Optional<String> messagingServiceId) {
             Utils.checkNotNull(messagingServiceId, "messagingServiceId");
@@ -578,7 +588,8 @@ public class MessageInput {
 
 
         /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+         * The pass_through property allows passing service-specific, custom data or structured modifications
+         * in request body when creating or updating resources.
          */
         public Builder passThrough(List<PassThroughBody> passThrough) {
             Utils.checkNotNull(passThrough, "passThrough");
@@ -587,7 +598,8 @@ public class MessageInput {
         }
 
         /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+         * The pass_through property allows passing service-specific, custom data or structured modifications
+         * in request body when creating or updating resources.
          */
         public Builder passThrough(Optional<? extends List<PassThroughBody>> passThrough) {
             Utils.checkNotNull(passThrough, "passThrough");

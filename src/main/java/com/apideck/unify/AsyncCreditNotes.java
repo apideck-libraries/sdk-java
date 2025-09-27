@@ -68,7 +68,7 @@ public class AsyncCreditNotes {
      * <p>List Credit Notes
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingCreditNotesAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingCreditNotesAllResponse>} - The async response
      */
     public CompletableFuture<AccountingCreditNotesAllResponse> list(AccountingCreditNotesAllRequest request) {
         return list(request, Optional.empty());
@@ -81,7 +81,7 @@ public class AsyncCreditNotes {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingCreditNotesAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingCreditNotesAllResponse>} - The async response
      */
     public CompletableFuture<AccountingCreditNotesAllResponse> list(AccountingCreditNotesAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingCreditNotesAllRequest, AccountingCreditNotesAllResponse> operation
@@ -110,7 +110,7 @@ public class AsyncCreditNotes {
      * <p>Create Credit Note
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingCreditNotesAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingCreditNotesAddResponse>} - The async response
      */
     public CompletableFuture<AccountingCreditNotesAddResponse> create(AccountingCreditNotesAddRequest request) {
         return create(request, Optional.empty());
@@ -123,7 +123,7 @@ public class AsyncCreditNotes {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingCreditNotesAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingCreditNotesAddResponse>} - The async response
      */
     public CompletableFuture<AccountingCreditNotesAddResponse> create(AccountingCreditNotesAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingCreditNotesAddRequest, AccountingCreditNotesAddResponse> operation
@@ -152,7 +152,7 @@ public class AsyncCreditNotes {
      * <p>Get Credit Note
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingCreditNotesOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingCreditNotesOneResponse>} - The async response
      */
     public CompletableFuture<AccountingCreditNotesOneResponse> get(AccountingCreditNotesOneRequest request) {
         return get(request, Optional.empty());
@@ -165,7 +165,7 @@ public class AsyncCreditNotes {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingCreditNotesOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingCreditNotesOneResponse>} - The async response
      */
     public CompletableFuture<AccountingCreditNotesOneResponse> get(AccountingCreditNotesOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingCreditNotesOneRequest, AccountingCreditNotesOneResponse> operation
@@ -194,7 +194,7 @@ public class AsyncCreditNotes {
      * <p>Update Credit Note
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingCreditNotesUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingCreditNotesUpdateResponse>} - The async response
      */
     public CompletableFuture<AccountingCreditNotesUpdateResponse> update(AccountingCreditNotesUpdateRequest request) {
         return update(request, Optional.empty());
@@ -207,7 +207,7 @@ public class AsyncCreditNotes {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingCreditNotesUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingCreditNotesUpdateResponse>} - The async response
      */
     public CompletableFuture<AccountingCreditNotesUpdateResponse> update(AccountingCreditNotesUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingCreditNotesUpdateRequest, AccountingCreditNotesUpdateResponse> operation
@@ -236,7 +236,7 @@ public class AsyncCreditNotes {
      * <p>Delete Credit Note
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingCreditNotesDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingCreditNotesDeleteResponse>} - The async response
      */
     public CompletableFuture<AccountingCreditNotesDeleteResponse> delete(AccountingCreditNotesDeleteRequest request) {
         return delete(request, Optional.empty());
@@ -249,7 +249,7 @@ public class AsyncCreditNotes {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingCreditNotesDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingCreditNotesDeleteResponse>} - The async response
      */
     public CompletableFuture<AccountingCreditNotesDeleteResponse> delete(AccountingCreditNotesDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingCreditNotesDeleteRequest, AccountingCreditNotesDeleteResponse> operation

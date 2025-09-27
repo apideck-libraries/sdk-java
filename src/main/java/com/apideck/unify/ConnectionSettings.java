@@ -41,7 +41,8 @@ public class ConnectionSettings {
     /**
      * Get resource settings
      * 
-     * <p>This endpoint returns custom settings and their defaults required by connection for a given resource.
+     * <p>This endpoint returns custom settings and their defaults required by connection for a given
+     * resource.
      * 
      * @return The call builder
      */
@@ -52,7 +53,8 @@ public class ConnectionSettings {
     /**
      * Get resource settings
      * 
-     * <p>This endpoint returns custom settings and their defaults required by connection for a given resource.
+     * <p>This endpoint returns custom settings and their defaults required by connection for a given
+     * resource.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -65,7 +67,8 @@ public class ConnectionSettings {
     /**
      * Get resource settings
      * 
-     * <p>This endpoint returns custom settings and their defaults required by connection for a given resource.
+     * <p>This endpoint returns custom settings and their defaults required by connection for a given
+     * resource.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options

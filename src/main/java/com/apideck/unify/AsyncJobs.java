@@ -56,7 +56,7 @@ public class AsyncJobs {
      * <p>List Jobs
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AtsJobsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<AtsJobsAllResponse>} - The async response
      */
     public CompletableFuture<AtsJobsAllResponse> list(AtsJobsAllRequest request) {
         return list(request, Optional.empty());
@@ -69,7 +69,7 @@ public class AsyncJobs {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AtsJobsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<AtsJobsAllResponse>} - The async response
      */
     public CompletableFuture<AtsJobsAllResponse> list(AtsJobsAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<AtsJobsAllRequest, AtsJobsAllResponse> operation
@@ -98,7 +98,7 @@ public class AsyncJobs {
      * <p>Get Job
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AtsJobsOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<AtsJobsOneResponse>} - The async response
      */
     public CompletableFuture<AtsJobsOneResponse> get(AtsJobsOneRequest request) {
         return get(request, Optional.empty());
@@ -111,7 +111,7 @@ public class AsyncJobs {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AtsJobsOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<AtsJobsOneResponse>} - The async response
      */
     public CompletableFuture<AtsJobsOneResponse> get(AtsJobsOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<AtsJobsOneRequest, AtsJobsOneResponse> operation

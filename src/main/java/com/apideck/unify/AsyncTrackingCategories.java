@@ -68,7 +68,7 @@ public class AsyncTrackingCategories {
      * <p>List Tracking Categories
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingTrackingCategoriesAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingTrackingCategoriesAllResponse>} - The async response
      */
     public CompletableFuture<AccountingTrackingCategoriesAllResponse> list(AccountingTrackingCategoriesAllRequest request) {
         return list(request, Optional.empty());
@@ -81,7 +81,7 @@ public class AsyncTrackingCategories {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingTrackingCategoriesAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingTrackingCategoriesAllResponse>} - The async response
      */
     public CompletableFuture<AccountingTrackingCategoriesAllResponse> list(AccountingTrackingCategoriesAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingTrackingCategoriesAllRequest, AccountingTrackingCategoriesAllResponse> operation
@@ -110,7 +110,7 @@ public class AsyncTrackingCategories {
      * <p>Create Tracking Category
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingTrackingCategoriesAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingTrackingCategoriesAddResponse>} - The async response
      */
     public CompletableFuture<AccountingTrackingCategoriesAddResponse> create(AccountingTrackingCategoriesAddRequest request) {
         return create(request, Optional.empty());
@@ -123,7 +123,7 @@ public class AsyncTrackingCategories {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingTrackingCategoriesAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingTrackingCategoriesAddResponse>} - The async response
      */
     public CompletableFuture<AccountingTrackingCategoriesAddResponse> create(AccountingTrackingCategoriesAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingTrackingCategoriesAddRequest, AccountingTrackingCategoriesAddResponse> operation
@@ -152,7 +152,7 @@ public class AsyncTrackingCategories {
      * <p>Get Tracking Category
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingTrackingCategoriesOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingTrackingCategoriesOneResponse>} - The async response
      */
     public CompletableFuture<AccountingTrackingCategoriesOneResponse> get(AccountingTrackingCategoriesOneRequest request) {
         return get(request, Optional.empty());
@@ -165,7 +165,7 @@ public class AsyncTrackingCategories {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingTrackingCategoriesOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingTrackingCategoriesOneResponse>} - The async response
      */
     public CompletableFuture<AccountingTrackingCategoriesOneResponse> get(AccountingTrackingCategoriesOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingTrackingCategoriesOneRequest, AccountingTrackingCategoriesOneResponse> operation
@@ -194,7 +194,7 @@ public class AsyncTrackingCategories {
      * <p>Update Tracking Category
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingTrackingCategoriesUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingTrackingCategoriesUpdateResponse>} - The async response
      */
     public CompletableFuture<AccountingTrackingCategoriesUpdateResponse> update(AccountingTrackingCategoriesUpdateRequest request) {
         return update(request, Optional.empty());
@@ -207,7 +207,7 @@ public class AsyncTrackingCategories {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingTrackingCategoriesUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingTrackingCategoriesUpdateResponse>} - The async response
      */
     public CompletableFuture<AccountingTrackingCategoriesUpdateResponse> update(AccountingTrackingCategoriesUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingTrackingCategoriesUpdateRequest, AccountingTrackingCategoriesUpdateResponse> operation
@@ -236,7 +236,7 @@ public class AsyncTrackingCategories {
      * <p>Delete Tracking Category
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingTrackingCategoriesDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingTrackingCategoriesDeleteResponse>} - The async response
      */
     public CompletableFuture<AccountingTrackingCategoriesDeleteResponse> delete(AccountingTrackingCategoriesDeleteRequest request) {
         return delete(request, Optional.empty());
@@ -249,7 +249,7 @@ public class AsyncTrackingCategories {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingTrackingCategoriesDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingTrackingCategoriesDeleteResponse>} - The async response
      */
     public CompletableFuture<AccountingTrackingCategoriesDeleteResponse> delete(AccountingTrackingCategoriesDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingTrackingCategoriesDeleteRequest, AccountingTrackingCategoriesDeleteResponse> operation

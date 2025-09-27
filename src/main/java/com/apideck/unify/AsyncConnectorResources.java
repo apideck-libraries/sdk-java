@@ -55,7 +55,7 @@ public class AsyncConnectorResources {
      * 
      * @param id ID of the record you are acting upon.
      * @param resourceId ID of the resource you are acting upon.
-     * @return CompletableFuture&lt;ConnectorConnectorResourcesOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<ConnectorConnectorResourcesOneResponse>} - The async response
      */
     public CompletableFuture<ConnectorConnectorResourcesOneResponse> get(String id, String resourceId) {
         return get(
@@ -73,7 +73,7 @@ public class AsyncConnectorResources {
      * @param resourceId ID of the resource you are acting upon.
      * @param unifiedApi Name of Apideck Unified API
      * @param options additional options
-     * @return CompletableFuture&lt;ConnectorConnectorResourcesOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<ConnectorConnectorResourcesOneResponse>} - The async response
      */
     public CompletableFuture<ConnectorConnectorResourcesOneResponse> get(
             Optional<String> appId, String id,

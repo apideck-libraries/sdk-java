@@ -68,7 +68,7 @@ public class AsyncCollectionTicketComments {
      * <p>List Comments
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;IssueTrackingCollectionTicketCommentsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<IssueTrackingCollectionTicketCommentsAllResponse>} - The async response
      */
     public CompletableFuture<IssueTrackingCollectionTicketCommentsAllResponse> list(IssueTrackingCollectionTicketCommentsAllRequest request) {
         return list(request, Optional.empty());
@@ -81,7 +81,7 @@ public class AsyncCollectionTicketComments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;IssueTrackingCollectionTicketCommentsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<IssueTrackingCollectionTicketCommentsAllResponse>} - The async response
      */
     public CompletableFuture<IssueTrackingCollectionTicketCommentsAllResponse> list(IssueTrackingCollectionTicketCommentsAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<IssueTrackingCollectionTicketCommentsAllRequest, IssueTrackingCollectionTicketCommentsAllResponse> operation
@@ -110,7 +110,7 @@ public class AsyncCollectionTicketComments {
      * <p>Create Comment
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;IssueTrackingCollectionTicketCommentsAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<IssueTrackingCollectionTicketCommentsAddResponse>} - The async response
      */
     public CompletableFuture<IssueTrackingCollectionTicketCommentsAddResponse> create(IssueTrackingCollectionTicketCommentsAddRequest request) {
         return create(request, Optional.empty());
@@ -123,7 +123,7 @@ public class AsyncCollectionTicketComments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;IssueTrackingCollectionTicketCommentsAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<IssueTrackingCollectionTicketCommentsAddResponse>} - The async response
      */
     public CompletableFuture<IssueTrackingCollectionTicketCommentsAddResponse> create(IssueTrackingCollectionTicketCommentsAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<IssueTrackingCollectionTicketCommentsAddRequest, IssueTrackingCollectionTicketCommentsAddResponse> operation
@@ -152,7 +152,7 @@ public class AsyncCollectionTicketComments {
      * <p>Get Comment
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;IssueTrackingCollectionTicketCommentsOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<IssueTrackingCollectionTicketCommentsOneResponse>} - The async response
      */
     public CompletableFuture<IssueTrackingCollectionTicketCommentsOneResponse> get(IssueTrackingCollectionTicketCommentsOneRequest request) {
         return get(request, Optional.empty());
@@ -165,7 +165,7 @@ public class AsyncCollectionTicketComments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;IssueTrackingCollectionTicketCommentsOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<IssueTrackingCollectionTicketCommentsOneResponse>} - The async response
      */
     public CompletableFuture<IssueTrackingCollectionTicketCommentsOneResponse> get(IssueTrackingCollectionTicketCommentsOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<IssueTrackingCollectionTicketCommentsOneRequest, IssueTrackingCollectionTicketCommentsOneResponse> operation
@@ -194,7 +194,7 @@ public class AsyncCollectionTicketComments {
      * <p>Update Comment
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;IssueTrackingCollectionTicketCommentsUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<IssueTrackingCollectionTicketCommentsUpdateResponse>} - The async response
      */
     public CompletableFuture<IssueTrackingCollectionTicketCommentsUpdateResponse> update(IssueTrackingCollectionTicketCommentsUpdateRequest request) {
         return update(request, Optional.empty());
@@ -207,7 +207,7 @@ public class AsyncCollectionTicketComments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;IssueTrackingCollectionTicketCommentsUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<IssueTrackingCollectionTicketCommentsUpdateResponse>} - The async response
      */
     public CompletableFuture<IssueTrackingCollectionTicketCommentsUpdateResponse> update(IssueTrackingCollectionTicketCommentsUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<IssueTrackingCollectionTicketCommentsUpdateRequest, IssueTrackingCollectionTicketCommentsUpdateResponse> operation
@@ -236,7 +236,7 @@ public class AsyncCollectionTicketComments {
      * <p>Delete Comment
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;IssueTrackingCollectionTicketCommentsDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<IssueTrackingCollectionTicketCommentsDeleteResponse>} - The async response
      */
     public CompletableFuture<IssueTrackingCollectionTicketCommentsDeleteResponse> delete(IssueTrackingCollectionTicketCommentsDeleteRequest request) {
         return delete(request, Optional.empty());
@@ -249,7 +249,7 @@ public class AsyncCollectionTicketComments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;IssueTrackingCollectionTicketCommentsDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<IssueTrackingCollectionTicketCommentsDeleteResponse>} - The async response
      */
     public CompletableFuture<IssueTrackingCollectionTicketCommentsDeleteResponse> delete(IssueTrackingCollectionTicketCommentsDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<IssueTrackingCollectionTicketCommentsDeleteRequest, IssueTrackingCollectionTicketCommentsDeleteResponse> operation

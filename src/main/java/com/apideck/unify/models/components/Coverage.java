@@ -33,7 +33,8 @@ public class Coverage {
     private Optional<String> downstreamName;
 
     /**
-     * Indicates if pagination (cursor and limit parameters) is supported on the list endpoint of the resource.
+     * Indicates if pagination (cursor and limit parameters) is supported on the list endpoint of the
+     * resource.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pagination_supported")
@@ -133,7 +134,8 @@ public class Coverage {
     }
 
     /**
-     * Indicates if pagination (cursor and limit parameters) is supported on the list endpoint of the resource.
+     * Indicates if pagination (cursor and limit parameters) is supported on the list endpoint of the
+     * resource.
      */
     @JsonIgnore
     public Optional<Boolean> paginationSupported() {
@@ -235,7 +237,8 @@ public class Coverage {
     }
 
     /**
-     * Indicates if pagination (cursor and limit parameters) is supported on the list endpoint of the resource.
+     * Indicates if pagination (cursor and limit parameters) is supported on the list endpoint of the
+     * resource.
      */
     public Coverage withPaginationSupported(boolean paginationSupported) {
         Utils.checkNotNull(paginationSupported, "paginationSupported");
@@ -245,7 +248,8 @@ public class Coverage {
 
 
     /**
-     * Indicates if pagination (cursor and limit parameters) is supported on the list endpoint of the resource.
+     * Indicates if pagination (cursor and limit parameters) is supported on the list endpoint of the
+     * resource.
      */
     public Coverage withPaginationSupported(Optional<Boolean> paginationSupported) {
         Utils.checkNotNull(paginationSupported, "paginationSupported");
@@ -469,7 +473,8 @@ public class Coverage {
 
 
         /**
-         * Indicates if pagination (cursor and limit parameters) is supported on the list endpoint of the resource.
+         * Indicates if pagination (cursor and limit parameters) is supported on the list endpoint of the
+         * resource.
          */
         public Builder paginationSupported(boolean paginationSupported) {
             Utils.checkNotNull(paginationSupported, "paginationSupported");
@@ -478,7 +483,8 @@ public class Coverage {
         }
 
         /**
-         * Indicates if pagination (cursor and limit parameters) is supported on the list endpoint of the resource.
+         * Indicates if pagination (cursor and limit parameters) is supported on the list endpoint of the
+         * resource.
          */
         public Builder paginationSupported(Optional<Boolean> paginationSupported) {
             Utils.checkNotNull(paginationSupported, "paginationSupported");

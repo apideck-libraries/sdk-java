@@ -52,7 +52,7 @@ public class AsyncProfitAndLoss {
      * <p>Get Profit and Loss
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingProfitAndLossOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingProfitAndLossOneResponse>} - The async response
      */
     public CompletableFuture<AccountingProfitAndLossOneResponse> get(AccountingProfitAndLossOneRequest request) {
         return get(request, Optional.empty());
@@ -65,7 +65,7 @@ public class AsyncProfitAndLoss {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingProfitAndLossOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingProfitAndLossOneResponse>} - The async response
      */
     public CompletableFuture<AccountingProfitAndLossOneResponse> get(AccountingProfitAndLossOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingProfitAndLossOneRequest, AccountingProfitAndLossOneResponse> operation

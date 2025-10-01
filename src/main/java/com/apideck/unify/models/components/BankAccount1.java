@@ -24,7 +24,9 @@ public class BankAccount1 {
     private JsonNullable<String> bankName;
 
     /**
-     * A bank account number is a number that is tied to your bank account. If you have several bank accounts, such as personal, joint, business (and so on), each account will have a different account number.
+     * A bank account number is a number that is tied to your bank account. If you have several bank
+     * accounts, such as personal, joint, business (and so on), each account will have a different account
+     * number.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("account_number")
@@ -66,7 +68,8 @@ public class BankAccount1 {
     private JsonNullable<String> routingNumber;
 
     /**
-     * A BSB is a 6 digit numeric code used for identifying the branch of an Australian or New Zealand bank or financial institution.
+     * A BSB is a 6 digit numeric code used for identifying the branch of an Australian or New Zealand bank
+     * or financial institution.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("bsb_number")
@@ -80,14 +83,16 @@ public class BankAccount1 {
     private JsonNullable<String> branchIdentifier;
 
     /**
-     * A bank code is a code assigned by a central bank, a bank supervisory body or a Bankers Association in a country to all its licensed member banks or financial institutions.
+     * A bank code is a code assigned by a central bank, a bank supervisory body or a Bankers Association
+     * in a country to all its licensed member banks or financial institutions.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("bank_code")
     private JsonNullable<String> bankCode;
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("currency")
@@ -156,7 +161,9 @@ public class BankAccount1 {
     }
 
     /**
-     * A bank account number is a number that is tied to your bank account. If you have several bank accounts, such as personal, joint, business (and so on), each account will have a different account number.
+     * A bank account number is a number that is tied to your bank account. If you have several bank
+     * accounts, such as personal, joint, business (and so on), each account will have a different account
+     * number.
      */
     @JsonIgnore
     public JsonNullable<String> accountNumber() {
@@ -205,7 +212,8 @@ public class BankAccount1 {
     }
 
     /**
-     * A BSB is a 6 digit numeric code used for identifying the branch of an Australian or New Zealand bank or financial institution.
+     * A BSB is a 6 digit numeric code used for identifying the branch of an Australian or New Zealand bank
+     * or financial institution.
      */
     @JsonIgnore
     public JsonNullable<String> bsbNumber() {
@@ -221,7 +229,8 @@ public class BankAccount1 {
     }
 
     /**
-     * A bank code is a code assigned by a central bank, a bank supervisory body or a Bankers Association in a country to all its licensed member banks or financial institutions.
+     * A bank code is a code assigned by a central bank, a bank supervisory body or a Bankers Association
+     * in a country to all its licensed member banks or financial institutions.
      */
     @JsonIgnore
     public JsonNullable<String> bankCode() {
@@ -229,7 +238,8 @@ public class BankAccount1 {
     }
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -269,7 +279,9 @@ public class BankAccount1 {
     }
 
     /**
-     * A bank account number is a number that is tied to your bank account. If you have several bank accounts, such as personal, joint, business (and so on), each account will have a different account number.
+     * A bank account number is a number that is tied to your bank account. If you have several bank
+     * accounts, such as personal, joint, business (and so on), each account will have a different account
+     * number.
      */
     public BankAccount1 withAccountNumber(String accountNumber) {
         Utils.checkNotNull(accountNumber, "accountNumber");
@@ -278,7 +290,9 @@ public class BankAccount1 {
     }
 
     /**
-     * A bank account number is a number that is tied to your bank account. If you have several bank accounts, such as personal, joint, business (and so on), each account will have a different account number.
+     * A bank account number is a number that is tied to your bank account. If you have several bank
+     * accounts, such as personal, joint, business (and so on), each account will have a different account
+     * number.
      */
     public BankAccount1 withAccountNumber(JsonNullable<String> accountNumber) {
         Utils.checkNotNull(accountNumber, "accountNumber");
@@ -377,7 +391,8 @@ public class BankAccount1 {
     }
 
     /**
-     * A BSB is a 6 digit numeric code used for identifying the branch of an Australian or New Zealand bank or financial institution.
+     * A BSB is a 6 digit numeric code used for identifying the branch of an Australian or New Zealand bank
+     * or financial institution.
      */
     public BankAccount1 withBsbNumber(String bsbNumber) {
         Utils.checkNotNull(bsbNumber, "bsbNumber");
@@ -386,7 +401,8 @@ public class BankAccount1 {
     }
 
     /**
-     * A BSB is a 6 digit numeric code used for identifying the branch of an Australian or New Zealand bank or financial institution.
+     * A BSB is a 6 digit numeric code used for identifying the branch of an Australian or New Zealand bank
+     * or financial institution.
      */
     public BankAccount1 withBsbNumber(JsonNullable<String> bsbNumber) {
         Utils.checkNotNull(bsbNumber, "bsbNumber");
@@ -413,7 +429,8 @@ public class BankAccount1 {
     }
 
     /**
-     * A bank code is a code assigned by a central bank, a bank supervisory body or a Bankers Association in a country to all its licensed member banks or financial institutions.
+     * A bank code is a code assigned by a central bank, a bank supervisory body or a Bankers Association
+     * in a country to all its licensed member banks or financial institutions.
      */
     public BankAccount1 withBankCode(String bankCode) {
         Utils.checkNotNull(bankCode, "bankCode");
@@ -422,7 +439,8 @@ public class BankAccount1 {
     }
 
     /**
-     * A bank code is a code assigned by a central bank, a bank supervisory body or a Bankers Association in a country to all its licensed member banks or financial institutions.
+     * A bank code is a code assigned by a central bank, a bank supervisory body or a Bankers Association
+     * in a country to all its licensed member banks or financial institutions.
      */
     public BankAccount1 withBankCode(JsonNullable<String> bankCode) {
         Utils.checkNotNull(bankCode, "bankCode");
@@ -431,7 +449,8 @@ public class BankAccount1 {
     }
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     public BankAccount1 withCurrency(Currency currency) {
         Utils.checkNotNull(currency, "currency");
@@ -440,7 +459,8 @@ public class BankAccount1 {
     }
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     public BankAccount1 withCurrency(JsonNullable<? extends Currency> currency) {
         Utils.checkNotNull(currency, "currency");
@@ -568,7 +588,9 @@ public class BankAccount1 {
 
 
         /**
-         * A bank account number is a number that is tied to your bank account. If you have several bank accounts, such as personal, joint, business (and so on), each account will have a different account number.
+         * A bank account number is a number that is tied to your bank account. If you have several bank
+         * accounts, such as personal, joint, business (and so on), each account will have a different account
+         * number.
          */
         public Builder accountNumber(String accountNumber) {
             Utils.checkNotNull(accountNumber, "accountNumber");
@@ -577,7 +599,9 @@ public class BankAccount1 {
         }
 
         /**
-         * A bank account number is a number that is tied to your bank account. If you have several bank accounts, such as personal, joint, business (and so on), each account will have a different account number.
+         * A bank account number is a number that is tied to your bank account. If you have several bank
+         * accounts, such as personal, joint, business (and so on), each account will have a different account
+         * number.
          */
         public Builder accountNumber(JsonNullable<String> accountNumber) {
             Utils.checkNotNull(accountNumber, "accountNumber");
@@ -682,7 +706,8 @@ public class BankAccount1 {
 
 
         /**
-         * A BSB is a 6 digit numeric code used for identifying the branch of an Australian or New Zealand bank or financial institution.
+         * A BSB is a 6 digit numeric code used for identifying the branch of an Australian or New Zealand bank
+         * or financial institution.
          */
         public Builder bsbNumber(String bsbNumber) {
             Utils.checkNotNull(bsbNumber, "bsbNumber");
@@ -691,7 +716,8 @@ public class BankAccount1 {
         }
 
         /**
-         * A BSB is a 6 digit numeric code used for identifying the branch of an Australian or New Zealand bank or financial institution.
+         * A BSB is a 6 digit numeric code used for identifying the branch of an Australian or New Zealand bank
+         * or financial institution.
          */
         public Builder bsbNumber(JsonNullable<String> bsbNumber) {
             Utils.checkNotNull(bsbNumber, "bsbNumber");
@@ -720,7 +746,8 @@ public class BankAccount1 {
 
 
         /**
-         * A bank code is a code assigned by a central bank, a bank supervisory body or a Bankers Association in a country to all its licensed member banks or financial institutions.
+         * A bank code is a code assigned by a central bank, a bank supervisory body or a Bankers Association
+         * in a country to all its licensed member banks or financial institutions.
          */
         public Builder bankCode(String bankCode) {
             Utils.checkNotNull(bankCode, "bankCode");
@@ -729,7 +756,8 @@ public class BankAccount1 {
         }
 
         /**
-         * A bank code is a code assigned by a central bank, a bank supervisory body or a Bankers Association in a country to all its licensed member banks or financial institutions.
+         * A bank code is a code assigned by a central bank, a bank supervisory body or a Bankers Association
+         * in a country to all its licensed member banks or financial institutions.
          */
         public Builder bankCode(JsonNullable<String> bankCode) {
             Utils.checkNotNull(bankCode, "bankCode");
@@ -739,7 +767,8 @@ public class BankAccount1 {
 
 
         /**
-         * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+         * Indicates the associated currency for an amount of money. Values correspond to [ISO
+         * 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
         public Builder currency(Currency currency) {
             Utils.checkNotNull(currency, "currency");
@@ -748,7 +777,8 @@ public class BankAccount1 {
         }
 
         /**
-         * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+         * Indicates the associated currency for an amount of money. Values correspond to [ISO
+         * 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
         public Builder currency(JsonNullable<? extends Currency> currency) {
             Utils.checkNotNull(currency, "currency");

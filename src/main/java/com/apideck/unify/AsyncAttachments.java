@@ -69,7 +69,7 @@ public class AsyncAttachments {
      * <p>List Attachments
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingAttachmentsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingAttachmentsAllResponse>} - The async response
      */
     public CompletableFuture<AccountingAttachmentsAllResponse> list(AccountingAttachmentsAllRequest request) {
         return list(request, Optional.empty());
@@ -82,7 +82,7 @@ public class AsyncAttachments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingAttachmentsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingAttachmentsAllResponse>} - The async response
      */
     public CompletableFuture<AccountingAttachmentsAllResponse> list(AccountingAttachmentsAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingAttachmentsAllRequest, AccountingAttachmentsAllResponse> operation
@@ -111,7 +111,7 @@ public class AsyncAttachments {
      * <p>Upload attachment
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingAttachmentsUploadResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingAttachmentsUploadResponse>} - The async response
      */
     public CompletableFuture<AccountingAttachmentsUploadResponse> upload(AccountingAttachmentsUploadRequest request) {
         return upload(request, Optional.empty(), Optional.empty());
@@ -125,7 +125,7 @@ public class AsyncAttachments {
      * @param request The request object containing all the parameters for the API call.
      * @param serverURL Overrides the server URL.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingAttachmentsUploadResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingAttachmentsUploadResponse>} - The async response
      */
     public CompletableFuture<AccountingAttachmentsUploadResponse> upload(
             AccountingAttachmentsUploadRequest request, Optional<String> serverURL,
@@ -156,7 +156,7 @@ public class AsyncAttachments {
      * <p>Get Attachment
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingAttachmentsOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingAttachmentsOneResponse>} - The async response
      */
     public CompletableFuture<AccountingAttachmentsOneResponse> get(AccountingAttachmentsOneRequest request) {
         return get(request, Optional.empty());
@@ -169,7 +169,7 @@ public class AsyncAttachments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingAttachmentsOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingAttachmentsOneResponse>} - The async response
      */
     public CompletableFuture<AccountingAttachmentsOneResponse> get(AccountingAttachmentsOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingAttachmentsOneRequest, AccountingAttachmentsOneResponse> operation
@@ -198,7 +198,7 @@ public class AsyncAttachments {
      * <p>Delete Attachment
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingAttachmentsDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingAttachmentsDeleteResponse>} - The async response
      */
     public CompletableFuture<AccountingAttachmentsDeleteResponse> delete(AccountingAttachmentsDeleteRequest request) {
         return delete(request, Optional.empty());
@@ -211,7 +211,7 @@ public class AsyncAttachments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingAttachmentsDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingAttachmentsDeleteResponse>} - The async response
      */
     public CompletableFuture<AccountingAttachmentsDeleteResponse> delete(AccountingAttachmentsDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingAttachmentsDeleteRequest, AccountingAttachmentsDeleteResponse> operation
@@ -240,7 +240,7 @@ public class AsyncAttachments {
      * <p>Download Attachment
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingAttachmentsDownloadResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingAttachmentsDownloadResponse>} - The async response
      */
     public CompletableFuture<AccountingAttachmentsDownloadResponse> download(AccountingAttachmentsDownloadRequest request) {
         return download(request, Optional.empty());
@@ -253,7 +253,7 @@ public class AsyncAttachments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingAttachmentsDownloadResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingAttachmentsDownloadResponse>} - The async response
      */
     public CompletableFuture<AccountingAttachmentsDownloadResponse> download(AccountingAttachmentsDownloadRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingAttachmentsDownloadRequest, AccountingAttachmentsDownloadResponse> operation

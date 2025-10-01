@@ -62,7 +62,8 @@ public class AsyncConnections {
      * 
      * <p>This endpoint includes all the configured integrations and contains the required assets
      * to build an integrations page where your users can install integrations.
-     * OAuth2 supported integrations will contain authorize and revoke links to handle the authentication flows.
+     * OAuth2 supported integrations will contain authorize and revoke links to handle the authentication
+     * flows.
      * 
      * @return The async call builder
      */
@@ -75,9 +76,10 @@ public class AsyncConnections {
      * 
      * <p>This endpoint includes all the configured integrations and contains the required assets
      * to build an integrations page where your users can install integrations.
-     * OAuth2 supported integrations will contain authorize and revoke links to handle the authentication flows.
+     * OAuth2 supported integrations will contain authorize and revoke links to handle the authentication
+     * flows.
      * 
-     * @return CompletableFuture&lt;VaultConnectionsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<VaultConnectionsAllResponse>} - The async response
      */
     public CompletableFuture<VaultConnectionsAllResponse> listDirect() {
         return list(
@@ -90,14 +92,15 @@ public class AsyncConnections {
      * 
      * <p>This endpoint includes all the configured integrations and contains the required assets
      * to build an integrations page where your users can install integrations.
-     * OAuth2 supported integrations will contain authorize and revoke links to handle the authentication flows.
+     * OAuth2 supported integrations will contain authorize and revoke links to handle the authentication
+     * flows.
      * 
      * @param consumerId ID of the consumer which you want to get or push data from
      * @param appId The ID of your Unify application
      * @param api Scope results to Unified API
      * @param configured Scopes results to connections that have been configured or not
      * @param options additional options
-     * @return CompletableFuture&lt;VaultConnectionsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<VaultConnectionsAllResponse>} - The async response
      */
     public CompletableFuture<VaultConnectionsAllResponse> list(
             Optional<String> consumerId, Optional<String> appId,
@@ -138,7 +141,7 @@ public class AsyncConnections {
      * 
      * @param serviceId Service ID of the resource to return
      * @param unifiedApi Unified API
-     * @return CompletableFuture&lt;VaultConnectionsOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<VaultConnectionsOneResponse>} - The async response
      */
     public CompletableFuture<VaultConnectionsOneResponse> get(String serviceId, String unifiedApi) {
         return get(
@@ -156,7 +159,7 @@ public class AsyncConnections {
      * @param serviceId Service ID of the resource to return
      * @param unifiedApi Unified API
      * @param options additional options
-     * @return CompletableFuture&lt;VaultConnectionsOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<VaultConnectionsOneResponse>} - The async response
      */
     public CompletableFuture<VaultConnectionsOneResponse> get(
             Optional<String> consumerId, Optional<String> appId,
@@ -196,7 +199,7 @@ public class AsyncConnections {
      * <p>Update a connection
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;VaultConnectionsUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<VaultConnectionsUpdateResponse>} - The async response
      */
     public CompletableFuture<VaultConnectionsUpdateResponse> update(VaultConnectionsUpdateRequest request) {
         return update(request, Optional.empty());
@@ -209,7 +212,7 @@ public class AsyncConnections {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;VaultConnectionsUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<VaultConnectionsUpdateResponse>} - The async response
      */
     public CompletableFuture<VaultConnectionsUpdateResponse> update(VaultConnectionsUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<VaultConnectionsUpdateRequest, VaultConnectionsUpdateResponse> operation
@@ -239,7 +242,7 @@ public class AsyncConnections {
      * 
      * @param serviceId Service ID of the resource to return
      * @param unifiedApi Unified API
-     * @return CompletableFuture&lt;VaultConnectionsDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<VaultConnectionsDeleteResponse>} - The async response
      */
     public CompletableFuture<VaultConnectionsDeleteResponse> delete(String serviceId, String unifiedApi) {
         return delete(
@@ -257,7 +260,7 @@ public class AsyncConnections {
      * @param serviceId Service ID of the resource to return
      * @param unifiedApi Unified API
      * @param options additional options
-     * @return CompletableFuture&lt;VaultConnectionsDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<VaultConnectionsDeleteResponse>} - The async response
      */
     public CompletableFuture<VaultConnectionsDeleteResponse> delete(
             Optional<String> consumerId, Optional<String> appId,
@@ -297,7 +300,7 @@ public class AsyncConnections {
      * <p>Import an authorized connection.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;VaultConnectionsImportResponse&gt; - The async response
+     * @return {@code CompletableFuture<VaultConnectionsImportResponse>} - The async response
      */
     public CompletableFuture<VaultConnectionsImportResponse> imports(VaultConnectionsImportRequest request) {
         return imports(request, Optional.empty());
@@ -310,7 +313,7 @@ public class AsyncConnections {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;VaultConnectionsImportResponse&gt; - The async response
+     * @return {@code CompletableFuture<VaultConnectionsImportResponse>} - The async response
      */
     public CompletableFuture<VaultConnectionsImportResponse> imports(VaultConnectionsImportRequest request, Optional<Options> options) {
         AsyncRequestOperation<VaultConnectionsImportRequest, VaultConnectionsImportResponse> operation
@@ -325,12 +328,15 @@ public class AsyncConnections {
     /**
      * Authorize Access Token
      * 
-     * <p>Triggers exchanging persisted connection credentials for an access token and store it in Vault. Currently supported for connections with the `client_credentials` or `password` OAuth grant type.
+     * <p>Triggers exchanging persisted connection credentials for an access token and store it in Vault.
+     * Currently supported for connections with the `client_credentials` or `password` OAuth grant type.
      * 
      * <p>Note:
-     *   - Do not include any credentials in the request body. This operation does not persist changes, but only triggers the exchange of persisted connection credentials for an access token.
-     *   - The access token will not be returned in the response. A 200 response code indicates the authorization was successful and that a valid access token was stored on the connection.
-     *   - The access token will be used for subsequent API requests.
+     * - Do not include any credentials in the request body. This operation does not persist changes, but
+     * only triggers the exchange of persisted connection credentials for an access token.
+     * - The access token will not be returned in the response. A 200 response code indicates the
+     * authorization was successful and that a valid access token was stored on the connection.
+     * - The access token will be used for subsequent API requests.
      * 
      * @return The async call builder
      */
@@ -341,15 +347,18 @@ public class AsyncConnections {
     /**
      * Authorize Access Token
      * 
-     * <p>Triggers exchanging persisted connection credentials for an access token and store it in Vault. Currently supported for connections with the `client_credentials` or `password` OAuth grant type.
+     * <p>Triggers exchanging persisted connection credentials for an access token and store it in Vault.
+     * Currently supported for connections with the `client_credentials` or `password` OAuth grant type.
      * 
      * <p>Note:
-     *   - Do not include any credentials in the request body. This operation does not persist changes, but only triggers the exchange of persisted connection credentials for an access token.
-     *   - The access token will not be returned in the response. A 200 response code indicates the authorization was successful and that a valid access token was stored on the connection.
-     *   - The access token will be used for subsequent API requests.
+     * - Do not include any credentials in the request body. This operation does not persist changes, but
+     * only triggers the exchange of persisted connection credentials for an access token.
+     * - The access token will not be returned in the response. A 200 response code indicates the
+     * authorization was successful and that a valid access token was stored on the connection.
+     * - The access token will be used for subsequent API requests.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;VaultConnectionsTokenResponse&gt; - The async response
+     * @return {@code CompletableFuture<VaultConnectionsTokenResponse>} - The async response
      */
     public CompletableFuture<VaultConnectionsTokenResponse> token(VaultConnectionsTokenRequest request) {
         return token(request, Optional.empty());
@@ -358,16 +367,19 @@ public class AsyncConnections {
     /**
      * Authorize Access Token
      * 
-     * <p>Triggers exchanging persisted connection credentials for an access token and store it in Vault. Currently supported for connections with the `client_credentials` or `password` OAuth grant type.
+     * <p>Triggers exchanging persisted connection credentials for an access token and store it in Vault.
+     * Currently supported for connections with the `client_credentials` or `password` OAuth grant type.
      * 
      * <p>Note:
-     *   - Do not include any credentials in the request body. This operation does not persist changes, but only triggers the exchange of persisted connection credentials for an access token.
-     *   - The access token will not be returned in the response. A 200 response code indicates the authorization was successful and that a valid access token was stored on the connection.
-     *   - The access token will be used for subsequent API requests.
+     * - Do not include any credentials in the request body. This operation does not persist changes, but
+     * only triggers the exchange of persisted connection credentials for an access token.
+     * - The access token will not be returned in the response. A 200 response code indicates the
+     * authorization was successful and that a valid access token was stored on the connection.
+     * - The access token will be used for subsequent API requests.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;VaultConnectionsTokenResponse&gt; - The async response
+     * @return {@code CompletableFuture<VaultConnectionsTokenResponse>} - The async response
      */
     public CompletableFuture<VaultConnectionsTokenResponse> token(VaultConnectionsTokenRequest request, Optional<Options> options) {
         AsyncRequestOperation<VaultConnectionsTokenRequest, VaultConnectionsTokenResponse> operation

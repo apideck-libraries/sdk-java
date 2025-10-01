@@ -68,7 +68,7 @@ public class AsyncBankAccounts {
      * <p>List Bank Accounts
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingBankAccountsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingBankAccountsAllResponse>} - The async response
      */
     public CompletableFuture<AccountingBankAccountsAllResponse> list(AccountingBankAccountsAllRequest request) {
         return list(request, Optional.empty());
@@ -81,7 +81,7 @@ public class AsyncBankAccounts {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingBankAccountsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingBankAccountsAllResponse>} - The async response
      */
     public CompletableFuture<AccountingBankAccountsAllResponse> list(AccountingBankAccountsAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingBankAccountsAllRequest, AccountingBankAccountsAllResponse> operation
@@ -110,7 +110,7 @@ public class AsyncBankAccounts {
      * <p>Create Bank Account
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingBankAccountsAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingBankAccountsAddResponse>} - The async response
      */
     public CompletableFuture<AccountingBankAccountsAddResponse> create(AccountingBankAccountsAddRequest request) {
         return create(request, Optional.empty());
@@ -123,7 +123,7 @@ public class AsyncBankAccounts {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingBankAccountsAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingBankAccountsAddResponse>} - The async response
      */
     public CompletableFuture<AccountingBankAccountsAddResponse> create(AccountingBankAccountsAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingBankAccountsAddRequest, AccountingBankAccountsAddResponse> operation
@@ -152,7 +152,7 @@ public class AsyncBankAccounts {
      * <p>Get Bank Account
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingBankAccountsOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingBankAccountsOneResponse>} - The async response
      */
     public CompletableFuture<AccountingBankAccountsOneResponse> get(AccountingBankAccountsOneRequest request) {
         return get(request, Optional.empty());
@@ -165,7 +165,7 @@ public class AsyncBankAccounts {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingBankAccountsOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingBankAccountsOneResponse>} - The async response
      */
     public CompletableFuture<AccountingBankAccountsOneResponse> get(AccountingBankAccountsOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingBankAccountsOneRequest, AccountingBankAccountsOneResponse> operation
@@ -194,7 +194,7 @@ public class AsyncBankAccounts {
      * <p>Update Bank Account
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingBankAccountsUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingBankAccountsUpdateResponse>} - The async response
      */
     public CompletableFuture<AccountingBankAccountsUpdateResponse> update(AccountingBankAccountsUpdateRequest request) {
         return update(request, Optional.empty());
@@ -207,7 +207,7 @@ public class AsyncBankAccounts {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingBankAccountsUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingBankAccountsUpdateResponse>} - The async response
      */
     public CompletableFuture<AccountingBankAccountsUpdateResponse> update(AccountingBankAccountsUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingBankAccountsUpdateRequest, AccountingBankAccountsUpdateResponse> operation
@@ -236,7 +236,7 @@ public class AsyncBankAccounts {
      * <p>Delete Bank Account
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingBankAccountsDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingBankAccountsDeleteResponse>} - The async response
      */
     public CompletableFuture<AccountingBankAccountsDeleteResponse> delete(AccountingBankAccountsDeleteRequest request) {
         return delete(request, Optional.empty());
@@ -249,7 +249,7 @@ public class AsyncBankAccounts {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingBankAccountsDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingBankAccountsDeleteResponse>} - The async response
      */
     public CompletableFuture<AccountingBankAccountsDeleteResponse> delete(AccountingBankAccountsDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingBankAccountsDeleteRequest, AccountingBankAccountsDeleteResponse> operation

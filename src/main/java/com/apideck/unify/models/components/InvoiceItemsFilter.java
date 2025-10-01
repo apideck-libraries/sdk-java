@@ -27,18 +27,27 @@ public class InvoiceItemsFilter {
     @SpeakeasyMetadata("queryParam:name=type")
     private JsonNullable<? extends InvoiceItemType> type;
 
+    /**
+     * The kind of transaction, indicating whether it is a sales transaction or a purchase transaction.
+     */
+    @SpeakeasyMetadata("queryParam:name=transaction_type")
+    private JsonNullable<? extends TransactionType> transactionType;
+
     @JsonCreator
     public InvoiceItemsFilter(
             Optional<String> name,
-            JsonNullable<? extends InvoiceItemType> type) {
+            JsonNullable<? extends InvoiceItemType> type,
+            JsonNullable<? extends TransactionType> transactionType) {
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(type, "type");
+        Utils.checkNotNull(transactionType, "transactionType");
         this.name = name;
         this.type = type;
+        this.transactionType = transactionType;
     }
     
     public InvoiceItemsFilter() {
-        this(Optional.empty(), JsonNullable.undefined());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -56,6 +65,15 @@ public class InvoiceItemsFilter {
     @JsonIgnore
     public JsonNullable<InvoiceItemType> type() {
         return (JsonNullable<InvoiceItemType>) type;
+    }
+
+    /**
+     * The kind of transaction, indicating whether it is a sales transaction or a purchase transaction.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<TransactionType> transactionType() {
+        return (JsonNullable<TransactionType>) transactionType;
     }
 
     public static Builder builder() {
@@ -100,6 +118,24 @@ public class InvoiceItemsFilter {
         return this;
     }
 
+    /**
+     * The kind of transaction, indicating whether it is a sales transaction or a purchase transaction.
+     */
+    public InvoiceItemsFilter withTransactionType(TransactionType transactionType) {
+        Utils.checkNotNull(transactionType, "transactionType");
+        this.transactionType = JsonNullable.of(transactionType);
+        return this;
+    }
+
+    /**
+     * The kind of transaction, indicating whether it is a sales transaction or a purchase transaction.
+     */
+    public InvoiceItemsFilter withTransactionType(JsonNullable<? extends TransactionType> transactionType) {
+        Utils.checkNotNull(transactionType, "transactionType");
+        this.transactionType = transactionType;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -111,20 +147,22 @@ public class InvoiceItemsFilter {
         InvoiceItemsFilter other = (InvoiceItemsFilter) o;
         return 
             Utils.enhancedDeepEquals(this.name, other.name) &&
-            Utils.enhancedDeepEquals(this.type, other.type);
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.transactionType, other.transactionType);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name, type);
+            name, type, transactionType);
     }
     
     @Override
     public String toString() {
         return Utils.toString(InvoiceItemsFilter.class,
                 "name", name,
-                "type", type);
+                "type", type,
+                "transactionType", transactionType);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -133,6 +171,8 @@ public class InvoiceItemsFilter {
         private Optional<String> name = Optional.empty();
 
         private JsonNullable<? extends InvoiceItemType> type = JsonNullable.undefined();
+
+        private JsonNullable<? extends TransactionType> transactionType = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -176,10 +216,29 @@ public class InvoiceItemsFilter {
             return this;
         }
 
+
+        /**
+         * The kind of transaction, indicating whether it is a sales transaction or a purchase transaction.
+         */
+        public Builder transactionType(TransactionType transactionType) {
+            Utils.checkNotNull(transactionType, "transactionType");
+            this.transactionType = JsonNullable.of(transactionType);
+            return this;
+        }
+
+        /**
+         * The kind of transaction, indicating whether it is a sales transaction or a purchase transaction.
+         */
+        public Builder transactionType(JsonNullable<? extends TransactionType> transactionType) {
+            Utils.checkNotNull(transactionType, "transactionType");
+            this.transactionType = transactionType;
+            return this;
+        }
+
         public InvoiceItemsFilter build() {
 
             return new InvoiceItemsFilter(
-                name, type);
+                name, type, transactionType);
         }
 
     }

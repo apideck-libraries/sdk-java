@@ -54,7 +54,7 @@ public class AsyncConnectionConsents {
      * 
      * @param serviceId Service ID of the resource to return
      * @param unifiedApi Unified API
-     * @return CompletableFuture&lt;VaultConnectionConsentsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<VaultConnectionConsentsAllResponse>} - The async response
      */
     public CompletableFuture<VaultConnectionConsentsAllResponse> list(String serviceId, String unifiedApi) {
         return list(
@@ -72,7 +72,7 @@ public class AsyncConnectionConsents {
      * @param serviceId Service ID of the resource to return
      * @param unifiedApi Unified API
      * @param options additional options
-     * @return CompletableFuture&lt;VaultConnectionConsentsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<VaultConnectionConsentsAllResponse>} - The async response
      */
     public CompletableFuture<VaultConnectionConsentsAllResponse> list(
             Optional<String> consumerId, Optional<String> appId,

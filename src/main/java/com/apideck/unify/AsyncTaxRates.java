@@ -54,7 +54,10 @@ public class AsyncTaxRates {
     /**
      * List Tax Rates
      * 
-     * <p>List Tax Rates. Note: Not all connectors return the actual rate/percentage value. In this case, only the tax code or reference is returned. Connectors Affected: Quickbooks
+     * <p>List Tax Rates. Note: Not all connectors return the actual rate/percentage value. In this case, only
+     * the tax code or reference is returned.
+     * 
+     * <p>Connectors Affected: Quickbooks
      * 
      * @return The async call builder
      */
@@ -65,10 +68,13 @@ public class AsyncTaxRates {
     /**
      * List Tax Rates
      * 
-     * <p>List Tax Rates. Note: Not all connectors return the actual rate/percentage value. In this case, only the tax code or reference is returned. Connectors Affected: Quickbooks
+     * <p>List Tax Rates. Note: Not all connectors return the actual rate/percentage value. In this case, only
+     * the tax code or reference is returned.
+     * 
+     * <p>Connectors Affected: Quickbooks
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingTaxRatesAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingTaxRatesAllResponse>} - The async response
      */
     public CompletableFuture<AccountingTaxRatesAllResponse> list(AccountingTaxRatesAllRequest request) {
         return list(request, Optional.empty());
@@ -77,11 +83,14 @@ public class AsyncTaxRates {
     /**
      * List Tax Rates
      * 
-     * <p>List Tax Rates. Note: Not all connectors return the actual rate/percentage value. In this case, only the tax code or reference is returned. Connectors Affected: Quickbooks
+     * <p>List Tax Rates. Note: Not all connectors return the actual rate/percentage value. In this case, only
+     * the tax code or reference is returned.
+     * 
+     * <p>Connectors Affected: Quickbooks
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingTaxRatesAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingTaxRatesAllResponse>} - The async response
      */
     public CompletableFuture<AccountingTaxRatesAllResponse> list(AccountingTaxRatesAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingTaxRatesAllRequest, AccountingTaxRatesAllResponse> operation
@@ -110,7 +119,7 @@ public class AsyncTaxRates {
      * <p>Create Tax Rate
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingTaxRatesAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingTaxRatesAddResponse>} - The async response
      */
     public CompletableFuture<AccountingTaxRatesAddResponse> create(AccountingTaxRatesAddRequest request) {
         return create(request, Optional.empty());
@@ -123,7 +132,7 @@ public class AsyncTaxRates {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingTaxRatesAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingTaxRatesAddResponse>} - The async response
      */
     public CompletableFuture<AccountingTaxRatesAddResponse> create(AccountingTaxRatesAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingTaxRatesAddRequest, AccountingTaxRatesAddResponse> operation
@@ -138,7 +147,11 @@ public class AsyncTaxRates {
     /**
      * Get Tax Rate
      * 
-     * <p>Get Tax Rate. Note: Not all connectors return the actual rate/percentage value. In this case, only the tax code or reference is returned. Support will soon be added to return the actual rate/percentage by doing additional calls in the background to provide the full view of a given tax rate. Connectors Affected: Quickbooks
+     * <p>Get Tax Rate. Note: Not all connectors return the actual rate/percentage value. In this case, only
+     * the tax code or reference is returned.
+     * 
+     * <p>Support will soon be added to return the actual rate/percentage by doing additional calls in the
+     * background to provide the full view of a given tax rate. Connectors Affected: Quickbooks
      * 
      * @return The async call builder
      */
@@ -149,10 +162,14 @@ public class AsyncTaxRates {
     /**
      * Get Tax Rate
      * 
-     * <p>Get Tax Rate. Note: Not all connectors return the actual rate/percentage value. In this case, only the tax code or reference is returned. Support will soon be added to return the actual rate/percentage by doing additional calls in the background to provide the full view of a given tax rate. Connectors Affected: Quickbooks
+     * <p>Get Tax Rate. Note: Not all connectors return the actual rate/percentage value. In this case, only
+     * the tax code or reference is returned.
+     * 
+     * <p>Support will soon be added to return the actual rate/percentage by doing additional calls in the
+     * background to provide the full view of a given tax rate. Connectors Affected: Quickbooks
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingTaxRatesOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingTaxRatesOneResponse>} - The async response
      */
     public CompletableFuture<AccountingTaxRatesOneResponse> get(AccountingTaxRatesOneRequest request) {
         return get(request, Optional.empty());
@@ -161,11 +178,15 @@ public class AsyncTaxRates {
     /**
      * Get Tax Rate
      * 
-     * <p>Get Tax Rate. Note: Not all connectors return the actual rate/percentage value. In this case, only the tax code or reference is returned. Support will soon be added to return the actual rate/percentage by doing additional calls in the background to provide the full view of a given tax rate. Connectors Affected: Quickbooks
+     * <p>Get Tax Rate. Note: Not all connectors return the actual rate/percentage value. In this case, only
+     * the tax code or reference is returned.
+     * 
+     * <p>Support will soon be added to return the actual rate/percentage by doing additional calls in the
+     * background to provide the full view of a given tax rate. Connectors Affected: Quickbooks
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingTaxRatesOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingTaxRatesOneResponse>} - The async response
      */
     public CompletableFuture<AccountingTaxRatesOneResponse> get(AccountingTaxRatesOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingTaxRatesOneRequest, AccountingTaxRatesOneResponse> operation
@@ -194,7 +215,7 @@ public class AsyncTaxRates {
      * <p>Update Tax Rate
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingTaxRatesUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingTaxRatesUpdateResponse>} - The async response
      */
     public CompletableFuture<AccountingTaxRatesUpdateResponse> update(AccountingTaxRatesUpdateRequest request) {
         return update(request, Optional.empty());
@@ -207,7 +228,7 @@ public class AsyncTaxRates {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingTaxRatesUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingTaxRatesUpdateResponse>} - The async response
      */
     public CompletableFuture<AccountingTaxRatesUpdateResponse> update(AccountingTaxRatesUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingTaxRatesUpdateRequest, AccountingTaxRatesUpdateResponse> operation
@@ -236,7 +257,7 @@ public class AsyncTaxRates {
      * <p>Delete Tax Rate
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingTaxRatesDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingTaxRatesDeleteResponse>} - The async response
      */
     public CompletableFuture<AccountingTaxRatesDeleteResponse> delete(AccountingTaxRatesDeleteRequest request) {
         return delete(request, Optional.empty());
@@ -249,7 +270,7 @@ public class AsyncTaxRates {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingTaxRatesDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingTaxRatesDeleteResponse>} - The async response
      */
     public CompletableFuture<AccountingTaxRatesDeleteResponse> delete(AccountingTaxRatesDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingTaxRatesDeleteRequest, AccountingTaxRatesDeleteResponse> operation

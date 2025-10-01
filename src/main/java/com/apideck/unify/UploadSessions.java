@@ -54,7 +54,11 @@ public class UploadSessions {
     /**
      * Start Upload Session
      * 
-     * <p>Start an Upload Session. Upload sessions are used to upload large files, use the [Upload File](#operation/filesUpload) endpoint to upload smaller files (up to 100MB). Note that the base URL is upload.apideck.com instead of unify.apideck.com. For more information on uploads, refer to the [file upload guide](/guides/file-upload).
+     * <p>Start an Upload Session. Upload sessions are used to upload large files, use the [Upload
+     * File](#operation/filesUpload) endpoint to upload smaller files (up to 100MB). Note that the base URL
+     * is upload.apideck.com instead of unify.apideck.com.
+     * 
+     * <p>For more information on uploads, refer to the [file upload guide](/guides/file-upload).
      * 
      * @return The call builder
      */
@@ -65,7 +69,11 @@ public class UploadSessions {
     /**
      * Start Upload Session
      * 
-     * <p>Start an Upload Session. Upload sessions are used to upload large files, use the [Upload File](#operation/filesUpload) endpoint to upload smaller files (up to 100MB). Note that the base URL is upload.apideck.com instead of unify.apideck.com. For more information on uploads, refer to the [file upload guide](/guides/file-upload).
+     * <p>Start an Upload Session. Upload sessions are used to upload large files, use the [Upload
+     * File](#operation/filesUpload) endpoint to upload smaller files (up to 100MB). Note that the base URL
+     * is upload.apideck.com instead of unify.apideck.com.
+     * 
+     * <p>For more information on uploads, refer to the [file upload guide](/guides/file-upload).
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -78,7 +86,11 @@ public class UploadSessions {
     /**
      * Start Upload Session
      * 
-     * <p>Start an Upload Session. Upload sessions are used to upload large files, use the [Upload File](#operation/filesUpload) endpoint to upload smaller files (up to 100MB). Note that the base URL is upload.apideck.com instead of unify.apideck.com. For more information on uploads, refer to the [file upload guide](/guides/file-upload).
+     * <p>Start an Upload Session. Upload sessions are used to upload large files, use the [Upload
+     * File](#operation/filesUpload) endpoint to upload smaller files (up to 100MB). Note that the base URL
+     * is upload.apideck.com instead of unify.apideck.com.
+     * 
+     * <p>For more information on uploads, refer to the [file upload guide](/guides/file-upload).
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param serverURL Overrides the server URL.
@@ -99,7 +111,11 @@ public class UploadSessions {
     /**
      * Get Upload Session
      * 
-     * <p>Get Upload Session. Use the `part_size` to split your file into parts. Upload the parts to the [Upload part of File](#operation/uploadSessionsUpload) endpoint. Note that the base URL is upload.apideck.com instead of unify.apideck.com. For more information on uploads, refer to the [file upload guide](/guides/file-upload).
+     * <p>Get Upload Session. Use the `part_size` to split your file into parts. Upload the parts to the
+     * [Upload part of File](#operation/uploadSessionsUpload) endpoint.
+     * 
+     * <p>Note that the base URL is upload.apideck.com instead of unify.apideck.com. For more information on
+     * uploads, refer to the [file upload guide](/guides/file-upload).
      * 
      * @return The call builder
      */
@@ -110,7 +126,11 @@ public class UploadSessions {
     /**
      * Get Upload Session
      * 
-     * <p>Get Upload Session. Use the `part_size` to split your file into parts. Upload the parts to the [Upload part of File](#operation/uploadSessionsUpload) endpoint. Note that the base URL is upload.apideck.com instead of unify.apideck.com. For more information on uploads, refer to the [file upload guide](/guides/file-upload).
+     * <p>Get Upload Session. Use the `part_size` to split your file into parts. Upload the parts to the
+     * [Upload part of File](#operation/uploadSessionsUpload) endpoint.
+     * 
+     * <p>Note that the base URL is upload.apideck.com instead of unify.apideck.com. For more information on
+     * uploads, refer to the [file upload guide](/guides/file-upload).
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -123,7 +143,11 @@ public class UploadSessions {
     /**
      * Get Upload Session
      * 
-     * <p>Get Upload Session. Use the `part_size` to split your file into parts. Upload the parts to the [Upload part of File](#operation/uploadSessionsUpload) endpoint. Note that the base URL is upload.apideck.com instead of unify.apideck.com. For more information on uploads, refer to the [file upload guide](/guides/file-upload).
+     * <p>Get Upload Session. Use the `part_size` to split your file into parts. Upload the parts to the
+     * [Upload part of File](#operation/uploadSessionsUpload) endpoint.
+     * 
+     * <p>Note that the base URL is upload.apideck.com instead of unify.apideck.com. For more information on
+     * uploads, refer to the [file upload guide](/guides/file-upload).
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param serverURL Overrides the server URL.
@@ -144,7 +168,12 @@ public class UploadSessions {
     /**
      * Upload part of File to Upload Session
      * 
-     * <p>Upload part of File to Upload Session (max 100MB). Get `part_size` from [Get Upload Session](#operation/uploadSessionsOne) first. Every File part (except the last one) uploaded to this endpoint should have Content-Length equal to `part_size`. Note that the base URL is upload.apideck.com instead of unify.apideck.com. For more information on uploads, refer to the [file upload guide](/guides/file-upload).
+     * <p>Upload part of File to Upload Session (max 100MB). Get `part_size` from [Get Upload
+     * Session](#operation/uploadSessionsOne) first. Every File part (except the last one) uploaded to this
+     * endpoint should have Content-Length equal to `part_size`.
+     * 
+     * <p>Note that the base URL is upload.apideck.com instead of unify.apideck.com. For more information on
+     * uploads, refer to the [file upload guide](/guides/file-upload).
      * 
      * @return The call builder
      */
@@ -155,7 +184,12 @@ public class UploadSessions {
     /**
      * Upload part of File to Upload Session
      * 
-     * <p>Upload part of File to Upload Session (max 100MB). Get `part_size` from [Get Upload Session](#operation/uploadSessionsOne) first. Every File part (except the last one) uploaded to this endpoint should have Content-Length equal to `part_size`. Note that the base URL is upload.apideck.com instead of unify.apideck.com. For more information on uploads, refer to the [file upload guide](/guides/file-upload).
+     * <p>Upload part of File to Upload Session (max 100MB). Get `part_size` from [Get Upload
+     * Session](#operation/uploadSessionsOne) first. Every File part (except the last one) uploaded to this
+     * endpoint should have Content-Length equal to `part_size`.
+     * 
+     * <p>Note that the base URL is upload.apideck.com instead of unify.apideck.com. For more information on
+     * uploads, refer to the [file upload guide](/guides/file-upload).
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -168,7 +202,12 @@ public class UploadSessions {
     /**
      * Upload part of File to Upload Session
      * 
-     * <p>Upload part of File to Upload Session (max 100MB). Get `part_size` from [Get Upload Session](#operation/uploadSessionsOne) first. Every File part (except the last one) uploaded to this endpoint should have Content-Length equal to `part_size`. Note that the base URL is upload.apideck.com instead of unify.apideck.com. For more information on uploads, refer to the [file upload guide](/guides/file-upload).
+     * <p>Upload part of File to Upload Session (max 100MB). Get `part_size` from [Get Upload
+     * Session](#operation/uploadSessionsOne) first. Every File part (except the last one) uploaded to this
+     * endpoint should have Content-Length equal to `part_size`.
+     * 
+     * <p>Note that the base URL is upload.apideck.com instead of unify.apideck.com. For more information on
+     * uploads, refer to the [file upload guide](/guides/file-upload).
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param serverURL Overrides the server URL.
@@ -189,7 +228,8 @@ public class UploadSessions {
     /**
      * Abort Upload Session
      * 
-     * <p>Abort Upload Session. Note that the base URL is upload.apideck.com instead of unify.apideck.com. For more information on uploads, refer to the [file upload guide](/guides/file-upload).
+     * <p>Abort Upload Session. Note that the base URL is upload.apideck.com instead of unify.apideck.com. For
+     * more information on uploads, refer to the [file upload guide](/guides/file-upload).
      * 
      * @return The call builder
      */
@@ -200,7 +240,8 @@ public class UploadSessions {
     /**
      * Abort Upload Session
      * 
-     * <p>Abort Upload Session. Note that the base URL is upload.apideck.com instead of unify.apideck.com. For more information on uploads, refer to the [file upload guide](/guides/file-upload).
+     * <p>Abort Upload Session. Note that the base URL is upload.apideck.com instead of unify.apideck.com. For
+     * more information on uploads, refer to the [file upload guide](/guides/file-upload).
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -213,7 +254,8 @@ public class UploadSessions {
     /**
      * Abort Upload Session
      * 
-     * <p>Abort Upload Session. Note that the base URL is upload.apideck.com instead of unify.apideck.com. For more information on uploads, refer to the [file upload guide](/guides/file-upload).
+     * <p>Abort Upload Session. Note that the base URL is upload.apideck.com instead of unify.apideck.com. For
+     * more information on uploads, refer to the [file upload guide](/guides/file-upload).
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -229,7 +271,11 @@ public class UploadSessions {
     /**
      * Finish Upload Session
      * 
-     * <p>Finish Upload Session. Only call this endpoint after all File parts have been uploaded to [Upload part of File](#operation/uploadSessionsUpload). Note that the base URL is upload.apideck.com instead of unify.apideck.com. For more information on uploads, refer to the [file upload guide](/guides/file-upload).
+     * <p>Finish Upload Session. Only call this endpoint after all File parts have been uploaded to [Upload
+     * part of File](#operation/uploadSessionsUpload). Note that the base URL is upload.apideck.com instead
+     * of unify.apideck.com.
+     * 
+     * <p>For more information on uploads, refer to the [file upload guide](/guides/file-upload).
      * 
      * @return The call builder
      */
@@ -240,7 +286,11 @@ public class UploadSessions {
     /**
      * Finish Upload Session
      * 
-     * <p>Finish Upload Session. Only call this endpoint after all File parts have been uploaded to [Upload part of File](#operation/uploadSessionsUpload). Note that the base URL is upload.apideck.com instead of unify.apideck.com. For more information on uploads, refer to the [file upload guide](/guides/file-upload).
+     * <p>Finish Upload Session. Only call this endpoint after all File parts have been uploaded to [Upload
+     * part of File](#operation/uploadSessionsUpload). Note that the base URL is upload.apideck.com instead
+     * of unify.apideck.com.
+     * 
+     * <p>For more information on uploads, refer to the [file upload guide](/guides/file-upload).
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -253,7 +303,11 @@ public class UploadSessions {
     /**
      * Finish Upload Session
      * 
-     * <p>Finish Upload Session. Only call this endpoint after all File parts have been uploaded to [Upload part of File](#operation/uploadSessionsUpload). Note that the base URL is upload.apideck.com instead of unify.apideck.com. For more information on uploads, refer to the [file upload guide](/guides/file-upload).
+     * <p>Finish Upload Session. Only call this endpoint after all File parts have been uploaded to [Upload
+     * part of File](#operation/uploadSessionsUpload). Note that the base URL is upload.apideck.com instead
+     * of unify.apideck.com.
+     * 
+     * <p>For more information on uploads, refer to the [file upload guide](/guides/file-upload).
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param serverURL Overrides the server URL.

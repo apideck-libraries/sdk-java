@@ -56,14 +56,16 @@ public class Ticket {
     private JsonNullable<String> subject;
 
     /**
-     * The ticket's description. HTML version of description is mapped if supported by the third-party platform
+     * The ticket's description. HTML version of description is mapped if supported by the third-party
+     * platform
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
     private JsonNullable<String> description;
 
     /**
-     * The current status of the ticket. Possible values include: open, in_progress, closed, or - in cases where there is no clear mapping - the original value passed through.
+     * The current status of the ticket. Possible values include: open, in_progress, closed, or - in cases
+     * where there is no clear mapping - the original value passed through.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
@@ -74,7 +76,7 @@ public class Ticket {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("priority")
-    private JsonNullable<? extends Priority> priority;
+    private JsonNullable<? extends TicketPriority> priority;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -129,7 +131,8 @@ public class Ticket {
     private JsonNullable<? extends Map<String, Object>> customMappings;
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pass_through")
@@ -144,7 +147,7 @@ public class Ticket {
             @JsonProperty("subject") JsonNullable<String> subject,
             @JsonProperty("description") JsonNullable<String> description,
             @JsonProperty("status") JsonNullable<String> status,
-            @JsonProperty("priority") JsonNullable<? extends Priority> priority,
+            @JsonProperty("priority") JsonNullable<? extends TicketPriority> priority,
             @JsonProperty("assignees") Optional<? extends List<Assignee>> assignees,
             @JsonProperty("updated_at") JsonNullable<OffsetDateTime> updatedAt,
             @JsonProperty("created_at") JsonNullable<OffsetDateTime> createdAt,
@@ -241,7 +244,8 @@ public class Ticket {
     }
 
     /**
-     * The ticket's description. HTML version of description is mapped if supported by the third-party platform
+     * The ticket's description. HTML version of description is mapped if supported by the third-party
+     * platform
      */
     @JsonIgnore
     public JsonNullable<String> description() {
@@ -249,7 +253,8 @@ public class Ticket {
     }
 
     /**
-     * The current status of the ticket. Possible values include: open, in_progress, closed, or - in cases where there is no clear mapping - the original value passed through.
+     * The current status of the ticket. Possible values include: open, in_progress, closed, or - in cases
+     * where there is no clear mapping - the original value passed through.
      */
     @JsonIgnore
     public JsonNullable<String> status() {
@@ -261,8 +266,8 @@ public class Ticket {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<Priority> priority() {
-        return (JsonNullable<Priority>) priority;
+    public JsonNullable<TicketPriority> priority() {
+        return (JsonNullable<TicketPriority>) priority;
     }
 
     @SuppressWarnings("unchecked")
@@ -327,7 +332,8 @@ public class Ticket {
     }
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -422,7 +428,8 @@ public class Ticket {
     }
 
     /**
-     * The ticket's description. HTML version of description is mapped if supported by the third-party platform
+     * The ticket's description. HTML version of description is mapped if supported by the third-party
+     * platform
      */
     public Ticket withDescription(String description) {
         Utils.checkNotNull(description, "description");
@@ -431,7 +438,8 @@ public class Ticket {
     }
 
     /**
-     * The ticket's description. HTML version of description is mapped if supported by the third-party platform
+     * The ticket's description. HTML version of description is mapped if supported by the third-party
+     * platform
      */
     public Ticket withDescription(JsonNullable<String> description) {
         Utils.checkNotNull(description, "description");
@@ -440,7 +448,8 @@ public class Ticket {
     }
 
     /**
-     * The current status of the ticket. Possible values include: open, in_progress, closed, or - in cases where there is no clear mapping - the original value passed through.
+     * The current status of the ticket. Possible values include: open, in_progress, closed, or - in cases
+     * where there is no clear mapping - the original value passed through.
      */
     public Ticket withStatus(String status) {
         Utils.checkNotNull(status, "status");
@@ -449,7 +458,8 @@ public class Ticket {
     }
 
     /**
-     * The current status of the ticket. Possible values include: open, in_progress, closed, or - in cases where there is no clear mapping - the original value passed through.
+     * The current status of the ticket. Possible values include: open, in_progress, closed, or - in cases
+     * where there is no clear mapping - the original value passed through.
      */
     public Ticket withStatus(JsonNullable<String> status) {
         Utils.checkNotNull(status, "status");
@@ -460,7 +470,7 @@ public class Ticket {
     /**
      * Priority of the ticket
      */
-    public Ticket withPriority(Priority priority) {
+    public Ticket withPriority(TicketPriority priority) {
         Utils.checkNotNull(priority, "priority");
         this.priority = JsonNullable.of(priority);
         return this;
@@ -469,7 +479,7 @@ public class Ticket {
     /**
      * Priority of the ticket
      */
-    public Ticket withPriority(JsonNullable<? extends Priority> priority) {
+    public Ticket withPriority(JsonNullable<? extends TicketPriority> priority) {
         Utils.checkNotNull(priority, "priority");
         this.priority = priority;
         return this;
@@ -610,7 +620,8 @@ public class Ticket {
     }
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     public Ticket withPassThrough(List<PassThroughBody> passThrough) {
         Utils.checkNotNull(passThrough, "passThrough");
@@ -620,7 +631,8 @@ public class Ticket {
 
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     public Ticket withPassThrough(Optional<? extends List<PassThroughBody>> passThrough) {
         Utils.checkNotNull(passThrough, "passThrough");
@@ -707,7 +719,7 @@ public class Ticket {
 
         private JsonNullable<String> status = JsonNullable.undefined();
 
-        private JsonNullable<? extends Priority> priority = JsonNullable.undefined();
+        private JsonNullable<? extends TicketPriority> priority = JsonNullable.undefined();
 
         private Optional<? extends List<Assignee>> assignees = Optional.empty();
 
@@ -819,7 +831,8 @@ public class Ticket {
 
 
         /**
-         * The ticket's description. HTML version of description is mapped if supported by the third-party platform
+         * The ticket's description. HTML version of description is mapped if supported by the third-party
+         * platform
          */
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
@@ -828,7 +841,8 @@ public class Ticket {
         }
 
         /**
-         * The ticket's description. HTML version of description is mapped if supported by the third-party platform
+         * The ticket's description. HTML version of description is mapped if supported by the third-party
+         * platform
          */
         public Builder description(JsonNullable<String> description) {
             Utils.checkNotNull(description, "description");
@@ -838,7 +852,8 @@ public class Ticket {
 
 
         /**
-         * The current status of the ticket. Possible values include: open, in_progress, closed, or - in cases where there is no clear mapping - the original value passed through.
+         * The current status of the ticket. Possible values include: open, in_progress, closed, or - in cases
+         * where there is no clear mapping - the original value passed through.
          */
         public Builder status(String status) {
             Utils.checkNotNull(status, "status");
@@ -847,7 +862,8 @@ public class Ticket {
         }
 
         /**
-         * The current status of the ticket. Possible values include: open, in_progress, closed, or - in cases where there is no clear mapping - the original value passed through.
+         * The current status of the ticket. Possible values include: open, in_progress, closed, or - in cases
+         * where there is no clear mapping - the original value passed through.
          */
         public Builder status(JsonNullable<String> status) {
             Utils.checkNotNull(status, "status");
@@ -859,7 +875,7 @@ public class Ticket {
         /**
          * Priority of the ticket
          */
-        public Builder priority(Priority priority) {
+        public Builder priority(TicketPriority priority) {
             Utils.checkNotNull(priority, "priority");
             this.priority = JsonNullable.of(priority);
             return this;
@@ -868,7 +884,7 @@ public class Ticket {
         /**
          * Priority of the ticket
          */
-        public Builder priority(JsonNullable<? extends Priority> priority) {
+        public Builder priority(JsonNullable<? extends TicketPriority> priority) {
             Utils.checkNotNull(priority, "priority");
             this.priority = priority;
             return this;
@@ -1016,7 +1032,8 @@ public class Ticket {
 
 
         /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+         * The pass_through property allows passing service-specific, custom data or structured modifications
+         * in request body when creating or updating resources.
          */
         public Builder passThrough(List<PassThroughBody> passThrough) {
             Utils.checkNotNull(passThrough, "passThrough");
@@ -1025,7 +1042,8 @@ public class Ticket {
         }
 
         /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+         * The pass_through property allows passing service-specific, custom data or structured modifications
+         * in request body when creating or updating resources.
          */
         public Builder passThrough(Optional<? extends List<PassThroughBody>> passThrough) {
             Utils.checkNotNull(passThrough, "passThrough");

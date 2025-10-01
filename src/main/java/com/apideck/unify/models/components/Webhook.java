@@ -44,7 +44,8 @@ public class Webhook {
     private Status status;
 
     /**
-     * Indicates if the webhook has has been disabled as it reached its retry limit or if account is over the usage allocated by it's plan.
+     * Indicates if the webhook has has been disabled as it reached its retry limit or if account is over
+     * the usage allocated by it's plan.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("disabled_reason")
@@ -158,7 +159,8 @@ public class Webhook {
     }
 
     /**
-     * Indicates if the webhook has has been disabled as it reached its retry limit or if account is over the usage allocated by it's plan.
+     * Indicates if the webhook has has been disabled as it reached its retry limit or if account is over
+     * the usage allocated by it's plan.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -261,7 +263,8 @@ public class Webhook {
     }
 
     /**
-     * Indicates if the webhook has has been disabled as it reached its retry limit or if account is over the usage allocated by it's plan.
+     * Indicates if the webhook has has been disabled as it reached its retry limit or if account is over
+     * the usage allocated by it's plan.
      */
     public Webhook withDisabledReason(DisabledReason disabledReason) {
         Utils.checkNotNull(disabledReason, "disabledReason");
@@ -271,7 +274,8 @@ public class Webhook {
 
 
     /**
-     * Indicates if the webhook has has been disabled as it reached its retry limit or if account is over the usage allocated by it's plan.
+     * Indicates if the webhook has has been disabled as it reached its retry limit or if account is over
+     * the usage allocated by it's plan.
      */
     public Webhook withDisabledReason(Optional<? extends DisabledReason> disabledReason) {
         Utils.checkNotNull(disabledReason, "disabledReason");
@@ -469,7 +473,8 @@ public class Webhook {
 
 
         /**
-         * Indicates if the webhook has has been disabled as it reached its retry limit or if account is over the usage allocated by it's plan.
+         * Indicates if the webhook has has been disabled as it reached its retry limit or if account is over
+         * the usage allocated by it's plan.
          */
         public Builder disabledReason(DisabledReason disabledReason) {
             Utils.checkNotNull(disabledReason, "disabledReason");
@@ -478,7 +483,8 @@ public class Webhook {
         }
 
         /**
-         * Indicates if the webhook has has been disabled as it reached its retry limit or if account is over the usage allocated by it's plan.
+         * Indicates if the webhook has has been disabled as it reached its retry limit or if account is over
+         * the usage allocated by it's plan.
          */
         public Builder disabledReason(Optional<? extends DisabledReason> disabledReason) {
             Utils.checkNotNull(disabledReason, "disabledReason");

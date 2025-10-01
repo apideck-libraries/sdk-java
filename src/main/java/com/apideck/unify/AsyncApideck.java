@@ -8,7 +8,7 @@ import com.apideck.unify.utils.Headers;
 /**
  * Apideck: The Apideck OpenAPI Spec: SDK Optimized
  * 
- * <p>https://developers.apideck.com - Apideck Developer Docs
+ * <p><a href="https://developers.apideck.com">Apideck Developer Docs</a>
  */
 public class AsyncApideck {
     private static final Headers _headers = Headers.EMPTY;

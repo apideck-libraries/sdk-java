@@ -56,7 +56,7 @@ public class AsyncApideckCustomers {
      * <p>List Customers
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;EcommerceCustomersAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<EcommerceCustomersAllResponse>} - The async response
      */
     public CompletableFuture<EcommerceCustomersAllResponse> list(EcommerceCustomersAllRequest request) {
         return list(request, Optional.empty());
@@ -69,7 +69,7 @@ public class AsyncApideckCustomers {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;EcommerceCustomersAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<EcommerceCustomersAllResponse>} - The async response
      */
     public CompletableFuture<EcommerceCustomersAllResponse> list(EcommerceCustomersAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<EcommerceCustomersAllRequest, EcommerceCustomersAllResponse> operation
@@ -98,7 +98,7 @@ public class AsyncApideckCustomers {
      * <p>Get Customer
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;EcommerceCustomersOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<EcommerceCustomersOneResponse>} - The async response
      */
     public CompletableFuture<EcommerceCustomersOneResponse> get(EcommerceCustomersOneRequest request) {
         return get(request, Optional.empty());
@@ -111,7 +111,7 @@ public class AsyncApideckCustomers {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;EcommerceCustomersOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<EcommerceCustomersOneResponse>} - The async response
      */
     public CompletableFuture<EcommerceCustomersOneResponse> get(EcommerceCustomersOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<EcommerceCustomersOneRequest, EcommerceCustomersOneResponse> operation

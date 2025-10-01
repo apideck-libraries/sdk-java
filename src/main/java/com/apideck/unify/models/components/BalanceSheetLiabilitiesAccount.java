@@ -19,7 +19,8 @@ import java.util.Optional;
 /**
  * BalanceSheetLiabilitiesAccount
  * 
- * <p>A balance sheet liabilities account represents the financial position of a company at a specific point in time.
+ * <p>A balance sheet liabilities account represents the financial position of a company at a specific
+ * point in time.
  */
 public class BalanceSheetLiabilitiesAccount {
     /**

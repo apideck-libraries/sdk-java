@@ -34,7 +34,8 @@ public class UploadSession {
     private Optional<Boolean> success;
 
     /**
-     * Size in bytes of each part of the file that you will upload. Uploaded parts need to be this size for the upload to be successful.
+     * Size in bytes of each part of the file that you will upload. Uploaded parts need to be this size for
+     * the upload to be successful.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("part_size")
@@ -103,7 +104,8 @@ public class UploadSession {
     }
 
     /**
-     * Size in bytes of each part of the file that you will upload. Uploaded parts need to be this size for the upload to be successful.
+     * Size in bytes of each part of the file that you will upload. Uploaded parts need to be this size for
+     * the upload to be successful.
      */
     @JsonIgnore
     public Optional<Double> partSize() {
@@ -175,7 +177,8 @@ public class UploadSession {
     }
 
     /**
-     * Size in bytes of each part of the file that you will upload. Uploaded parts need to be this size for the upload to be successful.
+     * Size in bytes of each part of the file that you will upload. Uploaded parts need to be this size for
+     * the upload to be successful.
      */
     public UploadSession withPartSize(double partSize) {
         Utils.checkNotNull(partSize, "partSize");
@@ -185,7 +188,8 @@ public class UploadSession {
 
 
     /**
-     * Size in bytes of each part of the file that you will upload. Uploaded parts need to be this size for the upload to be successful.
+     * Size in bytes of each part of the file that you will upload. Uploaded parts need to be this size for
+     * the upload to be successful.
      */
     public UploadSession withPartSize(Optional<Double> partSize) {
         Utils.checkNotNull(partSize, "partSize");
@@ -338,7 +342,8 @@ public class UploadSession {
 
 
         /**
-         * Size in bytes of each part of the file that you will upload. Uploaded parts need to be this size for the upload to be successful.
+         * Size in bytes of each part of the file that you will upload. Uploaded parts need to be this size for
+         * the upload to be successful.
          */
         public Builder partSize(double partSize) {
             Utils.checkNotNull(partSize, "partSize");
@@ -347,7 +352,8 @@ public class UploadSession {
         }
 
         /**
-         * Size in bytes of each part of the file that you will upload. Uploaded parts need to be this size for the upload to be successful.
+         * Size in bytes of each part of the file that you will upload. Uploaded parts need to be this size for
+         * the upload to be successful.
          */
         public Builder partSize(Optional<Double> partSize) {
             Utils.checkNotNull(partSize, "partSize");

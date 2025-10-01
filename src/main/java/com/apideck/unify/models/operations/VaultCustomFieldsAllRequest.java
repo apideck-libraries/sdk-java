@@ -44,7 +44,8 @@ public class VaultCustomFieldsAllRequest {
     private String resource;
 
     /**
-     * This is the id of the resource you want to fetch when listing custom fields. For example, if you want to fetch custom fields for a specific contact, you would use the contact id.
+     * This is the id of the resource you want to fetch when listing custom fields. For example, if you
+     * want to fetch custom fields for a specific contact, you would use the contact id.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=resource_id")
     private Optional<String> resourceId;
@@ -120,7 +121,8 @@ public class VaultCustomFieldsAllRequest {
     }
 
     /**
-     * This is the id of the resource you want to fetch when listing custom fields. For example, if you want to fetch custom fields for a specific contact, you would use the contact id.
+     * This is the id of the resource you want to fetch when listing custom fields. For example, if you
+     * want to fetch custom fields for a specific contact, you would use the contact id.
      */
     @JsonIgnore
     public Optional<String> resourceId() {
@@ -198,7 +200,8 @@ public class VaultCustomFieldsAllRequest {
     }
 
     /**
-     * This is the id of the resource you want to fetch when listing custom fields. For example, if you want to fetch custom fields for a specific contact, you would use the contact id.
+     * This is the id of the resource you want to fetch when listing custom fields. For example, if you
+     * want to fetch custom fields for a specific contact, you would use the contact id.
      */
     public VaultCustomFieldsAllRequest withResourceId(String resourceId) {
         Utils.checkNotNull(resourceId, "resourceId");
@@ -208,7 +211,8 @@ public class VaultCustomFieldsAllRequest {
 
 
     /**
-     * This is the id of the resource you want to fetch when listing custom fields. For example, if you want to fetch custom fields for a specific contact, you would use the contact id.
+     * This is the id of the resource you want to fetch when listing custom fields. For example, if you
+     * want to fetch custom fields for a specific contact, you would use the contact id.
      */
     public VaultCustomFieldsAllRequest withResourceId(Optional<String> resourceId) {
         Utils.checkNotNull(resourceId, "resourceId");
@@ -341,7 +345,8 @@ public class VaultCustomFieldsAllRequest {
 
 
         /**
-         * This is the id of the resource you want to fetch when listing custom fields. For example, if you want to fetch custom fields for a specific contact, you would use the contact id.
+         * This is the id of the resource you want to fetch when listing custom fields. For example, if you
+         * want to fetch custom fields for a specific contact, you would use the contact id.
          */
         public Builder resourceId(String resourceId) {
             Utils.checkNotNull(resourceId, "resourceId");
@@ -350,7 +355,8 @@ public class VaultCustomFieldsAllRequest {
         }
 
         /**
-         * This is the id of the resource you want to fetch when listing custom fields. For example, if you want to fetch custom fields for a specific contact, you would use the contact id.
+         * This is the id of the resource you want to fetch when listing custom fields. For example, if you
+         * want to fetch custom fields for a specific contact, you would use the contact id.
          */
         public Builder resourceId(Optional<String> resourceId) {
             Utils.checkNotNull(resourceId, "resourceId");

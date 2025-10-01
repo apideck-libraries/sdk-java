@@ -29,14 +29,16 @@ public class TrackingItem {
     private Optional<String> provider;
 
     /**
-     * The tracking number associated with the shipment, which can be used to track the progress of the delivery.
+     * The tracking number associated with the shipment, which can be used to track the progress of the
+     * delivery.
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("number")
     private Optional<String> number;
 
     /**
-     * The URL of the carrier's tracking page, which can be used to view detailed information about the shipment's progress.
+     * The URL of the carrier's tracking page, which can be used to view detailed information about the
+     * shipment's progress.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("url")
@@ -79,7 +81,8 @@ public class TrackingItem {
     }
 
     /**
-     * The tracking number associated with the shipment, which can be used to track the progress of the delivery.
+     * The tracking number associated with the shipment, which can be used to track the progress of the
+     * delivery.
      */
     @JsonIgnore
     public Optional<String> number() {
@@ -87,7 +90,8 @@ public class TrackingItem {
     }
 
     /**
-     * The URL of the carrier's tracking page, which can be used to view detailed information about the shipment's progress.
+     * The URL of the carrier's tracking page, which can be used to view detailed information about the
+     * shipment's progress.
      */
     @JsonIgnore
     public JsonNullable<String> url() {
@@ -127,7 +131,8 @@ public class TrackingItem {
     }
 
     /**
-     * The tracking number associated with the shipment, which can be used to track the progress of the delivery.
+     * The tracking number associated with the shipment, which can be used to track the progress of the
+     * delivery.
      */
     public TrackingItem withNumber(String number) {
         Utils.checkNotNull(number, "number");
@@ -137,7 +142,8 @@ public class TrackingItem {
 
 
     /**
-     * The tracking number associated with the shipment, which can be used to track the progress of the delivery.
+     * The tracking number associated with the shipment, which can be used to track the progress of the
+     * delivery.
      */
     public TrackingItem withNumber(Optional<String> number) {
         Utils.checkNotNull(number, "number");
@@ -146,7 +152,8 @@ public class TrackingItem {
     }
 
     /**
-     * The URL of the carrier's tracking page, which can be used to view detailed information about the shipment's progress.
+     * The URL of the carrier's tracking page, which can be used to view detailed information about the
+     * shipment's progress.
      */
     public TrackingItem withUrl(String url) {
         Utils.checkNotNull(url, "url");
@@ -155,7 +162,8 @@ public class TrackingItem {
     }
 
     /**
-     * The URL of the carrier's tracking page, which can be used to view detailed information about the shipment's progress.
+     * The URL of the carrier's tracking page, which can be used to view detailed information about the
+     * shipment's progress.
      */
     public TrackingItem withUrl(JsonNullable<String> url) {
         Utils.checkNotNull(url, "url");
@@ -249,7 +257,8 @@ public class TrackingItem {
 
 
         /**
-         * The tracking number associated with the shipment, which can be used to track the progress of the delivery.
+         * The tracking number associated with the shipment, which can be used to track the progress of the
+         * delivery.
          */
         public Builder number(String number) {
             Utils.checkNotNull(number, "number");
@@ -258,7 +267,8 @@ public class TrackingItem {
         }
 
         /**
-         * The tracking number associated with the shipment, which can be used to track the progress of the delivery.
+         * The tracking number associated with the shipment, which can be used to track the progress of the
+         * delivery.
          */
         public Builder number(Optional<String> number) {
             Utils.checkNotNull(number, "number");
@@ -268,7 +278,8 @@ public class TrackingItem {
 
 
         /**
-         * The URL of the carrier's tracking page, which can be used to view detailed information about the shipment's progress.
+         * The URL of the carrier's tracking page, which can be used to view detailed information about the
+         * shipment's progress.
          */
         public Builder url(String url) {
             Utils.checkNotNull(url, "url");
@@ -277,7 +288,8 @@ public class TrackingItem {
         }
 
         /**
-         * The URL of the carrier's tracking page, which can be used to view detailed information about the shipment's progress.
+         * The URL of the carrier's tracking page, which can be used to view detailed information about the
+         * shipment's progress.
          */
         public Builder url(JsonNullable<String> url) {
             Utils.checkNotNull(url, "url");

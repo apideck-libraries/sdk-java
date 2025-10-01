@@ -52,7 +52,8 @@ public class Manager {
     private JsonNullable<String> email;
 
     /**
-     * The employment status of the employee, indicating whether they are currently employed, inactive, terminated, or in another status.
+     * The employment status of the employee, indicating whether they are currently employed, inactive,
+     * terminated, or in another status.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("employment_status")
@@ -126,7 +127,8 @@ public class Manager {
     }
 
     /**
-     * The employment status of the employee, indicating whether they are currently employed, inactive, terminated, or in another status.
+     * The employment status of the employee, indicating whether they are currently employed, inactive,
+     * terminated, or in another status.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -230,7 +232,8 @@ public class Manager {
     }
 
     /**
-     * The employment status of the employee, indicating whether they are currently employed, inactive, terminated, or in another status.
+     * The employment status of the employee, indicating whether they are currently employed, inactive,
+     * terminated, or in another status.
      */
     public Manager withEmploymentStatus(EmploymentStatus employmentStatus) {
         Utils.checkNotNull(employmentStatus, "employmentStatus");
@@ -239,7 +242,8 @@ public class Manager {
     }
 
     /**
-     * The employment status of the employee, indicating whether they are currently employed, inactive, terminated, or in another status.
+     * The employment status of the employee, indicating whether they are currently employed, inactive,
+     * terminated, or in another status.
      */
     public Manager withEmploymentStatus(JsonNullable<? extends EmploymentStatus> employmentStatus) {
         Utils.checkNotNull(employmentStatus, "employmentStatus");
@@ -399,7 +403,8 @@ public class Manager {
 
 
         /**
-         * The employment status of the employee, indicating whether they are currently employed, inactive, terminated, or in another status.
+         * The employment status of the employee, indicating whether they are currently employed, inactive,
+         * terminated, or in another status.
          */
         public Builder employmentStatus(EmploymentStatus employmentStatus) {
             Utils.checkNotNull(employmentStatus, "employmentStatus");
@@ -408,7 +413,8 @@ public class Manager {
         }
 
         /**
-         * The employment status of the employee, indicating whether they are currently employed, inactive, terminated, or in another status.
+         * The employment status of the employee, indicating whether they are currently employed, inactive,
+         * terminated, or in another status.
          */
         public Builder employmentStatus(JsonNullable<? extends EmploymentStatus> employmentStatus) {
             Utils.checkNotNull(employmentStatus, "employmentStatus");

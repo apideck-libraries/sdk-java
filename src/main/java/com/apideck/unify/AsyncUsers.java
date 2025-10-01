@@ -68,7 +68,7 @@ public class AsyncUsers {
      * <p>List users
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CrmUsersAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmUsersAllResponse>} - The async response
      */
     public CompletableFuture<CrmUsersAllResponse> list(CrmUsersAllRequest request) {
         return list(request, Optional.empty());
@@ -81,7 +81,7 @@ public class AsyncUsers {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;CrmUsersAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmUsersAllResponse>} - The async response
      */
     public CompletableFuture<CrmUsersAllResponse> list(CrmUsersAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmUsersAllRequest, CrmUsersAllResponse> operation
@@ -110,7 +110,7 @@ public class AsyncUsers {
      * <p>Create user
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CrmUsersAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmUsersAddResponse>} - The async response
      */
     public CompletableFuture<CrmUsersAddResponse> create(CrmUsersAddRequest request) {
         return create(request, Optional.empty());
@@ -123,7 +123,7 @@ public class AsyncUsers {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;CrmUsersAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmUsersAddResponse>} - The async response
      */
     public CompletableFuture<CrmUsersAddResponse> create(CrmUsersAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmUsersAddRequest, CrmUsersAddResponse> operation
@@ -152,7 +152,7 @@ public class AsyncUsers {
      * <p>Get user
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CrmUsersOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmUsersOneResponse>} - The async response
      */
     public CompletableFuture<CrmUsersOneResponse> get(CrmUsersOneRequest request) {
         return get(request, Optional.empty());
@@ -165,7 +165,7 @@ public class AsyncUsers {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;CrmUsersOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmUsersOneResponse>} - The async response
      */
     public CompletableFuture<CrmUsersOneResponse> get(CrmUsersOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmUsersOneRequest, CrmUsersOneResponse> operation
@@ -194,7 +194,7 @@ public class AsyncUsers {
      * <p>Update user
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CrmUsersUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmUsersUpdateResponse>} - The async response
      */
     public CompletableFuture<CrmUsersUpdateResponse> update(CrmUsersUpdateRequest request) {
         return update(request, Optional.empty());
@@ -207,7 +207,7 @@ public class AsyncUsers {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;CrmUsersUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmUsersUpdateResponse>} - The async response
      */
     public CompletableFuture<CrmUsersUpdateResponse> update(CrmUsersUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmUsersUpdateRequest, CrmUsersUpdateResponse> operation
@@ -236,7 +236,7 @@ public class AsyncUsers {
      * <p>Delete user
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CrmUsersDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmUsersDeleteResponse>} - The async response
      */
     public CompletableFuture<CrmUsersDeleteResponse> delete(CrmUsersDeleteRequest request) {
         return delete(request, Optional.empty());
@@ -249,7 +249,7 @@ public class AsyncUsers {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;CrmUsersDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmUsersDeleteResponse>} - The async response
      */
     public CompletableFuture<CrmUsersDeleteResponse> delete(CrmUsersDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmUsersDeleteRequest, CrmUsersDeleteResponse> operation

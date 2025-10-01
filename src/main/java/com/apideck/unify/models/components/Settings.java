@@ -25,28 +25,33 @@ import java.util.Optional;
  */
 public class Settings {
     /**
-     * Provide the IDs of the Unified APIs you want to be visible. Leaving it empty or omitting this field will show all Unified APIs.
+     * Provide the IDs of the Unified APIs you want to be visible. Leaving it empty or omitting this field
+     * will show all Unified APIs.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("unified_apis")
     private Optional<? extends List<UnifiedApiId>> unifiedApis;
 
     /**
-     * A boolean that controls the display of the configurable resources for an integration. When set to true, the resource configuration options will be hidden and not shown to the user. When set to false, the resource configuration options will be displayed to the user.
+     * A boolean that controls the display of the configurable resources for an integration. When set to
+     * true, the resource configuration options will be hidden and not shown to the user. When set to
+     * false, the resource configuration options will be displayed to the user.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("hide_resource_settings")
     private Optional<Boolean> hideResourceSettings;
 
     /**
-     * Configure [Vault](/apis/vault/reference#section/Get-Started) to show a banner informing the logged in user is in a test environment.
+     * Configure [Vault](/apis/vault/reference#section/Get-Started) to show a banner informing the logged
+     * in user is in a test environment.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sandbox_mode")
     private Optional<Boolean> sandboxMode;
 
     /**
-     * Configure [Vault](/apis/vault/reference#section/Get-Started) to run in isolation mode, meaning it only shows the connection settings and hides the navigation items.
+     * Configure [Vault](/apis/vault/reference#section/Get-Started) to run in isolation mode, meaning it
+     * only shows the connection settings and hides the navigation items.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("isolation_mode")
@@ -60,42 +65,48 @@ public class Settings {
     private Optional<String> sessionLength;
 
     /**
-     * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the logs page. Defaults to `true`.
+     * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the logs page. Defaults to
+     * `true`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("show_logs")
     private Optional<Boolean> showLogs;
 
     /**
-     * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the suggestions page. Defaults to `false`.
+     * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the suggestions page. Defaults
+     * to `false`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("show_suggestions")
     private Optional<Boolean> showSuggestions;
 
     /**
-     * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the sidebar. Defaults to `true`.
+     * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the sidebar. Defaults to
+     * `true`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("show_sidebar")
     private Optional<Boolean> showSidebar;
 
     /**
-     * Automatically redirect to redirect uri after the connection has been configured as callable. Defaults to `false`.
+     * Automatically redirect to redirect uri after the connection has been configured as callable.
+     * Defaults to `false`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("auto_redirect")
     private Optional<Boolean> autoRedirect;
 
     /**
-     * Hide Apideck connection guides in [Vault](/apis/vault/reference#section/Get-Started). Defaults to `false`.
+     * Hide Apideck connection guides in [Vault](/apis/vault/reference#section/Get-Started). Defaults to
+     * `false`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("hide_guides")
     private Optional<Boolean> hideGuides;
 
     /**
-     * Hide actions from your users in [Vault](/apis/vault/reference#section/Get-Started). Actions in `allow_actions` will be shown on a connection in Vault.
+     * Hide actions from your users in [Vault](/apis/vault/reference#section/Get-Started). Actions in
+     * `allow_actions` will be shown on a connection in Vault.
      * Available actions are: `delete`, `disconnect`, `reauthorize` and `disable`.
      * Empty array will hide all actions. By default all actions are visible.
      */
@@ -148,7 +159,8 @@ public class Settings {
     }
 
     /**
-     * Provide the IDs of the Unified APIs you want to be visible. Leaving it empty or omitting this field will show all Unified APIs.
+     * Provide the IDs of the Unified APIs you want to be visible. Leaving it empty or omitting this field
+     * will show all Unified APIs.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -157,7 +169,9 @@ public class Settings {
     }
 
     /**
-     * A boolean that controls the display of the configurable resources for an integration. When set to true, the resource configuration options will be hidden and not shown to the user. When set to false, the resource configuration options will be displayed to the user.
+     * A boolean that controls the display of the configurable resources for an integration. When set to
+     * true, the resource configuration options will be hidden and not shown to the user. When set to
+     * false, the resource configuration options will be displayed to the user.
      */
     @JsonIgnore
     public Optional<Boolean> hideResourceSettings() {
@@ -165,7 +179,8 @@ public class Settings {
     }
 
     /**
-     * Configure [Vault](/apis/vault/reference#section/Get-Started) to show a banner informing the logged in user is in a test environment.
+     * Configure [Vault](/apis/vault/reference#section/Get-Started) to show a banner informing the logged
+     * in user is in a test environment.
      */
     @JsonIgnore
     public Optional<Boolean> sandboxMode() {
@@ -173,7 +188,8 @@ public class Settings {
     }
 
     /**
-     * Configure [Vault](/apis/vault/reference#section/Get-Started) to run in isolation mode, meaning it only shows the connection settings and hides the navigation items.
+     * Configure [Vault](/apis/vault/reference#section/Get-Started) to run in isolation mode, meaning it
+     * only shows the connection settings and hides the navigation items.
      */
     @JsonIgnore
     public Optional<Boolean> isolationMode() {
@@ -189,7 +205,8 @@ public class Settings {
     }
 
     /**
-     * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the logs page. Defaults to `true`.
+     * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the logs page. Defaults to
+     * `true`.
      */
     @JsonIgnore
     public Optional<Boolean> showLogs() {
@@ -197,7 +214,8 @@ public class Settings {
     }
 
     /**
-     * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the suggestions page. Defaults to `false`.
+     * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the suggestions page. Defaults
+     * to `false`.
      */
     @JsonIgnore
     public Optional<Boolean> showSuggestions() {
@@ -205,7 +223,8 @@ public class Settings {
     }
 
     /**
-     * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the sidebar. Defaults to `true`.
+     * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the sidebar. Defaults to
+     * `true`.
      */
     @JsonIgnore
     public Optional<Boolean> showSidebar() {
@@ -213,7 +232,8 @@ public class Settings {
     }
 
     /**
-     * Automatically redirect to redirect uri after the connection has been configured as callable. Defaults to `false`.
+     * Automatically redirect to redirect uri after the connection has been configured as callable.
+     * Defaults to `false`.
      */
     @JsonIgnore
     public Optional<Boolean> autoRedirect() {
@@ -221,7 +241,8 @@ public class Settings {
     }
 
     /**
-     * Hide Apideck connection guides in [Vault](/apis/vault/reference#section/Get-Started). Defaults to `false`.
+     * Hide Apideck connection guides in [Vault](/apis/vault/reference#section/Get-Started). Defaults to
+     * `false`.
      */
     @JsonIgnore
     public Optional<Boolean> hideGuides() {
@@ -229,7 +250,8 @@ public class Settings {
     }
 
     /**
-     * Hide actions from your users in [Vault](/apis/vault/reference#section/Get-Started). Actions in `allow_actions` will be shown on a connection in Vault.
+     * Hide actions from your users in [Vault](/apis/vault/reference#section/Get-Started). Actions in
+     * `allow_actions` will be shown on a connection in Vault.
      * Available actions are: `delete`, `disconnect`, `reauthorize` and `disable`.
      * Empty array will hide all actions. By default all actions are visible.
      */
@@ -245,7 +267,8 @@ public class Settings {
 
 
     /**
-     * Provide the IDs of the Unified APIs you want to be visible. Leaving it empty or omitting this field will show all Unified APIs.
+     * Provide the IDs of the Unified APIs you want to be visible. Leaving it empty or omitting this field
+     * will show all Unified APIs.
      */
     public Settings withUnifiedApis(List<UnifiedApiId> unifiedApis) {
         Utils.checkNotNull(unifiedApis, "unifiedApis");
@@ -255,7 +278,8 @@ public class Settings {
 
 
     /**
-     * Provide the IDs of the Unified APIs you want to be visible. Leaving it empty or omitting this field will show all Unified APIs.
+     * Provide the IDs of the Unified APIs you want to be visible. Leaving it empty or omitting this field
+     * will show all Unified APIs.
      */
     public Settings withUnifiedApis(Optional<? extends List<UnifiedApiId>> unifiedApis) {
         Utils.checkNotNull(unifiedApis, "unifiedApis");
@@ -264,7 +288,9 @@ public class Settings {
     }
 
     /**
-     * A boolean that controls the display of the configurable resources for an integration. When set to true, the resource configuration options will be hidden and not shown to the user. When set to false, the resource configuration options will be displayed to the user.
+     * A boolean that controls the display of the configurable resources for an integration. When set to
+     * true, the resource configuration options will be hidden and not shown to the user. When set to
+     * false, the resource configuration options will be displayed to the user.
      */
     public Settings withHideResourceSettings(boolean hideResourceSettings) {
         Utils.checkNotNull(hideResourceSettings, "hideResourceSettings");
@@ -274,7 +300,9 @@ public class Settings {
 
 
     /**
-     * A boolean that controls the display of the configurable resources for an integration. When set to true, the resource configuration options will be hidden and not shown to the user. When set to false, the resource configuration options will be displayed to the user.
+     * A boolean that controls the display of the configurable resources for an integration. When set to
+     * true, the resource configuration options will be hidden and not shown to the user. When set to
+     * false, the resource configuration options will be displayed to the user.
      */
     public Settings withHideResourceSettings(Optional<Boolean> hideResourceSettings) {
         Utils.checkNotNull(hideResourceSettings, "hideResourceSettings");
@@ -283,7 +311,8 @@ public class Settings {
     }
 
     /**
-     * Configure [Vault](/apis/vault/reference#section/Get-Started) to show a banner informing the logged in user is in a test environment.
+     * Configure [Vault](/apis/vault/reference#section/Get-Started) to show a banner informing the logged
+     * in user is in a test environment.
      */
     public Settings withSandboxMode(boolean sandboxMode) {
         Utils.checkNotNull(sandboxMode, "sandboxMode");
@@ -293,7 +322,8 @@ public class Settings {
 
 
     /**
-     * Configure [Vault](/apis/vault/reference#section/Get-Started) to show a banner informing the logged in user is in a test environment.
+     * Configure [Vault](/apis/vault/reference#section/Get-Started) to show a banner informing the logged
+     * in user is in a test environment.
      */
     public Settings withSandboxMode(Optional<Boolean> sandboxMode) {
         Utils.checkNotNull(sandboxMode, "sandboxMode");
@@ -302,7 +332,8 @@ public class Settings {
     }
 
     /**
-     * Configure [Vault](/apis/vault/reference#section/Get-Started) to run in isolation mode, meaning it only shows the connection settings and hides the navigation items.
+     * Configure [Vault](/apis/vault/reference#section/Get-Started) to run in isolation mode, meaning it
+     * only shows the connection settings and hides the navigation items.
      */
     public Settings withIsolationMode(boolean isolationMode) {
         Utils.checkNotNull(isolationMode, "isolationMode");
@@ -312,7 +343,8 @@ public class Settings {
 
 
     /**
-     * Configure [Vault](/apis/vault/reference#section/Get-Started) to run in isolation mode, meaning it only shows the connection settings and hides the navigation items.
+     * Configure [Vault](/apis/vault/reference#section/Get-Started) to run in isolation mode, meaning it
+     * only shows the connection settings and hides the navigation items.
      */
     public Settings withIsolationMode(Optional<Boolean> isolationMode) {
         Utils.checkNotNull(isolationMode, "isolationMode");
@@ -340,7 +372,8 @@ public class Settings {
     }
 
     /**
-     * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the logs page. Defaults to `true`.
+     * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the logs page. Defaults to
+     * `true`.
      */
     public Settings withShowLogs(boolean showLogs) {
         Utils.checkNotNull(showLogs, "showLogs");
@@ -350,7 +383,8 @@ public class Settings {
 
 
     /**
-     * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the logs page. Defaults to `true`.
+     * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the logs page. Defaults to
+     * `true`.
      */
     public Settings withShowLogs(Optional<Boolean> showLogs) {
         Utils.checkNotNull(showLogs, "showLogs");
@@ -359,7 +393,8 @@ public class Settings {
     }
 
     /**
-     * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the suggestions page. Defaults to `false`.
+     * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the suggestions page. Defaults
+     * to `false`.
      */
     public Settings withShowSuggestions(boolean showSuggestions) {
         Utils.checkNotNull(showSuggestions, "showSuggestions");
@@ -369,7 +404,8 @@ public class Settings {
 
 
     /**
-     * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the suggestions page. Defaults to `false`.
+     * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the suggestions page. Defaults
+     * to `false`.
      */
     public Settings withShowSuggestions(Optional<Boolean> showSuggestions) {
         Utils.checkNotNull(showSuggestions, "showSuggestions");
@@ -378,7 +414,8 @@ public class Settings {
     }
 
     /**
-     * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the sidebar. Defaults to `true`.
+     * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the sidebar. Defaults to
+     * `true`.
      */
     public Settings withShowSidebar(boolean showSidebar) {
         Utils.checkNotNull(showSidebar, "showSidebar");
@@ -388,7 +425,8 @@ public class Settings {
 
 
     /**
-     * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the sidebar. Defaults to `true`.
+     * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the sidebar. Defaults to
+     * `true`.
      */
     public Settings withShowSidebar(Optional<Boolean> showSidebar) {
         Utils.checkNotNull(showSidebar, "showSidebar");
@@ -397,7 +435,8 @@ public class Settings {
     }
 
     /**
-     * Automatically redirect to redirect uri after the connection has been configured as callable. Defaults to `false`.
+     * Automatically redirect to redirect uri after the connection has been configured as callable.
+     * Defaults to `false`.
      */
     public Settings withAutoRedirect(boolean autoRedirect) {
         Utils.checkNotNull(autoRedirect, "autoRedirect");
@@ -407,7 +446,8 @@ public class Settings {
 
 
     /**
-     * Automatically redirect to redirect uri after the connection has been configured as callable. Defaults to `false`.
+     * Automatically redirect to redirect uri after the connection has been configured as callable.
+     * Defaults to `false`.
      */
     public Settings withAutoRedirect(Optional<Boolean> autoRedirect) {
         Utils.checkNotNull(autoRedirect, "autoRedirect");
@@ -416,7 +456,8 @@ public class Settings {
     }
 
     /**
-     * Hide Apideck connection guides in [Vault](/apis/vault/reference#section/Get-Started). Defaults to `false`.
+     * Hide Apideck connection guides in [Vault](/apis/vault/reference#section/Get-Started). Defaults to
+     * `false`.
      */
     public Settings withHideGuides(boolean hideGuides) {
         Utils.checkNotNull(hideGuides, "hideGuides");
@@ -426,7 +467,8 @@ public class Settings {
 
 
     /**
-     * Hide Apideck connection guides in [Vault](/apis/vault/reference#section/Get-Started). Defaults to `false`.
+     * Hide Apideck connection guides in [Vault](/apis/vault/reference#section/Get-Started). Defaults to
+     * `false`.
      */
     public Settings withHideGuides(Optional<Boolean> hideGuides) {
         Utils.checkNotNull(hideGuides, "hideGuides");
@@ -435,7 +477,8 @@ public class Settings {
     }
 
     /**
-     * Hide actions from your users in [Vault](/apis/vault/reference#section/Get-Started). Actions in `allow_actions` will be shown on a connection in Vault.
+     * Hide actions from your users in [Vault](/apis/vault/reference#section/Get-Started). Actions in
+     * `allow_actions` will be shown on a connection in Vault.
      * Available actions are: `delete`, `disconnect`, `reauthorize` and `disable`.
      * Empty array will hide all actions. By default all actions are visible.
      */
@@ -447,7 +490,8 @@ public class Settings {
 
 
     /**
-     * Hide actions from your users in [Vault](/apis/vault/reference#section/Get-Started). Actions in `allow_actions` will be shown on a connection in Vault.
+     * Hide actions from your users in [Vault](/apis/vault/reference#section/Get-Started). Actions in
+     * `allow_actions` will be shown on a connection in Vault.
      * Available actions are: `delete`, `disconnect`, `reauthorize` and `disable`.
      * Empty array will hide all actions. By default all actions are visible.
      */
@@ -536,7 +580,8 @@ public class Settings {
 
 
         /**
-         * Provide the IDs of the Unified APIs you want to be visible. Leaving it empty or omitting this field will show all Unified APIs.
+         * Provide the IDs of the Unified APIs you want to be visible. Leaving it empty or omitting this field
+         * will show all Unified APIs.
          */
         public Builder unifiedApis(List<UnifiedApiId> unifiedApis) {
             Utils.checkNotNull(unifiedApis, "unifiedApis");
@@ -545,7 +590,8 @@ public class Settings {
         }
 
         /**
-         * Provide the IDs of the Unified APIs you want to be visible. Leaving it empty or omitting this field will show all Unified APIs.
+         * Provide the IDs of the Unified APIs you want to be visible. Leaving it empty or omitting this field
+         * will show all Unified APIs.
          */
         public Builder unifiedApis(Optional<? extends List<UnifiedApiId>> unifiedApis) {
             Utils.checkNotNull(unifiedApis, "unifiedApis");
@@ -555,7 +601,9 @@ public class Settings {
 
 
         /**
-         * A boolean that controls the display of the configurable resources for an integration. When set to true, the resource configuration options will be hidden and not shown to the user. When set to false, the resource configuration options will be displayed to the user.
+         * A boolean that controls the display of the configurable resources for an integration. When set to
+         * true, the resource configuration options will be hidden and not shown to the user. When set to
+         * false, the resource configuration options will be displayed to the user.
          */
         public Builder hideResourceSettings(boolean hideResourceSettings) {
             Utils.checkNotNull(hideResourceSettings, "hideResourceSettings");
@@ -564,7 +612,9 @@ public class Settings {
         }
 
         /**
-         * A boolean that controls the display of the configurable resources for an integration. When set to true, the resource configuration options will be hidden and not shown to the user. When set to false, the resource configuration options will be displayed to the user.
+         * A boolean that controls the display of the configurable resources for an integration. When set to
+         * true, the resource configuration options will be hidden and not shown to the user. When set to
+         * false, the resource configuration options will be displayed to the user.
          */
         public Builder hideResourceSettings(Optional<Boolean> hideResourceSettings) {
             Utils.checkNotNull(hideResourceSettings, "hideResourceSettings");
@@ -574,7 +624,8 @@ public class Settings {
 
 
         /**
-         * Configure [Vault](/apis/vault/reference#section/Get-Started) to show a banner informing the logged in user is in a test environment.
+         * Configure [Vault](/apis/vault/reference#section/Get-Started) to show a banner informing the logged
+         * in user is in a test environment.
          */
         public Builder sandboxMode(boolean sandboxMode) {
             Utils.checkNotNull(sandboxMode, "sandboxMode");
@@ -583,7 +634,8 @@ public class Settings {
         }
 
         /**
-         * Configure [Vault](/apis/vault/reference#section/Get-Started) to show a banner informing the logged in user is in a test environment.
+         * Configure [Vault](/apis/vault/reference#section/Get-Started) to show a banner informing the logged
+         * in user is in a test environment.
          */
         public Builder sandboxMode(Optional<Boolean> sandboxMode) {
             Utils.checkNotNull(sandboxMode, "sandboxMode");
@@ -593,7 +645,8 @@ public class Settings {
 
 
         /**
-         * Configure [Vault](/apis/vault/reference#section/Get-Started) to run in isolation mode, meaning it only shows the connection settings and hides the navigation items.
+         * Configure [Vault](/apis/vault/reference#section/Get-Started) to run in isolation mode, meaning it
+         * only shows the connection settings and hides the navigation items.
          */
         public Builder isolationMode(boolean isolationMode) {
             Utils.checkNotNull(isolationMode, "isolationMode");
@@ -602,7 +655,8 @@ public class Settings {
         }
 
         /**
-         * Configure [Vault](/apis/vault/reference#section/Get-Started) to run in isolation mode, meaning it only shows the connection settings and hides the navigation items.
+         * Configure [Vault](/apis/vault/reference#section/Get-Started) to run in isolation mode, meaning it
+         * only shows the connection settings and hides the navigation items.
          */
         public Builder isolationMode(Optional<Boolean> isolationMode) {
             Utils.checkNotNull(isolationMode, "isolationMode");
@@ -631,7 +685,8 @@ public class Settings {
 
 
         /**
-         * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the logs page. Defaults to `true`.
+         * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the logs page. Defaults to
+         * `true`.
          */
         public Builder showLogs(boolean showLogs) {
             Utils.checkNotNull(showLogs, "showLogs");
@@ -640,7 +695,8 @@ public class Settings {
         }
 
         /**
-         * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the logs page. Defaults to `true`.
+         * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the logs page. Defaults to
+         * `true`.
          */
         public Builder showLogs(Optional<Boolean> showLogs) {
             Utils.checkNotNull(showLogs, "showLogs");
@@ -650,7 +706,8 @@ public class Settings {
 
 
         /**
-         * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the suggestions page. Defaults to `false`.
+         * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the suggestions page. Defaults
+         * to `false`.
          */
         public Builder showSuggestions(boolean showSuggestions) {
             Utils.checkNotNull(showSuggestions, "showSuggestions");
@@ -659,7 +716,8 @@ public class Settings {
         }
 
         /**
-         * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the suggestions page. Defaults to `false`.
+         * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the suggestions page. Defaults
+         * to `false`.
          */
         public Builder showSuggestions(Optional<Boolean> showSuggestions) {
             Utils.checkNotNull(showSuggestions, "showSuggestions");
@@ -669,7 +727,8 @@ public class Settings {
 
 
         /**
-         * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the sidebar. Defaults to `true`.
+         * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the sidebar. Defaults to
+         * `true`.
          */
         public Builder showSidebar(boolean showSidebar) {
             Utils.checkNotNull(showSidebar, "showSidebar");
@@ -678,7 +737,8 @@ public class Settings {
         }
 
         /**
-         * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the sidebar. Defaults to `true`.
+         * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the sidebar. Defaults to
+         * `true`.
          */
         public Builder showSidebar(Optional<Boolean> showSidebar) {
             Utils.checkNotNull(showSidebar, "showSidebar");
@@ -688,7 +748,8 @@ public class Settings {
 
 
         /**
-         * Automatically redirect to redirect uri after the connection has been configured as callable. Defaults to `false`.
+         * Automatically redirect to redirect uri after the connection has been configured as callable.
+         * Defaults to `false`.
          */
         public Builder autoRedirect(boolean autoRedirect) {
             Utils.checkNotNull(autoRedirect, "autoRedirect");
@@ -697,7 +758,8 @@ public class Settings {
         }
 
         /**
-         * Automatically redirect to redirect uri after the connection has been configured as callable. Defaults to `false`.
+         * Automatically redirect to redirect uri after the connection has been configured as callable.
+         * Defaults to `false`.
          */
         public Builder autoRedirect(Optional<Boolean> autoRedirect) {
             Utils.checkNotNull(autoRedirect, "autoRedirect");
@@ -707,7 +769,8 @@ public class Settings {
 
 
         /**
-         * Hide Apideck connection guides in [Vault](/apis/vault/reference#section/Get-Started). Defaults to `false`.
+         * Hide Apideck connection guides in [Vault](/apis/vault/reference#section/Get-Started). Defaults to
+         * `false`.
          */
         public Builder hideGuides(boolean hideGuides) {
             Utils.checkNotNull(hideGuides, "hideGuides");
@@ -716,7 +779,8 @@ public class Settings {
         }
 
         /**
-         * Hide Apideck connection guides in [Vault](/apis/vault/reference#section/Get-Started). Defaults to `false`.
+         * Hide Apideck connection guides in [Vault](/apis/vault/reference#section/Get-Started). Defaults to
+         * `false`.
          */
         public Builder hideGuides(Optional<Boolean> hideGuides) {
             Utils.checkNotNull(hideGuides, "hideGuides");
@@ -726,7 +790,8 @@ public class Settings {
 
 
         /**
-         * Hide actions from your users in [Vault](/apis/vault/reference#section/Get-Started). Actions in `allow_actions` will be shown on a connection in Vault.
+         * Hide actions from your users in [Vault](/apis/vault/reference#section/Get-Started). Actions in
+         * `allow_actions` will be shown on a connection in Vault.
          * Available actions are: `delete`, `disconnect`, `reauthorize` and `disable`.
          * Empty array will hide all actions. By default all actions are visible.
          */
@@ -737,7 +802,8 @@ public class Settings {
         }
 
         /**
-         * Hide actions from your users in [Vault](/apis/vault/reference#section/Get-Started). Actions in `allow_actions` will be shown on a connection in Vault.
+         * Hide actions from your users in [Vault](/apis/vault/reference#section/Get-Started). Actions in
+         * `allow_actions` will be shown on a connection in Vault.
          * Available actions are: `delete`, `disconnect`, `reauthorize` and `disable`.
          * Empty array will hide all actions. By default all actions are visible.
          */

@@ -106,7 +106,8 @@ public class Job {
     private JsonNullable<Boolean> remote;
 
     /**
-     * A job's Requisition ID (Req ID) allows your organization to identify and track a job based on alphanumeric naming conventions unique to your company's internal processes.
+     * A job's Requisition ID (Req ID) allows your organization to identify and track a job based on
+     * alphanumeric naming conventions unique to your company's internal processes.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("requisition_id")
@@ -125,7 +126,8 @@ public class Job {
     private Optional<? extends Branch> branch;
 
     /**
-     * The recruiter is generally someone who is tasked to help the hiring manager find and screen qualified applicant
+     * The recruiter is generally someone who is tasked to help the hiring manager find and screen
+     * qualified applicant
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("recruiters")
@@ -536,7 +538,8 @@ public class Job {
     }
 
     /**
-     * A job's Requisition ID (Req ID) allows your organization to identify and track a job based on alphanumeric naming conventions unique to your company's internal processes.
+     * A job's Requisition ID (Req ID) allows your organization to identify and track a job based on
+     * alphanumeric naming conventions unique to your company's internal processes.
      */
     @JsonIgnore
     public Optional<String> requisitionId() {
@@ -559,7 +562,8 @@ public class Job {
     }
 
     /**
-     * The recruiter is generally someone who is tasked to help the hiring manager find and screen qualified applicant
+     * The recruiter is generally someone who is tasked to help the hiring manager find and screen
+     * qualified applicant
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -969,7 +973,8 @@ public class Job {
     }
 
     /**
-     * A job's Requisition ID (Req ID) allows your organization to identify and track a job based on alphanumeric naming conventions unique to your company's internal processes.
+     * A job's Requisition ID (Req ID) allows your organization to identify and track a job based on
+     * alphanumeric naming conventions unique to your company's internal processes.
      */
     public Job withRequisitionId(String requisitionId) {
         Utils.checkNotNull(requisitionId, "requisitionId");
@@ -979,7 +984,8 @@ public class Job {
 
 
     /**
-     * A job's Requisition ID (Req ID) allows your organization to identify and track a job based on alphanumeric naming conventions unique to your company's internal processes.
+     * A job's Requisition ID (Req ID) allows your organization to identify and track a job based on
+     * alphanumeric naming conventions unique to your company's internal processes.
      */
     public Job withRequisitionId(Optional<String> requisitionId) {
         Utils.checkNotNull(requisitionId, "requisitionId");
@@ -1020,7 +1026,8 @@ public class Job {
     }
 
     /**
-     * The recruiter is generally someone who is tasked to help the hiring manager find and screen qualified applicant
+     * The recruiter is generally someone who is tasked to help the hiring manager find and screen
+     * qualified applicant
      */
     public Job withRecruiters(List<String> recruiters) {
         Utils.checkNotNull(recruiters, "recruiters");
@@ -1029,7 +1036,8 @@ public class Job {
     }
 
     /**
-     * The recruiter is generally someone who is tasked to help the hiring manager find and screen qualified applicant
+     * The recruiter is generally someone who is tasked to help the hiring manager find and screen
+     * qualified applicant
      */
     public Job withRecruiters(JsonNullable<? extends List<String>> recruiters) {
         Utils.checkNotNull(recruiters, "recruiters");
@@ -1883,7 +1891,8 @@ public class Job {
 
 
         /**
-         * A job's Requisition ID (Req ID) allows your organization to identify and track a job based on alphanumeric naming conventions unique to your company's internal processes.
+         * A job's Requisition ID (Req ID) allows your organization to identify and track a job based on
+         * alphanumeric naming conventions unique to your company's internal processes.
          */
         public Builder requisitionId(String requisitionId) {
             Utils.checkNotNull(requisitionId, "requisitionId");
@@ -1892,7 +1901,8 @@ public class Job {
         }
 
         /**
-         * A job's Requisition ID (Req ID) allows your organization to identify and track a job based on alphanumeric naming conventions unique to your company's internal processes.
+         * A job's Requisition ID (Req ID) allows your organization to identify and track a job based on
+         * alphanumeric naming conventions unique to your company's internal processes.
          */
         public Builder requisitionId(Optional<String> requisitionId) {
             Utils.checkNotNull(requisitionId, "requisitionId");
@@ -1934,7 +1944,8 @@ public class Job {
 
 
         /**
-         * The recruiter is generally someone who is tasked to help the hiring manager find and screen qualified applicant
+         * The recruiter is generally someone who is tasked to help the hiring manager find and screen
+         * qualified applicant
          */
         public Builder recruiters(List<String> recruiters) {
             Utils.checkNotNull(recruiters, "recruiters");
@@ -1943,7 +1954,8 @@ public class Job {
         }
 
         /**
-         * The recruiter is generally someone who is tasked to help the hiring manager find and screen qualified applicant
+         * The recruiter is generally someone who is tasked to help the hiring manager find and screen
+         * qualified applicant
          */
         public Builder recruiters(JsonNullable<? extends List<String>> recruiters) {
             Utils.checkNotNull(recruiters, "recruiters");

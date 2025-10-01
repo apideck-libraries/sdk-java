@@ -37,7 +37,7 @@ public class BalanceByTransaction {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("transaction_type")
-    private Optional<? extends TransactionType> transactionType;
+    private Optional<? extends BalanceByTransactionTransactionType> transactionType;
 
     /**
      * Due date of the transaction.
@@ -71,7 +71,7 @@ public class BalanceByTransaction {
     public BalanceByTransaction(
             @JsonProperty("transaction_id") Optional<String> transactionId,
             @JsonProperty("transaction_date") Optional<LocalDate> transactionDate,
-            @JsonProperty("transaction_type") Optional<? extends TransactionType> transactionType,
+            @JsonProperty("transaction_type") Optional<? extends BalanceByTransactionTransactionType> transactionType,
             @JsonProperty("due_date") Optional<LocalDate> dueDate,
             @JsonProperty("original_amount") Optional<Double> originalAmount,
             @JsonProperty("outstanding_balance") Optional<Double> outstandingBalance,
@@ -119,8 +119,8 @@ public class BalanceByTransaction {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<TransactionType> transactionType() {
-        return (Optional<TransactionType>) transactionType;
+    public Optional<BalanceByTransactionTransactionType> transactionType() {
+        return (Optional<BalanceByTransactionTransactionType>) transactionType;
     }
 
     /**
@@ -201,7 +201,7 @@ public class BalanceByTransaction {
     /**
      * Type of the transaction.
      */
-    public BalanceByTransaction withTransactionType(TransactionType transactionType) {
+    public BalanceByTransaction withTransactionType(BalanceByTransactionTransactionType transactionType) {
         Utils.checkNotNull(transactionType, "transactionType");
         this.transactionType = Optional.ofNullable(transactionType);
         return this;
@@ -211,7 +211,7 @@ public class BalanceByTransaction {
     /**
      * Type of the transaction.
      */
-    public BalanceByTransaction withTransactionType(Optional<? extends TransactionType> transactionType) {
+    public BalanceByTransaction withTransactionType(Optional<? extends BalanceByTransactionTransactionType> transactionType) {
         Utils.checkNotNull(transactionType, "transactionType");
         this.transactionType = transactionType;
         return this;
@@ -339,7 +339,7 @@ public class BalanceByTransaction {
 
         private Optional<LocalDate> transactionDate = Optional.empty();
 
-        private Optional<? extends TransactionType> transactionType = Optional.empty();
+        private Optional<? extends BalanceByTransactionTransactionType> transactionType = Optional.empty();
 
         private Optional<LocalDate> dueDate = Optional.empty();
 
@@ -395,7 +395,7 @@ public class BalanceByTransaction {
         /**
          * Type of the transaction.
          */
-        public Builder transactionType(TransactionType transactionType) {
+        public Builder transactionType(BalanceByTransactionTransactionType transactionType) {
             Utils.checkNotNull(transactionType, "transactionType");
             this.transactionType = Optional.ofNullable(transactionType);
             return this;
@@ -404,7 +404,7 @@ public class BalanceByTransaction {
         /**
          * Type of the transaction.
          */
-        public Builder transactionType(Optional<? extends TransactionType> transactionType) {
+        public Builder transactionType(Optional<? extends BalanceByTransactionTransactionType> transactionType) {
             Utils.checkNotNull(transactionType, "transactionType");
             this.transactionType = transactionType;
             return this;

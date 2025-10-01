@@ -56,7 +56,7 @@ public class AsyncCollections {
      * <p>List Collections
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;IssueTrackingCollectionsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<IssueTrackingCollectionsAllResponse>} - The async response
      */
     public CompletableFuture<IssueTrackingCollectionsAllResponse> list(IssueTrackingCollectionsAllRequest request) {
         return list(request, Optional.empty());
@@ -69,7 +69,7 @@ public class AsyncCollections {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;IssueTrackingCollectionsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<IssueTrackingCollectionsAllResponse>} - The async response
      */
     public CompletableFuture<IssueTrackingCollectionsAllResponse> list(IssueTrackingCollectionsAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<IssueTrackingCollectionsAllRequest, IssueTrackingCollectionsAllResponse> operation
@@ -98,7 +98,7 @@ public class AsyncCollections {
      * <p>Get Collection
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;IssueTrackingCollectionsOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<IssueTrackingCollectionsOneResponse>} - The async response
      */
     public CompletableFuture<IssueTrackingCollectionsOneResponse> get(IssueTrackingCollectionsOneRequest request) {
         return get(request, Optional.empty());
@@ -111,7 +111,7 @@ public class AsyncCollections {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;IssueTrackingCollectionsOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<IssueTrackingCollectionsOneResponse>} - The async response
      */
     public CompletableFuture<IssueTrackingCollectionsOneResponse> get(IssueTrackingCollectionsOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<IssueTrackingCollectionsOneRequest, IssueTrackingCollectionsOneResponse> operation

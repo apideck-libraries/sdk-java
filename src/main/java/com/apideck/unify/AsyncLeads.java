@@ -68,7 +68,7 @@ public class AsyncLeads {
      * <p>List leads
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CrmLeadsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmLeadsAllResponse>} - The async response
      */
     public CompletableFuture<CrmLeadsAllResponse> list(CrmLeadsAllRequest request) {
         return list(request, Optional.empty());
@@ -81,7 +81,7 @@ public class AsyncLeads {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;CrmLeadsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmLeadsAllResponse>} - The async response
      */
     public CompletableFuture<CrmLeadsAllResponse> list(CrmLeadsAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmLeadsAllRequest, CrmLeadsAllResponse> operation
@@ -110,7 +110,7 @@ public class AsyncLeads {
      * <p>Create lead
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CrmLeadsAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmLeadsAddResponse>} - The async response
      */
     public CompletableFuture<CrmLeadsAddResponse> create(CrmLeadsAddRequest request) {
         return create(request, Optional.empty());
@@ -123,7 +123,7 @@ public class AsyncLeads {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;CrmLeadsAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmLeadsAddResponse>} - The async response
      */
     public CompletableFuture<CrmLeadsAddResponse> create(CrmLeadsAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmLeadsAddRequest, CrmLeadsAddResponse> operation
@@ -152,7 +152,7 @@ public class AsyncLeads {
      * <p>Get lead
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CrmLeadsOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmLeadsOneResponse>} - The async response
      */
     public CompletableFuture<CrmLeadsOneResponse> get(CrmLeadsOneRequest request) {
         return get(request, Optional.empty());
@@ -165,7 +165,7 @@ public class AsyncLeads {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;CrmLeadsOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmLeadsOneResponse>} - The async response
      */
     public CompletableFuture<CrmLeadsOneResponse> get(CrmLeadsOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmLeadsOneRequest, CrmLeadsOneResponse> operation
@@ -194,7 +194,7 @@ public class AsyncLeads {
      * <p>Update lead
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CrmLeadsUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmLeadsUpdateResponse>} - The async response
      */
     public CompletableFuture<CrmLeadsUpdateResponse> update(CrmLeadsUpdateRequest request) {
         return update(request, Optional.empty());
@@ -207,7 +207,7 @@ public class AsyncLeads {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;CrmLeadsUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmLeadsUpdateResponse>} - The async response
      */
     public CompletableFuture<CrmLeadsUpdateResponse> update(CrmLeadsUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmLeadsUpdateRequest, CrmLeadsUpdateResponse> operation
@@ -236,7 +236,7 @@ public class AsyncLeads {
      * <p>Delete lead
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CrmLeadsDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmLeadsDeleteResponse>} - The async response
      */
     public CompletableFuture<CrmLeadsDeleteResponse> delete(CrmLeadsDeleteRequest request) {
         return delete(request, Optional.empty());
@@ -249,7 +249,7 @@ public class AsyncLeads {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;CrmLeadsDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmLeadsDeleteResponse>} - The async response
      */
     public CompletableFuture<CrmLeadsDeleteResponse> delete(CrmLeadsDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmLeadsDeleteRequest, CrmLeadsDeleteResponse> operation

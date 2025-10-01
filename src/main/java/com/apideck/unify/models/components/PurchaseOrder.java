@@ -107,7 +107,8 @@ public class PurchaseOrder {
     private JsonNullable<LocalDate> expectedArrivalDate;
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("currency")
@@ -188,7 +189,8 @@ public class PurchaseOrder {
     private Optional<? extends BankAccount> bankAccount;
 
     /**
-     * Indicates if accounting by row is used (true) or not (false). Accounting by row means that a separate ledger transaction is created for each row.
+     * Indicates if accounting by row is used (true) or not (false). Accounting by row means that a
+     * separate ledger transaction is created for each row.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("accounting_by_row")
@@ -291,7 +293,8 @@ public class PurchaseOrder {
     private Optional<? extends List<CustomField>> customFields;
 
     /**
-     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+     * time an update is made to the object.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("row_version")
@@ -326,7 +329,8 @@ public class PurchaseOrder {
     private JsonNullable<OffsetDateTime> createdAt;
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pass_through")
@@ -589,7 +593,8 @@ public class PurchaseOrder {
     }
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -684,7 +689,8 @@ public class PurchaseOrder {
     }
 
     /**
-     * Indicates if accounting by row is used (true) or not (false). Accounting by row means that a separate ledger transaction is created for each row.
+     * Indicates if accounting by row is used (true) or not (false). Accounting by row means that a
+     * separate ledger transaction is created for each row.
      */
     @JsonIgnore
     public JsonNullable<Boolean> accountingByRow() {
@@ -805,7 +811,8 @@ public class PurchaseOrder {
     }
 
     /**
-     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+     * time an update is made to the object.
      */
     @JsonIgnore
     public JsonNullable<String> rowVersion() {
@@ -845,7 +852,8 @@ public class PurchaseOrder {
     }
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -1070,7 +1078,8 @@ public class PurchaseOrder {
     }
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     public PurchaseOrder withCurrency(Currency currency) {
         Utils.checkNotNull(currency, "currency");
@@ -1079,7 +1088,8 @@ public class PurchaseOrder {
     }
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     public PurchaseOrder withCurrency(JsonNullable<? extends Currency> currency) {
         Utils.checkNotNull(currency, "currency");
@@ -1278,7 +1288,8 @@ public class PurchaseOrder {
     }
 
     /**
-     * Indicates if accounting by row is used (true) or not (false). Accounting by row means that a separate ledger transaction is created for each row.
+     * Indicates if accounting by row is used (true) or not (false). Accounting by row means that a
+     * separate ledger transaction is created for each row.
      */
     public PurchaseOrder withAccountingByRow(boolean accountingByRow) {
         Utils.checkNotNull(accountingByRow, "accountingByRow");
@@ -1287,7 +1298,8 @@ public class PurchaseOrder {
     }
 
     /**
-     * Indicates if accounting by row is used (true) or not (false). Accounting by row means that a separate ledger transaction is created for each row.
+     * Indicates if accounting by row is used (true) or not (false). Accounting by row means that a
+     * separate ledger transaction is created for each row.
      */
     public PurchaseOrder withAccountingByRow(JsonNullable<Boolean> accountingByRow) {
         Utils.checkNotNull(accountingByRow, "accountingByRow");
@@ -1543,7 +1555,8 @@ public class PurchaseOrder {
     }
 
     /**
-     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+     * time an update is made to the object.
      */
     public PurchaseOrder withRowVersion(String rowVersion) {
         Utils.checkNotNull(rowVersion, "rowVersion");
@@ -1552,7 +1565,8 @@ public class PurchaseOrder {
     }
 
     /**
-     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+     * time an update is made to the object.
      */
     public PurchaseOrder withRowVersion(JsonNullable<String> rowVersion) {
         Utils.checkNotNull(rowVersion, "rowVersion");
@@ -1633,7 +1647,8 @@ public class PurchaseOrder {
     }
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     public PurchaseOrder withPassThrough(List<PassThroughBody> passThrough) {
         Utils.checkNotNull(passThrough, "passThrough");
@@ -1643,7 +1658,8 @@ public class PurchaseOrder {
 
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     public PurchaseOrder withPassThrough(Optional<? extends List<PassThroughBody>> passThrough) {
         Utils.checkNotNull(passThrough, "passThrough");
@@ -2104,7 +2120,8 @@ public class PurchaseOrder {
 
 
         /**
-         * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+         * Indicates the associated currency for an amount of money. Values correspond to [ISO
+         * 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
         public Builder currency(Currency currency) {
             Utils.checkNotNull(currency, "currency");
@@ -2113,7 +2130,8 @@ public class PurchaseOrder {
         }
 
         /**
-         * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+         * Indicates the associated currency for an amount of money. Values correspond to [ISO
+         * 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
         public Builder currency(JsonNullable<? extends Currency> currency) {
             Utils.checkNotNull(currency, "currency");
@@ -2321,7 +2339,8 @@ public class PurchaseOrder {
 
 
         /**
-         * Indicates if accounting by row is used (true) or not (false). Accounting by row means that a separate ledger transaction is created for each row.
+         * Indicates if accounting by row is used (true) or not (false). Accounting by row means that a
+         * separate ledger transaction is created for each row.
          */
         public Builder accountingByRow(boolean accountingByRow) {
             Utils.checkNotNull(accountingByRow, "accountingByRow");
@@ -2330,7 +2349,8 @@ public class PurchaseOrder {
         }
 
         /**
-         * Indicates if accounting by row is used (true) or not (false). Accounting by row means that a separate ledger transaction is created for each row.
+         * Indicates if accounting by row is used (true) or not (false). Accounting by row means that a
+         * separate ledger transaction is created for each row.
          */
         public Builder accountingByRow(JsonNullable<Boolean> accountingByRow) {
             Utils.checkNotNull(accountingByRow, "accountingByRow");
@@ -2600,7 +2620,8 @@ public class PurchaseOrder {
 
 
         /**
-         * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+         * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+         * time an update is made to the object.
          */
         public Builder rowVersion(String rowVersion) {
             Utils.checkNotNull(rowVersion, "rowVersion");
@@ -2609,7 +2630,8 @@ public class PurchaseOrder {
         }
 
         /**
-         * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+         * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+         * time an update is made to the object.
          */
         public Builder rowVersion(JsonNullable<String> rowVersion) {
             Utils.checkNotNull(rowVersion, "rowVersion");
@@ -2695,7 +2717,8 @@ public class PurchaseOrder {
 
 
         /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+         * The pass_through property allows passing service-specific, custom data or structured modifications
+         * in request body when creating or updating resources.
          */
         public Builder passThrough(List<PassThroughBody> passThrough) {
             Utils.checkNotNull(passThrough, "passThrough");
@@ -2704,7 +2727,8 @@ public class PurchaseOrder {
         }
 
         /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+         * The pass_through property allows passing service-specific, custom data or structured modifications
+         * in request body when creating or updating resources.
          */
         public Builder passThrough(Optional<? extends List<PassThroughBody>> passThrough) {
             Utils.checkNotNull(passThrough, "passThrough");

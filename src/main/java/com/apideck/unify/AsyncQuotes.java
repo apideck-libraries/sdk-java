@@ -68,7 +68,7 @@ public class AsyncQuotes {
      * <p>List Quotes
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingQuotesAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingQuotesAllResponse>} - The async response
      */
     public CompletableFuture<AccountingQuotesAllResponse> list(AccountingQuotesAllRequest request) {
         return list(request, Optional.empty());
@@ -81,7 +81,7 @@ public class AsyncQuotes {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingQuotesAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingQuotesAllResponse>} - The async response
      */
     public CompletableFuture<AccountingQuotesAllResponse> list(AccountingQuotesAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingQuotesAllRequest, AccountingQuotesAllResponse> operation
@@ -110,7 +110,7 @@ public class AsyncQuotes {
      * <p>Create Quote
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingQuotesAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingQuotesAddResponse>} - The async response
      */
     public CompletableFuture<AccountingQuotesAddResponse> create(AccountingQuotesAddRequest request) {
         return create(request, Optional.empty());
@@ -123,7 +123,7 @@ public class AsyncQuotes {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingQuotesAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingQuotesAddResponse>} - The async response
      */
     public CompletableFuture<AccountingQuotesAddResponse> create(AccountingQuotesAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingQuotesAddRequest, AccountingQuotesAddResponse> operation
@@ -152,7 +152,7 @@ public class AsyncQuotes {
      * <p>Get Quote
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingQuotesOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingQuotesOneResponse>} - The async response
      */
     public CompletableFuture<AccountingQuotesOneResponse> get(AccountingQuotesOneRequest request) {
         return get(request, Optional.empty());
@@ -165,7 +165,7 @@ public class AsyncQuotes {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingQuotesOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingQuotesOneResponse>} - The async response
      */
     public CompletableFuture<AccountingQuotesOneResponse> get(AccountingQuotesOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingQuotesOneRequest, AccountingQuotesOneResponse> operation
@@ -194,7 +194,7 @@ public class AsyncQuotes {
      * <p>Update Quote
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingQuotesUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingQuotesUpdateResponse>} - The async response
      */
     public CompletableFuture<AccountingQuotesUpdateResponse> update(AccountingQuotesUpdateRequest request) {
         return update(request, Optional.empty());
@@ -207,7 +207,7 @@ public class AsyncQuotes {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingQuotesUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingQuotesUpdateResponse>} - The async response
      */
     public CompletableFuture<AccountingQuotesUpdateResponse> update(AccountingQuotesUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingQuotesUpdateRequest, AccountingQuotesUpdateResponse> operation
@@ -236,7 +236,7 @@ public class AsyncQuotes {
      * <p>Delete Quote
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingQuotesDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingQuotesDeleteResponse>} - The async response
      */
     public CompletableFuture<AccountingQuotesDeleteResponse> delete(AccountingQuotesDeleteRequest request) {
         return delete(request, Optional.empty());
@@ -249,7 +249,7 @@ public class AsyncQuotes {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingQuotesDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingQuotesDeleteResponse>} - The async response
      */
     public CompletableFuture<AccountingQuotesDeleteResponse> delete(AccountingQuotesDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingQuotesDeleteRequest, AccountingQuotesDeleteResponse> operation

@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Object;
 import java.lang.Override;
@@ -30,6 +31,13 @@ public class JournalEntry {
     private Optional<String> id;
 
     /**
+     * The third-party API ID of original entity
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("downstream_id")
+    private JsonNullable<String> downstreamId;
+
+    /**
      * Journal entry title
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -44,7 +52,8 @@ public class JournalEntry {
     private JsonNullable<Double> currencyRate;
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("currency")
@@ -79,7 +88,8 @@ public class JournalEntry {
     private JsonNullable<String> memo;
 
     /**
-     * This is the date on which the journal entry was added. This can be different from the creation date and can also be backdated.
+     * This is the date on which the journal entry was added. This can be different from the creation date
+     * and can also be backdated.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("posted_at")
@@ -128,6 +138,27 @@ public class JournalEntry {
     private JsonNullable<String> accountingPeriod;
 
     /**
+     * Amounts are including tax
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("tax_inclusive")
+    private JsonNullable<Boolean> taxInclusive;
+
+    /**
+     * The source type of the journal entry
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("source_type")
+    private JsonNullable<String> sourceType;
+
+    /**
+     * A unique identifier for the source of the journal entry
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("source_id")
+    private JsonNullable<String> sourceId;
+
+    /**
      * When custom mappings are configured on the resource, the result is included here.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -163,7 +194,8 @@ public class JournalEntry {
     private JsonNullable<OffsetDateTime> createdAt;
 
     /**
-     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+     * time an update is made to the object.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("row_version")
@@ -175,7 +207,8 @@ public class JournalEntry {
     private Optional<? extends List<CustomField>> customFields;
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pass_through")
@@ -184,6 +217,7 @@ public class JournalEntry {
     @JsonCreator
     public JournalEntry(
             @JsonProperty("id") Optional<String> id,
+            @JsonProperty("downstream_id") JsonNullable<String> downstreamId,
             @JsonProperty("title") JsonNullable<String> title,
             @JsonProperty("currency_rate") JsonNullable<Double> currencyRate,
             @JsonProperty("currency") JsonNullable<? extends Currency> currency,
@@ -198,6 +232,9 @@ public class JournalEntry {
             @JsonProperty("number") JsonNullable<String> number,
             @JsonProperty("tracking_categories") JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories,
             @JsonProperty("accounting_period") JsonNullable<String> accountingPeriod,
+            @JsonProperty("tax_inclusive") JsonNullable<Boolean> taxInclusive,
+            @JsonProperty("source_type") JsonNullable<String> sourceType,
+            @JsonProperty("source_id") JsonNullable<String> sourceId,
             @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings,
             @JsonProperty("updated_by") JsonNullable<String> updatedBy,
             @JsonProperty("created_by") JsonNullable<String> createdBy,
@@ -207,6 +244,7 @@ public class JournalEntry {
             @JsonProperty("custom_fields") Optional<? extends List<CustomField>> customFields,
             @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
         Utils.checkNotNull(id, "id");
+        Utils.checkNotNull(downstreamId, "downstreamId");
         Utils.checkNotNull(title, "title");
         Utils.checkNotNull(currencyRate, "currencyRate");
         Utils.checkNotNull(currency, "currency");
@@ -221,6 +259,9 @@ public class JournalEntry {
         Utils.checkNotNull(number, "number");
         Utils.checkNotNull(trackingCategories, "trackingCategories");
         Utils.checkNotNull(accountingPeriod, "accountingPeriod");
+        Utils.checkNotNull(taxInclusive, "taxInclusive");
+        Utils.checkNotNull(sourceType, "sourceType");
+        Utils.checkNotNull(sourceId, "sourceId");
         Utils.checkNotNull(customMappings, "customMappings");
         Utils.checkNotNull(updatedBy, "updatedBy");
         Utils.checkNotNull(createdBy, "createdBy");
@@ -230,6 +271,7 @@ public class JournalEntry {
         Utils.checkNotNull(customFields, "customFields");
         Utils.checkNotNull(passThrough, "passThrough");
         this.id = id;
+        this.downstreamId = downstreamId;
         this.title = title;
         this.currencyRate = currencyRate;
         this.currency = currency;
@@ -244,6 +286,9 @@ public class JournalEntry {
         this.number = number;
         this.trackingCategories = trackingCategories;
         this.accountingPeriod = accountingPeriod;
+        this.taxInclusive = taxInclusive;
+        this.sourceType = sourceType;
+        this.sourceId = sourceId;
         this.customMappings = customMappings;
         this.updatedBy = updatedBy;
         this.createdBy = createdBy;
@@ -256,13 +301,14 @@ public class JournalEntry {
     
     public JournalEntry() {
         this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty());
+            JsonNullable.undefined(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -271,6 +317,14 @@ public class JournalEntry {
     @JsonIgnore
     public Optional<String> id() {
         return id;
+    }
+
+    /**
+     * The third-party API ID of original entity
+     */
+    @JsonIgnore
+    public JsonNullable<String> downstreamId() {
+        return downstreamId;
     }
 
     /**
@@ -290,7 +344,8 @@ public class JournalEntry {
     }
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -333,7 +388,8 @@ public class JournalEntry {
     }
 
     /**
-     * This is the date on which the journal entry was added. This can be different from the creation date and can also be backdated.
+     * This is the date on which the journal entry was added. This can be different from the creation date
+     * and can also be backdated.
      */
     @JsonIgnore
     public Optional<OffsetDateTime> postedAt() {
@@ -390,6 +446,30 @@ public class JournalEntry {
     }
 
     /**
+     * Amounts are including tax
+     */
+    @JsonIgnore
+    public JsonNullable<Boolean> taxInclusive() {
+        return taxInclusive;
+    }
+
+    /**
+     * The source type of the journal entry
+     */
+    @JsonIgnore
+    public JsonNullable<String> sourceType() {
+        return sourceType;
+    }
+
+    /**
+     * A unique identifier for the source of the journal entry
+     */
+    @JsonIgnore
+    public JsonNullable<String> sourceId() {
+        return sourceId;
+    }
+
+    /**
      * When custom mappings are configured on the resource, the result is included here.
      */
     @SuppressWarnings("unchecked")
@@ -431,7 +511,8 @@ public class JournalEntry {
     }
 
     /**
-     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+     * time an update is made to the object.
      */
     @JsonIgnore
     public JsonNullable<String> rowVersion() {
@@ -445,7 +526,8 @@ public class JournalEntry {
     }
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -474,6 +556,24 @@ public class JournalEntry {
     public JournalEntry withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
+        return this;
+    }
+
+    /**
+     * The third-party API ID of original entity
+     */
+    public JournalEntry withDownstreamId(String downstreamId) {
+        Utils.checkNotNull(downstreamId, "downstreamId");
+        this.downstreamId = JsonNullable.of(downstreamId);
+        return this;
+    }
+
+    /**
+     * The third-party API ID of original entity
+     */
+    public JournalEntry withDownstreamId(JsonNullable<String> downstreamId) {
+        Utils.checkNotNull(downstreamId, "downstreamId");
+        this.downstreamId = downstreamId;
         return this;
     }
 
@@ -514,7 +614,8 @@ public class JournalEntry {
     }
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     public JournalEntry withCurrency(Currency currency) {
         Utils.checkNotNull(currency, "currency");
@@ -523,7 +624,8 @@ public class JournalEntry {
     }
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     public JournalEntry withCurrency(JsonNullable<? extends Currency> currency) {
         Utils.checkNotNull(currency, "currency");
@@ -605,7 +707,8 @@ public class JournalEntry {
     }
 
     /**
-     * This is the date on which the journal entry was added. This can be different from the creation date and can also be backdated.
+     * This is the date on which the journal entry was added. This can be different from the creation date
+     * and can also be backdated.
      */
     public JournalEntry withPostedAt(OffsetDateTime postedAt) {
         Utils.checkNotNull(postedAt, "postedAt");
@@ -615,7 +718,8 @@ public class JournalEntry {
 
 
     /**
-     * This is the date on which the journal entry was added. This can be different from the creation date and can also be backdated.
+     * This is the date on which the journal entry was added. This can be different from the creation date
+     * and can also be backdated.
      */
     public JournalEntry withPostedAt(Optional<OffsetDateTime> postedAt) {
         Utils.checkNotNull(postedAt, "postedAt");
@@ -732,6 +836,60 @@ public class JournalEntry {
     }
 
     /**
+     * Amounts are including tax
+     */
+    public JournalEntry withTaxInclusive(boolean taxInclusive) {
+        Utils.checkNotNull(taxInclusive, "taxInclusive");
+        this.taxInclusive = JsonNullable.of(taxInclusive);
+        return this;
+    }
+
+    /**
+     * Amounts are including tax
+     */
+    public JournalEntry withTaxInclusive(JsonNullable<Boolean> taxInclusive) {
+        Utils.checkNotNull(taxInclusive, "taxInclusive");
+        this.taxInclusive = taxInclusive;
+        return this;
+    }
+
+    /**
+     * The source type of the journal entry
+     */
+    public JournalEntry withSourceType(String sourceType) {
+        Utils.checkNotNull(sourceType, "sourceType");
+        this.sourceType = JsonNullable.of(sourceType);
+        return this;
+    }
+
+    /**
+     * The source type of the journal entry
+     */
+    public JournalEntry withSourceType(JsonNullable<String> sourceType) {
+        Utils.checkNotNull(sourceType, "sourceType");
+        this.sourceType = sourceType;
+        return this;
+    }
+
+    /**
+     * A unique identifier for the source of the journal entry
+     */
+    public JournalEntry withSourceId(String sourceId) {
+        Utils.checkNotNull(sourceId, "sourceId");
+        this.sourceId = JsonNullable.of(sourceId);
+        return this;
+    }
+
+    /**
+     * A unique identifier for the source of the journal entry
+     */
+    public JournalEntry withSourceId(JsonNullable<String> sourceId) {
+        Utils.checkNotNull(sourceId, "sourceId");
+        this.sourceId = sourceId;
+        return this;
+    }
+
+    /**
      * When custom mappings are configured on the resource, the result is included here.
      */
     public JournalEntry withCustomMappings(Map<String, Object> customMappings) {
@@ -822,7 +980,8 @@ public class JournalEntry {
     }
 
     /**
-     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+     * time an update is made to the object.
      */
     public JournalEntry withRowVersion(String rowVersion) {
         Utils.checkNotNull(rowVersion, "rowVersion");
@@ -831,7 +990,8 @@ public class JournalEntry {
     }
 
     /**
-     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+     * time an update is made to the object.
      */
     public JournalEntry withRowVersion(JsonNullable<String> rowVersion) {
         Utils.checkNotNull(rowVersion, "rowVersion");
@@ -853,7 +1013,8 @@ public class JournalEntry {
     }
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     public JournalEntry withPassThrough(List<PassThroughBody> passThrough) {
         Utils.checkNotNull(passThrough, "passThrough");
@@ -863,7 +1024,8 @@ public class JournalEntry {
 
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     public JournalEntry withPassThrough(Optional<? extends List<PassThroughBody>> passThrough) {
         Utils.checkNotNull(passThrough, "passThrough");
@@ -882,6 +1044,7 @@ public class JournalEntry {
         JournalEntry other = (JournalEntry) o;
         return 
             Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.downstreamId, other.downstreamId) &&
             Utils.enhancedDeepEquals(this.title, other.title) &&
             Utils.enhancedDeepEquals(this.currencyRate, other.currencyRate) &&
             Utils.enhancedDeepEquals(this.currency, other.currency) &&
@@ -896,6 +1059,9 @@ public class JournalEntry {
             Utils.enhancedDeepEquals(this.number, other.number) &&
             Utils.enhancedDeepEquals(this.trackingCategories, other.trackingCategories) &&
             Utils.enhancedDeepEquals(this.accountingPeriod, other.accountingPeriod) &&
+            Utils.enhancedDeepEquals(this.taxInclusive, other.taxInclusive) &&
+            Utils.enhancedDeepEquals(this.sourceType, other.sourceType) &&
+            Utils.enhancedDeepEquals(this.sourceId, other.sourceId) &&
             Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
             Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
             Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
@@ -909,20 +1075,22 @@ public class JournalEntry {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, title, currencyRate,
-            currency, companyId, lineItems,
-            status, memo, postedAt,
-            journalSymbol, taxType, taxCode,
-            number, trackingCategories, accountingPeriod,
-            customMappings, updatedBy, createdBy,
-            updatedAt, createdAt, rowVersion,
-            customFields, passThrough);
+            id, downstreamId, title,
+            currencyRate, currency, companyId,
+            lineItems, status, memo,
+            postedAt, journalSymbol, taxType,
+            taxCode, number, trackingCategories,
+            accountingPeriod, taxInclusive, sourceType,
+            sourceId, customMappings, updatedBy,
+            createdBy, updatedAt, createdAt,
+            rowVersion, customFields, passThrough);
     }
     
     @Override
     public String toString() {
         return Utils.toString(JournalEntry.class,
                 "id", id,
+                "downstreamId", downstreamId,
                 "title", title,
                 "currencyRate", currencyRate,
                 "currency", currency,
@@ -937,6 +1105,9 @@ public class JournalEntry {
                 "number", number,
                 "trackingCategories", trackingCategories,
                 "accountingPeriod", accountingPeriod,
+                "taxInclusive", taxInclusive,
+                "sourceType", sourceType,
+                "sourceId", sourceId,
                 "customMappings", customMappings,
                 "updatedBy", updatedBy,
                 "createdBy", createdBy,
@@ -951,6 +1122,8 @@ public class JournalEntry {
     public final static class Builder {
 
         private Optional<String> id = Optional.empty();
+
+        private JsonNullable<String> downstreamId = JsonNullable.undefined();
 
         private JsonNullable<String> title = JsonNullable.undefined();
 
@@ -979,6 +1152,12 @@ public class JournalEntry {
         private JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories = JsonNullable.undefined();
 
         private JsonNullable<String> accountingPeriod = JsonNullable.undefined();
+
+        private JsonNullable<Boolean> taxInclusive = JsonNullable.undefined();
+
+        private JsonNullable<String> sourceType = JsonNullable.undefined();
+
+        private JsonNullable<String> sourceId = JsonNullable.undefined();
 
         private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
 
@@ -1016,6 +1195,25 @@ public class JournalEntry {
         public Builder id(Optional<String> id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
+            return this;
+        }
+
+
+        /**
+         * The third-party API ID of original entity
+         */
+        public Builder downstreamId(String downstreamId) {
+            Utils.checkNotNull(downstreamId, "downstreamId");
+            this.downstreamId = JsonNullable.of(downstreamId);
+            return this;
+        }
+
+        /**
+         * The third-party API ID of original entity
+         */
+        public Builder downstreamId(JsonNullable<String> downstreamId) {
+            Utils.checkNotNull(downstreamId, "downstreamId");
+            this.downstreamId = downstreamId;
             return this;
         }
 
@@ -1059,7 +1257,8 @@ public class JournalEntry {
 
 
         /**
-         * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+         * Indicates the associated currency for an amount of money. Values correspond to [ISO
+         * 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
         public Builder currency(Currency currency) {
             Utils.checkNotNull(currency, "currency");
@@ -1068,7 +1267,8 @@ public class JournalEntry {
         }
 
         /**
-         * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+         * Indicates the associated currency for an amount of money. Values correspond to [ISO
+         * 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
         public Builder currency(JsonNullable<? extends Currency> currency) {
             Utils.checkNotNull(currency, "currency");
@@ -1154,7 +1354,8 @@ public class JournalEntry {
 
 
         /**
-         * This is the date on which the journal entry was added. This can be different from the creation date and can also be backdated.
+         * This is the date on which the journal entry was added. This can be different from the creation date
+         * and can also be backdated.
          */
         public Builder postedAt(OffsetDateTime postedAt) {
             Utils.checkNotNull(postedAt, "postedAt");
@@ -1163,7 +1364,8 @@ public class JournalEntry {
         }
 
         /**
-         * This is the date on which the journal entry was added. This can be different from the creation date and can also be backdated.
+         * This is the date on which the journal entry was added. This can be different from the creation date
+         * and can also be backdated.
          */
         public Builder postedAt(Optional<OffsetDateTime> postedAt) {
             Utils.checkNotNull(postedAt, "postedAt");
@@ -1287,6 +1489,63 @@ public class JournalEntry {
 
 
         /**
+         * Amounts are including tax
+         */
+        public Builder taxInclusive(boolean taxInclusive) {
+            Utils.checkNotNull(taxInclusive, "taxInclusive");
+            this.taxInclusive = JsonNullable.of(taxInclusive);
+            return this;
+        }
+
+        /**
+         * Amounts are including tax
+         */
+        public Builder taxInclusive(JsonNullable<Boolean> taxInclusive) {
+            Utils.checkNotNull(taxInclusive, "taxInclusive");
+            this.taxInclusive = taxInclusive;
+            return this;
+        }
+
+
+        /**
+         * The source type of the journal entry
+         */
+        public Builder sourceType(String sourceType) {
+            Utils.checkNotNull(sourceType, "sourceType");
+            this.sourceType = JsonNullable.of(sourceType);
+            return this;
+        }
+
+        /**
+         * The source type of the journal entry
+         */
+        public Builder sourceType(JsonNullable<String> sourceType) {
+            Utils.checkNotNull(sourceType, "sourceType");
+            this.sourceType = sourceType;
+            return this;
+        }
+
+
+        /**
+         * A unique identifier for the source of the journal entry
+         */
+        public Builder sourceId(String sourceId) {
+            Utils.checkNotNull(sourceId, "sourceId");
+            this.sourceId = JsonNullable.of(sourceId);
+            return this;
+        }
+
+        /**
+         * A unique identifier for the source of the journal entry
+         */
+        public Builder sourceId(JsonNullable<String> sourceId) {
+            Utils.checkNotNull(sourceId, "sourceId");
+            this.sourceId = sourceId;
+            return this;
+        }
+
+
+        /**
          * When custom mappings are configured on the resource, the result is included here.
          */
         public Builder customMappings(Map<String, Object> customMappings) {
@@ -1382,7 +1641,8 @@ public class JournalEntry {
 
 
         /**
-         * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+         * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+         * time an update is made to the object.
          */
         public Builder rowVersion(String rowVersion) {
             Utils.checkNotNull(rowVersion, "rowVersion");
@@ -1391,7 +1651,8 @@ public class JournalEntry {
         }
 
         /**
-         * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+         * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+         * time an update is made to the object.
          */
         public Builder rowVersion(JsonNullable<String> rowVersion) {
             Utils.checkNotNull(rowVersion, "rowVersion");
@@ -1414,7 +1675,8 @@ public class JournalEntry {
 
 
         /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+         * The pass_through property allows passing service-specific, custom data or structured modifications
+         * in request body when creating or updating resources.
          */
         public Builder passThrough(List<PassThroughBody> passThrough) {
             Utils.checkNotNull(passThrough, "passThrough");
@@ -1423,7 +1685,8 @@ public class JournalEntry {
         }
 
         /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+         * The pass_through property allows passing service-specific, custom data or structured modifications
+         * in request body when creating or updating resources.
          */
         public Builder passThrough(Optional<? extends List<PassThroughBody>> passThrough) {
             Utils.checkNotNull(passThrough, "passThrough");
@@ -1434,14 +1697,15 @@ public class JournalEntry {
         public JournalEntry build() {
 
             return new JournalEntry(
-                id, title, currencyRate,
-                currency, companyId, lineItems,
-                status, memo, postedAt,
-                journalSymbol, taxType, taxCode,
-                number, trackingCategories, accountingPeriod,
-                customMappings, updatedBy, createdBy,
-                updatedAt, createdAt, rowVersion,
-                customFields, passThrough);
+                id, downstreamId, title,
+                currencyRate, currency, companyId,
+                lineItems, status, memo,
+                postedAt, journalSymbol, taxType,
+                taxCode, number, trackingCategories,
+                accountingPeriod, taxInclusive, sourceType,
+                sourceId, customMappings, updatedBy,
+                createdBy, updatedAt, createdAt,
+                rowVersion, customFields, passThrough);
         }
 
     }

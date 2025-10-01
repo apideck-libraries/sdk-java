@@ -56,7 +56,7 @@ public class AsyncPayrolls {
      * <p>List Payroll
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;HrisPayrollsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<HrisPayrollsAllResponse>} - The async response
      */
     public CompletableFuture<HrisPayrollsAllResponse> list(HrisPayrollsAllRequest request) {
         return list(request, Optional.empty());
@@ -69,7 +69,7 @@ public class AsyncPayrolls {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;HrisPayrollsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<HrisPayrollsAllResponse>} - The async response
      */
     public CompletableFuture<HrisPayrollsAllResponse> list(HrisPayrollsAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<HrisPayrollsAllRequest, HrisPayrollsAllResponse> operation
@@ -98,7 +98,7 @@ public class AsyncPayrolls {
      * <p>Get Payroll
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;HrisPayrollsOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<HrisPayrollsOneResponse>} - The async response
      */
     public CompletableFuture<HrisPayrollsOneResponse> get(HrisPayrollsOneRequest request) {
         return get(request, Optional.empty());
@@ -111,7 +111,7 @@ public class AsyncPayrolls {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;HrisPayrollsOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<HrisPayrollsOneResponse>} - The async response
      */
     public CompletableFuture<HrisPayrollsOneResponse> get(HrisPayrollsOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<HrisPayrollsOneRequest, HrisPayrollsOneResponse> operation

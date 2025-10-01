@@ -20,7 +20,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
 /**
  * EcommerceOrderLineItem
  * 
- * <p>A single line item of an ecommerce order, representing a product or variant with associated options, quantity, and pricing information.
+ * <p>A single line item of an ecommerce order, representing a product or variant with associated options,
+ * quantity, and pricing information.
  */
 public class EcommerceOrderLineItem {
     /**
@@ -120,14 +121,16 @@ public class EcommerceOrderLineItem {
     private JsonNullable<String> refundedQuantity;
 
     /**
-     * The sub total for the product(s) or variant associated with the line item, excluding taxes and discounts.
+     * The sub total for the product(s) or variant associated with the line item, excluding taxes and
+     * discounts.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sub_total")
     private JsonNullable<String> subTotal;
 
     /**
-     * The total amount for the product(s) or variant associated with the line item, including taxes and discounts.
+     * The total amount for the product(s) or variant associated with the line item, including taxes and
+     * discounts.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("total_amount")
@@ -313,7 +316,8 @@ public class EcommerceOrderLineItem {
     }
 
     /**
-     * The sub total for the product(s) or variant associated with the line item, excluding taxes and discounts.
+     * The sub total for the product(s) or variant associated with the line item, excluding taxes and
+     * discounts.
      */
     @JsonIgnore
     public JsonNullable<String> subTotal() {
@@ -321,7 +325,8 @@ public class EcommerceOrderLineItem {
     }
 
     /**
-     * The total amount for the product(s) or variant associated with the line item, including taxes and discounts.
+     * The total amount for the product(s) or variant associated with the line item, including taxes and
+     * discounts.
      */
     @JsonIgnore
     public JsonNullable<String> totalAmount() {
@@ -589,7 +594,8 @@ public class EcommerceOrderLineItem {
     }
 
     /**
-     * The sub total for the product(s) or variant associated with the line item, excluding taxes and discounts.
+     * The sub total for the product(s) or variant associated with the line item, excluding taxes and
+     * discounts.
      */
     public EcommerceOrderLineItem withSubTotal(String subTotal) {
         Utils.checkNotNull(subTotal, "subTotal");
@@ -598,7 +604,8 @@ public class EcommerceOrderLineItem {
     }
 
     /**
-     * The sub total for the product(s) or variant associated with the line item, excluding taxes and discounts.
+     * The sub total for the product(s) or variant associated with the line item, excluding taxes and
+     * discounts.
      */
     public EcommerceOrderLineItem withSubTotal(JsonNullable<String> subTotal) {
         Utils.checkNotNull(subTotal, "subTotal");
@@ -607,7 +614,8 @@ public class EcommerceOrderLineItem {
     }
 
     /**
-     * The total amount for the product(s) or variant associated with the line item, including taxes and discounts.
+     * The total amount for the product(s) or variant associated with the line item, including taxes and
+     * discounts.
      */
     public EcommerceOrderLineItem withTotalAmount(String totalAmount) {
         Utils.checkNotNull(totalAmount, "totalAmount");
@@ -616,7 +624,8 @@ public class EcommerceOrderLineItem {
     }
 
     /**
-     * The total amount for the product(s) or variant associated with the line item, including taxes and discounts.
+     * The total amount for the product(s) or variant associated with the line item, including taxes and
+     * discounts.
      */
     public EcommerceOrderLineItem withTotalAmount(JsonNullable<String> totalAmount) {
         Utils.checkNotNull(totalAmount, "totalAmount");
@@ -1002,7 +1011,8 @@ public class EcommerceOrderLineItem {
 
 
         /**
-         * The sub total for the product(s) or variant associated with the line item, excluding taxes and discounts.
+         * The sub total for the product(s) or variant associated with the line item, excluding taxes and
+         * discounts.
          */
         public Builder subTotal(String subTotal) {
             Utils.checkNotNull(subTotal, "subTotal");
@@ -1011,7 +1021,8 @@ public class EcommerceOrderLineItem {
         }
 
         /**
-         * The sub total for the product(s) or variant associated with the line item, excluding taxes and discounts.
+         * The sub total for the product(s) or variant associated with the line item, excluding taxes and
+         * discounts.
          */
         public Builder subTotal(JsonNullable<String> subTotal) {
             Utils.checkNotNull(subTotal, "subTotal");
@@ -1021,7 +1032,8 @@ public class EcommerceOrderLineItem {
 
 
         /**
-         * The total amount for the product(s) or variant associated with the line item, including taxes and discounts.
+         * The total amount for the product(s) or variant associated with the line item, including taxes and
+         * discounts.
          */
         public Builder totalAmount(String totalAmount) {
             Utils.checkNotNull(totalAmount, "totalAmount");
@@ -1030,7 +1042,8 @@ public class EcommerceOrderLineItem {
         }
 
         /**
-         * The total amount for the product(s) or variant associated with the line item, including taxes and discounts.
+         * The total amount for the product(s) or variant associated with the line item, including taxes and
+         * discounts.
          */
         public Builder totalAmount(JsonNullable<String> totalAmount) {
             Utils.checkNotNull(totalAmount, "totalAmount");

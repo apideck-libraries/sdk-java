@@ -52,7 +52,7 @@ public class AsyncStores {
      * <p>Get Store
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;EcommerceStoresOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<EcommerceStoresOneResponse>} - The async response
      */
     public CompletableFuture<EcommerceStoresOneResponse> get(EcommerceStoresOneRequest request) {
         return get(request, Optional.empty());
@@ -65,7 +65,7 @@ public class AsyncStores {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;EcommerceStoresOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<EcommerceStoresOneResponse>} - The async response
      */
     public CompletableFuture<EcommerceStoresOneResponse> get(EcommerceStoresOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<EcommerceStoresOneRequest, EcommerceStoresOneResponse> operation

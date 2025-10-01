@@ -17,7 +17,8 @@ import java.util.Optional;
 
 public class IssuesFilter {
     /**
-     * Filter by ticket status, can be `open`, `closed` or `all`. Will passthrough if none of the above match
+     * Filter by ticket status, can be `open`, `closed` or `all`. Will passthrough if none of the above
+     * match
      */
     @SpeakeasyMetadata("queryParam:name=status")
     private Optional<? extends List<String>> status;
@@ -52,7 +53,8 @@ public class IssuesFilter {
     }
 
     /**
-     * Filter by ticket status, can be `open`, `closed` or `all`. Will passthrough if none of the above match
+     * Filter by ticket status, can be `open`, `closed` or `all`. Will passthrough if none of the above
+     * match
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -82,7 +84,8 @@ public class IssuesFilter {
 
 
     /**
-     * Filter by ticket status, can be `open`, `closed` or `all`. Will passthrough if none of the above match
+     * Filter by ticket status, can be `open`, `closed` or `all`. Will passthrough if none of the above
+     * match
      */
     public IssuesFilter withStatus(List<String> status) {
         Utils.checkNotNull(status, "status");
@@ -92,7 +95,8 @@ public class IssuesFilter {
 
 
     /**
-     * Filter by ticket status, can be `open`, `closed` or `all`. Will passthrough if none of the above match
+     * Filter by ticket status, can be `open`, `closed` or `all`. Will passthrough if none of the above
+     * match
      */
     public IssuesFilter withStatus(Optional<? extends List<String>> status) {
         Utils.checkNotNull(status, "status");
@@ -182,7 +186,8 @@ public class IssuesFilter {
 
 
         /**
-         * Filter by ticket status, can be `open`, `closed` or `all`. Will passthrough if none of the above match
+         * Filter by ticket status, can be `open`, `closed` or `all`. Will passthrough if none of the above
+         * match
          */
         public Builder status(List<String> status) {
             Utils.checkNotNull(status, "status");
@@ -191,7 +196,8 @@ public class IssuesFilter {
         }
 
         /**
-         * Filter by ticket status, can be `open`, `closed` or `all`. Will passthrough if none of the above match
+         * Filter by ticket status, can be `open`, `closed` or `all`. Will passthrough if none of the above
+         * match
          */
         public Builder status(Optional<? extends List<String>> status) {
             Utils.checkNotNull(status, "status");

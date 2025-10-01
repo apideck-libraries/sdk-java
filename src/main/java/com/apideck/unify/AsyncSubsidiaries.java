@@ -68,7 +68,7 @@ public class AsyncSubsidiaries {
      * <p>List Subsidiaries
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingSubsidiariesAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingSubsidiariesAllResponse>} - The async response
      */
     public CompletableFuture<AccountingSubsidiariesAllResponse> list(AccountingSubsidiariesAllRequest request) {
         return list(request, Optional.empty());
@@ -81,7 +81,7 @@ public class AsyncSubsidiaries {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingSubsidiariesAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingSubsidiariesAllResponse>} - The async response
      */
     public CompletableFuture<AccountingSubsidiariesAllResponse> list(AccountingSubsidiariesAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingSubsidiariesAllRequest, AccountingSubsidiariesAllResponse> operation
@@ -110,7 +110,7 @@ public class AsyncSubsidiaries {
      * <p>Create Subsidiary
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingSubsidiariesAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingSubsidiariesAddResponse>} - The async response
      */
     public CompletableFuture<AccountingSubsidiariesAddResponse> create(AccountingSubsidiariesAddRequest request) {
         return create(request, Optional.empty());
@@ -123,7 +123,7 @@ public class AsyncSubsidiaries {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingSubsidiariesAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingSubsidiariesAddResponse>} - The async response
      */
     public CompletableFuture<AccountingSubsidiariesAddResponse> create(AccountingSubsidiariesAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingSubsidiariesAddRequest, AccountingSubsidiariesAddResponse> operation
@@ -152,7 +152,7 @@ public class AsyncSubsidiaries {
      * <p>Get Subsidiary
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingSubsidiariesOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingSubsidiariesOneResponse>} - The async response
      */
     public CompletableFuture<AccountingSubsidiariesOneResponse> get(AccountingSubsidiariesOneRequest request) {
         return get(request, Optional.empty());
@@ -165,7 +165,7 @@ public class AsyncSubsidiaries {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingSubsidiariesOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingSubsidiariesOneResponse>} - The async response
      */
     public CompletableFuture<AccountingSubsidiariesOneResponse> get(AccountingSubsidiariesOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingSubsidiariesOneRequest, AccountingSubsidiariesOneResponse> operation
@@ -194,7 +194,7 @@ public class AsyncSubsidiaries {
      * <p>Update Subsidiary
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingSubsidiariesUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingSubsidiariesUpdateResponse>} - The async response
      */
     public CompletableFuture<AccountingSubsidiariesUpdateResponse> update(AccountingSubsidiariesUpdateRequest request) {
         return update(request, Optional.empty());
@@ -207,7 +207,7 @@ public class AsyncSubsidiaries {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingSubsidiariesUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingSubsidiariesUpdateResponse>} - The async response
      */
     public CompletableFuture<AccountingSubsidiariesUpdateResponse> update(AccountingSubsidiariesUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingSubsidiariesUpdateRequest, AccountingSubsidiariesUpdateResponse> operation
@@ -236,7 +236,7 @@ public class AsyncSubsidiaries {
      * <p>Delete Subsidiary
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingSubsidiariesDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingSubsidiariesDeleteResponse>} - The async response
      */
     public CompletableFuture<AccountingSubsidiariesDeleteResponse> delete(AccountingSubsidiariesDeleteRequest request) {
         return delete(request, Optional.empty());
@@ -249,7 +249,7 @@ public class AsyncSubsidiaries {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingSubsidiariesDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingSubsidiariesDeleteResponse>} - The async response
      */
     public CompletableFuture<AccountingSubsidiariesDeleteResponse> delete(AccountingSubsidiariesDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingSubsidiariesDeleteRequest, AccountingSubsidiariesDeleteResponse> operation

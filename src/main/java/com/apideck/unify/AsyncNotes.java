@@ -68,7 +68,7 @@ public class AsyncNotes {
      * <p>List notes
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CrmNotesAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmNotesAllResponse>} - The async response
      */
     public CompletableFuture<CrmNotesAllResponse> list(CrmNotesAllRequest request) {
         return list(request, Optional.empty());
@@ -81,7 +81,7 @@ public class AsyncNotes {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;CrmNotesAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmNotesAllResponse>} - The async response
      */
     public CompletableFuture<CrmNotesAllResponse> list(CrmNotesAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmNotesAllRequest, CrmNotesAllResponse> operation
@@ -110,7 +110,7 @@ public class AsyncNotes {
      * <p>Create note
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CrmNotesAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmNotesAddResponse>} - The async response
      */
     public CompletableFuture<CrmNotesAddResponse> create(CrmNotesAddRequest request) {
         return create(request, Optional.empty());
@@ -123,7 +123,7 @@ public class AsyncNotes {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;CrmNotesAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmNotesAddResponse>} - The async response
      */
     public CompletableFuture<CrmNotesAddResponse> create(CrmNotesAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmNotesAddRequest, CrmNotesAddResponse> operation
@@ -152,7 +152,7 @@ public class AsyncNotes {
      * <p>Get note
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CrmNotesOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmNotesOneResponse>} - The async response
      */
     public CompletableFuture<CrmNotesOneResponse> get(CrmNotesOneRequest request) {
         return get(request, Optional.empty());
@@ -165,7 +165,7 @@ public class AsyncNotes {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;CrmNotesOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmNotesOneResponse>} - The async response
      */
     public CompletableFuture<CrmNotesOneResponse> get(CrmNotesOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmNotesOneRequest, CrmNotesOneResponse> operation
@@ -194,7 +194,7 @@ public class AsyncNotes {
      * <p>Update note
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CrmNotesUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmNotesUpdateResponse>} - The async response
      */
     public CompletableFuture<CrmNotesUpdateResponse> update(CrmNotesUpdateRequest request) {
         return update(request, Optional.empty());
@@ -207,7 +207,7 @@ public class AsyncNotes {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;CrmNotesUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmNotesUpdateResponse>} - The async response
      */
     public CompletableFuture<CrmNotesUpdateResponse> update(CrmNotesUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmNotesUpdateRequest, CrmNotesUpdateResponse> operation
@@ -236,7 +236,7 @@ public class AsyncNotes {
      * <p>Delete note
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CrmNotesDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmNotesDeleteResponse>} - The async response
      */
     public CompletableFuture<CrmNotesDeleteResponse> delete(CrmNotesDeleteRequest request) {
         return delete(request, Optional.empty());
@@ -249,7 +249,7 @@ public class AsyncNotes {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;CrmNotesDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmNotesDeleteResponse>} - The async response
      */
     public CompletableFuture<CrmNotesDeleteResponse> delete(CrmNotesDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmNotesDeleteRequest, CrmNotesDeleteResponse> operation

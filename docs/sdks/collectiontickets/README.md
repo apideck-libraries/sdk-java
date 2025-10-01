@@ -126,7 +126,7 @@ public class Application {
                     .subject("Technical Support Request")
                     .description("I am facing issues with my internet connection")
                     .status("open")
-                    .priority(Priority.HIGH)
+                    .priority(TicketPriority.HIGH)
                     .assignees(List.of(
                         AssigneeInput.builder()
                             .id("12345")
@@ -337,7 +337,7 @@ public class Application {
                     .subject("Technical Support Request")
                     .description("I am facing issues with my internet connection")
                     .status("open")
-                    .priority(Priority.HIGH)
+                    .priority(TicketPriority.HIGH)
                     .assignees(List.of(
                         AssigneeInput.builder()
                             .id("12345")

@@ -68,7 +68,7 @@ public class AsyncExpenses {
      * <p>List Expenses
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingExpensesAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingExpensesAllResponse>} - The async response
      */
     public CompletableFuture<AccountingExpensesAllResponse> list(AccountingExpensesAllRequest request) {
         return list(request, Optional.empty());
@@ -81,7 +81,7 @@ public class AsyncExpenses {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingExpensesAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingExpensesAllResponse>} - The async response
      */
     public CompletableFuture<AccountingExpensesAllResponse> list(AccountingExpensesAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingExpensesAllRequest, AccountingExpensesAllResponse> operation
@@ -110,7 +110,7 @@ public class AsyncExpenses {
      * <p>Create Expense
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingExpensesAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingExpensesAddResponse>} - The async response
      */
     public CompletableFuture<AccountingExpensesAddResponse> create(AccountingExpensesAddRequest request) {
         return create(request, Optional.empty());
@@ -123,7 +123,7 @@ public class AsyncExpenses {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingExpensesAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingExpensesAddResponse>} - The async response
      */
     public CompletableFuture<AccountingExpensesAddResponse> create(AccountingExpensesAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingExpensesAddRequest, AccountingExpensesAddResponse> operation
@@ -152,7 +152,7 @@ public class AsyncExpenses {
      * <p>Get Expense
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingExpensesOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingExpensesOneResponse>} - The async response
      */
     public CompletableFuture<AccountingExpensesOneResponse> get(AccountingExpensesOneRequest request) {
         return get(request, Optional.empty());
@@ -165,7 +165,7 @@ public class AsyncExpenses {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingExpensesOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingExpensesOneResponse>} - The async response
      */
     public CompletableFuture<AccountingExpensesOneResponse> get(AccountingExpensesOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingExpensesOneRequest, AccountingExpensesOneResponse> operation
@@ -194,7 +194,7 @@ public class AsyncExpenses {
      * <p>Update Expense
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingExpensesUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingExpensesUpdateResponse>} - The async response
      */
     public CompletableFuture<AccountingExpensesUpdateResponse> update(AccountingExpensesUpdateRequest request) {
         return update(request, Optional.empty());
@@ -207,7 +207,7 @@ public class AsyncExpenses {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingExpensesUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingExpensesUpdateResponse>} - The async response
      */
     public CompletableFuture<AccountingExpensesUpdateResponse> update(AccountingExpensesUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingExpensesUpdateRequest, AccountingExpensesUpdateResponse> operation
@@ -236,7 +236,7 @@ public class AsyncExpenses {
      * <p>Delete Expense
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingExpensesDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingExpensesDeleteResponse>} - The async response
      */
     public CompletableFuture<AccountingExpensesDeleteResponse> delete(AccountingExpensesDeleteRequest request) {
         return delete(request, Optional.empty());
@@ -249,7 +249,7 @@ public class AsyncExpenses {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingExpensesDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingExpensesDeleteResponse>} - The async response
      */
     public CompletableFuture<AccountingExpensesDeleteResponse> delete(AccountingExpensesDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingExpensesDeleteRequest, AccountingExpensesDeleteResponse> operation

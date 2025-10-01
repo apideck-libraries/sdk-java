@@ -36,7 +36,8 @@ public class FileStorageUploadSessionsUploadRequest {
     private Optional<String> appId;
 
     /**
-     * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
+     * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated
+     * multiple integrations for a Unified API.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-service-id")
     private Optional<String> serviceId;
@@ -48,7 +49,9 @@ public class FileStorageUploadSessionsUploadRequest {
     private double partNumber;
 
     /**
-     * The RFC3230 message digest of the uploaded part. Only required for the Box connector. More information on the Box API docs [here](https://developer.box.com/reference/put-files-upload-sessions-id/#param-digest)
+     * The RFC3230 message digest of the uploaded part. Only required for the Box connector. More
+     * information on the Box API docs
+     * [here](https://developer.box.com/reference/put-files-upload-sessions-id/#param-digest)
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=digest")
     private Optional<String> digest;
@@ -125,7 +128,8 @@ public class FileStorageUploadSessionsUploadRequest {
     }
 
     /**
-     * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
+     * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated
+     * multiple integrations for a Unified API.
      */
     @JsonIgnore
     public Optional<String> serviceId() {
@@ -141,7 +145,9 @@ public class FileStorageUploadSessionsUploadRequest {
     }
 
     /**
-     * The RFC3230 message digest of the uploaded part. Only required for the Box connector. More information on the Box API docs [here](https://developer.box.com/reference/put-files-upload-sessions-id/#param-digest)
+     * The RFC3230 message digest of the uploaded part. Only required for the Box connector. More
+     * information on the Box API docs
+     * [here](https://developer.box.com/reference/put-files-upload-sessions-id/#param-digest)
      */
     @JsonIgnore
     public Optional<String> digest() {
@@ -214,7 +220,8 @@ public class FileStorageUploadSessionsUploadRequest {
     }
 
     /**
-     * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
+     * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated
+     * multiple integrations for a Unified API.
      */
     public FileStorageUploadSessionsUploadRequest withServiceId(String serviceId) {
         Utils.checkNotNull(serviceId, "serviceId");
@@ -224,7 +231,8 @@ public class FileStorageUploadSessionsUploadRequest {
 
 
     /**
-     * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
+     * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated
+     * multiple integrations for a Unified API.
      */
     public FileStorageUploadSessionsUploadRequest withServiceId(Optional<String> serviceId) {
         Utils.checkNotNull(serviceId, "serviceId");
@@ -242,7 +250,9 @@ public class FileStorageUploadSessionsUploadRequest {
     }
 
     /**
-     * The RFC3230 message digest of the uploaded part. Only required for the Box connector. More information on the Box API docs [here](https://developer.box.com/reference/put-files-upload-sessions-id/#param-digest)
+     * The RFC3230 message digest of the uploaded part. Only required for the Box connector. More
+     * information on the Box API docs
+     * [here](https://developer.box.com/reference/put-files-upload-sessions-id/#param-digest)
      */
     public FileStorageUploadSessionsUploadRequest withDigest(String digest) {
         Utils.checkNotNull(digest, "digest");
@@ -252,7 +262,9 @@ public class FileStorageUploadSessionsUploadRequest {
 
 
     /**
-     * The RFC3230 message digest of the uploaded part. Only required for the Box connector. More information on the Box API docs [here](https://developer.box.com/reference/put-files-upload-sessions-id/#param-digest)
+     * The RFC3230 message digest of the uploaded part. Only required for the Box connector. More
+     * information on the Box API docs
+     * [here](https://developer.box.com/reference/put-files-upload-sessions-id/#param-digest)
      */
     public FileStorageUploadSessionsUploadRequest withDigest(Optional<String> digest) {
         Utils.checkNotNull(digest, "digest");
@@ -399,7 +411,8 @@ public class FileStorageUploadSessionsUploadRequest {
 
 
         /**
-         * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
+         * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated
+         * multiple integrations for a Unified API.
          */
         public Builder serviceId(String serviceId) {
             Utils.checkNotNull(serviceId, "serviceId");
@@ -408,7 +421,8 @@ public class FileStorageUploadSessionsUploadRequest {
         }
 
         /**
-         * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
+         * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated
+         * multiple integrations for a Unified API.
          */
         public Builder serviceId(Optional<String> serviceId) {
             Utils.checkNotNull(serviceId, "serviceId");
@@ -428,7 +442,9 @@ public class FileStorageUploadSessionsUploadRequest {
 
 
         /**
-         * The RFC3230 message digest of the uploaded part. Only required for the Box connector. More information on the Box API docs [here](https://developer.box.com/reference/put-files-upload-sessions-id/#param-digest)
+         * The RFC3230 message digest of the uploaded part. Only required for the Box connector. More
+         * information on the Box API docs
+         * [here](https://developer.box.com/reference/put-files-upload-sessions-id/#param-digest)
          */
         public Builder digest(String digest) {
             Utils.checkNotNull(digest, "digest");
@@ -437,7 +453,9 @@ public class FileStorageUploadSessionsUploadRequest {
         }
 
         /**
-         * The RFC3230 message digest of the uploaded part. Only required for the Box connector. More information on the Box API docs [here](https://developer.box.com/reference/put-files-upload-sessions-id/#param-digest)
+         * The RFC3230 message digest of the uploaded part. Only required for the Box connector. More
+         * information on the Box API docs
+         * [here](https://developer.box.com/reference/put-files-upload-sessions-id/#param-digest)
          */
         public Builder digest(Optional<String> digest) {
             Utils.checkNotNull(digest, "digest");

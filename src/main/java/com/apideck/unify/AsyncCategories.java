@@ -56,7 +56,7 @@ public class AsyncCategories {
      * <p>List Categories
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingCategoriesAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingCategoriesAllResponse>} - The async response
      */
     public CompletableFuture<AccountingCategoriesAllResponse> list(AccountingCategoriesAllRequest request) {
         return list(request, Optional.empty());
@@ -69,7 +69,7 @@ public class AsyncCategories {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingCategoriesAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingCategoriesAllResponse>} - The async response
      */
     public CompletableFuture<AccountingCategoriesAllResponse> list(AccountingCategoriesAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingCategoriesAllRequest, AccountingCategoriesAllResponse> operation
@@ -98,7 +98,7 @@ public class AsyncCategories {
      * <p>Get Category
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingCategoriesOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingCategoriesOneResponse>} - The async response
      */
     public CompletableFuture<AccountingCategoriesOneResponse> get(AccountingCategoriesOneRequest request) {
         return get(request, Optional.empty());
@@ -111,7 +111,7 @@ public class AsyncCategories {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingCategoriesOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingCategoriesOneResponse>} - The async response
      */
     public CompletableFuture<AccountingCategoriesOneResponse> get(AccountingCategoriesOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingCategoriesOneRequest, AccountingCategoriesOneResponse> operation

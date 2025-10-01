@@ -33,7 +33,8 @@ public class BillPaymentAllocations {
     private Optional<? extends BillPaymentAllocationType> type;
 
     /**
-     * Amount of payment that should be attributed to this allocation. If null, the total_amount will be used.
+     * Amount of payment that should be attributed to this allocation. If null, the total_amount will be
+     * used.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amount")
@@ -85,7 +86,8 @@ public class BillPaymentAllocations {
     }
 
     /**
-     * Amount of payment that should be attributed to this allocation. If null, the total_amount will be used.
+     * Amount of payment that should be attributed to this allocation. If null, the total_amount will be
+     * used.
      */
     @JsonIgnore
     public JsonNullable<Double> amount() {
@@ -143,7 +145,8 @@ public class BillPaymentAllocations {
     }
 
     /**
-     * Amount of payment that should be attributed to this allocation. If null, the total_amount will be used.
+     * Amount of payment that should be attributed to this allocation. If null, the total_amount will be
+     * used.
      */
     public BillPaymentAllocations withAmount(double amount) {
         Utils.checkNotNull(amount, "amount");
@@ -152,7 +155,8 @@ public class BillPaymentAllocations {
     }
 
     /**
-     * Amount of payment that should be attributed to this allocation. If null, the total_amount will be used.
+     * Amount of payment that should be attributed to this allocation. If null, the total_amount will be
+     * used.
      */
     public BillPaymentAllocations withAmount(JsonNullable<Double> amount) {
         Utils.checkNotNull(amount, "amount");
@@ -266,7 +270,8 @@ public class BillPaymentAllocations {
 
 
         /**
-         * Amount of payment that should be attributed to this allocation. If null, the total_amount will be used.
+         * Amount of payment that should be attributed to this allocation. If null, the total_amount will be
+         * used.
          */
         public Builder amount(double amount) {
             Utils.checkNotNull(amount, "amount");
@@ -275,7 +280,8 @@ public class BillPaymentAllocations {
         }
 
         /**
-         * Amount of payment that should be attributed to this allocation. If null, the total_amount will be used.
+         * Amount of payment that should be attributed to this allocation. If null, the total_amount will be
+         * used.
          */
         public Builder amount(JsonNullable<Double> amount) {
             Utils.checkNotNull(amount, "amount");

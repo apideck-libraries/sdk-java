@@ -21,13 +21,15 @@ public class LogsFilter {
     private JsonNullable<String> connectorId;
 
     /**
-     * Filter by a single HTTP status code. For backward compatibility - use status_codes for multiple values.
+     * Filter by a single HTTP status code. For backward compatibility - use status_codes for multiple
+     * values.
      */
     @SpeakeasyMetadata("queryParam:name=status_code")
     private JsonNullable<Double> statusCode;
 
     /**
-     * Filter by multiple HTTP status codes. Values must be between 100-599. Maximum 50 status codes allowed.
+     * Filter by multiple HTTP status codes. Values must be between 100-599. Maximum 50 status codes
+     * allowed.
      */
     @SpeakeasyMetadata("queryParam:name=status_codes")
     private JsonNullable<? extends List<Double>> statusCodes;
@@ -63,7 +65,8 @@ public class LogsFilter {
     }
 
     /**
-     * Filter by a single HTTP status code. For backward compatibility - use status_codes for multiple values.
+     * Filter by a single HTTP status code. For backward compatibility - use status_codes for multiple
+     * values.
      */
     @JsonIgnore
     public JsonNullable<Double> statusCode() {
@@ -71,7 +74,8 @@ public class LogsFilter {
     }
 
     /**
-     * Filter by multiple HTTP status codes. Values must be between 100-599. Maximum 50 status codes allowed.
+     * Filter by multiple HTTP status codes. Values must be between 100-599. Maximum 50 status codes
+     * allowed.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -102,7 +106,8 @@ public class LogsFilter {
     }
 
     /**
-     * Filter by a single HTTP status code. For backward compatibility - use status_codes for multiple values.
+     * Filter by a single HTTP status code. For backward compatibility - use status_codes for multiple
+     * values.
      */
     public LogsFilter withStatusCode(double statusCode) {
         Utils.checkNotNull(statusCode, "statusCode");
@@ -111,7 +116,8 @@ public class LogsFilter {
     }
 
     /**
-     * Filter by a single HTTP status code. For backward compatibility - use status_codes for multiple values.
+     * Filter by a single HTTP status code. For backward compatibility - use status_codes for multiple
+     * values.
      */
     public LogsFilter withStatusCode(JsonNullable<Double> statusCode) {
         Utils.checkNotNull(statusCode, "statusCode");
@@ -120,7 +126,8 @@ public class LogsFilter {
     }
 
     /**
-     * Filter by multiple HTTP status codes. Values must be between 100-599. Maximum 50 status codes allowed.
+     * Filter by multiple HTTP status codes. Values must be between 100-599. Maximum 50 status codes
+     * allowed.
      */
     public LogsFilter withStatusCodes(List<Double> statusCodes) {
         Utils.checkNotNull(statusCodes, "statusCodes");
@@ -129,7 +136,8 @@ public class LogsFilter {
     }
 
     /**
-     * Filter by multiple HTTP status codes. Values must be between 100-599. Maximum 50 status codes allowed.
+     * Filter by multiple HTTP status codes. Values must be between 100-599. Maximum 50 status codes
+     * allowed.
      */
     public LogsFilter withStatusCodes(JsonNullable<? extends List<Double>> statusCodes) {
         Utils.checkNotNull(statusCodes, "statusCodes");
@@ -211,7 +219,8 @@ public class LogsFilter {
 
 
         /**
-         * Filter by a single HTTP status code. For backward compatibility - use status_codes for multiple values.
+         * Filter by a single HTTP status code. For backward compatibility - use status_codes for multiple
+         * values.
          */
         public Builder statusCode(double statusCode) {
             Utils.checkNotNull(statusCode, "statusCode");
@@ -220,7 +229,8 @@ public class LogsFilter {
         }
 
         /**
-         * Filter by a single HTTP status code. For backward compatibility - use status_codes for multiple values.
+         * Filter by a single HTTP status code. For backward compatibility - use status_codes for multiple
+         * values.
          */
         public Builder statusCode(JsonNullable<Double> statusCode) {
             Utils.checkNotNull(statusCode, "statusCode");
@@ -230,7 +240,8 @@ public class LogsFilter {
 
 
         /**
-         * Filter by multiple HTTP status codes. Values must be between 100-599. Maximum 50 status codes allowed.
+         * Filter by multiple HTTP status codes. Values must be between 100-599. Maximum 50 status codes
+         * allowed.
          */
         public Builder statusCodes(List<Double> statusCodes) {
             Utils.checkNotNull(statusCodes, "statusCodes");
@@ -239,7 +250,8 @@ public class LogsFilter {
         }
 
         /**
-         * Filter by multiple HTTP status codes. Values must be between 100-599. Maximum 50 status codes allowed.
+         * Filter by multiple HTTP status codes. Values must be between 100-599. Maximum 50 status codes
+         * allowed.
          */
         public Builder statusCodes(JsonNullable<? extends List<Double>> statusCodes) {
             Utils.checkNotNull(statusCodes, "statusCodes");

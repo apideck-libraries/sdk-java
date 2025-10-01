@@ -319,7 +319,9 @@ public class Application {
                 .unifiedApi("crm")
                 .call();
 
-        // handle response
+        if (res.unexpectedErrorResponse().isPresent()) {
+            // handle response
+        }
     }
 }
 ```

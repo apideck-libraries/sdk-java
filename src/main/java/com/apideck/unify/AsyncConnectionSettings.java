@@ -42,7 +42,8 @@ public class AsyncConnectionSettings {
     /**
      * Get resource settings
      * 
-     * <p>This endpoint returns custom settings and their defaults required by connection for a given resource.
+     * <p>This endpoint returns custom settings and their defaults required by connection for a given
+     * resource.
      * 
      * @return The async call builder
      */
@@ -53,10 +54,11 @@ public class AsyncConnectionSettings {
     /**
      * Get resource settings
      * 
-     * <p>This endpoint returns custom settings and their defaults required by connection for a given resource.
+     * <p>This endpoint returns custom settings and their defaults required by connection for a given
+     * resource.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;VaultConnectionSettingsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<VaultConnectionSettingsAllResponse>} - The async response
      */
     public CompletableFuture<VaultConnectionSettingsAllResponse> list(VaultConnectionSettingsAllRequest request) {
         return list(request, Optional.empty());
@@ -65,11 +67,12 @@ public class AsyncConnectionSettings {
     /**
      * Get resource settings
      * 
-     * <p>This endpoint returns custom settings and their defaults required by connection for a given resource.
+     * <p>This endpoint returns custom settings and their defaults required by connection for a given
+     * resource.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;VaultConnectionSettingsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<VaultConnectionSettingsAllResponse>} - The async response
      */
     public CompletableFuture<VaultConnectionSettingsAllResponse> list(VaultConnectionSettingsAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<VaultConnectionSettingsAllRequest, VaultConnectionSettingsAllResponse> operation
@@ -98,7 +101,7 @@ public class AsyncConnectionSettings {
      * <p>Update default values for a connection's resource settings
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;VaultConnectionSettingsUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<VaultConnectionSettingsUpdateResponse>} - The async response
      */
     public CompletableFuture<VaultConnectionSettingsUpdateResponse> update(VaultConnectionSettingsUpdateRequest request) {
         return update(request, Optional.empty());
@@ -111,7 +114,7 @@ public class AsyncConnectionSettings {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;VaultConnectionSettingsUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<VaultConnectionSettingsUpdateResponse>} - The async response
      */
     public CompletableFuture<VaultConnectionSettingsUpdateResponse> update(VaultConnectionSettingsUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<VaultConnectionSettingsUpdateRequest, VaultConnectionSettingsUpdateResponse> operation

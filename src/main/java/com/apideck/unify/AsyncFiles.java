@@ -76,7 +76,7 @@ public class AsyncFiles {
      * <p>List Files
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;FileStorageFilesAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<FileStorageFilesAllResponse>} - The async response
      */
     public CompletableFuture<FileStorageFilesAllResponse> list(FileStorageFilesAllRequest request) {
         return list(request, Optional.empty());
@@ -89,7 +89,7 @@ public class AsyncFiles {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;FileStorageFilesAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<FileStorageFilesAllResponse>} - The async response
      */
     public CompletableFuture<FileStorageFilesAllResponse> list(FileStorageFilesAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<FileStorageFilesAllRequest, FileStorageFilesAllResponse> operation
@@ -118,7 +118,7 @@ public class AsyncFiles {
      * <p>Search Files
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;FileStorageFilesSearchResponse&gt; - The async response
+     * @return {@code CompletableFuture<FileStorageFilesSearchResponse>} - The async response
      */
     public CompletableFuture<FileStorageFilesSearchResponse> search(FileStorageFilesSearchRequest request) {
         return search(request, Optional.empty());
@@ -131,7 +131,7 @@ public class AsyncFiles {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;FileStorageFilesSearchResponse&gt; - The async response
+     * @return {@code CompletableFuture<FileStorageFilesSearchResponse>} - The async response
      */
     public CompletableFuture<FileStorageFilesSearchResponse> search(FileStorageFilesSearchRequest request, Optional<Options> options) {
         AsyncRequestOperation<FileStorageFilesSearchRequest, FileStorageFilesSearchResponse> operation
@@ -160,7 +160,7 @@ public class AsyncFiles {
      * <p>Get File
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;FileStorageFilesOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<FileStorageFilesOneResponse>} - The async response
      */
     public CompletableFuture<FileStorageFilesOneResponse> get(FileStorageFilesOneRequest request) {
         return get(request, Optional.empty());
@@ -173,7 +173,7 @@ public class AsyncFiles {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;FileStorageFilesOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<FileStorageFilesOneResponse>} - The async response
      */
     public CompletableFuture<FileStorageFilesOneResponse> get(FileStorageFilesOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<FileStorageFilesOneRequest, FileStorageFilesOneResponse> operation
@@ -202,7 +202,7 @@ public class AsyncFiles {
      * <p>Rename or move File
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;FileStorageFilesUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<FileStorageFilesUpdateResponse>} - The async response
      */
     public CompletableFuture<FileStorageFilesUpdateResponse> update(FileStorageFilesUpdateRequest request) {
         return update(request, Optional.empty());
@@ -215,7 +215,7 @@ public class AsyncFiles {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;FileStorageFilesUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<FileStorageFilesUpdateResponse>} - The async response
      */
     public CompletableFuture<FileStorageFilesUpdateResponse> update(FileStorageFilesUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<FileStorageFilesUpdateRequest, FileStorageFilesUpdateResponse> operation
@@ -244,7 +244,7 @@ public class AsyncFiles {
      * <p>Delete File
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;FileStorageFilesDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<FileStorageFilesDeleteResponse>} - The async response
      */
     public CompletableFuture<FileStorageFilesDeleteResponse> delete(FileStorageFilesDeleteRequest request) {
         return delete(request, Optional.empty());
@@ -257,7 +257,7 @@ public class AsyncFiles {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;FileStorageFilesDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<FileStorageFilesDeleteResponse>} - The async response
      */
     public CompletableFuture<FileStorageFilesDeleteResponse> delete(FileStorageFilesDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<FileStorageFilesDeleteRequest, FileStorageFilesDeleteResponse> operation
@@ -286,7 +286,7 @@ public class AsyncFiles {
      * <p>Download File
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;FileStorageFilesDownloadResponse&gt; - The async response
+     * @return {@code CompletableFuture<FileStorageFilesDownloadResponse>} - The async response
      */
     public CompletableFuture<FileStorageFilesDownloadResponse> download(FileStorageFilesDownloadRequest request) {
         return download(request, Optional.empty());
@@ -299,7 +299,7 @@ public class AsyncFiles {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;FileStorageFilesDownloadResponse&gt; - The async response
+     * @return {@code CompletableFuture<FileStorageFilesDownloadResponse>} - The async response
      */
     public CompletableFuture<FileStorageFilesDownloadResponse> download(FileStorageFilesDownloadRequest request, Optional<Options> options) {
         AsyncRequestOperation<FileStorageFilesDownloadRequest, FileStorageFilesDownloadResponse> operation
@@ -328,7 +328,7 @@ public class AsyncFiles {
      * <p>Export File
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;FileStorageFilesExportResponse&gt; - The async response
+     * @return {@code CompletableFuture<FileStorageFilesExportResponse>} - The async response
      */
     public CompletableFuture<FileStorageFilesExportResponse> export(FileStorageFilesExportRequest request) {
         return export(request, Optional.empty());
@@ -341,7 +341,7 @@ public class AsyncFiles {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;FileStorageFilesExportResponse&gt; - The async response
+     * @return {@code CompletableFuture<FileStorageFilesExportResponse>} - The async response
      */
     public CompletableFuture<FileStorageFilesExportResponse> export(FileStorageFilesExportRequest request, Optional<Options> options) {
         AsyncRequestOperation<FileStorageFilesExportRequest, FileStorageFilesExportResponse> operation

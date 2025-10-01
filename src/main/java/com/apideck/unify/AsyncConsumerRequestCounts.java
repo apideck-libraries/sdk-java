@@ -55,7 +55,7 @@ public class AsyncConsumerRequestCounts {
      * @param consumerId ID of the consumer to return
      * @param startDatetime Scopes results to requests that happened after datetime
      * @param endDatetime Scopes results to requests that happened before datetime
-     * @return CompletableFuture&lt;VaultConsumerRequestCountsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<VaultConsumerRequestCountsAllResponse>} - The async response
      */
     public CompletableFuture<VaultConsumerRequestCountsAllResponse> list(
             String consumerId, String startDatetime,
@@ -75,7 +75,7 @@ public class AsyncConsumerRequestCounts {
      * @param startDatetime Scopes results to requests that happened after datetime
      * @param endDatetime Scopes results to requests that happened before datetime
      * @param options additional options
-     * @return CompletableFuture&lt;VaultConsumerRequestCountsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<VaultConsumerRequestCountsAllResponse>} - The async response
      */
     public CompletableFuture<VaultConsumerRequestCountsAllResponse> list(
             Optional<String> appId, String consumerId,

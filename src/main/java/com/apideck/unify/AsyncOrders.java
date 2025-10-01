@@ -56,7 +56,7 @@ public class AsyncOrders {
      * <p>List Orders
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;EcommerceOrdersAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<EcommerceOrdersAllResponse>} - The async response
      */
     public CompletableFuture<EcommerceOrdersAllResponse> list(EcommerceOrdersAllRequest request) {
         return list(request, Optional.empty());
@@ -69,7 +69,7 @@ public class AsyncOrders {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;EcommerceOrdersAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<EcommerceOrdersAllResponse>} - The async response
      */
     public CompletableFuture<EcommerceOrdersAllResponse> list(EcommerceOrdersAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<EcommerceOrdersAllRequest, EcommerceOrdersAllResponse> operation
@@ -98,7 +98,7 @@ public class AsyncOrders {
      * <p>Get Order
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;EcommerceOrdersOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<EcommerceOrdersOneResponse>} - The async response
      */
     public CompletableFuture<EcommerceOrdersOneResponse> get(EcommerceOrdersOneRequest request) {
         return get(request, Optional.empty());
@@ -111,7 +111,7 @@ public class AsyncOrders {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;EcommerceOrdersOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<EcommerceOrdersOneResponse>} - The async response
      */
     public CompletableFuture<EcommerceOrdersOneResponse> get(EcommerceOrdersOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<EcommerceOrdersOneRequest, EcommerceOrdersOneResponse> operation

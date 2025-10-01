@@ -56,7 +56,7 @@ public class AsyncEmployeePayrolls {
      * <p>List payrolls for employee
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;HrisEmployeePayrollsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<HrisEmployeePayrollsAllResponse>} - The async response
      */
     public CompletableFuture<HrisEmployeePayrollsAllResponse> list(HrisEmployeePayrollsAllRequest request) {
         return list(request, Optional.empty());
@@ -69,7 +69,7 @@ public class AsyncEmployeePayrolls {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;HrisEmployeePayrollsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<HrisEmployeePayrollsAllResponse>} - The async response
      */
     public CompletableFuture<HrisEmployeePayrollsAllResponse> list(HrisEmployeePayrollsAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<HrisEmployeePayrollsAllRequest, HrisEmployeePayrollsAllResponse> operation
@@ -98,7 +98,7 @@ public class AsyncEmployeePayrolls {
      * <p>Get payroll for employee
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;HrisEmployeePayrollsOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<HrisEmployeePayrollsOneResponse>} - The async response
      */
     public CompletableFuture<HrisEmployeePayrollsOneResponse> get(HrisEmployeePayrollsOneRequest request) {
         return get(request, Optional.empty());
@@ -111,7 +111,7 @@ public class AsyncEmployeePayrolls {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;HrisEmployeePayrollsOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<HrisEmployeePayrollsOneResponse>} - The async response
      */
     public CompletableFuture<HrisEmployeePayrollsOneResponse> get(HrisEmployeePayrollsOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<HrisEmployeePayrollsOneRequest, HrisEmployeePayrollsOneResponse> operation

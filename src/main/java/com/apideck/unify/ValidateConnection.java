@@ -37,12 +37,17 @@ public class ValidateConnection {
     /**
      * Validate Connection State
      * 
-     * <p>This endpoint validates the current state of a given connection. This will perform different checks based on the connection auth type. For basic and apiKey auth types, the presence of required fields is checked.
-     * For connectors that implement OAuth2, this operation forces the refresh flow for an access token regardless of its expiry.
+     * <p>This endpoint validates the current state of a given connection. This will perform different checks
+     * based on the connection auth type. For basic and apiKey auth types, the presence of required fields
+     * is checked.
+     * For connectors that implement OAuth2, this operation forces the refresh flow for an access token
+     * regardless of its expiry.
      * 
      * <p>Note:
-     *   - Do not include any credentials in the request body. This operation does not persist changes, but only triggers the validation of connection state.
-     *   - If a refresh token flow was performed and successful, the new access token will then be used for subsequent API requests.
+     * - Do not include any credentials in the request body. This operation does not persist changes, but
+     * only triggers the validation of connection state.
+     * - If a refresh token flow was performed and successful, the new access token will then be used for
+     * subsequent API requests.
      * 
      * @return The call builder
      */
@@ -53,12 +58,17 @@ public class ValidateConnection {
     /**
      * Validate Connection State
      * 
-     * <p>This endpoint validates the current state of a given connection. This will perform different checks based on the connection auth type. For basic and apiKey auth types, the presence of required fields is checked.
-     * For connectors that implement OAuth2, this operation forces the refresh flow for an access token regardless of its expiry.
+     * <p>This endpoint validates the current state of a given connection. This will perform different checks
+     * based on the connection auth type. For basic and apiKey auth types, the presence of required fields
+     * is checked.
+     * For connectors that implement OAuth2, this operation forces the refresh flow for an access token
+     * regardless of its expiry.
      * 
      * <p>Note:
-     *   - Do not include any credentials in the request body. This operation does not persist changes, but only triggers the validation of connection state.
-     *   - If a refresh token flow was performed and successful, the new access token will then be used for subsequent API requests.
+     * - Do not include any credentials in the request body. This operation does not persist changes, but
+     * only triggers the validation of connection state.
+     * - If a refresh token flow was performed and successful, the new access token will then be used for
+     * subsequent API requests.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -71,12 +81,17 @@ public class ValidateConnection {
     /**
      * Validate Connection State
      * 
-     * <p>This endpoint validates the current state of a given connection. This will perform different checks based on the connection auth type. For basic and apiKey auth types, the presence of required fields is checked.
-     * For connectors that implement OAuth2, this operation forces the refresh flow for an access token regardless of its expiry.
+     * <p>This endpoint validates the current state of a given connection. This will perform different checks
+     * based on the connection auth type. For basic and apiKey auth types, the presence of required fields
+     * is checked.
+     * For connectors that implement OAuth2, this operation forces the refresh flow for an access token
+     * regardless of its expiry.
      * 
      * <p>Note:
-     *   - Do not include any credentials in the request body. This operation does not persist changes, but only triggers the validation of connection state.
-     *   - If a refresh token flow was performed and successful, the new access token will then be used for subsequent API requests.
+     * - Do not include any credentials in the request body. This operation does not persist changes, but
+     * only triggers the validation of connection state.
+     * - If a refresh token flow was performed and successful, the new access token will then be used for
+     * subsequent API requests.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options

@@ -33,13 +33,15 @@ public class AccountingBalanceSheetOneRequest {
     private Optional<String> appId;
 
     /**
-     * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
+     * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated
+     * multiple integrations for a Unified API.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-service-id")
     private Optional<String> serviceId;
 
     /**
-     * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads
+     * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie:
+     * ?pass_through[search]=leads becomes ?search=leads
      */
     @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=pass_through")
     private Optional<? extends Map<String, Object>> passThrough;
@@ -100,7 +102,8 @@ public class AccountingBalanceSheetOneRequest {
     }
 
     /**
-     * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
+     * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated
+     * multiple integrations for a Unified API.
      */
     @JsonIgnore
     public Optional<String> serviceId() {
@@ -108,7 +111,8 @@ public class AccountingBalanceSheetOneRequest {
     }
 
     /**
-     * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads
+     * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie:
+     * ?pass_through[search]=leads becomes ?search=leads
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -177,7 +181,8 @@ public class AccountingBalanceSheetOneRequest {
     }
 
     /**
-     * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
+     * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated
+     * multiple integrations for a Unified API.
      */
     public AccountingBalanceSheetOneRequest withServiceId(String serviceId) {
         Utils.checkNotNull(serviceId, "serviceId");
@@ -187,7 +192,8 @@ public class AccountingBalanceSheetOneRequest {
 
 
     /**
-     * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
+     * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated
+     * multiple integrations for a Unified API.
      */
     public AccountingBalanceSheetOneRequest withServiceId(Optional<String> serviceId) {
         Utils.checkNotNull(serviceId, "serviceId");
@@ -196,7 +202,8 @@ public class AccountingBalanceSheetOneRequest {
     }
 
     /**
-     * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads
+     * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie:
+     * ?pass_through[search]=leads becomes ?search=leads
      */
     public AccountingBalanceSheetOneRequest withPassThrough(Map<String, Object> passThrough) {
         Utils.checkNotNull(passThrough, "passThrough");
@@ -206,7 +213,8 @@ public class AccountingBalanceSheetOneRequest {
 
 
     /**
-     * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads
+     * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie:
+     * ?pass_through[search]=leads becomes ?search=leads
      */
     public AccountingBalanceSheetOneRequest withPassThrough(Optional<? extends Map<String, Object>> passThrough) {
         Utils.checkNotNull(passThrough, "passThrough");
@@ -347,7 +355,8 @@ public class AccountingBalanceSheetOneRequest {
 
 
         /**
-         * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
+         * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated
+         * multiple integrations for a Unified API.
          */
         public Builder serviceId(String serviceId) {
             Utils.checkNotNull(serviceId, "serviceId");
@@ -356,7 +365,8 @@ public class AccountingBalanceSheetOneRequest {
         }
 
         /**
-         * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
+         * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated
+         * multiple integrations for a Unified API.
          */
         public Builder serviceId(Optional<String> serviceId) {
             Utils.checkNotNull(serviceId, "serviceId");
@@ -366,7 +376,8 @@ public class AccountingBalanceSheetOneRequest {
 
 
         /**
-         * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads
+         * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie:
+         * ?pass_through[search]=leads becomes ?search=leads
          */
         public Builder passThrough(Map<String, Object> passThrough) {
             Utils.checkNotNull(passThrough, "passThrough");
@@ -375,7 +386,8 @@ public class AccountingBalanceSheetOneRequest {
         }
 
         /**
-         * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads
+         * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie:
+         * ?pass_through[search]=leads becomes ?search=leads
          */
         public Builder passThrough(Optional<? extends Map<String, Object>> passThrough) {
             Utils.checkNotNull(passThrough, "passThrough");

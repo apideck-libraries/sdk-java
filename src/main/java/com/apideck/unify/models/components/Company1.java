@@ -74,7 +74,8 @@ public class Company1 {
     private JsonNullable<String> vatNumber;
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("currency")
@@ -137,21 +138,26 @@ public class Company1 {
     private JsonNullable<String> payeeNumber;
 
     /**
-     * An ABN is necessary for operating a business, while a TFN (Tax File Number) is required for any person working in Australia.
+     * An ABN is necessary for operating a business, while a TFN (Tax File Number) is required for any
+     * person working in Australia.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("abn_or_tfn")
     private JsonNullable<String> abnOrTfn;
 
     /**
-     * An ABN Branch (also known as a GST Branch) is used if part of your business needs to account for GST separately from its parent entity.
+     * An ABN Branch (also known as a GST Branch) is used if part of your business needs to account for GST
+     * separately from its parent entity.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("abn_branch")
     private JsonNullable<String> abnBranch;
 
     /**
-     * The Australian Company Number (ACN) is a nine digit number with the last digit being a check digit calculated using a modified modulus 10 calculation. ASIC has adopted a convention of always printing and displaying the ACN in the format XXX XXX XXX; three blocks of three characters, each block separated by a blank.
+     * The Australian Company Number (ACN) is a nine digit number with the last digit being a check digit
+     * calculated using a modified modulus 10 calculation. ASIC has adopted a convention of always printing
+     * and displaying the ACN in the format XXX XXX XXX; three blocks of three characters, each block
+     * separated by a blank.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("acn")
@@ -294,7 +300,8 @@ public class Company1 {
     private JsonNullable<OffsetDateTime> createdAt;
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pass_through")
@@ -504,7 +511,8 @@ public class Company1 {
     }
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -577,7 +585,8 @@ public class Company1 {
     }
 
     /**
-     * An ABN is necessary for operating a business, while a TFN (Tax File Number) is required for any person working in Australia.
+     * An ABN is necessary for operating a business, while a TFN (Tax File Number) is required for any
+     * person working in Australia.
      */
     @JsonIgnore
     public JsonNullable<String> abnOrTfn() {
@@ -585,7 +594,8 @@ public class Company1 {
     }
 
     /**
-     * An ABN Branch (also known as a GST Branch) is used if part of your business needs to account for GST separately from its parent entity.
+     * An ABN Branch (also known as a GST Branch) is used if part of your business needs to account for GST
+     * separately from its parent entity.
      */
     @JsonIgnore
     public JsonNullable<String> abnBranch() {
@@ -593,7 +603,10 @@ public class Company1 {
     }
 
     /**
-     * The Australian Company Number (ACN) is a nine digit number with the last digit being a check digit calculated using a modified modulus 10 calculation. ASIC has adopted a convention of always printing and displaying the ACN in the format XXX XXX XXX; three blocks of three characters, each block separated by a blank.
+     * The Australian Company Number (ACN) is a nine digit number with the last digit being a check digit
+     * calculated using a modified modulus 10 calculation. ASIC has adopted a convention of always printing
+     * and displaying the ACN in the format XXX XXX XXX; three blocks of three characters, each block
+     * separated by a blank.
      */
     @JsonIgnore
     public JsonNullable<String> acn() {
@@ -760,7 +773,8 @@ public class Company1 {
     }
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -902,7 +916,8 @@ public class Company1 {
     }
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     public Company1 withCurrency(Currency currency) {
         Utils.checkNotNull(currency, "currency");
@@ -911,7 +926,8 @@ public class Company1 {
     }
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     public Company1 withCurrency(JsonNullable<? extends Currency> currency) {
         Utils.checkNotNull(currency, "currency");
@@ -1064,7 +1080,8 @@ public class Company1 {
     }
 
     /**
-     * An ABN is necessary for operating a business, while a TFN (Tax File Number) is required for any person working in Australia.
+     * An ABN is necessary for operating a business, while a TFN (Tax File Number) is required for any
+     * person working in Australia.
      */
     public Company1 withAbnOrTfn(String abnOrTfn) {
         Utils.checkNotNull(abnOrTfn, "abnOrTfn");
@@ -1073,7 +1090,8 @@ public class Company1 {
     }
 
     /**
-     * An ABN is necessary for operating a business, while a TFN (Tax File Number) is required for any person working in Australia.
+     * An ABN is necessary for operating a business, while a TFN (Tax File Number) is required for any
+     * person working in Australia.
      */
     public Company1 withAbnOrTfn(JsonNullable<String> abnOrTfn) {
         Utils.checkNotNull(abnOrTfn, "abnOrTfn");
@@ -1082,7 +1100,8 @@ public class Company1 {
     }
 
     /**
-     * An ABN Branch (also known as a GST Branch) is used if part of your business needs to account for GST separately from its parent entity.
+     * An ABN Branch (also known as a GST Branch) is used if part of your business needs to account for GST
+     * separately from its parent entity.
      */
     public Company1 withAbnBranch(String abnBranch) {
         Utils.checkNotNull(abnBranch, "abnBranch");
@@ -1091,7 +1110,8 @@ public class Company1 {
     }
 
     /**
-     * An ABN Branch (also known as a GST Branch) is used if part of your business needs to account for GST separately from its parent entity.
+     * An ABN Branch (also known as a GST Branch) is used if part of your business needs to account for GST
+     * separately from its parent entity.
      */
     public Company1 withAbnBranch(JsonNullable<String> abnBranch) {
         Utils.checkNotNull(abnBranch, "abnBranch");
@@ -1100,7 +1120,10 @@ public class Company1 {
     }
 
     /**
-     * The Australian Company Number (ACN) is a nine digit number with the last digit being a check digit calculated using a modified modulus 10 calculation. ASIC has adopted a convention of always printing and displaying the ACN in the format XXX XXX XXX; three blocks of three characters, each block separated by a blank.
+     * The Australian Company Number (ACN) is a nine digit number with the last digit being a check digit
+     * calculated using a modified modulus 10 calculation. ASIC has adopted a convention of always printing
+     * and displaying the ACN in the format XXX XXX XXX; three blocks of three characters, each block
+     * separated by a blank.
      */
     public Company1 withAcn(String acn) {
         Utils.checkNotNull(acn, "acn");
@@ -1109,7 +1132,10 @@ public class Company1 {
     }
 
     /**
-     * The Australian Company Number (ACN) is a nine digit number with the last digit being a check digit calculated using a modified modulus 10 calculation. ASIC has adopted a convention of always printing and displaying the ACN in the format XXX XXX XXX; three blocks of three characters, each block separated by a blank.
+     * The Australian Company Number (ACN) is a nine digit number with the last digit being a check digit
+     * calculated using a modified modulus 10 calculation. ASIC has adopted a convention of always printing
+     * and displaying the ACN in the format XXX XXX XXX; three blocks of three characters, each block
+     * separated by a blank.
      */
     public Company1 withAcn(JsonNullable<String> acn) {
         Utils.checkNotNull(acn, "acn");
@@ -1469,7 +1495,8 @@ public class Company1 {
     }
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     public Company1 withPassThrough(List<PassThroughBody> passThrough) {
         Utils.checkNotNull(passThrough, "passThrough");
@@ -1479,7 +1506,8 @@ public class Company1 {
 
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     public Company1 withPassThrough(Optional<? extends List<PassThroughBody>> passThrough) {
         Utils.checkNotNull(passThrough, "passThrough");
@@ -1833,7 +1861,8 @@ public class Company1 {
 
 
         /**
-         * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+         * Indicates the associated currency for an amount of money. Values correspond to [ISO
+         * 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
         public Builder currency(Currency currency) {
             Utils.checkNotNull(currency, "currency");
@@ -1842,7 +1871,8 @@ public class Company1 {
         }
 
         /**
-         * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+         * Indicates the associated currency for an amount of money. Values correspond to [ISO
+         * 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
         public Builder currency(JsonNullable<? extends Currency> currency) {
             Utils.checkNotNull(currency, "currency");
@@ -2004,7 +2034,8 @@ public class Company1 {
 
 
         /**
-         * An ABN is necessary for operating a business, while a TFN (Tax File Number) is required for any person working in Australia.
+         * An ABN is necessary for operating a business, while a TFN (Tax File Number) is required for any
+         * person working in Australia.
          */
         public Builder abnOrTfn(String abnOrTfn) {
             Utils.checkNotNull(abnOrTfn, "abnOrTfn");
@@ -2013,7 +2044,8 @@ public class Company1 {
         }
 
         /**
-         * An ABN is necessary for operating a business, while a TFN (Tax File Number) is required for any person working in Australia.
+         * An ABN is necessary for operating a business, while a TFN (Tax File Number) is required for any
+         * person working in Australia.
          */
         public Builder abnOrTfn(JsonNullable<String> abnOrTfn) {
             Utils.checkNotNull(abnOrTfn, "abnOrTfn");
@@ -2023,7 +2055,8 @@ public class Company1 {
 
 
         /**
-         * An ABN Branch (also known as a GST Branch) is used if part of your business needs to account for GST separately from its parent entity.
+         * An ABN Branch (also known as a GST Branch) is used if part of your business needs to account for GST
+         * separately from its parent entity.
          */
         public Builder abnBranch(String abnBranch) {
             Utils.checkNotNull(abnBranch, "abnBranch");
@@ -2032,7 +2065,8 @@ public class Company1 {
         }
 
         /**
-         * An ABN Branch (also known as a GST Branch) is used if part of your business needs to account for GST separately from its parent entity.
+         * An ABN Branch (also known as a GST Branch) is used if part of your business needs to account for GST
+         * separately from its parent entity.
          */
         public Builder abnBranch(JsonNullable<String> abnBranch) {
             Utils.checkNotNull(abnBranch, "abnBranch");
@@ -2042,7 +2076,10 @@ public class Company1 {
 
 
         /**
-         * The Australian Company Number (ACN) is a nine digit number with the last digit being a check digit calculated using a modified modulus 10 calculation. ASIC has adopted a convention of always printing and displaying the ACN in the format XXX XXX XXX; three blocks of three characters, each block separated by a blank.
+         * The Australian Company Number (ACN) is a nine digit number with the last digit being a check digit
+         * calculated using a modified modulus 10 calculation. ASIC has adopted a convention of always printing
+         * and displaying the ACN in the format XXX XXX XXX; three blocks of three characters, each block
+         * separated by a blank.
          */
         public Builder acn(String acn) {
             Utils.checkNotNull(acn, "acn");
@@ -2051,7 +2088,10 @@ public class Company1 {
         }
 
         /**
-         * The Australian Company Number (ACN) is a nine digit number with the last digit being a check digit calculated using a modified modulus 10 calculation. ASIC has adopted a convention of always printing and displaying the ACN in the format XXX XXX XXX; three blocks of three characters, each block separated by a blank.
+         * The Australian Company Number (ACN) is a nine digit number with the last digit being a check digit
+         * calculated using a modified modulus 10 calculation. ASIC has adopted a convention of always printing
+         * and displaying the ACN in the format XXX XXX XXX; three blocks of three characters, each block
+         * separated by a blank.
          */
         public Builder acn(JsonNullable<String> acn) {
             Utils.checkNotNull(acn, "acn");
@@ -2425,7 +2465,8 @@ public class Company1 {
 
 
         /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+         * The pass_through property allows passing service-specific, custom data or structured modifications
+         * in request body when creating or updating resources.
          */
         public Builder passThrough(List<PassThroughBody> passThrough) {
             Utils.checkNotNull(passThrough, "passThrough");
@@ -2434,7 +2475,8 @@ public class Company1 {
         }
 
         /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+         * The pass_through property allows passing service-specific, custom data or structured modifications
+         * in request body when creating or updating resources.
          */
         public Builder passThrough(Optional<? extends List<PassThroughBody>> passThrough) {
             Utils.checkNotNull(passThrough, "passThrough");

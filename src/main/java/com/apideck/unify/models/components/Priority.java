@@ -11,13 +11,13 @@ import java.util.Optional;
 /**
  * Priority
  * 
- * <p>Priority of the ticket
+ * <p>Priority level of the project
  */
 public enum Priority {
     LOW("low"),
-    NORMAL("normal"),
+    MEDIUM("medium"),
     HIGH("high"),
-    URGENT("urgent");
+    CRITICAL("critical");
 
     @JsonValue
     private final String value;

@@ -25,7 +25,8 @@ public class CreateUploadSessionRequest {
     private String name;
 
     /**
-     * The parent folder to create the new file within. This can be an ID or a path depending on the downstream folder. Please see the connector section below to see downstream specific gotchas.
+     * The parent folder to create the new file within. This can be an ID or a path depending on the
+     * downstream folder. Please see the connector section below to see downstream specific gotchas.
      */
     @JsonProperty("parent_folder_id")
     private String parentFolderId;
@@ -45,7 +46,8 @@ public class CreateUploadSessionRequest {
     private Optional<Long> size;
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pass_through")
@@ -86,7 +88,8 @@ public class CreateUploadSessionRequest {
     }
 
     /**
-     * The parent folder to create the new file within. This can be an ID or a path depending on the downstream folder. Please see the connector section below to see downstream specific gotchas.
+     * The parent folder to create the new file within. This can be an ID or a path depending on the
+     * downstream folder. Please see the connector section below to see downstream specific gotchas.
      */
     @JsonIgnore
     public String parentFolderId() {
@@ -110,7 +113,8 @@ public class CreateUploadSessionRequest {
     }
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -133,7 +137,8 @@ public class CreateUploadSessionRequest {
     }
 
     /**
-     * The parent folder to create the new file within. This can be an ID or a path depending on the downstream folder. Please see the connector section below to see downstream specific gotchas.
+     * The parent folder to create the new file within. This can be an ID or a path depending on the
+     * downstream folder. Please see the connector section below to see downstream specific gotchas.
      */
     public CreateUploadSessionRequest withParentFolderId(String parentFolderId) {
         Utils.checkNotNull(parentFolderId, "parentFolderId");
@@ -180,7 +185,8 @@ public class CreateUploadSessionRequest {
     }
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     public CreateUploadSessionRequest withPassThrough(List<PassThroughBody> passThrough) {
         Utils.checkNotNull(passThrough, "passThrough");
@@ -190,7 +196,8 @@ public class CreateUploadSessionRequest {
 
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     public CreateUploadSessionRequest withPassThrough(Optional<? extends List<PassThroughBody>> passThrough) {
         Utils.checkNotNull(passThrough, "passThrough");
@@ -261,7 +268,8 @@ public class CreateUploadSessionRequest {
 
 
         /**
-         * The parent folder to create the new file within. This can be an ID or a path depending on the downstream folder. Please see the connector section below to see downstream specific gotchas.
+         * The parent folder to create the new file within. This can be an ID or a path depending on the
+         * downstream folder. Please see the connector section below to see downstream specific gotchas.
          */
         public Builder parentFolderId(String parentFolderId) {
             Utils.checkNotNull(parentFolderId, "parentFolderId");
@@ -309,7 +317,8 @@ public class CreateUploadSessionRequest {
 
 
         /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+         * The pass_through property allows passing service-specific, custom data or structured modifications
+         * in request body when creating or updating resources.
          */
         public Builder passThrough(List<PassThroughBody> passThrough) {
             Utils.checkNotNull(passThrough, "passThrough");
@@ -318,7 +327,8 @@ public class CreateUploadSessionRequest {
         }
 
         /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+         * The pass_through property allows passing service-specific, custom data or structured modifications
+         * in request body when creating or updating resources.
          */
         public Builder passThrough(Optional<? extends List<PassThroughBody>> passThrough) {
             Utils.checkNotNull(passThrough, "passThrough");

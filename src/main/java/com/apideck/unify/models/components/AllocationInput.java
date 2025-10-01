@@ -33,7 +33,8 @@ public class AllocationInput {
     private Optional<? extends AllocationType> type;
 
     /**
-     * Amount of payment that should be attributed to this allocation. If null, the total_amount will be used.
+     * Amount of payment that should be attributed to this allocation. If null, the total_amount will be
+     * used.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amount")
@@ -85,7 +86,8 @@ public class AllocationInput {
     }
 
     /**
-     * Amount of payment that should be attributed to this allocation. If null, the total_amount will be used.
+     * Amount of payment that should be attributed to this allocation. If null, the total_amount will be
+     * used.
      */
     @JsonIgnore
     public JsonNullable<Double> amount() {
@@ -144,7 +146,8 @@ public class AllocationInput {
     }
 
     /**
-     * Amount of payment that should be attributed to this allocation. If null, the total_amount will be used.
+     * Amount of payment that should be attributed to this allocation. If null, the total_amount will be
+     * used.
      */
     public AllocationInput withAmount(double amount) {
         Utils.checkNotNull(amount, "amount");
@@ -153,7 +156,8 @@ public class AllocationInput {
     }
 
     /**
-     * Amount of payment that should be attributed to this allocation. If null, the total_amount will be used.
+     * Amount of payment that should be attributed to this allocation. If null, the total_amount will be
+     * used.
      */
     public AllocationInput withAmount(JsonNullable<Double> amount) {
         Utils.checkNotNull(amount, "amount");
@@ -267,7 +271,8 @@ public class AllocationInput {
 
 
         /**
-         * Amount of payment that should be attributed to this allocation. If null, the total_amount will be used.
+         * Amount of payment that should be attributed to this allocation. If null, the total_amount will be
+         * used.
          */
         public Builder amount(double amount) {
             Utils.checkNotNull(amount, "amount");
@@ -276,7 +281,8 @@ public class AllocationInput {
         }
 
         /**
-         * Amount of payment that should be attributed to this allocation. If null, the total_amount will be used.
+         * Amount of payment that should be attributed to this allocation. If null, the total_amount will be
+         * used.
          */
         public Builder amount(JsonNullable<Double> amount) {
             Utils.checkNotNull(amount, "amount");

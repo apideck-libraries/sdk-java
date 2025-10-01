@@ -24,5 +24,12 @@ test {
 }
 
 jar {
+    dependsOn 'generatePomFileForMavenPublication'
     archiveBaseName = 'unify-spring-boot-autoconfigure'
+    into("META-INF/maven/com.apideck/unify-spring-boot-autoconfigure") {
+        from(layout.buildDirectory.file("pom.xml")) {
+            // Only include if it exists to avoid build ordering issues
+            duplicatesStrategy = DuplicatesStrategy.INCLUDE
+        }
+    }
 }

@@ -38,6 +38,7 @@ public class Accounting {
     private final BankFeedStatements bankFeedStatements;
     private final Categories categories;
     private final Quotes quotes;
+    private final Projects projects;
 
     Accounting(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -69,6 +70,7 @@ public class Accounting {
         this.bankFeedStatements = new BankFeedStatements(this.sdkConfiguration);
         this.categories = new Categories(this.sdkConfiguration);
         this.quotes = new Quotes(this.sdkConfiguration);
+        this.projects = new Projects(this.sdkConfiguration);
         this.asyncSDK = new AsyncAccounting(this, sdkConfiguration);
     }
 
@@ -182,6 +184,10 @@ public class Accounting {
 
     public final Quotes quotes() {
         return quotes;
+    }
+
+    public final Projects projects() {
+        return projects;
     }
 
     /**

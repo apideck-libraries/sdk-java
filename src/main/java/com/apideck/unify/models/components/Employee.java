@@ -121,7 +121,8 @@ public class Employee {
     private JsonNullable<String> divisionId;
 
     /**
-     * The department the person is currently in. [Deprecated](https://developers.apideck.com/changelog) in favor of the dedicated department_id and department_name field.
+     * The department the person is currently in. [Deprecated](https://developers.apideck.com/changelog) in
+     * favor of the dedicated department_id and department_name field.
      * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -187,14 +188,16 @@ public class Employee {
     private JsonNullable<? extends LeavingReason> leavingReason;
 
     /**
-     * An Employee Number, Employee ID or Employee Code, is a unique number that has been assigned to each individual staff member within a company.
+     * An Employee Number, Employee ID or Employee Code, is a unique number that has been assigned to each
+     * individual staff member within a company.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("employee_number")
     private JsonNullable<String> employeeNumber;
 
     /**
-     * The employment status of the employee, indicating whether they are currently employed, inactive, terminated, or in another status.
+     * The employment status of the employee, indicating whether they are currently employed, inactive,
+     * terminated, or in another status.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("employment_status")
@@ -218,14 +221,16 @@ public class Employee {
     private Optional<? extends Manager> manager;
 
     /**
-     * Direct reports is an array of ids that reflect the individuals in an organizational hierarchy who are directly supervised by this specific employee.
+     * Direct reports is an array of ids that reflect the individuals in an organizational hierarchy who
+     * are directly supervised by this specific employee.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("direct_reports")
     private JsonNullable<? extends List<String>> directReports;
 
     /**
-     * A unique identifier assigned by the government. This field is considered sensitive information and may be subject to special security and privacy restrictions.
+     * A unique identifier assigned by the government. This field is considered sensitive information and
+     * may be subject to special security and privacy restrictions.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("social_security_number")
@@ -298,21 +303,24 @@ public class Employee {
     private JsonNullable<String> photoUrl;
 
     /**
-     * The time zone related to the resource. The value is a string containing a standard time zone identifier, e.g. Europe/London.
+     * The time zone related to the resource. The value is a string containing a standard time zone
+     * identifier, e.g. Europe/London.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("timezone")
     private JsonNullable<String> timezone;
 
     /**
-     * When the employee is imported as a new hire, this field indicates what system (e.g. the name of the ATS) this employee was imported from.
+     * When the employee is imported as a new hire, this field indicates what system (e.g. the name of the
+     * ATS) this employee was imported from.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("source")
     private JsonNullable<String> source;
 
     /**
-     * Unique identifier of the employee in the system this employee was imported from (e.g. the ID in the ATS).
+     * Unique identifier of the employee in the system this employee was imported from (e.g. the ID in the
+     * ATS).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("source_id")
@@ -412,7 +420,8 @@ public class Employee {
     private JsonNullable<? extends Map<String, Object>> customMappings;
 
     /**
-     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+     * time an update is made to the object.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("row_version")
@@ -454,7 +463,8 @@ public class Employee {
     private JsonNullable<OffsetDateTime> createdAt;
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pass_through")
@@ -802,7 +812,8 @@ public class Employee {
     }
 
     /**
-     * The department the person is currently in. [Deprecated](https://developers.apideck.com/changelog) in favor of the dedicated department_id and department_name field.
+     * The department the person is currently in. [Deprecated](https://developers.apideck.com/changelog) in
+     * favor of the dedicated department_id and department_name field.
      * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -879,7 +890,8 @@ public class Employee {
     }
 
     /**
-     * An Employee Number, Employee ID or Employee Code, is a unique number that has been assigned to each individual staff member within a company.
+     * An Employee Number, Employee ID or Employee Code, is a unique number that has been assigned to each
+     * individual staff member within a company.
      */
     @JsonIgnore
     public JsonNullable<String> employeeNumber() {
@@ -887,7 +899,8 @@ public class Employee {
     }
 
     /**
-     * The employment status of the employee, indicating whether they are currently employed, inactive, terminated, or in another status.
+     * The employment status of the employee, indicating whether they are currently employed, inactive,
+     * terminated, or in another status.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -916,7 +929,8 @@ public class Employee {
     }
 
     /**
-     * Direct reports is an array of ids that reflect the individuals in an organizational hierarchy who are directly supervised by this specific employee.
+     * Direct reports is an array of ids that reflect the individuals in an organizational hierarchy who
+     * are directly supervised by this specific employee.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -925,7 +939,8 @@ public class Employee {
     }
 
     /**
-     * A unique identifier assigned by the government. This field is considered sensitive information and may be subject to special security and privacy restrictions.
+     * A unique identifier assigned by the government. This field is considered sensitive information and
+     * may be subject to special security and privacy restrictions.
      */
     @JsonIgnore
     public JsonNullable<String> socialSecurityNumber() {
@@ -1010,7 +1025,8 @@ public class Employee {
     }
 
     /**
-     * The time zone related to the resource. The value is a string containing a standard time zone identifier, e.g. Europe/London.
+     * The time zone related to the resource. The value is a string containing a standard time zone
+     * identifier, e.g. Europe/London.
      */
     @JsonIgnore
     public JsonNullable<String> timezone() {
@@ -1018,7 +1034,8 @@ public class Employee {
     }
 
     /**
-     * When the employee is imported as a new hire, this field indicates what system (e.g. the name of the ATS) this employee was imported from.
+     * When the employee is imported as a new hire, this field indicates what system (e.g. the name of the
+     * ATS) this employee was imported from.
      */
     @JsonIgnore
     public JsonNullable<String> source() {
@@ -1026,7 +1043,8 @@ public class Employee {
     }
 
     /**
-     * Unique identifier of the employee in the system this employee was imported from (e.g. the ID in the ATS).
+     * Unique identifier of the employee in the system this employee was imported from (e.g. the ID in the
+     * ATS).
      */
     @JsonIgnore
     public JsonNullable<String> sourceId() {
@@ -1143,7 +1161,8 @@ public class Employee {
     }
 
     /**
-     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+     * time an update is made to the object.
      */
     @JsonIgnore
     public JsonNullable<String> rowVersion() {
@@ -1191,7 +1210,8 @@ public class Employee {
     }
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -1452,7 +1472,8 @@ public class Employee {
     }
 
     /**
-     * The department the person is currently in. [Deprecated](https://developers.apideck.com/changelog) in favor of the dedicated department_id and department_name field.
+     * The department the person is currently in. [Deprecated](https://developers.apideck.com/changelog) in
+     * favor of the dedicated department_id and department_name field.
      * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -1464,7 +1485,8 @@ public class Employee {
     }
 
     /**
-     * The department the person is currently in. [Deprecated](https://developers.apideck.com/changelog) in favor of the dedicated department_id and department_name field.
+     * The department the person is currently in. [Deprecated](https://developers.apideck.com/changelog) in
+     * favor of the dedicated department_id and department_name field.
      * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
@@ -1620,7 +1642,8 @@ public class Employee {
     }
 
     /**
-     * An Employee Number, Employee ID or Employee Code, is a unique number that has been assigned to each individual staff member within a company.
+     * An Employee Number, Employee ID or Employee Code, is a unique number that has been assigned to each
+     * individual staff member within a company.
      */
     public Employee withEmployeeNumber(String employeeNumber) {
         Utils.checkNotNull(employeeNumber, "employeeNumber");
@@ -1629,7 +1652,8 @@ public class Employee {
     }
 
     /**
-     * An Employee Number, Employee ID or Employee Code, is a unique number that has been assigned to each individual staff member within a company.
+     * An Employee Number, Employee ID or Employee Code, is a unique number that has been assigned to each
+     * individual staff member within a company.
      */
     public Employee withEmployeeNumber(JsonNullable<String> employeeNumber) {
         Utils.checkNotNull(employeeNumber, "employeeNumber");
@@ -1638,7 +1662,8 @@ public class Employee {
     }
 
     /**
-     * The employment status of the employee, indicating whether they are currently employed, inactive, terminated, or in another status.
+     * The employment status of the employee, indicating whether they are currently employed, inactive,
+     * terminated, or in another status.
      */
     public Employee withEmploymentStatus(EmploymentStatus employmentStatus) {
         Utils.checkNotNull(employmentStatus, "employmentStatus");
@@ -1647,7 +1672,8 @@ public class Employee {
     }
 
     /**
-     * The employment status of the employee, indicating whether they are currently employed, inactive, terminated, or in another status.
+     * The employment status of the employee, indicating whether they are currently employed, inactive,
+     * terminated, or in another status.
      */
     public Employee withEmploymentStatus(JsonNullable<? extends EmploymentStatus> employmentStatus) {
         Utils.checkNotNull(employmentStatus, "employmentStatus");
@@ -1700,7 +1726,8 @@ public class Employee {
     }
 
     /**
-     * Direct reports is an array of ids that reflect the individuals in an organizational hierarchy who are directly supervised by this specific employee.
+     * Direct reports is an array of ids that reflect the individuals in an organizational hierarchy who
+     * are directly supervised by this specific employee.
      */
     public Employee withDirectReports(List<String> directReports) {
         Utils.checkNotNull(directReports, "directReports");
@@ -1709,7 +1736,8 @@ public class Employee {
     }
 
     /**
-     * Direct reports is an array of ids that reflect the individuals in an organizational hierarchy who are directly supervised by this specific employee.
+     * Direct reports is an array of ids that reflect the individuals in an organizational hierarchy who
+     * are directly supervised by this specific employee.
      */
     public Employee withDirectReports(JsonNullable<? extends List<String>> directReports) {
         Utils.checkNotNull(directReports, "directReports");
@@ -1718,7 +1746,8 @@ public class Employee {
     }
 
     /**
-     * A unique identifier assigned by the government. This field is considered sensitive information and may be subject to special security and privacy restrictions.
+     * A unique identifier assigned by the government. This field is considered sensitive information and
+     * may be subject to special security and privacy restrictions.
      */
     public Employee withSocialSecurityNumber(String socialSecurityNumber) {
         Utils.checkNotNull(socialSecurityNumber, "socialSecurityNumber");
@@ -1727,7 +1756,8 @@ public class Employee {
     }
 
     /**
-     * A unique identifier assigned by the government. This field is considered sensitive information and may be subject to special security and privacy restrictions.
+     * A unique identifier assigned by the government. This field is considered sensitive information and
+     * may be subject to special security and privacy restrictions.
      */
     public Employee withSocialSecurityNumber(JsonNullable<String> socialSecurityNumber) {
         Utils.checkNotNull(socialSecurityNumber, "socialSecurityNumber");
@@ -1906,7 +1936,8 @@ public class Employee {
     }
 
     /**
-     * The time zone related to the resource. The value is a string containing a standard time zone identifier, e.g. Europe/London.
+     * The time zone related to the resource. The value is a string containing a standard time zone
+     * identifier, e.g. Europe/London.
      */
     public Employee withTimezone(String timezone) {
         Utils.checkNotNull(timezone, "timezone");
@@ -1915,7 +1946,8 @@ public class Employee {
     }
 
     /**
-     * The time zone related to the resource. The value is a string containing a standard time zone identifier, e.g. Europe/London.
+     * The time zone related to the resource. The value is a string containing a standard time zone
+     * identifier, e.g. Europe/London.
      */
     public Employee withTimezone(JsonNullable<String> timezone) {
         Utils.checkNotNull(timezone, "timezone");
@@ -1924,7 +1956,8 @@ public class Employee {
     }
 
     /**
-     * When the employee is imported as a new hire, this field indicates what system (e.g. the name of the ATS) this employee was imported from.
+     * When the employee is imported as a new hire, this field indicates what system (e.g. the name of the
+     * ATS) this employee was imported from.
      */
     public Employee withSource(String source) {
         Utils.checkNotNull(source, "source");
@@ -1933,7 +1966,8 @@ public class Employee {
     }
 
     /**
-     * When the employee is imported as a new hire, this field indicates what system (e.g. the name of the ATS) this employee was imported from.
+     * When the employee is imported as a new hire, this field indicates what system (e.g. the name of the
+     * ATS) this employee was imported from.
      */
     public Employee withSource(JsonNullable<String> source) {
         Utils.checkNotNull(source, "source");
@@ -1942,7 +1976,8 @@ public class Employee {
     }
 
     /**
-     * Unique identifier of the employee in the system this employee was imported from (e.g. the ID in the ATS).
+     * Unique identifier of the employee in the system this employee was imported from (e.g. the ID in the
+     * ATS).
      */
     public Employee withSourceId(String sourceId) {
         Utils.checkNotNull(sourceId, "sourceId");
@@ -1951,7 +1986,8 @@ public class Employee {
     }
 
     /**
-     * Unique identifier of the employee in the system this employee was imported from (e.g. the ID in the ATS).
+     * Unique identifier of the employee in the system this employee was imported from (e.g. the ID in the
+     * ATS).
      */
     public Employee withSourceId(JsonNullable<String> sourceId) {
         Utils.checkNotNull(sourceId, "sourceId");
@@ -2195,7 +2231,8 @@ public class Employee {
     }
 
     /**
-     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+     * time an update is made to the object.
      */
     public Employee withRowVersion(String rowVersion) {
         Utils.checkNotNull(rowVersion, "rowVersion");
@@ -2204,7 +2241,8 @@ public class Employee {
     }
 
     /**
-     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+     * time an update is made to the object.
      */
     public Employee withRowVersion(JsonNullable<String> rowVersion) {
         Utils.checkNotNull(rowVersion, "rowVersion");
@@ -2303,7 +2341,8 @@ public class Employee {
     }
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     public Employee withPassThrough(List<PassThroughBody> passThrough) {
         Utils.checkNotNull(passThrough, "passThrough");
@@ -2313,7 +2352,8 @@ public class Employee {
 
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     public Employee withPassThrough(Optional<? extends List<PassThroughBody>> passThrough) {
         Utils.checkNotNull(passThrough, "passThrough");
@@ -2904,7 +2944,8 @@ public class Employee {
 
 
         /**
-         * The department the person is currently in. [Deprecated](https://developers.apideck.com/changelog) in favor of the dedicated department_id and department_name field.
+         * The department the person is currently in. [Deprecated](https://developers.apideck.com/changelog) in
+         * favor of the dedicated department_id and department_name field.
          * 
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
@@ -2916,7 +2957,8 @@ public class Employee {
         }
 
         /**
-         * The department the person is currently in. [Deprecated](https://developers.apideck.com/changelog) in favor of the dedicated department_id and department_name field.
+         * The department the person is currently in. [Deprecated](https://developers.apideck.com/changelog) in
+         * favor of the dedicated department_id and department_name field.
          * 
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
@@ -3081,7 +3123,8 @@ public class Employee {
 
 
         /**
-         * An Employee Number, Employee ID or Employee Code, is a unique number that has been assigned to each individual staff member within a company.
+         * An Employee Number, Employee ID or Employee Code, is a unique number that has been assigned to each
+         * individual staff member within a company.
          */
         public Builder employeeNumber(String employeeNumber) {
             Utils.checkNotNull(employeeNumber, "employeeNumber");
@@ -3090,7 +3133,8 @@ public class Employee {
         }
 
         /**
-         * An Employee Number, Employee ID or Employee Code, is a unique number that has been assigned to each individual staff member within a company.
+         * An Employee Number, Employee ID or Employee Code, is a unique number that has been assigned to each
+         * individual staff member within a company.
          */
         public Builder employeeNumber(JsonNullable<String> employeeNumber) {
             Utils.checkNotNull(employeeNumber, "employeeNumber");
@@ -3100,7 +3144,8 @@ public class Employee {
 
 
         /**
-         * The employment status of the employee, indicating whether they are currently employed, inactive, terminated, or in another status.
+         * The employment status of the employee, indicating whether they are currently employed, inactive,
+         * terminated, or in another status.
          */
         public Builder employmentStatus(EmploymentStatus employmentStatus) {
             Utils.checkNotNull(employmentStatus, "employmentStatus");
@@ -3109,7 +3154,8 @@ public class Employee {
         }
 
         /**
-         * The employment status of the employee, indicating whether they are currently employed, inactive, terminated, or in another status.
+         * The employment status of the employee, indicating whether they are currently employed, inactive,
+         * terminated, or in another status.
          */
         public Builder employmentStatus(JsonNullable<? extends EmploymentStatus> employmentStatus) {
             Utils.checkNotNull(employmentStatus, "employmentStatus");
@@ -3164,7 +3210,8 @@ public class Employee {
 
 
         /**
-         * Direct reports is an array of ids that reflect the individuals in an organizational hierarchy who are directly supervised by this specific employee.
+         * Direct reports is an array of ids that reflect the individuals in an organizational hierarchy who
+         * are directly supervised by this specific employee.
          */
         public Builder directReports(List<String> directReports) {
             Utils.checkNotNull(directReports, "directReports");
@@ -3173,7 +3220,8 @@ public class Employee {
         }
 
         /**
-         * Direct reports is an array of ids that reflect the individuals in an organizational hierarchy who are directly supervised by this specific employee.
+         * Direct reports is an array of ids that reflect the individuals in an organizational hierarchy who
+         * are directly supervised by this specific employee.
          */
         public Builder directReports(JsonNullable<? extends List<String>> directReports) {
             Utils.checkNotNull(directReports, "directReports");
@@ -3183,7 +3231,8 @@ public class Employee {
 
 
         /**
-         * A unique identifier assigned by the government. This field is considered sensitive information and may be subject to special security and privacy restrictions.
+         * A unique identifier assigned by the government. This field is considered sensitive information and
+         * may be subject to special security and privacy restrictions.
          */
         public Builder socialSecurityNumber(String socialSecurityNumber) {
             Utils.checkNotNull(socialSecurityNumber, "socialSecurityNumber");
@@ -3192,7 +3241,8 @@ public class Employee {
         }
 
         /**
-         * A unique identifier assigned by the government. This field is considered sensitive information and may be subject to special security and privacy restrictions.
+         * A unique identifier assigned by the government. This field is considered sensitive information and
+         * may be subject to special security and privacy restrictions.
          */
         public Builder socialSecurityNumber(JsonNullable<String> socialSecurityNumber) {
             Utils.checkNotNull(socialSecurityNumber, "socialSecurityNumber");
@@ -3380,7 +3430,8 @@ public class Employee {
 
 
         /**
-         * The time zone related to the resource. The value is a string containing a standard time zone identifier, e.g. Europe/London.
+         * The time zone related to the resource. The value is a string containing a standard time zone
+         * identifier, e.g. Europe/London.
          */
         public Builder timezone(String timezone) {
             Utils.checkNotNull(timezone, "timezone");
@@ -3389,7 +3440,8 @@ public class Employee {
         }
 
         /**
-         * The time zone related to the resource. The value is a string containing a standard time zone identifier, e.g. Europe/London.
+         * The time zone related to the resource. The value is a string containing a standard time zone
+         * identifier, e.g. Europe/London.
          */
         public Builder timezone(JsonNullable<String> timezone) {
             Utils.checkNotNull(timezone, "timezone");
@@ -3399,7 +3451,8 @@ public class Employee {
 
 
         /**
-         * When the employee is imported as a new hire, this field indicates what system (e.g. the name of the ATS) this employee was imported from.
+         * When the employee is imported as a new hire, this field indicates what system (e.g. the name of the
+         * ATS) this employee was imported from.
          */
         public Builder source(String source) {
             Utils.checkNotNull(source, "source");
@@ -3408,7 +3461,8 @@ public class Employee {
         }
 
         /**
-         * When the employee is imported as a new hire, this field indicates what system (e.g. the name of the ATS) this employee was imported from.
+         * When the employee is imported as a new hire, this field indicates what system (e.g. the name of the
+         * ATS) this employee was imported from.
          */
         public Builder source(JsonNullable<String> source) {
             Utils.checkNotNull(source, "source");
@@ -3418,7 +3472,8 @@ public class Employee {
 
 
         /**
-         * Unique identifier of the employee in the system this employee was imported from (e.g. the ID in the ATS).
+         * Unique identifier of the employee in the system this employee was imported from (e.g. the ID in the
+         * ATS).
          */
         public Builder sourceId(String sourceId) {
             Utils.checkNotNull(sourceId, "sourceId");
@@ -3427,7 +3482,8 @@ public class Employee {
         }
 
         /**
-         * Unique identifier of the employee in the system this employee was imported from (e.g. the ID in the ATS).
+         * Unique identifier of the employee in the system this employee was imported from (e.g. the ID in the
+         * ATS).
          */
         public Builder sourceId(JsonNullable<String> sourceId) {
             Utils.checkNotNull(sourceId, "sourceId");
@@ -3682,7 +3738,8 @@ public class Employee {
 
 
         /**
-         * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+         * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+         * time an update is made to the object.
          */
         public Builder rowVersion(String rowVersion) {
             Utils.checkNotNull(rowVersion, "rowVersion");
@@ -3691,7 +3748,8 @@ public class Employee {
         }
 
         /**
-         * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+         * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+         * time an update is made to the object.
          */
         public Builder rowVersion(JsonNullable<String> rowVersion) {
             Utils.checkNotNull(rowVersion, "rowVersion");
@@ -3796,7 +3854,8 @@ public class Employee {
 
 
         /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+         * The pass_through property allows passing service-specific, custom data or structured modifications
+         * in request body when creating or updating resources.
          */
         public Builder passThrough(List<PassThroughBody> passThrough) {
             Utils.checkNotNull(passThrough, "passThrough");
@@ -3805,7 +3864,8 @@ public class Employee {
         }
 
         /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+         * The pass_through property allows passing service-specific, custom data or structured modifications
+         * in request body when creating or updating resources.
          */
         public Builder passThrough(Optional<? extends List<PassThroughBody>> passThrough) {
             Utils.checkNotNull(passThrough, "passThrough");

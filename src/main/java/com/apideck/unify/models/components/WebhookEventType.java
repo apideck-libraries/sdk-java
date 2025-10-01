@@ -129,7 +129,10 @@ public enum WebhookEventType {
     ECOMMERCE_CUSTOMER_DELETED("ecommerce.customer.deleted"),
     ACCOUNTING_QUOTE_CREATED("accounting.quote.created"),
     ACCOUNTING_QUOTE_UPDATED("accounting.quote.updated"),
-    ACCOUNTING_QUOTE_DELETED("accounting.quote.deleted");
+    ACCOUNTING_QUOTE_DELETED("accounting.quote.deleted"),
+    ACCOUNTING_PROJECT_CREATED("accounting.project.created"),
+    ACCOUNTING_PROJECT_UPDATED("accounting.project.updated"),
+    ACCOUNTING_PROJECT_DELETED("accounting.project.deleted");
 
     @JsonValue
     private final String value;

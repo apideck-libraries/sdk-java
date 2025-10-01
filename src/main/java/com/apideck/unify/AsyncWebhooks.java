@@ -72,7 +72,7 @@ public class AsyncWebhooks {
      * 
      * <p>List all webhook subscriptions
      * 
-     * @return CompletableFuture&lt;WebhookWebhooksAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<WebhookWebhooksAllResponse>} - The async response
      */
     public CompletableFuture<WebhookWebhooksAllResponse> listDirect() {
         return list(
@@ -89,7 +89,7 @@ public class AsyncWebhooks {
      * @param cursor Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
      * @param limit Number of results to return. Minimum 1, Maximum 200, Default 20
      * @param options additional options
-     * @return CompletableFuture&lt;WebhookWebhooksAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<WebhookWebhooksAllResponse>} - The async response
      */
     public CompletableFuture<WebhookWebhooksAllResponse> list(
             Optional<String> appId, JsonNullable<String> cursor,
@@ -127,7 +127,7 @@ public class AsyncWebhooks {
      * <p>Create a webhook subscription to receive events
      * 
      * @param createWebhookRequest 
-     * @return CompletableFuture&lt;WebhookWebhooksAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<WebhookWebhooksAddResponse>} - The async response
      */
     public CompletableFuture<WebhookWebhooksAddResponse> create(CreateWebhookRequest createWebhookRequest) {
         return create(Optional.empty(), createWebhookRequest, Optional.empty());
@@ -141,7 +141,7 @@ public class AsyncWebhooks {
      * @param appId The ID of your Unify application
      * @param createWebhookRequest 
      * @param options additional options
-     * @return CompletableFuture&lt;WebhookWebhooksAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<WebhookWebhooksAddResponse>} - The async response
      */
     public CompletableFuture<WebhookWebhooksAddResponse> create(
             Optional<String> appId, CreateWebhookRequest createWebhookRequest,
@@ -178,7 +178,7 @@ public class AsyncWebhooks {
      * <p>Get the webhook subscription details
      * 
      * @param id JWT Webhook token that represents the unifiedApi and applicationId associated to the event source.
-     * @return CompletableFuture&lt;WebhookWebhooksOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<WebhookWebhooksOneResponse>} - The async response
      */
     public CompletableFuture<WebhookWebhooksOneResponse> get(String id) {
         return get(id, Optional.empty(), Optional.empty());
@@ -192,7 +192,7 @@ public class AsyncWebhooks {
      * @param id JWT Webhook token that represents the unifiedApi and applicationId associated to the event source.
      * @param appId The ID of your Unify application
      * @param options additional options
-     * @return CompletableFuture&lt;WebhookWebhooksOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<WebhookWebhooksOneResponse>} - The async response
      */
     public CompletableFuture<WebhookWebhooksOneResponse> get(
             String id, Optional<String> appId,
@@ -230,7 +230,7 @@ public class AsyncWebhooks {
      * 
      * @param id JWT Webhook token that represents the unifiedApi and applicationId associated to the event source.
      * @param updateWebhookRequest 
-     * @return CompletableFuture&lt;WebhookWebhooksUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<WebhookWebhooksUpdateResponse>} - The async response
      */
     public CompletableFuture<WebhookWebhooksUpdateResponse> update(String id, UpdateWebhookRequest updateWebhookRequest) {
         return update(
@@ -247,7 +247,7 @@ public class AsyncWebhooks {
      * @param appId The ID of your Unify application
      * @param updateWebhookRequest 
      * @param options additional options
-     * @return CompletableFuture&lt;WebhookWebhooksUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<WebhookWebhooksUpdateResponse>} - The async response
      */
     public CompletableFuture<WebhookWebhooksUpdateResponse> update(
             String id, Optional<String> appId,
@@ -285,7 +285,7 @@ public class AsyncWebhooks {
      * <p>Delete a webhook subscription
      * 
      * @param id JWT Webhook token that represents the unifiedApi and applicationId associated to the event source.
-     * @return CompletableFuture&lt;WebhookWebhooksDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<WebhookWebhooksDeleteResponse>} - The async response
      */
     public CompletableFuture<WebhookWebhooksDeleteResponse> delete(String id) {
         return delete(id, Optional.empty(), Optional.empty());
@@ -299,7 +299,7 @@ public class AsyncWebhooks {
      * @param id JWT Webhook token that represents the unifiedApi and applicationId associated to the event source.
      * @param appId The ID of your Unify application
      * @param options additional options
-     * @return CompletableFuture&lt;WebhookWebhooksDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<WebhookWebhooksDeleteResponse>} - The async response
      */
     public CompletableFuture<WebhookWebhooksDeleteResponse> delete(
             String id, Optional<String> appId,

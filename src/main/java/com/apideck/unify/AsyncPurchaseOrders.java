@@ -68,7 +68,7 @@ public class AsyncPurchaseOrders {
      * <p>List Purchase Orders
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingPurchaseOrdersAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingPurchaseOrdersAllResponse>} - The async response
      */
     public CompletableFuture<AccountingPurchaseOrdersAllResponse> list(AccountingPurchaseOrdersAllRequest request) {
         return list(request, Optional.empty());
@@ -81,7 +81,7 @@ public class AsyncPurchaseOrders {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingPurchaseOrdersAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingPurchaseOrdersAllResponse>} - The async response
      */
     public CompletableFuture<AccountingPurchaseOrdersAllResponse> list(AccountingPurchaseOrdersAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingPurchaseOrdersAllRequest, AccountingPurchaseOrdersAllResponse> operation
@@ -110,7 +110,7 @@ public class AsyncPurchaseOrders {
      * <p>Create Purchase Order
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingPurchaseOrdersAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingPurchaseOrdersAddResponse>} - The async response
      */
     public CompletableFuture<AccountingPurchaseOrdersAddResponse> create(AccountingPurchaseOrdersAddRequest request) {
         return create(request, Optional.empty());
@@ -123,7 +123,7 @@ public class AsyncPurchaseOrders {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingPurchaseOrdersAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingPurchaseOrdersAddResponse>} - The async response
      */
     public CompletableFuture<AccountingPurchaseOrdersAddResponse> create(AccountingPurchaseOrdersAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingPurchaseOrdersAddRequest, AccountingPurchaseOrdersAddResponse> operation
@@ -152,7 +152,7 @@ public class AsyncPurchaseOrders {
      * <p>Get Purchase Order
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingPurchaseOrdersOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingPurchaseOrdersOneResponse>} - The async response
      */
     public CompletableFuture<AccountingPurchaseOrdersOneResponse> get(AccountingPurchaseOrdersOneRequest request) {
         return get(request, Optional.empty());
@@ -165,7 +165,7 @@ public class AsyncPurchaseOrders {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingPurchaseOrdersOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingPurchaseOrdersOneResponse>} - The async response
      */
     public CompletableFuture<AccountingPurchaseOrdersOneResponse> get(AccountingPurchaseOrdersOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingPurchaseOrdersOneRequest, AccountingPurchaseOrdersOneResponse> operation
@@ -194,7 +194,7 @@ public class AsyncPurchaseOrders {
      * <p>Update Purchase Order
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingPurchaseOrdersUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingPurchaseOrdersUpdateResponse>} - The async response
      */
     public CompletableFuture<AccountingPurchaseOrdersUpdateResponse> update(AccountingPurchaseOrdersUpdateRequest request) {
         return update(request, Optional.empty());
@@ -207,7 +207,7 @@ public class AsyncPurchaseOrders {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingPurchaseOrdersUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingPurchaseOrdersUpdateResponse>} - The async response
      */
     public CompletableFuture<AccountingPurchaseOrdersUpdateResponse> update(AccountingPurchaseOrdersUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingPurchaseOrdersUpdateRequest, AccountingPurchaseOrdersUpdateResponse> operation
@@ -236,7 +236,7 @@ public class AsyncPurchaseOrders {
      * <p>Delete Purchase Order
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingPurchaseOrdersDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingPurchaseOrdersDeleteResponse>} - The async response
      */
     public CompletableFuture<AccountingPurchaseOrdersDeleteResponse> delete(AccountingPurchaseOrdersDeleteRequest request) {
         return delete(request, Optional.empty());
@@ -249,7 +249,7 @@ public class AsyncPurchaseOrders {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingPurchaseOrdersDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingPurchaseOrdersDeleteResponse>} - The async response
      */
     public CompletableFuture<AccountingPurchaseOrdersDeleteResponse> delete(AccountingPurchaseOrdersDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingPurchaseOrdersDeleteRequest, AccountingPurchaseOrdersDeleteResponse> operation

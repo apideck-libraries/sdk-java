@@ -16,7 +16,9 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class LinkedInvoiceItem {
     /**
-     * ID of the linked item. A reference to the [invoice item](https://developers.apideck.com/apis/accounting/reference#tag/Invoice-Items) that was used to create this line item
+     * ID of the linked item. A reference to the [invoice
+     * item](https://developers.apideck.com/apis/accounting/reference#tag/Invoice-Items) that was used to
+     * create this line item
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
@@ -54,7 +56,9 @@ public class LinkedInvoiceItem {
     }
 
     /**
-     * ID of the linked item. A reference to the [invoice item](https://developers.apideck.com/apis/accounting/reference#tag/Invoice-Items) that was used to create this line item
+     * ID of the linked item. A reference to the [invoice
+     * item](https://developers.apideck.com/apis/accounting/reference#tag/Invoice-Items) that was used to
+     * create this line item
      */
     @JsonIgnore
     public JsonNullable<String> id() {
@@ -83,7 +87,9 @@ public class LinkedInvoiceItem {
 
 
     /**
-     * ID of the linked item. A reference to the [invoice item](https://developers.apideck.com/apis/accounting/reference#tag/Invoice-Items) that was used to create this line item
+     * ID of the linked item. A reference to the [invoice
+     * item](https://developers.apideck.com/apis/accounting/reference#tag/Invoice-Items) that was used to
+     * create this line item
      */
     public LinkedInvoiceItem withId(String id) {
         Utils.checkNotNull(id, "id");
@@ -92,7 +98,9 @@ public class LinkedInvoiceItem {
     }
 
     /**
-     * ID of the linked item. A reference to the [invoice item](https://developers.apideck.com/apis/accounting/reference#tag/Invoice-Items) that was used to create this line item
+     * ID of the linked item. A reference to the [invoice
+     * item](https://developers.apideck.com/apis/accounting/reference#tag/Invoice-Items) that was used to
+     * create this line item
      */
     public LinkedInvoiceItem withId(JsonNullable<String> id) {
         Utils.checkNotNull(id, "id");
@@ -180,7 +188,9 @@ public class LinkedInvoiceItem {
 
 
         /**
-         * ID of the linked item. A reference to the [invoice item](https://developers.apideck.com/apis/accounting/reference#tag/Invoice-Items) that was used to create this line item
+         * ID of the linked item. A reference to the [invoice
+         * item](https://developers.apideck.com/apis/accounting/reference#tag/Invoice-Items) that was used to
+         * create this line item
          */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
@@ -189,7 +199,9 @@ public class LinkedInvoiceItem {
         }
 
         /**
-         * ID of the linked item. A reference to the [invoice item](https://developers.apideck.com/apis/accounting/reference#tag/Invoice-Items) that was used to create this line item
+         * ID of the linked item. A reference to the [invoice
+         * item](https://developers.apideck.com/apis/accounting/reference#tag/Invoice-Items) that was used to
+         * create this line item
          */
         public Builder id(JsonNullable<String> id) {
             Utils.checkNotNull(id, "id");

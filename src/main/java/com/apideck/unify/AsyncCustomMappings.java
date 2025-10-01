@@ -54,7 +54,7 @@ public class AsyncCustomMappings {
      * 
      * @param unifiedApi Unified API
      * @param serviceId Service ID of the resource to return
-     * @return CompletableFuture&lt;VaultCustomMappingsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<VaultCustomMappingsAllResponse>} - The async response
      */
     public CompletableFuture<VaultCustomMappingsAllResponse> list(String unifiedApi, String serviceId) {
         return list(
@@ -72,7 +72,7 @@ public class AsyncCustomMappings {
      * @param unifiedApi Unified API
      * @param serviceId Service ID of the resource to return
      * @param options additional options
-     * @return CompletableFuture&lt;VaultCustomMappingsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<VaultCustomMappingsAllResponse>} - The async response
      */
     public CompletableFuture<VaultCustomMappingsAllResponse> list(
             Optional<String> consumerId, Optional<String> appId,

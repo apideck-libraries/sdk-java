@@ -39,14 +39,16 @@ public class HrisCompanyInput {
     private Optional<? extends HrisCompanyStatus> status;
 
     /**
-     * An Company Number, Company ID or Company Code, is a unique number that has been assigned to each company.
+     * An Company Number, Company ID or Company Code, is a unique number that has been assigned to each
+     * company.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("company_number")
     private JsonNullable<String> companyNumber;
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("currency")
@@ -78,7 +80,8 @@ public class HrisCompanyInput {
     private JsonNullable<String> debtorId;
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pass_through")
@@ -153,7 +156,8 @@ public class HrisCompanyInput {
     }
 
     /**
-     * An Company Number, Company ID or Company Code, is a unique number that has been assigned to each company.
+     * An Company Number, Company ID or Company Code, is a unique number that has been assigned to each
+     * company.
      */
     @JsonIgnore
     public JsonNullable<String> companyNumber() {
@@ -161,7 +165,8 @@ public class HrisCompanyInput {
     }
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -199,7 +204,8 @@ public class HrisCompanyInput {
     }
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -263,7 +269,8 @@ public class HrisCompanyInput {
     }
 
     /**
-     * An Company Number, Company ID or Company Code, is a unique number that has been assigned to each company.
+     * An Company Number, Company ID or Company Code, is a unique number that has been assigned to each
+     * company.
      */
     public HrisCompanyInput withCompanyNumber(String companyNumber) {
         Utils.checkNotNull(companyNumber, "companyNumber");
@@ -272,7 +279,8 @@ public class HrisCompanyInput {
     }
 
     /**
-     * An Company Number, Company ID or Company Code, is a unique number that has been assigned to each company.
+     * An Company Number, Company ID or Company Code, is a unique number that has been assigned to each
+     * company.
      */
     public HrisCompanyInput withCompanyNumber(JsonNullable<String> companyNumber) {
         Utils.checkNotNull(companyNumber, "companyNumber");
@@ -281,7 +289,8 @@ public class HrisCompanyInput {
     }
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     public HrisCompanyInput withCurrency(Currency currency) {
         Utils.checkNotNull(currency, "currency");
@@ -290,7 +299,8 @@ public class HrisCompanyInput {
     }
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     public HrisCompanyInput withCurrency(JsonNullable<? extends Currency> currency) {
         Utils.checkNotNull(currency, "currency");
@@ -363,7 +373,8 @@ public class HrisCompanyInput {
     }
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     public HrisCompanyInput withPassThrough(List<PassThroughBody> passThrough) {
         Utils.checkNotNull(passThrough, "passThrough");
@@ -373,7 +384,8 @@ public class HrisCompanyInput {
 
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     public HrisCompanyInput withPassThrough(Optional<? extends List<PassThroughBody>> passThrough) {
         Utils.checkNotNull(passThrough, "passThrough");
@@ -516,7 +528,8 @@ public class HrisCompanyInput {
 
 
         /**
-         * An Company Number, Company ID or Company Code, is a unique number that has been assigned to each company.
+         * An Company Number, Company ID or Company Code, is a unique number that has been assigned to each
+         * company.
          */
         public Builder companyNumber(String companyNumber) {
             Utils.checkNotNull(companyNumber, "companyNumber");
@@ -525,7 +538,8 @@ public class HrisCompanyInput {
         }
 
         /**
-         * An Company Number, Company ID or Company Code, is a unique number that has been assigned to each company.
+         * An Company Number, Company ID or Company Code, is a unique number that has been assigned to each
+         * company.
          */
         public Builder companyNumber(JsonNullable<String> companyNumber) {
             Utils.checkNotNull(companyNumber, "companyNumber");
@@ -535,7 +549,8 @@ public class HrisCompanyInput {
 
 
         /**
-         * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+         * Indicates the associated currency for an amount of money. Values correspond to [ISO
+         * 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
         public Builder currency(Currency currency) {
             Utils.checkNotNull(currency, "currency");
@@ -544,7 +559,8 @@ public class HrisCompanyInput {
         }
 
         /**
-         * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+         * Indicates the associated currency for an amount of money. Values correspond to [ISO
+         * 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
         public Builder currency(JsonNullable<? extends Currency> currency) {
             Utils.checkNotNull(currency, "currency");
@@ -619,7 +635,8 @@ public class HrisCompanyInput {
 
 
         /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+         * The pass_through property allows passing service-specific, custom data or structured modifications
+         * in request body when creating or updating resources.
          */
         public Builder passThrough(List<PassThroughBody> passThrough) {
             Utils.checkNotNull(passThrough, "passThrough");
@@ -628,7 +645,8 @@ public class HrisCompanyInput {
         }
 
         /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+         * The pass_through property allows passing service-specific, custom data or structured modifications
+         * in request body when creating or updating resources.
          */
         public Builder passThrough(Optional<? extends List<PassThroughBody>> passThrough) {
             Utils.checkNotNull(passThrough, "passThrough");

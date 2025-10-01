@@ -11,14 +11,11 @@ import java.util.Optional;
 /**
  * TransactionType
  * 
- * <p>Type of the transaction.
+ * <p>The kind of transaction, indicating whether it is a sales transaction or a purchase transaction.
  */
 public enum TransactionType {
-    INVOICE("invoice"),
-    CREDIT_NOTE("credit_note"),
-    BILL("bill"),
-    PAYMENT("payment"),
-    BILL_PAYMENT("bill_payment");
+    SALE("sale"),
+    PURCHASE("purchase");
 
     @JsonValue
     private final String value;

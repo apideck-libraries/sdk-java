@@ -68,7 +68,7 @@ public class AsyncOpportunities {
      * <p>List opportunities
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CrmOpportunitiesAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmOpportunitiesAllResponse>} - The async response
      */
     public CompletableFuture<CrmOpportunitiesAllResponse> list(CrmOpportunitiesAllRequest request) {
         return list(request, Optional.empty());
@@ -81,7 +81,7 @@ public class AsyncOpportunities {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;CrmOpportunitiesAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmOpportunitiesAllResponse>} - The async response
      */
     public CompletableFuture<CrmOpportunitiesAllResponse> list(CrmOpportunitiesAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmOpportunitiesAllRequest, CrmOpportunitiesAllResponse> operation
@@ -110,7 +110,7 @@ public class AsyncOpportunities {
      * <p>Create opportunity
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CrmOpportunitiesAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmOpportunitiesAddResponse>} - The async response
      */
     public CompletableFuture<CrmOpportunitiesAddResponse> create(CrmOpportunitiesAddRequest request) {
         return create(request, Optional.empty());
@@ -123,7 +123,7 @@ public class AsyncOpportunities {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;CrmOpportunitiesAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmOpportunitiesAddResponse>} - The async response
      */
     public CompletableFuture<CrmOpportunitiesAddResponse> create(CrmOpportunitiesAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmOpportunitiesAddRequest, CrmOpportunitiesAddResponse> operation
@@ -152,7 +152,7 @@ public class AsyncOpportunities {
      * <p>Get opportunity
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CrmOpportunitiesOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmOpportunitiesOneResponse>} - The async response
      */
     public CompletableFuture<CrmOpportunitiesOneResponse> get(CrmOpportunitiesOneRequest request) {
         return get(request, Optional.empty());
@@ -165,7 +165,7 @@ public class AsyncOpportunities {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;CrmOpportunitiesOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmOpportunitiesOneResponse>} - The async response
      */
     public CompletableFuture<CrmOpportunitiesOneResponse> get(CrmOpportunitiesOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmOpportunitiesOneRequest, CrmOpportunitiesOneResponse> operation
@@ -194,7 +194,7 @@ public class AsyncOpportunities {
      * <p>Update opportunity
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CrmOpportunitiesUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmOpportunitiesUpdateResponse>} - The async response
      */
     public CompletableFuture<CrmOpportunitiesUpdateResponse> update(CrmOpportunitiesUpdateRequest request) {
         return update(request, Optional.empty());
@@ -207,7 +207,7 @@ public class AsyncOpportunities {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;CrmOpportunitiesUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmOpportunitiesUpdateResponse>} - The async response
      */
     public CompletableFuture<CrmOpportunitiesUpdateResponse> update(CrmOpportunitiesUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmOpportunitiesUpdateRequest, CrmOpportunitiesUpdateResponse> operation
@@ -236,7 +236,7 @@ public class AsyncOpportunities {
      * <p>Delete opportunity
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CrmOpportunitiesDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmOpportunitiesDeleteResponse>} - The async response
      */
     public CompletableFuture<CrmOpportunitiesDeleteResponse> delete(CrmOpportunitiesDeleteRequest request) {
         return delete(request, Optional.empty());
@@ -249,7 +249,7 @@ public class AsyncOpportunities {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;CrmOpportunitiesDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmOpportunitiesDeleteResponse>} - The async response
      */
     public CompletableFuture<CrmOpportunitiesDeleteResponse> delete(CrmOpportunitiesDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmOpportunitiesDeleteRequest, CrmOpportunitiesDeleteResponse> operation

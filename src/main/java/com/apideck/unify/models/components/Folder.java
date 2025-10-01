@@ -69,7 +69,8 @@ public class Folder {
     private List<LinkedFolder> parentFolders;
 
     /**
-     * Whether the list of parent folder is complete. Some connectors only return the direct parent of a folder
+     * Whether the list of parent folder is complete. Some connectors only return the direct parent of a
+     * folder
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("parent_folders_complete")
@@ -218,7 +219,8 @@ public class Folder {
     }
 
     /**
-     * Whether the list of parent folder is complete. Some connectors only return the direct parent of a folder
+     * Whether the list of parent folder is complete. Some connectors only return the direct parent of a
+     * folder
      */
     @JsonIgnore
     public Optional<Boolean> parentFoldersComplete() {
@@ -376,7 +378,8 @@ public class Folder {
     }
 
     /**
-     * Whether the list of parent folder is complete. Some connectors only return the direct parent of a folder
+     * Whether the list of parent folder is complete. Some connectors only return the direct parent of a
+     * folder
      */
     public Folder withParentFoldersComplete(boolean parentFoldersComplete) {
         Utils.checkNotNull(parentFoldersComplete, "parentFoldersComplete");
@@ -386,7 +389,8 @@ public class Folder {
 
 
     /**
-     * Whether the list of parent folder is complete. Some connectors only return the direct parent of a folder
+     * Whether the list of parent folder is complete. Some connectors only return the direct parent of a
+     * folder
      */
     public Folder withParentFoldersComplete(Optional<Boolean> parentFoldersComplete) {
         Utils.checkNotNull(parentFoldersComplete, "parentFoldersComplete");
@@ -681,7 +685,8 @@ public class Folder {
 
 
         /**
-         * Whether the list of parent folder is complete. Some connectors only return the direct parent of a folder
+         * Whether the list of parent folder is complete. Some connectors only return the direct parent of a
+         * folder
          */
         public Builder parentFoldersComplete(boolean parentFoldersComplete) {
             Utils.checkNotNull(parentFoldersComplete, "parentFoldersComplete");
@@ -690,7 +695,8 @@ public class Folder {
         }
 
         /**
-         * Whether the list of parent folder is complete. Some connectors only return the direct parent of a folder
+         * Whether the list of parent folder is complete. Some connectors only return the direct parent of a
+         * folder
          */
         public Builder parentFoldersComplete(Optional<Boolean> parentFoldersComplete) {
             Utils.checkNotNull(parentFoldersComplete, "parentFoldersComplete");

@@ -68,7 +68,7 @@ public class AsyncApplications {
      * <p>List Applications
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AtsApplicationsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<AtsApplicationsAllResponse>} - The async response
      */
     public CompletableFuture<AtsApplicationsAllResponse> list(AtsApplicationsAllRequest request) {
         return list(request, Optional.empty());
@@ -81,7 +81,7 @@ public class AsyncApplications {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AtsApplicationsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<AtsApplicationsAllResponse>} - The async response
      */
     public CompletableFuture<AtsApplicationsAllResponse> list(AtsApplicationsAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<AtsApplicationsAllRequest, AtsApplicationsAllResponse> operation
@@ -110,7 +110,7 @@ public class AsyncApplications {
      * <p>Create Application
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AtsApplicationsAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<AtsApplicationsAddResponse>} - The async response
      */
     public CompletableFuture<AtsApplicationsAddResponse> create(AtsApplicationsAddRequest request) {
         return create(request, Optional.empty());
@@ -123,7 +123,7 @@ public class AsyncApplications {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AtsApplicationsAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<AtsApplicationsAddResponse>} - The async response
      */
     public CompletableFuture<AtsApplicationsAddResponse> create(AtsApplicationsAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<AtsApplicationsAddRequest, AtsApplicationsAddResponse> operation
@@ -152,7 +152,7 @@ public class AsyncApplications {
      * <p>Get Application
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AtsApplicationsOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<AtsApplicationsOneResponse>} - The async response
      */
     public CompletableFuture<AtsApplicationsOneResponse> get(AtsApplicationsOneRequest request) {
         return get(request, Optional.empty());
@@ -165,7 +165,7 @@ public class AsyncApplications {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AtsApplicationsOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<AtsApplicationsOneResponse>} - The async response
      */
     public CompletableFuture<AtsApplicationsOneResponse> get(AtsApplicationsOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<AtsApplicationsOneRequest, AtsApplicationsOneResponse> operation
@@ -194,7 +194,7 @@ public class AsyncApplications {
      * <p>Update Application
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AtsApplicationsUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<AtsApplicationsUpdateResponse>} - The async response
      */
     public CompletableFuture<AtsApplicationsUpdateResponse> update(AtsApplicationsUpdateRequest request) {
         return update(request, Optional.empty());
@@ -207,7 +207,7 @@ public class AsyncApplications {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AtsApplicationsUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<AtsApplicationsUpdateResponse>} - The async response
      */
     public CompletableFuture<AtsApplicationsUpdateResponse> update(AtsApplicationsUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<AtsApplicationsUpdateRequest, AtsApplicationsUpdateResponse> operation
@@ -236,7 +236,7 @@ public class AsyncApplications {
      * <p>Delete Application
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AtsApplicationsDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<AtsApplicationsDeleteResponse>} - The async response
      */
     public CompletableFuture<AtsApplicationsDeleteResponse> delete(AtsApplicationsDeleteRequest request) {
         return delete(request, Optional.empty());
@@ -249,7 +249,7 @@ public class AsyncApplications {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AtsApplicationsDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<AtsApplicationsDeleteResponse>} - The async response
      */
     public CompletableFuture<AtsApplicationsDeleteResponse> delete(AtsApplicationsDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<AtsApplicationsDeleteRequest, AtsApplicationsDeleteResponse> operation

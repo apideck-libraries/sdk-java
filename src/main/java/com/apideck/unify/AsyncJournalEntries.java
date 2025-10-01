@@ -68,7 +68,7 @@ public class AsyncJournalEntries {
      * <p>List Journal Entries
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingJournalEntriesAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingJournalEntriesAllResponse>} - The async response
      */
     public CompletableFuture<AccountingJournalEntriesAllResponse> list(AccountingJournalEntriesAllRequest request) {
         return list(request, Optional.empty());
@@ -81,7 +81,7 @@ public class AsyncJournalEntries {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingJournalEntriesAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingJournalEntriesAllResponse>} - The async response
      */
     public CompletableFuture<AccountingJournalEntriesAllResponse> list(AccountingJournalEntriesAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingJournalEntriesAllRequest, AccountingJournalEntriesAllResponse> operation
@@ -110,7 +110,7 @@ public class AsyncJournalEntries {
      * <p>Create Journal Entry
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingJournalEntriesAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingJournalEntriesAddResponse>} - The async response
      */
     public CompletableFuture<AccountingJournalEntriesAddResponse> create(AccountingJournalEntriesAddRequest request) {
         return create(request, Optional.empty());
@@ -123,7 +123,7 @@ public class AsyncJournalEntries {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingJournalEntriesAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingJournalEntriesAddResponse>} - The async response
      */
     public CompletableFuture<AccountingJournalEntriesAddResponse> create(AccountingJournalEntriesAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingJournalEntriesAddRequest, AccountingJournalEntriesAddResponse> operation
@@ -152,7 +152,7 @@ public class AsyncJournalEntries {
      * <p>Get Journal Entry
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingJournalEntriesOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingJournalEntriesOneResponse>} - The async response
      */
     public CompletableFuture<AccountingJournalEntriesOneResponse> get(AccountingJournalEntriesOneRequest request) {
         return get(request, Optional.empty());
@@ -165,7 +165,7 @@ public class AsyncJournalEntries {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingJournalEntriesOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingJournalEntriesOneResponse>} - The async response
      */
     public CompletableFuture<AccountingJournalEntriesOneResponse> get(AccountingJournalEntriesOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingJournalEntriesOneRequest, AccountingJournalEntriesOneResponse> operation
@@ -194,7 +194,7 @@ public class AsyncJournalEntries {
      * <p>Update Journal Entry
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingJournalEntriesUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingJournalEntriesUpdateResponse>} - The async response
      */
     public CompletableFuture<AccountingJournalEntriesUpdateResponse> update(AccountingJournalEntriesUpdateRequest request) {
         return update(request, Optional.empty());
@@ -207,7 +207,7 @@ public class AsyncJournalEntries {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingJournalEntriesUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingJournalEntriesUpdateResponse>} - The async response
      */
     public CompletableFuture<AccountingJournalEntriesUpdateResponse> update(AccountingJournalEntriesUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingJournalEntriesUpdateRequest, AccountingJournalEntriesUpdateResponse> operation
@@ -236,7 +236,7 @@ public class AsyncJournalEntries {
      * <p>Delete Journal Entry
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingJournalEntriesDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingJournalEntriesDeleteResponse>} - The async response
      */
     public CompletableFuture<AccountingJournalEntriesDeleteResponse> delete(AccountingJournalEntriesDeleteRequest request) {
         return delete(request, Optional.empty());
@@ -249,7 +249,7 @@ public class AsyncJournalEntries {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingJournalEntriesDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingJournalEntriesDeleteResponse>} - The async response
      */
     public CompletableFuture<AccountingJournalEntriesDeleteResponse> delete(AccountingJournalEntriesDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingJournalEntriesDeleteRequest, AccountingJournalEntriesDeleteResponse> operation

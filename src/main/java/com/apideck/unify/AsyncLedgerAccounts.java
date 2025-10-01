@@ -68,7 +68,7 @@ public class AsyncLedgerAccounts {
      * <p>List Ledger Accounts
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingLedgerAccountsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingLedgerAccountsAllResponse>} - The async response
      */
     public CompletableFuture<AccountingLedgerAccountsAllResponse> list(AccountingLedgerAccountsAllRequest request) {
         return list(request, Optional.empty());
@@ -81,7 +81,7 @@ public class AsyncLedgerAccounts {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingLedgerAccountsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingLedgerAccountsAllResponse>} - The async response
      */
     public CompletableFuture<AccountingLedgerAccountsAllResponse> list(AccountingLedgerAccountsAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingLedgerAccountsAllRequest, AccountingLedgerAccountsAllResponse> operation
@@ -110,7 +110,7 @@ public class AsyncLedgerAccounts {
      * <p>Create Ledger Account
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingLedgerAccountsAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingLedgerAccountsAddResponse>} - The async response
      */
     public CompletableFuture<AccountingLedgerAccountsAddResponse> create(AccountingLedgerAccountsAddRequest request) {
         return create(request, Optional.empty());
@@ -123,7 +123,7 @@ public class AsyncLedgerAccounts {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingLedgerAccountsAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingLedgerAccountsAddResponse>} - The async response
      */
     public CompletableFuture<AccountingLedgerAccountsAddResponse> create(AccountingLedgerAccountsAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingLedgerAccountsAddRequest, AccountingLedgerAccountsAddResponse> operation
@@ -152,7 +152,7 @@ public class AsyncLedgerAccounts {
      * <p>Get Ledger Account
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingLedgerAccountsOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingLedgerAccountsOneResponse>} - The async response
      */
     public CompletableFuture<AccountingLedgerAccountsOneResponse> get(AccountingLedgerAccountsOneRequest request) {
         return get(request, Optional.empty());
@@ -165,7 +165,7 @@ public class AsyncLedgerAccounts {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingLedgerAccountsOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingLedgerAccountsOneResponse>} - The async response
      */
     public CompletableFuture<AccountingLedgerAccountsOneResponse> get(AccountingLedgerAccountsOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingLedgerAccountsOneRequest, AccountingLedgerAccountsOneResponse> operation
@@ -194,7 +194,7 @@ public class AsyncLedgerAccounts {
      * <p>Update Ledger Account
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingLedgerAccountsUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingLedgerAccountsUpdateResponse>} - The async response
      */
     public CompletableFuture<AccountingLedgerAccountsUpdateResponse> update(AccountingLedgerAccountsUpdateRequest request) {
         return update(request, Optional.empty());
@@ -207,7 +207,7 @@ public class AsyncLedgerAccounts {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingLedgerAccountsUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingLedgerAccountsUpdateResponse>} - The async response
      */
     public CompletableFuture<AccountingLedgerAccountsUpdateResponse> update(AccountingLedgerAccountsUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingLedgerAccountsUpdateRequest, AccountingLedgerAccountsUpdateResponse> operation
@@ -236,7 +236,7 @@ public class AsyncLedgerAccounts {
      * <p>Delete Ledger Account
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingLedgerAccountsDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingLedgerAccountsDeleteResponse>} - The async response
      */
     public CompletableFuture<AccountingLedgerAccountsDeleteResponse> delete(AccountingLedgerAccountsDeleteRequest request) {
         return delete(request, Optional.empty());
@@ -249,7 +249,7 @@ public class AsyncLedgerAccounts {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingLedgerAccountsDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingLedgerAccountsDeleteResponse>} - The async response
      */
     public CompletableFuture<AccountingLedgerAccountsDeleteResponse> delete(AccountingLedgerAccountsDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingLedgerAccountsDeleteRequest, AccountingLedgerAccountsDeleteResponse> operation

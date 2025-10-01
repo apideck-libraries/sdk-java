@@ -11,7 +11,8 @@ import java.util.Optional;
 /**
  * EmploymentStatus
  * 
- * <p>The employment status of the employee, indicating whether they are currently employed, inactive, terminated, or in another status.
+ * <p>The employment status of the employee, indicating whether they are currently employed, inactive,
+ * terminated, or in another status.
  */
 public enum EmploymentStatus {
     ACTIVE("active"),

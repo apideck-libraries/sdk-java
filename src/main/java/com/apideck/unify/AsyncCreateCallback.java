@@ -52,7 +52,7 @@ public class AsyncCreateCallback {
      * <p>This endpoint creates a callback state that can be used to issue requests to the callback endpoint.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;VaultCreateCallbackStateResponse&gt; - The async response
+     * @return {@code CompletableFuture<VaultCreateCallbackStateResponse>} - The async response
      */
     public CompletableFuture<VaultCreateCallbackStateResponse> state(VaultCreateCallbackStateRequest request) {
         return state(request, Optional.empty());
@@ -65,7 +65,7 @@ public class AsyncCreateCallback {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;VaultCreateCallbackStateResponse&gt; - The async response
+     * @return {@code CompletableFuture<VaultCreateCallbackStateResponse>} - The async response
      */
     public CompletableFuture<VaultCreateCallbackStateResponse> state(VaultCreateCallbackStateRequest request, Optional<Options> options) {
         AsyncRequestOperation<VaultCreateCallbackStateRequest, VaultCreateCallbackStateResponse> operation

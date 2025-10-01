@@ -52,7 +52,7 @@ public class AsyncCompanyInfo {
      * <p>Get company info
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingCompanyInfoOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingCompanyInfoOneResponse>} - The async response
      */
     public CompletableFuture<AccountingCompanyInfoOneResponse> get(AccountingCompanyInfoOneRequest request) {
         return get(request, Optional.empty());
@@ -65,7 +65,7 @@ public class AsyncCompanyInfo {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingCompanyInfoOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingCompanyInfoOneResponse>} - The async response
      */
     public CompletableFuture<AccountingCompanyInfoOneResponse> get(AccountingCompanyInfoOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingCompanyInfoOneRequest, AccountingCompanyInfoOneResponse> operation

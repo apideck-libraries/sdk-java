@@ -42,19 +42,22 @@ public class AccountingPurchaseOrdersAllRequest {
     private Optional<String> appId;
 
     /**
-     * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
+     * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated
+     * multiple integrations for a Unified API.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-service-id")
     private Optional<String> serviceId;
 
     /**
-     * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
+     * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of
+     * the response.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=cursor")
     private JsonNullable<String> cursor;
 
     /**
-     * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads
+     * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie:
+     * ?pass_through[search]=leads becomes ?search=leads
      */
     @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=pass_through")
     private Optional<? extends Map<String, Object>> passThrough;
@@ -139,7 +142,8 @@ public class AccountingPurchaseOrdersAllRequest {
     }
 
     /**
-     * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
+     * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated
+     * multiple integrations for a Unified API.
      */
     @JsonIgnore
     public Optional<String> serviceId() {
@@ -147,7 +151,8 @@ public class AccountingPurchaseOrdersAllRequest {
     }
 
     /**
-     * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
+     * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of
+     * the response.
      */
     @JsonIgnore
     public JsonNullable<String> cursor() {
@@ -155,7 +160,8 @@ public class AccountingPurchaseOrdersAllRequest {
     }
 
     /**
-     * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads
+     * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie:
+     * ?pass_through[search]=leads becomes ?search=leads
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -252,7 +258,8 @@ public class AccountingPurchaseOrdersAllRequest {
     }
 
     /**
-     * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
+     * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated
+     * multiple integrations for a Unified API.
      */
     public AccountingPurchaseOrdersAllRequest withServiceId(String serviceId) {
         Utils.checkNotNull(serviceId, "serviceId");
@@ -262,7 +269,8 @@ public class AccountingPurchaseOrdersAllRequest {
 
 
     /**
-     * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
+     * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated
+     * multiple integrations for a Unified API.
      */
     public AccountingPurchaseOrdersAllRequest withServiceId(Optional<String> serviceId) {
         Utils.checkNotNull(serviceId, "serviceId");
@@ -271,7 +279,8 @@ public class AccountingPurchaseOrdersAllRequest {
     }
 
     /**
-     * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
+     * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of
+     * the response.
      */
     public AccountingPurchaseOrdersAllRequest withCursor(String cursor) {
         Utils.checkNotNull(cursor, "cursor");
@@ -280,7 +289,8 @@ public class AccountingPurchaseOrdersAllRequest {
     }
 
     /**
-     * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
+     * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of
+     * the response.
      */
     public AccountingPurchaseOrdersAllRequest withCursor(JsonNullable<String> cursor) {
         Utils.checkNotNull(cursor, "cursor");
@@ -289,7 +299,8 @@ public class AccountingPurchaseOrdersAllRequest {
     }
 
     /**
-     * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads
+     * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie:
+     * ?pass_through[search]=leads becomes ?search=leads
      */
     public AccountingPurchaseOrdersAllRequest withPassThrough(Map<String, Object> passThrough) {
         Utils.checkNotNull(passThrough, "passThrough");
@@ -299,7 +310,8 @@ public class AccountingPurchaseOrdersAllRequest {
 
 
     /**
-     * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads
+     * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie:
+     * ?pass_through[search]=leads becomes ?search=leads
      */
     public AccountingPurchaseOrdersAllRequest withPassThrough(Optional<? extends Map<String, Object>> passThrough) {
         Utils.checkNotNull(passThrough, "passThrough");
@@ -491,7 +503,8 @@ public class AccountingPurchaseOrdersAllRequest {
 
 
         /**
-         * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
+         * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated
+         * multiple integrations for a Unified API.
          */
         public Builder serviceId(String serviceId) {
             Utils.checkNotNull(serviceId, "serviceId");
@@ -500,7 +513,8 @@ public class AccountingPurchaseOrdersAllRequest {
         }
 
         /**
-         * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
+         * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated
+         * multiple integrations for a Unified API.
          */
         public Builder serviceId(Optional<String> serviceId) {
             Utils.checkNotNull(serviceId, "serviceId");
@@ -510,7 +524,8 @@ public class AccountingPurchaseOrdersAllRequest {
 
 
         /**
-         * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
+         * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of
+         * the response.
          */
         public Builder cursor(String cursor) {
             Utils.checkNotNull(cursor, "cursor");
@@ -519,7 +534,8 @@ public class AccountingPurchaseOrdersAllRequest {
         }
 
         /**
-         * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
+         * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of
+         * the response.
          */
         public Builder cursor(JsonNullable<String> cursor) {
             Utils.checkNotNull(cursor, "cursor");
@@ -529,7 +545,8 @@ public class AccountingPurchaseOrdersAllRequest {
 
 
         /**
-         * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads
+         * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie:
+         * ?pass_through[search]=leads becomes ?search=leads
          */
         public Builder passThrough(Map<String, Object> passThrough) {
             Utils.checkNotNull(passThrough, "passThrough");
@@ -538,7 +555,8 @@ public class AccountingPurchaseOrdersAllRequest {
         }
 
         /**
-         * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads
+         * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie:
+         * ?pass_through[search]=leads becomes ?search=leads
          */
         public Builder passThrough(Optional<? extends Map<String, Object>> passThrough) {
             Utils.checkNotNull(passThrough, "passThrough");

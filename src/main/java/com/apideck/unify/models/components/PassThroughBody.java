@@ -26,7 +26,8 @@ public class PassThroughBody {
     private String serviceId;
 
     /**
-     * Optional identifier for a workflow operation to which this pass_through should be applied. This is useful for Unify calls that are making more than one downstream request.
+     * Optional identifier for a workflow operation to which this pass_through should be applied. This is
+     * useful for Unify calls that are making more than one downstream request.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("operation_id")
@@ -77,7 +78,8 @@ public class PassThroughBody {
     }
 
     /**
-     * Optional identifier for a workflow operation to which this pass_through should be applied. This is useful for Unify calls that are making more than one downstream request.
+     * Optional identifier for a workflow operation to which this pass_through should be applied. This is
+     * useful for Unify calls that are making more than one downstream request.
      */
     @JsonIgnore
     public Optional<String> operationId() {
@@ -117,7 +119,8 @@ public class PassThroughBody {
     }
 
     /**
-     * Optional identifier for a workflow operation to which this pass_through should be applied. This is useful for Unify calls that are making more than one downstream request.
+     * Optional identifier for a workflow operation to which this pass_through should be applied. This is
+     * useful for Unify calls that are making more than one downstream request.
      */
     public PassThroughBody withOperationId(String operationId) {
         Utils.checkNotNull(operationId, "operationId");
@@ -127,7 +130,8 @@ public class PassThroughBody {
 
 
     /**
-     * Optional identifier for a workflow operation to which this pass_through should be applied. This is useful for Unify calls that are making more than one downstream request.
+     * Optional identifier for a workflow operation to which this pass_through should be applied. This is
+     * useful for Unify calls that are making more than one downstream request.
      */
     public PassThroughBody withOperationId(Optional<String> operationId) {
         Utils.checkNotNull(operationId, "operationId");
@@ -232,7 +236,8 @@ public class PassThroughBody {
 
 
         /**
-         * Optional identifier for a workflow operation to which this pass_through should be applied. This is useful for Unify calls that are making more than one downstream request.
+         * Optional identifier for a workflow operation to which this pass_through should be applied. This is
+         * useful for Unify calls that are making more than one downstream request.
          */
         public Builder operationId(String operationId) {
             Utils.checkNotNull(operationId, "operationId");
@@ -241,7 +246,8 @@ public class PassThroughBody {
         }
 
         /**
-         * Optional identifier for a workflow operation to which this pass_through should be applied. This is useful for Unify calls that are making more than one downstream request.
+         * Optional identifier for a workflow operation to which this pass_through should be applied. This is
+         * useful for Unify calls that are making more than one downstream request.
          */
         public Builder operationId(Optional<String> operationId) {
             Utils.checkNotNull(operationId, "operationId");

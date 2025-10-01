@@ -16,7 +16,11 @@ import java.util.Optional;
 
 public class DeleteConsumerResponseData {
     /**
-     * Unique consumer identifier. You can freely choose a consumer ID yourself. Most of the time, this is an ID of your internal data model that represents a user or account in your system (for example account:12345). If the consumer doesn't exist yet, Vault will upsert a consumer based on your ID.
+     * Unique consumer identifier. You can freely choose a consumer ID yourself. Most of the time, this is
+     * an ID of your internal data model that represents a user or account in your system (for example
+     * account:12345).
+     * 
+     * <p>If the consumer doesn't exist yet, Vault will upsert a consumer based on your ID.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("consumer_id")
@@ -34,7 +38,11 @@ public class DeleteConsumerResponseData {
     }
 
     /**
-     * Unique consumer identifier. You can freely choose a consumer ID yourself. Most of the time, this is an ID of your internal data model that represents a user or account in your system (for example account:12345). If the consumer doesn't exist yet, Vault will upsert a consumer based on your ID.
+     * Unique consumer identifier. You can freely choose a consumer ID yourself. Most of the time, this is
+     * an ID of your internal data model that represents a user or account in your system (for example
+     * account:12345).
+     * 
+     * <p>If the consumer doesn't exist yet, Vault will upsert a consumer based on your ID.
      */
     @JsonIgnore
     public Optional<String> consumerId() {
@@ -47,7 +55,11 @@ public class DeleteConsumerResponseData {
 
 
     /**
-     * Unique consumer identifier. You can freely choose a consumer ID yourself. Most of the time, this is an ID of your internal data model that represents a user or account in your system (for example account:12345). If the consumer doesn't exist yet, Vault will upsert a consumer based on your ID.
+     * Unique consumer identifier. You can freely choose a consumer ID yourself. Most of the time, this is
+     * an ID of your internal data model that represents a user or account in your system (for example
+     * account:12345).
+     * 
+     * <p>If the consumer doesn't exist yet, Vault will upsert a consumer based on your ID.
      */
     public DeleteConsumerResponseData withConsumerId(String consumerId) {
         Utils.checkNotNull(consumerId, "consumerId");
@@ -57,7 +69,11 @@ public class DeleteConsumerResponseData {
 
 
     /**
-     * Unique consumer identifier. You can freely choose a consumer ID yourself. Most of the time, this is an ID of your internal data model that represents a user or account in your system (for example account:12345). If the consumer doesn't exist yet, Vault will upsert a consumer based on your ID.
+     * Unique consumer identifier. You can freely choose a consumer ID yourself. Most of the time, this is
+     * an ID of your internal data model that represents a user or account in your system (for example
+     * account:12345).
+     * 
+     * <p>If the consumer doesn't exist yet, Vault will upsert a consumer based on your ID.
      */
     public DeleteConsumerResponseData withConsumerId(Optional<String> consumerId) {
         Utils.checkNotNull(consumerId, "consumerId");
@@ -101,7 +117,11 @@ public class DeleteConsumerResponseData {
 
 
         /**
-         * Unique consumer identifier. You can freely choose a consumer ID yourself. Most of the time, this is an ID of your internal data model that represents a user or account in your system (for example account:12345). If the consumer doesn't exist yet, Vault will upsert a consumer based on your ID.
+         * Unique consumer identifier. You can freely choose a consumer ID yourself. Most of the time, this is
+         * an ID of your internal data model that represents a user or account in your system (for example
+         * account:12345).
+         * 
+         * <p>If the consumer doesn't exist yet, Vault will upsert a consumer based on your ID.
          */
         public Builder consumerId(String consumerId) {
             Utils.checkNotNull(consumerId, "consumerId");
@@ -110,7 +130,11 @@ public class DeleteConsumerResponseData {
         }
 
         /**
-         * Unique consumer identifier. You can freely choose a consumer ID yourself. Most of the time, this is an ID of your internal data model that represents a user or account in your system (for example account:12345). If the consumer doesn't exist yet, Vault will upsert a consumer based on your ID.
+         * Unique consumer identifier. You can freely choose a consumer ID yourself. Most of the time, this is
+         * an ID of your internal data model that represents a user or account in your system (for example
+         * account:12345).
+         * 
+         * <p>If the consumer doesn't exist yet, Vault will upsert a consumer based on your ID.
          */
         public Builder consumerId(Optional<String> consumerId) {
             Utils.checkNotNull(consumerId, "consumerId");

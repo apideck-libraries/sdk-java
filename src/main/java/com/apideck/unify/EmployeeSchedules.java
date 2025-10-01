@@ -37,7 +37,8 @@ public class EmployeeSchedules {
     /**
      * List Employee Schedules
      * 
-     * <p>List schedules for employee, a schedule is a work pattern, not the actual worked hours, for an employee.
+     * <p>List schedules for employee, a schedule is a work pattern, not the actual worked hours, for an
+     * employee.
      * 
      * @return The call builder
      */
@@ -48,7 +49,8 @@ public class EmployeeSchedules {
     /**
      * List Employee Schedules
      * 
-     * <p>List schedules for employee, a schedule is a work pattern, not the actual worked hours, for an employee.
+     * <p>List schedules for employee, a schedule is a work pattern, not the actual worked hours, for an
+     * employee.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -61,7 +63,8 @@ public class EmployeeSchedules {
     /**
      * List Employee Schedules
      * 
-     * <p>List schedules for employee, a schedule is a work pattern, not the actual worked hours, for an employee.
+     * <p>List schedules for employee, a schedule is a work pattern, not the actual worked hours, for an
+     * employee.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options

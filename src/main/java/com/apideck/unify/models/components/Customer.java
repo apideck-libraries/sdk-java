@@ -64,6 +64,13 @@ public class Customer {
     private JsonNullable<String> companyId;
 
     /**
+     * The category/type of the customer
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("customer_category")
+    private JsonNullable<String> customerCategory;
+
+    /**
      * The job title of the person.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -153,7 +160,8 @@ public class Customer {
     private JsonNullable<String> taxNumber;
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("currency")
@@ -184,6 +192,13 @@ public class Customer {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("payment_method")
     private JsonNullable<String> paymentMethod;
+
+    /**
+     * Terms of payment.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("terms")
+    private JsonNullable<String> terms;
 
     /**
      * The channel through which the transaction is processed.
@@ -233,14 +248,16 @@ public class Customer {
     private JsonNullable<OffsetDateTime> createdAt;
 
     /**
-     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+     * time an update is made to the object.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("row_version")
     private JsonNullable<String> rowVersion;
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pass_through")
@@ -254,6 +271,7 @@ public class Customer {
             @JsonProperty("display_name") JsonNullable<String> displayName,
             @JsonProperty("company_name") JsonNullable<String> companyName,
             @JsonProperty("company_id") JsonNullable<String> companyId,
+            @JsonProperty("customer_category") JsonNullable<String> customerCategory,
             @JsonProperty("title") JsonNullable<String> title,
             @JsonProperty("first_name") JsonNullable<String> firstName,
             @JsonProperty("middle_name") JsonNullable<String> middleName,
@@ -274,6 +292,7 @@ public class Customer {
             @JsonProperty("parent") JsonNullable<? extends LinkedParentCustomer> parent,
             @JsonProperty("status") JsonNullable<? extends CustomerStatusStatus> status,
             @JsonProperty("payment_method") JsonNullable<String> paymentMethod,
+            @JsonProperty("terms") JsonNullable<String> terms,
             @JsonProperty("channel") JsonNullable<String> channel,
             @JsonProperty("custom_fields") Optional<? extends List<CustomField>> customFields,
             @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings,
@@ -289,6 +308,7 @@ public class Customer {
         Utils.checkNotNull(displayName, "displayName");
         Utils.checkNotNull(companyName, "companyName");
         Utils.checkNotNull(companyId, "companyId");
+        Utils.checkNotNull(customerCategory, "customerCategory");
         Utils.checkNotNull(title, "title");
         Utils.checkNotNull(firstName, "firstName");
         Utils.checkNotNull(middleName, "middleName");
@@ -309,6 +329,7 @@ public class Customer {
         Utils.checkNotNull(parent, "parent");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(paymentMethod, "paymentMethod");
+        Utils.checkNotNull(terms, "terms");
         Utils.checkNotNull(channel, "channel");
         Utils.checkNotNull(customFields, "customFields");
         Utils.checkNotNull(customMappings, "customMappings");
@@ -324,6 +345,7 @@ public class Customer {
         this.displayName = displayName;
         this.companyName = companyName;
         this.companyId = companyId;
+        this.customerCategory = customerCategory;
         this.title = title;
         this.firstName = firstName;
         this.middleName = middleName;
@@ -344,6 +366,7 @@ public class Customer {
         this.parent = parent;
         this.status = status;
         this.paymentMethod = paymentMethod;
+        this.terms = terms;
         this.channel = channel;
         this.customFields = customFields;
         this.customMappings = customMappings;
@@ -361,14 +384,15 @@ public class Customer {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -417,6 +441,14 @@ public class Customer {
     @JsonIgnore
     public JsonNullable<String> companyId() {
         return companyId;
+    }
+
+    /**
+     * The category/type of the customer
+     */
+    @JsonIgnore
+    public JsonNullable<String> customerCategory() {
+        return customerCategory;
     }
 
     /**
@@ -522,7 +554,8 @@ public class Customer {
     }
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -560,6 +593,14 @@ public class Customer {
     @JsonIgnore
     public JsonNullable<String> paymentMethod() {
         return paymentMethod;
+    }
+
+    /**
+     * Terms of payment.
+     */
+    @JsonIgnore
+    public JsonNullable<String> terms() {
+        return terms;
     }
 
     /**
@@ -618,7 +659,8 @@ public class Customer {
     }
 
     /**
-     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+     * time an update is made to the object.
      */
     @JsonIgnore
     public JsonNullable<String> rowVersion() {
@@ -626,7 +668,8 @@ public class Customer {
     }
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -735,6 +778,24 @@ public class Customer {
     public Customer withCompanyId(JsonNullable<String> companyId) {
         Utils.checkNotNull(companyId, "companyId");
         this.companyId = companyId;
+        return this;
+    }
+
+    /**
+     * The category/type of the customer
+     */
+    public Customer withCustomerCategory(String customerCategory) {
+        Utils.checkNotNull(customerCategory, "customerCategory");
+        this.customerCategory = JsonNullable.of(customerCategory);
+        return this;
+    }
+
+    /**
+     * The category/type of the customer
+     */
+    public Customer withCustomerCategory(JsonNullable<String> customerCategory) {
+        Utils.checkNotNull(customerCategory, "customerCategory");
+        this.customerCategory = customerCategory;
         return this;
     }
 
@@ -967,7 +1028,8 @@ public class Customer {
     }
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     public Customer withCurrency(Currency currency) {
         Utils.checkNotNull(currency, "currency");
@@ -976,7 +1038,8 @@ public class Customer {
     }
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     public Customer withCurrency(JsonNullable<? extends Currency> currency) {
         Utils.checkNotNull(currency, "currency");
@@ -1047,6 +1110,24 @@ public class Customer {
     public Customer withPaymentMethod(JsonNullable<String> paymentMethod) {
         Utils.checkNotNull(paymentMethod, "paymentMethod");
         this.paymentMethod = paymentMethod;
+        return this;
+    }
+
+    /**
+     * Terms of payment.
+     */
+    public Customer withTerms(String terms) {
+        Utils.checkNotNull(terms, "terms");
+        this.terms = JsonNullable.of(terms);
+        return this;
+    }
+
+    /**
+     * Terms of payment.
+     */
+    public Customer withTerms(JsonNullable<String> terms) {
+        Utils.checkNotNull(terms, "terms");
+        this.terms = terms;
         return this;
     }
 
@@ -1172,7 +1253,8 @@ public class Customer {
     }
 
     /**
-     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+     * time an update is made to the object.
      */
     public Customer withRowVersion(String rowVersion) {
         Utils.checkNotNull(rowVersion, "rowVersion");
@@ -1181,7 +1263,8 @@ public class Customer {
     }
 
     /**
-     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+     * time an update is made to the object.
      */
     public Customer withRowVersion(JsonNullable<String> rowVersion) {
         Utils.checkNotNull(rowVersion, "rowVersion");
@@ -1190,7 +1273,8 @@ public class Customer {
     }
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     public Customer withPassThrough(List<PassThroughBody> passThrough) {
         Utils.checkNotNull(passThrough, "passThrough");
@@ -1200,7 +1284,8 @@ public class Customer {
 
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     public Customer withPassThrough(Optional<? extends List<PassThroughBody>> passThrough) {
         Utils.checkNotNull(passThrough, "passThrough");
@@ -1224,6 +1309,7 @@ public class Customer {
             Utils.enhancedDeepEquals(this.displayName, other.displayName) &&
             Utils.enhancedDeepEquals(this.companyName, other.companyName) &&
             Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
+            Utils.enhancedDeepEquals(this.customerCategory, other.customerCategory) &&
             Utils.enhancedDeepEquals(this.title, other.title) &&
             Utils.enhancedDeepEquals(this.firstName, other.firstName) &&
             Utils.enhancedDeepEquals(this.middleName, other.middleName) &&
@@ -1244,6 +1330,7 @@ public class Customer {
             Utils.enhancedDeepEquals(this.parent, other.parent) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.paymentMethod, other.paymentMethod) &&
+            Utils.enhancedDeepEquals(this.terms, other.terms) &&
             Utils.enhancedDeepEquals(this.channel, other.channel) &&
             Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
             Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
@@ -1260,16 +1347,17 @@ public class Customer {
         return Utils.enhancedHash(
             id, downstreamId, displayId,
             displayName, companyName, companyId,
-            title, firstName, middleName,
-            lastName, suffix, individual,
-            project, addresses, phoneNumbers,
-            emails, websites, bankAccounts,
-            notes, taxRate, taxNumber,
-            currency, account, parent,
-            status, paymentMethod, channel,
-            customFields, customMappings, updatedBy,
-            createdBy, updatedAt, createdAt,
-            rowVersion, passThrough);
+            customerCategory, title, firstName,
+            middleName, lastName, suffix,
+            individual, project, addresses,
+            phoneNumbers, emails, websites,
+            bankAccounts, notes, taxRate,
+            taxNumber, currency, account,
+            parent, status, paymentMethod,
+            terms, channel, customFields,
+            customMappings, updatedBy, createdBy,
+            updatedAt, createdAt, rowVersion,
+            passThrough);
     }
     
     @Override
@@ -1281,6 +1369,7 @@ public class Customer {
                 "displayName", displayName,
                 "companyName", companyName,
                 "companyId", companyId,
+                "customerCategory", customerCategory,
                 "title", title,
                 "firstName", firstName,
                 "middleName", middleName,
@@ -1301,6 +1390,7 @@ public class Customer {
                 "parent", parent,
                 "status", status,
                 "paymentMethod", paymentMethod,
+                "terms", terms,
                 "channel", channel,
                 "customFields", customFields,
                 "customMappings", customMappings,
@@ -1326,6 +1416,8 @@ public class Customer {
         private JsonNullable<String> companyName = JsonNullable.undefined();
 
         private JsonNullable<String> companyId = JsonNullable.undefined();
+
+        private JsonNullable<String> customerCategory = JsonNullable.undefined();
 
         private JsonNullable<String> title = JsonNullable.undefined();
 
@@ -1366,6 +1458,8 @@ public class Customer {
         private JsonNullable<? extends CustomerStatusStatus> status = JsonNullable.undefined();
 
         private JsonNullable<String> paymentMethod = JsonNullable.undefined();
+
+        private JsonNullable<String> terms = JsonNullable.undefined();
 
         private JsonNullable<String> channel = JsonNullable.undefined();
 
@@ -1491,6 +1585,25 @@ public class Customer {
         public Builder companyId(JsonNullable<String> companyId) {
             Utils.checkNotNull(companyId, "companyId");
             this.companyId = companyId;
+            return this;
+        }
+
+
+        /**
+         * The category/type of the customer
+         */
+        public Builder customerCategory(String customerCategory) {
+            Utils.checkNotNull(customerCategory, "customerCategory");
+            this.customerCategory = JsonNullable.of(customerCategory);
+            return this;
+        }
+
+        /**
+         * The category/type of the customer
+         */
+        public Builder customerCategory(JsonNullable<String> customerCategory) {
+            Utils.checkNotNull(customerCategory, "customerCategory");
+            this.customerCategory = customerCategory;
             return this;
         }
 
@@ -1733,7 +1846,8 @@ public class Customer {
 
 
         /**
-         * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+         * Indicates the associated currency for an amount of money. Values correspond to [ISO
+         * 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
         public Builder currency(Currency currency) {
             Utils.checkNotNull(currency, "currency");
@@ -1742,7 +1856,8 @@ public class Customer {
         }
 
         /**
-         * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+         * Indicates the associated currency for an amount of money. Values correspond to [ISO
+         * 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
         public Builder currency(JsonNullable<? extends Currency> currency) {
             Utils.checkNotNull(currency, "currency");
@@ -1817,6 +1932,25 @@ public class Customer {
         public Builder paymentMethod(JsonNullable<String> paymentMethod) {
             Utils.checkNotNull(paymentMethod, "paymentMethod");
             this.paymentMethod = paymentMethod;
+            return this;
+        }
+
+
+        /**
+         * Terms of payment.
+         */
+        public Builder terms(String terms) {
+            Utils.checkNotNull(terms, "terms");
+            this.terms = JsonNullable.of(terms);
+            return this;
+        }
+
+        /**
+         * Terms of payment.
+         */
+        public Builder terms(JsonNullable<String> terms) {
+            Utils.checkNotNull(terms, "terms");
+            this.terms = terms;
             return this;
         }
 
@@ -1949,7 +2083,8 @@ public class Customer {
 
 
         /**
-         * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+         * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+         * time an update is made to the object.
          */
         public Builder rowVersion(String rowVersion) {
             Utils.checkNotNull(rowVersion, "rowVersion");
@@ -1958,7 +2093,8 @@ public class Customer {
         }
 
         /**
-         * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+         * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+         * time an update is made to the object.
          */
         public Builder rowVersion(JsonNullable<String> rowVersion) {
             Utils.checkNotNull(rowVersion, "rowVersion");
@@ -1968,7 +2104,8 @@ public class Customer {
 
 
         /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+         * The pass_through property allows passing service-specific, custom data or structured modifications
+         * in request body when creating or updating resources.
          */
         public Builder passThrough(List<PassThroughBody> passThrough) {
             Utils.checkNotNull(passThrough, "passThrough");
@@ -1977,7 +2114,8 @@ public class Customer {
         }
 
         /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+         * The pass_through property allows passing service-specific, custom data or structured modifications
+         * in request body when creating or updating resources.
          */
         public Builder passThrough(Optional<? extends List<PassThroughBody>> passThrough) {
             Utils.checkNotNull(passThrough, "passThrough");
@@ -1990,16 +2128,17 @@ public class Customer {
             return new Customer(
                 id, downstreamId, displayId,
                 displayName, companyName, companyId,
-                title, firstName, middleName,
-                lastName, suffix, individual,
-                project, addresses, phoneNumbers,
-                emails, websites, bankAccounts,
-                notes, taxRate, taxNumber,
-                currency, account, parent,
-                status, paymentMethod, channel,
-                customFields, customMappings, updatedBy,
-                createdBy, updatedAt, createdAt,
-                rowVersion, passThrough);
+                customerCategory, title, firstName,
+                middleName, lastName, suffix,
+                individual, project, addresses,
+                phoneNumbers, emails, websites,
+                bankAccounts, notes, taxRate,
+                taxNumber, currency, account,
+                parent, status, paymentMethod,
+                terms, channel, customFields,
+                customMappings, updatedBy, createdBy,
+                updatedAt, createdAt, rowVersion,
+                passThrough);
         }
 
     }

@@ -68,7 +68,7 @@ public class AsyncContacts {
      * <p>List contacts
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CrmContactsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmContactsAllResponse>} - The async response
      */
     public CompletableFuture<CrmContactsAllResponse> list(CrmContactsAllRequest request) {
         return list(request, Optional.empty());
@@ -81,7 +81,7 @@ public class AsyncContacts {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;CrmContactsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmContactsAllResponse>} - The async response
      */
     public CompletableFuture<CrmContactsAllResponse> list(CrmContactsAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmContactsAllRequest, CrmContactsAllResponse> operation
@@ -110,7 +110,7 @@ public class AsyncContacts {
      * <p>Create contact
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CrmContactsAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmContactsAddResponse>} - The async response
      */
     public CompletableFuture<CrmContactsAddResponse> create(CrmContactsAddRequest request) {
         return create(request, Optional.empty());
@@ -123,7 +123,7 @@ public class AsyncContacts {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;CrmContactsAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmContactsAddResponse>} - The async response
      */
     public CompletableFuture<CrmContactsAddResponse> create(CrmContactsAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmContactsAddRequest, CrmContactsAddResponse> operation
@@ -152,7 +152,7 @@ public class AsyncContacts {
      * <p>Get contact
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CrmContactsOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmContactsOneResponse>} - The async response
      */
     public CompletableFuture<CrmContactsOneResponse> get(CrmContactsOneRequest request) {
         return get(request, Optional.empty());
@@ -165,7 +165,7 @@ public class AsyncContacts {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;CrmContactsOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmContactsOneResponse>} - The async response
      */
     public CompletableFuture<CrmContactsOneResponse> get(CrmContactsOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmContactsOneRequest, CrmContactsOneResponse> operation
@@ -194,7 +194,7 @@ public class AsyncContacts {
      * <p>Update contact
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CrmContactsUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmContactsUpdateResponse>} - The async response
      */
     public CompletableFuture<CrmContactsUpdateResponse> update(CrmContactsUpdateRequest request) {
         return update(request, Optional.empty());
@@ -207,7 +207,7 @@ public class AsyncContacts {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;CrmContactsUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmContactsUpdateResponse>} - The async response
      */
     public CompletableFuture<CrmContactsUpdateResponse> update(CrmContactsUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmContactsUpdateRequest, CrmContactsUpdateResponse> operation
@@ -236,7 +236,7 @@ public class AsyncContacts {
      * <p>Delete contact
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;CrmContactsDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmContactsDeleteResponse>} - The async response
      */
     public CompletableFuture<CrmContactsDeleteResponse> delete(CrmContactsDeleteRequest request) {
         return delete(request, Optional.empty());
@@ -249,7 +249,7 @@ public class AsyncContacts {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;CrmContactsDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<CrmContactsDeleteResponse>} - The async response
      */
     public CompletableFuture<CrmContactsDeleteResponse> delete(CrmContactsDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<CrmContactsDeleteRequest, CrmContactsDeleteResponse> operation

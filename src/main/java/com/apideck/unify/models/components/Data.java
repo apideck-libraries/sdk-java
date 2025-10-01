@@ -29,7 +29,8 @@ public class Data {
     private Optional<String> applicationId;
 
     /**
-     * The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional, but recommended.
+     * The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional,
+     * but recommended.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
@@ -113,7 +114,8 @@ public class Data {
     }
 
     /**
-     * The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional, but recommended.
+     * The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional,
+     * but recommended.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -185,7 +187,8 @@ public class Data {
     }
 
     /**
-     * The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional, but recommended.
+     * The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional,
+     * but recommended.
      */
     public Data withMetadata(ConsumerMetadata metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -195,7 +198,8 @@ public class Data {
 
 
     /**
-     * The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional, but recommended.
+     * The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional,
+     * but recommended.
      */
     public Data withMetadata(Optional<? extends ConsumerMetadata> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -377,7 +381,8 @@ public class Data {
 
 
         /**
-         * The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional, but recommended.
+         * The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional,
+         * but recommended.
          */
         public Builder metadata(ConsumerMetadata metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -386,7 +391,8 @@ public class Data {
         }
 
         /**
-         * The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional, but recommended.
+         * The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional,
+         * but recommended.
          */
         public Builder metadata(Optional<? extends ConsumerMetadata> metadata) {
             Utils.checkNotNull(metadata, "metadata");

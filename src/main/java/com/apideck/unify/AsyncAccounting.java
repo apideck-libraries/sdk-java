@@ -37,6 +37,7 @@ public class AsyncAccounting {
     private final AsyncBankFeedStatements bankFeedStatements;
     private final AsyncCategories categories;
     private final AsyncQuotes quotes;
+    private final AsyncProjects projects;
     private final Accounting syncSDK;
 
     AsyncAccounting(Accounting syncSDK, SDKConfiguration sdkConfiguration) {
@@ -69,6 +70,7 @@ public class AsyncAccounting {
         this.bankFeedStatements = new AsyncBankFeedStatements(syncSDK.bankFeedStatements(), this.sdkConfiguration);
         this.categories = new AsyncCategories(syncSDK.categories(), this.sdkConfiguration);
         this.quotes = new AsyncQuotes(syncSDK.quotes(), this.sdkConfiguration);
+        this.projects = new AsyncProjects(syncSDK.projects(), this.sdkConfiguration);
         this.syncSDK = syncSDK;
     }
 
@@ -182,6 +184,10 @@ public class AsyncAccounting {
 
     public final AsyncQuotes quotes() {
         return quotes;
+    }
+
+    public final AsyncProjects projects() {
+        return projects;
     }
 
     /**

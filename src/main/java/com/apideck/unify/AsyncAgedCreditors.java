@@ -52,7 +52,7 @@ public class AsyncAgedCreditors {
      * <p>Get Aged Creditors
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingAgedCreditorsOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingAgedCreditorsOneResponse>} - The async response
      */
     public CompletableFuture<AccountingAgedCreditorsOneResponse> get(AccountingAgedCreditorsOneRequest request) {
         return get(request, Optional.empty());
@@ -65,7 +65,7 @@ public class AsyncAgedCreditors {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingAgedCreditorsOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingAgedCreditorsOneResponse>} - The async response
      */
     public CompletableFuture<AccountingAgedCreditorsOneResponse> get(AccountingAgedCreditorsOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingAgedCreditorsOneRequest, AccountingAgedCreditorsOneResponse> operation

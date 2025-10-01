@@ -56,7 +56,7 @@ public class AsyncProducts {
      * <p>List Products
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;EcommerceProductsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<EcommerceProductsAllResponse>} - The async response
      */
     public CompletableFuture<EcommerceProductsAllResponse> list(EcommerceProductsAllRequest request) {
         return list(request, Optional.empty());
@@ -69,7 +69,7 @@ public class AsyncProducts {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;EcommerceProductsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<EcommerceProductsAllResponse>} - The async response
      */
     public CompletableFuture<EcommerceProductsAllResponse> list(EcommerceProductsAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<EcommerceProductsAllRequest, EcommerceProductsAllResponse> operation
@@ -98,7 +98,7 @@ public class AsyncProducts {
      * <p>Get Product
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;EcommerceProductsOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<EcommerceProductsOneResponse>} - The async response
      */
     public CompletableFuture<EcommerceProductsOneResponse> get(EcommerceProductsOneRequest request) {
         return get(request, Optional.empty());
@@ -111,7 +111,7 @@ public class AsyncProducts {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;EcommerceProductsOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<EcommerceProductsOneResponse>} - The async response
      */
     public CompletableFuture<EcommerceProductsOneResponse> get(EcommerceProductsOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<EcommerceProductsOneRequest, EcommerceProductsOneResponse> operation

@@ -57,7 +57,8 @@ public class BillInput {
     private JsonNullable<String> departmentId;
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("currency")
@@ -99,7 +100,8 @@ public class BillInput {
     private JsonNullable<LocalDate> paidDate;
 
     /**
-     * A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer will match the PO number in the invoice to the Purchase Order.
+     * A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer
+     * will match the PO number in the invoice to the Purchase Order.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("po_number")
@@ -205,7 +207,8 @@ public class BillInput {
     private JsonNullable<String> language;
 
     /**
-     * Indicates if accounting by row is used (true) or not (false). Accounting by row means that a separate ledger transaction is created for each row.
+     * Indicates if accounting by row is used (true) or not (false). Accounting by row means that a
+     * separate ledger transaction is created for each row.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("accounting_by_row")
@@ -259,7 +262,8 @@ public class BillInput {
     private JsonNullable<Boolean> documentReceived;
 
     /**
-     * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
+     * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only
+     * supported for Xero.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("source_document_url")
@@ -273,7 +277,8 @@ public class BillInput {
     private JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories;
 
     /**
-     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+     * time an update is made to the object.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("row_version")
@@ -285,7 +290,8 @@ public class BillInput {
     private Optional<? extends List<CustomField>> customFields;
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pass_through")
@@ -492,7 +498,8 @@ public class BillInput {
     }
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -541,7 +548,8 @@ public class BillInput {
     }
 
     /**
-     * A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer will match the PO number in the invoice to the Purchase Order.
+     * A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer
+     * will match the PO number in the invoice to the Purchase Order.
      */
     @JsonIgnore
     public JsonNullable<String> poNumber() {
@@ -663,7 +671,8 @@ public class BillInput {
     }
 
     /**
-     * Indicates if accounting by row is used (true) or not (false). Accounting by row means that a separate ledger transaction is created for each row.
+     * Indicates if accounting by row is used (true) or not (false). Accounting by row means that a
+     * separate ledger transaction is created for each row.
      */
     @JsonIgnore
     public JsonNullable<Boolean> accountingByRow() {
@@ -726,7 +735,8 @@ public class BillInput {
     }
 
     /**
-     * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
+     * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only
+     * supported for Xero.
      */
     @JsonIgnore
     public JsonNullable<String> sourceDocumentUrl() {
@@ -743,7 +753,8 @@ public class BillInput {
     }
 
     /**
-     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+     * time an update is made to the object.
      */
     @JsonIgnore
     public JsonNullable<String> rowVersion() {
@@ -757,7 +768,8 @@ public class BillInput {
     }
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -875,7 +887,8 @@ public class BillInput {
     }
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     public BillInput withCurrency(Currency currency) {
         Utils.checkNotNull(currency, "currency");
@@ -884,7 +897,8 @@ public class BillInput {
     }
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     public BillInput withCurrency(JsonNullable<? extends Currency> currency) {
         Utils.checkNotNull(currency, "currency");
@@ -983,7 +997,8 @@ public class BillInput {
     }
 
     /**
-     * A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer will match the PO number in the invoice to the Purchase Order.
+     * A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer
+     * will match the PO number in the invoice to the Purchase Order.
      */
     public BillInput withPoNumber(String poNumber) {
         Utils.checkNotNull(poNumber, "poNumber");
@@ -992,7 +1007,8 @@ public class BillInput {
     }
 
     /**
-     * A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer will match the PO number in the invoice to the Purchase Order.
+     * A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer
+     * will match the PO number in the invoice to the Purchase Order.
      */
     public BillInput withPoNumber(JsonNullable<String> poNumber) {
         Utils.checkNotNull(poNumber, "poNumber");
@@ -1254,7 +1270,8 @@ public class BillInput {
     }
 
     /**
-     * Indicates if accounting by row is used (true) or not (false). Accounting by row means that a separate ledger transaction is created for each row.
+     * Indicates if accounting by row is used (true) or not (false). Accounting by row means that a
+     * separate ledger transaction is created for each row.
      */
     public BillInput withAccountingByRow(boolean accountingByRow) {
         Utils.checkNotNull(accountingByRow, "accountingByRow");
@@ -1263,7 +1280,8 @@ public class BillInput {
     }
 
     /**
-     * Indicates if accounting by row is used (true) or not (false). Accounting by row means that a separate ledger transaction is created for each row.
+     * Indicates if accounting by row is used (true) or not (false). Accounting by row means that a
+     * separate ledger transaction is created for each row.
      */
     public BillInput withAccountingByRow(JsonNullable<Boolean> accountingByRow) {
         Utils.checkNotNull(accountingByRow, "accountingByRow");
@@ -1393,7 +1411,8 @@ public class BillInput {
     }
 
     /**
-     * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
+     * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only
+     * supported for Xero.
      */
     public BillInput withSourceDocumentUrl(String sourceDocumentUrl) {
         Utils.checkNotNull(sourceDocumentUrl, "sourceDocumentUrl");
@@ -1402,7 +1421,8 @@ public class BillInput {
     }
 
     /**
-     * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
+     * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only
+     * supported for Xero.
      */
     public BillInput withSourceDocumentUrl(JsonNullable<String> sourceDocumentUrl) {
         Utils.checkNotNull(sourceDocumentUrl, "sourceDocumentUrl");
@@ -1429,7 +1449,8 @@ public class BillInput {
     }
 
     /**
-     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+     * time an update is made to the object.
      */
     public BillInput withRowVersion(String rowVersion) {
         Utils.checkNotNull(rowVersion, "rowVersion");
@@ -1438,7 +1459,8 @@ public class BillInput {
     }
 
     /**
-     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+     * time an update is made to the object.
      */
     public BillInput withRowVersion(JsonNullable<String> rowVersion) {
         Utils.checkNotNull(rowVersion, "rowVersion");
@@ -1460,7 +1482,8 @@ public class BillInput {
     }
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     public BillInput withPassThrough(List<PassThroughBody> passThrough) {
         Utils.checkNotNull(passThrough, "passThrough");
@@ -1470,7 +1493,8 @@ public class BillInput {
 
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     public BillInput withPassThrough(Optional<? extends List<PassThroughBody>> passThrough) {
         Utils.checkNotNull(passThrough, "passThrough");
@@ -1817,7 +1841,8 @@ public class BillInput {
 
 
         /**
-         * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+         * Indicates the associated currency for an amount of money. Values correspond to [ISO
+         * 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
         public Builder currency(Currency currency) {
             Utils.checkNotNull(currency, "currency");
@@ -1826,7 +1851,8 @@ public class BillInput {
         }
 
         /**
-         * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+         * Indicates the associated currency for an amount of money. Values correspond to [ISO
+         * 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
         public Builder currency(JsonNullable<? extends Currency> currency) {
             Utils.checkNotNull(currency, "currency");
@@ -1931,7 +1957,8 @@ public class BillInput {
 
 
         /**
-         * A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer will match the PO number in the invoice to the Purchase Order.
+         * A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer
+         * will match the PO number in the invoice to the Purchase Order.
          */
         public Builder poNumber(String poNumber) {
             Utils.checkNotNull(poNumber, "poNumber");
@@ -1940,7 +1967,8 @@ public class BillInput {
         }
 
         /**
-         * A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer will match the PO number in the invoice to the Purchase Order.
+         * A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer
+         * will match the PO number in the invoice to the Purchase Order.
          */
         public Builder poNumber(JsonNullable<String> poNumber) {
             Utils.checkNotNull(poNumber, "poNumber");
@@ -2217,7 +2245,8 @@ public class BillInput {
 
 
         /**
-         * Indicates if accounting by row is used (true) or not (false). Accounting by row means that a separate ledger transaction is created for each row.
+         * Indicates if accounting by row is used (true) or not (false). Accounting by row means that a
+         * separate ledger transaction is created for each row.
          */
         public Builder accountingByRow(boolean accountingByRow) {
             Utils.checkNotNull(accountingByRow, "accountingByRow");
@@ -2226,7 +2255,8 @@ public class BillInput {
         }
 
         /**
-         * Indicates if accounting by row is used (true) or not (false). Accounting by row means that a separate ledger transaction is created for each row.
+         * Indicates if accounting by row is used (true) or not (false). Accounting by row means that a
+         * separate ledger transaction is created for each row.
          */
         public Builder accountingByRow(JsonNullable<Boolean> accountingByRow) {
             Utils.checkNotNull(accountingByRow, "accountingByRow");
@@ -2363,7 +2393,8 @@ public class BillInput {
 
 
         /**
-         * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
+         * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only
+         * supported for Xero.
          */
         public Builder sourceDocumentUrl(String sourceDocumentUrl) {
             Utils.checkNotNull(sourceDocumentUrl, "sourceDocumentUrl");
@@ -2372,7 +2403,8 @@ public class BillInput {
         }
 
         /**
-         * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
+         * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only
+         * supported for Xero.
          */
         public Builder sourceDocumentUrl(JsonNullable<String> sourceDocumentUrl) {
             Utils.checkNotNull(sourceDocumentUrl, "sourceDocumentUrl");
@@ -2401,7 +2433,8 @@ public class BillInput {
 
 
         /**
-         * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+         * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+         * time an update is made to the object.
          */
         public Builder rowVersion(String rowVersion) {
             Utils.checkNotNull(rowVersion, "rowVersion");
@@ -2410,7 +2443,8 @@ public class BillInput {
         }
 
         /**
-         * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+         * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
+         * time an update is made to the object.
          */
         public Builder rowVersion(JsonNullable<String> rowVersion) {
             Utils.checkNotNull(rowVersion, "rowVersion");
@@ -2433,7 +2467,8 @@ public class BillInput {
 
 
         /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+         * The pass_through property allows passing service-specific, custom data or structured modifications
+         * in request body when creating or updating resources.
          */
         public Builder passThrough(List<PassThroughBody> passThrough) {
             Utils.checkNotNull(passThrough, "passThrough");
@@ -2442,7 +2477,8 @@ public class BillInput {
         }
 
         /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+         * The pass_through property allows passing service-specific, custom data or structured modifications
+         * in request body when creating or updating resources.
          */
         public Builder passThrough(Optional<? extends List<PassThroughBody>> passThrough) {
             Utils.checkNotNull(passThrough, "passThrough");

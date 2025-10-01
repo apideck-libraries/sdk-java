@@ -68,7 +68,7 @@ public class AsyncTimeOffRequests {
      * <p>List Time Off Requests
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;HrisTimeOffRequestsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<HrisTimeOffRequestsAllResponse>} - The async response
      */
     public CompletableFuture<HrisTimeOffRequestsAllResponse> list(HrisTimeOffRequestsAllRequest request) {
         return list(request, Optional.empty());
@@ -81,7 +81,7 @@ public class AsyncTimeOffRequests {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;HrisTimeOffRequestsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<HrisTimeOffRequestsAllResponse>} - The async response
      */
     public CompletableFuture<HrisTimeOffRequestsAllResponse> list(HrisTimeOffRequestsAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<HrisTimeOffRequestsAllRequest, HrisTimeOffRequestsAllResponse> operation
@@ -110,7 +110,7 @@ public class AsyncTimeOffRequests {
      * <p>Create Time Off Request
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;HrisTimeOffRequestsAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<HrisTimeOffRequestsAddResponse>} - The async response
      */
     public CompletableFuture<HrisTimeOffRequestsAddResponse> create(HrisTimeOffRequestsAddRequest request) {
         return create(request, Optional.empty());
@@ -123,7 +123,7 @@ public class AsyncTimeOffRequests {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;HrisTimeOffRequestsAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<HrisTimeOffRequestsAddResponse>} - The async response
      */
     public CompletableFuture<HrisTimeOffRequestsAddResponse> create(HrisTimeOffRequestsAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<HrisTimeOffRequestsAddRequest, HrisTimeOffRequestsAddResponse> operation
@@ -152,7 +152,7 @@ public class AsyncTimeOffRequests {
      * <p>Get Time Off Request
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;HrisTimeOffRequestsOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<HrisTimeOffRequestsOneResponse>} - The async response
      */
     public CompletableFuture<HrisTimeOffRequestsOneResponse> get(HrisTimeOffRequestsOneRequest request) {
         return get(request, Optional.empty());
@@ -165,7 +165,7 @@ public class AsyncTimeOffRequests {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;HrisTimeOffRequestsOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<HrisTimeOffRequestsOneResponse>} - The async response
      */
     public CompletableFuture<HrisTimeOffRequestsOneResponse> get(HrisTimeOffRequestsOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<HrisTimeOffRequestsOneRequest, HrisTimeOffRequestsOneResponse> operation
@@ -194,7 +194,7 @@ public class AsyncTimeOffRequests {
      * <p>Update Time Off Request
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;HrisTimeOffRequestsUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<HrisTimeOffRequestsUpdateResponse>} - The async response
      */
     public CompletableFuture<HrisTimeOffRequestsUpdateResponse> update(HrisTimeOffRequestsUpdateRequest request) {
         return update(request, Optional.empty());
@@ -207,7 +207,7 @@ public class AsyncTimeOffRequests {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;HrisTimeOffRequestsUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<HrisTimeOffRequestsUpdateResponse>} - The async response
      */
     public CompletableFuture<HrisTimeOffRequestsUpdateResponse> update(HrisTimeOffRequestsUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<HrisTimeOffRequestsUpdateRequest, HrisTimeOffRequestsUpdateResponse> operation
@@ -236,7 +236,7 @@ public class AsyncTimeOffRequests {
      * <p>Delete Time Off Request
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;HrisTimeOffRequestsDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<HrisTimeOffRequestsDeleteResponse>} - The async response
      */
     public CompletableFuture<HrisTimeOffRequestsDeleteResponse> delete(HrisTimeOffRequestsDeleteRequest request) {
         return delete(request, Optional.empty());
@@ -249,7 +249,7 @@ public class AsyncTimeOffRequests {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;HrisTimeOffRequestsDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<HrisTimeOffRequestsDeleteResponse>} - The async response
      */
     public CompletableFuture<HrisTimeOffRequestsDeleteResponse> delete(HrisTimeOffRequestsDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<HrisTimeOffRequestsDeleteRequest, HrisTimeOffRequestsDeleteResponse> operation

@@ -68,7 +68,7 @@ public class AsyncMessages {
      * <p>List Messages
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;SmsMessagesAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<SmsMessagesAllResponse>} - The async response
      */
     public CompletableFuture<SmsMessagesAllResponse> list(SmsMessagesAllRequest request) {
         return list(request, Optional.empty());
@@ -81,7 +81,7 @@ public class AsyncMessages {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;SmsMessagesAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<SmsMessagesAllResponse>} - The async response
      */
     public CompletableFuture<SmsMessagesAllResponse> list(SmsMessagesAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<SmsMessagesAllRequest, SmsMessagesAllResponse> operation
@@ -110,7 +110,7 @@ public class AsyncMessages {
      * <p>Create Message
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;SmsMessagesAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<SmsMessagesAddResponse>} - The async response
      */
     public CompletableFuture<SmsMessagesAddResponse> create(SmsMessagesAddRequest request) {
         return create(request, Optional.empty());
@@ -123,7 +123,7 @@ public class AsyncMessages {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;SmsMessagesAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<SmsMessagesAddResponse>} - The async response
      */
     public CompletableFuture<SmsMessagesAddResponse> create(SmsMessagesAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<SmsMessagesAddRequest, SmsMessagesAddResponse> operation
@@ -152,7 +152,7 @@ public class AsyncMessages {
      * <p>Get Message
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;SmsMessagesOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<SmsMessagesOneResponse>} - The async response
      */
     public CompletableFuture<SmsMessagesOneResponse> get(SmsMessagesOneRequest request) {
         return get(request, Optional.empty());
@@ -165,7 +165,7 @@ public class AsyncMessages {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;SmsMessagesOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<SmsMessagesOneResponse>} - The async response
      */
     public CompletableFuture<SmsMessagesOneResponse> get(SmsMessagesOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<SmsMessagesOneRequest, SmsMessagesOneResponse> operation
@@ -194,7 +194,7 @@ public class AsyncMessages {
      * <p>Update Message
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;SmsMessagesUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<SmsMessagesUpdateResponse>} - The async response
      */
     public CompletableFuture<SmsMessagesUpdateResponse> update(SmsMessagesUpdateRequest request) {
         return update(request, Optional.empty());
@@ -207,7 +207,7 @@ public class AsyncMessages {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;SmsMessagesUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<SmsMessagesUpdateResponse>} - The async response
      */
     public CompletableFuture<SmsMessagesUpdateResponse> update(SmsMessagesUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<SmsMessagesUpdateRequest, SmsMessagesUpdateResponse> operation
@@ -236,7 +236,7 @@ public class AsyncMessages {
      * <p>Delete Message
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;SmsMessagesDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<SmsMessagesDeleteResponse>} - The async response
      */
     public CompletableFuture<SmsMessagesDeleteResponse> delete(SmsMessagesDeleteRequest request) {
         return delete(request, Optional.empty());
@@ -249,7 +249,7 @@ public class AsyncMessages {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;SmsMessagesDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<SmsMessagesDeleteResponse>} - The async response
      */
     public CompletableFuture<SmsMessagesDeleteResponse> delete(SmsMessagesDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<SmsMessagesDeleteRequest, SmsMessagesDeleteResponse> operation

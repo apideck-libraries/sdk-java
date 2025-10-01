@@ -68,7 +68,7 @@ public class AsyncDrives {
      * <p>List Drives
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;FileStorageDrivesAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<FileStorageDrivesAllResponse>} - The async response
      */
     public CompletableFuture<FileStorageDrivesAllResponse> list(FileStorageDrivesAllRequest request) {
         return list(request, Optional.empty());
@@ -81,7 +81,7 @@ public class AsyncDrives {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;FileStorageDrivesAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<FileStorageDrivesAllResponse>} - The async response
      */
     public CompletableFuture<FileStorageDrivesAllResponse> list(FileStorageDrivesAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<FileStorageDrivesAllRequest, FileStorageDrivesAllResponse> operation
@@ -110,7 +110,7 @@ public class AsyncDrives {
      * <p>Create Drive
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;FileStorageDrivesAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<FileStorageDrivesAddResponse>} - The async response
      */
     public CompletableFuture<FileStorageDrivesAddResponse> create(FileStorageDrivesAddRequest request) {
         return create(request, Optional.empty());
@@ -123,7 +123,7 @@ public class AsyncDrives {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;FileStorageDrivesAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<FileStorageDrivesAddResponse>} - The async response
      */
     public CompletableFuture<FileStorageDrivesAddResponse> create(FileStorageDrivesAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<FileStorageDrivesAddRequest, FileStorageDrivesAddResponse> operation
@@ -152,7 +152,7 @@ public class AsyncDrives {
      * <p>Get Drive
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;FileStorageDrivesOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<FileStorageDrivesOneResponse>} - The async response
      */
     public CompletableFuture<FileStorageDrivesOneResponse> get(FileStorageDrivesOneRequest request) {
         return get(request, Optional.empty());
@@ -165,7 +165,7 @@ public class AsyncDrives {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;FileStorageDrivesOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<FileStorageDrivesOneResponse>} - The async response
      */
     public CompletableFuture<FileStorageDrivesOneResponse> get(FileStorageDrivesOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<FileStorageDrivesOneRequest, FileStorageDrivesOneResponse> operation
@@ -194,7 +194,7 @@ public class AsyncDrives {
      * <p>Update Drive
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;FileStorageDrivesUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<FileStorageDrivesUpdateResponse>} - The async response
      */
     public CompletableFuture<FileStorageDrivesUpdateResponse> update(FileStorageDrivesUpdateRequest request) {
         return update(request, Optional.empty());
@@ -207,7 +207,7 @@ public class AsyncDrives {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;FileStorageDrivesUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<FileStorageDrivesUpdateResponse>} - The async response
      */
     public CompletableFuture<FileStorageDrivesUpdateResponse> update(FileStorageDrivesUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<FileStorageDrivesUpdateRequest, FileStorageDrivesUpdateResponse> operation
@@ -236,7 +236,7 @@ public class AsyncDrives {
      * <p>Delete Drive
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;FileStorageDrivesDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<FileStorageDrivesDeleteResponse>} - The async response
      */
     public CompletableFuture<FileStorageDrivesDeleteResponse> delete(FileStorageDrivesDeleteRequest request) {
         return delete(request, Optional.empty());
@@ -249,7 +249,7 @@ public class AsyncDrives {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;FileStorageDrivesDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<FileStorageDrivesDeleteResponse>} - The async response
      */
     public CompletableFuture<FileStorageDrivesDeleteResponse> delete(FileStorageDrivesDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<FileStorageDrivesDeleteRequest, FileStorageDrivesDeleteResponse> operation

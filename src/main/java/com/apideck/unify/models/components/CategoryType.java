@@ -16,7 +16,8 @@ import java.util.Optional;
 public enum CategoryType {
     SUPPLIER("supplier"),
     EXPENSE("expense"),
-    REVENUE("revenue");
+    REVENUE("revenue"),
+    CUSTOMER("customer");
 
     @JsonValue
     private final String value;

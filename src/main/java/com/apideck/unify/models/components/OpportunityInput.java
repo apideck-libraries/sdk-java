@@ -56,7 +56,8 @@ public class OpportunityInput {
     private JsonNullable<Double> monetaryAmount;
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("currency")
@@ -70,7 +71,8 @@ public class OpportunityInput {
     private JsonNullable<Double> winProbability;
 
     /**
-     * The actual closing date for the opportunity. If close_date is null, the opportunity is not closed yet.
+     * The actual closing date for the opportunity. If close_date is null, the opportunity is not closed
+     * yet.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("close_date")
@@ -213,7 +215,8 @@ public class OpportunityInput {
     private JsonNullable<OffsetDateTime> stageLastChangedAt;
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pass_through")
@@ -365,7 +368,8 @@ public class OpportunityInput {
     }
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -382,7 +386,8 @@ public class OpportunityInput {
     }
 
     /**
-     * The actual closing date for the opportunity. If close_date is null, the opportunity is not closed yet.
+     * The actual closing date for the opportunity. If close_date is null, the opportunity is not closed
+     * yet.
      */
     @JsonIgnore
     public JsonNullable<LocalDate> closeDate() {
@@ -547,7 +552,8 @@ public class OpportunityInput {
     }
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -642,7 +648,8 @@ public class OpportunityInput {
     }
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     public OpportunityInput withCurrency(Currency currency) {
         Utils.checkNotNull(currency, "currency");
@@ -651,7 +658,8 @@ public class OpportunityInput {
     }
 
     /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+     * Indicates the associated currency for an amount of money. Values correspond to [ISO
+     * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     public OpportunityInput withCurrency(JsonNullable<? extends Currency> currency) {
         Utils.checkNotNull(currency, "currency");
@@ -678,7 +686,8 @@ public class OpportunityInput {
     }
 
     /**
-     * The actual closing date for the opportunity. If close_date is null, the opportunity is not closed yet.
+     * The actual closing date for the opportunity. If close_date is null, the opportunity is not closed
+     * yet.
      */
     public OpportunityInput withCloseDate(LocalDate closeDate) {
         Utils.checkNotNull(closeDate, "closeDate");
@@ -687,7 +696,8 @@ public class OpportunityInput {
     }
 
     /**
-     * The actual closing date for the opportunity. If close_date is null, the opportunity is not closed yet.
+     * The actual closing date for the opportunity. If close_date is null, the opportunity is not closed
+     * yet.
      */
     public OpportunityInput withCloseDate(JsonNullable<LocalDate> closeDate) {
         Utils.checkNotNull(closeDate, "closeDate");
@@ -1046,7 +1056,8 @@ public class OpportunityInput {
     }
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     public OpportunityInput withPassThrough(List<PassThroughBody> passThrough) {
         Utils.checkNotNull(passThrough, "passThrough");
@@ -1056,7 +1067,8 @@ public class OpportunityInput {
 
 
     /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+     * The pass_through property allows passing service-specific, custom data or structured modifications
+     * in request body when creating or updating resources.
      */
     public OpportunityInput withPassThrough(Optional<? extends List<PassThroughBody>> passThrough) {
         Utils.checkNotNull(passThrough, "passThrough");
@@ -1307,7 +1319,8 @@ public class OpportunityInput {
 
 
         /**
-         * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+         * Indicates the associated currency for an amount of money. Values correspond to [ISO
+         * 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
         public Builder currency(Currency currency) {
             Utils.checkNotNull(currency, "currency");
@@ -1316,7 +1329,8 @@ public class OpportunityInput {
         }
 
         /**
-         * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
+         * Indicates the associated currency for an amount of money. Values correspond to [ISO
+         * 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
         public Builder currency(JsonNullable<? extends Currency> currency) {
             Utils.checkNotNull(currency, "currency");
@@ -1345,7 +1359,8 @@ public class OpportunityInput {
 
 
         /**
-         * The actual closing date for the opportunity. If close_date is null, the opportunity is not closed yet.
+         * The actual closing date for the opportunity. If close_date is null, the opportunity is not closed
+         * yet.
          */
         public Builder closeDate(LocalDate closeDate) {
             Utils.checkNotNull(closeDate, "closeDate");
@@ -1354,7 +1369,8 @@ public class OpportunityInput {
         }
 
         /**
-         * The actual closing date for the opportunity. If close_date is null, the opportunity is not closed yet.
+         * The actual closing date for the opportunity. If close_date is null, the opportunity is not closed
+         * yet.
          */
         public Builder closeDate(JsonNullable<LocalDate> closeDate) {
             Utils.checkNotNull(closeDate, "closeDate");
@@ -1732,7 +1748,8 @@ public class OpportunityInput {
 
 
         /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+         * The pass_through property allows passing service-specific, custom data or structured modifications
+         * in request body when creating or updating resources.
          */
         public Builder passThrough(List<PassThroughBody> passThrough) {
             Utils.checkNotNull(passThrough, "passThrough");
@@ -1741,7 +1758,8 @@ public class OpportunityInput {
         }
 
         /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+         * The pass_through property allows passing service-specific, custom data or structured modifications
+         * in request body when creating or updating resources.
          */
         public Builder passThrough(Optional<? extends List<PassThroughBody>> passThrough) {
             Utils.checkNotNull(passThrough, "passThrough");

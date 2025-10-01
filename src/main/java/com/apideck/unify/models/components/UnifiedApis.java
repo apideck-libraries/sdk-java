@@ -33,7 +33,8 @@ public class UnifiedApis {
     private Optional<String> name;
 
     /**
-     * Indicates whether a connector only supports authentication. In this case the connector is not mapped to a Unified API, but can be used with the Proxy API
+     * Indicates whether a connector only supports authentication. In this case the connector is not mapped
+     * to a Unified API, but can be used with the Proxy API
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("auth_only")
@@ -114,7 +115,8 @@ public class UnifiedApis {
     }
 
     /**
-     * Indicates whether a connector only supports authentication. In this case the connector is not mapped to a Unified API, but can be used with the Proxy API
+     * Indicates whether a connector only supports authentication. In this case the connector is not mapped
+     * to a Unified API, but can be used with the Proxy API
      */
     @JsonIgnore
     public Optional<Boolean> authOnly() {
@@ -198,7 +200,8 @@ public class UnifiedApis {
     }
 
     /**
-     * Indicates whether a connector only supports authentication. In this case the connector is not mapped to a Unified API, but can be used with the Proxy API
+     * Indicates whether a connector only supports authentication. In this case the connector is not mapped
+     * to a Unified API, but can be used with the Proxy API
      */
     public UnifiedApis withAuthOnly(boolean authOnly) {
         Utils.checkNotNull(authOnly, "authOnly");
@@ -208,7 +211,8 @@ public class UnifiedApis {
 
 
     /**
-     * Indicates whether a connector only supports authentication. In this case the connector is not mapped to a Unified API, but can be used with the Proxy API
+     * Indicates whether a connector only supports authentication. In this case the connector is not mapped
+     * to a Unified API, but can be used with the Proxy API
      */
     public UnifiedApis withAuthOnly(Optional<Boolean> authOnly) {
         Utils.checkNotNull(authOnly, "authOnly");
@@ -386,7 +390,8 @@ public class UnifiedApis {
 
 
         /**
-         * Indicates whether a connector only supports authentication. In this case the connector is not mapped to a Unified API, but can be used with the Proxy API
+         * Indicates whether a connector only supports authentication. In this case the connector is not mapped
+         * to a Unified API, but can be used with the Proxy API
          */
         public Builder authOnly(boolean authOnly) {
             Utils.checkNotNull(authOnly, "authOnly");
@@ -395,7 +400,8 @@ public class UnifiedApis {
         }
 
         /**
-         * Indicates whether a connector only supports authentication. In this case the connector is not mapped to a Unified API, but can be used with the Proxy API
+         * Indicates whether a connector only supports authentication. In this case the connector is not mapped
+         * to a Unified API, but can be used with the Proxy API
          */
         public Builder authOnly(Optional<Boolean> authOnly) {
             Utils.checkNotNull(authOnly, "authOnly");

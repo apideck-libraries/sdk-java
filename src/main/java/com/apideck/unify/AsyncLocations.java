@@ -68,7 +68,7 @@ public class AsyncLocations {
      * <p>List Locations
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingLocationsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingLocationsAllResponse>} - The async response
      */
     public CompletableFuture<AccountingLocationsAllResponse> list(AccountingLocationsAllRequest request) {
         return list(request, Optional.empty());
@@ -81,7 +81,7 @@ public class AsyncLocations {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingLocationsAllResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingLocationsAllResponse>} - The async response
      */
     public CompletableFuture<AccountingLocationsAllResponse> list(AccountingLocationsAllRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingLocationsAllRequest, AccountingLocationsAllResponse> operation
@@ -110,7 +110,7 @@ public class AsyncLocations {
      * <p>Create Location
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingLocationsAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingLocationsAddResponse>} - The async response
      */
     public CompletableFuture<AccountingLocationsAddResponse> create(AccountingLocationsAddRequest request) {
         return create(request, Optional.empty());
@@ -123,7 +123,7 @@ public class AsyncLocations {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingLocationsAddResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingLocationsAddResponse>} - The async response
      */
     public CompletableFuture<AccountingLocationsAddResponse> create(AccountingLocationsAddRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingLocationsAddRequest, AccountingLocationsAddResponse> operation
@@ -152,7 +152,7 @@ public class AsyncLocations {
      * <p>Get Location
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingLocationsOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingLocationsOneResponse>} - The async response
      */
     public CompletableFuture<AccountingLocationsOneResponse> get(AccountingLocationsOneRequest request) {
         return get(request, Optional.empty());
@@ -165,7 +165,7 @@ public class AsyncLocations {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingLocationsOneResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingLocationsOneResponse>} - The async response
      */
     public CompletableFuture<AccountingLocationsOneResponse> get(AccountingLocationsOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingLocationsOneRequest, AccountingLocationsOneResponse> operation
@@ -194,7 +194,7 @@ public class AsyncLocations {
      * <p>Update Location
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingLocationsUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingLocationsUpdateResponse>} - The async response
      */
     public CompletableFuture<AccountingLocationsUpdateResponse> update(AccountingLocationsUpdateRequest request) {
         return update(request, Optional.empty());
@@ -207,7 +207,7 @@ public class AsyncLocations {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingLocationsUpdateResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingLocationsUpdateResponse>} - The async response
      */
     public CompletableFuture<AccountingLocationsUpdateResponse> update(AccountingLocationsUpdateRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingLocationsUpdateRequest, AccountingLocationsUpdateResponse> operation
@@ -236,7 +236,7 @@ public class AsyncLocations {
      * <p>Delete Location
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;AccountingLocationsDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingLocationsDeleteResponse>} - The async response
      */
     public CompletableFuture<AccountingLocationsDeleteResponse> delete(AccountingLocationsDeleteRequest request) {
         return delete(request, Optional.empty());
@@ -249,7 +249,7 @@ public class AsyncLocations {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;AccountingLocationsDeleteResponse&gt; - The async response
+     * @return {@code CompletableFuture<AccountingLocationsDeleteResponse>} - The async response
      */
     public CompletableFuture<AccountingLocationsDeleteResponse> delete(AccountingLocationsDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingLocationsDeleteRequest, AccountingLocationsDeleteResponse> operation

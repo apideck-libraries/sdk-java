@@ -34,7 +34,8 @@ public class ConnectorConnectorResourcesOneRequest {
     private String resourceId;
 
     /**
-     * Specify unified API for the connector resource. This is useful when a resource appears in multiple APIs
+     * Specify unified API for the connector resource. This is useful when a resource appears in multiple
+     * APIs
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=unified_api")
     private Optional<? extends UnifiedApiId> unifiedApi;
@@ -87,7 +88,8 @@ public class ConnectorConnectorResourcesOneRequest {
     }
 
     /**
-     * Specify unified API for the connector resource. This is useful when a resource appears in multiple APIs
+     * Specify unified API for the connector resource. This is useful when a resource appears in multiple
+     * APIs
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -138,7 +140,8 @@ public class ConnectorConnectorResourcesOneRequest {
     }
 
     /**
-     * Specify unified API for the connector resource. This is useful when a resource appears in multiple APIs
+     * Specify unified API for the connector resource. This is useful when a resource appears in multiple
+     * APIs
      */
     public ConnectorConnectorResourcesOneRequest withUnifiedApi(UnifiedApiId unifiedApi) {
         Utils.checkNotNull(unifiedApi, "unifiedApi");
@@ -148,7 +151,8 @@ public class ConnectorConnectorResourcesOneRequest {
 
 
     /**
-     * Specify unified API for the connector resource. This is useful when a resource appears in multiple APIs
+     * Specify unified API for the connector resource. This is useful when a resource appears in multiple
+     * APIs
      */
     public ConnectorConnectorResourcesOneRequest withUnifiedApi(Optional<? extends UnifiedApiId> unifiedApi) {
         Utils.checkNotNull(unifiedApi, "unifiedApi");
@@ -244,7 +248,8 @@ public class ConnectorConnectorResourcesOneRequest {
 
 
         /**
-         * Specify unified API for the connector resource. This is useful when a resource appears in multiple APIs
+         * Specify unified API for the connector resource. This is useful when a resource appears in multiple
+         * APIs
          */
         public Builder unifiedApi(UnifiedApiId unifiedApi) {
             Utils.checkNotNull(unifiedApi, "unifiedApi");
@@ -253,7 +258,8 @@ public class ConnectorConnectorResourcesOneRequest {
         }
 
         /**
-         * Specify unified API for the connector resource. This is useful when a resource appears in multiple APIs
+         * Specify unified API for the connector resource. This is useful when a resource appears in multiple
+         * APIs
          */
         public Builder unifiedApi(Optional<? extends UnifiedApiId> unifiedApi) {
             Utils.checkNotNull(unifiedApi, "unifiedApi");

@@ -77,7 +77,7 @@ public class IssueTrackingCollectionTagsAll {
                                     .initialInterval(500, TimeUnit.MILLISECONDS)
                                     .maxInterval(60000, TimeUnit.MILLISECONDS)
                                     .baseFactor((double) (1.5))
-                                    .maxElapsedTime(3600000, TimeUnit.MILLISECONDS)
+                                    .maxElapsedTime(900000, TimeUnit.MILLISECONDS)
                                     .retryConnectError(true)
                                     .build())
                             .build());

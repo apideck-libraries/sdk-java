@@ -49,7 +49,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.apideck:unify:0.22.0'
+implementation 'com.apideck:unify:0.22.1'
 ```
 
 Maven:
@@ -57,7 +57,7 @@ Maven:
 <dependency>
     <groupId>com.apideck</groupId>
     <artifactId>unify</artifactId>
-    <version>0.22.0</version>
+    <version>0.22.1</version>
 </dependency>
 ```
 
@@ -187,9 +187,6 @@ public class Application {
 
 <details open>
 <summary>Available methods</summary>
-
-### [accounting()](docs/sdks/accounting/README.md)
-
 
 #### [accounting().agedCreditors()](docs/sdks/agedcreditors/README.md)
 
@@ -400,10 +397,6 @@ public class Application {
 * [update](docs/sdks/trackingcategories/README.md#update) - Update Tracking Category
 * [delete](docs/sdks/trackingcategories/README.md#delete) - Delete Tracking Category
 
-
-### [ats()](docs/sdks/ats/README.md)
-
-
 #### [ats().applicants()](docs/sdks/applicants/README.md)
 
 * [list](docs/sdks/applicants/README.md#list) - List Applicants
@@ -424,9 +417,6 @@ public class Application {
 
 * [list](docs/sdks/jobs/README.md#list) - List Jobs
 * [get](docs/sdks/jobs/README.md#get) - Get Job
-
-### [connector()](docs/sdks/connector/README.md)
-
 
 #### [connector().apiResourceCoverage()](docs/sdks/apiresourcecoverage/README.md)
 
@@ -453,9 +443,6 @@ public class Application {
 
 * [list](docs/sdks/connectors/README.md#list) - List Connectors
 * [get](docs/sdks/connectors/README.md#get) - Get Connector
-
-### [crm()](docs/sdks/crm/README.md)
-
 
 #### [crm().activities()](docs/sdks/activities/README.md)
 
@@ -537,9 +524,6 @@ public class Application {
 * [update](docs/sdks/users/README.md#update) - Update user
 * [delete](docs/sdks/users/README.md#delete) - Delete user
 
-### [ecommerce()](docs/sdks/ecommerce/README.md)
-
-
 #### [ecommerce().customers()](docs/sdks/apideckcustomers/README.md)
 
 * [list](docs/sdks/apideckcustomers/README.md#list) - List Customers
@@ -558,9 +542,6 @@ public class Application {
 #### [ecommerce().stores()](docs/sdks/stores/README.md)
 
 * [get](docs/sdks/stores/README.md#get) - Get Store
-
-### [fileStorage()](docs/sdks/filestorage/README.md)
-
 
 #### [fileStorage().driveGroups()](docs/sdks/drivegroups/README.md)
 
@@ -612,9 +593,6 @@ public class Application {
 * [delete](docs/sdks/uploadsessions/README.md#delete) - Abort Upload Session
 * [finish](docs/sdks/uploadsessions/README.md#finish) - Finish Upload Session
 
-### [hris()](docs/sdks/hris/README.md)
-
-
 #### [hris().companies()](docs/sdks/apideckcompanies/README.md)
 
 * [list](docs/sdks/apideckcompanies/README.md#list) - List Companies
@@ -661,9 +639,6 @@ public class Application {
 * [update](docs/sdks/timeoffrequests/README.md#update) - Update Time Off Request
 * [delete](docs/sdks/timeoffrequests/README.md#delete) - Delete Time Off Request
 
-### [issueTracking()](docs/sdks/issuetracking/README.md)
-
-
 #### [issueTracking().collections()](docs/sdks/collections/README.md)
 
 * [list](docs/sdks/collections/README.md#list) - List Collections
@@ -694,9 +669,6 @@ public class Application {
 * [list](docs/sdks/collectionusers/README.md#list) - List Users
 * [get](docs/sdks/collectionusers/README.md#get) - Get user
 
-### [sms()](docs/sdks/sms/README.md)
-
-
 #### [sms().messages()](docs/sdks/messages/README.md)
 
 * [list](docs/sdks/messages/README.md#list) - List Messages
@@ -704,9 +676,6 @@ public class Application {
 * [get](docs/sdks/messages/README.md#get) - Get Message
 * [update](docs/sdks/messages/README.md#update) - Update Message
 * [delete](docs/sdks/messages/README.md#delete) - Delete Message
-
-### [vault()](docs/sdks/vault/README.md)
-
 
 #### [vault().connectionConsent()](docs/sdks/connectionconsent/README.md)
 
@@ -769,9 +738,6 @@ public class Application {
 #### [vault().validateConnection()](docs/sdks/validateconnection/README.md)
 
 * [state](docs/sdks/validateconnection/README.md#state) - Validate Connection State
-
-### [webhook()](docs/sdks/webhook/README.md)
-
 
 #### [webhook().webhooks()](docs/sdks/webhooks/README.md)
 

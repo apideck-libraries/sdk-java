@@ -19,6 +19,8 @@ public enum ProjectProjectStatus {
     ON_HOLD("on_hold"),
     CANCELLED("cancelled"),
     DRAFT("draft"),
+    IN_PROGRESS("in_progress"),
+    APPROVED("approved"),
     OTHER("other");
 
     @JsonValue

@@ -75,7 +75,7 @@ public class ConnectorApiResourceCoverageOne {
                                     .initialInterval(500, TimeUnit.MILLISECONDS)
                                     .maxInterval(60000, TimeUnit.MILLISECONDS)
                                     .baseFactor((double) (1.5))
-                                    .maxElapsedTime(3600000, TimeUnit.MILLISECONDS)
+                                    .maxElapsedTime(900000, TimeUnit.MILLISECONDS)
                                     .retryConnectError(true)
                                     .build())
                             .build());
@@ -91,7 +91,7 @@ public class ConnectorApiResourceCoverageOne {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "connector.apiResourceCoverageOne",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
 
@@ -100,7 +100,7 @@ public class ConnectorApiResourceCoverageOne {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "connector.apiResourceCoverageOne",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
 
@@ -109,7 +109,7 @@ public class ConnectorApiResourceCoverageOne {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "connector.apiResourceCoverageOne",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
         <T>HttpRequest buildRequest(T request, Class<T> klass) throws Exception {

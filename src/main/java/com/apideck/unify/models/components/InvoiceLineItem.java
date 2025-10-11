@@ -15,6 +15,7 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -108,6 +109,13 @@ public class InvoiceLineItem {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("discount_amount")
     private JsonNullable<Double> discountAmount;
+
+    /**
+     * Date on which the service was provided or performed - YYYY-MM-DD.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("service_date")
+    private JsonNullable<LocalDate> serviceDate;
 
     /**
      * ID of the category of the line item
@@ -264,6 +272,7 @@ public class InvoiceLineItem {
             @JsonProperty("unit_of_measure") JsonNullable<String> unitOfMeasure,
             @JsonProperty("discount_percentage") JsonNullable<Double> discountPercentage,
             @JsonProperty("discount_amount") JsonNullable<Double> discountAmount,
+            @JsonProperty("service_date") JsonNullable<LocalDate> serviceDate,
             @JsonProperty("category_id") JsonNullable<String> categoryId,
             @JsonProperty("location_id") JsonNullable<String> locationId,
             @JsonProperty("department_id") JsonNullable<String> departmentId,
@@ -298,6 +307,7 @@ public class InvoiceLineItem {
         Utils.checkNotNull(unitOfMeasure, "unitOfMeasure");
         Utils.checkNotNull(discountPercentage, "discountPercentage");
         Utils.checkNotNull(discountAmount, "discountAmount");
+        Utils.checkNotNull(serviceDate, "serviceDate");
         Utils.checkNotNull(categoryId, "categoryId");
         Utils.checkNotNull(locationId, "locationId");
         Utils.checkNotNull(departmentId, "departmentId");
@@ -332,6 +342,7 @@ public class InvoiceLineItem {
         this.unitOfMeasure = unitOfMeasure;
         this.discountPercentage = discountPercentage;
         this.discountAmount = discountAmount;
+        this.serviceDate = serviceDate;
         this.categoryId = categoryId;
         this.locationId = locationId;
         this.departmentId = departmentId;
@@ -362,12 +373,12 @@ public class InvoiceLineItem {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -467,6 +478,14 @@ public class InvoiceLineItem {
     @JsonIgnore
     public JsonNullable<Double> discountAmount() {
         return discountAmount;
+    }
+
+    /**
+     * Date on which the service was provided or performed - YYYY-MM-DD.
+     */
+    @JsonIgnore
+    public JsonNullable<LocalDate> serviceDate() {
+        return serviceDate;
     }
 
     /**
@@ -861,6 +880,24 @@ public class InvoiceLineItem {
     }
 
     /**
+     * Date on which the service was provided or performed - YYYY-MM-DD.
+     */
+    public InvoiceLineItem withServiceDate(LocalDate serviceDate) {
+        Utils.checkNotNull(serviceDate, "serviceDate");
+        this.serviceDate = JsonNullable.of(serviceDate);
+        return this;
+    }
+
+    /**
+     * Date on which the service was provided or performed - YYYY-MM-DD.
+     */
+    public InvoiceLineItem withServiceDate(JsonNullable<LocalDate> serviceDate) {
+        Utils.checkNotNull(serviceDate, "serviceDate");
+        this.serviceDate = serviceDate;
+        return this;
+    }
+
+    /**
      * ID of the category of the line item
      */
     public InvoiceLineItem withCategoryId(String categoryId) {
@@ -1243,6 +1280,7 @@ public class InvoiceLineItem {
             Utils.enhancedDeepEquals(this.unitOfMeasure, other.unitOfMeasure) &&
             Utils.enhancedDeepEquals(this.discountPercentage, other.discountPercentage) &&
             Utils.enhancedDeepEquals(this.discountAmount, other.discountAmount) &&
+            Utils.enhancedDeepEquals(this.serviceDate, other.serviceDate) &&
             Utils.enhancedDeepEquals(this.categoryId, other.categoryId) &&
             Utils.enhancedDeepEquals(this.locationId, other.locationId) &&
             Utils.enhancedDeepEquals(this.departmentId, other.departmentId) &&
@@ -1273,14 +1311,14 @@ public class InvoiceLineItem {
             lineNumber, description, type,
             taxAmount, totalAmount, quantity,
             unitPrice, unitOfMeasure, discountPercentage,
-            discountAmount, categoryId, locationId,
-            departmentId, subsidiaryId, shippingId,
-            memo, prepaid, item,
-            taxApplicableOn, taxRecoverability, taxMethod,
-            worktags, taxRate, trackingCategories,
-            ledgerAccount, customFields, rowVersion,
-            updatedBy, createdBy, createdAt,
-            updatedAt);
+            discountAmount, serviceDate, categoryId,
+            locationId, departmentId, subsidiaryId,
+            shippingId, memo, prepaid,
+            item, taxApplicableOn, taxRecoverability,
+            taxMethod, worktags, taxRate,
+            trackingCategories, ledgerAccount, customFields,
+            rowVersion, updatedBy, createdBy,
+            createdAt, updatedAt);
     }
     
     @Override
@@ -1299,6 +1337,7 @@ public class InvoiceLineItem {
                 "unitOfMeasure", unitOfMeasure,
                 "discountPercentage", discountPercentage,
                 "discountAmount", discountAmount,
+                "serviceDate", serviceDate,
                 "categoryId", categoryId,
                 "locationId", locationId,
                 "departmentId", departmentId,
@@ -1350,6 +1389,8 @@ public class InvoiceLineItem {
         private JsonNullable<Double> discountPercentage = JsonNullable.undefined();
 
         private JsonNullable<Double> discountAmount = JsonNullable.undefined();
+
+        private JsonNullable<LocalDate> serviceDate = JsonNullable.undefined();
 
         private JsonNullable<String> categoryId = JsonNullable.undefined();
 
@@ -1629,6 +1670,25 @@ public class InvoiceLineItem {
         public Builder discountAmount(JsonNullable<Double> discountAmount) {
             Utils.checkNotNull(discountAmount, "discountAmount");
             this.discountAmount = discountAmount;
+            return this;
+        }
+
+
+        /**
+         * Date on which the service was provided or performed - YYYY-MM-DD.
+         */
+        public Builder serviceDate(LocalDate serviceDate) {
+            Utils.checkNotNull(serviceDate, "serviceDate");
+            this.serviceDate = JsonNullable.of(serviceDate);
+            return this;
+        }
+
+        /**
+         * Date on which the service was provided or performed - YYYY-MM-DD.
+         */
+        public Builder serviceDate(JsonNullable<LocalDate> serviceDate) {
+            Utils.checkNotNull(serviceDate, "serviceDate");
+            this.serviceDate = serviceDate;
             return this;
         }
 
@@ -2016,14 +2076,14 @@ public class InvoiceLineItem {
                 lineNumber, description, type,
                 taxAmount, totalAmount, quantity,
                 unitPrice, unitOfMeasure, discountPercentage,
-                discountAmount, categoryId, locationId,
-                departmentId, subsidiaryId, shippingId,
-                memo, prepaid, item,
-                taxApplicableOn, taxRecoverability, taxMethod,
-                worktags, taxRate, trackingCategories,
-                ledgerAccount, customFields, rowVersion,
-                updatedBy, createdBy, createdAt,
-                updatedAt);
+                discountAmount, serviceDate, categoryId,
+                locationId, departmentId, subsidiaryId,
+                shippingId, memo, prepaid,
+                item, taxApplicableOn, taxRecoverability,
+                taxMethod, worktags, taxRate,
+                trackingCategories, ledgerAccount, customFields,
+                rowVersion, updatedBy, createdBy,
+                createdAt, updatedAt);
         }
 
     }

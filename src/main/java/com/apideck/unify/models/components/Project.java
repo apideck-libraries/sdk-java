@@ -74,6 +74,13 @@ public class Project {
     private JsonNullable<? extends ProjectProjectStatus> status;
 
     /**
+     * Indicates whether the project is currently active or inactive
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("active")
+    private JsonNullable<Boolean> active;
+
+    /**
      * Type or category of the project
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -325,6 +332,7 @@ public class Project {
             @JsonProperty("reference_id") JsonNullable<String> referenceId,
             @JsonProperty("description") JsonNullable<String> description,
             @JsonProperty("status") JsonNullable<? extends ProjectProjectStatus> status,
+            @JsonProperty("active") JsonNullable<Boolean> active,
             @JsonProperty("project_type") JsonNullable<? extends ProjectType> projectType,
             @JsonProperty("priority") JsonNullable<? extends Priority> priority,
             @JsonProperty("completion_percentage") JsonNullable<Double> completionPercentage,
@@ -367,6 +375,7 @@ public class Project {
         Utils.checkNotNull(referenceId, "referenceId");
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(status, "status");
+        Utils.checkNotNull(active, "active");
         Utils.checkNotNull(projectType, "projectType");
         Utils.checkNotNull(priority, "priority");
         Utils.checkNotNull(completionPercentage, "completionPercentage");
@@ -409,6 +418,7 @@ public class Project {
         this.referenceId = referenceId;
         this.description = description;
         this.status = status;
+        this.active = active;
         this.projectType = projectType;
         this.priority = priority;
         this.completionPercentage = completionPercentage;
@@ -457,11 +467,12 @@ public class Project {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
             Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -519,6 +530,14 @@ public class Project {
     @JsonIgnore
     public JsonNullable<ProjectProjectStatus> status() {
         return (JsonNullable<ProjectProjectStatus>) status;
+    }
+
+    /**
+     * Indicates whether the project is currently active or inactive
+     */
+    @JsonIgnore
+    public JsonNullable<Boolean> active() {
+        return active;
     }
 
     /**
@@ -931,6 +950,24 @@ public class Project {
     public Project withStatus(JsonNullable<? extends ProjectProjectStatus> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
+        return this;
+    }
+
+    /**
+     * Indicates whether the project is currently active or inactive
+     */
+    public Project withActive(boolean active) {
+        Utils.checkNotNull(active, "active");
+        this.active = JsonNullable.of(active);
+        return this;
+    }
+
+    /**
+     * Indicates whether the project is currently active or inactive
+     */
+    public Project withActive(JsonNullable<Boolean> active) {
+        Utils.checkNotNull(active, "active");
+        this.active = active;
         return this;
     }
 
@@ -1577,6 +1614,7 @@ public class Project {
             Utils.enhancedDeepEquals(this.referenceId, other.referenceId) &&
             Utils.enhancedDeepEquals(this.description, other.description) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.active, other.active) &&
             Utils.enhancedDeepEquals(this.projectType, other.projectType) &&
             Utils.enhancedDeepEquals(this.priority, other.priority) &&
             Utils.enhancedDeepEquals(this.completionPercentage, other.completionPercentage) &&
@@ -1619,18 +1657,19 @@ public class Project {
         return Utils.enhancedHash(
             id, downstreamId, name,
             displayId, referenceId, description,
-            status, projectType, priority,
-            completionPercentage, startDate, endDate,
-            customer, department, companyId,
-            ownerId, parentProject, currency,
-            budgetAmount, approvedAmount, actualAmount,
-            budgetHours, actualHours, hourlyRate,
-            billingMethod, isBillable, phase,
-            taxRate, trackingCategories, tags,
-            notes, contractNumber, profitMargin,
-            scheduleStatus, addresses, teamSize,
-            customFields, rowVersion, updatedBy,
-            createdBy, createdAt, updatedAt);
+            status, active, projectType,
+            priority, completionPercentage, startDate,
+            endDate, customer, department,
+            companyId, ownerId, parentProject,
+            currency, budgetAmount, approvedAmount,
+            actualAmount, budgetHours, actualHours,
+            hourlyRate, billingMethod, isBillable,
+            phase, taxRate, trackingCategories,
+            tags, notes, contractNumber,
+            profitMargin, scheduleStatus, addresses,
+            teamSize, customFields, rowVersion,
+            updatedBy, createdBy, createdAt,
+            updatedAt);
     }
     
     @Override
@@ -1643,6 +1682,7 @@ public class Project {
                 "referenceId", referenceId,
                 "description", description,
                 "status", status,
+                "active", active,
                 "projectType", projectType,
                 "priority", priority,
                 "completionPercentage", completionPercentage,
@@ -1696,6 +1736,8 @@ public class Project {
         private JsonNullable<String> description = JsonNullable.undefined();
 
         private JsonNullable<? extends ProjectProjectStatus> status = JsonNullable.undefined();
+
+        private JsonNullable<Boolean> active = JsonNullable.undefined();
 
         private JsonNullable<? extends ProjectType> projectType = JsonNullable.undefined();
 
@@ -1892,6 +1934,25 @@ public class Project {
         public Builder status(JsonNullable<? extends ProjectProjectStatus> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
+            return this;
+        }
+
+
+        /**
+         * Indicates whether the project is currently active or inactive
+         */
+        public Builder active(boolean active) {
+            Utils.checkNotNull(active, "active");
+            this.active = JsonNullable.of(active);
+            return this;
+        }
+
+        /**
+         * Indicates whether the project is currently active or inactive
+         */
+        public Builder active(JsonNullable<Boolean> active) {
+            Utils.checkNotNull(active, "active");
+            this.active = active;
             return this;
         }
 
@@ -2560,18 +2621,19 @@ public class Project {
             return new Project(
                 id, downstreamId, name,
                 displayId, referenceId, description,
-                status, projectType, priority,
-                completionPercentage, startDate, endDate,
-                customer, department, companyId,
-                ownerId, parentProject, currency,
-                budgetAmount, approvedAmount, actualAmount,
-                budgetHours, actualHours, hourlyRate,
-                billingMethod, isBillable, phase,
-                taxRate, trackingCategories, tags,
-                notes, contractNumber, profitMargin,
-                scheduleStatus, addresses, teamSize,
-                customFields, rowVersion, updatedBy,
-                createdBy, createdAt, updatedAt);
+                status, active, projectType,
+                priority, completionPercentage, startDate,
+                endDate, customer, department,
+                companyId, ownerId, parentProject,
+                currency, budgetAmount, approvedAmount,
+                actualAmount, budgetHours, actualHours,
+                hourlyRate, billingMethod, isBillable,
+                phase, taxRate, trackingCategories,
+                tags, notes, contractNumber,
+                profitMargin, scheduleStatus, addresses,
+                teamSize, customFields, rowVersion,
+                updatedBy, createdBy, createdAt,
+                updatedAt);
         }
 
 

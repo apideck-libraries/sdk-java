@@ -92,7 +92,7 @@ public class FileStorageUploadSessionsAdd {
                                     .initialInterval(500, TimeUnit.MILLISECONDS)
                                     .maxInterval(60000, TimeUnit.MILLISECONDS)
                                     .baseFactor((double) (1.5))
-                                    .maxElapsedTime(3600000, TimeUnit.MILLISECONDS)
+                                    .maxElapsedTime(900000, TimeUnit.MILLISECONDS)
                                     .retryConnectError(true)
                                     .build())
                             .build());
@@ -108,7 +108,7 @@ public class FileStorageUploadSessionsAdd {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "fileStorage.uploadSessionsAdd",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
 
@@ -117,7 +117,7 @@ public class FileStorageUploadSessionsAdd {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "fileStorage.uploadSessionsAdd",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
 
@@ -126,7 +126,7 @@ public class FileStorageUploadSessionsAdd {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "fileStorage.uploadSessionsAdd",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
         <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {

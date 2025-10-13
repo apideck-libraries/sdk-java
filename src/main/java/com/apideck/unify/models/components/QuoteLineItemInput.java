@@ -14,6 +14,7 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -108,6 +109,13 @@ public class QuoteLineItemInput {
     private JsonNullable<Double> discountAmount;
 
     /**
+     * Date on which the service was provided or performed - YYYY-MM-DD.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("service_date")
+    private JsonNullable<LocalDate> serviceDate;
+
+    /**
      * ID of the category of the line item
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -178,6 +186,7 @@ public class QuoteLineItemInput {
             @JsonProperty("unit_of_measure") JsonNullable<String> unitOfMeasure,
             @JsonProperty("discount_percentage") JsonNullable<Double> discountPercentage,
             @JsonProperty("discount_amount") JsonNullable<Double> discountAmount,
+            @JsonProperty("service_date") JsonNullable<LocalDate> serviceDate,
             @JsonProperty("category_id") JsonNullable<String> categoryId,
             @JsonProperty("location_id") JsonNullable<String> locationId,
             @JsonProperty("department_id") JsonNullable<String> departmentId,
@@ -200,6 +209,7 @@ public class QuoteLineItemInput {
         Utils.checkNotNull(unitOfMeasure, "unitOfMeasure");
         Utils.checkNotNull(discountPercentage, "discountPercentage");
         Utils.checkNotNull(discountAmount, "discountAmount");
+        Utils.checkNotNull(serviceDate, "serviceDate");
         Utils.checkNotNull(categoryId, "categoryId");
         Utils.checkNotNull(locationId, "locationId");
         Utils.checkNotNull(departmentId, "departmentId");
@@ -222,6 +232,7 @@ public class QuoteLineItemInput {
         this.unitOfMeasure = unitOfMeasure;
         this.discountPercentage = discountPercentage;
         this.discountAmount = discountAmount;
+        this.serviceDate = serviceDate;
         this.categoryId = categoryId;
         this.locationId = locationId;
         this.departmentId = departmentId;
@@ -239,9 +250,9 @@ public class QuoteLineItemInput {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined());
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -341,6 +352,14 @@ public class QuoteLineItemInput {
     @JsonIgnore
     public JsonNullable<Double> discountAmount() {
         return discountAmount;
+    }
+
+    /**
+     * Date on which the service was provided or performed - YYYY-MM-DD.
+     */
+    @JsonIgnore
+    public JsonNullable<LocalDate> serviceDate() {
+        return serviceDate;
     }
 
     /**
@@ -638,6 +657,24 @@ public class QuoteLineItemInput {
     }
 
     /**
+     * Date on which the service was provided or performed - YYYY-MM-DD.
+     */
+    public QuoteLineItemInput withServiceDate(LocalDate serviceDate) {
+        Utils.checkNotNull(serviceDate, "serviceDate");
+        this.serviceDate = JsonNullable.of(serviceDate);
+        return this;
+    }
+
+    /**
+     * Date on which the service was provided or performed - YYYY-MM-DD.
+     */
+    public QuoteLineItemInput withServiceDate(JsonNullable<LocalDate> serviceDate) {
+        Utils.checkNotNull(serviceDate, "serviceDate");
+        this.serviceDate = serviceDate;
+        return this;
+    }
+
+    /**
      * ID of the category of the line item
      */
     public QuoteLineItemInput withCategoryId(String categoryId) {
@@ -803,6 +840,7 @@ public class QuoteLineItemInput {
             Utils.enhancedDeepEquals(this.unitOfMeasure, other.unitOfMeasure) &&
             Utils.enhancedDeepEquals(this.discountPercentage, other.discountPercentage) &&
             Utils.enhancedDeepEquals(this.discountAmount, other.discountAmount) &&
+            Utils.enhancedDeepEquals(this.serviceDate, other.serviceDate) &&
             Utils.enhancedDeepEquals(this.categoryId, other.categoryId) &&
             Utils.enhancedDeepEquals(this.locationId, other.locationId) &&
             Utils.enhancedDeepEquals(this.departmentId, other.departmentId) &&
@@ -821,10 +859,10 @@ public class QuoteLineItemInput {
             lineNumber, description, type,
             taxAmount, totalAmount, quantity,
             unitPrice, unitOfMeasure, discountPercentage,
-            discountAmount, categoryId, locationId,
-            departmentId, item, taxRate,
-            trackingCategories, ledgerAccount, customFields,
-            rowVersion);
+            discountAmount, serviceDate, categoryId,
+            locationId, departmentId, item,
+            taxRate, trackingCategories, ledgerAccount,
+            customFields, rowVersion);
     }
     
     @Override
@@ -843,6 +881,7 @@ public class QuoteLineItemInput {
                 "unitOfMeasure", unitOfMeasure,
                 "discountPercentage", discountPercentage,
                 "discountAmount", discountAmount,
+                "serviceDate", serviceDate,
                 "categoryId", categoryId,
                 "locationId", locationId,
                 "departmentId", departmentId,
@@ -882,6 +921,8 @@ public class QuoteLineItemInput {
         private JsonNullable<Double> discountPercentage = JsonNullable.undefined();
 
         private JsonNullable<Double> discountAmount = JsonNullable.undefined();
+
+        private JsonNullable<LocalDate> serviceDate = JsonNullable.undefined();
 
         private JsonNullable<String> categoryId = JsonNullable.undefined();
 
@@ -1142,6 +1183,25 @@ public class QuoteLineItemInput {
 
 
         /**
+         * Date on which the service was provided or performed - YYYY-MM-DD.
+         */
+        public Builder serviceDate(LocalDate serviceDate) {
+            Utils.checkNotNull(serviceDate, "serviceDate");
+            this.serviceDate = JsonNullable.of(serviceDate);
+            return this;
+        }
+
+        /**
+         * Date on which the service was provided or performed - YYYY-MM-DD.
+         */
+        public Builder serviceDate(JsonNullable<LocalDate> serviceDate) {
+            Utils.checkNotNull(serviceDate, "serviceDate");
+            this.serviceDate = serviceDate;
+            return this;
+        }
+
+
+        /**
          * ID of the category of the line item
          */
         public Builder categoryId(String categoryId) {
@@ -1296,10 +1356,10 @@ public class QuoteLineItemInput {
                 lineNumber, description, type,
                 taxAmount, totalAmount, quantity,
                 unitPrice, unitOfMeasure, discountPercentage,
-                discountAmount, categoryId, locationId,
-                departmentId, item, taxRate,
-                trackingCategories, ledgerAccount, customFields,
-                rowVersion);
+                discountAmount, serviceDate, categoryId,
+                locationId, departmentId, item,
+                taxRate, trackingCategories, ledgerAccount,
+                customFields, rowVersion);
         }
 
     }

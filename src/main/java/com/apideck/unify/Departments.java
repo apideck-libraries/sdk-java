@@ -27,7 +27,6 @@ import com.apideck.unify.operations.AccountingDepartmentsOne;
 import com.apideck.unify.operations.AccountingDepartmentsUpdate;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
-import java.lang.Exception;
 import java.util.Optional;
 
 
@@ -68,9 +67,9 @@ public class Departments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingDepartmentsAllResponse list(AccountingDepartmentsAllRequest request) throws Exception {
+    public AccountingDepartmentsAllResponse list(AccountingDepartmentsAllRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -82,9 +81,9 @@ public class Departments {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingDepartmentsAllResponse list(AccountingDepartmentsAllRequest request, Optional<Options> options) throws Exception {
+    public AccountingDepartmentsAllResponse list(AccountingDepartmentsAllRequest request, Optional<Options> options) {
         RequestOperation<AccountingDepartmentsAllRequest, AccountingDepartmentsAllResponse> operation
               = new AccountingDepartmentsAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -108,9 +107,9 @@ public class Departments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingDepartmentsAddResponse create(AccountingDepartmentsAddRequest request) throws Exception {
+    public AccountingDepartmentsAddResponse create(AccountingDepartmentsAddRequest request) {
         return create(request, Optional.empty());
     }
 
@@ -122,9 +121,9 @@ public class Departments {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingDepartmentsAddResponse create(AccountingDepartmentsAddRequest request, Optional<Options> options) throws Exception {
+    public AccountingDepartmentsAddResponse create(AccountingDepartmentsAddRequest request, Optional<Options> options) {
         RequestOperation<AccountingDepartmentsAddRequest, AccountingDepartmentsAddResponse> operation
               = new AccountingDepartmentsAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -148,9 +147,9 @@ public class Departments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingDepartmentsOneResponse get(AccountingDepartmentsOneRequest request) throws Exception {
+    public AccountingDepartmentsOneResponse get(AccountingDepartmentsOneRequest request) {
         return get(request, Optional.empty());
     }
 
@@ -162,9 +161,9 @@ public class Departments {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingDepartmentsOneResponse get(AccountingDepartmentsOneRequest request, Optional<Options> options) throws Exception {
+    public AccountingDepartmentsOneResponse get(AccountingDepartmentsOneRequest request, Optional<Options> options) {
         RequestOperation<AccountingDepartmentsOneRequest, AccountingDepartmentsOneResponse> operation
               = new AccountingDepartmentsOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -188,9 +187,9 @@ public class Departments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingDepartmentsUpdateResponse update(AccountingDepartmentsUpdateRequest request) throws Exception {
+    public AccountingDepartmentsUpdateResponse update(AccountingDepartmentsUpdateRequest request) {
         return update(request, Optional.empty());
     }
 
@@ -202,9 +201,9 @@ public class Departments {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingDepartmentsUpdateResponse update(AccountingDepartmentsUpdateRequest request, Optional<Options> options) throws Exception {
+    public AccountingDepartmentsUpdateResponse update(AccountingDepartmentsUpdateRequest request, Optional<Options> options) {
         RequestOperation<AccountingDepartmentsUpdateRequest, AccountingDepartmentsUpdateResponse> operation
               = new AccountingDepartmentsUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -228,9 +227,9 @@ public class Departments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingDepartmentsDeleteResponse delete(AccountingDepartmentsDeleteRequest request) throws Exception {
+    public AccountingDepartmentsDeleteResponse delete(AccountingDepartmentsDeleteRequest request) {
         return delete(request, Optional.empty());
     }
 
@@ -242,9 +241,9 @@ public class Departments {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingDepartmentsDeleteResponse delete(AccountingDepartmentsDeleteRequest request, Optional<Options> options) throws Exception {
+    public AccountingDepartmentsDeleteResponse delete(AccountingDepartmentsDeleteRequest request, Optional<Options> options) {
         RequestOperation<AccountingDepartmentsDeleteRequest, AccountingDepartmentsDeleteResponse> operation
               = new AccountingDepartmentsDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

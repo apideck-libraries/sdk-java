@@ -29,7 +29,6 @@ import com.apideck.unify.operations.WebhookWebhooksOne;
 import com.apideck.unify.operations.WebhookWebhooksUpdate;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
-import java.lang.Exception;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Optional;
@@ -72,9 +71,9 @@ public class Webhooks {
      * <p>List all webhook subscriptions
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public WebhookWebhooksAllResponse listDirect() throws Exception {
+    public WebhookWebhooksAllResponse listDirect() {
         return list(Optional.empty(), JsonNullable.undefined(), Optional.empty(),
             Optional.empty());
     }
@@ -89,11 +88,11 @@ public class Webhooks {
      * @param limit Number of results to return. Minimum 1, Maximum 200, Default 20
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public WebhookWebhooksAllResponse list(
             Optional<String> appId, JsonNullable<String> cursor,
-            Optional<Long> limit, Optional<Options> options) throws Exception {
+            Optional<Long> limit, Optional<Options> options) {
         WebhookWebhooksAllRequest request =
             WebhookWebhooksAllRequest
                 .builder()
@@ -109,7 +108,15 @@ public class Webhooks {
     /**
      * Create webhook subscription
      * 
-     * <p>Create a webhook subscription to receive events
+     * <p>Create a webhook subscription to receive events.
+     * 
+     * <p>**Delivery URL Validation**: The provided `delivery_url` will be validated synchronously by sending
+     * an HTTP POST request with an HMAC signature. If validation fails (network error, timeout, non-2xx
+     * response), the webhook will still be created but with `status: "disabled"` and `disabled_reason:
+     * "delivery_url_validation_failed"`.
+     * 
+     * <p>**Important**: Always check the `status` and `disabled_reason` fields in the response to ensure the
+     * webhook is active.
      * 
      * @return The call builder
      */
@@ -120,30 +127,46 @@ public class Webhooks {
     /**
      * Create webhook subscription
      * 
-     * <p>Create a webhook subscription to receive events
+     * <p>Create a webhook subscription to receive events.
+     * 
+     * <p>**Delivery URL Validation**: The provided `delivery_url` will be validated synchronously by sending
+     * an HTTP POST request with an HMAC signature. If validation fails (network error, timeout, non-2xx
+     * response), the webhook will still be created but with `status: "disabled"` and `disabled_reason:
+     * "delivery_url_validation_failed"`.
+     * 
+     * <p>**Important**: Always check the `status` and `disabled_reason` fields in the response to ensure the
+     * webhook is active.
      * 
      * @param createWebhookRequest 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public WebhookWebhooksAddResponse create(CreateWebhookRequest createWebhookRequest) throws Exception {
+    public WebhookWebhooksAddResponse create(CreateWebhookRequest createWebhookRequest) {
         return create(Optional.empty(), createWebhookRequest, Optional.empty());
     }
 
     /**
      * Create webhook subscription
      * 
-     * <p>Create a webhook subscription to receive events
+     * <p>Create a webhook subscription to receive events.
+     * 
+     * <p>**Delivery URL Validation**: The provided `delivery_url` will be validated synchronously by sending
+     * an HTTP POST request with an HMAC signature. If validation fails (network error, timeout, non-2xx
+     * response), the webhook will still be created but with `status: "disabled"` and `disabled_reason:
+     * "delivery_url_validation_failed"`.
+     * 
+     * <p>**Important**: Always check the `status` and `disabled_reason` fields in the response to ensure the
+     * webhook is active.
      * 
      * @param appId The ID of your Unify application
      * @param createWebhookRequest 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public WebhookWebhooksAddResponse create(
             Optional<String> appId, CreateWebhookRequest createWebhookRequest,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         WebhookWebhooksAddRequest request =
             WebhookWebhooksAddRequest
                 .builder()
@@ -173,9 +196,9 @@ public class Webhooks {
      * 
      * @param id JWT Webhook token that represents the unifiedApi and applicationId associated to the event source.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public WebhookWebhooksOneResponse get(String id) throws Exception {
+    public WebhookWebhooksOneResponse get(String id) {
         return get(id, Optional.empty(), Optional.empty());
     }
 
@@ -188,11 +211,11 @@ public class Webhooks {
      * @param appId The ID of your Unify application
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public WebhookWebhooksOneResponse get(
             String id, Optional<String> appId,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         WebhookWebhooksOneRequest request =
             WebhookWebhooksOneRequest
                 .builder()
@@ -207,7 +230,15 @@ public class Webhooks {
     /**
      * Update webhook subscription
      * 
-     * <p>Update a webhook subscription
+     * <p>Update a webhook subscription.
+     * 
+     * <p>**Delivery URL Validation**: When updating the `delivery_url`, it will be validated synchronously by
+     * sending an HTTP POST request with an HMAC signature. If validation fails (network error, timeout,
+     * non-2xx response), the webhook will still be updated but with `status: "disabled"` and
+     * `disabled_reason: "delivery_url_validation_failed"`. Validation only occurs when the URL is changed.
+     * 
+     * <p>**Important**: Always check the `status` and `disabled_reason` fields in the response to ensure the
+     * webhook is active.
      * 
      * @return The call builder
      */
@@ -218,14 +249,22 @@ public class Webhooks {
     /**
      * Update webhook subscription
      * 
-     * <p>Update a webhook subscription
+     * <p>Update a webhook subscription.
+     * 
+     * <p>**Delivery URL Validation**: When updating the `delivery_url`, it will be validated synchronously by
+     * sending an HTTP POST request with an HMAC signature. If validation fails (network error, timeout,
+     * non-2xx response), the webhook will still be updated but with `status: "disabled"` and
+     * `disabled_reason: "delivery_url_validation_failed"`. Validation only occurs when the URL is changed.
+     * 
+     * <p>**Important**: Always check the `status` and `disabled_reason` fields in the response to ensure the
+     * webhook is active.
      * 
      * @param id JWT Webhook token that represents the unifiedApi and applicationId associated to the event source.
      * @param updateWebhookRequest 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public WebhookWebhooksUpdateResponse update(String id, UpdateWebhookRequest updateWebhookRequest) throws Exception {
+    public WebhookWebhooksUpdateResponse update(String id, UpdateWebhookRequest updateWebhookRequest) {
         return update(id, Optional.empty(), updateWebhookRequest,
             Optional.empty());
     }
@@ -233,18 +272,26 @@ public class Webhooks {
     /**
      * Update webhook subscription
      * 
-     * <p>Update a webhook subscription
+     * <p>Update a webhook subscription.
+     * 
+     * <p>**Delivery URL Validation**: When updating the `delivery_url`, it will be validated synchronously by
+     * sending an HTTP POST request with an HMAC signature. If validation fails (network error, timeout,
+     * non-2xx response), the webhook will still be updated but with `status: "disabled"` and
+     * `disabled_reason: "delivery_url_validation_failed"`. Validation only occurs when the URL is changed.
+     * 
+     * <p>**Important**: Always check the `status` and `disabled_reason` fields in the response to ensure the
+     * webhook is active.
      * 
      * @param id JWT Webhook token that represents the unifiedApi and applicationId associated to the event source.
      * @param appId The ID of your Unify application
      * @param updateWebhookRequest 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public WebhookWebhooksUpdateResponse update(
             String id, Optional<String> appId,
-            UpdateWebhookRequest updateWebhookRequest, Optional<Options> options) throws Exception {
+            UpdateWebhookRequest updateWebhookRequest, Optional<Options> options) {
         WebhookWebhooksUpdateRequest request =
             WebhookWebhooksUpdateRequest
                 .builder()
@@ -275,9 +322,9 @@ public class Webhooks {
      * 
      * @param id JWT Webhook token that represents the unifiedApi and applicationId associated to the event source.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public WebhookWebhooksDeleteResponse delete(String id) throws Exception {
+    public WebhookWebhooksDeleteResponse delete(String id) {
         return delete(id, Optional.empty(), Optional.empty());
     }
 
@@ -290,11 +337,11 @@ public class Webhooks {
      * @param appId The ID of your Unify application
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public WebhookWebhooksDeleteResponse delete(
             String id, Optional<String> appId,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         WebhookWebhooksDeleteRequest request =
             WebhookWebhooksDeleteRequest
                 .builder()

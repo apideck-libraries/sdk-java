@@ -15,7 +15,6 @@ import com.apideck.unify.operations.AtsJobsAll;
 import com.apideck.unify.operations.AtsJobsOne;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
-import java.lang.Exception;
 import java.util.Optional;
 
 
@@ -56,9 +55,9 @@ public class Jobs {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AtsJobsAllResponse list(AtsJobsAllRequest request) throws Exception {
+    public AtsJobsAllResponse list(AtsJobsAllRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -70,9 +69,9 @@ public class Jobs {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AtsJobsAllResponse list(AtsJobsAllRequest request, Optional<Options> options) throws Exception {
+    public AtsJobsAllResponse list(AtsJobsAllRequest request, Optional<Options> options) {
         RequestOperation<AtsJobsAllRequest, AtsJobsAllResponse> operation
               = new AtsJobsAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -96,9 +95,9 @@ public class Jobs {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AtsJobsOneResponse get(AtsJobsOneRequest request) throws Exception {
+    public AtsJobsOneResponse get(AtsJobsOneRequest request) {
         return get(request, Optional.empty());
     }
 
@@ -110,9 +109,9 @@ public class Jobs {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AtsJobsOneResponse get(AtsJobsOneRequest request, Optional<Options> options) throws Exception {
+    public AtsJobsOneResponse get(AtsJobsOneRequest request, Optional<Options> options) {
         RequestOperation<AtsJobsOneRequest, AtsJobsOneResponse> operation
               = new AtsJobsOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

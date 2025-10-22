@@ -11,7 +11,6 @@ import com.apideck.unify.models.operations.ConnectorApiResourceCoverageOneRespon
 import com.apideck.unify.operations.ConnectorApiResourceCoverageOne;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
@@ -54,9 +53,9 @@ public class ApiResourceCoverage {
      * @param id ID of the record you are acting upon.
      * @param resourceId ID of the resource you are acting upon.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ConnectorApiResourceCoverageOneResponse get(String id, String resourceId) throws Exception {
+    public ConnectorApiResourceCoverageOneResponse get(String id, String resourceId) {
         return get(Optional.empty(), id, resourceId,
             Optional.empty());
     }
@@ -71,11 +70,11 @@ public class ApiResourceCoverage {
      * @param resourceId ID of the resource you are acting upon.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public ConnectorApiResourceCoverageOneResponse get(
             Optional<String> appId, String id,
-            String resourceId, Optional<Options> options) throws Exception {
+            String resourceId, Optional<Options> options) {
         ConnectorApiResourceCoverageOneRequest request =
             ConnectorApiResourceCoverageOneRequest
                 .builder()

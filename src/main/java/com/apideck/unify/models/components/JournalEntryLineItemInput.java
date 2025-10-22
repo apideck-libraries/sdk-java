@@ -116,6 +116,13 @@ public class JournalEntryLineItemInput {
     @JsonProperty("line_number")
     private JsonNullable<Long> lineNumber;
 
+    /**
+     * Worktags of the line item. This is currently only supported in Workday.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("worktags")
+    private Optional<? extends List<LinkedWorktag>> worktags;
+
     @JsonCreator
     public JournalEntryLineItemInput(
             @JsonProperty("description") JsonNullable<String> description,
@@ -131,7 +138,8 @@ public class JournalEntryLineItemInput {
             @JsonProperty("supplier") JsonNullable<? extends LinkedSupplierInput> supplier,
             @JsonProperty("department_id") JsonNullable<String> departmentId,
             @JsonProperty("location_id") JsonNullable<String> locationId,
-            @JsonProperty("line_number") JsonNullable<Long> lineNumber) {
+            @JsonProperty("line_number") JsonNullable<Long> lineNumber,
+            @JsonProperty("worktags") Optional<? extends List<LinkedWorktag>> worktags) {
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(taxAmount, "taxAmount");
         Utils.checkNotNull(subTotal, "subTotal");
@@ -146,6 +154,7 @@ public class JournalEntryLineItemInput {
         Utils.checkNotNull(departmentId, "departmentId");
         Utils.checkNotNull(locationId, "locationId");
         Utils.checkNotNull(lineNumber, "lineNumber");
+        Utils.checkNotNull(worktags, "worktags");
         this.description = description;
         this.taxAmount = taxAmount;
         this.subTotal = subTotal;
@@ -160,6 +169,7 @@ public class JournalEntryLineItemInput {
         this.departmentId = departmentId;
         this.locationId = locationId;
         this.lineNumber = lineNumber;
+        this.worktags = worktags;
     }
     
     public JournalEntryLineItemInput(
@@ -168,7 +178,7 @@ public class JournalEntryLineItemInput {
             JsonNullable.undefined(), type, Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -283,6 +293,15 @@ public class JournalEntryLineItemInput {
     @JsonIgnore
     public JsonNullable<Long> lineNumber() {
         return lineNumber;
+    }
+
+    /**
+     * Worktags of the line item. This is currently only supported in Workday.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<LinkedWorktag>> worktags() {
+        return (Optional<List<LinkedWorktag>>) worktags;
     }
 
     public static Builder builder() {
@@ -527,6 +546,25 @@ public class JournalEntryLineItemInput {
         return this;
     }
 
+    /**
+     * Worktags of the line item. This is currently only supported in Workday.
+     */
+    public JournalEntryLineItemInput withWorktags(List<LinkedWorktag> worktags) {
+        Utils.checkNotNull(worktags, "worktags");
+        this.worktags = Optional.ofNullable(worktags);
+        return this;
+    }
+
+
+    /**
+     * Worktags of the line item. This is currently only supported in Workday.
+     */
+    public JournalEntryLineItemInput withWorktags(Optional<? extends List<LinkedWorktag>> worktags) {
+        Utils.checkNotNull(worktags, "worktags");
+        this.worktags = worktags;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -550,7 +588,8 @@ public class JournalEntryLineItemInput {
             Utils.enhancedDeepEquals(this.supplier, other.supplier) &&
             Utils.enhancedDeepEquals(this.departmentId, other.departmentId) &&
             Utils.enhancedDeepEquals(this.locationId, other.locationId) &&
-            Utils.enhancedDeepEquals(this.lineNumber, other.lineNumber);
+            Utils.enhancedDeepEquals(this.lineNumber, other.lineNumber) &&
+            Utils.enhancedDeepEquals(this.worktags, other.worktags);
     }
     
     @Override
@@ -560,7 +599,7 @@ public class JournalEntryLineItemInput {
             totalAmount, type, taxRate,
             trackingCategory, trackingCategories, ledgerAccount,
             customer, supplier, departmentId,
-            locationId, lineNumber);
+            locationId, lineNumber, worktags);
     }
     
     @Override
@@ -579,7 +618,8 @@ public class JournalEntryLineItemInput {
                 "supplier", supplier,
                 "departmentId", departmentId,
                 "locationId", locationId,
-                "lineNumber", lineNumber);
+                "lineNumber", lineNumber,
+                "worktags", worktags);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -613,6 +653,8 @@ public class JournalEntryLineItemInput {
         private JsonNullable<String> locationId = JsonNullable.undefined();
 
         private JsonNullable<Long> lineNumber = JsonNullable.undefined();
+
+        private Optional<? extends List<LinkedWorktag>> worktags = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -867,6 +909,25 @@ public class JournalEntryLineItemInput {
             return this;
         }
 
+
+        /**
+         * Worktags of the line item. This is currently only supported in Workday.
+         */
+        public Builder worktags(List<LinkedWorktag> worktags) {
+            Utils.checkNotNull(worktags, "worktags");
+            this.worktags = Optional.ofNullable(worktags);
+            return this;
+        }
+
+        /**
+         * Worktags of the line item. This is currently only supported in Workday.
+         */
+        public Builder worktags(Optional<? extends List<LinkedWorktag>> worktags) {
+            Utils.checkNotNull(worktags, "worktags");
+            this.worktags = worktags;
+            return this;
+        }
+
         public JournalEntryLineItemInput build() {
 
             return new JournalEntryLineItemInput(
@@ -874,7 +935,7 @@ public class JournalEntryLineItemInput {
                 totalAmount, type, taxRate,
                 trackingCategory, trackingCategories, ledgerAccount,
                 customer, supplier, departmentId,
-                locationId, lineNumber);
+                locationId, lineNumber, worktags);
         }
 
     }

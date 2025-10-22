@@ -11,7 +11,6 @@ import com.apideck.unify.models.operations.ConnectorConnectorDocsOneResponse;
 import com.apideck.unify.operations.ConnectorConnectorDocsOne;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
@@ -54,9 +53,9 @@ public class ConnectorDocs {
      * @param id ID of the record you are acting upon.
      * @param docId ID of the Doc
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ConnectorConnectorDocsOneResponse get(String id, String docId) throws Exception {
+    public ConnectorConnectorDocsOneResponse get(String id, String docId) {
         return get(Optional.empty(), id, docId,
             Optional.empty());
     }
@@ -71,11 +70,11 @@ public class ConnectorDocs {
      * @param docId ID of the Doc
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public ConnectorConnectorDocsOneResponse get(
             Optional<String> appId, String id,
-            String docId, Optional<Options> options) throws Exception {
+            String docId, Optional<Options> options) {
         ConnectorConnectorDocsOneRequest request =
             ConnectorConnectorDocsOneRequest
                 .builder()

@@ -15,7 +15,6 @@ import com.apideck.unify.operations.VaultConnectionSettingsAll;
 import com.apideck.unify.operations.VaultConnectionSettingsUpdate;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
-import java.lang.Exception;
 import java.util.Optional;
 
 
@@ -58,9 +57,9 @@ public class ConnectionSettings {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public VaultConnectionSettingsAllResponse list(VaultConnectionSettingsAllRequest request) throws Exception {
+    public VaultConnectionSettingsAllResponse list(VaultConnectionSettingsAllRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -73,9 +72,9 @@ public class ConnectionSettings {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public VaultConnectionSettingsAllResponse list(VaultConnectionSettingsAllRequest request, Optional<Options> options) throws Exception {
+    public VaultConnectionSettingsAllResponse list(VaultConnectionSettingsAllRequest request, Optional<Options> options) {
         RequestOperation<VaultConnectionSettingsAllRequest, VaultConnectionSettingsAllResponse> operation
               = new VaultConnectionSettingsAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -99,9 +98,9 @@ public class ConnectionSettings {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public VaultConnectionSettingsUpdateResponse update(VaultConnectionSettingsUpdateRequest request) throws Exception {
+    public VaultConnectionSettingsUpdateResponse update(VaultConnectionSettingsUpdateRequest request) {
         return update(request, Optional.empty());
     }
 
@@ -113,9 +112,9 @@ public class ConnectionSettings {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public VaultConnectionSettingsUpdateResponse update(VaultConnectionSettingsUpdateRequest request, Optional<Options> options) throws Exception {
+    public VaultConnectionSettingsUpdateResponse update(VaultConnectionSettingsUpdateRequest request, Optional<Options> options) {
         RequestOperation<VaultConnectionSettingsUpdateRequest, VaultConnectionSettingsUpdateResponse> operation
               = new VaultConnectionSettingsUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

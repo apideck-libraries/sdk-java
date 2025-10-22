@@ -11,7 +11,6 @@ import com.apideck.unify.models.operations.VaultConsumerRequestCountsAllResponse
 import com.apideck.unify.operations.VaultConsumerRequestCountsAll;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
@@ -55,11 +54,11 @@ public class ConsumerRequestCounts {
      * @param startDatetime Scopes results to requests that happened after datetime
      * @param endDatetime Scopes results to requests that happened before datetime
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public VaultConsumerRequestCountsAllResponse list(
             String consumerId, String startDatetime,
-            String endDatetime) throws Exception {
+            String endDatetime) {
         return list(Optional.empty(), consumerId, startDatetime,
             endDatetime, Optional.empty());
     }
@@ -75,12 +74,12 @@ public class ConsumerRequestCounts {
      * @param endDatetime Scopes results to requests that happened before datetime
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public VaultConsumerRequestCountsAllResponse list(
             Optional<String> appId, String consumerId,
             String startDatetime, String endDatetime,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         VaultConsumerRequestCountsAllRequest request =
             VaultConsumerRequestCountsAllRequest
                 .builder()

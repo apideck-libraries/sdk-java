@@ -11,7 +11,6 @@ import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
-import java.lang.Exception;
 import java.util.Optional;
 
 public class AccountingLedgerAccountsUpdateRequestBuilder {
@@ -43,7 +42,7 @@ public class AccountingLedgerAccountsUpdateRequestBuilder {
         return this;
     }
 
-    public AccountingLedgerAccountsUpdateResponse call() throws Exception {
+    public AccountingLedgerAccountsUpdateResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
             .build());

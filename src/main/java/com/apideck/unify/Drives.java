@@ -27,7 +27,6 @@ import com.apideck.unify.operations.FileStorageDrivesOne;
 import com.apideck.unify.operations.FileStorageDrivesUpdate;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
-import java.lang.Exception;
 import java.util.Optional;
 
 
@@ -68,9 +67,9 @@ public class Drives {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public FileStorageDrivesAllResponse list(FileStorageDrivesAllRequest request) throws Exception {
+    public FileStorageDrivesAllResponse list(FileStorageDrivesAllRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -82,9 +81,9 @@ public class Drives {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public FileStorageDrivesAllResponse list(FileStorageDrivesAllRequest request, Optional<Options> options) throws Exception {
+    public FileStorageDrivesAllResponse list(FileStorageDrivesAllRequest request, Optional<Options> options) {
         RequestOperation<FileStorageDrivesAllRequest, FileStorageDrivesAllResponse> operation
               = new FileStorageDrivesAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -108,9 +107,9 @@ public class Drives {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public FileStorageDrivesAddResponse create(FileStorageDrivesAddRequest request) throws Exception {
+    public FileStorageDrivesAddResponse create(FileStorageDrivesAddRequest request) {
         return create(request, Optional.empty());
     }
 
@@ -122,9 +121,9 @@ public class Drives {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public FileStorageDrivesAddResponse create(FileStorageDrivesAddRequest request, Optional<Options> options) throws Exception {
+    public FileStorageDrivesAddResponse create(FileStorageDrivesAddRequest request, Optional<Options> options) {
         RequestOperation<FileStorageDrivesAddRequest, FileStorageDrivesAddResponse> operation
               = new FileStorageDrivesAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -148,9 +147,9 @@ public class Drives {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public FileStorageDrivesOneResponse get(FileStorageDrivesOneRequest request) throws Exception {
+    public FileStorageDrivesOneResponse get(FileStorageDrivesOneRequest request) {
         return get(request, Optional.empty());
     }
 
@@ -162,9 +161,9 @@ public class Drives {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public FileStorageDrivesOneResponse get(FileStorageDrivesOneRequest request, Optional<Options> options) throws Exception {
+    public FileStorageDrivesOneResponse get(FileStorageDrivesOneRequest request, Optional<Options> options) {
         RequestOperation<FileStorageDrivesOneRequest, FileStorageDrivesOneResponse> operation
               = new FileStorageDrivesOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -188,9 +187,9 @@ public class Drives {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public FileStorageDrivesUpdateResponse update(FileStorageDrivesUpdateRequest request) throws Exception {
+    public FileStorageDrivesUpdateResponse update(FileStorageDrivesUpdateRequest request) {
         return update(request, Optional.empty());
     }
 
@@ -202,9 +201,9 @@ public class Drives {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public FileStorageDrivesUpdateResponse update(FileStorageDrivesUpdateRequest request, Optional<Options> options) throws Exception {
+    public FileStorageDrivesUpdateResponse update(FileStorageDrivesUpdateRequest request, Optional<Options> options) {
         RequestOperation<FileStorageDrivesUpdateRequest, FileStorageDrivesUpdateResponse> operation
               = new FileStorageDrivesUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -228,9 +227,9 @@ public class Drives {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public FileStorageDrivesDeleteResponse delete(FileStorageDrivesDeleteRequest request) throws Exception {
+    public FileStorageDrivesDeleteResponse delete(FileStorageDrivesDeleteRequest request) {
         return delete(request, Optional.empty());
     }
 
@@ -242,9 +241,9 @@ public class Drives {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public FileStorageDrivesDeleteResponse delete(FileStorageDrivesDeleteRequest request, Optional<Options> options) throws Exception {
+    public FileStorageDrivesDeleteResponse delete(FileStorageDrivesDeleteRequest request, Optional<Options> options) {
         RequestOperation<FileStorageDrivesDeleteRequest, FileStorageDrivesDeleteResponse> operation
               = new FileStorageDrivesDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

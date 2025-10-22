@@ -12,7 +12,6 @@ import com.apideck.unify.models.operations.VaultSessionsCreateResponse;
 import com.apideck.unify.operations.VaultSessionsCreate;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
@@ -61,9 +60,9 @@ public class Sessions {
      * <p>Note: This is a short lived token that will expire after 1 hour (TTL: 3600).
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public VaultSessionsCreateResponse createDirect() throws Exception {
+    public VaultSessionsCreateResponse createDirect() {
         return create(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty());
     }
@@ -82,11 +81,11 @@ public class Sessions {
      * @param session 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public VaultSessionsCreateResponse create(
             Optional<String> consumerId, Optional<String> appId,
-            Optional<? extends Session> session, Optional<Options> options) throws Exception {
+            Optional<? extends Session> session, Optional<Options> options) {
         VaultSessionsCreateRequest request =
             VaultSessionsCreateRequest
                 .builder()

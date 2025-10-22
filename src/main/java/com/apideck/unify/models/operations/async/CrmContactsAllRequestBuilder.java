@@ -16,7 +16,6 @@ import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
 import com.apideck.unify.utils.pagination.AsyncPaginator;
 import com.apideck.unify.utils.pagination.CursorTracker;
-import java.lang.Exception;
 import java.lang.String;
 import java.net.http.HttpResponse;
 import java.util.Optional;
@@ -54,7 +53,7 @@ public class CrmContactsAllRequestBuilder {
         return this;
     }
 
-    public CompletableFuture<CrmContactsAllResponse> call() throws Exception {
+    public CompletableFuture<CrmContactsAllResponse> call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
             .build());

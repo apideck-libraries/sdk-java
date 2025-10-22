@@ -27,7 +27,6 @@ import com.apideck.unify.operations.FileStorageFoldersOne;
 import com.apideck.unify.operations.FileStorageFoldersUpdate;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
-import java.lang.Exception;
 import java.util.Optional;
 
 
@@ -68,9 +67,9 @@ public class Folders {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public FileStorageFoldersAddResponse create(FileStorageFoldersAddRequest request) throws Exception {
+    public FileStorageFoldersAddResponse create(FileStorageFoldersAddRequest request) {
         return create(request, Optional.empty());
     }
 
@@ -82,9 +81,9 @@ public class Folders {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public FileStorageFoldersAddResponse create(FileStorageFoldersAddRequest request, Optional<Options> options) throws Exception {
+    public FileStorageFoldersAddResponse create(FileStorageFoldersAddRequest request, Optional<Options> options) {
         RequestOperation<FileStorageFoldersAddRequest, FileStorageFoldersAddResponse> operation
               = new FileStorageFoldersAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -108,9 +107,9 @@ public class Folders {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public FileStorageFoldersOneResponse get(FileStorageFoldersOneRequest request) throws Exception {
+    public FileStorageFoldersOneResponse get(FileStorageFoldersOneRequest request) {
         return get(request, Optional.empty());
     }
 
@@ -122,9 +121,9 @@ public class Folders {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public FileStorageFoldersOneResponse get(FileStorageFoldersOneRequest request, Optional<Options> options) throws Exception {
+    public FileStorageFoldersOneResponse get(FileStorageFoldersOneRequest request, Optional<Options> options) {
         RequestOperation<FileStorageFoldersOneRequest, FileStorageFoldersOneResponse> operation
               = new FileStorageFoldersOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -148,9 +147,9 @@ public class Folders {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public FileStorageFoldersUpdateResponse update(FileStorageFoldersUpdateRequest request) throws Exception {
+    public FileStorageFoldersUpdateResponse update(FileStorageFoldersUpdateRequest request) {
         return update(request, Optional.empty());
     }
 
@@ -162,9 +161,9 @@ public class Folders {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public FileStorageFoldersUpdateResponse update(FileStorageFoldersUpdateRequest request, Optional<Options> options) throws Exception {
+    public FileStorageFoldersUpdateResponse update(FileStorageFoldersUpdateRequest request, Optional<Options> options) {
         RequestOperation<FileStorageFoldersUpdateRequest, FileStorageFoldersUpdateResponse> operation
               = new FileStorageFoldersUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -188,9 +187,9 @@ public class Folders {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public FileStorageFoldersDeleteResponse delete(FileStorageFoldersDeleteRequest request) throws Exception {
+    public FileStorageFoldersDeleteResponse delete(FileStorageFoldersDeleteRequest request) {
         return delete(request, Optional.empty());
     }
 
@@ -202,9 +201,9 @@ public class Folders {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public FileStorageFoldersDeleteResponse delete(FileStorageFoldersDeleteRequest request, Optional<Options> options) throws Exception {
+    public FileStorageFoldersDeleteResponse delete(FileStorageFoldersDeleteRequest request, Optional<Options> options) {
         RequestOperation<FileStorageFoldersDeleteRequest, FileStorageFoldersDeleteResponse> operation
               = new FileStorageFoldersDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -228,9 +227,9 @@ public class Folders {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public FileStorageFoldersCopyResponse copy(FileStorageFoldersCopyRequest request) throws Exception {
+    public FileStorageFoldersCopyResponse copy(FileStorageFoldersCopyRequest request) {
         return copy(request, Optional.empty());
     }
 
@@ -242,9 +241,9 @@ public class Folders {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public FileStorageFoldersCopyResponse copy(FileStorageFoldersCopyRequest request, Optional<Options> options) throws Exception {
+    public FileStorageFoldersCopyResponse copy(FileStorageFoldersCopyRequest request, Optional<Options> options) {
         RequestOperation<FileStorageFoldersCopyRequest, FileStorageFoldersCopyResponse> operation
               = new FileStorageFoldersCopy.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

@@ -27,7 +27,6 @@ import com.apideck.unify.operations.AccountingJournalEntriesOne;
 import com.apideck.unify.operations.AccountingJournalEntriesUpdate;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
-import java.lang.Exception;
 import java.util.Optional;
 
 
@@ -68,9 +67,9 @@ public class JournalEntries {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingJournalEntriesAllResponse list(AccountingJournalEntriesAllRequest request) throws Exception {
+    public AccountingJournalEntriesAllResponse list(AccountingJournalEntriesAllRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -82,9 +81,9 @@ public class JournalEntries {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingJournalEntriesAllResponse list(AccountingJournalEntriesAllRequest request, Optional<Options> options) throws Exception {
+    public AccountingJournalEntriesAllResponse list(AccountingJournalEntriesAllRequest request, Optional<Options> options) {
         RequestOperation<AccountingJournalEntriesAllRequest, AccountingJournalEntriesAllResponse> operation
               = new AccountingJournalEntriesAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -108,9 +107,9 @@ public class JournalEntries {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingJournalEntriesAddResponse create(AccountingJournalEntriesAddRequest request) throws Exception {
+    public AccountingJournalEntriesAddResponse create(AccountingJournalEntriesAddRequest request) {
         return create(request, Optional.empty());
     }
 
@@ -122,9 +121,9 @@ public class JournalEntries {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingJournalEntriesAddResponse create(AccountingJournalEntriesAddRequest request, Optional<Options> options) throws Exception {
+    public AccountingJournalEntriesAddResponse create(AccountingJournalEntriesAddRequest request, Optional<Options> options) {
         RequestOperation<AccountingJournalEntriesAddRequest, AccountingJournalEntriesAddResponse> operation
               = new AccountingJournalEntriesAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -148,9 +147,9 @@ public class JournalEntries {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingJournalEntriesOneResponse get(AccountingJournalEntriesOneRequest request) throws Exception {
+    public AccountingJournalEntriesOneResponse get(AccountingJournalEntriesOneRequest request) {
         return get(request, Optional.empty());
     }
 
@@ -162,9 +161,9 @@ public class JournalEntries {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingJournalEntriesOneResponse get(AccountingJournalEntriesOneRequest request, Optional<Options> options) throws Exception {
+    public AccountingJournalEntriesOneResponse get(AccountingJournalEntriesOneRequest request, Optional<Options> options) {
         RequestOperation<AccountingJournalEntriesOneRequest, AccountingJournalEntriesOneResponse> operation
               = new AccountingJournalEntriesOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -188,9 +187,9 @@ public class JournalEntries {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingJournalEntriesUpdateResponse update(AccountingJournalEntriesUpdateRequest request) throws Exception {
+    public AccountingJournalEntriesUpdateResponse update(AccountingJournalEntriesUpdateRequest request) {
         return update(request, Optional.empty());
     }
 
@@ -202,9 +201,9 @@ public class JournalEntries {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingJournalEntriesUpdateResponse update(AccountingJournalEntriesUpdateRequest request, Optional<Options> options) throws Exception {
+    public AccountingJournalEntriesUpdateResponse update(AccountingJournalEntriesUpdateRequest request, Optional<Options> options) {
         RequestOperation<AccountingJournalEntriesUpdateRequest, AccountingJournalEntriesUpdateResponse> operation
               = new AccountingJournalEntriesUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -228,9 +227,9 @@ public class JournalEntries {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingJournalEntriesDeleteResponse delete(AccountingJournalEntriesDeleteRequest request) throws Exception {
+    public AccountingJournalEntriesDeleteResponse delete(AccountingJournalEntriesDeleteRequest request) {
         return delete(request, Optional.empty());
     }
 
@@ -242,9 +241,9 @@ public class JournalEntries {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingJournalEntriesDeleteResponse delete(AccountingJournalEntriesDeleteRequest request, Optional<Options> options) throws Exception {
+    public AccountingJournalEntriesDeleteResponse delete(AccountingJournalEntriesDeleteRequest request, Optional<Options> options) {
         RequestOperation<AccountingJournalEntriesDeleteRequest, AccountingJournalEntriesDeleteResponse> operation
               = new AccountingJournalEntriesDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

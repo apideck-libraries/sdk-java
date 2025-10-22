@@ -27,7 +27,6 @@ import com.apideck.unify.operations.SmsMessagesOne;
 import com.apideck.unify.operations.SmsMessagesUpdate;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
-import java.lang.Exception;
 import java.util.Optional;
 
 
@@ -68,9 +67,9 @@ public class Messages {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public SmsMessagesAllResponse list(SmsMessagesAllRequest request) throws Exception {
+    public SmsMessagesAllResponse list(SmsMessagesAllRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -82,9 +81,9 @@ public class Messages {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public SmsMessagesAllResponse list(SmsMessagesAllRequest request, Optional<Options> options) throws Exception {
+    public SmsMessagesAllResponse list(SmsMessagesAllRequest request, Optional<Options> options) {
         RequestOperation<SmsMessagesAllRequest, SmsMessagesAllResponse> operation
               = new SmsMessagesAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -108,9 +107,9 @@ public class Messages {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public SmsMessagesAddResponse create(SmsMessagesAddRequest request) throws Exception {
+    public SmsMessagesAddResponse create(SmsMessagesAddRequest request) {
         return create(request, Optional.empty());
     }
 
@@ -122,9 +121,9 @@ public class Messages {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public SmsMessagesAddResponse create(SmsMessagesAddRequest request, Optional<Options> options) throws Exception {
+    public SmsMessagesAddResponse create(SmsMessagesAddRequest request, Optional<Options> options) {
         RequestOperation<SmsMessagesAddRequest, SmsMessagesAddResponse> operation
               = new SmsMessagesAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -148,9 +147,9 @@ public class Messages {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public SmsMessagesOneResponse get(SmsMessagesOneRequest request) throws Exception {
+    public SmsMessagesOneResponse get(SmsMessagesOneRequest request) {
         return get(request, Optional.empty());
     }
 
@@ -162,9 +161,9 @@ public class Messages {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public SmsMessagesOneResponse get(SmsMessagesOneRequest request, Optional<Options> options) throws Exception {
+    public SmsMessagesOneResponse get(SmsMessagesOneRequest request, Optional<Options> options) {
         RequestOperation<SmsMessagesOneRequest, SmsMessagesOneResponse> operation
               = new SmsMessagesOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -188,9 +187,9 @@ public class Messages {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public SmsMessagesUpdateResponse update(SmsMessagesUpdateRequest request) throws Exception {
+    public SmsMessagesUpdateResponse update(SmsMessagesUpdateRequest request) {
         return update(request, Optional.empty());
     }
 
@@ -202,9 +201,9 @@ public class Messages {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public SmsMessagesUpdateResponse update(SmsMessagesUpdateRequest request, Optional<Options> options) throws Exception {
+    public SmsMessagesUpdateResponse update(SmsMessagesUpdateRequest request, Optional<Options> options) {
         RequestOperation<SmsMessagesUpdateRequest, SmsMessagesUpdateResponse> operation
               = new SmsMessagesUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -228,9 +227,9 @@ public class Messages {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public SmsMessagesDeleteResponse delete(SmsMessagesDeleteRequest request) throws Exception {
+    public SmsMessagesDeleteResponse delete(SmsMessagesDeleteRequest request) {
         return delete(request, Optional.empty());
     }
 
@@ -242,9 +241,9 @@ public class Messages {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public SmsMessagesDeleteResponse delete(SmsMessagesDeleteRequest request, Optional<Options> options) throws Exception {
+    public SmsMessagesDeleteResponse delete(SmsMessagesDeleteRequest request, Optional<Options> options) {
         RequestOperation<SmsMessagesDeleteRequest, SmsMessagesDeleteResponse> operation
               = new SmsMessagesDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

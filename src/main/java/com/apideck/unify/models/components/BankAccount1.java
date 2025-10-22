@@ -17,23 +17,21 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class BankAccount1 {
     /**
-     * The name of the bank
+     * The name of the bank or financial institution
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("bank_name")
     private JsonNullable<String> bankName;
 
     /**
-     * A bank account number is a number that is tied to your bank account. If you have several bank
-     * accounts, such as personal, joint, business (and so on), each account will have a different account
-     * number.
+     * The bank account number
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("account_number")
     private JsonNullable<String> accountNumber;
 
     /**
-     * The name which you used in opening your bank account.
+     * The name of the bank account
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("account_name")
@@ -47,44 +45,42 @@ public class BankAccount1 {
     private JsonNullable<? extends BankAccount1AccountType> accountType;
 
     /**
-     * The International Bank Account Number (IBAN).
+     * International Bank Account Number
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("iban")
     private JsonNullable<String> iban;
 
     /**
-     * The Bank Identifier Code (BIC).
+     * Bank Identifier Code / SWIFT Code
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("bic")
     private JsonNullable<String> bic;
 
     /**
-     * A routing number is a nine-digit code used to identify a financial institution in the United States.
+     * Bank routing number (US)
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("routing_number")
     private JsonNullable<String> routingNumber;
 
     /**
-     * A BSB is a 6 digit numeric code used for identifying the branch of an Australian or New Zealand bank
-     * or financial institution.
+     * Bank State Branch number (Australia/New Zealand)
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("bsb_number")
     private JsonNullable<String> bsbNumber;
 
     /**
-     * A branch identifier is a unique identifier for a branch of a bank or financial institution.
+     * Bank branch identifier
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("branch_identifier")
     private JsonNullable<String> branchIdentifier;
 
     /**
-     * A bank code is a code assigned by a central bank, a bank supervisory body or a Bankers Association
-     * in a country to all its licensed member banks or financial institutions.
+     * Bank code assigned by central bank
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("bank_code")
@@ -153,7 +149,7 @@ public class BankAccount1 {
     }
 
     /**
-     * The name of the bank
+     * The name of the bank or financial institution
      */
     @JsonIgnore
     public JsonNullable<String> bankName() {
@@ -161,9 +157,7 @@ public class BankAccount1 {
     }
 
     /**
-     * A bank account number is a number that is tied to your bank account. If you have several bank
-     * accounts, such as personal, joint, business (and so on), each account will have a different account
-     * number.
+     * The bank account number
      */
     @JsonIgnore
     public JsonNullable<String> accountNumber() {
@@ -171,7 +165,7 @@ public class BankAccount1 {
     }
 
     /**
-     * The name which you used in opening your bank account.
+     * The name of the bank account
      */
     @JsonIgnore
     public JsonNullable<String> accountName() {
@@ -188,7 +182,7 @@ public class BankAccount1 {
     }
 
     /**
-     * The International Bank Account Number (IBAN).
+     * International Bank Account Number
      */
     @JsonIgnore
     public JsonNullable<String> iban() {
@@ -196,7 +190,7 @@ public class BankAccount1 {
     }
 
     /**
-     * The Bank Identifier Code (BIC).
+     * Bank Identifier Code / SWIFT Code
      */
     @JsonIgnore
     public JsonNullable<String> bic() {
@@ -204,7 +198,7 @@ public class BankAccount1 {
     }
 
     /**
-     * A routing number is a nine-digit code used to identify a financial institution in the United States.
+     * Bank routing number (US)
      */
     @JsonIgnore
     public JsonNullable<String> routingNumber() {
@@ -212,8 +206,7 @@ public class BankAccount1 {
     }
 
     /**
-     * A BSB is a 6 digit numeric code used for identifying the branch of an Australian or New Zealand bank
-     * or financial institution.
+     * Bank State Branch number (Australia/New Zealand)
      */
     @JsonIgnore
     public JsonNullable<String> bsbNumber() {
@@ -221,7 +214,7 @@ public class BankAccount1 {
     }
 
     /**
-     * A branch identifier is a unique identifier for a branch of a bank or financial institution.
+     * Bank branch identifier
      */
     @JsonIgnore
     public JsonNullable<String> branchIdentifier() {
@@ -229,8 +222,7 @@ public class BankAccount1 {
     }
 
     /**
-     * A bank code is a code assigned by a central bank, a bank supervisory body or a Bankers Association
-     * in a country to all its licensed member banks or financial institutions.
+     * Bank code assigned by central bank
      */
     @JsonIgnore
     public JsonNullable<String> bankCode() {
@@ -261,7 +253,7 @@ public class BankAccount1 {
 
 
     /**
-     * The name of the bank
+     * The name of the bank or financial institution
      */
     public BankAccount1 withBankName(String bankName) {
         Utils.checkNotNull(bankName, "bankName");
@@ -270,7 +262,7 @@ public class BankAccount1 {
     }
 
     /**
-     * The name of the bank
+     * The name of the bank or financial institution
      */
     public BankAccount1 withBankName(JsonNullable<String> bankName) {
         Utils.checkNotNull(bankName, "bankName");
@@ -279,9 +271,7 @@ public class BankAccount1 {
     }
 
     /**
-     * A bank account number is a number that is tied to your bank account. If you have several bank
-     * accounts, such as personal, joint, business (and so on), each account will have a different account
-     * number.
+     * The bank account number
      */
     public BankAccount1 withAccountNumber(String accountNumber) {
         Utils.checkNotNull(accountNumber, "accountNumber");
@@ -290,9 +280,7 @@ public class BankAccount1 {
     }
 
     /**
-     * A bank account number is a number that is tied to your bank account. If you have several bank
-     * accounts, such as personal, joint, business (and so on), each account will have a different account
-     * number.
+     * The bank account number
      */
     public BankAccount1 withAccountNumber(JsonNullable<String> accountNumber) {
         Utils.checkNotNull(accountNumber, "accountNumber");
@@ -301,7 +289,7 @@ public class BankAccount1 {
     }
 
     /**
-     * The name which you used in opening your bank account.
+     * The name of the bank account
      */
     public BankAccount1 withAccountName(String accountName) {
         Utils.checkNotNull(accountName, "accountName");
@@ -310,7 +298,7 @@ public class BankAccount1 {
     }
 
     /**
-     * The name which you used in opening your bank account.
+     * The name of the bank account
      */
     public BankAccount1 withAccountName(JsonNullable<String> accountName) {
         Utils.checkNotNull(accountName, "accountName");
@@ -337,7 +325,7 @@ public class BankAccount1 {
     }
 
     /**
-     * The International Bank Account Number (IBAN).
+     * International Bank Account Number
      */
     public BankAccount1 withIban(String iban) {
         Utils.checkNotNull(iban, "iban");
@@ -346,7 +334,7 @@ public class BankAccount1 {
     }
 
     /**
-     * The International Bank Account Number (IBAN).
+     * International Bank Account Number
      */
     public BankAccount1 withIban(JsonNullable<String> iban) {
         Utils.checkNotNull(iban, "iban");
@@ -355,7 +343,7 @@ public class BankAccount1 {
     }
 
     /**
-     * The Bank Identifier Code (BIC).
+     * Bank Identifier Code / SWIFT Code
      */
     public BankAccount1 withBic(String bic) {
         Utils.checkNotNull(bic, "bic");
@@ -364,7 +352,7 @@ public class BankAccount1 {
     }
 
     /**
-     * The Bank Identifier Code (BIC).
+     * Bank Identifier Code / SWIFT Code
      */
     public BankAccount1 withBic(JsonNullable<String> bic) {
         Utils.checkNotNull(bic, "bic");
@@ -373,7 +361,7 @@ public class BankAccount1 {
     }
 
     /**
-     * A routing number is a nine-digit code used to identify a financial institution in the United States.
+     * Bank routing number (US)
      */
     public BankAccount1 withRoutingNumber(String routingNumber) {
         Utils.checkNotNull(routingNumber, "routingNumber");
@@ -382,7 +370,7 @@ public class BankAccount1 {
     }
 
     /**
-     * A routing number is a nine-digit code used to identify a financial institution in the United States.
+     * Bank routing number (US)
      */
     public BankAccount1 withRoutingNumber(JsonNullable<String> routingNumber) {
         Utils.checkNotNull(routingNumber, "routingNumber");
@@ -391,8 +379,7 @@ public class BankAccount1 {
     }
 
     /**
-     * A BSB is a 6 digit numeric code used for identifying the branch of an Australian or New Zealand bank
-     * or financial institution.
+     * Bank State Branch number (Australia/New Zealand)
      */
     public BankAccount1 withBsbNumber(String bsbNumber) {
         Utils.checkNotNull(bsbNumber, "bsbNumber");
@@ -401,8 +388,7 @@ public class BankAccount1 {
     }
 
     /**
-     * A BSB is a 6 digit numeric code used for identifying the branch of an Australian or New Zealand bank
-     * or financial institution.
+     * Bank State Branch number (Australia/New Zealand)
      */
     public BankAccount1 withBsbNumber(JsonNullable<String> bsbNumber) {
         Utils.checkNotNull(bsbNumber, "bsbNumber");
@@ -411,7 +397,7 @@ public class BankAccount1 {
     }
 
     /**
-     * A branch identifier is a unique identifier for a branch of a bank or financial institution.
+     * Bank branch identifier
      */
     public BankAccount1 withBranchIdentifier(String branchIdentifier) {
         Utils.checkNotNull(branchIdentifier, "branchIdentifier");
@@ -420,7 +406,7 @@ public class BankAccount1 {
     }
 
     /**
-     * A branch identifier is a unique identifier for a branch of a bank or financial institution.
+     * Bank branch identifier
      */
     public BankAccount1 withBranchIdentifier(JsonNullable<String> branchIdentifier) {
         Utils.checkNotNull(branchIdentifier, "branchIdentifier");
@@ -429,8 +415,7 @@ public class BankAccount1 {
     }
 
     /**
-     * A bank code is a code assigned by a central bank, a bank supervisory body or a Bankers Association
-     * in a country to all its licensed member banks or financial institutions.
+     * Bank code assigned by central bank
      */
     public BankAccount1 withBankCode(String bankCode) {
         Utils.checkNotNull(bankCode, "bankCode");
@@ -439,8 +424,7 @@ public class BankAccount1 {
     }
 
     /**
-     * A bank code is a code assigned by a central bank, a bank supervisory body or a Bankers Association
-     * in a country to all its licensed member banks or financial institutions.
+     * Bank code assigned by central bank
      */
     public BankAccount1 withBankCode(JsonNullable<String> bankCode) {
         Utils.checkNotNull(bankCode, "bankCode");
@@ -569,7 +553,7 @@ public class BankAccount1 {
 
 
         /**
-         * The name of the bank
+         * The name of the bank or financial institution
          */
         public Builder bankName(String bankName) {
             Utils.checkNotNull(bankName, "bankName");
@@ -578,7 +562,7 @@ public class BankAccount1 {
         }
 
         /**
-         * The name of the bank
+         * The name of the bank or financial institution
          */
         public Builder bankName(JsonNullable<String> bankName) {
             Utils.checkNotNull(bankName, "bankName");
@@ -588,9 +572,7 @@ public class BankAccount1 {
 
 
         /**
-         * A bank account number is a number that is tied to your bank account. If you have several bank
-         * accounts, such as personal, joint, business (and so on), each account will have a different account
-         * number.
+         * The bank account number
          */
         public Builder accountNumber(String accountNumber) {
             Utils.checkNotNull(accountNumber, "accountNumber");
@@ -599,9 +581,7 @@ public class BankAccount1 {
         }
 
         /**
-         * A bank account number is a number that is tied to your bank account. If you have several bank
-         * accounts, such as personal, joint, business (and so on), each account will have a different account
-         * number.
+         * The bank account number
          */
         public Builder accountNumber(JsonNullable<String> accountNumber) {
             Utils.checkNotNull(accountNumber, "accountNumber");
@@ -611,7 +591,7 @@ public class BankAccount1 {
 
 
         /**
-         * The name which you used in opening your bank account.
+         * The name of the bank account
          */
         public Builder accountName(String accountName) {
             Utils.checkNotNull(accountName, "accountName");
@@ -620,7 +600,7 @@ public class BankAccount1 {
         }
 
         /**
-         * The name which you used in opening your bank account.
+         * The name of the bank account
          */
         public Builder accountName(JsonNullable<String> accountName) {
             Utils.checkNotNull(accountName, "accountName");
@@ -649,7 +629,7 @@ public class BankAccount1 {
 
 
         /**
-         * The International Bank Account Number (IBAN).
+         * International Bank Account Number
          */
         public Builder iban(String iban) {
             Utils.checkNotNull(iban, "iban");
@@ -658,7 +638,7 @@ public class BankAccount1 {
         }
 
         /**
-         * The International Bank Account Number (IBAN).
+         * International Bank Account Number
          */
         public Builder iban(JsonNullable<String> iban) {
             Utils.checkNotNull(iban, "iban");
@@ -668,7 +648,7 @@ public class BankAccount1 {
 
 
         /**
-         * The Bank Identifier Code (BIC).
+         * Bank Identifier Code / SWIFT Code
          */
         public Builder bic(String bic) {
             Utils.checkNotNull(bic, "bic");
@@ -677,7 +657,7 @@ public class BankAccount1 {
         }
 
         /**
-         * The Bank Identifier Code (BIC).
+         * Bank Identifier Code / SWIFT Code
          */
         public Builder bic(JsonNullable<String> bic) {
             Utils.checkNotNull(bic, "bic");
@@ -687,7 +667,7 @@ public class BankAccount1 {
 
 
         /**
-         * A routing number is a nine-digit code used to identify a financial institution in the United States.
+         * Bank routing number (US)
          */
         public Builder routingNumber(String routingNumber) {
             Utils.checkNotNull(routingNumber, "routingNumber");
@@ -696,7 +676,7 @@ public class BankAccount1 {
         }
 
         /**
-         * A routing number is a nine-digit code used to identify a financial institution in the United States.
+         * Bank routing number (US)
          */
         public Builder routingNumber(JsonNullable<String> routingNumber) {
             Utils.checkNotNull(routingNumber, "routingNumber");
@@ -706,8 +686,7 @@ public class BankAccount1 {
 
 
         /**
-         * A BSB is a 6 digit numeric code used for identifying the branch of an Australian or New Zealand bank
-         * or financial institution.
+         * Bank State Branch number (Australia/New Zealand)
          */
         public Builder bsbNumber(String bsbNumber) {
             Utils.checkNotNull(bsbNumber, "bsbNumber");
@@ -716,8 +695,7 @@ public class BankAccount1 {
         }
 
         /**
-         * A BSB is a 6 digit numeric code used for identifying the branch of an Australian or New Zealand bank
-         * or financial institution.
+         * Bank State Branch number (Australia/New Zealand)
          */
         public Builder bsbNumber(JsonNullable<String> bsbNumber) {
             Utils.checkNotNull(bsbNumber, "bsbNumber");
@@ -727,7 +705,7 @@ public class BankAccount1 {
 
 
         /**
-         * A branch identifier is a unique identifier for a branch of a bank or financial institution.
+         * Bank branch identifier
          */
         public Builder branchIdentifier(String branchIdentifier) {
             Utils.checkNotNull(branchIdentifier, "branchIdentifier");
@@ -736,7 +714,7 @@ public class BankAccount1 {
         }
 
         /**
-         * A branch identifier is a unique identifier for a branch of a bank or financial institution.
+         * Bank branch identifier
          */
         public Builder branchIdentifier(JsonNullable<String> branchIdentifier) {
             Utils.checkNotNull(branchIdentifier, "branchIdentifier");
@@ -746,8 +724,7 @@ public class BankAccount1 {
 
 
         /**
-         * A bank code is a code assigned by a central bank, a bank supervisory body or a Bankers Association
-         * in a country to all its licensed member banks or financial institutions.
+         * Bank code assigned by central bank
          */
         public Builder bankCode(String bankCode) {
             Utils.checkNotNull(bankCode, "bankCode");
@@ -756,8 +733,7 @@ public class BankAccount1 {
         }
 
         /**
-         * A bank code is a code assigned by a central bank, a bank supervisory body or a Bankers Association
-         * in a country to all its licensed member banks or financial institutions.
+         * Bank code assigned by central bank
          */
         public Builder bankCode(JsonNullable<String> bankCode) {
             Utils.checkNotNull(bankCode, "bankCode");

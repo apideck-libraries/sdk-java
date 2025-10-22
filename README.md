@@ -31,6 +31,7 @@ For more information about the API: [Apideck Developer Docs](https://developers.
   * [Server Selection](#server-selection)
   * [Asynchronous Support](#asynchronous-support)
   * [Authentication](#authentication)
+  * [Custom HTTP Client](#custom-http-client)
   * [Debugging](#debugging)
 * [Development](#development)
   * [Maturity](#maturity)
@@ -49,7 +50,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.apideck:unify:0.22.1'
+implementation 'com.apideck:unify:0.23.0'
 ```
 
 Maven:
@@ -57,7 +58,7 @@ Maven:
 <dependency>
     <groupId>com.apideck</groupId>
     <artifactId>unify</artifactId>
-    <version>0.22.1</version>
+    <version>0.23.0</version>
 </dependency>
 ```
 
@@ -1003,19 +1004,19 @@ public class Application {
 
 Handling errors in this SDK should largely match your expectations. All operations return a response object or raise an exception.
 
-By default, an API error will throw a `models/errors/APIException` exception. When custom error responses are specified for an operation, the SDK may also throw their associated exception. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `list` method throws the following exceptions:
 
-| Error Type                            | Status Code | Content Type     |
-| ------------------------------------- | ----------- | ---------------- |
-| models/errors/BadRequestResponse      | 400         | application/json |
-| models/errors/UnauthorizedResponse    | 401         | application/json |
-| models/errors/PaymentRequiredResponse | 402         | application/json |
-| models/errors/NotFoundResponse        | 404         | application/json |
-| models/errors/UnprocessableResponse   | 422         | application/json |
-| models/errors/APIException            | 4XX, 5XX    | \*/\*            |
+[`ApideckError`](./src/main/java/models/errors/ApideckError.java) is the base class for all HTTP error responses. It has the following properties:
+
+| Method           | Type                        | Description                                                              |
+| ---------------- | --------------------------- | ------------------------------------------------------------------------ |
+| `message()`      | `String`                    | Error message                                                            |
+| `code()`         | `int`                       | HTTP response status code eg `404`                                       |
+| `headers`        | `Map<String, List<String>>` | HTTP response headers                                                    |
+| `body()`         | `byte[]`                    | HTTP body as a byte array. Can be empty array if no body is returned.    |
+| `bodyAsString()` | `String`                    | HTTP body as a UTF-8 string. Can be empty string if no body is returned. |
+| `rawResponse()`  | `HttpResponse<?>`           | Raw HTTP response (body already read and not available for re-read)      |
 
 ### Example
-
 ```java
 package hello.world;
 
@@ -1061,6 +1062,31 @@ public class Application {
     }
 }
 ```
+
+### Error Classes
+**Primary errors:**
+* [`ApideckError`](./src/main/java/models/errors/ApideckError.java): The base class for HTTP error responses.
+  * [`com.apideck.unify.models.errors.UnauthorizedResponse`](./src/main/java/models/errors/com.apideck.unify.models.errors.UnauthorizedResponse.java): Unauthorized. Status code `401`.
+  * [`com.apideck.unify.models.errors.PaymentRequiredResponse`](./src/main/java/models/errors/com.apideck.unify.models.errors.PaymentRequiredResponse.java): Payment Required. Status code `402`.
+  * [`com.apideck.unify.models.errors.NotFoundResponse`](./src/main/java/models/errors/com.apideck.unify.models.errors.NotFoundResponse.java): The specified resource was not found. Status code `404`. *
+  * [`com.apideck.unify.models.errors.BadRequestResponse`](./src/main/java/models/errors/com.apideck.unify.models.errors.BadRequestResponse.java): Bad Request. Status code `400`. *
+  * [`com.apideck.unify.models.errors.UnprocessableResponse`](./src/main/java/models/errors/com.apideck.unify.models.errors.UnprocessableResponse.java): Unprocessable. Status code `422`. *
+
+<details><summary>Less common errors (6)</summary>
+
+<br />
+
+**Network errors:**
+* `java.io.IOException` (always wrapped by `java.io.UncheckedIOException`). Commonly encountered subclasses of
+`IOException` include `java.net.ConnectException`, `java.net.SocketTimeoutException`, `EOFException` (there are
+many more subclasses in the JDK platform).
+
+**Inherit from [`ApideckError`](./src/main/java/models/errors/ApideckError.java)**:
+
+
+</details>
+
+\* Check [the method documentation](#available-resources-and-operations) to see if the error is applicable.
 <!-- End Error Handling [errors] -->
 
 <!-- Start Server Selection [server] -->
@@ -1282,6 +1308,142 @@ public class Application {
 }
 ```
 <!-- End Authentication [security] -->
+
+<!-- Start Custom HTTP Client [http-client] -->
+## Custom HTTP Client
+
+The Java SDK makes API calls using an `HTTPClient` that wraps the native
+[HttpClient](https://docs.oracle.com/en/java/javase/11/docs/api/java.net.http/java/net/http/HttpClient.html). This
+client provides the ability to attach hooks around the request lifecycle that can be used to modify the request or handle
+errors and response.
+
+The `HTTPClient` interface allows you to either use the default `SpeakeasyHTTPClient` that comes with the SDK,
+or provide your own custom implementation with customized configuration such as custom executors, SSL context,
+connection pools, and other HTTP client settings.
+
+The interface provides synchronous (`send`) methods and asynchronous (`sendAsync`) methods. The `sendAsync` method
+is used to power the async SDK methods and returns a `CompletableFuture<HttpResponse<Blob>>` for non-blocking operations.
+
+The following example shows how to add a custom header and handle errors:
+
+```java
+import com.apideck.unify.Apideck;
+import com.apideck.unify.utils.HTTPClient;
+import com.apideck.unify.utils.SpeakeasyHTTPClient;
+import com.apideck.unify.utils.Utils;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.io.InputStream;
+import java.time.Duration;
+
+public class Application {
+    public static void main(String[] args) {
+        // Create a custom HTTP client with hooks
+        HTTPClient httpClient = new HTTPClient() {
+            private final HTTPClient defaultClient = new SpeakeasyHTTPClient();
+            
+            @Override
+            public HttpResponse<InputStream> send(HttpRequest request) throws IOException, URISyntaxException, InterruptedException {
+                // Add custom header and timeout using Utils.copy()
+                HttpRequest modifiedRequest = Utils.copy(request)
+                    .header("x-custom-header", "custom value")
+                    .timeout(Duration.ofSeconds(30))
+                    .build();
+                    
+                try {
+                    HttpResponse<InputStream> response = defaultClient.send(modifiedRequest);
+                    // Log successful response
+                    System.out.println("Request successful: " + response.statusCode());
+                    return response;
+                } catch (Exception error) {
+                    // Log error
+                    System.err.println("Request failed: " + error.getMessage());
+                    throw error;
+                }
+            }
+        };
+
+        Apideck sdk = Apideck.builder()
+            .client(httpClient)
+            .build();
+    }
+}
+```
+
+<details>
+<summary>Custom HTTP Client Configuration</summary>
+
+You can also provide a completely custom HTTP client with your own configuration:
+
+```java
+import com.apideck.unify.Apideck;
+import com.apideck.unify.utils.HTTPClient;
+import com.apideck.unify.utils.Blob;
+import com.apideck.unify.utils.ResponseWithBody;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.io.InputStream;
+import java.time.Duration;
+import java.util.concurrent.Executors;
+import java.util.concurrent.CompletableFuture;
+
+public class Application {
+    public static void main(String[] args) {
+        // Custom HTTP client with custom configuration
+        HTTPClient customHttpClient = new HTTPClient() {
+            private final HttpClient client = HttpClient.newBuilder()
+                .executor(Executors.newFixedThreadPool(10))
+                .connectTimeout(Duration.ofSeconds(30))
+                // .sslContext(customSslContext) // Add custom SSL context if needed
+                .build();
+
+            @Override
+            public HttpResponse<InputStream> send(HttpRequest request) throws IOException, URISyntaxException, InterruptedException {
+                return client.send(request, HttpResponse.BodyHandlers.ofInputStream());
+            }
+
+            @Override
+            public CompletableFuture<HttpResponse<Blob>> sendAsync(HttpRequest request) {
+                // Convert response to HttpResponse<Blob> for async operations
+                return client.sendAsync(request, HttpResponse.BodyHandlers.ofPublisher())
+                    .thenApply(resp -> new ResponseWithBody<>(resp, Blob::from));
+            }
+        };
+
+        Apideck sdk = Apideck.builder()
+            .client(customHttpClient)
+            .build();
+    }
+}
+```
+
+</details>
+
+You can also enable debug logging on the default `SpeakeasyHTTPClient`:
+
+```java
+import com.apideck.unify.Apideck;
+import com.apideck.unify.utils.SpeakeasyHTTPClient;
+
+public class Application {
+    public static void main(String[] args) {
+        SpeakeasyHTTPClient httpClient = new SpeakeasyHTTPClient();
+        httpClient.enableDebugLogging(true);
+
+        Apideck sdk = Apideck.builder()
+            .client(httpClient)
+            .build();
+    }
+}
+```
+<!-- End Custom HTTP Client [http-client] -->
 
 <!-- Start Debugging [debug] -->
 ## Debugging

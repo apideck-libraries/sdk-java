@@ -11,7 +11,6 @@ import com.apideck.unify.models.operations.VaultCustomMappingsAllResponse;
 import com.apideck.unify.operations.VaultCustomMappingsAll;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
@@ -54,9 +53,9 @@ public class CustomMappings {
      * @param unifiedApi Unified API
      * @param serviceId Service ID of the resource to return
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public VaultCustomMappingsAllResponse list(String unifiedApi, String serviceId) throws Exception {
+    public VaultCustomMappingsAllResponse list(String unifiedApi, String serviceId) {
         return list(Optional.empty(), Optional.empty(), unifiedApi,
             serviceId, Optional.empty());
     }
@@ -72,12 +71,12 @@ public class CustomMappings {
      * @param serviceId Service ID of the resource to return
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public VaultCustomMappingsAllResponse list(
             Optional<String> consumerId, Optional<String> appId,
             String unifiedApi, String serviceId,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         VaultCustomMappingsAllRequest request =
             VaultCustomMappingsAllRequest
                 .builder()

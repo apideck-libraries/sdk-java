@@ -27,7 +27,6 @@ import com.apideck.unify.operations.AccountingSuppliersOne;
 import com.apideck.unify.operations.AccountingSuppliersUpdate;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
-import java.lang.Exception;
 import java.util.Optional;
 
 
@@ -68,9 +67,9 @@ public class Suppliers {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingSuppliersAllResponse list(AccountingSuppliersAllRequest request) throws Exception {
+    public AccountingSuppliersAllResponse list(AccountingSuppliersAllRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -82,9 +81,9 @@ public class Suppliers {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingSuppliersAllResponse list(AccountingSuppliersAllRequest request, Optional<Options> options) throws Exception {
+    public AccountingSuppliersAllResponse list(AccountingSuppliersAllRequest request, Optional<Options> options) {
         RequestOperation<AccountingSuppliersAllRequest, AccountingSuppliersAllResponse> operation
               = new AccountingSuppliersAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -108,9 +107,9 @@ public class Suppliers {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingSuppliersAddResponse create(AccountingSuppliersAddRequest request) throws Exception {
+    public AccountingSuppliersAddResponse create(AccountingSuppliersAddRequest request) {
         return create(request, Optional.empty());
     }
 
@@ -122,9 +121,9 @@ public class Suppliers {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingSuppliersAddResponse create(AccountingSuppliersAddRequest request, Optional<Options> options) throws Exception {
+    public AccountingSuppliersAddResponse create(AccountingSuppliersAddRequest request, Optional<Options> options) {
         RequestOperation<AccountingSuppliersAddRequest, AccountingSuppliersAddResponse> operation
               = new AccountingSuppliersAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -148,9 +147,9 @@ public class Suppliers {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingSuppliersOneResponse get(AccountingSuppliersOneRequest request) throws Exception {
+    public AccountingSuppliersOneResponse get(AccountingSuppliersOneRequest request) {
         return get(request, Optional.empty());
     }
 
@@ -162,9 +161,9 @@ public class Suppliers {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingSuppliersOneResponse get(AccountingSuppliersOneRequest request, Optional<Options> options) throws Exception {
+    public AccountingSuppliersOneResponse get(AccountingSuppliersOneRequest request, Optional<Options> options) {
         RequestOperation<AccountingSuppliersOneRequest, AccountingSuppliersOneResponse> operation
               = new AccountingSuppliersOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -188,9 +187,9 @@ public class Suppliers {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingSuppliersUpdateResponse update(AccountingSuppliersUpdateRequest request) throws Exception {
+    public AccountingSuppliersUpdateResponse update(AccountingSuppliersUpdateRequest request) {
         return update(request, Optional.empty());
     }
 
@@ -202,9 +201,9 @@ public class Suppliers {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingSuppliersUpdateResponse update(AccountingSuppliersUpdateRequest request, Optional<Options> options) throws Exception {
+    public AccountingSuppliersUpdateResponse update(AccountingSuppliersUpdateRequest request, Optional<Options> options) {
         RequestOperation<AccountingSuppliersUpdateRequest, AccountingSuppliersUpdateResponse> operation
               = new AccountingSuppliersUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -228,9 +227,9 @@ public class Suppliers {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingSuppliersDeleteResponse delete(AccountingSuppliersDeleteRequest request) throws Exception {
+    public AccountingSuppliersDeleteResponse delete(AccountingSuppliersDeleteRequest request) {
         return delete(request, Optional.empty());
     }
 
@@ -242,9 +241,9 @@ public class Suppliers {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingSuppliersDeleteResponse delete(AccountingSuppliersDeleteRequest request, Optional<Options> options) throws Exception {
+    public AccountingSuppliersDeleteResponse delete(AccountingSuppliersDeleteRequest request, Optional<Options> options) {
         RequestOperation<AccountingSuppliersDeleteRequest, AccountingSuppliersDeleteResponse> operation
               = new AccountingSuppliersDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

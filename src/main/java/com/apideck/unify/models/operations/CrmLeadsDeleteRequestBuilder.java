@@ -11,7 +11,6 @@ import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
-import java.lang.Exception;
 import java.util.Optional;
 
 public class CrmLeadsDeleteRequestBuilder {
@@ -43,7 +42,7 @@ public class CrmLeadsDeleteRequestBuilder {
         return this;
     }
 
-    public CrmLeadsDeleteResponse call() throws Exception {
+    public CrmLeadsDeleteResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
             .build());

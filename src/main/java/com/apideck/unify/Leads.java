@@ -27,7 +27,6 @@ import com.apideck.unify.operations.CrmLeadsOne;
 import com.apideck.unify.operations.CrmLeadsUpdate;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
-import java.lang.Exception;
 import java.util.Optional;
 
 
@@ -68,9 +67,9 @@ public class Leads {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmLeadsAllResponse list(CrmLeadsAllRequest request) throws Exception {
+    public CrmLeadsAllResponse list(CrmLeadsAllRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -82,9 +81,9 @@ public class Leads {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmLeadsAllResponse list(CrmLeadsAllRequest request, Optional<Options> options) throws Exception {
+    public CrmLeadsAllResponse list(CrmLeadsAllRequest request, Optional<Options> options) {
         RequestOperation<CrmLeadsAllRequest, CrmLeadsAllResponse> operation
               = new CrmLeadsAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -108,9 +107,9 @@ public class Leads {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmLeadsAddResponse create(CrmLeadsAddRequest request) throws Exception {
+    public CrmLeadsAddResponse create(CrmLeadsAddRequest request) {
         return create(request, Optional.empty());
     }
 
@@ -122,9 +121,9 @@ public class Leads {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmLeadsAddResponse create(CrmLeadsAddRequest request, Optional<Options> options) throws Exception {
+    public CrmLeadsAddResponse create(CrmLeadsAddRequest request, Optional<Options> options) {
         RequestOperation<CrmLeadsAddRequest, CrmLeadsAddResponse> operation
               = new CrmLeadsAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -148,9 +147,9 @@ public class Leads {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmLeadsOneResponse get(CrmLeadsOneRequest request) throws Exception {
+    public CrmLeadsOneResponse get(CrmLeadsOneRequest request) {
         return get(request, Optional.empty());
     }
 
@@ -162,9 +161,9 @@ public class Leads {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmLeadsOneResponse get(CrmLeadsOneRequest request, Optional<Options> options) throws Exception {
+    public CrmLeadsOneResponse get(CrmLeadsOneRequest request, Optional<Options> options) {
         RequestOperation<CrmLeadsOneRequest, CrmLeadsOneResponse> operation
               = new CrmLeadsOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -188,9 +187,9 @@ public class Leads {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmLeadsUpdateResponse update(CrmLeadsUpdateRequest request) throws Exception {
+    public CrmLeadsUpdateResponse update(CrmLeadsUpdateRequest request) {
         return update(request, Optional.empty());
     }
 
@@ -202,9 +201,9 @@ public class Leads {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmLeadsUpdateResponse update(CrmLeadsUpdateRequest request, Optional<Options> options) throws Exception {
+    public CrmLeadsUpdateResponse update(CrmLeadsUpdateRequest request, Optional<Options> options) {
         RequestOperation<CrmLeadsUpdateRequest, CrmLeadsUpdateResponse> operation
               = new CrmLeadsUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -228,9 +227,9 @@ public class Leads {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmLeadsDeleteResponse delete(CrmLeadsDeleteRequest request) throws Exception {
+    public CrmLeadsDeleteResponse delete(CrmLeadsDeleteRequest request) {
         return delete(request, Optional.empty());
     }
 
@@ -242,9 +241,9 @@ public class Leads {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmLeadsDeleteResponse delete(CrmLeadsDeleteRequest request, Optional<Options> options) throws Exception {
+    public CrmLeadsDeleteResponse delete(CrmLeadsDeleteRequest request, Optional<Options> options) {
         RequestOperation<CrmLeadsDeleteRequest, CrmLeadsDeleteResponse> operation
               = new CrmLeadsDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

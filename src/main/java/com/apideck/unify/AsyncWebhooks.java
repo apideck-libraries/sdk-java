@@ -113,7 +113,15 @@ public class AsyncWebhooks {
     /**
      * Create webhook subscription
      * 
-     * <p>Create a webhook subscription to receive events
+     * <p>Create a webhook subscription to receive events.
+     * 
+     * <p>**Delivery URL Validation**: The provided `delivery_url` will be validated synchronously by sending
+     * an HTTP POST request with an HMAC signature. If validation fails (network error, timeout, non-2xx
+     * response), the webhook will still be created but with `status: "disabled"` and `disabled_reason:
+     * "delivery_url_validation_failed"`.
+     * 
+     * <p>**Important**: Always check the `status` and `disabled_reason` fields in the response to ensure the
+     * webhook is active.
      * 
      * @return The async call builder
      */
@@ -124,7 +132,15 @@ public class AsyncWebhooks {
     /**
      * Create webhook subscription
      * 
-     * <p>Create a webhook subscription to receive events
+     * <p>Create a webhook subscription to receive events.
+     * 
+     * <p>**Delivery URL Validation**: The provided `delivery_url` will be validated synchronously by sending
+     * an HTTP POST request with an HMAC signature. If validation fails (network error, timeout, non-2xx
+     * response), the webhook will still be created but with `status: "disabled"` and `disabled_reason:
+     * "delivery_url_validation_failed"`.
+     * 
+     * <p>**Important**: Always check the `status` and `disabled_reason` fields in the response to ensure the
+     * webhook is active.
      * 
      * @param createWebhookRequest 
      * @return {@code CompletableFuture<WebhookWebhooksAddResponse>} - The async response
@@ -136,7 +152,15 @@ public class AsyncWebhooks {
     /**
      * Create webhook subscription
      * 
-     * <p>Create a webhook subscription to receive events
+     * <p>Create a webhook subscription to receive events.
+     * 
+     * <p>**Delivery URL Validation**: The provided `delivery_url` will be validated synchronously by sending
+     * an HTTP POST request with an HMAC signature. If validation fails (network error, timeout, non-2xx
+     * response), the webhook will still be created but with `status: "disabled"` and `disabled_reason:
+     * "delivery_url_validation_failed"`.
+     * 
+     * <p>**Important**: Always check the `status` and `disabled_reason` fields in the response to ensure the
+     * webhook is active.
      * 
      * @param appId The ID of your Unify application
      * @param createWebhookRequest 
@@ -215,7 +239,15 @@ public class AsyncWebhooks {
     /**
      * Update webhook subscription
      * 
-     * <p>Update a webhook subscription
+     * <p>Update a webhook subscription.
+     * 
+     * <p>**Delivery URL Validation**: When updating the `delivery_url`, it will be validated synchronously by
+     * sending an HTTP POST request with an HMAC signature. If validation fails (network error, timeout,
+     * non-2xx response), the webhook will still be updated but with `status: "disabled"` and
+     * `disabled_reason: "delivery_url_validation_failed"`. Validation only occurs when the URL is changed.
+     * 
+     * <p>**Important**: Always check the `status` and `disabled_reason` fields in the response to ensure the
+     * webhook is active.
      * 
      * @return The async call builder
      */
@@ -226,7 +258,15 @@ public class AsyncWebhooks {
     /**
      * Update webhook subscription
      * 
-     * <p>Update a webhook subscription
+     * <p>Update a webhook subscription.
+     * 
+     * <p>**Delivery URL Validation**: When updating the `delivery_url`, it will be validated synchronously by
+     * sending an HTTP POST request with an HMAC signature. If validation fails (network error, timeout,
+     * non-2xx response), the webhook will still be updated but with `status: "disabled"` and
+     * `disabled_reason: "delivery_url_validation_failed"`. Validation only occurs when the URL is changed.
+     * 
+     * <p>**Important**: Always check the `status` and `disabled_reason` fields in the response to ensure the
+     * webhook is active.
      * 
      * @param id JWT Webhook token that represents the unifiedApi and applicationId associated to the event source.
      * @param updateWebhookRequest 
@@ -241,7 +281,15 @@ public class AsyncWebhooks {
     /**
      * Update webhook subscription
      * 
-     * <p>Update a webhook subscription
+     * <p>Update a webhook subscription.
+     * 
+     * <p>**Delivery URL Validation**: When updating the `delivery_url`, it will be validated synchronously by
+     * sending an HTTP POST request with an HMAC signature. If validation fails (network error, timeout,
+     * non-2xx response), the webhook will still be updated but with `status: "disabled"` and
+     * `disabled_reason: "delivery_url_validation_failed"`. Validation only occurs when the URL is changed.
+     * 
+     * <p>**Important**: Always check the `status` and `disabled_reason` fields in the response to ensure the
+     * webhook is active.
      * 
      * @param id JWT Webhook token that represents the unifiedApi and applicationId associated to the event source.
      * @param appId The ID of your Unify application

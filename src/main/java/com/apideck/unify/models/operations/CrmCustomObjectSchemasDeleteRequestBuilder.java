@@ -11,7 +11,6 @@ import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
-import java.lang.Exception;
 import java.util.Optional;
 
 public class CrmCustomObjectSchemasDeleteRequestBuilder {
@@ -43,7 +42,7 @@ public class CrmCustomObjectSchemasDeleteRequestBuilder {
         return this;
     }
 
-    public CrmCustomObjectSchemasDeleteResponse call() throws Exception {
+    public CrmCustomObjectSchemasDeleteResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
             .build());

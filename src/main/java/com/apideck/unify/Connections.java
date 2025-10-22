@@ -32,7 +32,6 @@ import com.apideck.unify.operations.VaultConnectionsUpdate;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Boolean;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
@@ -79,9 +78,9 @@ public class Connections {
      * flows.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public VaultConnectionsAllResponse listDirect() throws Exception {
+    public VaultConnectionsAllResponse listDirect() {
         return list(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty());
     }
@@ -100,12 +99,12 @@ public class Connections {
      * @param configured Scopes results to connections that have been configured or not
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public VaultConnectionsAllResponse list(
             Optional<String> consumerId, Optional<String> appId,
             Optional<String> api, Optional<Boolean> configured,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         VaultConnectionsAllRequest request =
             VaultConnectionsAllRequest
                 .builder()
@@ -138,9 +137,9 @@ public class Connections {
      * @param serviceId Service ID of the resource to return
      * @param unifiedApi Unified API
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public VaultConnectionsOneResponse get(String serviceId, String unifiedApi) throws Exception {
+    public VaultConnectionsOneResponse get(String serviceId, String unifiedApi) {
         return get(Optional.empty(), Optional.empty(), serviceId,
             unifiedApi, Optional.empty());
     }
@@ -156,12 +155,12 @@ public class Connections {
      * @param unifiedApi Unified API
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public VaultConnectionsOneResponse get(
             Optional<String> consumerId, Optional<String> appId,
             String serviceId, String unifiedApi,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         VaultConnectionsOneRequest request =
             VaultConnectionsOneRequest
                 .builder()
@@ -193,9 +192,9 @@ public class Connections {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public VaultConnectionsUpdateResponse update(VaultConnectionsUpdateRequest request) throws Exception {
+    public VaultConnectionsUpdateResponse update(VaultConnectionsUpdateRequest request) {
         return update(request, Optional.empty());
     }
 
@@ -207,9 +206,9 @@ public class Connections {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public VaultConnectionsUpdateResponse update(VaultConnectionsUpdateRequest request, Optional<Options> options) throws Exception {
+    public VaultConnectionsUpdateResponse update(VaultConnectionsUpdateRequest request, Optional<Options> options) {
         RequestOperation<VaultConnectionsUpdateRequest, VaultConnectionsUpdateResponse> operation
               = new VaultConnectionsUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -234,9 +233,9 @@ public class Connections {
      * @param serviceId Service ID of the resource to return
      * @param unifiedApi Unified API
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public VaultConnectionsDeleteResponse delete(String serviceId, String unifiedApi) throws Exception {
+    public VaultConnectionsDeleteResponse delete(String serviceId, String unifiedApi) {
         return delete(Optional.empty(), Optional.empty(), serviceId,
             unifiedApi, Optional.empty());
     }
@@ -252,12 +251,12 @@ public class Connections {
      * @param unifiedApi Unified API
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public VaultConnectionsDeleteResponse delete(
             Optional<String> consumerId, Optional<String> appId,
             String serviceId, String unifiedApi,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         VaultConnectionsDeleteRequest request =
             VaultConnectionsDeleteRequest
                 .builder()
@@ -289,9 +288,9 @@ public class Connections {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public VaultConnectionsImportResponse imports(VaultConnectionsImportRequest request) throws Exception {
+    public VaultConnectionsImportResponse imports(VaultConnectionsImportRequest request) {
         return imports(request, Optional.empty());
     }
 
@@ -303,9 +302,9 @@ public class Connections {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public VaultConnectionsImportResponse imports(VaultConnectionsImportRequest request, Optional<Options> options) throws Exception {
+    public VaultConnectionsImportResponse imports(VaultConnectionsImportRequest request, Optional<Options> options) {
         RequestOperation<VaultConnectionsImportRequest, VaultConnectionsImportResponse> operation
               = new VaultConnectionsImport.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -345,9 +344,9 @@ public class Connections {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public VaultConnectionsTokenResponse token(VaultConnectionsTokenRequest request) throws Exception {
+    public VaultConnectionsTokenResponse token(VaultConnectionsTokenRequest request) {
         return token(request, Optional.empty());
     }
 
@@ -367,9 +366,9 @@ public class Connections {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public VaultConnectionsTokenResponse token(VaultConnectionsTokenRequest request, Optional<Options> options) throws Exception {
+    public VaultConnectionsTokenResponse token(VaultConnectionsTokenRequest request, Optional<Options> options) {
         RequestOperation<VaultConnectionsTokenRequest, VaultConnectionsTokenResponse> operation
               = new VaultConnectionsToken.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

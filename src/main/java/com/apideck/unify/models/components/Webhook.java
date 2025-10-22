@@ -44,8 +44,10 @@ public class Webhook {
     private Status status;
 
     /**
-     * Indicates if the webhook has has been disabled as it reached its retry limit or if account is over
-     * the usage allocated by it's plan.
+     * Indicates why the webhook has been disabled. `retry_limit`: webhook reached its retry limit.
+     * `usage_limit`: account is over its usage limit.
+     * 
+     * <p>`delivery_url_validation_failed`: delivery URL failed validation during webhook creation or update.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("disabled_reason")
@@ -159,8 +161,10 @@ public class Webhook {
     }
 
     /**
-     * Indicates if the webhook has has been disabled as it reached its retry limit or if account is over
-     * the usage allocated by it's plan.
+     * Indicates why the webhook has been disabled. `retry_limit`: webhook reached its retry limit.
+     * `usage_limit`: account is over its usage limit.
+     * 
+     * <p>`delivery_url_validation_failed`: delivery URL failed validation during webhook creation or update.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -263,8 +267,10 @@ public class Webhook {
     }
 
     /**
-     * Indicates if the webhook has has been disabled as it reached its retry limit or if account is over
-     * the usage allocated by it's plan.
+     * Indicates why the webhook has been disabled. `retry_limit`: webhook reached its retry limit.
+     * `usage_limit`: account is over its usage limit.
+     * 
+     * <p>`delivery_url_validation_failed`: delivery URL failed validation during webhook creation or update.
      */
     public Webhook withDisabledReason(DisabledReason disabledReason) {
         Utils.checkNotNull(disabledReason, "disabledReason");
@@ -274,8 +280,10 @@ public class Webhook {
 
 
     /**
-     * Indicates if the webhook has has been disabled as it reached its retry limit or if account is over
-     * the usage allocated by it's plan.
+     * Indicates why the webhook has been disabled. `retry_limit`: webhook reached its retry limit.
+     * `usage_limit`: account is over its usage limit.
+     * 
+     * <p>`delivery_url_validation_failed`: delivery URL failed validation during webhook creation or update.
      */
     public Webhook withDisabledReason(Optional<? extends DisabledReason> disabledReason) {
         Utils.checkNotNull(disabledReason, "disabledReason");
@@ -473,8 +481,10 @@ public class Webhook {
 
 
         /**
-         * Indicates if the webhook has has been disabled as it reached its retry limit or if account is over
-         * the usage allocated by it's plan.
+         * Indicates why the webhook has been disabled. `retry_limit`: webhook reached its retry limit.
+         * `usage_limit`: account is over its usage limit.
+         * 
+         * <p>`delivery_url_validation_failed`: delivery URL failed validation during webhook creation or update.
          */
         public Builder disabledReason(DisabledReason disabledReason) {
             Utils.checkNotNull(disabledReason, "disabledReason");
@@ -483,8 +493,10 @@ public class Webhook {
         }
 
         /**
-         * Indicates if the webhook has has been disabled as it reached its retry limit or if account is over
-         * the usage allocated by it's plan.
+         * Indicates why the webhook has been disabled. `retry_limit`: webhook reached its retry limit.
+         * `usage_limit`: account is over its usage limit.
+         * 
+         * <p>`delivery_url_validation_failed`: delivery URL failed validation during webhook creation or update.
          */
         public Builder disabledReason(Optional<? extends DisabledReason> disabledReason) {
             Utils.checkNotNull(disabledReason, "disabledReason");

@@ -27,7 +27,6 @@ import com.apideck.unify.operations.AccountingQuotesOne;
 import com.apideck.unify.operations.AccountingQuotesUpdate;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
-import java.lang.Exception;
 import java.util.Optional;
 
 
@@ -68,9 +67,9 @@ public class Quotes {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingQuotesAllResponse list(AccountingQuotesAllRequest request) throws Exception {
+    public AccountingQuotesAllResponse list(AccountingQuotesAllRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -82,9 +81,9 @@ public class Quotes {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingQuotesAllResponse list(AccountingQuotesAllRequest request, Optional<Options> options) throws Exception {
+    public AccountingQuotesAllResponse list(AccountingQuotesAllRequest request, Optional<Options> options) {
         RequestOperation<AccountingQuotesAllRequest, AccountingQuotesAllResponse> operation
               = new AccountingQuotesAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -108,9 +107,9 @@ public class Quotes {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingQuotesAddResponse create(AccountingQuotesAddRequest request) throws Exception {
+    public AccountingQuotesAddResponse create(AccountingQuotesAddRequest request) {
         return create(request, Optional.empty());
     }
 
@@ -122,9 +121,9 @@ public class Quotes {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingQuotesAddResponse create(AccountingQuotesAddRequest request, Optional<Options> options) throws Exception {
+    public AccountingQuotesAddResponse create(AccountingQuotesAddRequest request, Optional<Options> options) {
         RequestOperation<AccountingQuotesAddRequest, AccountingQuotesAddResponse> operation
               = new AccountingQuotesAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -148,9 +147,9 @@ public class Quotes {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingQuotesOneResponse get(AccountingQuotesOneRequest request) throws Exception {
+    public AccountingQuotesOneResponse get(AccountingQuotesOneRequest request) {
         return get(request, Optional.empty());
     }
 
@@ -162,9 +161,9 @@ public class Quotes {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingQuotesOneResponse get(AccountingQuotesOneRequest request, Optional<Options> options) throws Exception {
+    public AccountingQuotesOneResponse get(AccountingQuotesOneRequest request, Optional<Options> options) {
         RequestOperation<AccountingQuotesOneRequest, AccountingQuotesOneResponse> operation
               = new AccountingQuotesOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -188,9 +187,9 @@ public class Quotes {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingQuotesUpdateResponse update(AccountingQuotesUpdateRequest request) throws Exception {
+    public AccountingQuotesUpdateResponse update(AccountingQuotesUpdateRequest request) {
         return update(request, Optional.empty());
     }
 
@@ -202,9 +201,9 @@ public class Quotes {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingQuotesUpdateResponse update(AccountingQuotesUpdateRequest request, Optional<Options> options) throws Exception {
+    public AccountingQuotesUpdateResponse update(AccountingQuotesUpdateRequest request, Optional<Options> options) {
         RequestOperation<AccountingQuotesUpdateRequest, AccountingQuotesUpdateResponse> operation
               = new AccountingQuotesUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -228,9 +227,9 @@ public class Quotes {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingQuotesDeleteResponse delete(AccountingQuotesDeleteRequest request) throws Exception {
+    public AccountingQuotesDeleteResponse delete(AccountingQuotesDeleteRequest request) {
         return delete(request, Optional.empty());
     }
 
@@ -242,9 +241,9 @@ public class Quotes {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingQuotesDeleteResponse delete(AccountingQuotesDeleteRequest request, Optional<Options> options) throws Exception {
+    public AccountingQuotesDeleteResponse delete(AccountingQuotesDeleteRequest request, Optional<Options> options) {
         RequestOperation<AccountingQuotesDeleteRequest, AccountingQuotesDeleteResponse> operation
               = new AccountingQuotesDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

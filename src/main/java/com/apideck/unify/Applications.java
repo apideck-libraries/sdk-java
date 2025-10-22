@@ -27,7 +27,6 @@ import com.apideck.unify.operations.AtsApplicationsOne;
 import com.apideck.unify.operations.AtsApplicationsUpdate;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
-import java.lang.Exception;
 import java.util.Optional;
 
 
@@ -68,9 +67,9 @@ public class Applications {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AtsApplicationsAllResponse list(AtsApplicationsAllRequest request) throws Exception {
+    public AtsApplicationsAllResponse list(AtsApplicationsAllRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -82,9 +81,9 @@ public class Applications {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AtsApplicationsAllResponse list(AtsApplicationsAllRequest request, Optional<Options> options) throws Exception {
+    public AtsApplicationsAllResponse list(AtsApplicationsAllRequest request, Optional<Options> options) {
         RequestOperation<AtsApplicationsAllRequest, AtsApplicationsAllResponse> operation
               = new AtsApplicationsAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -108,9 +107,9 @@ public class Applications {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AtsApplicationsAddResponse create(AtsApplicationsAddRequest request) throws Exception {
+    public AtsApplicationsAddResponse create(AtsApplicationsAddRequest request) {
         return create(request, Optional.empty());
     }
 
@@ -122,9 +121,9 @@ public class Applications {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AtsApplicationsAddResponse create(AtsApplicationsAddRequest request, Optional<Options> options) throws Exception {
+    public AtsApplicationsAddResponse create(AtsApplicationsAddRequest request, Optional<Options> options) {
         RequestOperation<AtsApplicationsAddRequest, AtsApplicationsAddResponse> operation
               = new AtsApplicationsAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -148,9 +147,9 @@ public class Applications {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AtsApplicationsOneResponse get(AtsApplicationsOneRequest request) throws Exception {
+    public AtsApplicationsOneResponse get(AtsApplicationsOneRequest request) {
         return get(request, Optional.empty());
     }
 
@@ -162,9 +161,9 @@ public class Applications {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AtsApplicationsOneResponse get(AtsApplicationsOneRequest request, Optional<Options> options) throws Exception {
+    public AtsApplicationsOneResponse get(AtsApplicationsOneRequest request, Optional<Options> options) {
         RequestOperation<AtsApplicationsOneRequest, AtsApplicationsOneResponse> operation
               = new AtsApplicationsOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -188,9 +187,9 @@ public class Applications {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AtsApplicationsUpdateResponse update(AtsApplicationsUpdateRequest request) throws Exception {
+    public AtsApplicationsUpdateResponse update(AtsApplicationsUpdateRequest request) {
         return update(request, Optional.empty());
     }
 
@@ -202,9 +201,9 @@ public class Applications {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AtsApplicationsUpdateResponse update(AtsApplicationsUpdateRequest request, Optional<Options> options) throws Exception {
+    public AtsApplicationsUpdateResponse update(AtsApplicationsUpdateRequest request, Optional<Options> options) {
         RequestOperation<AtsApplicationsUpdateRequest, AtsApplicationsUpdateResponse> operation
               = new AtsApplicationsUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -228,9 +227,9 @@ public class Applications {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AtsApplicationsDeleteResponse delete(AtsApplicationsDeleteRequest request) throws Exception {
+    public AtsApplicationsDeleteResponse delete(AtsApplicationsDeleteRequest request) {
         return delete(request, Optional.empty());
     }
 
@@ -242,9 +241,9 @@ public class Applications {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AtsApplicationsDeleteResponse delete(AtsApplicationsDeleteRequest request, Optional<Options> options) throws Exception {
+    public AtsApplicationsDeleteResponse delete(AtsApplicationsDeleteRequest request, Optional<Options> options) {
         RequestOperation<AtsApplicationsDeleteRequest, AtsApplicationsDeleteResponse> operation
               = new AtsApplicationsDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

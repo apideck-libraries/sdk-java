@@ -27,7 +27,6 @@ import com.apideck.unify.operations.HrisDepartmentsOne;
 import com.apideck.unify.operations.HrisDepartmentsUpdate;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
-import java.lang.Exception;
 import java.util.Optional;
 
 
@@ -68,9 +67,9 @@ public class ApideckDepartments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public HrisDepartmentsAllResponse list(HrisDepartmentsAllRequest request) throws Exception {
+    public HrisDepartmentsAllResponse list(HrisDepartmentsAllRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -82,9 +81,9 @@ public class ApideckDepartments {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public HrisDepartmentsAllResponse list(HrisDepartmentsAllRequest request, Optional<Options> options) throws Exception {
+    public HrisDepartmentsAllResponse list(HrisDepartmentsAllRequest request, Optional<Options> options) {
         RequestOperation<HrisDepartmentsAllRequest, HrisDepartmentsAllResponse> operation
               = new HrisDepartmentsAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -108,9 +107,9 @@ public class ApideckDepartments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public HrisDepartmentsAddResponse create(HrisDepartmentsAddRequest request) throws Exception {
+    public HrisDepartmentsAddResponse create(HrisDepartmentsAddRequest request) {
         return create(request, Optional.empty());
     }
 
@@ -122,9 +121,9 @@ public class ApideckDepartments {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public HrisDepartmentsAddResponse create(HrisDepartmentsAddRequest request, Optional<Options> options) throws Exception {
+    public HrisDepartmentsAddResponse create(HrisDepartmentsAddRequest request, Optional<Options> options) {
         RequestOperation<HrisDepartmentsAddRequest, HrisDepartmentsAddResponse> operation
               = new HrisDepartmentsAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -148,9 +147,9 @@ public class ApideckDepartments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public HrisDepartmentsOneResponse get(HrisDepartmentsOneRequest request) throws Exception {
+    public HrisDepartmentsOneResponse get(HrisDepartmentsOneRequest request) {
         return get(request, Optional.empty());
     }
 
@@ -162,9 +161,9 @@ public class ApideckDepartments {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public HrisDepartmentsOneResponse get(HrisDepartmentsOneRequest request, Optional<Options> options) throws Exception {
+    public HrisDepartmentsOneResponse get(HrisDepartmentsOneRequest request, Optional<Options> options) {
         RequestOperation<HrisDepartmentsOneRequest, HrisDepartmentsOneResponse> operation
               = new HrisDepartmentsOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -188,9 +187,9 @@ public class ApideckDepartments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public HrisDepartmentsUpdateResponse update(HrisDepartmentsUpdateRequest request) throws Exception {
+    public HrisDepartmentsUpdateResponse update(HrisDepartmentsUpdateRequest request) {
         return update(request, Optional.empty());
     }
 
@@ -202,9 +201,9 @@ public class ApideckDepartments {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public HrisDepartmentsUpdateResponse update(HrisDepartmentsUpdateRequest request, Optional<Options> options) throws Exception {
+    public HrisDepartmentsUpdateResponse update(HrisDepartmentsUpdateRequest request, Optional<Options> options) {
         RequestOperation<HrisDepartmentsUpdateRequest, HrisDepartmentsUpdateResponse> operation
               = new HrisDepartmentsUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -228,9 +227,9 @@ public class ApideckDepartments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public HrisDepartmentsDeleteResponse delete(HrisDepartmentsDeleteRequest request) throws Exception {
+    public HrisDepartmentsDeleteResponse delete(HrisDepartmentsDeleteRequest request) {
         return delete(request, Optional.empty());
     }
 
@@ -242,9 +241,9 @@ public class ApideckDepartments {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public HrisDepartmentsDeleteResponse delete(HrisDepartmentsDeleteRequest request, Optional<Options> options) throws Exception {
+    public HrisDepartmentsDeleteResponse delete(HrisDepartmentsDeleteRequest request, Optional<Options> options) {
         RequestOperation<HrisDepartmentsDeleteRequest, HrisDepartmentsDeleteResponse> operation
               = new HrisDepartmentsDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

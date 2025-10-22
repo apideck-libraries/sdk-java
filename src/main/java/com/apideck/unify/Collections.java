@@ -15,7 +15,6 @@ import com.apideck.unify.operations.IssueTrackingCollectionsAll;
 import com.apideck.unify.operations.IssueTrackingCollectionsOne;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
-import java.lang.Exception;
 import java.util.Optional;
 
 
@@ -56,9 +55,9 @@ public class Collections {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public IssueTrackingCollectionsAllResponse list(IssueTrackingCollectionsAllRequest request) throws Exception {
+    public IssueTrackingCollectionsAllResponse list(IssueTrackingCollectionsAllRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -70,9 +69,9 @@ public class Collections {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public IssueTrackingCollectionsAllResponse list(IssueTrackingCollectionsAllRequest request, Optional<Options> options) throws Exception {
+    public IssueTrackingCollectionsAllResponse list(IssueTrackingCollectionsAllRequest request, Optional<Options> options) {
         RequestOperation<IssueTrackingCollectionsAllRequest, IssueTrackingCollectionsAllResponse> operation
               = new IssueTrackingCollectionsAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -96,9 +95,9 @@ public class Collections {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public IssueTrackingCollectionsOneResponse get(IssueTrackingCollectionsOneRequest request) throws Exception {
+    public IssueTrackingCollectionsOneResponse get(IssueTrackingCollectionsOneRequest request) {
         return get(request, Optional.empty());
     }
 
@@ -110,9 +109,9 @@ public class Collections {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public IssueTrackingCollectionsOneResponse get(IssueTrackingCollectionsOneRequest request, Optional<Options> options) throws Exception {
+    public IssueTrackingCollectionsOneResponse get(IssueTrackingCollectionsOneRequest request, Optional<Options> options) {
         RequestOperation<IssueTrackingCollectionsOneRequest, IssueTrackingCollectionsOneResponse> operation
               = new IssueTrackingCollectionsOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

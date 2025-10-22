@@ -35,7 +35,6 @@ import com.apideck.unify.operations.FileStorageFilesSearch;
 import com.apideck.unify.operations.FileStorageFilesUpdate;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
-import java.lang.Exception;
 import java.util.Optional;
 
 
@@ -76,9 +75,9 @@ public class Files {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public FileStorageFilesAllResponse list(FileStorageFilesAllRequest request) throws Exception {
+    public FileStorageFilesAllResponse list(FileStorageFilesAllRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -90,9 +89,9 @@ public class Files {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public FileStorageFilesAllResponse list(FileStorageFilesAllRequest request, Optional<Options> options) throws Exception {
+    public FileStorageFilesAllResponse list(FileStorageFilesAllRequest request, Optional<Options> options) {
         RequestOperation<FileStorageFilesAllRequest, FileStorageFilesAllResponse> operation
               = new FileStorageFilesAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -116,9 +115,9 @@ public class Files {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public FileStorageFilesSearchResponse search(FileStorageFilesSearchRequest request) throws Exception {
+    public FileStorageFilesSearchResponse search(FileStorageFilesSearchRequest request) {
         return search(request, Optional.empty());
     }
 
@@ -130,9 +129,9 @@ public class Files {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public FileStorageFilesSearchResponse search(FileStorageFilesSearchRequest request, Optional<Options> options) throws Exception {
+    public FileStorageFilesSearchResponse search(FileStorageFilesSearchRequest request, Optional<Options> options) {
         RequestOperation<FileStorageFilesSearchRequest, FileStorageFilesSearchResponse> operation
               = new FileStorageFilesSearch.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -156,9 +155,9 @@ public class Files {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public FileStorageFilesOneResponse get(FileStorageFilesOneRequest request) throws Exception {
+    public FileStorageFilesOneResponse get(FileStorageFilesOneRequest request) {
         return get(request, Optional.empty());
     }
 
@@ -170,9 +169,9 @@ public class Files {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public FileStorageFilesOneResponse get(FileStorageFilesOneRequest request, Optional<Options> options) throws Exception {
+    public FileStorageFilesOneResponse get(FileStorageFilesOneRequest request, Optional<Options> options) {
         RequestOperation<FileStorageFilesOneRequest, FileStorageFilesOneResponse> operation
               = new FileStorageFilesOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -196,9 +195,9 @@ public class Files {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public FileStorageFilesUpdateResponse update(FileStorageFilesUpdateRequest request) throws Exception {
+    public FileStorageFilesUpdateResponse update(FileStorageFilesUpdateRequest request) {
         return update(request, Optional.empty());
     }
 
@@ -210,9 +209,9 @@ public class Files {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public FileStorageFilesUpdateResponse update(FileStorageFilesUpdateRequest request, Optional<Options> options) throws Exception {
+    public FileStorageFilesUpdateResponse update(FileStorageFilesUpdateRequest request, Optional<Options> options) {
         RequestOperation<FileStorageFilesUpdateRequest, FileStorageFilesUpdateResponse> operation
               = new FileStorageFilesUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -236,9 +235,9 @@ public class Files {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public FileStorageFilesDeleteResponse delete(FileStorageFilesDeleteRequest request) throws Exception {
+    public FileStorageFilesDeleteResponse delete(FileStorageFilesDeleteRequest request) {
         return delete(request, Optional.empty());
     }
 
@@ -250,9 +249,9 @@ public class Files {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public FileStorageFilesDeleteResponse delete(FileStorageFilesDeleteRequest request, Optional<Options> options) throws Exception {
+    public FileStorageFilesDeleteResponse delete(FileStorageFilesDeleteRequest request, Optional<Options> options) {
         RequestOperation<FileStorageFilesDeleteRequest, FileStorageFilesDeleteResponse> operation
               = new FileStorageFilesDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -276,9 +275,9 @@ public class Files {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public FileStorageFilesDownloadResponse download(FileStorageFilesDownloadRequest request) throws Exception {
+    public FileStorageFilesDownloadResponse download(FileStorageFilesDownloadRequest request) {
         return download(request, Optional.empty());
     }
 
@@ -290,9 +289,9 @@ public class Files {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public FileStorageFilesDownloadResponse download(FileStorageFilesDownloadRequest request, Optional<Options> options) throws Exception {
+    public FileStorageFilesDownloadResponse download(FileStorageFilesDownloadRequest request, Optional<Options> options) {
         RequestOperation<FileStorageFilesDownloadRequest, FileStorageFilesDownloadResponse> operation
               = new FileStorageFilesDownload.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -316,9 +315,9 @@ public class Files {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public FileStorageFilesExportResponse export(FileStorageFilesExportRequest request) throws Exception {
+    public FileStorageFilesExportResponse export(FileStorageFilesExportRequest request) {
         return export(request, Optional.empty());
     }
 
@@ -330,9 +329,9 @@ public class Files {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public FileStorageFilesExportResponse export(FileStorageFilesExportRequest request, Optional<Options> options) throws Exception {
+    public FileStorageFilesExportResponse export(FileStorageFilesExportRequest request, Optional<Options> options) {
         RequestOperation<FileStorageFilesExportRequest, FileStorageFilesExportResponse> operation
               = new FileStorageFilesExport.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

@@ -27,7 +27,6 @@ import com.apideck.unify.operations.HrisCompaniesOne;
 import com.apideck.unify.operations.HrisCompaniesUpdate;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
-import java.lang.Exception;
 import java.util.Optional;
 
 
@@ -68,9 +67,9 @@ public class ApideckCompanies {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public HrisCompaniesAllResponse list(HrisCompaniesAllRequest request) throws Exception {
+    public HrisCompaniesAllResponse list(HrisCompaniesAllRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -82,9 +81,9 @@ public class ApideckCompanies {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public HrisCompaniesAllResponse list(HrisCompaniesAllRequest request, Optional<Options> options) throws Exception {
+    public HrisCompaniesAllResponse list(HrisCompaniesAllRequest request, Optional<Options> options) {
         RequestOperation<HrisCompaniesAllRequest, HrisCompaniesAllResponse> operation
               = new HrisCompaniesAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -108,9 +107,9 @@ public class ApideckCompanies {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public HrisCompaniesAddResponse create(HrisCompaniesAddRequest request) throws Exception {
+    public HrisCompaniesAddResponse create(HrisCompaniesAddRequest request) {
         return create(request, Optional.empty());
     }
 
@@ -122,9 +121,9 @@ public class ApideckCompanies {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public HrisCompaniesAddResponse create(HrisCompaniesAddRequest request, Optional<Options> options) throws Exception {
+    public HrisCompaniesAddResponse create(HrisCompaniesAddRequest request, Optional<Options> options) {
         RequestOperation<HrisCompaniesAddRequest, HrisCompaniesAddResponse> operation
               = new HrisCompaniesAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -148,9 +147,9 @@ public class ApideckCompanies {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public HrisCompaniesOneResponse get(HrisCompaniesOneRequest request) throws Exception {
+    public HrisCompaniesOneResponse get(HrisCompaniesOneRequest request) {
         return get(request, Optional.empty());
     }
 
@@ -162,9 +161,9 @@ public class ApideckCompanies {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public HrisCompaniesOneResponse get(HrisCompaniesOneRequest request, Optional<Options> options) throws Exception {
+    public HrisCompaniesOneResponse get(HrisCompaniesOneRequest request, Optional<Options> options) {
         RequestOperation<HrisCompaniesOneRequest, HrisCompaniesOneResponse> operation
               = new HrisCompaniesOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -188,9 +187,9 @@ public class ApideckCompanies {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public HrisCompaniesUpdateResponse update(HrisCompaniesUpdateRequest request) throws Exception {
+    public HrisCompaniesUpdateResponse update(HrisCompaniesUpdateRequest request) {
         return update(request, Optional.empty());
     }
 
@@ -202,9 +201,9 @@ public class ApideckCompanies {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public HrisCompaniesUpdateResponse update(HrisCompaniesUpdateRequest request, Optional<Options> options) throws Exception {
+    public HrisCompaniesUpdateResponse update(HrisCompaniesUpdateRequest request, Optional<Options> options) {
         RequestOperation<HrisCompaniesUpdateRequest, HrisCompaniesUpdateResponse> operation
               = new HrisCompaniesUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -228,9 +227,9 @@ public class ApideckCompanies {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public HrisCompaniesDeleteResponse delete(HrisCompaniesDeleteRequest request) throws Exception {
+    public HrisCompaniesDeleteResponse delete(HrisCompaniesDeleteRequest request) {
         return delete(request, Optional.empty());
     }
 
@@ -242,9 +241,9 @@ public class ApideckCompanies {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public HrisCompaniesDeleteResponse delete(HrisCompaniesDeleteRequest request, Optional<Options> options) throws Exception {
+    public HrisCompaniesDeleteResponse delete(HrisCompaniesDeleteRequest request, Optional<Options> options) {
         RequestOperation<HrisCompaniesDeleteRequest, HrisCompaniesDeleteResponse> operation
               = new HrisCompaniesDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

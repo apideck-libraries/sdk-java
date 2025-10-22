@@ -27,7 +27,6 @@ import com.apideck.unify.operations.FileStorageUploadSessionsOne;
 import com.apideck.unify.operations.FileStorageUploadSessionsUpload;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
@@ -77,9 +76,9 @@ public class UploadSessions {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public FileStorageUploadSessionsAddResponse create(FileStorageUploadSessionsAddRequest request) throws Exception {
+    public FileStorageUploadSessionsAddResponse create(FileStorageUploadSessionsAddRequest request) {
         return create(request, Optional.empty(), Optional.empty());
     }
 
@@ -96,11 +95,11 @@ public class UploadSessions {
      * @param serverURL Overrides the server URL.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public FileStorageUploadSessionsAddResponse create(
             FileStorageUploadSessionsAddRequest request, Optional<String> serverURL,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         RequestOperation<FileStorageUploadSessionsAddRequest, FileStorageUploadSessionsAddResponse> operation
               = new FileStorageUploadSessionsAdd.Sync(
                                     sdkConfiguration, serverURL, options,
@@ -134,9 +133,9 @@ public class UploadSessions {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public FileStorageUploadSessionsOneResponse get(FileStorageUploadSessionsOneRequest request) throws Exception {
+    public FileStorageUploadSessionsOneResponse get(FileStorageUploadSessionsOneRequest request) {
         return get(request, Optional.empty(), Optional.empty());
     }
 
@@ -153,11 +152,11 @@ public class UploadSessions {
      * @param serverURL Overrides the server URL.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public FileStorageUploadSessionsOneResponse get(
             FileStorageUploadSessionsOneRequest request, Optional<String> serverURL,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         RequestOperation<FileStorageUploadSessionsOneRequest, FileStorageUploadSessionsOneResponse> operation
               = new FileStorageUploadSessionsOne.Sync(
                                     sdkConfiguration, serverURL, options,
@@ -193,9 +192,9 @@ public class UploadSessions {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public FileStorageUploadSessionsUploadResponse upload(FileStorageUploadSessionsUploadRequest request) throws Exception {
+    public FileStorageUploadSessionsUploadResponse upload(FileStorageUploadSessionsUploadRequest request) {
         return upload(request, Optional.empty(), Optional.empty());
     }
 
@@ -213,11 +212,11 @@ public class UploadSessions {
      * @param serverURL Overrides the server URL.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public FileStorageUploadSessionsUploadResponse upload(
             FileStorageUploadSessionsUploadRequest request, Optional<String> serverURL,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         RequestOperation<FileStorageUploadSessionsUploadRequest, FileStorageUploadSessionsUploadResponse> operation
               = new FileStorageUploadSessionsUpload.Sync(
                                     sdkConfiguration, serverURL, options,
@@ -245,9 +244,9 @@ public class UploadSessions {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public FileStorageUploadSessionsDeleteResponse delete(FileStorageUploadSessionsDeleteRequest request) throws Exception {
+    public FileStorageUploadSessionsDeleteResponse delete(FileStorageUploadSessionsDeleteRequest request) {
         return delete(request, Optional.empty());
     }
 
@@ -260,9 +259,9 @@ public class UploadSessions {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public FileStorageUploadSessionsDeleteResponse delete(FileStorageUploadSessionsDeleteRequest request, Optional<Options> options) throws Exception {
+    public FileStorageUploadSessionsDeleteResponse delete(FileStorageUploadSessionsDeleteRequest request, Optional<Options> options) {
         RequestOperation<FileStorageUploadSessionsDeleteRequest, FileStorageUploadSessionsDeleteResponse> operation
               = new FileStorageUploadSessionsDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -294,9 +293,9 @@ public class UploadSessions {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public FileStorageUploadSessionsFinishResponse finish(FileStorageUploadSessionsFinishRequest request) throws Exception {
+    public FileStorageUploadSessionsFinishResponse finish(FileStorageUploadSessionsFinishRequest request) {
         return finish(request, Optional.empty(), Optional.empty());
     }
 
@@ -313,11 +312,11 @@ public class UploadSessions {
      * @param serverURL Overrides the server URL.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public FileStorageUploadSessionsFinishResponse finish(
             FileStorageUploadSessionsFinishRequest request, Optional<String> serverURL,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         RequestOperation<FileStorageUploadSessionsFinishRequest, FileStorageUploadSessionsFinishResponse> operation
               = new FileStorageUploadSessionsFinish.Sync(
                                     sdkConfiguration, serverURL, options,

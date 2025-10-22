@@ -12,7 +12,6 @@ import com.apideck.unify.models.operations.ConnectorConnectorResourcesOneRespons
 import com.apideck.unify.operations.ConnectorConnectorResourcesOne;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
@@ -55,9 +54,9 @@ public class ConnectorResources {
      * @param id ID of the record you are acting upon.
      * @param resourceId ID of the resource you are acting upon.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ConnectorConnectorResourcesOneResponse get(String id, String resourceId) throws Exception {
+    public ConnectorConnectorResourcesOneResponse get(String id, String resourceId) {
         return get(Optional.empty(), id, resourceId,
             Optional.empty(), Optional.empty());
     }
@@ -73,12 +72,12 @@ public class ConnectorResources {
      * @param unifiedApi Name of Apideck Unified API
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public ConnectorConnectorResourcesOneResponse get(
             Optional<String> appId, String id,
             String resourceId, Optional<? extends UnifiedApiId> unifiedApi,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         ConnectorConnectorResourcesOneRequest request =
             ConnectorConnectorResourcesOneRequest
                 .builder()

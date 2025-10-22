@@ -27,7 +27,6 @@ import com.apideck.unify.operations.CrmCustomObjectSchemasOne;
 import com.apideck.unify.operations.CrmCustomObjectSchemasUpdate;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
-import java.lang.Exception;
 import java.util.Optional;
 
 
@@ -68,9 +67,9 @@ public class CustomObjectSchemas {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmCustomObjectSchemasAllResponse list(CrmCustomObjectSchemasAllRequest request) throws Exception {
+    public CrmCustomObjectSchemasAllResponse list(CrmCustomObjectSchemasAllRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -82,9 +81,9 @@ public class CustomObjectSchemas {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmCustomObjectSchemasAllResponse list(CrmCustomObjectSchemasAllRequest request, Optional<Options> options) throws Exception {
+    public CrmCustomObjectSchemasAllResponse list(CrmCustomObjectSchemasAllRequest request, Optional<Options> options) {
         RequestOperation<CrmCustomObjectSchemasAllRequest, CrmCustomObjectSchemasAllResponse> operation
               = new CrmCustomObjectSchemasAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -108,9 +107,9 @@ public class CustomObjectSchemas {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmCustomObjectSchemasAddResponse create(CrmCustomObjectSchemasAddRequest request) throws Exception {
+    public CrmCustomObjectSchemasAddResponse create(CrmCustomObjectSchemasAddRequest request) {
         return create(request, Optional.empty());
     }
 
@@ -122,9 +121,9 @@ public class CustomObjectSchemas {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmCustomObjectSchemasAddResponse create(CrmCustomObjectSchemasAddRequest request, Optional<Options> options) throws Exception {
+    public CrmCustomObjectSchemasAddResponse create(CrmCustomObjectSchemasAddRequest request, Optional<Options> options) {
         RequestOperation<CrmCustomObjectSchemasAddRequest, CrmCustomObjectSchemasAddResponse> operation
               = new CrmCustomObjectSchemasAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -148,9 +147,9 @@ public class CustomObjectSchemas {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmCustomObjectSchemasOneResponse get(CrmCustomObjectSchemasOneRequest request) throws Exception {
+    public CrmCustomObjectSchemasOneResponse get(CrmCustomObjectSchemasOneRequest request) {
         return get(request, Optional.empty());
     }
 
@@ -162,9 +161,9 @@ public class CustomObjectSchemas {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmCustomObjectSchemasOneResponse get(CrmCustomObjectSchemasOneRequest request, Optional<Options> options) throws Exception {
+    public CrmCustomObjectSchemasOneResponse get(CrmCustomObjectSchemasOneRequest request, Optional<Options> options) {
         RequestOperation<CrmCustomObjectSchemasOneRequest, CrmCustomObjectSchemasOneResponse> operation
               = new CrmCustomObjectSchemasOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -188,9 +187,9 @@ public class CustomObjectSchemas {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmCustomObjectSchemasUpdateResponse update(CrmCustomObjectSchemasUpdateRequest request) throws Exception {
+    public CrmCustomObjectSchemasUpdateResponse update(CrmCustomObjectSchemasUpdateRequest request) {
         return update(request, Optional.empty());
     }
 
@@ -202,9 +201,9 @@ public class CustomObjectSchemas {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmCustomObjectSchemasUpdateResponse update(CrmCustomObjectSchemasUpdateRequest request, Optional<Options> options) throws Exception {
+    public CrmCustomObjectSchemasUpdateResponse update(CrmCustomObjectSchemasUpdateRequest request, Optional<Options> options) {
         RequestOperation<CrmCustomObjectSchemasUpdateRequest, CrmCustomObjectSchemasUpdateResponse> operation
               = new CrmCustomObjectSchemasUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -228,9 +227,9 @@ public class CustomObjectSchemas {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmCustomObjectSchemasDeleteResponse delete(CrmCustomObjectSchemasDeleteRequest request) throws Exception {
+    public CrmCustomObjectSchemasDeleteResponse delete(CrmCustomObjectSchemasDeleteRequest request) {
         return delete(request, Optional.empty());
     }
 
@@ -242,9 +241,9 @@ public class CustomObjectSchemas {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmCustomObjectSchemasDeleteResponse delete(CrmCustomObjectSchemasDeleteRequest request, Optional<Options> options) throws Exception {
+    public CrmCustomObjectSchemasDeleteResponse delete(CrmCustomObjectSchemasDeleteRequest request, Optional<Options> options) {
         RequestOperation<CrmCustomObjectSchemasDeleteRequest, CrmCustomObjectSchemasDeleteResponse> operation
               = new CrmCustomObjectSchemasDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

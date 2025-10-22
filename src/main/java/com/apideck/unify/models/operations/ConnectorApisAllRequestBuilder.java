@@ -20,7 +20,6 @@ import com.apideck.unify.utils.pagination.CursorTracker;
 import com.apideck.unify.utils.pagination.Paginator;
 import com.fasterxml.jackson.core.type.TypeReference;
 import java.io.InputStream;
-import java.lang.Exception;
 import java.lang.Iterable;
 import java.lang.Long;
 import java.lang.String;
@@ -121,7 +120,7 @@ public class ConnectorApisAllRequestBuilder {
         return request;
     }
 
-    public ConnectorApisAllResponse call() throws Exception {
+    public ConnectorApisAllResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
             .build());

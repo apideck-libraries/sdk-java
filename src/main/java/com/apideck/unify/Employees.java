@@ -27,7 +27,6 @@ import com.apideck.unify.operations.HrisEmployeesOne;
 import com.apideck.unify.operations.HrisEmployeesUpdate;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
-import java.lang.Exception;
 import java.util.Optional;
 
 
@@ -74,9 +73,9 @@ public class Employees {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public HrisEmployeesAllResponse list(HrisEmployeesAllRequest request) throws Exception {
+    public HrisEmployeesAllResponse list(HrisEmployeesAllRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -91,9 +90,9 @@ public class Employees {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public HrisEmployeesAllResponse list(HrisEmployeesAllRequest request, Optional<Options> options) throws Exception {
+    public HrisEmployeesAllResponse list(HrisEmployeesAllRequest request, Optional<Options> options) {
         RequestOperation<HrisEmployeesAllRequest, HrisEmployeesAllResponse> operation
               = new HrisEmployeesAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -117,9 +116,9 @@ public class Employees {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public HrisEmployeesAddResponse create(HrisEmployeesAddRequest request) throws Exception {
+    public HrisEmployeesAddResponse create(HrisEmployeesAddRequest request) {
         return create(request, Optional.empty());
     }
 
@@ -131,9 +130,9 @@ public class Employees {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public HrisEmployeesAddResponse create(HrisEmployeesAddRequest request, Optional<Options> options) throws Exception {
+    public HrisEmployeesAddResponse create(HrisEmployeesAddRequest request, Optional<Options> options) {
         RequestOperation<HrisEmployeesAddRequest, HrisEmployeesAddResponse> operation
               = new HrisEmployeesAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -157,9 +156,9 @@ public class Employees {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public HrisEmployeesOneResponse get(HrisEmployeesOneRequest request) throws Exception {
+    public HrisEmployeesOneResponse get(HrisEmployeesOneRequest request) {
         return get(request, Optional.empty());
     }
 
@@ -171,9 +170,9 @@ public class Employees {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public HrisEmployeesOneResponse get(HrisEmployeesOneRequest request, Optional<Options> options) throws Exception {
+    public HrisEmployeesOneResponse get(HrisEmployeesOneRequest request, Optional<Options> options) {
         RequestOperation<HrisEmployeesOneRequest, HrisEmployeesOneResponse> operation
               = new HrisEmployeesOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -197,9 +196,9 @@ public class Employees {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public HrisEmployeesUpdateResponse update(HrisEmployeesUpdateRequest request) throws Exception {
+    public HrisEmployeesUpdateResponse update(HrisEmployeesUpdateRequest request) {
         return update(request, Optional.empty());
     }
 
@@ -211,9 +210,9 @@ public class Employees {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public HrisEmployeesUpdateResponse update(HrisEmployeesUpdateRequest request, Optional<Options> options) throws Exception {
+    public HrisEmployeesUpdateResponse update(HrisEmployeesUpdateRequest request, Optional<Options> options) {
         RequestOperation<HrisEmployeesUpdateRequest, HrisEmployeesUpdateResponse> operation
               = new HrisEmployeesUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -237,9 +236,9 @@ public class Employees {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public HrisEmployeesDeleteResponse delete(HrisEmployeesDeleteRequest request) throws Exception {
+    public HrisEmployeesDeleteResponse delete(HrisEmployeesDeleteRequest request) {
         return delete(request, Optional.empty());
     }
 
@@ -251,9 +250,9 @@ public class Employees {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public HrisEmployeesDeleteResponse delete(HrisEmployeesDeleteRequest request, Optional<Options> options) throws Exception {
+    public HrisEmployeesDeleteResponse delete(HrisEmployeesDeleteRequest request, Optional<Options> options) {
         RequestOperation<HrisEmployeesDeleteRequest, HrisEmployeesDeleteResponse> operation
               = new HrisEmployeesDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

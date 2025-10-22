@@ -23,18 +23,25 @@ public class ExpensesFilter {
     @SpeakeasyMetadata("queryParam:name=status")
     private Optional<? extends ExpensesFilterStatus> status;
 
+
+    @SpeakeasyMetadata("queryParam:name=type")
+    private Optional<? extends ExpensesFilterType> type;
+
     @JsonCreator
     public ExpensesFilter(
             Optional<OffsetDateTime> updatedSince,
-            Optional<? extends ExpensesFilterStatus> status) {
+            Optional<? extends ExpensesFilterStatus> status,
+            Optional<? extends ExpensesFilterType> type) {
         Utils.checkNotNull(updatedSince, "updatedSince");
         Utils.checkNotNull(status, "status");
+        Utils.checkNotNull(type, "type");
         this.updatedSince = updatedSince;
         this.status = status;
+        this.type = type;
     }
     
     public ExpensesFilter() {
-        this(Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -46,6 +53,12 @@ public class ExpensesFilter {
     @JsonIgnore
     public Optional<ExpensesFilterStatus> status() {
         return (Optional<ExpensesFilterStatus>) status;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<ExpensesFilterType> type() {
+        return (Optional<ExpensesFilterType>) type;
     }
 
     public static Builder builder() {
@@ -79,6 +92,19 @@ public class ExpensesFilter {
         return this;
     }
 
+    public ExpensesFilter withType(ExpensesFilterType type) {
+        Utils.checkNotNull(type, "type");
+        this.type = Optional.ofNullable(type);
+        return this;
+    }
+
+
+    public ExpensesFilter withType(Optional<? extends ExpensesFilterType> type) {
+        Utils.checkNotNull(type, "type");
+        this.type = type;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -90,20 +116,22 @@ public class ExpensesFilter {
         ExpensesFilter other = (ExpensesFilter) o;
         return 
             Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince) &&
-            Utils.enhancedDeepEquals(this.status, other.status);
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.type, other.type);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            updatedSince, status);
+            updatedSince, status, type);
     }
     
     @Override
     public String toString() {
         return Utils.toString(ExpensesFilter.class,
                 "updatedSince", updatedSince,
-                "status", status);
+                "status", status,
+                "type", type);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -112,6 +140,8 @@ public class ExpensesFilter {
         private Optional<OffsetDateTime> updatedSince = Optional.empty();
 
         private Optional<? extends ExpensesFilterStatus> status = Optional.empty();
+
+        private Optional<? extends ExpensesFilterType> type = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -143,10 +173,23 @@ public class ExpensesFilter {
             return this;
         }
 
+
+        public Builder type(ExpensesFilterType type) {
+            Utils.checkNotNull(type, "type");
+            this.type = Optional.ofNullable(type);
+            return this;
+        }
+
+        public Builder type(Optional<? extends ExpensesFilterType> type) {
+            Utils.checkNotNull(type, "type");
+            this.type = type;
+            return this;
+        }
+
         public ExpensesFilter build() {
 
             return new ExpensesFilter(
-                updatedSince, status);
+                updatedSince, status, type);
         }
 
     }

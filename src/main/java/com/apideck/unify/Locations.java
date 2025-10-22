@@ -27,7 +27,6 @@ import com.apideck.unify.operations.AccountingLocationsOne;
 import com.apideck.unify.operations.AccountingLocationsUpdate;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
-import java.lang.Exception;
 import java.util.Optional;
 
 
@@ -68,9 +67,9 @@ public class Locations {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingLocationsAllResponse list(AccountingLocationsAllRequest request) throws Exception {
+    public AccountingLocationsAllResponse list(AccountingLocationsAllRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -82,9 +81,9 @@ public class Locations {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingLocationsAllResponse list(AccountingLocationsAllRequest request, Optional<Options> options) throws Exception {
+    public AccountingLocationsAllResponse list(AccountingLocationsAllRequest request, Optional<Options> options) {
         RequestOperation<AccountingLocationsAllRequest, AccountingLocationsAllResponse> operation
               = new AccountingLocationsAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -108,9 +107,9 @@ public class Locations {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingLocationsAddResponse create(AccountingLocationsAddRequest request) throws Exception {
+    public AccountingLocationsAddResponse create(AccountingLocationsAddRequest request) {
         return create(request, Optional.empty());
     }
 
@@ -122,9 +121,9 @@ public class Locations {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingLocationsAddResponse create(AccountingLocationsAddRequest request, Optional<Options> options) throws Exception {
+    public AccountingLocationsAddResponse create(AccountingLocationsAddRequest request, Optional<Options> options) {
         RequestOperation<AccountingLocationsAddRequest, AccountingLocationsAddResponse> operation
               = new AccountingLocationsAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -148,9 +147,9 @@ public class Locations {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingLocationsOneResponse get(AccountingLocationsOneRequest request) throws Exception {
+    public AccountingLocationsOneResponse get(AccountingLocationsOneRequest request) {
         return get(request, Optional.empty());
     }
 
@@ -162,9 +161,9 @@ public class Locations {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingLocationsOneResponse get(AccountingLocationsOneRequest request, Optional<Options> options) throws Exception {
+    public AccountingLocationsOneResponse get(AccountingLocationsOneRequest request, Optional<Options> options) {
         RequestOperation<AccountingLocationsOneRequest, AccountingLocationsOneResponse> operation
               = new AccountingLocationsOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -188,9 +187,9 @@ public class Locations {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingLocationsUpdateResponse update(AccountingLocationsUpdateRequest request) throws Exception {
+    public AccountingLocationsUpdateResponse update(AccountingLocationsUpdateRequest request) {
         return update(request, Optional.empty());
     }
 
@@ -202,9 +201,9 @@ public class Locations {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingLocationsUpdateResponse update(AccountingLocationsUpdateRequest request, Optional<Options> options) throws Exception {
+    public AccountingLocationsUpdateResponse update(AccountingLocationsUpdateRequest request, Optional<Options> options) {
         RequestOperation<AccountingLocationsUpdateRequest, AccountingLocationsUpdateResponse> operation
               = new AccountingLocationsUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -228,9 +227,9 @@ public class Locations {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingLocationsDeleteResponse delete(AccountingLocationsDeleteRequest request) throws Exception {
+    public AccountingLocationsDeleteResponse delete(AccountingLocationsDeleteRequest request) {
         return delete(request, Optional.empty());
     }
 
@@ -242,9 +241,9 @@ public class Locations {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingLocationsDeleteResponse delete(AccountingLocationsDeleteRequest request, Optional<Options> options) throws Exception {
+    public AccountingLocationsDeleteResponse delete(AccountingLocationsDeleteRequest request, Optional<Options> options) {
         RequestOperation<AccountingLocationsDeleteRequest, AccountingLocationsDeleteResponse> operation
               = new AccountingLocationsDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

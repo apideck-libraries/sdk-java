@@ -27,7 +27,6 @@ import com.apideck.unify.operations.AccountingTrackingCategoriesOne;
 import com.apideck.unify.operations.AccountingTrackingCategoriesUpdate;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
-import java.lang.Exception;
 import java.util.Optional;
 
 
@@ -68,9 +67,9 @@ public class TrackingCategories {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingTrackingCategoriesAllResponse list(AccountingTrackingCategoriesAllRequest request) throws Exception {
+    public AccountingTrackingCategoriesAllResponse list(AccountingTrackingCategoriesAllRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -82,9 +81,9 @@ public class TrackingCategories {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingTrackingCategoriesAllResponse list(AccountingTrackingCategoriesAllRequest request, Optional<Options> options) throws Exception {
+    public AccountingTrackingCategoriesAllResponse list(AccountingTrackingCategoriesAllRequest request, Optional<Options> options) {
         RequestOperation<AccountingTrackingCategoriesAllRequest, AccountingTrackingCategoriesAllResponse> operation
               = new AccountingTrackingCategoriesAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -108,9 +107,9 @@ public class TrackingCategories {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingTrackingCategoriesAddResponse create(AccountingTrackingCategoriesAddRequest request) throws Exception {
+    public AccountingTrackingCategoriesAddResponse create(AccountingTrackingCategoriesAddRequest request) {
         return create(request, Optional.empty());
     }
 
@@ -122,9 +121,9 @@ public class TrackingCategories {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingTrackingCategoriesAddResponse create(AccountingTrackingCategoriesAddRequest request, Optional<Options> options) throws Exception {
+    public AccountingTrackingCategoriesAddResponse create(AccountingTrackingCategoriesAddRequest request, Optional<Options> options) {
         RequestOperation<AccountingTrackingCategoriesAddRequest, AccountingTrackingCategoriesAddResponse> operation
               = new AccountingTrackingCategoriesAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -148,9 +147,9 @@ public class TrackingCategories {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingTrackingCategoriesOneResponse get(AccountingTrackingCategoriesOneRequest request) throws Exception {
+    public AccountingTrackingCategoriesOneResponse get(AccountingTrackingCategoriesOneRequest request) {
         return get(request, Optional.empty());
     }
 
@@ -162,9 +161,9 @@ public class TrackingCategories {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingTrackingCategoriesOneResponse get(AccountingTrackingCategoriesOneRequest request, Optional<Options> options) throws Exception {
+    public AccountingTrackingCategoriesOneResponse get(AccountingTrackingCategoriesOneRequest request, Optional<Options> options) {
         RequestOperation<AccountingTrackingCategoriesOneRequest, AccountingTrackingCategoriesOneResponse> operation
               = new AccountingTrackingCategoriesOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -188,9 +187,9 @@ public class TrackingCategories {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingTrackingCategoriesUpdateResponse update(AccountingTrackingCategoriesUpdateRequest request) throws Exception {
+    public AccountingTrackingCategoriesUpdateResponse update(AccountingTrackingCategoriesUpdateRequest request) {
         return update(request, Optional.empty());
     }
 
@@ -202,9 +201,9 @@ public class TrackingCategories {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingTrackingCategoriesUpdateResponse update(AccountingTrackingCategoriesUpdateRequest request, Optional<Options> options) throws Exception {
+    public AccountingTrackingCategoriesUpdateResponse update(AccountingTrackingCategoriesUpdateRequest request, Optional<Options> options) {
         RequestOperation<AccountingTrackingCategoriesUpdateRequest, AccountingTrackingCategoriesUpdateResponse> operation
               = new AccountingTrackingCategoriesUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -228,9 +227,9 @@ public class TrackingCategories {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingTrackingCategoriesDeleteResponse delete(AccountingTrackingCategoriesDeleteRequest request) throws Exception {
+    public AccountingTrackingCategoriesDeleteResponse delete(AccountingTrackingCategoriesDeleteRequest request) {
         return delete(request, Optional.empty());
     }
 
@@ -242,9 +241,9 @@ public class TrackingCategories {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingTrackingCategoriesDeleteResponse delete(AccountingTrackingCategoriesDeleteRequest request, Optional<Options> options) throws Exception {
+    public AccountingTrackingCategoriesDeleteResponse delete(AccountingTrackingCategoriesDeleteRequest request, Optional<Options> options) {
         RequestOperation<AccountingTrackingCategoriesDeleteRequest, AccountingTrackingCategoriesDeleteResponse> operation
               = new AccountingTrackingCategoriesDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

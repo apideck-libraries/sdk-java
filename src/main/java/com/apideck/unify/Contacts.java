@@ -27,7 +27,6 @@ import com.apideck.unify.operations.CrmContactsOne;
 import com.apideck.unify.operations.CrmContactsUpdate;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
-import java.lang.Exception;
 import java.util.Optional;
 
 
@@ -68,9 +67,9 @@ public class Contacts {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmContactsAllResponse list(CrmContactsAllRequest request) throws Exception {
+    public CrmContactsAllResponse list(CrmContactsAllRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -82,9 +81,9 @@ public class Contacts {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmContactsAllResponse list(CrmContactsAllRequest request, Optional<Options> options) throws Exception {
+    public CrmContactsAllResponse list(CrmContactsAllRequest request, Optional<Options> options) {
         RequestOperation<CrmContactsAllRequest, CrmContactsAllResponse> operation
               = new CrmContactsAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -108,9 +107,9 @@ public class Contacts {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmContactsAddResponse create(CrmContactsAddRequest request) throws Exception {
+    public CrmContactsAddResponse create(CrmContactsAddRequest request) {
         return create(request, Optional.empty());
     }
 
@@ -122,9 +121,9 @@ public class Contacts {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmContactsAddResponse create(CrmContactsAddRequest request, Optional<Options> options) throws Exception {
+    public CrmContactsAddResponse create(CrmContactsAddRequest request, Optional<Options> options) {
         RequestOperation<CrmContactsAddRequest, CrmContactsAddResponse> operation
               = new CrmContactsAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -148,9 +147,9 @@ public class Contacts {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmContactsOneResponse get(CrmContactsOneRequest request) throws Exception {
+    public CrmContactsOneResponse get(CrmContactsOneRequest request) {
         return get(request, Optional.empty());
     }
 
@@ -162,9 +161,9 @@ public class Contacts {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmContactsOneResponse get(CrmContactsOneRequest request, Optional<Options> options) throws Exception {
+    public CrmContactsOneResponse get(CrmContactsOneRequest request, Optional<Options> options) {
         RequestOperation<CrmContactsOneRequest, CrmContactsOneResponse> operation
               = new CrmContactsOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -188,9 +187,9 @@ public class Contacts {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmContactsUpdateResponse update(CrmContactsUpdateRequest request) throws Exception {
+    public CrmContactsUpdateResponse update(CrmContactsUpdateRequest request) {
         return update(request, Optional.empty());
     }
 
@@ -202,9 +201,9 @@ public class Contacts {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmContactsUpdateResponse update(CrmContactsUpdateRequest request, Optional<Options> options) throws Exception {
+    public CrmContactsUpdateResponse update(CrmContactsUpdateRequest request, Optional<Options> options) {
         RequestOperation<CrmContactsUpdateRequest, CrmContactsUpdateResponse> operation
               = new CrmContactsUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -228,9 +227,9 @@ public class Contacts {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmContactsDeleteResponse delete(CrmContactsDeleteRequest request) throws Exception {
+    public CrmContactsDeleteResponse delete(CrmContactsDeleteRequest request) {
         return delete(request, Optional.empty());
     }
 
@@ -242,9 +241,9 @@ public class Contacts {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmContactsDeleteResponse delete(CrmContactsDeleteRequest request, Optional<Options> options) throws Exception {
+    public CrmContactsDeleteResponse delete(CrmContactsDeleteRequest request, Optional<Options> options) {
         RequestOperation<CrmContactsDeleteRequest, CrmContactsDeleteResponse> operation
               = new CrmContactsDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

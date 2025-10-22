@@ -19,7 +19,6 @@ import com.apideck.unify.utils.pagination.CursorTracker;
 import com.apideck.unify.utils.pagination.Paginator;
 import com.fasterxml.jackson.core.type.TypeReference;
 import java.io.InputStream;
-import java.lang.Exception;
 import java.lang.Iterable;
 import java.lang.Long;
 import java.lang.String;
@@ -106,7 +105,7 @@ public class VaultConsumersAllRequestBuilder {
         return request;
     }
 
-    public VaultConsumersAllResponse call() throws Exception {
+    public VaultConsumersAllResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
             .build());

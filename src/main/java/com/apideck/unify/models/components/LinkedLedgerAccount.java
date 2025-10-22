@@ -44,25 +44,45 @@ public class LinkedLedgerAccount {
     @JsonProperty("code")
     private JsonNullable<String> code;
 
+    /**
+     * The parent ID of the account.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("parent_id")
+    private JsonNullable<String> parentId;
+
+    /**
+     * The display ID of the account.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("display_id")
+    private JsonNullable<String> displayId;
+
     @JsonCreator
     public LinkedLedgerAccount(
             @JsonProperty("id") Optional<String> id,
             @JsonProperty("name") JsonNullable<String> name,
             @JsonProperty("nominal_code") JsonNullable<String> nominalCode,
-            @JsonProperty("code") JsonNullable<String> code) {
+            @JsonProperty("code") JsonNullable<String> code,
+            @JsonProperty("parent_id") JsonNullable<String> parentId,
+            @JsonProperty("display_id") JsonNullable<String> displayId) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(nominalCode, "nominalCode");
         Utils.checkNotNull(code, "code");
+        Utils.checkNotNull(parentId, "parentId");
+        Utils.checkNotNull(displayId, "displayId");
         this.id = id;
         this.name = name;
         this.nominalCode = nominalCode;
         this.code = code;
+        this.parentId = parentId;
+        this.displayId = displayId;
     }
     
     public LinkedLedgerAccount() {
         this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -95,6 +115,22 @@ public class LinkedLedgerAccount {
     @JsonIgnore
     public JsonNullable<String> code() {
         return code;
+    }
+
+    /**
+     * The parent ID of the account.
+     */
+    @JsonIgnore
+    public JsonNullable<String> parentId() {
+        return parentId;
+    }
+
+    /**
+     * The display ID of the account.
+     */
+    @JsonIgnore
+    public JsonNullable<String> displayId() {
+        return displayId;
     }
 
     public static Builder builder() {
@@ -175,6 +211,42 @@ public class LinkedLedgerAccount {
         return this;
     }
 
+    /**
+     * The parent ID of the account.
+     */
+    public LinkedLedgerAccount withParentId(String parentId) {
+        Utils.checkNotNull(parentId, "parentId");
+        this.parentId = JsonNullable.of(parentId);
+        return this;
+    }
+
+    /**
+     * The parent ID of the account.
+     */
+    public LinkedLedgerAccount withParentId(JsonNullable<String> parentId) {
+        Utils.checkNotNull(parentId, "parentId");
+        this.parentId = parentId;
+        return this;
+    }
+
+    /**
+     * The display ID of the account.
+     */
+    public LinkedLedgerAccount withDisplayId(String displayId) {
+        Utils.checkNotNull(displayId, "displayId");
+        this.displayId = JsonNullable.of(displayId);
+        return this;
+    }
+
+    /**
+     * The display ID of the account.
+     */
+    public LinkedLedgerAccount withDisplayId(JsonNullable<String> displayId) {
+        Utils.checkNotNull(displayId, "displayId");
+        this.displayId = displayId;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -188,14 +260,16 @@ public class LinkedLedgerAccount {
             Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.nominalCode, other.nominalCode) &&
-            Utils.enhancedDeepEquals(this.code, other.code);
+            Utils.enhancedDeepEquals(this.code, other.code) &&
+            Utils.enhancedDeepEquals(this.parentId, other.parentId) &&
+            Utils.enhancedDeepEquals(this.displayId, other.displayId);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             id, name, nominalCode,
-            code);
+            code, parentId, displayId);
     }
     
     @Override
@@ -204,7 +278,9 @@ public class LinkedLedgerAccount {
                 "id", id,
                 "name", name,
                 "nominalCode", nominalCode,
-                "code", code);
+                "code", code,
+                "parentId", parentId,
+                "displayId", displayId);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -217,6 +293,10 @@ public class LinkedLedgerAccount {
         private JsonNullable<String> nominalCode = JsonNullable.undefined();
 
         private JsonNullable<String> code = JsonNullable.undefined();
+
+        private JsonNullable<String> parentId = JsonNullable.undefined();
+
+        private JsonNullable<String> displayId = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -298,11 +378,49 @@ public class LinkedLedgerAccount {
             return this;
         }
 
+
+        /**
+         * The parent ID of the account.
+         */
+        public Builder parentId(String parentId) {
+            Utils.checkNotNull(parentId, "parentId");
+            this.parentId = JsonNullable.of(parentId);
+            return this;
+        }
+
+        /**
+         * The parent ID of the account.
+         */
+        public Builder parentId(JsonNullable<String> parentId) {
+            Utils.checkNotNull(parentId, "parentId");
+            this.parentId = parentId;
+            return this;
+        }
+
+
+        /**
+         * The display ID of the account.
+         */
+        public Builder displayId(String displayId) {
+            Utils.checkNotNull(displayId, "displayId");
+            this.displayId = JsonNullable.of(displayId);
+            return this;
+        }
+
+        /**
+         * The display ID of the account.
+         */
+        public Builder displayId(JsonNullable<String> displayId) {
+            Utils.checkNotNull(displayId, "displayId");
+            this.displayId = displayId;
+            return this;
+        }
+
         public LinkedLedgerAccount build() {
 
             return new LinkedLedgerAccount(
                 id, name, nominalCode,
-                code);
+                code, parentId, displayId);
         }
 
     }

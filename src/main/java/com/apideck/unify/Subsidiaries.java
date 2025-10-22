@@ -27,7 +27,6 @@ import com.apideck.unify.operations.AccountingSubsidiariesOne;
 import com.apideck.unify.operations.AccountingSubsidiariesUpdate;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
-import java.lang.Exception;
 import java.util.Optional;
 
 
@@ -68,9 +67,9 @@ public class Subsidiaries {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingSubsidiariesAllResponse list(AccountingSubsidiariesAllRequest request) throws Exception {
+    public AccountingSubsidiariesAllResponse list(AccountingSubsidiariesAllRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -82,9 +81,9 @@ public class Subsidiaries {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingSubsidiariesAllResponse list(AccountingSubsidiariesAllRequest request, Optional<Options> options) throws Exception {
+    public AccountingSubsidiariesAllResponse list(AccountingSubsidiariesAllRequest request, Optional<Options> options) {
         RequestOperation<AccountingSubsidiariesAllRequest, AccountingSubsidiariesAllResponse> operation
               = new AccountingSubsidiariesAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -108,9 +107,9 @@ public class Subsidiaries {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingSubsidiariesAddResponse create(AccountingSubsidiariesAddRequest request) throws Exception {
+    public AccountingSubsidiariesAddResponse create(AccountingSubsidiariesAddRequest request) {
         return create(request, Optional.empty());
     }
 
@@ -122,9 +121,9 @@ public class Subsidiaries {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingSubsidiariesAddResponse create(AccountingSubsidiariesAddRequest request, Optional<Options> options) throws Exception {
+    public AccountingSubsidiariesAddResponse create(AccountingSubsidiariesAddRequest request, Optional<Options> options) {
         RequestOperation<AccountingSubsidiariesAddRequest, AccountingSubsidiariesAddResponse> operation
               = new AccountingSubsidiariesAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -148,9 +147,9 @@ public class Subsidiaries {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingSubsidiariesOneResponse get(AccountingSubsidiariesOneRequest request) throws Exception {
+    public AccountingSubsidiariesOneResponse get(AccountingSubsidiariesOneRequest request) {
         return get(request, Optional.empty());
     }
 
@@ -162,9 +161,9 @@ public class Subsidiaries {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingSubsidiariesOneResponse get(AccountingSubsidiariesOneRequest request, Optional<Options> options) throws Exception {
+    public AccountingSubsidiariesOneResponse get(AccountingSubsidiariesOneRequest request, Optional<Options> options) {
         RequestOperation<AccountingSubsidiariesOneRequest, AccountingSubsidiariesOneResponse> operation
               = new AccountingSubsidiariesOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -188,9 +187,9 @@ public class Subsidiaries {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingSubsidiariesUpdateResponse update(AccountingSubsidiariesUpdateRequest request) throws Exception {
+    public AccountingSubsidiariesUpdateResponse update(AccountingSubsidiariesUpdateRequest request) {
         return update(request, Optional.empty());
     }
 
@@ -202,9 +201,9 @@ public class Subsidiaries {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingSubsidiariesUpdateResponse update(AccountingSubsidiariesUpdateRequest request, Optional<Options> options) throws Exception {
+    public AccountingSubsidiariesUpdateResponse update(AccountingSubsidiariesUpdateRequest request, Optional<Options> options) {
         RequestOperation<AccountingSubsidiariesUpdateRequest, AccountingSubsidiariesUpdateResponse> operation
               = new AccountingSubsidiariesUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -228,9 +227,9 @@ public class Subsidiaries {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingSubsidiariesDeleteResponse delete(AccountingSubsidiariesDeleteRequest request) throws Exception {
+    public AccountingSubsidiariesDeleteResponse delete(AccountingSubsidiariesDeleteRequest request) {
         return delete(request, Optional.empty());
     }
 
@@ -242,9 +241,9 @@ public class Subsidiaries {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingSubsidiariesDeleteResponse delete(AccountingSubsidiariesDeleteRequest request, Optional<Options> options) throws Exception {
+    public AccountingSubsidiariesDeleteResponse delete(AccountingSubsidiariesDeleteRequest request, Optional<Options> options) {
         RequestOperation<AccountingSubsidiariesDeleteRequest, AccountingSubsidiariesDeleteResponse> operation
               = new AccountingSubsidiariesDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

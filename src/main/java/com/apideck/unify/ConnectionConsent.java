@@ -11,7 +11,6 @@ import com.apideck.unify.models.operations.VaultConnectionConsentUpdateResponse;
 import com.apideck.unify.operations.VaultConnectionConsentUpdate;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
-import java.lang.Exception;
 import java.util.Optional;
 
 
@@ -52,9 +51,9 @@ public class ConnectionConsent {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public VaultConnectionConsentUpdateResponse update(VaultConnectionConsentUpdateRequest request) throws Exception {
+    public VaultConnectionConsentUpdateResponse update(VaultConnectionConsentUpdateRequest request) {
         return update(request, Optional.empty());
     }
 
@@ -66,9 +65,9 @@ public class ConnectionConsent {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public VaultConnectionConsentUpdateResponse update(VaultConnectionConsentUpdateRequest request, Optional<Options> options) throws Exception {
+    public VaultConnectionConsentUpdateResponse update(VaultConnectionConsentUpdateRequest request, Optional<Options> options) {
         RequestOperation<VaultConnectionConsentUpdateRequest, VaultConnectionConsentUpdateResponse> operation
               = new VaultConnectionConsentUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

@@ -27,7 +27,6 @@ import com.apideck.unify.operations.CrmNotesOne;
 import com.apideck.unify.operations.CrmNotesUpdate;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
-import java.lang.Exception;
 import java.util.Optional;
 
 
@@ -68,9 +67,9 @@ public class Notes {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmNotesAllResponse list(CrmNotesAllRequest request) throws Exception {
+    public CrmNotesAllResponse list(CrmNotesAllRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -82,9 +81,9 @@ public class Notes {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmNotesAllResponse list(CrmNotesAllRequest request, Optional<Options> options) throws Exception {
+    public CrmNotesAllResponse list(CrmNotesAllRequest request, Optional<Options> options) {
         RequestOperation<CrmNotesAllRequest, CrmNotesAllResponse> operation
               = new CrmNotesAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -108,9 +107,9 @@ public class Notes {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmNotesAddResponse create(CrmNotesAddRequest request) throws Exception {
+    public CrmNotesAddResponse create(CrmNotesAddRequest request) {
         return create(request, Optional.empty());
     }
 
@@ -122,9 +121,9 @@ public class Notes {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmNotesAddResponse create(CrmNotesAddRequest request, Optional<Options> options) throws Exception {
+    public CrmNotesAddResponse create(CrmNotesAddRequest request, Optional<Options> options) {
         RequestOperation<CrmNotesAddRequest, CrmNotesAddResponse> operation
               = new CrmNotesAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -148,9 +147,9 @@ public class Notes {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmNotesOneResponse get(CrmNotesOneRequest request) throws Exception {
+    public CrmNotesOneResponse get(CrmNotesOneRequest request) {
         return get(request, Optional.empty());
     }
 
@@ -162,9 +161,9 @@ public class Notes {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmNotesOneResponse get(CrmNotesOneRequest request, Optional<Options> options) throws Exception {
+    public CrmNotesOneResponse get(CrmNotesOneRequest request, Optional<Options> options) {
         RequestOperation<CrmNotesOneRequest, CrmNotesOneResponse> operation
               = new CrmNotesOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -188,9 +187,9 @@ public class Notes {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmNotesUpdateResponse update(CrmNotesUpdateRequest request) throws Exception {
+    public CrmNotesUpdateResponse update(CrmNotesUpdateRequest request) {
         return update(request, Optional.empty());
     }
 
@@ -202,9 +201,9 @@ public class Notes {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmNotesUpdateResponse update(CrmNotesUpdateRequest request, Optional<Options> options) throws Exception {
+    public CrmNotesUpdateResponse update(CrmNotesUpdateRequest request, Optional<Options> options) {
         RequestOperation<CrmNotesUpdateRequest, CrmNotesUpdateResponse> operation
               = new CrmNotesUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -228,9 +227,9 @@ public class Notes {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmNotesDeleteResponse delete(CrmNotesDeleteRequest request) throws Exception {
+    public CrmNotesDeleteResponse delete(CrmNotesDeleteRequest request) {
         return delete(request, Optional.empty());
     }
 
@@ -242,9 +241,9 @@ public class Notes {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmNotesDeleteResponse delete(CrmNotesDeleteRequest request, Optional<Options> options) throws Exception {
+    public CrmNotesDeleteResponse delete(CrmNotesDeleteRequest request, Optional<Options> options) {
         RequestOperation<CrmNotesDeleteRequest, CrmNotesDeleteResponse> operation
               = new CrmNotesDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

@@ -12,7 +12,6 @@ import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
@@ -89,7 +88,7 @@ public class ConnectorConnectorResourcesOneRequestBuilder {
         return request;
     }
 
-    public ConnectorConnectorResourcesOneResponse call() throws Exception {
+    public ConnectorConnectorResourcesOneResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
             .build());

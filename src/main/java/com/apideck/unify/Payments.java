@@ -27,7 +27,6 @@ import com.apideck.unify.operations.AccountingPaymentsOne;
 import com.apideck.unify.operations.AccountingPaymentsUpdate;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
-import java.lang.Exception;
 import java.util.Optional;
 
 
@@ -68,9 +67,9 @@ public class Payments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingPaymentsAllResponse list(AccountingPaymentsAllRequest request) throws Exception {
+    public AccountingPaymentsAllResponse list(AccountingPaymentsAllRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -82,9 +81,9 @@ public class Payments {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingPaymentsAllResponse list(AccountingPaymentsAllRequest request, Optional<Options> options) throws Exception {
+    public AccountingPaymentsAllResponse list(AccountingPaymentsAllRequest request, Optional<Options> options) {
         RequestOperation<AccountingPaymentsAllRequest, AccountingPaymentsAllResponse> operation
               = new AccountingPaymentsAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -108,9 +107,9 @@ public class Payments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingPaymentsAddResponse create(AccountingPaymentsAddRequest request) throws Exception {
+    public AccountingPaymentsAddResponse create(AccountingPaymentsAddRequest request) {
         return create(request, Optional.empty());
     }
 
@@ -122,9 +121,9 @@ public class Payments {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingPaymentsAddResponse create(AccountingPaymentsAddRequest request, Optional<Options> options) throws Exception {
+    public AccountingPaymentsAddResponse create(AccountingPaymentsAddRequest request, Optional<Options> options) {
         RequestOperation<AccountingPaymentsAddRequest, AccountingPaymentsAddResponse> operation
               = new AccountingPaymentsAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -148,9 +147,9 @@ public class Payments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingPaymentsOneResponse get(AccountingPaymentsOneRequest request) throws Exception {
+    public AccountingPaymentsOneResponse get(AccountingPaymentsOneRequest request) {
         return get(request, Optional.empty());
     }
 
@@ -162,9 +161,9 @@ public class Payments {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingPaymentsOneResponse get(AccountingPaymentsOneRequest request, Optional<Options> options) throws Exception {
+    public AccountingPaymentsOneResponse get(AccountingPaymentsOneRequest request, Optional<Options> options) {
         RequestOperation<AccountingPaymentsOneRequest, AccountingPaymentsOneResponse> operation
               = new AccountingPaymentsOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -188,9 +187,9 @@ public class Payments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingPaymentsUpdateResponse update(AccountingPaymentsUpdateRequest request) throws Exception {
+    public AccountingPaymentsUpdateResponse update(AccountingPaymentsUpdateRequest request) {
         return update(request, Optional.empty());
     }
 
@@ -202,9 +201,9 @@ public class Payments {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingPaymentsUpdateResponse update(AccountingPaymentsUpdateRequest request, Optional<Options> options) throws Exception {
+    public AccountingPaymentsUpdateResponse update(AccountingPaymentsUpdateRequest request, Optional<Options> options) {
         RequestOperation<AccountingPaymentsUpdateRequest, AccountingPaymentsUpdateResponse> operation
               = new AccountingPaymentsUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -228,9 +227,9 @@ public class Payments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingPaymentsDeleteResponse delete(AccountingPaymentsDeleteRequest request) throws Exception {
+    public AccountingPaymentsDeleteResponse delete(AccountingPaymentsDeleteRequest request) {
         return delete(request, Optional.empty());
     }
 
@@ -242,9 +241,9 @@ public class Payments {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingPaymentsDeleteResponse delete(AccountingPaymentsDeleteRequest request, Optional<Options> options) throws Exception {
+    public AccountingPaymentsDeleteResponse delete(AccountingPaymentsDeleteRequest request, Optional<Options> options) {
         RequestOperation<AccountingPaymentsDeleteRequest, AccountingPaymentsDeleteResponse> operation
               = new AccountingPaymentsDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

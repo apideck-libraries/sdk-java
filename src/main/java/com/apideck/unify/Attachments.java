@@ -27,7 +27,6 @@ import com.apideck.unify.operations.AccountingAttachmentsOne;
 import com.apideck.unify.operations.AccountingAttachmentsUpload;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
@@ -69,9 +68,9 @@ public class Attachments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingAttachmentsAllResponse list(AccountingAttachmentsAllRequest request) throws Exception {
+    public AccountingAttachmentsAllResponse list(AccountingAttachmentsAllRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -83,9 +82,9 @@ public class Attachments {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingAttachmentsAllResponse list(AccountingAttachmentsAllRequest request, Optional<Options> options) throws Exception {
+    public AccountingAttachmentsAllResponse list(AccountingAttachmentsAllRequest request, Optional<Options> options) {
         RequestOperation<AccountingAttachmentsAllRequest, AccountingAttachmentsAllResponse> operation
               = new AccountingAttachmentsAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -109,9 +108,9 @@ public class Attachments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingAttachmentsUploadResponse upload(AccountingAttachmentsUploadRequest request) throws Exception {
+    public AccountingAttachmentsUploadResponse upload(AccountingAttachmentsUploadRequest request) {
         return upload(request, Optional.empty(), Optional.empty());
     }
 
@@ -124,11 +123,11 @@ public class Attachments {
      * @param serverURL Overrides the server URL.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public AccountingAttachmentsUploadResponse upload(
             AccountingAttachmentsUploadRequest request, Optional<String> serverURL,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         RequestOperation<AccountingAttachmentsUploadRequest, AccountingAttachmentsUploadResponse> operation
               = new AccountingAttachmentsUpload.Sync(
                                     sdkConfiguration, serverURL, options,
@@ -154,9 +153,9 @@ public class Attachments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingAttachmentsOneResponse get(AccountingAttachmentsOneRequest request) throws Exception {
+    public AccountingAttachmentsOneResponse get(AccountingAttachmentsOneRequest request) {
         return get(request, Optional.empty());
     }
 
@@ -168,9 +167,9 @@ public class Attachments {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingAttachmentsOneResponse get(AccountingAttachmentsOneRequest request, Optional<Options> options) throws Exception {
+    public AccountingAttachmentsOneResponse get(AccountingAttachmentsOneRequest request, Optional<Options> options) {
         RequestOperation<AccountingAttachmentsOneRequest, AccountingAttachmentsOneResponse> operation
               = new AccountingAttachmentsOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -194,9 +193,9 @@ public class Attachments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingAttachmentsDeleteResponse delete(AccountingAttachmentsDeleteRequest request) throws Exception {
+    public AccountingAttachmentsDeleteResponse delete(AccountingAttachmentsDeleteRequest request) {
         return delete(request, Optional.empty());
     }
 
@@ -208,9 +207,9 @@ public class Attachments {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingAttachmentsDeleteResponse delete(AccountingAttachmentsDeleteRequest request, Optional<Options> options) throws Exception {
+    public AccountingAttachmentsDeleteResponse delete(AccountingAttachmentsDeleteRequest request, Optional<Options> options) {
         RequestOperation<AccountingAttachmentsDeleteRequest, AccountingAttachmentsDeleteResponse> operation
               = new AccountingAttachmentsDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -234,9 +233,9 @@ public class Attachments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingAttachmentsDownloadResponse download(AccountingAttachmentsDownloadRequest request) throws Exception {
+    public AccountingAttachmentsDownloadResponse download(AccountingAttachmentsDownloadRequest request) {
         return download(request, Optional.empty());
     }
 
@@ -248,9 +247,9 @@ public class Attachments {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingAttachmentsDownloadResponse download(AccountingAttachmentsDownloadRequest request, Optional<Options> options) throws Exception {
+    public AccountingAttachmentsDownloadResponse download(AccountingAttachmentsDownloadRequest request, Optional<Options> options) {
         RequestOperation<AccountingAttachmentsDownloadRequest, AccountingAttachmentsDownloadResponse> operation
               = new AccountingAttachmentsDownload.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

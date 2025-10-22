@@ -36,11 +36,11 @@ public class AccountingBankAccount {
     private JsonNullable<String> displayId;
 
     /**
-     * The name of the bank account as it appears in the accounting system
+     * The name of the bank account
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
-    private Optional<String> name;
+    private JsonNullable<String> name;
 
     /**
      * The bank account number
@@ -55,6 +55,11 @@ public class AccountingBankAccount {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("account_type")
     private Optional<? extends AccountingBankAccountAccountType> accountType;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("ledger_account")
+    private JsonNullable<? extends LinkedLedgerAccount> ledgerAccount;
 
     /**
      * The name of the bank or financial institution
@@ -199,9 +204,10 @@ public class AccountingBankAccount {
     public AccountingBankAccount(
             @JsonProperty("id") String id,
             @JsonProperty("display_id") JsonNullable<String> displayId,
-            @JsonProperty("name") Optional<String> name,
+            @JsonProperty("name") JsonNullable<String> name,
             @JsonProperty("account_number") JsonNullable<String> accountNumber,
             @JsonProperty("account_type") Optional<? extends AccountingBankAccountAccountType> accountType,
+            @JsonProperty("ledger_account") JsonNullable<? extends LinkedLedgerAccount> ledgerAccount,
             @JsonProperty("bank_name") JsonNullable<String> bankName,
             @JsonProperty("currency") JsonNullable<? extends Currency> currency,
             @JsonProperty("balance") JsonNullable<Double> balance,
@@ -227,6 +233,7 @@ public class AccountingBankAccount {
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(accountNumber, "accountNumber");
         Utils.checkNotNull(accountType, "accountType");
+        Utils.checkNotNull(ledgerAccount, "ledgerAccount");
         Utils.checkNotNull(bankName, "bankName");
         Utils.checkNotNull(currency, "currency");
         Utils.checkNotNull(balance, "balance");
@@ -252,6 +259,7 @@ public class AccountingBankAccount {
         this.name = name;
         this.accountNumber = accountNumber;
         this.accountType = accountType;
+        this.ledgerAccount = ledgerAccount;
         this.bankName = bankName;
         this.currency = currency;
         this.balance = balance;
@@ -276,15 +284,15 @@ public class AccountingBankAccount {
     
     public AccountingBankAccount(
             String id) {
-        this(id, JsonNullable.undefined(), Optional.empty(),
+        this(id, JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -304,10 +312,10 @@ public class AccountingBankAccount {
     }
 
     /**
-     * The name of the bank account as it appears in the accounting system
+     * The name of the bank account
      */
     @JsonIgnore
-    public Optional<String> name() {
+    public JsonNullable<String> name() {
         return name;
     }
 
@@ -326,6 +334,12 @@ public class AccountingBankAccount {
     @JsonIgnore
     public Optional<AccountingBankAccountAccountType> accountType() {
         return (Optional<AccountingBankAccountAccountType>) accountType;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<LinkedLedgerAccount> ledgerAccount() {
+        return (JsonNullable<LinkedLedgerAccount>) ledgerAccount;
     }
 
     /**
@@ -523,19 +537,18 @@ public class AccountingBankAccount {
     }
 
     /**
-     * The name of the bank account as it appears in the accounting system
+     * The name of the bank account
      */
     public AccountingBankAccount withName(String name) {
         Utils.checkNotNull(name, "name");
-        this.name = Optional.ofNullable(name);
+        this.name = JsonNullable.of(name);
         return this;
     }
 
-
     /**
-     * The name of the bank account as it appears in the accounting system
+     * The name of the bank account
      */
-    public AccountingBankAccount withName(Optional<String> name) {
+    public AccountingBankAccount withName(JsonNullable<String> name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
@@ -575,6 +588,18 @@ public class AccountingBankAccount {
     public AccountingBankAccount withAccountType(Optional<? extends AccountingBankAccountAccountType> accountType) {
         Utils.checkNotNull(accountType, "accountType");
         this.accountType = accountType;
+        return this;
+    }
+
+    public AccountingBankAccount withLedgerAccount(LinkedLedgerAccount ledgerAccount) {
+        Utils.checkNotNull(ledgerAccount, "ledgerAccount");
+        this.ledgerAccount = JsonNullable.of(ledgerAccount);
+        return this;
+    }
+
+    public AccountingBankAccount withLedgerAccount(JsonNullable<? extends LinkedLedgerAccount> ledgerAccount) {
+        Utils.checkNotNull(ledgerAccount, "ledgerAccount");
+        this.ledgerAccount = ledgerAccount;
         return this;
     }
 
@@ -950,6 +975,7 @@ public class AccountingBankAccount {
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.accountNumber, other.accountNumber) &&
             Utils.enhancedDeepEquals(this.accountType, other.accountType) &&
+            Utils.enhancedDeepEquals(this.ledgerAccount, other.ledgerAccount) &&
             Utils.enhancedDeepEquals(this.bankName, other.bankName) &&
             Utils.enhancedDeepEquals(this.currency, other.currency) &&
             Utils.enhancedDeepEquals(this.balance, other.balance) &&
@@ -976,14 +1002,14 @@ public class AccountingBankAccount {
     public int hashCode() {
         return Utils.enhancedHash(
             id, displayId, name,
-            accountNumber, accountType, bankName,
-            currency, balance, availableBalance,
-            overdraftLimit, routingNumber, iban,
-            bic, bsbNumber, branchIdentifier,
-            bankCode, country, status,
-            description, customFields, customMappings,
-            createdAt, updatedAt, createdBy,
-            updatedBy);
+            accountNumber, accountType, ledgerAccount,
+            bankName, currency, balance,
+            availableBalance, overdraftLimit, routingNumber,
+            iban, bic, bsbNumber,
+            branchIdentifier, bankCode, country,
+            status, description, customFields,
+            customMappings, createdAt, updatedAt,
+            createdBy, updatedBy);
     }
     
     @Override
@@ -994,6 +1020,7 @@ public class AccountingBankAccount {
                 "name", name,
                 "accountNumber", accountNumber,
                 "accountType", accountType,
+                "ledgerAccount", ledgerAccount,
                 "bankName", bankName,
                 "currency", currency,
                 "balance", balance,
@@ -1023,11 +1050,13 @@ public class AccountingBankAccount {
 
         private JsonNullable<String> displayId = JsonNullable.undefined();
 
-        private Optional<String> name = Optional.empty();
+        private JsonNullable<String> name = JsonNullable.undefined();
 
         private JsonNullable<String> accountNumber = JsonNullable.undefined();
 
         private Optional<? extends AccountingBankAccountAccountType> accountType = Optional.empty();
+
+        private JsonNullable<? extends LinkedLedgerAccount> ledgerAccount = JsonNullable.undefined();
 
         private JsonNullable<String> bankName = JsonNullable.undefined();
 
@@ -1104,18 +1133,18 @@ public class AccountingBankAccount {
 
 
         /**
-         * The name of the bank account as it appears in the accounting system
+         * The name of the bank account
          */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
-            this.name = Optional.ofNullable(name);
+            this.name = JsonNullable.of(name);
             return this;
         }
 
         /**
-         * The name of the bank account as it appears in the accounting system
+         * The name of the bank account
          */
-        public Builder name(Optional<String> name) {
+        public Builder name(JsonNullable<String> name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
@@ -1156,6 +1185,19 @@ public class AccountingBankAccount {
         public Builder accountType(Optional<? extends AccountingBankAccountAccountType> accountType) {
             Utils.checkNotNull(accountType, "accountType");
             this.accountType = accountType;
+            return this;
+        }
+
+
+        public Builder ledgerAccount(LinkedLedgerAccount ledgerAccount) {
+            Utils.checkNotNull(ledgerAccount, "ledgerAccount");
+            this.ledgerAccount = JsonNullable.of(ledgerAccount);
+            return this;
+        }
+
+        public Builder ledgerAccount(JsonNullable<? extends LinkedLedgerAccount> ledgerAccount) {
+            Utils.checkNotNull(ledgerAccount, "ledgerAccount");
+            this.ledgerAccount = ledgerAccount;
             return this;
         }
 
@@ -1539,14 +1581,14 @@ public class AccountingBankAccount {
 
             return new AccountingBankAccount(
                 id, displayId, name,
-                accountNumber, accountType, bankName,
-                currency, balance, availableBalance,
-                overdraftLimit, routingNumber, iban,
-                bic, bsbNumber, branchIdentifier,
-                bankCode, country, status,
-                description, customFields, customMappings,
-                createdAt, updatedAt, createdBy,
-                updatedBy);
+                accountNumber, accountType, ledgerAccount,
+                bankName, currency, balance,
+                availableBalance, overdraftLimit, routingNumber,
+                iban, bic, bsbNumber,
+                branchIdentifier, bankCode, country,
+                status, description, customFields,
+                customMappings, createdAt, updatedAt,
+                createdBy, updatedBy);
         }
 
     }

@@ -10,3 +10,4 @@ The type of payment for the expense.
 | `CASH`        | cash          |
 | `CHECK`       | check         |
 | `CREDIT_CARD` | credit_card   |
+| `OTHER`       | other         |

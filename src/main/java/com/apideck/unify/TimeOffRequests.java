@@ -27,7 +27,6 @@ import com.apideck.unify.operations.HrisTimeOffRequestsOne;
 import com.apideck.unify.operations.HrisTimeOffRequestsUpdate;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
-import java.lang.Exception;
 import java.util.Optional;
 
 
@@ -68,9 +67,9 @@ public class TimeOffRequests {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public HrisTimeOffRequestsAllResponse list(HrisTimeOffRequestsAllRequest request) throws Exception {
+    public HrisTimeOffRequestsAllResponse list(HrisTimeOffRequestsAllRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -82,9 +81,9 @@ public class TimeOffRequests {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public HrisTimeOffRequestsAllResponse list(HrisTimeOffRequestsAllRequest request, Optional<Options> options) throws Exception {
+    public HrisTimeOffRequestsAllResponse list(HrisTimeOffRequestsAllRequest request, Optional<Options> options) {
         RequestOperation<HrisTimeOffRequestsAllRequest, HrisTimeOffRequestsAllResponse> operation
               = new HrisTimeOffRequestsAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -108,9 +107,9 @@ public class TimeOffRequests {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public HrisTimeOffRequestsAddResponse create(HrisTimeOffRequestsAddRequest request) throws Exception {
+    public HrisTimeOffRequestsAddResponse create(HrisTimeOffRequestsAddRequest request) {
         return create(request, Optional.empty());
     }
 
@@ -122,9 +121,9 @@ public class TimeOffRequests {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public HrisTimeOffRequestsAddResponse create(HrisTimeOffRequestsAddRequest request, Optional<Options> options) throws Exception {
+    public HrisTimeOffRequestsAddResponse create(HrisTimeOffRequestsAddRequest request, Optional<Options> options) {
         RequestOperation<HrisTimeOffRequestsAddRequest, HrisTimeOffRequestsAddResponse> operation
               = new HrisTimeOffRequestsAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -148,9 +147,9 @@ public class TimeOffRequests {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public HrisTimeOffRequestsOneResponse get(HrisTimeOffRequestsOneRequest request) throws Exception {
+    public HrisTimeOffRequestsOneResponse get(HrisTimeOffRequestsOneRequest request) {
         return get(request, Optional.empty());
     }
 
@@ -162,9 +161,9 @@ public class TimeOffRequests {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public HrisTimeOffRequestsOneResponse get(HrisTimeOffRequestsOneRequest request, Optional<Options> options) throws Exception {
+    public HrisTimeOffRequestsOneResponse get(HrisTimeOffRequestsOneRequest request, Optional<Options> options) {
         RequestOperation<HrisTimeOffRequestsOneRequest, HrisTimeOffRequestsOneResponse> operation
               = new HrisTimeOffRequestsOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -188,9 +187,9 @@ public class TimeOffRequests {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public HrisTimeOffRequestsUpdateResponse update(HrisTimeOffRequestsUpdateRequest request) throws Exception {
+    public HrisTimeOffRequestsUpdateResponse update(HrisTimeOffRequestsUpdateRequest request) {
         return update(request, Optional.empty());
     }
 
@@ -202,9 +201,9 @@ public class TimeOffRequests {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public HrisTimeOffRequestsUpdateResponse update(HrisTimeOffRequestsUpdateRequest request, Optional<Options> options) throws Exception {
+    public HrisTimeOffRequestsUpdateResponse update(HrisTimeOffRequestsUpdateRequest request, Optional<Options> options) {
         RequestOperation<HrisTimeOffRequestsUpdateRequest, HrisTimeOffRequestsUpdateResponse> operation
               = new HrisTimeOffRequestsUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -228,9 +227,9 @@ public class TimeOffRequests {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public HrisTimeOffRequestsDeleteResponse delete(HrisTimeOffRequestsDeleteRequest request) throws Exception {
+    public HrisTimeOffRequestsDeleteResponse delete(HrisTimeOffRequestsDeleteRequest request) {
         return delete(request, Optional.empty());
     }
 
@@ -242,9 +241,9 @@ public class TimeOffRequests {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public HrisTimeOffRequestsDeleteResponse delete(HrisTimeOffRequestsDeleteRequest request, Optional<Options> options) throws Exception {
+    public HrisTimeOffRequestsDeleteResponse delete(HrisTimeOffRequestsDeleteRequest request, Optional<Options> options) {
         RequestOperation<HrisTimeOffRequestsDeleteRequest, HrisTimeOffRequestsDeleteResponse> operation
               = new HrisTimeOffRequestsDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

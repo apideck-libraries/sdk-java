@@ -11,13 +11,16 @@ import java.util.Optional;
 /**
  * DisabledReason
  * 
- * <p>Indicates if the webhook has has been disabled as it reached its retry limit or if account is over
- * the usage allocated by it's plan.
+ * <p>Indicates why the webhook has been disabled. `retry_limit`: webhook reached its retry limit.
+ * `usage_limit`: account is over its usage limit.
+ * 
+ * <p>`delivery_url_validation_failed`: delivery URL failed validation during webhook creation or update.
  */
 public enum DisabledReason {
     NONE("none"),
     RETRY_LIMIT("retry_limit"),
-    USAGE_LIMIT("usage_limit");
+    USAGE_LIMIT("usage_limit"),
+    DELIVERY_URL_VALIDATION_FAILED("delivery_url_validation_failed");
 
     @JsonValue
     private final String value;

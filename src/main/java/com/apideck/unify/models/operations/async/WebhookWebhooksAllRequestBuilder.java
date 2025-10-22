@@ -18,7 +18,6 @@ import com.apideck.unify.utils.Utils;
 import com.apideck.unify.utils.pagination.AsyncPaginator;
 import com.apideck.unify.utils.pagination.CursorTracker;
 import com.fasterxml.jackson.core.type.TypeReference;
-import java.lang.Exception;
 import java.lang.Long;
 import java.lang.String;
 import java.net.http.HttpResponse;
@@ -106,7 +105,7 @@ public class WebhookWebhooksAllRequestBuilder {
         return request;
     }
 
-    public CompletableFuture<WebhookWebhooksAllResponse> call() throws Exception {
+    public CompletableFuture<WebhookWebhooksAllResponse> call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
             .build());

@@ -366,7 +366,7 @@ public class EmployeeInput {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("bank_accounts")
-    private Optional<? extends List<BankAccount>> bankAccounts;
+    private Optional<? extends List<BankAccount2>> bankAccounts;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -478,7 +478,7 @@ public class EmployeeInput {
             @JsonProperty("emails") Optional<? extends List<Email>> emails,
             @JsonProperty("custom_fields") Optional<? extends List<CustomField>> customFields,
             @JsonProperty("social_links") Optional<? extends List<SocialLink>> socialLinks,
-            @JsonProperty("bank_accounts") Optional<? extends List<BankAccount>> bankAccounts,
+            @JsonProperty("bank_accounts") Optional<? extends List<BankAccount2>> bankAccounts,
             @JsonProperty("tax_code") JsonNullable<String> taxCode,
             @JsonProperty("tax_id") JsonNullable<String> taxId,
             @JsonProperty("dietary_preference") JsonNullable<String> dietaryPreference,
@@ -1035,8 +1035,8 @@ public class EmployeeInput {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<List<BankAccount>> bankAccounts() {
-        return (Optional<List<BankAccount>>) bankAccounts;
+    public Optional<List<BankAccount2>> bankAccounts() {
+        return (Optional<List<BankAccount2>>) bankAccounts;
     }
 
     @JsonIgnore
@@ -1982,14 +1982,14 @@ public class EmployeeInput {
         return this;
     }
 
-    public EmployeeInput withBankAccounts(List<BankAccount> bankAccounts) {
+    public EmployeeInput withBankAccounts(List<BankAccount2> bankAccounts) {
         Utils.checkNotNull(bankAccounts, "bankAccounts");
         this.bankAccounts = Optional.ofNullable(bankAccounts);
         return this;
     }
 
 
-    public EmployeeInput withBankAccounts(Optional<? extends List<BankAccount>> bankAccounts) {
+    public EmployeeInput withBankAccounts(Optional<? extends List<BankAccount2>> bankAccounts) {
         Utils.checkNotNull(bankAccounts, "bankAccounts");
         this.bankAccounts = bankAccounts;
         return this;
@@ -2410,7 +2410,7 @@ public class EmployeeInput {
 
         private Optional<? extends List<SocialLink>> socialLinks = Optional.empty();
 
-        private Optional<? extends List<BankAccount>> bankAccounts = Optional.empty();
+        private Optional<? extends List<BankAccount2>> bankAccounts = Optional.empty();
 
         private JsonNullable<String> taxCode = JsonNullable.undefined();
 
@@ -3348,13 +3348,13 @@ public class EmployeeInput {
         }
 
 
-        public Builder bankAccounts(List<BankAccount> bankAccounts) {
+        public Builder bankAccounts(List<BankAccount2> bankAccounts) {
             Utils.checkNotNull(bankAccounts, "bankAccounts");
             this.bankAccounts = Optional.ofNullable(bankAccounts);
             return this;
         }
 
-        public Builder bankAccounts(Optional<? extends List<BankAccount>> bankAccounts) {
+        public Builder bankAccounts(Optional<? extends List<BankAccount2>> bankAccounts) {
             Utils.checkNotNull(bankAccounts, "bankAccounts");
             this.bankAccounts = bankAccounts;
             return this;

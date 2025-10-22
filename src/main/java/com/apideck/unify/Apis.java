@@ -16,7 +16,6 @@ import com.apideck.unify.operations.ConnectorApisAll;
 import com.apideck.unify.operations.ConnectorApisOne;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
-import java.lang.Exception;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Optional;
@@ -59,9 +58,9 @@ public class Apis {
      * <p>List APIs
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ConnectorApisAllResponse listDirect() throws Exception {
+    public ConnectorApisAllResponse listDirect() {
         return list(Optional.empty(), JsonNullable.undefined(), Optional.empty(),
             Optional.empty(), Optional.empty());
     }
@@ -77,12 +76,12 @@ public class Apis {
      * @param filter 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public ConnectorApisAllResponse list(
             Optional<String> appId, JsonNullable<String> cursor,
             Optional<Long> limit, Optional<? extends ApisFilter> filter,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         ConnectorApisAllRequest request =
             ConnectorApisAllRequest
                 .builder()
@@ -114,9 +113,9 @@ public class Apis {
      * 
      * @param id ID of the record you are acting upon.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ConnectorApisOneResponse get(String id) throws Exception {
+    public ConnectorApisOneResponse get(String id) {
         return get(Optional.empty(), id, Optional.empty());
     }
 
@@ -129,11 +128,11 @@ public class Apis {
      * @param id ID of the record you are acting upon.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public ConnectorApisOneResponse get(
             Optional<String> appId, String id,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         ConnectorApisOneRequest request =
             ConnectorApisOneRequest
                 .builder()

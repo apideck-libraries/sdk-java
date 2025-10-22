@@ -15,7 +15,6 @@ import com.apideck.unify.operations.HrisEmployeePayrollsAll;
 import com.apideck.unify.operations.HrisEmployeePayrollsOne;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
-import java.lang.Exception;
 import java.util.Optional;
 
 
@@ -56,9 +55,9 @@ public class EmployeePayrolls {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public HrisEmployeePayrollsAllResponse list(HrisEmployeePayrollsAllRequest request) throws Exception {
+    public HrisEmployeePayrollsAllResponse list(HrisEmployeePayrollsAllRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -70,9 +69,9 @@ public class EmployeePayrolls {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public HrisEmployeePayrollsAllResponse list(HrisEmployeePayrollsAllRequest request, Optional<Options> options) throws Exception {
+    public HrisEmployeePayrollsAllResponse list(HrisEmployeePayrollsAllRequest request, Optional<Options> options) {
         RequestOperation<HrisEmployeePayrollsAllRequest, HrisEmployeePayrollsAllResponse> operation
               = new HrisEmployeePayrollsAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -96,9 +95,9 @@ public class EmployeePayrolls {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public HrisEmployeePayrollsOneResponse get(HrisEmployeePayrollsOneRequest request) throws Exception {
+    public HrisEmployeePayrollsOneResponse get(HrisEmployeePayrollsOneRequest request) {
         return get(request, Optional.empty());
     }
 
@@ -110,9 +109,9 @@ public class EmployeePayrolls {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public HrisEmployeePayrollsOneResponse get(HrisEmployeePayrollsOneRequest request, Optional<Options> options) throws Exception {
+    public HrisEmployeePayrollsOneResponse get(HrisEmployeePayrollsOneRequest request, Optional<Options> options) {
         RequestOperation<HrisEmployeePayrollsOneRequest, HrisEmployeePayrollsOneResponse> operation
               = new HrisEmployeePayrollsOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

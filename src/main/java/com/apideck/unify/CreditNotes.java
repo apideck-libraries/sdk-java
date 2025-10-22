@@ -27,7 +27,6 @@ import com.apideck.unify.operations.AccountingCreditNotesOne;
 import com.apideck.unify.operations.AccountingCreditNotesUpdate;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
-import java.lang.Exception;
 import java.util.Optional;
 
 
@@ -68,9 +67,9 @@ public class CreditNotes {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingCreditNotesAllResponse list(AccountingCreditNotesAllRequest request) throws Exception {
+    public AccountingCreditNotesAllResponse list(AccountingCreditNotesAllRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -82,9 +81,9 @@ public class CreditNotes {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingCreditNotesAllResponse list(AccountingCreditNotesAllRequest request, Optional<Options> options) throws Exception {
+    public AccountingCreditNotesAllResponse list(AccountingCreditNotesAllRequest request, Optional<Options> options) {
         RequestOperation<AccountingCreditNotesAllRequest, AccountingCreditNotesAllResponse> operation
               = new AccountingCreditNotesAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -108,9 +107,9 @@ public class CreditNotes {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingCreditNotesAddResponse create(AccountingCreditNotesAddRequest request) throws Exception {
+    public AccountingCreditNotesAddResponse create(AccountingCreditNotesAddRequest request) {
         return create(request, Optional.empty());
     }
 
@@ -122,9 +121,9 @@ public class CreditNotes {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingCreditNotesAddResponse create(AccountingCreditNotesAddRequest request, Optional<Options> options) throws Exception {
+    public AccountingCreditNotesAddResponse create(AccountingCreditNotesAddRequest request, Optional<Options> options) {
         RequestOperation<AccountingCreditNotesAddRequest, AccountingCreditNotesAddResponse> operation
               = new AccountingCreditNotesAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -148,9 +147,9 @@ public class CreditNotes {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingCreditNotesOneResponse get(AccountingCreditNotesOneRequest request) throws Exception {
+    public AccountingCreditNotesOneResponse get(AccountingCreditNotesOneRequest request) {
         return get(request, Optional.empty());
     }
 
@@ -162,9 +161,9 @@ public class CreditNotes {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingCreditNotesOneResponse get(AccountingCreditNotesOneRequest request, Optional<Options> options) throws Exception {
+    public AccountingCreditNotesOneResponse get(AccountingCreditNotesOneRequest request, Optional<Options> options) {
         RequestOperation<AccountingCreditNotesOneRequest, AccountingCreditNotesOneResponse> operation
               = new AccountingCreditNotesOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -188,9 +187,9 @@ public class CreditNotes {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingCreditNotesUpdateResponse update(AccountingCreditNotesUpdateRequest request) throws Exception {
+    public AccountingCreditNotesUpdateResponse update(AccountingCreditNotesUpdateRequest request) {
         return update(request, Optional.empty());
     }
 
@@ -202,9 +201,9 @@ public class CreditNotes {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingCreditNotesUpdateResponse update(AccountingCreditNotesUpdateRequest request, Optional<Options> options) throws Exception {
+    public AccountingCreditNotesUpdateResponse update(AccountingCreditNotesUpdateRequest request, Optional<Options> options) {
         RequestOperation<AccountingCreditNotesUpdateRequest, AccountingCreditNotesUpdateResponse> operation
               = new AccountingCreditNotesUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -228,9 +227,9 @@ public class CreditNotes {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingCreditNotesDeleteResponse delete(AccountingCreditNotesDeleteRequest request) throws Exception {
+    public AccountingCreditNotesDeleteResponse delete(AccountingCreditNotesDeleteRequest request) {
         return delete(request, Optional.empty());
     }
 
@@ -242,9 +241,9 @@ public class CreditNotes {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingCreditNotesDeleteResponse delete(AccountingCreditNotesDeleteRequest request, Optional<Options> options) throws Exception {
+    public AccountingCreditNotesDeleteResponse delete(AccountingCreditNotesDeleteRequest request, Optional<Options> options) {
         RequestOperation<AccountingCreditNotesDeleteRequest, AccountingCreditNotesDeleteResponse> operation
               = new AccountingCreditNotesDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

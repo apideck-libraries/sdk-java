@@ -27,7 +27,6 @@ import com.apideck.unify.operations.CrmPipelinesOne;
 import com.apideck.unify.operations.CrmPipelinesUpdate;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
-import java.lang.Exception;
 import java.util.Optional;
 
 
@@ -68,9 +67,9 @@ public class Pipelines {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmPipelinesAllResponse list(CrmPipelinesAllRequest request) throws Exception {
+    public CrmPipelinesAllResponse list(CrmPipelinesAllRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -82,9 +81,9 @@ public class Pipelines {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmPipelinesAllResponse list(CrmPipelinesAllRequest request, Optional<Options> options) throws Exception {
+    public CrmPipelinesAllResponse list(CrmPipelinesAllRequest request, Optional<Options> options) {
         RequestOperation<CrmPipelinesAllRequest, CrmPipelinesAllResponse> operation
               = new CrmPipelinesAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -108,9 +107,9 @@ public class Pipelines {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmPipelinesAddResponse create(CrmPipelinesAddRequest request) throws Exception {
+    public CrmPipelinesAddResponse create(CrmPipelinesAddRequest request) {
         return create(request, Optional.empty());
     }
 
@@ -122,9 +121,9 @@ public class Pipelines {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmPipelinesAddResponse create(CrmPipelinesAddRequest request, Optional<Options> options) throws Exception {
+    public CrmPipelinesAddResponse create(CrmPipelinesAddRequest request, Optional<Options> options) {
         RequestOperation<CrmPipelinesAddRequest, CrmPipelinesAddResponse> operation
               = new CrmPipelinesAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -148,9 +147,9 @@ public class Pipelines {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmPipelinesOneResponse get(CrmPipelinesOneRequest request) throws Exception {
+    public CrmPipelinesOneResponse get(CrmPipelinesOneRequest request) {
         return get(request, Optional.empty());
     }
 
@@ -162,9 +161,9 @@ public class Pipelines {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmPipelinesOneResponse get(CrmPipelinesOneRequest request, Optional<Options> options) throws Exception {
+    public CrmPipelinesOneResponse get(CrmPipelinesOneRequest request, Optional<Options> options) {
         RequestOperation<CrmPipelinesOneRequest, CrmPipelinesOneResponse> operation
               = new CrmPipelinesOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -188,9 +187,9 @@ public class Pipelines {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmPipelinesUpdateResponse update(CrmPipelinesUpdateRequest request) throws Exception {
+    public CrmPipelinesUpdateResponse update(CrmPipelinesUpdateRequest request) {
         return update(request, Optional.empty());
     }
 
@@ -202,9 +201,9 @@ public class Pipelines {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmPipelinesUpdateResponse update(CrmPipelinesUpdateRequest request, Optional<Options> options) throws Exception {
+    public CrmPipelinesUpdateResponse update(CrmPipelinesUpdateRequest request, Optional<Options> options) {
         RequestOperation<CrmPipelinesUpdateRequest, CrmPipelinesUpdateResponse> operation
               = new CrmPipelinesUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -228,9 +227,9 @@ public class Pipelines {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmPipelinesDeleteResponse delete(CrmPipelinesDeleteRequest request) throws Exception {
+    public CrmPipelinesDeleteResponse delete(CrmPipelinesDeleteRequest request) {
         return delete(request, Optional.empty());
     }
 
@@ -242,9 +241,9 @@ public class Pipelines {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmPipelinesDeleteResponse delete(CrmPipelinesDeleteRequest request, Optional<Options> options) throws Exception {
+    public CrmPipelinesDeleteResponse delete(CrmPipelinesDeleteRequest request, Optional<Options> options) {
         RequestOperation<CrmPipelinesDeleteRequest, CrmPipelinesDeleteResponse> operation
               = new CrmPipelinesDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

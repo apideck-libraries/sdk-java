@@ -15,7 +15,6 @@ import com.apideck.unify.operations.EcommerceProductsAll;
 import com.apideck.unify.operations.EcommerceProductsOne;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
-import java.lang.Exception;
 import java.util.Optional;
 
 
@@ -56,9 +55,9 @@ public class Products {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public EcommerceProductsAllResponse list(EcommerceProductsAllRequest request) throws Exception {
+    public EcommerceProductsAllResponse list(EcommerceProductsAllRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -70,9 +69,9 @@ public class Products {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public EcommerceProductsAllResponse list(EcommerceProductsAllRequest request, Optional<Options> options) throws Exception {
+    public EcommerceProductsAllResponse list(EcommerceProductsAllRequest request, Optional<Options> options) {
         RequestOperation<EcommerceProductsAllRequest, EcommerceProductsAllResponse> operation
               = new EcommerceProductsAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -96,9 +95,9 @@ public class Products {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public EcommerceProductsOneResponse get(EcommerceProductsOneRequest request) throws Exception {
+    public EcommerceProductsOneResponse get(EcommerceProductsOneRequest request) {
         return get(request, Optional.empty());
     }
 
@@ -110,9 +109,9 @@ public class Products {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public EcommerceProductsOneResponse get(EcommerceProductsOneRequest request, Optional<Options> options) throws Exception {
+    public EcommerceProductsOneResponse get(EcommerceProductsOneRequest request, Optional<Options> options) {
         RequestOperation<EcommerceProductsOneRequest, EcommerceProductsOneResponse> operation
               = new EcommerceProductsOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

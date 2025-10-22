@@ -27,7 +27,6 @@ import com.apideck.unify.operations.AccountingInvoiceItemsOne;
 import com.apideck.unify.operations.AccountingInvoiceItemsUpdate;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
-import java.lang.Exception;
 import java.util.Optional;
 
 
@@ -68,9 +67,9 @@ public class InvoiceItems {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingInvoiceItemsAllResponse list(AccountingInvoiceItemsAllRequest request) throws Exception {
+    public AccountingInvoiceItemsAllResponse list(AccountingInvoiceItemsAllRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -82,9 +81,9 @@ public class InvoiceItems {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingInvoiceItemsAllResponse list(AccountingInvoiceItemsAllRequest request, Optional<Options> options) throws Exception {
+    public AccountingInvoiceItemsAllResponse list(AccountingInvoiceItemsAllRequest request, Optional<Options> options) {
         RequestOperation<AccountingInvoiceItemsAllRequest, AccountingInvoiceItemsAllResponse> operation
               = new AccountingInvoiceItemsAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -108,9 +107,9 @@ public class InvoiceItems {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingInvoiceItemsAddResponse create(AccountingInvoiceItemsAddRequest request) throws Exception {
+    public AccountingInvoiceItemsAddResponse create(AccountingInvoiceItemsAddRequest request) {
         return create(request, Optional.empty());
     }
 
@@ -122,9 +121,9 @@ public class InvoiceItems {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingInvoiceItemsAddResponse create(AccountingInvoiceItemsAddRequest request, Optional<Options> options) throws Exception {
+    public AccountingInvoiceItemsAddResponse create(AccountingInvoiceItemsAddRequest request, Optional<Options> options) {
         RequestOperation<AccountingInvoiceItemsAddRequest, AccountingInvoiceItemsAddResponse> operation
               = new AccountingInvoiceItemsAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -148,9 +147,9 @@ public class InvoiceItems {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingInvoiceItemsOneResponse get(AccountingInvoiceItemsOneRequest request) throws Exception {
+    public AccountingInvoiceItemsOneResponse get(AccountingInvoiceItemsOneRequest request) {
         return get(request, Optional.empty());
     }
 
@@ -162,9 +161,9 @@ public class InvoiceItems {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingInvoiceItemsOneResponse get(AccountingInvoiceItemsOneRequest request, Optional<Options> options) throws Exception {
+    public AccountingInvoiceItemsOneResponse get(AccountingInvoiceItemsOneRequest request, Optional<Options> options) {
         RequestOperation<AccountingInvoiceItemsOneRequest, AccountingInvoiceItemsOneResponse> operation
               = new AccountingInvoiceItemsOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -188,9 +187,9 @@ public class InvoiceItems {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingInvoiceItemsUpdateResponse update(AccountingInvoiceItemsUpdateRequest request) throws Exception {
+    public AccountingInvoiceItemsUpdateResponse update(AccountingInvoiceItemsUpdateRequest request) {
         return update(request, Optional.empty());
     }
 
@@ -202,9 +201,9 @@ public class InvoiceItems {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingInvoiceItemsUpdateResponse update(AccountingInvoiceItemsUpdateRequest request, Optional<Options> options) throws Exception {
+    public AccountingInvoiceItemsUpdateResponse update(AccountingInvoiceItemsUpdateRequest request, Optional<Options> options) {
         RequestOperation<AccountingInvoiceItemsUpdateRequest, AccountingInvoiceItemsUpdateResponse> operation
               = new AccountingInvoiceItemsUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -228,9 +227,9 @@ public class InvoiceItems {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingInvoiceItemsDeleteResponse delete(AccountingInvoiceItemsDeleteRequest request) throws Exception {
+    public AccountingInvoiceItemsDeleteResponse delete(AccountingInvoiceItemsDeleteRequest request) {
         return delete(request, Optional.empty());
     }
 
@@ -242,9 +241,9 @@ public class InvoiceItems {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingInvoiceItemsDeleteResponse delete(AccountingInvoiceItemsDeleteRequest request, Optional<Options> options) throws Exception {
+    public AccountingInvoiceItemsDeleteResponse delete(AccountingInvoiceItemsDeleteRequest request, Optional<Options> options) {
         RequestOperation<AccountingInvoiceItemsDeleteRequest, AccountingInvoiceItemsDeleteResponse> operation
               = new AccountingInvoiceItemsDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

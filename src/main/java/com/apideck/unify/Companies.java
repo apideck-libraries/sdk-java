@@ -27,7 +27,6 @@ import com.apideck.unify.operations.CrmCompaniesOne;
 import com.apideck.unify.operations.CrmCompaniesUpdate;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
-import java.lang.Exception;
 import java.util.Optional;
 
 
@@ -68,9 +67,9 @@ public class Companies {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmCompaniesAllResponse list(CrmCompaniesAllRequest request) throws Exception {
+    public CrmCompaniesAllResponse list(CrmCompaniesAllRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -82,9 +81,9 @@ public class Companies {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmCompaniesAllResponse list(CrmCompaniesAllRequest request, Optional<Options> options) throws Exception {
+    public CrmCompaniesAllResponse list(CrmCompaniesAllRequest request, Optional<Options> options) {
         RequestOperation<CrmCompaniesAllRequest, CrmCompaniesAllResponse> operation
               = new CrmCompaniesAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -108,9 +107,9 @@ public class Companies {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmCompaniesAddResponse create(CrmCompaniesAddRequest request) throws Exception {
+    public CrmCompaniesAddResponse create(CrmCompaniesAddRequest request) {
         return create(request, Optional.empty());
     }
 
@@ -122,9 +121,9 @@ public class Companies {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmCompaniesAddResponse create(CrmCompaniesAddRequest request, Optional<Options> options) throws Exception {
+    public CrmCompaniesAddResponse create(CrmCompaniesAddRequest request, Optional<Options> options) {
         RequestOperation<CrmCompaniesAddRequest, CrmCompaniesAddResponse> operation
               = new CrmCompaniesAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -148,9 +147,9 @@ public class Companies {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmCompaniesOneResponse get(CrmCompaniesOneRequest request) throws Exception {
+    public CrmCompaniesOneResponse get(CrmCompaniesOneRequest request) {
         return get(request, Optional.empty());
     }
 
@@ -162,9 +161,9 @@ public class Companies {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmCompaniesOneResponse get(CrmCompaniesOneRequest request, Optional<Options> options) throws Exception {
+    public CrmCompaniesOneResponse get(CrmCompaniesOneRequest request, Optional<Options> options) {
         RequestOperation<CrmCompaniesOneRequest, CrmCompaniesOneResponse> operation
               = new CrmCompaniesOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -188,9 +187,9 @@ public class Companies {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmCompaniesUpdateResponse update(CrmCompaniesUpdateRequest request) throws Exception {
+    public CrmCompaniesUpdateResponse update(CrmCompaniesUpdateRequest request) {
         return update(request, Optional.empty());
     }
 
@@ -202,9 +201,9 @@ public class Companies {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmCompaniesUpdateResponse update(CrmCompaniesUpdateRequest request, Optional<Options> options) throws Exception {
+    public CrmCompaniesUpdateResponse update(CrmCompaniesUpdateRequest request, Optional<Options> options) {
         RequestOperation<CrmCompaniesUpdateRequest, CrmCompaniesUpdateResponse> operation
               = new CrmCompaniesUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -228,9 +227,9 @@ public class Companies {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmCompaniesDeleteResponse delete(CrmCompaniesDeleteRequest request) throws Exception {
+    public CrmCompaniesDeleteResponse delete(CrmCompaniesDeleteRequest request) {
         return delete(request, Optional.empty());
     }
 
@@ -242,9 +241,9 @@ public class Companies {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmCompaniesDeleteResponse delete(CrmCompaniesDeleteRequest request, Optional<Options> options) throws Exception {
+    public CrmCompaniesDeleteResponse delete(CrmCompaniesDeleteRequest request, Optional<Options> options) {
         RequestOperation<CrmCompaniesDeleteRequest, CrmCompaniesDeleteResponse> operation
               = new CrmCompaniesDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

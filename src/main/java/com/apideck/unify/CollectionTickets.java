@@ -27,7 +27,6 @@ import com.apideck.unify.operations.IssueTrackingCollectionTicketsOne;
 import com.apideck.unify.operations.IssueTrackingCollectionTicketsUpdate;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
-import java.lang.Exception;
 import java.util.Optional;
 
 
@@ -68,9 +67,9 @@ public class CollectionTickets {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public IssueTrackingCollectionTicketsAllResponse list(IssueTrackingCollectionTicketsAllRequest request) throws Exception {
+    public IssueTrackingCollectionTicketsAllResponse list(IssueTrackingCollectionTicketsAllRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -82,9 +81,9 @@ public class CollectionTickets {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public IssueTrackingCollectionTicketsAllResponse list(IssueTrackingCollectionTicketsAllRequest request, Optional<Options> options) throws Exception {
+    public IssueTrackingCollectionTicketsAllResponse list(IssueTrackingCollectionTicketsAllRequest request, Optional<Options> options) {
         RequestOperation<IssueTrackingCollectionTicketsAllRequest, IssueTrackingCollectionTicketsAllResponse> operation
               = new IssueTrackingCollectionTicketsAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -108,9 +107,9 @@ public class CollectionTickets {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public IssueTrackingCollectionTicketsAddResponse create(IssueTrackingCollectionTicketsAddRequest request) throws Exception {
+    public IssueTrackingCollectionTicketsAddResponse create(IssueTrackingCollectionTicketsAddRequest request) {
         return create(request, Optional.empty());
     }
 
@@ -122,9 +121,9 @@ public class CollectionTickets {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public IssueTrackingCollectionTicketsAddResponse create(IssueTrackingCollectionTicketsAddRequest request, Optional<Options> options) throws Exception {
+    public IssueTrackingCollectionTicketsAddResponse create(IssueTrackingCollectionTicketsAddRequest request, Optional<Options> options) {
         RequestOperation<IssueTrackingCollectionTicketsAddRequest, IssueTrackingCollectionTicketsAddResponse> operation
               = new IssueTrackingCollectionTicketsAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -148,9 +147,9 @@ public class CollectionTickets {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public IssueTrackingCollectionTicketsOneResponse get(IssueTrackingCollectionTicketsOneRequest request) throws Exception {
+    public IssueTrackingCollectionTicketsOneResponse get(IssueTrackingCollectionTicketsOneRequest request) {
         return get(request, Optional.empty());
     }
 
@@ -162,9 +161,9 @@ public class CollectionTickets {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public IssueTrackingCollectionTicketsOneResponse get(IssueTrackingCollectionTicketsOneRequest request, Optional<Options> options) throws Exception {
+    public IssueTrackingCollectionTicketsOneResponse get(IssueTrackingCollectionTicketsOneRequest request, Optional<Options> options) {
         RequestOperation<IssueTrackingCollectionTicketsOneRequest, IssueTrackingCollectionTicketsOneResponse> operation
               = new IssueTrackingCollectionTicketsOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -188,9 +187,9 @@ public class CollectionTickets {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public IssueTrackingCollectionTicketsUpdateResponse update(IssueTrackingCollectionTicketsUpdateRequest request) throws Exception {
+    public IssueTrackingCollectionTicketsUpdateResponse update(IssueTrackingCollectionTicketsUpdateRequest request) {
         return update(request, Optional.empty());
     }
 
@@ -202,9 +201,9 @@ public class CollectionTickets {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public IssueTrackingCollectionTicketsUpdateResponse update(IssueTrackingCollectionTicketsUpdateRequest request, Optional<Options> options) throws Exception {
+    public IssueTrackingCollectionTicketsUpdateResponse update(IssueTrackingCollectionTicketsUpdateRequest request, Optional<Options> options) {
         RequestOperation<IssueTrackingCollectionTicketsUpdateRequest, IssueTrackingCollectionTicketsUpdateResponse> operation
               = new IssueTrackingCollectionTicketsUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -228,9 +227,9 @@ public class CollectionTickets {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public IssueTrackingCollectionTicketsDeleteResponse delete(IssueTrackingCollectionTicketsDeleteRequest request) throws Exception {
+    public IssueTrackingCollectionTicketsDeleteResponse delete(IssueTrackingCollectionTicketsDeleteRequest request) {
         return delete(request, Optional.empty());
     }
 
@@ -242,9 +241,9 @@ public class CollectionTickets {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public IssueTrackingCollectionTicketsDeleteResponse delete(IssueTrackingCollectionTicketsDeleteRequest request, Optional<Options> options) throws Exception {
+    public IssueTrackingCollectionTicketsDeleteResponse delete(IssueTrackingCollectionTicketsDeleteRequest request, Optional<Options> options) {
         RequestOperation<IssueTrackingCollectionTicketsDeleteRequest, IssueTrackingCollectionTicketsDeleteResponse> operation
               = new IssueTrackingCollectionTicketsDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

@@ -13,7 +13,6 @@ import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -77,7 +76,7 @@ public class WebhookWebhooksUpdateRequestBuilder {
         return request;
     }
 
-    public CompletableFuture<WebhookWebhooksUpdateResponse> call() throws Exception {
+    public CompletableFuture<WebhookWebhooksUpdateResponse> call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
             .build());

@@ -27,7 +27,6 @@ import com.apideck.unify.operations.FileStorageSharedLinksOne;
 import com.apideck.unify.operations.FileStorageSharedLinksUpdate;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
-import java.lang.Exception;
 import java.util.Optional;
 
 
@@ -68,9 +67,9 @@ public class SharedLinks {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public FileStorageSharedLinksAllResponse list(FileStorageSharedLinksAllRequest request) throws Exception {
+    public FileStorageSharedLinksAllResponse list(FileStorageSharedLinksAllRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -82,9 +81,9 @@ public class SharedLinks {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public FileStorageSharedLinksAllResponse list(FileStorageSharedLinksAllRequest request, Optional<Options> options) throws Exception {
+    public FileStorageSharedLinksAllResponse list(FileStorageSharedLinksAllRequest request, Optional<Options> options) {
         RequestOperation<FileStorageSharedLinksAllRequest, FileStorageSharedLinksAllResponse> operation
               = new FileStorageSharedLinksAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -108,9 +107,9 @@ public class SharedLinks {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public FileStorageSharedLinksAddResponse create(FileStorageSharedLinksAddRequest request) throws Exception {
+    public FileStorageSharedLinksAddResponse create(FileStorageSharedLinksAddRequest request) {
         return create(request, Optional.empty());
     }
 
@@ -122,9 +121,9 @@ public class SharedLinks {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public FileStorageSharedLinksAddResponse create(FileStorageSharedLinksAddRequest request, Optional<Options> options) throws Exception {
+    public FileStorageSharedLinksAddResponse create(FileStorageSharedLinksAddRequest request, Optional<Options> options) {
         RequestOperation<FileStorageSharedLinksAddRequest, FileStorageSharedLinksAddResponse> operation
               = new FileStorageSharedLinksAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -148,9 +147,9 @@ public class SharedLinks {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public FileStorageSharedLinksOneResponse get(FileStorageSharedLinksOneRequest request) throws Exception {
+    public FileStorageSharedLinksOneResponse get(FileStorageSharedLinksOneRequest request) {
         return get(request, Optional.empty());
     }
 
@@ -162,9 +161,9 @@ public class SharedLinks {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public FileStorageSharedLinksOneResponse get(FileStorageSharedLinksOneRequest request, Optional<Options> options) throws Exception {
+    public FileStorageSharedLinksOneResponse get(FileStorageSharedLinksOneRequest request, Optional<Options> options) {
         RequestOperation<FileStorageSharedLinksOneRequest, FileStorageSharedLinksOneResponse> operation
               = new FileStorageSharedLinksOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -188,9 +187,9 @@ public class SharedLinks {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public FileStorageSharedLinksUpdateResponse update(FileStorageSharedLinksUpdateRequest request) throws Exception {
+    public FileStorageSharedLinksUpdateResponse update(FileStorageSharedLinksUpdateRequest request) {
         return update(request, Optional.empty());
     }
 
@@ -202,9 +201,9 @@ public class SharedLinks {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public FileStorageSharedLinksUpdateResponse update(FileStorageSharedLinksUpdateRequest request, Optional<Options> options) throws Exception {
+    public FileStorageSharedLinksUpdateResponse update(FileStorageSharedLinksUpdateRequest request, Optional<Options> options) {
         RequestOperation<FileStorageSharedLinksUpdateRequest, FileStorageSharedLinksUpdateResponse> operation
               = new FileStorageSharedLinksUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -228,9 +227,9 @@ public class SharedLinks {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public FileStorageSharedLinksDeleteResponse delete(FileStorageSharedLinksDeleteRequest request) throws Exception {
+    public FileStorageSharedLinksDeleteResponse delete(FileStorageSharedLinksDeleteRequest request) {
         return delete(request, Optional.empty());
     }
 
@@ -242,9 +241,9 @@ public class SharedLinks {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public FileStorageSharedLinksDeleteResponse delete(FileStorageSharedLinksDeleteRequest request, Optional<Options> options) throws Exception {
+    public FileStorageSharedLinksDeleteResponse delete(FileStorageSharedLinksDeleteRequest request, Optional<Options> options) {
         RequestOperation<FileStorageSharedLinksDeleteRequest, FileStorageSharedLinksDeleteResponse> operation
               = new FileStorageSharedLinksDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

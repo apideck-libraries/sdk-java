@@ -11,7 +11,6 @@ import com.apideck.unify.models.operations.VaultConnectionConsentsAllResponse;
 import com.apideck.unify.operations.VaultConnectionConsentsAll;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
@@ -54,9 +53,9 @@ public class ConnectionConsents {
      * @param serviceId Service ID of the resource to return
      * @param unifiedApi Unified API
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public VaultConnectionConsentsAllResponse list(String serviceId, String unifiedApi) throws Exception {
+    public VaultConnectionConsentsAllResponse list(String serviceId, String unifiedApi) {
         return list(Optional.empty(), Optional.empty(), serviceId,
             unifiedApi, Optional.empty());
     }
@@ -72,12 +71,12 @@ public class ConnectionConsents {
      * @param unifiedApi Unified API
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public VaultConnectionConsentsAllResponse list(
             Optional<String> consumerId, Optional<String> appId,
             String serviceId, String unifiedApi,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         VaultConnectionConsentsAllRequest request =
             VaultConnectionConsentsAllRequest
                 .builder()

@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Boolean;
+import java.lang.Deprecated;
 import java.lang.Double;
 import java.lang.Long;
 import java.lang.Override;
@@ -29,11 +30,19 @@ public class ExpenseLineItemInput {
     private JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories;
 
     /**
-     * The unique identifier for the ledger account.
+     * The unique identifier for the ledger account. Deprecated, use account instead.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("account_id")
+    @Deprecated
     private Optional<String> accountId;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("account")
+    private JsonNullable<? extends LinkedLedgerAccountInput> account;
 
     /**
      * The ID of the customer this expense item is linked to.
@@ -107,6 +116,7 @@ public class ExpenseLineItemInput {
     public ExpenseLineItemInput(
             @JsonProperty("tracking_categories") JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories,
             @JsonProperty("account_id") Optional<String> accountId,
+            @JsonProperty("account") JsonNullable<? extends LinkedLedgerAccountInput> account,
             @JsonProperty("customer_id") Optional<String> customerId,
             @JsonProperty("department_id") JsonNullable<String> departmentId,
             @JsonProperty("location_id") JsonNullable<String> locationId,
@@ -119,6 +129,7 @@ public class ExpenseLineItemInput {
             @JsonProperty("rebilling") JsonNullable<? extends Rebilling> rebilling) {
         Utils.checkNotNull(trackingCategories, "trackingCategories");
         Utils.checkNotNull(accountId, "accountId");
+        Utils.checkNotNull(account, "account");
         Utils.checkNotNull(customerId, "customerId");
         Utils.checkNotNull(departmentId, "departmentId");
         Utils.checkNotNull(locationId, "locationId");
@@ -131,6 +142,7 @@ public class ExpenseLineItemInput {
         Utils.checkNotNull(rebilling, "rebilling");
         this.trackingCategories = trackingCategories;
         this.accountId = accountId;
+        this.account = account;
         this.customerId = customerId;
         this.departmentId = departmentId;
         this.locationId = locationId;
@@ -144,10 +156,11 @@ public class ExpenseLineItemInput {
     }
     
     public ExpenseLineItemInput() {
-        this(JsonNullable.undefined(), Optional.empty(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -160,11 +173,20 @@ public class ExpenseLineItemInput {
     }
 
     /**
-     * The unique identifier for the ledger account.
+     * The unique identifier for the ledger account. Deprecated, use account instead.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     @JsonIgnore
     public Optional<String> accountId() {
         return accountId;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<LinkedLedgerAccountInput> account() {
+        return (JsonNullable<LinkedLedgerAccountInput>) account;
     }
 
     /**
@@ -270,8 +292,11 @@ public class ExpenseLineItemInput {
     }
 
     /**
-     * The unique identifier for the ledger account.
+     * The unique identifier for the ledger account. Deprecated, use account instead.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public ExpenseLineItemInput withAccountId(String accountId) {
         Utils.checkNotNull(accountId, "accountId");
         this.accountId = Optional.ofNullable(accountId);
@@ -280,11 +305,26 @@ public class ExpenseLineItemInput {
 
 
     /**
-     * The unique identifier for the ledger account.
+     * The unique identifier for the ledger account. Deprecated, use account instead.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public ExpenseLineItemInput withAccountId(Optional<String> accountId) {
         Utils.checkNotNull(accountId, "accountId");
         this.accountId = accountId;
+        return this;
+    }
+
+    public ExpenseLineItemInput withAccount(LinkedLedgerAccountInput account) {
+        Utils.checkNotNull(account, "account");
+        this.account = JsonNullable.of(account);
+        return this;
+    }
+
+    public ExpenseLineItemInput withAccount(JsonNullable<? extends LinkedLedgerAccountInput> account) {
+        Utils.checkNotNull(account, "account");
+        this.account = account;
         return this;
     }
 
@@ -478,6 +518,7 @@ public class ExpenseLineItemInput {
         return 
             Utils.enhancedDeepEquals(this.trackingCategories, other.trackingCategories) &&
             Utils.enhancedDeepEquals(this.accountId, other.accountId) &&
+            Utils.enhancedDeepEquals(this.account, other.account) &&
             Utils.enhancedDeepEquals(this.customerId, other.customerId) &&
             Utils.enhancedDeepEquals(this.departmentId, other.departmentId) &&
             Utils.enhancedDeepEquals(this.locationId, other.locationId) &&
@@ -493,10 +534,11 @@ public class ExpenseLineItemInput {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            trackingCategories, accountId, customerId,
-            departmentId, locationId, subsidiaryId,
-            taxRate, description, totalAmount,
-            billable, lineNumber, rebilling);
+            trackingCategories, accountId, account,
+            customerId, departmentId, locationId,
+            subsidiaryId, taxRate, description,
+            totalAmount, billable, lineNumber,
+            rebilling);
     }
     
     @Override
@@ -504,6 +546,7 @@ public class ExpenseLineItemInput {
         return Utils.toString(ExpenseLineItemInput.class,
                 "trackingCategories", trackingCategories,
                 "accountId", accountId,
+                "account", account,
                 "customerId", customerId,
                 "departmentId", departmentId,
                 "locationId", locationId,
@@ -521,7 +564,10 @@ public class ExpenseLineItemInput {
 
         private JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories = JsonNullable.undefined();
 
+        @Deprecated
         private Optional<String> accountId = Optional.empty();
+
+        private JsonNullable<? extends LinkedLedgerAccountInput> account = JsonNullable.undefined();
 
         private Optional<String> customerId = Optional.empty();
 
@@ -568,8 +614,11 @@ public class ExpenseLineItemInput {
 
 
         /**
-         * The unique identifier for the ledger account.
+         * The unique identifier for the ledger account. Deprecated, use account instead.
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder accountId(String accountId) {
             Utils.checkNotNull(accountId, "accountId");
             this.accountId = Optional.ofNullable(accountId);
@@ -577,11 +626,27 @@ public class ExpenseLineItemInput {
         }
 
         /**
-         * The unique identifier for the ledger account.
+         * The unique identifier for the ledger account. Deprecated, use account instead.
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder accountId(Optional<String> accountId) {
             Utils.checkNotNull(accountId, "accountId");
             this.accountId = accountId;
+            return this;
+        }
+
+
+        public Builder account(LinkedLedgerAccountInput account) {
+            Utils.checkNotNull(account, "account");
+            this.account = JsonNullable.of(account);
+            return this;
+        }
+
+        public Builder account(JsonNullable<? extends LinkedLedgerAccountInput> account) {
+            Utils.checkNotNull(account, "account");
+            this.account = account;
             return this;
         }
 
@@ -772,10 +837,11 @@ public class ExpenseLineItemInput {
         public ExpenseLineItemInput build() {
 
             return new ExpenseLineItemInput(
-                trackingCategories, accountId, customerId,
-                departmentId, locationId, subsidiaryId,
-                taxRate, description, totalAmount,
-                billable, lineNumber, rebilling);
+                trackingCategories, accountId, account,
+                customerId, departmentId, locationId,
+                subsidiaryId, taxRate, description,
+                totalAmount, billable, lineNumber,
+                rebilling);
         }
 
     }

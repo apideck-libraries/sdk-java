@@ -17,7 +17,6 @@ import com.apideck.unify.utils.Utils;
 import com.apideck.unify.utils.pagination.CursorTracker;
 import com.apideck.unify.utils.pagination.Paginator;
 import java.io.InputStream;
-import java.lang.Exception;
 import java.lang.Iterable;
 import java.lang.String;
 import java.net.http.HttpResponse;
@@ -54,7 +53,7 @@ public class AccountingLocationsAllRequestBuilder {
         return this;
     }
 
-    public AccountingLocationsAllResponse call() throws Exception {
+    public AccountingLocationsAllResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
             .build());

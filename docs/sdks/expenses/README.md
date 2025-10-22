@@ -22,8 +22,7 @@ List Expenses
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.ExpensesFilter;
-import com.apideck.unify.models.components.ExpensesFilterStatus;
+import com.apideck.unify.models.components.*;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingExpensesAllRequest;
 import com.apideck.unify.models.operations.AccountingExpensesAllResponse;
@@ -45,6 +44,7 @@ public class Application {
                 .filter(ExpensesFilter.builder()
                     .updatedSince(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
                     .status(ExpensesFilterStatus.DRAFT)
+                    .type(ExpensesFilterType.EXPENSE)
                     .build())
                 .build();
 
@@ -111,7 +111,7 @@ public class Application {
             .build();
 
         AccountingExpensesAddRequest req = AccountingExpensesAddRequest.builder()
-                .expense(ExpenseInput.builder()
+                .expense(ExpenseInput.of(Expense1Input.builder()
                     .transactionDate(OffsetDateTime.parse("2021-05-01T12:00:00.000Z"))
                     .accountId("123456")
                     .lineItems(List.of(
@@ -223,7 +223,7 @@ public class Application {
                                             Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build()))
-                    .build())
+                    .build()))
                 .serviceId("salesforce")
                 .build();
 
@@ -354,7 +354,7 @@ public class Application {
 
         AccountingExpensesUpdateRequest req = AccountingExpensesUpdateRequest.builder()
                 .id("<id>")
-                .expense(ExpenseInput.builder()
+                .expense(ExpenseInput.of(Expense1Input.builder()
                     .transactionDate(OffsetDateTime.parse("2021-05-01T12:00:00.000Z"))
                     .accountId("123456")
                     .lineItems(List.of(
@@ -440,7 +440,7 @@ public class Application {
                                             Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build()))
-                    .build())
+                    .build()))
                 .serviceId("salesforce")
                 .build();
 

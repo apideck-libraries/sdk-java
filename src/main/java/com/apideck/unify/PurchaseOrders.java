@@ -27,7 +27,6 @@ import com.apideck.unify.operations.AccountingPurchaseOrdersOne;
 import com.apideck.unify.operations.AccountingPurchaseOrdersUpdate;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
-import java.lang.Exception;
 import java.util.Optional;
 
 
@@ -68,9 +67,9 @@ public class PurchaseOrders {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingPurchaseOrdersAllResponse list(AccountingPurchaseOrdersAllRequest request) throws Exception {
+    public AccountingPurchaseOrdersAllResponse list(AccountingPurchaseOrdersAllRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -82,9 +81,9 @@ public class PurchaseOrders {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingPurchaseOrdersAllResponse list(AccountingPurchaseOrdersAllRequest request, Optional<Options> options) throws Exception {
+    public AccountingPurchaseOrdersAllResponse list(AccountingPurchaseOrdersAllRequest request, Optional<Options> options) {
         RequestOperation<AccountingPurchaseOrdersAllRequest, AccountingPurchaseOrdersAllResponse> operation
               = new AccountingPurchaseOrdersAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -108,9 +107,9 @@ public class PurchaseOrders {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingPurchaseOrdersAddResponse create(AccountingPurchaseOrdersAddRequest request) throws Exception {
+    public AccountingPurchaseOrdersAddResponse create(AccountingPurchaseOrdersAddRequest request) {
         return create(request, Optional.empty());
     }
 
@@ -122,9 +121,9 @@ public class PurchaseOrders {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingPurchaseOrdersAddResponse create(AccountingPurchaseOrdersAddRequest request, Optional<Options> options) throws Exception {
+    public AccountingPurchaseOrdersAddResponse create(AccountingPurchaseOrdersAddRequest request, Optional<Options> options) {
         RequestOperation<AccountingPurchaseOrdersAddRequest, AccountingPurchaseOrdersAddResponse> operation
               = new AccountingPurchaseOrdersAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -148,9 +147,9 @@ public class PurchaseOrders {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingPurchaseOrdersOneResponse get(AccountingPurchaseOrdersOneRequest request) throws Exception {
+    public AccountingPurchaseOrdersOneResponse get(AccountingPurchaseOrdersOneRequest request) {
         return get(request, Optional.empty());
     }
 
@@ -162,9 +161,9 @@ public class PurchaseOrders {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingPurchaseOrdersOneResponse get(AccountingPurchaseOrdersOneRequest request, Optional<Options> options) throws Exception {
+    public AccountingPurchaseOrdersOneResponse get(AccountingPurchaseOrdersOneRequest request, Optional<Options> options) {
         RequestOperation<AccountingPurchaseOrdersOneRequest, AccountingPurchaseOrdersOneResponse> operation
               = new AccountingPurchaseOrdersOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -188,9 +187,9 @@ public class PurchaseOrders {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingPurchaseOrdersUpdateResponse update(AccountingPurchaseOrdersUpdateRequest request) throws Exception {
+    public AccountingPurchaseOrdersUpdateResponse update(AccountingPurchaseOrdersUpdateRequest request) {
         return update(request, Optional.empty());
     }
 
@@ -202,9 +201,9 @@ public class PurchaseOrders {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingPurchaseOrdersUpdateResponse update(AccountingPurchaseOrdersUpdateRequest request, Optional<Options> options) throws Exception {
+    public AccountingPurchaseOrdersUpdateResponse update(AccountingPurchaseOrdersUpdateRequest request, Optional<Options> options) {
         RequestOperation<AccountingPurchaseOrdersUpdateRequest, AccountingPurchaseOrdersUpdateResponse> operation
               = new AccountingPurchaseOrdersUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -228,9 +227,9 @@ public class PurchaseOrders {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingPurchaseOrdersDeleteResponse delete(AccountingPurchaseOrdersDeleteRequest request) throws Exception {
+    public AccountingPurchaseOrdersDeleteResponse delete(AccountingPurchaseOrdersDeleteRequest request) {
         return delete(request, Optional.empty());
     }
 
@@ -242,9 +241,9 @@ public class PurchaseOrders {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public AccountingPurchaseOrdersDeleteResponse delete(AccountingPurchaseOrdersDeleteRequest request, Optional<Options> options) throws Exception {
+    public AccountingPurchaseOrdersDeleteResponse delete(AccountingPurchaseOrdersDeleteRequest request, Optional<Options> options) {
         RequestOperation<AccountingPurchaseOrdersDeleteRequest, AccountingPurchaseOrdersDeleteResponse> operation
               = new AccountingPurchaseOrdersDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

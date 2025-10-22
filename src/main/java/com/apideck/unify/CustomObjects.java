@@ -27,7 +27,6 @@ import com.apideck.unify.operations.CrmCustomObjectsOne;
 import com.apideck.unify.operations.CrmCustomObjectsUpdate;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
-import java.lang.Exception;
 import java.util.Optional;
 
 
@@ -68,9 +67,9 @@ public class CustomObjects {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmCustomObjectsAllResponse list(CrmCustomObjectsAllRequest request) throws Exception {
+    public CrmCustomObjectsAllResponse list(CrmCustomObjectsAllRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -82,9 +81,9 @@ public class CustomObjects {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmCustomObjectsAllResponse list(CrmCustomObjectsAllRequest request, Optional<Options> options) throws Exception {
+    public CrmCustomObjectsAllResponse list(CrmCustomObjectsAllRequest request, Optional<Options> options) {
         RequestOperation<CrmCustomObjectsAllRequest, CrmCustomObjectsAllResponse> operation
               = new CrmCustomObjectsAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -108,9 +107,9 @@ public class CustomObjects {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmCustomObjectsAddResponse create(CrmCustomObjectsAddRequest request) throws Exception {
+    public CrmCustomObjectsAddResponse create(CrmCustomObjectsAddRequest request) {
         return create(request, Optional.empty());
     }
 
@@ -122,9 +121,9 @@ public class CustomObjects {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmCustomObjectsAddResponse create(CrmCustomObjectsAddRequest request, Optional<Options> options) throws Exception {
+    public CrmCustomObjectsAddResponse create(CrmCustomObjectsAddRequest request, Optional<Options> options) {
         RequestOperation<CrmCustomObjectsAddRequest, CrmCustomObjectsAddResponse> operation
               = new CrmCustomObjectsAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -148,9 +147,9 @@ public class CustomObjects {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmCustomObjectsOneResponse get(CrmCustomObjectsOneRequest request) throws Exception {
+    public CrmCustomObjectsOneResponse get(CrmCustomObjectsOneRequest request) {
         return get(request, Optional.empty());
     }
 
@@ -162,9 +161,9 @@ public class CustomObjects {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmCustomObjectsOneResponse get(CrmCustomObjectsOneRequest request, Optional<Options> options) throws Exception {
+    public CrmCustomObjectsOneResponse get(CrmCustomObjectsOneRequest request, Optional<Options> options) {
         RequestOperation<CrmCustomObjectsOneRequest, CrmCustomObjectsOneResponse> operation
               = new CrmCustomObjectsOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -188,9 +187,9 @@ public class CustomObjects {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmCustomObjectsUpdateResponse update(CrmCustomObjectsUpdateRequest request) throws Exception {
+    public CrmCustomObjectsUpdateResponse update(CrmCustomObjectsUpdateRequest request) {
         return update(request, Optional.empty());
     }
 
@@ -202,9 +201,9 @@ public class CustomObjects {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmCustomObjectsUpdateResponse update(CrmCustomObjectsUpdateRequest request, Optional<Options> options) throws Exception {
+    public CrmCustomObjectsUpdateResponse update(CrmCustomObjectsUpdateRequest request, Optional<Options> options) {
         RequestOperation<CrmCustomObjectsUpdateRequest, CrmCustomObjectsUpdateResponse> operation
               = new CrmCustomObjectsUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -228,9 +227,9 @@ public class CustomObjects {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmCustomObjectsDeleteResponse delete(CrmCustomObjectsDeleteRequest request) throws Exception {
+    public CrmCustomObjectsDeleteResponse delete(CrmCustomObjectsDeleteRequest request) {
         return delete(request, Optional.empty());
     }
 
@@ -242,9 +241,9 @@ public class CustomObjects {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CrmCustomObjectsDeleteResponse delete(CrmCustomObjectsDeleteRequest request, Optional<Options> options) throws Exception {
+    public CrmCustomObjectsDeleteResponse delete(CrmCustomObjectsDeleteRequest request, Optional<Options> options) {
         RequestOperation<CrmCustomObjectsDeleteRequest, CrmCustomObjectsDeleteResponse> operation
               = new CrmCustomObjectsDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

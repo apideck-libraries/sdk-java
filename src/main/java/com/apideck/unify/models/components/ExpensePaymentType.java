@@ -16,7 +16,8 @@ import java.util.Optional;
 public enum ExpensePaymentType {
     CASH("cash"),
     CHECK("check"),
-    CREDIT_CARD("credit_card");
+    CREDIT_CARD("credit_card"),
+    OTHER("other");
 
     @JsonValue
     private final String value;

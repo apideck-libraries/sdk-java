@@ -21,7 +21,8 @@ public enum InvoiceStatus {
     PAID("paid"),
     VOID("void"),
     CREDIT("credit"),
-    DELETED("deleted");
+    DELETED("deleted"),
+    POSTED("posted");
 
     @JsonValue
     private final String value;

@@ -22,6 +22,13 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class JournalEntryInput {
     /**
+     * Display ID of the journal entry
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("display_id")
+    private JsonNullable<String> displayId;
+
+    /**
      * Journal entry title
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -165,6 +172,7 @@ public class JournalEntryInput {
 
     @JsonCreator
     public JournalEntryInput(
+            @JsonProperty("display_id") JsonNullable<String> displayId,
             @JsonProperty("title") JsonNullable<String> title,
             @JsonProperty("currency_rate") JsonNullable<Double> currencyRate,
             @JsonProperty("currency") JsonNullable<? extends Currency> currency,
@@ -185,6 +193,7 @@ public class JournalEntryInput {
             @JsonProperty("row_version") JsonNullable<String> rowVersion,
             @JsonProperty("custom_fields") Optional<? extends List<CustomField>> customFields,
             @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
+        Utils.checkNotNull(displayId, "displayId");
         Utils.checkNotNull(title, "title");
         Utils.checkNotNull(currencyRate, "currencyRate");
         Utils.checkNotNull(currency, "currency");
@@ -205,6 +214,7 @@ public class JournalEntryInput {
         Utils.checkNotNull(rowVersion, "rowVersion");
         Utils.checkNotNull(customFields, "customFields");
         Utils.checkNotNull(passThrough, "passThrough");
+        this.displayId = displayId;
         this.title = title;
         this.currencyRate = currencyRate;
         this.currency = currency;
@@ -229,12 +239,20 @@ public class JournalEntryInput {
     
     public JournalEntryInput() {
         this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty());
+            JsonNullable.undefined(), Optional.empty(), Optional.empty());
+    }
+
+    /**
+     * Display ID of the journal entry
+     */
+    @JsonIgnore
+    public JsonNullable<String> displayId() {
+        return displayId;
     }
 
     /**
@@ -408,6 +426,24 @@ public class JournalEntryInput {
         return new Builder();
     }
 
+
+    /**
+     * Display ID of the journal entry
+     */
+    public JournalEntryInput withDisplayId(String displayId) {
+        Utils.checkNotNull(displayId, "displayId");
+        this.displayId = JsonNullable.of(displayId);
+        return this;
+    }
+
+    /**
+     * Display ID of the journal entry
+     */
+    public JournalEntryInput withDisplayId(JsonNullable<String> displayId) {
+        Utils.checkNotNull(displayId, "displayId");
+        this.displayId = displayId;
+        return this;
+    }
 
     /**
      * Journal entry title
@@ -785,6 +821,7 @@ public class JournalEntryInput {
         }
         JournalEntryInput other = (JournalEntryInput) o;
         return 
+            Utils.enhancedDeepEquals(this.displayId, other.displayId) &&
             Utils.enhancedDeepEquals(this.title, other.title) &&
             Utils.enhancedDeepEquals(this.currencyRate, other.currencyRate) &&
             Utils.enhancedDeepEquals(this.currency, other.currency) &&
@@ -810,18 +847,19 @@ public class JournalEntryInput {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            title, currencyRate, currency,
-            companyId, lineItems, status,
-            memo, postedAt, journalSymbol,
-            taxType, taxCode, number,
-            trackingCategories, accountingPeriod, taxInclusive,
-            sourceType, sourceId, rowVersion,
-            customFields, passThrough);
+            displayId, title, currencyRate,
+            currency, companyId, lineItems,
+            status, memo, postedAt,
+            journalSymbol, taxType, taxCode,
+            number, trackingCategories, accountingPeriod,
+            taxInclusive, sourceType, sourceId,
+            rowVersion, customFields, passThrough);
     }
     
     @Override
     public String toString() {
         return Utils.toString(JournalEntryInput.class,
+                "displayId", displayId,
                 "title", title,
                 "currencyRate", currencyRate,
                 "currency", currency,
@@ -846,6 +884,8 @@ public class JournalEntryInput {
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
+
+        private JsonNullable<String> displayId = JsonNullable.undefined();
 
         private JsonNullable<String> title = JsonNullable.undefined();
 
@@ -889,6 +929,25 @@ public class JournalEntryInput {
 
         private Builder() {
           // force use of static builder() method
+        }
+
+
+        /**
+         * Display ID of the journal entry
+         */
+        public Builder displayId(String displayId) {
+            Utils.checkNotNull(displayId, "displayId");
+            this.displayId = JsonNullable.of(displayId);
+            return this;
+        }
+
+        /**
+         * Display ID of the journal entry
+         */
+        public Builder displayId(JsonNullable<String> displayId) {
+            Utils.checkNotNull(displayId, "displayId");
+            this.displayId = displayId;
+            return this;
         }
 
 
@@ -1276,13 +1335,13 @@ public class JournalEntryInput {
         public JournalEntryInput build() {
 
             return new JournalEntryInput(
-                title, currencyRate, currency,
-                companyId, lineItems, status,
-                memo, postedAt, journalSymbol,
-                taxType, taxCode, number,
-                trackingCategories, accountingPeriod, taxInclusive,
-                sourceType, sourceId, rowVersion,
-                customFields, passThrough);
+                displayId, title, currencyRate,
+                currency, companyId, lineItems,
+                status, memo, postedAt,
+                journalSymbol, taxType, taxCode,
+                number, trackingCategories, accountingPeriod,
+                taxInclusive, sourceType, sourceId,
+                rowVersion, customFields, passThrough);
         }
 
     }

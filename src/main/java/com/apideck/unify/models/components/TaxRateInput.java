@@ -27,6 +27,13 @@ public class TaxRateInput {
     private JsonNullable<String> id;
 
     /**
+     * Display ID of the tax rate
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("display_id")
+    private JsonNullable<String> displayId;
+
+    /**
      * Name assigned to identify this tax rate.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -140,6 +147,7 @@ public class TaxRateInput {
     @JsonCreator
     public TaxRateInput(
             @JsonProperty("id") JsonNullable<String> id,
+            @JsonProperty("display_id") JsonNullable<String> displayId,
             @JsonProperty("name") Optional<String> name,
             @JsonProperty("code") JsonNullable<String> code,
             @JsonProperty("description") JsonNullable<String> description,
@@ -157,6 +165,7 @@ public class TaxRateInput {
             @JsonProperty("subsidiaries") Optional<? extends List<Subsidiaries>> subsidiaries,
             @JsonProperty("custom_fields") Optional<? extends List<CustomField>> customFields) {
         Utils.checkNotNull(id, "id");
+        Utils.checkNotNull(displayId, "displayId");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(code, "code");
         Utils.checkNotNull(description, "description");
@@ -174,6 +183,7 @@ public class TaxRateInput {
         Utils.checkNotNull(subsidiaries, "subsidiaries");
         Utils.checkNotNull(customFields, "customFields");
         this.id = id;
+        this.displayId = displayId;
         this.name = name;
         this.code = code;
         this.description = description;
@@ -193,12 +203,12 @@ public class TaxRateInput {
     }
     
     public TaxRateInput() {
-        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+        this(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -207,6 +217,14 @@ public class TaxRateInput {
     @JsonIgnore
     public JsonNullable<String> id() {
         return id;
+    }
+
+    /**
+     * Display ID of the tax rate
+     */
+    @JsonIgnore
+    public JsonNullable<String> displayId() {
+        return displayId;
     }
 
     /**
@@ -359,6 +377,24 @@ public class TaxRateInput {
     public TaxRateInput withId(JsonNullable<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
+        return this;
+    }
+
+    /**
+     * Display ID of the tax rate
+     */
+    public TaxRateInput withDisplayId(String displayId) {
+        Utils.checkNotNull(displayId, "displayId");
+        this.displayId = JsonNullable.of(displayId);
+        return this;
+    }
+
+    /**
+     * Display ID of the tax rate
+     */
+    public TaxRateInput withDisplayId(JsonNullable<String> displayId) {
+        Utils.checkNotNull(displayId, "displayId");
+        this.displayId = displayId;
         return this;
     }
 
@@ -659,6 +695,7 @@ public class TaxRateInput {
         TaxRateInput other = (TaxRateInput) o;
         return 
             Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.displayId, other.displayId) &&
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.code, other.code) &&
             Utils.enhancedDeepEquals(this.description, other.description) &&
@@ -680,18 +717,19 @@ public class TaxRateInput {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, name, code,
-            description, effectiveTaxRate, totalTaxRate,
-            taxPayableAccountId, taxRemittedAccountId, components,
-            type, reportTaxType, originalTaxRateId,
-            status, rowVersion, passThrough,
-            subsidiaries, customFields);
+            id, displayId, name,
+            code, description, effectiveTaxRate,
+            totalTaxRate, taxPayableAccountId, taxRemittedAccountId,
+            components, type, reportTaxType,
+            originalTaxRateId, status, rowVersion,
+            passThrough, subsidiaries, customFields);
     }
     
     @Override
     public String toString() {
         return Utils.toString(TaxRateInput.class,
                 "id", id,
+                "displayId", displayId,
                 "name", name,
                 "code", code,
                 "description", description,
@@ -714,6 +752,8 @@ public class TaxRateInput {
     public final static class Builder {
 
         private JsonNullable<String> id = JsonNullable.undefined();
+
+        private JsonNullable<String> displayId = JsonNullable.undefined();
 
         private Optional<String> name = Optional.empty();
 
@@ -767,6 +807,25 @@ public class TaxRateInput {
         public Builder id(JsonNullable<String> id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
+            return this;
+        }
+
+
+        /**
+         * Display ID of the tax rate
+         */
+        public Builder displayId(String displayId) {
+            Utils.checkNotNull(displayId, "displayId");
+            this.displayId = JsonNullable.of(displayId);
+            return this;
+        }
+
+        /**
+         * Display ID of the tax rate
+         */
+        public Builder displayId(JsonNullable<String> displayId) {
+            Utils.checkNotNull(displayId, "displayId");
+            this.displayId = displayId;
             return this;
         }
 
@@ -1071,12 +1130,12 @@ public class TaxRateInput {
         public TaxRateInput build() {
 
             return new TaxRateInput(
-                id, name, code,
-                description, effectiveTaxRate, totalTaxRate,
-                taxPayableAccountId, taxRemittedAccountId, components,
-                type, reportTaxType, originalTaxRateId,
-                status, rowVersion, passThrough,
-                subsidiaries, customFields);
+                id, displayId, name,
+                code, description, effectiveTaxRate,
+                totalTaxRate, taxPayableAccountId, taxRemittedAccountId,
+                components, type, reportTaxType,
+                originalTaxRateId, status, rowVersion,
+                passThrough, subsidiaries, customFields);
         }
 
     }

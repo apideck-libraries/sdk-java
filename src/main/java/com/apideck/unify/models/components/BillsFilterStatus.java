@@ -9,24 +9,19 @@ import java.util.Objects;
 import java.util.Optional;
 
 /**
- * EcommerceOrderPaymentStatus
+ * BillsFilterStatus
  * 
- * <p>Current payment status of the order.
+ * <p>Filter by bill status
  */
-public enum EcommerceOrderPaymentStatus {
-    PENDING("pending"),
-    AUTHORIZED("authorized"),
+public enum BillsFilterStatus {
     PAID("paid"),
-    PARTIAL("partial"),
-    REFUNDED("refunded"),
-    VOIDED("voided"),
-    UNKNOWN("unknown"),
-    PARTIALLY_REFUNDED("partially_refunded");
+    UNPAID("unpaid"),
+    PARTIALLY_PAID("partially_paid");
 
     @JsonValue
     private final String value;
 
-    EcommerceOrderPaymentStatus(String value) {
+    BillsFilterStatus(String value) {
         this.value = value;
     }
     
@@ -34,8 +29,8 @@ public enum EcommerceOrderPaymentStatus {
         return value;
     }
     
-    public static Optional<EcommerceOrderPaymentStatus> fromValue(String value) {
-        for (EcommerceOrderPaymentStatus o: EcommerceOrderPaymentStatus.values()) {
+    public static Optional<BillsFilterStatus> fromValue(String value) {
+        for (BillsFilterStatus o: BillsFilterStatus.values()) {
             if (Objects.deepEquals(o.value, value)) {
                 return Optional.of(o);
             }

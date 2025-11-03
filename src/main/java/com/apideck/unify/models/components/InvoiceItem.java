@@ -47,6 +47,13 @@ public class InvoiceItem {
     private JsonNullable<String> description;
 
     /**
+     * Display ID of the item
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("display_id")
+    private JsonNullable<String> displayId;
+
+    /**
      * User defined item code
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -243,6 +250,7 @@ public class InvoiceItem {
             @JsonProperty("id") Optional<String> id,
             @JsonProperty("name") JsonNullable<String> name,
             @JsonProperty("description") JsonNullable<String> description,
+            @JsonProperty("display_id") JsonNullable<String> displayId,
             @JsonProperty("code") JsonNullable<String> code,
             @JsonProperty("sold") JsonNullable<Boolean> sold,
             @JsonProperty("purchased") JsonNullable<Boolean> purchased,
@@ -275,6 +283,7 @@ public class InvoiceItem {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(description, "description");
+        Utils.checkNotNull(displayId, "displayId");
         Utils.checkNotNull(code, "code");
         Utils.checkNotNull(sold, "sold");
         Utils.checkNotNull(purchased, "purchased");
@@ -307,6 +316,7 @@ public class InvoiceItem {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.displayId = displayId;
         this.code = code;
         this.sold = sold;
         this.purchased = purchased;
@@ -342,14 +352,14 @@ public class InvoiceItem {
         this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty());
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -374,6 +384,14 @@ public class InvoiceItem {
     @JsonIgnore
     public JsonNullable<String> description() {
         return description;
+    }
+
+    /**
+     * Display ID of the item
+     */
+    @JsonIgnore
+    public JsonNullable<String> displayId() {
+        return displayId;
     }
 
     /**
@@ -657,6 +675,24 @@ public class InvoiceItem {
     public InvoiceItem withDescription(JsonNullable<String> description) {
         Utils.checkNotNull(description, "description");
         this.description = description;
+        return this;
+    }
+
+    /**
+     * Display ID of the item
+     */
+    public InvoiceItem withDisplayId(String displayId) {
+        Utils.checkNotNull(displayId, "displayId");
+        this.displayId = JsonNullable.of(displayId);
+        return this;
+    }
+
+    /**
+     * Display ID of the item
+     */
+    public InvoiceItem withDisplayId(JsonNullable<String> displayId) {
+        Utils.checkNotNull(displayId, "displayId");
+        this.displayId = displayId;
         return this;
     }
 
@@ -1160,6 +1196,7 @@ public class InvoiceItem {
             Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.displayId, other.displayId) &&
             Utils.enhancedDeepEquals(this.code, other.code) &&
             Utils.enhancedDeepEquals(this.sold, other.sold) &&
             Utils.enhancedDeepEquals(this.purchased, other.purchased) &&
@@ -1195,16 +1232,16 @@ public class InvoiceItem {
     public int hashCode() {
         return Utils.enhancedHash(
             id, name, description,
-            code, sold, purchased,
-            tracked, taxable, inventoryDate,
-            type, salesDetails, purchaseDetails,
-            quantity, unitPrice, currency,
-            assetAccount, incomeAccount, expenseAccount,
-            trackingCategory, trackingCategories, active,
-            departmentId, locationId, subsidiaryId,
-            taxScheduleId, customMappings, rowVersion,
-            updatedBy, createdBy, updatedAt,
-            createdAt, passThrough);
+            displayId, code, sold,
+            purchased, tracked, taxable,
+            inventoryDate, type, salesDetails,
+            purchaseDetails, quantity, unitPrice,
+            currency, assetAccount, incomeAccount,
+            expenseAccount, trackingCategory, trackingCategories,
+            active, departmentId, locationId,
+            subsidiaryId, taxScheduleId, customMappings,
+            rowVersion, updatedBy, createdBy,
+            updatedAt, createdAt, passThrough);
     }
     
     @Override
@@ -1213,6 +1250,7 @@ public class InvoiceItem {
                 "id", id,
                 "name", name,
                 "description", description,
+                "displayId", displayId,
                 "code", code,
                 "sold", sold,
                 "purchased", purchased,
@@ -1252,6 +1290,8 @@ public class InvoiceItem {
         private JsonNullable<String> name = JsonNullable.undefined();
 
         private JsonNullable<String> description = JsonNullable.undefined();
+
+        private JsonNullable<String> displayId = JsonNullable.undefined();
 
         private JsonNullable<String> code = JsonNullable.undefined();
 
@@ -1370,6 +1410,25 @@ public class InvoiceItem {
         public Builder description(JsonNullable<String> description) {
             Utils.checkNotNull(description, "description");
             this.description = description;
+            return this;
+        }
+
+
+        /**
+         * Display ID of the item
+         */
+        public Builder displayId(String displayId) {
+            Utils.checkNotNull(displayId, "displayId");
+            this.displayId = JsonNullable.of(displayId);
+            return this;
+        }
+
+        /**
+         * Display ID of the item
+         */
+        public Builder displayId(JsonNullable<String> displayId) {
+            Utils.checkNotNull(displayId, "displayId");
+            this.displayId = displayId;
             return this;
         }
 
@@ -1890,16 +1949,16 @@ public class InvoiceItem {
 
             return new InvoiceItem(
                 id, name, description,
-                code, sold, purchased,
-                tracked, taxable, inventoryDate,
-                type, salesDetails, purchaseDetails,
-                quantity, unitPrice, currency,
-                assetAccount, incomeAccount, expenseAccount,
-                trackingCategory, trackingCategories, active,
-                departmentId, locationId, subsidiaryId,
-                taxScheduleId, customMappings, rowVersion,
-                updatedBy, createdBy, updatedAt,
-                createdAt, passThrough);
+                displayId, code, sold,
+                purchased, tracked, taxable,
+                inventoryDate, type, salesDetails,
+                purchaseDetails, quantity, unitPrice,
+                currency, assetAccount, incomeAccount,
+                expenseAccount, trackingCategory, trackingCategories,
+                active, departmentId, locationId,
+                subsidiaryId, taxScheduleId, customMappings,
+                rowVersion, updatedBy, createdBy,
+                updatedAt, createdAt, passThrough);
         }
 
     }

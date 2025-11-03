@@ -9,24 +9,20 @@ import java.util.Objects;
 import java.util.Optional;
 
 /**
- * EcommerceOrderPaymentStatus
+ * Health
  * 
- * <p>Current payment status of the order.
+ * <p>Operational health status of the connection
  */
-public enum EcommerceOrderPaymentStatus {
-    PENDING("pending"),
-    AUTHORIZED("authorized"),
-    PAID("paid"),
-    PARTIAL("partial"),
-    REFUNDED("refunded"),
-    VOIDED("voided"),
-    UNKNOWN("unknown"),
-    PARTIALLY_REFUNDED("partially_refunded");
+public enum Health {
+    MISSING_SETTINGS("missing_settings"),
+    NEEDS_AUTH("needs_auth"),
+    PENDING_REFRESH("pending_refresh"),
+    OK("ok");
 
     @JsonValue
     private final String value;
 
-    EcommerceOrderPaymentStatus(String value) {
+    Health(String value) {
         this.value = value;
     }
     
@@ -34,8 +30,8 @@ public enum EcommerceOrderPaymentStatus {
         return value;
     }
     
-    public static Optional<EcommerceOrderPaymentStatus> fromValue(String value) {
-        for (EcommerceOrderPaymentStatus o: EcommerceOrderPaymentStatus.values()) {
+    public static Optional<Health> fromValue(String value) {
+        for (Health o: Health.values()) {
             if (Objects.deepEquals(o.value, value)) {
                 return Optional.of(o);
             }

@@ -22,6 +22,13 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class PurchaseOrderInput {
     /**
+     * Display ID of the purchase order
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("display_id")
+    private JsonNullable<String> displayId;
+
+    /**
      * A PO Number uniquely identifies a purchase order and is generally defined by the buyer.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -286,6 +293,7 @@ public class PurchaseOrderInput {
 
     @JsonCreator
     public PurchaseOrderInput(
+            @JsonProperty("display_id") JsonNullable<String> displayId,
             @JsonProperty("po_number") JsonNullable<String> poNumber,
             @JsonProperty("reference") JsonNullable<String> reference,
             @JsonProperty("supplier") JsonNullable<? extends LinkedSupplierInput> supplier,
@@ -325,6 +333,7 @@ public class PurchaseOrderInput {
             @JsonProperty("custom_fields") Optional<? extends List<CustomField>> customFields,
             @JsonProperty("row_version") JsonNullable<String> rowVersion,
             @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
+        Utils.checkNotNull(displayId, "displayId");
         Utils.checkNotNull(poNumber, "poNumber");
         Utils.checkNotNull(reference, "reference");
         Utils.checkNotNull(supplier, "supplier");
@@ -364,6 +373,7 @@ public class PurchaseOrderInput {
         Utils.checkNotNull(customFields, "customFields");
         Utils.checkNotNull(rowVersion, "rowVersion");
         Utils.checkNotNull(passThrough, "passThrough");
+        this.displayId = displayId;
         this.poNumber = poNumber;
         this.reference = reference;
         this.supplier = supplier;
@@ -411,14 +421,23 @@ public class PurchaseOrderInput {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), Optional.empty());
+            Optional.empty());
+    }
+
+    /**
+     * Display ID of the purchase order
+     */
+    @JsonIgnore
+    public JsonNullable<String> displayId() {
+        return displayId;
     }
 
     /**
@@ -732,6 +751,24 @@ public class PurchaseOrderInput {
         return new Builder();
     }
 
+
+    /**
+     * Display ID of the purchase order
+     */
+    public PurchaseOrderInput withDisplayId(String displayId) {
+        Utils.checkNotNull(displayId, "displayId");
+        this.displayId = JsonNullable.of(displayId);
+        return this;
+    }
+
+    /**
+     * Display ID of the purchase order
+     */
+    public PurchaseOrderInput withDisplayId(JsonNullable<String> displayId) {
+        Utils.checkNotNull(displayId, "displayId");
+        this.displayId = displayId;
+        return this;
+    }
 
     /**
      * A PO Number uniquely identifies a purchase order and is generally defined by the buyer.
@@ -1417,6 +1454,7 @@ public class PurchaseOrderInput {
         }
         PurchaseOrderInput other = (PurchaseOrderInput) o;
         return 
+            Utils.enhancedDeepEquals(this.displayId, other.displayId) &&
             Utils.enhancedDeepEquals(this.poNumber, other.poNumber) &&
             Utils.enhancedDeepEquals(this.reference, other.reference) &&
             Utils.enhancedDeepEquals(this.supplier, other.supplier) &&
@@ -1461,24 +1499,26 @@ public class PurchaseOrderInput {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            poNumber, reference, supplier,
-            subsidiaryId, companyId, departmentId,
-            status, issuedDate, deliveryDate,
-            expectedArrivalDate, currency, currencyRate,
-            subTotal, totalTax, total,
-            taxInclusive, lineItems, billingAddress,
-            shippingAddress, ledgerAccount, templateId,
-            discountPercentage, bankAccount, accountingByRow,
-            dueDate, paymentMethod, terms,
-            amortizationType, taxCode, taxMethod,
-            issuedMethod, issuedEmail, channel,
-            memo, notes, trackingCategories,
-            customFields, rowVersion, passThrough);
+            displayId, poNumber, reference,
+            supplier, subsidiaryId, companyId,
+            departmentId, status, issuedDate,
+            deliveryDate, expectedArrivalDate, currency,
+            currencyRate, subTotal, totalTax,
+            total, taxInclusive, lineItems,
+            billingAddress, shippingAddress, ledgerAccount,
+            templateId, discountPercentage, bankAccount,
+            accountingByRow, dueDate, paymentMethod,
+            terms, amortizationType, taxCode,
+            taxMethod, issuedMethod, issuedEmail,
+            channel, memo, notes,
+            trackingCategories, customFields, rowVersion,
+            passThrough);
     }
     
     @Override
     public String toString() {
         return Utils.toString(PurchaseOrderInput.class,
+                "displayId", displayId,
                 "poNumber", poNumber,
                 "reference", reference,
                 "supplier", supplier,
@@ -1522,6 +1562,8 @@ public class PurchaseOrderInput {
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
+
+        private JsonNullable<String> displayId = JsonNullable.undefined();
 
         private JsonNullable<String> poNumber = JsonNullable.undefined();
 
@@ -1603,6 +1645,25 @@ public class PurchaseOrderInput {
 
         private Builder() {
           // force use of static builder() method
+        }
+
+
+        /**
+         * Display ID of the purchase order
+         */
+        public Builder displayId(String displayId) {
+            Utils.checkNotNull(displayId, "displayId");
+            this.displayId = JsonNullable.of(displayId);
+            return this;
+        }
+
+        /**
+         * Display ID of the purchase order
+         */
+        public Builder displayId(JsonNullable<String> displayId) {
+            Utils.checkNotNull(displayId, "displayId");
+            this.displayId = displayId;
+            return this;
         }
 
 
@@ -2315,19 +2376,20 @@ public class PurchaseOrderInput {
         public PurchaseOrderInput build() {
 
             return new PurchaseOrderInput(
-                poNumber, reference, supplier,
-                subsidiaryId, companyId, departmentId,
-                status, issuedDate, deliveryDate,
-                expectedArrivalDate, currency, currencyRate,
-                subTotal, totalTax, total,
-                taxInclusive, lineItems, billingAddress,
-                shippingAddress, ledgerAccount, templateId,
-                discountPercentage, bankAccount, accountingByRow,
-                dueDate, paymentMethod, terms,
-                amortizationType, taxCode, taxMethod,
-                issuedMethod, issuedEmail, channel,
-                memo, notes, trackingCategories,
-                customFields, rowVersion, passThrough);
+                displayId, poNumber, reference,
+                supplier, subsidiaryId, companyId,
+                departmentId, status, issuedDate,
+                deliveryDate, expectedArrivalDate, currency,
+                currencyRate, subTotal, totalTax,
+                total, taxInclusive, lineItems,
+                billingAddress, shippingAddress, ledgerAccount,
+                templateId, discountPercentage, bankAccount,
+                accountingByRow, dueDate, paymentMethod,
+                terms, amortizationType, taxCode,
+                taxMethod, issuedMethod, issuedEmail,
+                channel, memo, notes,
+                trackingCategories, customFields, rowVersion,
+                passThrough);
         }
 
     }

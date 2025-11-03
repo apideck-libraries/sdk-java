@@ -33,6 +33,13 @@ public class SubsidiaryInput {
     private JsonNullable<String> name;
 
     /**
+     * Display ID of the subsidiary
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("display_id")
+    private JsonNullable<String> displayId;
+
+    /**
      * Based on the status some functionality is enabled or disabled.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -66,18 +73,21 @@ public class SubsidiaryInput {
     public SubsidiaryInput(
             @JsonProperty("parent_id") JsonNullable<String> parentId,
             @JsonProperty("name") JsonNullable<String> name,
+            @JsonProperty("display_id") JsonNullable<String> displayId,
             @JsonProperty("status") Optional<? extends SubsidiaryStatus> status,
             @JsonProperty("currencies") JsonNullable<? extends List<Currency>> currencies,
             @JsonProperty("row_version") JsonNullable<String> rowVersion,
             @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
         Utils.checkNotNull(parentId, "parentId");
         Utils.checkNotNull(name, "name");
+        Utils.checkNotNull(displayId, "displayId");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(currencies, "currencies");
         Utils.checkNotNull(rowVersion, "rowVersion");
         Utils.checkNotNull(passThrough, "passThrough");
         this.parentId = parentId;
         this.name = name;
+        this.displayId = displayId;
         this.status = status;
         this.currencies = currencies;
         this.rowVersion = rowVersion;
@@ -85,8 +95,9 @@ public class SubsidiaryInput {
     }
     
     public SubsidiaryInput() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -103,6 +114,14 @@ public class SubsidiaryInput {
     @JsonIgnore
     public JsonNullable<String> name() {
         return name;
+    }
+
+    /**
+     * Display ID of the subsidiary
+     */
+    @JsonIgnore
+    public JsonNullable<String> displayId() {
+        return displayId;
     }
 
     /**
@@ -180,6 +199,24 @@ public class SubsidiaryInput {
     public SubsidiaryInput withName(JsonNullable<String> name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
+        return this;
+    }
+
+    /**
+     * Display ID of the subsidiary
+     */
+    public SubsidiaryInput withDisplayId(String displayId) {
+        Utils.checkNotNull(displayId, "displayId");
+        this.displayId = JsonNullable.of(displayId);
+        return this;
+    }
+
+    /**
+     * Display ID of the subsidiary
+     */
+    public SubsidiaryInput withDisplayId(JsonNullable<String> displayId) {
+        Utils.checkNotNull(displayId, "displayId");
+        this.displayId = displayId;
         return this;
     }
 
@@ -273,6 +310,7 @@ public class SubsidiaryInput {
         return 
             Utils.enhancedDeepEquals(this.parentId, other.parentId) &&
             Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.displayId, other.displayId) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.currencies, other.currencies) &&
             Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion) &&
@@ -282,8 +320,9 @@ public class SubsidiaryInput {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            parentId, name, status,
-            currencies, rowVersion, passThrough);
+            parentId, name, displayId,
+            status, currencies, rowVersion,
+            passThrough);
     }
     
     @Override
@@ -291,6 +330,7 @@ public class SubsidiaryInput {
         return Utils.toString(SubsidiaryInput.class,
                 "parentId", parentId,
                 "name", name,
+                "displayId", displayId,
                 "status", status,
                 "currencies", currencies,
                 "rowVersion", rowVersion,
@@ -303,6 +343,8 @@ public class SubsidiaryInput {
         private JsonNullable<String> parentId = JsonNullable.undefined();
 
         private JsonNullable<String> name = JsonNullable.undefined();
+
+        private JsonNullable<String> displayId = JsonNullable.undefined();
 
         private Optional<? extends SubsidiaryStatus> status = Optional.empty();
 
@@ -351,6 +393,25 @@ public class SubsidiaryInput {
         public Builder name(JsonNullable<String> name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
+            return this;
+        }
+
+
+        /**
+         * Display ID of the subsidiary
+         */
+        public Builder displayId(String displayId) {
+            Utils.checkNotNull(displayId, "displayId");
+            this.displayId = JsonNullable.of(displayId);
+            return this;
+        }
+
+        /**
+         * Display ID of the subsidiary
+         */
+        public Builder displayId(JsonNullable<String> displayId) {
+            Utils.checkNotNull(displayId, "displayId");
+            this.displayId = displayId;
             return this;
         }
 
@@ -437,8 +498,9 @@ public class SubsidiaryInput {
         public SubsidiaryInput build() {
 
             return new SubsidiaryInput(
-                parentId, name, status,
-                currencies, rowVersion, passThrough);
+                parentId, name, displayId,
+                status, currencies, rowVersion,
+                passThrough);
         }
 
     }

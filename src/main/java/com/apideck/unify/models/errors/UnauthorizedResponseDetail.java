@@ -11,11 +11,9 @@ import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Map;
 
 /**
  * UnauthorizedResponseDetail
@@ -37,16 +35,16 @@ public class UnauthorizedResponseDetail {
         return new UnauthorizedResponseDetail(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<String>(){}));
     }
 
-    public static UnauthorizedResponseDetail of(Map<String, Object> value) {
+    public static UnauthorizedResponseDetail of(Two value) {
         Utils.checkNotNull(value, "value");
-        return new UnauthorizedResponseDetail(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<Map<String, Object>>(){}));
+        return new UnauthorizedResponseDetail(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<Two>(){}));
     }
     
     /**
      * Returns an instance of one of these types:
      * <ul>
      * <li>{@code java.lang.String}</li>
-     * <li>{@code java.util.Map<java.lang.String, java.lang.Object>}</li>
+     * <li>{@code com.apideck.unify.models.errors.Two}</li>
      * </ul>
      * 
      * <p>Use {@code instanceof} to determine what type is returned. For example:
@@ -86,8 +84,8 @@ public class UnauthorizedResponseDetail {
 
         public _Deserializer() {
             super(UnauthorizedResponseDetail.class, false,
-                  TypeReferenceWithShape.of(new TypeReference<Map<String, Object>>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<String>() {}, JsonShape.DEFAULT));
+                  TypeReferenceWithShape.of(new TypeReference<String>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<Two>() {}, JsonShape.DEFAULT));
         }
     }
     

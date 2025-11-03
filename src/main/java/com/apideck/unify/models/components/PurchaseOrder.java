@@ -39,6 +39,13 @@ public class PurchaseOrder {
     private JsonNullable<String> downstreamId;
 
     /**
+     * Display ID of the purchase order
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("display_id")
+    private JsonNullable<String> displayId;
+
+    /**
      * A PO Number uniquely identifies a purchase order and is generally defined by the buyer.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -340,6 +347,7 @@ public class PurchaseOrder {
     public PurchaseOrder(
             @JsonProperty("id") Optional<String> id,
             @JsonProperty("downstream_id") JsonNullable<String> downstreamId,
+            @JsonProperty("display_id") JsonNullable<String> displayId,
             @JsonProperty("po_number") JsonNullable<String> poNumber,
             @JsonProperty("reference") JsonNullable<String> reference,
             @JsonProperty("supplier") JsonNullable<? extends LinkedSupplier> supplier,
@@ -386,6 +394,7 @@ public class PurchaseOrder {
             @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(downstreamId, "downstreamId");
+        Utils.checkNotNull(displayId, "displayId");
         Utils.checkNotNull(poNumber, "poNumber");
         Utils.checkNotNull(reference, "reference");
         Utils.checkNotNull(supplier, "supplier");
@@ -432,6 +441,7 @@ public class PurchaseOrder {
         Utils.checkNotNull(passThrough, "passThrough");
         this.id = id;
         this.downstreamId = downstreamId;
+        this.displayId = displayId;
         this.poNumber = poNumber;
         this.reference = reference;
         this.supplier = supplier;
@@ -485,16 +495,16 @@ public class PurchaseOrder {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
             Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty());
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -511,6 +521,14 @@ public class PurchaseOrder {
     @JsonIgnore
     public JsonNullable<String> downstreamId() {
         return downstreamId;
+    }
+
+    /**
+     * Display ID of the purchase order
+     */
+    @JsonIgnore
+    public JsonNullable<String> displayId() {
+        return displayId;
     }
 
     /**
@@ -900,6 +918,24 @@ public class PurchaseOrder {
     public PurchaseOrder withDownstreamId(JsonNullable<String> downstreamId) {
         Utils.checkNotNull(downstreamId, "downstreamId");
         this.downstreamId = downstreamId;
+        return this;
+    }
+
+    /**
+     * Display ID of the purchase order
+     */
+    public PurchaseOrder withDisplayId(String displayId) {
+        Utils.checkNotNull(displayId, "displayId");
+        this.displayId = JsonNullable.of(displayId);
+        return this;
+    }
+
+    /**
+     * Display ID of the purchase order
+     */
+    public PurchaseOrder withDisplayId(JsonNullable<String> displayId) {
+        Utils.checkNotNull(displayId, "displayId");
+        this.displayId = displayId;
         return this;
     }
 
@@ -1679,6 +1715,7 @@ public class PurchaseOrder {
         return 
             Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.downstreamId, other.downstreamId) &&
+            Utils.enhancedDeepEquals(this.displayId, other.displayId) &&
             Utils.enhancedDeepEquals(this.poNumber, other.poNumber) &&
             Utils.enhancedDeepEquals(this.reference, other.reference) &&
             Utils.enhancedDeepEquals(this.supplier, other.supplier) &&
@@ -1728,22 +1765,22 @@ public class PurchaseOrder {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, downstreamId, poNumber,
-            reference, supplier, subsidiaryId,
-            companyId, departmentId, status,
-            issuedDate, deliveryDate, expectedArrivalDate,
-            currency, currencyRate, subTotal,
-            totalTax, total, taxInclusive,
-            lineItems, billingAddress, shippingAddress,
-            ledgerAccount, templateId, discountPercentage,
-            bankAccount, accountingByRow, dueDate,
-            paymentMethod, terms, amortizationType,
-            taxCode, taxMethod, issuedMethod,
-            issuedEmail, channel, memo,
-            notes, trackingCategories, customMappings,
-            customFields, rowVersion, updatedBy,
-            createdBy, updatedAt, createdAt,
-            passThrough);
+            id, downstreamId, displayId,
+            poNumber, reference, supplier,
+            subsidiaryId, companyId, departmentId,
+            status, issuedDate, deliveryDate,
+            expectedArrivalDate, currency, currencyRate,
+            subTotal, totalTax, total,
+            taxInclusive, lineItems, billingAddress,
+            shippingAddress, ledgerAccount, templateId,
+            discountPercentage, bankAccount, accountingByRow,
+            dueDate, paymentMethod, terms,
+            amortizationType, taxCode, taxMethod,
+            issuedMethod, issuedEmail, channel,
+            memo, notes, trackingCategories,
+            customMappings, customFields, rowVersion,
+            updatedBy, createdBy, updatedAt,
+            createdAt, passThrough);
     }
     
     @Override
@@ -1751,6 +1788,7 @@ public class PurchaseOrder {
         return Utils.toString(PurchaseOrder.class,
                 "id", id,
                 "downstreamId", downstreamId,
+                "displayId", displayId,
                 "poNumber", poNumber,
                 "reference", reference,
                 "supplier", supplier,
@@ -1803,6 +1841,8 @@ public class PurchaseOrder {
         private Optional<String> id = Optional.empty();
 
         private JsonNullable<String> downstreamId = JsonNullable.undefined();
+
+        private JsonNullable<String> displayId = JsonNullable.undefined();
 
         private JsonNullable<String> poNumber = JsonNullable.undefined();
 
@@ -1931,6 +1971,25 @@ public class PurchaseOrder {
         public Builder downstreamId(JsonNullable<String> downstreamId) {
             Utils.checkNotNull(downstreamId, "downstreamId");
             this.downstreamId = downstreamId;
+            return this;
+        }
+
+
+        /**
+         * Display ID of the purchase order
+         */
+        public Builder displayId(String displayId) {
+            Utils.checkNotNull(displayId, "displayId");
+            this.displayId = JsonNullable.of(displayId);
+            return this;
+        }
+
+        /**
+         * Display ID of the purchase order
+         */
+        public Builder displayId(JsonNullable<String> displayId) {
+            Utils.checkNotNull(displayId, "displayId");
+            this.displayId = displayId;
             return this;
         }
 
@@ -2739,22 +2798,22 @@ public class PurchaseOrder {
         public PurchaseOrder build() {
 
             return new PurchaseOrder(
-                id, downstreamId, poNumber,
-                reference, supplier, subsidiaryId,
-                companyId, departmentId, status,
-                issuedDate, deliveryDate, expectedArrivalDate,
-                currency, currencyRate, subTotal,
-                totalTax, total, taxInclusive,
-                lineItems, billingAddress, shippingAddress,
-                ledgerAccount, templateId, discountPercentage,
-                bankAccount, accountingByRow, dueDate,
-                paymentMethod, terms, amortizationType,
-                taxCode, taxMethod, issuedMethod,
-                issuedEmail, channel, memo,
-                notes, trackingCategories, customMappings,
-                customFields, rowVersion, updatedBy,
-                createdBy, updatedAt, createdAt,
-                passThrough);
+                id, downstreamId, displayId,
+                poNumber, reference, supplier,
+                subsidiaryId, companyId, departmentId,
+                status, issuedDate, deliveryDate,
+                expectedArrivalDate, currency, currencyRate,
+                subTotal, totalTax, total,
+                taxInclusive, lineItems, billingAddress,
+                shippingAddress, ledgerAccount, templateId,
+                discountPercentage, bankAccount, accountingByRow,
+                dueDate, paymentMethod, terms,
+                amortizationType, taxCode, taxMethod,
+                issuedMethod, issuedEmail, channel,
+                memo, notes, trackingCategories,
+                customMappings, customFields, rowVersion,
+                updatedBy, createdBy, updatedAt,
+                createdAt, passThrough);
         }
 
     }

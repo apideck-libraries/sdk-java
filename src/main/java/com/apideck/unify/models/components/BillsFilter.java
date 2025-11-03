@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
@@ -18,20 +19,38 @@ public class BillsFilter {
     @SpeakeasyMetadata("queryParam:name=updated_since")
     private Optional<OffsetDateTime> updatedSince;
 
+    /**
+     * Filter by bill status
+     */
+    @SpeakeasyMetadata("queryParam:name=status")
+    private Optional<? extends BillsFilterStatus> status;
+
     @JsonCreator
     public BillsFilter(
-            Optional<OffsetDateTime> updatedSince) {
+            Optional<OffsetDateTime> updatedSince,
+            Optional<? extends BillsFilterStatus> status) {
         Utils.checkNotNull(updatedSince, "updatedSince");
+        Utils.checkNotNull(status, "status");
         this.updatedSince = updatedSince;
+        this.status = status;
     }
     
     public BillsFilter() {
-        this(Optional.empty());
+        this(Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
     public Optional<OffsetDateTime> updatedSince() {
         return updatedSince;
+    }
+
+    /**
+     * Filter by bill status
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<BillsFilterStatus> status() {
+        return (Optional<BillsFilterStatus>) status;
     }
 
     public static Builder builder() {
@@ -52,6 +71,25 @@ public class BillsFilter {
         return this;
     }
 
+    /**
+     * Filter by bill status
+     */
+    public BillsFilter withStatus(BillsFilterStatus status) {
+        Utils.checkNotNull(status, "status");
+        this.status = Optional.ofNullable(status);
+        return this;
+    }
+
+
+    /**
+     * Filter by bill status
+     */
+    public BillsFilter withStatus(Optional<? extends BillsFilterStatus> status) {
+        Utils.checkNotNull(status, "status");
+        this.status = status;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -62,25 +100,29 @@ public class BillsFilter {
         }
         BillsFilter other = (BillsFilter) o;
         return 
-            Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince);
+            Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince) &&
+            Utils.enhancedDeepEquals(this.status, other.status);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            updatedSince);
+            updatedSince, status);
     }
     
     @Override
     public String toString() {
         return Utils.toString(BillsFilter.class,
-                "updatedSince", updatedSince);
+                "updatedSince", updatedSince,
+                "status", status);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
         private Optional<OffsetDateTime> updatedSince = Optional.empty();
+
+        private Optional<? extends BillsFilterStatus> status = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -99,10 +141,29 @@ public class BillsFilter {
             return this;
         }
 
+
+        /**
+         * Filter by bill status
+         */
+        public Builder status(BillsFilterStatus status) {
+            Utils.checkNotNull(status, "status");
+            this.status = Optional.ofNullable(status);
+            return this;
+        }
+
+        /**
+         * Filter by bill status
+         */
+        public Builder status(Optional<? extends BillsFilterStatus> status) {
+            Utils.checkNotNull(status, "status");
+            this.status = status;
+            return this;
+        }
+
         public BillsFilter build() {
 
             return new BillsFilter(
-                updatedSince);
+                updatedSince, status);
         }
 
     }

@@ -37,6 +37,13 @@ public class InvoiceItemInput {
     private JsonNullable<String> description;
 
     /**
+     * Display ID of the item
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("display_id")
+    private JsonNullable<String> displayId;
+
+    /**
      * User defined item code
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -197,6 +204,7 @@ public class InvoiceItemInput {
     public InvoiceItemInput(
             @JsonProperty("name") JsonNullable<String> name,
             @JsonProperty("description") JsonNullable<String> description,
+            @JsonProperty("display_id") JsonNullable<String> displayId,
             @JsonProperty("code") JsonNullable<String> code,
             @JsonProperty("sold") JsonNullable<Boolean> sold,
             @JsonProperty("purchased") JsonNullable<Boolean> purchased,
@@ -223,6 +231,7 @@ public class InvoiceItemInput {
             @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(description, "description");
+        Utils.checkNotNull(displayId, "displayId");
         Utils.checkNotNull(code, "code");
         Utils.checkNotNull(sold, "sold");
         Utils.checkNotNull(purchased, "purchased");
@@ -249,6 +258,7 @@ public class InvoiceItemInput {
         Utils.checkNotNull(passThrough, "passThrough");
         this.name = name;
         this.description = description;
+        this.displayId = displayId;
         this.code = code;
         this.sold = sold;
         this.purchased = purchased;
@@ -279,12 +289,12 @@ public class InvoiceItemInput {
         this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty());
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -301,6 +311,14 @@ public class InvoiceItemInput {
     @JsonIgnore
     public JsonNullable<String> description() {
         return description;
+    }
+
+    /**
+     * Display ID of the item
+     */
+    @JsonIgnore
+    public JsonNullable<String> displayId() {
+        return displayId;
     }
 
     /**
@@ -524,6 +542,24 @@ public class InvoiceItemInput {
     public InvoiceItemInput withDescription(JsonNullable<String> description) {
         Utils.checkNotNull(description, "description");
         this.description = description;
+        return this;
+    }
+
+    /**
+     * Display ID of the item
+     */
+    public InvoiceItemInput withDisplayId(String displayId) {
+        Utils.checkNotNull(displayId, "displayId");
+        this.displayId = JsonNullable.of(displayId);
+        return this;
+    }
+
+    /**
+     * Display ID of the item
+     */
+    public InvoiceItemInput withDisplayId(JsonNullable<String> displayId) {
+        Utils.checkNotNull(displayId, "displayId");
+        this.displayId = displayId;
         return this;
     }
 
@@ -936,6 +972,7 @@ public class InvoiceItemInput {
         return 
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.displayId, other.displayId) &&
             Utils.enhancedDeepEquals(this.code, other.code) &&
             Utils.enhancedDeepEquals(this.sold, other.sold) &&
             Utils.enhancedDeepEquals(this.purchased, other.purchased) &&
@@ -965,15 +1002,15 @@ public class InvoiceItemInput {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name, description, code,
-            sold, purchased, tracked,
-            taxable, inventoryDate, type,
-            salesDetails, purchaseDetails, quantity,
-            unitPrice, currency, assetAccount,
-            incomeAccount, expenseAccount, trackingCategory,
-            trackingCategories, active, departmentId,
-            locationId, subsidiaryId, taxScheduleId,
-            rowVersion, passThrough);
+            name, description, displayId,
+            code, sold, purchased,
+            tracked, taxable, inventoryDate,
+            type, salesDetails, purchaseDetails,
+            quantity, unitPrice, currency,
+            assetAccount, incomeAccount, expenseAccount,
+            trackingCategory, trackingCategories, active,
+            departmentId, locationId, subsidiaryId,
+            taxScheduleId, rowVersion, passThrough);
     }
     
     @Override
@@ -981,6 +1018,7 @@ public class InvoiceItemInput {
         return Utils.toString(InvoiceItemInput.class,
                 "name", name,
                 "description", description,
+                "displayId", displayId,
                 "code", code,
                 "sold", sold,
                 "purchased", purchased,
@@ -1013,6 +1051,8 @@ public class InvoiceItemInput {
         private JsonNullable<String> name = JsonNullable.undefined();
 
         private JsonNullable<String> description = JsonNullable.undefined();
+
+        private JsonNullable<String> displayId = JsonNullable.undefined();
 
         private JsonNullable<String> code = JsonNullable.undefined();
 
@@ -1102,6 +1142,25 @@ public class InvoiceItemInput {
         public Builder description(JsonNullable<String> description) {
             Utils.checkNotNull(description, "description");
             this.description = description;
+            return this;
+        }
+
+
+        /**
+         * Display ID of the item
+         */
+        public Builder displayId(String displayId) {
+            Utils.checkNotNull(displayId, "displayId");
+            this.displayId = JsonNullable.of(displayId);
+            return this;
+        }
+
+        /**
+         * Display ID of the item
+         */
+        public Builder displayId(JsonNullable<String> displayId) {
+            Utils.checkNotNull(displayId, "displayId");
+            this.displayId = displayId;
             return this;
         }
 
@@ -1526,15 +1585,15 @@ public class InvoiceItemInput {
         public InvoiceItemInput build() {
 
             return new InvoiceItemInput(
-                name, description, code,
-                sold, purchased, tracked,
-                taxable, inventoryDate, type,
-                salesDetails, purchaseDetails, quantity,
-                unitPrice, currency, assetAccount,
-                incomeAccount, expenseAccount, trackingCategory,
-                trackingCategories, active, departmentId,
-                locationId, subsidiaryId, taxScheduleId,
-                rowVersion, passThrough);
+                name, description, displayId,
+                code, sold, purchased,
+                tracked, taxable, inventoryDate,
+                type, salesDetails, purchaseDetails,
+                quantity, unitPrice, currency,
+                assetAccount, incomeAccount, expenseAccount,
+                trackingCategory, trackingCategories, active,
+                departmentId, locationId, subsidiaryId,
+                taxScheduleId, rowVersion, passThrough);
         }
 
     }

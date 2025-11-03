@@ -38,6 +38,13 @@ public class JournalEntry {
     private JsonNullable<String> downstreamId;
 
     /**
+     * Display ID of the journal entry
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("display_id")
+    private JsonNullable<String> displayId;
+
+    /**
      * Journal entry title
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -218,6 +225,7 @@ public class JournalEntry {
     public JournalEntry(
             @JsonProperty("id") Optional<String> id,
             @JsonProperty("downstream_id") JsonNullable<String> downstreamId,
+            @JsonProperty("display_id") JsonNullable<String> displayId,
             @JsonProperty("title") JsonNullable<String> title,
             @JsonProperty("currency_rate") JsonNullable<Double> currencyRate,
             @JsonProperty("currency") JsonNullable<? extends Currency> currency,
@@ -245,6 +253,7 @@ public class JournalEntry {
             @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(downstreamId, "downstreamId");
+        Utils.checkNotNull(displayId, "displayId");
         Utils.checkNotNull(title, "title");
         Utils.checkNotNull(currencyRate, "currencyRate");
         Utils.checkNotNull(currency, "currency");
@@ -272,6 +281,7 @@ public class JournalEntry {
         Utils.checkNotNull(passThrough, "passThrough");
         this.id = id;
         this.downstreamId = downstreamId;
+        this.displayId = displayId;
         this.title = title;
         this.currencyRate = currencyRate;
         this.currency = currency;
@@ -302,13 +312,14 @@ public class JournalEntry {
     public JournalEntry() {
         this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty());
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -325,6 +336,14 @@ public class JournalEntry {
     @JsonIgnore
     public JsonNullable<String> downstreamId() {
         return downstreamId;
+    }
+
+    /**
+     * Display ID of the journal entry
+     */
+    @JsonIgnore
+    public JsonNullable<String> displayId() {
+        return displayId;
     }
 
     /**
@@ -574,6 +593,24 @@ public class JournalEntry {
     public JournalEntry withDownstreamId(JsonNullable<String> downstreamId) {
         Utils.checkNotNull(downstreamId, "downstreamId");
         this.downstreamId = downstreamId;
+        return this;
+    }
+
+    /**
+     * Display ID of the journal entry
+     */
+    public JournalEntry withDisplayId(String displayId) {
+        Utils.checkNotNull(displayId, "displayId");
+        this.displayId = JsonNullable.of(displayId);
+        return this;
+    }
+
+    /**
+     * Display ID of the journal entry
+     */
+    public JournalEntry withDisplayId(JsonNullable<String> displayId) {
+        Utils.checkNotNull(displayId, "displayId");
+        this.displayId = displayId;
         return this;
     }
 
@@ -1045,6 +1082,7 @@ public class JournalEntry {
         return 
             Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.downstreamId, other.downstreamId) &&
+            Utils.enhancedDeepEquals(this.displayId, other.displayId) &&
             Utils.enhancedDeepEquals(this.title, other.title) &&
             Utils.enhancedDeepEquals(this.currencyRate, other.currencyRate) &&
             Utils.enhancedDeepEquals(this.currency, other.currency) &&
@@ -1075,15 +1113,16 @@ public class JournalEntry {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, downstreamId, title,
-            currencyRate, currency, companyId,
-            lineItems, status, memo,
-            postedAt, journalSymbol, taxType,
-            taxCode, number, trackingCategories,
-            accountingPeriod, taxInclusive, sourceType,
-            sourceId, customMappings, updatedBy,
-            createdBy, updatedAt, createdAt,
-            rowVersion, customFields, passThrough);
+            id, downstreamId, displayId,
+            title, currencyRate, currency,
+            companyId, lineItems, status,
+            memo, postedAt, journalSymbol,
+            taxType, taxCode, number,
+            trackingCategories, accountingPeriod, taxInclusive,
+            sourceType, sourceId, customMappings,
+            updatedBy, createdBy, updatedAt,
+            createdAt, rowVersion, customFields,
+            passThrough);
     }
     
     @Override
@@ -1091,6 +1130,7 @@ public class JournalEntry {
         return Utils.toString(JournalEntry.class,
                 "id", id,
                 "downstreamId", downstreamId,
+                "displayId", displayId,
                 "title", title,
                 "currencyRate", currencyRate,
                 "currency", currency,
@@ -1124,6 +1164,8 @@ public class JournalEntry {
         private Optional<String> id = Optional.empty();
 
         private JsonNullable<String> downstreamId = JsonNullable.undefined();
+
+        private JsonNullable<String> displayId = JsonNullable.undefined();
 
         private JsonNullable<String> title = JsonNullable.undefined();
 
@@ -1214,6 +1256,25 @@ public class JournalEntry {
         public Builder downstreamId(JsonNullable<String> downstreamId) {
             Utils.checkNotNull(downstreamId, "downstreamId");
             this.downstreamId = downstreamId;
+            return this;
+        }
+
+
+        /**
+         * Display ID of the journal entry
+         */
+        public Builder displayId(String displayId) {
+            Utils.checkNotNull(displayId, "displayId");
+            this.displayId = JsonNullable.of(displayId);
+            return this;
+        }
+
+        /**
+         * Display ID of the journal entry
+         */
+        public Builder displayId(JsonNullable<String> displayId) {
+            Utils.checkNotNull(displayId, "displayId");
+            this.displayId = displayId;
             return this;
         }
 
@@ -1697,15 +1758,16 @@ public class JournalEntry {
         public JournalEntry build() {
 
             return new JournalEntry(
-                id, downstreamId, title,
-                currencyRate, currency, companyId,
-                lineItems, status, memo,
-                postedAt, journalSymbol, taxType,
-                taxCode, number, trackingCategories,
-                accountingPeriod, taxInclusive, sourceType,
-                sourceId, customMappings, updatedBy,
-                createdBy, updatedAt, createdAt,
-                rowVersion, customFields, passThrough);
+                id, downstreamId, displayId,
+                title, currencyRate, currency,
+                companyId, lineItems, status,
+                memo, postedAt, journalSymbol,
+                taxType, taxCode, number,
+                trackingCategories, accountingPeriod, taxInclusive,
+                sourceType, sourceId, customMappings,
+                updatedBy, createdBy, updatedAt,
+                createdAt, rowVersion, customFields,
+                passThrough);
         }
 
     }

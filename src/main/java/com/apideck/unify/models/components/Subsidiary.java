@@ -43,6 +43,13 @@ public class Subsidiary {
     private JsonNullable<String> name;
 
     /**
+     * Display ID of the subsidiary
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("display_id")
+    private JsonNullable<String> displayId;
+
+    /**
      * Based on the status some functionality is enabled or disabled.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -112,6 +119,7 @@ public class Subsidiary {
             @JsonProperty("id") Optional<String> id,
             @JsonProperty("parent_id") JsonNullable<String> parentId,
             @JsonProperty("name") JsonNullable<String> name,
+            @JsonProperty("display_id") JsonNullable<String> displayId,
             @JsonProperty("status") Optional<? extends SubsidiaryStatus> status,
             @JsonProperty("currencies") JsonNullable<? extends List<Currency>> currencies,
             @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings,
@@ -124,6 +132,7 @@ public class Subsidiary {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(parentId, "parentId");
         Utils.checkNotNull(name, "name");
+        Utils.checkNotNull(displayId, "displayId");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(currencies, "currencies");
         Utils.checkNotNull(customMappings, "customMappings");
@@ -136,6 +145,7 @@ public class Subsidiary {
         this.id = id;
         this.parentId = parentId;
         this.name = name;
+        this.displayId = displayId;
         this.status = status;
         this.currencies = currencies;
         this.customMappings = customMappings;
@@ -149,9 +159,10 @@ public class Subsidiary {
     
     public Subsidiary() {
         this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -176,6 +187,14 @@ public class Subsidiary {
     @JsonIgnore
     public JsonNullable<String> name() {
         return name;
+    }
+
+    /**
+     * Display ID of the subsidiary
+     */
+    @JsonIgnore
+    public JsonNullable<String> displayId() {
+        return displayId;
     }
 
     /**
@@ -313,6 +332,24 @@ public class Subsidiary {
     public Subsidiary withName(JsonNullable<String> name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
+        return this;
+    }
+
+    /**
+     * Display ID of the subsidiary
+     */
+    public Subsidiary withDisplayId(String displayId) {
+        Utils.checkNotNull(displayId, "displayId");
+        this.displayId = JsonNullable.of(displayId);
+        return this;
+    }
+
+    /**
+     * Display ID of the subsidiary
+     */
+    public Subsidiary withDisplayId(JsonNullable<String> displayId) {
+        Utils.checkNotNull(displayId, "displayId");
+        this.displayId = displayId;
         return this;
     }
 
@@ -497,6 +534,7 @@ public class Subsidiary {
             Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.parentId, other.parentId) &&
             Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.displayId, other.displayId) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.currencies, other.currencies) &&
             Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
@@ -512,9 +550,10 @@ public class Subsidiary {
     public int hashCode() {
         return Utils.enhancedHash(
             id, parentId, name,
-            status, currencies, customMappings,
-            rowVersion, updatedBy, createdBy,
-            updatedAt, createdAt, passThrough);
+            displayId, status, currencies,
+            customMappings, rowVersion, updatedBy,
+            createdBy, updatedAt, createdAt,
+            passThrough);
     }
     
     @Override
@@ -523,6 +562,7 @@ public class Subsidiary {
                 "id", id,
                 "parentId", parentId,
                 "name", name,
+                "displayId", displayId,
                 "status", status,
                 "currencies", currencies,
                 "customMappings", customMappings,
@@ -542,6 +582,8 @@ public class Subsidiary {
         private JsonNullable<String> parentId = JsonNullable.undefined();
 
         private JsonNullable<String> name = JsonNullable.undefined();
+
+        private JsonNullable<String> displayId = JsonNullable.undefined();
 
         private Optional<? extends SubsidiaryStatus> status = Optional.empty();
 
@@ -619,6 +661,25 @@ public class Subsidiary {
         public Builder name(JsonNullable<String> name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
+            return this;
+        }
+
+
+        /**
+         * Display ID of the subsidiary
+         */
+        public Builder displayId(String displayId) {
+            Utils.checkNotNull(displayId, "displayId");
+            this.displayId = JsonNullable.of(displayId);
+            return this;
+        }
+
+        /**
+         * Display ID of the subsidiary
+         */
+        public Builder displayId(JsonNullable<String> displayId) {
+            Utils.checkNotNull(displayId, "displayId");
+            this.displayId = displayId;
             return this;
         }
 
@@ -801,9 +862,10 @@ public class Subsidiary {
 
             return new Subsidiary(
                 id, parentId, name,
-                status, currencies, customMappings,
-                rowVersion, updatedBy, createdBy,
-                updatedAt, createdAt, passThrough);
+                displayId, status, currencies,
+                customMappings, rowVersion, updatedBy,
+                createdBy, updatedAt, createdAt,
+                passThrough);
         }
 
     }

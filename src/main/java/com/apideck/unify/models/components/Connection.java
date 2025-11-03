@@ -213,11 +213,6 @@ public class Connection {
     @JsonProperty("has_guide")
     private Optional<Boolean> hasGuide;
 
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("created_at")
-    private Optional<Double> createdAt;
-
     /**
      * List of custom mappings configured for this connection
      */
@@ -248,6 +243,35 @@ public class Connection {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("application_data_scopes")
     private Optional<? extends DataScopes> applicationDataScopes;
+
+    /**
+     * Operational health status of the connection
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("health")
+    private Optional<? extends Health> health;
+
+    /**
+     * Unix timestamp in milliseconds when credentials will be deleted if token refresh continues to fail.
+     * A value of 0 indicates no active retention window (connection is healthy or not using OAuth token
+     * refresh).
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("credentials_expire_at")
+    private Optional<Double> credentialsExpireAt;
+
+    /**
+     * Unix timestamp in milliseconds of the last failed token refresh attempt. A value of 0 indicates no
+     * recent failures. This field is used internally to enforce cooldown periods between retry attempts.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("last_refresh_failed_at")
+    private Optional<Double> lastRefreshFailedAt;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("created_at")
+    private Optional<Double> createdAt;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -284,12 +308,15 @@ public class Connection {
             @JsonProperty("settings_required_for_authorization") Optional<? extends List<String>> settingsRequiredForAuthorization,
             @JsonProperty("subscriptions") Optional<? extends List<WebhookSubscription>> subscriptions,
             @JsonProperty("has_guide") Optional<Boolean> hasGuide,
-            @JsonProperty("created_at") Optional<Double> createdAt,
             @JsonProperty("custom_mappings") Optional<? extends List<CustomMapping>> customMappings,
             @JsonProperty("consent_state") Optional<? extends ConsentState> consentState,
             @JsonProperty("consents") Optional<? extends List<ConsentRecord>> consents,
             @JsonProperty("latest_consent") Optional<? extends ConsentRecord> latestConsent,
             @JsonProperty("application_data_scopes") Optional<? extends DataScopes> applicationDataScopes,
+            @JsonProperty("health") Optional<? extends Health> health,
+            @JsonProperty("credentials_expire_at") Optional<Double> credentialsExpireAt,
+            @JsonProperty("last_refresh_failed_at") Optional<Double> lastRefreshFailedAt,
+            @JsonProperty("created_at") Optional<Double> createdAt,
             @JsonProperty("updated_at") JsonNullable<Double> updatedAt) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(serviceId, "serviceId");
@@ -319,12 +346,15 @@ public class Connection {
         Utils.checkNotNull(settingsRequiredForAuthorization, "settingsRequiredForAuthorization");
         Utils.checkNotNull(subscriptions, "subscriptions");
         Utils.checkNotNull(hasGuide, "hasGuide");
-        Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(customMappings, "customMappings");
         Utils.checkNotNull(consentState, "consentState");
         Utils.checkNotNull(consents, "consents");
         Utils.checkNotNull(latestConsent, "latestConsent");
         Utils.checkNotNull(applicationDataScopes, "applicationDataScopes");
+        Utils.checkNotNull(health, "health");
+        Utils.checkNotNull(credentialsExpireAt, "credentialsExpireAt");
+        Utils.checkNotNull(lastRefreshFailedAt, "lastRefreshFailedAt");
+        Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(updatedAt, "updatedAt");
         this.id = id;
         this.serviceId = serviceId;
@@ -354,12 +384,15 @@ public class Connection {
         this.settingsRequiredForAuthorization = settingsRequiredForAuthorization;
         this.subscriptions = subscriptions;
         this.hasGuide = hasGuide;
-        this.createdAt = createdAt;
         this.customMappings = customMappings;
         this.consentState = consentState;
         this.consents = consents;
         this.latestConsent = latestConsent;
         this.applicationDataScopes = applicationDataScopes;
+        this.health = health;
+        this.credentialsExpireAt = credentialsExpireAt;
+        this.lastRefreshFailedAt = lastRefreshFailedAt;
+        this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
     
@@ -370,6 +403,7 @@ public class Connection {
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
@@ -603,11 +637,6 @@ public class Connection {
         return hasGuide;
     }
 
-    @JsonIgnore
-    public Optional<Double> createdAt() {
-        return createdAt;
-    }
-
     /**
      * List of custom mappings configured for this connection
      */
@@ -645,6 +674,39 @@ public class Connection {
     @JsonIgnore
     public Optional<DataScopes> applicationDataScopes() {
         return (Optional<DataScopes>) applicationDataScopes;
+    }
+
+    /**
+     * Operational health status of the connection
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Health> health() {
+        return (Optional<Health>) health;
+    }
+
+    /**
+     * Unix timestamp in milliseconds when credentials will be deleted if token refresh continues to fail.
+     * A value of 0 indicates no active retention window (connection is healthy or not using OAuth token
+     * refresh).
+     */
+    @JsonIgnore
+    public Optional<Double> credentialsExpireAt() {
+        return credentialsExpireAt;
+    }
+
+    /**
+     * Unix timestamp in milliseconds of the last failed token refresh attempt. A value of 0 indicates no
+     * recent failures. This field is used internally to enforce cooldown periods between retry attempts.
+     */
+    @JsonIgnore
+    public Optional<Double> lastRefreshFailedAt() {
+        return lastRefreshFailedAt;
+    }
+
+    @JsonIgnore
+    public Optional<Double> createdAt() {
+        return createdAt;
     }
 
     @JsonIgnore
@@ -1159,19 +1221,6 @@ public class Connection {
         return this;
     }
 
-    public Connection withCreatedAt(double createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
-        this.createdAt = Optional.ofNullable(createdAt);
-        return this;
-    }
-
-
-    public Connection withCreatedAt(Optional<Double> createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
-        this.createdAt = createdAt;
-        return this;
-    }
-
     /**
      * List of custom mappings configured for this connection
      */
@@ -1255,6 +1304,82 @@ public class Connection {
         return this;
     }
 
+    /**
+     * Operational health status of the connection
+     */
+    public Connection withHealth(Health health) {
+        Utils.checkNotNull(health, "health");
+        this.health = Optional.ofNullable(health);
+        return this;
+    }
+
+
+    /**
+     * Operational health status of the connection
+     */
+    public Connection withHealth(Optional<? extends Health> health) {
+        Utils.checkNotNull(health, "health");
+        this.health = health;
+        return this;
+    }
+
+    /**
+     * Unix timestamp in milliseconds when credentials will be deleted if token refresh continues to fail.
+     * A value of 0 indicates no active retention window (connection is healthy or not using OAuth token
+     * refresh).
+     */
+    public Connection withCredentialsExpireAt(double credentialsExpireAt) {
+        Utils.checkNotNull(credentialsExpireAt, "credentialsExpireAt");
+        this.credentialsExpireAt = Optional.ofNullable(credentialsExpireAt);
+        return this;
+    }
+
+
+    /**
+     * Unix timestamp in milliseconds when credentials will be deleted if token refresh continues to fail.
+     * A value of 0 indicates no active retention window (connection is healthy or not using OAuth token
+     * refresh).
+     */
+    public Connection withCredentialsExpireAt(Optional<Double> credentialsExpireAt) {
+        Utils.checkNotNull(credentialsExpireAt, "credentialsExpireAt");
+        this.credentialsExpireAt = credentialsExpireAt;
+        return this;
+    }
+
+    /**
+     * Unix timestamp in milliseconds of the last failed token refresh attempt. A value of 0 indicates no
+     * recent failures. This field is used internally to enforce cooldown periods between retry attempts.
+     */
+    public Connection withLastRefreshFailedAt(double lastRefreshFailedAt) {
+        Utils.checkNotNull(lastRefreshFailedAt, "lastRefreshFailedAt");
+        this.lastRefreshFailedAt = Optional.ofNullable(lastRefreshFailedAt);
+        return this;
+    }
+
+
+    /**
+     * Unix timestamp in milliseconds of the last failed token refresh attempt. A value of 0 indicates no
+     * recent failures. This field is used internally to enforce cooldown periods between retry attempts.
+     */
+    public Connection withLastRefreshFailedAt(Optional<Double> lastRefreshFailedAt) {
+        Utils.checkNotNull(lastRefreshFailedAt, "lastRefreshFailedAt");
+        this.lastRefreshFailedAt = lastRefreshFailedAt;
+        return this;
+    }
+
+    public Connection withCreatedAt(double createdAt) {
+        Utils.checkNotNull(createdAt, "createdAt");
+        this.createdAt = Optional.ofNullable(createdAt);
+        return this;
+    }
+
+
+    public Connection withCreatedAt(Optional<Double> createdAt) {
+        Utils.checkNotNull(createdAt, "createdAt");
+        this.createdAt = createdAt;
+        return this;
+    }
+
     public Connection withUpdatedAt(double updatedAt) {
         Utils.checkNotNull(updatedAt, "updatedAt");
         this.updatedAt = JsonNullable.of(updatedAt);
@@ -1305,12 +1430,15 @@ public class Connection {
             Utils.enhancedDeepEquals(this.settingsRequiredForAuthorization, other.settingsRequiredForAuthorization) &&
             Utils.enhancedDeepEquals(this.subscriptions, other.subscriptions) &&
             Utils.enhancedDeepEquals(this.hasGuide, other.hasGuide) &&
-            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
             Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
             Utils.enhancedDeepEquals(this.consentState, other.consentState) &&
             Utils.enhancedDeepEquals(this.consents, other.consents) &&
             Utils.enhancedDeepEquals(this.latestConsent, other.latestConsent) &&
             Utils.enhancedDeepEquals(this.applicationDataScopes, other.applicationDataScopes) &&
+            Utils.enhancedDeepEquals(this.health, other.health) &&
+            Utils.enhancedDeepEquals(this.credentialsExpireAt, other.credentialsExpireAt) &&
+            Utils.enhancedDeepEquals(this.lastRefreshFailedAt, other.lastRefreshFailedAt) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
             Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt);
     }
     
@@ -1326,9 +1454,10 @@ public class Connection {
             formFields, configuration, configurableResources,
             resourceSchemaSupport, resourceSettingsSupport, validationSupport,
             schemaSupport, settingsRequiredForAuthorization, subscriptions,
-            hasGuide, createdAt, customMappings,
-            consentState, consents, latestConsent,
-            applicationDataScopes, updatedAt);
+            hasGuide, customMappings, consentState,
+            consents, latestConsent, applicationDataScopes,
+            health, credentialsExpireAt, lastRefreshFailedAt,
+            createdAt, updatedAt);
     }
     
     @Override
@@ -1362,12 +1491,15 @@ public class Connection {
                 "settingsRequiredForAuthorization", settingsRequiredForAuthorization,
                 "subscriptions", subscriptions,
                 "hasGuide", hasGuide,
-                "createdAt", createdAt,
                 "customMappings", customMappings,
                 "consentState", consentState,
                 "consents", consents,
                 "latestConsent", latestConsent,
                 "applicationDataScopes", applicationDataScopes,
+                "health", health,
+                "credentialsExpireAt", credentialsExpireAt,
+                "lastRefreshFailedAt", lastRefreshFailedAt,
+                "createdAt", createdAt,
                 "updatedAt", updatedAt);
     }
 
@@ -1430,8 +1562,6 @@ public class Connection {
 
         private Optional<Boolean> hasGuide = Optional.empty();
 
-        private Optional<Double> createdAt = Optional.empty();
-
         private Optional<? extends List<CustomMapping>> customMappings = Optional.empty();
 
         private Optional<? extends ConsentState> consentState = Optional.empty();
@@ -1441,6 +1571,14 @@ public class Connection {
         private Optional<? extends ConsentRecord> latestConsent = Optional.empty();
 
         private Optional<? extends DataScopes> applicationDataScopes = Optional.empty();
+
+        private Optional<? extends Health> health = Optional.empty();
+
+        private Optional<Double> credentialsExpireAt = Optional.empty();
+
+        private Optional<Double> lastRefreshFailedAt = Optional.empty();
+
+        private Optional<Double> createdAt = Optional.empty();
 
         private JsonNullable<Double> updatedAt = JsonNullable.undefined();
 
@@ -1955,19 +2093,6 @@ public class Connection {
         }
 
 
-        public Builder createdAt(double createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
-            this.createdAt = Optional.ofNullable(createdAt);
-            return this;
-        }
-
-        public Builder createdAt(Optional<Double> createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
-            this.createdAt = createdAt;
-            return this;
-        }
-
-
         /**
          * List of custom mappings configured for this connection
          */
@@ -2051,6 +2176,82 @@ public class Connection {
         }
 
 
+        /**
+         * Operational health status of the connection
+         */
+        public Builder health(Health health) {
+            Utils.checkNotNull(health, "health");
+            this.health = Optional.ofNullable(health);
+            return this;
+        }
+
+        /**
+         * Operational health status of the connection
+         */
+        public Builder health(Optional<? extends Health> health) {
+            Utils.checkNotNull(health, "health");
+            this.health = health;
+            return this;
+        }
+
+
+        /**
+         * Unix timestamp in milliseconds when credentials will be deleted if token refresh continues to fail.
+         * A value of 0 indicates no active retention window (connection is healthy or not using OAuth token
+         * refresh).
+         */
+        public Builder credentialsExpireAt(double credentialsExpireAt) {
+            Utils.checkNotNull(credentialsExpireAt, "credentialsExpireAt");
+            this.credentialsExpireAt = Optional.ofNullable(credentialsExpireAt);
+            return this;
+        }
+
+        /**
+         * Unix timestamp in milliseconds when credentials will be deleted if token refresh continues to fail.
+         * A value of 0 indicates no active retention window (connection is healthy or not using OAuth token
+         * refresh).
+         */
+        public Builder credentialsExpireAt(Optional<Double> credentialsExpireAt) {
+            Utils.checkNotNull(credentialsExpireAt, "credentialsExpireAt");
+            this.credentialsExpireAt = credentialsExpireAt;
+            return this;
+        }
+
+
+        /**
+         * Unix timestamp in milliseconds of the last failed token refresh attempt. A value of 0 indicates no
+         * recent failures. This field is used internally to enforce cooldown periods between retry attempts.
+         */
+        public Builder lastRefreshFailedAt(double lastRefreshFailedAt) {
+            Utils.checkNotNull(lastRefreshFailedAt, "lastRefreshFailedAt");
+            this.lastRefreshFailedAt = Optional.ofNullable(lastRefreshFailedAt);
+            return this;
+        }
+
+        /**
+         * Unix timestamp in milliseconds of the last failed token refresh attempt. A value of 0 indicates no
+         * recent failures. This field is used internally to enforce cooldown periods between retry attempts.
+         */
+        public Builder lastRefreshFailedAt(Optional<Double> lastRefreshFailedAt) {
+            Utils.checkNotNull(lastRefreshFailedAt, "lastRefreshFailedAt");
+            this.lastRefreshFailedAt = lastRefreshFailedAt;
+            return this;
+        }
+
+
+        public Builder createdAt(double createdAt) {
+            Utils.checkNotNull(createdAt, "createdAt");
+            this.createdAt = Optional.ofNullable(createdAt);
+            return this;
+        }
+
+        public Builder createdAt(Optional<Double> createdAt) {
+            Utils.checkNotNull(createdAt, "createdAt");
+            this.createdAt = createdAt;
+            return this;
+        }
+
+
         public Builder updatedAt(double updatedAt) {
             Utils.checkNotNull(updatedAt, "updatedAt");
             this.updatedAt = JsonNullable.of(updatedAt);
@@ -2075,9 +2276,10 @@ public class Connection {
                 formFields, configuration, configurableResources,
                 resourceSchemaSupport, resourceSettingsSupport, validationSupport,
                 schemaSupport, settingsRequiredForAuthorization, subscriptions,
-                hasGuide, createdAt, customMappings,
-                consentState, consents, latestConsent,
-                applicationDataScopes, updatedAt);
+                hasGuide, customMappings, consentState,
+                consents, latestConsent, applicationDataScopes,
+                health, credentialsExpireAt, lastRefreshFailedAt,
+                createdAt, updatedAt);
         }
 
     }

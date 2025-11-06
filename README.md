@@ -50,7 +50,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.apideck:unify:0.24.0'
+implementation 'com.apideck:unify:0.25.0'
 ```
 
 Maven:
@@ -58,7 +58,7 @@ Maven:
 <dependency>
     <groupId>com.apideck</groupId>
     <artifactId>unify</artifactId>
-    <version>0.24.0</version>
+    <version>0.25.0</version>
 </dependency>
 ```
 
@@ -1025,8 +1025,12 @@ import com.apideck.unify.models.components.TaxRatesFilter;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingTaxRatesAllRequest;
 import com.apideck.unify.models.operations.AccountingTaxRatesAllResponse;
+import java.io.UncheckedIOException;
+import java.lang.Double;
 import java.lang.Exception;
+import java.lang.String;
 import java.util.Map;
+import java.util.Optional;
 
 public class Application {
 
@@ -1037,29 +1041,63 @@ public class Application {
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
+        try {
 
-        AccountingTaxRatesAllRequest req = AccountingTaxRatesAllRequest.builder()
-                .serviceId("salesforce")
-                .filter(TaxRatesFilter.builder()
-                    .assets(true)
-                    .equity(true)
-                    .expenses(true)
-                    .liabilities(true)
-                    .revenue(true)
-                    .build())
-                .passThrough(Map.ofEntries(
-                    Map.entry("search", "San Francisco")))
-                .fields("id,updated_at")
-                .build();
+            AccountingTaxRatesAllRequest req = AccountingTaxRatesAllRequest.builder()
+                    .serviceId("salesforce")
+                    .filter(TaxRatesFilter.builder()
+                        .assets(true)
+                        .equity(true)
+                        .expenses(true)
+                        .liabilities(true)
+                        .revenue(true)
+                        .build())
+                    .passThrough(Map.ofEntries(
+                        Map.entry("search", "San Francisco")))
+                    .fields("id,updated_at")
+                    .build();
 
 
-        sdk.accounting().taxRates().list()
-                .callAsStream()
-                .forEach((AccountingTaxRatesAllResponse item) -> {
-                   // handle page
+            sdk.accounting().taxRates().list()
+                    .callAsStream()
+                    .forEach((AccountingTaxRatesAllResponse item) -> {
+                       // handle page
+                    });
+
+        } catch (ApideckError ex) { // all SDK exceptions inherit from ApideckError
+
+            // ex.ToString() provides a detailed error message including
+            // HTTP status code, headers, and error payload (if any)
+            System.out.println(ex);
+
+            // Base exception fields
+            var rawResponse = ex.rawResponse();
+            var headers = ex.headers();
+            var contentType = headers.first("Content-Type");
+            int statusCode = ex.code();
+            Optional<byte[]> responseBody = ex.body();
+
+            // different error subclasses may be thrown 
+            // depending on the service call
+            if (ex instanceof BadRequestResponse) {
+                var e = (BadRequestResponse) ex;
+                // Check error data fields
+                e.data().ifPresent(payload -> {
+                      Optional<Double> statusCode = payload.statusCode();
+                      Optional<String> error = payload.error();
+                      // ...
                 });
+            }
 
-    }
+            // An underlying cause may be provided. If the error payload 
+            // cannot be deserialized then the deserialization exception 
+            // will be set as the cause.
+            if (ex.getCause() != null) {
+                var cause = ex.getCause();
+            }
+        } catch (UncheckedIOException ex) {
+            // handle IO error (connection, timeout, etc)
+        }    }
 }
 ```
 

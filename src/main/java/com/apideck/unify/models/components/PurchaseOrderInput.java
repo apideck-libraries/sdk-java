@@ -157,7 +157,7 @@ public class PurchaseOrderInput {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ledger_account")
-    private JsonNullable<? extends LinkedLedgerAccountInput> ledgerAccount;
+    private JsonNullable<? extends LinkedLedgerAccount> ledgerAccount;
 
     /**
      * Optional purchase order template
@@ -313,7 +313,7 @@ public class PurchaseOrderInput {
             @JsonProperty("line_items") Optional<? extends List<InvoiceLineItemInput>> lineItems,
             @JsonProperty("billing_address") Optional<? extends Address> billingAddress,
             @JsonProperty("shipping_address") Optional<? extends Address> shippingAddress,
-            @JsonProperty("ledger_account") JsonNullable<? extends LinkedLedgerAccountInput> ledgerAccount,
+            @JsonProperty("ledger_account") JsonNullable<? extends LinkedLedgerAccount> ledgerAccount,
             @JsonProperty("template_id") JsonNullable<String> templateId,
             @JsonProperty("discount_percentage") JsonNullable<Double> discountPercentage,
             @JsonProperty("bank_account") Optional<? extends BankAccount> bankAccount,
@@ -589,8 +589,8 @@ public class PurchaseOrderInput {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<LinkedLedgerAccountInput> ledgerAccount() {
-        return (JsonNullable<LinkedLedgerAccountInput>) ledgerAccount;
+    public JsonNullable<LinkedLedgerAccount> ledgerAccount() {
+        return (JsonNullable<LinkedLedgerAccount>) ledgerAccount;
     }
 
     /**
@@ -1093,13 +1093,13 @@ public class PurchaseOrderInput {
         return this;
     }
 
-    public PurchaseOrderInput withLedgerAccount(LinkedLedgerAccountInput ledgerAccount) {
+    public PurchaseOrderInput withLedgerAccount(LinkedLedgerAccount ledgerAccount) {
         Utils.checkNotNull(ledgerAccount, "ledgerAccount");
         this.ledgerAccount = JsonNullable.of(ledgerAccount);
         return this;
     }
 
-    public PurchaseOrderInput withLedgerAccount(JsonNullable<? extends LinkedLedgerAccountInput> ledgerAccount) {
+    public PurchaseOrderInput withLedgerAccount(JsonNullable<? extends LinkedLedgerAccount> ledgerAccount) {
         Utils.checkNotNull(ledgerAccount, "ledgerAccount");
         this.ledgerAccount = ledgerAccount;
         return this;
@@ -1603,7 +1603,7 @@ public class PurchaseOrderInput {
 
         private Optional<? extends Address> shippingAddress = Optional.empty();
 
-        private JsonNullable<? extends LinkedLedgerAccountInput> ledgerAccount = JsonNullable.undefined();
+        private JsonNullable<? extends LinkedLedgerAccount> ledgerAccount = JsonNullable.undefined();
 
         private JsonNullable<String> templateId = JsonNullable.undefined();
 
@@ -2006,13 +2006,13 @@ public class PurchaseOrderInput {
         }
 
 
-        public Builder ledgerAccount(LinkedLedgerAccountInput ledgerAccount) {
+        public Builder ledgerAccount(LinkedLedgerAccount ledgerAccount) {
             Utils.checkNotNull(ledgerAccount, "ledgerAccount");
             this.ledgerAccount = JsonNullable.of(ledgerAccount);
             return this;
         }
 
-        public Builder ledgerAccount(JsonNullable<? extends LinkedLedgerAccountInput> ledgerAccount) {
+        public Builder ledgerAccount(JsonNullable<? extends LinkedLedgerAccount> ledgerAccount) {
             Utils.checkNotNull(ledgerAccount, "ledgerAccount");
             this.ledgerAccount = ledgerAccount;
             return this;

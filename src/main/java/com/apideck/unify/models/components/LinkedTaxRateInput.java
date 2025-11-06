@@ -24,6 +24,13 @@ public class LinkedTaxRateInput {
     private JsonNullable<String> id;
 
     /**
+     * Tax rate code
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("code")
+    private JsonNullable<String> code;
+
+    /**
      * Rate of the tax rate
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -33,15 +40,18 @@ public class LinkedTaxRateInput {
     @JsonCreator
     public LinkedTaxRateInput(
             @JsonProperty("id") JsonNullable<String> id,
+            @JsonProperty("code") JsonNullable<String> code,
             @JsonProperty("rate") JsonNullable<Double> rate) {
         Utils.checkNotNull(id, "id");
+        Utils.checkNotNull(code, "code");
         Utils.checkNotNull(rate, "rate");
         this.id = id;
+        this.code = code;
         this.rate = rate;
     }
     
     public LinkedTaxRateInput() {
-        this(JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -50,6 +60,14 @@ public class LinkedTaxRateInput {
     @JsonIgnore
     public JsonNullable<String> id() {
         return id;
+    }
+
+    /**
+     * Tax rate code
+     */
+    @JsonIgnore
+    public JsonNullable<String> code() {
+        return code;
     }
 
     /**
@@ -84,6 +102,24 @@ public class LinkedTaxRateInput {
     }
 
     /**
+     * Tax rate code
+     */
+    public LinkedTaxRateInput withCode(String code) {
+        Utils.checkNotNull(code, "code");
+        this.code = JsonNullable.of(code);
+        return this;
+    }
+
+    /**
+     * Tax rate code
+     */
+    public LinkedTaxRateInput withCode(JsonNullable<String> code) {
+        Utils.checkNotNull(code, "code");
+        this.code = code;
+        return this;
+    }
+
+    /**
      * Rate of the tax rate
      */
     public LinkedTaxRateInput withRate(double rate) {
@@ -112,19 +148,21 @@ public class LinkedTaxRateInput {
         LinkedTaxRateInput other = (LinkedTaxRateInput) o;
         return 
             Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.code, other.code) &&
             Utils.enhancedDeepEquals(this.rate, other.rate);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, rate);
+            id, code, rate);
     }
     
     @Override
     public String toString() {
         return Utils.toString(LinkedTaxRateInput.class,
                 "id", id,
+                "code", code,
                 "rate", rate);
     }
 
@@ -132,6 +170,8 @@ public class LinkedTaxRateInput {
     public final static class Builder {
 
         private JsonNullable<String> id = JsonNullable.undefined();
+
+        private JsonNullable<String> code = JsonNullable.undefined();
 
         private JsonNullable<Double> rate = JsonNullable.undefined();
 
@@ -160,6 +200,25 @@ public class LinkedTaxRateInput {
 
 
         /**
+         * Tax rate code
+         */
+        public Builder code(String code) {
+            Utils.checkNotNull(code, "code");
+            this.code = JsonNullable.of(code);
+            return this;
+        }
+
+        /**
+         * Tax rate code
+         */
+        public Builder code(JsonNullable<String> code) {
+            Utils.checkNotNull(code, "code");
+            this.code = code;
+            return this;
+        }
+
+
+        /**
          * Rate of the tax rate
          */
         public Builder rate(double rate) {
@@ -180,7 +239,7 @@ public class LinkedTaxRateInput {
         public LinkedTaxRateInput build() {
 
             return new LinkedTaxRateInput(
-                id, rate);
+                id, code, rate);
         }
 
     }

@@ -58,11 +58,11 @@ public class BillLineItem {
     private JsonNullable<String> description;
 
     /**
-     * Bill Line Item type
+     * Line Item type
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
-    private JsonNullable<? extends BillLineItemType> type;
+    private JsonNullable<? extends LineItemType> type;
 
     /**
      * Tax amount
@@ -284,7 +284,7 @@ public class BillLineItem {
             @JsonProperty("code") JsonNullable<String> code,
             @JsonProperty("line_number") JsonNullable<Long> lineNumber,
             @JsonProperty("description") JsonNullable<String> description,
-            @JsonProperty("type") JsonNullable<? extends BillLineItemType> type,
+            @JsonProperty("type") JsonNullable<? extends LineItemType> type,
             @JsonProperty("tax_amount") JsonNullable<Double> taxAmount,
             @JsonProperty("total_amount") JsonNullable<Double> totalAmount,
             @JsonProperty("quantity") JsonNullable<Double> quantity,
@@ -452,12 +452,12 @@ public class BillLineItem {
     }
 
     /**
-     * Bill Line Item type
+     * Line Item type
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<BillLineItemType> type() {
-        return (JsonNullable<BillLineItemType>) type;
+    public JsonNullable<LineItemType> type() {
+        return (JsonNullable<LineItemType>) type;
     }
 
     /**
@@ -805,18 +805,18 @@ public class BillLineItem {
     }
 
     /**
-     * Bill Line Item type
+     * Line Item type
      */
-    public BillLineItem withType(BillLineItemType type) {
+    public BillLineItem withType(LineItemType type) {
         Utils.checkNotNull(type, "type");
         this.type = JsonNullable.of(type);
         return this;
     }
 
     /**
-     * Bill Line Item type
+     * Line Item type
      */
-    public BillLineItem withType(JsonNullable<? extends BillLineItemType> type) {
+    public BillLineItem withType(JsonNullable<? extends LineItemType> type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
@@ -1491,7 +1491,7 @@ public class BillLineItem {
 
         private JsonNullable<String> description = JsonNullable.undefined();
 
-        private JsonNullable<? extends BillLineItemType> type = JsonNullable.undefined();
+        private JsonNullable<? extends LineItemType> type = JsonNullable.undefined();
 
         private JsonNullable<Double> taxAmount = JsonNullable.undefined();
 
@@ -1658,18 +1658,18 @@ public class BillLineItem {
 
 
         /**
-         * Bill Line Item type
+         * Line Item type
          */
-        public Builder type(BillLineItemType type) {
+        public Builder type(LineItemType type) {
             Utils.checkNotNull(type, "type");
             this.type = JsonNullable.of(type);
             return this;
         }
 
         /**
-         * Bill Line Item type
+         * Line Item type
          */
-        public Builder type(JsonNullable<? extends BillLineItemType> type) {
+        public Builder type(JsonNullable<? extends LineItemType> type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;

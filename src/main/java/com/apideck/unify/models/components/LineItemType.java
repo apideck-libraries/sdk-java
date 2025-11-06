@@ -9,18 +9,19 @@ import java.util.Objects;
 import java.util.Optional;
 
 /**
- * Expense3Status
+ * LineItemType
  * 
- * <p>Expense status
+ * <p>Line Item type
  */
-public enum Expense3Status {
-    DRAFT("draft"),
-    POSTED("posted");
+public enum LineItemType {
+    EXPENSE_ITEM("expense_item"),
+    EXPENSE_ACCOUNT("expense_account"),
+    OTHER("other");
 
     @JsonValue
     private final String value;
 
-    Expense3Status(String value) {
+    LineItemType(String value) {
         this.value = value;
     }
     
@@ -28,8 +29,8 @@ public enum Expense3Status {
         return value;
     }
     
-    public static Optional<Expense3Status> fromValue(String value) {
-        for (Expense3Status o: Expense3Status.values()) {
+    public static Optional<LineItemType> fromValue(String value) {
+        for (LineItemType o: LineItemType.values()) {
             if (Objects.deepEquals(o.value, value)) {
                 return Optional.of(o);
             }

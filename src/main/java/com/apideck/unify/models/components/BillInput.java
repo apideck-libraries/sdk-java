@@ -141,14 +141,14 @@ public class BillInput {
     private JsonNullable<Double> deposit;
 
     /**
-     * Sub-total amount, normally before tax.
+     * Subtotal amount, normally before tax.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sub_total")
     private JsonNullable<Double> subTotal;
 
     /**
-     * Total tax amount applied to this bill.
+     * Total tax amount applied to this transaction.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("total_tax")
@@ -183,7 +183,7 @@ public class BillInput {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ledger_account")
-    private JsonNullable<? extends LinkedLedgerAccountInput> ledgerAccount;
+    private JsonNullable<? extends LinkedLedgerAccount> ledgerAccount;
 
     /**
      * Payment method used for the transaction, such as cash, credit card, bank transfer, or check
@@ -334,7 +334,7 @@ public class BillInput {
             @JsonProperty("tax_code") JsonNullable<String> taxCode,
             @JsonProperty("notes") JsonNullable<String> notes,
             @JsonProperty("status") JsonNullable<? extends BillStatus> status,
-            @JsonProperty("ledger_account") JsonNullable<? extends LinkedLedgerAccountInput> ledgerAccount,
+            @JsonProperty("ledger_account") JsonNullable<? extends LinkedLedgerAccount> ledgerAccount,
             @JsonProperty("payment_method") JsonNullable<String> paymentMethod,
             @JsonProperty("channel") JsonNullable<String> channel,
             @JsonProperty("language") JsonNullable<String> language,
@@ -595,7 +595,7 @@ public class BillInput {
     }
 
     /**
-     * Sub-total amount, normally before tax.
+     * Subtotal amount, normally before tax.
      */
     @JsonIgnore
     public JsonNullable<Double> subTotal() {
@@ -603,7 +603,7 @@ public class BillInput {
     }
 
     /**
-     * Total tax amount applied to this bill.
+     * Total tax amount applied to this transaction.
      */
     @JsonIgnore
     public JsonNullable<Double> totalTax() {
@@ -642,8 +642,8 @@ public class BillInput {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<LinkedLedgerAccountInput> ledgerAccount() {
-        return (JsonNullable<LinkedLedgerAccountInput>) ledgerAccount;
+    public JsonNullable<LinkedLedgerAccount> ledgerAccount() {
+        return (JsonNullable<LinkedLedgerAccount>) ledgerAccount;
     }
 
     /**
@@ -1102,7 +1102,7 @@ public class BillInput {
     }
 
     /**
-     * Sub-total amount, normally before tax.
+     * Subtotal amount, normally before tax.
      */
     public BillInput withSubTotal(double subTotal) {
         Utils.checkNotNull(subTotal, "subTotal");
@@ -1111,7 +1111,7 @@ public class BillInput {
     }
 
     /**
-     * Sub-total amount, normally before tax.
+     * Subtotal amount, normally before tax.
      */
     public BillInput withSubTotal(JsonNullable<Double> subTotal) {
         Utils.checkNotNull(subTotal, "subTotal");
@@ -1120,7 +1120,7 @@ public class BillInput {
     }
 
     /**
-     * Total tax amount applied to this bill.
+     * Total tax amount applied to this transaction.
      */
     public BillInput withTotalTax(double totalTax) {
         Utils.checkNotNull(totalTax, "totalTax");
@@ -1129,7 +1129,7 @@ public class BillInput {
     }
 
     /**
-     * Total tax amount applied to this bill.
+     * Total tax amount applied to this transaction.
      */
     public BillInput withTotalTax(JsonNullable<Double> totalTax) {
         Utils.checkNotNull(totalTax, "totalTax");
@@ -1203,13 +1203,13 @@ public class BillInput {
         return this;
     }
 
-    public BillInput withLedgerAccount(LinkedLedgerAccountInput ledgerAccount) {
+    public BillInput withLedgerAccount(LinkedLedgerAccount ledgerAccount) {
         Utils.checkNotNull(ledgerAccount, "ledgerAccount");
         this.ledgerAccount = JsonNullable.of(ledgerAccount);
         return this;
     }
 
-    public BillInput withLedgerAccount(JsonNullable<? extends LinkedLedgerAccountInput> ledgerAccount) {
+    public BillInput withLedgerAccount(JsonNullable<? extends LinkedLedgerAccount> ledgerAccount) {
         Utils.checkNotNull(ledgerAccount, "ledgerAccount");
         this.ledgerAccount = ledgerAccount;
         return this;
@@ -1702,7 +1702,7 @@ public class BillInput {
 
         private JsonNullable<? extends BillStatus> status = JsonNullable.undefined();
 
-        private JsonNullable<? extends LinkedLedgerAccountInput> ledgerAccount = JsonNullable.undefined();
+        private JsonNullable<? extends LinkedLedgerAccount> ledgerAccount = JsonNullable.undefined();
 
         private JsonNullable<String> paymentMethod = JsonNullable.undefined();
 
@@ -2067,7 +2067,7 @@ public class BillInput {
 
 
         /**
-         * Sub-total amount, normally before tax.
+         * Subtotal amount, normally before tax.
          */
         public Builder subTotal(double subTotal) {
             Utils.checkNotNull(subTotal, "subTotal");
@@ -2076,7 +2076,7 @@ public class BillInput {
         }
 
         /**
-         * Sub-total amount, normally before tax.
+         * Subtotal amount, normally before tax.
          */
         public Builder subTotal(JsonNullable<Double> subTotal) {
             Utils.checkNotNull(subTotal, "subTotal");
@@ -2086,7 +2086,7 @@ public class BillInput {
 
 
         /**
-         * Total tax amount applied to this bill.
+         * Total tax amount applied to this transaction.
          */
         public Builder totalTax(double totalTax) {
             Utils.checkNotNull(totalTax, "totalTax");
@@ -2095,7 +2095,7 @@ public class BillInput {
         }
 
         /**
-         * Total tax amount applied to this bill.
+         * Total tax amount applied to this transaction.
          */
         public Builder totalTax(JsonNullable<Double> totalTax) {
             Utils.checkNotNull(totalTax, "totalTax");
@@ -2174,13 +2174,13 @@ public class BillInput {
         }
 
 
-        public Builder ledgerAccount(LinkedLedgerAccountInput ledgerAccount) {
+        public Builder ledgerAccount(LinkedLedgerAccount ledgerAccount) {
             Utils.checkNotNull(ledgerAccount, "ledgerAccount");
             this.ledgerAccount = JsonNullable.of(ledgerAccount);
             return this;
         }
 
-        public Builder ledgerAccount(JsonNullable<? extends LinkedLedgerAccountInput> ledgerAccount) {
+        public Builder ledgerAccount(JsonNullable<? extends LinkedLedgerAccount> ledgerAccount) {
             Utils.checkNotNull(ledgerAccount, "ledgerAccount");
             this.ledgerAccount = ledgerAccount;
             return this;

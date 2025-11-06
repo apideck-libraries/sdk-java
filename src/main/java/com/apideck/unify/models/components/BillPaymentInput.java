@@ -74,7 +74,7 @@ public class BillPaymentInput {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("account")
-    private JsonNullable<? extends LinkedLedgerAccountInput> account;
+    private JsonNullable<? extends LinkedLedgerAccount> account;
 
     /**
      * The date of the transaction - YYYY:MM::DDThh:mm:ss.sTZD
@@ -181,7 +181,7 @@ public class BillPaymentInput {
             @JsonProperty("payment_method") JsonNullable<String> paymentMethod,
             @JsonProperty("payment_method_reference") JsonNullable<String> paymentMethodReference,
             @JsonProperty("payment_method_id") JsonNullable<String> paymentMethodId,
-            @JsonProperty("account") JsonNullable<? extends LinkedLedgerAccountInput> account,
+            @JsonProperty("account") JsonNullable<? extends LinkedLedgerAccount> account,
             @JsonProperty("transaction_date") Optional<OffsetDateTime> transactionDate,
             @JsonProperty("supplier") JsonNullable<? extends LinkedSupplierInput> supplier,
             @JsonProperty("company_id") JsonNullable<String> companyId,
@@ -313,8 +313,8 @@ public class BillPaymentInput {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<LinkedLedgerAccountInput> account() {
-        return (JsonNullable<LinkedLedgerAccountInput>) account;
+    public JsonNullable<LinkedLedgerAccount> account() {
+        return (JsonNullable<LinkedLedgerAccount>) account;
     }
 
     /**
@@ -566,13 +566,13 @@ public class BillPaymentInput {
         return this;
     }
 
-    public BillPaymentInput withAccount(LinkedLedgerAccountInput account) {
+    public BillPaymentInput withAccount(LinkedLedgerAccount account) {
         Utils.checkNotNull(account, "account");
         this.account = JsonNullable.of(account);
         return this;
     }
 
-    public BillPaymentInput withAccount(JsonNullable<? extends LinkedLedgerAccountInput> account) {
+    public BillPaymentInput withAccount(JsonNullable<? extends LinkedLedgerAccount> account) {
         Utils.checkNotNull(account, "account");
         this.account = account;
         return this;
@@ -919,7 +919,7 @@ public class BillPaymentInput {
 
         private JsonNullable<String> paymentMethodId = JsonNullable.undefined();
 
-        private JsonNullable<? extends LinkedLedgerAccountInput> account = JsonNullable.undefined();
+        private JsonNullable<? extends LinkedLedgerAccount> account = JsonNullable.undefined();
 
         private Optional<OffsetDateTime> transactionDate = Optional.empty();
 
@@ -1089,13 +1089,13 @@ public class BillPaymentInput {
         }
 
 
-        public Builder account(LinkedLedgerAccountInput account) {
+        public Builder account(LinkedLedgerAccount account) {
             Utils.checkNotNull(account, "account");
             this.account = JsonNullable.of(account);
             return this;
         }
 
-        public Builder account(JsonNullable<? extends LinkedLedgerAccountInput> account) {
+        public Builder account(JsonNullable<? extends LinkedLedgerAccount> account) {
             Utils.checkNotNull(account, "account");
             this.account = account;
             return this;

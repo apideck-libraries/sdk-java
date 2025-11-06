@@ -126,7 +126,7 @@ public class Application {
                     .lineItems(List.of(
                         JournalEntryLineItemInput.builder()
                             .type(JournalEntryLineItemType.DEBIT)
-                            .ledgerAccount(LinkedLedgerAccountInput.builder()
+                            .ledgerAccount(LinkedLedgerAccount.builder()
                                 .id("123456")
                                 .nominalCode("N091")
                                 .code("453")
@@ -415,7 +415,7 @@ public class Application {
                     .lineItems(List.of(
                         JournalEntryLineItemInput.builder()
                             .type(JournalEntryLineItemType.DEBIT)
-                            .ledgerAccount(LinkedLedgerAccountInput.builder()
+                            .ledgerAccount(LinkedLedgerAccount.builder()
                                 .id("123456")
                                 .nominalCode("N091")
                                 .code("453")

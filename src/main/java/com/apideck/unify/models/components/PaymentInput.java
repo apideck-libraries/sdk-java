@@ -95,7 +95,7 @@ public class PaymentInput {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("account")
-    private JsonNullable<? extends LinkedLedgerAccountInput> account;
+    private JsonNullable<? extends LinkedLedgerAccount> account;
 
     /**
      * The date of the transaction - YYYY:MM::DDThh:mm:ss.sTZD
@@ -214,7 +214,7 @@ public class PaymentInput {
             @JsonProperty("payment_method_id") JsonNullable<String> paymentMethodId,
             @JsonProperty("accounts_receivable_account_type") JsonNullable<String> accountsReceivableAccountType,
             @JsonProperty("accounts_receivable_account_id") JsonNullable<String> accountsReceivableAccountId,
-            @JsonProperty("account") JsonNullable<? extends LinkedLedgerAccountInput> account,
+            @JsonProperty("account") JsonNullable<? extends LinkedLedgerAccount> account,
             @JsonProperty("transaction_date") Optional<OffsetDateTime> transactionDate,
             @JsonProperty("customer") JsonNullable<? extends LinkedCustomerInput> customer,
             @JsonProperty("supplier") JsonNullable<? extends DeprecatedLinkedSupplierInput> supplier,
@@ -376,8 +376,8 @@ public class PaymentInput {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<LinkedLedgerAccountInput> account() {
-        return (JsonNullable<LinkedLedgerAccountInput>) account;
+    public JsonNullable<LinkedLedgerAccount> account() {
+        return (JsonNullable<LinkedLedgerAccount>) account;
     }
 
     /**
@@ -689,13 +689,13 @@ public class PaymentInput {
         return this;
     }
 
-    public PaymentInput withAccount(LinkedLedgerAccountInput account) {
+    public PaymentInput withAccount(LinkedLedgerAccount account) {
         Utils.checkNotNull(account, "account");
         this.account = JsonNullable.of(account);
         return this;
     }
 
-    public PaymentInput withAccount(JsonNullable<? extends LinkedLedgerAccountInput> account) {
+    public PaymentInput withAccount(JsonNullable<? extends LinkedLedgerAccount> account) {
         Utils.checkNotNull(account, "account");
         this.account = account;
         return this;
@@ -1079,7 +1079,7 @@ public class PaymentInput {
         @Deprecated
         private JsonNullable<String> accountsReceivableAccountId = JsonNullable.undefined();
 
-        private JsonNullable<? extends LinkedLedgerAccountInput> account = JsonNullable.undefined();
+        private JsonNullable<? extends LinkedLedgerAccount> account = JsonNullable.undefined();
 
         private Optional<OffsetDateTime> transactionDate = Optional.empty();
 
@@ -1302,13 +1302,13 @@ public class PaymentInput {
         }
 
 
-        public Builder account(LinkedLedgerAccountInput account) {
+        public Builder account(LinkedLedgerAccount account) {
             Utils.checkNotNull(account, "account");
             this.account = JsonNullable.of(account);
             return this;
         }
 
-        public Builder account(JsonNullable<? extends LinkedLedgerAccountInput> account) {
+        public Builder account(JsonNullable<? extends LinkedLedgerAccount> account) {
             Utils.checkNotNull(account, "account");
             this.account = account;
             return this;

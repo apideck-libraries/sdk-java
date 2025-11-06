@@ -92,6 +92,13 @@ public class ExpenseLineItem {
     private JsonNullable<String> description;
 
     /**
+     * Line Item type
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("type")
+    private JsonNullable<? extends LineItemType> type;
+
+    /**
      * The total amount of the expense line item.
      */
     @JsonInclude(Include.ALWAYS)
@@ -99,10 +106,35 @@ public class ExpenseLineItem {
     private Optional<Double> totalAmount;
 
     /**
+     * Tax amount
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("tax_amount")
+    private JsonNullable<Double> taxAmount;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("quantity")
+    private JsonNullable<Double> quantity;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("unit_price")
+    private JsonNullable<Double> unitPrice;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("item")
+    private Optional<? extends LinkedInvoiceItem> item;
+
+    /**
      * Boolean that indicates if the line item is billable or not.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("billable")
+    @Deprecated
     private Optional<Boolean> billable;
 
     /**
@@ -131,7 +163,12 @@ public class ExpenseLineItem {
             @JsonProperty("subsidiary_id") JsonNullable<String> subsidiaryId,
             @JsonProperty("tax_rate") Optional<? extends LinkedTaxRate> taxRate,
             @JsonProperty("description") JsonNullable<String> description,
+            @JsonProperty("type") JsonNullable<? extends LineItemType> type,
             @JsonProperty("total_amount") Optional<Double> totalAmount,
+            @JsonProperty("tax_amount") JsonNullable<Double> taxAmount,
+            @JsonProperty("quantity") JsonNullable<Double> quantity,
+            @JsonProperty("unit_price") JsonNullable<Double> unitPrice,
+            @JsonProperty("item") Optional<? extends LinkedInvoiceItem> item,
             @JsonProperty("billable") Optional<Boolean> billable,
             @JsonProperty("line_number") JsonNullable<Long> lineNumber,
             @JsonProperty("rebilling") JsonNullable<? extends Rebilling> rebilling) {
@@ -145,7 +182,12 @@ public class ExpenseLineItem {
         Utils.checkNotNull(subsidiaryId, "subsidiaryId");
         Utils.checkNotNull(taxRate, "taxRate");
         Utils.checkNotNull(description, "description");
+        Utils.checkNotNull(type, "type");
         Utils.checkNotNull(totalAmount, "totalAmount");
+        Utils.checkNotNull(taxAmount, "taxAmount");
+        Utils.checkNotNull(quantity, "quantity");
+        Utils.checkNotNull(unitPrice, "unitPrice");
+        Utils.checkNotNull(item, "item");
         Utils.checkNotNull(billable, "billable");
         Utils.checkNotNull(lineNumber, "lineNumber");
         Utils.checkNotNull(rebilling, "rebilling");
@@ -159,7 +201,12 @@ public class ExpenseLineItem {
         this.subsidiaryId = subsidiaryId;
         this.taxRate = taxRate;
         this.description = description;
+        this.type = type;
         this.totalAmount = totalAmount;
+        this.taxAmount = taxAmount;
+        this.quantity = quantity;
+        this.unitPrice = unitPrice;
+        this.item = item;
         this.billable = billable;
         this.lineNumber = lineNumber;
         this.rebilling = rebilling;
@@ -169,8 +216,10 @@ public class ExpenseLineItem {
         this(Optional.empty(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -254,6 +303,15 @@ public class ExpenseLineItem {
     }
 
     /**
+     * Line Item type
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<LineItemType> type() {
+        return (JsonNullable<LineItemType>) type;
+    }
+
+    /**
      * The total amount of the expense line item.
      */
     @JsonIgnore
@@ -262,8 +320,35 @@ public class ExpenseLineItem {
     }
 
     /**
-     * Boolean that indicates if the line item is billable or not.
+     * Tax amount
      */
+    @JsonIgnore
+    public JsonNullable<Double> taxAmount() {
+        return taxAmount;
+    }
+
+    @JsonIgnore
+    public JsonNullable<Double> quantity() {
+        return quantity;
+    }
+
+    @JsonIgnore
+    public JsonNullable<Double> unitPrice() {
+        return unitPrice;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<LinkedInvoiceItem> item() {
+        return (Optional<LinkedInvoiceItem>) item;
+    }
+
+    /**
+     * Boolean that indicates if the line item is billable or not.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
     @JsonIgnore
     public Optional<Boolean> billable() {
         return billable;
@@ -470,6 +555,24 @@ public class ExpenseLineItem {
     }
 
     /**
+     * Line Item type
+     */
+    public ExpenseLineItem withType(LineItemType type) {
+        Utils.checkNotNull(type, "type");
+        this.type = JsonNullable.of(type);
+        return this;
+    }
+
+    /**
+     * Line Item type
+     */
+    public ExpenseLineItem withType(JsonNullable<? extends LineItemType> type) {
+        Utils.checkNotNull(type, "type");
+        this.type = type;
+        return this;
+    }
+
+    /**
      * The total amount of the expense line item.
      */
     public ExpenseLineItem withTotalAmount(double totalAmount) {
@@ -489,8 +592,66 @@ public class ExpenseLineItem {
     }
 
     /**
-     * Boolean that indicates if the line item is billable or not.
+     * Tax amount
      */
+    public ExpenseLineItem withTaxAmount(double taxAmount) {
+        Utils.checkNotNull(taxAmount, "taxAmount");
+        this.taxAmount = JsonNullable.of(taxAmount);
+        return this;
+    }
+
+    /**
+     * Tax amount
+     */
+    public ExpenseLineItem withTaxAmount(JsonNullable<Double> taxAmount) {
+        Utils.checkNotNull(taxAmount, "taxAmount");
+        this.taxAmount = taxAmount;
+        return this;
+    }
+
+    public ExpenseLineItem withQuantity(double quantity) {
+        Utils.checkNotNull(quantity, "quantity");
+        this.quantity = JsonNullable.of(quantity);
+        return this;
+    }
+
+    public ExpenseLineItem withQuantity(JsonNullable<Double> quantity) {
+        Utils.checkNotNull(quantity, "quantity");
+        this.quantity = quantity;
+        return this;
+    }
+
+    public ExpenseLineItem withUnitPrice(double unitPrice) {
+        Utils.checkNotNull(unitPrice, "unitPrice");
+        this.unitPrice = JsonNullable.of(unitPrice);
+        return this;
+    }
+
+    public ExpenseLineItem withUnitPrice(JsonNullable<Double> unitPrice) {
+        Utils.checkNotNull(unitPrice, "unitPrice");
+        this.unitPrice = unitPrice;
+        return this;
+    }
+
+    public ExpenseLineItem withItem(LinkedInvoiceItem item) {
+        Utils.checkNotNull(item, "item");
+        this.item = Optional.ofNullable(item);
+        return this;
+    }
+
+
+    public ExpenseLineItem withItem(Optional<? extends LinkedInvoiceItem> item) {
+        Utils.checkNotNull(item, "item");
+        this.item = item;
+        return this;
+    }
+
+    /**
+     * Boolean that indicates if the line item is billable or not.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
     public ExpenseLineItem withBillable(boolean billable) {
         Utils.checkNotNull(billable, "billable");
         this.billable = Optional.ofNullable(billable);
@@ -500,7 +661,10 @@ public class ExpenseLineItem {
 
     /**
      * Boolean that indicates if the line item is billable or not.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public ExpenseLineItem withBillable(Optional<Boolean> billable) {
         Utils.checkNotNull(billable, "billable");
         this.billable = billable;
@@ -563,7 +727,12 @@ public class ExpenseLineItem {
             Utils.enhancedDeepEquals(this.subsidiaryId, other.subsidiaryId) &&
             Utils.enhancedDeepEquals(this.taxRate, other.taxRate) &&
             Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.type, other.type) &&
             Utils.enhancedDeepEquals(this.totalAmount, other.totalAmount) &&
+            Utils.enhancedDeepEquals(this.taxAmount, other.taxAmount) &&
+            Utils.enhancedDeepEquals(this.quantity, other.quantity) &&
+            Utils.enhancedDeepEquals(this.unitPrice, other.unitPrice) &&
+            Utils.enhancedDeepEquals(this.item, other.item) &&
             Utils.enhancedDeepEquals(this.billable, other.billable) &&
             Utils.enhancedDeepEquals(this.lineNumber, other.lineNumber) &&
             Utils.enhancedDeepEquals(this.rebilling, other.rebilling);
@@ -575,8 +744,10 @@ public class ExpenseLineItem {
             id, trackingCategories, accountId,
             account, customerId, departmentId,
             locationId, subsidiaryId, taxRate,
-            description, totalAmount, billable,
-            lineNumber, rebilling);
+            description, type, totalAmount,
+            taxAmount, quantity, unitPrice,
+            item, billable, lineNumber,
+            rebilling);
     }
     
     @Override
@@ -592,7 +763,12 @@ public class ExpenseLineItem {
                 "subsidiaryId", subsidiaryId,
                 "taxRate", taxRate,
                 "description", description,
+                "type", type,
                 "totalAmount", totalAmount,
+                "taxAmount", taxAmount,
+                "quantity", quantity,
+                "unitPrice", unitPrice,
+                "item", item,
                 "billable", billable,
                 "lineNumber", lineNumber,
                 "rebilling", rebilling);
@@ -622,8 +798,19 @@ public class ExpenseLineItem {
 
         private JsonNullable<String> description = JsonNullable.undefined();
 
+        private JsonNullable<? extends LineItemType> type = JsonNullable.undefined();
+
         private Optional<Double> totalAmount = Optional.empty();
 
+        private JsonNullable<Double> taxAmount = JsonNullable.undefined();
+
+        private JsonNullable<Double> quantity = JsonNullable.undefined();
+
+        private JsonNullable<Double> unitPrice = JsonNullable.undefined();
+
+        private Optional<? extends LinkedInvoiceItem> item = Optional.empty();
+
+        @Deprecated
         private Optional<Boolean> billable = Optional.empty();
 
         private JsonNullable<Long> lineNumber = JsonNullable.undefined();
@@ -820,6 +1007,25 @@ public class ExpenseLineItem {
 
 
         /**
+         * Line Item type
+         */
+        public Builder type(LineItemType type) {
+            Utils.checkNotNull(type, "type");
+            this.type = JsonNullable.of(type);
+            return this;
+        }
+
+        /**
+         * Line Item type
+         */
+        public Builder type(JsonNullable<? extends LineItemType> type) {
+            Utils.checkNotNull(type, "type");
+            this.type = type;
+            return this;
+        }
+
+
+        /**
          * The total amount of the expense line item.
          */
         public Builder totalAmount(double totalAmount) {
@@ -839,8 +1045,69 @@ public class ExpenseLineItem {
 
 
         /**
-         * Boolean that indicates if the line item is billable or not.
+         * Tax amount
          */
+        public Builder taxAmount(double taxAmount) {
+            Utils.checkNotNull(taxAmount, "taxAmount");
+            this.taxAmount = JsonNullable.of(taxAmount);
+            return this;
+        }
+
+        /**
+         * Tax amount
+         */
+        public Builder taxAmount(JsonNullable<Double> taxAmount) {
+            Utils.checkNotNull(taxAmount, "taxAmount");
+            this.taxAmount = taxAmount;
+            return this;
+        }
+
+
+        public Builder quantity(double quantity) {
+            Utils.checkNotNull(quantity, "quantity");
+            this.quantity = JsonNullable.of(quantity);
+            return this;
+        }
+
+        public Builder quantity(JsonNullable<Double> quantity) {
+            Utils.checkNotNull(quantity, "quantity");
+            this.quantity = quantity;
+            return this;
+        }
+
+
+        public Builder unitPrice(double unitPrice) {
+            Utils.checkNotNull(unitPrice, "unitPrice");
+            this.unitPrice = JsonNullable.of(unitPrice);
+            return this;
+        }
+
+        public Builder unitPrice(JsonNullable<Double> unitPrice) {
+            Utils.checkNotNull(unitPrice, "unitPrice");
+            this.unitPrice = unitPrice;
+            return this;
+        }
+
+
+        public Builder item(LinkedInvoiceItem item) {
+            Utils.checkNotNull(item, "item");
+            this.item = Optional.ofNullable(item);
+            return this;
+        }
+
+        public Builder item(Optional<? extends LinkedInvoiceItem> item) {
+            Utils.checkNotNull(item, "item");
+            this.item = item;
+            return this;
+        }
+
+
+        /**
+         * Boolean that indicates if the line item is billable or not.
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         */
+        @Deprecated
         public Builder billable(boolean billable) {
             Utils.checkNotNull(billable, "billable");
             this.billable = Optional.ofNullable(billable);
@@ -849,7 +1116,10 @@ public class ExpenseLineItem {
 
         /**
          * Boolean that indicates if the line item is billable or not.
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder billable(Optional<Boolean> billable) {
             Utils.checkNotNull(billable, "billable");
             this.billable = billable;
@@ -900,8 +1170,10 @@ public class ExpenseLineItem {
                 id, trackingCategories, accountId,
                 account, customerId, departmentId,
                 locationId, subsidiaryId, taxRate,
-                description, totalAmount, billable,
-                lineNumber, rebilling);
+                description, type, totalAmount,
+                taxAmount, quantity, unitPrice,
+                item, billable, lineNumber,
+                rebilling);
         }
 
     }

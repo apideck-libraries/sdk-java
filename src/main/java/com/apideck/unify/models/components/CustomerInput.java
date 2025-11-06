@@ -154,7 +154,7 @@ public class CustomerInput {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("account")
-    private JsonNullable<? extends LinkedLedgerAccountInput> account;
+    private JsonNullable<? extends LinkedLedgerAccount> account;
 
     /**
      * The parent customer this entity is linked to.
@@ -235,7 +235,7 @@ public class CustomerInput {
             @JsonProperty("tax_rate") Optional<? extends LinkedTaxRateInput> taxRate,
             @JsonProperty("tax_number") JsonNullable<String> taxNumber,
             @JsonProperty("currency") JsonNullable<? extends Currency> currency,
-            @JsonProperty("account") JsonNullable<? extends LinkedLedgerAccountInput> account,
+            @JsonProperty("account") JsonNullable<? extends LinkedLedgerAccount> account,
             @JsonProperty("parent") JsonNullable<? extends LinkedParentCustomer> parent,
             @JsonProperty("status") JsonNullable<? extends CustomerStatusStatus> status,
             @JsonProperty("payment_method") JsonNullable<String> paymentMethod,
@@ -473,8 +473,8 @@ public class CustomerInput {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<LinkedLedgerAccountInput> account() {
-        return (JsonNullable<LinkedLedgerAccountInput>) account;
+    public JsonNullable<LinkedLedgerAccount> account() {
+        return (JsonNullable<LinkedLedgerAccount>) account;
     }
 
     /**
@@ -887,13 +887,13 @@ public class CustomerInput {
         return this;
     }
 
-    public CustomerInput withAccount(LinkedLedgerAccountInput account) {
+    public CustomerInput withAccount(LinkedLedgerAccount account) {
         Utils.checkNotNull(account, "account");
         this.account = JsonNullable.of(account);
         return this;
     }
 
-    public CustomerInput withAccount(JsonNullable<? extends LinkedLedgerAccountInput> account) {
+    public CustomerInput withAccount(JsonNullable<? extends LinkedLedgerAccount> account) {
         Utils.checkNotNull(account, "account");
         this.account = account;
         return this;
@@ -1180,7 +1180,7 @@ public class CustomerInput {
 
         private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
 
-        private JsonNullable<? extends LinkedLedgerAccountInput> account = JsonNullable.undefined();
+        private JsonNullable<? extends LinkedLedgerAccount> account = JsonNullable.undefined();
 
         private JsonNullable<? extends LinkedParentCustomer> parent = JsonNullable.undefined();
 
@@ -1556,13 +1556,13 @@ public class CustomerInput {
         }
 
 
-        public Builder account(LinkedLedgerAccountInput account) {
+        public Builder account(LinkedLedgerAccount account) {
             Utils.checkNotNull(account, "account");
             this.account = JsonNullable.of(account);
             return this;
         }
 
-        public Builder account(JsonNullable<? extends LinkedLedgerAccountInput> account) {
+        public Builder account(JsonNullable<? extends LinkedLedgerAccount> account) {
             Utils.checkNotNull(account, "account");
             this.account = account;
             return this;

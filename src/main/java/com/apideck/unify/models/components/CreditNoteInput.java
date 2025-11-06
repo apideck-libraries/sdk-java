@@ -150,7 +150,7 @@ public class CreditNoteInput {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("account")
-    private JsonNullable<? extends LinkedLedgerAccountInput> account;
+    private JsonNullable<? extends LinkedLedgerAccount> account;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -234,7 +234,7 @@ public class CreditNoteInput {
             @JsonProperty("date_issued") Optional<OffsetDateTime> dateIssued,
             @JsonProperty("date_paid") JsonNullable<OffsetDateTime> datePaid,
             @JsonProperty("type") Optional<? extends CreditNoteType> type,
-            @JsonProperty("account") JsonNullable<? extends LinkedLedgerAccountInput> account,
+            @JsonProperty("account") JsonNullable<? extends LinkedLedgerAccount> account,
             @JsonProperty("line_items") Optional<? extends List<InvoiceLineItemInput>> lineItems,
             @JsonProperty("allocations") Optional<? extends List<AllocationInput>> allocations,
             @JsonProperty("note") JsonNullable<String> note,
@@ -470,8 +470,8 @@ public class CreditNoteInput {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<LinkedLedgerAccountInput> account() {
-        return (JsonNullable<LinkedLedgerAccountInput>) account;
+    public JsonNullable<LinkedLedgerAccount> account() {
+        return (JsonNullable<LinkedLedgerAccount>) account;
     }
 
     @SuppressWarnings("unchecked")
@@ -873,13 +873,13 @@ public class CreditNoteInput {
         return this;
     }
 
-    public CreditNoteInput withAccount(LinkedLedgerAccountInput account) {
+    public CreditNoteInput withAccount(LinkedLedgerAccount account) {
         Utils.checkNotNull(account, "account");
         this.account = JsonNullable.of(account);
         return this;
     }
 
-    public CreditNoteInput withAccount(JsonNullable<? extends LinkedLedgerAccountInput> account) {
+    public CreditNoteInput withAccount(JsonNullable<? extends LinkedLedgerAccount> account) {
         Utils.checkNotNull(account, "account");
         this.account = account;
         return this;
@@ -1174,7 +1174,7 @@ public class CreditNoteInput {
 
         private Optional<? extends CreditNoteType> type = Optional.empty();
 
-        private JsonNullable<? extends LinkedLedgerAccountInput> account = JsonNullable.undefined();
+        private JsonNullable<? extends LinkedLedgerAccount> account = JsonNullable.undefined();
 
         private Optional<? extends List<InvoiceLineItemInput>> lineItems = Optional.empty();
 
@@ -1536,13 +1536,13 @@ public class CreditNoteInput {
         }
 
 
-        public Builder account(LinkedLedgerAccountInput account) {
+        public Builder account(LinkedLedgerAccount account) {
             Utils.checkNotNull(account, "account");
             this.account = JsonNullable.of(account);
             return this;
         }
 
-        public Builder account(JsonNullable<? extends LinkedLedgerAccountInput> account) {
+        public Builder account(JsonNullable<? extends LinkedLedgerAccount> account) {
             Utils.checkNotNull(account, "account");
             this.account = account;
             return this;

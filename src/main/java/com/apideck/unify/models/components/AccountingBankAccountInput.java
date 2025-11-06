@@ -50,7 +50,7 @@ public class AccountingBankAccountInput {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ledger_account")
-    private JsonNullable<? extends LinkedLedgerAccountInput> ledgerAccount;
+    private JsonNullable<? extends LinkedLedgerAccount> ledgerAccount;
 
     /**
      * The name of the bank or financial institution
@@ -162,7 +162,7 @@ public class AccountingBankAccountInput {
             @JsonProperty("name") JsonNullable<String> name,
             @JsonProperty("account_number") JsonNullable<String> accountNumber,
             @JsonProperty("account_type") Optional<? extends AccountingBankAccountAccountType> accountType,
-            @JsonProperty("ledger_account") JsonNullable<? extends LinkedLedgerAccountInput> ledgerAccount,
+            @JsonProperty("ledger_account") JsonNullable<? extends LinkedLedgerAccount> ledgerAccount,
             @JsonProperty("bank_name") JsonNullable<String> bankName,
             @JsonProperty("currency") JsonNullable<? extends Currency> currency,
             @JsonProperty("balance") JsonNullable<Double> balance,
@@ -265,8 +265,8 @@ public class AccountingBankAccountInput {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<LinkedLedgerAccountInput> ledgerAccount() {
-        return (JsonNullable<LinkedLedgerAccountInput>) ledgerAccount;
+    public JsonNullable<LinkedLedgerAccount> ledgerAccount() {
+        return (JsonNullable<LinkedLedgerAccount>) ledgerAccount;
     }
 
     /**
@@ -468,13 +468,13 @@ public class AccountingBankAccountInput {
         return this;
     }
 
-    public AccountingBankAccountInput withLedgerAccount(LinkedLedgerAccountInput ledgerAccount) {
+    public AccountingBankAccountInput withLedgerAccount(LinkedLedgerAccount ledgerAccount) {
         Utils.checkNotNull(ledgerAccount, "ledgerAccount");
         this.ledgerAccount = JsonNullable.of(ledgerAccount);
         return this;
     }
 
-    public AccountingBankAccountInput withLedgerAccount(JsonNullable<? extends LinkedLedgerAccountInput> ledgerAccount) {
+    public AccountingBankAccountInput withLedgerAccount(JsonNullable<? extends LinkedLedgerAccount> ledgerAccount) {
         Utils.checkNotNull(ledgerAccount, "ledgerAccount");
         this.ledgerAccount = ledgerAccount;
         return this;
@@ -827,7 +827,7 @@ public class AccountingBankAccountInput {
 
         private Optional<? extends AccountingBankAccountAccountType> accountType = Optional.empty();
 
-        private JsonNullable<? extends LinkedLedgerAccountInput> ledgerAccount = JsonNullable.undefined();
+        private JsonNullable<? extends LinkedLedgerAccount> ledgerAccount = JsonNullable.undefined();
 
         private JsonNullable<String> bankName = JsonNullable.undefined();
 
@@ -940,13 +940,13 @@ public class AccountingBankAccountInput {
         }
 
 
-        public Builder ledgerAccount(LinkedLedgerAccountInput ledgerAccount) {
+        public Builder ledgerAccount(LinkedLedgerAccount ledgerAccount) {
             Utils.checkNotNull(ledgerAccount, "ledgerAccount");
             this.ledgerAccount = JsonNullable.of(ledgerAccount);
             return this;
         }
 
-        public Builder ledgerAccount(JsonNullable<? extends LinkedLedgerAccountInput> ledgerAccount) {
+        public Builder ledgerAccount(JsonNullable<? extends LinkedLedgerAccount> ledgerAccount) {
             Utils.checkNotNull(ledgerAccount, "ledgerAccount");
             this.ledgerAccount = ledgerAccount;
             return this;

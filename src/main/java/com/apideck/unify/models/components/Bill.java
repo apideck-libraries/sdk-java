@@ -158,14 +158,14 @@ public class Bill {
     private JsonNullable<Double> deposit;
 
     /**
-     * Sub-total amount, normally before tax.
+     * Subtotal amount, normally before tax.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sub_total")
     private JsonNullable<Double> subTotal;
 
     /**
-     * Total tax amount applied to this bill.
+     * Total tax amount applied to this transaction.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("total_tax")
@@ -687,7 +687,7 @@ public class Bill {
     }
 
     /**
-     * Sub-total amount, normally before tax.
+     * Subtotal amount, normally before tax.
      */
     @JsonIgnore
     public JsonNullable<Double> subTotal() {
@@ -695,7 +695,7 @@ public class Bill {
     }
 
     /**
-     * Total tax amount applied to this bill.
+     * Total tax amount applied to this transaction.
      */
     @JsonIgnore
     public JsonNullable<Double> totalTax() {
@@ -1272,7 +1272,7 @@ public class Bill {
     }
 
     /**
-     * Sub-total amount, normally before tax.
+     * Subtotal amount, normally before tax.
      */
     public Bill withSubTotal(double subTotal) {
         Utils.checkNotNull(subTotal, "subTotal");
@@ -1281,7 +1281,7 @@ public class Bill {
     }
 
     /**
-     * Sub-total amount, normally before tax.
+     * Subtotal amount, normally before tax.
      */
     public Bill withSubTotal(JsonNullable<Double> subTotal) {
         Utils.checkNotNull(subTotal, "subTotal");
@@ -1290,7 +1290,7 @@ public class Bill {
     }
 
     /**
-     * Total tax amount applied to this bill.
+     * Total tax amount applied to this transaction.
      */
     public Bill withTotalTax(double totalTax) {
         Utils.checkNotNull(totalTax, "totalTax");
@@ -1299,7 +1299,7 @@ public class Bill {
     }
 
     /**
-     * Total tax amount applied to this bill.
+     * Total tax amount applied to this transaction.
      */
     public Bill withTotalTax(JsonNullable<Double> totalTax) {
         Utils.checkNotNull(totalTax, "totalTax");
@@ -2396,7 +2396,7 @@ public class Bill {
 
 
         /**
-         * Sub-total amount, normally before tax.
+         * Subtotal amount, normally before tax.
          */
         public Builder subTotal(double subTotal) {
             Utils.checkNotNull(subTotal, "subTotal");
@@ -2405,7 +2405,7 @@ public class Bill {
         }
 
         /**
-         * Sub-total amount, normally before tax.
+         * Subtotal amount, normally before tax.
          */
         public Builder subTotal(JsonNullable<Double> subTotal) {
             Utils.checkNotNull(subTotal, "subTotal");
@@ -2415,7 +2415,7 @@ public class Bill {
 
 
         /**
-         * Total tax amount applied to this bill.
+         * Total tax amount applied to this transaction.
          */
         public Builder totalTax(double totalTax) {
             Utils.checkNotNull(totalTax, "totalTax");
@@ -2424,7 +2424,7 @@ public class Bill {
         }
 
         /**
-         * Total tax amount applied to this bill.
+         * Total tax amount applied to this transaction.
          */
         public Builder totalTax(JsonNullable<Double> totalTax) {
             Utils.checkNotNull(totalTax, "totalTax");

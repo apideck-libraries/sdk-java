@@ -156,7 +156,7 @@ public class QuoteLineItemInput {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ledger_account")
-    private JsonNullable<? extends LinkedLedgerAccountInput> ledgerAccount;
+    private JsonNullable<? extends LinkedLedgerAccount> ledgerAccount;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -193,7 +193,7 @@ public class QuoteLineItemInput {
             @JsonProperty("item") Optional<? extends LinkedInvoiceItem> item,
             @JsonProperty("tax_rate") Optional<? extends LinkedTaxRateInput> taxRate,
             @JsonProperty("tracking_categories") JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories,
-            @JsonProperty("ledger_account") JsonNullable<? extends LinkedLedgerAccountInput> ledgerAccount,
+            @JsonProperty("ledger_account") JsonNullable<? extends LinkedLedgerAccount> ledgerAccount,
             @JsonProperty("custom_fields") Optional<? extends List<CustomField>> customFields,
             @JsonProperty("row_version") JsonNullable<String> rowVersion) {
         Utils.checkNotNull(id, "id");
@@ -409,8 +409,8 @@ public class QuoteLineItemInput {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<LinkedLedgerAccountInput> ledgerAccount() {
-        return (JsonNullable<LinkedLedgerAccountInput>) ledgerAccount;
+    public JsonNullable<LinkedLedgerAccount> ledgerAccount() {
+        return (JsonNullable<LinkedLedgerAccount>) ledgerAccount;
     }
 
     @SuppressWarnings("unchecked")
@@ -772,13 +772,13 @@ public class QuoteLineItemInput {
         return this;
     }
 
-    public QuoteLineItemInput withLedgerAccount(LinkedLedgerAccountInput ledgerAccount) {
+    public QuoteLineItemInput withLedgerAccount(LinkedLedgerAccount ledgerAccount) {
         Utils.checkNotNull(ledgerAccount, "ledgerAccount");
         this.ledgerAccount = JsonNullable.of(ledgerAccount);
         return this;
     }
 
-    public QuoteLineItemInput withLedgerAccount(JsonNullable<? extends LinkedLedgerAccountInput> ledgerAccount) {
+    public QuoteLineItemInput withLedgerAccount(JsonNullable<? extends LinkedLedgerAccount> ledgerAccount) {
         Utils.checkNotNull(ledgerAccount, "ledgerAccount");
         this.ledgerAccount = ledgerAccount;
         return this;
@@ -936,7 +936,7 @@ public class QuoteLineItemInput {
 
         private JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories = JsonNullable.undefined();
 
-        private JsonNullable<? extends LinkedLedgerAccountInput> ledgerAccount = JsonNullable.undefined();
+        private JsonNullable<? extends LinkedLedgerAccount> ledgerAccount = JsonNullable.undefined();
 
         private Optional<? extends List<CustomField>> customFields = Optional.empty();
 
@@ -1303,13 +1303,13 @@ public class QuoteLineItemInput {
         }
 
 
-        public Builder ledgerAccount(LinkedLedgerAccountInput ledgerAccount) {
+        public Builder ledgerAccount(LinkedLedgerAccount ledgerAccount) {
             Utils.checkNotNull(ledgerAccount, "ledgerAccount");
             this.ledgerAccount = JsonNullable.of(ledgerAccount);
             return this;
         }
 
-        public Builder ledgerAccount(JsonNullable<? extends LinkedLedgerAccountInput> ledgerAccount) {
+        public Builder ledgerAccount(JsonNullable<? extends LinkedLedgerAccount> ledgerAccount) {
             Utils.checkNotNull(ledgerAccount, "ledgerAccount");
             this.ledgerAccount = ledgerAccount;
             return this;

@@ -123,17 +123,17 @@ public class InvoiceItemInput {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("asset_account")
-    private JsonNullable<? extends LinkedLedgerAccountInput> assetAccount;
+    private JsonNullable<? extends LinkedLedgerAccount> assetAccount;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("income_account")
-    private JsonNullable<? extends LinkedLedgerAccountInput> incomeAccount;
+    private JsonNullable<? extends LinkedLedgerAccount> incomeAccount;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("expense_account")
-    private JsonNullable<? extends LinkedLedgerAccountInput> expenseAccount;
+    private JsonNullable<? extends LinkedLedgerAccount> expenseAccount;
 
     /**
      * 
@@ -217,9 +217,9 @@ public class InvoiceItemInput {
             @JsonProperty("quantity") JsonNullable<Double> quantity,
             @JsonProperty("unit_price") JsonNullable<Double> unitPrice,
             @JsonProperty("currency") JsonNullable<? extends Currency> currency,
-            @JsonProperty("asset_account") JsonNullable<? extends LinkedLedgerAccountInput> assetAccount,
-            @JsonProperty("income_account") JsonNullable<? extends LinkedLedgerAccountInput> incomeAccount,
-            @JsonProperty("expense_account") JsonNullable<? extends LinkedLedgerAccountInput> expenseAccount,
+            @JsonProperty("asset_account") JsonNullable<? extends LinkedLedgerAccount> assetAccount,
+            @JsonProperty("income_account") JsonNullable<? extends LinkedLedgerAccount> incomeAccount,
+            @JsonProperty("expense_account") JsonNullable<? extends LinkedLedgerAccount> expenseAccount,
             @JsonProperty("tracking_category") JsonNullable<? extends DeprecatedLinkedTrackingCategory> trackingCategory,
             @JsonProperty("tracking_categories") JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories,
             @JsonProperty("active") JsonNullable<Boolean> active,
@@ -412,20 +412,20 @@ public class InvoiceItemInput {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<LinkedLedgerAccountInput> assetAccount() {
-        return (JsonNullable<LinkedLedgerAccountInput>) assetAccount;
+    public JsonNullable<LinkedLedgerAccount> assetAccount() {
+        return (JsonNullable<LinkedLedgerAccount>) assetAccount;
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<LinkedLedgerAccountInput> incomeAccount() {
-        return (JsonNullable<LinkedLedgerAccountInput>) incomeAccount;
+    public JsonNullable<LinkedLedgerAccount> incomeAccount() {
+        return (JsonNullable<LinkedLedgerAccount>) incomeAccount;
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<LinkedLedgerAccountInput> expenseAccount() {
-        return (JsonNullable<LinkedLedgerAccountInput>) expenseAccount;
+    public JsonNullable<LinkedLedgerAccount> expenseAccount() {
+        return (JsonNullable<LinkedLedgerAccount>) expenseAccount;
     }
 
     /**
@@ -759,37 +759,37 @@ public class InvoiceItemInput {
         return this;
     }
 
-    public InvoiceItemInput withAssetAccount(LinkedLedgerAccountInput assetAccount) {
+    public InvoiceItemInput withAssetAccount(LinkedLedgerAccount assetAccount) {
         Utils.checkNotNull(assetAccount, "assetAccount");
         this.assetAccount = JsonNullable.of(assetAccount);
         return this;
     }
 
-    public InvoiceItemInput withAssetAccount(JsonNullable<? extends LinkedLedgerAccountInput> assetAccount) {
+    public InvoiceItemInput withAssetAccount(JsonNullable<? extends LinkedLedgerAccount> assetAccount) {
         Utils.checkNotNull(assetAccount, "assetAccount");
         this.assetAccount = assetAccount;
         return this;
     }
 
-    public InvoiceItemInput withIncomeAccount(LinkedLedgerAccountInput incomeAccount) {
+    public InvoiceItemInput withIncomeAccount(LinkedLedgerAccount incomeAccount) {
         Utils.checkNotNull(incomeAccount, "incomeAccount");
         this.incomeAccount = JsonNullable.of(incomeAccount);
         return this;
     }
 
-    public InvoiceItemInput withIncomeAccount(JsonNullable<? extends LinkedLedgerAccountInput> incomeAccount) {
+    public InvoiceItemInput withIncomeAccount(JsonNullable<? extends LinkedLedgerAccount> incomeAccount) {
         Utils.checkNotNull(incomeAccount, "incomeAccount");
         this.incomeAccount = incomeAccount;
         return this;
     }
 
-    public InvoiceItemInput withExpenseAccount(LinkedLedgerAccountInput expenseAccount) {
+    public InvoiceItemInput withExpenseAccount(LinkedLedgerAccount expenseAccount) {
         Utils.checkNotNull(expenseAccount, "expenseAccount");
         this.expenseAccount = JsonNullable.of(expenseAccount);
         return this;
     }
 
-    public InvoiceItemInput withExpenseAccount(JsonNullable<? extends LinkedLedgerAccountInput> expenseAccount) {
+    public InvoiceItemInput withExpenseAccount(JsonNullable<? extends LinkedLedgerAccount> expenseAccount) {
         Utils.checkNotNull(expenseAccount, "expenseAccount");
         this.expenseAccount = expenseAccount;
         return this;
@@ -1078,11 +1078,11 @@ public class InvoiceItemInput {
 
         private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
 
-        private JsonNullable<? extends LinkedLedgerAccountInput> assetAccount = JsonNullable.undefined();
+        private JsonNullable<? extends LinkedLedgerAccount> assetAccount = JsonNullable.undefined();
 
-        private JsonNullable<? extends LinkedLedgerAccountInput> incomeAccount = JsonNullable.undefined();
+        private JsonNullable<? extends LinkedLedgerAccount> incomeAccount = JsonNullable.undefined();
 
-        private JsonNullable<? extends LinkedLedgerAccountInput> expenseAccount = JsonNullable.undefined();
+        private JsonNullable<? extends LinkedLedgerAccount> expenseAccount = JsonNullable.undefined();
 
         @Deprecated
         private JsonNullable<? extends DeprecatedLinkedTrackingCategory> trackingCategory = JsonNullable.undefined();
@@ -1371,39 +1371,39 @@ public class InvoiceItemInput {
         }
 
 
-        public Builder assetAccount(LinkedLedgerAccountInput assetAccount) {
+        public Builder assetAccount(LinkedLedgerAccount assetAccount) {
             Utils.checkNotNull(assetAccount, "assetAccount");
             this.assetAccount = JsonNullable.of(assetAccount);
             return this;
         }
 
-        public Builder assetAccount(JsonNullable<? extends LinkedLedgerAccountInput> assetAccount) {
+        public Builder assetAccount(JsonNullable<? extends LinkedLedgerAccount> assetAccount) {
             Utils.checkNotNull(assetAccount, "assetAccount");
             this.assetAccount = assetAccount;
             return this;
         }
 
 
-        public Builder incomeAccount(LinkedLedgerAccountInput incomeAccount) {
+        public Builder incomeAccount(LinkedLedgerAccount incomeAccount) {
             Utils.checkNotNull(incomeAccount, "incomeAccount");
             this.incomeAccount = JsonNullable.of(incomeAccount);
             return this;
         }
 
-        public Builder incomeAccount(JsonNullable<? extends LinkedLedgerAccountInput> incomeAccount) {
+        public Builder incomeAccount(JsonNullable<? extends LinkedLedgerAccount> incomeAccount) {
             Utils.checkNotNull(incomeAccount, "incomeAccount");
             this.incomeAccount = incomeAccount;
             return this;
         }
 
 
-        public Builder expenseAccount(LinkedLedgerAccountInput expenseAccount) {
+        public Builder expenseAccount(LinkedLedgerAccount expenseAccount) {
             Utils.checkNotNull(expenseAccount, "expenseAccount");
             this.expenseAccount = JsonNullable.of(expenseAccount);
             return this;
         }
 
-        public Builder expenseAccount(JsonNullable<? extends LinkedLedgerAccountInput> expenseAccount) {
+        public Builder expenseAccount(JsonNullable<? extends LinkedLedgerAccount> expenseAccount) {
             Utils.checkNotNull(expenseAccount, "expenseAccount");
             this.expenseAccount = expenseAccount;
             return this;

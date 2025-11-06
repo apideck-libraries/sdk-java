@@ -79,7 +79,7 @@ public class JournalEntryLineItemInput {
 
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("ledger_account")
-    private Optional<? extends LinkedLedgerAccountInput> ledgerAccount;
+    private Optional<? extends LinkedLedgerAccount> ledgerAccount;
 
     /**
      * The customer this entity is linked to.
@@ -133,7 +133,7 @@ public class JournalEntryLineItemInput {
             @JsonProperty("tax_rate") Optional<? extends LinkedTaxRateInput> taxRate,
             @JsonProperty("tracking_category") JsonNullable<? extends DeprecatedLinkedTrackingCategory> trackingCategory,
             @JsonProperty("tracking_categories") JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories,
-            @JsonProperty("ledger_account") Optional<? extends LinkedLedgerAccountInput> ledgerAccount,
+            @JsonProperty("ledger_account") Optional<? extends LinkedLedgerAccount> ledgerAccount,
             @JsonProperty("customer") JsonNullable<? extends LinkedCustomerInput> customer,
             @JsonProperty("supplier") JsonNullable<? extends LinkedSupplierInput> supplier,
             @JsonProperty("department_id") JsonNullable<String> departmentId,
@@ -249,8 +249,8 @@ public class JournalEntryLineItemInput {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<LinkedLedgerAccountInput> ledgerAccount() {
-        return (Optional<LinkedLedgerAccountInput>) ledgerAccount;
+    public Optional<LinkedLedgerAccount> ledgerAccount() {
+        return (Optional<LinkedLedgerAccount>) ledgerAccount;
     }
 
     /**
@@ -443,14 +443,14 @@ public class JournalEntryLineItemInput {
         return this;
     }
 
-    public JournalEntryLineItemInput withLedgerAccount(LinkedLedgerAccountInput ledgerAccount) {
+    public JournalEntryLineItemInput withLedgerAccount(LinkedLedgerAccount ledgerAccount) {
         Utils.checkNotNull(ledgerAccount, "ledgerAccount");
         this.ledgerAccount = Optional.ofNullable(ledgerAccount);
         return this;
     }
 
 
-    public JournalEntryLineItemInput withLedgerAccount(Optional<? extends LinkedLedgerAccountInput> ledgerAccount) {
+    public JournalEntryLineItemInput withLedgerAccount(Optional<? extends LinkedLedgerAccount> ledgerAccount) {
         Utils.checkNotNull(ledgerAccount, "ledgerAccount");
         this.ledgerAccount = ledgerAccount;
         return this;
@@ -642,7 +642,7 @@ public class JournalEntryLineItemInput {
 
         private JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories = JsonNullable.undefined();
 
-        private Optional<? extends LinkedLedgerAccountInput> ledgerAccount = Optional.empty();
+        private Optional<? extends LinkedLedgerAccount> ledgerAccount = Optional.empty();
 
         private JsonNullable<? extends LinkedCustomerInput> customer = JsonNullable.undefined();
 
@@ -802,13 +802,13 @@ public class JournalEntryLineItemInput {
         }
 
 
-        public Builder ledgerAccount(LinkedLedgerAccountInput ledgerAccount) {
+        public Builder ledgerAccount(LinkedLedgerAccount ledgerAccount) {
             Utils.checkNotNull(ledgerAccount, "ledgerAccount");
             this.ledgerAccount = Optional.ofNullable(ledgerAccount);
             return this;
         }
 
-        public Builder ledgerAccount(Optional<? extends LinkedLedgerAccountInput> ledgerAccount) {
+        public Builder ledgerAccount(Optional<? extends LinkedLedgerAccount> ledgerAccount) {
             Utils.checkNotNull(ledgerAccount, "ledgerAccount");
             this.ledgerAccount = ledgerAccount;
             return this;

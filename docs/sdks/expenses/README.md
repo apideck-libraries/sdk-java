@@ -111,9 +111,8 @@ public class Application {
             .build();
 
         AccountingExpensesAddRequest req = AccountingExpensesAddRequest.builder()
-                .expense(ExpenseInput.of(Expense1Input.builder()
+                .expense(ExpenseInput.builder()
                     .transactionDate(OffsetDateTime.parse("2021-05-01T12:00:00.000Z"))
-                    .accountId("123456")
                     .lineItems(List.of(
                         ExpenseLineItemInput.builder()
                             .totalAmount(275d)
@@ -144,6 +143,7 @@ public class Application {
                             .lineNumber(1L)
                             .build()))
                     .number("OIT00546")
+                    .accountId("123456")
                     .customerId("12345")
                     .supplierId("12345")
                     .companyId("12345")
@@ -223,7 +223,7 @@ public class Application {
                                             Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build()))
-                    .build()))
+                    .build())
                 .serviceId("salesforce")
                 .build();
 
@@ -354,9 +354,8 @@ public class Application {
 
         AccountingExpensesUpdateRequest req = AccountingExpensesUpdateRequest.builder()
                 .id("<id>")
-                .expense(ExpenseInput.of(Expense1Input.builder()
+                .expense(ExpenseInput.builder()
                     .transactionDate(OffsetDateTime.parse("2021-05-01T12:00:00.000Z"))
-                    .accountId("123456")
                     .lineItems(List.of(
                         ExpenseLineItemInput.builder()
                             .totalAmount(275d)
@@ -387,6 +386,7 @@ public class Application {
                             .lineNumber(1L)
                             .build()))
                     .number("OIT00546")
+                    .accountId("123456")
                     .customerId("12345")
                     .supplierId("12345")
                     .companyId("12345")
@@ -440,7 +440,7 @@ public class Application {
                                             Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build()))
-                    .build()))
+                    .build())
                 .serviceId("salesforce")
                 .build();
 

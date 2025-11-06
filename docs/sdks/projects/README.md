@@ -154,6 +154,7 @@ public class Application {
                     .phase(ProjectPhase.EXECUTION)
                     .taxRate(LinkedTaxRateInput.builder()
                         .id("123456")
+                        .code("N-T")
                         .rate(10d)
                         .build())
                     .trackingCategories(List.of(
@@ -371,6 +372,7 @@ public class Application {
                     .phase(ProjectPhase.EXECUTION)
                     .taxRate(LinkedTaxRateInput.builder()
                         .id("123456")
+                        .code("N-T")
                         .rate(10d)
                         .build())
                     .trackingCategories(List.of(

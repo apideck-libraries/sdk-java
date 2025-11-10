@@ -25,7 +25,7 @@ import java.util.Map;
 public class DataScopesResources {
 
     @JsonValue
-    private TypedObject value;
+    private final TypedObject value;
     
     private DataScopesResources(TypedObject value) {
         this.value = value;
@@ -33,12 +33,12 @@ public class DataScopesResources {
 
     public static DataScopesResources of(Map<String, Map<String, DataScopesResources1>> value) {
         Utils.checkNotNull(value, "value");
-        return new DataScopesResources(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<Map<String, Map<String, DataScopesResources1>>>(){}));
+        return new DataScopesResources(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static DataScopesResources of(DataScopesResources2 value) {
         Utils.checkNotNull(value, "value");
-        return new DataScopesResources(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<DataScopesResources2>(){}));
+        return new DataScopesResources(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
@@ -61,7 +61,7 @@ public class DataScopesResources {
      **/ 
     public java.lang.Object value() {
         return value.value();
-    }    
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {

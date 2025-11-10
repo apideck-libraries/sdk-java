@@ -23,7 +23,7 @@ import java.util.List;
 public class SimpleFormFieldOptionValue {
 
     @JsonValue
-    private TypedObject value;
+    private final TypedObject value;
     
     private SimpleFormFieldOptionValue(TypedObject value) {
         this.value = value;
@@ -31,27 +31,24 @@ public class SimpleFormFieldOptionValue {
 
     public static SimpleFormFieldOptionValue of(String value) {
         Utils.checkNotNull(value, "value");
-        return new SimpleFormFieldOptionValue(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<String>(){}));
+        return new SimpleFormFieldOptionValue(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static SimpleFormFieldOptionValue of(long value) {
-        Utils.checkNotNull(value, "value");
-        return new SimpleFormFieldOptionValue(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<java.lang.Long>(){}));
+        return new SimpleFormFieldOptionValue(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static SimpleFormFieldOptionValue of(double value) {
-        Utils.checkNotNull(value, "value");
-        return new SimpleFormFieldOptionValue(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<java.lang.Double>(){}));
+        return new SimpleFormFieldOptionValue(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static SimpleFormFieldOptionValue of(boolean value) {
-        Utils.checkNotNull(value, "value");
-        return new SimpleFormFieldOptionValue(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<java.lang.Boolean>(){}));
+        return new SimpleFormFieldOptionValue(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static SimpleFormFieldOptionValue of(List<Value5> value) {
         Utils.checkNotNull(value, "value");
-        return new SimpleFormFieldOptionValue(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<List<Value5>>(){}));
+        return new SimpleFormFieldOptionValue(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
@@ -77,7 +74,7 @@ public class SimpleFormFieldOptionValue {
      **/ 
     public java.lang.Object value() {
         return value.value();
-    }    
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {

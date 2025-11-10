@@ -20,7 +20,7 @@ import java.util.Map;
 public class UpdateConsentRequestResources {
 
     @JsonValue
-    private TypedObject value;
+    private final TypedObject value;
     
     private UpdateConsentRequestResources(TypedObject value) {
         this.value = value;
@@ -28,12 +28,12 @@ public class UpdateConsentRequestResources {
 
     public static UpdateConsentRequestResources of(Map<String, Map<String, One>> value) {
         Utils.checkNotNull(value, "value");
-        return new UpdateConsentRequestResources(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<Map<String, Map<String, One>>>(){}));
+        return new UpdateConsentRequestResources(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static UpdateConsentRequestResources of(Two value) {
         Utils.checkNotNull(value, "value");
-        return new UpdateConsentRequestResources(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<Two>(){}));
+        return new UpdateConsentRequestResources(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
@@ -56,7 +56,7 @@ public class UpdateConsentRequestResources {
      **/ 
     public java.lang.Object value() {
         return value.value();
-    }    
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {

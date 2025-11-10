@@ -21,7 +21,7 @@ import java.lang.SuppressWarnings;
 public class ConnectionValue5 {
 
     @JsonValue
-    private TypedObject value;
+    private final TypedObject value;
     
     private ConnectionValue5(TypedObject value) {
         this.value = value;
@@ -29,17 +29,15 @@ public class ConnectionValue5 {
 
     public static ConnectionValue5 of(String value) {
         Utils.checkNotNull(value, "value");
-        return new ConnectionValue5(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<String>(){}));
+        return new ConnectionValue5(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static ConnectionValue5 of(long value) {
-        Utils.checkNotNull(value, "value");
-        return new ConnectionValue5(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<java.lang.Long>(){}));
+        return new ConnectionValue5(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static ConnectionValue5 of(double value) {
-        Utils.checkNotNull(value, "value");
-        return new ConnectionValue5(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<java.lang.Double>(){}));
+        return new ConnectionValue5(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
@@ -63,7 +61,7 @@ public class ConnectionValue5 {
      **/ 
     public java.lang.Object value() {
         return value.value();
-    }    
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {

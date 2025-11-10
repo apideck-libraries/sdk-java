@@ -26,7 +26,7 @@ import java.util.Map;
 public class UnprocessableResponseDetail {
 
     @JsonValue
-    private TypedObject value;
+    private final TypedObject value;
     
     private UnprocessableResponseDetail(TypedObject value) {
         this.value = value;
@@ -34,12 +34,12 @@ public class UnprocessableResponseDetail {
 
     public static UnprocessableResponseDetail of(String value) {
         Utils.checkNotNull(value, "value");
-        return new UnprocessableResponseDetail(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<String>(){}));
+        return new UnprocessableResponseDetail(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static UnprocessableResponseDetail of(Map<String, Object> value) {
         Utils.checkNotNull(value, "value");
-        return new UnprocessableResponseDetail(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<Map<String, Object>>(){}));
+        return new UnprocessableResponseDetail(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
@@ -62,7 +62,7 @@ public class UnprocessableResponseDetail {
      **/ 
     public java.lang.Object value() {
         return value.value();
-    }    
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {

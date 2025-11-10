@@ -46,6 +46,11 @@ public class SubsidiaryInput {
     @JsonProperty("status")
     private Optional<? extends SubsidiaryStatus> status;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("address")
+    private Optional<? extends Address> address;
+
     /**
      * List of currencies supported by this subsidiary
      */
@@ -75,6 +80,7 @@ public class SubsidiaryInput {
             @JsonProperty("name") JsonNullable<String> name,
             @JsonProperty("display_id") JsonNullable<String> displayId,
             @JsonProperty("status") Optional<? extends SubsidiaryStatus> status,
+            @JsonProperty("address") Optional<? extends Address> address,
             @JsonProperty("currencies") JsonNullable<? extends List<Currency>> currencies,
             @JsonProperty("row_version") JsonNullable<String> rowVersion,
             @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
@@ -82,6 +88,7 @@ public class SubsidiaryInput {
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(displayId, "displayId");
         Utils.checkNotNull(status, "status");
+        Utils.checkNotNull(address, "address");
         Utils.checkNotNull(currencies, "currencies");
         Utils.checkNotNull(rowVersion, "rowVersion");
         Utils.checkNotNull(passThrough, "passThrough");
@@ -89,6 +96,7 @@ public class SubsidiaryInput {
         this.name = name;
         this.displayId = displayId;
         this.status = status;
+        this.address = address;
         this.currencies = currencies;
         this.rowVersion = rowVersion;
         this.passThrough = passThrough;
@@ -96,8 +104,8 @@ public class SubsidiaryInput {
     
     public SubsidiaryInput() {
         this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty());
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -131,6 +139,12 @@ public class SubsidiaryInput {
     @JsonIgnore
     public Optional<SubsidiaryStatus> status() {
         return (Optional<SubsidiaryStatus>) status;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Address> address() {
+        return (Optional<Address>) address;
     }
 
     /**
@@ -239,6 +253,19 @@ public class SubsidiaryInput {
         return this;
     }
 
+    public SubsidiaryInput withAddress(Address address) {
+        Utils.checkNotNull(address, "address");
+        this.address = Optional.ofNullable(address);
+        return this;
+    }
+
+
+    public SubsidiaryInput withAddress(Optional<? extends Address> address) {
+        Utils.checkNotNull(address, "address");
+        this.address = address;
+        return this;
+    }
+
     /**
      * List of currencies supported by this subsidiary
      */
@@ -312,6 +339,7 @@ public class SubsidiaryInput {
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.displayId, other.displayId) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.address, other.address) &&
             Utils.enhancedDeepEquals(this.currencies, other.currencies) &&
             Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion) &&
             Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
@@ -321,8 +349,8 @@ public class SubsidiaryInput {
     public int hashCode() {
         return Utils.enhancedHash(
             parentId, name, displayId,
-            status, currencies, rowVersion,
-            passThrough);
+            status, address, currencies,
+            rowVersion, passThrough);
     }
     
     @Override
@@ -332,6 +360,7 @@ public class SubsidiaryInput {
                 "name", name,
                 "displayId", displayId,
                 "status", status,
+                "address", address,
                 "currencies", currencies,
                 "rowVersion", rowVersion,
                 "passThrough", passThrough);
@@ -347,6 +376,8 @@ public class SubsidiaryInput {
         private JsonNullable<String> displayId = JsonNullable.undefined();
 
         private Optional<? extends SubsidiaryStatus> status = Optional.empty();
+
+        private Optional<? extends Address> address = Optional.empty();
 
         private JsonNullable<? extends List<Currency>> currencies = JsonNullable.undefined();
 
@@ -435,6 +466,19 @@ public class SubsidiaryInput {
         }
 
 
+        public Builder address(Address address) {
+            Utils.checkNotNull(address, "address");
+            this.address = Optional.ofNullable(address);
+            return this;
+        }
+
+        public Builder address(Optional<? extends Address> address) {
+            Utils.checkNotNull(address, "address");
+            this.address = address;
+            return this;
+        }
+
+
         /**
          * List of currencies supported by this subsidiary
          */
@@ -499,8 +543,8 @@ public class SubsidiaryInput {
 
             return new SubsidiaryInput(
                 parentId, name, displayId,
-                status, currencies, rowVersion,
-                passThrough);
+                status, address, currencies,
+                rowVersion, passThrough);
         }
 
     }

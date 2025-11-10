@@ -549,3 +549,13 @@ Based on:
 - [java v0.26.0] .
 ### Releases
 - [Maven Central v0.26.0] https://central.sonatype.com/artifact/com.apideck/unify/0.26.0 - .
+
+## 2025-11-10 17:26:22
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.653.0 (2.748.0) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v0.27.0] .
+### Releases
+- [Maven Central v0.27.0] https://central.sonatype.com/artifact/com.apideck/unify/0.27.0 - .

@@ -72,7 +72,7 @@ public class DataScopesResources {
             return false;
         }
         DataScopesResources other = (DataScopesResources) o;
-        return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
+        return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
     @Override
@@ -95,6 +95,6 @@ public class DataScopesResources {
         return Utils.toString(DataScopesResources.class,
                 "value", value);
     }
- 
+
 }
 

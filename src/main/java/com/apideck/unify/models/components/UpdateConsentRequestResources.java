@@ -67,7 +67,7 @@ public class UpdateConsentRequestResources {
             return false;
         }
         UpdateConsentRequestResources other = (UpdateConsentRequestResources) o;
-        return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
+        return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
     @Override
@@ -90,6 +90,6 @@ public class UpdateConsentRequestResources {
         return Utils.toString(UpdateConsentRequestResources.class,
                 "value", value);
     }
- 
+
 }
 

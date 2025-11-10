@@ -85,7 +85,7 @@ public class ConnectionValue {
             return false;
         }
         ConnectionValue other = (ConnectionValue) o;
-        return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
+        return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
     @Override
@@ -111,6 +111,6 @@ public class ConnectionValue {
         return Utils.toString(ConnectionValue.class,
                 "value", value);
     }
- 
+
 }
 

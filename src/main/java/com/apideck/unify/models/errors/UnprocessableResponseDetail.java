@@ -73,7 +73,7 @@ public class UnprocessableResponseDetail {
             return false;
         }
         UnprocessableResponseDetail other = (UnprocessableResponseDetail) o;
-        return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
+        return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
     @Override
@@ -96,6 +96,6 @@ public class UnprocessableResponseDetail {
         return Utils.toString(UnprocessableResponseDetail.class,
                 "value", value);
     }
- 
+
 }
 

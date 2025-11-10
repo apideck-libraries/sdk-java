@@ -80,7 +80,7 @@ public class Five {
             return false;
         }
         Five other = (Five) o;
-        return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
+        return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
     @Override
@@ -105,6 +105,6 @@ public class Five {
         return Utils.toString(Five.class,
                 "value", value);
     }
- 
+
 }
 

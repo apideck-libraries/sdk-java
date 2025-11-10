@@ -72,7 +72,7 @@ public class Value5 {
             return false;
         }
         Value5 other = (Value5) o;
-        return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
+        return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
     @Override
@@ -96,6 +96,6 @@ public class Value5 {
         return Utils.toString(Value5.class,
                 "value", value);
     }
- 
+
 }
 

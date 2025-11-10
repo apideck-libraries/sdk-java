@@ -26,7 +26,7 @@ import java.util.Map;
 public class Detail {
 
     @JsonValue
-    private TypedObject value;
+    private final TypedObject value;
     
     private Detail(TypedObject value) {
         this.value = value;
@@ -34,12 +34,12 @@ public class Detail {
 
     public static Detail of(String value) {
         Utils.checkNotNull(value, "value");
-        return new Detail(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<String>(){}));
+        return new Detail(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static Detail of(Map<String, Object> value) {
         Utils.checkNotNull(value, "value");
-        return new Detail(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<Map<String, Object>>(){}));
+        return new Detail(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
@@ -62,7 +62,7 @@ public class Detail {
      **/ 
     public java.lang.Object value() {
         return value.value();
-    }    
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {

@@ -24,7 +24,7 @@ import java.lang.SuppressWarnings;
 public class UnauthorizedResponseDetail {
 
     @JsonValue
-    private TypedObject value;
+    private final TypedObject value;
     
     private UnauthorizedResponseDetail(TypedObject value) {
         this.value = value;
@@ -32,12 +32,12 @@ public class UnauthorizedResponseDetail {
 
     public static UnauthorizedResponseDetail of(String value) {
         Utils.checkNotNull(value, "value");
-        return new UnauthorizedResponseDetail(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<String>(){}));
+        return new UnauthorizedResponseDetail(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static UnauthorizedResponseDetail of(Two value) {
         Utils.checkNotNull(value, "value");
-        return new UnauthorizedResponseDetail(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<Two>(){}));
+        return new UnauthorizedResponseDetail(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
@@ -60,7 +60,7 @@ public class UnauthorizedResponseDetail {
      **/ 
     public java.lang.Object value() {
         return value.value();
-    }    
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {

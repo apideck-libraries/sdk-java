@@ -23,7 +23,7 @@ import java.util.List;
 public class ConnectionValue {
 
     @JsonValue
-    private TypedObject value;
+    private final TypedObject value;
     
     private ConnectionValue(TypedObject value) {
         this.value = value;
@@ -31,27 +31,24 @@ public class ConnectionValue {
 
     public static ConnectionValue of(String value) {
         Utils.checkNotNull(value, "value");
-        return new ConnectionValue(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<String>(){}));
+        return new ConnectionValue(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static ConnectionValue of(long value) {
-        Utils.checkNotNull(value, "value");
-        return new ConnectionValue(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<java.lang.Long>(){}));
+        return new ConnectionValue(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static ConnectionValue of(double value) {
-        Utils.checkNotNull(value, "value");
-        return new ConnectionValue(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<java.lang.Double>(){}));
+        return new ConnectionValue(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static ConnectionValue of(boolean value) {
-        Utils.checkNotNull(value, "value");
-        return new ConnectionValue(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<java.lang.Boolean>(){}));
+        return new ConnectionValue(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static ConnectionValue of(List<ConnectionValue5> value) {
         Utils.checkNotNull(value, "value");
-        return new ConnectionValue(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<List<ConnectionValue5>>(){}));
+        return new ConnectionValue(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
@@ -77,7 +74,7 @@ public class ConnectionValue {
      **/ 
     public java.lang.Object value() {
         return value.value();
-    }    
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {

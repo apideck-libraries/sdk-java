@@ -21,7 +21,7 @@ import java.lang.SuppressWarnings;
 public class Value5 {
 
     @JsonValue
-    private TypedObject value;
+    private final TypedObject value;
     
     private Value5(TypedObject value) {
         this.value = value;
@@ -29,17 +29,15 @@ public class Value5 {
 
     public static Value5 of(String value) {
         Utils.checkNotNull(value, "value");
-        return new Value5(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<String>(){}));
+        return new Value5(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static Value5 of(long value) {
-        Utils.checkNotNull(value, "value");
-        return new Value5(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<java.lang.Long>(){}));
+        return new Value5(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static Value5 of(double value) {
-        Utils.checkNotNull(value, "value");
-        return new Value5(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<java.lang.Double>(){}));
+        return new Value5(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
@@ -63,7 +61,7 @@ public class Value5 {
      **/ 
     public java.lang.Object value() {
         return value.value();
-    }    
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {

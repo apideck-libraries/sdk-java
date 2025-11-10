@@ -85,7 +85,7 @@ public class SimpleFormFieldOptionValue {
             return false;
         }
         SimpleFormFieldOptionValue other = (SimpleFormFieldOptionValue) o;
-        return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
+        return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
     @Override
@@ -111,6 +111,6 @@ public class SimpleFormFieldOptionValue {
         return Utils.toString(SimpleFormFieldOptionValue.class,
                 "value", value);
     }
- 
+
 }
 

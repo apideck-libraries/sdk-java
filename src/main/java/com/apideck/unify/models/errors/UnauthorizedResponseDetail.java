@@ -71,7 +71,7 @@ public class UnauthorizedResponseDetail {
             return false;
         }
         UnauthorizedResponseDetail other = (UnauthorizedResponseDetail) o;
-        return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
+        return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
     @Override
@@ -94,6 +94,6 @@ public class UnauthorizedResponseDetail {
         return Utils.toString(UnauthorizedResponseDetail.class,
                 "value", value);
     }
- 
+
 }
 

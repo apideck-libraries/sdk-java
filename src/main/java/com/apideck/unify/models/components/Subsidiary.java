@@ -56,6 +56,11 @@ public class Subsidiary {
     @JsonProperty("status")
     private Optional<? extends SubsidiaryStatus> status;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("address")
+    private Optional<? extends Address> address;
+
     /**
      * List of currencies supported by this subsidiary
      */
@@ -121,6 +126,7 @@ public class Subsidiary {
             @JsonProperty("name") JsonNullable<String> name,
             @JsonProperty("display_id") JsonNullable<String> displayId,
             @JsonProperty("status") Optional<? extends SubsidiaryStatus> status,
+            @JsonProperty("address") Optional<? extends Address> address,
             @JsonProperty("currencies") JsonNullable<? extends List<Currency>> currencies,
             @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings,
             @JsonProperty("row_version") JsonNullable<String> rowVersion,
@@ -134,6 +140,7 @@ public class Subsidiary {
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(displayId, "displayId");
         Utils.checkNotNull(status, "status");
+        Utils.checkNotNull(address, "address");
         Utils.checkNotNull(currencies, "currencies");
         Utils.checkNotNull(customMappings, "customMappings");
         Utils.checkNotNull(rowVersion, "rowVersion");
@@ -147,6 +154,7 @@ public class Subsidiary {
         this.name = name;
         this.displayId = displayId;
         this.status = status;
+        this.address = address;
         this.currencies = currencies;
         this.customMappings = customMappings;
         this.rowVersion = rowVersion;
@@ -159,10 +167,10 @@ public class Subsidiary {
     
     public Subsidiary() {
         this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty());
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -204,6 +212,12 @@ public class Subsidiary {
     @JsonIgnore
     public Optional<SubsidiaryStatus> status() {
         return (Optional<SubsidiaryStatus>) status;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Address> address() {
+        return (Optional<Address>) address;
     }
 
     /**
@@ -372,6 +386,19 @@ public class Subsidiary {
         return this;
     }
 
+    public Subsidiary withAddress(Address address) {
+        Utils.checkNotNull(address, "address");
+        this.address = Optional.ofNullable(address);
+        return this;
+    }
+
+
+    public Subsidiary withAddress(Optional<? extends Address> address) {
+        Utils.checkNotNull(address, "address");
+        this.address = address;
+        return this;
+    }
+
     /**
      * List of currencies supported by this subsidiary
      */
@@ -536,6 +563,7 @@ public class Subsidiary {
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.displayId, other.displayId) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.address, other.address) &&
             Utils.enhancedDeepEquals(this.currencies, other.currencies) &&
             Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
             Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion) &&
@@ -550,10 +578,10 @@ public class Subsidiary {
     public int hashCode() {
         return Utils.enhancedHash(
             id, parentId, name,
-            displayId, status, currencies,
-            customMappings, rowVersion, updatedBy,
-            createdBy, updatedAt, createdAt,
-            passThrough);
+            displayId, status, address,
+            currencies, customMappings, rowVersion,
+            updatedBy, createdBy, updatedAt,
+            createdAt, passThrough);
     }
     
     @Override
@@ -564,6 +592,7 @@ public class Subsidiary {
                 "name", name,
                 "displayId", displayId,
                 "status", status,
+                "address", address,
                 "currencies", currencies,
                 "customMappings", customMappings,
                 "rowVersion", rowVersion,
@@ -586,6 +615,8 @@ public class Subsidiary {
         private JsonNullable<String> displayId = JsonNullable.undefined();
 
         private Optional<? extends SubsidiaryStatus> status = Optional.empty();
+
+        private Optional<? extends Address> address = Optional.empty();
 
         private JsonNullable<? extends List<Currency>> currencies = JsonNullable.undefined();
 
@@ -699,6 +730,19 @@ public class Subsidiary {
         public Builder status(Optional<? extends SubsidiaryStatus> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
+            return this;
+        }
+
+
+        public Builder address(Address address) {
+            Utils.checkNotNull(address, "address");
+            this.address = Optional.ofNullable(address);
+            return this;
+        }
+
+        public Builder address(Optional<? extends Address> address) {
+            Utils.checkNotNull(address, "address");
+            this.address = address;
             return this;
         }
 
@@ -862,10 +906,10 @@ public class Subsidiary {
 
             return new Subsidiary(
                 id, parentId, name,
-                displayId, status, currencies,
-                customMappings, rowVersion, updatedBy,
-                createdBy, updatedAt, createdAt,
-                passThrough);
+                displayId, status, address,
+                currencies, customMappings, rowVersion,
+                updatedBy, createdBy, updatedAt,
+                createdAt, passThrough);
         }
 
     }

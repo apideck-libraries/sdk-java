@@ -3,17 +3,20 @@
  */
 package com.apideck.unify.models.components;
 
-import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.databind.annotation.JsonTypeIdResolver;
 import java.lang.String;
 
-@JsonTypeInfo(use = Id.NAME, property = "option_type", include = As.EXISTING_PROPERTY, visible = true)
-@JsonSubTypes({
-    @Type(value = SimpleFormFieldOption.class, name="simple"),
-    @Type(value = FormFieldOptionGroup.class, name="group")})
+@JsonTypeInfo(
+        use = Id.CUSTOM,
+        property = "option_type",
+        include = As.EXISTING_PROPERTY,
+        visible = true,
+        defaultImpl = UnknownFormFieldOption.class
+)
+@JsonTypeIdResolver(FormFieldOptionTypeIdResolver.class)
 public interface FormFieldOption {
 
     String optionType();

@@ -73,7 +73,7 @@ public class NotFoundResponseDetail {
             return false;
         }
         NotFoundResponseDetail other = (NotFoundResponseDetail) o;
-        return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
+        return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
     @Override
@@ -96,6 +96,6 @@ public class NotFoundResponseDetail {
         return Utils.toString(NotFoundResponseDetail.class,
                 "value", value);
     }
- 
+
 }
 

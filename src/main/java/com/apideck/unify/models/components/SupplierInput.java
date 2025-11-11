@@ -137,6 +137,13 @@ public class SupplierInput {
     private JsonNullable<String> taxNumber;
 
     /**
+     * Whether the entity is subject to taxation
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("taxable")
+    private JsonNullable<Boolean> taxable;
+
+    /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO
      * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
@@ -257,6 +264,7 @@ public class SupplierInput {
             @JsonProperty("notes") JsonNullable<String> notes,
             @JsonProperty("tax_rate") Optional<? extends LinkedTaxRateInput> taxRate,
             @JsonProperty("tax_number") JsonNullable<String> taxNumber,
+            @JsonProperty("taxable") JsonNullable<Boolean> taxable,
             @JsonProperty("currency") JsonNullable<? extends Currency> currency,
             @JsonProperty("account") JsonNullable<? extends LinkedLedgerAccount> account,
             @JsonProperty("status") JsonNullable<? extends SupplierStatus> status,
@@ -291,6 +299,7 @@ public class SupplierInput {
         Utils.checkNotNull(notes, "notes");
         Utils.checkNotNull(taxRate, "taxRate");
         Utils.checkNotNull(taxNumber, "taxNumber");
+        Utils.checkNotNull(taxable, "taxable");
         Utils.checkNotNull(currency, "currency");
         Utils.checkNotNull(account, "account");
         Utils.checkNotNull(status, "status");
@@ -325,6 +334,7 @@ public class SupplierInput {
         this.notes = notes;
         this.taxRate = taxRate;
         this.taxNumber = taxNumber;
+        this.taxable = taxable;
         this.currency = currency;
         this.account = account;
         this.status = status;
@@ -352,9 +362,9 @@ public class SupplierInput {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
             JsonNullable.undefined(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -489,6 +499,14 @@ public class SupplierInput {
     @JsonIgnore
     public JsonNullable<String> taxNumber() {
         return taxNumber;
+    }
+
+    /**
+     * Whether the entity is subject to taxation
+     */
+    @JsonIgnore
+    public JsonNullable<Boolean> taxable() {
+        return taxable;
     }
 
     /**
@@ -915,6 +933,24 @@ public class SupplierInput {
     }
 
     /**
+     * Whether the entity is subject to taxation
+     */
+    public SupplierInput withTaxable(boolean taxable) {
+        Utils.checkNotNull(taxable, "taxable");
+        this.taxable = JsonNullable.of(taxable);
+        return this;
+    }
+
+    /**
+     * Whether the entity is subject to taxation
+     */
+    public SupplierInput withTaxable(JsonNullable<Boolean> taxable) {
+        Utils.checkNotNull(taxable, "taxable");
+        this.taxable = taxable;
+        return this;
+    }
+
+    /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO
      * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
@@ -1201,6 +1237,7 @@ public class SupplierInput {
             Utils.enhancedDeepEquals(this.notes, other.notes) &&
             Utils.enhancedDeepEquals(this.taxRate, other.taxRate) &&
             Utils.enhancedDeepEquals(this.taxNumber, other.taxNumber) &&
+            Utils.enhancedDeepEquals(this.taxable, other.taxable) &&
             Utils.enhancedDeepEquals(this.currency, other.currency) &&
             Utils.enhancedDeepEquals(this.account, other.account) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
@@ -1227,12 +1264,12 @@ public class SupplierInput {
             suffix, individual, addresses,
             phoneNumbers, emails, websites,
             bankAccounts, notes, taxRate,
-            taxNumber, currency, account,
-            status, paymentMethod, terms,
-            channel, issuedMethod, issuedEmail,
-            customFields, taxDetails, taxStatusDetails,
-            rowVersion, passThrough, subsidiaryId,
-            integrationSystemId);
+            taxNumber, taxable, currency,
+            account, status, paymentMethod,
+            terms, channel, issuedMethod,
+            issuedEmail, customFields, taxDetails,
+            taxStatusDetails, rowVersion, passThrough,
+            subsidiaryId, integrationSystemId);
     }
     
     @Override
@@ -1257,6 +1294,7 @@ public class SupplierInput {
                 "notes", notes,
                 "taxRate", taxRate,
                 "taxNumber", taxNumber,
+                "taxable", taxable,
                 "currency", currency,
                 "account", account,
                 "status", status,
@@ -1314,6 +1352,8 @@ public class SupplierInput {
         private Optional<? extends LinkedTaxRateInput> taxRate = Optional.empty();
 
         private JsonNullable<String> taxNumber = JsonNullable.undefined();
+
+        private JsonNullable<Boolean> taxable = JsonNullable.undefined();
 
         private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
 
@@ -1664,6 +1704,25 @@ public class SupplierInput {
 
 
         /**
+         * Whether the entity is subject to taxation
+         */
+        public Builder taxable(boolean taxable) {
+            Utils.checkNotNull(taxable, "taxable");
+            this.taxable = JsonNullable.of(taxable);
+            return this;
+        }
+
+        /**
+         * Whether the entity is subject to taxation
+         */
+        public Builder taxable(JsonNullable<Boolean> taxable) {
+            Utils.checkNotNull(taxable, "taxable");
+            this.taxable = taxable;
+            return this;
+        }
+
+
+        /**
          * Indicates the associated currency for an amount of money. Values correspond to [ISO
          * 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
@@ -1938,12 +1997,12 @@ public class SupplierInput {
                 suffix, individual, addresses,
                 phoneNumbers, emails, websites,
                 bankAccounts, notes, taxRate,
-                taxNumber, currency, account,
-                status, paymentMethod, terms,
-                channel, issuedMethod, issuedEmail,
-                customFields, taxDetails, taxStatusDetails,
-                rowVersion, passThrough, subsidiaryId,
-                integrationSystemId);
+                taxNumber, taxable, currency,
+                account, status, paymentMethod,
+                terms, channel, issuedMethod,
+                issuedEmail, customFields, taxDetails,
+                taxStatusDetails, rowVersion, passThrough,
+                subsidiaryId, integrationSystemId);
         }
 
     }

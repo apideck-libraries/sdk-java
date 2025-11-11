@@ -144,6 +144,13 @@ public class CustomerInput {
     private JsonNullable<String> taxNumber;
 
     /**
+     * Whether the entity is subject to taxation
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("taxable")
+    private JsonNullable<Boolean> taxable;
+
+    /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO
      * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
@@ -234,6 +241,7 @@ public class CustomerInput {
             @JsonProperty("notes") JsonNullable<String> notes,
             @JsonProperty("tax_rate") Optional<? extends LinkedTaxRateInput> taxRate,
             @JsonProperty("tax_number") JsonNullable<String> taxNumber,
+            @JsonProperty("taxable") JsonNullable<Boolean> taxable,
             @JsonProperty("currency") JsonNullable<? extends Currency> currency,
             @JsonProperty("account") JsonNullable<? extends LinkedLedgerAccount> account,
             @JsonProperty("parent") JsonNullable<? extends LinkedParentCustomer> parent,
@@ -264,6 +272,7 @@ public class CustomerInput {
         Utils.checkNotNull(notes, "notes");
         Utils.checkNotNull(taxRate, "taxRate");
         Utils.checkNotNull(taxNumber, "taxNumber");
+        Utils.checkNotNull(taxable, "taxable");
         Utils.checkNotNull(currency, "currency");
         Utils.checkNotNull(account, "account");
         Utils.checkNotNull(parent, "parent");
@@ -294,6 +303,7 @@ public class CustomerInput {
         this.notes = notes;
         this.taxRate = taxRate;
         this.taxNumber = taxNumber;
+        this.taxable = taxable;
         this.currency = currency;
         this.account = account;
         this.parent = parent;
@@ -316,7 +326,8 @@ public class CustomerInput {
             Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), Optional.empty());
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -459,6 +470,14 @@ public class CustomerInput {
     @JsonIgnore
     public JsonNullable<String> taxNumber() {
         return taxNumber;
+    }
+
+    /**
+     * Whether the entity is subject to taxation
+     */
+    @JsonIgnore
+    public JsonNullable<Boolean> taxable() {
+        return taxable;
     }
 
     /**
@@ -868,6 +887,24 @@ public class CustomerInput {
     }
 
     /**
+     * Whether the entity is subject to taxation
+     */
+    public CustomerInput withTaxable(boolean taxable) {
+        Utils.checkNotNull(taxable, "taxable");
+        this.taxable = JsonNullable.of(taxable);
+        return this;
+    }
+
+    /**
+     * Whether the entity is subject to taxation
+     */
+    public CustomerInput withTaxable(JsonNullable<Boolean> taxable) {
+        Utils.checkNotNull(taxable, "taxable");
+        this.taxable = taxable;
+        return this;
+    }
+
+    /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO
      * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
@@ -1073,6 +1110,7 @@ public class CustomerInput {
             Utils.enhancedDeepEquals(this.notes, other.notes) &&
             Utils.enhancedDeepEquals(this.taxRate, other.taxRate) &&
             Utils.enhancedDeepEquals(this.taxNumber, other.taxNumber) &&
+            Utils.enhancedDeepEquals(this.taxable, other.taxable) &&
             Utils.enhancedDeepEquals(this.currency, other.currency) &&
             Utils.enhancedDeepEquals(this.account, other.account) &&
             Utils.enhancedDeepEquals(this.parent, other.parent) &&
@@ -1094,10 +1132,11 @@ public class CustomerInput {
             suffix, individual, project,
             addresses, phoneNumbers, emails,
             websites, bankAccounts, notes,
-            taxRate, taxNumber, currency,
-            account, parent, status,
-            paymentMethod, terms, channel,
-            customFields, rowVersion, passThrough);
+            taxRate, taxNumber, taxable,
+            currency, account, parent,
+            status, paymentMethod, terms,
+            channel, customFields, rowVersion,
+            passThrough);
     }
     
     @Override
@@ -1123,6 +1162,7 @@ public class CustomerInput {
                 "notes", notes,
                 "taxRate", taxRate,
                 "taxNumber", taxNumber,
+                "taxable", taxable,
                 "currency", currency,
                 "account", account,
                 "parent", parent,
@@ -1177,6 +1217,8 @@ public class CustomerInput {
         private Optional<? extends LinkedTaxRateInput> taxRate = Optional.empty();
 
         private JsonNullable<String> taxNumber = JsonNullable.undefined();
+
+        private JsonNullable<Boolean> taxable = JsonNullable.undefined();
 
         private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
 
@@ -1536,6 +1578,25 @@ public class CustomerInput {
 
 
         /**
+         * Whether the entity is subject to taxation
+         */
+        public Builder taxable(boolean taxable) {
+            Utils.checkNotNull(taxable, "taxable");
+            this.taxable = JsonNullable.of(taxable);
+            return this;
+        }
+
+        /**
+         * Whether the entity is subject to taxation
+         */
+        public Builder taxable(JsonNullable<Boolean> taxable) {
+            Utils.checkNotNull(taxable, "taxable");
+            this.taxable = taxable;
+            return this;
+        }
+
+
+        /**
          * Indicates the associated currency for an amount of money. Values correspond to [ISO
          * 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
@@ -1727,10 +1788,11 @@ public class CustomerInput {
                 suffix, individual, project,
                 addresses, phoneNumbers, emails,
                 websites, bankAccounts, notes,
-                taxRate, taxNumber, currency,
-                account, parent, status,
-                paymentMethod, terms, channel,
-                customFields, rowVersion, passThrough);
+                taxRate, taxNumber, taxable,
+                currency, account, parent,
+                status, paymentMethod, terms,
+                channel, customFields, rowVersion,
+                passThrough);
         }
 
     }

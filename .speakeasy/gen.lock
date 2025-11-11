@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 38254260-287a-40b6-9ac5-c2fcb654c9cc
 management:
-  docChecksum: a127b1f3e4fd52b93118790c2603c291
-  docVersion: 10.21.14
+  docChecksum: db29eaf7f3b64d56236d11d01eac1adc
+  docVersion: 10.21.15
   speakeasyVersion: 1.653.0
   generationVersion: 2.748.0
-  releaseVersion: 0.27.1
-  configChecksum: d0e1f283ebff1e3f68c0e85ccf3bef15
+  releaseVersion: 0.27.2
+  configChecksum: 58d0e5b0caea1735fc1c5cc0595925e5
   repoURL: https://github.com/apideck-libraries/sdk-java.git
   published: true
 features:
@@ -20067,4 +20067,3 @@ examples:
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Java SDK Changes Detected:\n* `apideck.accounting.customers.list()`:  `response.data.[].taxable` **Added**\n* `apideck.accounting.customers.create()`: \n  *  `request.customer.taxable` **Added**\n* `apideck.accounting.customers.get()`:  `response.data.taxable` **Added**\n* `apideck.accounting.customers.update()`: \n  *  `request.customer.taxable` **Added**\n* `apideck.accounting.suppliers.list()`:  `response.data.[].taxable` **Added**\n* `apideck.accounting.suppliers.create()`: \n  *  `request.supplier.taxable` **Added**\n* `apideck.accounting.suppliers.get()`:  `response.data.taxable` **Added**\n* `apideck.accounting.suppliers.update()`: \n  *  `request.supplier.taxable` **Added**\n"

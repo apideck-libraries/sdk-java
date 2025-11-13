@@ -21,8 +21,8 @@ public class SDKConfiguration {
 
     private static final String LANGUAGE = "java";
     public static final String OPENAPI_DOC_VERSION = "10.21.15";
-    public static final String SDK_VERSION = "0.27.2";
-    public static final String GEN_VERSION = "2.748.0";
+    public static final String SDK_VERSION = "0.27.3";
+    public static final String GEN_VERSION = "2.753.1";
     private static final String BASE_PACKAGE = "com.apideck.unify";
     public static final String USER_AGENT = 
             String.format("speakeasy-sdk/%s %s %s %s %s",

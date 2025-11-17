@@ -19,6 +19,7 @@ public enum InvoiceStatus {
     AUTHORISED("authorised"),
     PARTIALLY_PAID("partially_paid"),
     PAID("paid"),
+    UNPAID("unpaid"),
     VOID("void"),
     CREDIT("credit"),
     DELETED("deleted"),

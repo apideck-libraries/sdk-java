@@ -22,6 +22,7 @@ import com.apideck.unify.models.operations.AccountingAttachmentsUploadResponse;
 import com.apideck.unify.utils.AsyncRetries;
 import com.apideck.unify.utils.BackoffStrategy;
 import com.apideck.unify.utils.Blob;
+import com.apideck.unify.utils.Globals;
 import com.apideck.unify.utils.HTTPClient;
 import com.apideck.unify.utils.HTTPRequest;
 import com.apideck.unify.utils.Headers;
@@ -70,6 +71,7 @@ public class AccountingAttachmentsUpload {
         final RetryConfig retryConfig;
         final HTTPClient client;
         final Headers _headers;
+        final Globals operationGlobals;
 
         public Base(
                 SDKConfiguration sdkConfiguration, Optional<String> serverURL,
@@ -97,6 +99,11 @@ public class AccountingAttachmentsUpload {
                                     .build())
                             .build());
             this.client = this.sdkConfiguration.client();
+            this.operationGlobals = new Globals();
+            this.sdkConfiguration.globals.getParam("header", "x-apideck-consumer-id")
+                .ifPresent(param -> operationGlobals.putParam("header", "x-apideck-consumer-id", param));
+            this.sdkConfiguration.globals.getParam("header", "x-apideck-app-id")
+                .ifPresent(param -> operationGlobals.putParam("header", "x-apideck-app-id", param));
         }
 
         Optional<SecuritySource> securitySource() {
@@ -134,7 +141,7 @@ public class AccountingAttachmentsUpload {
                     klass,
                     this.baseUrl,
                     "/accounting/attachments/{reference_type}/{reference_id}",
-                    request, this.sdkConfiguration.globals);
+                    request, this.operationGlobals);
             HTTPRequest req = new HTTPRequest(url, "POST");
             Object convertedRequest = Utils.convertToShape(
                     request,
@@ -156,8 +163,8 @@ public class AccountingAttachmentsUpload {
             req.addQueryParams(Utils.getQueryParams(
                     klass,
                     request,
-                    this.sdkConfiguration.globals));
-            req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
+                    this.operationGlobals));
+            req.addHeaders(Utils.getHeadersFromMetadata(request, this.operationGlobals));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();

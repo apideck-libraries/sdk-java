@@ -239,7 +239,7 @@ public class Apideck {
          * @return The builder instance.
          */
         public Builder consumerId(String consumerId) {
-            this.sdkConfiguration.globals.putParam("header", "consumerId", consumerId);
+            this.sdkConfiguration.globals.putParam("header", "x-apideck-consumer-id", consumerId);
             return this;
         }
 
@@ -250,7 +250,7 @@ public class Apideck {
          * @return The builder instance.
          */
         public Builder appId(String appId) {
-            this.sdkConfiguration.globals.putParam("header", "appId", appId);
+            this.sdkConfiguration.globals.putParam("header", "x-apideck-app-id", appId);
             return this;
         }
         // Visible for testing, may be accessed via reflection in tests

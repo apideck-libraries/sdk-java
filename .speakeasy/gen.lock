@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 38254260-287a-40b6-9ac5-c2fcb654c9cc
 management:
-  docChecksum: 4d3762f1431f5a9416d23130ae5bddef
-  docVersion: 10.21.15
-  speakeasyVersion: 1.658.2
-  generationVersion: 2.755.9
-  releaseVersion: 0.27.6
-  configChecksum: 222168d62574e76fde931b16441bb719
+  docChecksum: fec8c2730e982bf83c3099723c55988d
+  docVersion: 10.21.16
+  speakeasyVersion: 1.660.0
+  generationVersion: 2.760.2
+  releaseVersion: 0.27.7
+  configChecksum: e91115f5d020b72fcda97e832283d71c
   repoURL: https://github.com/apideck-libraries/sdk-java.git
   published: true
 features:
@@ -15,7 +15,7 @@ features:
     additionalDependencies: 0.1.0
     additionalProperties: 0.0.1
     constsAndDefaults: 0.1.1
-    core: 3.55.2
+    core: 3.55.3
     deprecations: 2.81.1
     downloadStreams: 0.1.1
     errors: 1.0.0
@@ -24,7 +24,7 @@ features:
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.83.0
-    globals: 2.82.2
+    globals: 2.82.4
     groups: 2.81.3
     inputOutputModels: 2.83.0
     methodServerURLs: 2.82.1
@@ -4603,6 +4603,7 @@ generatedFiles:
   - src/main/java/com/apideck/unify/utils/SerializedBody.java
   - src/main/java/com/apideck/unify/utils/SessionManager.java
   - src/main/java/com/apideck/unify/utils/SpeakeasyHTTPClient.java
+  - src/main/java/com/apideck/unify/utils/SpeakeasyLogger.java
   - src/main/java/com/apideck/unify/utils/SpeakeasyMetadata.java
   - src/main/java/com/apideck/unify/utils/StreamingParser.java
   - src/main/java/com/apideck/unify/utils/TypedObject.java

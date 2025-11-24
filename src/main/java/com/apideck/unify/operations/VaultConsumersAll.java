@@ -22,6 +22,7 @@ import com.apideck.unify.models.operations.VaultConsumersAllResponse;
 import com.apideck.unify.utils.AsyncRetries;
 import com.apideck.unify.utils.BackoffStrategy;
 import com.apideck.unify.utils.Blob;
+import com.apideck.unify.utils.Globals;
 import com.apideck.unify.utils.HTTPClient;
 import com.apideck.unify.utils.HTTPRequest;
 import com.apideck.unify.utils.Headers;
@@ -58,6 +59,7 @@ public class VaultConsumersAll {
         final RetryConfig retryConfig;
         final HTTPClient client;
         final Headers _headers;
+        final Globals operationGlobals;
 
         public Base(
                 SDKConfiguration sdkConfiguration, Optional<Options> options,
@@ -81,6 +83,9 @@ public class VaultConsumersAll {
                                     .build())
                             .build());
             this.client = this.sdkConfiguration.client();
+            this.operationGlobals = new Globals();
+            this.sdkConfiguration.globals.getParam("header", "x-apideck-app-id")
+                .ifPresent(param -> operationGlobals.putParam("header", "x-apideck-app-id", param));
         }
 
         Optional<SecuritySource> securitySource() {
@@ -125,8 +130,8 @@ public class VaultConsumersAll {
             req.addQueryParams(Utils.getQueryParams(
                     klass,
                     request,
-                    this.sdkConfiguration.globals));
-            req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
+                    this.operationGlobals));
+            req.addHeaders(Utils.getHeadersFromMetadata(request, this.operationGlobals));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();

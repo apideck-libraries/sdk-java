@@ -72,7 +72,6 @@ public class UnifyAutoConfig {
         // Default retry config for other strategies
         return RetryConfig.builder().build();
     }
-
     /**
      * Creates a {@code Consumer<String>} bean for HTTP debug logging if none exists.
      * This logger is used by the SpeakeasyHTTPClient for debug output when debug logging is enabled.
@@ -85,7 +84,6 @@ public class UnifyAutoConfig {
     public Consumer<String> httpLogger() {
         return System.out::println;
     }
-
     /**
      * Creates an HTTPClient bean if none exists.
      *
@@ -207,10 +205,10 @@ public class UnifyAutoConfig {
         // Populate globals from properties
         UnifyAutoConfigProperties.Globals globalProps = properties.getGlobals();
         if (globalProps.getConsumerId() != null) {
-            globals.putParam("header", "consumerId", globalProps.getConsumerId());
+            globals.putParam("header", "x-apideck-consumer-id", globalProps.getConsumerId());
         }
         if (globalProps.getAppId() != null) {
-            globals.putParam("header", "appId", globalProps.getAppId());
+            globals.putParam("header", "x-apideck-app-id", globalProps.getAppId());
         }
         
         return globals;

@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 38254260-287a-40b6-9ac5-c2fcb654c9cc
 management:
-  docChecksum: fec8c2730e982bf83c3099723c55988d
-  docVersion: 10.21.16
+  docChecksum: 32980ab2e16f23834a021f4a0220f18a
+  docVersion: 10.21.17
   speakeasyVersion: 1.660.0
   generationVersion: 2.760.2
-  releaseVersion: 0.27.7
-  configChecksum: e91115f5d020b72fcda97e832283d71c
+  releaseVersion: 0.27.8
+  configChecksum: 1f65afec567b61163e7f2cf3b065062e
   repoURL: https://github.com/apideck-libraries/sdk-java.git
   published: true
 features:

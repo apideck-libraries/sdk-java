@@ -62,6 +62,13 @@ public class TaxRateInput {
     private JsonNullable<Double> effectiveTaxRate;
 
     /**
+     * Country code according to ISO 3166-1 alpha-2.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("country")
+    private JsonNullable<String> country;
+
+    /**
      * Not compounded sum of the components of a tax rate
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -152,6 +159,7 @@ public class TaxRateInput {
             @JsonProperty("code") JsonNullable<String> code,
             @JsonProperty("description") JsonNullable<String> description,
             @JsonProperty("effective_tax_rate") JsonNullable<Double> effectiveTaxRate,
+            @JsonProperty("country") JsonNullable<String> country,
             @JsonProperty("total_tax_rate") JsonNullable<Double> totalTaxRate,
             @JsonProperty("tax_payable_account_id") JsonNullable<String> taxPayableAccountId,
             @JsonProperty("tax_remitted_account_id") JsonNullable<String> taxRemittedAccountId,
@@ -170,6 +178,7 @@ public class TaxRateInput {
         Utils.checkNotNull(code, "code");
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(effectiveTaxRate, "effectiveTaxRate");
+        Utils.checkNotNull(country, "country");
         Utils.checkNotNull(totalTaxRate, "totalTaxRate");
         Utils.checkNotNull(taxPayableAccountId, "taxPayableAccountId");
         Utils.checkNotNull(taxRemittedAccountId, "taxRemittedAccountId");
@@ -188,6 +197,7 @@ public class TaxRateInput {
         this.code = code;
         this.description = description;
         this.effectiveTaxRate = effectiveTaxRate;
+        this.country = country;
         this.totalTaxRate = totalTaxRate;
         this.taxPayableAccountId = taxPayableAccountId;
         this.taxRemittedAccountId = taxRemittedAccountId;
@@ -208,7 +218,8 @@ public class TaxRateInput {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), Optional.empty());
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -257,6 +268,14 @@ public class TaxRateInput {
     @JsonIgnore
     public JsonNullable<Double> effectiveTaxRate() {
         return effectiveTaxRate;
+    }
+
+    /**
+     * Country code according to ISO 3166-1 alpha-2.
+     */
+    @JsonIgnore
+    public JsonNullable<String> country() {
+        return country;
     }
 
     /**
@@ -468,6 +487,24 @@ public class TaxRateInput {
     public TaxRateInput withEffectiveTaxRate(JsonNullable<Double> effectiveTaxRate) {
         Utils.checkNotNull(effectiveTaxRate, "effectiveTaxRate");
         this.effectiveTaxRate = effectiveTaxRate;
+        return this;
+    }
+
+    /**
+     * Country code according to ISO 3166-1 alpha-2.
+     */
+    public TaxRateInput withCountry(String country) {
+        Utils.checkNotNull(country, "country");
+        this.country = JsonNullable.of(country);
+        return this;
+    }
+
+    /**
+     * Country code according to ISO 3166-1 alpha-2.
+     */
+    public TaxRateInput withCountry(JsonNullable<String> country) {
+        Utils.checkNotNull(country, "country");
+        this.country = country;
         return this;
     }
 
@@ -700,6 +737,7 @@ public class TaxRateInput {
             Utils.enhancedDeepEquals(this.code, other.code) &&
             Utils.enhancedDeepEquals(this.description, other.description) &&
             Utils.enhancedDeepEquals(this.effectiveTaxRate, other.effectiveTaxRate) &&
+            Utils.enhancedDeepEquals(this.country, other.country) &&
             Utils.enhancedDeepEquals(this.totalTaxRate, other.totalTaxRate) &&
             Utils.enhancedDeepEquals(this.taxPayableAccountId, other.taxPayableAccountId) &&
             Utils.enhancedDeepEquals(this.taxRemittedAccountId, other.taxRemittedAccountId) &&
@@ -719,10 +757,11 @@ public class TaxRateInput {
         return Utils.enhancedHash(
             id, displayId, name,
             code, description, effectiveTaxRate,
-            totalTaxRate, taxPayableAccountId, taxRemittedAccountId,
-            components, type, reportTaxType,
-            originalTaxRateId, status, rowVersion,
-            passThrough, subsidiaries, customFields);
+            country, totalTaxRate, taxPayableAccountId,
+            taxRemittedAccountId, components, type,
+            reportTaxType, originalTaxRateId, status,
+            rowVersion, passThrough, subsidiaries,
+            customFields);
     }
     
     @Override
@@ -734,6 +773,7 @@ public class TaxRateInput {
                 "code", code,
                 "description", description,
                 "effectiveTaxRate", effectiveTaxRate,
+                "country", country,
                 "totalTaxRate", totalTaxRate,
                 "taxPayableAccountId", taxPayableAccountId,
                 "taxRemittedAccountId", taxRemittedAccountId,
@@ -762,6 +802,8 @@ public class TaxRateInput {
         private JsonNullable<String> description = JsonNullable.undefined();
 
         private JsonNullable<Double> effectiveTaxRate = JsonNullable.undefined();
+
+        private JsonNullable<String> country = JsonNullable.undefined();
 
         private JsonNullable<Double> totalTaxRate = JsonNullable.undefined();
 
@@ -902,6 +944,25 @@ public class TaxRateInput {
         public Builder effectiveTaxRate(JsonNullable<Double> effectiveTaxRate) {
             Utils.checkNotNull(effectiveTaxRate, "effectiveTaxRate");
             this.effectiveTaxRate = effectiveTaxRate;
+            return this;
+        }
+
+
+        /**
+         * Country code according to ISO 3166-1 alpha-2.
+         */
+        public Builder country(String country) {
+            Utils.checkNotNull(country, "country");
+            this.country = JsonNullable.of(country);
+            return this;
+        }
+
+        /**
+         * Country code according to ISO 3166-1 alpha-2.
+         */
+        public Builder country(JsonNullable<String> country) {
+            Utils.checkNotNull(country, "country");
+            this.country = country;
             return this;
         }
 
@@ -1132,10 +1193,11 @@ public class TaxRateInput {
             return new TaxRateInput(
                 id, displayId, name,
                 code, description, effectiveTaxRate,
-                totalTaxRate, taxPayableAccountId, taxRemittedAccountId,
-                components, type, reportTaxType,
-                originalTaxRateId, status, rowVersion,
-                passThrough, subsidiaries, customFields);
+                country, totalTaxRate, taxPayableAccountId,
+                taxRemittedAccountId, components, type,
+                reportTaxType, originalTaxRateId, status,
+                rowVersion, passThrough, subsidiaries,
+                customFields);
         }
 
     }

@@ -43,6 +43,7 @@ public class Application {
                 .serviceId("salesforce")
                 .filter(BankAccountsFilter.builder()
                     .name("Main Operating")
+                    .accountType(BankAccountsFilterAccountType.CHECKING)
                     .status(BankAccountsFilterStatus.ACTIVE)
                     .build())
                 .sort(BankAccountsSort.builder()

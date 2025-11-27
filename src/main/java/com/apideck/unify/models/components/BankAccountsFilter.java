@@ -21,6 +21,12 @@ public class BankAccountsFilter {
     private Optional<String> name;
 
     /**
+     * Filter by account type
+     */
+    @SpeakeasyMetadata("queryParam:name=account_type")
+    private Optional<? extends BankAccountsFilterAccountType> accountType;
+
+    /**
      * Filter by account status
      */
     @SpeakeasyMetadata("queryParam:name=status")
@@ -29,15 +35,18 @@ public class BankAccountsFilter {
     @JsonCreator
     public BankAccountsFilter(
             Optional<String> name,
+            Optional<? extends BankAccountsFilterAccountType> accountType,
             Optional<? extends BankAccountsFilterStatus> status) {
         Utils.checkNotNull(name, "name");
+        Utils.checkNotNull(accountType, "accountType");
         Utils.checkNotNull(status, "status");
         this.name = name;
+        this.accountType = accountType;
         this.status = status;
     }
     
     public BankAccountsFilter() {
-        this(Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -46,6 +55,15 @@ public class BankAccountsFilter {
     @JsonIgnore
     public Optional<String> name() {
         return name;
+    }
+
+    /**
+     * Filter by account type
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<BankAccountsFilterAccountType> accountType() {
+        return (Optional<BankAccountsFilterAccountType>) accountType;
     }
 
     /**
@@ -82,6 +100,25 @@ public class BankAccountsFilter {
     }
 
     /**
+     * Filter by account type
+     */
+    public BankAccountsFilter withAccountType(BankAccountsFilterAccountType accountType) {
+        Utils.checkNotNull(accountType, "accountType");
+        this.accountType = Optional.ofNullable(accountType);
+        return this;
+    }
+
+
+    /**
+     * Filter by account type
+     */
+    public BankAccountsFilter withAccountType(Optional<? extends BankAccountsFilterAccountType> accountType) {
+        Utils.checkNotNull(accountType, "accountType");
+        this.accountType = accountType;
+        return this;
+    }
+
+    /**
      * Filter by account status
      */
     public BankAccountsFilter withStatus(BankAccountsFilterStatus status) {
@@ -111,19 +148,21 @@ public class BankAccountsFilter {
         BankAccountsFilter other = (BankAccountsFilter) o;
         return 
             Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.accountType, other.accountType) &&
             Utils.enhancedDeepEquals(this.status, other.status);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name, status);
+            name, accountType, status);
     }
     
     @Override
     public String toString() {
         return Utils.toString(BankAccountsFilter.class,
                 "name", name,
+                "accountType", accountType,
                 "status", status);
     }
 
@@ -131,6 +170,8 @@ public class BankAccountsFilter {
     public final static class Builder {
 
         private Optional<String> name = Optional.empty();
+
+        private Optional<? extends BankAccountsFilterAccountType> accountType = Optional.empty();
 
         private Optional<? extends BankAccountsFilterStatus> status = Optional.empty();
 
@@ -159,6 +200,25 @@ public class BankAccountsFilter {
 
 
         /**
+         * Filter by account type
+         */
+        public Builder accountType(BankAccountsFilterAccountType accountType) {
+            Utils.checkNotNull(accountType, "accountType");
+            this.accountType = Optional.ofNullable(accountType);
+            return this;
+        }
+
+        /**
+         * Filter by account type
+         */
+        public Builder accountType(Optional<? extends BankAccountsFilterAccountType> accountType) {
+            Utils.checkNotNull(accountType, "accountType");
+            this.accountType = accountType;
+            return this;
+        }
+
+
+        /**
          * Filter by account status
          */
         public Builder status(BankAccountsFilterStatus status) {
@@ -179,7 +239,7 @@ public class BankAccountsFilter {
         public BankAccountsFilter build() {
 
             return new BankAccountsFilter(
-                name, status);
+                name, accountType, status);
         }
 
     }

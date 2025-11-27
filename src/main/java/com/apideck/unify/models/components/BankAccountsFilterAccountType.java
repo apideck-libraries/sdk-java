@@ -9,22 +9,23 @@ import java.util.Objects;
 import java.util.Optional;
 
 /**
- * CreditNoteStatus
+ * BankAccountsFilterAccountType
  * 
- * <p>Status of credit notes
+ * <p>Filter by account type
  */
-public enum CreditNoteStatus {
-    DRAFT("draft"),
-    AUTHORISED("authorised"),
-    PARTIALLY_PAID("partially_paid"),
-    PAID("paid"),
-    VOIDED("voided"),
-    DELETED("deleted");
+public enum BankAccountsFilterAccountType {
+    CHECKING("checking"),
+    SAVINGS("savings"),
+    CREDIT_CARD("credit_card"),
+    MONEY_MARKET("money_market"),
+    LINE_OF_CREDIT("line_of_credit"),
+    OTHER("other"),
+    CASH("cash");
 
     @JsonValue
     private final String value;
 
-    CreditNoteStatus(String value) {
+    BankAccountsFilterAccountType(String value) {
         this.value = value;
     }
     
@@ -32,8 +33,8 @@ public enum CreditNoteStatus {
         return value;
     }
     
-    public static Optional<CreditNoteStatus> fromValue(String value) {
-        for (CreditNoteStatus o: CreditNoteStatus.values()) {
+    public static Optional<BankAccountsFilterAccountType> fromValue(String value) {
+        for (BankAccountsFilterAccountType o: BankAccountsFilterAccountType.values()) {
             if (Objects.deepEquals(o.value, value)) {
                 return Optional.of(o);
             }

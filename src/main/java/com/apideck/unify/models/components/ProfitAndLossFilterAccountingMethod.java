@@ -9,22 +9,18 @@ import java.util.Objects;
 import java.util.Optional;
 
 /**
- * CreditNoteStatus
+ * ProfitAndLossFilterAccountingMethod
  * 
- * <p>Status of credit notes
+ * <p>The accounting method used for the report: cash or accrual.
  */
-public enum CreditNoteStatus {
-    DRAFT("draft"),
-    AUTHORISED("authorised"),
-    PARTIALLY_PAID("partially_paid"),
-    PAID("paid"),
-    VOIDED("voided"),
-    DELETED("deleted");
+public enum ProfitAndLossFilterAccountingMethod {
+    CASH("cash"),
+    ACCRUAL("accrual");
 
     @JsonValue
     private final String value;
 
-    CreditNoteStatus(String value) {
+    ProfitAndLossFilterAccountingMethod(String value) {
         this.value = value;
     }
     
@@ -32,8 +28,8 @@ public enum CreditNoteStatus {
         return value;
     }
     
-    public static Optional<CreditNoteStatus> fromValue(String value) {
-        for (CreditNoteStatus o: CreditNoteStatus.values()) {
+    public static Optional<ProfitAndLossFilterAccountingMethod> fromValue(String value) {
+        for (ProfitAndLossFilterAccountingMethod o: ProfitAndLossFilterAccountingMethod.values()) {
             if (Objects.deepEquals(o.value, value)) {
                 return Optional.of(o);
             }

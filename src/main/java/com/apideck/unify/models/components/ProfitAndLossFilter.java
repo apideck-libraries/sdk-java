@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.Optional;
 
 
@@ -37,25 +38,34 @@ public class ProfitAndLossFilter {
     @SpeakeasyMetadata("queryParam:name=location_id")
     private Optional<String> locationId;
 
+    /**
+     * The accounting method used for the report: cash or accrual.
+     */
+    @SpeakeasyMetadata("queryParam:name=accounting_method")
+    private Optional<? extends ProfitAndLossFilterAccountingMethod> accountingMethod;
+
     @JsonCreator
     public ProfitAndLossFilter(
             Optional<String> customerId,
             Optional<String> startDate,
             Optional<String> endDate,
-            Optional<String> locationId) {
+            Optional<String> locationId,
+            Optional<? extends ProfitAndLossFilterAccountingMethod> accountingMethod) {
         Utils.checkNotNull(customerId, "customerId");
         Utils.checkNotNull(startDate, "startDate");
         Utils.checkNotNull(endDate, "endDate");
         Utils.checkNotNull(locationId, "locationId");
+        Utils.checkNotNull(accountingMethod, "accountingMethod");
         this.customerId = customerId;
         this.startDate = startDate;
         this.endDate = endDate;
         this.locationId = locationId;
+        this.accountingMethod = accountingMethod;
     }
     
     public ProfitAndLossFilter() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -88,6 +98,15 @@ public class ProfitAndLossFilter {
     @JsonIgnore
     public Optional<String> locationId() {
         return locationId;
+    }
+
+    /**
+     * The accounting method used for the report: cash or accrual.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<ProfitAndLossFilterAccountingMethod> accountingMethod() {
+        return (Optional<ProfitAndLossFilterAccountingMethod>) accountingMethod;
     }
 
     public static Builder builder() {
@@ -171,6 +190,25 @@ public class ProfitAndLossFilter {
         return this;
     }
 
+    /**
+     * The accounting method used for the report: cash or accrual.
+     */
+    public ProfitAndLossFilter withAccountingMethod(ProfitAndLossFilterAccountingMethod accountingMethod) {
+        Utils.checkNotNull(accountingMethod, "accountingMethod");
+        this.accountingMethod = Optional.ofNullable(accountingMethod);
+        return this;
+    }
+
+
+    /**
+     * The accounting method used for the report: cash or accrual.
+     */
+    public ProfitAndLossFilter withAccountingMethod(Optional<? extends ProfitAndLossFilterAccountingMethod> accountingMethod) {
+        Utils.checkNotNull(accountingMethod, "accountingMethod");
+        this.accountingMethod = accountingMethod;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -184,14 +222,15 @@ public class ProfitAndLossFilter {
             Utils.enhancedDeepEquals(this.customerId, other.customerId) &&
             Utils.enhancedDeepEquals(this.startDate, other.startDate) &&
             Utils.enhancedDeepEquals(this.endDate, other.endDate) &&
-            Utils.enhancedDeepEquals(this.locationId, other.locationId);
+            Utils.enhancedDeepEquals(this.locationId, other.locationId) &&
+            Utils.enhancedDeepEquals(this.accountingMethod, other.accountingMethod);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             customerId, startDate, endDate,
-            locationId);
+            locationId, accountingMethod);
     }
     
     @Override
@@ -200,7 +239,8 @@ public class ProfitAndLossFilter {
                 "customerId", customerId,
                 "startDate", startDate,
                 "endDate", endDate,
-                "locationId", locationId);
+                "locationId", locationId,
+                "accountingMethod", accountingMethod);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -213,6 +253,8 @@ public class ProfitAndLossFilter {
         private Optional<String> endDate = Optional.empty();
 
         private Optional<String> locationId = Optional.empty();
+
+        private Optional<? extends ProfitAndLossFilterAccountingMethod> accountingMethod = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -294,11 +336,30 @@ public class ProfitAndLossFilter {
             return this;
         }
 
+
+        /**
+         * The accounting method used for the report: cash or accrual.
+         */
+        public Builder accountingMethod(ProfitAndLossFilterAccountingMethod accountingMethod) {
+            Utils.checkNotNull(accountingMethod, "accountingMethod");
+            this.accountingMethod = Optional.ofNullable(accountingMethod);
+            return this;
+        }
+
+        /**
+         * The accounting method used for the report: cash or accrual.
+         */
+        public Builder accountingMethod(Optional<? extends ProfitAndLossFilterAccountingMethod> accountingMethod) {
+            Utils.checkNotNull(accountingMethod, "accountingMethod");
+            this.accountingMethod = accountingMethod;
+            return this;
+        }
+
         public ProfitAndLossFilter build() {
 
             return new ProfitAndLossFilter(
                 customerId, startDate, endDate,
-                locationId);
+                locationId, accountingMethod);
         }
 
     }

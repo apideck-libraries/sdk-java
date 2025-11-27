@@ -49,28 +49,37 @@ public class BalanceSheetFilter {
     @SpeakeasyMetadata("queryParam:name=location_id")
     private Optional<String> locationId;
 
+    /**
+     * The accounting method used for the report: cash or accrual.
+     */
+    @SpeakeasyMetadata("queryParam:name=accounting_method")
+    private Optional<? extends AccountingMethod> accountingMethod;
+
     @JsonCreator
     public BalanceSheetFilter(
             Optional<String> startDate,
             Optional<String> endDate,
             Optional<Long> periodCount,
             Optional<? extends PeriodType> periodType,
-            Optional<String> locationId) {
+            Optional<String> locationId,
+            Optional<? extends AccountingMethod> accountingMethod) {
         Utils.checkNotNull(startDate, "startDate");
         Utils.checkNotNull(endDate, "endDate");
         Utils.checkNotNull(periodCount, "periodCount");
         Utils.checkNotNull(periodType, "periodType");
         Utils.checkNotNull(locationId, "locationId");
+        Utils.checkNotNull(accountingMethod, "accountingMethod");
         this.startDate = startDate;
         this.endDate = endDate;
         this.periodCount = periodCount;
         this.periodType = periodType;
         this.locationId = locationId;
+        this.accountingMethod = accountingMethod;
     }
     
     public BalanceSheetFilter() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -115,6 +124,15 @@ public class BalanceSheetFilter {
     @JsonIgnore
     public Optional<String> locationId() {
         return locationId;
+    }
+
+    /**
+     * The accounting method used for the report: cash or accrual.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<AccountingMethod> accountingMethod() {
+        return (Optional<AccountingMethod>) accountingMethod;
     }
 
     public static Builder builder() {
@@ -223,6 +241,25 @@ public class BalanceSheetFilter {
         return this;
     }
 
+    /**
+     * The accounting method used for the report: cash or accrual.
+     */
+    public BalanceSheetFilter withAccountingMethod(AccountingMethod accountingMethod) {
+        Utils.checkNotNull(accountingMethod, "accountingMethod");
+        this.accountingMethod = Optional.ofNullable(accountingMethod);
+        return this;
+    }
+
+
+    /**
+     * The accounting method used for the report: cash or accrual.
+     */
+    public BalanceSheetFilter withAccountingMethod(Optional<? extends AccountingMethod> accountingMethod) {
+        Utils.checkNotNull(accountingMethod, "accountingMethod");
+        this.accountingMethod = accountingMethod;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -237,14 +274,15 @@ public class BalanceSheetFilter {
             Utils.enhancedDeepEquals(this.endDate, other.endDate) &&
             Utils.enhancedDeepEquals(this.periodCount, other.periodCount) &&
             Utils.enhancedDeepEquals(this.periodType, other.periodType) &&
-            Utils.enhancedDeepEquals(this.locationId, other.locationId);
+            Utils.enhancedDeepEquals(this.locationId, other.locationId) &&
+            Utils.enhancedDeepEquals(this.accountingMethod, other.accountingMethod);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             startDate, endDate, periodCount,
-            periodType, locationId);
+            periodType, locationId, accountingMethod);
     }
     
     @Override
@@ -254,7 +292,8 @@ public class BalanceSheetFilter {
                 "endDate", endDate,
                 "periodCount", periodCount,
                 "periodType", periodType,
-                "locationId", locationId);
+                "locationId", locationId,
+                "accountingMethod", accountingMethod);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -270,6 +309,8 @@ public class BalanceSheetFilter {
         private Optional<? extends PeriodType> periodType = Optional.empty();
 
         private Optional<String> locationId = Optional.empty();
+
+        private Optional<? extends AccountingMethod> accountingMethod = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -376,11 +417,30 @@ public class BalanceSheetFilter {
             return this;
         }
 
+
+        /**
+         * The accounting method used for the report: cash or accrual.
+         */
+        public Builder accountingMethod(AccountingMethod accountingMethod) {
+            Utils.checkNotNull(accountingMethod, "accountingMethod");
+            this.accountingMethod = Optional.ofNullable(accountingMethod);
+            return this;
+        }
+
+        /**
+         * The accounting method used for the report: cash or accrual.
+         */
+        public Builder accountingMethod(Optional<? extends AccountingMethod> accountingMethod) {
+            Utils.checkNotNull(accountingMethod, "accountingMethod");
+            this.accountingMethod = accountingMethod;
+            return this;
+        }
+
         public BalanceSheetFilter build() {
 
             return new BalanceSheetFilter(
                 startDate, endDate, periodCount,
-                periodType, locationId);
+                periodType, locationId, accountingMethod);
         }
 
     }

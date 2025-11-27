@@ -29,6 +29,13 @@ public class AccountingBankAccount {
     private String id;
 
     /**
+     * The third-party API ID of original entity
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("downstream_id")
+    private JsonNullable<String> downstreamId;
+
+    /**
      * Display ID for the bank account
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -203,6 +210,7 @@ public class AccountingBankAccount {
     @JsonCreator
     public AccountingBankAccount(
             @JsonProperty("id") String id,
+            @JsonProperty("downstream_id") JsonNullable<String> downstreamId,
             @JsonProperty("display_id") JsonNullable<String> displayId,
             @JsonProperty("name") JsonNullable<String> name,
             @JsonProperty("account_number") JsonNullable<String> accountNumber,
@@ -229,6 +237,7 @@ public class AccountingBankAccount {
             @JsonProperty("created_by") JsonNullable<String> createdBy,
             @JsonProperty("updated_by") JsonNullable<String> updatedBy) {
         Utils.checkNotNull(id, "id");
+        Utils.checkNotNull(downstreamId, "downstreamId");
         Utils.checkNotNull(displayId, "displayId");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(accountNumber, "accountNumber");
@@ -255,6 +264,7 @@ public class AccountingBankAccount {
         Utils.checkNotNull(createdBy, "createdBy");
         Utils.checkNotNull(updatedBy, "updatedBy");
         this.id = id;
+        this.downstreamId = downstreamId;
         this.displayId = displayId;
         this.name = name;
         this.accountNumber = accountNumber;
@@ -285,14 +295,14 @@ public class AccountingBankAccount {
     public AccountingBankAccount(
             String id) {
         this(id, JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -301,6 +311,14 @@ public class AccountingBankAccount {
     @JsonIgnore
     public String id() {
         return id;
+    }
+
+    /**
+     * The third-party API ID of original entity
+     */
+    @JsonIgnore
+    public JsonNullable<String> downstreamId() {
+        return downstreamId;
     }
 
     /**
@@ -515,6 +533,24 @@ public class AccountingBankAccount {
     public AccountingBankAccount withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
+        return this;
+    }
+
+    /**
+     * The third-party API ID of original entity
+     */
+    public AccountingBankAccount withDownstreamId(String downstreamId) {
+        Utils.checkNotNull(downstreamId, "downstreamId");
+        this.downstreamId = JsonNullable.of(downstreamId);
+        return this;
+    }
+
+    /**
+     * The third-party API ID of original entity
+     */
+    public AccountingBankAccount withDownstreamId(JsonNullable<String> downstreamId) {
+        Utils.checkNotNull(downstreamId, "downstreamId");
+        this.downstreamId = downstreamId;
         return this;
     }
 
@@ -971,6 +1007,7 @@ public class AccountingBankAccount {
         AccountingBankAccount other = (AccountingBankAccount) o;
         return 
             Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.downstreamId, other.downstreamId) &&
             Utils.enhancedDeepEquals(this.displayId, other.displayId) &&
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.accountNumber, other.accountNumber) &&
@@ -1001,21 +1038,22 @@ public class AccountingBankAccount {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, displayId, name,
-            accountNumber, accountType, ledgerAccount,
-            bankName, currency, balance,
-            availableBalance, overdraftLimit, routingNumber,
-            iban, bic, bsbNumber,
-            branchIdentifier, bankCode, country,
-            status, description, customFields,
-            customMappings, createdAt, updatedAt,
-            createdBy, updatedBy);
+            id, downstreamId, displayId,
+            name, accountNumber, accountType,
+            ledgerAccount, bankName, currency,
+            balance, availableBalance, overdraftLimit,
+            routingNumber, iban, bic,
+            bsbNumber, branchIdentifier, bankCode,
+            country, status, description,
+            customFields, customMappings, createdAt,
+            updatedAt, createdBy, updatedBy);
     }
     
     @Override
     public String toString() {
         return Utils.toString(AccountingBankAccount.class,
                 "id", id,
+                "downstreamId", downstreamId,
                 "displayId", displayId,
                 "name", name,
                 "accountNumber", accountNumber,
@@ -1047,6 +1085,8 @@ public class AccountingBankAccount {
     public final static class Builder {
 
         private String id;
+
+        private JsonNullable<String> downstreamId = JsonNullable.undefined();
 
         private JsonNullable<String> displayId = JsonNullable.undefined();
 
@@ -1109,6 +1149,25 @@ public class AccountingBankAccount {
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
+            return this;
+        }
+
+
+        /**
+         * The third-party API ID of original entity
+         */
+        public Builder downstreamId(String downstreamId) {
+            Utils.checkNotNull(downstreamId, "downstreamId");
+            this.downstreamId = JsonNullable.of(downstreamId);
+            return this;
+        }
+
+        /**
+         * The third-party API ID of original entity
+         */
+        public Builder downstreamId(JsonNullable<String> downstreamId) {
+            Utils.checkNotNull(downstreamId, "downstreamId");
+            this.downstreamId = downstreamId;
             return this;
         }
 
@@ -1580,15 +1639,15 @@ public class AccountingBankAccount {
         public AccountingBankAccount build() {
 
             return new AccountingBankAccount(
-                id, displayId, name,
-                accountNumber, accountType, ledgerAccount,
-                bankName, currency, balance,
-                availableBalance, overdraftLimit, routingNumber,
-                iban, bic, bsbNumber,
-                branchIdentifier, bankCode, country,
-                status, description, customFields,
-                customMappings, createdAt, updatedAt,
-                createdBy, updatedBy);
+                id, downstreamId, displayId,
+                name, accountNumber, accountType,
+                ledgerAccount, bankName, currency,
+                balance, availableBalance, overdraftLimit,
+                routingNumber, iban, bic,
+                bsbNumber, branchIdentifier, bankCode,
+                country, status, description,
+                customFields, customMappings, createdAt,
+                updatedAt, createdBy, updatedBy);
         }
 
     }

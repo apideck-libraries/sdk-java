@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 38254260-287a-40b6-9ac5-c2fcb654c9cc
 management:
-  docChecksum: 5a64228df36ed373024a7e607d7107cf
-  docVersion: 10.21.19
-  speakeasyVersion: 1.662.0
-  generationVersion: 2.763.3
-  releaseVersion: 0.27.10
-  configChecksum: 64c3b156ac4de5cbc110ba3fe8a4060b
+  docChecksum: 82d2a94bf2e121e55493fcc2bc072337
+  docVersion: 10.22.0
+  speakeasyVersion: 1.665.0
+  generationVersion: 2.767.2
+  releaseVersion: 0.28.0
+  configChecksum: 0b97a8c250832da7106cf4b0a6d52db5
   repoURL: https://github.com/apideck-libraries/sdk-java.git
   published: true
 features:
@@ -32,7 +32,7 @@ features:
     nullables: 0.1.0
     pagination: 1.0.0
     retries: 0.1.1
-    sdkHooks: 1.1.0
+    sdkHooks: 1.2.0
     typeOverrides: 2.81.1
     unions: 0.3.0
     uploadStreams: 0.1.0
@@ -20074,4 +20074,3 @@ examples:
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Java SDK Changes Detected:\n* `apideck.accounting.balanceSheet.get()`: \n  *  `request.filter` **Changed**\n* `apideck.accounting.profitAndLoss.get()`: \n  *  `request.filter` **Changed**\n* `apideck.accounting.bankAccounts.list()`: \n  *  `request.filter` **Changed**\n  *  `response.data.[].downstreamId` **Added**\n* `apideck.accounting.bankAccounts.get()`:  `response.data.downstreamId` **Added**\n"

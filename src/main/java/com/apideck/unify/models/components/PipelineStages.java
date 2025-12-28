@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
@@ -44,25 +45,35 @@ public class PipelineStages {
     @JsonProperty("display_order")
     private JsonNullable<Long> displayOrder;
 
+    /**
+     * Whether the Pipeline Stage is archived or not.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("archived")
+    private JsonNullable<Boolean> archived;
+
     @JsonCreator
     public PipelineStages(
             @JsonProperty("name") JsonNullable<String> name,
             @JsonProperty("value") JsonNullable<String> value,
             @JsonProperty("win_probability") JsonNullable<Long> winProbability,
-            @JsonProperty("display_order") JsonNullable<Long> displayOrder) {
+            @JsonProperty("display_order") JsonNullable<Long> displayOrder,
+            @JsonProperty("archived") JsonNullable<Boolean> archived) {
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(value, "value");
         Utils.checkNotNull(winProbability, "winProbability");
         Utils.checkNotNull(displayOrder, "displayOrder");
+        Utils.checkNotNull(archived, "archived");
         this.name = name;
         this.value = value;
         this.winProbability = winProbability;
         this.displayOrder = displayOrder;
+        this.archived = archived;
     }
     
     public PipelineStages() {
         this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -95,6 +106,14 @@ public class PipelineStages {
     @JsonIgnore
     public JsonNullable<Long> displayOrder() {
         return displayOrder;
+    }
+
+    /**
+     * Whether the Pipeline Stage is archived or not.
+     */
+    @JsonIgnore
+    public JsonNullable<Boolean> archived() {
+        return archived;
     }
 
     public static Builder builder() {
@@ -174,6 +193,24 @@ public class PipelineStages {
         return this;
     }
 
+    /**
+     * Whether the Pipeline Stage is archived or not.
+     */
+    public PipelineStages withArchived(boolean archived) {
+        Utils.checkNotNull(archived, "archived");
+        this.archived = JsonNullable.of(archived);
+        return this;
+    }
+
+    /**
+     * Whether the Pipeline Stage is archived or not.
+     */
+    public PipelineStages withArchived(JsonNullable<Boolean> archived) {
+        Utils.checkNotNull(archived, "archived");
+        this.archived = archived;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -187,14 +224,15 @@ public class PipelineStages {
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.value, other.value) &&
             Utils.enhancedDeepEquals(this.winProbability, other.winProbability) &&
-            Utils.enhancedDeepEquals(this.displayOrder, other.displayOrder);
+            Utils.enhancedDeepEquals(this.displayOrder, other.displayOrder) &&
+            Utils.enhancedDeepEquals(this.archived, other.archived);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             name, value, winProbability,
-            displayOrder);
+            displayOrder, archived);
     }
     
     @Override
@@ -203,7 +241,8 @@ public class PipelineStages {
                 "name", name,
                 "value", value,
                 "winProbability", winProbability,
-                "displayOrder", displayOrder);
+                "displayOrder", displayOrder,
+                "archived", archived);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -216,6 +255,8 @@ public class PipelineStages {
         private JsonNullable<Long> winProbability = JsonNullable.undefined();
 
         private JsonNullable<Long> displayOrder = JsonNullable.undefined();
+
+        private JsonNullable<Boolean> archived = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -297,11 +338,30 @@ public class PipelineStages {
             return this;
         }
 
+
+        /**
+         * Whether the Pipeline Stage is archived or not.
+         */
+        public Builder archived(boolean archived) {
+            Utils.checkNotNull(archived, "archived");
+            this.archived = JsonNullable.of(archived);
+            return this;
+        }
+
+        /**
+         * Whether the Pipeline Stage is archived or not.
+         */
+        public Builder archived(JsonNullable<Boolean> archived) {
+            Utils.checkNotNull(archived, "archived");
+            this.archived = archived;
+            return this;
+        }
+
         public PipelineStages build() {
 
             return new PipelineStages(
                 name, value, winProbability,
-                displayOrder);
+                displayOrder, archived);
         }
 
     }

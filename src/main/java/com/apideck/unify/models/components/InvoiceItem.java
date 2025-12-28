@@ -188,6 +188,13 @@ public class InvoiceItem {
     private JsonNullable<String> subsidiaryId;
 
     /**
+     * ID of the category of the item
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("category_id")
+    private JsonNullable<String> categoryId;
+
+    /**
      * The ID of the tax schedule
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -272,6 +279,7 @@ public class InvoiceItem {
             @JsonProperty("department_id") JsonNullable<String> departmentId,
             @JsonProperty("location_id") JsonNullable<String> locationId,
             @JsonProperty("subsidiary_id") JsonNullable<String> subsidiaryId,
+            @JsonProperty("category_id") JsonNullable<String> categoryId,
             @JsonProperty("tax_schedule_id") JsonNullable<String> taxScheduleId,
             @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings,
             @JsonProperty("row_version") JsonNullable<String> rowVersion,
@@ -305,6 +313,7 @@ public class InvoiceItem {
         Utils.checkNotNull(departmentId, "departmentId");
         Utils.checkNotNull(locationId, "locationId");
         Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+        Utils.checkNotNull(categoryId, "categoryId");
         Utils.checkNotNull(taxScheduleId, "taxScheduleId");
         Utils.checkNotNull(customMappings, "customMappings");
         Utils.checkNotNull(rowVersion, "rowVersion");
@@ -338,6 +347,7 @@ public class InvoiceItem {
         this.departmentId = departmentId;
         this.locationId = locationId;
         this.subsidiaryId = subsidiaryId;
+        this.categoryId = categoryId;
         this.taxScheduleId = taxScheduleId;
         this.customMappings = customMappings;
         this.rowVersion = rowVersion;
@@ -359,7 +369,8 @@ public class InvoiceItem {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -548,6 +559,14 @@ public class InvoiceItem {
     @JsonIgnore
     public JsonNullable<String> subsidiaryId() {
         return subsidiaryId;
+    }
+
+    /**
+     * ID of the category of the item
+     */
+    @JsonIgnore
+    public JsonNullable<String> categoryId() {
+        return categoryId;
     }
 
     /**
@@ -1035,6 +1054,24 @@ public class InvoiceItem {
     }
 
     /**
+     * ID of the category of the item
+     */
+    public InvoiceItem withCategoryId(String categoryId) {
+        Utils.checkNotNull(categoryId, "categoryId");
+        this.categoryId = JsonNullable.of(categoryId);
+        return this;
+    }
+
+    /**
+     * ID of the category of the item
+     */
+    public InvoiceItem withCategoryId(JsonNullable<String> categoryId) {
+        Utils.checkNotNull(categoryId, "categoryId");
+        this.categoryId = categoryId;
+        return this;
+    }
+
+    /**
      * The ID of the tax schedule
      */
     public InvoiceItem withTaxScheduleId(String taxScheduleId) {
@@ -1218,6 +1255,7 @@ public class InvoiceItem {
             Utils.enhancedDeepEquals(this.departmentId, other.departmentId) &&
             Utils.enhancedDeepEquals(this.locationId, other.locationId) &&
             Utils.enhancedDeepEquals(this.subsidiaryId, other.subsidiaryId) &&
+            Utils.enhancedDeepEquals(this.categoryId, other.categoryId) &&
             Utils.enhancedDeepEquals(this.taxScheduleId, other.taxScheduleId) &&
             Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
             Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion) &&
@@ -1239,9 +1277,10 @@ public class InvoiceItem {
             currency, assetAccount, incomeAccount,
             expenseAccount, trackingCategory, trackingCategories,
             active, departmentId, locationId,
-            subsidiaryId, taxScheduleId, customMappings,
-            rowVersion, updatedBy, createdBy,
-            updatedAt, createdAt, passThrough);
+            subsidiaryId, categoryId, taxScheduleId,
+            customMappings, rowVersion, updatedBy,
+            createdBy, updatedAt, createdAt,
+            passThrough);
     }
     
     @Override
@@ -1272,6 +1311,7 @@ public class InvoiceItem {
                 "departmentId", departmentId,
                 "locationId", locationId,
                 "subsidiaryId", subsidiaryId,
+                "categoryId", categoryId,
                 "taxScheduleId", taxScheduleId,
                 "customMappings", customMappings,
                 "rowVersion", rowVersion,
@@ -1335,6 +1375,8 @@ public class InvoiceItem {
         private JsonNullable<String> locationId = JsonNullable.undefined();
 
         private JsonNullable<String> subsidiaryId = JsonNullable.undefined();
+
+        private JsonNullable<String> categoryId = JsonNullable.undefined();
 
         private JsonNullable<String> taxScheduleId = JsonNullable.undefined();
 
@@ -1791,6 +1833,25 @@ public class InvoiceItem {
 
 
         /**
+         * ID of the category of the item
+         */
+        public Builder categoryId(String categoryId) {
+            Utils.checkNotNull(categoryId, "categoryId");
+            this.categoryId = JsonNullable.of(categoryId);
+            return this;
+        }
+
+        /**
+         * ID of the category of the item
+         */
+        public Builder categoryId(JsonNullable<String> categoryId) {
+            Utils.checkNotNull(categoryId, "categoryId");
+            this.categoryId = categoryId;
+            return this;
+        }
+
+
+        /**
          * The ID of the tax schedule
          */
         public Builder taxScheduleId(String taxScheduleId) {
@@ -1956,9 +2017,10 @@ public class InvoiceItem {
                 currency, assetAccount, incomeAccount,
                 expenseAccount, trackingCategory, trackingCategories,
                 active, departmentId, locationId,
-                subsidiaryId, taxScheduleId, customMappings,
-                rowVersion, updatedBy, createdBy,
-                updatedAt, createdAt, passThrough);
+                subsidiaryId, categoryId, taxScheduleId,
+                customMappings, rowVersion, updatedBy,
+                createdBy, updatedAt, createdAt,
+                passThrough);
         }
 
     }

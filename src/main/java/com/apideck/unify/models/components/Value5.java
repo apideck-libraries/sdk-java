@@ -85,9 +85,9 @@ public class Value5 {
 
         public _Deserializer() {
             super(Value5.class, false,
-                  TypeReferenceWithShape.of(new TypeReference<Double>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<String>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<Long>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<String>() {}, JsonShape.DEFAULT));
+                  TypeReferenceWithShape.of(new TypeReference<Double>() {}, JsonShape.DEFAULT));
         }
     }
     

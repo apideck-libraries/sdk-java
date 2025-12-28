@@ -1,5 +1,4 @@
-# Employees
-(*hris().employees()*)
+# Hris.Employees
 
 ## Overview
 
@@ -385,18 +384,18 @@ public class Application {
                             .type(EmailType.PRIMARY)
                             .build()))
                     .customFields(List.of(
-                        CustomField.builder()
+                        CustomField.of(CustomField1.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(Value.of("Uses Salesforce and Marketo"))
-                            .build(),
-                        CustomField.builder()
+                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
+                            .build()),
+                        CustomField.of(CustomField1.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(Value.of("Uses Salesforce and Marketo"))
-                            .build()))
+                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
+                            .build())))
                     .socialLinks(List.of(
                         SocialLink.builder()
                             .url("https://www.twitter.com/apideck")
@@ -812,24 +811,24 @@ public class Application {
                             .type(EmailType.PRIMARY)
                             .build()))
                     .customFields(List.of(
-                        CustomField.builder()
+                        CustomField.of(CustomField1.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(Value.of("Uses Salesforce and Marketo"))
-                            .build(),
-                        CustomField.builder()
+                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
+                            .build()),
+                        CustomField.of(CustomField1.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(Value.of("Uses Salesforce and Marketo"))
-                            .build(),
-                        CustomField.builder()
+                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
+                            .build()),
+                        CustomField.of(CustomField1.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(Value.of("Uses Salesforce and Marketo"))
-                            .build()))
+                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
+                            .build())))
                     .socialLinks(List.of(
                         SocialLink.builder()
                             .url("https://www.twitter.com/apideck")

@@ -9,9 +9,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
+import java.time.OffsetDateTime;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -51,27 +53,58 @@ public class Stages {
     @JsonProperty("display_order")
     private JsonNullable<Long> displayOrder;
 
+    /**
+     * Whether the Pipeline Stage is archived or not.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("archived")
+    private JsonNullable<Boolean> archived;
+
+    /**
+     * The date and time when the Pipeline Stage was created.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("created_at")
+    private JsonNullable<OffsetDateTime> createdAt;
+
+    /**
+     * The date and time when the Pipeline Stage was last updated.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("updated_at")
+    private JsonNullable<OffsetDateTime> updatedAt;
+
     @JsonCreator
     public Stages(
             @JsonProperty("id") JsonNullable<String> id,
             @JsonProperty("name") JsonNullable<String> name,
             @JsonProperty("value") JsonNullable<String> value,
             @JsonProperty("win_probability") JsonNullable<Long> winProbability,
-            @JsonProperty("display_order") JsonNullable<Long> displayOrder) {
+            @JsonProperty("display_order") JsonNullable<Long> displayOrder,
+            @JsonProperty("archived") JsonNullable<Boolean> archived,
+            @JsonProperty("created_at") JsonNullable<OffsetDateTime> createdAt,
+            @JsonProperty("updated_at") JsonNullable<OffsetDateTime> updatedAt) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(value, "value");
         Utils.checkNotNull(winProbability, "winProbability");
         Utils.checkNotNull(displayOrder, "displayOrder");
+        Utils.checkNotNull(archived, "archived");
+        Utils.checkNotNull(createdAt, "createdAt");
+        Utils.checkNotNull(updatedAt, "updatedAt");
         this.id = id;
         this.name = name;
         this.value = value;
         this.winProbability = winProbability;
         this.displayOrder = displayOrder;
+        this.archived = archived;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
     
     public Stages() {
         this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined());
     }
 
@@ -113,6 +146,30 @@ public class Stages {
     @JsonIgnore
     public JsonNullable<Long> displayOrder() {
         return displayOrder;
+    }
+
+    /**
+     * Whether the Pipeline Stage is archived or not.
+     */
+    @JsonIgnore
+    public JsonNullable<Boolean> archived() {
+        return archived;
+    }
+
+    /**
+     * The date and time when the Pipeline Stage was created.
+     */
+    @JsonIgnore
+    public JsonNullable<OffsetDateTime> createdAt() {
+        return createdAt;
+    }
+
+    /**
+     * The date and time when the Pipeline Stage was last updated.
+     */
+    @JsonIgnore
+    public JsonNullable<OffsetDateTime> updatedAt() {
+        return updatedAt;
     }
 
     public static Builder builder() {
@@ -210,6 +267,60 @@ public class Stages {
         return this;
     }
 
+    /**
+     * Whether the Pipeline Stage is archived or not.
+     */
+    public Stages withArchived(boolean archived) {
+        Utils.checkNotNull(archived, "archived");
+        this.archived = JsonNullable.of(archived);
+        return this;
+    }
+
+    /**
+     * Whether the Pipeline Stage is archived or not.
+     */
+    public Stages withArchived(JsonNullable<Boolean> archived) {
+        Utils.checkNotNull(archived, "archived");
+        this.archived = archived;
+        return this;
+    }
+
+    /**
+     * The date and time when the Pipeline Stage was created.
+     */
+    public Stages withCreatedAt(OffsetDateTime createdAt) {
+        Utils.checkNotNull(createdAt, "createdAt");
+        this.createdAt = JsonNullable.of(createdAt);
+        return this;
+    }
+
+    /**
+     * The date and time when the Pipeline Stage was created.
+     */
+    public Stages withCreatedAt(JsonNullable<OffsetDateTime> createdAt) {
+        Utils.checkNotNull(createdAt, "createdAt");
+        this.createdAt = createdAt;
+        return this;
+    }
+
+    /**
+     * The date and time when the Pipeline Stage was last updated.
+     */
+    public Stages withUpdatedAt(OffsetDateTime updatedAt) {
+        Utils.checkNotNull(updatedAt, "updatedAt");
+        this.updatedAt = JsonNullable.of(updatedAt);
+        return this;
+    }
+
+    /**
+     * The date and time when the Pipeline Stage was last updated.
+     */
+    public Stages withUpdatedAt(JsonNullable<OffsetDateTime> updatedAt) {
+        Utils.checkNotNull(updatedAt, "updatedAt");
+        this.updatedAt = updatedAt;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -224,14 +335,18 @@ public class Stages {
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.value, other.value) &&
             Utils.enhancedDeepEquals(this.winProbability, other.winProbability) &&
-            Utils.enhancedDeepEquals(this.displayOrder, other.displayOrder);
+            Utils.enhancedDeepEquals(this.displayOrder, other.displayOrder) &&
+            Utils.enhancedDeepEquals(this.archived, other.archived) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             id, name, value,
-            winProbability, displayOrder);
+            winProbability, displayOrder, archived,
+            createdAt, updatedAt);
     }
     
     @Override
@@ -241,7 +356,10 @@ public class Stages {
                 "name", name,
                 "value", value,
                 "winProbability", winProbability,
-                "displayOrder", displayOrder);
+                "displayOrder", displayOrder,
+                "archived", archived,
+                "createdAt", createdAt,
+                "updatedAt", updatedAt);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -256,6 +374,12 @@ public class Stages {
         private JsonNullable<Long> winProbability = JsonNullable.undefined();
 
         private JsonNullable<Long> displayOrder = JsonNullable.undefined();
+
+        private JsonNullable<Boolean> archived = JsonNullable.undefined();
+
+        private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
+
+        private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -356,11 +480,69 @@ public class Stages {
             return this;
         }
 
+
+        /**
+         * Whether the Pipeline Stage is archived or not.
+         */
+        public Builder archived(boolean archived) {
+            Utils.checkNotNull(archived, "archived");
+            this.archived = JsonNullable.of(archived);
+            return this;
+        }
+
+        /**
+         * Whether the Pipeline Stage is archived or not.
+         */
+        public Builder archived(JsonNullable<Boolean> archived) {
+            Utils.checkNotNull(archived, "archived");
+            this.archived = archived;
+            return this;
+        }
+
+
+        /**
+         * The date and time when the Pipeline Stage was created.
+         */
+        public Builder createdAt(OffsetDateTime createdAt) {
+            Utils.checkNotNull(createdAt, "createdAt");
+            this.createdAt = JsonNullable.of(createdAt);
+            return this;
+        }
+
+        /**
+         * The date and time when the Pipeline Stage was created.
+         */
+        public Builder createdAt(JsonNullable<OffsetDateTime> createdAt) {
+            Utils.checkNotNull(createdAt, "createdAt");
+            this.createdAt = createdAt;
+            return this;
+        }
+
+
+        /**
+         * The date and time when the Pipeline Stage was last updated.
+         */
+        public Builder updatedAt(OffsetDateTime updatedAt) {
+            Utils.checkNotNull(updatedAt, "updatedAt");
+            this.updatedAt = JsonNullable.of(updatedAt);
+            return this;
+        }
+
+        /**
+         * The date and time when the Pipeline Stage was last updated.
+         */
+        public Builder updatedAt(JsonNullable<OffsetDateTime> updatedAt) {
+            Utils.checkNotNull(updatedAt, "updatedAt");
+            this.updatedAt = updatedAt;
+            return this;
+        }
+
         public Stages build() {
 
             return new Stages(
                 id, name, value,
-                winProbability, displayOrder);
+                winProbability, displayOrder, archived,
+                createdAt, updatedAt);
         }
 
     }

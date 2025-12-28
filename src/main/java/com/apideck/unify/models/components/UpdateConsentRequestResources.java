@@ -80,8 +80,8 @@ public class UpdateConsentRequestResources {
 
         public _Deserializer() {
             super(UpdateConsentRequestResources.class, false,
-                  TypeReferenceWithShape.of(new TypeReference<Two>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<Map<String, Map<String, One>>>() {}, JsonShape.DEFAULT));
+                  TypeReferenceWithShape.of(new TypeReference<Map<String, Map<String, One>>>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<Two>() {}, JsonShape.DEFAULT));
         }
     }
     

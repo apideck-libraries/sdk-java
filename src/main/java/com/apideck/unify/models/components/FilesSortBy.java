@@ -14,6 +14,7 @@ import java.util.Optional;
  * <p>The field on which to sort the Files
  */
 public enum FilesSortBy {
+    CREATED_AT("created_at"),
     UPDATED_AT("updated_at"),
     NAME("name");
 

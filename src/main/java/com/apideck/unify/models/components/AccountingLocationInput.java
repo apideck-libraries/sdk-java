@@ -26,6 +26,13 @@ public class AccountingLocationInput {
     private JsonNullable<String> parentId;
 
     /**
+     * Id to be displayed.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("display_id")
+    private JsonNullable<String> displayId;
+
+    /**
      * The name of the company.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -75,6 +82,7 @@ public class AccountingLocationInput {
     @JsonCreator
     public AccountingLocationInput(
             @JsonProperty("parent_id") JsonNullable<String> parentId,
+            @JsonProperty("display_id") JsonNullable<String> displayId,
             @JsonProperty("company_name") JsonNullable<String> companyName,
             @JsonProperty("display_name") JsonNullable<String> displayName,
             @JsonProperty("status") Optional<? extends LocationStatus> status,
@@ -83,6 +91,7 @@ public class AccountingLocationInput {
             @JsonProperty("row_version") JsonNullable<String> rowVersion,
             @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
         Utils.checkNotNull(parentId, "parentId");
+        Utils.checkNotNull(displayId, "displayId");
         Utils.checkNotNull(companyName, "companyName");
         Utils.checkNotNull(displayName, "displayName");
         Utils.checkNotNull(status, "status");
@@ -91,6 +100,7 @@ public class AccountingLocationInput {
         Utils.checkNotNull(rowVersion, "rowVersion");
         Utils.checkNotNull(passThrough, "passThrough");
         this.parentId = parentId;
+        this.displayId = displayId;
         this.companyName = companyName;
         this.displayName = displayName;
         this.status = status;
@@ -102,8 +112,8 @@ public class AccountingLocationInput {
     
     public AccountingLocationInput() {
         this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            JsonNullable.undefined(), Optional.empty());
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -112,6 +122,14 @@ public class AccountingLocationInput {
     @JsonIgnore
     public JsonNullable<String> parentId() {
         return parentId;
+    }
+
+    /**
+     * Id to be displayed.
+     */
+    @JsonIgnore
+    public JsonNullable<String> displayId() {
+        return displayId;
     }
 
     /**
@@ -190,6 +208,24 @@ public class AccountingLocationInput {
     public AccountingLocationInput withParentId(JsonNullable<String> parentId) {
         Utils.checkNotNull(parentId, "parentId");
         this.parentId = parentId;
+        return this;
+    }
+
+    /**
+     * Id to be displayed.
+     */
+    public AccountingLocationInput withDisplayId(String displayId) {
+        Utils.checkNotNull(displayId, "displayId");
+        this.displayId = JsonNullable.of(displayId);
+        return this;
+    }
+
+    /**
+     * Id to be displayed.
+     */
+    public AccountingLocationInput withDisplayId(JsonNullable<String> displayId) {
+        Utils.checkNotNull(displayId, "displayId");
+        this.displayId = displayId;
         return this;
     }
 
@@ -326,6 +362,7 @@ public class AccountingLocationInput {
         AccountingLocationInput other = (AccountingLocationInput) o;
         return 
             Utils.enhancedDeepEquals(this.parentId, other.parentId) &&
+            Utils.enhancedDeepEquals(this.displayId, other.displayId) &&
             Utils.enhancedDeepEquals(this.companyName, other.companyName) &&
             Utils.enhancedDeepEquals(this.displayName, other.displayName) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
@@ -338,15 +375,16 @@ public class AccountingLocationInput {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            parentId, companyName, displayName,
-            status, addresses, subsidiaries,
-            rowVersion, passThrough);
+            parentId, displayId, companyName,
+            displayName, status, addresses,
+            subsidiaries, rowVersion, passThrough);
     }
     
     @Override
     public String toString() {
         return Utils.toString(AccountingLocationInput.class,
                 "parentId", parentId,
+                "displayId", displayId,
                 "companyName", companyName,
                 "displayName", displayName,
                 "status", status,
@@ -360,6 +398,8 @@ public class AccountingLocationInput {
     public final static class Builder {
 
         private JsonNullable<String> parentId = JsonNullable.undefined();
+
+        private JsonNullable<String> displayId = JsonNullable.undefined();
 
         private JsonNullable<String> companyName = JsonNullable.undefined();
 
@@ -395,6 +435,25 @@ public class AccountingLocationInput {
         public Builder parentId(JsonNullable<String> parentId) {
             Utils.checkNotNull(parentId, "parentId");
             this.parentId = parentId;
+            return this;
+        }
+
+
+        /**
+         * Id to be displayed.
+         */
+        public Builder displayId(String displayId) {
+            Utils.checkNotNull(displayId, "displayId");
+            this.displayId = JsonNullable.of(displayId);
+            return this;
+        }
+
+        /**
+         * Id to be displayed.
+         */
+        public Builder displayId(JsonNullable<String> displayId) {
+            Utils.checkNotNull(displayId, "displayId");
+            this.displayId = displayId;
             return this;
         }
 
@@ -526,9 +585,9 @@ public class AccountingLocationInput {
         public AccountingLocationInput build() {
 
             return new AccountingLocationInput(
-                parentId, companyName, displayName,
-                status, addresses, subsidiaries,
-                rowVersion, passThrough);
+                parentId, displayId, companyName,
+                displayName, status, addresses,
+                subsidiaries, rowVersion, passThrough);
         }
 
     }

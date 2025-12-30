@@ -1,5 +1,4 @@
-# BankAccounts
-(*accounting().bankAccounts()*)
+# Accounting.BankAccounts
 
 ## Overview
 
@@ -142,12 +141,12 @@ public class Application {
                     .status(AccountingBankAccountStatus.ACTIVE)
                     .description("Primary operating account for daily transactions")
                     .customFields(List.of(
-                        CustomField.builder()
+                        CustomField.of(CustomField1.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(Value.of("Uses Salesforce and Marketo"))
-                            .build()))
+                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
+                            .build())))
                     .build())
                 .serviceId("salesforce")
                 .build();
@@ -195,6 +194,8 @@ Get Bank Account
 package hello.world;
 
 import com.apideck.unify.Apideck;
+import com.apideck.unify.models.components.BankAccountFilter;
+import com.apideck.unify.models.components.BankAccountFilterAccountType;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingBankAccountsOneRequest;
 import com.apideck.unify.models.operations.AccountingBankAccountsOneResponse;
@@ -212,6 +213,9 @@ public class Application {
 
         AccountingBankAccountsOneRequest req = AccountingBankAccountsOneRequest.builder()
                 .id("<id>")
+                .filter(BankAccountFilter.builder()
+                    .accountType(BankAccountFilterAccountType.CHECKING)
+                    .build())
                 .serviceId("salesforce")
                 .fields("id,updated_at")
                 .build();
@@ -306,12 +310,12 @@ public class Application {
                     .status(AccountingBankAccountStatus.ACTIVE)
                     .description("Primary operating account for daily transactions")
                     .customFields(List.of(
-                        CustomField.builder()
+                        CustomField.of(CustomField1.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(Value.of("Uses Salesforce and Marketo"))
-                            .build()))
+                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
+                            .build())))
                     .build())
                 .serviceId("salesforce")
                 .build();

@@ -50,7 +50,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.apideck:unify:0.28.0'
+implementation 'com.apideck:unify:0.29.0'
 ```
 
 Maven:
@@ -58,7 +58,7 @@ Maven:
 <dependency>
     <groupId>com.apideck</groupId>
     <artifactId>unify</artifactId>
-    <version>0.28.0</version>
+    <version>0.29.0</version>
 </dependency>
 ```
 
@@ -189,15 +189,15 @@ public class Application {
 <details open>
 <summary>Available methods</summary>
 
-#### [accounting().agedCreditors()](docs/sdks/agedcreditors/README.md)
+### [Accounting.AgedCreditors](docs/sdks/agedcreditors/README.md)
 
 * [get](docs/sdks/agedcreditors/README.md#get) - Get Aged Creditors
 
-#### [accounting().agedDebtors()](docs/sdks/ageddebtors/README.md)
+### [Accounting.AgedDebtors](docs/sdks/ageddebtors/README.md)
 
 * [get](docs/sdks/ageddebtors/README.md#get) - Get Aged Debtors
 
-#### [accounting().attachments()](docs/sdks/attachments/README.md)
+### [Accounting.Attachments](docs/sdks/attachments/README.md)
 
 * [list](docs/sdks/attachments/README.md#list) - List Attachments
 * [upload](docs/sdks/attachments/README.md#upload) - Upload attachment
@@ -205,11 +205,11 @@ public class Application {
 * [delete](docs/sdks/attachments/README.md#delete) - Delete Attachment
 * [download](docs/sdks/attachments/README.md#download) - Download Attachment
 
-#### [accounting().balanceSheet()](docs/sdks/balancesheet/README.md)
+### [Accounting.BalanceSheet](docs/sdks/balancesheet/README.md)
 
 * [get](docs/sdks/balancesheet/README.md#get) - Get BalanceSheet
 
-#### [accounting().bankAccounts()](docs/sdks/bankaccounts/README.md)
+### [Accounting.BankAccounts](docs/sdks/bankaccounts/README.md)
 
 * [list](docs/sdks/bankaccounts/README.md#list) - List Bank Accounts
 * [create](docs/sdks/bankaccounts/README.md#create) - Create Bank Account
@@ -217,7 +217,7 @@ public class Application {
 * [update](docs/sdks/bankaccounts/README.md#update) - Update Bank Account
 * [delete](docs/sdks/bankaccounts/README.md#delete) - Delete Bank Account
 
-#### [accounting().bankFeedAccounts()](docs/sdks/bankfeedaccounts/README.md)
+### [Accounting.BankFeedAccounts](docs/sdks/bankfeedaccounts/README.md)
 
 * [list](docs/sdks/bankfeedaccounts/README.md#list) - List Bank Feed Accounts
 * [create](docs/sdks/bankfeedaccounts/README.md#create) - Create Bank Feed Account
@@ -225,7 +225,7 @@ public class Application {
 * [update](docs/sdks/bankfeedaccounts/README.md#update) - Update Bank Feed Account
 * [delete](docs/sdks/bankfeedaccounts/README.md#delete) - Delete Bank Feed Account
 
-#### [accounting().bankFeedStatements()](docs/sdks/bankfeedstatements/README.md)
+### [Accounting.BankFeedStatements](docs/sdks/bankfeedstatements/README.md)
 
 * [list](docs/sdks/bankfeedstatements/README.md#list) - List Bank Feed Statements
 * [create](docs/sdks/bankfeedstatements/README.md#create) - Create Bank Feed Statement
@@ -233,7 +233,7 @@ public class Application {
 * [update](docs/sdks/bankfeedstatements/README.md#update) - Update Bank Feed Statement
 * [delete](docs/sdks/bankfeedstatements/README.md#delete) - Delete Bank Feed Statement
 
-#### [accounting().billPayments()](docs/sdks/billpayments/README.md)
+### [Accounting.BillPayments](docs/sdks/billpayments/README.md)
 
 * [list](docs/sdks/billpayments/README.md#list) - List Bill Payments
 * [create](docs/sdks/billpayments/README.md#create) - Create Bill Payment
@@ -241,7 +241,7 @@ public class Application {
 * [update](docs/sdks/billpayments/README.md#update) - Update Bill Payment
 * [delete](docs/sdks/billpayments/README.md#delete) - Delete Bill Payment
 
-#### [accounting().bills()](docs/sdks/bills/README.md)
+### [Accounting.Bills](docs/sdks/bills/README.md)
 
 * [list](docs/sdks/bills/README.md#list) - List Bills
 * [create](docs/sdks/bills/README.md#create) - Create Bill
@@ -249,16 +249,16 @@ public class Application {
 * [update](docs/sdks/bills/README.md#update) - Update Bill
 * [delete](docs/sdks/bills/README.md#delete) - Delete Bill
 
-#### [accounting().categories()](docs/sdks/categories/README.md)
+### [Accounting.Categories](docs/sdks/categories/README.md)
 
 * [list](docs/sdks/categories/README.md#list) - List Categories
 * [get](docs/sdks/categories/README.md#get) - Get Category
 
-#### [accounting().companyInfo()](docs/sdks/companyinfo/README.md)
+### [Accounting.CompanyInfo](docs/sdks/companyinfo/README.md)
 
 * [get](docs/sdks/companyinfo/README.md#get) - Get company info
 
-#### [accounting().creditNotes()](docs/sdks/creditnotes/README.md)
+### [Accounting.CreditNotes](docs/sdks/creditnotes/README.md)
 
 * [list](docs/sdks/creditnotes/README.md#list) - List Credit Notes
 * [create](docs/sdks/creditnotes/README.md#create) - Create Credit Note
@@ -266,7 +266,7 @@ public class Application {
 * [update](docs/sdks/creditnotes/README.md#update) - Update Credit Note
 * [delete](docs/sdks/creditnotes/README.md#delete) - Delete Credit Note
 
-#### [accounting().customers()](docs/sdks/customers/README.md)
+### [Accounting.Customers](docs/sdks/customers/README.md)
 
 * [list](docs/sdks/customers/README.md#list) - List Customers
 * [create](docs/sdks/customers/README.md#create) - Create Customer
@@ -274,7 +274,7 @@ public class Application {
 * [update](docs/sdks/customers/README.md#update) - Update Customer
 * [delete](docs/sdks/customers/README.md#delete) - Delete Customer
 
-#### [accounting().departments()](docs/sdks/departments/README.md)
+### [Accounting.Departments](docs/sdks/departments/README.md)
 
 * [list](docs/sdks/departments/README.md#list) - List Departments
 * [create](docs/sdks/departments/README.md#create) - Create Department
@@ -282,7 +282,7 @@ public class Application {
 * [update](docs/sdks/departments/README.md#update) - Update Department
 * [delete](docs/sdks/departments/README.md#delete) - Delete Department
 
-#### [accounting().expenses()](docs/sdks/expenses/README.md)
+### [Accounting.Expenses](docs/sdks/expenses/README.md)
 
 * [list](docs/sdks/expenses/README.md#list) - List Expenses
 * [create](docs/sdks/expenses/README.md#create) - Create Expense
@@ -290,7 +290,7 @@ public class Application {
 * [update](docs/sdks/expenses/README.md#update) - Update Expense
 * [delete](docs/sdks/expenses/README.md#delete) - Delete Expense
 
-#### [accounting().invoiceItems()](docs/sdks/invoiceitems/README.md)
+### [Accounting.InvoiceItems](docs/sdks/invoiceitems/README.md)
 
 * [list](docs/sdks/invoiceitems/README.md#list) - List Invoice Items
 * [create](docs/sdks/invoiceitems/README.md#create) - Create Invoice Item
@@ -298,7 +298,7 @@ public class Application {
 * [update](docs/sdks/invoiceitems/README.md#update) - Update Invoice Item
 * [delete](docs/sdks/invoiceitems/README.md#delete) - Delete Invoice Item
 
-#### [accounting().invoices()](docs/sdks/invoices/README.md)
+### [Accounting.Invoices](docs/sdks/invoices/README.md)
 
 * [list](docs/sdks/invoices/README.md#list) - List Invoices
 * [create](docs/sdks/invoices/README.md#create) - Create Invoice
@@ -306,7 +306,7 @@ public class Application {
 * [update](docs/sdks/invoices/README.md#update) - Update Invoice
 * [delete](docs/sdks/invoices/README.md#delete) - Delete Invoice
 
-#### [accounting().journalEntries()](docs/sdks/journalentries/README.md)
+### [Accounting.JournalEntries](docs/sdks/journalentries/README.md)
 
 * [list](docs/sdks/journalentries/README.md#list) - List Journal Entries
 * [create](docs/sdks/journalentries/README.md#create) - Create Journal Entry
@@ -314,7 +314,7 @@ public class Application {
 * [update](docs/sdks/journalentries/README.md#update) - Update Journal Entry
 * [delete](docs/sdks/journalentries/README.md#delete) - Delete Journal Entry
 
-#### [accounting().ledgerAccounts()](docs/sdks/ledgeraccounts/README.md)
+### [Accounting.LedgerAccounts](docs/sdks/ledgeraccounts/README.md)
 
 * [list](docs/sdks/ledgeraccounts/README.md#list) - List Ledger Accounts
 * [create](docs/sdks/ledgeraccounts/README.md#create) - Create Ledger Account
@@ -322,7 +322,7 @@ public class Application {
 * [update](docs/sdks/ledgeraccounts/README.md#update) - Update Ledger Account
 * [delete](docs/sdks/ledgeraccounts/README.md#delete) - Delete Ledger Account
 
-#### [accounting().locations()](docs/sdks/locations/README.md)
+### [Accounting.Locations](docs/sdks/locations/README.md)
 
 * [list](docs/sdks/locations/README.md#list) - List Locations
 * [create](docs/sdks/locations/README.md#create) - Create Location
@@ -330,7 +330,7 @@ public class Application {
 * [update](docs/sdks/locations/README.md#update) - Update Location
 * [delete](docs/sdks/locations/README.md#delete) - Delete Location
 
-#### [accounting().payments()](docs/sdks/payments/README.md)
+### [Accounting.Payments](docs/sdks/payments/README.md)
 
 * [list](docs/sdks/payments/README.md#list) - List Payments
 * [create](docs/sdks/payments/README.md#create) - Create Payment
@@ -338,11 +338,11 @@ public class Application {
 * [update](docs/sdks/payments/README.md#update) - Update Payment
 * [delete](docs/sdks/payments/README.md#delete) - Delete Payment
 
-#### [accounting().profitAndLoss()](docs/sdks/profitandloss/README.md)
+### [Accounting.ProfitAndLoss](docs/sdks/profitandloss/README.md)
 
 * [get](docs/sdks/profitandloss/README.md#get) - Get Profit and Loss
 
-#### [accounting().projects()](docs/sdks/projects/README.md)
+### [Accounting.Projects](docs/sdks/projects/README.md)
 
 * [list](docs/sdks/projects/README.md#list) - List projects
 * [create](docs/sdks/projects/README.md#create) - Create project
@@ -350,7 +350,7 @@ public class Application {
 * [update](docs/sdks/projects/README.md#update) - Update project
 * [delete](docs/sdks/projects/README.md#delete) - Delete project
 
-#### [accounting().purchaseOrders()](docs/sdks/purchaseorders/README.md)
+### [Accounting.PurchaseOrders](docs/sdks/purchaseorders/README.md)
 
 * [list](docs/sdks/purchaseorders/README.md#list) - List Purchase Orders
 * [create](docs/sdks/purchaseorders/README.md#create) - Create Purchase Order
@@ -358,7 +358,7 @@ public class Application {
 * [update](docs/sdks/purchaseorders/README.md#update) - Update Purchase Order
 * [delete](docs/sdks/purchaseorders/README.md#delete) - Delete Purchase Order
 
-#### [accounting().quotes()](docs/sdks/quotes/README.md)
+### [Accounting.Quotes](docs/sdks/quotes/README.md)
 
 * [list](docs/sdks/quotes/README.md#list) - List Quotes
 * [create](docs/sdks/quotes/README.md#create) - Create Quote
@@ -366,7 +366,7 @@ public class Application {
 * [update](docs/sdks/quotes/README.md#update) - Update Quote
 * [delete](docs/sdks/quotes/README.md#delete) - Delete Quote
 
-#### [accounting().subsidiaries()](docs/sdks/subsidiaries/README.md)
+### [Accounting.Subsidiaries](docs/sdks/subsidiaries/README.md)
 
 * [list](docs/sdks/subsidiaries/README.md#list) - List Subsidiaries
 * [create](docs/sdks/subsidiaries/README.md#create) - Create Subsidiary
@@ -374,7 +374,7 @@ public class Application {
 * [update](docs/sdks/subsidiaries/README.md#update) - Update Subsidiary
 * [delete](docs/sdks/subsidiaries/README.md#delete) - Delete Subsidiary
 
-#### [accounting().suppliers()](docs/sdks/suppliers/README.md)
+### [Accounting.Suppliers](docs/sdks/suppliers/README.md)
 
 * [list](docs/sdks/suppliers/README.md#list) - List Suppliers
 * [create](docs/sdks/suppliers/README.md#create) - Create Supplier
@@ -382,7 +382,7 @@ public class Application {
 * [update](docs/sdks/suppliers/README.md#update) - Update Supplier
 * [delete](docs/sdks/suppliers/README.md#delete) - Delete Supplier
 
-#### [accounting().taxRates()](docs/sdks/taxrates/README.md)
+### [Accounting.TaxRates](docs/sdks/taxrates/README.md)
 
 * [list](docs/sdks/taxrates/README.md#list) - List Tax Rates
 * [create](docs/sdks/taxrates/README.md#create) - Create Tax Rate
@@ -390,7 +390,7 @@ public class Application {
 * [update](docs/sdks/taxrates/README.md#update) - Update Tax Rate
 * [delete](docs/sdks/taxrates/README.md#delete) - Delete Tax Rate
 
-#### [accounting().trackingCategories()](docs/sdks/trackingcategories/README.md)
+### [Accounting.TrackingCategories](docs/sdks/trackingcategories/README.md)
 
 * [list](docs/sdks/trackingcategories/README.md#list) - List Tracking Categories
 * [create](docs/sdks/trackingcategories/README.md#create) - Create Tracking Category
@@ -398,7 +398,7 @@ public class Application {
 * [update](docs/sdks/trackingcategories/README.md#update) - Update Tracking Category
 * [delete](docs/sdks/trackingcategories/README.md#delete) - Delete Tracking Category
 
-#### [ats().applicants()](docs/sdks/applicants/README.md)
+### [Ats.Applicants](docs/sdks/applicants/README.md)
 
 * [list](docs/sdks/applicants/README.md#list) - List Applicants
 * [create](docs/sdks/applicants/README.md#create) - Create Applicant
@@ -406,7 +406,7 @@ public class Application {
 * [update](docs/sdks/applicants/README.md#update) - Update Applicant
 * [delete](docs/sdks/applicants/README.md#delete) - Delete Applicant
 
-#### [ats().applications()](docs/sdks/applications/README.md)
+### [Ats.Applications](docs/sdks/applications/README.md)
 
 * [list](docs/sdks/applications/README.md#list) - List Applications
 * [create](docs/sdks/applications/README.md#create) - Create Application
@@ -414,38 +414,38 @@ public class Application {
 * [update](docs/sdks/applications/README.md#update) - Update Application
 * [delete](docs/sdks/applications/README.md#delete) - Delete Application
 
-#### [ats().jobs()](docs/sdks/jobs/README.md)
+### [Ats.Jobs](docs/sdks/jobs/README.md)
 
 * [list](docs/sdks/jobs/README.md#list) - List Jobs
 * [get](docs/sdks/jobs/README.md#get) - Get Job
 
-#### [connector().apiResourceCoverage()](docs/sdks/apiresourcecoverage/README.md)
+### [Connector.ApiResourceCoverage](docs/sdks/apiresourcecoverage/README.md)
 
 * [get](docs/sdks/apiresourcecoverage/README.md#get) - Get API Resource Coverage
 
-#### [connector().apiResources()](docs/sdks/apiresources/README.md)
+### [Connector.ApiResources](docs/sdks/apiresources/README.md)
 
 * [get](docs/sdks/apiresources/README.md#get) - Get API Resource
 
-#### [connector().apis()](docs/sdks/apis/README.md)
+### [Connector.Apis](docs/sdks/apis/README.md)
 
 * [list](docs/sdks/apis/README.md#list) - List APIs
 * [get](docs/sdks/apis/README.md#get) - Get API
 
-#### [connector().connectorDocs()](docs/sdks/connectordocs/README.md)
+### [Connector.ConnectorDocs](docs/sdks/connectordocs/README.md)
 
 * [get](docs/sdks/connectordocs/README.md#get) - Get Connector Doc content
 
-#### [connector().connectorResources()](docs/sdks/connectorresources/README.md)
+### [Connector.ConnectorResources](docs/sdks/connectorresources/README.md)
 
 * [get](docs/sdks/connectorresources/README.md#get) - Get Connector Resource
 
-#### [connector().connectors()](docs/sdks/connectors/README.md)
+### [Connector.Connectors](docs/sdks/connectors/README.md)
 
 * [list](docs/sdks/connectors/README.md#list) - List Connectors
 * [get](docs/sdks/connectors/README.md#get) - Get Connector
 
-#### [crm().activities()](docs/sdks/activities/README.md)
+### [Crm.Activities](docs/sdks/activities/README.md)
 
 * [list](docs/sdks/activities/README.md#list) - List activities
 * [create](docs/sdks/activities/README.md#create) - Create activity
@@ -453,7 +453,7 @@ public class Application {
 * [update](docs/sdks/activities/README.md#update) - Update activity
 * [delete](docs/sdks/activities/README.md#delete) - Delete activity
 
-#### [crm().companies()](docs/sdks/companies/README.md)
+### [Crm.Companies](docs/sdks/companies/README.md)
 
 * [list](docs/sdks/companies/README.md#list) - List companies
 * [create](docs/sdks/companies/README.md#create) - Create company
@@ -461,7 +461,7 @@ public class Application {
 * [update](docs/sdks/companies/README.md#update) - Update company
 * [delete](docs/sdks/companies/README.md#delete) - Delete company
 
-#### [crm().contacts()](docs/sdks/contacts/README.md)
+### [Crm.Contacts](docs/sdks/contacts/README.md)
 
 * [list](docs/sdks/contacts/README.md#list) - List contacts
 * [create](docs/sdks/contacts/README.md#create) - Create contact
@@ -469,7 +469,7 @@ public class Application {
 * [update](docs/sdks/contacts/README.md#update) - Update contact
 * [delete](docs/sdks/contacts/README.md#delete) - Delete contact
 
-#### [crm().customObjects()](docs/sdks/customobjects/README.md)
+### [Crm.CustomObjects](docs/sdks/customobjects/README.md)
 
 * [list](docs/sdks/customobjects/README.md#list) - List custom objects
 * [create](docs/sdks/customobjects/README.md#create) - Create custom object
@@ -477,7 +477,7 @@ public class Application {
 * [update](docs/sdks/customobjects/README.md#update) - Update custom object
 * [delete](docs/sdks/customobjects/README.md#delete) - Delete custom object
 
-#### [crm().customObjectSchemas()](docs/sdks/customobjectschemas/README.md)
+### [Crm.CustomObjectSchemas](docs/sdks/customobjectschemas/README.md)
 
 * [list](docs/sdks/customobjectschemas/README.md#list) - List custom object schemas
 * [create](docs/sdks/customobjectschemas/README.md#create) - Create custom object schema
@@ -485,7 +485,7 @@ public class Application {
 * [update](docs/sdks/customobjectschemas/README.md#update) - Update custom object schema
 * [delete](docs/sdks/customobjectschemas/README.md#delete) - Delete custom object schema
 
-#### [crm().leads()](docs/sdks/leads/README.md)
+### [Crm.Leads](docs/sdks/leads/README.md)
 
 * [list](docs/sdks/leads/README.md#list) - List leads
 * [create](docs/sdks/leads/README.md#create) - Create lead
@@ -493,7 +493,7 @@ public class Application {
 * [update](docs/sdks/leads/README.md#update) - Update lead
 * [delete](docs/sdks/leads/README.md#delete) - Delete lead
 
-#### [crm().notes()](docs/sdks/notes/README.md)
+### [Crm.Notes](docs/sdks/notes/README.md)
 
 * [list](docs/sdks/notes/README.md#list) - List notes
 * [create](docs/sdks/notes/README.md#create) - Create note
@@ -501,7 +501,7 @@ public class Application {
 * [update](docs/sdks/notes/README.md#update) - Update note
 * [delete](docs/sdks/notes/README.md#delete) - Delete note
 
-#### [crm().opportunities()](docs/sdks/opportunities/README.md)
+### [Crm.Opportunities](docs/sdks/opportunities/README.md)
 
 * [list](docs/sdks/opportunities/README.md#list) - List opportunities
 * [create](docs/sdks/opportunities/README.md#create) - Create opportunity
@@ -509,7 +509,7 @@ public class Application {
 * [update](docs/sdks/opportunities/README.md#update) - Update opportunity
 * [delete](docs/sdks/opportunities/README.md#delete) - Delete opportunity
 
-#### [crm().pipelines()](docs/sdks/pipelines/README.md)
+### [Crm.Pipelines](docs/sdks/pipelines/README.md)
 
 * [list](docs/sdks/pipelines/README.md#list) - List pipelines
 * [create](docs/sdks/pipelines/README.md#create) - Create pipeline
@@ -517,7 +517,7 @@ public class Application {
 * [update](docs/sdks/pipelines/README.md#update) - Update pipeline
 * [delete](docs/sdks/pipelines/README.md#delete) - Delete pipeline
 
-#### [crm().users()](docs/sdks/users/README.md)
+### [Crm.Users](docs/sdks/users/README.md)
 
 * [list](docs/sdks/users/README.md#list) - List users
 * [create](docs/sdks/users/README.md#create) - Create user
@@ -525,26 +525,26 @@ public class Application {
 * [update](docs/sdks/users/README.md#update) - Update user
 * [delete](docs/sdks/users/README.md#delete) - Delete user
 
-#### [ecommerce().customers()](docs/sdks/apideckcustomers/README.md)
+### [Ecommerce.Customers](docs/sdks/apideckcustomers/README.md)
 
 * [list](docs/sdks/apideckcustomers/README.md#list) - List Customers
 * [get](docs/sdks/apideckcustomers/README.md#get) - Get Customer
 
-#### [ecommerce().orders()](docs/sdks/orders/README.md)
+### [Ecommerce.Orders](docs/sdks/orders/README.md)
 
 * [list](docs/sdks/orders/README.md#list) - List Orders
 * [get](docs/sdks/orders/README.md#get) - Get Order
 
-#### [ecommerce().products()](docs/sdks/products/README.md)
+### [Ecommerce.Products](docs/sdks/products/README.md)
 
 * [list](docs/sdks/products/README.md#list) - List Products
 * [get](docs/sdks/products/README.md#get) - Get Product
 
-#### [ecommerce().stores()](docs/sdks/stores/README.md)
+### [Ecommerce.Stores](docs/sdks/stores/README.md)
 
 * [get](docs/sdks/stores/README.md#get) - Get Store
 
-#### [fileStorage().driveGroups()](docs/sdks/drivegroups/README.md)
+### [FileStorage.DriveGroups](docs/sdks/drivegroups/README.md)
 
 * [list](docs/sdks/drivegroups/README.md#list) - List DriveGroups
 * [create](docs/sdks/drivegroups/README.md#create) - Create DriveGroup
@@ -552,7 +552,7 @@ public class Application {
 * [update](docs/sdks/drivegroups/README.md#update) - Update DriveGroup
 * [delete](docs/sdks/drivegroups/README.md#delete) - Delete DriveGroup
 
-#### [fileStorage().drives()](docs/sdks/drives/README.md)
+### [FileStorage.Drives](docs/sdks/drives/README.md)
 
 * [list](docs/sdks/drives/README.md#list) - List Drives
 * [create](docs/sdks/drives/README.md#create) - Create Drive
@@ -560,7 +560,7 @@ public class Application {
 * [update](docs/sdks/drives/README.md#update) - Update Drive
 * [delete](docs/sdks/drives/README.md#delete) - Delete Drive
 
-#### [fileStorage().files()](docs/sdks/files/README.md)
+### [FileStorage.Files](docs/sdks/files/README.md)
 
 * [list](docs/sdks/files/README.md#list) - List Files
 * [search](docs/sdks/files/README.md#search) - Search Files
@@ -570,7 +570,7 @@ public class Application {
 * [download](docs/sdks/files/README.md#download) - Download File
 * [export](docs/sdks/files/README.md#export) - Export File
 
-#### [fileStorage().folders()](docs/sdks/folders/README.md)
+### [FileStorage.Folders](docs/sdks/folders/README.md)
 
 * [create](docs/sdks/folders/README.md#create) - Create Folder
 * [get](docs/sdks/folders/README.md#get) - Get Folder
@@ -578,7 +578,7 @@ public class Application {
 * [delete](docs/sdks/folders/README.md#delete) - Delete Folder
 * [copy](docs/sdks/folders/README.md#copy) - Copy Folder
 
-#### [fileStorage().sharedLinks()](docs/sdks/sharedlinks/README.md)
+### [FileStorage.SharedLinks](docs/sdks/sharedlinks/README.md)
 
 * [list](docs/sdks/sharedlinks/README.md#list) - List SharedLinks
 * [create](docs/sdks/sharedlinks/README.md#create) - Create Shared Link
@@ -586,7 +586,7 @@ public class Application {
 * [update](docs/sdks/sharedlinks/README.md#update) - Update Shared Link
 * [delete](docs/sdks/sharedlinks/README.md#delete) - Delete Shared Link
 
-#### [fileStorage().uploadSessions()](docs/sdks/uploadsessions/README.md)
+### [FileStorage.UploadSessions](docs/sdks/uploadsessions/README.md)
 
 * [create](docs/sdks/uploadsessions/README.md#create) - Start Upload Session
 * [get](docs/sdks/uploadsessions/README.md#get) - Get Upload Session
@@ -594,7 +594,7 @@ public class Application {
 * [delete](docs/sdks/uploadsessions/README.md#delete) - Abort Upload Session
 * [finish](docs/sdks/uploadsessions/README.md#finish) - Finish Upload Session
 
-#### [hris().companies()](docs/sdks/apideckcompanies/README.md)
+### [Hris.Companies](docs/sdks/apideckcompanies/README.md)
 
 * [list](docs/sdks/apideckcompanies/README.md#list) - List Companies
 * [create](docs/sdks/apideckcompanies/README.md#create) - Create Company
@@ -602,7 +602,7 @@ public class Application {
 * [update](docs/sdks/apideckcompanies/README.md#update) - Update Company
 * [delete](docs/sdks/apideckcompanies/README.md#delete) - Delete Company
 
-#### [hris().departments()](docs/sdks/apideckdepartments/README.md)
+### [Hris.Departments](docs/sdks/apideckdepartments/README.md)
 
 * [list](docs/sdks/apideckdepartments/README.md#list) - List Departments
 * [create](docs/sdks/apideckdepartments/README.md#create) - Create Department
@@ -610,12 +610,12 @@ public class Application {
 * [update](docs/sdks/apideckdepartments/README.md#update) - Update Department
 * [delete](docs/sdks/apideckdepartments/README.md#delete) - Delete Department
 
-#### [hris().employeePayrolls()](docs/sdks/employeepayrolls/README.md)
+### [Hris.EmployeePayrolls](docs/sdks/employeepayrolls/README.md)
 
 * [list](docs/sdks/employeepayrolls/README.md#list) - List Employee Payrolls
 * [get](docs/sdks/employeepayrolls/README.md#get) - Get Employee Payroll
 
-#### [hris().employees()](docs/sdks/employees/README.md)
+### [Hris.Employees](docs/sdks/employees/README.md)
 
 * [list](docs/sdks/employees/README.md#list) - List Employees
 * [create](docs/sdks/employees/README.md#create) - Create Employee
@@ -623,16 +623,16 @@ public class Application {
 * [update](docs/sdks/employees/README.md#update) - Update Employee
 * [delete](docs/sdks/employees/README.md#delete) - Delete Employee
 
-#### [hris().employeeSchedules()](docs/sdks/employeeschedules/README.md)
+### [Hris.EmployeeSchedules](docs/sdks/employeeschedules/README.md)
 
 * [list](docs/sdks/employeeschedules/README.md#list) - List Employee Schedules
 
-#### [hris().payrolls()](docs/sdks/payrolls/README.md)
+### [Hris.Payrolls](docs/sdks/payrolls/README.md)
 
 * [list](docs/sdks/payrolls/README.md#list) - List Payroll
 * [get](docs/sdks/payrolls/README.md#get) - Get Payroll
 
-#### [hris().timeOffRequests()](docs/sdks/timeoffrequests/README.md)
+### [Hris.TimeOffRequests](docs/sdks/timeoffrequests/README.md)
 
 * [list](docs/sdks/timeoffrequests/README.md#list) - List Time Off Requests
 * [create](docs/sdks/timeoffrequests/README.md#create) - Create Time Off Request
@@ -640,16 +640,16 @@ public class Application {
 * [update](docs/sdks/timeoffrequests/README.md#update) - Update Time Off Request
 * [delete](docs/sdks/timeoffrequests/README.md#delete) - Delete Time Off Request
 
-#### [issueTracking().collections()](docs/sdks/collections/README.md)
+### [IssueTracking.Collections](docs/sdks/collections/README.md)
 
 * [list](docs/sdks/collections/README.md#list) - List Collections
 * [get](docs/sdks/collections/README.md#get) - Get Collection
 
-#### [issueTracking().collectionTags()](docs/sdks/collectiontags/README.md)
+### [IssueTracking.CollectionTags](docs/sdks/collectiontags/README.md)
 
 * [list](docs/sdks/collectiontags/README.md#list) - List Tags
 
-#### [issueTracking().collectionTicketComments()](docs/sdks/collectionticketcomments/README.md)
+### [IssueTracking.CollectionTicketComments](docs/sdks/collectionticketcomments/README.md)
 
 * [list](docs/sdks/collectionticketcomments/README.md#list) - List Comments
 * [create](docs/sdks/collectionticketcomments/README.md#create) - Create Comment
@@ -657,7 +657,7 @@ public class Application {
 * [update](docs/sdks/collectionticketcomments/README.md#update) - Update Comment
 * [delete](docs/sdks/collectionticketcomments/README.md#delete) - Delete Comment
 
-#### [issueTracking().collectionTickets()](docs/sdks/collectiontickets/README.md)
+### [IssueTracking.CollectionTickets](docs/sdks/collectiontickets/README.md)
 
 * [list](docs/sdks/collectiontickets/README.md#list) - List Tickets
 * [create](docs/sdks/collectiontickets/README.md#create) - Create Ticket
@@ -665,12 +665,12 @@ public class Application {
 * [update](docs/sdks/collectiontickets/README.md#update) - Update Ticket
 * [delete](docs/sdks/collectiontickets/README.md#delete) - Delete Ticket
 
-#### [issueTracking().collectionUsers()](docs/sdks/collectionusers/README.md)
+### [IssueTracking.CollectionUsers](docs/sdks/collectionusers/README.md)
 
 * [list](docs/sdks/collectionusers/README.md#list) - List Users
 * [get](docs/sdks/collectionusers/README.md#get) - Get user
 
-#### [sms().messages()](docs/sdks/messages/README.md)
+### [Sms.Messages](docs/sdks/messages/README.md)
 
 * [list](docs/sdks/messages/README.md#list) - List Messages
 * [create](docs/sdks/messages/README.md#create) - Create Message
@@ -678,19 +678,19 @@ public class Application {
 * [update](docs/sdks/messages/README.md#update) - Update Message
 * [delete](docs/sdks/messages/README.md#delete) - Delete Message
 
-#### [vault().connectionConsent()](docs/sdks/connectionconsent/README.md)
+### [Vault.ConnectionConsent](docs/sdks/connectionconsent/README.md)
 
 * [update](docs/sdks/connectionconsent/README.md#update) - Update consent state
 
-#### [vault().connectionConsents()](docs/sdks/connectionconsents/README.md)
+### [Vault.ConnectionConsents](docs/sdks/connectionconsents/README.md)
 
 * [list](docs/sdks/connectionconsents/README.md#list) - Get consent records
 
-#### [vault().connectionCustomMappings()](docs/sdks/connectioncustommappings/README.md)
+### [Vault.ConnectionCustomMappings](docs/sdks/connectioncustommappings/README.md)
 
 * [list](docs/sdks/connectioncustommappings/README.md#list) - List connection custom mappings
 
-#### [vault().connections()](docs/sdks/connections/README.md)
+### [Vault.Connections](docs/sdks/connections/README.md)
 
 * [list](docs/sdks/connections/README.md#list) - Get all connections
 * [get](docs/sdks/connections/README.md#get) - Get connection
@@ -699,16 +699,16 @@ public class Application {
 * [imports](docs/sdks/connections/README.md#imports) - Import connection
 * [token](docs/sdks/connections/README.md#token) - Authorize Access Token
 
-#### [vault().connectionSettings()](docs/sdks/connectionsettings/README.md)
+### [Vault.ConnectionSettings](docs/sdks/connectionsettings/README.md)
 
 * [list](docs/sdks/connectionsettings/README.md#list) - Get resource settings
 * [update](docs/sdks/connectionsettings/README.md#update) - Update settings
 
-#### [vault().consumerRequestCounts()](docs/sdks/consumerrequestcounts/README.md)
+### [Vault.ConsumerRequestCounts](docs/sdks/consumerrequestcounts/README.md)
 
 * [list](docs/sdks/consumerrequestcounts/README.md#list) - Consumer request counts
 
-#### [vault().consumers()](docs/sdks/consumers/README.md)
+### [Vault.Consumers](docs/sdks/consumers/README.md)
 
 * [create](docs/sdks/consumers/README.md#create) - Create consumer
 * [list](docs/sdks/consumers/README.md#list) - Get all consumers
@@ -716,31 +716,31 @@ public class Application {
 * [update](docs/sdks/consumers/README.md#update) - Update consumer
 * [delete](docs/sdks/consumers/README.md#delete) - Delete consumer
 
-#### [vault().createCallback()](docs/sdks/createcallback/README.md)
+### [Vault.CreateCallback](docs/sdks/createcallback/README.md)
 
 * [state](docs/sdks/createcallback/README.md#state) - Create Callback State
 
-#### [vault().customFields()](docs/sdks/customfields/README.md)
+### [Vault.CustomFields](docs/sdks/customfields/README.md)
 
 * [list](docs/sdks/customfields/README.md#list) - Get resource custom fields
 
-#### [vault().customMappings()](docs/sdks/custommappings/README.md)
+### [Vault.CustomMappings](docs/sdks/custommappings/README.md)
 
 * [list](docs/sdks/custommappings/README.md#list) - List custom mappings
 
-#### [vault().logs()](docs/sdks/logs/README.md)
+### [Vault.Logs](docs/sdks/logs/README.md)
 
 * [list](docs/sdks/logs/README.md#list) - Get all consumer request logs
 
-#### [vault().sessions()](docs/sdks/sessions/README.md)
+### [Vault.Sessions](docs/sdks/sessions/README.md)
 
 * [create](docs/sdks/sessions/README.md#create) - Create Session
 
-#### [vault().validateConnection()](docs/sdks/validateconnection/README.md)
+### [Vault.ValidateConnection](docs/sdks/validateconnection/README.md)
 
 * [state](docs/sdks/validateconnection/README.md#state) - Validate Connection State
 
-#### [webhook().webhooks()](docs/sdks/webhooks/README.md)
+### [Webhook.Webhooks](docs/sdks/webhooks/README.md)
 
 * [list](docs/sdks/webhooks/README.md#list) - List webhook subscriptions
 * [create](docs/sdks/webhooks/README.md#create) - Create webhook subscription

@@ -1,5 +1,4 @@
-# Suppliers
-(*accounting().suppliers()*)
+# Accounting.Suppliers
 
 ## Overview
 
@@ -228,18 +227,18 @@ public class Application {
                     .paymentMethod("cash")
                     .channel("email")
                     .customFields(List.of(
-                        CustomField.builder()
+                        CustomField.of(CustomField1.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(Value.of("Uses Salesforce and Marketo"))
-                            .build(),
-                        CustomField.builder()
+                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
+                            .build()),
+                        CustomField.of(CustomField1.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(Value.of("Uses Salesforce and Marketo"))
-                            .build()))
+                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
+                            .build())))
                     .rowVersion("1-12345")
                     .passThrough(List.of(
                         PassThroughBody.builder()
@@ -504,18 +503,18 @@ public class Application {
                     .paymentMethod("cash")
                     .channel("email")
                     .customFields(List.of(
-                        CustomField.builder()
+                        CustomField.of(CustomField1.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(Value.of("Uses Salesforce and Marketo"))
-                            .build(),
-                        CustomField.builder()
+                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
+                            .build()),
+                        CustomField.of(CustomField1.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(Value.of("Uses Salesforce and Marketo"))
-                            .build()))
+                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
+                            .build())))
                     .rowVersion("1-12345")
                     .passThrough(List.of(
                         PassThroughBody.builder()

@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.lang.Boolean;
 import java.lang.Deprecated;
 import java.lang.Double;
 import java.lang.Long;
@@ -45,11 +44,21 @@ public class ExpenseLineItemInput {
     private JsonNullable<? extends LinkedLedgerAccount> account;
 
     /**
-     * The ID of the customer this expense item is linked to.
+     * The ID of the customer this expense item is linked to. Deprecated in favor of `customer`.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("customer_id")
+    @Deprecated
     private Optional<String> customerId;
+
+    /**
+     * The customer this entity is linked to.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("customer")
+    private JsonNullable<? extends LinkedCustomerInput> customer;
 
     /**
      * The ID of the department
@@ -58,6 +67,11 @@ public class ExpenseLineItemInput {
     @JsonProperty("department_id")
     private JsonNullable<String> departmentId;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("department")
+    private JsonNullable<? extends LinkedDepartmentInput> department;
+
     /**
      * The ID of the location
      */
@@ -65,12 +79,10 @@ public class ExpenseLineItemInput {
     @JsonProperty("location_id")
     private JsonNullable<String> locationId;
 
-    /**
-     * The ID of the subsidiary
-     */
+
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("subsidiary_id")
-    private JsonNullable<String> subsidiaryId;
+    @JsonProperty("location")
+    private JsonNullable<? extends LinkedLocationInput> location;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -121,16 +133,6 @@ public class ExpenseLineItemInput {
     private Optional<? extends LinkedInvoiceItem> item;
 
     /**
-     * Boolean that indicates if the line item is billable or not.
-     * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("billable")
-    @Deprecated
-    private Optional<Boolean> billable;
-
-    /**
      * Line number of the resource
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -150,9 +152,11 @@ public class ExpenseLineItemInput {
             @JsonProperty("account_id") Optional<String> accountId,
             @JsonProperty("account") JsonNullable<? extends LinkedLedgerAccount> account,
             @JsonProperty("customer_id") Optional<String> customerId,
+            @JsonProperty("customer") JsonNullable<? extends LinkedCustomerInput> customer,
             @JsonProperty("department_id") JsonNullable<String> departmentId,
+            @JsonProperty("department") JsonNullable<? extends LinkedDepartmentInput> department,
             @JsonProperty("location_id") JsonNullable<String> locationId,
-            @JsonProperty("subsidiary_id") JsonNullable<String> subsidiaryId,
+            @JsonProperty("location") JsonNullable<? extends LinkedLocationInput> location,
             @JsonProperty("tax_rate") Optional<? extends LinkedTaxRateInput> taxRate,
             @JsonProperty("description") JsonNullable<String> description,
             @JsonProperty("type") JsonNullable<? extends LineItemType> type,
@@ -161,16 +165,17 @@ public class ExpenseLineItemInput {
             @JsonProperty("quantity") JsonNullable<Double> quantity,
             @JsonProperty("unit_price") JsonNullable<Double> unitPrice,
             @JsonProperty("item") Optional<? extends LinkedInvoiceItem> item,
-            @JsonProperty("billable") Optional<Boolean> billable,
             @JsonProperty("line_number") JsonNullable<Long> lineNumber,
             @JsonProperty("rebilling") JsonNullable<? extends Rebilling> rebilling) {
         Utils.checkNotNull(trackingCategories, "trackingCategories");
         Utils.checkNotNull(accountId, "accountId");
         Utils.checkNotNull(account, "account");
         Utils.checkNotNull(customerId, "customerId");
+        Utils.checkNotNull(customer, "customer");
         Utils.checkNotNull(departmentId, "departmentId");
+        Utils.checkNotNull(department, "department");
         Utils.checkNotNull(locationId, "locationId");
-        Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+        Utils.checkNotNull(location, "location");
         Utils.checkNotNull(taxRate, "taxRate");
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(type, "type");
@@ -179,16 +184,17 @@ public class ExpenseLineItemInput {
         Utils.checkNotNull(quantity, "quantity");
         Utils.checkNotNull(unitPrice, "unitPrice");
         Utils.checkNotNull(item, "item");
-        Utils.checkNotNull(billable, "billable");
         Utils.checkNotNull(lineNumber, "lineNumber");
         Utils.checkNotNull(rebilling, "rebilling");
         this.trackingCategories = trackingCategories;
         this.accountId = accountId;
         this.account = account;
         this.customerId = customerId;
+        this.customer = customer;
         this.departmentId = departmentId;
+        this.department = department;
         this.locationId = locationId;
-        this.subsidiaryId = subsidiaryId;
+        this.location = location;
         this.taxRate = taxRate;
         this.description = description;
         this.type = type;
@@ -197,7 +203,6 @@ public class ExpenseLineItemInput {
         this.quantity = quantity;
         this.unitPrice = unitPrice;
         this.item = item;
-        this.billable = billable;
         this.lineNumber = lineNumber;
         this.rebilling = rebilling;
     }
@@ -205,10 +210,11 @@ public class ExpenseLineItemInput {
     public ExpenseLineItemInput() {
         this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
             Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined());
     }
 
     /**
@@ -238,11 +244,23 @@ public class ExpenseLineItemInput {
     }
 
     /**
-     * The ID of the customer this expense item is linked to.
+     * The ID of the customer this expense item is linked to. Deprecated in favor of `customer`.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     @JsonIgnore
     public Optional<String> customerId() {
         return customerId;
+    }
+
+    /**
+     * The customer this entity is linked to.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<LinkedCustomerInput> customer() {
+        return (JsonNullable<LinkedCustomerInput>) customer;
     }
 
     /**
@@ -253,6 +271,12 @@ public class ExpenseLineItemInput {
         return departmentId;
     }
 
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<LinkedDepartmentInput> department() {
+        return (JsonNullable<LinkedDepartmentInput>) department;
+    }
+
     /**
      * The ID of the location
      */
@@ -261,12 +285,10 @@ public class ExpenseLineItemInput {
         return locationId;
     }
 
-    /**
-     * The ID of the subsidiary
-     */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<String> subsidiaryId() {
-        return subsidiaryId;
+    public JsonNullable<LinkedLocationInput> location() {
+        return (JsonNullable<LinkedLocationInput>) location;
     }
 
     @SuppressWarnings("unchecked")
@@ -322,17 +344,6 @@ public class ExpenseLineItemInput {
     @JsonIgnore
     public Optional<LinkedInvoiceItem> item() {
         return (Optional<LinkedInvoiceItem>) item;
-    }
-
-    /**
-     * Boolean that indicates if the line item is billable or not.
-     * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    @Deprecated
-    @JsonIgnore
-    public Optional<Boolean> billable() {
-        return billable;
     }
 
     /**
@@ -413,8 +424,11 @@ public class ExpenseLineItemInput {
     }
 
     /**
-     * The ID of the customer this expense item is linked to.
+     * The ID of the customer this expense item is linked to. Deprecated in favor of `customer`.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public ExpenseLineItemInput withCustomerId(String customerId) {
         Utils.checkNotNull(customerId, "customerId");
         this.customerId = Optional.ofNullable(customerId);
@@ -423,11 +437,32 @@ public class ExpenseLineItemInput {
 
 
     /**
-     * The ID of the customer this expense item is linked to.
+     * The ID of the customer this expense item is linked to. Deprecated in favor of `customer`.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public ExpenseLineItemInput withCustomerId(Optional<String> customerId) {
         Utils.checkNotNull(customerId, "customerId");
         this.customerId = customerId;
+        return this;
+    }
+
+    /**
+     * The customer this entity is linked to.
+     */
+    public ExpenseLineItemInput withCustomer(LinkedCustomerInput customer) {
+        Utils.checkNotNull(customer, "customer");
+        this.customer = JsonNullable.of(customer);
+        return this;
+    }
+
+    /**
+     * The customer this entity is linked to.
+     */
+    public ExpenseLineItemInput withCustomer(JsonNullable<? extends LinkedCustomerInput> customer) {
+        Utils.checkNotNull(customer, "customer");
+        this.customer = customer;
         return this;
     }
 
@@ -449,6 +484,18 @@ public class ExpenseLineItemInput {
         return this;
     }
 
+    public ExpenseLineItemInput withDepartment(LinkedDepartmentInput department) {
+        Utils.checkNotNull(department, "department");
+        this.department = JsonNullable.of(department);
+        return this;
+    }
+
+    public ExpenseLineItemInput withDepartment(JsonNullable<? extends LinkedDepartmentInput> department) {
+        Utils.checkNotNull(department, "department");
+        this.department = department;
+        return this;
+    }
+
     /**
      * The ID of the location
      */
@@ -467,21 +514,15 @@ public class ExpenseLineItemInput {
         return this;
     }
 
-    /**
-     * The ID of the subsidiary
-     */
-    public ExpenseLineItemInput withSubsidiaryId(String subsidiaryId) {
-        Utils.checkNotNull(subsidiaryId, "subsidiaryId");
-        this.subsidiaryId = JsonNullable.of(subsidiaryId);
+    public ExpenseLineItemInput withLocation(LinkedLocationInput location) {
+        Utils.checkNotNull(location, "location");
+        this.location = JsonNullable.of(location);
         return this;
     }
 
-    /**
-     * The ID of the subsidiary
-     */
-    public ExpenseLineItemInput withSubsidiaryId(JsonNullable<String> subsidiaryId) {
-        Utils.checkNotNull(subsidiaryId, "subsidiaryId");
-        this.subsidiaryId = subsidiaryId;
+    public ExpenseLineItemInput withLocation(JsonNullable<? extends LinkedLocationInput> location) {
+        Utils.checkNotNull(location, "location");
+        this.location = location;
         return this;
     }
 
@@ -609,31 +650,6 @@ public class ExpenseLineItemInput {
     }
 
     /**
-     * Boolean that indicates if the line item is billable or not.
-     * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    @Deprecated
-    public ExpenseLineItemInput withBillable(boolean billable) {
-        Utils.checkNotNull(billable, "billable");
-        this.billable = Optional.ofNullable(billable);
-        return this;
-    }
-
-
-    /**
-     * Boolean that indicates if the line item is billable or not.
-     * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    @Deprecated
-    public ExpenseLineItemInput withBillable(Optional<Boolean> billable) {
-        Utils.checkNotNull(billable, "billable");
-        this.billable = billable;
-        return this;
-    }
-
-    /**
      * Line number of the resource
      */
     public ExpenseLineItemInput withLineNumber(long lineNumber) {
@@ -683,9 +699,11 @@ public class ExpenseLineItemInput {
             Utils.enhancedDeepEquals(this.accountId, other.accountId) &&
             Utils.enhancedDeepEquals(this.account, other.account) &&
             Utils.enhancedDeepEquals(this.customerId, other.customerId) &&
+            Utils.enhancedDeepEquals(this.customer, other.customer) &&
             Utils.enhancedDeepEquals(this.departmentId, other.departmentId) &&
+            Utils.enhancedDeepEquals(this.department, other.department) &&
             Utils.enhancedDeepEquals(this.locationId, other.locationId) &&
-            Utils.enhancedDeepEquals(this.subsidiaryId, other.subsidiaryId) &&
+            Utils.enhancedDeepEquals(this.location, other.location) &&
             Utils.enhancedDeepEquals(this.taxRate, other.taxRate) &&
             Utils.enhancedDeepEquals(this.description, other.description) &&
             Utils.enhancedDeepEquals(this.type, other.type) &&
@@ -694,7 +712,6 @@ public class ExpenseLineItemInput {
             Utils.enhancedDeepEquals(this.quantity, other.quantity) &&
             Utils.enhancedDeepEquals(this.unitPrice, other.unitPrice) &&
             Utils.enhancedDeepEquals(this.item, other.item) &&
-            Utils.enhancedDeepEquals(this.billable, other.billable) &&
             Utils.enhancedDeepEquals(this.lineNumber, other.lineNumber) &&
             Utils.enhancedDeepEquals(this.rebilling, other.rebilling);
     }
@@ -703,11 +720,12 @@ public class ExpenseLineItemInput {
     public int hashCode() {
         return Utils.enhancedHash(
             trackingCategories, accountId, account,
-            customerId, departmentId, locationId,
-            subsidiaryId, taxRate, description,
-            type, totalAmount, taxAmount,
-            quantity, unitPrice, item,
-            billable, lineNumber, rebilling);
+            customerId, customer, departmentId,
+            department, locationId, location,
+            taxRate, description, type,
+            totalAmount, taxAmount, quantity,
+            unitPrice, item, lineNumber,
+            rebilling);
     }
     
     @Override
@@ -717,9 +735,11 @@ public class ExpenseLineItemInput {
                 "accountId", accountId,
                 "account", account,
                 "customerId", customerId,
+                "customer", customer,
                 "departmentId", departmentId,
+                "department", department,
                 "locationId", locationId,
-                "subsidiaryId", subsidiaryId,
+                "location", location,
                 "taxRate", taxRate,
                 "description", description,
                 "type", type,
@@ -728,7 +748,6 @@ public class ExpenseLineItemInput {
                 "quantity", quantity,
                 "unitPrice", unitPrice,
                 "item", item,
-                "billable", billable,
                 "lineNumber", lineNumber,
                 "rebilling", rebilling);
     }
@@ -743,13 +762,18 @@ public class ExpenseLineItemInput {
 
         private JsonNullable<? extends LinkedLedgerAccount> account = JsonNullable.undefined();
 
+        @Deprecated
         private Optional<String> customerId = Optional.empty();
+
+        private JsonNullable<? extends LinkedCustomerInput> customer = JsonNullable.undefined();
 
         private JsonNullable<String> departmentId = JsonNullable.undefined();
 
+        private JsonNullable<? extends LinkedDepartmentInput> department = JsonNullable.undefined();
+
         private JsonNullable<String> locationId = JsonNullable.undefined();
 
-        private JsonNullable<String> subsidiaryId = JsonNullable.undefined();
+        private JsonNullable<? extends LinkedLocationInput> location = JsonNullable.undefined();
 
         private Optional<? extends LinkedTaxRateInput> taxRate = Optional.empty();
 
@@ -766,9 +790,6 @@ public class ExpenseLineItemInput {
         private JsonNullable<Double> unitPrice = JsonNullable.undefined();
 
         private Optional<? extends LinkedInvoiceItem> item = Optional.empty();
-
-        @Deprecated
-        private Optional<Boolean> billable = Optional.empty();
 
         private JsonNullable<Long> lineNumber = JsonNullable.undefined();
 
@@ -837,8 +858,11 @@ public class ExpenseLineItemInput {
 
 
         /**
-         * The ID of the customer this expense item is linked to.
+         * The ID of the customer this expense item is linked to. Deprecated in favor of `customer`.
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder customerId(String customerId) {
             Utils.checkNotNull(customerId, "customerId");
             this.customerId = Optional.ofNullable(customerId);
@@ -846,11 +870,33 @@ public class ExpenseLineItemInput {
         }
 
         /**
-         * The ID of the customer this expense item is linked to.
+         * The ID of the customer this expense item is linked to. Deprecated in favor of `customer`.
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder customerId(Optional<String> customerId) {
             Utils.checkNotNull(customerId, "customerId");
             this.customerId = customerId;
+            return this;
+        }
+
+
+        /**
+         * The customer this entity is linked to.
+         */
+        public Builder customer(LinkedCustomerInput customer) {
+            Utils.checkNotNull(customer, "customer");
+            this.customer = JsonNullable.of(customer);
+            return this;
+        }
+
+        /**
+         * The customer this entity is linked to.
+         */
+        public Builder customer(JsonNullable<? extends LinkedCustomerInput> customer) {
+            Utils.checkNotNull(customer, "customer");
+            this.customer = customer;
             return this;
         }
 
@@ -874,6 +920,19 @@ public class ExpenseLineItemInput {
         }
 
 
+        public Builder department(LinkedDepartmentInput department) {
+            Utils.checkNotNull(department, "department");
+            this.department = JsonNullable.of(department);
+            return this;
+        }
+
+        public Builder department(JsonNullable<? extends LinkedDepartmentInput> department) {
+            Utils.checkNotNull(department, "department");
+            this.department = department;
+            return this;
+        }
+
+
         /**
          * The ID of the location
          */
@@ -893,21 +952,15 @@ public class ExpenseLineItemInput {
         }
 
 
-        /**
-         * The ID of the subsidiary
-         */
-        public Builder subsidiaryId(String subsidiaryId) {
-            Utils.checkNotNull(subsidiaryId, "subsidiaryId");
-            this.subsidiaryId = JsonNullable.of(subsidiaryId);
+        public Builder location(LinkedLocationInput location) {
+            Utils.checkNotNull(location, "location");
+            this.location = JsonNullable.of(location);
             return this;
         }
 
-        /**
-         * The ID of the subsidiary
-         */
-        public Builder subsidiaryId(JsonNullable<String> subsidiaryId) {
-            Utils.checkNotNull(subsidiaryId, "subsidiaryId");
-            this.subsidiaryId = subsidiaryId;
+        public Builder location(JsonNullable<? extends LinkedLocationInput> location) {
+            Utils.checkNotNull(location, "location");
+            this.location = location;
             return this;
         }
 
@@ -1041,31 +1094,6 @@ public class ExpenseLineItemInput {
 
 
         /**
-         * Boolean that indicates if the line item is billable or not.
-         * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-         */
-        @Deprecated
-        public Builder billable(boolean billable) {
-            Utils.checkNotNull(billable, "billable");
-            this.billable = Optional.ofNullable(billable);
-            return this;
-        }
-
-        /**
-         * Boolean that indicates if the line item is billable or not.
-         * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-         */
-        @Deprecated
-        public Builder billable(Optional<Boolean> billable) {
-            Utils.checkNotNull(billable, "billable");
-            this.billable = billable;
-            return this;
-        }
-
-
-        /**
          * Line number of the resource
          */
         public Builder lineNumber(long lineNumber) {
@@ -1106,11 +1134,12 @@ public class ExpenseLineItemInput {
 
             return new ExpenseLineItemInput(
                 trackingCategories, accountId, account,
-                customerId, departmentId, locationId,
-                subsidiaryId, taxRate, description,
-                type, totalAmount, taxAmount,
-                quantity, unitPrice, item,
-                billable, lineNumber, rebilling);
+                customerId, customer, departmentId,
+                department, locationId, location,
+                taxRate, description, type,
+                totalAmount, taxAmount, quantity,
+                unitPrice, item, lineNumber,
+                rebilling);
         }
 
     }

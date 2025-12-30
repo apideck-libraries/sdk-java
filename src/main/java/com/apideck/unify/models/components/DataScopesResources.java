@@ -85,8 +85,8 @@ public class DataScopesResources {
 
         public _Deserializer() {
             super(DataScopesResources.class, false,
-                  TypeReferenceWithShape.of(new TypeReference<DataScopesResources2>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<Map<String, Map<String, DataScopesResources1>>>() {}, JsonShape.DEFAULT));
+                  TypeReferenceWithShape.of(new TypeReference<Map<String, Map<String, DataScopesResources1>>>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<DataScopesResources2>() {}, JsonShape.DEFAULT));
         }
     }
     

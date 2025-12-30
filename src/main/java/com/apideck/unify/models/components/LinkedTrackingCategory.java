@@ -24,6 +24,13 @@ public class LinkedTrackingCategory {
     private Optional<String> id;
 
     /**
+     * The code of the tracking category.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("code")
+    private JsonNullable<String> code;
+
+    /**
      * The name of the tracking category.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -47,22 +54,25 @@ public class LinkedTrackingCategory {
     @JsonCreator
     public LinkedTrackingCategory(
             @JsonProperty("id") Optional<String> id,
+            @JsonProperty("code") JsonNullable<String> code,
             @JsonProperty("name") JsonNullable<String> name,
             @JsonProperty("parent_id") Optional<String> parentId,
             @JsonProperty("parent_name") JsonNullable<String> parentName) {
         Utils.checkNotNull(id, "id");
+        Utils.checkNotNull(code, "code");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(parentId, "parentId");
         Utils.checkNotNull(parentName, "parentName");
         this.id = id;
+        this.code = code;
         this.name = name;
         this.parentId = parentId;
         this.parentName = parentName;
     }
     
     public LinkedTrackingCategory() {
-        this(Optional.empty(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -71,6 +81,14 @@ public class LinkedTrackingCategory {
     @JsonIgnore
     public Optional<String> id() {
         return id;
+    }
+
+    /**
+     * The code of the tracking category.
+     */
+    @JsonIgnore
+    public JsonNullable<String> code() {
+        return code;
     }
 
     /**
@@ -118,6 +136,24 @@ public class LinkedTrackingCategory {
     public LinkedTrackingCategory withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
+        return this;
+    }
+
+    /**
+     * The code of the tracking category.
+     */
+    public LinkedTrackingCategory withCode(String code) {
+        Utils.checkNotNull(code, "code");
+        this.code = JsonNullable.of(code);
+        return this;
+    }
+
+    /**
+     * The code of the tracking category.
+     */
+    public LinkedTrackingCategory withCode(JsonNullable<String> code) {
+        Utils.checkNotNull(code, "code");
+        this.code = code;
         return this;
     }
 
@@ -187,6 +223,7 @@ public class LinkedTrackingCategory {
         LinkedTrackingCategory other = (LinkedTrackingCategory) o;
         return 
             Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.code, other.code) &&
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.parentId, other.parentId) &&
             Utils.enhancedDeepEquals(this.parentName, other.parentName);
@@ -195,14 +232,15 @@ public class LinkedTrackingCategory {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, name, parentId,
-            parentName);
+            id, code, name,
+            parentId, parentName);
     }
     
     @Override
     public String toString() {
         return Utils.toString(LinkedTrackingCategory.class,
                 "id", id,
+                "code", code,
                 "name", name,
                 "parentId", parentId,
                 "parentName", parentName);
@@ -212,6 +250,8 @@ public class LinkedTrackingCategory {
     public final static class Builder {
 
         private Optional<String> id = Optional.empty();
+
+        private JsonNullable<String> code = JsonNullable.undefined();
 
         private JsonNullable<String> name = JsonNullable.undefined();
 
@@ -239,6 +279,25 @@ public class LinkedTrackingCategory {
         public Builder id(Optional<String> id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
+            return this;
+        }
+
+
+        /**
+         * The code of the tracking category.
+         */
+        public Builder code(String code) {
+            Utils.checkNotNull(code, "code");
+            this.code = JsonNullable.of(code);
+            return this;
+        }
+
+        /**
+         * The code of the tracking category.
+         */
+        public Builder code(JsonNullable<String> code) {
+            Utils.checkNotNull(code, "code");
+            this.code = code;
             return this;
         }
 
@@ -302,8 +361,8 @@ public class LinkedTrackingCategory {
         public LinkedTrackingCategory build() {
 
             return new LinkedTrackingCategory(
-                id, name, parentId,
-                parentName);
+                id, code, name,
+                parentId, parentName);
         }
 
     }

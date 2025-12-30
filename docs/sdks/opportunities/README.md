@@ -1,5 +1,4 @@
-# Opportunities
-(*crm().opportunities()*)
+# Crm.Opportunities
 
 ## Overview
 
@@ -148,24 +147,24 @@ public class Application {
                     .tags(List.of(
                         "New"))
                     .customFields(List.of(
-                        CustomField.builder()
+                        CustomField.of(CustomField1.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(Value.of("Uses Salesforce and Marketo"))
-                            .build(),
-                        CustomField.builder()
+                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
+                            .build()),
+                        CustomField.of(CustomField1.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(Value.of("Uses Salesforce and Marketo"))
-                            .build(),
-                        CustomField.builder()
+                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
+                            .build()),
+                        CustomField.of(CustomField1.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(Value.of("Uses Salesforce and Marketo"))
-                            .build()))
+                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
+                            .build())))
                     .stageLastChangedAt(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
                     .passThrough(List.of(
                         PassThroughBody.builder()
@@ -347,24 +346,24 @@ public class Application {
                     .tags(List.of(
                         "New"))
                     .customFields(List.of(
-                        CustomField.builder()
+                        CustomField.of(CustomField1.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(Value.of("Uses Salesforce and Marketo"))
-                            .build(),
-                        CustomField.builder()
+                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
+                            .build()),
+                        CustomField.of(CustomField1.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(Value.of("Uses Salesforce and Marketo"))
-                            .build(),
-                        CustomField.builder()
+                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
+                            .build()),
+                        CustomField.of(CustomField1.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(Value.of("Uses Salesforce and Marketo"))
-                            .build()))
+                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
+                            .build())))
                     .stageLastChangedAt(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
                     .passThrough(List.of(
                         PassThroughBody.builder()

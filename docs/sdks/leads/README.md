@@ -1,5 +1,4 @@
-# Leads
-(*crm().leads()*)
+# Crm.Leads
 
 ## Overview
 
@@ -263,18 +262,18 @@ public class Application {
                             .type(EmailType.PRIMARY)
                             .build()))
                     .customFields(List.of(
-                        CustomField.builder()
+                        CustomField.of(CustomField1.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(Value.of("Uses Salesforce and Marketo"))
-                            .build(),
-                        CustomField.builder()
+                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
+                            .build()),
+                        CustomField.of(CustomField1.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(Value.of("Uses Salesforce and Marketo"))
-                            .build()))
+                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
+                            .build())))
                     .tags(List.of(
                         "New"))
                     .passThrough(List.of(
@@ -615,24 +614,24 @@ public class Application {
                             .type(EmailType.PRIMARY)
                             .build()))
                     .customFields(List.of(
-                        CustomField.builder()
+                        CustomField.of(CustomField1.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(Value.of("Uses Salesforce and Marketo"))
-                            .build(),
-                        CustomField.builder()
+                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
+                            .build()),
+                        CustomField.of(CustomField1.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(Value.of("Uses Salesforce and Marketo"))
-                            .build(),
-                        CustomField.builder()
+                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
+                            .build()),
+                        CustomField.of(CustomField1.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(Value.of("Uses Salesforce and Marketo"))
-                            .build()))
+                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
+                            .build())))
                     .tags(List.of(
                         "New"))
                     .passThrough(List.of(

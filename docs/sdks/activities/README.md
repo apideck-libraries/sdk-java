@@ -1,5 +1,4 @@
-# Activities
-(*crm().activities()*)
+# Crm.Activities
 
 ## Overview
 
@@ -185,12 +184,12 @@ public class Application {
                     .videoConferenceUrl("https://us02web.zoom.us/j/88120759396")
                     .videoConferenceId("zoom:88120759396")
                     .customFields(List.of(
-                        CustomField.builder()
+                        CustomField.of(CustomField1.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
                             .value(JsonNullable.of(null))
-                            .build()))
+                            .build())))
                     .attendees(List.of(
                         ActivityAttendeeInput.builder()
                             .name("Elon Musk")
@@ -413,18 +412,18 @@ public class Application {
                     .videoConferenceUrl("https://us02web.zoom.us/j/88120759396")
                     .videoConferenceId("zoom:88120759396")
                     .customFields(List.of(
-                        CustomField.builder()
+                        CustomField.of(CustomField1.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(Value.of("Uses Salesforce and Marketo"))
-                            .build(),
-                        CustomField.builder()
+                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
+                            .build()),
+                        CustomField.of(CustomField1.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(Value.of("Uses Salesforce and Marketo"))
-                            .build()))
+                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
+                            .build())))
                     .attendees(List.of(
                         ActivityAttendeeInput.builder()
                             .name("Elon Musk")

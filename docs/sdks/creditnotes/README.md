@@ -185,12 +185,12 @@ public class Application {
                                 .code("453")
                                 .build())
                             .customFields(List.of(
-                                CustomField.builder()
+                                CustomField.of(CustomField1.builder()
                                     .id("2389328923893298")
                                     .name("employee_level")
                                     .description("Employee Level")
-                                    .value(Value.of("Uses Salesforce and Marketo"))
-                                    .build()))
+                                    .value(CustomField1Value.of("Uses Salesforce and Marketo"))
+                                    .build())))
                             .rowVersion("1-12345")
                             .build()))
                     .allocations(List.of(
@@ -259,24 +259,24 @@ public class Application {
                             .name("New York")
                             .build()))
                     .customFields(List.of(
-                        CustomField.builder()
+                        CustomField.of(CustomField1.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(Value.of("Uses Salesforce and Marketo"))
-                            .build(),
-                        CustomField.builder()
+                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
+                            .build()),
+                        CustomField.of(CustomField1.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(Value.of("Uses Salesforce and Marketo"))
-                            .build(),
-                        CustomField.builder()
+                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
+                            .build()),
+                        CustomField.of(CustomField1.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(Value.of("Uses Salesforce and Marketo"))
-                            .build()))
+                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
+                            .build())))
                     .rowVersion("1-12345")
                     .passThrough(List.of(
                         PassThroughBody.builder()
@@ -485,24 +485,24 @@ public class Application {
                                 .code("453")
                                 .build())
                             .customFields(List.of(
-                                CustomField.builder()
+                                CustomField.of(CustomField1.builder()
                                     .id("2389328923893298")
                                     .name("employee_level")
                                     .description("Employee Level")
-                                    .value(Value.of("Uses Salesforce and Marketo"))
-                                    .build(),
-                                CustomField.builder()
+                                    .value(CustomField1Value.of("Uses Salesforce and Marketo"))
+                                    .build()),
+                                CustomField.of(CustomField1.builder()
                                     .id("2389328923893298")
                                     .name("employee_level")
                                     .description("Employee Level")
-                                    .value(Value.of("Uses Salesforce and Marketo"))
-                                    .build(),
-                                CustomField.builder()
+                                    .value(CustomField1Value.of("Uses Salesforce and Marketo"))
+                                    .build()),
+                                CustomField.of(CustomField1.builder()
                                     .id("2389328923893298")
                                     .name("employee_level")
                                     .description("Employee Level")
-                                    .value(Value.of("Uses Salesforce and Marketo"))
-                                    .build()))
+                                    .value(CustomField1Value.of("Uses Salesforce and Marketo"))
+                                    .build())))
                             .rowVersion("1-12345")
                             .build()))
                     .allocations(List.of(
@@ -580,18 +580,18 @@ public class Application {
                             .name("New York")
                             .build()))
                     .customFields(List.of(
-                        CustomField.builder()
+                        CustomField.of(CustomField1.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(Value.of("Uses Salesforce and Marketo"))
-                            .build(),
-                        CustomField.builder()
+                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
+                            .build()),
+                        CustomField.of(CustomField1.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(Value.of("Uses Salesforce and Marketo"))
-                            .build()))
+                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
+                            .build())))
                     .rowVersion("1-12345")
                     .passThrough(List.of(
                         PassThroughBody.builder()

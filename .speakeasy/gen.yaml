@@ -24,8 +24,9 @@ generation:
     generateTests: true
     generateNewTests: false
     skipResponseBodyAssertions: false
+  persistentEdits: {}
 java:
-  version: 0.28.0
+  version: 0.29.0
   additionalDependencies: []
   additionalPlugins: []
   artifactID: unify
@@ -40,6 +41,7 @@ java:
   enableSlf4jLogging: false
   enableStreamingUploads: false
   flattenGlobalSecurity: true
+  forwardCompatibleEnumsByDefault: false
   generateOptionalUnionAccessors: false
   generateSpringBootStarter: true
   githubURL: github.com/apideck-libraries/sdk-java

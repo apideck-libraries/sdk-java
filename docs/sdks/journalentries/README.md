@@ -202,12 +202,12 @@ public class Application {
                     .accountingPeriod("01-24")
                     .rowVersion("1-12345")
                     .customFields(List.of(
-                        CustomField.builder()
+                        CustomField.of(CustomField1.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(Value.of("Uses Salesforce and Marketo"))
-                            .build()))
+                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
+                            .build())))
                     .passThrough(List.of(
                         PassThroughBody.builder()
                             .serviceId("<id>")
@@ -499,12 +499,12 @@ public class Application {
                     .accountingPeriod("01-24")
                     .rowVersion("1-12345")
                     .customFields(List.of(
-                        CustomField.builder()
+                        CustomField.of(CustomField1.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(Value.of("Uses Salesforce and Marketo"))
-                            .build()))
+                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
+                            .build())))
                     .passThrough(List.of(
                         PassThroughBody.builder()
                             .serviceId("<id>")

@@ -11,13 +11,11 @@ import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import java.lang.Boolean;
 import java.lang.Double;
-import java.lang.Object;
+import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Map;
 
 @JsonDeserialize(using = Five._Deserializer.class)
 public class Five {
@@ -34,16 +32,11 @@ public class Five {
         return new Five(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
+    public static Five of(long value) {
+        return new Five(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
+    }
+
     public static Five of(double value) {
-        return new Five(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
-    }
-
-    public static Five of(boolean value) {
-        return new Five(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
-    }
-
-    public static Five of(Map<String, Object> value) {
-        Utils.checkNotNull(value, "value");
         return new Five(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
@@ -51,9 +44,8 @@ public class Five {
      * Returns an instance of one of these types:
      * <ul>
      * <li>{@code java.lang.String}</li>
+     * <li>{@code long}</li>
      * <li>{@code double}</li>
-     * <li>{@code boolean}</li>
-     * <li>{@code java.util.Map<java.lang.String, java.lang.Object>}</li>
      * </ul>
      * 
      * <p>Use {@code instanceof} to determine what type is returned. For example:
@@ -93,9 +85,8 @@ public class Five {
 
         public _Deserializer() {
             super(Five.class, false,
-                  TypeReferenceWithShape.of(new TypeReference<Map<String, Object>>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<Boolean>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<Double>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<Long>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<String>() {}, JsonShape.DEFAULT));
         }
     }

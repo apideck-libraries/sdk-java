@@ -16,6 +16,7 @@ import java.util.Optional;
 public enum CreditNoteStatus {
     DRAFT("draft"),
     AUTHORISED("authorised"),
+    POSTED("posted"),
     PARTIALLY_PAID("partially_paid"),
     PAID("paid"),
     VOIDED("voided"),

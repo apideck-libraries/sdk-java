@@ -11,41 +11,56 @@ import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import java.lang.Boolean;
 import java.lang.Double;
-import java.lang.Long;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.List;
+import java.util.Map;
 
-@JsonDeserialize(using = ConnectionValue5._Deserializer.class)
-public class ConnectionValue5 {
+@JsonDeserialize(using = CustomFieldValue._Deserializer.class)
+public class CustomFieldValue {
 
     @JsonValue
     private final TypedObject value;
     
-    private ConnectionValue5(TypedObject value) {
+    private CustomFieldValue(TypedObject value) {
         this.value = value;
     }
 
-    public static ConnectionValue5 of(String value) {
+    public static CustomFieldValue of(String value) {
         Utils.checkNotNull(value, "value");
-        return new ConnectionValue5(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
+        return new CustomFieldValue(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
-    public static ConnectionValue5 of(long value) {
-        return new ConnectionValue5(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
+    public static CustomFieldValue of(double value) {
+        return new CustomFieldValue(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
-    public static ConnectionValue5 of(double value) {
-        return new ConnectionValue5(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
+    public static CustomFieldValue of(boolean value) {
+        return new CustomFieldValue(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
+    }
+
+    public static CustomFieldValue of(Map<String, Object> value) {
+        Utils.checkNotNull(value, "value");
+        return new CustomFieldValue(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
+    }
+
+    public static CustomFieldValue of(List<CustomFieldValue25> value) {
+        Utils.checkNotNull(value, "value");
+        return new CustomFieldValue(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
      * Returns an instance of one of these types:
      * <ul>
      * <li>{@code java.lang.String}</li>
-     * <li>{@code long}</li>
      * <li>{@code double}</li>
+     * <li>{@code boolean}</li>
+     * <li>{@code java.util.Map<java.lang.String, java.lang.Object>}</li>
+     * <li>{@code java.util.List<com.apideck.unify.models.components.CustomFieldValue25>}</li>
      * </ul>
      * 
      * <p>Use {@code instanceof} to determine what type is returned. For example:
@@ -71,7 +86,7 @@ public class ConnectionValue5 {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        ConnectionValue5 other = (ConnectionValue5) o;
+        CustomFieldValue other = (CustomFieldValue) o;
         return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
@@ -81,19 +96,21 @@ public class ConnectionValue5 {
     }
     
     @SuppressWarnings("serial")
-    public static final class _Deserializer extends OneOfDeserializer<ConnectionValue5> {
+    public static final class _Deserializer extends OneOfDeserializer<CustomFieldValue> {
 
         public _Deserializer() {
-            super(ConnectionValue5.class, false,
+            super(CustomFieldValue.class, false,
+                  TypeReferenceWithShape.of(new TypeReference<List<CustomFieldValue25>>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<Map<String, Object>>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<Boolean>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<Double>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<Long>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<String>() {}, JsonShape.DEFAULT));
         }
     }
     
     @Override
     public String toString() {
-        return Utils.toString(ConnectionValue5.class,
+        return Utils.toString(CustomFieldValue.class,
                 "value", value);
     }
 

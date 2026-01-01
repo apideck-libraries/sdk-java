@@ -55,9 +55,9 @@ public class EcommerceOrderLineItem {
     /**
      * The name of the product or variant associated with the line item.
      */
-    @JsonInclude(Include.ALWAYS)
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
-    private Optional<String> name;
+    private JsonNullable<String> name;
 
     /**
      * The description of the product or variant associated with the line item.
@@ -147,7 +147,7 @@ public class EcommerceOrderLineItem {
             @JsonProperty("product_id") JsonNullable<String> productId,
             @JsonProperty("variant_id") JsonNullable<String> variantId,
             @JsonProperty("sku") JsonNullable<String> sku,
-            @JsonProperty("name") Optional<String> name,
+            @JsonProperty("name") JsonNullable<String> name,
             @JsonProperty("description") JsonNullable<String> description,
             @JsonProperty("options") Optional<? extends List<Options>> options,
             @JsonProperty("quantity") Optional<String> quantity,
@@ -198,7 +198,7 @@ public class EcommerceOrderLineItem {
     
     public EcommerceOrderLineItem() {
         this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             Optional.empty(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
@@ -241,7 +241,7 @@ public class EcommerceOrderLineItem {
      * The name of the product or variant associated with the line item.
      */
     @JsonIgnore
-    public Optional<String> name() {
+    public JsonNullable<String> name() {
         return name;
     }
 
@@ -421,15 +421,14 @@ public class EcommerceOrderLineItem {
      */
     public EcommerceOrderLineItem withName(String name) {
         Utils.checkNotNull(name, "name");
-        this.name = Optional.ofNullable(name);
+        this.name = JsonNullable.of(name);
         return this;
     }
-
 
     /**
      * The name of the product or variant associated with the line item.
      */
-    public EcommerceOrderLineItem withName(Optional<String> name) {
+    public EcommerceOrderLineItem withName(JsonNullable<String> name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
@@ -719,7 +718,7 @@ public class EcommerceOrderLineItem {
 
         private JsonNullable<String> sku = JsonNullable.undefined();
 
-        private Optional<String> name = Optional.empty();
+        private JsonNullable<String> name = JsonNullable.undefined();
 
         private JsonNullable<String> description = JsonNullable.undefined();
 
@@ -831,14 +830,14 @@ public class EcommerceOrderLineItem {
          */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
-            this.name = Optional.ofNullable(name);
+            this.name = JsonNullable.of(name);
             return this;
         }
 
         /**
          * The name of the product or variant associated with the line item.
          */
-        public Builder name(Optional<String> name) {
+        public Builder name(JsonNullable<String> name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;

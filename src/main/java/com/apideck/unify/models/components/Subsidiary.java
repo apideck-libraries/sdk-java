@@ -50,6 +50,13 @@ public class Subsidiary {
     private JsonNullable<String> displayId;
 
     /**
+     * The third-party API ID of original entity
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("downstream_id")
+    private JsonNullable<String> downstreamId;
+
+    /**
      * Based on the status some functionality is enabled or disabled.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -125,6 +132,7 @@ public class Subsidiary {
             @JsonProperty("parent_id") JsonNullable<String> parentId,
             @JsonProperty("name") JsonNullable<String> name,
             @JsonProperty("display_id") JsonNullable<String> displayId,
+            @JsonProperty("downstream_id") JsonNullable<String> downstreamId,
             @JsonProperty("status") Optional<? extends SubsidiaryStatus> status,
             @JsonProperty("address") Optional<? extends Address> address,
             @JsonProperty("currencies") JsonNullable<? extends List<Currency>> currencies,
@@ -139,6 +147,7 @@ public class Subsidiary {
         Utils.checkNotNull(parentId, "parentId");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(displayId, "displayId");
+        Utils.checkNotNull(downstreamId, "downstreamId");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(address, "address");
         Utils.checkNotNull(currencies, "currencies");
@@ -153,6 +162,7 @@ public class Subsidiary {
         this.parentId = parentId;
         this.name = name;
         this.displayId = displayId;
+        this.downstreamId = downstreamId;
         this.status = status;
         this.address = address;
         this.currencies = currencies;
@@ -167,10 +177,10 @@ public class Subsidiary {
     
     public Subsidiary() {
         this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty());
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -203,6 +213,14 @@ public class Subsidiary {
     @JsonIgnore
     public JsonNullable<String> displayId() {
         return displayId;
+    }
+
+    /**
+     * The third-party API ID of original entity
+     */
+    @JsonIgnore
+    public JsonNullable<String> downstreamId() {
+        return downstreamId;
     }
 
     /**
@@ -364,6 +382,24 @@ public class Subsidiary {
     public Subsidiary withDisplayId(JsonNullable<String> displayId) {
         Utils.checkNotNull(displayId, "displayId");
         this.displayId = displayId;
+        return this;
+    }
+
+    /**
+     * The third-party API ID of original entity
+     */
+    public Subsidiary withDownstreamId(String downstreamId) {
+        Utils.checkNotNull(downstreamId, "downstreamId");
+        this.downstreamId = JsonNullable.of(downstreamId);
+        return this;
+    }
+
+    /**
+     * The third-party API ID of original entity
+     */
+    public Subsidiary withDownstreamId(JsonNullable<String> downstreamId) {
+        Utils.checkNotNull(downstreamId, "downstreamId");
+        this.downstreamId = downstreamId;
         return this;
     }
 
@@ -562,6 +598,7 @@ public class Subsidiary {
             Utils.enhancedDeepEquals(this.parentId, other.parentId) &&
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.displayId, other.displayId) &&
+            Utils.enhancedDeepEquals(this.downstreamId, other.downstreamId) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.address, other.address) &&
             Utils.enhancedDeepEquals(this.currencies, other.currencies) &&
@@ -578,10 +615,10 @@ public class Subsidiary {
     public int hashCode() {
         return Utils.enhancedHash(
             id, parentId, name,
-            displayId, status, address,
-            currencies, customMappings, rowVersion,
-            updatedBy, createdBy, updatedAt,
-            createdAt, passThrough);
+            displayId, downstreamId, status,
+            address, currencies, customMappings,
+            rowVersion, updatedBy, createdBy,
+            updatedAt, createdAt, passThrough);
     }
     
     @Override
@@ -591,6 +628,7 @@ public class Subsidiary {
                 "parentId", parentId,
                 "name", name,
                 "displayId", displayId,
+                "downstreamId", downstreamId,
                 "status", status,
                 "address", address,
                 "currencies", currencies,
@@ -613,6 +651,8 @@ public class Subsidiary {
         private JsonNullable<String> name = JsonNullable.undefined();
 
         private JsonNullable<String> displayId = JsonNullable.undefined();
+
+        private JsonNullable<String> downstreamId = JsonNullable.undefined();
 
         private Optional<? extends SubsidiaryStatus> status = Optional.empty();
 
@@ -711,6 +751,25 @@ public class Subsidiary {
         public Builder displayId(JsonNullable<String> displayId) {
             Utils.checkNotNull(displayId, "displayId");
             this.displayId = displayId;
+            return this;
+        }
+
+
+        /**
+         * The third-party API ID of original entity
+         */
+        public Builder downstreamId(String downstreamId) {
+            Utils.checkNotNull(downstreamId, "downstreamId");
+            this.downstreamId = JsonNullable.of(downstreamId);
+            return this;
+        }
+
+        /**
+         * The third-party API ID of original entity
+         */
+        public Builder downstreamId(JsonNullable<String> downstreamId) {
+            Utils.checkNotNull(downstreamId, "downstreamId");
+            this.downstreamId = downstreamId;
             return this;
         }
 
@@ -906,10 +965,10 @@ public class Subsidiary {
 
             return new Subsidiary(
                 id, parentId, name,
-                displayId, status, address,
-                currencies, customMappings, rowVersion,
-                updatedBy, createdBy, updatedAt,
-                createdAt, passThrough);
+                displayId, downstreamId, status,
+                address, currencies, customMappings,
+                rowVersion, updatedBy, createdBy,
+                updatedAt, createdAt, passThrough);
         }
 
     }

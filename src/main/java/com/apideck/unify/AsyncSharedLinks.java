@@ -52,9 +52,9 @@ public class AsyncSharedLinks {
 
 
     /**
-     * List SharedLinks
+     * List Shared Links
      * 
-     * <p>List SharedLinks
+     * <p>List Shared Links
      * 
      * @return The async call builder
      */
@@ -63,9 +63,9 @@ public class AsyncSharedLinks {
     }
 
     /**
-     * List SharedLinks
+     * List Shared Links
      * 
-     * <p>List SharedLinks
+     * <p>List Shared Links
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<FileStorageSharedLinksAllResponse>} - The async response
@@ -75,9 +75,9 @@ public class AsyncSharedLinks {
     }
 
     /**
-     * List SharedLinks
+     * List Shared Links
      * 
-     * <p>List SharedLinks
+     * <p>List Shared Links
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options

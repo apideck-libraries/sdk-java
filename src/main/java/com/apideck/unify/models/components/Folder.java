@@ -31,6 +31,13 @@ public class Folder {
     private Optional<String> id;
 
     /**
+     * The third-party API ID of original entity
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("downstream_id")
+    private JsonNullable<String> downstreamId;
+
+    /**
      * The name of the folder
      */
     @JsonProperty("name")
@@ -56,6 +63,13 @@ public class Folder {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("size")
     private JsonNullable<Long> size;
+
+    /**
+     * Whether the current user can download the contents of this folder
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("downloadable")
+    private JsonNullable<Boolean> downloadable;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -114,10 +128,12 @@ public class Folder {
     @JsonCreator
     public Folder(
             @JsonProperty("id") Optional<String> id,
+            @JsonProperty("downstream_id") JsonNullable<String> downstreamId,
             @JsonProperty("name") String name,
             @JsonProperty("description") JsonNullable<String> description,
             @JsonProperty("path") JsonNullable<String> path,
             @JsonProperty("size") JsonNullable<Long> size,
+            @JsonProperty("downloadable") JsonNullable<Boolean> downloadable,
             @JsonProperty("owner") Optional<? extends Owner> owner,
             @JsonProperty("parent_folders") List<LinkedFolder> parentFolders,
             @JsonProperty("parent_folders_complete") Optional<Boolean> parentFoldersComplete,
@@ -127,10 +143,12 @@ public class Folder {
             @JsonProperty("updated_at") JsonNullable<OffsetDateTime> updatedAt,
             @JsonProperty("created_at") JsonNullable<OffsetDateTime> createdAt) {
         Utils.checkNotNull(id, "id");
+        Utils.checkNotNull(downstreamId, "downstreamId");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(path, "path");
         Utils.checkNotNull(size, "size");
+        Utils.checkNotNull(downloadable, "downloadable");
         Utils.checkNotNull(owner, "owner");
         Utils.checkNotNull(parentFolders, "parentFolders");
         Utils.checkNotNull(parentFoldersComplete, "parentFoldersComplete");
@@ -140,10 +158,12 @@ public class Folder {
         Utils.checkNotNull(updatedAt, "updatedAt");
         Utils.checkNotNull(createdAt, "createdAt");
         this.id = id;
+        this.downstreamId = downstreamId;
         this.name = name;
         this.description = description;
         this.path = path;
         this.size = size;
+        this.downloadable = downloadable;
         this.owner = owner;
         this.parentFolders = parentFolders;
         this.parentFoldersComplete = parentFoldersComplete;
@@ -157,11 +177,11 @@ public class Folder {
     public Folder(
             String name,
             List<LinkedFolder> parentFolders) {
-        this(Optional.empty(), name, JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            parentFolders, Optional.empty(), JsonNullable.undefined(),
+        this(Optional.empty(), JsonNullable.undefined(), name,
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined());
+            JsonNullable.undefined(), Optional.empty(), parentFolders,
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -170,6 +190,14 @@ public class Folder {
     @JsonIgnore
     public Optional<String> id() {
         return id;
+    }
+
+    /**
+     * The third-party API ID of original entity
+     */
+    @JsonIgnore
+    public JsonNullable<String> downstreamId() {
+        return downstreamId;
     }
 
     /**
@@ -202,6 +230,14 @@ public class Folder {
     @JsonIgnore
     public JsonNullable<Long> size() {
         return size;
+    }
+
+    /**
+     * Whether the current user can download the contents of this folder
+     */
+    @JsonIgnore
+    public JsonNullable<Boolean> downloadable() {
+        return downloadable;
     }
 
     @SuppressWarnings("unchecked")
@@ -293,6 +329,24 @@ public class Folder {
     }
 
     /**
+     * The third-party API ID of original entity
+     */
+    public Folder withDownstreamId(String downstreamId) {
+        Utils.checkNotNull(downstreamId, "downstreamId");
+        this.downstreamId = JsonNullable.of(downstreamId);
+        return this;
+    }
+
+    /**
+     * The third-party API ID of original entity
+     */
+    public Folder withDownstreamId(JsonNullable<String> downstreamId) {
+        Utils.checkNotNull(downstreamId, "downstreamId");
+        this.downstreamId = downstreamId;
+        return this;
+    }
+
+    /**
      * The name of the folder
      */
     public Folder withName(String name) {
@@ -352,6 +406,24 @@ public class Folder {
     public Folder withSize(JsonNullable<Long> size) {
         Utils.checkNotNull(size, "size");
         this.size = size;
+        return this;
+    }
+
+    /**
+     * Whether the current user can download the contents of this folder
+     */
+    public Folder withDownloadable(boolean downloadable) {
+        Utils.checkNotNull(downloadable, "downloadable");
+        this.downloadable = JsonNullable.of(downloadable);
+        return this;
+    }
+
+    /**
+     * Whether the current user can download the contents of this folder
+     */
+    public Folder withDownloadable(JsonNullable<Boolean> downloadable) {
+        Utils.checkNotNull(downloadable, "downloadable");
+        this.downloadable = downloadable;
         return this;
     }
 
@@ -499,10 +571,12 @@ public class Folder {
         Folder other = (Folder) o;
         return 
             Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.downstreamId, other.downstreamId) &&
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.description, other.description) &&
             Utils.enhancedDeepEquals(this.path, other.path) &&
             Utils.enhancedDeepEquals(this.size, other.size) &&
+            Utils.enhancedDeepEquals(this.downloadable, other.downloadable) &&
             Utils.enhancedDeepEquals(this.owner, other.owner) &&
             Utils.enhancedDeepEquals(this.parentFolders, other.parentFolders) &&
             Utils.enhancedDeepEquals(this.parentFoldersComplete, other.parentFoldersComplete) &&
@@ -516,21 +590,23 @@ public class Folder {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, name, description,
-            path, size, owner,
-            parentFolders, parentFoldersComplete, customMappings,
-            updatedBy, createdBy, updatedAt,
-            createdAt);
+            id, downstreamId, name,
+            description, path, size,
+            downloadable, owner, parentFolders,
+            parentFoldersComplete, customMappings, updatedBy,
+            createdBy, updatedAt, createdAt);
     }
     
     @Override
     public String toString() {
         return Utils.toString(Folder.class,
                 "id", id,
+                "downstreamId", downstreamId,
                 "name", name,
                 "description", description,
                 "path", path,
                 "size", size,
+                "downloadable", downloadable,
                 "owner", owner,
                 "parentFolders", parentFolders,
                 "parentFoldersComplete", parentFoldersComplete,
@@ -546,6 +622,8 @@ public class Folder {
 
         private Optional<String> id = Optional.empty();
 
+        private JsonNullable<String> downstreamId = JsonNullable.undefined();
+
         private String name;
 
         private JsonNullable<String> description = JsonNullable.undefined();
@@ -553,6 +631,8 @@ public class Folder {
         private JsonNullable<String> path = JsonNullable.undefined();
 
         private JsonNullable<Long> size = JsonNullable.undefined();
+
+        private JsonNullable<Boolean> downloadable = JsonNullable.undefined();
 
         private Optional<? extends Owner> owner = Optional.empty();
 
@@ -590,6 +670,25 @@ public class Folder {
         public Builder id(Optional<String> id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
+            return this;
+        }
+
+
+        /**
+         * The third-party API ID of original entity
+         */
+        public Builder downstreamId(String downstreamId) {
+            Utils.checkNotNull(downstreamId, "downstreamId");
+            this.downstreamId = JsonNullable.of(downstreamId);
+            return this;
+        }
+
+        /**
+         * The third-party API ID of original entity
+         */
+        public Builder downstreamId(JsonNullable<String> downstreamId) {
+            Utils.checkNotNull(downstreamId, "downstreamId");
+            this.downstreamId = downstreamId;
             return this;
         }
 
@@ -657,6 +756,25 @@ public class Folder {
         public Builder size(JsonNullable<Long> size) {
             Utils.checkNotNull(size, "size");
             this.size = size;
+            return this;
+        }
+
+
+        /**
+         * Whether the current user can download the contents of this folder
+         */
+        public Builder downloadable(boolean downloadable) {
+            Utils.checkNotNull(downloadable, "downloadable");
+            this.downloadable = JsonNullable.of(downloadable);
+            return this;
+        }
+
+        /**
+         * Whether the current user can download the contents of this folder
+         */
+        public Builder downloadable(JsonNullable<Boolean> downloadable) {
+            Utils.checkNotNull(downloadable, "downloadable");
+            this.downloadable = downloadable;
             return this;
         }
 
@@ -802,11 +920,11 @@ public class Folder {
         public Folder build() {
 
             return new Folder(
-                id, name, description,
-                path, size, owner,
-                parentFolders, parentFoldersComplete, customMappings,
-                updatedBy, createdBy, updatedAt,
-                createdAt);
+                id, downstreamId, name,
+                description, path, size,
+                downloadable, owner, parentFolders,
+                parentFoldersComplete, customMappings, updatedBy,
+                createdBy, updatedAt, createdAt);
         }
 
     }

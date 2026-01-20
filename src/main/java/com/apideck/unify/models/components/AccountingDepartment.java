@@ -36,6 +36,13 @@ public class AccountingDepartment {
     private JsonNullable<String> parentId;
 
     /**
+     * Id to be displayed.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("display_id")
+    private JsonNullable<String> displayId;
+
+    /**
      * The name of the department.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -60,6 +67,13 @@ public class AccountingDepartment {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("code")
     private Optional<String> code;
+
+    /**
+     * The third-party API ID of original entity
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("downstream_id")
+    private JsonNullable<String> downstreamId;
 
     /**
      * When custom mappings are configured on the resource, the result is included here.
@@ -116,10 +130,12 @@ public class AccountingDepartment {
     public AccountingDepartment(
             @JsonProperty("id") Optional<String> id,
             @JsonProperty("parent_id") JsonNullable<String> parentId,
+            @JsonProperty("display_id") JsonNullable<String> displayId,
             @JsonProperty("name") JsonNullable<String> name,
             @JsonProperty("status") Optional<? extends DepartmentStatus> status,
             @JsonProperty("subsidiaries") Optional<? extends List<SubsidiaryReference>> subsidiaries,
             @JsonProperty("code") Optional<String> code,
+            @JsonProperty("downstream_id") JsonNullable<String> downstreamId,
             @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings,
             @JsonProperty("row_version") JsonNullable<String> rowVersion,
             @JsonProperty("updated_by") JsonNullable<String> updatedBy,
@@ -129,10 +145,12 @@ public class AccountingDepartment {
             @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(parentId, "parentId");
+        Utils.checkNotNull(displayId, "displayId");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(subsidiaries, "subsidiaries");
         Utils.checkNotNull(code, "code");
+        Utils.checkNotNull(downstreamId, "downstreamId");
         Utils.checkNotNull(customMappings, "customMappings");
         Utils.checkNotNull(rowVersion, "rowVersion");
         Utils.checkNotNull(updatedBy, "updatedBy");
@@ -142,10 +160,12 @@ public class AccountingDepartment {
         Utils.checkNotNull(passThrough, "passThrough");
         this.id = id;
         this.parentId = parentId;
+        this.displayId = displayId;
         this.name = name;
         this.status = status;
         this.subsidiaries = subsidiaries;
         this.code = code;
+        this.downstreamId = downstreamId;
         this.customMappings = customMappings;
         this.rowVersion = rowVersion;
         this.updatedBy = updatedBy;
@@ -157,10 +177,10 @@ public class AccountingDepartment {
     
     public AccountingDepartment() {
         this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty());
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -177,6 +197,14 @@ public class AccountingDepartment {
     @JsonIgnore
     public JsonNullable<String> parentId() {
         return parentId;
+    }
+
+    /**
+     * Id to be displayed.
+     */
+    @JsonIgnore
+    public JsonNullable<String> displayId() {
+        return displayId;
     }
 
     /**
@@ -208,6 +236,14 @@ public class AccountingDepartment {
     @JsonIgnore
     public Optional<String> code() {
         return code;
+    }
+
+    /**
+     * The third-party API ID of original entity
+     */
+    @JsonIgnore
+    public JsonNullable<String> downstreamId() {
+        return downstreamId;
     }
 
     /**
@@ -313,6 +349,24 @@ public class AccountingDepartment {
     }
 
     /**
+     * Id to be displayed.
+     */
+    public AccountingDepartment withDisplayId(String displayId) {
+        Utils.checkNotNull(displayId, "displayId");
+        this.displayId = JsonNullable.of(displayId);
+        return this;
+    }
+
+    /**
+     * Id to be displayed.
+     */
+    public AccountingDepartment withDisplayId(JsonNullable<String> displayId) {
+        Utils.checkNotNull(displayId, "displayId");
+        this.displayId = displayId;
+        return this;
+    }
+
+    /**
      * The name of the department.
      */
     public AccountingDepartment withName(String name) {
@@ -378,6 +432,24 @@ public class AccountingDepartment {
     public AccountingDepartment withCode(Optional<String> code) {
         Utils.checkNotNull(code, "code");
         this.code = code;
+        return this;
+    }
+
+    /**
+     * The third-party API ID of original entity
+     */
+    public AccountingDepartment withDownstreamId(String downstreamId) {
+        Utils.checkNotNull(downstreamId, "downstreamId");
+        this.downstreamId = JsonNullable.of(downstreamId);
+        return this;
+    }
+
+    /**
+     * The third-party API ID of original entity
+     */
+    public AccountingDepartment withDownstreamId(JsonNullable<String> downstreamId) {
+        Utils.checkNotNull(downstreamId, "downstreamId");
+        this.downstreamId = downstreamId;
         return this;
     }
 
@@ -524,10 +596,12 @@ public class AccountingDepartment {
         return 
             Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.parentId, other.parentId) &&
+            Utils.enhancedDeepEquals(this.displayId, other.displayId) &&
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.subsidiaries, other.subsidiaries) &&
             Utils.enhancedDeepEquals(this.code, other.code) &&
+            Utils.enhancedDeepEquals(this.downstreamId, other.downstreamId) &&
             Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
             Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion) &&
             Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
@@ -540,11 +614,11 @@ public class AccountingDepartment {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, parentId, name,
-            status, subsidiaries, code,
-            customMappings, rowVersion, updatedBy,
-            createdBy, updatedAt, createdAt,
-            passThrough);
+            id, parentId, displayId,
+            name, status, subsidiaries,
+            code, downstreamId, customMappings,
+            rowVersion, updatedBy, createdBy,
+            updatedAt, createdAt, passThrough);
     }
     
     @Override
@@ -552,10 +626,12 @@ public class AccountingDepartment {
         return Utils.toString(AccountingDepartment.class,
                 "id", id,
                 "parentId", parentId,
+                "displayId", displayId,
                 "name", name,
                 "status", status,
                 "subsidiaries", subsidiaries,
                 "code", code,
+                "downstreamId", downstreamId,
                 "customMappings", customMappings,
                 "rowVersion", rowVersion,
                 "updatedBy", updatedBy,
@@ -572,6 +648,8 @@ public class AccountingDepartment {
 
         private JsonNullable<String> parentId = JsonNullable.undefined();
 
+        private JsonNullable<String> displayId = JsonNullable.undefined();
+
         private JsonNullable<String> name = JsonNullable.undefined();
 
         private Optional<? extends DepartmentStatus> status = Optional.empty();
@@ -579,6 +657,8 @@ public class AccountingDepartment {
         private Optional<? extends List<SubsidiaryReference>> subsidiaries = Optional.empty();
 
         private Optional<String> code = Optional.empty();
+
+        private JsonNullable<String> downstreamId = JsonNullable.undefined();
 
         private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
 
@@ -633,6 +713,25 @@ public class AccountingDepartment {
         public Builder parentId(JsonNullable<String> parentId) {
             Utils.checkNotNull(parentId, "parentId");
             this.parentId = parentId;
+            return this;
+        }
+
+
+        /**
+         * Id to be displayed.
+         */
+        public Builder displayId(String displayId) {
+            Utils.checkNotNull(displayId, "displayId");
+            this.displayId = JsonNullable.of(displayId);
+            return this;
+        }
+
+        /**
+         * Id to be displayed.
+         */
+        public Builder displayId(JsonNullable<String> displayId) {
+            Utils.checkNotNull(displayId, "displayId");
+            this.displayId = displayId;
             return this;
         }
 
@@ -703,6 +802,25 @@ public class AccountingDepartment {
         public Builder code(Optional<String> code) {
             Utils.checkNotNull(code, "code");
             this.code = code;
+            return this;
+        }
+
+
+        /**
+         * The third-party API ID of original entity
+         */
+        public Builder downstreamId(String downstreamId) {
+            Utils.checkNotNull(downstreamId, "downstreamId");
+            this.downstreamId = JsonNullable.of(downstreamId);
+            return this;
+        }
+
+        /**
+         * The third-party API ID of original entity
+         */
+        public Builder downstreamId(JsonNullable<String> downstreamId) {
+            Utils.checkNotNull(downstreamId, "downstreamId");
+            this.downstreamId = downstreamId;
             return this;
         }
 
@@ -846,11 +964,11 @@ public class AccountingDepartment {
         public AccountingDepartment build() {
 
             return new AccountingDepartment(
-                id, parentId, name,
-                status, subsidiaries, code,
-                customMappings, rowVersion, updatedBy,
-                createdBy, updatedAt, createdAt,
-                passThrough);
+                id, parentId, displayId,
+                name, status, subsidiaries,
+                code, downstreamId, customMappings,
+                rowVersion, updatedBy, createdBy,
+                updatedAt, createdAt, passThrough);
         }
 
     }

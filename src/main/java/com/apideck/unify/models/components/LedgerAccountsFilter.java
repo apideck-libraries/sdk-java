@@ -15,6 +15,12 @@ import java.util.Optional;
 
 
 public class LedgerAccountsFilter {
+    /**
+     * Filter by ledger account name
+     */
+    @SpeakeasyMetadata("queryParam:name=name")
+    private Optional<String> name;
+
 
     @SpeakeasyMetadata("queryParam:name=updated_since")
     private Optional<OffsetDateTime> updatedSince;
@@ -27,16 +33,27 @@ public class LedgerAccountsFilter {
 
     @JsonCreator
     public LedgerAccountsFilter(
+            Optional<String> name,
             Optional<OffsetDateTime> updatedSince,
             Optional<? extends Classification> classification) {
+        Utils.checkNotNull(name, "name");
         Utils.checkNotNull(updatedSince, "updatedSince");
         Utils.checkNotNull(classification, "classification");
+        this.name = name;
         this.updatedSince = updatedSince;
         this.classification = classification;
     }
     
     public LedgerAccountsFilter() {
-        this(Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty());
+    }
+
+    /**
+     * Filter by ledger account name
+     */
+    @JsonIgnore
+    public Optional<String> name() {
+        return name;
     }
 
     @JsonIgnore
@@ -57,6 +74,25 @@ public class LedgerAccountsFilter {
         return new Builder();
     }
 
+
+    /**
+     * Filter by ledger account name
+     */
+    public LedgerAccountsFilter withName(String name) {
+        Utils.checkNotNull(name, "name");
+        this.name = Optional.ofNullable(name);
+        return this;
+    }
+
+
+    /**
+     * Filter by ledger account name
+     */
+    public LedgerAccountsFilter withName(Optional<String> name) {
+        Utils.checkNotNull(name, "name");
+        this.name = name;
+        return this;
+    }
 
     public LedgerAccountsFilter withUpdatedSince(OffsetDateTime updatedSince) {
         Utils.checkNotNull(updatedSince, "updatedSince");
@@ -100,6 +136,7 @@ public class LedgerAccountsFilter {
         }
         LedgerAccountsFilter other = (LedgerAccountsFilter) o;
         return 
+            Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince) &&
             Utils.enhancedDeepEquals(this.classification, other.classification);
     }
@@ -107,12 +144,13 @@ public class LedgerAccountsFilter {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            updatedSince, classification);
+            name, updatedSince, classification);
     }
     
     @Override
     public String toString() {
         return Utils.toString(LedgerAccountsFilter.class,
+                "name", name,
                 "updatedSince", updatedSince,
                 "classification", classification);
     }
@@ -120,12 +158,33 @@ public class LedgerAccountsFilter {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
+        private Optional<String> name = Optional.empty();
+
         private Optional<OffsetDateTime> updatedSince = Optional.empty();
 
         private Optional<? extends Classification> classification = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
+        }
+
+
+        /**
+         * Filter by ledger account name
+         */
+        public Builder name(String name) {
+            Utils.checkNotNull(name, "name");
+            this.name = Optional.ofNullable(name);
+            return this;
+        }
+
+        /**
+         * Filter by ledger account name
+         */
+        public Builder name(Optional<String> name) {
+            Utils.checkNotNull(name, "name");
+            this.name = name;
+            return this;
         }
 
 
@@ -163,7 +222,7 @@ public class LedgerAccountsFilter {
         public LedgerAccountsFilter build() {
 
             return new LedgerAccountsFilter(
-                updatedSince, classification);
+                name, updatedSince, classification);
         }
 
     }

@@ -81,6 +81,13 @@ public class PurchaseOrder {
     private JsonNullable<String> companyId;
 
     /**
+     * The ID of the location
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("location_id")
+    private JsonNullable<String> locationId;
+
+    /**
      * The ID of the department
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -353,6 +360,7 @@ public class PurchaseOrder {
             @JsonProperty("supplier") JsonNullable<? extends LinkedSupplier> supplier,
             @JsonProperty("subsidiary_id") JsonNullable<String> subsidiaryId,
             @JsonProperty("company_id") JsonNullable<String> companyId,
+            @JsonProperty("location_id") JsonNullable<String> locationId,
             @JsonProperty("department_id") JsonNullable<String> departmentId,
             @JsonProperty("status") JsonNullable<? extends PurchaseOrderStatus> status,
             @JsonProperty("issued_date") JsonNullable<LocalDate> issuedDate,
@@ -400,6 +408,7 @@ public class PurchaseOrder {
         Utils.checkNotNull(supplier, "supplier");
         Utils.checkNotNull(subsidiaryId, "subsidiaryId");
         Utils.checkNotNull(companyId, "companyId");
+        Utils.checkNotNull(locationId, "locationId");
         Utils.checkNotNull(departmentId, "departmentId");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(issuedDate, "issuedDate");
@@ -447,6 +456,7 @@ public class PurchaseOrder {
         this.supplier = supplier;
         this.subsidiaryId = subsidiaryId;
         this.companyId = companyId;
+        this.locationId = locationId;
         this.departmentId = departmentId;
         this.status = status;
         this.issuedDate = issuedDate;
@@ -495,16 +505,16 @@ public class PurchaseOrder {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty());
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -570,6 +580,14 @@ public class PurchaseOrder {
     @JsonIgnore
     public JsonNullable<String> companyId() {
         return companyId;
+    }
+
+    /**
+     * The ID of the location
+     */
+    @JsonIgnore
+    public JsonNullable<String> locationId() {
+        return locationId;
     }
 
     /**
@@ -1026,6 +1044,24 @@ public class PurchaseOrder {
     public PurchaseOrder withCompanyId(JsonNullable<String> companyId) {
         Utils.checkNotNull(companyId, "companyId");
         this.companyId = companyId;
+        return this;
+    }
+
+    /**
+     * The ID of the location
+     */
+    public PurchaseOrder withLocationId(String locationId) {
+        Utils.checkNotNull(locationId, "locationId");
+        this.locationId = JsonNullable.of(locationId);
+        return this;
+    }
+
+    /**
+     * The ID of the location
+     */
+    public PurchaseOrder withLocationId(JsonNullable<String> locationId) {
+        Utils.checkNotNull(locationId, "locationId");
+        this.locationId = locationId;
         return this;
     }
 
@@ -1721,6 +1757,7 @@ public class PurchaseOrder {
             Utils.enhancedDeepEquals(this.supplier, other.supplier) &&
             Utils.enhancedDeepEquals(this.subsidiaryId, other.subsidiaryId) &&
             Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
+            Utils.enhancedDeepEquals(this.locationId, other.locationId) &&
             Utils.enhancedDeepEquals(this.departmentId, other.departmentId) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.issuedDate, other.issuedDate) &&
@@ -1767,20 +1804,20 @@ public class PurchaseOrder {
         return Utils.enhancedHash(
             id, downstreamId, displayId,
             poNumber, reference, supplier,
-            subsidiaryId, companyId, departmentId,
-            status, issuedDate, deliveryDate,
-            expectedArrivalDate, currency, currencyRate,
-            subTotal, totalTax, total,
-            taxInclusive, lineItems, billingAddress,
-            shippingAddress, ledgerAccount, templateId,
-            discountPercentage, bankAccount, accountingByRow,
-            dueDate, paymentMethod, terms,
-            amortizationType, taxCode, taxMethod,
-            issuedMethod, issuedEmail, channel,
-            memo, notes, trackingCategories,
-            customMappings, customFields, rowVersion,
-            updatedBy, createdBy, updatedAt,
-            createdAt, passThrough);
+            subsidiaryId, companyId, locationId,
+            departmentId, status, issuedDate,
+            deliveryDate, expectedArrivalDate, currency,
+            currencyRate, subTotal, totalTax,
+            total, taxInclusive, lineItems,
+            billingAddress, shippingAddress, ledgerAccount,
+            templateId, discountPercentage, bankAccount,
+            accountingByRow, dueDate, paymentMethod,
+            terms, amortizationType, taxCode,
+            taxMethod, issuedMethod, issuedEmail,
+            channel, memo, notes,
+            trackingCategories, customMappings, customFields,
+            rowVersion, updatedBy, createdBy,
+            updatedAt, createdAt, passThrough);
     }
     
     @Override
@@ -1794,6 +1831,7 @@ public class PurchaseOrder {
                 "supplier", supplier,
                 "subsidiaryId", subsidiaryId,
                 "companyId", companyId,
+                "locationId", locationId,
                 "departmentId", departmentId,
                 "status", status,
                 "issuedDate", issuedDate,
@@ -1853,6 +1891,8 @@ public class PurchaseOrder {
         private JsonNullable<String> subsidiaryId = JsonNullable.undefined();
 
         private JsonNullable<String> companyId = JsonNullable.undefined();
+
+        private JsonNullable<String> locationId = JsonNullable.undefined();
 
         private JsonNullable<String> departmentId = JsonNullable.undefined();
 
@@ -2085,6 +2125,25 @@ public class PurchaseOrder {
         public Builder companyId(JsonNullable<String> companyId) {
             Utils.checkNotNull(companyId, "companyId");
             this.companyId = companyId;
+            return this;
+        }
+
+
+        /**
+         * The ID of the location
+         */
+        public Builder locationId(String locationId) {
+            Utils.checkNotNull(locationId, "locationId");
+            this.locationId = JsonNullable.of(locationId);
+            return this;
+        }
+
+        /**
+         * The ID of the location
+         */
+        public Builder locationId(JsonNullable<String> locationId) {
+            Utils.checkNotNull(locationId, "locationId");
+            this.locationId = locationId;
             return this;
         }
 
@@ -2800,20 +2859,20 @@ public class PurchaseOrder {
             return new PurchaseOrder(
                 id, downstreamId, displayId,
                 poNumber, reference, supplier,
-                subsidiaryId, companyId, departmentId,
-                status, issuedDate, deliveryDate,
-                expectedArrivalDate, currency, currencyRate,
-                subTotal, totalTax, total,
-                taxInclusive, lineItems, billingAddress,
-                shippingAddress, ledgerAccount, templateId,
-                discountPercentage, bankAccount, accountingByRow,
-                dueDate, paymentMethod, terms,
-                amortizationType, taxCode, taxMethod,
-                issuedMethod, issuedEmail, channel,
-                memo, notes, trackingCategories,
-                customMappings, customFields, rowVersion,
-                updatedBy, createdBy, updatedAt,
-                createdAt, passThrough);
+                subsidiaryId, companyId, locationId,
+                departmentId, status, issuedDate,
+                deliveryDate, expectedArrivalDate, currency,
+                currencyRate, subTotal, totalTax,
+                total, taxInclusive, lineItems,
+                billingAddress, shippingAddress, ledgerAccount,
+                templateId, discountPercentage, bankAccount,
+                accountingByRow, dueDate, paymentMethod,
+                terms, amortizationType, taxCode,
+                taxMethod, issuedMethod, issuedEmail,
+                channel, memo, notes,
+                trackingCategories, customMappings, customFields,
+                rowVersion, updatedBy, createdBy,
+                updatedAt, createdAt, passThrough);
         }
 
     }

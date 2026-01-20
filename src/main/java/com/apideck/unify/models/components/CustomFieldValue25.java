@@ -13,52 +13,47 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import java.lang.Boolean;
 import java.lang.Double;
-import java.lang.Long;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.List;
+import java.util.Map;
 
-@JsonDeserialize(using = SimpleFormFieldOptionValue._Deserializer.class)
-public class SimpleFormFieldOptionValue {
+@JsonDeserialize(using = CustomFieldValue25._Deserializer.class)
+public class CustomFieldValue25 {
 
     @JsonValue
     private final TypedObject value;
     
-    private SimpleFormFieldOptionValue(TypedObject value) {
+    private CustomFieldValue25(TypedObject value) {
         this.value = value;
     }
 
-    public static SimpleFormFieldOptionValue of(String value) {
+    public static CustomFieldValue25 of(String value) {
         Utils.checkNotNull(value, "value");
-        return new SimpleFormFieldOptionValue(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
+        return new CustomFieldValue25(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
-    public static SimpleFormFieldOptionValue of(long value) {
-        return new SimpleFormFieldOptionValue(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
+    public static CustomFieldValue25 of(double value) {
+        return new CustomFieldValue25(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
-    public static SimpleFormFieldOptionValue of(double value) {
-        return new SimpleFormFieldOptionValue(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
+    public static CustomFieldValue25 of(boolean value) {
+        return new CustomFieldValue25(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
-    public static SimpleFormFieldOptionValue of(boolean value) {
-        return new SimpleFormFieldOptionValue(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
-    }
-
-    public static SimpleFormFieldOptionValue of(List<Value5> value) {
+    public static CustomFieldValue25 of(Map<String, Object> value) {
         Utils.checkNotNull(value, "value");
-        return new SimpleFormFieldOptionValue(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
+        return new CustomFieldValue25(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
      * Returns an instance of one of these types:
      * <ul>
      * <li>{@code java.lang.String}</li>
-     * <li>{@code long}</li>
      * <li>{@code double}</li>
      * <li>{@code boolean}</li>
-     * <li>{@code java.util.List<com.apideck.unify.models.components.Value5>}</li>
+     * <li>{@code java.util.Map<java.lang.String, java.lang.Object>}</li>
      * </ul>
      * 
      * <p>Use {@code instanceof} to determine what type is returned. For example:
@@ -84,7 +79,7 @@ public class SimpleFormFieldOptionValue {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        SimpleFormFieldOptionValue other = (SimpleFormFieldOptionValue) o;
+        CustomFieldValue25 other = (CustomFieldValue25) o;
         return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
@@ -94,21 +89,20 @@ public class SimpleFormFieldOptionValue {
     }
     
     @SuppressWarnings("serial")
-    public static final class _Deserializer extends OneOfDeserializer<SimpleFormFieldOptionValue> {
+    public static final class _Deserializer extends OneOfDeserializer<CustomFieldValue25> {
 
         public _Deserializer() {
-            super(SimpleFormFieldOptionValue.class, false,
-                  TypeReferenceWithShape.of(new TypeReference<List<Value5>>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<Boolean>() {}, JsonShape.DEFAULT),
+            super(CustomFieldValue25.class, false,
+                  TypeReferenceWithShape.of(new TypeReference<String>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<Double>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<Long>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<String>() {}, JsonShape.DEFAULT));
+                  TypeReferenceWithShape.of(new TypeReference<Boolean>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<Map<String, Object>>() {}, JsonShape.DEFAULT));
         }
     }
     
     @Override
     public String toString() {
-        return Utils.toString(SimpleFormFieldOptionValue.class,
+        return Utils.toString(CustomFieldValue25.class,
                 "value", value);
     }
 

@@ -36,6 +36,20 @@ public class AccountingLocation {
     private JsonNullable<String> parentId;
 
     /**
+     * Id to be displayed.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("display_id")
+    private JsonNullable<String> displayId;
+
+    /**
+     * The third-party API ID of original entity
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("downstream_id")
+    private JsonNullable<String> downstreamId;
+
+    /**
      * The name of the company.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -121,6 +135,8 @@ public class AccountingLocation {
     public AccountingLocation(
             @JsonProperty("id") Optional<String> id,
             @JsonProperty("parent_id") JsonNullable<String> parentId,
+            @JsonProperty("display_id") JsonNullable<String> displayId,
+            @JsonProperty("downstream_id") JsonNullable<String> downstreamId,
             @JsonProperty("company_name") JsonNullable<String> companyName,
             @JsonProperty("display_name") JsonNullable<String> displayName,
             @JsonProperty("status") Optional<? extends LocationStatus> status,
@@ -135,6 +151,8 @@ public class AccountingLocation {
             @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(parentId, "parentId");
+        Utils.checkNotNull(displayId, "displayId");
+        Utils.checkNotNull(downstreamId, "downstreamId");
         Utils.checkNotNull(companyName, "companyName");
         Utils.checkNotNull(displayName, "displayName");
         Utils.checkNotNull(status, "status");
@@ -149,6 +167,8 @@ public class AccountingLocation {
         Utils.checkNotNull(passThrough, "passThrough");
         this.id = id;
         this.parentId = parentId;
+        this.displayId = displayId;
+        this.downstreamId = downstreamId;
         this.companyName = companyName;
         this.displayName = displayName;
         this.status = status;
@@ -165,10 +185,11 @@ public class AccountingLocation {
     
     public AccountingLocation() {
         this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -185,6 +206,22 @@ public class AccountingLocation {
     @JsonIgnore
     public JsonNullable<String> parentId() {
         return parentId;
+    }
+
+    /**
+     * Id to be displayed.
+     */
+    @JsonIgnore
+    public JsonNullable<String> displayId() {
+        return displayId;
+    }
+
+    /**
+     * The third-party API ID of original entity
+     */
+    @JsonIgnore
+    public JsonNullable<String> downstreamId() {
+        return downstreamId;
     }
 
     /**
@@ -323,6 +360,42 @@ public class AccountingLocation {
     public AccountingLocation withParentId(JsonNullable<String> parentId) {
         Utils.checkNotNull(parentId, "parentId");
         this.parentId = parentId;
+        return this;
+    }
+
+    /**
+     * Id to be displayed.
+     */
+    public AccountingLocation withDisplayId(String displayId) {
+        Utils.checkNotNull(displayId, "displayId");
+        this.displayId = JsonNullable.of(displayId);
+        return this;
+    }
+
+    /**
+     * Id to be displayed.
+     */
+    public AccountingLocation withDisplayId(JsonNullable<String> displayId) {
+        Utils.checkNotNull(displayId, "displayId");
+        this.displayId = displayId;
+        return this;
+    }
+
+    /**
+     * The third-party API ID of original entity
+     */
+    public AccountingLocation withDownstreamId(String downstreamId) {
+        Utils.checkNotNull(downstreamId, "downstreamId");
+        this.downstreamId = JsonNullable.of(downstreamId);
+        return this;
+    }
+
+    /**
+     * The third-party API ID of original entity
+     */
+    public AccountingLocation withDownstreamId(JsonNullable<String> downstreamId) {
+        Utils.checkNotNull(downstreamId, "downstreamId");
+        this.downstreamId = downstreamId;
         return this;
     }
 
@@ -550,6 +623,8 @@ public class AccountingLocation {
         return 
             Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.parentId, other.parentId) &&
+            Utils.enhancedDeepEquals(this.displayId, other.displayId) &&
+            Utils.enhancedDeepEquals(this.downstreamId, other.downstreamId) &&
             Utils.enhancedDeepEquals(this.companyName, other.companyName) &&
             Utils.enhancedDeepEquals(this.displayName, other.displayName) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
@@ -567,11 +642,12 @@ public class AccountingLocation {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, parentId, companyName,
-            displayName, status, addresses,
-            subsidiaries, customMappings, rowVersion,
-            updatedBy, createdBy, updatedAt,
-            createdAt, passThrough);
+            id, parentId, displayId,
+            downstreamId, companyName, displayName,
+            status, addresses, subsidiaries,
+            customMappings, rowVersion, updatedBy,
+            createdBy, updatedAt, createdAt,
+            passThrough);
     }
     
     @Override
@@ -579,6 +655,8 @@ public class AccountingLocation {
         return Utils.toString(AccountingLocation.class,
                 "id", id,
                 "parentId", parentId,
+                "displayId", displayId,
+                "downstreamId", downstreamId,
                 "companyName", companyName,
                 "displayName", displayName,
                 "status", status,
@@ -599,6 +677,10 @@ public class AccountingLocation {
         private Optional<String> id = Optional.empty();
 
         private JsonNullable<String> parentId = JsonNullable.undefined();
+
+        private JsonNullable<String> displayId = JsonNullable.undefined();
+
+        private JsonNullable<String> downstreamId = JsonNullable.undefined();
 
         private JsonNullable<String> companyName = JsonNullable.undefined();
 
@@ -663,6 +745,44 @@ public class AccountingLocation {
         public Builder parentId(JsonNullable<String> parentId) {
             Utils.checkNotNull(parentId, "parentId");
             this.parentId = parentId;
+            return this;
+        }
+
+
+        /**
+         * Id to be displayed.
+         */
+        public Builder displayId(String displayId) {
+            Utils.checkNotNull(displayId, "displayId");
+            this.displayId = JsonNullable.of(displayId);
+            return this;
+        }
+
+        /**
+         * Id to be displayed.
+         */
+        public Builder displayId(JsonNullable<String> displayId) {
+            Utils.checkNotNull(displayId, "displayId");
+            this.displayId = displayId;
+            return this;
+        }
+
+
+        /**
+         * The third-party API ID of original entity
+         */
+        public Builder downstreamId(String downstreamId) {
+            Utils.checkNotNull(downstreamId, "downstreamId");
+            this.downstreamId = JsonNullable.of(downstreamId);
+            return this;
+        }
+
+        /**
+         * The third-party API ID of original entity
+         */
+        public Builder downstreamId(JsonNullable<String> downstreamId) {
+            Utils.checkNotNull(downstreamId, "downstreamId");
+            this.downstreamId = downstreamId;
             return this;
         }
 
@@ -889,11 +1009,12 @@ public class AccountingLocation {
         public AccountingLocation build() {
 
             return new AccountingLocation(
-                id, parentId, companyName,
-                displayName, status, addresses,
-                subsidiaries, customMappings, rowVersion,
-                updatedBy, createdBy, updatedAt,
-                createdAt, passThrough);
+                id, parentId, displayId,
+                downstreamId, companyName, displayName,
+                status, addresses, subsidiaries,
+                customMappings, rowVersion, updatedBy,
+                createdBy, updatedAt, createdAt,
+                passThrough);
         }
 
     }

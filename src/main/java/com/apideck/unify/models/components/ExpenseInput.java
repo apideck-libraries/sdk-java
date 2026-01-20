@@ -23,6 +23,13 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ExpenseInput {
     /**
+     * Id to be displayed.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("display_id")
+    private JsonNullable<String> displayId;
+
+    /**
      * Number.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -47,23 +54,13 @@ public class ExpenseInput {
     @Deprecated
     private Optional<String> accountId;
 
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("account")
-    private JsonNullable<? extends LinkedLedgerAccount> account;
-
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("bank_account")
-    private JsonNullable<? extends LinkedBankAccount> bankAccount;
-
     /**
-     * The ID of the customer this entity is linked to. Used for expenses that should be marked as billable
-     * to customers.
+     * A flexible account reference that can represent either a ledger account (GL account) or a bank
+     * account, depending on the connector's requirements.
      */
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("customer_id")
-    private Optional<String> customerId;
+    @JsonProperty("account")
+    private JsonNullable<? extends LinkedFinancialAccountInput> account;
 
     /**
      * The ID of the supplier this entity is linked to. Deprecated, use supplier instead.
@@ -89,12 +86,22 @@ public class ExpenseInput {
     @JsonProperty("company_id")
     private JsonNullable<String> companyId;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("location")
+    private JsonNullable<? extends LinkedLocationInput> location;
+
     /**
      * The ID of the department
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("department_id")
     private JsonNullable<String> departmentId;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("department")
+    private JsonNullable<? extends LinkedDepartmentInput> department;
 
     /**
      * The type of payment for the expense.
@@ -166,6 +173,13 @@ public class ExpenseInput {
     private JsonNullable<Double> totalAmount;
 
     /**
+     * A list of linked tracking categories.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("tracking_categories")
+    private JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories;
+
+    /**
      * Expense line items linked to this expense.
      */
     @JsonProperty("line_items")
@@ -216,16 +230,17 @@ public class ExpenseInput {
 
     @JsonCreator
     public ExpenseInput(
+            @JsonProperty("display_id") JsonNullable<String> displayId,
             @JsonProperty("number") JsonNullable<String> number,
             @JsonProperty("transaction_date") Optional<OffsetDateTime> transactionDate,
             @JsonProperty("account_id") Optional<String> accountId,
-            @JsonProperty("account") JsonNullable<? extends LinkedLedgerAccount> account,
-            @JsonProperty("bank_account") JsonNullable<? extends LinkedBankAccount> bankAccount,
-            @JsonProperty("customer_id") Optional<String> customerId,
+            @JsonProperty("account") JsonNullable<? extends LinkedFinancialAccountInput> account,
             @JsonProperty("supplier_id") Optional<String> supplierId,
             @JsonProperty("supplier") JsonNullable<? extends LinkedSupplierInput> supplier,
             @JsonProperty("company_id") JsonNullable<String> companyId,
+            @JsonProperty("location") JsonNullable<? extends LinkedLocationInput> location,
             @JsonProperty("department_id") JsonNullable<String> departmentId,
+            @JsonProperty("department") JsonNullable<? extends LinkedDepartmentInput> department,
             @JsonProperty("payment_type") JsonNullable<? extends ExpensePaymentType> paymentType,
             @JsonProperty("currency") JsonNullable<? extends Currency> currency,
             @JsonProperty("currency_rate") JsonNullable<Double> currencyRate,
@@ -236,6 +251,7 @@ public class ExpenseInput {
             @JsonProperty("sub_total") JsonNullable<Double> subTotal,
             @JsonProperty("total_tax") JsonNullable<Double> totalTax,
             @JsonProperty("total_amount") JsonNullable<Double> totalAmount,
+            @JsonProperty("tracking_categories") JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories,
             @JsonProperty("line_items") List<ExpenseLineItemInput> lineItems,
             @JsonProperty("reference") JsonNullable<String> reference,
             @JsonProperty("source_document_url") JsonNullable<String> sourceDocumentUrl,
@@ -243,16 +259,17 @@ public class ExpenseInput {
             @JsonProperty("status") JsonNullable<? extends ExpenseStatus> status,
             @JsonProperty("row_version") JsonNullable<String> rowVersion,
             @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
+        Utils.checkNotNull(displayId, "displayId");
         Utils.checkNotNull(number, "number");
         Utils.checkNotNull(transactionDate, "transactionDate");
         Utils.checkNotNull(accountId, "accountId");
         Utils.checkNotNull(account, "account");
-        Utils.checkNotNull(bankAccount, "bankAccount");
-        Utils.checkNotNull(customerId, "customerId");
         Utils.checkNotNull(supplierId, "supplierId");
         Utils.checkNotNull(supplier, "supplier");
         Utils.checkNotNull(companyId, "companyId");
+        Utils.checkNotNull(location, "location");
         Utils.checkNotNull(departmentId, "departmentId");
+        Utils.checkNotNull(department, "department");
         Utils.checkNotNull(paymentType, "paymentType");
         Utils.checkNotNull(currency, "currency");
         Utils.checkNotNull(currencyRate, "currencyRate");
@@ -263,6 +280,7 @@ public class ExpenseInput {
         Utils.checkNotNull(subTotal, "subTotal");
         Utils.checkNotNull(totalTax, "totalTax");
         Utils.checkNotNull(totalAmount, "totalAmount");
+        Utils.checkNotNull(trackingCategories, "trackingCategories");
         Utils.checkNotNull(lineItems, "lineItems");
         Utils.checkNotNull(reference, "reference");
         Utils.checkNotNull(sourceDocumentUrl, "sourceDocumentUrl");
@@ -270,16 +288,17 @@ public class ExpenseInput {
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(rowVersion, "rowVersion");
         Utils.checkNotNull(passThrough, "passThrough");
+        this.displayId = displayId;
         this.number = number;
         this.transactionDate = transactionDate;
         this.accountId = accountId;
         this.account = account;
-        this.bankAccount = bankAccount;
-        this.customerId = customerId;
         this.supplierId = supplierId;
         this.supplier = supplier;
         this.companyId = companyId;
+        this.location = location;
         this.departmentId = departmentId;
+        this.department = department;
         this.paymentType = paymentType;
         this.currency = currency;
         this.currencyRate = currencyRate;
@@ -290,6 +309,7 @@ public class ExpenseInput {
         this.subTotal = subTotal;
         this.totalTax = totalTax;
         this.totalAmount = totalAmount;
+        this.trackingCategories = trackingCategories;
         this.lineItems = lineItems;
         this.reference = reference;
         this.sourceDocumentUrl = sourceDocumentUrl;
@@ -301,15 +321,24 @@ public class ExpenseInput {
     
     public ExpenseInput(
             List<ExpenseLineItemInput> lineItems) {
-        this(JsonNullable.undefined(), Optional.empty(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+        this(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), lineItems,
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), lineItems, JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty());
+    }
+
+    /**
+     * Id to be displayed.
+     */
+    @JsonIgnore
+    public JsonNullable<String> displayId() {
+        return displayId;
     }
 
     /**
@@ -340,25 +369,14 @@ public class ExpenseInput {
         return accountId;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public JsonNullable<LinkedLedgerAccount> account() {
-        return (JsonNullable<LinkedLedgerAccount>) account;
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public JsonNullable<LinkedBankAccount> bankAccount() {
-        return (JsonNullable<LinkedBankAccount>) bankAccount;
-    }
-
     /**
-     * The ID of the customer this entity is linked to. Used for expenses that should be marked as billable
-     * to customers.
+     * A flexible account reference that can represent either a ledger account (GL account) or a bank
+     * account, depending on the connector's requirements.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<String> customerId() {
-        return customerId;
+    public JsonNullable<LinkedFinancialAccountInput> account() {
+        return (JsonNullable<LinkedFinancialAccountInput>) account;
     }
 
     /**
@@ -389,12 +407,24 @@ public class ExpenseInput {
         return companyId;
     }
 
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<LinkedLocationInput> location() {
+        return (JsonNullable<LinkedLocationInput>) location;
+    }
+
     /**
      * The ID of the department
      */
     @JsonIgnore
     public JsonNullable<String> departmentId() {
         return departmentId;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<LinkedDepartmentInput> department() {
+        return (JsonNullable<LinkedDepartmentInput>) department;
     }
 
     /**
@@ -480,6 +510,15 @@ public class ExpenseInput {
     }
 
     /**
+     * A list of linked tracking categories.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<List<LinkedTrackingCategory>> trackingCategories() {
+        return (JsonNullable<List<LinkedTrackingCategory>>) trackingCategories;
+    }
+
+    /**
      * Expense line items linked to this expense.
      */
     @JsonIgnore
@@ -542,6 +581,24 @@ public class ExpenseInput {
         return new Builder();
     }
 
+
+    /**
+     * Id to be displayed.
+     */
+    public ExpenseInput withDisplayId(String displayId) {
+        Utils.checkNotNull(displayId, "displayId");
+        this.displayId = JsonNullable.of(displayId);
+        return this;
+    }
+
+    /**
+     * Id to be displayed.
+     */
+    public ExpenseInput withDisplayId(JsonNullable<String> displayId) {
+        Utils.checkNotNull(displayId, "displayId");
+        this.displayId = displayId;
+        return this;
+    }
 
     /**
      * Number.
@@ -607,48 +664,23 @@ public class ExpenseInput {
         return this;
     }
 
-    public ExpenseInput withAccount(LinkedLedgerAccount account) {
+    /**
+     * A flexible account reference that can represent either a ledger account (GL account) or a bank
+     * account, depending on the connector's requirements.
+     */
+    public ExpenseInput withAccount(LinkedFinancialAccountInput account) {
         Utils.checkNotNull(account, "account");
         this.account = JsonNullable.of(account);
         return this;
     }
 
-    public ExpenseInput withAccount(JsonNullable<? extends LinkedLedgerAccount> account) {
+    /**
+     * A flexible account reference that can represent either a ledger account (GL account) or a bank
+     * account, depending on the connector's requirements.
+     */
+    public ExpenseInput withAccount(JsonNullable<? extends LinkedFinancialAccountInput> account) {
         Utils.checkNotNull(account, "account");
         this.account = account;
-        return this;
-    }
-
-    public ExpenseInput withBankAccount(LinkedBankAccount bankAccount) {
-        Utils.checkNotNull(bankAccount, "bankAccount");
-        this.bankAccount = JsonNullable.of(bankAccount);
-        return this;
-    }
-
-    public ExpenseInput withBankAccount(JsonNullable<? extends LinkedBankAccount> bankAccount) {
-        Utils.checkNotNull(bankAccount, "bankAccount");
-        this.bankAccount = bankAccount;
-        return this;
-    }
-
-    /**
-     * The ID of the customer this entity is linked to. Used for expenses that should be marked as billable
-     * to customers.
-     */
-    public ExpenseInput withCustomerId(String customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = Optional.ofNullable(customerId);
-        return this;
-    }
-
-
-    /**
-     * The ID of the customer this entity is linked to. Used for expenses that should be marked as billable
-     * to customers.
-     */
-    public ExpenseInput withCustomerId(Optional<String> customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = customerId;
         return this;
     }
 
@@ -713,6 +745,18 @@ public class ExpenseInput {
         return this;
     }
 
+    public ExpenseInput withLocation(LinkedLocationInput location) {
+        Utils.checkNotNull(location, "location");
+        this.location = JsonNullable.of(location);
+        return this;
+    }
+
+    public ExpenseInput withLocation(JsonNullable<? extends LinkedLocationInput> location) {
+        Utils.checkNotNull(location, "location");
+        this.location = location;
+        return this;
+    }
+
     /**
      * The ID of the department
      */
@@ -728,6 +772,18 @@ public class ExpenseInput {
     public ExpenseInput withDepartmentId(JsonNullable<String> departmentId) {
         Utils.checkNotNull(departmentId, "departmentId");
         this.departmentId = departmentId;
+        return this;
+    }
+
+    public ExpenseInput withDepartment(LinkedDepartmentInput department) {
+        Utils.checkNotNull(department, "department");
+        this.department = JsonNullable.of(department);
+        return this;
+    }
+
+    public ExpenseInput withDepartment(JsonNullable<? extends LinkedDepartmentInput> department) {
+        Utils.checkNotNull(department, "department");
+        this.department = department;
         return this;
     }
 
@@ -909,6 +965,24 @@ public class ExpenseInput {
     }
 
     /**
+     * A list of linked tracking categories.
+     */
+    public ExpenseInput withTrackingCategories(List<LinkedTrackingCategory> trackingCategories) {
+        Utils.checkNotNull(trackingCategories, "trackingCategories");
+        this.trackingCategories = JsonNullable.of(trackingCategories);
+        return this;
+    }
+
+    /**
+     * A list of linked tracking categories.
+     */
+    public ExpenseInput withTrackingCategories(JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories) {
+        Utils.checkNotNull(trackingCategories, "trackingCategories");
+        this.trackingCategories = trackingCategories;
+        return this;
+    }
+
+    /**
      * Expense line items linked to this expense.
      */
     public ExpenseInput withLineItems(List<ExpenseLineItemInput> lineItems) {
@@ -1037,16 +1111,17 @@ public class ExpenseInput {
         }
         ExpenseInput other = (ExpenseInput) o;
         return 
+            Utils.enhancedDeepEquals(this.displayId, other.displayId) &&
             Utils.enhancedDeepEquals(this.number, other.number) &&
             Utils.enhancedDeepEquals(this.transactionDate, other.transactionDate) &&
             Utils.enhancedDeepEquals(this.accountId, other.accountId) &&
             Utils.enhancedDeepEquals(this.account, other.account) &&
-            Utils.enhancedDeepEquals(this.bankAccount, other.bankAccount) &&
-            Utils.enhancedDeepEquals(this.customerId, other.customerId) &&
             Utils.enhancedDeepEquals(this.supplierId, other.supplierId) &&
             Utils.enhancedDeepEquals(this.supplier, other.supplier) &&
             Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
+            Utils.enhancedDeepEquals(this.location, other.location) &&
             Utils.enhancedDeepEquals(this.departmentId, other.departmentId) &&
+            Utils.enhancedDeepEquals(this.department, other.department) &&
             Utils.enhancedDeepEquals(this.paymentType, other.paymentType) &&
             Utils.enhancedDeepEquals(this.currency, other.currency) &&
             Utils.enhancedDeepEquals(this.currencyRate, other.currencyRate) &&
@@ -1057,6 +1132,7 @@ public class ExpenseInput {
             Utils.enhancedDeepEquals(this.subTotal, other.subTotal) &&
             Utils.enhancedDeepEquals(this.totalTax, other.totalTax) &&
             Utils.enhancedDeepEquals(this.totalAmount, other.totalAmount) &&
+            Utils.enhancedDeepEquals(this.trackingCategories, other.trackingCategories) &&
             Utils.enhancedDeepEquals(this.lineItems, other.lineItems) &&
             Utils.enhancedDeepEquals(this.reference, other.reference) &&
             Utils.enhancedDeepEquals(this.sourceDocumentUrl, other.sourceDocumentUrl) &&
@@ -1069,30 +1145,32 @@ public class ExpenseInput {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            number, transactionDate, accountId,
-            account, bankAccount, customerId,
-            supplierId, supplier, companyId,
-            departmentId, paymentType, currency,
-            currencyRate, type, memo,
-            taxRate, taxInclusive, subTotal,
-            totalTax, totalAmount, lineItems,
-            reference, sourceDocumentUrl, customFields,
-            status, rowVersion, passThrough);
+            displayId, number, transactionDate,
+            accountId, account, supplierId,
+            supplier, companyId, location,
+            departmentId, department, paymentType,
+            currency, currencyRate, type,
+            memo, taxRate, taxInclusive,
+            subTotal, totalTax, totalAmount,
+            trackingCategories, lineItems, reference,
+            sourceDocumentUrl, customFields, status,
+            rowVersion, passThrough);
     }
     
     @Override
     public String toString() {
         return Utils.toString(ExpenseInput.class,
+                "displayId", displayId,
                 "number", number,
                 "transactionDate", transactionDate,
                 "accountId", accountId,
                 "account", account,
-                "bankAccount", bankAccount,
-                "customerId", customerId,
                 "supplierId", supplierId,
                 "supplier", supplier,
                 "companyId", companyId,
+                "location", location,
                 "departmentId", departmentId,
+                "department", department,
                 "paymentType", paymentType,
                 "currency", currency,
                 "currencyRate", currencyRate,
@@ -1103,6 +1181,7 @@ public class ExpenseInput {
                 "subTotal", subTotal,
                 "totalTax", totalTax,
                 "totalAmount", totalAmount,
+                "trackingCategories", trackingCategories,
                 "lineItems", lineItems,
                 "reference", reference,
                 "sourceDocumentUrl", sourceDocumentUrl,
@@ -1115,6 +1194,8 @@ public class ExpenseInput {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
+        private JsonNullable<String> displayId = JsonNullable.undefined();
+
         private JsonNullable<String> number = JsonNullable.undefined();
 
         private Optional<OffsetDateTime> transactionDate = Optional.empty();
@@ -1122,11 +1203,7 @@ public class ExpenseInput {
         @Deprecated
         private Optional<String> accountId = Optional.empty();
 
-        private JsonNullable<? extends LinkedLedgerAccount> account = JsonNullable.undefined();
-
-        private JsonNullable<? extends LinkedBankAccount> bankAccount = JsonNullable.undefined();
-
-        private Optional<String> customerId = Optional.empty();
+        private JsonNullable<? extends LinkedFinancialAccountInput> account = JsonNullable.undefined();
 
         @Deprecated
         private Optional<String> supplierId = Optional.empty();
@@ -1135,7 +1212,11 @@ public class ExpenseInput {
 
         private JsonNullable<String> companyId = JsonNullable.undefined();
 
+        private JsonNullable<? extends LinkedLocationInput> location = JsonNullable.undefined();
+
         private JsonNullable<String> departmentId = JsonNullable.undefined();
+
+        private JsonNullable<? extends LinkedDepartmentInput> department = JsonNullable.undefined();
 
         private JsonNullable<? extends ExpensePaymentType> paymentType = JsonNullable.undefined();
 
@@ -1157,6 +1238,8 @@ public class ExpenseInput {
 
         private JsonNullable<Double> totalAmount = JsonNullable.undefined();
 
+        private JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories = JsonNullable.undefined();
+
         private List<ExpenseLineItemInput> lineItems;
 
         private JsonNullable<String> reference = JsonNullable.undefined();
@@ -1173,6 +1256,25 @@ public class ExpenseInput {
 
         private Builder() {
           // force use of static builder() method
+        }
+
+
+        /**
+         * Id to be displayed.
+         */
+        public Builder displayId(String displayId) {
+            Utils.checkNotNull(displayId, "displayId");
+            this.displayId = JsonNullable.of(displayId);
+            return this;
+        }
+
+        /**
+         * Id to be displayed.
+         */
+        public Builder displayId(JsonNullable<String> displayId) {
+            Utils.checkNotNull(displayId, "displayId");
+            this.displayId = displayId;
+            return this;
         }
 
 
@@ -1241,49 +1343,23 @@ public class ExpenseInput {
         }
 
 
-        public Builder account(LinkedLedgerAccount account) {
+        /**
+         * A flexible account reference that can represent either a ledger account (GL account) or a bank
+         * account, depending on the connector's requirements.
+         */
+        public Builder account(LinkedFinancialAccountInput account) {
             Utils.checkNotNull(account, "account");
             this.account = JsonNullable.of(account);
             return this;
         }
 
-        public Builder account(JsonNullable<? extends LinkedLedgerAccount> account) {
+        /**
+         * A flexible account reference that can represent either a ledger account (GL account) or a bank
+         * account, depending on the connector's requirements.
+         */
+        public Builder account(JsonNullable<? extends LinkedFinancialAccountInput> account) {
             Utils.checkNotNull(account, "account");
             this.account = account;
-            return this;
-        }
-
-
-        public Builder bankAccount(LinkedBankAccount bankAccount) {
-            Utils.checkNotNull(bankAccount, "bankAccount");
-            this.bankAccount = JsonNullable.of(bankAccount);
-            return this;
-        }
-
-        public Builder bankAccount(JsonNullable<? extends LinkedBankAccount> bankAccount) {
-            Utils.checkNotNull(bankAccount, "bankAccount");
-            this.bankAccount = bankAccount;
-            return this;
-        }
-
-
-        /**
-         * The ID of the customer this entity is linked to. Used for expenses that should be marked as billable
-         * to customers.
-         */
-        public Builder customerId(String customerId) {
-            Utils.checkNotNull(customerId, "customerId");
-            this.customerId = Optional.ofNullable(customerId);
-            return this;
-        }
-
-        /**
-         * The ID of the customer this entity is linked to. Used for expenses that should be marked as billable
-         * to customers.
-         */
-        public Builder customerId(Optional<String> customerId) {
-            Utils.checkNotNull(customerId, "customerId");
-            this.customerId = customerId;
             return this;
         }
 
@@ -1351,6 +1427,19 @@ public class ExpenseInput {
         }
 
 
+        public Builder location(LinkedLocationInput location) {
+            Utils.checkNotNull(location, "location");
+            this.location = JsonNullable.of(location);
+            return this;
+        }
+
+        public Builder location(JsonNullable<? extends LinkedLocationInput> location) {
+            Utils.checkNotNull(location, "location");
+            this.location = location;
+            return this;
+        }
+
+
         /**
          * The ID of the department
          */
@@ -1366,6 +1455,19 @@ public class ExpenseInput {
         public Builder departmentId(JsonNullable<String> departmentId) {
             Utils.checkNotNull(departmentId, "departmentId");
             this.departmentId = departmentId;
+            return this;
+        }
+
+
+        public Builder department(LinkedDepartmentInput department) {
+            Utils.checkNotNull(department, "department");
+            this.department = JsonNullable.of(department);
+            return this;
+        }
+
+        public Builder department(JsonNullable<? extends LinkedDepartmentInput> department) {
+            Utils.checkNotNull(department, "department");
+            this.department = department;
             return this;
         }
 
@@ -1557,6 +1659,25 @@ public class ExpenseInput {
 
 
         /**
+         * A list of linked tracking categories.
+         */
+        public Builder trackingCategories(List<LinkedTrackingCategory> trackingCategories) {
+            Utils.checkNotNull(trackingCategories, "trackingCategories");
+            this.trackingCategories = JsonNullable.of(trackingCategories);
+            return this;
+        }
+
+        /**
+         * A list of linked tracking categories.
+         */
+        public Builder trackingCategories(JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories) {
+            Utils.checkNotNull(trackingCategories, "trackingCategories");
+            this.trackingCategories = trackingCategories;
+            return this;
+        }
+
+
+        /**
          * Expense line items linked to this expense.
          */
         public Builder lineItems(List<ExpenseLineItemInput> lineItems) {
@@ -1682,15 +1803,16 @@ public class ExpenseInput {
         public ExpenseInput build() {
 
             return new ExpenseInput(
-                number, transactionDate, accountId,
-                account, bankAccount, customerId,
-                supplierId, supplier, companyId,
-                departmentId, paymentType, currency,
-                currencyRate, type, memo,
-                taxRate, taxInclusive, subTotal,
-                totalTax, totalAmount, lineItems,
-                reference, sourceDocumentUrl, customFields,
-                status, rowVersion, passThrough);
+                displayId, number, transactionDate,
+                accountId, account, supplierId,
+                supplier, companyId, location,
+                departmentId, department, paymentType,
+                currency, currencyRate, type,
+                memo, taxRate, taxInclusive,
+                subTotal, totalTax, totalAmount,
+                trackingCategories, lineItems, reference,
+                sourceDocumentUrl, customFields, status,
+                rowVersion, passThrough);
         }
 
     }

@@ -26,6 +26,13 @@ public class AccountingDepartmentInput {
     private JsonNullable<String> parentId;
 
     /**
+     * Id to be displayed.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("display_id")
+    private JsonNullable<String> displayId;
+
+    /**
      * The name of the department.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -70,6 +77,7 @@ public class AccountingDepartmentInput {
     @JsonCreator
     public AccountingDepartmentInput(
             @JsonProperty("parent_id") JsonNullable<String> parentId,
+            @JsonProperty("display_id") JsonNullable<String> displayId,
             @JsonProperty("name") JsonNullable<String> name,
             @JsonProperty("status") Optional<? extends DepartmentStatus> status,
             @JsonProperty("subsidiaries") Optional<? extends List<SubsidiaryReferenceInput>> subsidiaries,
@@ -77,6 +85,7 @@ public class AccountingDepartmentInput {
             @JsonProperty("row_version") JsonNullable<String> rowVersion,
             @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
         Utils.checkNotNull(parentId, "parentId");
+        Utils.checkNotNull(displayId, "displayId");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(subsidiaries, "subsidiaries");
@@ -84,6 +93,7 @@ public class AccountingDepartmentInput {
         Utils.checkNotNull(rowVersion, "rowVersion");
         Utils.checkNotNull(passThrough, "passThrough");
         this.parentId = parentId;
+        this.displayId = displayId;
         this.name = name;
         this.status = status;
         this.subsidiaries = subsidiaries;
@@ -93,9 +103,9 @@ public class AccountingDepartmentInput {
     }
     
     public AccountingDepartmentInput() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -104,6 +114,14 @@ public class AccountingDepartmentInput {
     @JsonIgnore
     public JsonNullable<String> parentId() {
         return parentId;
+    }
+
+    /**
+     * Id to be displayed.
+     */
+    @JsonIgnore
+    public JsonNullable<String> displayId() {
+        return displayId;
     }
 
     /**
@@ -176,6 +194,24 @@ public class AccountingDepartmentInput {
     public AccountingDepartmentInput withParentId(JsonNullable<String> parentId) {
         Utils.checkNotNull(parentId, "parentId");
         this.parentId = parentId;
+        return this;
+    }
+
+    /**
+     * Id to be displayed.
+     */
+    public AccountingDepartmentInput withDisplayId(String displayId) {
+        Utils.checkNotNull(displayId, "displayId");
+        this.displayId = JsonNullable.of(displayId);
+        return this;
+    }
+
+    /**
+     * Id to be displayed.
+     */
+    public AccountingDepartmentInput withDisplayId(JsonNullable<String> displayId) {
+        Utils.checkNotNull(displayId, "displayId");
+        this.displayId = displayId;
         return this;
     }
 
@@ -300,6 +336,7 @@ public class AccountingDepartmentInput {
         AccountingDepartmentInput other = (AccountingDepartmentInput) o;
         return 
             Utils.enhancedDeepEquals(this.parentId, other.parentId) &&
+            Utils.enhancedDeepEquals(this.displayId, other.displayId) &&
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.subsidiaries, other.subsidiaries) &&
@@ -311,15 +348,16 @@ public class AccountingDepartmentInput {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            parentId, name, status,
-            subsidiaries, code, rowVersion,
-            passThrough);
+            parentId, displayId, name,
+            status, subsidiaries, code,
+            rowVersion, passThrough);
     }
     
     @Override
     public String toString() {
         return Utils.toString(AccountingDepartmentInput.class,
                 "parentId", parentId,
+                "displayId", displayId,
                 "name", name,
                 "status", status,
                 "subsidiaries", subsidiaries,
@@ -332,6 +370,8 @@ public class AccountingDepartmentInput {
     public final static class Builder {
 
         private JsonNullable<String> parentId = JsonNullable.undefined();
+
+        private JsonNullable<String> displayId = JsonNullable.undefined();
 
         private JsonNullable<String> name = JsonNullable.undefined();
 
@@ -365,6 +405,25 @@ public class AccountingDepartmentInput {
         public Builder parentId(JsonNullable<String> parentId) {
             Utils.checkNotNull(parentId, "parentId");
             this.parentId = parentId;
+            return this;
+        }
+
+
+        /**
+         * Id to be displayed.
+         */
+        public Builder displayId(String displayId) {
+            Utils.checkNotNull(displayId, "displayId");
+            this.displayId = JsonNullable.of(displayId);
+            return this;
+        }
+
+        /**
+         * Id to be displayed.
+         */
+        public Builder displayId(JsonNullable<String> displayId) {
+            Utils.checkNotNull(displayId, "displayId");
+            this.displayId = displayId;
             return this;
         }
 
@@ -483,9 +542,9 @@ public class AccountingDepartmentInput {
         public AccountingDepartmentInput build() {
 
             return new AccountingDepartmentInput(
-                parentId, name, status,
-                subsidiaries, code, rowVersion,
-                passThrough);
+                parentId, displayId, name,
+                status, subsidiaries, code,
+                rowVersion, passThrough);
         }
 
     }

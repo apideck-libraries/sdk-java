@@ -67,6 +67,13 @@ public class Bill {
     private JsonNullable<String> companyId;
 
     /**
+     * The ID of the location
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("location_id")
+    private JsonNullable<String> locationId;
+
+    /**
      * The ID of the department
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -369,6 +376,7 @@ public class Bill {
             @JsonProperty("bill_number") JsonNullable<String> billNumber,
             @JsonProperty("supplier") JsonNullable<? extends LinkedSupplier> supplier,
             @JsonProperty("company_id") JsonNullable<String> companyId,
+            @JsonProperty("location_id") JsonNullable<String> locationId,
             @JsonProperty("department_id") JsonNullable<String> departmentId,
             @JsonProperty("currency") JsonNullable<? extends Currency> currency,
             @JsonProperty("currency_rate") JsonNullable<Double> currencyRate,
@@ -418,6 +426,7 @@ public class Bill {
         Utils.checkNotNull(billNumber, "billNumber");
         Utils.checkNotNull(supplier, "supplier");
         Utils.checkNotNull(companyId, "companyId");
+        Utils.checkNotNull(locationId, "locationId");
         Utils.checkNotNull(departmentId, "departmentId");
         Utils.checkNotNull(currency, "currency");
         Utils.checkNotNull(currencyRate, "currencyRate");
@@ -467,6 +476,7 @@ public class Bill {
         this.billNumber = billNumber;
         this.supplier = supplier;
         this.companyId = companyId;
+        this.locationId = locationId;
         this.departmentId = departmentId;
         this.currency = currency;
         this.currencyRate = currencyRate;
@@ -518,18 +528,18 @@ public class Bill {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -579,6 +589,14 @@ public class Bill {
     @JsonIgnore
     public JsonNullable<String> companyId() {
         return companyId;
+    }
+
+    /**
+     * The ID of the location
+     */
+    @JsonIgnore
+    public JsonNullable<String> locationId() {
+        return locationId;
     }
 
     /**
@@ -1035,6 +1053,24 @@ public class Bill {
     public Bill withCompanyId(JsonNullable<String> companyId) {
         Utils.checkNotNull(companyId, "companyId");
         this.companyId = companyId;
+        return this;
+    }
+
+    /**
+     * The ID of the location
+     */
+    public Bill withLocationId(String locationId) {
+        Utils.checkNotNull(locationId, "locationId");
+        this.locationId = JsonNullable.of(locationId);
+        return this;
+    }
+
+    /**
+     * The ID of the location
+     */
+    public Bill withLocationId(JsonNullable<String> locationId) {
+        Utils.checkNotNull(locationId, "locationId");
+        this.locationId = locationId;
         return this;
     }
 
@@ -1809,6 +1845,7 @@ public class Bill {
             Utils.enhancedDeepEquals(this.billNumber, other.billNumber) &&
             Utils.enhancedDeepEquals(this.supplier, other.supplier) &&
             Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
+            Utils.enhancedDeepEquals(this.locationId, other.locationId) &&
             Utils.enhancedDeepEquals(this.departmentId, other.departmentId) &&
             Utils.enhancedDeepEquals(this.currency, other.currency) &&
             Utils.enhancedDeepEquals(this.currencyRate, other.currencyRate) &&
@@ -1859,21 +1896,21 @@ public class Bill {
         return Utils.enhancedHash(
             id, downstreamId, displayId,
             billNumber, supplier, companyId,
-            departmentId, currency, currencyRate,
-            taxInclusive, billDate, dueDate,
-            paidDate, poNumber, reference,
-            lineItems, terms, balance,
-            deposit, subTotal, totalTax,
-            total, taxCode, notes,
-            status, ledgerAccount, paymentMethod,
-            channel, language, accountingByRow,
-            bankAccount, discountPercentage, templateId,
-            approvedBy, amortizationType, taxMethod,
-            documentReceived, sourceDocumentUrl, trackingCategories,
-            updatedBy, createdBy, updatedAt,
-            createdAt, rowVersion, customFields,
-            customMappings, passThrough, accountingPeriod,
-            attachments);
+            locationId, departmentId, currency,
+            currencyRate, taxInclusive, billDate,
+            dueDate, paidDate, poNumber,
+            reference, lineItems, terms,
+            balance, deposit, subTotal,
+            totalTax, total, taxCode,
+            notes, status, ledgerAccount,
+            paymentMethod, channel, language,
+            accountingByRow, bankAccount, discountPercentage,
+            templateId, approvedBy, amortizationType,
+            taxMethod, documentReceived, sourceDocumentUrl,
+            trackingCategories, updatedBy, createdBy,
+            updatedAt, createdAt, rowVersion,
+            customFields, customMappings, passThrough,
+            accountingPeriod, attachments);
     }
     
     @Override
@@ -1885,6 +1922,7 @@ public class Bill {
                 "billNumber", billNumber,
                 "supplier", supplier,
                 "companyId", companyId,
+                "locationId", locationId,
                 "departmentId", departmentId,
                 "currency", currency,
                 "currencyRate", currencyRate,
@@ -1944,6 +1982,8 @@ public class Bill {
         private JsonNullable<? extends LinkedSupplier> supplier = JsonNullable.undefined();
 
         private JsonNullable<String> companyId = JsonNullable.undefined();
+
+        private JsonNullable<String> locationId = JsonNullable.undefined();
 
         private JsonNullable<String> departmentId = JsonNullable.undefined();
 
@@ -2146,6 +2186,25 @@ public class Bill {
         public Builder companyId(JsonNullable<String> companyId) {
             Utils.checkNotNull(companyId, "companyId");
             this.companyId = companyId;
+            return this;
+        }
+
+
+        /**
+         * The ID of the location
+         */
+        public Builder locationId(String locationId) {
+            Utils.checkNotNull(locationId, "locationId");
+            this.locationId = JsonNullable.of(locationId);
+            return this;
+        }
+
+        /**
+         * The ID of the location
+         */
+        public Builder locationId(JsonNullable<String> locationId) {
+            Utils.checkNotNull(locationId, "locationId");
+            this.locationId = locationId;
             return this;
         }
 
@@ -2947,21 +3006,21 @@ public class Bill {
             return new Bill(
                 id, downstreamId, displayId,
                 billNumber, supplier, companyId,
-                departmentId, currency, currencyRate,
-                taxInclusive, billDate, dueDate,
-                paidDate, poNumber, reference,
-                lineItems, terms, balance,
-                deposit, subTotal, totalTax,
-                total, taxCode, notes,
-                status, ledgerAccount, paymentMethod,
-                channel, language, accountingByRow,
-                bankAccount, discountPercentage, templateId,
-                approvedBy, amortizationType, taxMethod,
-                documentReceived, sourceDocumentUrl, trackingCategories,
-                updatedBy, createdBy, updatedAt,
-                createdAt, rowVersion, customFields,
-                customMappings, passThrough, accountingPeriod,
-                attachments);
+                locationId, departmentId, currency,
+                currencyRate, taxInclusive, billDate,
+                dueDate, paidDate, poNumber,
+                reference, lineItems, terms,
+                balance, deposit, subTotal,
+                totalTax, total, taxCode,
+                notes, status, ledgerAccount,
+                paymentMethod, channel, language,
+                accountingByRow, bankAccount, discountPercentage,
+                templateId, approvedBy, amortizationType,
+                taxMethod, documentReceived, sourceDocumentUrl,
+                trackingCategories, updatedBy, createdBy,
+                updatedAt, createdAt, rowVersion,
+                customFields, customMappings, passThrough,
+                accountingPeriod, attachments);
         }
 
     }

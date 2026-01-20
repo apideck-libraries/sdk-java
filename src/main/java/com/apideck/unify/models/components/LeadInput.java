@@ -54,6 +54,13 @@ public class LeadInput {
     private JsonNullable<String> companyId;
 
     /**
+     * The contact the lead is associated with.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("contact_id")
+    private JsonNullable<String> contactId;
+
+    /**
      * The identifier of the lead.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -186,6 +193,7 @@ public class LeadInput {
             @JsonProperty("owner_id") JsonNullable<String> ownerId,
             @JsonProperty("owner_name") JsonNullable<String> ownerName,
             @JsonProperty("company_id") JsonNullable<String> companyId,
+            @JsonProperty("contact_id") JsonNullable<String> contactId,
             @JsonProperty("lead_id") JsonNullable<String> leadId,
             @JsonProperty("lead_source") JsonNullable<String> leadSource,
             @JsonProperty("first_name") JsonNullable<String> firstName,
@@ -211,6 +219,7 @@ public class LeadInput {
         Utils.checkNotNull(ownerId, "ownerId");
         Utils.checkNotNull(ownerName, "ownerName");
         Utils.checkNotNull(companyId, "companyId");
+        Utils.checkNotNull(contactId, "contactId");
         Utils.checkNotNull(leadId, "leadId");
         Utils.checkNotNull(leadSource, "leadSource");
         Utils.checkNotNull(firstName, "firstName");
@@ -236,6 +245,7 @@ public class LeadInput {
         this.ownerId = ownerId;
         this.ownerName = ownerName;
         this.companyId = companyId;
+        this.contactId = contactId;
         this.leadId = leadId;
         this.leadSource = leadSource;
         this.firstName = firstName;
@@ -265,10 +275,10 @@ public class LeadInput {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty());
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -309,6 +319,14 @@ public class LeadInput {
     @JsonIgnore
     public JsonNullable<String> companyId() {
         return companyId;
+    }
+
+    /**
+     * The contact the lead is associated with.
+     */
+    @JsonIgnore
+    public JsonNullable<String> contactId() {
+        return contactId;
     }
 
     /**
@@ -541,6 +559,24 @@ public class LeadInput {
     public LeadInput withCompanyId(JsonNullable<String> companyId) {
         Utils.checkNotNull(companyId, "companyId");
         this.companyId = companyId;
+        return this;
+    }
+
+    /**
+     * The contact the lead is associated with.
+     */
+    public LeadInput withContactId(String contactId) {
+        Utils.checkNotNull(contactId, "contactId");
+        this.contactId = JsonNullable.of(contactId);
+        return this;
+    }
+
+    /**
+     * The contact the lead is associated with.
+     */
+    public LeadInput withContactId(JsonNullable<String> contactId) {
+        Utils.checkNotNull(contactId, "contactId");
+        this.contactId = contactId;
         return this;
     }
 
@@ -881,6 +917,7 @@ public class LeadInput {
             Utils.enhancedDeepEquals(this.ownerId, other.ownerId) &&
             Utils.enhancedDeepEquals(this.ownerName, other.ownerName) &&
             Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
+            Utils.enhancedDeepEquals(this.contactId, other.contactId) &&
             Utils.enhancedDeepEquals(this.leadId, other.leadId) &&
             Utils.enhancedDeepEquals(this.leadSource, other.leadSource) &&
             Utils.enhancedDeepEquals(this.firstName, other.firstName) &&
@@ -907,14 +944,14 @@ public class LeadInput {
     public int hashCode() {
         return Utils.enhancedHash(
             name, companyName, ownerId,
-            ownerName, companyId, leadId,
-            leadSource, firstName, lastName,
-            description, prefix, title,
-            language, status, monetaryAmount,
-            currency, fax, websites,
-            addresses, socialLinks, phoneNumbers,
-            emails, customFields, tags,
-            passThrough);
+            ownerName, companyId, contactId,
+            leadId, leadSource, firstName,
+            lastName, description, prefix,
+            title, language, status,
+            monetaryAmount, currency, fax,
+            websites, addresses, socialLinks,
+            phoneNumbers, emails, customFields,
+            tags, passThrough);
     }
     
     @Override
@@ -925,6 +962,7 @@ public class LeadInput {
                 "ownerId", ownerId,
                 "ownerName", ownerName,
                 "companyId", companyId,
+                "contactId", contactId,
                 "leadId", leadId,
                 "leadSource", leadSource,
                 "firstName", firstName,
@@ -959,6 +997,8 @@ public class LeadInput {
         private JsonNullable<String> ownerName = JsonNullable.undefined();
 
         private JsonNullable<String> companyId = JsonNullable.undefined();
+
+        private JsonNullable<String> contactId = JsonNullable.undefined();
 
         private JsonNullable<String> leadId = JsonNullable.undefined();
 
@@ -1087,6 +1127,25 @@ public class LeadInput {
         public Builder companyId(JsonNullable<String> companyId) {
             Utils.checkNotNull(companyId, "companyId");
             this.companyId = companyId;
+            return this;
+        }
+
+
+        /**
+         * The contact the lead is associated with.
+         */
+        public Builder contactId(String contactId) {
+            Utils.checkNotNull(contactId, "contactId");
+            this.contactId = JsonNullable.of(contactId);
+            return this;
+        }
+
+        /**
+         * The contact the lead is associated with.
+         */
+        public Builder contactId(JsonNullable<String> contactId) {
+            Utils.checkNotNull(contactId, "contactId");
+            this.contactId = contactId;
             return this;
         }
 
@@ -1430,14 +1489,14 @@ public class LeadInput {
 
             return new LeadInput(
                 name, companyName, ownerId,
-                ownerName, companyId, leadId,
-                leadSource, firstName, lastName,
-                description, prefix, title,
-                language, status, monetaryAmount,
-                currency, fax, websites,
-                addresses, socialLinks, phoneNumbers,
-                emails, customFields, tags,
-                passThrough);
+                ownerName, companyId, contactId,
+                leadId, leadSource, firstName,
+                lastName, description, prefix,
+                title, language, status,
+                monetaryAmount, currency, fax,
+                websites, addresses, socialLinks,
+                phoneNumbers, emails, customFields,
+                tags, passThrough);
         }
 
     }

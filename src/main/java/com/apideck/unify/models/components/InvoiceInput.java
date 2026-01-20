@@ -58,6 +58,13 @@ public class InvoiceInput {
     private JsonNullable<String> companyId;
 
     /**
+     * The ID of the location
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("location_id")
+    private JsonNullable<String> locationId;
+
+    /**
      * The ID of the department
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -320,6 +327,7 @@ public class InvoiceInput {
             @JsonProperty("number") JsonNullable<String> number,
             @JsonProperty("customer") JsonNullable<? extends LinkedCustomerInput> customer,
             @JsonProperty("company_id") JsonNullable<String> companyId,
+            @JsonProperty("location_id") JsonNullable<String> locationId,
             @JsonProperty("department_id") JsonNullable<String> departmentId,
             @JsonProperty("invoice_date") JsonNullable<LocalDate> invoiceDate,
             @JsonProperty("due_date") JsonNullable<LocalDate> dueDate,
@@ -362,6 +370,7 @@ public class InvoiceInput {
         Utils.checkNotNull(number, "number");
         Utils.checkNotNull(customer, "customer");
         Utils.checkNotNull(companyId, "companyId");
+        Utils.checkNotNull(locationId, "locationId");
         Utils.checkNotNull(departmentId, "departmentId");
         Utils.checkNotNull(invoiceDate, "invoiceDate");
         Utils.checkNotNull(dueDate, "dueDate");
@@ -404,6 +413,7 @@ public class InvoiceInput {
         this.number = number;
         this.customer = customer;
         this.companyId = companyId;
+        this.locationId = locationId;
         this.departmentId = departmentId;
         this.invoiceDate = invoiceDate;
         this.dueDate = dueDate;
@@ -448,16 +458,17 @@ public class InvoiceInput {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
             Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), Optional.empty());
+            Optional.empty());
     }
 
     /**
@@ -500,6 +511,14 @@ public class InvoiceInput {
     @JsonIgnore
     public JsonNullable<String> companyId() {
         return companyId;
+    }
+
+    /**
+     * The ID of the location
+     */
+    @JsonIgnore
+    public JsonNullable<String> locationId() {
+        return locationId;
     }
 
     /**
@@ -893,6 +912,24 @@ public class InvoiceInput {
     public InvoiceInput withCompanyId(JsonNullable<String> companyId) {
         Utils.checkNotNull(companyId, "companyId");
         this.companyId = companyId;
+        return this;
+    }
+
+    /**
+     * The ID of the location
+     */
+    public InvoiceInput withLocationId(String locationId) {
+        Utils.checkNotNull(locationId, "locationId");
+        this.locationId = JsonNullable.of(locationId);
+        return this;
+    }
+
+    /**
+     * The ID of the location
+     */
+    public InvoiceInput withLocationId(JsonNullable<String> locationId) {
+        Utils.checkNotNull(locationId, "locationId");
+        this.locationId = locationId;
         return this;
     }
 
@@ -1566,6 +1603,7 @@ public class InvoiceInput {
             Utils.enhancedDeepEquals(this.number, other.number) &&
             Utils.enhancedDeepEquals(this.customer, other.customer) &&
             Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
+            Utils.enhancedDeepEquals(this.locationId, other.locationId) &&
             Utils.enhancedDeepEquals(this.departmentId, other.departmentId) &&
             Utils.enhancedDeepEquals(this.invoiceDate, other.invoiceDate) &&
             Utils.enhancedDeepEquals(this.dueDate, other.dueDate) &&
@@ -1609,19 +1647,20 @@ public class InvoiceInput {
     public int hashCode() {
         return Utils.enhancedHash(
             displayId, type, number,
-            customer, companyId, departmentId,
-            invoiceDate, dueDate, terms,
-            poNumber, reference, status,
-            invoiceSent, currency, currencyRate,
-            taxInclusive, subTotal, totalTax,
-            taxCode, discountPercentage, discountAmount,
-            total, balance, deposit,
-            customerMemo, trackingCategory, trackingCategories,
-            lineItems, billingAddress, shippingAddress,
-            templateId, sourceDocumentUrl, paymentAllocations,
-            paymentMethod, channel, language,
-            accountingByRow, bankAccount, ledgerAccount,
-            customFields, rowVersion, passThrough);
+            customer, companyId, locationId,
+            departmentId, invoiceDate, dueDate,
+            terms, poNumber, reference,
+            status, invoiceSent, currency,
+            currencyRate, taxInclusive, subTotal,
+            totalTax, taxCode, discountPercentage,
+            discountAmount, total, balance,
+            deposit, customerMemo, trackingCategory,
+            trackingCategories, lineItems, billingAddress,
+            shippingAddress, templateId, sourceDocumentUrl,
+            paymentAllocations, paymentMethod, channel,
+            language, accountingByRow, bankAccount,
+            ledgerAccount, customFields, rowVersion,
+            passThrough);
     }
     
     @Override
@@ -1632,6 +1671,7 @@ public class InvoiceInput {
                 "number", number,
                 "customer", customer,
                 "companyId", companyId,
+                "locationId", locationId,
                 "departmentId", departmentId,
                 "invoiceDate", invoiceDate,
                 "dueDate", dueDate,
@@ -1683,6 +1723,8 @@ public class InvoiceInput {
         private JsonNullable<? extends LinkedCustomerInput> customer = JsonNullable.undefined();
 
         private JsonNullable<String> companyId = JsonNullable.undefined();
+
+        private JsonNullable<String> locationId = JsonNullable.undefined();
 
         private JsonNullable<String> departmentId = JsonNullable.undefined();
 
@@ -1855,6 +1897,25 @@ public class InvoiceInput {
         public Builder companyId(JsonNullable<String> companyId) {
             Utils.checkNotNull(companyId, "companyId");
             this.companyId = companyId;
+            return this;
+        }
+
+
+        /**
+         * The ID of the location
+         */
+        public Builder locationId(String locationId) {
+            Utils.checkNotNull(locationId, "locationId");
+            this.locationId = JsonNullable.of(locationId);
+            return this;
+        }
+
+        /**
+         * The ID of the location
+         */
+        public Builder locationId(JsonNullable<String> locationId) {
+            Utils.checkNotNull(locationId, "locationId");
+            this.locationId = locationId;
             return this;
         }
 
@@ -2547,19 +2608,20 @@ public class InvoiceInput {
 
             return new InvoiceInput(
                 displayId, type, number,
-                customer, companyId, departmentId,
-                invoiceDate, dueDate, terms,
-                poNumber, reference, status,
-                invoiceSent, currency, currencyRate,
-                taxInclusive, subTotal, totalTax,
-                taxCode, discountPercentage, discountAmount,
-                total, balance, deposit,
-                customerMemo, trackingCategory, trackingCategories,
-                lineItems, billingAddress, shippingAddress,
-                templateId, sourceDocumentUrl, paymentAllocations,
-                paymentMethod, channel, language,
-                accountingByRow, bankAccount, ledgerAccount,
-                customFields, rowVersion, passThrough);
+                customer, companyId, locationId,
+                departmentId, invoiceDate, dueDate,
+                terms, poNumber, reference,
+                status, invoiceSent, currency,
+                currencyRate, taxInclusive, subTotal,
+                totalTax, taxCode, discountPercentage,
+                discountAmount, total, balance,
+                deposit, customerMemo, trackingCategory,
+                trackingCategories, lineItems, billingAddress,
+                shippingAddress, templateId, sourceDocumentUrl,
+                paymentAllocations, paymentMethod, channel,
+                language, accountingByRow, bankAccount,
+                ledgerAccount, customFields, rowVersion,
+                passThrough);
         }
 
     }

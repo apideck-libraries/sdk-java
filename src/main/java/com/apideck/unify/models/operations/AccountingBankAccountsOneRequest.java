@@ -3,6 +3,7 @@
  */
 package com.apideck.unify.models.operations;
 
+import com.apideck.unify.models.components.BankAccountFilter;
 import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
@@ -12,6 +13,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -22,6 +24,12 @@ public class AccountingBankAccountsOneRequest {
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=id")
     private String id;
+
+    /**
+     * Apply filters
+     */
+    @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=filter")
+    private Optional<? extends BankAccountFilter> filter;
 
     /**
      * ID of the consumer which you want to get or push data from
@@ -65,18 +73,21 @@ public class AccountingBankAccountsOneRequest {
     @JsonCreator
     public AccountingBankAccountsOneRequest(
             String id,
+            Optional<? extends BankAccountFilter> filter,
             Optional<String> consumerId,
             Optional<String> appId,
             Optional<String> serviceId,
             Optional<Boolean> raw,
             JsonNullable<String> fields) {
         Utils.checkNotNull(id, "id");
+        Utils.checkNotNull(filter, "filter");
         Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(serviceId, "serviceId");
         Utils.checkNotNull(raw, "raw");
         Utils.checkNotNull(fields, "fields");
         this.id = id;
+        this.filter = filter;
         this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
@@ -87,7 +98,8 @@ public class AccountingBankAccountsOneRequest {
     public AccountingBankAccountsOneRequest(
             String id) {
         this(id, Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -96,6 +108,15 @@ public class AccountingBankAccountsOneRequest {
     @JsonIgnore
     public String id() {
         return id;
+    }
+
+    /**
+     * Apply filters
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<BankAccountFilter> filter() {
+        return (Optional<BankAccountFilter>) filter;
     }
 
     /**
@@ -158,6 +179,25 @@ public class AccountingBankAccountsOneRequest {
     public AccountingBankAccountsOneRequest withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
+        return this;
+    }
+
+    /**
+     * Apply filters
+     */
+    public AccountingBankAccountsOneRequest withFilter(BankAccountFilter filter) {
+        Utils.checkNotNull(filter, "filter");
+        this.filter = Optional.ofNullable(filter);
+        return this;
+    }
+
+
+    /**
+     * Apply filters
+     */
+    public AccountingBankAccountsOneRequest withFilter(Optional<? extends BankAccountFilter> filter) {
+        Utils.checkNotNull(filter, "filter");
+        this.filter = filter;
         return this;
     }
 
@@ -284,6 +324,7 @@ public class AccountingBankAccountsOneRequest {
         AccountingBankAccountsOneRequest other = (AccountingBankAccountsOneRequest) o;
         return 
             Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.filter, other.filter) &&
             Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
             Utils.enhancedDeepEquals(this.appId, other.appId) &&
             Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
@@ -294,14 +335,16 @@ public class AccountingBankAccountsOneRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, consumerId, appId,
-            serviceId, raw, fields);
+            id, filter, consumerId,
+            appId, serviceId, raw,
+            fields);
     }
     
     @Override
     public String toString() {
         return Utils.toString(AccountingBankAccountsOneRequest.class,
                 "id", id,
+                "filter", filter,
                 "consumerId", consumerId,
                 "appId", appId,
                 "serviceId", serviceId,
@@ -313,6 +356,8 @@ public class AccountingBankAccountsOneRequest {
     public final static class Builder {
 
         private String id;
+
+        private Optional<? extends BankAccountFilter> filter = Optional.empty();
 
         private Optional<String> consumerId = Optional.empty();
 
@@ -335,6 +380,25 @@ public class AccountingBankAccountsOneRequest {
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
+            return this;
+        }
+
+
+        /**
+         * Apply filters
+         */
+        public Builder filter(BankAccountFilter filter) {
+            Utils.checkNotNull(filter, "filter");
+            this.filter = Optional.ofNullable(filter);
+            return this;
+        }
+
+        /**
+         * Apply filters
+         */
+        public Builder filter(Optional<? extends BankAccountFilter> filter) {
+            Utils.checkNotNull(filter, "filter");
+            this.filter = filter;
             return this;
         }
 
@@ -457,8 +521,9 @@ public class AccountingBankAccountsOneRequest {
             }
 
             return new AccountingBankAccountsOneRequest(
-                id, consumerId, appId,
-                serviceId, raw, fields);
+                id, filter, consumerId,
+                appId, serviceId, raw,
+                fields);
         }
 
 

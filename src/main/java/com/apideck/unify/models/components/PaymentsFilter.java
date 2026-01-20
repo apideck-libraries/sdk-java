@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
@@ -26,21 +27,38 @@ public class PaymentsFilter {
     @SpeakeasyMetadata("queryParam:name=supplier_id")
     private Optional<String> supplierId;
 
+    /**
+     * Filter by customer id
+     */
+    @SpeakeasyMetadata("queryParam:name=customer_id")
+    private Optional<String> customerId;
+
+
+    @SpeakeasyMetadata("queryParam:name=type")
+    private Optional<? extends PaymentsFilterType> type;
+
     @JsonCreator
     public PaymentsFilter(
             Optional<OffsetDateTime> updatedSince,
             Optional<String> invoiceId,
-            Optional<String> supplierId) {
+            Optional<String> supplierId,
+            Optional<String> customerId,
+            Optional<? extends PaymentsFilterType> type) {
         Utils.checkNotNull(updatedSince, "updatedSince");
         Utils.checkNotNull(invoiceId, "invoiceId");
         Utils.checkNotNull(supplierId, "supplierId");
+        Utils.checkNotNull(customerId, "customerId");
+        Utils.checkNotNull(type, "type");
         this.updatedSince = updatedSince;
         this.invoiceId = invoiceId;
         this.supplierId = supplierId;
+        this.customerId = customerId;
+        this.type = type;
     }
     
     public PaymentsFilter() {
-        this(Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -56,6 +74,20 @@ public class PaymentsFilter {
     @JsonIgnore
     public Optional<String> supplierId() {
         return supplierId;
+    }
+
+    /**
+     * Filter by customer id
+     */
+    @JsonIgnore
+    public Optional<String> customerId() {
+        return customerId;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<PaymentsFilterType> type() {
+        return (Optional<PaymentsFilterType>) type;
     }
 
     public static Builder builder() {
@@ -102,6 +134,38 @@ public class PaymentsFilter {
         return this;
     }
 
+    /**
+     * Filter by customer id
+     */
+    public PaymentsFilter withCustomerId(String customerId) {
+        Utils.checkNotNull(customerId, "customerId");
+        this.customerId = Optional.ofNullable(customerId);
+        return this;
+    }
+
+
+    /**
+     * Filter by customer id
+     */
+    public PaymentsFilter withCustomerId(Optional<String> customerId) {
+        Utils.checkNotNull(customerId, "customerId");
+        this.customerId = customerId;
+        return this;
+    }
+
+    public PaymentsFilter withType(PaymentsFilterType type) {
+        Utils.checkNotNull(type, "type");
+        this.type = Optional.ofNullable(type);
+        return this;
+    }
+
+
+    public PaymentsFilter withType(Optional<? extends PaymentsFilterType> type) {
+        Utils.checkNotNull(type, "type");
+        this.type = type;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -114,13 +178,16 @@ public class PaymentsFilter {
         return 
             Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince) &&
             Utils.enhancedDeepEquals(this.invoiceId, other.invoiceId) &&
-            Utils.enhancedDeepEquals(this.supplierId, other.supplierId);
+            Utils.enhancedDeepEquals(this.supplierId, other.supplierId) &&
+            Utils.enhancedDeepEquals(this.customerId, other.customerId) &&
+            Utils.enhancedDeepEquals(this.type, other.type);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            updatedSince, invoiceId, supplierId);
+            updatedSince, invoiceId, supplierId,
+            customerId, type);
     }
     
     @Override
@@ -128,7 +195,9 @@ public class PaymentsFilter {
         return Utils.toString(PaymentsFilter.class,
                 "updatedSince", updatedSince,
                 "invoiceId", invoiceId,
-                "supplierId", supplierId);
+                "supplierId", supplierId,
+                "customerId", customerId,
+                "type", type);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -139,6 +208,10 @@ public class PaymentsFilter {
         private Optional<String> invoiceId = Optional.empty();
 
         private Optional<String> supplierId = Optional.empty();
+
+        private Optional<String> customerId = Optional.empty();
+
+        private Optional<? extends PaymentsFilterType> type = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -183,10 +256,43 @@ public class PaymentsFilter {
             return this;
         }
 
+
+        /**
+         * Filter by customer id
+         */
+        public Builder customerId(String customerId) {
+            Utils.checkNotNull(customerId, "customerId");
+            this.customerId = Optional.ofNullable(customerId);
+            return this;
+        }
+
+        /**
+         * Filter by customer id
+         */
+        public Builder customerId(Optional<String> customerId) {
+            Utils.checkNotNull(customerId, "customerId");
+            this.customerId = customerId;
+            return this;
+        }
+
+
+        public Builder type(PaymentsFilterType type) {
+            Utils.checkNotNull(type, "type");
+            this.type = Optional.ofNullable(type);
+            return this;
+        }
+
+        public Builder type(Optional<? extends PaymentsFilterType> type) {
+            Utils.checkNotNull(type, "type");
+            this.type = type;
+            return this;
+        }
+
         public PaymentsFilter build() {
 
             return new PaymentsFilter(
-                updatedSince, invoiceId, supplierId);
+                updatedSince, invoiceId, supplierId,
+                customerId, type);
         }
 
     }

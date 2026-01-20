@@ -50,9 +50,9 @@ public class SharedLinks {
     }
 
     /**
-     * List SharedLinks
+     * List Shared Links
      * 
-     * <p>List SharedLinks
+     * <p>List Shared Links
      * 
      * @return The call builder
      */
@@ -61,9 +61,9 @@ public class SharedLinks {
     }
 
     /**
-     * List SharedLinks
+     * List Shared Links
      * 
-     * <p>List SharedLinks
+     * <p>List Shared Links
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -74,9 +74,9 @@ public class SharedLinks {
     }
 
     /**
-     * List SharedLinks
+     * List Shared Links
      * 
-     * <p>List SharedLinks
+     * <p>List Shared Links
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options

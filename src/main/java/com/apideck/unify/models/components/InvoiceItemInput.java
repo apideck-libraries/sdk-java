@@ -178,6 +178,13 @@ public class InvoiceItemInput {
     private JsonNullable<String> subsidiaryId;
 
     /**
+     * ID of the category of the item
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("category_id")
+    private JsonNullable<String> categoryId;
+
+    /**
      * The ID of the tax schedule
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -226,6 +233,7 @@ public class InvoiceItemInput {
             @JsonProperty("department_id") JsonNullable<String> departmentId,
             @JsonProperty("location_id") JsonNullable<String> locationId,
             @JsonProperty("subsidiary_id") JsonNullable<String> subsidiaryId,
+            @JsonProperty("category_id") JsonNullable<String> categoryId,
             @JsonProperty("tax_schedule_id") JsonNullable<String> taxScheduleId,
             @JsonProperty("row_version") JsonNullable<String> rowVersion,
             @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
@@ -253,6 +261,7 @@ public class InvoiceItemInput {
         Utils.checkNotNull(departmentId, "departmentId");
         Utils.checkNotNull(locationId, "locationId");
         Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+        Utils.checkNotNull(categoryId, "categoryId");
         Utils.checkNotNull(taxScheduleId, "taxScheduleId");
         Utils.checkNotNull(rowVersion, "rowVersion");
         Utils.checkNotNull(passThrough, "passThrough");
@@ -280,6 +289,7 @@ public class InvoiceItemInput {
         this.departmentId = departmentId;
         this.locationId = locationId;
         this.subsidiaryId = subsidiaryId;
+        this.categoryId = categoryId;
         this.taxScheduleId = taxScheduleId;
         this.rowVersion = rowVersion;
         this.passThrough = passThrough;
@@ -294,7 +304,8 @@ public class InvoiceItemInput {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -475,6 +486,14 @@ public class InvoiceItemInput {
     @JsonIgnore
     public JsonNullable<String> subsidiaryId() {
         return subsidiaryId;
+    }
+
+    /**
+     * ID of the category of the item
+     */
+    @JsonIgnore
+    public JsonNullable<String> categoryId() {
+        return categoryId;
     }
 
     /**
@@ -902,6 +921,24 @@ public class InvoiceItemInput {
     }
 
     /**
+     * ID of the category of the item
+     */
+    public InvoiceItemInput withCategoryId(String categoryId) {
+        Utils.checkNotNull(categoryId, "categoryId");
+        this.categoryId = JsonNullable.of(categoryId);
+        return this;
+    }
+
+    /**
+     * ID of the category of the item
+     */
+    public InvoiceItemInput withCategoryId(JsonNullable<String> categoryId) {
+        Utils.checkNotNull(categoryId, "categoryId");
+        this.categoryId = categoryId;
+        return this;
+    }
+
+    /**
      * The ID of the tax schedule
      */
     public InvoiceItemInput withTaxScheduleId(String taxScheduleId) {
@@ -994,6 +1031,7 @@ public class InvoiceItemInput {
             Utils.enhancedDeepEquals(this.departmentId, other.departmentId) &&
             Utils.enhancedDeepEquals(this.locationId, other.locationId) &&
             Utils.enhancedDeepEquals(this.subsidiaryId, other.subsidiaryId) &&
+            Utils.enhancedDeepEquals(this.categoryId, other.categoryId) &&
             Utils.enhancedDeepEquals(this.taxScheduleId, other.taxScheduleId) &&
             Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion) &&
             Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
@@ -1010,7 +1048,8 @@ public class InvoiceItemInput {
             assetAccount, incomeAccount, expenseAccount,
             trackingCategory, trackingCategories, active,
             departmentId, locationId, subsidiaryId,
-            taxScheduleId, rowVersion, passThrough);
+            categoryId, taxScheduleId, rowVersion,
+            passThrough);
     }
     
     @Override
@@ -1040,6 +1079,7 @@ public class InvoiceItemInput {
                 "departmentId", departmentId,
                 "locationId", locationId,
                 "subsidiaryId", subsidiaryId,
+                "categoryId", categoryId,
                 "taxScheduleId", taxScheduleId,
                 "rowVersion", rowVersion,
                 "passThrough", passThrough);
@@ -1096,6 +1136,8 @@ public class InvoiceItemInput {
         private JsonNullable<String> locationId = JsonNullable.undefined();
 
         private JsonNullable<String> subsidiaryId = JsonNullable.undefined();
+
+        private JsonNullable<String> categoryId = JsonNullable.undefined();
 
         private JsonNullable<String> taxScheduleId = JsonNullable.undefined();
 
@@ -1523,6 +1565,25 @@ public class InvoiceItemInput {
 
 
         /**
+         * ID of the category of the item
+         */
+        public Builder categoryId(String categoryId) {
+            Utils.checkNotNull(categoryId, "categoryId");
+            this.categoryId = JsonNullable.of(categoryId);
+            return this;
+        }
+
+        /**
+         * ID of the category of the item
+         */
+        public Builder categoryId(JsonNullable<String> categoryId) {
+            Utils.checkNotNull(categoryId, "categoryId");
+            this.categoryId = categoryId;
+            return this;
+        }
+
+
+        /**
          * The ID of the tax schedule
          */
         public Builder taxScheduleId(String taxScheduleId) {
@@ -1593,7 +1654,8 @@ public class InvoiceItemInput {
                 assetAccount, incomeAccount, expenseAccount,
                 trackingCategory, trackingCategories, active,
                 departmentId, locationId, subsidiaryId,
-                taxScheduleId, rowVersion, passThrough);
+                categoryId, taxScheduleId, rowVersion,
+                passThrough);
         }
 
     }

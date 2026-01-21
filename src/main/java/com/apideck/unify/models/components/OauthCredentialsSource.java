@@ -3,11 +3,21 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * OauthCredentialsSource
  * 
@@ -15,28 +25,110 @@ import java.util.Optional;
  * stored on integration and managed by the application owner. For others they are stored on connection
  * and managed by the consumer in Vault.
  */
-public enum OauthCredentialsSource {
-    INTEGRATION("integration"),
-    CONNECTION("connection");
+public class OauthCredentialsSource {
 
-    @JsonValue
+    public static final OauthCredentialsSource INTEGRATION = new OauthCredentialsSource("integration");
+    public static final OauthCredentialsSource CONNECTION = new OauthCredentialsSource("connection");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, OauthCredentialsSource> values = createValuesMap();
+    private static final Map<String, OauthCredentialsSourceEnum> enums = createEnumsMap();
+
     private final String value;
 
-    OauthCredentialsSource(String value) {
+    private OauthCredentialsSource(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a OauthCredentialsSource with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as OauthCredentialsSource
+     */ 
+    @JsonCreator
+    public static OauthCredentialsSource of(String value) {
+        synchronized (OauthCredentialsSource.class) {
+            return values.computeIfAbsent(value, v -> new OauthCredentialsSource(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<OauthCredentialsSource> fromValue(String value) {
-        for (OauthCredentialsSource o: OauthCredentialsSource.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<OauthCredentialsSourceEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        OauthCredentialsSource other = (OauthCredentialsSource) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "OauthCredentialsSource [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static OauthCredentialsSource[] values() {
+        synchronized (OauthCredentialsSource.class) {
+            return values.values().toArray(new OauthCredentialsSource[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, OauthCredentialsSource> createValuesMap() {
+        Map<String, OauthCredentialsSource> map = new LinkedHashMap<>();
+        map.put("integration", INTEGRATION);
+        map.put("connection", CONNECTION);
+        return map;
+    }
+
+    private static final Map<String, OauthCredentialsSourceEnum> createEnumsMap() {
+        Map<String, OauthCredentialsSourceEnum> map = new HashMap<>();
+        map.put("integration", OauthCredentialsSourceEnum.INTEGRATION);
+        map.put("connection", OauthCredentialsSourceEnum.CONNECTION);
+        return map;
+    }
+    
+    
+    public enum OauthCredentialsSourceEnum {
+
+        INTEGRATION("integration"),
+        CONNECTION("connection"),;
+
+        private final String value;
+
+        private OauthCredentialsSourceEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

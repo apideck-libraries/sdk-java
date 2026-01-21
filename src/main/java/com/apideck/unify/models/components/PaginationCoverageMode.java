@@ -3,11 +3,21 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * PaginationCoverageMode
  * 
@@ -15,28 +25,110 @@ import java.util.Optional;
  * parameters of the connector. With virtual pagination, the connector does not support pagination, but
  * Apideck emulates it.
  */
-public enum PaginationCoverageMode {
-    NATIVE("native"),
-    VIRTUAL("virtual");
+public class PaginationCoverageMode {
 
-    @JsonValue
+    public static final PaginationCoverageMode NATIVE = new PaginationCoverageMode("native");
+    public static final PaginationCoverageMode VIRTUAL = new PaginationCoverageMode("virtual");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, PaginationCoverageMode> values = createValuesMap();
+    private static final Map<String, PaginationCoverageModeEnum> enums = createEnumsMap();
+
     private final String value;
 
-    PaginationCoverageMode(String value) {
+    private PaginationCoverageMode(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a PaginationCoverageMode with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as PaginationCoverageMode
+     */ 
+    @JsonCreator
+    public static PaginationCoverageMode of(String value) {
+        synchronized (PaginationCoverageMode.class) {
+            return values.computeIfAbsent(value, v -> new PaginationCoverageMode(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<PaginationCoverageMode> fromValue(String value) {
-        for (PaginationCoverageMode o: PaginationCoverageMode.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<PaginationCoverageModeEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        PaginationCoverageMode other = (PaginationCoverageMode) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "PaginationCoverageMode [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static PaginationCoverageMode[] values() {
+        synchronized (PaginationCoverageMode.class) {
+            return values.values().toArray(new PaginationCoverageMode[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, PaginationCoverageMode> createValuesMap() {
+        Map<String, PaginationCoverageMode> map = new LinkedHashMap<>();
+        map.put("native", NATIVE);
+        map.put("virtual", VIRTUAL);
+        return map;
+    }
+
+    private static final Map<String, PaginationCoverageModeEnum> createEnumsMap() {
+        Map<String, PaginationCoverageModeEnum> map = new HashMap<>();
+        map.put("native", PaginationCoverageModeEnum.NATIVE);
+        map.put("virtual", PaginationCoverageModeEnum.VIRTUAL);
+        return map;
+    }
+    
+    
+    public enum PaginationCoverageModeEnum {
+
+        NATIVE("native"),
+        VIRTUAL("virtual"),;
+
+        private final String value;
+
+        private PaginationCoverageModeEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

@@ -3,41 +3,142 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * FlsaStatus
  * 
  * <p>The FLSA status for this compensation.
  */
-public enum FlsaStatus {
-    EXEMPT("exempt"),
-    SALARIED_NONEXEMPT("salaried-nonexempt"),
-    NONEXEMPT("nonexempt"),
-    OWNER("owner"),
-    OTHER("other");
+public class FlsaStatus {
 
-    @JsonValue
+    public static final FlsaStatus EXEMPT = new FlsaStatus("exempt");
+    public static final FlsaStatus SALARIED_NONEXEMPT = new FlsaStatus("salaried-nonexempt");
+    public static final FlsaStatus NONEXEMPT = new FlsaStatus("nonexempt");
+    public static final FlsaStatus OWNER = new FlsaStatus("owner");
+    public static final FlsaStatus OTHER = new FlsaStatus("other");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, FlsaStatus> values = createValuesMap();
+    private static final Map<String, FlsaStatusEnum> enums = createEnumsMap();
+
     private final String value;
 
-    FlsaStatus(String value) {
+    private FlsaStatus(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a FlsaStatus with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as FlsaStatus
+     */ 
+    @JsonCreator
+    public static FlsaStatus of(String value) {
+        synchronized (FlsaStatus.class) {
+            return values.computeIfAbsent(value, v -> new FlsaStatus(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<FlsaStatus> fromValue(String value) {
-        for (FlsaStatus o: FlsaStatus.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<FlsaStatusEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        FlsaStatus other = (FlsaStatus) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "FlsaStatus [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static FlsaStatus[] values() {
+        synchronized (FlsaStatus.class) {
+            return values.values().toArray(new FlsaStatus[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, FlsaStatus> createValuesMap() {
+        Map<String, FlsaStatus> map = new LinkedHashMap<>();
+        map.put("exempt", EXEMPT);
+        map.put("salaried-nonexempt", SALARIED_NONEXEMPT);
+        map.put("nonexempt", NONEXEMPT);
+        map.put("owner", OWNER);
+        map.put("other", OTHER);
+        return map;
+    }
+
+    private static final Map<String, FlsaStatusEnum> createEnumsMap() {
+        Map<String, FlsaStatusEnum> map = new HashMap<>();
+        map.put("exempt", FlsaStatusEnum.EXEMPT);
+        map.put("salaried-nonexempt", FlsaStatusEnum.SALARIED_NONEXEMPT);
+        map.put("nonexempt", FlsaStatusEnum.NONEXEMPT);
+        map.put("owner", FlsaStatusEnum.OWNER);
+        map.put("other", FlsaStatusEnum.OTHER);
+        return map;
+    }
+    
+    
+    public enum FlsaStatusEnum {
+
+        EXEMPT("exempt"),
+        SALARIED_NONEXEMPT("salaried-nonexempt"),
+        NONEXEMPT("nonexempt"),
+        OWNER("owner"),
+        OTHER("other"),;
+
+        private final String value;
+
+        private FlsaStatusEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

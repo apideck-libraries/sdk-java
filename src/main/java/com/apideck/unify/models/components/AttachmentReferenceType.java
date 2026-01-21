@@ -3,35 +3,133 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-public enum AttachmentReferenceType {
-    INVOICE("invoice"),
-    BILL("bill"),
-    EXPENSE("expense"),
-    QUOTE("quote");
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
+public class AttachmentReferenceType {
 
-    @JsonValue
+    public static final AttachmentReferenceType INVOICE = new AttachmentReferenceType("invoice");
+    public static final AttachmentReferenceType BILL = new AttachmentReferenceType("bill");
+    public static final AttachmentReferenceType EXPENSE = new AttachmentReferenceType("expense");
+    public static final AttachmentReferenceType QUOTE = new AttachmentReferenceType("quote");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, AttachmentReferenceType> values = createValuesMap();
+    private static final Map<String, AttachmentReferenceTypeEnum> enums = createEnumsMap();
+
     private final String value;
 
-    AttachmentReferenceType(String value) {
+    private AttachmentReferenceType(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a AttachmentReferenceType with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as AttachmentReferenceType
+     */ 
+    @JsonCreator
+    public static AttachmentReferenceType of(String value) {
+        synchronized (AttachmentReferenceType.class) {
+            return values.computeIfAbsent(value, v -> new AttachmentReferenceType(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<AttachmentReferenceType> fromValue(String value) {
-        for (AttachmentReferenceType o: AttachmentReferenceType.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<AttachmentReferenceTypeEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        AttachmentReferenceType other = (AttachmentReferenceType) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "AttachmentReferenceType [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static AttachmentReferenceType[] values() {
+        synchronized (AttachmentReferenceType.class) {
+            return values.values().toArray(new AttachmentReferenceType[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, AttachmentReferenceType> createValuesMap() {
+        Map<String, AttachmentReferenceType> map = new LinkedHashMap<>();
+        map.put("invoice", INVOICE);
+        map.put("bill", BILL);
+        map.put("expense", EXPENSE);
+        map.put("quote", QUOTE);
+        return map;
+    }
+
+    private static final Map<String, AttachmentReferenceTypeEnum> createEnumsMap() {
+        Map<String, AttachmentReferenceTypeEnum> map = new HashMap<>();
+        map.put("invoice", AttachmentReferenceTypeEnum.INVOICE);
+        map.put("bill", AttachmentReferenceTypeEnum.BILL);
+        map.put("expense", AttachmentReferenceTypeEnum.EXPENSE);
+        map.put("quote", AttachmentReferenceTypeEnum.QUOTE);
+        return map;
+    }
+    
+    
+    public enum AttachmentReferenceTypeEnum {
+
+        INVOICE("invoice"),
+        BILL("bill"),
+        EXPENSE("expense"),
+        QUOTE("quote"),;
+
+        private final String value;
+
+        private AttachmentReferenceTypeEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

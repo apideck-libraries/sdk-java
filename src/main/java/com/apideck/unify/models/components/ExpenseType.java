@@ -3,38 +3,130 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * ExpenseType
  * 
  * <p>The type of expense.
  */
-public enum ExpenseType {
-    EXPENSE("expense"),
-    REFUND("refund");
+public class ExpenseType {
 
-    @JsonValue
+    public static final ExpenseType EXPENSE = new ExpenseType("expense");
+    public static final ExpenseType REFUND = new ExpenseType("refund");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, ExpenseType> values = createValuesMap();
+    private static final Map<String, ExpenseTypeEnum> enums = createEnumsMap();
+
     private final String value;
 
-    ExpenseType(String value) {
+    private ExpenseType(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a ExpenseType with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as ExpenseType
+     */ 
+    @JsonCreator
+    public static ExpenseType of(String value) {
+        synchronized (ExpenseType.class) {
+            return values.computeIfAbsent(value, v -> new ExpenseType(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<ExpenseType> fromValue(String value) {
-        for (ExpenseType o: ExpenseType.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<ExpenseTypeEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        ExpenseType other = (ExpenseType) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "ExpenseType [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static ExpenseType[] values() {
+        synchronized (ExpenseType.class) {
+            return values.values().toArray(new ExpenseType[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, ExpenseType> createValuesMap() {
+        Map<String, ExpenseType> map = new LinkedHashMap<>();
+        map.put("expense", EXPENSE);
+        map.put("refund", REFUND);
+        return map;
+    }
+
+    private static final Map<String, ExpenseTypeEnum> createEnumsMap() {
+        Map<String, ExpenseTypeEnum> map = new HashMap<>();
+        map.put("expense", ExpenseTypeEnum.EXPENSE);
+        map.put("refund", ExpenseTypeEnum.REFUND);
+        return map;
+    }
+    
+    
+    public enum ExpenseTypeEnum {
+
+        EXPENSE("expense"),
+        REFUND("refund"),;
+
+        private final String value;
+
+        private ExpenseTypeEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

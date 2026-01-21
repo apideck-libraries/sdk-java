@@ -3,38 +3,130 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * AccountingMethod
  * 
  * <p>The accounting method used for the report: cash or accrual.
  */
-public enum AccountingMethod {
-    CASH("cash"),
-    ACCRUAL("accrual");
+public class AccountingMethod {
 
-    @JsonValue
+    public static final AccountingMethod CASH = new AccountingMethod("cash");
+    public static final AccountingMethod ACCRUAL = new AccountingMethod("accrual");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, AccountingMethod> values = createValuesMap();
+    private static final Map<String, AccountingMethodEnum> enums = createEnumsMap();
+
     private final String value;
 
-    AccountingMethod(String value) {
+    private AccountingMethod(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a AccountingMethod with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as AccountingMethod
+     */ 
+    @JsonCreator
+    public static AccountingMethod of(String value) {
+        synchronized (AccountingMethod.class) {
+            return values.computeIfAbsent(value, v -> new AccountingMethod(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<AccountingMethod> fromValue(String value) {
-        for (AccountingMethod o: AccountingMethod.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<AccountingMethodEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        AccountingMethod other = (AccountingMethod) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "AccountingMethod [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static AccountingMethod[] values() {
+        synchronized (AccountingMethod.class) {
+            return values.values().toArray(new AccountingMethod[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, AccountingMethod> createValuesMap() {
+        Map<String, AccountingMethod> map = new LinkedHashMap<>();
+        map.put("cash", CASH);
+        map.put("accrual", ACCRUAL);
+        return map;
+    }
+
+    private static final Map<String, AccountingMethodEnum> createEnumsMap() {
+        Map<String, AccountingMethodEnum> map = new HashMap<>();
+        map.put("cash", AccountingMethodEnum.CASH);
+        map.put("accrual", AccountingMethodEnum.ACCRUAL);
+        return map;
+    }
+    
+    
+    public enum AccountingMethodEnum {
+
+        CASH("cash"),
+        ACCRUAL("accrual"),;
+
+        private final String value;
+
+        private AccountingMethodEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

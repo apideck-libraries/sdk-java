@@ -3,47 +3,166 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * JobStatus
  * 
  * <p>The status of the job.
  */
-public enum JobStatus {
-    DRAFT("draft"),
-    INTERNAL("internal"),
-    PUBLISHED("published"),
-    COMPLETED("completed"),
-    PLACED("placed"),
-    ON_HOLD("on-hold"),
-    PRIVATE("private"),
-    ACCEPTING_CANDIDATES("accepting_candidates"),
-    OPEN("open"),
-    CLOSED("closed"),
-    ARCHIVED("archived");
+public class JobStatus {
 
-    @JsonValue
+    public static final JobStatus DRAFT = new JobStatus("draft");
+    public static final JobStatus INTERNAL = new JobStatus("internal");
+    public static final JobStatus PUBLISHED = new JobStatus("published");
+    public static final JobStatus COMPLETED = new JobStatus("completed");
+    public static final JobStatus PLACED = new JobStatus("placed");
+    public static final JobStatus ON_HOLD = new JobStatus("on-hold");
+    public static final JobStatus PRIVATE = new JobStatus("private");
+    public static final JobStatus ACCEPTING_CANDIDATES = new JobStatus("accepting_candidates");
+    public static final JobStatus OPEN = new JobStatus("open");
+    public static final JobStatus CLOSED = new JobStatus("closed");
+    public static final JobStatus ARCHIVED = new JobStatus("archived");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, JobStatus> values = createValuesMap();
+    private static final Map<String, JobStatusEnum> enums = createEnumsMap();
+
     private final String value;
 
-    JobStatus(String value) {
+    private JobStatus(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a JobStatus with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as JobStatus
+     */ 
+    @JsonCreator
+    public static JobStatus of(String value) {
+        synchronized (JobStatus.class) {
+            return values.computeIfAbsent(value, v -> new JobStatus(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<JobStatus> fromValue(String value) {
-        for (JobStatus o: JobStatus.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<JobStatusEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        JobStatus other = (JobStatus) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "JobStatus [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static JobStatus[] values() {
+        synchronized (JobStatus.class) {
+            return values.values().toArray(new JobStatus[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, JobStatus> createValuesMap() {
+        Map<String, JobStatus> map = new LinkedHashMap<>();
+        map.put("draft", DRAFT);
+        map.put("internal", INTERNAL);
+        map.put("published", PUBLISHED);
+        map.put("completed", COMPLETED);
+        map.put("placed", PLACED);
+        map.put("on-hold", ON_HOLD);
+        map.put("private", PRIVATE);
+        map.put("accepting_candidates", ACCEPTING_CANDIDATES);
+        map.put("open", OPEN);
+        map.put("closed", CLOSED);
+        map.put("archived", ARCHIVED);
+        return map;
+    }
+
+    private static final Map<String, JobStatusEnum> createEnumsMap() {
+        Map<String, JobStatusEnum> map = new HashMap<>();
+        map.put("draft", JobStatusEnum.DRAFT);
+        map.put("internal", JobStatusEnum.INTERNAL);
+        map.put("published", JobStatusEnum.PUBLISHED);
+        map.put("completed", JobStatusEnum.COMPLETED);
+        map.put("placed", JobStatusEnum.PLACED);
+        map.put("on-hold", JobStatusEnum.ON_HOLD);
+        map.put("private", JobStatusEnum.PRIVATE);
+        map.put("accepting_candidates", JobStatusEnum.ACCEPTING_CANDIDATES);
+        map.put("open", JobStatusEnum.OPEN);
+        map.put("closed", JobStatusEnum.CLOSED);
+        map.put("archived", JobStatusEnum.ARCHIVED);
+        return map;
+    }
+    
+    
+    public enum JobStatusEnum {
+
+        DRAFT("draft"),
+        INTERNAL("internal"),
+        PUBLISHED("published"),
+        COMPLETED("completed"),
+        PLACED("placed"),
+        ON_HOLD("on-hold"),
+        PRIVATE("private"),
+        ACCEPTING_CANDIDATES("accepting_candidates"),
+        OPEN("open"),
+        CLOSED("closed"),
+        ARCHIVED("archived"),;
+
+        private final String value;
+
+        private JobStatusEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

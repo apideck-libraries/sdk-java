@@ -3,40 +3,138 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * AmortizationType
  * 
  * <p>Type of amortization
  */
-public enum AmortizationType {
-    MANUAL("manual"),
-    RECEIPT("receipt"),
-    SCHEDULE("schedule"),
-    OTHER("other");
+public class AmortizationType {
 
-    @JsonValue
+    public static final AmortizationType MANUAL = new AmortizationType("manual");
+    public static final AmortizationType RECEIPT = new AmortizationType("receipt");
+    public static final AmortizationType SCHEDULE = new AmortizationType("schedule");
+    public static final AmortizationType OTHER = new AmortizationType("other");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, AmortizationType> values = createValuesMap();
+    private static final Map<String, AmortizationTypeEnum> enums = createEnumsMap();
+
     private final String value;
 
-    AmortizationType(String value) {
+    private AmortizationType(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a AmortizationType with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as AmortizationType
+     */ 
+    @JsonCreator
+    public static AmortizationType of(String value) {
+        synchronized (AmortizationType.class) {
+            return values.computeIfAbsent(value, v -> new AmortizationType(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<AmortizationType> fromValue(String value) {
-        for (AmortizationType o: AmortizationType.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<AmortizationTypeEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        AmortizationType other = (AmortizationType) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "AmortizationType [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static AmortizationType[] values() {
+        synchronized (AmortizationType.class) {
+            return values.values().toArray(new AmortizationType[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, AmortizationType> createValuesMap() {
+        Map<String, AmortizationType> map = new LinkedHashMap<>();
+        map.put("manual", MANUAL);
+        map.put("receipt", RECEIPT);
+        map.put("schedule", SCHEDULE);
+        map.put("other", OTHER);
+        return map;
+    }
+
+    private static final Map<String, AmortizationTypeEnum> createEnumsMap() {
+        Map<String, AmortizationTypeEnum> map = new HashMap<>();
+        map.put("manual", AmortizationTypeEnum.MANUAL);
+        map.put("receipt", AmortizationTypeEnum.RECEIPT);
+        map.put("schedule", AmortizationTypeEnum.SCHEDULE);
+        map.put("other", AmortizationTypeEnum.OTHER);
+        return map;
+    }
+    
+    
+    public enum AmortizationTypeEnum {
+
+        MANUAL("manual"),
+        RECEIPT("receipt"),
+        SCHEDULE("schedule"),
+        OTHER("other"),;
+
+        private final String value;
+
+        private AmortizationTypeEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

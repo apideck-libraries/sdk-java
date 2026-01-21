@@ -3,56 +3,202 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * LedgerAccountType
  * 
  * <p>The type of account.
  */
-public enum LedgerAccountType {
-    ACCOUNTS_PAYABLE("accounts_payable"),
-    ACCOUNTS_RECEIVABLE("accounts_receivable"),
-    BALANCESHEET("balancesheet"),
-    BANK("bank"),
-    COSTS_OF_SALES("costs_of_sales"),
-    CREDIT_CARD("credit_card"),
-    CURRENT_ASSET("current_asset"),
-    CURRENT_LIABILITY("current_liability"),
-    EQUITY("equity"),
-    EXPENSE("expense"),
-    FIXED_ASSET("fixed_asset"),
-    NON_CURRENT_ASSET("non_current_asset"),
-    NON_CURRENT_LIABILITY("non_current_liability"),
-    OTHER_ASSET("other_asset"),
-    OTHER_EXPENSE("other_expense"),
-    OTHER_INCOME("other_income"),
-    OTHER_LIABILITY("other_liability"),
-    REVENUE("revenue"),
-    SALES("sales"),
-    OTHER("other");
+public class LedgerAccountType {
 
-    @JsonValue
+    public static final LedgerAccountType ACCOUNTS_PAYABLE = new LedgerAccountType("accounts_payable");
+    public static final LedgerAccountType ACCOUNTS_RECEIVABLE = new LedgerAccountType("accounts_receivable");
+    public static final LedgerAccountType BALANCESHEET = new LedgerAccountType("balancesheet");
+    public static final LedgerAccountType BANK = new LedgerAccountType("bank");
+    public static final LedgerAccountType COSTS_OF_SALES = new LedgerAccountType("costs_of_sales");
+    public static final LedgerAccountType CREDIT_CARD = new LedgerAccountType("credit_card");
+    public static final LedgerAccountType CURRENT_ASSET = new LedgerAccountType("current_asset");
+    public static final LedgerAccountType CURRENT_LIABILITY = new LedgerAccountType("current_liability");
+    public static final LedgerAccountType EQUITY = new LedgerAccountType("equity");
+    public static final LedgerAccountType EXPENSE = new LedgerAccountType("expense");
+    public static final LedgerAccountType FIXED_ASSET = new LedgerAccountType("fixed_asset");
+    public static final LedgerAccountType NON_CURRENT_ASSET = new LedgerAccountType("non_current_asset");
+    public static final LedgerAccountType NON_CURRENT_LIABILITY = new LedgerAccountType("non_current_liability");
+    public static final LedgerAccountType OTHER_ASSET = new LedgerAccountType("other_asset");
+    public static final LedgerAccountType OTHER_EXPENSE = new LedgerAccountType("other_expense");
+    public static final LedgerAccountType OTHER_INCOME = new LedgerAccountType("other_income");
+    public static final LedgerAccountType OTHER_LIABILITY = new LedgerAccountType("other_liability");
+    public static final LedgerAccountType REVENUE = new LedgerAccountType("revenue");
+    public static final LedgerAccountType SALES = new LedgerAccountType("sales");
+    public static final LedgerAccountType OTHER = new LedgerAccountType("other");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, LedgerAccountType> values = createValuesMap();
+    private static final Map<String, LedgerAccountTypeEnum> enums = createEnumsMap();
+
     private final String value;
 
-    LedgerAccountType(String value) {
+    private LedgerAccountType(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a LedgerAccountType with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as LedgerAccountType
+     */ 
+    @JsonCreator
+    public static LedgerAccountType of(String value) {
+        synchronized (LedgerAccountType.class) {
+            return values.computeIfAbsent(value, v -> new LedgerAccountType(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<LedgerAccountType> fromValue(String value) {
-        for (LedgerAccountType o: LedgerAccountType.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<LedgerAccountTypeEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        LedgerAccountType other = (LedgerAccountType) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "LedgerAccountType [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static LedgerAccountType[] values() {
+        synchronized (LedgerAccountType.class) {
+            return values.values().toArray(new LedgerAccountType[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, LedgerAccountType> createValuesMap() {
+        Map<String, LedgerAccountType> map = new LinkedHashMap<>();
+        map.put("accounts_payable", ACCOUNTS_PAYABLE);
+        map.put("accounts_receivable", ACCOUNTS_RECEIVABLE);
+        map.put("balancesheet", BALANCESHEET);
+        map.put("bank", BANK);
+        map.put("costs_of_sales", COSTS_OF_SALES);
+        map.put("credit_card", CREDIT_CARD);
+        map.put("current_asset", CURRENT_ASSET);
+        map.put("current_liability", CURRENT_LIABILITY);
+        map.put("equity", EQUITY);
+        map.put("expense", EXPENSE);
+        map.put("fixed_asset", FIXED_ASSET);
+        map.put("non_current_asset", NON_CURRENT_ASSET);
+        map.put("non_current_liability", NON_CURRENT_LIABILITY);
+        map.put("other_asset", OTHER_ASSET);
+        map.put("other_expense", OTHER_EXPENSE);
+        map.put("other_income", OTHER_INCOME);
+        map.put("other_liability", OTHER_LIABILITY);
+        map.put("revenue", REVENUE);
+        map.put("sales", SALES);
+        map.put("other", OTHER);
+        return map;
+    }
+
+    private static final Map<String, LedgerAccountTypeEnum> createEnumsMap() {
+        Map<String, LedgerAccountTypeEnum> map = new HashMap<>();
+        map.put("accounts_payable", LedgerAccountTypeEnum.ACCOUNTS_PAYABLE);
+        map.put("accounts_receivable", LedgerAccountTypeEnum.ACCOUNTS_RECEIVABLE);
+        map.put("balancesheet", LedgerAccountTypeEnum.BALANCESHEET);
+        map.put("bank", LedgerAccountTypeEnum.BANK);
+        map.put("costs_of_sales", LedgerAccountTypeEnum.COSTS_OF_SALES);
+        map.put("credit_card", LedgerAccountTypeEnum.CREDIT_CARD);
+        map.put("current_asset", LedgerAccountTypeEnum.CURRENT_ASSET);
+        map.put("current_liability", LedgerAccountTypeEnum.CURRENT_LIABILITY);
+        map.put("equity", LedgerAccountTypeEnum.EQUITY);
+        map.put("expense", LedgerAccountTypeEnum.EXPENSE);
+        map.put("fixed_asset", LedgerAccountTypeEnum.FIXED_ASSET);
+        map.put("non_current_asset", LedgerAccountTypeEnum.NON_CURRENT_ASSET);
+        map.put("non_current_liability", LedgerAccountTypeEnum.NON_CURRENT_LIABILITY);
+        map.put("other_asset", LedgerAccountTypeEnum.OTHER_ASSET);
+        map.put("other_expense", LedgerAccountTypeEnum.OTHER_EXPENSE);
+        map.put("other_income", LedgerAccountTypeEnum.OTHER_INCOME);
+        map.put("other_liability", LedgerAccountTypeEnum.OTHER_LIABILITY);
+        map.put("revenue", LedgerAccountTypeEnum.REVENUE);
+        map.put("sales", LedgerAccountTypeEnum.SALES);
+        map.put("other", LedgerAccountTypeEnum.OTHER);
+        return map;
+    }
+    
+    
+    public enum LedgerAccountTypeEnum {
+
+        ACCOUNTS_PAYABLE("accounts_payable"),
+        ACCOUNTS_RECEIVABLE("accounts_receivable"),
+        BALANCESHEET("balancesheet"),
+        BANK("bank"),
+        COSTS_OF_SALES("costs_of_sales"),
+        CREDIT_CARD("credit_card"),
+        CURRENT_ASSET("current_asset"),
+        CURRENT_LIABILITY("current_liability"),
+        EQUITY("equity"),
+        EXPENSE("expense"),
+        FIXED_ASSET("fixed_asset"),
+        NON_CURRENT_ASSET("non_current_asset"),
+        NON_CURRENT_LIABILITY("non_current_liability"),
+        OTHER_ASSET("other_asset"),
+        OTHER_EXPENSE("other_expense"),
+        OTHER_INCOME("other_income"),
+        OTHER_LIABILITY("other_liability"),
+        REVENUE("revenue"),
+        SALES("sales"),
+        OTHER("other"),;
+
+        private final String value;
+
+        private LedgerAccountTypeEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

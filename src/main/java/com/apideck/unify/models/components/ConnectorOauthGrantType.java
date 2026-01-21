@@ -3,39 +3,134 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * ConnectorOauthGrantType
  * 
  * <p>OAuth grant type used by the connector. More info: https://oauth.net/2/grant-types
  */
-public enum ConnectorOauthGrantType {
-    AUTHORIZATION_CODE("authorization_code"),
-    CLIENT_CREDENTIALS("client_credentials"),
-    PASSWORD("password");
+public class ConnectorOauthGrantType {
 
-    @JsonValue
+    public static final ConnectorOauthGrantType AUTHORIZATION_CODE = new ConnectorOauthGrantType("authorization_code");
+    public static final ConnectorOauthGrantType CLIENT_CREDENTIALS = new ConnectorOauthGrantType("client_credentials");
+    public static final ConnectorOauthGrantType PASSWORD = new ConnectorOauthGrantType("password");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, ConnectorOauthGrantType> values = createValuesMap();
+    private static final Map<String, ConnectorOauthGrantTypeEnum> enums = createEnumsMap();
+
     private final String value;
 
-    ConnectorOauthGrantType(String value) {
+    private ConnectorOauthGrantType(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a ConnectorOauthGrantType with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as ConnectorOauthGrantType
+     */ 
+    @JsonCreator
+    public static ConnectorOauthGrantType of(String value) {
+        synchronized (ConnectorOauthGrantType.class) {
+            return values.computeIfAbsent(value, v -> new ConnectorOauthGrantType(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<ConnectorOauthGrantType> fromValue(String value) {
-        for (ConnectorOauthGrantType o: ConnectorOauthGrantType.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<ConnectorOauthGrantTypeEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        ConnectorOauthGrantType other = (ConnectorOauthGrantType) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "ConnectorOauthGrantType [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static ConnectorOauthGrantType[] values() {
+        synchronized (ConnectorOauthGrantType.class) {
+            return values.values().toArray(new ConnectorOauthGrantType[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, ConnectorOauthGrantType> createValuesMap() {
+        Map<String, ConnectorOauthGrantType> map = new LinkedHashMap<>();
+        map.put("authorization_code", AUTHORIZATION_CODE);
+        map.put("client_credentials", CLIENT_CREDENTIALS);
+        map.put("password", PASSWORD);
+        return map;
+    }
+
+    private static final Map<String, ConnectorOauthGrantTypeEnum> createEnumsMap() {
+        Map<String, ConnectorOauthGrantTypeEnum> map = new HashMap<>();
+        map.put("authorization_code", ConnectorOauthGrantTypeEnum.AUTHORIZATION_CODE);
+        map.put("client_credentials", ConnectorOauthGrantTypeEnum.CLIENT_CREDENTIALS);
+        map.put("password", ConnectorOauthGrantTypeEnum.PASSWORD);
+        return map;
+    }
+    
+    
+    public enum ConnectorOauthGrantTypeEnum {
+
+        AUTHORIZATION_CODE("authorization_code"),
+        CLIENT_CREDENTIALS("client_credentials"),
+        PASSWORD("password"),;
+
+        private final String value;
+
+        private ConnectorOauthGrantTypeEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

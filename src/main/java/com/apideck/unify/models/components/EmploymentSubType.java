@@ -3,41 +3,142 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * EmploymentSubType
  * 
  * <p>The work schedule of the employee.
  */
-public enum EmploymentSubType {
-    FULL_TIME("full_time"),
-    PART_TIME("part_time"),
-    HOURLY("hourly"),
-    OTHER("other"),
-    NOT_SPECIFIED("not_specified");
+public class EmploymentSubType {
 
-    @JsonValue
+    public static final EmploymentSubType FULL_TIME = new EmploymentSubType("full_time");
+    public static final EmploymentSubType PART_TIME = new EmploymentSubType("part_time");
+    public static final EmploymentSubType HOURLY = new EmploymentSubType("hourly");
+    public static final EmploymentSubType OTHER = new EmploymentSubType("other");
+    public static final EmploymentSubType NOT_SPECIFIED = new EmploymentSubType("not_specified");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, EmploymentSubType> values = createValuesMap();
+    private static final Map<String, EmploymentSubTypeEnum> enums = createEnumsMap();
+
     private final String value;
 
-    EmploymentSubType(String value) {
+    private EmploymentSubType(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a EmploymentSubType with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as EmploymentSubType
+     */ 
+    @JsonCreator
+    public static EmploymentSubType of(String value) {
+        synchronized (EmploymentSubType.class) {
+            return values.computeIfAbsent(value, v -> new EmploymentSubType(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<EmploymentSubType> fromValue(String value) {
-        for (EmploymentSubType o: EmploymentSubType.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<EmploymentSubTypeEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        EmploymentSubType other = (EmploymentSubType) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "EmploymentSubType [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static EmploymentSubType[] values() {
+        synchronized (EmploymentSubType.class) {
+            return values.values().toArray(new EmploymentSubType[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, EmploymentSubType> createValuesMap() {
+        Map<String, EmploymentSubType> map = new LinkedHashMap<>();
+        map.put("full_time", FULL_TIME);
+        map.put("part_time", PART_TIME);
+        map.put("hourly", HOURLY);
+        map.put("other", OTHER);
+        map.put("not_specified", NOT_SPECIFIED);
+        return map;
+    }
+
+    private static final Map<String, EmploymentSubTypeEnum> createEnumsMap() {
+        Map<String, EmploymentSubTypeEnum> map = new HashMap<>();
+        map.put("full_time", EmploymentSubTypeEnum.FULL_TIME);
+        map.put("part_time", EmploymentSubTypeEnum.PART_TIME);
+        map.put("hourly", EmploymentSubTypeEnum.HOURLY);
+        map.put("other", EmploymentSubTypeEnum.OTHER);
+        map.put("not_specified", EmploymentSubTypeEnum.NOT_SPECIFIED);
+        return map;
+    }
+    
+    
+    public enum EmploymentSubTypeEnum {
+
+        FULL_TIME("full_time"),
+        PART_TIME("part_time"),
+        HOURLY("hourly"),
+        OTHER("other"),
+        NOT_SPECIFIED("not_specified"),;
+
+        private final String value;
+
+        private EmploymentSubTypeEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

@@ -3,42 +3,146 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * ConsentState
  * 
  * <p>The current consent state of the connection
  */
-public enum ConsentState {
-    IMPLICIT("implicit"),
-    PENDING("pending"),
-    GRANTED("granted"),
-    DENIED("denied"),
-    REVOKED("revoked"),
-    REQUIRES_RECONSENT("requires_reconsent");
+public class ConsentState {
 
-    @JsonValue
+    public static final ConsentState IMPLICIT = new ConsentState("implicit");
+    public static final ConsentState PENDING = new ConsentState("pending");
+    public static final ConsentState GRANTED = new ConsentState("granted");
+    public static final ConsentState DENIED = new ConsentState("denied");
+    public static final ConsentState REVOKED = new ConsentState("revoked");
+    public static final ConsentState REQUIRES_RECONSENT = new ConsentState("requires_reconsent");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, ConsentState> values = createValuesMap();
+    private static final Map<String, ConsentStateEnum> enums = createEnumsMap();
+
     private final String value;
 
-    ConsentState(String value) {
+    private ConsentState(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a ConsentState with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as ConsentState
+     */ 
+    @JsonCreator
+    public static ConsentState of(String value) {
+        synchronized (ConsentState.class) {
+            return values.computeIfAbsent(value, v -> new ConsentState(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<ConsentState> fromValue(String value) {
-        for (ConsentState o: ConsentState.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<ConsentStateEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        ConsentState other = (ConsentState) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "ConsentState [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static ConsentState[] values() {
+        synchronized (ConsentState.class) {
+            return values.values().toArray(new ConsentState[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, ConsentState> createValuesMap() {
+        Map<String, ConsentState> map = new LinkedHashMap<>();
+        map.put("implicit", IMPLICIT);
+        map.put("pending", PENDING);
+        map.put("granted", GRANTED);
+        map.put("denied", DENIED);
+        map.put("revoked", REVOKED);
+        map.put("requires_reconsent", REQUIRES_RECONSENT);
+        return map;
+    }
+
+    private static final Map<String, ConsentStateEnum> createEnumsMap() {
+        Map<String, ConsentStateEnum> map = new HashMap<>();
+        map.put("implicit", ConsentStateEnum.IMPLICIT);
+        map.put("pending", ConsentStateEnum.PENDING);
+        map.put("granted", ConsentStateEnum.GRANTED);
+        map.put("denied", ConsentStateEnum.DENIED);
+        map.put("revoked", ConsentStateEnum.REVOKED);
+        map.put("requires_reconsent", ConsentStateEnum.REQUIRES_RECONSENT);
+        return map;
+    }
+    
+    
+    public enum ConsentStateEnum {
+
+        IMPLICIT("implicit"),
+        PENDING("pending"),
+        GRANTED("granted"),
+        DENIED("denied"),
+        REVOKED("revoked"),
+        REQUIRES_RECONSENT("requires_reconsent"),;
+
+        private final String value;
+
+        private ConsentStateEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

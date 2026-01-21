@@ -75,7 +75,7 @@ public class PaymentInput {
     /**
      * Type of accounts receivable account.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: This field is deprecated and may be removed in a future version..
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("accounts_receivable_account_type")
@@ -85,7 +85,7 @@ public class PaymentInput {
     /**
      * Unique identifier for the account to allocate payment to.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: This field is deprecated and may be removed in a future version..
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("accounts_receivable_account_id")
@@ -114,7 +114,7 @@ public class PaymentInput {
     /**
      * The supplier this entity is linked to.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: This field is deprecated and may be removed in a future version..
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("supplier")
@@ -355,7 +355,7 @@ public class PaymentInput {
     /**
      * Type of accounts receivable account.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: This field is deprecated and may be removed in a future version..
      */
     @Deprecated
     @JsonIgnore
@@ -366,7 +366,7 @@ public class PaymentInput {
     /**
      * Unique identifier for the account to allocate payment to.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: This field is deprecated and may be removed in a future version..
      */
     @Deprecated
     @JsonIgnore
@@ -400,7 +400,7 @@ public class PaymentInput {
     /**
      * The supplier this entity is linked to.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: This field is deprecated and may be removed in a future version..
      */
     @Deprecated
     @SuppressWarnings("unchecked")
@@ -644,7 +644,7 @@ public class PaymentInput {
     /**
      * Type of accounts receivable account.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: This field is deprecated and may be removed in a future version..
      */
     @Deprecated
     public PaymentInput withAccountsReceivableAccountType(String accountsReceivableAccountType) {
@@ -656,7 +656,7 @@ public class PaymentInput {
     /**
      * Type of accounts receivable account.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: This field is deprecated and may be removed in a future version..
      */
     @Deprecated
     public PaymentInput withAccountsReceivableAccountType(JsonNullable<String> accountsReceivableAccountType) {
@@ -668,7 +668,7 @@ public class PaymentInput {
     /**
      * Unique identifier for the account to allocate payment to.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: This field is deprecated and may be removed in a future version..
      */
     @Deprecated
     public PaymentInput withAccountsReceivableAccountId(String accountsReceivableAccountId) {
@@ -680,7 +680,7 @@ public class PaymentInput {
     /**
      * Unique identifier for the account to allocate payment to.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: This field is deprecated and may be removed in a future version..
      */
     @Deprecated
     public PaymentInput withAccountsReceivableAccountId(JsonNullable<String> accountsReceivableAccountId) {
@@ -741,7 +741,7 @@ public class PaymentInput {
     /**
      * The supplier this entity is linked to.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: This field is deprecated and may be removed in a future version..
      */
     @Deprecated
     public PaymentInput withSupplier(DeprecatedLinkedSupplierInput supplier) {
@@ -753,7 +753,7 @@ public class PaymentInput {
     /**
      * The supplier this entity is linked to.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: This field is deprecated and may be removed in a future version..
      */
     @Deprecated
     public PaymentInput withSupplier(JsonNullable<? extends DeprecatedLinkedSupplierInput> supplier) {
@@ -1255,7 +1255,7 @@ public class PaymentInput {
         /**
          * Type of accounts receivable account.
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: This field is deprecated and may be removed in a future version..
          */
         @Deprecated
         public Builder accountsReceivableAccountType(String accountsReceivableAccountType) {
@@ -1267,7 +1267,7 @@ public class PaymentInput {
         /**
          * Type of accounts receivable account.
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: This field is deprecated and may be removed in a future version..
          */
         @Deprecated
         public Builder accountsReceivableAccountType(JsonNullable<String> accountsReceivableAccountType) {
@@ -1280,7 +1280,7 @@ public class PaymentInput {
         /**
          * Unique identifier for the account to allocate payment to.
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: This field is deprecated and may be removed in a future version..
          */
         @Deprecated
         public Builder accountsReceivableAccountId(String accountsReceivableAccountId) {
@@ -1292,7 +1292,7 @@ public class PaymentInput {
         /**
          * Unique identifier for the account to allocate payment to.
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: This field is deprecated and may be removed in a future version..
          */
         @Deprecated
         public Builder accountsReceivableAccountId(JsonNullable<String> accountsReceivableAccountId) {
@@ -1356,7 +1356,7 @@ public class PaymentInput {
         /**
          * The supplier this entity is linked to.
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: This field is deprecated and may be removed in a future version..
          */
         @Deprecated
         public Builder supplier(DeprecatedLinkedSupplierInput supplier) {
@@ -1368,7 +1368,7 @@ public class PaymentInput {
         /**
          * The supplier this entity is linked to.
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: This field is deprecated and may be removed in a future version..
          */
         @Deprecated
         public Builder supplier(JsonNullable<? extends DeprecatedLinkedSupplierInput> supplier) {

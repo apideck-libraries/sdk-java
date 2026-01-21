@@ -3,46 +3,162 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * LedgerAccountClassification
  * 
  * <p>The classification of account.
  */
-public enum LedgerAccountClassification {
-    ASSET("asset"),
-    EQUITY("equity"),
-    EXPENSE("expense"),
-    LIABILITY("liability"),
-    REVENUE("revenue"),
-    INCOME("income"),
-    OTHER_INCOME("other_income"),
-    OTHER_EXPENSE("other_expense"),
-    COSTS_OF_SALES("costs_of_sales"),
-    OTHER("other");
+public class LedgerAccountClassification {
 
-    @JsonValue
+    public static final LedgerAccountClassification ASSET = new LedgerAccountClassification("asset");
+    public static final LedgerAccountClassification EQUITY = new LedgerAccountClassification("equity");
+    public static final LedgerAccountClassification EXPENSE = new LedgerAccountClassification("expense");
+    public static final LedgerAccountClassification LIABILITY = new LedgerAccountClassification("liability");
+    public static final LedgerAccountClassification REVENUE = new LedgerAccountClassification("revenue");
+    public static final LedgerAccountClassification INCOME = new LedgerAccountClassification("income");
+    public static final LedgerAccountClassification OTHER_INCOME = new LedgerAccountClassification("other_income");
+    public static final LedgerAccountClassification OTHER_EXPENSE = new LedgerAccountClassification("other_expense");
+    public static final LedgerAccountClassification COSTS_OF_SALES = new LedgerAccountClassification("costs_of_sales");
+    public static final LedgerAccountClassification OTHER = new LedgerAccountClassification("other");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, LedgerAccountClassification> values = createValuesMap();
+    private static final Map<String, LedgerAccountClassificationEnum> enums = createEnumsMap();
+
     private final String value;
 
-    LedgerAccountClassification(String value) {
+    private LedgerAccountClassification(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a LedgerAccountClassification with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as LedgerAccountClassification
+     */ 
+    @JsonCreator
+    public static LedgerAccountClassification of(String value) {
+        synchronized (LedgerAccountClassification.class) {
+            return values.computeIfAbsent(value, v -> new LedgerAccountClassification(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<LedgerAccountClassification> fromValue(String value) {
-        for (LedgerAccountClassification o: LedgerAccountClassification.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<LedgerAccountClassificationEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        LedgerAccountClassification other = (LedgerAccountClassification) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "LedgerAccountClassification [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static LedgerAccountClassification[] values() {
+        synchronized (LedgerAccountClassification.class) {
+            return values.values().toArray(new LedgerAccountClassification[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, LedgerAccountClassification> createValuesMap() {
+        Map<String, LedgerAccountClassification> map = new LinkedHashMap<>();
+        map.put("asset", ASSET);
+        map.put("equity", EQUITY);
+        map.put("expense", EXPENSE);
+        map.put("liability", LIABILITY);
+        map.put("revenue", REVENUE);
+        map.put("income", INCOME);
+        map.put("other_income", OTHER_INCOME);
+        map.put("other_expense", OTHER_EXPENSE);
+        map.put("costs_of_sales", COSTS_OF_SALES);
+        map.put("other", OTHER);
+        return map;
+    }
+
+    private static final Map<String, LedgerAccountClassificationEnum> createEnumsMap() {
+        Map<String, LedgerAccountClassificationEnum> map = new HashMap<>();
+        map.put("asset", LedgerAccountClassificationEnum.ASSET);
+        map.put("equity", LedgerAccountClassificationEnum.EQUITY);
+        map.put("expense", LedgerAccountClassificationEnum.EXPENSE);
+        map.put("liability", LedgerAccountClassificationEnum.LIABILITY);
+        map.put("revenue", LedgerAccountClassificationEnum.REVENUE);
+        map.put("income", LedgerAccountClassificationEnum.INCOME);
+        map.put("other_income", LedgerAccountClassificationEnum.OTHER_INCOME);
+        map.put("other_expense", LedgerAccountClassificationEnum.OTHER_EXPENSE);
+        map.put("costs_of_sales", LedgerAccountClassificationEnum.COSTS_OF_SALES);
+        map.put("other", LedgerAccountClassificationEnum.OTHER);
+        return map;
+    }
+    
+    
+    public enum LedgerAccountClassificationEnum {
+
+        ASSET("asset"),
+        EQUITY("equity"),
+        EXPENSE("expense"),
+        LIABILITY("liability"),
+        REVENUE("revenue"),
+        INCOME("income"),
+        OTHER_INCOME("other_income"),
+        OTHER_EXPENSE("other_expense"),
+        COSTS_OF_SALES("costs_of_sales"),
+        OTHER("other"),;
+
+        private final String value;
+
+        private LedgerAccountClassificationEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

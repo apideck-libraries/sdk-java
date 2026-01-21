@@ -3,39 +3,134 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * Units
  * 
  * <p>The unit of time off requested. Possible values include: `hours`, `days`, or `other`.
  */
-public enum Units {
-    DAYS("days"),
-    HOURS("hours"),
-    OTHER("other");
+public class Units {
 
-    @JsonValue
+    public static final Units DAYS = new Units("days");
+    public static final Units HOURS = new Units("hours");
+    public static final Units OTHER = new Units("other");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, Units> values = createValuesMap();
+    private static final Map<String, UnitsEnum> enums = createEnumsMap();
+
     private final String value;
 
-    Units(String value) {
+    private Units(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a Units with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as Units
+     */ 
+    @JsonCreator
+    public static Units of(String value) {
+        synchronized (Units.class) {
+            return values.computeIfAbsent(value, v -> new Units(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<Units> fromValue(String value) {
-        for (Units o: Units.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<UnitsEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Units other = (Units) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "Units [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static Units[] values() {
+        synchronized (Units.class) {
+            return values.values().toArray(new Units[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, Units> createValuesMap() {
+        Map<String, Units> map = new LinkedHashMap<>();
+        map.put("days", DAYS);
+        map.put("hours", HOURS);
+        map.put("other", OTHER);
+        return map;
+    }
+
+    private static final Map<String, UnitsEnum> createEnumsMap() {
+        Map<String, UnitsEnum> map = new HashMap<>();
+        map.put("days", UnitsEnum.DAYS);
+        map.put("hours", UnitsEnum.HOURS);
+        map.put("other", UnitsEnum.OTHER);
+        return map;
+    }
+    
+    
+    public enum UnitsEnum {
+
+        DAYS("days"),
+        HOURS("hours"),
+        OTHER("other"),;
+
+        private final String value;
+
+        private UnitsEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

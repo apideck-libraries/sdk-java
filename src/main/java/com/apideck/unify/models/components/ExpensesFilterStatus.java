@@ -3,39 +3,149 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-public enum ExpensesFilterStatus {
-    DRAFT("draft"),
-    PENDING_APPROVAL("pending_approval"),
-    APPROVED("approved"),
-    POSTED("posted"),
-    VOIDED("voided"),
-    REJECTED("rejected"),
-    DELETED("deleted"),
-    OTHER("other");
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
+public class ExpensesFilterStatus {
 
-    @JsonValue
+    public static final ExpensesFilterStatus DRAFT = new ExpensesFilterStatus("draft");
+    public static final ExpensesFilterStatus PENDING_APPROVAL = new ExpensesFilterStatus("pending_approval");
+    public static final ExpensesFilterStatus APPROVED = new ExpensesFilterStatus("approved");
+    public static final ExpensesFilterStatus POSTED = new ExpensesFilterStatus("posted");
+    public static final ExpensesFilterStatus VOIDED = new ExpensesFilterStatus("voided");
+    public static final ExpensesFilterStatus REJECTED = new ExpensesFilterStatus("rejected");
+    public static final ExpensesFilterStatus DELETED = new ExpensesFilterStatus("deleted");
+    public static final ExpensesFilterStatus OTHER = new ExpensesFilterStatus("other");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, ExpensesFilterStatus> values = createValuesMap();
+    private static final Map<String, ExpensesFilterStatusEnum> enums = createEnumsMap();
+
     private final String value;
 
-    ExpensesFilterStatus(String value) {
+    private ExpensesFilterStatus(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a ExpensesFilterStatus with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as ExpensesFilterStatus
+     */ 
+    @JsonCreator
+    public static ExpensesFilterStatus of(String value) {
+        synchronized (ExpensesFilterStatus.class) {
+            return values.computeIfAbsent(value, v -> new ExpensesFilterStatus(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<ExpensesFilterStatus> fromValue(String value) {
-        for (ExpensesFilterStatus o: ExpensesFilterStatus.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<ExpensesFilterStatusEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        ExpensesFilterStatus other = (ExpensesFilterStatus) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "ExpensesFilterStatus [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static ExpensesFilterStatus[] values() {
+        synchronized (ExpensesFilterStatus.class) {
+            return values.values().toArray(new ExpensesFilterStatus[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, ExpensesFilterStatus> createValuesMap() {
+        Map<String, ExpensesFilterStatus> map = new LinkedHashMap<>();
+        map.put("draft", DRAFT);
+        map.put("pending_approval", PENDING_APPROVAL);
+        map.put("approved", APPROVED);
+        map.put("posted", POSTED);
+        map.put("voided", VOIDED);
+        map.put("rejected", REJECTED);
+        map.put("deleted", DELETED);
+        map.put("other", OTHER);
+        return map;
+    }
+
+    private static final Map<String, ExpensesFilterStatusEnum> createEnumsMap() {
+        Map<String, ExpensesFilterStatusEnum> map = new HashMap<>();
+        map.put("draft", ExpensesFilterStatusEnum.DRAFT);
+        map.put("pending_approval", ExpensesFilterStatusEnum.PENDING_APPROVAL);
+        map.put("approved", ExpensesFilterStatusEnum.APPROVED);
+        map.put("posted", ExpensesFilterStatusEnum.POSTED);
+        map.put("voided", ExpensesFilterStatusEnum.VOIDED);
+        map.put("rejected", ExpensesFilterStatusEnum.REJECTED);
+        map.put("deleted", ExpensesFilterStatusEnum.DELETED);
+        map.put("other", ExpensesFilterStatusEnum.OTHER);
+        return map;
+    }
+    
+    
+    public enum ExpensesFilterStatusEnum {
+
+        DRAFT("draft"),
+        PENDING_APPROVAL("pending_approval"),
+        APPROVED("approved"),
+        POSTED("posted"),
+        VOIDED("voided"),
+        REJECTED("rejected"),
+        DELETED("deleted"),
+        OTHER("other"),;
+
+        private final String value;
+
+        private ExpensesFilterStatusEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

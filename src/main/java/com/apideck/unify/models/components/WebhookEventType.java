@@ -3,158 +3,625 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-public enum WebhookEventType {
-    WILDCARD("*"),
-    CRM_ACTIVITY_CREATED("crm.activity.created"),
-    CRM_ACTIVITY_UPDATED("crm.activity.updated"),
-    CRM_ACTIVITY_DELETED("crm.activity.deleted"),
-    CRM_COMPANY_CREATED("crm.company.created"),
-    CRM_COMPANY_UPDATED("crm.company.updated"),
-    CRM_COMPANY_DELETED("crm.company.deleted"),
-    CRM_CONTACT_CREATED("crm.contact.created"),
-    CRM_CONTACT_UPDATED("crm.contact.updated"),
-    CRM_CONTACT_DELETED("crm.contact.deleted"),
-    CRM_LEAD_CREATED("crm.lead.created"),
-    CRM_LEAD_UPDATED("crm.lead.updated"),
-    CRM_LEAD_DELETED("crm.lead.deleted"),
-    CRM_NOTE_CREATED("crm.note.created"),
-    CRM_NOTE_UPDATED("crm.note.updated"),
-    CRM_NOTE_DELETED("crm.note.deleted"),
-    CRM_OPPORTUNITY_CREATED("crm.opportunity.created"),
-    CRM_OPPORTUNITY_UPDATED("crm.opportunity.updated"),
-    CRM_OPPORTUNITY_DELETED("crm.opportunity.deleted"),
-    LEAD_LEAD_CREATED("lead.lead.created"),
-    LEAD_LEAD_UPDATED("lead.lead.updated"),
-    LEAD_LEAD_DELETED("lead.lead.deleted"),
-    VAULT_CONNECTION_CREATED("vault.connection.created"),
-    VAULT_CONNECTION_UPDATED("vault.connection.updated"),
-    VAULT_CONNECTION_DISABLED("vault.connection.disabled"),
-    VAULT_CONNECTION_DELETED("vault.connection.deleted"),
-    VAULT_CONNECTION_CALLABLE("vault.connection.callable"),
-    VAULT_CONNECTION_REVOKED("vault.connection.revoked"),
-    VAULT_CONNECTION_TOKEN_REFRESH_FAILED("vault.connection.token_refresh.failed"),
-    ATS_JOB_CREATED("ats.job.created"),
-    ATS_JOB_UPDATED("ats.job.updated"),
-    ATS_JOB_DELETED("ats.job.deleted"),
-    ATS_APPLICANT_CREATED("ats.applicant.created"),
-    ATS_APPLICANT_UPDATED("ats.applicant.updated"),
-    ATS_APPLICANT_DELETED("ats.applicant.deleted"),
-    ACCOUNTING_CUSTOMER_CREATED("accounting.customer.created"),
-    ACCOUNTING_CUSTOMER_UPDATED("accounting.customer.updated"),
-    ACCOUNTING_CUSTOMER_DELETED("accounting.customer.deleted"),
-    ACCOUNTING_INVOICE_CREATED("accounting.invoice.created"),
-    ACCOUNTING_INVOICE_UPDATED("accounting.invoice.updated"),
-    ACCOUNTING_INVOICE_DELETED("accounting.invoice.deleted"),
-    ACCOUNTING_INVOICE_ITEM_CREATED("accounting.invoice_item.created"),
-    ACCOUNTING_INVOICE_ITEM_UPDATED("accounting.invoice_item.updated"),
-    ACCOUNTING_INVOICE_ITEM_DELETED("accounting.invoice_item.deleted"),
-    ACCOUNTING_LEDGER_ACCOUNT_CREATED("accounting.ledger_account.created"),
-    ACCOUNTING_LEDGER_ACCOUNT_UPDATED("accounting.ledger_account.updated"),
-    ACCOUNTING_LEDGER_ACCOUNT_DELETED("accounting.ledger_account.deleted"),
-    ACCOUNTING_TAX_RATE_CREATED("accounting.tax_rate.created"),
-    ACCOUNTING_TAX_RATE_UPDATED("accounting.tax_rate.updated"),
-    ACCOUNTING_TAX_RATE_DELETED("accounting.tax_rate.deleted"),
-    ACCOUNTING_BILL_CREATED("accounting.bill.created"),
-    ACCOUNTING_BILL_UPDATED("accounting.bill.updated"),
-    ACCOUNTING_BILL_DELETED("accounting.bill.deleted"),
-    ACCOUNTING_BILL_PAYMENT_CREATED("accounting.bill_payment.created"),
-    ACCOUNTING_BILL_PAYMENT_UPDATED("accounting.bill_payment.updated"),
-    ACCOUNTING_BILL_PAYMENT_DELETED("accounting.bill_payment.deleted"),
-    ACCOUNTING_PAYMENT_CREATED("accounting.payment.created"),
-    ACCOUNTING_PAYMENT_UPDATED("accounting.payment.updated"),
-    ACCOUNTING_PAYMENT_DELETED("accounting.payment.deleted"),
-    ACCOUNTING_SUPPLIER_CREATED("accounting.supplier.created"),
-    ACCOUNTING_SUPPLIER_UPDATED("accounting.supplier.updated"),
-    ACCOUNTING_SUPPLIER_DELETED("accounting.supplier.deleted"),
-    ACCOUNTING_PURCHASE_ORDER_CREATED("accounting.purchase_order.created"),
-    ACCOUNTING_PURCHASE_ORDER_UPDATED("accounting.purchase_order.updated"),
-    ACCOUNTING_PURCHASE_ORDER_DELETED("accounting.purchase_order.deleted"),
-    ACCOUNTING_CREDIT_NOTE_CREATED("accounting.credit_note.created"),
-    ACCOUNTING_CREDIT_NOTE_UPDATED("accounting.credit_note.updated"),
-    ACCOUNTING_CREDIT_NOTE_DELETED("accounting.credit_note.deleted"),
-    POS_ORDER_CREATED("pos.order.created"),
-    POS_ORDER_UPDATED("pos.order.updated"),
-    POS_ORDER_DELETED("pos.order.deleted"),
-    POS_PRODUCT_CREATED("pos.product.created"),
-    POS_PRODUCT_UPDATED("pos.product.updated"),
-    POS_PRODUCT_DELETED("pos.product.deleted"),
-    POS_PAYMENT_CREATED("pos.payment.created"),
-    POS_PAYMENT_UPDATED("pos.payment.updated"),
-    POS_PAYMENT_DELETED("pos.payment.deleted"),
-    POS_MERCHANT_CREATED("pos.merchant.created"),
-    POS_MERCHANT_UPDATED("pos.merchant.updated"),
-    POS_MERCHANT_DELETED("pos.merchant.deleted"),
-    POS_LOCATION_CREATED("pos.location.created"),
-    POS_LOCATION_UPDATED("pos.location.updated"),
-    POS_LOCATION_DELETED("pos.location.deleted"),
-    POS_ITEM_CREATED("pos.item.created"),
-    POS_ITEM_UPDATED("pos.item.updated"),
-    POS_ITEM_DELETED("pos.item.deleted"),
-    POS_MODIFIER_CREATED("pos.modifier.created"),
-    POS_MODIFIER_UPDATED("pos.modifier.updated"),
-    POS_MODIFIER_DELETED("pos.modifier.deleted"),
-    POS_MODIFIER_GROUP_CREATED("pos.modifier-group.created"),
-    POS_MODIFIER_GROUP_UPDATED("pos.modifier-group.updated"),
-    POS_MODIFIER_GROUP_DELETED("pos.modifier-group.deleted"),
-    HRIS_EMPLOYEE_CREATED("hris.employee.created"),
-    HRIS_EMPLOYEE_UPDATED("hris.employee.updated"),
-    HRIS_EMPLOYEE_DELETED("hris.employee.deleted"),
-    HRIS_EMPLOYEE_TERMINATED("hris.employee.terminated"),
-    HRIS_COMPANY_CREATED("hris.company.created"),
-    HRIS_COMPANY_UPDATED("hris.company.updated"),
-    HRIS_COMPANY_DELETED("hris.company.deleted"),
-    FILE_STORAGE_FILE_CREATED("file-storage.file.created"),
-    FILE_STORAGE_FILE_UPDATED("file-storage.file.updated"),
-    FILE_STORAGE_FILE_DELETED("file-storage.file.deleted"),
-    FILE_STORAGE_DRIVE_UPDATED("file-storage.drive.updated"),
-    ISSUE_TRACKING_TICKET_CREATED("issue-tracking.ticket.created"),
-    ISSUE_TRACKING_TICKET_UPDATED("issue-tracking.ticket.updated"),
-    ISSUE_TRACKING_TICKET_DELETED("issue-tracking.ticket.deleted"),
-    ATS_APPLICATION_CREATED("ats.application.created"),
-    ATS_APPLICATION_UPDATED("ats.application.updated"),
-    ATS_APPLICATION_DELETED("ats.application.deleted"),
-    ACCOUNTING_EXPENSE_CREATED("accounting.expense.created"),
-    ACCOUNTING_EXPENSE_UPDATED("accounting.expense.updated"),
-    ACCOUNTING_EXPENSE_DELETED("accounting.expense.deleted"),
-    ECOMMERCE_ORDER_CREATED("ecommerce.order.created"),
-    ECOMMERCE_ORDER_UPDATED("ecommerce.order.updated"),
-    ECOMMERCE_ORDER_DELETED("ecommerce.order.deleted"),
-    ECOMMERCE_PRODUCT_CREATED("ecommerce.product.created"),
-    ECOMMERCE_PRODUCT_UPDATED("ecommerce.product.updated"),
-    ECOMMERCE_PRODUCT_DELETED("ecommerce.product.deleted"),
-    ECOMMERCE_CUSTOMER_CREATED("ecommerce.customer.created"),
-    ECOMMERCE_CUSTOMER_UPDATED("ecommerce.customer.updated"),
-    ECOMMERCE_CUSTOMER_DELETED("ecommerce.customer.deleted"),
-    ACCOUNTING_QUOTE_CREATED("accounting.quote.created"),
-    ACCOUNTING_QUOTE_UPDATED("accounting.quote.updated"),
-    ACCOUNTING_QUOTE_DELETED("accounting.quote.deleted"),
-    ACCOUNTING_PROJECT_CREATED("accounting.project.created"),
-    ACCOUNTING_PROJECT_UPDATED("accounting.project.updated"),
-    ACCOUNTING_PROJECT_DELETED("accounting.project.deleted");
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
+public class WebhookEventType {
 
-    @JsonValue
+    public static final WebhookEventType WILDCARD = new WebhookEventType("*");
+    public static final WebhookEventType CRM_ACTIVITY_CREATED = new WebhookEventType("crm.activity.created");
+    public static final WebhookEventType CRM_ACTIVITY_UPDATED = new WebhookEventType("crm.activity.updated");
+    public static final WebhookEventType CRM_ACTIVITY_DELETED = new WebhookEventType("crm.activity.deleted");
+    public static final WebhookEventType CRM_COMPANY_CREATED = new WebhookEventType("crm.company.created");
+    public static final WebhookEventType CRM_COMPANY_UPDATED = new WebhookEventType("crm.company.updated");
+    public static final WebhookEventType CRM_COMPANY_DELETED = new WebhookEventType("crm.company.deleted");
+    public static final WebhookEventType CRM_CONTACT_CREATED = new WebhookEventType("crm.contact.created");
+    public static final WebhookEventType CRM_CONTACT_UPDATED = new WebhookEventType("crm.contact.updated");
+    public static final WebhookEventType CRM_CONTACT_DELETED = new WebhookEventType("crm.contact.deleted");
+    public static final WebhookEventType CRM_LEAD_CREATED = new WebhookEventType("crm.lead.created");
+    public static final WebhookEventType CRM_LEAD_UPDATED = new WebhookEventType("crm.lead.updated");
+    public static final WebhookEventType CRM_LEAD_DELETED = new WebhookEventType("crm.lead.deleted");
+    public static final WebhookEventType CRM_NOTE_CREATED = new WebhookEventType("crm.note.created");
+    public static final WebhookEventType CRM_NOTE_UPDATED = new WebhookEventType("crm.note.updated");
+    public static final WebhookEventType CRM_NOTE_DELETED = new WebhookEventType("crm.note.deleted");
+    public static final WebhookEventType CRM_OPPORTUNITY_CREATED = new WebhookEventType("crm.opportunity.created");
+    public static final WebhookEventType CRM_OPPORTUNITY_UPDATED = new WebhookEventType("crm.opportunity.updated");
+    public static final WebhookEventType CRM_OPPORTUNITY_DELETED = new WebhookEventType("crm.opportunity.deleted");
+    public static final WebhookEventType LEAD_LEAD_CREATED = new WebhookEventType("lead.lead.created");
+    public static final WebhookEventType LEAD_LEAD_UPDATED = new WebhookEventType("lead.lead.updated");
+    public static final WebhookEventType LEAD_LEAD_DELETED = new WebhookEventType("lead.lead.deleted");
+    public static final WebhookEventType VAULT_CONNECTION_CREATED = new WebhookEventType("vault.connection.created");
+    public static final WebhookEventType VAULT_CONNECTION_UPDATED = new WebhookEventType("vault.connection.updated");
+    public static final WebhookEventType VAULT_CONNECTION_DISABLED = new WebhookEventType("vault.connection.disabled");
+    public static final WebhookEventType VAULT_CONNECTION_DELETED = new WebhookEventType("vault.connection.deleted");
+    public static final WebhookEventType VAULT_CONNECTION_CALLABLE = new WebhookEventType("vault.connection.callable");
+    public static final WebhookEventType VAULT_CONNECTION_REVOKED = new WebhookEventType("vault.connection.revoked");
+    public static final WebhookEventType VAULT_CONNECTION_TOKEN_REFRESH_FAILED = new WebhookEventType("vault.connection.token_refresh.failed");
+    public static final WebhookEventType ATS_JOB_CREATED = new WebhookEventType("ats.job.created");
+    public static final WebhookEventType ATS_JOB_UPDATED = new WebhookEventType("ats.job.updated");
+    public static final WebhookEventType ATS_JOB_DELETED = new WebhookEventType("ats.job.deleted");
+    public static final WebhookEventType ATS_APPLICANT_CREATED = new WebhookEventType("ats.applicant.created");
+    public static final WebhookEventType ATS_APPLICANT_UPDATED = new WebhookEventType("ats.applicant.updated");
+    public static final WebhookEventType ATS_APPLICANT_DELETED = new WebhookEventType("ats.applicant.deleted");
+    public static final WebhookEventType ACCOUNTING_CUSTOMER_CREATED = new WebhookEventType("accounting.customer.created");
+    public static final WebhookEventType ACCOUNTING_CUSTOMER_UPDATED = new WebhookEventType("accounting.customer.updated");
+    public static final WebhookEventType ACCOUNTING_CUSTOMER_DELETED = new WebhookEventType("accounting.customer.deleted");
+    public static final WebhookEventType ACCOUNTING_INVOICE_CREATED = new WebhookEventType("accounting.invoice.created");
+    public static final WebhookEventType ACCOUNTING_INVOICE_UPDATED = new WebhookEventType("accounting.invoice.updated");
+    public static final WebhookEventType ACCOUNTING_INVOICE_DELETED = new WebhookEventType("accounting.invoice.deleted");
+    public static final WebhookEventType ACCOUNTING_INVOICE_ITEM_CREATED = new WebhookEventType("accounting.invoice_item.created");
+    public static final WebhookEventType ACCOUNTING_INVOICE_ITEM_UPDATED = new WebhookEventType("accounting.invoice_item.updated");
+    public static final WebhookEventType ACCOUNTING_INVOICE_ITEM_DELETED = new WebhookEventType("accounting.invoice_item.deleted");
+    public static final WebhookEventType ACCOUNTING_LEDGER_ACCOUNT_CREATED = new WebhookEventType("accounting.ledger_account.created");
+    public static final WebhookEventType ACCOUNTING_LEDGER_ACCOUNT_UPDATED = new WebhookEventType("accounting.ledger_account.updated");
+    public static final WebhookEventType ACCOUNTING_LEDGER_ACCOUNT_DELETED = new WebhookEventType("accounting.ledger_account.deleted");
+    public static final WebhookEventType ACCOUNTING_TAX_RATE_CREATED = new WebhookEventType("accounting.tax_rate.created");
+    public static final WebhookEventType ACCOUNTING_TAX_RATE_UPDATED = new WebhookEventType("accounting.tax_rate.updated");
+    public static final WebhookEventType ACCOUNTING_TAX_RATE_DELETED = new WebhookEventType("accounting.tax_rate.deleted");
+    public static final WebhookEventType ACCOUNTING_BILL_CREATED = new WebhookEventType("accounting.bill.created");
+    public static final WebhookEventType ACCOUNTING_BILL_UPDATED = new WebhookEventType("accounting.bill.updated");
+    public static final WebhookEventType ACCOUNTING_BILL_DELETED = new WebhookEventType("accounting.bill.deleted");
+    public static final WebhookEventType ACCOUNTING_BILL_PAYMENT_CREATED = new WebhookEventType("accounting.bill_payment.created");
+    public static final WebhookEventType ACCOUNTING_BILL_PAYMENT_UPDATED = new WebhookEventType("accounting.bill_payment.updated");
+    public static final WebhookEventType ACCOUNTING_BILL_PAYMENT_DELETED = new WebhookEventType("accounting.bill_payment.deleted");
+    public static final WebhookEventType ACCOUNTING_PAYMENT_CREATED = new WebhookEventType("accounting.payment.created");
+    public static final WebhookEventType ACCOUNTING_PAYMENT_UPDATED = new WebhookEventType("accounting.payment.updated");
+    public static final WebhookEventType ACCOUNTING_PAYMENT_DELETED = new WebhookEventType("accounting.payment.deleted");
+    public static final WebhookEventType ACCOUNTING_SUPPLIER_CREATED = new WebhookEventType("accounting.supplier.created");
+    public static final WebhookEventType ACCOUNTING_SUPPLIER_UPDATED = new WebhookEventType("accounting.supplier.updated");
+    public static final WebhookEventType ACCOUNTING_SUPPLIER_DELETED = new WebhookEventType("accounting.supplier.deleted");
+    public static final WebhookEventType ACCOUNTING_PURCHASE_ORDER_CREATED = new WebhookEventType("accounting.purchase_order.created");
+    public static final WebhookEventType ACCOUNTING_PURCHASE_ORDER_UPDATED = new WebhookEventType("accounting.purchase_order.updated");
+    public static final WebhookEventType ACCOUNTING_PURCHASE_ORDER_DELETED = new WebhookEventType("accounting.purchase_order.deleted");
+    public static final WebhookEventType ACCOUNTING_CREDIT_NOTE_CREATED = new WebhookEventType("accounting.credit_note.created");
+    public static final WebhookEventType ACCOUNTING_CREDIT_NOTE_UPDATED = new WebhookEventType("accounting.credit_note.updated");
+    public static final WebhookEventType ACCOUNTING_CREDIT_NOTE_DELETED = new WebhookEventType("accounting.credit_note.deleted");
+    public static final WebhookEventType POS_ORDER_CREATED = new WebhookEventType("pos.order.created");
+    public static final WebhookEventType POS_ORDER_UPDATED = new WebhookEventType("pos.order.updated");
+    public static final WebhookEventType POS_ORDER_DELETED = new WebhookEventType("pos.order.deleted");
+    public static final WebhookEventType POS_PRODUCT_CREATED = new WebhookEventType("pos.product.created");
+    public static final WebhookEventType POS_PRODUCT_UPDATED = new WebhookEventType("pos.product.updated");
+    public static final WebhookEventType POS_PRODUCT_DELETED = new WebhookEventType("pos.product.deleted");
+    public static final WebhookEventType POS_PAYMENT_CREATED = new WebhookEventType("pos.payment.created");
+    public static final WebhookEventType POS_PAYMENT_UPDATED = new WebhookEventType("pos.payment.updated");
+    public static final WebhookEventType POS_PAYMENT_DELETED = new WebhookEventType("pos.payment.deleted");
+    public static final WebhookEventType POS_MERCHANT_CREATED = new WebhookEventType("pos.merchant.created");
+    public static final WebhookEventType POS_MERCHANT_UPDATED = new WebhookEventType("pos.merchant.updated");
+    public static final WebhookEventType POS_MERCHANT_DELETED = new WebhookEventType("pos.merchant.deleted");
+    public static final WebhookEventType POS_LOCATION_CREATED = new WebhookEventType("pos.location.created");
+    public static final WebhookEventType POS_LOCATION_UPDATED = new WebhookEventType("pos.location.updated");
+    public static final WebhookEventType POS_LOCATION_DELETED = new WebhookEventType("pos.location.deleted");
+    public static final WebhookEventType POS_ITEM_CREATED = new WebhookEventType("pos.item.created");
+    public static final WebhookEventType POS_ITEM_UPDATED = new WebhookEventType("pos.item.updated");
+    public static final WebhookEventType POS_ITEM_DELETED = new WebhookEventType("pos.item.deleted");
+    public static final WebhookEventType POS_MODIFIER_CREATED = new WebhookEventType("pos.modifier.created");
+    public static final WebhookEventType POS_MODIFIER_UPDATED = new WebhookEventType("pos.modifier.updated");
+    public static final WebhookEventType POS_MODIFIER_DELETED = new WebhookEventType("pos.modifier.deleted");
+    public static final WebhookEventType POS_MODIFIER_GROUP_CREATED = new WebhookEventType("pos.modifier-group.created");
+    public static final WebhookEventType POS_MODIFIER_GROUP_UPDATED = new WebhookEventType("pos.modifier-group.updated");
+    public static final WebhookEventType POS_MODIFIER_GROUP_DELETED = new WebhookEventType("pos.modifier-group.deleted");
+    public static final WebhookEventType HRIS_EMPLOYEE_CREATED = new WebhookEventType("hris.employee.created");
+    public static final WebhookEventType HRIS_EMPLOYEE_UPDATED = new WebhookEventType("hris.employee.updated");
+    public static final WebhookEventType HRIS_EMPLOYEE_DELETED = new WebhookEventType("hris.employee.deleted");
+    public static final WebhookEventType HRIS_EMPLOYEE_TERMINATED = new WebhookEventType("hris.employee.terminated");
+    public static final WebhookEventType HRIS_COMPANY_CREATED = new WebhookEventType("hris.company.created");
+    public static final WebhookEventType HRIS_COMPANY_UPDATED = new WebhookEventType("hris.company.updated");
+    public static final WebhookEventType HRIS_COMPANY_DELETED = new WebhookEventType("hris.company.deleted");
+    public static final WebhookEventType FILE_STORAGE_FILE_CREATED = new WebhookEventType("file-storage.file.created");
+    public static final WebhookEventType FILE_STORAGE_FILE_UPDATED = new WebhookEventType("file-storage.file.updated");
+    public static final WebhookEventType FILE_STORAGE_FILE_DELETED = new WebhookEventType("file-storage.file.deleted");
+    public static final WebhookEventType FILE_STORAGE_DRIVE_UPDATED = new WebhookEventType("file-storage.drive.updated");
+    public static final WebhookEventType ISSUE_TRACKING_TICKET_CREATED = new WebhookEventType("issue-tracking.ticket.created");
+    public static final WebhookEventType ISSUE_TRACKING_TICKET_UPDATED = new WebhookEventType("issue-tracking.ticket.updated");
+    public static final WebhookEventType ISSUE_TRACKING_TICKET_DELETED = new WebhookEventType("issue-tracking.ticket.deleted");
+    public static final WebhookEventType ATS_APPLICATION_CREATED = new WebhookEventType("ats.application.created");
+    public static final WebhookEventType ATS_APPLICATION_UPDATED = new WebhookEventType("ats.application.updated");
+    public static final WebhookEventType ATS_APPLICATION_DELETED = new WebhookEventType("ats.application.deleted");
+    public static final WebhookEventType ACCOUNTING_EXPENSE_CREATED = new WebhookEventType("accounting.expense.created");
+    public static final WebhookEventType ACCOUNTING_EXPENSE_UPDATED = new WebhookEventType("accounting.expense.updated");
+    public static final WebhookEventType ACCOUNTING_EXPENSE_DELETED = new WebhookEventType("accounting.expense.deleted");
+    public static final WebhookEventType ECOMMERCE_ORDER_CREATED = new WebhookEventType("ecommerce.order.created");
+    public static final WebhookEventType ECOMMERCE_ORDER_UPDATED = new WebhookEventType("ecommerce.order.updated");
+    public static final WebhookEventType ECOMMERCE_ORDER_DELETED = new WebhookEventType("ecommerce.order.deleted");
+    public static final WebhookEventType ECOMMERCE_PRODUCT_CREATED = new WebhookEventType("ecommerce.product.created");
+    public static final WebhookEventType ECOMMERCE_PRODUCT_UPDATED = new WebhookEventType("ecommerce.product.updated");
+    public static final WebhookEventType ECOMMERCE_PRODUCT_DELETED = new WebhookEventType("ecommerce.product.deleted");
+    public static final WebhookEventType ECOMMERCE_CUSTOMER_CREATED = new WebhookEventType("ecommerce.customer.created");
+    public static final WebhookEventType ECOMMERCE_CUSTOMER_UPDATED = new WebhookEventType("ecommerce.customer.updated");
+    public static final WebhookEventType ECOMMERCE_CUSTOMER_DELETED = new WebhookEventType("ecommerce.customer.deleted");
+    public static final WebhookEventType ACCOUNTING_QUOTE_CREATED = new WebhookEventType("accounting.quote.created");
+    public static final WebhookEventType ACCOUNTING_QUOTE_UPDATED = new WebhookEventType("accounting.quote.updated");
+    public static final WebhookEventType ACCOUNTING_QUOTE_DELETED = new WebhookEventType("accounting.quote.deleted");
+    public static final WebhookEventType ACCOUNTING_PROJECT_CREATED = new WebhookEventType("accounting.project.created");
+    public static final WebhookEventType ACCOUNTING_PROJECT_UPDATED = new WebhookEventType("accounting.project.updated");
+    public static final WebhookEventType ACCOUNTING_PROJECT_DELETED = new WebhookEventType("accounting.project.deleted");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, WebhookEventType> values = createValuesMap();
+    private static final Map<String, WebhookEventTypeEnum> enums = createEnumsMap();
+
     private final String value;
 
-    WebhookEventType(String value) {
+    private WebhookEventType(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a WebhookEventType with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as WebhookEventType
+     */ 
+    @JsonCreator
+    public static WebhookEventType of(String value) {
+        synchronized (WebhookEventType.class) {
+            return values.computeIfAbsent(value, v -> new WebhookEventType(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<WebhookEventType> fromValue(String value) {
-        for (WebhookEventType o: WebhookEventType.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<WebhookEventTypeEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        WebhookEventType other = (WebhookEventType) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "WebhookEventType [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static WebhookEventType[] values() {
+        synchronized (WebhookEventType.class) {
+            return values.values().toArray(new WebhookEventType[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, WebhookEventType> createValuesMap() {
+        Map<String, WebhookEventType> map = new LinkedHashMap<>();
+        map.put("*", WILDCARD);
+        map.put("crm.activity.created", CRM_ACTIVITY_CREATED);
+        map.put("crm.activity.updated", CRM_ACTIVITY_UPDATED);
+        map.put("crm.activity.deleted", CRM_ACTIVITY_DELETED);
+        map.put("crm.company.created", CRM_COMPANY_CREATED);
+        map.put("crm.company.updated", CRM_COMPANY_UPDATED);
+        map.put("crm.company.deleted", CRM_COMPANY_DELETED);
+        map.put("crm.contact.created", CRM_CONTACT_CREATED);
+        map.put("crm.contact.updated", CRM_CONTACT_UPDATED);
+        map.put("crm.contact.deleted", CRM_CONTACT_DELETED);
+        map.put("crm.lead.created", CRM_LEAD_CREATED);
+        map.put("crm.lead.updated", CRM_LEAD_UPDATED);
+        map.put("crm.lead.deleted", CRM_LEAD_DELETED);
+        map.put("crm.note.created", CRM_NOTE_CREATED);
+        map.put("crm.note.updated", CRM_NOTE_UPDATED);
+        map.put("crm.note.deleted", CRM_NOTE_DELETED);
+        map.put("crm.opportunity.created", CRM_OPPORTUNITY_CREATED);
+        map.put("crm.opportunity.updated", CRM_OPPORTUNITY_UPDATED);
+        map.put("crm.opportunity.deleted", CRM_OPPORTUNITY_DELETED);
+        map.put("lead.lead.created", LEAD_LEAD_CREATED);
+        map.put("lead.lead.updated", LEAD_LEAD_UPDATED);
+        map.put("lead.lead.deleted", LEAD_LEAD_DELETED);
+        map.put("vault.connection.created", VAULT_CONNECTION_CREATED);
+        map.put("vault.connection.updated", VAULT_CONNECTION_UPDATED);
+        map.put("vault.connection.disabled", VAULT_CONNECTION_DISABLED);
+        map.put("vault.connection.deleted", VAULT_CONNECTION_DELETED);
+        map.put("vault.connection.callable", VAULT_CONNECTION_CALLABLE);
+        map.put("vault.connection.revoked", VAULT_CONNECTION_REVOKED);
+        map.put("vault.connection.token_refresh.failed", VAULT_CONNECTION_TOKEN_REFRESH_FAILED);
+        map.put("ats.job.created", ATS_JOB_CREATED);
+        map.put("ats.job.updated", ATS_JOB_UPDATED);
+        map.put("ats.job.deleted", ATS_JOB_DELETED);
+        map.put("ats.applicant.created", ATS_APPLICANT_CREATED);
+        map.put("ats.applicant.updated", ATS_APPLICANT_UPDATED);
+        map.put("ats.applicant.deleted", ATS_APPLICANT_DELETED);
+        map.put("accounting.customer.created", ACCOUNTING_CUSTOMER_CREATED);
+        map.put("accounting.customer.updated", ACCOUNTING_CUSTOMER_UPDATED);
+        map.put("accounting.customer.deleted", ACCOUNTING_CUSTOMER_DELETED);
+        map.put("accounting.invoice.created", ACCOUNTING_INVOICE_CREATED);
+        map.put("accounting.invoice.updated", ACCOUNTING_INVOICE_UPDATED);
+        map.put("accounting.invoice.deleted", ACCOUNTING_INVOICE_DELETED);
+        map.put("accounting.invoice_item.created", ACCOUNTING_INVOICE_ITEM_CREATED);
+        map.put("accounting.invoice_item.updated", ACCOUNTING_INVOICE_ITEM_UPDATED);
+        map.put("accounting.invoice_item.deleted", ACCOUNTING_INVOICE_ITEM_DELETED);
+        map.put("accounting.ledger_account.created", ACCOUNTING_LEDGER_ACCOUNT_CREATED);
+        map.put("accounting.ledger_account.updated", ACCOUNTING_LEDGER_ACCOUNT_UPDATED);
+        map.put("accounting.ledger_account.deleted", ACCOUNTING_LEDGER_ACCOUNT_DELETED);
+        map.put("accounting.tax_rate.created", ACCOUNTING_TAX_RATE_CREATED);
+        map.put("accounting.tax_rate.updated", ACCOUNTING_TAX_RATE_UPDATED);
+        map.put("accounting.tax_rate.deleted", ACCOUNTING_TAX_RATE_DELETED);
+        map.put("accounting.bill.created", ACCOUNTING_BILL_CREATED);
+        map.put("accounting.bill.updated", ACCOUNTING_BILL_UPDATED);
+        map.put("accounting.bill.deleted", ACCOUNTING_BILL_DELETED);
+        map.put("accounting.bill_payment.created", ACCOUNTING_BILL_PAYMENT_CREATED);
+        map.put("accounting.bill_payment.updated", ACCOUNTING_BILL_PAYMENT_UPDATED);
+        map.put("accounting.bill_payment.deleted", ACCOUNTING_BILL_PAYMENT_DELETED);
+        map.put("accounting.payment.created", ACCOUNTING_PAYMENT_CREATED);
+        map.put("accounting.payment.updated", ACCOUNTING_PAYMENT_UPDATED);
+        map.put("accounting.payment.deleted", ACCOUNTING_PAYMENT_DELETED);
+        map.put("accounting.supplier.created", ACCOUNTING_SUPPLIER_CREATED);
+        map.put("accounting.supplier.updated", ACCOUNTING_SUPPLIER_UPDATED);
+        map.put("accounting.supplier.deleted", ACCOUNTING_SUPPLIER_DELETED);
+        map.put("accounting.purchase_order.created", ACCOUNTING_PURCHASE_ORDER_CREATED);
+        map.put("accounting.purchase_order.updated", ACCOUNTING_PURCHASE_ORDER_UPDATED);
+        map.put("accounting.purchase_order.deleted", ACCOUNTING_PURCHASE_ORDER_DELETED);
+        map.put("accounting.credit_note.created", ACCOUNTING_CREDIT_NOTE_CREATED);
+        map.put("accounting.credit_note.updated", ACCOUNTING_CREDIT_NOTE_UPDATED);
+        map.put("accounting.credit_note.deleted", ACCOUNTING_CREDIT_NOTE_DELETED);
+        map.put("pos.order.created", POS_ORDER_CREATED);
+        map.put("pos.order.updated", POS_ORDER_UPDATED);
+        map.put("pos.order.deleted", POS_ORDER_DELETED);
+        map.put("pos.product.created", POS_PRODUCT_CREATED);
+        map.put("pos.product.updated", POS_PRODUCT_UPDATED);
+        map.put("pos.product.deleted", POS_PRODUCT_DELETED);
+        map.put("pos.payment.created", POS_PAYMENT_CREATED);
+        map.put("pos.payment.updated", POS_PAYMENT_UPDATED);
+        map.put("pos.payment.deleted", POS_PAYMENT_DELETED);
+        map.put("pos.merchant.created", POS_MERCHANT_CREATED);
+        map.put("pos.merchant.updated", POS_MERCHANT_UPDATED);
+        map.put("pos.merchant.deleted", POS_MERCHANT_DELETED);
+        map.put("pos.location.created", POS_LOCATION_CREATED);
+        map.put("pos.location.updated", POS_LOCATION_UPDATED);
+        map.put("pos.location.deleted", POS_LOCATION_DELETED);
+        map.put("pos.item.created", POS_ITEM_CREATED);
+        map.put("pos.item.updated", POS_ITEM_UPDATED);
+        map.put("pos.item.deleted", POS_ITEM_DELETED);
+        map.put("pos.modifier.created", POS_MODIFIER_CREATED);
+        map.put("pos.modifier.updated", POS_MODIFIER_UPDATED);
+        map.put("pos.modifier.deleted", POS_MODIFIER_DELETED);
+        map.put("pos.modifier-group.created", POS_MODIFIER_GROUP_CREATED);
+        map.put("pos.modifier-group.updated", POS_MODIFIER_GROUP_UPDATED);
+        map.put("pos.modifier-group.deleted", POS_MODIFIER_GROUP_DELETED);
+        map.put("hris.employee.created", HRIS_EMPLOYEE_CREATED);
+        map.put("hris.employee.updated", HRIS_EMPLOYEE_UPDATED);
+        map.put("hris.employee.deleted", HRIS_EMPLOYEE_DELETED);
+        map.put("hris.employee.terminated", HRIS_EMPLOYEE_TERMINATED);
+        map.put("hris.company.created", HRIS_COMPANY_CREATED);
+        map.put("hris.company.updated", HRIS_COMPANY_UPDATED);
+        map.put("hris.company.deleted", HRIS_COMPANY_DELETED);
+        map.put("file-storage.file.created", FILE_STORAGE_FILE_CREATED);
+        map.put("file-storage.file.updated", FILE_STORAGE_FILE_UPDATED);
+        map.put("file-storage.file.deleted", FILE_STORAGE_FILE_DELETED);
+        map.put("file-storage.drive.updated", FILE_STORAGE_DRIVE_UPDATED);
+        map.put("issue-tracking.ticket.created", ISSUE_TRACKING_TICKET_CREATED);
+        map.put("issue-tracking.ticket.updated", ISSUE_TRACKING_TICKET_UPDATED);
+        map.put("issue-tracking.ticket.deleted", ISSUE_TRACKING_TICKET_DELETED);
+        map.put("ats.application.created", ATS_APPLICATION_CREATED);
+        map.put("ats.application.updated", ATS_APPLICATION_UPDATED);
+        map.put("ats.application.deleted", ATS_APPLICATION_DELETED);
+        map.put("accounting.expense.created", ACCOUNTING_EXPENSE_CREATED);
+        map.put("accounting.expense.updated", ACCOUNTING_EXPENSE_UPDATED);
+        map.put("accounting.expense.deleted", ACCOUNTING_EXPENSE_DELETED);
+        map.put("ecommerce.order.created", ECOMMERCE_ORDER_CREATED);
+        map.put("ecommerce.order.updated", ECOMMERCE_ORDER_UPDATED);
+        map.put("ecommerce.order.deleted", ECOMMERCE_ORDER_DELETED);
+        map.put("ecommerce.product.created", ECOMMERCE_PRODUCT_CREATED);
+        map.put("ecommerce.product.updated", ECOMMERCE_PRODUCT_UPDATED);
+        map.put("ecommerce.product.deleted", ECOMMERCE_PRODUCT_DELETED);
+        map.put("ecommerce.customer.created", ECOMMERCE_CUSTOMER_CREATED);
+        map.put("ecommerce.customer.updated", ECOMMERCE_CUSTOMER_UPDATED);
+        map.put("ecommerce.customer.deleted", ECOMMERCE_CUSTOMER_DELETED);
+        map.put("accounting.quote.created", ACCOUNTING_QUOTE_CREATED);
+        map.put("accounting.quote.updated", ACCOUNTING_QUOTE_UPDATED);
+        map.put("accounting.quote.deleted", ACCOUNTING_QUOTE_DELETED);
+        map.put("accounting.project.created", ACCOUNTING_PROJECT_CREATED);
+        map.put("accounting.project.updated", ACCOUNTING_PROJECT_UPDATED);
+        map.put("accounting.project.deleted", ACCOUNTING_PROJECT_DELETED);
+        return map;
+    }
+
+    private static final Map<String, WebhookEventTypeEnum> createEnumsMap() {
+        Map<String, WebhookEventTypeEnum> map = new HashMap<>();
+        map.put("*", WebhookEventTypeEnum.WILDCARD);
+        map.put("crm.activity.created", WebhookEventTypeEnum.CRM_ACTIVITY_CREATED);
+        map.put("crm.activity.updated", WebhookEventTypeEnum.CRM_ACTIVITY_UPDATED);
+        map.put("crm.activity.deleted", WebhookEventTypeEnum.CRM_ACTIVITY_DELETED);
+        map.put("crm.company.created", WebhookEventTypeEnum.CRM_COMPANY_CREATED);
+        map.put("crm.company.updated", WebhookEventTypeEnum.CRM_COMPANY_UPDATED);
+        map.put("crm.company.deleted", WebhookEventTypeEnum.CRM_COMPANY_DELETED);
+        map.put("crm.contact.created", WebhookEventTypeEnum.CRM_CONTACT_CREATED);
+        map.put("crm.contact.updated", WebhookEventTypeEnum.CRM_CONTACT_UPDATED);
+        map.put("crm.contact.deleted", WebhookEventTypeEnum.CRM_CONTACT_DELETED);
+        map.put("crm.lead.created", WebhookEventTypeEnum.CRM_LEAD_CREATED);
+        map.put("crm.lead.updated", WebhookEventTypeEnum.CRM_LEAD_UPDATED);
+        map.put("crm.lead.deleted", WebhookEventTypeEnum.CRM_LEAD_DELETED);
+        map.put("crm.note.created", WebhookEventTypeEnum.CRM_NOTE_CREATED);
+        map.put("crm.note.updated", WebhookEventTypeEnum.CRM_NOTE_UPDATED);
+        map.put("crm.note.deleted", WebhookEventTypeEnum.CRM_NOTE_DELETED);
+        map.put("crm.opportunity.created", WebhookEventTypeEnum.CRM_OPPORTUNITY_CREATED);
+        map.put("crm.opportunity.updated", WebhookEventTypeEnum.CRM_OPPORTUNITY_UPDATED);
+        map.put("crm.opportunity.deleted", WebhookEventTypeEnum.CRM_OPPORTUNITY_DELETED);
+        map.put("lead.lead.created", WebhookEventTypeEnum.LEAD_LEAD_CREATED);
+        map.put("lead.lead.updated", WebhookEventTypeEnum.LEAD_LEAD_UPDATED);
+        map.put("lead.lead.deleted", WebhookEventTypeEnum.LEAD_LEAD_DELETED);
+        map.put("vault.connection.created", WebhookEventTypeEnum.VAULT_CONNECTION_CREATED);
+        map.put("vault.connection.updated", WebhookEventTypeEnum.VAULT_CONNECTION_UPDATED);
+        map.put("vault.connection.disabled", WebhookEventTypeEnum.VAULT_CONNECTION_DISABLED);
+        map.put("vault.connection.deleted", WebhookEventTypeEnum.VAULT_CONNECTION_DELETED);
+        map.put("vault.connection.callable", WebhookEventTypeEnum.VAULT_CONNECTION_CALLABLE);
+        map.put("vault.connection.revoked", WebhookEventTypeEnum.VAULT_CONNECTION_REVOKED);
+        map.put("vault.connection.token_refresh.failed", WebhookEventTypeEnum.VAULT_CONNECTION_TOKEN_REFRESH_FAILED);
+        map.put("ats.job.created", WebhookEventTypeEnum.ATS_JOB_CREATED);
+        map.put("ats.job.updated", WebhookEventTypeEnum.ATS_JOB_UPDATED);
+        map.put("ats.job.deleted", WebhookEventTypeEnum.ATS_JOB_DELETED);
+        map.put("ats.applicant.created", WebhookEventTypeEnum.ATS_APPLICANT_CREATED);
+        map.put("ats.applicant.updated", WebhookEventTypeEnum.ATS_APPLICANT_UPDATED);
+        map.put("ats.applicant.deleted", WebhookEventTypeEnum.ATS_APPLICANT_DELETED);
+        map.put("accounting.customer.created", WebhookEventTypeEnum.ACCOUNTING_CUSTOMER_CREATED);
+        map.put("accounting.customer.updated", WebhookEventTypeEnum.ACCOUNTING_CUSTOMER_UPDATED);
+        map.put("accounting.customer.deleted", WebhookEventTypeEnum.ACCOUNTING_CUSTOMER_DELETED);
+        map.put("accounting.invoice.created", WebhookEventTypeEnum.ACCOUNTING_INVOICE_CREATED);
+        map.put("accounting.invoice.updated", WebhookEventTypeEnum.ACCOUNTING_INVOICE_UPDATED);
+        map.put("accounting.invoice.deleted", WebhookEventTypeEnum.ACCOUNTING_INVOICE_DELETED);
+        map.put("accounting.invoice_item.created", WebhookEventTypeEnum.ACCOUNTING_INVOICE_ITEM_CREATED);
+        map.put("accounting.invoice_item.updated", WebhookEventTypeEnum.ACCOUNTING_INVOICE_ITEM_UPDATED);
+        map.put("accounting.invoice_item.deleted", WebhookEventTypeEnum.ACCOUNTING_INVOICE_ITEM_DELETED);
+        map.put("accounting.ledger_account.created", WebhookEventTypeEnum.ACCOUNTING_LEDGER_ACCOUNT_CREATED);
+        map.put("accounting.ledger_account.updated", WebhookEventTypeEnum.ACCOUNTING_LEDGER_ACCOUNT_UPDATED);
+        map.put("accounting.ledger_account.deleted", WebhookEventTypeEnum.ACCOUNTING_LEDGER_ACCOUNT_DELETED);
+        map.put("accounting.tax_rate.created", WebhookEventTypeEnum.ACCOUNTING_TAX_RATE_CREATED);
+        map.put("accounting.tax_rate.updated", WebhookEventTypeEnum.ACCOUNTING_TAX_RATE_UPDATED);
+        map.put("accounting.tax_rate.deleted", WebhookEventTypeEnum.ACCOUNTING_TAX_RATE_DELETED);
+        map.put("accounting.bill.created", WebhookEventTypeEnum.ACCOUNTING_BILL_CREATED);
+        map.put("accounting.bill.updated", WebhookEventTypeEnum.ACCOUNTING_BILL_UPDATED);
+        map.put("accounting.bill.deleted", WebhookEventTypeEnum.ACCOUNTING_BILL_DELETED);
+        map.put("accounting.bill_payment.created", WebhookEventTypeEnum.ACCOUNTING_BILL_PAYMENT_CREATED);
+        map.put("accounting.bill_payment.updated", WebhookEventTypeEnum.ACCOUNTING_BILL_PAYMENT_UPDATED);
+        map.put("accounting.bill_payment.deleted", WebhookEventTypeEnum.ACCOUNTING_BILL_PAYMENT_DELETED);
+        map.put("accounting.payment.created", WebhookEventTypeEnum.ACCOUNTING_PAYMENT_CREATED);
+        map.put("accounting.payment.updated", WebhookEventTypeEnum.ACCOUNTING_PAYMENT_UPDATED);
+        map.put("accounting.payment.deleted", WebhookEventTypeEnum.ACCOUNTING_PAYMENT_DELETED);
+        map.put("accounting.supplier.created", WebhookEventTypeEnum.ACCOUNTING_SUPPLIER_CREATED);
+        map.put("accounting.supplier.updated", WebhookEventTypeEnum.ACCOUNTING_SUPPLIER_UPDATED);
+        map.put("accounting.supplier.deleted", WebhookEventTypeEnum.ACCOUNTING_SUPPLIER_DELETED);
+        map.put("accounting.purchase_order.created", WebhookEventTypeEnum.ACCOUNTING_PURCHASE_ORDER_CREATED);
+        map.put("accounting.purchase_order.updated", WebhookEventTypeEnum.ACCOUNTING_PURCHASE_ORDER_UPDATED);
+        map.put("accounting.purchase_order.deleted", WebhookEventTypeEnum.ACCOUNTING_PURCHASE_ORDER_DELETED);
+        map.put("accounting.credit_note.created", WebhookEventTypeEnum.ACCOUNTING_CREDIT_NOTE_CREATED);
+        map.put("accounting.credit_note.updated", WebhookEventTypeEnum.ACCOUNTING_CREDIT_NOTE_UPDATED);
+        map.put("accounting.credit_note.deleted", WebhookEventTypeEnum.ACCOUNTING_CREDIT_NOTE_DELETED);
+        map.put("pos.order.created", WebhookEventTypeEnum.POS_ORDER_CREATED);
+        map.put("pos.order.updated", WebhookEventTypeEnum.POS_ORDER_UPDATED);
+        map.put("pos.order.deleted", WebhookEventTypeEnum.POS_ORDER_DELETED);
+        map.put("pos.product.created", WebhookEventTypeEnum.POS_PRODUCT_CREATED);
+        map.put("pos.product.updated", WebhookEventTypeEnum.POS_PRODUCT_UPDATED);
+        map.put("pos.product.deleted", WebhookEventTypeEnum.POS_PRODUCT_DELETED);
+        map.put("pos.payment.created", WebhookEventTypeEnum.POS_PAYMENT_CREATED);
+        map.put("pos.payment.updated", WebhookEventTypeEnum.POS_PAYMENT_UPDATED);
+        map.put("pos.payment.deleted", WebhookEventTypeEnum.POS_PAYMENT_DELETED);
+        map.put("pos.merchant.created", WebhookEventTypeEnum.POS_MERCHANT_CREATED);
+        map.put("pos.merchant.updated", WebhookEventTypeEnum.POS_MERCHANT_UPDATED);
+        map.put("pos.merchant.deleted", WebhookEventTypeEnum.POS_MERCHANT_DELETED);
+        map.put("pos.location.created", WebhookEventTypeEnum.POS_LOCATION_CREATED);
+        map.put("pos.location.updated", WebhookEventTypeEnum.POS_LOCATION_UPDATED);
+        map.put("pos.location.deleted", WebhookEventTypeEnum.POS_LOCATION_DELETED);
+        map.put("pos.item.created", WebhookEventTypeEnum.POS_ITEM_CREATED);
+        map.put("pos.item.updated", WebhookEventTypeEnum.POS_ITEM_UPDATED);
+        map.put("pos.item.deleted", WebhookEventTypeEnum.POS_ITEM_DELETED);
+        map.put("pos.modifier.created", WebhookEventTypeEnum.POS_MODIFIER_CREATED);
+        map.put("pos.modifier.updated", WebhookEventTypeEnum.POS_MODIFIER_UPDATED);
+        map.put("pos.modifier.deleted", WebhookEventTypeEnum.POS_MODIFIER_DELETED);
+        map.put("pos.modifier-group.created", WebhookEventTypeEnum.POS_MODIFIER_GROUP_CREATED);
+        map.put("pos.modifier-group.updated", WebhookEventTypeEnum.POS_MODIFIER_GROUP_UPDATED);
+        map.put("pos.modifier-group.deleted", WebhookEventTypeEnum.POS_MODIFIER_GROUP_DELETED);
+        map.put("hris.employee.created", WebhookEventTypeEnum.HRIS_EMPLOYEE_CREATED);
+        map.put("hris.employee.updated", WebhookEventTypeEnum.HRIS_EMPLOYEE_UPDATED);
+        map.put("hris.employee.deleted", WebhookEventTypeEnum.HRIS_EMPLOYEE_DELETED);
+        map.put("hris.employee.terminated", WebhookEventTypeEnum.HRIS_EMPLOYEE_TERMINATED);
+        map.put("hris.company.created", WebhookEventTypeEnum.HRIS_COMPANY_CREATED);
+        map.put("hris.company.updated", WebhookEventTypeEnum.HRIS_COMPANY_UPDATED);
+        map.put("hris.company.deleted", WebhookEventTypeEnum.HRIS_COMPANY_DELETED);
+        map.put("file-storage.file.created", WebhookEventTypeEnum.FILE_STORAGE_FILE_CREATED);
+        map.put("file-storage.file.updated", WebhookEventTypeEnum.FILE_STORAGE_FILE_UPDATED);
+        map.put("file-storage.file.deleted", WebhookEventTypeEnum.FILE_STORAGE_FILE_DELETED);
+        map.put("file-storage.drive.updated", WebhookEventTypeEnum.FILE_STORAGE_DRIVE_UPDATED);
+        map.put("issue-tracking.ticket.created", WebhookEventTypeEnum.ISSUE_TRACKING_TICKET_CREATED);
+        map.put("issue-tracking.ticket.updated", WebhookEventTypeEnum.ISSUE_TRACKING_TICKET_UPDATED);
+        map.put("issue-tracking.ticket.deleted", WebhookEventTypeEnum.ISSUE_TRACKING_TICKET_DELETED);
+        map.put("ats.application.created", WebhookEventTypeEnum.ATS_APPLICATION_CREATED);
+        map.put("ats.application.updated", WebhookEventTypeEnum.ATS_APPLICATION_UPDATED);
+        map.put("ats.application.deleted", WebhookEventTypeEnum.ATS_APPLICATION_DELETED);
+        map.put("accounting.expense.created", WebhookEventTypeEnum.ACCOUNTING_EXPENSE_CREATED);
+        map.put("accounting.expense.updated", WebhookEventTypeEnum.ACCOUNTING_EXPENSE_UPDATED);
+        map.put("accounting.expense.deleted", WebhookEventTypeEnum.ACCOUNTING_EXPENSE_DELETED);
+        map.put("ecommerce.order.created", WebhookEventTypeEnum.ECOMMERCE_ORDER_CREATED);
+        map.put("ecommerce.order.updated", WebhookEventTypeEnum.ECOMMERCE_ORDER_UPDATED);
+        map.put("ecommerce.order.deleted", WebhookEventTypeEnum.ECOMMERCE_ORDER_DELETED);
+        map.put("ecommerce.product.created", WebhookEventTypeEnum.ECOMMERCE_PRODUCT_CREATED);
+        map.put("ecommerce.product.updated", WebhookEventTypeEnum.ECOMMERCE_PRODUCT_UPDATED);
+        map.put("ecommerce.product.deleted", WebhookEventTypeEnum.ECOMMERCE_PRODUCT_DELETED);
+        map.put("ecommerce.customer.created", WebhookEventTypeEnum.ECOMMERCE_CUSTOMER_CREATED);
+        map.put("ecommerce.customer.updated", WebhookEventTypeEnum.ECOMMERCE_CUSTOMER_UPDATED);
+        map.put("ecommerce.customer.deleted", WebhookEventTypeEnum.ECOMMERCE_CUSTOMER_DELETED);
+        map.put("accounting.quote.created", WebhookEventTypeEnum.ACCOUNTING_QUOTE_CREATED);
+        map.put("accounting.quote.updated", WebhookEventTypeEnum.ACCOUNTING_QUOTE_UPDATED);
+        map.put("accounting.quote.deleted", WebhookEventTypeEnum.ACCOUNTING_QUOTE_DELETED);
+        map.put("accounting.project.created", WebhookEventTypeEnum.ACCOUNTING_PROJECT_CREATED);
+        map.put("accounting.project.updated", WebhookEventTypeEnum.ACCOUNTING_PROJECT_UPDATED);
+        map.put("accounting.project.deleted", WebhookEventTypeEnum.ACCOUNTING_PROJECT_DELETED);
+        return map;
+    }
+    
+    
+    public enum WebhookEventTypeEnum {
+
+        WILDCARD("*"),
+        CRM_ACTIVITY_CREATED("crm.activity.created"),
+        CRM_ACTIVITY_UPDATED("crm.activity.updated"),
+        CRM_ACTIVITY_DELETED("crm.activity.deleted"),
+        CRM_COMPANY_CREATED("crm.company.created"),
+        CRM_COMPANY_UPDATED("crm.company.updated"),
+        CRM_COMPANY_DELETED("crm.company.deleted"),
+        CRM_CONTACT_CREATED("crm.contact.created"),
+        CRM_CONTACT_UPDATED("crm.contact.updated"),
+        CRM_CONTACT_DELETED("crm.contact.deleted"),
+        CRM_LEAD_CREATED("crm.lead.created"),
+        CRM_LEAD_UPDATED("crm.lead.updated"),
+        CRM_LEAD_DELETED("crm.lead.deleted"),
+        CRM_NOTE_CREATED("crm.note.created"),
+        CRM_NOTE_UPDATED("crm.note.updated"),
+        CRM_NOTE_DELETED("crm.note.deleted"),
+        CRM_OPPORTUNITY_CREATED("crm.opportunity.created"),
+        CRM_OPPORTUNITY_UPDATED("crm.opportunity.updated"),
+        CRM_OPPORTUNITY_DELETED("crm.opportunity.deleted"),
+        LEAD_LEAD_CREATED("lead.lead.created"),
+        LEAD_LEAD_UPDATED("lead.lead.updated"),
+        LEAD_LEAD_DELETED("lead.lead.deleted"),
+        VAULT_CONNECTION_CREATED("vault.connection.created"),
+        VAULT_CONNECTION_UPDATED("vault.connection.updated"),
+        VAULT_CONNECTION_DISABLED("vault.connection.disabled"),
+        VAULT_CONNECTION_DELETED("vault.connection.deleted"),
+        VAULT_CONNECTION_CALLABLE("vault.connection.callable"),
+        VAULT_CONNECTION_REVOKED("vault.connection.revoked"),
+        VAULT_CONNECTION_TOKEN_REFRESH_FAILED("vault.connection.token_refresh.failed"),
+        ATS_JOB_CREATED("ats.job.created"),
+        ATS_JOB_UPDATED("ats.job.updated"),
+        ATS_JOB_DELETED("ats.job.deleted"),
+        ATS_APPLICANT_CREATED("ats.applicant.created"),
+        ATS_APPLICANT_UPDATED("ats.applicant.updated"),
+        ATS_APPLICANT_DELETED("ats.applicant.deleted"),
+        ACCOUNTING_CUSTOMER_CREATED("accounting.customer.created"),
+        ACCOUNTING_CUSTOMER_UPDATED("accounting.customer.updated"),
+        ACCOUNTING_CUSTOMER_DELETED("accounting.customer.deleted"),
+        ACCOUNTING_INVOICE_CREATED("accounting.invoice.created"),
+        ACCOUNTING_INVOICE_UPDATED("accounting.invoice.updated"),
+        ACCOUNTING_INVOICE_DELETED("accounting.invoice.deleted"),
+        ACCOUNTING_INVOICE_ITEM_CREATED("accounting.invoice_item.created"),
+        ACCOUNTING_INVOICE_ITEM_UPDATED("accounting.invoice_item.updated"),
+        ACCOUNTING_INVOICE_ITEM_DELETED("accounting.invoice_item.deleted"),
+        ACCOUNTING_LEDGER_ACCOUNT_CREATED("accounting.ledger_account.created"),
+        ACCOUNTING_LEDGER_ACCOUNT_UPDATED("accounting.ledger_account.updated"),
+        ACCOUNTING_LEDGER_ACCOUNT_DELETED("accounting.ledger_account.deleted"),
+        ACCOUNTING_TAX_RATE_CREATED("accounting.tax_rate.created"),
+        ACCOUNTING_TAX_RATE_UPDATED("accounting.tax_rate.updated"),
+        ACCOUNTING_TAX_RATE_DELETED("accounting.tax_rate.deleted"),
+        ACCOUNTING_BILL_CREATED("accounting.bill.created"),
+        ACCOUNTING_BILL_UPDATED("accounting.bill.updated"),
+        ACCOUNTING_BILL_DELETED("accounting.bill.deleted"),
+        ACCOUNTING_BILL_PAYMENT_CREATED("accounting.bill_payment.created"),
+        ACCOUNTING_BILL_PAYMENT_UPDATED("accounting.bill_payment.updated"),
+        ACCOUNTING_BILL_PAYMENT_DELETED("accounting.bill_payment.deleted"),
+        ACCOUNTING_PAYMENT_CREATED("accounting.payment.created"),
+        ACCOUNTING_PAYMENT_UPDATED("accounting.payment.updated"),
+        ACCOUNTING_PAYMENT_DELETED("accounting.payment.deleted"),
+        ACCOUNTING_SUPPLIER_CREATED("accounting.supplier.created"),
+        ACCOUNTING_SUPPLIER_UPDATED("accounting.supplier.updated"),
+        ACCOUNTING_SUPPLIER_DELETED("accounting.supplier.deleted"),
+        ACCOUNTING_PURCHASE_ORDER_CREATED("accounting.purchase_order.created"),
+        ACCOUNTING_PURCHASE_ORDER_UPDATED("accounting.purchase_order.updated"),
+        ACCOUNTING_PURCHASE_ORDER_DELETED("accounting.purchase_order.deleted"),
+        ACCOUNTING_CREDIT_NOTE_CREATED("accounting.credit_note.created"),
+        ACCOUNTING_CREDIT_NOTE_UPDATED("accounting.credit_note.updated"),
+        ACCOUNTING_CREDIT_NOTE_DELETED("accounting.credit_note.deleted"),
+        POS_ORDER_CREATED("pos.order.created"),
+        POS_ORDER_UPDATED("pos.order.updated"),
+        POS_ORDER_DELETED("pos.order.deleted"),
+        POS_PRODUCT_CREATED("pos.product.created"),
+        POS_PRODUCT_UPDATED("pos.product.updated"),
+        POS_PRODUCT_DELETED("pos.product.deleted"),
+        POS_PAYMENT_CREATED("pos.payment.created"),
+        POS_PAYMENT_UPDATED("pos.payment.updated"),
+        POS_PAYMENT_DELETED("pos.payment.deleted"),
+        POS_MERCHANT_CREATED("pos.merchant.created"),
+        POS_MERCHANT_UPDATED("pos.merchant.updated"),
+        POS_MERCHANT_DELETED("pos.merchant.deleted"),
+        POS_LOCATION_CREATED("pos.location.created"),
+        POS_LOCATION_UPDATED("pos.location.updated"),
+        POS_LOCATION_DELETED("pos.location.deleted"),
+        POS_ITEM_CREATED("pos.item.created"),
+        POS_ITEM_UPDATED("pos.item.updated"),
+        POS_ITEM_DELETED("pos.item.deleted"),
+        POS_MODIFIER_CREATED("pos.modifier.created"),
+        POS_MODIFIER_UPDATED("pos.modifier.updated"),
+        POS_MODIFIER_DELETED("pos.modifier.deleted"),
+        POS_MODIFIER_GROUP_CREATED("pos.modifier-group.created"),
+        POS_MODIFIER_GROUP_UPDATED("pos.modifier-group.updated"),
+        POS_MODIFIER_GROUP_DELETED("pos.modifier-group.deleted"),
+        HRIS_EMPLOYEE_CREATED("hris.employee.created"),
+        HRIS_EMPLOYEE_UPDATED("hris.employee.updated"),
+        HRIS_EMPLOYEE_DELETED("hris.employee.deleted"),
+        HRIS_EMPLOYEE_TERMINATED("hris.employee.terminated"),
+        HRIS_COMPANY_CREATED("hris.company.created"),
+        HRIS_COMPANY_UPDATED("hris.company.updated"),
+        HRIS_COMPANY_DELETED("hris.company.deleted"),
+        FILE_STORAGE_FILE_CREATED("file-storage.file.created"),
+        FILE_STORAGE_FILE_UPDATED("file-storage.file.updated"),
+        FILE_STORAGE_FILE_DELETED("file-storage.file.deleted"),
+        FILE_STORAGE_DRIVE_UPDATED("file-storage.drive.updated"),
+        ISSUE_TRACKING_TICKET_CREATED("issue-tracking.ticket.created"),
+        ISSUE_TRACKING_TICKET_UPDATED("issue-tracking.ticket.updated"),
+        ISSUE_TRACKING_TICKET_DELETED("issue-tracking.ticket.deleted"),
+        ATS_APPLICATION_CREATED("ats.application.created"),
+        ATS_APPLICATION_UPDATED("ats.application.updated"),
+        ATS_APPLICATION_DELETED("ats.application.deleted"),
+        ACCOUNTING_EXPENSE_CREATED("accounting.expense.created"),
+        ACCOUNTING_EXPENSE_UPDATED("accounting.expense.updated"),
+        ACCOUNTING_EXPENSE_DELETED("accounting.expense.deleted"),
+        ECOMMERCE_ORDER_CREATED("ecommerce.order.created"),
+        ECOMMERCE_ORDER_UPDATED("ecommerce.order.updated"),
+        ECOMMERCE_ORDER_DELETED("ecommerce.order.deleted"),
+        ECOMMERCE_PRODUCT_CREATED("ecommerce.product.created"),
+        ECOMMERCE_PRODUCT_UPDATED("ecommerce.product.updated"),
+        ECOMMERCE_PRODUCT_DELETED("ecommerce.product.deleted"),
+        ECOMMERCE_CUSTOMER_CREATED("ecommerce.customer.created"),
+        ECOMMERCE_CUSTOMER_UPDATED("ecommerce.customer.updated"),
+        ECOMMERCE_CUSTOMER_DELETED("ecommerce.customer.deleted"),
+        ACCOUNTING_QUOTE_CREATED("accounting.quote.created"),
+        ACCOUNTING_QUOTE_UPDATED("accounting.quote.updated"),
+        ACCOUNTING_QUOTE_DELETED("accounting.quote.deleted"),
+        ACCOUNTING_PROJECT_CREATED("accounting.project.created"),
+        ACCOUNTING_PROJECT_UPDATED("accounting.project.updated"),
+        ACCOUNTING_PROJECT_DELETED("accounting.project.deleted"),;
+
+        private final String value;
+
+        private WebhookEventTypeEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

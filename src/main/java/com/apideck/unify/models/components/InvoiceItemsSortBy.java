@@ -3,38 +3,130 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * InvoiceItemsSortBy
  * 
  * <p>The field on which to sort the Invoice Items
  */
-public enum InvoiceItemsSortBy {
-    CREATED_AT("created_at"),
-    UPDATED_AT("updated_at");
+public class InvoiceItemsSortBy {
 
-    @JsonValue
+    public static final InvoiceItemsSortBy CREATED_AT = new InvoiceItemsSortBy("created_at");
+    public static final InvoiceItemsSortBy UPDATED_AT = new InvoiceItemsSortBy("updated_at");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, InvoiceItemsSortBy> values = createValuesMap();
+    private static final Map<String, InvoiceItemsSortByEnum> enums = createEnumsMap();
+
     private final String value;
 
-    InvoiceItemsSortBy(String value) {
+    private InvoiceItemsSortBy(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a InvoiceItemsSortBy with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as InvoiceItemsSortBy
+     */ 
+    @JsonCreator
+    public static InvoiceItemsSortBy of(String value) {
+        synchronized (InvoiceItemsSortBy.class) {
+            return values.computeIfAbsent(value, v -> new InvoiceItemsSortBy(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<InvoiceItemsSortBy> fromValue(String value) {
-        for (InvoiceItemsSortBy o: InvoiceItemsSortBy.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<InvoiceItemsSortByEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        InvoiceItemsSortBy other = (InvoiceItemsSortBy) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "InvoiceItemsSortBy [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static InvoiceItemsSortBy[] values() {
+        synchronized (InvoiceItemsSortBy.class) {
+            return values.values().toArray(new InvoiceItemsSortBy[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, InvoiceItemsSortBy> createValuesMap() {
+        Map<String, InvoiceItemsSortBy> map = new LinkedHashMap<>();
+        map.put("created_at", CREATED_AT);
+        map.put("updated_at", UPDATED_AT);
+        return map;
+    }
+
+    private static final Map<String, InvoiceItemsSortByEnum> createEnumsMap() {
+        Map<String, InvoiceItemsSortByEnum> map = new HashMap<>();
+        map.put("created_at", InvoiceItemsSortByEnum.CREATED_AT);
+        map.put("updated_at", InvoiceItemsSortByEnum.UPDATED_AT);
+        return map;
+    }
+    
+    
+    public enum InvoiceItemsSortByEnum {
+
+        CREATED_AT("created_at"),
+        UPDATED_AT("updated_at"),;
+
+        private final String value;
+
+        private InvoiceItemsSortByEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

@@ -3,38 +3,130 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * ApiType
  * 
  * <p>Indicates whether the API is a Unified API. If unified_api is false, the API is a Platform API.
  */
-public enum ApiType {
-    PLATFORM("platform"),
-    UNIFIED("unified");
+public class ApiType {
 
-    @JsonValue
+    public static final ApiType PLATFORM = new ApiType("platform");
+    public static final ApiType UNIFIED = new ApiType("unified");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, ApiType> values = createValuesMap();
+    private static final Map<String, ApiTypeEnum> enums = createEnumsMap();
+
     private final String value;
 
-    ApiType(String value) {
+    private ApiType(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a ApiType with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as ApiType
+     */ 
+    @JsonCreator
+    public static ApiType of(String value) {
+        synchronized (ApiType.class) {
+            return values.computeIfAbsent(value, v -> new ApiType(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<ApiType> fromValue(String value) {
-        for (ApiType o: ApiType.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<ApiTypeEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        ApiType other = (ApiType) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "ApiType [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static ApiType[] values() {
+        synchronized (ApiType.class) {
+            return values.values().toArray(new ApiType[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, ApiType> createValuesMap() {
+        Map<String, ApiType> map = new LinkedHashMap<>();
+        map.put("platform", PLATFORM);
+        map.put("unified", UNIFIED);
+        return map;
+    }
+
+    private static final Map<String, ApiTypeEnum> createEnumsMap() {
+        Map<String, ApiTypeEnum> map = new HashMap<>();
+        map.put("platform", ApiTypeEnum.PLATFORM);
+        map.put("unified", ApiTypeEnum.UNIFIED);
+        return map;
+    }
+    
+    
+    public enum ApiTypeEnum {
+
+        PLATFORM("platform"),
+        UNIFIED("unified"),;
+
+        private final String value;
+
+        private ApiTypeEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

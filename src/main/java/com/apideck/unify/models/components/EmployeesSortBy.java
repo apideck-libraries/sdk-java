@@ -3,40 +3,138 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * EmployeesSortBy
  * 
  * <p>The field on which to sort the Employees
  */
-public enum EmployeesSortBy {
-    FIRST_NAME("first_name"),
-    LAST_NAME("last_name"),
-    CREATED_AT("created_at"),
-    UPDATED_AT("updated_at");
+public class EmployeesSortBy {
 
-    @JsonValue
+    public static final EmployeesSortBy FIRST_NAME = new EmployeesSortBy("first_name");
+    public static final EmployeesSortBy LAST_NAME = new EmployeesSortBy("last_name");
+    public static final EmployeesSortBy CREATED_AT = new EmployeesSortBy("created_at");
+    public static final EmployeesSortBy UPDATED_AT = new EmployeesSortBy("updated_at");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, EmployeesSortBy> values = createValuesMap();
+    private static final Map<String, EmployeesSortByEnum> enums = createEnumsMap();
+
     private final String value;
 
-    EmployeesSortBy(String value) {
+    private EmployeesSortBy(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a EmployeesSortBy with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as EmployeesSortBy
+     */ 
+    @JsonCreator
+    public static EmployeesSortBy of(String value) {
+        synchronized (EmployeesSortBy.class) {
+            return values.computeIfAbsent(value, v -> new EmployeesSortBy(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<EmployeesSortBy> fromValue(String value) {
-        for (EmployeesSortBy o: EmployeesSortBy.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<EmployeesSortByEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        EmployeesSortBy other = (EmployeesSortBy) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "EmployeesSortBy [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static EmployeesSortBy[] values() {
+        synchronized (EmployeesSortBy.class) {
+            return values.values().toArray(new EmployeesSortBy[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, EmployeesSortBy> createValuesMap() {
+        Map<String, EmployeesSortBy> map = new LinkedHashMap<>();
+        map.put("first_name", FIRST_NAME);
+        map.put("last_name", LAST_NAME);
+        map.put("created_at", CREATED_AT);
+        map.put("updated_at", UPDATED_AT);
+        return map;
+    }
+
+    private static final Map<String, EmployeesSortByEnum> createEnumsMap() {
+        Map<String, EmployeesSortByEnum> map = new HashMap<>();
+        map.put("first_name", EmployeesSortByEnum.FIRST_NAME);
+        map.put("last_name", EmployeesSortByEnum.LAST_NAME);
+        map.put("created_at", EmployeesSortByEnum.CREATED_AT);
+        map.put("updated_at", EmployeesSortByEnum.UPDATED_AT);
+        return map;
+    }
+    
+    
+    public enum EmployeesSortByEnum {
+
+        FIRST_NAME("first_name"),
+        LAST_NAME("last_name"),
+        CREATED_AT("created_at"),
+        UPDATED_AT("updated_at"),;
+
+        private final String value;
+
+        private EmployeesSortByEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

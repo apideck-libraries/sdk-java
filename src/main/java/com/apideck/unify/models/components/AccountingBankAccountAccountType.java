@@ -3,43 +3,150 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * AccountingBankAccountAccountType
  * 
  * <p>The type of bank account
  */
-public enum AccountingBankAccountAccountType {
-    CHECKING("checking"),
-    SAVINGS("savings"),
-    CREDIT_CARD("credit_card"),
-    MONEY_MARKET("money_market"),
-    LINE_OF_CREDIT("line_of_credit"),
-    OTHER("other"),
-    CASH("cash");
+public class AccountingBankAccountAccountType {
 
-    @JsonValue
+    public static final AccountingBankAccountAccountType CHECKING = new AccountingBankAccountAccountType("checking");
+    public static final AccountingBankAccountAccountType SAVINGS = new AccountingBankAccountAccountType("savings");
+    public static final AccountingBankAccountAccountType CREDIT_CARD = new AccountingBankAccountAccountType("credit_card");
+    public static final AccountingBankAccountAccountType MONEY_MARKET = new AccountingBankAccountAccountType("money_market");
+    public static final AccountingBankAccountAccountType LINE_OF_CREDIT = new AccountingBankAccountAccountType("line_of_credit");
+    public static final AccountingBankAccountAccountType OTHER = new AccountingBankAccountAccountType("other");
+    public static final AccountingBankAccountAccountType CASH = new AccountingBankAccountAccountType("cash");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, AccountingBankAccountAccountType> values = createValuesMap();
+    private static final Map<String, AccountingBankAccountAccountTypeEnum> enums = createEnumsMap();
+
     private final String value;
 
-    AccountingBankAccountAccountType(String value) {
+    private AccountingBankAccountAccountType(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a AccountingBankAccountAccountType with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as AccountingBankAccountAccountType
+     */ 
+    @JsonCreator
+    public static AccountingBankAccountAccountType of(String value) {
+        synchronized (AccountingBankAccountAccountType.class) {
+            return values.computeIfAbsent(value, v -> new AccountingBankAccountAccountType(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<AccountingBankAccountAccountType> fromValue(String value) {
-        for (AccountingBankAccountAccountType o: AccountingBankAccountAccountType.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<AccountingBankAccountAccountTypeEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        AccountingBankAccountAccountType other = (AccountingBankAccountAccountType) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "AccountingBankAccountAccountType [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static AccountingBankAccountAccountType[] values() {
+        synchronized (AccountingBankAccountAccountType.class) {
+            return values.values().toArray(new AccountingBankAccountAccountType[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, AccountingBankAccountAccountType> createValuesMap() {
+        Map<String, AccountingBankAccountAccountType> map = new LinkedHashMap<>();
+        map.put("checking", CHECKING);
+        map.put("savings", SAVINGS);
+        map.put("credit_card", CREDIT_CARD);
+        map.put("money_market", MONEY_MARKET);
+        map.put("line_of_credit", LINE_OF_CREDIT);
+        map.put("other", OTHER);
+        map.put("cash", CASH);
+        return map;
+    }
+
+    private static final Map<String, AccountingBankAccountAccountTypeEnum> createEnumsMap() {
+        Map<String, AccountingBankAccountAccountTypeEnum> map = new HashMap<>();
+        map.put("checking", AccountingBankAccountAccountTypeEnum.CHECKING);
+        map.put("savings", AccountingBankAccountAccountTypeEnum.SAVINGS);
+        map.put("credit_card", AccountingBankAccountAccountTypeEnum.CREDIT_CARD);
+        map.put("money_market", AccountingBankAccountAccountTypeEnum.MONEY_MARKET);
+        map.put("line_of_credit", AccountingBankAccountAccountTypeEnum.LINE_OF_CREDIT);
+        map.put("other", AccountingBankAccountAccountTypeEnum.OTHER);
+        map.put("cash", AccountingBankAccountAccountTypeEnum.CASH);
+        return map;
+    }
+    
+    
+    public enum AccountingBankAccountAccountTypeEnum {
+
+        CHECKING("checking"),
+        SAVINGS("savings"),
+        CREDIT_CARD("credit_card"),
+        MONEY_MARKET("money_market"),
+        LINE_OF_CREDIT("line_of_credit"),
+        OTHER("other"),
+        CASH("cash"),;
+
+        private final String value;
+
+        private AccountingBankAccountAccountTypeEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

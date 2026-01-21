@@ -3,39 +3,134 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * FileType
  * 
  * <p>The type of resource. Could be file, folder or url
  */
-public enum FileType {
-    FILE("file"),
-    FOLDER("folder"),
-    URL("url");
+public class FileType {
 
-    @JsonValue
+    public static final FileType FILE = new FileType("file");
+    public static final FileType FOLDER = new FileType("folder");
+    public static final FileType URL = new FileType("url");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, FileType> values = createValuesMap();
+    private static final Map<String, FileTypeEnum> enums = createEnumsMap();
+
     private final String value;
 
-    FileType(String value) {
+    private FileType(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a FileType with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as FileType
+     */ 
+    @JsonCreator
+    public static FileType of(String value) {
+        synchronized (FileType.class) {
+            return values.computeIfAbsent(value, v -> new FileType(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<FileType> fromValue(String value) {
-        for (FileType o: FileType.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<FileTypeEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        FileType other = (FileType) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "FileType [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static FileType[] values() {
+        synchronized (FileType.class) {
+            return values.values().toArray(new FileType[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, FileType> createValuesMap() {
+        Map<String, FileType> map = new LinkedHashMap<>();
+        map.put("file", FILE);
+        map.put("folder", FOLDER);
+        map.put("url", URL);
+        return map;
+    }
+
+    private static final Map<String, FileTypeEnum> createEnumsMap() {
+        Map<String, FileTypeEnum> map = new HashMap<>();
+        map.put("file", FileTypeEnum.FILE);
+        map.put("folder", FileTypeEnum.FOLDER);
+        map.put("url", FileTypeEnum.URL);
+        return map;
+    }
+    
+    
+    public enum FileTypeEnum {
+
+        FILE("file"),
+        FOLDER("folder"),
+        URL("url"),;
+
+        private final String value;
+
+        private FileTypeEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

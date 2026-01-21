@@ -3,41 +3,142 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * ConnectorStatus
  * 
  * <p>Status of the connector. Connectors with status live or beta are callable.
  */
-public enum ConnectorStatus {
-    LIVE("live"),
-    BETA("beta"),
-    EARLY_ACCESS("early-access"),
-    DEVELOPMENT("development"),
-    CONSIDERING("considering");
+public class ConnectorStatus {
 
-    @JsonValue
+    public static final ConnectorStatus LIVE = new ConnectorStatus("live");
+    public static final ConnectorStatus BETA = new ConnectorStatus("beta");
+    public static final ConnectorStatus EARLY_ACCESS = new ConnectorStatus("early-access");
+    public static final ConnectorStatus DEVELOPMENT = new ConnectorStatus("development");
+    public static final ConnectorStatus CONSIDERING = new ConnectorStatus("considering");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, ConnectorStatus> values = createValuesMap();
+    private static final Map<String, ConnectorStatusEnum> enums = createEnumsMap();
+
     private final String value;
 
-    ConnectorStatus(String value) {
+    private ConnectorStatus(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a ConnectorStatus with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as ConnectorStatus
+     */ 
+    @JsonCreator
+    public static ConnectorStatus of(String value) {
+        synchronized (ConnectorStatus.class) {
+            return values.computeIfAbsent(value, v -> new ConnectorStatus(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<ConnectorStatus> fromValue(String value) {
-        for (ConnectorStatus o: ConnectorStatus.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<ConnectorStatusEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        ConnectorStatus other = (ConnectorStatus) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "ConnectorStatus [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static ConnectorStatus[] values() {
+        synchronized (ConnectorStatus.class) {
+            return values.values().toArray(new ConnectorStatus[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, ConnectorStatus> createValuesMap() {
+        Map<String, ConnectorStatus> map = new LinkedHashMap<>();
+        map.put("live", LIVE);
+        map.put("beta", BETA);
+        map.put("early-access", EARLY_ACCESS);
+        map.put("development", DEVELOPMENT);
+        map.put("considering", CONSIDERING);
+        return map;
+    }
+
+    private static final Map<String, ConnectorStatusEnum> createEnumsMap() {
+        Map<String, ConnectorStatusEnum> map = new HashMap<>();
+        map.put("live", ConnectorStatusEnum.LIVE);
+        map.put("beta", ConnectorStatusEnum.BETA);
+        map.put("early-access", ConnectorStatusEnum.EARLY_ACCESS);
+        map.put("development", ConnectorStatusEnum.DEVELOPMENT);
+        map.put("considering", ConnectorStatusEnum.CONSIDERING);
+        return map;
+    }
+    
+    
+    public enum ConnectorStatusEnum {
+
+        LIVE("live"),
+        BETA("beta"),
+        EARLY_ACCESS("early-access"),
+        DEVELOPMENT("development"),
+        CONSIDERING("considering"),;
+
+        private final String value;
+
+        private ConnectorStatusEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

@@ -3,42 +3,146 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * BankFeedStatementTransactionType
  * 
  * <p>Type of transaction.
  */
-public enum BankFeedStatementTransactionType {
-    CREDIT("credit"),
-    DEBIT("debit"),
-    DEPOSIT("deposit"),
-    TRANSFER("transfer"),
-    PAYMENT("payment"),
-    OTHER("other");
+public class BankFeedStatementTransactionType {
 
-    @JsonValue
+    public static final BankFeedStatementTransactionType CREDIT = new BankFeedStatementTransactionType("credit");
+    public static final BankFeedStatementTransactionType DEBIT = new BankFeedStatementTransactionType("debit");
+    public static final BankFeedStatementTransactionType DEPOSIT = new BankFeedStatementTransactionType("deposit");
+    public static final BankFeedStatementTransactionType TRANSFER = new BankFeedStatementTransactionType("transfer");
+    public static final BankFeedStatementTransactionType PAYMENT = new BankFeedStatementTransactionType("payment");
+    public static final BankFeedStatementTransactionType OTHER = new BankFeedStatementTransactionType("other");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, BankFeedStatementTransactionType> values = createValuesMap();
+    private static final Map<String, BankFeedStatementTransactionTypeEnum> enums = createEnumsMap();
+
     private final String value;
 
-    BankFeedStatementTransactionType(String value) {
+    private BankFeedStatementTransactionType(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a BankFeedStatementTransactionType with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as BankFeedStatementTransactionType
+     */ 
+    @JsonCreator
+    public static BankFeedStatementTransactionType of(String value) {
+        synchronized (BankFeedStatementTransactionType.class) {
+            return values.computeIfAbsent(value, v -> new BankFeedStatementTransactionType(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<BankFeedStatementTransactionType> fromValue(String value) {
-        for (BankFeedStatementTransactionType o: BankFeedStatementTransactionType.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<BankFeedStatementTransactionTypeEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        BankFeedStatementTransactionType other = (BankFeedStatementTransactionType) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "BankFeedStatementTransactionType [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static BankFeedStatementTransactionType[] values() {
+        synchronized (BankFeedStatementTransactionType.class) {
+            return values.values().toArray(new BankFeedStatementTransactionType[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, BankFeedStatementTransactionType> createValuesMap() {
+        Map<String, BankFeedStatementTransactionType> map = new LinkedHashMap<>();
+        map.put("credit", CREDIT);
+        map.put("debit", DEBIT);
+        map.put("deposit", DEPOSIT);
+        map.put("transfer", TRANSFER);
+        map.put("payment", PAYMENT);
+        map.put("other", OTHER);
+        return map;
+    }
+
+    private static final Map<String, BankFeedStatementTransactionTypeEnum> createEnumsMap() {
+        Map<String, BankFeedStatementTransactionTypeEnum> map = new HashMap<>();
+        map.put("credit", BankFeedStatementTransactionTypeEnum.CREDIT);
+        map.put("debit", BankFeedStatementTransactionTypeEnum.DEBIT);
+        map.put("deposit", BankFeedStatementTransactionTypeEnum.DEPOSIT);
+        map.put("transfer", BankFeedStatementTransactionTypeEnum.TRANSFER);
+        map.put("payment", BankFeedStatementTransactionTypeEnum.PAYMENT);
+        map.put("other", BankFeedStatementTransactionTypeEnum.OTHER);
+        return map;
+    }
+    
+    
+    public enum BankFeedStatementTransactionTypeEnum {
+
+        CREDIT("credit"),
+        DEBIT("debit"),
+        DEPOSIT("deposit"),
+        TRANSFER("transfer"),
+        PAYMENT("payment"),
+        OTHER("other"),;
+
+        private final String value;
+
+        private BankFeedStatementTransactionTypeEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

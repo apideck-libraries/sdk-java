@@ -3,63 +3,230 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * UnifiedApiId
  * 
  * <p>Name of Apideck Unified API
  */
-public enum UnifiedApiId {
-    ACCOUNTING("accounting"),
-    ATS("ats"),
-    CALENDAR("calendar"),
-    CRM("crm"),
-    CSP("csp"),
-    CUSTOMER_SUPPORT("customer-support"),
-    ECOMMERCE("ecommerce"),
-    EMAIL("email"),
-    EMAIL_MARKETING("email-marketing"),
-    EXPENSE_MANAGEMENT("expense-management"),
-    FILE_STORAGE("file-storage"),
-    FORM("form"),
-    HRIS("hris"),
-    LEAD("lead"),
-    PAYROLL("payroll"),
-    POS("pos"),
-    PROCUREMENT("procurement"),
-    PROJECT_MANAGEMENT("project-management"),
-    SCRIPT("script"),
-    SMS("sms"),
-    SPREADSHEET("spreadsheet"),
-    TEAM_MESSAGING("team-messaging"),
-    ISSUE_TRACKING("issue-tracking"),
-    TIME_REGISTRATION("time-registration"),
-    TRANSACTIONAL_EMAIL("transactional-email"),
-    VAULT("vault"),
-    DATA_WAREHOUSE("data-warehouse");
+public class UnifiedApiId {
 
-    @JsonValue
+    public static final UnifiedApiId ACCOUNTING = new UnifiedApiId("accounting");
+    public static final UnifiedApiId ATS = new UnifiedApiId("ats");
+    public static final UnifiedApiId CALENDAR = new UnifiedApiId("calendar");
+    public static final UnifiedApiId CRM = new UnifiedApiId("crm");
+    public static final UnifiedApiId CSP = new UnifiedApiId("csp");
+    public static final UnifiedApiId CUSTOMER_SUPPORT = new UnifiedApiId("customer-support");
+    public static final UnifiedApiId ECOMMERCE = new UnifiedApiId("ecommerce");
+    public static final UnifiedApiId EMAIL = new UnifiedApiId("email");
+    public static final UnifiedApiId EMAIL_MARKETING = new UnifiedApiId("email-marketing");
+    public static final UnifiedApiId EXPENSE_MANAGEMENT = new UnifiedApiId("expense-management");
+    public static final UnifiedApiId FILE_STORAGE = new UnifiedApiId("file-storage");
+    public static final UnifiedApiId FORM = new UnifiedApiId("form");
+    public static final UnifiedApiId HRIS = new UnifiedApiId("hris");
+    public static final UnifiedApiId LEAD = new UnifiedApiId("lead");
+    public static final UnifiedApiId PAYROLL = new UnifiedApiId("payroll");
+    public static final UnifiedApiId POS = new UnifiedApiId("pos");
+    public static final UnifiedApiId PROCUREMENT = new UnifiedApiId("procurement");
+    public static final UnifiedApiId PROJECT_MANAGEMENT = new UnifiedApiId("project-management");
+    public static final UnifiedApiId SCRIPT = new UnifiedApiId("script");
+    public static final UnifiedApiId SMS = new UnifiedApiId("sms");
+    public static final UnifiedApiId SPREADSHEET = new UnifiedApiId("spreadsheet");
+    public static final UnifiedApiId TEAM_MESSAGING = new UnifiedApiId("team-messaging");
+    public static final UnifiedApiId ISSUE_TRACKING = new UnifiedApiId("issue-tracking");
+    public static final UnifiedApiId TIME_REGISTRATION = new UnifiedApiId("time-registration");
+    public static final UnifiedApiId TRANSACTIONAL_EMAIL = new UnifiedApiId("transactional-email");
+    public static final UnifiedApiId VAULT = new UnifiedApiId("vault");
+    public static final UnifiedApiId DATA_WAREHOUSE = new UnifiedApiId("data-warehouse");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, UnifiedApiId> values = createValuesMap();
+    private static final Map<String, UnifiedApiIdEnum> enums = createEnumsMap();
+
     private final String value;
 
-    UnifiedApiId(String value) {
+    private UnifiedApiId(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a UnifiedApiId with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as UnifiedApiId
+     */ 
+    @JsonCreator
+    public static UnifiedApiId of(String value) {
+        synchronized (UnifiedApiId.class) {
+            return values.computeIfAbsent(value, v -> new UnifiedApiId(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<UnifiedApiId> fromValue(String value) {
-        for (UnifiedApiId o: UnifiedApiId.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<UnifiedApiIdEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        UnifiedApiId other = (UnifiedApiId) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "UnifiedApiId [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static UnifiedApiId[] values() {
+        synchronized (UnifiedApiId.class) {
+            return values.values().toArray(new UnifiedApiId[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, UnifiedApiId> createValuesMap() {
+        Map<String, UnifiedApiId> map = new LinkedHashMap<>();
+        map.put("accounting", ACCOUNTING);
+        map.put("ats", ATS);
+        map.put("calendar", CALENDAR);
+        map.put("crm", CRM);
+        map.put("csp", CSP);
+        map.put("customer-support", CUSTOMER_SUPPORT);
+        map.put("ecommerce", ECOMMERCE);
+        map.put("email", EMAIL);
+        map.put("email-marketing", EMAIL_MARKETING);
+        map.put("expense-management", EXPENSE_MANAGEMENT);
+        map.put("file-storage", FILE_STORAGE);
+        map.put("form", FORM);
+        map.put("hris", HRIS);
+        map.put("lead", LEAD);
+        map.put("payroll", PAYROLL);
+        map.put("pos", POS);
+        map.put("procurement", PROCUREMENT);
+        map.put("project-management", PROJECT_MANAGEMENT);
+        map.put("script", SCRIPT);
+        map.put("sms", SMS);
+        map.put("spreadsheet", SPREADSHEET);
+        map.put("team-messaging", TEAM_MESSAGING);
+        map.put("issue-tracking", ISSUE_TRACKING);
+        map.put("time-registration", TIME_REGISTRATION);
+        map.put("transactional-email", TRANSACTIONAL_EMAIL);
+        map.put("vault", VAULT);
+        map.put("data-warehouse", DATA_WAREHOUSE);
+        return map;
+    }
+
+    private static final Map<String, UnifiedApiIdEnum> createEnumsMap() {
+        Map<String, UnifiedApiIdEnum> map = new HashMap<>();
+        map.put("accounting", UnifiedApiIdEnum.ACCOUNTING);
+        map.put("ats", UnifiedApiIdEnum.ATS);
+        map.put("calendar", UnifiedApiIdEnum.CALENDAR);
+        map.put("crm", UnifiedApiIdEnum.CRM);
+        map.put("csp", UnifiedApiIdEnum.CSP);
+        map.put("customer-support", UnifiedApiIdEnum.CUSTOMER_SUPPORT);
+        map.put("ecommerce", UnifiedApiIdEnum.ECOMMERCE);
+        map.put("email", UnifiedApiIdEnum.EMAIL);
+        map.put("email-marketing", UnifiedApiIdEnum.EMAIL_MARKETING);
+        map.put("expense-management", UnifiedApiIdEnum.EXPENSE_MANAGEMENT);
+        map.put("file-storage", UnifiedApiIdEnum.FILE_STORAGE);
+        map.put("form", UnifiedApiIdEnum.FORM);
+        map.put("hris", UnifiedApiIdEnum.HRIS);
+        map.put("lead", UnifiedApiIdEnum.LEAD);
+        map.put("payroll", UnifiedApiIdEnum.PAYROLL);
+        map.put("pos", UnifiedApiIdEnum.POS);
+        map.put("procurement", UnifiedApiIdEnum.PROCUREMENT);
+        map.put("project-management", UnifiedApiIdEnum.PROJECT_MANAGEMENT);
+        map.put("script", UnifiedApiIdEnum.SCRIPT);
+        map.put("sms", UnifiedApiIdEnum.SMS);
+        map.put("spreadsheet", UnifiedApiIdEnum.SPREADSHEET);
+        map.put("team-messaging", UnifiedApiIdEnum.TEAM_MESSAGING);
+        map.put("issue-tracking", UnifiedApiIdEnum.ISSUE_TRACKING);
+        map.put("time-registration", UnifiedApiIdEnum.TIME_REGISTRATION);
+        map.put("transactional-email", UnifiedApiIdEnum.TRANSACTIONAL_EMAIL);
+        map.put("vault", UnifiedApiIdEnum.VAULT);
+        map.put("data-warehouse", UnifiedApiIdEnum.DATA_WAREHOUSE);
+        return map;
+    }
+    
+    
+    public enum UnifiedApiIdEnum {
+
+        ACCOUNTING("accounting"),
+        ATS("ats"),
+        CALENDAR("calendar"),
+        CRM("crm"),
+        CSP("csp"),
+        CUSTOMER_SUPPORT("customer-support"),
+        ECOMMERCE("ecommerce"),
+        EMAIL("email"),
+        EMAIL_MARKETING("email-marketing"),
+        EXPENSE_MANAGEMENT("expense-management"),
+        FILE_STORAGE("file-storage"),
+        FORM("form"),
+        HRIS("hris"),
+        LEAD("lead"),
+        PAYROLL("payroll"),
+        POS("pos"),
+        PROCUREMENT("procurement"),
+        PROJECT_MANAGEMENT("project-management"),
+        SCRIPT("script"),
+        SMS("sms"),
+        SPREADSHEET("spreadsheet"),
+        TEAM_MESSAGING("team-messaging"),
+        ISSUE_TRACKING("issue-tracking"),
+        TIME_REGISTRATION("time-registration"),
+        TRANSACTIONAL_EMAIL("transactional-email"),
+        VAULT("vault"),
+        DATA_WAREHOUSE("data-warehouse"),;
+
+        private final String value;
+
+        private UnifiedApiIdEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

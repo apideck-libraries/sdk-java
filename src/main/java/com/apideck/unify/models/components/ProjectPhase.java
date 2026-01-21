@@ -3,42 +3,146 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * ProjectPhase
  * 
  * <p>Current phase of the project lifecycle
  */
-public enum ProjectPhase {
-    INITIATION("initiation"),
-    PLANNING("planning"),
-    EXECUTION("execution"),
-    MONITORING("monitoring"),
-    CLOSURE("closure"),
-    OTHER("other");
+public class ProjectPhase {
 
-    @JsonValue
+    public static final ProjectPhase INITIATION = new ProjectPhase("initiation");
+    public static final ProjectPhase PLANNING = new ProjectPhase("planning");
+    public static final ProjectPhase EXECUTION = new ProjectPhase("execution");
+    public static final ProjectPhase MONITORING = new ProjectPhase("monitoring");
+    public static final ProjectPhase CLOSURE = new ProjectPhase("closure");
+    public static final ProjectPhase OTHER = new ProjectPhase("other");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, ProjectPhase> values = createValuesMap();
+    private static final Map<String, ProjectPhaseEnum> enums = createEnumsMap();
+
     private final String value;
 
-    ProjectPhase(String value) {
+    private ProjectPhase(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a ProjectPhase with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as ProjectPhase
+     */ 
+    @JsonCreator
+    public static ProjectPhase of(String value) {
+        synchronized (ProjectPhase.class) {
+            return values.computeIfAbsent(value, v -> new ProjectPhase(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<ProjectPhase> fromValue(String value) {
-        for (ProjectPhase o: ProjectPhase.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<ProjectPhaseEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        ProjectPhase other = (ProjectPhase) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "ProjectPhase [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static ProjectPhase[] values() {
+        synchronized (ProjectPhase.class) {
+            return values.values().toArray(new ProjectPhase[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, ProjectPhase> createValuesMap() {
+        Map<String, ProjectPhase> map = new LinkedHashMap<>();
+        map.put("initiation", INITIATION);
+        map.put("planning", PLANNING);
+        map.put("execution", EXECUTION);
+        map.put("monitoring", MONITORING);
+        map.put("closure", CLOSURE);
+        map.put("other", OTHER);
+        return map;
+    }
+
+    private static final Map<String, ProjectPhaseEnum> createEnumsMap() {
+        Map<String, ProjectPhaseEnum> map = new HashMap<>();
+        map.put("initiation", ProjectPhaseEnum.INITIATION);
+        map.put("planning", ProjectPhaseEnum.PLANNING);
+        map.put("execution", ProjectPhaseEnum.EXECUTION);
+        map.put("monitoring", ProjectPhaseEnum.MONITORING);
+        map.put("closure", ProjectPhaseEnum.CLOSURE);
+        map.put("other", ProjectPhaseEnum.OTHER);
+        return map;
+    }
+    
+    
+    public enum ProjectPhaseEnum {
+
+        INITIATION("initiation"),
+        PLANNING("planning"),
+        EXECUTION("execution"),
+        MONITORING("monitoring"),
+        CLOSURE("closure"),
+        OTHER("other"),;
+
+        private final String value;
+
+        private ProjectPhaseEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

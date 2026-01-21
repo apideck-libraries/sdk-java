@@ -3,41 +3,157 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-public enum EmploymentTerms {
-    FULL_TIME("full-time"),
-    PART_TIME("part-time"),
-    INTERNSHIP("internship"),
-    CONTRACTOR("contractor"),
-    EMPLOYEE("employee"),
-    FREELANCE("freelance"),
-    TEMP("temp"),
-    SEASONAL("seasonal"),
-    VOLUNTEER("volunteer"),
-    OTHER("other");
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
+public class EmploymentTerms {
 
-    @JsonValue
+    public static final EmploymentTerms FULL_TIME = new EmploymentTerms("full-time");
+    public static final EmploymentTerms PART_TIME = new EmploymentTerms("part-time");
+    public static final EmploymentTerms INTERNSHIP = new EmploymentTerms("internship");
+    public static final EmploymentTerms CONTRACTOR = new EmploymentTerms("contractor");
+    public static final EmploymentTerms EMPLOYEE = new EmploymentTerms("employee");
+    public static final EmploymentTerms FREELANCE = new EmploymentTerms("freelance");
+    public static final EmploymentTerms TEMP = new EmploymentTerms("temp");
+    public static final EmploymentTerms SEASONAL = new EmploymentTerms("seasonal");
+    public static final EmploymentTerms VOLUNTEER = new EmploymentTerms("volunteer");
+    public static final EmploymentTerms OTHER = new EmploymentTerms("other");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, EmploymentTerms> values = createValuesMap();
+    private static final Map<String, EmploymentTermsEnum> enums = createEnumsMap();
+
     private final String value;
 
-    EmploymentTerms(String value) {
+    private EmploymentTerms(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a EmploymentTerms with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as EmploymentTerms
+     */ 
+    @JsonCreator
+    public static EmploymentTerms of(String value) {
+        synchronized (EmploymentTerms.class) {
+            return values.computeIfAbsent(value, v -> new EmploymentTerms(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<EmploymentTerms> fromValue(String value) {
-        for (EmploymentTerms o: EmploymentTerms.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<EmploymentTermsEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        EmploymentTerms other = (EmploymentTerms) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "EmploymentTerms [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static EmploymentTerms[] values() {
+        synchronized (EmploymentTerms.class) {
+            return values.values().toArray(new EmploymentTerms[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, EmploymentTerms> createValuesMap() {
+        Map<String, EmploymentTerms> map = new LinkedHashMap<>();
+        map.put("full-time", FULL_TIME);
+        map.put("part-time", PART_TIME);
+        map.put("internship", INTERNSHIP);
+        map.put("contractor", CONTRACTOR);
+        map.put("employee", EMPLOYEE);
+        map.put("freelance", FREELANCE);
+        map.put("temp", TEMP);
+        map.put("seasonal", SEASONAL);
+        map.put("volunteer", VOLUNTEER);
+        map.put("other", OTHER);
+        return map;
+    }
+
+    private static final Map<String, EmploymentTermsEnum> createEnumsMap() {
+        Map<String, EmploymentTermsEnum> map = new HashMap<>();
+        map.put("full-time", EmploymentTermsEnum.FULL_TIME);
+        map.put("part-time", EmploymentTermsEnum.PART_TIME);
+        map.put("internship", EmploymentTermsEnum.INTERNSHIP);
+        map.put("contractor", EmploymentTermsEnum.CONTRACTOR);
+        map.put("employee", EmploymentTermsEnum.EMPLOYEE);
+        map.put("freelance", EmploymentTermsEnum.FREELANCE);
+        map.put("temp", EmploymentTermsEnum.TEMP);
+        map.put("seasonal", EmploymentTermsEnum.SEASONAL);
+        map.put("volunteer", EmploymentTermsEnum.VOLUNTEER);
+        map.put("other", EmploymentTermsEnum.OTHER);
+        return map;
+    }
+    
+    
+    public enum EmploymentTermsEnum {
+
+        FULL_TIME("full-time"),
+        PART_TIME("part-time"),
+        INTERNSHIP("internship"),
+        CONTRACTOR("contractor"),
+        EMPLOYEE("employee"),
+        FREELANCE("freelance"),
+        TEMP("temp"),
+        SEASONAL("seasonal"),
+        VOLUNTEER("volunteer"),
+        OTHER("other"),;
+
+        private final String value;
+
+        private EmploymentTermsEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

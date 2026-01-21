@@ -3,38 +3,130 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * TransactionType
  * 
  * <p>The kind of transaction, indicating whether it is a sales transaction or a purchase transaction.
  */
-public enum TransactionType {
-    SALE("sale"),
-    PURCHASE("purchase");
+public class TransactionType {
 
-    @JsonValue
+    public static final TransactionType SALE = new TransactionType("sale");
+    public static final TransactionType PURCHASE = new TransactionType("purchase");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, TransactionType> values = createValuesMap();
+    private static final Map<String, TransactionTypeEnum> enums = createEnumsMap();
+
     private final String value;
 
-    TransactionType(String value) {
+    private TransactionType(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a TransactionType with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as TransactionType
+     */ 
+    @JsonCreator
+    public static TransactionType of(String value) {
+        synchronized (TransactionType.class) {
+            return values.computeIfAbsent(value, v -> new TransactionType(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<TransactionType> fromValue(String value) {
-        for (TransactionType o: TransactionType.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<TransactionTypeEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        TransactionType other = (TransactionType) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "TransactionType [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static TransactionType[] values() {
+        synchronized (TransactionType.class) {
+            return values.values().toArray(new TransactionType[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, TransactionType> createValuesMap() {
+        Map<String, TransactionType> map = new LinkedHashMap<>();
+        map.put("sale", SALE);
+        map.put("purchase", PURCHASE);
+        return map;
+    }
+
+    private static final Map<String, TransactionTypeEnum> createEnumsMap() {
+        Map<String, TransactionTypeEnum> map = new HashMap<>();
+        map.put("sale", TransactionTypeEnum.SALE);
+        map.put("purchase", TransactionTypeEnum.PURCHASE);
+        return map;
+    }
+    
+    
+    public enum TransactionTypeEnum {
+
+        SALE("sale"),
+        PURCHASE("purchase"),;
+
+        private final String value;
+
+        private TransactionTypeEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

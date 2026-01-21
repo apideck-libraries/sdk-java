@@ -3,39 +3,149 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-public enum JournalEntriesFilterStatus {
-    DRAFT("draft"),
-    PENDING_APPROVAL("pending_approval"),
-    APPROVED("approved"),
-    POSTED("posted"),
-    VOIDED("voided"),
-    REJECTED("rejected"),
-    DELETED("deleted"),
-    OTHER("other");
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
+public class JournalEntriesFilterStatus {
 
-    @JsonValue
+    public static final JournalEntriesFilterStatus DRAFT = new JournalEntriesFilterStatus("draft");
+    public static final JournalEntriesFilterStatus PENDING_APPROVAL = new JournalEntriesFilterStatus("pending_approval");
+    public static final JournalEntriesFilterStatus APPROVED = new JournalEntriesFilterStatus("approved");
+    public static final JournalEntriesFilterStatus POSTED = new JournalEntriesFilterStatus("posted");
+    public static final JournalEntriesFilterStatus VOIDED = new JournalEntriesFilterStatus("voided");
+    public static final JournalEntriesFilterStatus REJECTED = new JournalEntriesFilterStatus("rejected");
+    public static final JournalEntriesFilterStatus DELETED = new JournalEntriesFilterStatus("deleted");
+    public static final JournalEntriesFilterStatus OTHER = new JournalEntriesFilterStatus("other");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, JournalEntriesFilterStatus> values = createValuesMap();
+    private static final Map<String, JournalEntriesFilterStatusEnum> enums = createEnumsMap();
+
     private final String value;
 
-    JournalEntriesFilterStatus(String value) {
+    private JournalEntriesFilterStatus(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a JournalEntriesFilterStatus with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as JournalEntriesFilterStatus
+     */ 
+    @JsonCreator
+    public static JournalEntriesFilterStatus of(String value) {
+        synchronized (JournalEntriesFilterStatus.class) {
+            return values.computeIfAbsent(value, v -> new JournalEntriesFilterStatus(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<JournalEntriesFilterStatus> fromValue(String value) {
-        for (JournalEntriesFilterStatus o: JournalEntriesFilterStatus.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<JournalEntriesFilterStatusEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        JournalEntriesFilterStatus other = (JournalEntriesFilterStatus) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "JournalEntriesFilterStatus [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static JournalEntriesFilterStatus[] values() {
+        synchronized (JournalEntriesFilterStatus.class) {
+            return values.values().toArray(new JournalEntriesFilterStatus[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, JournalEntriesFilterStatus> createValuesMap() {
+        Map<String, JournalEntriesFilterStatus> map = new LinkedHashMap<>();
+        map.put("draft", DRAFT);
+        map.put("pending_approval", PENDING_APPROVAL);
+        map.put("approved", APPROVED);
+        map.put("posted", POSTED);
+        map.put("voided", VOIDED);
+        map.put("rejected", REJECTED);
+        map.put("deleted", DELETED);
+        map.put("other", OTHER);
+        return map;
+    }
+
+    private static final Map<String, JournalEntriesFilterStatusEnum> createEnumsMap() {
+        Map<String, JournalEntriesFilterStatusEnum> map = new HashMap<>();
+        map.put("draft", JournalEntriesFilterStatusEnum.DRAFT);
+        map.put("pending_approval", JournalEntriesFilterStatusEnum.PENDING_APPROVAL);
+        map.put("approved", JournalEntriesFilterStatusEnum.APPROVED);
+        map.put("posted", JournalEntriesFilterStatusEnum.POSTED);
+        map.put("voided", JournalEntriesFilterStatusEnum.VOIDED);
+        map.put("rejected", JournalEntriesFilterStatusEnum.REJECTED);
+        map.put("deleted", JournalEntriesFilterStatusEnum.DELETED);
+        map.put("other", JournalEntriesFilterStatusEnum.OTHER);
+        return map;
+    }
+    
+    
+    public enum JournalEntriesFilterStatusEnum {
+
+        DRAFT("draft"),
+        PENDING_APPROVAL("pending_approval"),
+        APPROVED("approved"),
+        POSTED("posted"),
+        VOIDED("voided"),
+        REJECTED("rejected"),
+        DELETED("deleted"),
+        OTHER("other"),;
+
+        private final String value;
+
+        private JournalEntriesFilterStatusEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

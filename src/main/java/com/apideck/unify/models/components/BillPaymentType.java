@@ -3,40 +3,138 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * BillPaymentType
  * 
  * <p>Type of payment
  */
-public enum BillPaymentType {
-    ACCOUNTS_PAYABLE_CREDIT("accounts_payable_credit"),
-    ACCOUNTS_PAYABLE_OVERPAYMENT("accounts_payable_overpayment"),
-    ACCOUNTS_PAYABLE_PREPAYMENT("accounts_payable_prepayment"),
-    ACCOUNTS_PAYABLE("accounts_payable");
+public class BillPaymentType {
 
-    @JsonValue
+    public static final BillPaymentType ACCOUNTS_PAYABLE_CREDIT = new BillPaymentType("accounts_payable_credit");
+    public static final BillPaymentType ACCOUNTS_PAYABLE_OVERPAYMENT = new BillPaymentType("accounts_payable_overpayment");
+    public static final BillPaymentType ACCOUNTS_PAYABLE_PREPAYMENT = new BillPaymentType("accounts_payable_prepayment");
+    public static final BillPaymentType ACCOUNTS_PAYABLE = new BillPaymentType("accounts_payable");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, BillPaymentType> values = createValuesMap();
+    private static final Map<String, BillPaymentTypeEnum> enums = createEnumsMap();
+
     private final String value;
 
-    BillPaymentType(String value) {
+    private BillPaymentType(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a BillPaymentType with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as BillPaymentType
+     */ 
+    @JsonCreator
+    public static BillPaymentType of(String value) {
+        synchronized (BillPaymentType.class) {
+            return values.computeIfAbsent(value, v -> new BillPaymentType(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<BillPaymentType> fromValue(String value) {
-        for (BillPaymentType o: BillPaymentType.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<BillPaymentTypeEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        BillPaymentType other = (BillPaymentType) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "BillPaymentType [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static BillPaymentType[] values() {
+        synchronized (BillPaymentType.class) {
+            return values.values().toArray(new BillPaymentType[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, BillPaymentType> createValuesMap() {
+        Map<String, BillPaymentType> map = new LinkedHashMap<>();
+        map.put("accounts_payable_credit", ACCOUNTS_PAYABLE_CREDIT);
+        map.put("accounts_payable_overpayment", ACCOUNTS_PAYABLE_OVERPAYMENT);
+        map.put("accounts_payable_prepayment", ACCOUNTS_PAYABLE_PREPAYMENT);
+        map.put("accounts_payable", ACCOUNTS_PAYABLE);
+        return map;
+    }
+
+    private static final Map<String, BillPaymentTypeEnum> createEnumsMap() {
+        Map<String, BillPaymentTypeEnum> map = new HashMap<>();
+        map.put("accounts_payable_credit", BillPaymentTypeEnum.ACCOUNTS_PAYABLE_CREDIT);
+        map.put("accounts_payable_overpayment", BillPaymentTypeEnum.ACCOUNTS_PAYABLE_OVERPAYMENT);
+        map.put("accounts_payable_prepayment", BillPaymentTypeEnum.ACCOUNTS_PAYABLE_PREPAYMENT);
+        map.put("accounts_payable", BillPaymentTypeEnum.ACCOUNTS_PAYABLE);
+        return map;
+    }
+    
+    
+    public enum BillPaymentTypeEnum {
+
+        ACCOUNTS_PAYABLE_CREDIT("accounts_payable_credit"),
+        ACCOUNTS_PAYABLE_OVERPAYMENT("accounts_payable_overpayment"),
+        ACCOUNTS_PAYABLE_PREPAYMENT("accounts_payable_prepayment"),
+        ACCOUNTS_PAYABLE("accounts_payable"),;
+
+        private final String value;
+
+        private BillPaymentTypeEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

@@ -3,34 +3,129 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-public enum EcommerceCustomerType {
-    BILLING("billing"),
-    SHIPPING("shipping"),
-    OTHER("other");
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
+public class EcommerceCustomerType {
 
-    @JsonValue
+    public static final EcommerceCustomerType BILLING = new EcommerceCustomerType("billing");
+    public static final EcommerceCustomerType SHIPPING = new EcommerceCustomerType("shipping");
+    public static final EcommerceCustomerType OTHER = new EcommerceCustomerType("other");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, EcommerceCustomerType> values = createValuesMap();
+    private static final Map<String, EcommerceCustomerTypeEnum> enums = createEnumsMap();
+
     private final String value;
 
-    EcommerceCustomerType(String value) {
+    private EcommerceCustomerType(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a EcommerceCustomerType with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as EcommerceCustomerType
+     */ 
+    @JsonCreator
+    public static EcommerceCustomerType of(String value) {
+        synchronized (EcommerceCustomerType.class) {
+            return values.computeIfAbsent(value, v -> new EcommerceCustomerType(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<EcommerceCustomerType> fromValue(String value) {
-        for (EcommerceCustomerType o: EcommerceCustomerType.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<EcommerceCustomerTypeEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        EcommerceCustomerType other = (EcommerceCustomerType) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "EcommerceCustomerType [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static EcommerceCustomerType[] values() {
+        synchronized (EcommerceCustomerType.class) {
+            return values.values().toArray(new EcommerceCustomerType[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, EcommerceCustomerType> createValuesMap() {
+        Map<String, EcommerceCustomerType> map = new LinkedHashMap<>();
+        map.put("billing", BILLING);
+        map.put("shipping", SHIPPING);
+        map.put("other", OTHER);
+        return map;
+    }
+
+    private static final Map<String, EcommerceCustomerTypeEnum> createEnumsMap() {
+        Map<String, EcommerceCustomerTypeEnum> map = new HashMap<>();
+        map.put("billing", EcommerceCustomerTypeEnum.BILLING);
+        map.put("shipping", EcommerceCustomerTypeEnum.SHIPPING);
+        map.put("other", EcommerceCustomerTypeEnum.OTHER);
+        return map;
+    }
+    
+    
+    public enum EcommerceCustomerTypeEnum {
+
+        BILLING("billing"),
+        SHIPPING("shipping"),
+        OTHER("other"),;
+
+        private final String value;
+
+        private EcommerceCustomerTypeEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

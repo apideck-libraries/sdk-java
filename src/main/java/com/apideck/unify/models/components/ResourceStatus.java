@@ -3,41 +3,142 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * ResourceStatus
  * 
  * <p>Status of the resource. Resources with status live or beta are callable.
  */
-public enum ResourceStatus {
-    LIVE("live"),
-    BETA("beta"),
-    DEVELOPMENT("development"),
-    UPCOMING("upcoming"),
-    CONSIDERING("considering");
+public class ResourceStatus {
 
-    @JsonValue
+    public static final ResourceStatus LIVE = new ResourceStatus("live");
+    public static final ResourceStatus BETA = new ResourceStatus("beta");
+    public static final ResourceStatus DEVELOPMENT = new ResourceStatus("development");
+    public static final ResourceStatus UPCOMING = new ResourceStatus("upcoming");
+    public static final ResourceStatus CONSIDERING = new ResourceStatus("considering");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, ResourceStatus> values = createValuesMap();
+    private static final Map<String, ResourceStatusEnum> enums = createEnumsMap();
+
     private final String value;
 
-    ResourceStatus(String value) {
+    private ResourceStatus(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a ResourceStatus with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as ResourceStatus
+     */ 
+    @JsonCreator
+    public static ResourceStatus of(String value) {
+        synchronized (ResourceStatus.class) {
+            return values.computeIfAbsent(value, v -> new ResourceStatus(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<ResourceStatus> fromValue(String value) {
-        for (ResourceStatus o: ResourceStatus.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<ResourceStatusEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        ResourceStatus other = (ResourceStatus) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "ResourceStatus [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static ResourceStatus[] values() {
+        synchronized (ResourceStatus.class) {
+            return values.values().toArray(new ResourceStatus[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, ResourceStatus> createValuesMap() {
+        Map<String, ResourceStatus> map = new LinkedHashMap<>();
+        map.put("live", LIVE);
+        map.put("beta", BETA);
+        map.put("development", DEVELOPMENT);
+        map.put("upcoming", UPCOMING);
+        map.put("considering", CONSIDERING);
+        return map;
+    }
+
+    private static final Map<String, ResourceStatusEnum> createEnumsMap() {
+        Map<String, ResourceStatusEnum> map = new HashMap<>();
+        map.put("live", ResourceStatusEnum.LIVE);
+        map.put("beta", ResourceStatusEnum.BETA);
+        map.put("development", ResourceStatusEnum.DEVELOPMENT);
+        map.put("upcoming", ResourceStatusEnum.UPCOMING);
+        map.put("considering", ResourceStatusEnum.CONSIDERING);
+        return map;
+    }
+    
+    
+    public enum ResourceStatusEnum {
+
+        LIVE("live"),
+        BETA("beta"),
+        DEVELOPMENT("development"),
+        UPCOMING("upcoming"),
+        CONSIDERING("considering"),;
+
+        private final String value;
+
+        private ResourceStatusEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

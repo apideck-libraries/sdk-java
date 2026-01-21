@@ -3,41 +3,142 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * AuthType
  * 
  * <p>Type of authorization used by the connector
  */
-public enum AuthType {
-    OAUTH2("oauth2"),
-    API_KEY("apiKey"),
-    BASIC("basic"),
-    CUSTOM("custom"),
-    NONE("none");
+public class AuthType {
 
-    @JsonValue
+    public static final AuthType OAUTH2 = new AuthType("oauth2");
+    public static final AuthType API_KEY = new AuthType("apiKey");
+    public static final AuthType BASIC = new AuthType("basic");
+    public static final AuthType CUSTOM = new AuthType("custom");
+    public static final AuthType NONE = new AuthType("none");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, AuthType> values = createValuesMap();
+    private static final Map<String, AuthTypeEnum> enums = createEnumsMap();
+
     private final String value;
 
-    AuthType(String value) {
+    private AuthType(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a AuthType with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as AuthType
+     */ 
+    @JsonCreator
+    public static AuthType of(String value) {
+        synchronized (AuthType.class) {
+            return values.computeIfAbsent(value, v -> new AuthType(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<AuthType> fromValue(String value) {
-        for (AuthType o: AuthType.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<AuthTypeEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        AuthType other = (AuthType) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "AuthType [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static AuthType[] values() {
+        synchronized (AuthType.class) {
+            return values.values().toArray(new AuthType[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, AuthType> createValuesMap() {
+        Map<String, AuthType> map = new LinkedHashMap<>();
+        map.put("oauth2", OAUTH2);
+        map.put("apiKey", API_KEY);
+        map.put("basic", BASIC);
+        map.put("custom", CUSTOM);
+        map.put("none", NONE);
+        return map;
+    }
+
+    private static final Map<String, AuthTypeEnum> createEnumsMap() {
+        Map<String, AuthTypeEnum> map = new HashMap<>();
+        map.put("oauth2", AuthTypeEnum.OAUTH2);
+        map.put("apiKey", AuthTypeEnum.API_KEY);
+        map.put("basic", AuthTypeEnum.BASIC);
+        map.put("custom", AuthTypeEnum.CUSTOM);
+        map.put("none", AuthTypeEnum.NONE);
+        return map;
+    }
+    
+    
+    public enum AuthTypeEnum {
+
+        OAUTH2("oauth2"),
+        API_KEY("apiKey"),
+        BASIC("basic"),
+        CUSTOM("custom"),
+        NONE("none"),;
+
+        private final String value;
+
+        private AuthTypeEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

@@ -3,44 +3,154 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * EcommerceOrderPaymentStatus
  * 
  * <p>Current payment status of the order.
  */
-public enum EcommerceOrderPaymentStatus {
-    PENDING("pending"),
-    AUTHORIZED("authorized"),
-    PAID("paid"),
-    PARTIAL("partial"),
-    REFUNDED("refunded"),
-    VOIDED("voided"),
-    UNKNOWN("unknown"),
-    PARTIALLY_REFUNDED("partially_refunded");
+public class EcommerceOrderPaymentStatus {
 
-    @JsonValue
+    public static final EcommerceOrderPaymentStatus PENDING = new EcommerceOrderPaymentStatus("pending");
+    public static final EcommerceOrderPaymentStatus AUTHORIZED = new EcommerceOrderPaymentStatus("authorized");
+    public static final EcommerceOrderPaymentStatus PAID = new EcommerceOrderPaymentStatus("paid");
+    public static final EcommerceOrderPaymentStatus PARTIAL = new EcommerceOrderPaymentStatus("partial");
+    public static final EcommerceOrderPaymentStatus REFUNDED = new EcommerceOrderPaymentStatus("refunded");
+    public static final EcommerceOrderPaymentStatus VOIDED = new EcommerceOrderPaymentStatus("voided");
+    public static final EcommerceOrderPaymentStatus UNKNOWN = new EcommerceOrderPaymentStatus("unknown");
+    public static final EcommerceOrderPaymentStatus PARTIALLY_REFUNDED = new EcommerceOrderPaymentStatus("partially_refunded");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, EcommerceOrderPaymentStatus> values = createValuesMap();
+    private static final Map<String, EcommerceOrderPaymentStatusEnum> enums = createEnumsMap();
+
     private final String value;
 
-    EcommerceOrderPaymentStatus(String value) {
+    private EcommerceOrderPaymentStatus(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a EcommerceOrderPaymentStatus with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as EcommerceOrderPaymentStatus
+     */ 
+    @JsonCreator
+    public static EcommerceOrderPaymentStatus of(String value) {
+        synchronized (EcommerceOrderPaymentStatus.class) {
+            return values.computeIfAbsent(value, v -> new EcommerceOrderPaymentStatus(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<EcommerceOrderPaymentStatus> fromValue(String value) {
-        for (EcommerceOrderPaymentStatus o: EcommerceOrderPaymentStatus.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<EcommerceOrderPaymentStatusEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        EcommerceOrderPaymentStatus other = (EcommerceOrderPaymentStatus) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "EcommerceOrderPaymentStatus [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static EcommerceOrderPaymentStatus[] values() {
+        synchronized (EcommerceOrderPaymentStatus.class) {
+            return values.values().toArray(new EcommerceOrderPaymentStatus[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, EcommerceOrderPaymentStatus> createValuesMap() {
+        Map<String, EcommerceOrderPaymentStatus> map = new LinkedHashMap<>();
+        map.put("pending", PENDING);
+        map.put("authorized", AUTHORIZED);
+        map.put("paid", PAID);
+        map.put("partial", PARTIAL);
+        map.put("refunded", REFUNDED);
+        map.put("voided", VOIDED);
+        map.put("unknown", UNKNOWN);
+        map.put("partially_refunded", PARTIALLY_REFUNDED);
+        return map;
+    }
+
+    private static final Map<String, EcommerceOrderPaymentStatusEnum> createEnumsMap() {
+        Map<String, EcommerceOrderPaymentStatusEnum> map = new HashMap<>();
+        map.put("pending", EcommerceOrderPaymentStatusEnum.PENDING);
+        map.put("authorized", EcommerceOrderPaymentStatusEnum.AUTHORIZED);
+        map.put("paid", EcommerceOrderPaymentStatusEnum.PAID);
+        map.put("partial", EcommerceOrderPaymentStatusEnum.PARTIAL);
+        map.put("refunded", EcommerceOrderPaymentStatusEnum.REFUNDED);
+        map.put("voided", EcommerceOrderPaymentStatusEnum.VOIDED);
+        map.put("unknown", EcommerceOrderPaymentStatusEnum.UNKNOWN);
+        map.put("partially_refunded", EcommerceOrderPaymentStatusEnum.PARTIALLY_REFUNDED);
+        return map;
+    }
+    
+    
+    public enum EcommerceOrderPaymentStatusEnum {
+
+        PENDING("pending"),
+        AUTHORIZED("authorized"),
+        PAID("paid"),
+        PARTIAL("partial"),
+        REFUNDED("refunded"),
+        VOIDED("voided"),
+        UNKNOWN("unknown"),
+        PARTIALLY_REFUNDED("partially_refunded"),;
+
+        private final String value;
+
+        private EcommerceOrderPaymentStatusEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

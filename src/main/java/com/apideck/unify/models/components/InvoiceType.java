@@ -3,42 +3,146 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * InvoiceType
  * 
  * <p>Invoice type
  */
-public enum InvoiceType {
-    STANDARD("standard"),
-    CREDIT("credit"),
-    SERVICE("service"),
-    PRODUCT("product"),
-    SUPPLIER("supplier"),
-    OTHER("other");
+public class InvoiceType {
 
-    @JsonValue
+    public static final InvoiceType STANDARD = new InvoiceType("standard");
+    public static final InvoiceType CREDIT = new InvoiceType("credit");
+    public static final InvoiceType SERVICE = new InvoiceType("service");
+    public static final InvoiceType PRODUCT = new InvoiceType("product");
+    public static final InvoiceType SUPPLIER = new InvoiceType("supplier");
+    public static final InvoiceType OTHER = new InvoiceType("other");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, InvoiceType> values = createValuesMap();
+    private static final Map<String, InvoiceTypeEnum> enums = createEnumsMap();
+
     private final String value;
 
-    InvoiceType(String value) {
+    private InvoiceType(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a InvoiceType with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as InvoiceType
+     */ 
+    @JsonCreator
+    public static InvoiceType of(String value) {
+        synchronized (InvoiceType.class) {
+            return values.computeIfAbsent(value, v -> new InvoiceType(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<InvoiceType> fromValue(String value) {
-        for (InvoiceType o: InvoiceType.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<InvoiceTypeEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        InvoiceType other = (InvoiceType) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "InvoiceType [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static InvoiceType[] values() {
+        synchronized (InvoiceType.class) {
+            return values.values().toArray(new InvoiceType[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, InvoiceType> createValuesMap() {
+        Map<String, InvoiceType> map = new LinkedHashMap<>();
+        map.put("standard", STANDARD);
+        map.put("credit", CREDIT);
+        map.put("service", SERVICE);
+        map.put("product", PRODUCT);
+        map.put("supplier", SUPPLIER);
+        map.put("other", OTHER);
+        return map;
+    }
+
+    private static final Map<String, InvoiceTypeEnum> createEnumsMap() {
+        Map<String, InvoiceTypeEnum> map = new HashMap<>();
+        map.put("standard", InvoiceTypeEnum.STANDARD);
+        map.put("credit", InvoiceTypeEnum.CREDIT);
+        map.put("service", InvoiceTypeEnum.SERVICE);
+        map.put("product", InvoiceTypeEnum.PRODUCT);
+        map.put("supplier", InvoiceTypeEnum.SUPPLIER);
+        map.put("other", InvoiceTypeEnum.OTHER);
+        return map;
+    }
+    
+    
+    public enum InvoiceTypeEnum {
+
+        STANDARD("standard"),
+        CREDIT("credit"),
+        SERVICE("service"),
+        PRODUCT("product"),
+        SUPPLIER("supplier"),
+        OTHER("other"),;
+
+        private final String value;
+
+        private InvoiceTypeEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

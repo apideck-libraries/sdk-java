@@ -3,40 +3,138 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * ApiStatus
  * 
  * <p>Status of the API. APIs with status live or beta are callable.
  */
-public enum ApiStatus {
-    LIVE("live"),
-    BETA("beta"),
-    DEVELOPMENT("development"),
-    CONSIDERING("considering");
+public class ApiStatus {
 
-    @JsonValue
+    public static final ApiStatus LIVE = new ApiStatus("live");
+    public static final ApiStatus BETA = new ApiStatus("beta");
+    public static final ApiStatus DEVELOPMENT = new ApiStatus("development");
+    public static final ApiStatus CONSIDERING = new ApiStatus("considering");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, ApiStatus> values = createValuesMap();
+    private static final Map<String, ApiStatusEnum> enums = createEnumsMap();
+
     private final String value;
 
-    ApiStatus(String value) {
+    private ApiStatus(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a ApiStatus with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as ApiStatus
+     */ 
+    @JsonCreator
+    public static ApiStatus of(String value) {
+        synchronized (ApiStatus.class) {
+            return values.computeIfAbsent(value, v -> new ApiStatus(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<ApiStatus> fromValue(String value) {
-        for (ApiStatus o: ApiStatus.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<ApiStatusEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        ApiStatus other = (ApiStatus) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "ApiStatus [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static ApiStatus[] values() {
+        synchronized (ApiStatus.class) {
+            return values.values().toArray(new ApiStatus[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, ApiStatus> createValuesMap() {
+        Map<String, ApiStatus> map = new LinkedHashMap<>();
+        map.put("live", LIVE);
+        map.put("beta", BETA);
+        map.put("development", DEVELOPMENT);
+        map.put("considering", CONSIDERING);
+        return map;
+    }
+
+    private static final Map<String, ApiStatusEnum> createEnumsMap() {
+        Map<String, ApiStatusEnum> map = new HashMap<>();
+        map.put("live", ApiStatusEnum.LIVE);
+        map.put("beta", ApiStatusEnum.BETA);
+        map.put("development", ApiStatusEnum.DEVELOPMENT);
+        map.put("considering", ApiStatusEnum.CONSIDERING);
+        return map;
+    }
+    
+    
+    public enum ApiStatusEnum {
+
+        LIVE("live"),
+        BETA("beta"),
+        DEVELOPMENT("development"),
+        CONSIDERING("considering"),;
+
+        private final String value;
+
+        private ApiStatusEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

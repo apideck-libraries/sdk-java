@@ -3,38 +3,130 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * FeedStatus
  * 
  * <p>Current status of the bank feed.
  */
-public enum FeedStatus {
-    PENDING("pending"),
-    REJECTED("rejected");
+public class FeedStatus {
 
-    @JsonValue
+    public static final FeedStatus PENDING = new FeedStatus("pending");
+    public static final FeedStatus REJECTED = new FeedStatus("rejected");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, FeedStatus> values = createValuesMap();
+    private static final Map<String, FeedStatusEnum> enums = createEnumsMap();
+
     private final String value;
 
-    FeedStatus(String value) {
+    private FeedStatus(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a FeedStatus with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as FeedStatus
+     */ 
+    @JsonCreator
+    public static FeedStatus of(String value) {
+        synchronized (FeedStatus.class) {
+            return values.computeIfAbsent(value, v -> new FeedStatus(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<FeedStatus> fromValue(String value) {
-        for (FeedStatus o: FeedStatus.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<FeedStatusEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        FeedStatus other = (FeedStatus) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "FeedStatus [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static FeedStatus[] values() {
+        synchronized (FeedStatus.class) {
+            return values.values().toArray(new FeedStatus[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, FeedStatus> createValuesMap() {
+        Map<String, FeedStatus> map = new LinkedHashMap<>();
+        map.put("pending", PENDING);
+        map.put("rejected", REJECTED);
+        return map;
+    }
+
+    private static final Map<String, FeedStatusEnum> createEnumsMap() {
+        Map<String, FeedStatusEnum> map = new HashMap<>();
+        map.put("pending", FeedStatusEnum.PENDING);
+        map.put("rejected", FeedStatusEnum.REJECTED);
+        return map;
+    }
+    
+    
+    public enum FeedStatusEnum {
+
+        PENDING("pending"),
+        REJECTED("rejected"),;
+
+        private final String value;
+
+        private FeedStatusEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

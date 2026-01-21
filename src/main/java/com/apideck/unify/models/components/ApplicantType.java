@@ -3,41 +3,142 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * ApplicantType
  * 
  * <p>The type of website
  */
-public enum ApplicantType {
-    PRIMARY("primary"),
-    SECONDARY("secondary"),
-    WORK("work"),
-    PERSONAL("personal"),
-    OTHER("other");
+public class ApplicantType {
 
-    @JsonValue
+    public static final ApplicantType PRIMARY = new ApplicantType("primary");
+    public static final ApplicantType SECONDARY = new ApplicantType("secondary");
+    public static final ApplicantType WORK = new ApplicantType("work");
+    public static final ApplicantType PERSONAL = new ApplicantType("personal");
+    public static final ApplicantType OTHER = new ApplicantType("other");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, ApplicantType> values = createValuesMap();
+    private static final Map<String, ApplicantTypeEnum> enums = createEnumsMap();
+
     private final String value;
 
-    ApplicantType(String value) {
+    private ApplicantType(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a ApplicantType with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as ApplicantType
+     */ 
+    @JsonCreator
+    public static ApplicantType of(String value) {
+        synchronized (ApplicantType.class) {
+            return values.computeIfAbsent(value, v -> new ApplicantType(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<ApplicantType> fromValue(String value) {
-        for (ApplicantType o: ApplicantType.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<ApplicantTypeEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        ApplicantType other = (ApplicantType) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "ApplicantType [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static ApplicantType[] values() {
+        synchronized (ApplicantType.class) {
+            return values.values().toArray(new ApplicantType[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, ApplicantType> createValuesMap() {
+        Map<String, ApplicantType> map = new LinkedHashMap<>();
+        map.put("primary", PRIMARY);
+        map.put("secondary", SECONDARY);
+        map.put("work", WORK);
+        map.put("personal", PERSONAL);
+        map.put("other", OTHER);
+        return map;
+    }
+
+    private static final Map<String, ApplicantTypeEnum> createEnumsMap() {
+        Map<String, ApplicantTypeEnum> map = new HashMap<>();
+        map.put("primary", ApplicantTypeEnum.PRIMARY);
+        map.put("secondary", ApplicantTypeEnum.SECONDARY);
+        map.put("work", ApplicantTypeEnum.WORK);
+        map.put("personal", ApplicantTypeEnum.PERSONAL);
+        map.put("other", ApplicantTypeEnum.OTHER);
+        return map;
+    }
+    
+    
+    public enum ApplicantTypeEnum {
+
+        PRIMARY("primary"),
+        SECONDARY("secondary"),
+        WORK("work"),
+        PERSONAL("personal"),
+        OTHER("other"),;
+
+        private final String value;
+
+        private ApplicantTypeEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

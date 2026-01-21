@@ -47,7 +47,7 @@ public class ExpenseInput {
      * The unique identifier for the ledger account that this expense should be credited to. Deprecated,
      * use account instead.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated. Use account instead..
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("account_id")
@@ -65,7 +65,7 @@ public class ExpenseInput {
     /**
      * The ID of the supplier this entity is linked to. Deprecated, use supplier instead.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated. Use supplier instead..
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("supplier_id")
@@ -361,7 +361,7 @@ public class ExpenseInput {
      * The unique identifier for the ledger account that this expense should be credited to. Deprecated,
      * use account instead.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated. Use account instead..
      */
     @Deprecated
     @JsonIgnore
@@ -382,7 +382,7 @@ public class ExpenseInput {
     /**
      * The ID of the supplier this entity is linked to. Deprecated, use supplier instead.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated. Use supplier instead..
      */
     @Deprecated
     @JsonIgnore
@@ -641,7 +641,7 @@ public class ExpenseInput {
      * The unique identifier for the ledger account that this expense should be credited to. Deprecated,
      * use account instead.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated. Use account instead..
      */
     @Deprecated
     public ExpenseInput withAccountId(String accountId) {
@@ -655,7 +655,7 @@ public class ExpenseInput {
      * The unique identifier for the ledger account that this expense should be credited to. Deprecated,
      * use account instead.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated. Use account instead..
      */
     @Deprecated
     public ExpenseInput withAccountId(Optional<String> accountId) {
@@ -687,7 +687,7 @@ public class ExpenseInput {
     /**
      * The ID of the supplier this entity is linked to. Deprecated, use supplier instead.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated. Use supplier instead..
      */
     @Deprecated
     public ExpenseInput withSupplierId(String supplierId) {
@@ -700,7 +700,7 @@ public class ExpenseInput {
     /**
      * The ID of the supplier this entity is linked to. Deprecated, use supplier instead.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated. Use supplier instead..
      */
     @Deprecated
     public ExpenseInput withSupplierId(Optional<String> supplierId) {
@@ -1320,7 +1320,7 @@ public class ExpenseInput {
          * The unique identifier for the ledger account that this expense should be credited to. Deprecated,
          * use account instead.
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: Deprecated. Use account instead..
          */
         @Deprecated
         public Builder accountId(String accountId) {
@@ -1333,7 +1333,7 @@ public class ExpenseInput {
          * The unique identifier for the ledger account that this expense should be credited to. Deprecated,
          * use account instead.
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: Deprecated. Use account instead..
          */
         @Deprecated
         public Builder accountId(Optional<String> accountId) {
@@ -1367,7 +1367,7 @@ public class ExpenseInput {
         /**
          * The ID of the supplier this entity is linked to. Deprecated, use supplier instead.
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: Deprecated. Use supplier instead..
          */
         @Deprecated
         public Builder supplierId(String supplierId) {
@@ -1379,7 +1379,7 @@ public class ExpenseInput {
         /**
          * The ID of the supplier this entity is linked to. Deprecated, use supplier instead.
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: Deprecated. Use supplier instead..
          */
         @Deprecated
         public Builder supplierId(Optional<String> supplierId) {

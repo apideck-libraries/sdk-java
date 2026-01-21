@@ -3,42 +3,146 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * ProjectType
  * 
  * <p>Type or category of the project
  */
-public enum ProjectType {
-    CLIENT_PROJECT("client_project"),
-    INTERNAL_PROJECT("internal_project"),
-    MAINTENANCE("maintenance"),
-    RESEARCH_DEVELOPMENT("research_development"),
-    TRAINING("training"),
-    OTHER("other");
+public class ProjectType {
 
-    @JsonValue
+    public static final ProjectType CLIENT_PROJECT = new ProjectType("client_project");
+    public static final ProjectType INTERNAL_PROJECT = new ProjectType("internal_project");
+    public static final ProjectType MAINTENANCE = new ProjectType("maintenance");
+    public static final ProjectType RESEARCH_DEVELOPMENT = new ProjectType("research_development");
+    public static final ProjectType TRAINING = new ProjectType("training");
+    public static final ProjectType OTHER = new ProjectType("other");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, ProjectType> values = createValuesMap();
+    private static final Map<String, ProjectTypeEnum> enums = createEnumsMap();
+
     private final String value;
 
-    ProjectType(String value) {
+    private ProjectType(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a ProjectType with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as ProjectType
+     */ 
+    @JsonCreator
+    public static ProjectType of(String value) {
+        synchronized (ProjectType.class) {
+            return values.computeIfAbsent(value, v -> new ProjectType(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<ProjectType> fromValue(String value) {
-        for (ProjectType o: ProjectType.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<ProjectTypeEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        ProjectType other = (ProjectType) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "ProjectType [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static ProjectType[] values() {
+        synchronized (ProjectType.class) {
+            return values.values().toArray(new ProjectType[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, ProjectType> createValuesMap() {
+        Map<String, ProjectType> map = new LinkedHashMap<>();
+        map.put("client_project", CLIENT_PROJECT);
+        map.put("internal_project", INTERNAL_PROJECT);
+        map.put("maintenance", MAINTENANCE);
+        map.put("research_development", RESEARCH_DEVELOPMENT);
+        map.put("training", TRAINING);
+        map.put("other", OTHER);
+        return map;
+    }
+
+    private static final Map<String, ProjectTypeEnum> createEnumsMap() {
+        Map<String, ProjectTypeEnum> map = new HashMap<>();
+        map.put("client_project", ProjectTypeEnum.CLIENT_PROJECT);
+        map.put("internal_project", ProjectTypeEnum.INTERNAL_PROJECT);
+        map.put("maintenance", ProjectTypeEnum.MAINTENANCE);
+        map.put("research_development", ProjectTypeEnum.RESEARCH_DEVELOPMENT);
+        map.put("training", ProjectTypeEnum.TRAINING);
+        map.put("other", ProjectTypeEnum.OTHER);
+        return map;
+    }
+    
+    
+    public enum ProjectTypeEnum {
+
+        CLIENT_PROJECT("client_project"),
+        INTERNAL_PROJECT("internal_project"),
+        MAINTENANCE("maintenance"),
+        RESEARCH_DEVELOPMENT("research_development"),
+        TRAINING("training"),
+        OTHER("other"),;
+
+        private final String value;
+
+        private ProjectTypeEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

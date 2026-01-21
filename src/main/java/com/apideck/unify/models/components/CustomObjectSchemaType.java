@@ -3,43 +3,165 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-public enum CustomObjectSchemaType {
-    STRING("string"),
-    NUMBER("number"),
-    INTEGER("integer"),
-    BOOLEAN("boolean"),
-    DATE("date"),
-    DATETIME("datetime"),
-    CURRENCY("currency"),
-    EMAIL("email"),
-    PHONE("phone"),
-    REFERENCE("reference"),
-    SELECT("select"),
-    MULTISELECT("multiselect");
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
+public class CustomObjectSchemaType {
 
-    @JsonValue
+    public static final CustomObjectSchemaType STRING = new CustomObjectSchemaType("string");
+    public static final CustomObjectSchemaType NUMBER = new CustomObjectSchemaType("number");
+    public static final CustomObjectSchemaType INTEGER = new CustomObjectSchemaType("integer");
+    public static final CustomObjectSchemaType BOOLEAN = new CustomObjectSchemaType("boolean");
+    public static final CustomObjectSchemaType DATE = new CustomObjectSchemaType("date");
+    public static final CustomObjectSchemaType DATETIME = new CustomObjectSchemaType("datetime");
+    public static final CustomObjectSchemaType CURRENCY = new CustomObjectSchemaType("currency");
+    public static final CustomObjectSchemaType EMAIL = new CustomObjectSchemaType("email");
+    public static final CustomObjectSchemaType PHONE = new CustomObjectSchemaType("phone");
+    public static final CustomObjectSchemaType REFERENCE = new CustomObjectSchemaType("reference");
+    public static final CustomObjectSchemaType SELECT = new CustomObjectSchemaType("select");
+    public static final CustomObjectSchemaType MULTISELECT = new CustomObjectSchemaType("multiselect");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, CustomObjectSchemaType> values = createValuesMap();
+    private static final Map<String, CustomObjectSchemaTypeEnum> enums = createEnumsMap();
+
     private final String value;
 
-    CustomObjectSchemaType(String value) {
+    private CustomObjectSchemaType(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a CustomObjectSchemaType with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as CustomObjectSchemaType
+     */ 
+    @JsonCreator
+    public static CustomObjectSchemaType of(String value) {
+        synchronized (CustomObjectSchemaType.class) {
+            return values.computeIfAbsent(value, v -> new CustomObjectSchemaType(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<CustomObjectSchemaType> fromValue(String value) {
-        for (CustomObjectSchemaType o: CustomObjectSchemaType.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<CustomObjectSchemaTypeEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        CustomObjectSchemaType other = (CustomObjectSchemaType) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "CustomObjectSchemaType [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static CustomObjectSchemaType[] values() {
+        synchronized (CustomObjectSchemaType.class) {
+            return values.values().toArray(new CustomObjectSchemaType[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, CustomObjectSchemaType> createValuesMap() {
+        Map<String, CustomObjectSchemaType> map = new LinkedHashMap<>();
+        map.put("string", STRING);
+        map.put("number", NUMBER);
+        map.put("integer", INTEGER);
+        map.put("boolean", BOOLEAN);
+        map.put("date", DATE);
+        map.put("datetime", DATETIME);
+        map.put("currency", CURRENCY);
+        map.put("email", EMAIL);
+        map.put("phone", PHONE);
+        map.put("reference", REFERENCE);
+        map.put("select", SELECT);
+        map.put("multiselect", MULTISELECT);
+        return map;
+    }
+
+    private static final Map<String, CustomObjectSchemaTypeEnum> createEnumsMap() {
+        Map<String, CustomObjectSchemaTypeEnum> map = new HashMap<>();
+        map.put("string", CustomObjectSchemaTypeEnum.STRING);
+        map.put("number", CustomObjectSchemaTypeEnum.NUMBER);
+        map.put("integer", CustomObjectSchemaTypeEnum.INTEGER);
+        map.put("boolean", CustomObjectSchemaTypeEnum.BOOLEAN);
+        map.put("date", CustomObjectSchemaTypeEnum.DATE);
+        map.put("datetime", CustomObjectSchemaTypeEnum.DATETIME);
+        map.put("currency", CustomObjectSchemaTypeEnum.CURRENCY);
+        map.put("email", CustomObjectSchemaTypeEnum.EMAIL);
+        map.put("phone", CustomObjectSchemaTypeEnum.PHONE);
+        map.put("reference", CustomObjectSchemaTypeEnum.REFERENCE);
+        map.put("select", CustomObjectSchemaTypeEnum.SELECT);
+        map.put("multiselect", CustomObjectSchemaTypeEnum.MULTISELECT);
+        return map;
+    }
+    
+    
+    public enum CustomObjectSchemaTypeEnum {
+
+        STRING("string"),
+        NUMBER("number"),
+        INTEGER("integer"),
+        BOOLEAN("boolean"),
+        DATE("date"),
+        DATETIME("datetime"),
+        CURRENCY("currency"),
+        EMAIL("email"),
+        PHONE("phone"),
+        REFERENCE("reference"),
+        SELECT("select"),
+        MULTISELECT("multiselect"),;
+
+        private final String value;
+
+        private CustomObjectSchemaTypeEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

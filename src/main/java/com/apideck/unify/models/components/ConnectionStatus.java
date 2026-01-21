@@ -3,39 +3,134 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * ConnectionStatus
  * 
  * <p>Status of the connection.
  */
-public enum ConnectionStatus {
-    LIVE("live"),
-    UPCOMING("upcoming"),
-    REQUESTED("requested");
+public class ConnectionStatus {
 
-    @JsonValue
+    public static final ConnectionStatus LIVE = new ConnectionStatus("live");
+    public static final ConnectionStatus UPCOMING = new ConnectionStatus("upcoming");
+    public static final ConnectionStatus REQUESTED = new ConnectionStatus("requested");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, ConnectionStatus> values = createValuesMap();
+    private static final Map<String, ConnectionStatusEnum> enums = createEnumsMap();
+
     private final String value;
 
-    ConnectionStatus(String value) {
+    private ConnectionStatus(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a ConnectionStatus with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as ConnectionStatus
+     */ 
+    @JsonCreator
+    public static ConnectionStatus of(String value) {
+        synchronized (ConnectionStatus.class) {
+            return values.computeIfAbsent(value, v -> new ConnectionStatus(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<ConnectionStatus> fromValue(String value) {
-        for (ConnectionStatus o: ConnectionStatus.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<ConnectionStatusEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        ConnectionStatus other = (ConnectionStatus) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "ConnectionStatus [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static ConnectionStatus[] values() {
+        synchronized (ConnectionStatus.class) {
+            return values.values().toArray(new ConnectionStatus[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, ConnectionStatus> createValuesMap() {
+        Map<String, ConnectionStatus> map = new LinkedHashMap<>();
+        map.put("live", LIVE);
+        map.put("upcoming", UPCOMING);
+        map.put("requested", REQUESTED);
+        return map;
+    }
+
+    private static final Map<String, ConnectionStatusEnum> createEnumsMap() {
+        Map<String, ConnectionStatusEnum> map = new HashMap<>();
+        map.put("live", ConnectionStatusEnum.LIVE);
+        map.put("upcoming", ConnectionStatusEnum.UPCOMING);
+        map.put("requested", ConnectionStatusEnum.REQUESTED);
+        return map;
+    }
+    
+    
+    public enum ConnectionStatusEnum {
+
+        LIVE("live"),
+        UPCOMING("upcoming"),
+        REQUESTED("requested"),;
+
+        private final String value;
+
+        private ConnectionStatusEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

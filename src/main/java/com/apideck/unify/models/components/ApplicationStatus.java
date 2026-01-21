@@ -3,36 +3,137 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-public enum ApplicationStatus {
-    OPEN("open"),
-    REJECTED("rejected"),
-    HIRED("hired"),
-    CONVERTED("converted"),
-    OTHER("other");
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
+public class ApplicationStatus {
 
-    @JsonValue
+    public static final ApplicationStatus OPEN = new ApplicationStatus("open");
+    public static final ApplicationStatus REJECTED = new ApplicationStatus("rejected");
+    public static final ApplicationStatus HIRED = new ApplicationStatus("hired");
+    public static final ApplicationStatus CONVERTED = new ApplicationStatus("converted");
+    public static final ApplicationStatus OTHER = new ApplicationStatus("other");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, ApplicationStatus> values = createValuesMap();
+    private static final Map<String, ApplicationStatusEnum> enums = createEnumsMap();
+
     private final String value;
 
-    ApplicationStatus(String value) {
+    private ApplicationStatus(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a ApplicationStatus with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as ApplicationStatus
+     */ 
+    @JsonCreator
+    public static ApplicationStatus of(String value) {
+        synchronized (ApplicationStatus.class) {
+            return values.computeIfAbsent(value, v -> new ApplicationStatus(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<ApplicationStatus> fromValue(String value) {
-        for (ApplicationStatus o: ApplicationStatus.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<ApplicationStatusEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        ApplicationStatus other = (ApplicationStatus) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "ApplicationStatus [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static ApplicationStatus[] values() {
+        synchronized (ApplicationStatus.class) {
+            return values.values().toArray(new ApplicationStatus[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, ApplicationStatus> createValuesMap() {
+        Map<String, ApplicationStatus> map = new LinkedHashMap<>();
+        map.put("open", OPEN);
+        map.put("rejected", REJECTED);
+        map.put("hired", HIRED);
+        map.put("converted", CONVERTED);
+        map.put("other", OTHER);
+        return map;
+    }
+
+    private static final Map<String, ApplicationStatusEnum> createEnumsMap() {
+        Map<String, ApplicationStatusEnum> map = new HashMap<>();
+        map.put("open", ApplicationStatusEnum.OPEN);
+        map.put("rejected", ApplicationStatusEnum.REJECTED);
+        map.put("hired", ApplicationStatusEnum.HIRED);
+        map.put("converted", ApplicationStatusEnum.CONVERTED);
+        map.put("other", ApplicationStatusEnum.OTHER);
+        return map;
+    }
+    
+    
+    public enum ApplicationStatusEnum {
+
+        OPEN("open"),
+        REJECTED("rejected"),
+        HIRED("hired"),
+        CONVERTED("converted"),
+        OTHER("other"),;
+
+        private final String value;
+
+        private ApplicationStatusEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

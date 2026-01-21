@@ -3,48 +3,170 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * MessageStatus
  * 
  * <p>Status of the delivery of the message.
  */
-public enum MessageStatus {
-    ACCEPTED("accepted"),
-    SCHEDULED("scheduled"),
-    CANCELED("canceled"),
-    QUEUED("queued"),
-    SENDING("sending"),
-    SENT("sent"),
-    FAILED("failed"),
-    DELIVERED("delivered"),
-    UNDELIVERED("undelivered"),
-    RECEIVING("receiving"),
-    RECEIVED("received"),
-    READ("read");
+public class MessageStatus {
 
-    @JsonValue
+    public static final MessageStatus ACCEPTED = new MessageStatus("accepted");
+    public static final MessageStatus SCHEDULED = new MessageStatus("scheduled");
+    public static final MessageStatus CANCELED = new MessageStatus("canceled");
+    public static final MessageStatus QUEUED = new MessageStatus("queued");
+    public static final MessageStatus SENDING = new MessageStatus("sending");
+    public static final MessageStatus SENT = new MessageStatus("sent");
+    public static final MessageStatus FAILED = new MessageStatus("failed");
+    public static final MessageStatus DELIVERED = new MessageStatus("delivered");
+    public static final MessageStatus UNDELIVERED = new MessageStatus("undelivered");
+    public static final MessageStatus RECEIVING = new MessageStatus("receiving");
+    public static final MessageStatus RECEIVED = new MessageStatus("received");
+    public static final MessageStatus READ = new MessageStatus("read");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, MessageStatus> values = createValuesMap();
+    private static final Map<String, MessageStatusEnum> enums = createEnumsMap();
+
     private final String value;
 
-    MessageStatus(String value) {
+    private MessageStatus(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a MessageStatus with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as MessageStatus
+     */ 
+    @JsonCreator
+    public static MessageStatus of(String value) {
+        synchronized (MessageStatus.class) {
+            return values.computeIfAbsent(value, v -> new MessageStatus(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<MessageStatus> fromValue(String value) {
-        for (MessageStatus o: MessageStatus.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<MessageStatusEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        MessageStatus other = (MessageStatus) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "MessageStatus [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static MessageStatus[] values() {
+        synchronized (MessageStatus.class) {
+            return values.values().toArray(new MessageStatus[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, MessageStatus> createValuesMap() {
+        Map<String, MessageStatus> map = new LinkedHashMap<>();
+        map.put("accepted", ACCEPTED);
+        map.put("scheduled", SCHEDULED);
+        map.put("canceled", CANCELED);
+        map.put("queued", QUEUED);
+        map.put("sending", SENDING);
+        map.put("sent", SENT);
+        map.put("failed", FAILED);
+        map.put("delivered", DELIVERED);
+        map.put("undelivered", UNDELIVERED);
+        map.put("receiving", RECEIVING);
+        map.put("received", RECEIVED);
+        map.put("read", READ);
+        return map;
+    }
+
+    private static final Map<String, MessageStatusEnum> createEnumsMap() {
+        Map<String, MessageStatusEnum> map = new HashMap<>();
+        map.put("accepted", MessageStatusEnum.ACCEPTED);
+        map.put("scheduled", MessageStatusEnum.SCHEDULED);
+        map.put("canceled", MessageStatusEnum.CANCELED);
+        map.put("queued", MessageStatusEnum.QUEUED);
+        map.put("sending", MessageStatusEnum.SENDING);
+        map.put("sent", MessageStatusEnum.SENT);
+        map.put("failed", MessageStatusEnum.FAILED);
+        map.put("delivered", MessageStatusEnum.DELIVERED);
+        map.put("undelivered", MessageStatusEnum.UNDELIVERED);
+        map.put("receiving", MessageStatusEnum.RECEIVING);
+        map.put("received", MessageStatusEnum.RECEIVED);
+        map.put("read", MessageStatusEnum.READ);
+        return map;
+    }
+    
+    
+    public enum MessageStatusEnum {
+
+        ACCEPTED("accepted"),
+        SCHEDULED("scheduled"),
+        CANCELED("canceled"),
+        QUEUED("queued"),
+        SENDING("sending"),
+        SENT("sent"),
+        FAILED("failed"),
+        DELIVERED("delivered"),
+        UNDELIVERED("undelivered"),
+        RECEIVING("receiving"),
+        RECEIVED("received"),
+        READ("read"),;
+
+        private final String value;
+
+        private MessageStatusEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

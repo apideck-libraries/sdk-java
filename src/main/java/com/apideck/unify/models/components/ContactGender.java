@@ -3,39 +3,134 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * ContactGender
  * 
  * <p>The gender of the contact.
  */
-public enum ContactGender {
-    MALE("male"),
-    FEMALE("female"),
-    UNISEX("unisex");
+public class ContactGender {
 
-    @JsonValue
+    public static final ContactGender MALE = new ContactGender("male");
+    public static final ContactGender FEMALE = new ContactGender("female");
+    public static final ContactGender UNISEX = new ContactGender("unisex");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, ContactGender> values = createValuesMap();
+    private static final Map<String, ContactGenderEnum> enums = createEnumsMap();
+
     private final String value;
 
-    ContactGender(String value) {
+    private ContactGender(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a ContactGender with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as ContactGender
+     */ 
+    @JsonCreator
+    public static ContactGender of(String value) {
+        synchronized (ContactGender.class) {
+            return values.computeIfAbsent(value, v -> new ContactGender(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<ContactGender> fromValue(String value) {
-        for (ContactGender o: ContactGender.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<ContactGenderEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        ContactGender other = (ContactGender) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "ContactGender [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static ContactGender[] values() {
+        synchronized (ContactGender.class) {
+            return values.values().toArray(new ContactGender[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, ContactGender> createValuesMap() {
+        Map<String, ContactGender> map = new LinkedHashMap<>();
+        map.put("male", MALE);
+        map.put("female", FEMALE);
+        map.put("unisex", UNISEX);
+        return map;
+    }
+
+    private static final Map<String, ContactGenderEnum> createEnumsMap() {
+        Map<String, ContactGenderEnum> map = new HashMap<>();
+        map.put("male", ContactGenderEnum.MALE);
+        map.put("female", ContactGenderEnum.FEMALE);
+        map.put("unisex", ContactGenderEnum.UNISEX);
+        return map;
+    }
+    
+    
+    public enum ContactGenderEnum {
+
+        MALE("male"),
+        FEMALE("female"),
+        UNISEX("unisex"),;
+
+        private final String value;
+
+        private ContactGenderEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

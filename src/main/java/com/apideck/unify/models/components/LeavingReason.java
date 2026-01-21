@@ -3,40 +3,138 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * LeavingReason
  * 
  * <p>The reason because the employment ended.
  */
-public enum LeavingReason {
-    DISMISSED("dismissed"),
-    RESIGNED("resigned"),
-    REDUNDANCY("redundancy"),
-    OTHER("other");
+public class LeavingReason {
 
-    @JsonValue
+    public static final LeavingReason DISMISSED = new LeavingReason("dismissed");
+    public static final LeavingReason RESIGNED = new LeavingReason("resigned");
+    public static final LeavingReason REDUNDANCY = new LeavingReason("redundancy");
+    public static final LeavingReason OTHER = new LeavingReason("other");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, LeavingReason> values = createValuesMap();
+    private static final Map<String, LeavingReasonEnum> enums = createEnumsMap();
+
     private final String value;
 
-    LeavingReason(String value) {
+    private LeavingReason(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a LeavingReason with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as LeavingReason
+     */ 
+    @JsonCreator
+    public static LeavingReason of(String value) {
+        synchronized (LeavingReason.class) {
+            return values.computeIfAbsent(value, v -> new LeavingReason(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<LeavingReason> fromValue(String value) {
-        for (LeavingReason o: LeavingReason.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<LeavingReasonEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        LeavingReason other = (LeavingReason) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "LeavingReason [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static LeavingReason[] values() {
+        synchronized (LeavingReason.class) {
+            return values.values().toArray(new LeavingReason[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, LeavingReason> createValuesMap() {
+        Map<String, LeavingReason> map = new LinkedHashMap<>();
+        map.put("dismissed", DISMISSED);
+        map.put("resigned", RESIGNED);
+        map.put("redundancy", REDUNDANCY);
+        map.put("other", OTHER);
+        return map;
+    }
+
+    private static final Map<String, LeavingReasonEnum> createEnumsMap() {
+        Map<String, LeavingReasonEnum> map = new HashMap<>();
+        map.put("dismissed", LeavingReasonEnum.DISMISSED);
+        map.put("resigned", LeavingReasonEnum.RESIGNED);
+        map.put("redundancy", LeavingReasonEnum.REDUNDANCY);
+        map.put("other", LeavingReasonEnum.OTHER);
+        return map;
+    }
+    
+    
+    public enum LeavingReasonEnum {
+
+        DISMISSED("dismissed"),
+        RESIGNED("resigned"),
+        REDUNDANCY("redundancy"),
+        OTHER("other"),;
+
+        private final String value;
+
+        private LeavingReasonEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

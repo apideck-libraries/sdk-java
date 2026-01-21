@@ -147,7 +147,7 @@ public class InvoiceItem {
 
     /**
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: This field is deprecated and may be removed in a future version..
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tracking_category")
@@ -514,7 +514,7 @@ public class InvoiceItem {
 
     /**
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: This field is deprecated and may be removed in a future version..
      */
     @Deprecated
     @SuppressWarnings("unchecked")
@@ -949,7 +949,7 @@ public class InvoiceItem {
 
     /**
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: This field is deprecated and may be removed in a future version..
      */
     @Deprecated
     public InvoiceItem withTrackingCategory(DeprecatedLinkedTrackingCategory trackingCategory) {
@@ -960,7 +960,7 @@ public class InvoiceItem {
 
     /**
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: This field is deprecated and may be removed in a future version..
      */
     @Deprecated
     public InvoiceItem withTrackingCategory(JsonNullable<? extends DeprecatedLinkedTrackingCategory> trackingCategory) {
@@ -1722,7 +1722,7 @@ public class InvoiceItem {
 
         /**
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: This field is deprecated and may be removed in a future version..
          */
         @Deprecated
         public Builder trackingCategory(DeprecatedLinkedTrackingCategory trackingCategory) {
@@ -1733,7 +1733,7 @@ public class InvoiceItem {
 
         /**
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: This field is deprecated and may be removed in a future version..
          */
         @Deprecated
         public Builder trackingCategory(JsonNullable<? extends DeprecatedLinkedTrackingCategory> trackingCategory) {

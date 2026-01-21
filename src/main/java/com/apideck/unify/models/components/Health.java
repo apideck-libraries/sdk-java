@@ -3,42 +3,146 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * Health
  * 
  * <p>Operational health status of the connection
  */
-public enum Health {
-    REVOKED("revoked"),
-    MISSING_SETTINGS("missing_settings"),
-    NEEDS_CONSENT("needs_consent"),
-    NEEDS_AUTH("needs_auth"),
-    PENDING_REFRESH("pending_refresh"),
-    OK("ok");
+public class Health {
 
-    @JsonValue
+    public static final Health REVOKED = new Health("revoked");
+    public static final Health MISSING_SETTINGS = new Health("missing_settings");
+    public static final Health NEEDS_CONSENT = new Health("needs_consent");
+    public static final Health NEEDS_AUTH = new Health("needs_auth");
+    public static final Health PENDING_REFRESH = new Health("pending_refresh");
+    public static final Health OK = new Health("ok");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, Health> values = createValuesMap();
+    private static final Map<String, HealthEnum> enums = createEnumsMap();
+
     private final String value;
 
-    Health(String value) {
+    private Health(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a Health with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as Health
+     */ 
+    @JsonCreator
+    public static Health of(String value) {
+        synchronized (Health.class) {
+            return values.computeIfAbsent(value, v -> new Health(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<Health> fromValue(String value) {
-        for (Health o: Health.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<HealthEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Health other = (Health) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "Health [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static Health[] values() {
+        synchronized (Health.class) {
+            return values.values().toArray(new Health[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, Health> createValuesMap() {
+        Map<String, Health> map = new LinkedHashMap<>();
+        map.put("revoked", REVOKED);
+        map.put("missing_settings", MISSING_SETTINGS);
+        map.put("needs_consent", NEEDS_CONSENT);
+        map.put("needs_auth", NEEDS_AUTH);
+        map.put("pending_refresh", PENDING_REFRESH);
+        map.put("ok", OK);
+        return map;
+    }
+
+    private static final Map<String, HealthEnum> createEnumsMap() {
+        Map<String, HealthEnum> map = new HashMap<>();
+        map.put("revoked", HealthEnum.REVOKED);
+        map.put("missing_settings", HealthEnum.MISSING_SETTINGS);
+        map.put("needs_consent", HealthEnum.NEEDS_CONSENT);
+        map.put("needs_auth", HealthEnum.NEEDS_AUTH);
+        map.put("pending_refresh", HealthEnum.PENDING_REFRESH);
+        map.put("ok", HealthEnum.OK);
+        return map;
+    }
+    
+    
+    public enum HealthEnum {
+
+        REVOKED("revoked"),
+        MISSING_SETTINGS("missing_settings"),
+        NEEDS_CONSENT("needs_consent"),
+        NEEDS_AUTH("needs_auth"),
+        PENDING_REFRESH("pending_refresh"),
+        OK("ok"),;
+
+        private final String value;
+
+        private HealthEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

@@ -3,41 +3,142 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * ConnectorAuthType
  * 
  * <p>Type of authorization used by the connector
  */
-public enum ConnectorAuthType {
-    OAUTH2("oauth2"),
-    API_KEY("apiKey"),
-    BASIC("basic"),
-    CUSTOM("custom"),
-    NONE("none");
+public class ConnectorAuthType {
 
-    @JsonValue
+    public static final ConnectorAuthType OAUTH2 = new ConnectorAuthType("oauth2");
+    public static final ConnectorAuthType API_KEY = new ConnectorAuthType("apiKey");
+    public static final ConnectorAuthType BASIC = new ConnectorAuthType("basic");
+    public static final ConnectorAuthType CUSTOM = new ConnectorAuthType("custom");
+    public static final ConnectorAuthType NONE = new ConnectorAuthType("none");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, ConnectorAuthType> values = createValuesMap();
+    private static final Map<String, ConnectorAuthTypeEnum> enums = createEnumsMap();
+
     private final String value;
 
-    ConnectorAuthType(String value) {
+    private ConnectorAuthType(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a ConnectorAuthType with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as ConnectorAuthType
+     */ 
+    @JsonCreator
+    public static ConnectorAuthType of(String value) {
+        synchronized (ConnectorAuthType.class) {
+            return values.computeIfAbsent(value, v -> new ConnectorAuthType(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<ConnectorAuthType> fromValue(String value) {
-        for (ConnectorAuthType o: ConnectorAuthType.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<ConnectorAuthTypeEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        ConnectorAuthType other = (ConnectorAuthType) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "ConnectorAuthType [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static ConnectorAuthType[] values() {
+        synchronized (ConnectorAuthType.class) {
+            return values.values().toArray(new ConnectorAuthType[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, ConnectorAuthType> createValuesMap() {
+        Map<String, ConnectorAuthType> map = new LinkedHashMap<>();
+        map.put("oauth2", OAUTH2);
+        map.put("apiKey", API_KEY);
+        map.put("basic", BASIC);
+        map.put("custom", CUSTOM);
+        map.put("none", NONE);
+        return map;
+    }
+
+    private static final Map<String, ConnectorAuthTypeEnum> createEnumsMap() {
+        Map<String, ConnectorAuthTypeEnum> map = new HashMap<>();
+        map.put("oauth2", ConnectorAuthTypeEnum.OAUTH2);
+        map.put("apiKey", ConnectorAuthTypeEnum.API_KEY);
+        map.put("basic", ConnectorAuthTypeEnum.BASIC);
+        map.put("custom", ConnectorAuthTypeEnum.CUSTOM);
+        map.put("none", ConnectorAuthTypeEnum.NONE);
+        return map;
+    }
+    
+    
+    public enum ConnectorAuthTypeEnum {
+
+        OAUTH2("oauth2"),
+        API_KEY("apiKey"),
+        BASIC("basic"),
+        CUSTOM("custom"),
+        NONE("none"),;
+
+        private final String value;
+
+        private ConnectorAuthTypeEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

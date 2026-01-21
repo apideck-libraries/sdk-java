@@ -3,38 +3,130 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * CategoryStatus
  * 
  * <p>Based on the status some functionality is enabled or disabled.
  */
-public enum CategoryStatus {
-    ACTIVE("active"),
-    INACTIVE("inactive");
+public class CategoryStatus {
 
-    @JsonValue
+    public static final CategoryStatus ACTIVE = new CategoryStatus("active");
+    public static final CategoryStatus INACTIVE = new CategoryStatus("inactive");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, CategoryStatus> values = createValuesMap();
+    private static final Map<String, CategoryStatusEnum> enums = createEnumsMap();
+
     private final String value;
 
-    CategoryStatus(String value) {
+    private CategoryStatus(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a CategoryStatus with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as CategoryStatus
+     */ 
+    @JsonCreator
+    public static CategoryStatus of(String value) {
+        synchronized (CategoryStatus.class) {
+            return values.computeIfAbsent(value, v -> new CategoryStatus(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<CategoryStatus> fromValue(String value) {
-        for (CategoryStatus o: CategoryStatus.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<CategoryStatusEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        CategoryStatus other = (CategoryStatus) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "CategoryStatus [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static CategoryStatus[] values() {
+        synchronized (CategoryStatus.class) {
+            return values.values().toArray(new CategoryStatus[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, CategoryStatus> createValuesMap() {
+        Map<String, CategoryStatus> map = new LinkedHashMap<>();
+        map.put("active", ACTIVE);
+        map.put("inactive", INACTIVE);
+        return map;
+    }
+
+    private static final Map<String, CategoryStatusEnum> createEnumsMap() {
+        Map<String, CategoryStatusEnum> map = new HashMap<>();
+        map.put("active", CategoryStatusEnum.ACTIVE);
+        map.put("inactive", CategoryStatusEnum.INACTIVE);
+        return map;
+    }
+    
+    
+    public enum CategoryStatusEnum {
+
+        ACTIVE("active"),
+        INACTIVE("inactive"),;
+
+        private final String value;
+
+        private CategoryStatusEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

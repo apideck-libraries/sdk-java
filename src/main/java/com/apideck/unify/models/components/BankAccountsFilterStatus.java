@@ -3,39 +3,134 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * BankAccountsFilterStatus
  * 
  * <p>Filter by account status
  */
-public enum BankAccountsFilterStatus {
-    ACTIVE("active"),
-    INACTIVE("inactive"),
-    CLOSED("closed");
+public class BankAccountsFilterStatus {
 
-    @JsonValue
+    public static final BankAccountsFilterStatus ACTIVE = new BankAccountsFilterStatus("active");
+    public static final BankAccountsFilterStatus INACTIVE = new BankAccountsFilterStatus("inactive");
+    public static final BankAccountsFilterStatus CLOSED = new BankAccountsFilterStatus("closed");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, BankAccountsFilterStatus> values = createValuesMap();
+    private static final Map<String, BankAccountsFilterStatusEnum> enums = createEnumsMap();
+
     private final String value;
 
-    BankAccountsFilterStatus(String value) {
+    private BankAccountsFilterStatus(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a BankAccountsFilterStatus with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as BankAccountsFilterStatus
+     */ 
+    @JsonCreator
+    public static BankAccountsFilterStatus of(String value) {
+        synchronized (BankAccountsFilterStatus.class) {
+            return values.computeIfAbsent(value, v -> new BankAccountsFilterStatus(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<BankAccountsFilterStatus> fromValue(String value) {
-        for (BankAccountsFilterStatus o: BankAccountsFilterStatus.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<BankAccountsFilterStatusEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        BankAccountsFilterStatus other = (BankAccountsFilterStatus) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "BankAccountsFilterStatus [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static BankAccountsFilterStatus[] values() {
+        synchronized (BankAccountsFilterStatus.class) {
+            return values.values().toArray(new BankAccountsFilterStatus[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, BankAccountsFilterStatus> createValuesMap() {
+        Map<String, BankAccountsFilterStatus> map = new LinkedHashMap<>();
+        map.put("active", ACTIVE);
+        map.put("inactive", INACTIVE);
+        map.put("closed", CLOSED);
+        return map;
+    }
+
+    private static final Map<String, BankAccountsFilterStatusEnum> createEnumsMap() {
+        Map<String, BankAccountsFilterStatusEnum> map = new HashMap<>();
+        map.put("active", BankAccountsFilterStatusEnum.ACTIVE);
+        map.put("inactive", BankAccountsFilterStatusEnum.INACTIVE);
+        map.put("closed", BankAccountsFilterStatusEnum.CLOSED);
+        return map;
+    }
+    
+    
+    public enum BankAccountsFilterStatusEnum {
+
+        ACTIVE("active"),
+        INACTIVE("inactive"),
+        CLOSED("closed"),;
+
+        private final String value;
+
+        private BankAccountsFilterStatusEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

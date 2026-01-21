@@ -3,38 +3,130 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * JournalEntryLineItemType
  * 
  * <p>Debit entries are considered positive, and credit entries are considered negative.
  */
-public enum JournalEntryLineItemType {
-    DEBIT("debit"),
-    CREDIT("credit");
+public class JournalEntryLineItemType {
 
-    @JsonValue
+    public static final JournalEntryLineItemType DEBIT = new JournalEntryLineItemType("debit");
+    public static final JournalEntryLineItemType CREDIT = new JournalEntryLineItemType("credit");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, JournalEntryLineItemType> values = createValuesMap();
+    private static final Map<String, JournalEntryLineItemTypeEnum> enums = createEnumsMap();
+
     private final String value;
 
-    JournalEntryLineItemType(String value) {
+    private JournalEntryLineItemType(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a JournalEntryLineItemType with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as JournalEntryLineItemType
+     */ 
+    @JsonCreator
+    public static JournalEntryLineItemType of(String value) {
+        synchronized (JournalEntryLineItemType.class) {
+            return values.computeIfAbsent(value, v -> new JournalEntryLineItemType(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<JournalEntryLineItemType> fromValue(String value) {
-        for (JournalEntryLineItemType o: JournalEntryLineItemType.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<JournalEntryLineItemTypeEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        JournalEntryLineItemType other = (JournalEntryLineItemType) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "JournalEntryLineItemType [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static JournalEntryLineItemType[] values() {
+        synchronized (JournalEntryLineItemType.class) {
+            return values.values().toArray(new JournalEntryLineItemType[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, JournalEntryLineItemType> createValuesMap() {
+        Map<String, JournalEntryLineItemType> map = new LinkedHashMap<>();
+        map.put("debit", DEBIT);
+        map.put("credit", CREDIT);
+        return map;
+    }
+
+    private static final Map<String, JournalEntryLineItemTypeEnum> createEnumsMap() {
+        Map<String, JournalEntryLineItemTypeEnum> map = new HashMap<>();
+        map.put("debit", JournalEntryLineItemTypeEnum.DEBIT);
+        map.put("credit", JournalEntryLineItemTypeEnum.CREDIT);
+        return map;
+    }
+    
+    
+    public enum JournalEntryLineItemTypeEnum {
+
+        DEBIT("debit"),
+        CREDIT("credit"),;
+
+        private final String value;
+
+        private JournalEntryLineItemTypeEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

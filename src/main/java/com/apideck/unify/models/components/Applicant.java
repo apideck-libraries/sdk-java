@@ -185,7 +185,7 @@ public class Applicant {
     /**
      * Deprecated: Use application_ids instead. Array of application IDs associated with the applicant.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated. Use application_ids instead..
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("applications")
@@ -674,7 +674,7 @@ public class Applicant {
     /**
      * Deprecated: Use application_ids instead. Array of application IDs associated with the applicant.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated. Use application_ids instead..
      */
     @Deprecated
     @SuppressWarnings("unchecked")
@@ -1242,7 +1242,7 @@ public class Applicant {
     /**
      * Deprecated: Use application_ids instead. Array of application IDs associated with the applicant.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated. Use application_ids instead..
      */
     @Deprecated
     public Applicant withApplications(List<String> applications) {
@@ -1254,7 +1254,7 @@ public class Applicant {
     /**
      * Deprecated: Use application_ids instead. Array of application IDs associated with the applicant.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated. Use application_ids instead..
      */
     @Deprecated
     public Applicant withApplications(JsonNullable<? extends List<String>> applications) {
@@ -2255,7 +2255,7 @@ public class Applicant {
         /**
          * Deprecated: Use application_ids instead. Array of application IDs associated with the applicant.
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: Deprecated. Use application_ids instead..
          */
         @Deprecated
         public Builder applications(List<String> applications) {
@@ -2267,7 +2267,7 @@ public class Applicant {
         /**
          * Deprecated: Use application_ids instead. Array of application IDs associated with the applicant.
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: Deprecated. Use application_ids instead..
          */
         @Deprecated
         public Builder applications(JsonNullable<? extends List<String>> applications) {

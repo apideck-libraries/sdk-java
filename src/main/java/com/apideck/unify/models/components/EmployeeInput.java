@@ -114,7 +114,7 @@ public class EmployeeInput {
      * The department the person is currently in. [Deprecated](https://developers.apideck.com/changelog) in
      * favor of the dedicated department_id and department_name field.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated. Use department_id instead..
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("department")
@@ -742,7 +742,7 @@ public class EmployeeInput {
      * The department the person is currently in. [Deprecated](https://developers.apideck.com/changelog) in
      * favor of the dedicated department_id and department_name field.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated. Use department_id instead..
      */
     @Deprecated
     @JsonIgnore
@@ -1343,7 +1343,7 @@ public class EmployeeInput {
      * The department the person is currently in. [Deprecated](https://developers.apideck.com/changelog) in
      * favor of the dedicated department_id and department_name field.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated. Use department_id instead..
      */
     @Deprecated
     public EmployeeInput withDepartment(String department) {
@@ -1356,7 +1356,7 @@ public class EmployeeInput {
      * The department the person is currently in. [Deprecated](https://developers.apideck.com/changelog) in
      * favor of the dedicated department_id and department_name field.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated. Use department_id instead..
      */
     @Deprecated
     public EmployeeInput withDepartment(JsonNullable<String> department) {
@@ -2680,7 +2680,7 @@ public class EmployeeInput {
          * The department the person is currently in. [Deprecated](https://developers.apideck.com/changelog) in
          * favor of the dedicated department_id and department_name field.
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: Deprecated. Use department_id instead..
          */
         @Deprecated
         public Builder department(String department) {
@@ -2693,7 +2693,7 @@ public class EmployeeInput {
          * The department the person is currently in. [Deprecated](https://developers.apideck.com/changelog) in
          * favor of the dedicated department_id and department_name field.
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: Deprecated. Use department_id instead..
          */
         @Deprecated
         public Builder department(JsonNullable<String> department) {

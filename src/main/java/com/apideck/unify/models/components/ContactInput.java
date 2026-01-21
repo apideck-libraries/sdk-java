@@ -135,7 +135,7 @@ public class ContactInput {
 
     /**
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: This field is deprecated and may be removed in a future version..
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("image")
@@ -499,7 +499,7 @@ public class ContactInput {
 
     /**
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: This field is deprecated and may be removed in a future version..
      */
     @Deprecated
     @JsonIgnore
@@ -924,7 +924,7 @@ public class ContactInput {
 
     /**
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: This field is deprecated and may be removed in a future version..
      */
     @Deprecated
     public ContactInput withImage(String image) {
@@ -935,7 +935,7 @@ public class ContactInput {
 
     /**
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: This field is deprecated and may be removed in a future version..
      */
     @Deprecated
     public ContactInput withImage(JsonNullable<String> image) {
@@ -1696,7 +1696,7 @@ public class ContactInput {
 
         /**
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: This field is deprecated and may be removed in a future version..
          */
         @Deprecated
         public Builder image(String image) {
@@ -1707,7 +1707,7 @@ public class ContactInput {
 
         /**
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: This field is deprecated and may be removed in a future version..
          */
         @Deprecated
         public Builder image(JsonNullable<String> image) {

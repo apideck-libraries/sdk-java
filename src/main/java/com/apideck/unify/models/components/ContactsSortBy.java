@@ -3,42 +3,146 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * ContactsSortBy
  * 
  * <p>The field on which to sort the Contacts
  */
-public enum ContactsSortBy {
-    CREATED_AT("created_at"),
-    UPDATED_AT("updated_at"),
-    NAME("name"),
-    FIRST_NAME("first_name"),
-    LAST_NAME("last_name"),
-    EMAIL("email");
+public class ContactsSortBy {
 
-    @JsonValue
+    public static final ContactsSortBy CREATED_AT = new ContactsSortBy("created_at");
+    public static final ContactsSortBy UPDATED_AT = new ContactsSortBy("updated_at");
+    public static final ContactsSortBy NAME = new ContactsSortBy("name");
+    public static final ContactsSortBy FIRST_NAME = new ContactsSortBy("first_name");
+    public static final ContactsSortBy LAST_NAME = new ContactsSortBy("last_name");
+    public static final ContactsSortBy EMAIL = new ContactsSortBy("email");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, ContactsSortBy> values = createValuesMap();
+    private static final Map<String, ContactsSortByEnum> enums = createEnumsMap();
+
     private final String value;
 
-    ContactsSortBy(String value) {
+    private ContactsSortBy(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a ContactsSortBy with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as ContactsSortBy
+     */ 
+    @JsonCreator
+    public static ContactsSortBy of(String value) {
+        synchronized (ContactsSortBy.class) {
+            return values.computeIfAbsent(value, v -> new ContactsSortBy(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<ContactsSortBy> fromValue(String value) {
-        for (ContactsSortBy o: ContactsSortBy.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<ContactsSortByEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        ContactsSortBy other = (ContactsSortBy) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "ContactsSortBy [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static ContactsSortBy[] values() {
+        synchronized (ContactsSortBy.class) {
+            return values.values().toArray(new ContactsSortBy[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, ContactsSortBy> createValuesMap() {
+        Map<String, ContactsSortBy> map = new LinkedHashMap<>();
+        map.put("created_at", CREATED_AT);
+        map.put("updated_at", UPDATED_AT);
+        map.put("name", NAME);
+        map.put("first_name", FIRST_NAME);
+        map.put("last_name", LAST_NAME);
+        map.put("email", EMAIL);
+        return map;
+    }
+
+    private static final Map<String, ContactsSortByEnum> createEnumsMap() {
+        Map<String, ContactsSortByEnum> map = new HashMap<>();
+        map.put("created_at", ContactsSortByEnum.CREATED_AT);
+        map.put("updated_at", ContactsSortByEnum.UPDATED_AT);
+        map.put("name", ContactsSortByEnum.NAME);
+        map.put("first_name", ContactsSortByEnum.FIRST_NAME);
+        map.put("last_name", ContactsSortByEnum.LAST_NAME);
+        map.put("email", ContactsSortByEnum.EMAIL);
+        return map;
+    }
+    
+    
+    public enum ContactsSortByEnum {
+
+        CREATED_AT("created_at"),
+        UPDATED_AT("updated_at"),
+        NAME("name"),
+        FIRST_NAME("first_name"),
+        LAST_NAME("last_name"),
+        EMAIL("email"),;
+
+        private final String value;
+
+        private ContactsSortByEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

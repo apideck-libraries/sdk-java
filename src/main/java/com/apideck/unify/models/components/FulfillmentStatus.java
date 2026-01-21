@@ -3,43 +3,150 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * FulfillmentStatus
  * 
  * <p>Current fulfillment status of the order.
  */
-public enum FulfillmentStatus {
-    PENDING("pending"),
-    SHIPPED("shipped"),
-    PARTIAL("partial"),
-    DELIVERED("delivered"),
-    CANCELLED("cancelled"),
-    RETURNED("returned"),
-    UNKNOWN("unknown");
+public class FulfillmentStatus {
 
-    @JsonValue
+    public static final FulfillmentStatus PENDING = new FulfillmentStatus("pending");
+    public static final FulfillmentStatus SHIPPED = new FulfillmentStatus("shipped");
+    public static final FulfillmentStatus PARTIAL = new FulfillmentStatus("partial");
+    public static final FulfillmentStatus DELIVERED = new FulfillmentStatus("delivered");
+    public static final FulfillmentStatus CANCELLED = new FulfillmentStatus("cancelled");
+    public static final FulfillmentStatus RETURNED = new FulfillmentStatus("returned");
+    public static final FulfillmentStatus UNKNOWN = new FulfillmentStatus("unknown");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, FulfillmentStatus> values = createValuesMap();
+    private static final Map<String, FulfillmentStatusEnum> enums = createEnumsMap();
+
     private final String value;
 
-    FulfillmentStatus(String value) {
+    private FulfillmentStatus(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a FulfillmentStatus with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as FulfillmentStatus
+     */ 
+    @JsonCreator
+    public static FulfillmentStatus of(String value) {
+        synchronized (FulfillmentStatus.class) {
+            return values.computeIfAbsent(value, v -> new FulfillmentStatus(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<FulfillmentStatus> fromValue(String value) {
-        for (FulfillmentStatus o: FulfillmentStatus.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<FulfillmentStatusEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        FulfillmentStatus other = (FulfillmentStatus) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "FulfillmentStatus [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static FulfillmentStatus[] values() {
+        synchronized (FulfillmentStatus.class) {
+            return values.values().toArray(new FulfillmentStatus[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, FulfillmentStatus> createValuesMap() {
+        Map<String, FulfillmentStatus> map = new LinkedHashMap<>();
+        map.put("pending", PENDING);
+        map.put("shipped", SHIPPED);
+        map.put("partial", PARTIAL);
+        map.put("delivered", DELIVERED);
+        map.put("cancelled", CANCELLED);
+        map.put("returned", RETURNED);
+        map.put("unknown", UNKNOWN);
+        return map;
+    }
+
+    private static final Map<String, FulfillmentStatusEnum> createEnumsMap() {
+        Map<String, FulfillmentStatusEnum> map = new HashMap<>();
+        map.put("pending", FulfillmentStatusEnum.PENDING);
+        map.put("shipped", FulfillmentStatusEnum.SHIPPED);
+        map.put("partial", FulfillmentStatusEnum.PARTIAL);
+        map.put("delivered", FulfillmentStatusEnum.DELIVERED);
+        map.put("cancelled", FulfillmentStatusEnum.CANCELLED);
+        map.put("returned", FulfillmentStatusEnum.RETURNED);
+        map.put("unknown", FulfillmentStatusEnum.UNKNOWN);
+        return map;
+    }
+    
+    
+    public enum FulfillmentStatusEnum {
+
+        PENDING("pending"),
+        SHIPPED("shipped"),
+        PARTIAL("partial"),
+        DELIVERED("delivered"),
+        CANCELLED("cancelled"),
+        RETURNED("returned"),
+        UNKNOWN("unknown"),;
+
+        private final String value;
+
+        private FulfillmentStatusEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

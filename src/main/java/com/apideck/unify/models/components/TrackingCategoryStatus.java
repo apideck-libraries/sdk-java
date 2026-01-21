@@ -3,38 +3,130 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * TrackingCategoryStatus
  * 
  * <p>Based on the status some functionality is enabled or disabled.
  */
-public enum TrackingCategoryStatus {
-    ACTIVE("active"),
-    INACTIVE("inactive");
+public class TrackingCategoryStatus {
 
-    @JsonValue
+    public static final TrackingCategoryStatus ACTIVE = new TrackingCategoryStatus("active");
+    public static final TrackingCategoryStatus INACTIVE = new TrackingCategoryStatus("inactive");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, TrackingCategoryStatus> values = createValuesMap();
+    private static final Map<String, TrackingCategoryStatusEnum> enums = createEnumsMap();
+
     private final String value;
 
-    TrackingCategoryStatus(String value) {
+    private TrackingCategoryStatus(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a TrackingCategoryStatus with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as TrackingCategoryStatus
+     */ 
+    @JsonCreator
+    public static TrackingCategoryStatus of(String value) {
+        synchronized (TrackingCategoryStatus.class) {
+            return values.computeIfAbsent(value, v -> new TrackingCategoryStatus(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<TrackingCategoryStatus> fromValue(String value) {
-        for (TrackingCategoryStatus o: TrackingCategoryStatus.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<TrackingCategoryStatusEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        TrackingCategoryStatus other = (TrackingCategoryStatus) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "TrackingCategoryStatus [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static TrackingCategoryStatus[] values() {
+        synchronized (TrackingCategoryStatus.class) {
+            return values.values().toArray(new TrackingCategoryStatus[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, TrackingCategoryStatus> createValuesMap() {
+        Map<String, TrackingCategoryStatus> map = new LinkedHashMap<>();
+        map.put("active", ACTIVE);
+        map.put("inactive", INACTIVE);
+        return map;
+    }
+
+    private static final Map<String, TrackingCategoryStatusEnum> createEnumsMap() {
+        Map<String, TrackingCategoryStatusEnum> map = new HashMap<>();
+        map.put("active", TrackingCategoryStatusEnum.ACTIVE);
+        map.put("inactive", TrackingCategoryStatusEnum.INACTIVE);
+        return map;
+    }
+    
+    
+    public enum TrackingCategoryStatusEnum {
+
+        ACTIVE("active"),
+        INACTIVE("inactive"),;
+
+        private final String value;
+
+        private TrackingCategoryStatusEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

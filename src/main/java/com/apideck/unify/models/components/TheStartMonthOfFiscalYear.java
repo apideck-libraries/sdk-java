@@ -3,48 +3,170 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * TheStartMonthOfFiscalYear
  * 
  * <p>The start month of fiscal year.
  */
-public enum TheStartMonthOfFiscalYear {
-    JANUARY("January"),
-    FEBRUARY("February"),
-    MARCH("March"),
-    APRIL("April"),
-    MAY("May"),
-    JUNE("June"),
-    JULY("July"),
-    AUGUST("August"),
-    SEPTEMBER("September"),
-    OCTOBER("October"),
-    NOVEMBER("November"),
-    DECEMBER("December");
+public class TheStartMonthOfFiscalYear {
 
-    @JsonValue
+    public static final TheStartMonthOfFiscalYear JANUARY = new TheStartMonthOfFiscalYear("January");
+    public static final TheStartMonthOfFiscalYear FEBRUARY = new TheStartMonthOfFiscalYear("February");
+    public static final TheStartMonthOfFiscalYear MARCH = new TheStartMonthOfFiscalYear("March");
+    public static final TheStartMonthOfFiscalYear APRIL = new TheStartMonthOfFiscalYear("April");
+    public static final TheStartMonthOfFiscalYear MAY = new TheStartMonthOfFiscalYear("May");
+    public static final TheStartMonthOfFiscalYear JUNE = new TheStartMonthOfFiscalYear("June");
+    public static final TheStartMonthOfFiscalYear JULY = new TheStartMonthOfFiscalYear("July");
+    public static final TheStartMonthOfFiscalYear AUGUST = new TheStartMonthOfFiscalYear("August");
+    public static final TheStartMonthOfFiscalYear SEPTEMBER = new TheStartMonthOfFiscalYear("September");
+    public static final TheStartMonthOfFiscalYear OCTOBER = new TheStartMonthOfFiscalYear("October");
+    public static final TheStartMonthOfFiscalYear NOVEMBER = new TheStartMonthOfFiscalYear("November");
+    public static final TheStartMonthOfFiscalYear DECEMBER = new TheStartMonthOfFiscalYear("December");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, TheStartMonthOfFiscalYear> values = createValuesMap();
+    private static final Map<String, TheStartMonthOfFiscalYearEnum> enums = createEnumsMap();
+
     private final String value;
 
-    TheStartMonthOfFiscalYear(String value) {
+    private TheStartMonthOfFiscalYear(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a TheStartMonthOfFiscalYear with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as TheStartMonthOfFiscalYear
+     */ 
+    @JsonCreator
+    public static TheStartMonthOfFiscalYear of(String value) {
+        synchronized (TheStartMonthOfFiscalYear.class) {
+            return values.computeIfAbsent(value, v -> new TheStartMonthOfFiscalYear(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<TheStartMonthOfFiscalYear> fromValue(String value) {
-        for (TheStartMonthOfFiscalYear o: TheStartMonthOfFiscalYear.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<TheStartMonthOfFiscalYearEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        TheStartMonthOfFiscalYear other = (TheStartMonthOfFiscalYear) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "TheStartMonthOfFiscalYear [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static TheStartMonthOfFiscalYear[] values() {
+        synchronized (TheStartMonthOfFiscalYear.class) {
+            return values.values().toArray(new TheStartMonthOfFiscalYear[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, TheStartMonthOfFiscalYear> createValuesMap() {
+        Map<String, TheStartMonthOfFiscalYear> map = new LinkedHashMap<>();
+        map.put("January", JANUARY);
+        map.put("February", FEBRUARY);
+        map.put("March", MARCH);
+        map.put("April", APRIL);
+        map.put("May", MAY);
+        map.put("June", JUNE);
+        map.put("July", JULY);
+        map.put("August", AUGUST);
+        map.put("September", SEPTEMBER);
+        map.put("October", OCTOBER);
+        map.put("November", NOVEMBER);
+        map.put("December", DECEMBER);
+        return map;
+    }
+
+    private static final Map<String, TheStartMonthOfFiscalYearEnum> createEnumsMap() {
+        Map<String, TheStartMonthOfFiscalYearEnum> map = new HashMap<>();
+        map.put("January", TheStartMonthOfFiscalYearEnum.JANUARY);
+        map.put("February", TheStartMonthOfFiscalYearEnum.FEBRUARY);
+        map.put("March", TheStartMonthOfFiscalYearEnum.MARCH);
+        map.put("April", TheStartMonthOfFiscalYearEnum.APRIL);
+        map.put("May", TheStartMonthOfFiscalYearEnum.MAY);
+        map.put("June", TheStartMonthOfFiscalYearEnum.JUNE);
+        map.put("July", TheStartMonthOfFiscalYearEnum.JULY);
+        map.put("August", TheStartMonthOfFiscalYearEnum.AUGUST);
+        map.put("September", TheStartMonthOfFiscalYearEnum.SEPTEMBER);
+        map.put("October", TheStartMonthOfFiscalYearEnum.OCTOBER);
+        map.put("November", TheStartMonthOfFiscalYearEnum.NOVEMBER);
+        map.put("December", TheStartMonthOfFiscalYearEnum.DECEMBER);
+        return map;
+    }
+    
+    
+    public enum TheStartMonthOfFiscalYearEnum {
+
+        JANUARY("January"),
+        FEBRUARY("February"),
+        MARCH("March"),
+        APRIL("April"),
+        MAY("May"),
+        JUNE("June"),
+        JULY("July"),
+        AUGUST("August"),
+        SEPTEMBER("September"),
+        OCTOBER("October"),
+        NOVEMBER("November"),
+        DECEMBER("December"),;
+
+        private final String value;
+
+        private TheStartMonthOfFiscalYearEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

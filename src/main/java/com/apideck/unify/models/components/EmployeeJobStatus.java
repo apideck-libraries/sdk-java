@@ -3,39 +3,134 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * EmployeeJobStatus
  * 
  * <p>Indicates the status of the job.
  */
-public enum EmployeeJobStatus {
-    ACTIVE("active"),
-    INACTIVE("inactive"),
-    OTHER("other");
+public class EmployeeJobStatus {
 
-    @JsonValue
+    public static final EmployeeJobStatus ACTIVE = new EmployeeJobStatus("active");
+    public static final EmployeeJobStatus INACTIVE = new EmployeeJobStatus("inactive");
+    public static final EmployeeJobStatus OTHER = new EmployeeJobStatus("other");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, EmployeeJobStatus> values = createValuesMap();
+    private static final Map<String, EmployeeJobStatusEnum> enums = createEnumsMap();
+
     private final String value;
 
-    EmployeeJobStatus(String value) {
+    private EmployeeJobStatus(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a EmployeeJobStatus with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as EmployeeJobStatus
+     */ 
+    @JsonCreator
+    public static EmployeeJobStatus of(String value) {
+        synchronized (EmployeeJobStatus.class) {
+            return values.computeIfAbsent(value, v -> new EmployeeJobStatus(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<EmployeeJobStatus> fromValue(String value) {
-        for (EmployeeJobStatus o: EmployeeJobStatus.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<EmployeeJobStatusEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        EmployeeJobStatus other = (EmployeeJobStatus) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "EmployeeJobStatus [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static EmployeeJobStatus[] values() {
+        synchronized (EmployeeJobStatus.class) {
+            return values.values().toArray(new EmployeeJobStatus[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, EmployeeJobStatus> createValuesMap() {
+        Map<String, EmployeeJobStatus> map = new LinkedHashMap<>();
+        map.put("active", ACTIVE);
+        map.put("inactive", INACTIVE);
+        map.put("other", OTHER);
+        return map;
+    }
+
+    private static final Map<String, EmployeeJobStatusEnum> createEnumsMap() {
+        Map<String, EmployeeJobStatusEnum> map = new HashMap<>();
+        map.put("active", EmployeeJobStatusEnum.ACTIVE);
+        map.put("inactive", EmployeeJobStatusEnum.INACTIVE);
+        map.put("other", EmployeeJobStatusEnum.OTHER);
+        return map;
+    }
+    
+    
+    public enum EmployeeJobStatusEnum {
+
+        ACTIVE("active"),
+        INACTIVE("inactive"),
+        OTHER("other"),;
+
+        private final String value;
+
+        private EmployeeJobStatusEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

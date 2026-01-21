@@ -3,39 +3,149 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-public enum PaymentsFilterType {
-    ACCOUNTS_RECEIVABLE("accounts_receivable"),
-    ACCOUNTS_PAYABLE("accounts_payable"),
-    ACCOUNTS_RECEIVABLE_CREDIT("accounts_receivable_credit"),
-    ACCOUNTS_PAYABLE_CREDIT("accounts_payable_credit"),
-    ACCOUNTS_RECEIVABLE_OVERPAYMENT("accounts_receivable_overpayment"),
-    ACCOUNTS_PAYABLE_OVERPAYMENT("accounts_payable_overpayment"),
-    ACCOUNTS_RECEIVABLE_PREPAYMENT("accounts_receivable_prepayment"),
-    ACCOUNTS_PAYABLE_PREPAYMENT("accounts_payable_prepayment");
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
+public class PaymentsFilterType {
 
-    @JsonValue
+    public static final PaymentsFilterType ACCOUNTS_RECEIVABLE = new PaymentsFilterType("accounts_receivable");
+    public static final PaymentsFilterType ACCOUNTS_PAYABLE = new PaymentsFilterType("accounts_payable");
+    public static final PaymentsFilterType ACCOUNTS_RECEIVABLE_CREDIT = new PaymentsFilterType("accounts_receivable_credit");
+    public static final PaymentsFilterType ACCOUNTS_PAYABLE_CREDIT = new PaymentsFilterType("accounts_payable_credit");
+    public static final PaymentsFilterType ACCOUNTS_RECEIVABLE_OVERPAYMENT = new PaymentsFilterType("accounts_receivable_overpayment");
+    public static final PaymentsFilterType ACCOUNTS_PAYABLE_OVERPAYMENT = new PaymentsFilterType("accounts_payable_overpayment");
+    public static final PaymentsFilterType ACCOUNTS_RECEIVABLE_PREPAYMENT = new PaymentsFilterType("accounts_receivable_prepayment");
+    public static final PaymentsFilterType ACCOUNTS_PAYABLE_PREPAYMENT = new PaymentsFilterType("accounts_payable_prepayment");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, PaymentsFilterType> values = createValuesMap();
+    private static final Map<String, PaymentsFilterTypeEnum> enums = createEnumsMap();
+
     private final String value;
 
-    PaymentsFilterType(String value) {
+    private PaymentsFilterType(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a PaymentsFilterType with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as PaymentsFilterType
+     */ 
+    @JsonCreator
+    public static PaymentsFilterType of(String value) {
+        synchronized (PaymentsFilterType.class) {
+            return values.computeIfAbsent(value, v -> new PaymentsFilterType(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<PaymentsFilterType> fromValue(String value) {
-        for (PaymentsFilterType o: PaymentsFilterType.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<PaymentsFilterTypeEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        PaymentsFilterType other = (PaymentsFilterType) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "PaymentsFilterType [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static PaymentsFilterType[] values() {
+        synchronized (PaymentsFilterType.class) {
+            return values.values().toArray(new PaymentsFilterType[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, PaymentsFilterType> createValuesMap() {
+        Map<String, PaymentsFilterType> map = new LinkedHashMap<>();
+        map.put("accounts_receivable", ACCOUNTS_RECEIVABLE);
+        map.put("accounts_payable", ACCOUNTS_PAYABLE);
+        map.put("accounts_receivable_credit", ACCOUNTS_RECEIVABLE_CREDIT);
+        map.put("accounts_payable_credit", ACCOUNTS_PAYABLE_CREDIT);
+        map.put("accounts_receivable_overpayment", ACCOUNTS_RECEIVABLE_OVERPAYMENT);
+        map.put("accounts_payable_overpayment", ACCOUNTS_PAYABLE_OVERPAYMENT);
+        map.put("accounts_receivable_prepayment", ACCOUNTS_RECEIVABLE_PREPAYMENT);
+        map.put("accounts_payable_prepayment", ACCOUNTS_PAYABLE_PREPAYMENT);
+        return map;
+    }
+
+    private static final Map<String, PaymentsFilterTypeEnum> createEnumsMap() {
+        Map<String, PaymentsFilterTypeEnum> map = new HashMap<>();
+        map.put("accounts_receivable", PaymentsFilterTypeEnum.ACCOUNTS_RECEIVABLE);
+        map.put("accounts_payable", PaymentsFilterTypeEnum.ACCOUNTS_PAYABLE);
+        map.put("accounts_receivable_credit", PaymentsFilterTypeEnum.ACCOUNTS_RECEIVABLE_CREDIT);
+        map.put("accounts_payable_credit", PaymentsFilterTypeEnum.ACCOUNTS_PAYABLE_CREDIT);
+        map.put("accounts_receivable_overpayment", PaymentsFilterTypeEnum.ACCOUNTS_RECEIVABLE_OVERPAYMENT);
+        map.put("accounts_payable_overpayment", PaymentsFilterTypeEnum.ACCOUNTS_PAYABLE_OVERPAYMENT);
+        map.put("accounts_receivable_prepayment", PaymentsFilterTypeEnum.ACCOUNTS_RECEIVABLE_PREPAYMENT);
+        map.put("accounts_payable_prepayment", PaymentsFilterTypeEnum.ACCOUNTS_PAYABLE_PREPAYMENT);
+        return map;
+    }
+    
+    
+    public enum PaymentsFilterTypeEnum {
+
+        ACCOUNTS_RECEIVABLE("accounts_receivable"),
+        ACCOUNTS_PAYABLE("accounts_payable"),
+        ACCOUNTS_RECEIVABLE_CREDIT("accounts_receivable_credit"),
+        ACCOUNTS_PAYABLE_CREDIT("accounts_payable_credit"),
+        ACCOUNTS_RECEIVABLE_OVERPAYMENT("accounts_receivable_overpayment"),
+        ACCOUNTS_PAYABLE_OVERPAYMENT("accounts_payable_overpayment"),
+        ACCOUNTS_RECEIVABLE_PREPAYMENT("accounts_receivable_prepayment"),
+        ACCOUNTS_PAYABLE_PREPAYMENT("accounts_payable_prepayment"),;
+
+        private final String value;
+
+        private PaymentsFilterTypeEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

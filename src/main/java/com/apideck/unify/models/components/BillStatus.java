@@ -3,45 +3,158 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * BillStatus
  * 
  * <p>Invoice status
  */
-public enum BillStatus {
-    DRAFT("draft"),
-    SUBMITTED("submitted"),
-    AUTHORISED("authorised"),
-    PARTIALLY_PAID("partially_paid"),
-    PAID("paid"),
-    VOID("void"),
-    CREDIT("credit"),
-    DELETED("deleted"),
-    POSTED("posted");
+public class BillStatus {
 
-    @JsonValue
+    public static final BillStatus DRAFT = new BillStatus("draft");
+    public static final BillStatus SUBMITTED = new BillStatus("submitted");
+    public static final BillStatus AUTHORISED = new BillStatus("authorised");
+    public static final BillStatus PARTIALLY_PAID = new BillStatus("partially_paid");
+    public static final BillStatus PAID = new BillStatus("paid");
+    public static final BillStatus VOID = new BillStatus("void");
+    public static final BillStatus CREDIT = new BillStatus("credit");
+    public static final BillStatus DELETED = new BillStatus("deleted");
+    public static final BillStatus POSTED = new BillStatus("posted");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, BillStatus> values = createValuesMap();
+    private static final Map<String, BillStatusEnum> enums = createEnumsMap();
+
     private final String value;
 
-    BillStatus(String value) {
+    private BillStatus(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a BillStatus with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as BillStatus
+     */ 
+    @JsonCreator
+    public static BillStatus of(String value) {
+        synchronized (BillStatus.class) {
+            return values.computeIfAbsent(value, v -> new BillStatus(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<BillStatus> fromValue(String value) {
-        for (BillStatus o: BillStatus.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<BillStatusEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        BillStatus other = (BillStatus) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "BillStatus [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static BillStatus[] values() {
+        synchronized (BillStatus.class) {
+            return values.values().toArray(new BillStatus[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, BillStatus> createValuesMap() {
+        Map<String, BillStatus> map = new LinkedHashMap<>();
+        map.put("draft", DRAFT);
+        map.put("submitted", SUBMITTED);
+        map.put("authorised", AUTHORISED);
+        map.put("partially_paid", PARTIALLY_PAID);
+        map.put("paid", PAID);
+        map.put("void", VOID);
+        map.put("credit", CREDIT);
+        map.put("deleted", DELETED);
+        map.put("posted", POSTED);
+        return map;
+    }
+
+    private static final Map<String, BillStatusEnum> createEnumsMap() {
+        Map<String, BillStatusEnum> map = new HashMap<>();
+        map.put("draft", BillStatusEnum.DRAFT);
+        map.put("submitted", BillStatusEnum.SUBMITTED);
+        map.put("authorised", BillStatusEnum.AUTHORISED);
+        map.put("partially_paid", BillStatusEnum.PARTIALLY_PAID);
+        map.put("paid", BillStatusEnum.PAID);
+        map.put("void", BillStatusEnum.VOID);
+        map.put("credit", BillStatusEnum.CREDIT);
+        map.put("deleted", BillStatusEnum.DELETED);
+        map.put("posted", BillStatusEnum.POSTED);
+        return map;
+    }
+    
+    
+    public enum BillStatusEnum {
+
+        DRAFT("draft"),
+        SUBMITTED("submitted"),
+        AUTHORISED("authorised"),
+        PARTIALLY_PAID("partially_paid"),
+        PAID("paid"),
+        VOID("void"),
+        CREDIT("credit"),
+        DELETED("deleted"),
+        POSTED("posted"),;
+
+        private final String value;
+
+        private BillStatusEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

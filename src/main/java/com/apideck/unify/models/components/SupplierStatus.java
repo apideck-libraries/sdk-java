@@ -3,41 +3,142 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * SupplierStatus
  * 
  * <p>Supplier status
  */
-public enum SupplierStatus {
-    ACTIVE("active"),
-    INACTIVE("inactive"),
-    ARCHIVED("archived"),
-    GDPR_ERASURE_REQUEST("gdpr-erasure-request"),
-    UNKNOWN("unknown");
+public class SupplierStatus {
 
-    @JsonValue
+    public static final SupplierStatus ACTIVE = new SupplierStatus("active");
+    public static final SupplierStatus INACTIVE = new SupplierStatus("inactive");
+    public static final SupplierStatus ARCHIVED = new SupplierStatus("archived");
+    public static final SupplierStatus GDPR_ERASURE_REQUEST = new SupplierStatus("gdpr-erasure-request");
+    public static final SupplierStatus UNKNOWN = new SupplierStatus("unknown");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, SupplierStatus> values = createValuesMap();
+    private static final Map<String, SupplierStatusEnum> enums = createEnumsMap();
+
     private final String value;
 
-    SupplierStatus(String value) {
+    private SupplierStatus(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a SupplierStatus with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as SupplierStatus
+     */ 
+    @JsonCreator
+    public static SupplierStatus of(String value) {
+        synchronized (SupplierStatus.class) {
+            return values.computeIfAbsent(value, v -> new SupplierStatus(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<SupplierStatus> fromValue(String value) {
-        for (SupplierStatus o: SupplierStatus.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<SupplierStatusEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        SupplierStatus other = (SupplierStatus) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "SupplierStatus [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static SupplierStatus[] values() {
+        synchronized (SupplierStatus.class) {
+            return values.values().toArray(new SupplierStatus[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, SupplierStatus> createValuesMap() {
+        Map<String, SupplierStatus> map = new LinkedHashMap<>();
+        map.put("active", ACTIVE);
+        map.put("inactive", INACTIVE);
+        map.put("archived", ARCHIVED);
+        map.put("gdpr-erasure-request", GDPR_ERASURE_REQUEST);
+        map.put("unknown", UNKNOWN);
+        return map;
+    }
+
+    private static final Map<String, SupplierStatusEnum> createEnumsMap() {
+        Map<String, SupplierStatusEnum> map = new HashMap<>();
+        map.put("active", SupplierStatusEnum.ACTIVE);
+        map.put("inactive", SupplierStatusEnum.INACTIVE);
+        map.put("archived", SupplierStatusEnum.ARCHIVED);
+        map.put("gdpr-erasure-request", SupplierStatusEnum.GDPR_ERASURE_REQUEST);
+        map.put("unknown", SupplierStatusEnum.UNKNOWN);
+        return map;
+    }
+    
+    
+    public enum SupplierStatusEnum {
+
+        ACTIVE("active"),
+        INACTIVE("inactive"),
+        ARCHIVED("archived"),
+        GDPR_ERASURE_REQUEST("gdpr-erasure-request"),
+        UNKNOWN("unknown"),;
+
+        private final String value;
+
+        private SupplierStatusEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

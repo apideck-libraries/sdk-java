@@ -3,44 +3,154 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * QuoteStatus
  * 
  * <p>Quote status
  */
-public enum QuoteStatus {
-    DRAFT("draft"),
-    SENT("sent"),
-    ACCEPTED("accepted"),
-    REJECTED("rejected"),
-    EXPIRED("expired"),
-    CONVERTED("converted"),
-    VOID("void"),
-    DELETED("deleted");
+public class QuoteStatus {
 
-    @JsonValue
+    public static final QuoteStatus DRAFT = new QuoteStatus("draft");
+    public static final QuoteStatus SENT = new QuoteStatus("sent");
+    public static final QuoteStatus ACCEPTED = new QuoteStatus("accepted");
+    public static final QuoteStatus REJECTED = new QuoteStatus("rejected");
+    public static final QuoteStatus EXPIRED = new QuoteStatus("expired");
+    public static final QuoteStatus CONVERTED = new QuoteStatus("converted");
+    public static final QuoteStatus VOID = new QuoteStatus("void");
+    public static final QuoteStatus DELETED = new QuoteStatus("deleted");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, QuoteStatus> values = createValuesMap();
+    private static final Map<String, QuoteStatusEnum> enums = createEnumsMap();
+
     private final String value;
 
-    QuoteStatus(String value) {
+    private QuoteStatus(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a QuoteStatus with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as QuoteStatus
+     */ 
+    @JsonCreator
+    public static QuoteStatus of(String value) {
+        synchronized (QuoteStatus.class) {
+            return values.computeIfAbsent(value, v -> new QuoteStatus(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<QuoteStatus> fromValue(String value) {
-        for (QuoteStatus o: QuoteStatus.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<QuoteStatusEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        QuoteStatus other = (QuoteStatus) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "QuoteStatus [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static QuoteStatus[] values() {
+        synchronized (QuoteStatus.class) {
+            return values.values().toArray(new QuoteStatus[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, QuoteStatus> createValuesMap() {
+        Map<String, QuoteStatus> map = new LinkedHashMap<>();
+        map.put("draft", DRAFT);
+        map.put("sent", SENT);
+        map.put("accepted", ACCEPTED);
+        map.put("rejected", REJECTED);
+        map.put("expired", EXPIRED);
+        map.put("converted", CONVERTED);
+        map.put("void", VOID);
+        map.put("deleted", DELETED);
+        return map;
+    }
+
+    private static final Map<String, QuoteStatusEnum> createEnumsMap() {
+        Map<String, QuoteStatusEnum> map = new HashMap<>();
+        map.put("draft", QuoteStatusEnum.DRAFT);
+        map.put("sent", QuoteStatusEnum.SENT);
+        map.put("accepted", QuoteStatusEnum.ACCEPTED);
+        map.put("rejected", QuoteStatusEnum.REJECTED);
+        map.put("expired", QuoteStatusEnum.EXPIRED);
+        map.put("converted", QuoteStatusEnum.CONVERTED);
+        map.put("void", QuoteStatusEnum.VOID);
+        map.put("deleted", QuoteStatusEnum.DELETED);
+        return map;
+    }
+    
+    
+    public enum QuoteStatusEnum {
+
+        DRAFT("draft"),
+        SENT("sent"),
+        ACCEPTED("accepted"),
+        REJECTED("rejected"),
+        EXPIRED("expired"),
+        CONVERTED("converted"),
+        VOID("void"),
+        DELETED("deleted"),;
+
+        private final String value;
+
+        private QuoteStatusEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

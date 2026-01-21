@@ -3,48 +3,170 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * PhoneNumberType
  * 
  * <p>The type of phone number
  */
-public enum PhoneNumberType {
-    PRIMARY("primary"),
-    SECONDARY("secondary"),
-    HOME("home"),
-    WORK("work"),
-    OFFICE("office"),
-    MOBILE("mobile"),
-    ASSISTANT("assistant"),
-    FAX("fax"),
-    DIRECT_DIAL_IN("direct-dial-in"),
-    PERSONAL("personal"),
-    BILLING("billing"),
-    OTHER("other");
+public class PhoneNumberType {
 
-    @JsonValue
+    public static final PhoneNumberType PRIMARY = new PhoneNumberType("primary");
+    public static final PhoneNumberType SECONDARY = new PhoneNumberType("secondary");
+    public static final PhoneNumberType HOME = new PhoneNumberType("home");
+    public static final PhoneNumberType WORK = new PhoneNumberType("work");
+    public static final PhoneNumberType OFFICE = new PhoneNumberType("office");
+    public static final PhoneNumberType MOBILE = new PhoneNumberType("mobile");
+    public static final PhoneNumberType ASSISTANT = new PhoneNumberType("assistant");
+    public static final PhoneNumberType FAX = new PhoneNumberType("fax");
+    public static final PhoneNumberType DIRECT_DIAL_IN = new PhoneNumberType("direct-dial-in");
+    public static final PhoneNumberType PERSONAL = new PhoneNumberType("personal");
+    public static final PhoneNumberType BILLING = new PhoneNumberType("billing");
+    public static final PhoneNumberType OTHER = new PhoneNumberType("other");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, PhoneNumberType> values = createValuesMap();
+    private static final Map<String, PhoneNumberTypeEnum> enums = createEnumsMap();
+
     private final String value;
 
-    PhoneNumberType(String value) {
+    private PhoneNumberType(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a PhoneNumberType with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as PhoneNumberType
+     */ 
+    @JsonCreator
+    public static PhoneNumberType of(String value) {
+        synchronized (PhoneNumberType.class) {
+            return values.computeIfAbsent(value, v -> new PhoneNumberType(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<PhoneNumberType> fromValue(String value) {
-        for (PhoneNumberType o: PhoneNumberType.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<PhoneNumberTypeEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        PhoneNumberType other = (PhoneNumberType) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "PhoneNumberType [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static PhoneNumberType[] values() {
+        synchronized (PhoneNumberType.class) {
+            return values.values().toArray(new PhoneNumberType[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, PhoneNumberType> createValuesMap() {
+        Map<String, PhoneNumberType> map = new LinkedHashMap<>();
+        map.put("primary", PRIMARY);
+        map.put("secondary", SECONDARY);
+        map.put("home", HOME);
+        map.put("work", WORK);
+        map.put("office", OFFICE);
+        map.put("mobile", MOBILE);
+        map.put("assistant", ASSISTANT);
+        map.put("fax", FAX);
+        map.put("direct-dial-in", DIRECT_DIAL_IN);
+        map.put("personal", PERSONAL);
+        map.put("billing", BILLING);
+        map.put("other", OTHER);
+        return map;
+    }
+
+    private static final Map<String, PhoneNumberTypeEnum> createEnumsMap() {
+        Map<String, PhoneNumberTypeEnum> map = new HashMap<>();
+        map.put("primary", PhoneNumberTypeEnum.PRIMARY);
+        map.put("secondary", PhoneNumberTypeEnum.SECONDARY);
+        map.put("home", PhoneNumberTypeEnum.HOME);
+        map.put("work", PhoneNumberTypeEnum.WORK);
+        map.put("office", PhoneNumberTypeEnum.OFFICE);
+        map.put("mobile", PhoneNumberTypeEnum.MOBILE);
+        map.put("assistant", PhoneNumberTypeEnum.ASSISTANT);
+        map.put("fax", PhoneNumberTypeEnum.FAX);
+        map.put("direct-dial-in", PhoneNumberTypeEnum.DIRECT_DIAL_IN);
+        map.put("personal", PhoneNumberTypeEnum.PERSONAL);
+        map.put("billing", PhoneNumberTypeEnum.BILLING);
+        map.put("other", PhoneNumberTypeEnum.OTHER);
+        return map;
+    }
+    
+    
+    public enum PhoneNumberTypeEnum {
+
+        PRIMARY("primary"),
+        SECONDARY("secondary"),
+        HOME("home"),
+        WORK("work"),
+        OFFICE("office"),
+        MOBILE("mobile"),
+        ASSISTANT("assistant"),
+        FAX("fax"),
+        DIRECT_DIAL_IN("direct-dial-in"),
+        PERSONAL("personal"),
+        BILLING("billing"),
+        OTHER("other"),;
+
+        private final String value;
+
+        private PhoneNumberTypeEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

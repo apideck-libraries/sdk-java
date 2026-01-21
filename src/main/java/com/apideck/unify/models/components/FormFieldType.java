@@ -3,45 +3,173 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-public enum FormFieldType {
-    TEXT("text"),
-    CHECKBOX("checkbox"),
-    TEL("tel"),
-    EMAIL("email"),
-    URL("url"),
-    TEXTAREA("textarea"),
-    SELECT("select"),
-    FILTERED_SELECT("filtered-select"),
-    MULTI_SELECT("multi-select"),
-    DATETIME("datetime"),
-    DATE("date"),
-    TIME("time"),
-    NUMBER("number"),
-    PASSWORD("password");
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
+public class FormFieldType {
 
-    @JsonValue
+    public static final FormFieldType TEXT = new FormFieldType("text");
+    public static final FormFieldType CHECKBOX = new FormFieldType("checkbox");
+    public static final FormFieldType TEL = new FormFieldType("tel");
+    public static final FormFieldType EMAIL = new FormFieldType("email");
+    public static final FormFieldType URL = new FormFieldType("url");
+    public static final FormFieldType TEXTAREA = new FormFieldType("textarea");
+    public static final FormFieldType SELECT = new FormFieldType("select");
+    public static final FormFieldType FILTERED_SELECT = new FormFieldType("filtered-select");
+    public static final FormFieldType MULTI_SELECT = new FormFieldType("multi-select");
+    public static final FormFieldType DATETIME = new FormFieldType("datetime");
+    public static final FormFieldType DATE = new FormFieldType("date");
+    public static final FormFieldType TIME = new FormFieldType("time");
+    public static final FormFieldType NUMBER = new FormFieldType("number");
+    public static final FormFieldType PASSWORD = new FormFieldType("password");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, FormFieldType> values = createValuesMap();
+    private static final Map<String, FormFieldTypeEnum> enums = createEnumsMap();
+
     private final String value;
 
-    FormFieldType(String value) {
+    private FormFieldType(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a FormFieldType with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as FormFieldType
+     */ 
+    @JsonCreator
+    public static FormFieldType of(String value) {
+        synchronized (FormFieldType.class) {
+            return values.computeIfAbsent(value, v -> new FormFieldType(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<FormFieldType> fromValue(String value) {
-        for (FormFieldType o: FormFieldType.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<FormFieldTypeEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        FormFieldType other = (FormFieldType) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "FormFieldType [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static FormFieldType[] values() {
+        synchronized (FormFieldType.class) {
+            return values.values().toArray(new FormFieldType[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, FormFieldType> createValuesMap() {
+        Map<String, FormFieldType> map = new LinkedHashMap<>();
+        map.put("text", TEXT);
+        map.put("checkbox", CHECKBOX);
+        map.put("tel", TEL);
+        map.put("email", EMAIL);
+        map.put("url", URL);
+        map.put("textarea", TEXTAREA);
+        map.put("select", SELECT);
+        map.put("filtered-select", FILTERED_SELECT);
+        map.put("multi-select", MULTI_SELECT);
+        map.put("datetime", DATETIME);
+        map.put("date", DATE);
+        map.put("time", TIME);
+        map.put("number", NUMBER);
+        map.put("password", PASSWORD);
+        return map;
+    }
+
+    private static final Map<String, FormFieldTypeEnum> createEnumsMap() {
+        Map<String, FormFieldTypeEnum> map = new HashMap<>();
+        map.put("text", FormFieldTypeEnum.TEXT);
+        map.put("checkbox", FormFieldTypeEnum.CHECKBOX);
+        map.put("tel", FormFieldTypeEnum.TEL);
+        map.put("email", FormFieldTypeEnum.EMAIL);
+        map.put("url", FormFieldTypeEnum.URL);
+        map.put("textarea", FormFieldTypeEnum.TEXTAREA);
+        map.put("select", FormFieldTypeEnum.SELECT);
+        map.put("filtered-select", FormFieldTypeEnum.FILTERED_SELECT);
+        map.put("multi-select", FormFieldTypeEnum.MULTI_SELECT);
+        map.put("datetime", FormFieldTypeEnum.DATETIME);
+        map.put("date", FormFieldTypeEnum.DATE);
+        map.put("time", FormFieldTypeEnum.TIME);
+        map.put("number", FormFieldTypeEnum.NUMBER);
+        map.put("password", FormFieldTypeEnum.PASSWORD);
+        return map;
+    }
+    
+    
+    public enum FormFieldTypeEnum {
+
+        TEXT("text"),
+        CHECKBOX("checkbox"),
+        TEL("tel"),
+        EMAIL("email"),
+        URL("url"),
+        TEXTAREA("textarea"),
+        SELECT("select"),
+        FILTERED_SELECT("filtered-select"),
+        MULTI_SELECT("multi-select"),
+        DATETIME("datetime"),
+        DATE("date"),
+        TIME("time"),
+        NUMBER("number"),
+        PASSWORD("password"),;
+
+        private final String value;
+
+        private FormFieldTypeEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

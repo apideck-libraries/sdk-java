@@ -42,7 +42,7 @@ java:
   enableSlf4jLogging: false
   enableStreamingUploads: false
   flattenGlobalSecurity: true
-  forwardCompatibleEnumsByDefault: false
+  forwardCompatibleEnumsByDefault: true
   generateOptionalUnionAccessors: false
   generateSpringBootStarter: true
   githubURL: github.com/apideck-libraries/sdk-java

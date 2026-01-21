@@ -3,45 +3,173 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-public enum ConnectorSettingType {
-    TEXT("text"),
-    CHECKBOX("checkbox"),
-    TEL("tel"),
-    EMAIL("email"),
-    URL("url"),
-    TEXTAREA("textarea"),
-    SELECT("select"),
-    FILTERED_SELECT("filtered-select"),
-    MULTI_SELECT("multi-select"),
-    DATETIME("datetime"),
-    DATE("date"),
-    TIME("time"),
-    NUMBER("number"),
-    PASSWORD("password");
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
+public class ConnectorSettingType {
 
-    @JsonValue
+    public static final ConnectorSettingType TEXT = new ConnectorSettingType("text");
+    public static final ConnectorSettingType CHECKBOX = new ConnectorSettingType("checkbox");
+    public static final ConnectorSettingType TEL = new ConnectorSettingType("tel");
+    public static final ConnectorSettingType EMAIL = new ConnectorSettingType("email");
+    public static final ConnectorSettingType URL = new ConnectorSettingType("url");
+    public static final ConnectorSettingType TEXTAREA = new ConnectorSettingType("textarea");
+    public static final ConnectorSettingType SELECT = new ConnectorSettingType("select");
+    public static final ConnectorSettingType FILTERED_SELECT = new ConnectorSettingType("filtered-select");
+    public static final ConnectorSettingType MULTI_SELECT = new ConnectorSettingType("multi-select");
+    public static final ConnectorSettingType DATETIME = new ConnectorSettingType("datetime");
+    public static final ConnectorSettingType DATE = new ConnectorSettingType("date");
+    public static final ConnectorSettingType TIME = new ConnectorSettingType("time");
+    public static final ConnectorSettingType NUMBER = new ConnectorSettingType("number");
+    public static final ConnectorSettingType PASSWORD = new ConnectorSettingType("password");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, ConnectorSettingType> values = createValuesMap();
+    private static final Map<String, ConnectorSettingTypeEnum> enums = createEnumsMap();
+
     private final String value;
 
-    ConnectorSettingType(String value) {
+    private ConnectorSettingType(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a ConnectorSettingType with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as ConnectorSettingType
+     */ 
+    @JsonCreator
+    public static ConnectorSettingType of(String value) {
+        synchronized (ConnectorSettingType.class) {
+            return values.computeIfAbsent(value, v -> new ConnectorSettingType(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<ConnectorSettingType> fromValue(String value) {
-        for (ConnectorSettingType o: ConnectorSettingType.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<ConnectorSettingTypeEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        ConnectorSettingType other = (ConnectorSettingType) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "ConnectorSettingType [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static ConnectorSettingType[] values() {
+        synchronized (ConnectorSettingType.class) {
+            return values.values().toArray(new ConnectorSettingType[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, ConnectorSettingType> createValuesMap() {
+        Map<String, ConnectorSettingType> map = new LinkedHashMap<>();
+        map.put("text", TEXT);
+        map.put("checkbox", CHECKBOX);
+        map.put("tel", TEL);
+        map.put("email", EMAIL);
+        map.put("url", URL);
+        map.put("textarea", TEXTAREA);
+        map.put("select", SELECT);
+        map.put("filtered-select", FILTERED_SELECT);
+        map.put("multi-select", MULTI_SELECT);
+        map.put("datetime", DATETIME);
+        map.put("date", DATE);
+        map.put("time", TIME);
+        map.put("number", NUMBER);
+        map.put("password", PASSWORD);
+        return map;
+    }
+
+    private static final Map<String, ConnectorSettingTypeEnum> createEnumsMap() {
+        Map<String, ConnectorSettingTypeEnum> map = new HashMap<>();
+        map.put("text", ConnectorSettingTypeEnum.TEXT);
+        map.put("checkbox", ConnectorSettingTypeEnum.CHECKBOX);
+        map.put("tel", ConnectorSettingTypeEnum.TEL);
+        map.put("email", ConnectorSettingTypeEnum.EMAIL);
+        map.put("url", ConnectorSettingTypeEnum.URL);
+        map.put("textarea", ConnectorSettingTypeEnum.TEXTAREA);
+        map.put("select", ConnectorSettingTypeEnum.SELECT);
+        map.put("filtered-select", ConnectorSettingTypeEnum.FILTERED_SELECT);
+        map.put("multi-select", ConnectorSettingTypeEnum.MULTI_SELECT);
+        map.put("datetime", ConnectorSettingTypeEnum.DATETIME);
+        map.put("date", ConnectorSettingTypeEnum.DATE);
+        map.put("time", ConnectorSettingTypeEnum.TIME);
+        map.put("number", ConnectorSettingTypeEnum.NUMBER);
+        map.put("password", ConnectorSettingTypeEnum.PASSWORD);
+        return map;
+    }
+    
+    
+    public enum ConnectorSettingTypeEnum {
+
+        TEXT("text"),
+        CHECKBOX("checkbox"),
+        TEL("tel"),
+        EMAIL("email"),
+        URL("url"),
+        TEXTAREA("textarea"),
+        SELECT("select"),
+        FILTERED_SELECT("filtered-select"),
+        MULTI_SELECT("multi-select"),
+        DATETIME("datetime"),
+        DATE("date"),
+        TIME("time"),
+        NUMBER("number"),
+        PASSWORD("password"),;
+
+        private final String value;
+
+        private ConnectorSettingTypeEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

@@ -3,39 +3,134 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * AccountStatus
  * 
  * <p>The status of the account.
  */
-public enum AccountStatus {
-    ACTIVE("active"),
-    INACTIVE("inactive"),
-    ARCHIVED("archived");
+public class AccountStatus {
 
-    @JsonValue
+    public static final AccountStatus ACTIVE = new AccountStatus("active");
+    public static final AccountStatus INACTIVE = new AccountStatus("inactive");
+    public static final AccountStatus ARCHIVED = new AccountStatus("archived");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, AccountStatus> values = createValuesMap();
+    private static final Map<String, AccountStatusEnum> enums = createEnumsMap();
+
     private final String value;
 
-    AccountStatus(String value) {
+    private AccountStatus(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a AccountStatus with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as AccountStatus
+     */ 
+    @JsonCreator
+    public static AccountStatus of(String value) {
+        synchronized (AccountStatus.class) {
+            return values.computeIfAbsent(value, v -> new AccountStatus(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<AccountStatus> fromValue(String value) {
-        for (AccountStatus o: AccountStatus.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<AccountStatusEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        AccountStatus other = (AccountStatus) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "AccountStatus [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static AccountStatus[] values() {
+        synchronized (AccountStatus.class) {
+            return values.values().toArray(new AccountStatus[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, AccountStatus> createValuesMap() {
+        Map<String, AccountStatus> map = new LinkedHashMap<>();
+        map.put("active", ACTIVE);
+        map.put("inactive", INACTIVE);
+        map.put("archived", ARCHIVED);
+        return map;
+    }
+
+    private static final Map<String, AccountStatusEnum> createEnumsMap() {
+        Map<String, AccountStatusEnum> map = new HashMap<>();
+        map.put("active", AccountStatusEnum.ACTIVE);
+        map.put("inactive", AccountStatusEnum.INACTIVE);
+        map.put("archived", AccountStatusEnum.ARCHIVED);
+        return map;
+    }
+    
+    
+    public enum AccountStatusEnum {
+
+        ACTIVE("active"),
+        INACTIVE("inactive"),
+        ARCHIVED("archived"),;
+
+        private final String value;
+
+        private AccountStatusEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

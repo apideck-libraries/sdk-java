@@ -3,44 +3,154 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * Type
  * 
  * <p>The type of address.
  */
-public enum Type {
-    PRIMARY("primary"),
-    SECONDARY("secondary"),
-    HOME("home"),
-    OFFICE("office"),
-    SHIPPING("shipping"),
-    BILLING("billing"),
-    WORK("work"),
-    OTHER("other");
+public class Type {
 
-    @JsonValue
+    public static final Type PRIMARY = new Type("primary");
+    public static final Type SECONDARY = new Type("secondary");
+    public static final Type HOME = new Type("home");
+    public static final Type OFFICE = new Type("office");
+    public static final Type SHIPPING = new Type("shipping");
+    public static final Type BILLING = new Type("billing");
+    public static final Type WORK = new Type("work");
+    public static final Type OTHER = new Type("other");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, Type> values = createValuesMap();
+    private static final Map<String, TypeEnum> enums = createEnumsMap();
+
     private final String value;
 
-    Type(String value) {
+    private Type(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a Type with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as Type
+     */ 
+    @JsonCreator
+    public static Type of(String value) {
+        synchronized (Type.class) {
+            return values.computeIfAbsent(value, v -> new Type(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<Type> fromValue(String value) {
-        for (Type o: Type.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<TypeEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Type other = (Type) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "Type [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static Type[] values() {
+        synchronized (Type.class) {
+            return values.values().toArray(new Type[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, Type> createValuesMap() {
+        Map<String, Type> map = new LinkedHashMap<>();
+        map.put("primary", PRIMARY);
+        map.put("secondary", SECONDARY);
+        map.put("home", HOME);
+        map.put("office", OFFICE);
+        map.put("shipping", SHIPPING);
+        map.put("billing", BILLING);
+        map.put("work", WORK);
+        map.put("other", OTHER);
+        return map;
+    }
+
+    private static final Map<String, TypeEnum> createEnumsMap() {
+        Map<String, TypeEnum> map = new HashMap<>();
+        map.put("primary", TypeEnum.PRIMARY);
+        map.put("secondary", TypeEnum.SECONDARY);
+        map.put("home", TypeEnum.HOME);
+        map.put("office", TypeEnum.OFFICE);
+        map.put("shipping", TypeEnum.SHIPPING);
+        map.put("billing", TypeEnum.BILLING);
+        map.put("work", TypeEnum.WORK);
+        map.put("other", TypeEnum.OTHER);
+        return map;
+    }
+    
+    
+    public enum TypeEnum {
+
+        PRIMARY("primary"),
+        SECONDARY("secondary"),
+        HOME("home"),
+        OFFICE("office"),
+        SHIPPING("shipping"),
+        BILLING("billing"),
+        WORK("work"),
+        OTHER("other"),;
+
+        private final String value;
+
+        private TypeEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

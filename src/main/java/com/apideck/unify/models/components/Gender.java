@@ -3,41 +3,142 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * Gender
  * 
  * <p>The gender represents the gender identity of a person.
  */
-public enum Gender {
-    MALE("male"),
-    FEMALE("female"),
-    UNISEX("unisex"),
-    OTHER("other"),
-    NOT_SPECIFIED("not_specified");
+public class Gender {
 
-    @JsonValue
+    public static final Gender MALE = new Gender("male");
+    public static final Gender FEMALE = new Gender("female");
+    public static final Gender UNISEX = new Gender("unisex");
+    public static final Gender OTHER = new Gender("other");
+    public static final Gender NOT_SPECIFIED = new Gender("not_specified");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, Gender> values = createValuesMap();
+    private static final Map<String, GenderEnum> enums = createEnumsMap();
+
     private final String value;
 
-    Gender(String value) {
+    private Gender(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a Gender with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as Gender
+     */ 
+    @JsonCreator
+    public static Gender of(String value) {
+        synchronized (Gender.class) {
+            return values.computeIfAbsent(value, v -> new Gender(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<Gender> fromValue(String value) {
-        for (Gender o: Gender.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<GenderEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Gender other = (Gender) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "Gender [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static Gender[] values() {
+        synchronized (Gender.class) {
+            return values.values().toArray(new Gender[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, Gender> createValuesMap() {
+        Map<String, Gender> map = new LinkedHashMap<>();
+        map.put("male", MALE);
+        map.put("female", FEMALE);
+        map.put("unisex", UNISEX);
+        map.put("other", OTHER);
+        map.put("not_specified", NOT_SPECIFIED);
+        return map;
+    }
+
+    private static final Map<String, GenderEnum> createEnumsMap() {
+        Map<String, GenderEnum> map = new HashMap<>();
+        map.put("male", GenderEnum.MALE);
+        map.put("female", GenderEnum.FEMALE);
+        map.put("unisex", GenderEnum.UNISEX);
+        map.put("other", GenderEnum.OTHER);
+        map.put("not_specified", GenderEnum.NOT_SPECIFIED);
+        return map;
+    }
+    
+    
+    public enum GenderEnum {
+
+        MALE("male"),
+        FEMALE("female"),
+        UNISEX("unisex"),
+        OTHER("other"),
+        NOT_SPECIFIED("not_specified"),;
+
+        private final String value;
+
+        private GenderEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

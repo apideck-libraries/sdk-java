@@ -3,39 +3,134 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * StatementStatus
  * 
  * <p>The current status of the bank feed statement.
  */
-public enum StatementStatus {
-    PENDING("pending"),
-    REJECTED("rejected"),
-    SUCCESS("success");
+public class StatementStatus {
 
-    @JsonValue
+    public static final StatementStatus PENDING = new StatementStatus("pending");
+    public static final StatementStatus REJECTED = new StatementStatus("rejected");
+    public static final StatementStatus SUCCESS = new StatementStatus("success");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, StatementStatus> values = createValuesMap();
+    private static final Map<String, StatementStatusEnum> enums = createEnumsMap();
+
     private final String value;
 
-    StatementStatus(String value) {
+    private StatementStatus(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a StatementStatus with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as StatementStatus
+     */ 
+    @JsonCreator
+    public static StatementStatus of(String value) {
+        synchronized (StatementStatus.class) {
+            return values.computeIfAbsent(value, v -> new StatementStatus(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<StatementStatus> fromValue(String value) {
-        for (StatementStatus o: StatementStatus.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<StatementStatusEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        StatementStatus other = (StatementStatus) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "StatementStatus [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static StatementStatus[] values() {
+        synchronized (StatementStatus.class) {
+            return values.values().toArray(new StatementStatus[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, StatementStatus> createValuesMap() {
+        Map<String, StatementStatus> map = new LinkedHashMap<>();
+        map.put("pending", PENDING);
+        map.put("rejected", REJECTED);
+        map.put("success", SUCCESS);
+        return map;
+    }
+
+    private static final Map<String, StatementStatusEnum> createEnumsMap() {
+        Map<String, StatementStatusEnum> map = new HashMap<>();
+        map.put("pending", StatementStatusEnum.PENDING);
+        map.put("rejected", StatementStatusEnum.REJECTED);
+        map.put("success", StatementStatusEnum.SUCCESS);
+        return map;
+    }
+    
+    
+    public enum StatementStatusEnum {
+
+        PENDING("pending"),
+        REJECTED("rejected"),
+        SUCCESS("success"),;
+
+        private final String value;
+
+        private StatementStatusEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

@@ -3,33 +3,125 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-public enum Target {
-    CUSTOM_FIELDS("custom_fields"),
-    RESOURCE("resource");
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
+public class Target {
 
-    @JsonValue
+    public static final Target CUSTOM_FIELDS = new Target("custom_fields");
+    public static final Target RESOURCE = new Target("resource");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, Target> values = createValuesMap();
+    private static final Map<String, TargetEnum> enums = createEnumsMap();
+
     private final String value;
 
-    Target(String value) {
+    private Target(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a Target with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as Target
+     */ 
+    @JsonCreator
+    public static Target of(String value) {
+        synchronized (Target.class) {
+            return values.computeIfAbsent(value, v -> new Target(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<Target> fromValue(String value) {
-        for (Target o: Target.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<TargetEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Target other = (Target) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "Target [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static Target[] values() {
+        synchronized (Target.class) {
+            return values.values().toArray(new Target[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, Target> createValuesMap() {
+        Map<String, Target> map = new LinkedHashMap<>();
+        map.put("custom_fields", CUSTOM_FIELDS);
+        map.put("resource", RESOURCE);
+        return map;
+    }
+
+    private static final Map<String, TargetEnum> createEnumsMap() {
+        Map<String, TargetEnum> map = new HashMap<>();
+        map.put("custom_fields", TargetEnum.CUSTOM_FIELDS);
+        map.put("resource", TargetEnum.RESOURCE);
+        return map;
+    }
+    
+    
+    public enum TargetEnum {
+
+        CUSTOM_FIELDS("custom_fields"),
+        RESOURCE("resource"),;
+
+        private final String value;
+
+        private TargetEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

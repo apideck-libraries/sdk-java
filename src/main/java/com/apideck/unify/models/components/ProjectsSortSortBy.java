@@ -3,44 +3,154 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * ProjectsSortSortBy
  * 
  * <p>The field to sort by
  */
-public enum ProjectsSortSortBy {
-    NAME("name"),
-    STATUS("status"),
-    START_DATE("start_date"),
-    END_DATE("end_date"),
-    BUDGET_AMOUNT("budget_amount"),
-    ACTUAL_AMOUNT("actual_amount"),
-    CREATED_AT("created_at"),
-    UPDATED_AT("updated_at");
+public class ProjectsSortSortBy {
 
-    @JsonValue
+    public static final ProjectsSortSortBy NAME = new ProjectsSortSortBy("name");
+    public static final ProjectsSortSortBy STATUS = new ProjectsSortSortBy("status");
+    public static final ProjectsSortSortBy START_DATE = new ProjectsSortSortBy("start_date");
+    public static final ProjectsSortSortBy END_DATE = new ProjectsSortSortBy("end_date");
+    public static final ProjectsSortSortBy BUDGET_AMOUNT = new ProjectsSortSortBy("budget_amount");
+    public static final ProjectsSortSortBy ACTUAL_AMOUNT = new ProjectsSortSortBy("actual_amount");
+    public static final ProjectsSortSortBy CREATED_AT = new ProjectsSortSortBy("created_at");
+    public static final ProjectsSortSortBy UPDATED_AT = new ProjectsSortSortBy("updated_at");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, ProjectsSortSortBy> values = createValuesMap();
+    private static final Map<String, ProjectsSortSortByEnum> enums = createEnumsMap();
+
     private final String value;
 
-    ProjectsSortSortBy(String value) {
+    private ProjectsSortSortBy(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a ProjectsSortSortBy with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as ProjectsSortSortBy
+     */ 
+    @JsonCreator
+    public static ProjectsSortSortBy of(String value) {
+        synchronized (ProjectsSortSortBy.class) {
+            return values.computeIfAbsent(value, v -> new ProjectsSortSortBy(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<ProjectsSortSortBy> fromValue(String value) {
-        for (ProjectsSortSortBy o: ProjectsSortSortBy.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<ProjectsSortSortByEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        ProjectsSortSortBy other = (ProjectsSortSortBy) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "ProjectsSortSortBy [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static ProjectsSortSortBy[] values() {
+        synchronized (ProjectsSortSortBy.class) {
+            return values.values().toArray(new ProjectsSortSortBy[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, ProjectsSortSortBy> createValuesMap() {
+        Map<String, ProjectsSortSortBy> map = new LinkedHashMap<>();
+        map.put("name", NAME);
+        map.put("status", STATUS);
+        map.put("start_date", START_DATE);
+        map.put("end_date", END_DATE);
+        map.put("budget_amount", BUDGET_AMOUNT);
+        map.put("actual_amount", ACTUAL_AMOUNT);
+        map.put("created_at", CREATED_AT);
+        map.put("updated_at", UPDATED_AT);
+        return map;
+    }
+
+    private static final Map<String, ProjectsSortSortByEnum> createEnumsMap() {
+        Map<String, ProjectsSortSortByEnum> map = new HashMap<>();
+        map.put("name", ProjectsSortSortByEnum.NAME);
+        map.put("status", ProjectsSortSortByEnum.STATUS);
+        map.put("start_date", ProjectsSortSortByEnum.START_DATE);
+        map.put("end_date", ProjectsSortSortByEnum.END_DATE);
+        map.put("budget_amount", ProjectsSortSortByEnum.BUDGET_AMOUNT);
+        map.put("actual_amount", ProjectsSortSortByEnum.ACTUAL_AMOUNT);
+        map.put("created_at", ProjectsSortSortByEnum.CREATED_AT);
+        map.put("updated_at", ProjectsSortSortByEnum.UPDATED_AT);
+        return map;
+    }
+    
+    
+    public enum ProjectsSortSortByEnum {
+
+        NAME("name"),
+        STATUS("status"),
+        START_DATE("start_date"),
+        END_DATE("end_date"),
+        BUDGET_AMOUNT("budget_amount"),
+        ACTUAL_AMOUNT("actual_amount"),
+        CREATED_AT("created_at"),
+        UPDATED_AT("updated_at"),;
+
+        private final String value;
+
+        private ProjectsSortSortByEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

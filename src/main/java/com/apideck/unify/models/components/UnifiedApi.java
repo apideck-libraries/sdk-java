@@ -3,48 +3,170 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * UnifiedApi
  * 
  * <p>Which Unified Api request was made to.
  */
-public enum UnifiedApi {
-    CRM("crm"),
-    LEAD("lead"),
-    PROXY("proxy"),
-    VAULT("vault"),
-    ACCOUNTING("accounting"),
-    HRIS("hris"),
-    ATS("ats"),
-    ECOMMERCE("ecommerce"),
-    ISSUE_TRACKING("issue-tracking"),
-    POS("pos"),
-    FILE_STORAGE("file-storage"),
-    SMS("sms");
+public class UnifiedApi {
 
-    @JsonValue
+    public static final UnifiedApi CRM = new UnifiedApi("crm");
+    public static final UnifiedApi LEAD = new UnifiedApi("lead");
+    public static final UnifiedApi PROXY = new UnifiedApi("proxy");
+    public static final UnifiedApi VAULT = new UnifiedApi("vault");
+    public static final UnifiedApi ACCOUNTING = new UnifiedApi("accounting");
+    public static final UnifiedApi HRIS = new UnifiedApi("hris");
+    public static final UnifiedApi ATS = new UnifiedApi("ats");
+    public static final UnifiedApi ECOMMERCE = new UnifiedApi("ecommerce");
+    public static final UnifiedApi ISSUE_TRACKING = new UnifiedApi("issue-tracking");
+    public static final UnifiedApi POS = new UnifiedApi("pos");
+    public static final UnifiedApi FILE_STORAGE = new UnifiedApi("file-storage");
+    public static final UnifiedApi SMS = new UnifiedApi("sms");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, UnifiedApi> values = createValuesMap();
+    private static final Map<String, UnifiedApiEnum> enums = createEnumsMap();
+
     private final String value;
 
-    UnifiedApi(String value) {
+    private UnifiedApi(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a UnifiedApi with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as UnifiedApi
+     */ 
+    @JsonCreator
+    public static UnifiedApi of(String value) {
+        synchronized (UnifiedApi.class) {
+            return values.computeIfAbsent(value, v -> new UnifiedApi(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<UnifiedApi> fromValue(String value) {
-        for (UnifiedApi o: UnifiedApi.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<UnifiedApiEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        UnifiedApi other = (UnifiedApi) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "UnifiedApi [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static UnifiedApi[] values() {
+        synchronized (UnifiedApi.class) {
+            return values.values().toArray(new UnifiedApi[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, UnifiedApi> createValuesMap() {
+        Map<String, UnifiedApi> map = new LinkedHashMap<>();
+        map.put("crm", CRM);
+        map.put("lead", LEAD);
+        map.put("proxy", PROXY);
+        map.put("vault", VAULT);
+        map.put("accounting", ACCOUNTING);
+        map.put("hris", HRIS);
+        map.put("ats", ATS);
+        map.put("ecommerce", ECOMMERCE);
+        map.put("issue-tracking", ISSUE_TRACKING);
+        map.put("pos", POS);
+        map.put("file-storage", FILE_STORAGE);
+        map.put("sms", SMS);
+        return map;
+    }
+
+    private static final Map<String, UnifiedApiEnum> createEnumsMap() {
+        Map<String, UnifiedApiEnum> map = new HashMap<>();
+        map.put("crm", UnifiedApiEnum.CRM);
+        map.put("lead", UnifiedApiEnum.LEAD);
+        map.put("proxy", UnifiedApiEnum.PROXY);
+        map.put("vault", UnifiedApiEnum.VAULT);
+        map.put("accounting", UnifiedApiEnum.ACCOUNTING);
+        map.put("hris", UnifiedApiEnum.HRIS);
+        map.put("ats", UnifiedApiEnum.ATS);
+        map.put("ecommerce", UnifiedApiEnum.ECOMMERCE);
+        map.put("issue-tracking", UnifiedApiEnum.ISSUE_TRACKING);
+        map.put("pos", UnifiedApiEnum.POS);
+        map.put("file-storage", UnifiedApiEnum.FILE_STORAGE);
+        map.put("sms", UnifiedApiEnum.SMS);
+        return map;
+    }
+    
+    
+    public enum UnifiedApiEnum {
+
+        CRM("crm"),
+        LEAD("lead"),
+        PROXY("proxy"),
+        VAULT("vault"),
+        ACCOUNTING("accounting"),
+        HRIS("hris"),
+        ATS("ats"),
+        ECOMMERCE("ecommerce"),
+        ISSUE_TRACKING("issue-tracking"),
+        POS("pos"),
+        FILE_STORAGE("file-storage"),
+        SMS("sms"),;
+
+        private final String value;
+
+        private UnifiedApiEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

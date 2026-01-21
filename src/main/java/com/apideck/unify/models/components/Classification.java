@@ -3,46 +3,162 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * Classification
  * 
  * <p>Filter by account classification.
  */
-public enum Classification {
-    ASSET("asset"),
-    EQUITY("equity"),
-    EXPENSE("expense"),
-    LIABILITY("liability"),
-    REVENUE("revenue"),
-    INCOME("income"),
-    OTHER_INCOME("other_income"),
-    OTHER_EXPENSE("other_expense"),
-    COSTS_OF_SALES("costs_of_sales"),
-    OTHER("other");
+public class Classification {
 
-    @JsonValue
+    public static final Classification ASSET = new Classification("asset");
+    public static final Classification EQUITY = new Classification("equity");
+    public static final Classification EXPENSE = new Classification("expense");
+    public static final Classification LIABILITY = new Classification("liability");
+    public static final Classification REVENUE = new Classification("revenue");
+    public static final Classification INCOME = new Classification("income");
+    public static final Classification OTHER_INCOME = new Classification("other_income");
+    public static final Classification OTHER_EXPENSE = new Classification("other_expense");
+    public static final Classification COSTS_OF_SALES = new Classification("costs_of_sales");
+    public static final Classification OTHER = new Classification("other");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, Classification> values = createValuesMap();
+    private static final Map<String, ClassificationEnum> enums = createEnumsMap();
+
     private final String value;
 
-    Classification(String value) {
+    private Classification(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a Classification with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as Classification
+     */ 
+    @JsonCreator
+    public static Classification of(String value) {
+        synchronized (Classification.class) {
+            return values.computeIfAbsent(value, v -> new Classification(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<Classification> fromValue(String value) {
-        for (Classification o: Classification.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<ClassificationEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Classification other = (Classification) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "Classification [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static Classification[] values() {
+        synchronized (Classification.class) {
+            return values.values().toArray(new Classification[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, Classification> createValuesMap() {
+        Map<String, Classification> map = new LinkedHashMap<>();
+        map.put("asset", ASSET);
+        map.put("equity", EQUITY);
+        map.put("expense", EXPENSE);
+        map.put("liability", LIABILITY);
+        map.put("revenue", REVENUE);
+        map.put("income", INCOME);
+        map.put("other_income", OTHER_INCOME);
+        map.put("other_expense", OTHER_EXPENSE);
+        map.put("costs_of_sales", COSTS_OF_SALES);
+        map.put("other", OTHER);
+        return map;
+    }
+
+    private static final Map<String, ClassificationEnum> createEnumsMap() {
+        Map<String, ClassificationEnum> map = new HashMap<>();
+        map.put("asset", ClassificationEnum.ASSET);
+        map.put("equity", ClassificationEnum.EQUITY);
+        map.put("expense", ClassificationEnum.EXPENSE);
+        map.put("liability", ClassificationEnum.LIABILITY);
+        map.put("revenue", ClassificationEnum.REVENUE);
+        map.put("income", ClassificationEnum.INCOME);
+        map.put("other_income", ClassificationEnum.OTHER_INCOME);
+        map.put("other_expense", ClassificationEnum.OTHER_EXPENSE);
+        map.put("costs_of_sales", ClassificationEnum.COSTS_OF_SALES);
+        map.put("other", ClassificationEnum.OTHER);
+        return map;
+    }
+    
+    
+    public enum ClassificationEnum {
+
+        ASSET("asset"),
+        EQUITY("equity"),
+        EXPENSE("expense"),
+        LIABILITY("liability"),
+        REVENUE("revenue"),
+        INCOME("income"),
+        OTHER_INCOME("other_income"),
+        OTHER_EXPENSE("other_expense"),
+        COSTS_OF_SALES("costs_of_sales"),
+        OTHER("other"),;
+
+        private final String value;
+
+        private ClassificationEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

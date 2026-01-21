@@ -3,38 +3,130 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * CustomerStatus
  * 
  * <p>The current status of the customer
  */
-public enum CustomerStatus {
-    ACTIVE("active"),
-    ARCHIVED("archived");
+public class CustomerStatus {
 
-    @JsonValue
+    public static final CustomerStatus ACTIVE = new CustomerStatus("active");
+    public static final CustomerStatus ARCHIVED = new CustomerStatus("archived");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, CustomerStatus> values = createValuesMap();
+    private static final Map<String, CustomerStatusEnum> enums = createEnumsMap();
+
     private final String value;
 
-    CustomerStatus(String value) {
+    private CustomerStatus(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a CustomerStatus with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as CustomerStatus
+     */ 
+    @JsonCreator
+    public static CustomerStatus of(String value) {
+        synchronized (CustomerStatus.class) {
+            return values.computeIfAbsent(value, v -> new CustomerStatus(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<CustomerStatus> fromValue(String value) {
-        for (CustomerStatus o: CustomerStatus.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<CustomerStatusEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        CustomerStatus other = (CustomerStatus) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "CustomerStatus [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static CustomerStatus[] values() {
+        synchronized (CustomerStatus.class) {
+            return values.values().toArray(new CustomerStatus[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, CustomerStatus> createValuesMap() {
+        Map<String, CustomerStatus> map = new LinkedHashMap<>();
+        map.put("active", ACTIVE);
+        map.put("archived", ARCHIVED);
+        return map;
+    }
+
+    private static final Map<String, CustomerStatusEnum> createEnumsMap() {
+        Map<String, CustomerStatusEnum> map = new HashMap<>();
+        map.put("active", CustomerStatusEnum.ACTIVE);
+        map.put("archived", CustomerStatusEnum.ARCHIVED);
+        return map;
+    }
+    
+    
+    public enum CustomerStatusEnum {
+
+        ACTIVE("active"),
+        ARCHIVED("archived"),;
+
+        private final String value;
+
+        private CustomerStatusEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

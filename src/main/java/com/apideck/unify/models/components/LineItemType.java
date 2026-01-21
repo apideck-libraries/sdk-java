@@ -3,39 +3,134 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * LineItemType
  * 
  * <p>Line Item type
  */
-public enum LineItemType {
-    EXPENSE_ITEM("expense_item"),
-    EXPENSE_ACCOUNT("expense_account"),
-    OTHER("other");
+public class LineItemType {
 
-    @JsonValue
+    public static final LineItemType EXPENSE_ITEM = new LineItemType("expense_item");
+    public static final LineItemType EXPENSE_ACCOUNT = new LineItemType("expense_account");
+    public static final LineItemType OTHER = new LineItemType("other");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, LineItemType> values = createValuesMap();
+    private static final Map<String, LineItemTypeEnum> enums = createEnumsMap();
+
     private final String value;
 
-    LineItemType(String value) {
+    private LineItemType(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a LineItemType with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as LineItemType
+     */ 
+    @JsonCreator
+    public static LineItemType of(String value) {
+        synchronized (LineItemType.class) {
+            return values.computeIfAbsent(value, v -> new LineItemType(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<LineItemType> fromValue(String value) {
-        for (LineItemType o: LineItemType.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<LineItemTypeEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        LineItemType other = (LineItemType) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "LineItemType [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static LineItemType[] values() {
+        synchronized (LineItemType.class) {
+            return values.values().toArray(new LineItemType[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, LineItemType> createValuesMap() {
+        Map<String, LineItemType> map = new LinkedHashMap<>();
+        map.put("expense_item", EXPENSE_ITEM);
+        map.put("expense_account", EXPENSE_ACCOUNT);
+        map.put("other", OTHER);
+        return map;
+    }
+
+    private static final Map<String, LineItemTypeEnum> createEnumsMap() {
+        Map<String, LineItemTypeEnum> map = new HashMap<>();
+        map.put("expense_item", LineItemTypeEnum.EXPENSE_ITEM);
+        map.put("expense_account", LineItemTypeEnum.EXPENSE_ACCOUNT);
+        map.put("other", LineItemTypeEnum.OTHER);
+        return map;
+    }
+    
+    
+    public enum LineItemTypeEnum {
+
+        EXPENSE_ITEM("expense_item"),
+        EXPENSE_ACCOUNT("expense_account"),
+        OTHER("other"),;
+
+        private final String value;
+
+        private LineItemTypeEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

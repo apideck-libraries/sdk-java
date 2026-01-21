@@ -3,42 +3,146 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * EmploymentType
  * 
  * <p>The type of employment relationship the employee has with the organization.
  */
-public enum EmploymentType {
-    CONTRACTOR("contractor"),
-    EMPLOYEE("employee"),
-    FREELANCE("freelance"),
-    TEMP("temp"),
-    INTERNSHIP("internship"),
-    OTHER("other");
+public class EmploymentType {
 
-    @JsonValue
+    public static final EmploymentType CONTRACTOR = new EmploymentType("contractor");
+    public static final EmploymentType EMPLOYEE = new EmploymentType("employee");
+    public static final EmploymentType FREELANCE = new EmploymentType("freelance");
+    public static final EmploymentType TEMP = new EmploymentType("temp");
+    public static final EmploymentType INTERNSHIP = new EmploymentType("internship");
+    public static final EmploymentType OTHER = new EmploymentType("other");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, EmploymentType> values = createValuesMap();
+    private static final Map<String, EmploymentTypeEnum> enums = createEnumsMap();
+
     private final String value;
 
-    EmploymentType(String value) {
+    private EmploymentType(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a EmploymentType with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as EmploymentType
+     */ 
+    @JsonCreator
+    public static EmploymentType of(String value) {
+        synchronized (EmploymentType.class) {
+            return values.computeIfAbsent(value, v -> new EmploymentType(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<EmploymentType> fromValue(String value) {
-        for (EmploymentType o: EmploymentType.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<EmploymentTypeEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        EmploymentType other = (EmploymentType) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "EmploymentType [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static EmploymentType[] values() {
+        synchronized (EmploymentType.class) {
+            return values.values().toArray(new EmploymentType[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, EmploymentType> createValuesMap() {
+        Map<String, EmploymentType> map = new LinkedHashMap<>();
+        map.put("contractor", CONTRACTOR);
+        map.put("employee", EMPLOYEE);
+        map.put("freelance", FREELANCE);
+        map.put("temp", TEMP);
+        map.put("internship", INTERNSHIP);
+        map.put("other", OTHER);
+        return map;
+    }
+
+    private static final Map<String, EmploymentTypeEnum> createEnumsMap() {
+        Map<String, EmploymentTypeEnum> map = new HashMap<>();
+        map.put("contractor", EmploymentTypeEnum.CONTRACTOR);
+        map.put("employee", EmploymentTypeEnum.EMPLOYEE);
+        map.put("freelance", EmploymentTypeEnum.FREELANCE);
+        map.put("temp", EmploymentTypeEnum.TEMP);
+        map.put("internship", EmploymentTypeEnum.INTERNSHIP);
+        map.put("other", EmploymentTypeEnum.OTHER);
+        return map;
+    }
+    
+    
+    public enum EmploymentTypeEnum {
+
+        CONTRACTOR("contractor"),
+        EMPLOYEE("employee"),
+        FREELANCE("freelance"),
+        TEMP("temp"),
+        INTERNSHIP("internship"),
+        OTHER("other"),;
+
+        private final String value;
+
+        private EmploymentTypeEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

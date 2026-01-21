@@ -3,41 +3,142 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * ConnectionState
  * 
  * <p>[Connection state flow](#section/Connection-state)
  */
-public enum ConnectionState {
-    AVAILABLE("available"),
-    CALLABLE("callable"),
-    ADDED("added"),
-    AUTHORIZED("authorized"),
-    INVALID("invalid");
+public class ConnectionState {
 
-    @JsonValue
+    public static final ConnectionState AVAILABLE = new ConnectionState("available");
+    public static final ConnectionState CALLABLE = new ConnectionState("callable");
+    public static final ConnectionState ADDED = new ConnectionState("added");
+    public static final ConnectionState AUTHORIZED = new ConnectionState("authorized");
+    public static final ConnectionState INVALID = new ConnectionState("invalid");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, ConnectionState> values = createValuesMap();
+    private static final Map<String, ConnectionStateEnum> enums = createEnumsMap();
+
     private final String value;
 
-    ConnectionState(String value) {
+    private ConnectionState(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a ConnectionState with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as ConnectionState
+     */ 
+    @JsonCreator
+    public static ConnectionState of(String value) {
+        synchronized (ConnectionState.class) {
+            return values.computeIfAbsent(value, v -> new ConnectionState(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<ConnectionState> fromValue(String value) {
-        for (ConnectionState o: ConnectionState.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<ConnectionStateEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        ConnectionState other = (ConnectionState) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "ConnectionState [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static ConnectionState[] values() {
+        synchronized (ConnectionState.class) {
+            return values.values().toArray(new ConnectionState[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, ConnectionState> createValuesMap() {
+        Map<String, ConnectionState> map = new LinkedHashMap<>();
+        map.put("available", AVAILABLE);
+        map.put("callable", CALLABLE);
+        map.put("added", ADDED);
+        map.put("authorized", AUTHORIZED);
+        map.put("invalid", INVALID);
+        return map;
+    }
+
+    private static final Map<String, ConnectionStateEnum> createEnumsMap() {
+        Map<String, ConnectionStateEnum> map = new HashMap<>();
+        map.put("available", ConnectionStateEnum.AVAILABLE);
+        map.put("callable", ConnectionStateEnum.CALLABLE);
+        map.put("added", ConnectionStateEnum.ADDED);
+        map.put("authorized", ConnectionStateEnum.AUTHORIZED);
+        map.put("invalid", ConnectionStateEnum.INVALID);
+        return map;
+    }
+    
+    
+    public enum ConnectionStateEnum {
+
+        AVAILABLE("available"),
+        CALLABLE("callable"),
+        ADDED("added"),
+        AUTHORIZED("authorized"),
+        INVALID("invalid"),;
+
+        private final String value;
+
+        private ConnectionStateEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

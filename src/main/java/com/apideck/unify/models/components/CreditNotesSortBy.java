@@ -3,38 +3,130 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * CreditNotesSortBy
  * 
  * <p>The field on which to sort the Customers
  */
-public enum CreditNotesSortBy {
-    CREATED_AT("created_at"),
-    UPDATED_AT("updated_at");
+public class CreditNotesSortBy {
 
-    @JsonValue
+    public static final CreditNotesSortBy CREATED_AT = new CreditNotesSortBy("created_at");
+    public static final CreditNotesSortBy UPDATED_AT = new CreditNotesSortBy("updated_at");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, CreditNotesSortBy> values = createValuesMap();
+    private static final Map<String, CreditNotesSortByEnum> enums = createEnumsMap();
+
     private final String value;
 
-    CreditNotesSortBy(String value) {
+    private CreditNotesSortBy(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a CreditNotesSortBy with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as CreditNotesSortBy
+     */ 
+    @JsonCreator
+    public static CreditNotesSortBy of(String value) {
+        synchronized (CreditNotesSortBy.class) {
+            return values.computeIfAbsent(value, v -> new CreditNotesSortBy(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<CreditNotesSortBy> fromValue(String value) {
-        for (CreditNotesSortBy o: CreditNotesSortBy.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<CreditNotesSortByEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        CreditNotesSortBy other = (CreditNotesSortBy) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "CreditNotesSortBy [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static CreditNotesSortBy[] values() {
+        synchronized (CreditNotesSortBy.class) {
+            return values.values().toArray(new CreditNotesSortBy[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, CreditNotesSortBy> createValuesMap() {
+        Map<String, CreditNotesSortBy> map = new LinkedHashMap<>();
+        map.put("created_at", CREATED_AT);
+        map.put("updated_at", UPDATED_AT);
+        return map;
+    }
+
+    private static final Map<String, CreditNotesSortByEnum> createEnumsMap() {
+        Map<String, CreditNotesSortByEnum> map = new HashMap<>();
+        map.put("created_at", CreditNotesSortByEnum.CREATED_AT);
+        map.put("updated_at", CreditNotesSortByEnum.UPDATED_AT);
+        return map;
+    }
+    
+    
+    public enum CreditNotesSortByEnum {
+
+        CREATED_AT("created_at"),
+        UPDATED_AT("updated_at"),;
+
+        private final String value;
+
+        private CreditNotesSortByEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

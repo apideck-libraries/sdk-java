@@ -3,44 +3,154 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * ProjectProjectStatus
  * 
  * <p>Current status of the project
  */
-public enum ProjectProjectStatus {
-    ACTIVE("active"),
-    COMPLETED("completed"),
-    ON_HOLD("on_hold"),
-    CANCELLED("cancelled"),
-    DRAFT("draft"),
-    IN_PROGRESS("in_progress"),
-    APPROVED("approved"),
-    OTHER("other");
+public class ProjectProjectStatus {
 
-    @JsonValue
+    public static final ProjectProjectStatus ACTIVE = new ProjectProjectStatus("active");
+    public static final ProjectProjectStatus COMPLETED = new ProjectProjectStatus("completed");
+    public static final ProjectProjectStatus ON_HOLD = new ProjectProjectStatus("on_hold");
+    public static final ProjectProjectStatus CANCELLED = new ProjectProjectStatus("cancelled");
+    public static final ProjectProjectStatus DRAFT = new ProjectProjectStatus("draft");
+    public static final ProjectProjectStatus IN_PROGRESS = new ProjectProjectStatus("in_progress");
+    public static final ProjectProjectStatus APPROVED = new ProjectProjectStatus("approved");
+    public static final ProjectProjectStatus OTHER = new ProjectProjectStatus("other");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, ProjectProjectStatus> values = createValuesMap();
+    private static final Map<String, ProjectProjectStatusEnum> enums = createEnumsMap();
+
     private final String value;
 
-    ProjectProjectStatus(String value) {
+    private ProjectProjectStatus(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a ProjectProjectStatus with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as ProjectProjectStatus
+     */ 
+    @JsonCreator
+    public static ProjectProjectStatus of(String value) {
+        synchronized (ProjectProjectStatus.class) {
+            return values.computeIfAbsent(value, v -> new ProjectProjectStatus(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<ProjectProjectStatus> fromValue(String value) {
-        for (ProjectProjectStatus o: ProjectProjectStatus.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<ProjectProjectStatusEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        ProjectProjectStatus other = (ProjectProjectStatus) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "ProjectProjectStatus [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static ProjectProjectStatus[] values() {
+        synchronized (ProjectProjectStatus.class) {
+            return values.values().toArray(new ProjectProjectStatus[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, ProjectProjectStatus> createValuesMap() {
+        Map<String, ProjectProjectStatus> map = new LinkedHashMap<>();
+        map.put("active", ACTIVE);
+        map.put("completed", COMPLETED);
+        map.put("on_hold", ON_HOLD);
+        map.put("cancelled", CANCELLED);
+        map.put("draft", DRAFT);
+        map.put("in_progress", IN_PROGRESS);
+        map.put("approved", APPROVED);
+        map.put("other", OTHER);
+        return map;
+    }
+
+    private static final Map<String, ProjectProjectStatusEnum> createEnumsMap() {
+        Map<String, ProjectProjectStatusEnum> map = new HashMap<>();
+        map.put("active", ProjectProjectStatusEnum.ACTIVE);
+        map.put("completed", ProjectProjectStatusEnum.COMPLETED);
+        map.put("on_hold", ProjectProjectStatusEnum.ON_HOLD);
+        map.put("cancelled", ProjectProjectStatusEnum.CANCELLED);
+        map.put("draft", ProjectProjectStatusEnum.DRAFT);
+        map.put("in_progress", ProjectProjectStatusEnum.IN_PROGRESS);
+        map.put("approved", ProjectProjectStatusEnum.APPROVED);
+        map.put("other", ProjectProjectStatusEnum.OTHER);
+        return map;
+    }
+    
+    
+    public enum ProjectProjectStatusEnum {
+
+        ACTIVE("active"),
+        COMPLETED("completed"),
+        ON_HOLD("on_hold"),
+        CANCELLED("cancelled"),
+        DRAFT("draft"),
+        IN_PROGRESS("in_progress"),
+        APPROVED("approved"),
+        OTHER("other"),;
+
+        private final String value;
+
+        private ProjectProjectStatusEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

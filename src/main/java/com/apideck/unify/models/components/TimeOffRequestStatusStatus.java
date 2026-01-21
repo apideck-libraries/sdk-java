@@ -3,42 +3,146 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * TimeOffRequestStatusStatus
  * 
  * <p>The status of the time off request.
  */
-public enum TimeOffRequestStatusStatus {
-    REQUESTED("requested"),
-    APPROVED("approved"),
-    DECLINED("declined"),
-    CANCELLED("cancelled"),
-    DELETED("deleted"),
-    OTHER("other");
+public class TimeOffRequestStatusStatus {
 
-    @JsonValue
+    public static final TimeOffRequestStatusStatus REQUESTED = new TimeOffRequestStatusStatus("requested");
+    public static final TimeOffRequestStatusStatus APPROVED = new TimeOffRequestStatusStatus("approved");
+    public static final TimeOffRequestStatusStatus DECLINED = new TimeOffRequestStatusStatus("declined");
+    public static final TimeOffRequestStatusStatus CANCELLED = new TimeOffRequestStatusStatus("cancelled");
+    public static final TimeOffRequestStatusStatus DELETED = new TimeOffRequestStatusStatus("deleted");
+    public static final TimeOffRequestStatusStatus OTHER = new TimeOffRequestStatusStatus("other");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, TimeOffRequestStatusStatus> values = createValuesMap();
+    private static final Map<String, TimeOffRequestStatusStatusEnum> enums = createEnumsMap();
+
     private final String value;
 
-    TimeOffRequestStatusStatus(String value) {
+    private TimeOffRequestStatusStatus(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a TimeOffRequestStatusStatus with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as TimeOffRequestStatusStatus
+     */ 
+    @JsonCreator
+    public static TimeOffRequestStatusStatus of(String value) {
+        synchronized (TimeOffRequestStatusStatus.class) {
+            return values.computeIfAbsent(value, v -> new TimeOffRequestStatusStatus(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<TimeOffRequestStatusStatus> fromValue(String value) {
-        for (TimeOffRequestStatusStatus o: TimeOffRequestStatusStatus.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<TimeOffRequestStatusStatusEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        TimeOffRequestStatusStatus other = (TimeOffRequestStatusStatus) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "TimeOffRequestStatusStatus [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static TimeOffRequestStatusStatus[] values() {
+        synchronized (TimeOffRequestStatusStatus.class) {
+            return values.values().toArray(new TimeOffRequestStatusStatus[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, TimeOffRequestStatusStatus> createValuesMap() {
+        Map<String, TimeOffRequestStatusStatus> map = new LinkedHashMap<>();
+        map.put("requested", REQUESTED);
+        map.put("approved", APPROVED);
+        map.put("declined", DECLINED);
+        map.put("cancelled", CANCELLED);
+        map.put("deleted", DELETED);
+        map.put("other", OTHER);
+        return map;
+    }
+
+    private static final Map<String, TimeOffRequestStatusStatusEnum> createEnumsMap() {
+        Map<String, TimeOffRequestStatusStatusEnum> map = new HashMap<>();
+        map.put("requested", TimeOffRequestStatusStatusEnum.REQUESTED);
+        map.put("approved", TimeOffRequestStatusStatusEnum.APPROVED);
+        map.put("declined", TimeOffRequestStatusStatusEnum.DECLINED);
+        map.put("cancelled", TimeOffRequestStatusStatusEnum.CANCELLED);
+        map.put("deleted", TimeOffRequestStatusStatusEnum.DELETED);
+        map.put("other", TimeOffRequestStatusStatusEnum.OTHER);
+        return map;
+    }
+    
+    
+    public enum TimeOffRequestStatusStatusEnum {
+
+        REQUESTED("requested"),
+        APPROVED("approved"),
+        DECLINED("declined"),
+        CANCELLED("cancelled"),
+        DELETED("deleted"),
+        OTHER("other"),;
+
+        private final String value;
+
+        private TimeOffRequestStatusStatusEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

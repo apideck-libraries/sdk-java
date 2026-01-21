@@ -3,38 +3,130 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * LedgerAccountsSortBy
  * 
  * <p>The field on which to sort the Ledger Accounts
  */
-public enum LedgerAccountsSortBy {
-    CREATED_AT("created_at"),
-    UPDATED_AT("updated_at");
+public class LedgerAccountsSortBy {
 
-    @JsonValue
+    public static final LedgerAccountsSortBy CREATED_AT = new LedgerAccountsSortBy("created_at");
+    public static final LedgerAccountsSortBy UPDATED_AT = new LedgerAccountsSortBy("updated_at");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, LedgerAccountsSortBy> values = createValuesMap();
+    private static final Map<String, LedgerAccountsSortByEnum> enums = createEnumsMap();
+
     private final String value;
 
-    LedgerAccountsSortBy(String value) {
+    private LedgerAccountsSortBy(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a LedgerAccountsSortBy with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as LedgerAccountsSortBy
+     */ 
+    @JsonCreator
+    public static LedgerAccountsSortBy of(String value) {
+        synchronized (LedgerAccountsSortBy.class) {
+            return values.computeIfAbsent(value, v -> new LedgerAccountsSortBy(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<LedgerAccountsSortBy> fromValue(String value) {
-        for (LedgerAccountsSortBy o: LedgerAccountsSortBy.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<LedgerAccountsSortByEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        LedgerAccountsSortBy other = (LedgerAccountsSortBy) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "LedgerAccountsSortBy [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static LedgerAccountsSortBy[] values() {
+        synchronized (LedgerAccountsSortBy.class) {
+            return values.values().toArray(new LedgerAccountsSortBy[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, LedgerAccountsSortBy> createValuesMap() {
+        Map<String, LedgerAccountsSortBy> map = new LinkedHashMap<>();
+        map.put("created_at", CREATED_AT);
+        map.put("updated_at", UPDATED_AT);
+        return map;
+    }
+
+    private static final Map<String, LedgerAccountsSortByEnum> createEnumsMap() {
+        Map<String, LedgerAccountsSortByEnum> map = new HashMap<>();
+        map.put("created_at", LedgerAccountsSortByEnum.CREATED_AT);
+        map.put("updated_at", LedgerAccountsSortByEnum.UPDATED_AT);
+        return map;
+    }
+    
+    
+    public enum LedgerAccountsSortByEnum {
+
+        CREATED_AT("created_at"),
+        UPDATED_AT("updated_at"),;
+
+        private final String value;
+
+        private LedgerAccountsSortByEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

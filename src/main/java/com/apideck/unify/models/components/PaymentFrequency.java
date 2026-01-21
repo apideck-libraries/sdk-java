@@ -3,41 +3,142 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * PaymentFrequency
  * 
  * <p>Frequency of employee compensation.
  */
-public enum PaymentFrequency {
-    WEEKLY("weekly"),
-    BIWEEKLY("biweekly"),
-    MONTHLY("monthly"),
-    PRO_RATA("pro-rata"),
-    OTHER("other");
+public class PaymentFrequency {
 
-    @JsonValue
+    public static final PaymentFrequency WEEKLY = new PaymentFrequency("weekly");
+    public static final PaymentFrequency BIWEEKLY = new PaymentFrequency("biweekly");
+    public static final PaymentFrequency MONTHLY = new PaymentFrequency("monthly");
+    public static final PaymentFrequency PRO_RATA = new PaymentFrequency("pro-rata");
+    public static final PaymentFrequency OTHER = new PaymentFrequency("other");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, PaymentFrequency> values = createValuesMap();
+    private static final Map<String, PaymentFrequencyEnum> enums = createEnumsMap();
+
     private final String value;
 
-    PaymentFrequency(String value) {
+    private PaymentFrequency(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a PaymentFrequency with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as PaymentFrequency
+     */ 
+    @JsonCreator
+    public static PaymentFrequency of(String value) {
+        synchronized (PaymentFrequency.class) {
+            return values.computeIfAbsent(value, v -> new PaymentFrequency(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<PaymentFrequency> fromValue(String value) {
-        for (PaymentFrequency o: PaymentFrequency.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<PaymentFrequencyEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        PaymentFrequency other = (PaymentFrequency) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "PaymentFrequency [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static PaymentFrequency[] values() {
+        synchronized (PaymentFrequency.class) {
+            return values.values().toArray(new PaymentFrequency[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, PaymentFrequency> createValuesMap() {
+        Map<String, PaymentFrequency> map = new LinkedHashMap<>();
+        map.put("weekly", WEEKLY);
+        map.put("biweekly", BIWEEKLY);
+        map.put("monthly", MONTHLY);
+        map.put("pro-rata", PRO_RATA);
+        map.put("other", OTHER);
+        return map;
+    }
+
+    private static final Map<String, PaymentFrequencyEnum> createEnumsMap() {
+        Map<String, PaymentFrequencyEnum> map = new HashMap<>();
+        map.put("weekly", PaymentFrequencyEnum.WEEKLY);
+        map.put("biweekly", PaymentFrequencyEnum.BIWEEKLY);
+        map.put("monthly", PaymentFrequencyEnum.MONTHLY);
+        map.put("pro-rata", PaymentFrequencyEnum.PRO_RATA);
+        map.put("other", PaymentFrequencyEnum.OTHER);
+        return map;
+    }
+    
+    
+    public enum PaymentFrequencyEnum {
+
+        WEEKLY("weekly"),
+        BIWEEKLY("biweekly"),
+        MONTHLY("monthly"),
+        PRO_RATA("pro-rata"),
+        OTHER("other"),;
+
+        private final String value;
+
+        private PaymentFrequencyEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

@@ -3,35 +3,133 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-public enum AllowActions {
-    DELETE("delete"),
-    DISCONNECT("disconnect"),
-    REAUTHORIZE("reauthorize"),
-    DISABLE("disable");
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
+public class AllowActions {
 
-    @JsonValue
+    public static final AllowActions DELETE = new AllowActions("delete");
+    public static final AllowActions DISCONNECT = new AllowActions("disconnect");
+    public static final AllowActions REAUTHORIZE = new AllowActions("reauthorize");
+    public static final AllowActions DISABLE = new AllowActions("disable");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, AllowActions> values = createValuesMap();
+    private static final Map<String, AllowActionsEnum> enums = createEnumsMap();
+
     private final String value;
 
-    AllowActions(String value) {
+    private AllowActions(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a AllowActions with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as AllowActions
+     */ 
+    @JsonCreator
+    public static AllowActions of(String value) {
+        synchronized (AllowActions.class) {
+            return values.computeIfAbsent(value, v -> new AllowActions(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<AllowActions> fromValue(String value) {
-        for (AllowActions o: AllowActions.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<AllowActionsEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        AllowActions other = (AllowActions) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "AllowActions [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static AllowActions[] values() {
+        synchronized (AllowActions.class) {
+            return values.values().toArray(new AllowActions[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, AllowActions> createValuesMap() {
+        Map<String, AllowActions> map = new LinkedHashMap<>();
+        map.put("delete", DELETE);
+        map.put("disconnect", DISCONNECT);
+        map.put("reauthorize", REAUTHORIZE);
+        map.put("disable", DISABLE);
+        return map;
+    }
+
+    private static final Map<String, AllowActionsEnum> createEnumsMap() {
+        Map<String, AllowActionsEnum> map = new HashMap<>();
+        map.put("delete", AllowActionsEnum.DELETE);
+        map.put("disconnect", AllowActionsEnum.DISCONNECT);
+        map.put("reauthorize", AllowActionsEnum.REAUTHORIZE);
+        map.put("disable", AllowActionsEnum.DISABLE);
+        return map;
+    }
+    
+    
+    public enum AllowActionsEnum {
+
+        DELETE("delete"),
+        DISCONNECT("disconnect"),
+        REAUTHORIZE("reauthorize"),
+        DISABLE("disable"),;
+
+        private final String value;
+
+        private AllowActionsEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

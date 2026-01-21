@@ -3,43 +3,150 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * RequestType
  * 
  * <p>The type of request
  */
-public enum RequestType {
-    VACATION("vacation"),
-    SICK("sick"),
-    PERSONAL("personal"),
-    JURY_DUTY("jury_duty"),
-    VOLUNTEER("volunteer"),
-    BEREAVEMENT("bereavement"),
-    OTHER("other");
+public class RequestType {
 
-    @JsonValue
+    public static final RequestType VACATION = new RequestType("vacation");
+    public static final RequestType SICK = new RequestType("sick");
+    public static final RequestType PERSONAL = new RequestType("personal");
+    public static final RequestType JURY_DUTY = new RequestType("jury_duty");
+    public static final RequestType VOLUNTEER = new RequestType("volunteer");
+    public static final RequestType BEREAVEMENT = new RequestType("bereavement");
+    public static final RequestType OTHER = new RequestType("other");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, RequestType> values = createValuesMap();
+    private static final Map<String, RequestTypeEnum> enums = createEnumsMap();
+
     private final String value;
 
-    RequestType(String value) {
+    private RequestType(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a RequestType with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as RequestType
+     */ 
+    @JsonCreator
+    public static RequestType of(String value) {
+        synchronized (RequestType.class) {
+            return values.computeIfAbsent(value, v -> new RequestType(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<RequestType> fromValue(String value) {
-        for (RequestType o: RequestType.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<RequestTypeEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        RequestType other = (RequestType) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "RequestType [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static RequestType[] values() {
+        synchronized (RequestType.class) {
+            return values.values().toArray(new RequestType[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, RequestType> createValuesMap() {
+        Map<String, RequestType> map = new LinkedHashMap<>();
+        map.put("vacation", VACATION);
+        map.put("sick", SICK);
+        map.put("personal", PERSONAL);
+        map.put("jury_duty", JURY_DUTY);
+        map.put("volunteer", VOLUNTEER);
+        map.put("bereavement", BEREAVEMENT);
+        map.put("other", OTHER);
+        return map;
+    }
+
+    private static final Map<String, RequestTypeEnum> createEnumsMap() {
+        Map<String, RequestTypeEnum> map = new HashMap<>();
+        map.put("vacation", RequestTypeEnum.VACATION);
+        map.put("sick", RequestTypeEnum.SICK);
+        map.put("personal", RequestTypeEnum.PERSONAL);
+        map.put("jury_duty", RequestTypeEnum.JURY_DUTY);
+        map.put("volunteer", RequestTypeEnum.VOLUNTEER);
+        map.put("bereavement", RequestTypeEnum.BEREAVEMENT);
+        map.put("other", RequestTypeEnum.OTHER);
+        return map;
+    }
+    
+    
+    public enum RequestTypeEnum {
+
+        VACATION("vacation"),
+        SICK("sick"),
+        PERSONAL("personal"),
+        JURY_DUTY("jury_duty"),
+        VOLUNTEER("volunteer"),
+        BEREAVEMENT("bereavement"),
+        OTHER("other"),;
+
+        private final String value;
+
+        private RequestTypeEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

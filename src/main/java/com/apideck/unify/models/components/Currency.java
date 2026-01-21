@@ -3,220 +3,855 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * Currency
  * 
  * <p>Indicates the associated currency for an amount of money. Values correspond to [ISO
  * 4217](https://en.wikipedia.org/wiki/ISO_4217).
  */
-public enum Currency {
-    UNKNOWN_CURRENCY("UNKNOWN_CURRENCY"),
-    AED("AED"),
-    AFN("AFN"),
-    ALL("ALL"),
-    AMD("AMD"),
-    ANG("ANG"),
-    AOA("AOA"),
-    ARS("ARS"),
-    AUD("AUD"),
-    AWG("AWG"),
-    AZN("AZN"),
-    BAM("BAM"),
-    BBD("BBD"),
-    BDT("BDT"),
-    BGN("BGN"),
-    BHD("BHD"),
-    BIF("BIF"),
-    BMD("BMD"),
-    BND("BND"),
-    BOB("BOB"),
-    BOV("BOV"),
-    BRL("BRL"),
-    BSD("BSD"),
-    BTN("BTN"),
-    BWP("BWP"),
-    BYR("BYR"),
-    BZD("BZD"),
-    CAD("CAD"),
-    CDF("CDF"),
-    CHE("CHE"),
-    CHF("CHF"),
-    CHW("CHW"),
-    CLF("CLF"),
-    CLP("CLP"),
-    CNY("CNY"),
-    COP("COP"),
-    COU("COU"),
-    CRC("CRC"),
-    CUC("CUC"),
-    CUP("CUP"),
-    CVE("CVE"),
-    CZK("CZK"),
-    DJF("DJF"),
-    DKK("DKK"),
-    DOP("DOP"),
-    DZD("DZD"),
-    EGP("EGP"),
-    ERN("ERN"),
-    ETB("ETB"),
-    EUR("EUR"),
-    FJD("FJD"),
-    FKP("FKP"),
-    GBP("GBP"),
-    GEL("GEL"),
-    GHS("GHS"),
-    GIP("GIP"),
-    GMD("GMD"),
-    GNF("GNF"),
-    GTQ("GTQ"),
-    GYD("GYD"),
-    HKD("HKD"),
-    HNL("HNL"),
-    HRK("HRK"),
-    HTG("HTG"),
-    HUF("HUF"),
-    IDR("IDR"),
-    ILS("ILS"),
-    INR("INR"),
-    IQD("IQD"),
-    IRR("IRR"),
-    ISK("ISK"),
-    JMD("JMD"),
-    JOD("JOD"),
-    JPY("JPY"),
-    KES("KES"),
-    KGS("KGS"),
-    KHR("KHR"),
-    KMF("KMF"),
-    KPW("KPW"),
-    KRW("KRW"),
-    KWD("KWD"),
-    KYD("KYD"),
-    KZT("KZT"),
-    LAK("LAK"),
-    LBP("LBP"),
-    LKR("LKR"),
-    LRD("LRD"),
-    LSL("LSL"),
-    LTL("LTL"),
-    LVL("LVL"),
-    LYD("LYD"),
-    MAD("MAD"),
-    MDL("MDL"),
-    MGA("MGA"),
-    MKD("MKD"),
-    MMK("MMK"),
-    MNT("MNT"),
-    MOP("MOP"),
-    MRO("MRO"),
-    MUR("MUR"),
-    MVR("MVR"),
-    MWK("MWK"),
-    MXN("MXN"),
-    MXV("MXV"),
-    MYR("MYR"),
-    MZN("MZN"),
-    NAD("NAD"),
-    NGN("NGN"),
-    NIO("NIO"),
-    NOK("NOK"),
-    NPR("NPR"),
-    NZD("NZD"),
-    OMR("OMR"),
-    PAB("PAB"),
-    PEN("PEN"),
-    PGK("PGK"),
-    PHP("PHP"),
-    PKR("PKR"),
-    PLN("PLN"),
-    PYG("PYG"),
-    QAR("QAR"),
-    RON("RON"),
-    RSD("RSD"),
-    RUB("RUB"),
-    RWF("RWF"),
-    SAR("SAR"),
-    SBD("SBD"),
-    SCR("SCR"),
-    SDG("SDG"),
-    SEK("SEK"),
-    SGD("SGD"),
-    SHP("SHP"),
-    SLL("SLL"),
-    SOS("SOS"),
-    SRD("SRD"),
-    SSP("SSP"),
-    STD("STD"),
-    SVC("SVC"),
-    SYP("SYP"),
-    SZL("SZL"),
-    THB("THB"),
-    TJS("TJS"),
-    TMT("TMT"),
-    TND("TND"),
-    TOP("TOP"),
-    TRC("TRC"),
-    TRY("TRY"),
-    TTD("TTD"),
-    TWD("TWD"),
-    TZS("TZS"),
-    UAH("UAH"),
-    UGX("UGX"),
-    USD("USD"),
-    USN("USN"),
-    USS("USS"),
-    UYI("UYI"),
-    UYU("UYU"),
-    UZS("UZS"),
-    VEF("VEF"),
-    VND("VND"),
-    VUV("VUV"),
-    WST("WST"),
-    XAF("XAF"),
-    XAG("XAG"),
-    XAU("XAU"),
-    XBA("XBA"),
-    XBB("XBB"),
-    XBC("XBC"),
-    XBD("XBD"),
-    XCD("XCD"),
-    XDR("XDR"),
-    XOF("XOF"),
-    XPD("XPD"),
-    XPF("XPF"),
-    XPT("XPT"),
-    XTS("XTS"),
-    XXX("XXX"),
-    YER("YER"),
-    ZAR("ZAR"),
-    ZMK("ZMK"),
-    ZMW("ZMW"),
-    BTC("BTC"),
-    ETH("ETH");
+public class Currency {
 
-    @JsonValue
+    public static final Currency UNKNOWN_CURRENCY = new Currency("UNKNOWN_CURRENCY");
+    public static final Currency AED = new Currency("AED");
+    public static final Currency AFN = new Currency("AFN");
+    public static final Currency ALL = new Currency("ALL");
+    public static final Currency AMD = new Currency("AMD");
+    public static final Currency ANG = new Currency("ANG");
+    public static final Currency AOA = new Currency("AOA");
+    public static final Currency ARS = new Currency("ARS");
+    public static final Currency AUD = new Currency("AUD");
+    public static final Currency AWG = new Currency("AWG");
+    public static final Currency AZN = new Currency("AZN");
+    public static final Currency BAM = new Currency("BAM");
+    public static final Currency BBD = new Currency("BBD");
+    public static final Currency BDT = new Currency("BDT");
+    public static final Currency BGN = new Currency("BGN");
+    public static final Currency BHD = new Currency("BHD");
+    public static final Currency BIF = new Currency("BIF");
+    public static final Currency BMD = new Currency("BMD");
+    public static final Currency BND = new Currency("BND");
+    public static final Currency BOB = new Currency("BOB");
+    public static final Currency BOV = new Currency("BOV");
+    public static final Currency BRL = new Currency("BRL");
+    public static final Currency BSD = new Currency("BSD");
+    public static final Currency BTN = new Currency("BTN");
+    public static final Currency BWP = new Currency("BWP");
+    public static final Currency BYR = new Currency("BYR");
+    public static final Currency BZD = new Currency("BZD");
+    public static final Currency CAD = new Currency("CAD");
+    public static final Currency CDF = new Currency("CDF");
+    public static final Currency CHE = new Currency("CHE");
+    public static final Currency CHF = new Currency("CHF");
+    public static final Currency CHW = new Currency("CHW");
+    public static final Currency CLF = new Currency("CLF");
+    public static final Currency CLP = new Currency("CLP");
+    public static final Currency CNY = new Currency("CNY");
+    public static final Currency COP = new Currency("COP");
+    public static final Currency COU = new Currency("COU");
+    public static final Currency CRC = new Currency("CRC");
+    public static final Currency CUC = new Currency("CUC");
+    public static final Currency CUP = new Currency("CUP");
+    public static final Currency CVE = new Currency("CVE");
+    public static final Currency CZK = new Currency("CZK");
+    public static final Currency DJF = new Currency("DJF");
+    public static final Currency DKK = new Currency("DKK");
+    public static final Currency DOP = new Currency("DOP");
+    public static final Currency DZD = new Currency("DZD");
+    public static final Currency EGP = new Currency("EGP");
+    public static final Currency ERN = new Currency("ERN");
+    public static final Currency ETB = new Currency("ETB");
+    public static final Currency EUR = new Currency("EUR");
+    public static final Currency FJD = new Currency("FJD");
+    public static final Currency FKP = new Currency("FKP");
+    public static final Currency GBP = new Currency("GBP");
+    public static final Currency GEL = new Currency("GEL");
+    public static final Currency GHS = new Currency("GHS");
+    public static final Currency GIP = new Currency("GIP");
+    public static final Currency GMD = new Currency("GMD");
+    public static final Currency GNF = new Currency("GNF");
+    public static final Currency GTQ = new Currency("GTQ");
+    public static final Currency GYD = new Currency("GYD");
+    public static final Currency HKD = new Currency("HKD");
+    public static final Currency HNL = new Currency("HNL");
+    public static final Currency HRK = new Currency("HRK");
+    public static final Currency HTG = new Currency("HTG");
+    public static final Currency HUF = new Currency("HUF");
+    public static final Currency IDR = new Currency("IDR");
+    public static final Currency ILS = new Currency("ILS");
+    public static final Currency INR = new Currency("INR");
+    public static final Currency IQD = new Currency("IQD");
+    public static final Currency IRR = new Currency("IRR");
+    public static final Currency ISK = new Currency("ISK");
+    public static final Currency JMD = new Currency("JMD");
+    public static final Currency JOD = new Currency("JOD");
+    public static final Currency JPY = new Currency("JPY");
+    public static final Currency KES = new Currency("KES");
+    public static final Currency KGS = new Currency("KGS");
+    public static final Currency KHR = new Currency("KHR");
+    public static final Currency KMF = new Currency("KMF");
+    public static final Currency KPW = new Currency("KPW");
+    public static final Currency KRW = new Currency("KRW");
+    public static final Currency KWD = new Currency("KWD");
+    public static final Currency KYD = new Currency("KYD");
+    public static final Currency KZT = new Currency("KZT");
+    public static final Currency LAK = new Currency("LAK");
+    public static final Currency LBP = new Currency("LBP");
+    public static final Currency LKR = new Currency("LKR");
+    public static final Currency LRD = new Currency("LRD");
+    public static final Currency LSL = new Currency("LSL");
+    public static final Currency LTL = new Currency("LTL");
+    public static final Currency LVL = new Currency("LVL");
+    public static final Currency LYD = new Currency("LYD");
+    public static final Currency MAD = new Currency("MAD");
+    public static final Currency MDL = new Currency("MDL");
+    public static final Currency MGA = new Currency("MGA");
+    public static final Currency MKD = new Currency("MKD");
+    public static final Currency MMK = new Currency("MMK");
+    public static final Currency MNT = new Currency("MNT");
+    public static final Currency MOP = new Currency("MOP");
+    public static final Currency MRO = new Currency("MRO");
+    public static final Currency MUR = new Currency("MUR");
+    public static final Currency MVR = new Currency("MVR");
+    public static final Currency MWK = new Currency("MWK");
+    public static final Currency MXN = new Currency("MXN");
+    public static final Currency MXV = new Currency("MXV");
+    public static final Currency MYR = new Currency("MYR");
+    public static final Currency MZN = new Currency("MZN");
+    public static final Currency NAD = new Currency("NAD");
+    public static final Currency NGN = new Currency("NGN");
+    public static final Currency NIO = new Currency("NIO");
+    public static final Currency NOK = new Currency("NOK");
+    public static final Currency NPR = new Currency("NPR");
+    public static final Currency NZD = new Currency("NZD");
+    public static final Currency OMR = new Currency("OMR");
+    public static final Currency PAB = new Currency("PAB");
+    public static final Currency PEN = new Currency("PEN");
+    public static final Currency PGK = new Currency("PGK");
+    public static final Currency PHP = new Currency("PHP");
+    public static final Currency PKR = new Currency("PKR");
+    public static final Currency PLN = new Currency("PLN");
+    public static final Currency PYG = new Currency("PYG");
+    public static final Currency QAR = new Currency("QAR");
+    public static final Currency RON = new Currency("RON");
+    public static final Currency RSD = new Currency("RSD");
+    public static final Currency RUB = new Currency("RUB");
+    public static final Currency RWF = new Currency("RWF");
+    public static final Currency SAR = new Currency("SAR");
+    public static final Currency SBD = new Currency("SBD");
+    public static final Currency SCR = new Currency("SCR");
+    public static final Currency SDG = new Currency("SDG");
+    public static final Currency SEK = new Currency("SEK");
+    public static final Currency SGD = new Currency("SGD");
+    public static final Currency SHP = new Currency("SHP");
+    public static final Currency SLL = new Currency("SLL");
+    public static final Currency SOS = new Currency("SOS");
+    public static final Currency SRD = new Currency("SRD");
+    public static final Currency SSP = new Currency("SSP");
+    public static final Currency STD = new Currency("STD");
+    public static final Currency SVC = new Currency("SVC");
+    public static final Currency SYP = new Currency("SYP");
+    public static final Currency SZL = new Currency("SZL");
+    public static final Currency THB = new Currency("THB");
+    public static final Currency TJS = new Currency("TJS");
+    public static final Currency TMT = new Currency("TMT");
+    public static final Currency TND = new Currency("TND");
+    public static final Currency TOP = new Currency("TOP");
+    public static final Currency TRC = new Currency("TRC");
+    public static final Currency TRY = new Currency("TRY");
+    public static final Currency TTD = new Currency("TTD");
+    public static final Currency TWD = new Currency("TWD");
+    public static final Currency TZS = new Currency("TZS");
+    public static final Currency UAH = new Currency("UAH");
+    public static final Currency UGX = new Currency("UGX");
+    public static final Currency USD = new Currency("USD");
+    public static final Currency USN = new Currency("USN");
+    public static final Currency USS = new Currency("USS");
+    public static final Currency UYI = new Currency("UYI");
+    public static final Currency UYU = new Currency("UYU");
+    public static final Currency UZS = new Currency("UZS");
+    public static final Currency VEF = new Currency("VEF");
+    public static final Currency VND = new Currency("VND");
+    public static final Currency VUV = new Currency("VUV");
+    public static final Currency WST = new Currency("WST");
+    public static final Currency XAF = new Currency("XAF");
+    public static final Currency XAG = new Currency("XAG");
+    public static final Currency XAU = new Currency("XAU");
+    public static final Currency XBA = new Currency("XBA");
+    public static final Currency XBB = new Currency("XBB");
+    public static final Currency XBC = new Currency("XBC");
+    public static final Currency XBD = new Currency("XBD");
+    public static final Currency XCD = new Currency("XCD");
+    public static final Currency XDR = new Currency("XDR");
+    public static final Currency XOF = new Currency("XOF");
+    public static final Currency XPD = new Currency("XPD");
+    public static final Currency XPF = new Currency("XPF");
+    public static final Currency XPT = new Currency("XPT");
+    public static final Currency XTS = new Currency("XTS");
+    public static final Currency XXX = new Currency("XXX");
+    public static final Currency YER = new Currency("YER");
+    public static final Currency ZAR = new Currency("ZAR");
+    public static final Currency ZMK = new Currency("ZMK");
+    public static final Currency ZMW = new Currency("ZMW");
+    public static final Currency BTC = new Currency("BTC");
+    public static final Currency ETH = new Currency("ETH");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, Currency> values = createValuesMap();
+    private static final Map<String, CurrencyEnum> enums = createEnumsMap();
+
     private final String value;
 
-    Currency(String value) {
+    private Currency(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a Currency with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as Currency
+     */ 
+    @JsonCreator
+    public static Currency of(String value) {
+        synchronized (Currency.class) {
+            return values.computeIfAbsent(value, v -> new Currency(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<Currency> fromValue(String value) {
-        for (Currency o: Currency.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<CurrencyEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Currency other = (Currency) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "Currency [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static Currency[] values() {
+        synchronized (Currency.class) {
+            return values.values().toArray(new Currency[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, Currency> createValuesMap() {
+        Map<String, Currency> map = new LinkedHashMap<>();
+        map.put("UNKNOWN_CURRENCY", UNKNOWN_CURRENCY);
+        map.put("AED", AED);
+        map.put("AFN", AFN);
+        map.put("ALL", ALL);
+        map.put("AMD", AMD);
+        map.put("ANG", ANG);
+        map.put("AOA", AOA);
+        map.put("ARS", ARS);
+        map.put("AUD", AUD);
+        map.put("AWG", AWG);
+        map.put("AZN", AZN);
+        map.put("BAM", BAM);
+        map.put("BBD", BBD);
+        map.put("BDT", BDT);
+        map.put("BGN", BGN);
+        map.put("BHD", BHD);
+        map.put("BIF", BIF);
+        map.put("BMD", BMD);
+        map.put("BND", BND);
+        map.put("BOB", BOB);
+        map.put("BOV", BOV);
+        map.put("BRL", BRL);
+        map.put("BSD", BSD);
+        map.put("BTN", BTN);
+        map.put("BWP", BWP);
+        map.put("BYR", BYR);
+        map.put("BZD", BZD);
+        map.put("CAD", CAD);
+        map.put("CDF", CDF);
+        map.put("CHE", CHE);
+        map.put("CHF", CHF);
+        map.put("CHW", CHW);
+        map.put("CLF", CLF);
+        map.put("CLP", CLP);
+        map.put("CNY", CNY);
+        map.put("COP", COP);
+        map.put("COU", COU);
+        map.put("CRC", CRC);
+        map.put("CUC", CUC);
+        map.put("CUP", CUP);
+        map.put("CVE", CVE);
+        map.put("CZK", CZK);
+        map.put("DJF", DJF);
+        map.put("DKK", DKK);
+        map.put("DOP", DOP);
+        map.put("DZD", DZD);
+        map.put("EGP", EGP);
+        map.put("ERN", ERN);
+        map.put("ETB", ETB);
+        map.put("EUR", EUR);
+        map.put("FJD", FJD);
+        map.put("FKP", FKP);
+        map.put("GBP", GBP);
+        map.put("GEL", GEL);
+        map.put("GHS", GHS);
+        map.put("GIP", GIP);
+        map.put("GMD", GMD);
+        map.put("GNF", GNF);
+        map.put("GTQ", GTQ);
+        map.put("GYD", GYD);
+        map.put("HKD", HKD);
+        map.put("HNL", HNL);
+        map.put("HRK", HRK);
+        map.put("HTG", HTG);
+        map.put("HUF", HUF);
+        map.put("IDR", IDR);
+        map.put("ILS", ILS);
+        map.put("INR", INR);
+        map.put("IQD", IQD);
+        map.put("IRR", IRR);
+        map.put("ISK", ISK);
+        map.put("JMD", JMD);
+        map.put("JOD", JOD);
+        map.put("JPY", JPY);
+        map.put("KES", KES);
+        map.put("KGS", KGS);
+        map.put("KHR", KHR);
+        map.put("KMF", KMF);
+        map.put("KPW", KPW);
+        map.put("KRW", KRW);
+        map.put("KWD", KWD);
+        map.put("KYD", KYD);
+        map.put("KZT", KZT);
+        map.put("LAK", LAK);
+        map.put("LBP", LBP);
+        map.put("LKR", LKR);
+        map.put("LRD", LRD);
+        map.put("LSL", LSL);
+        map.put("LTL", LTL);
+        map.put("LVL", LVL);
+        map.put("LYD", LYD);
+        map.put("MAD", MAD);
+        map.put("MDL", MDL);
+        map.put("MGA", MGA);
+        map.put("MKD", MKD);
+        map.put("MMK", MMK);
+        map.put("MNT", MNT);
+        map.put("MOP", MOP);
+        map.put("MRO", MRO);
+        map.put("MUR", MUR);
+        map.put("MVR", MVR);
+        map.put("MWK", MWK);
+        map.put("MXN", MXN);
+        map.put("MXV", MXV);
+        map.put("MYR", MYR);
+        map.put("MZN", MZN);
+        map.put("NAD", NAD);
+        map.put("NGN", NGN);
+        map.put("NIO", NIO);
+        map.put("NOK", NOK);
+        map.put("NPR", NPR);
+        map.put("NZD", NZD);
+        map.put("OMR", OMR);
+        map.put("PAB", PAB);
+        map.put("PEN", PEN);
+        map.put("PGK", PGK);
+        map.put("PHP", PHP);
+        map.put("PKR", PKR);
+        map.put("PLN", PLN);
+        map.put("PYG", PYG);
+        map.put("QAR", QAR);
+        map.put("RON", RON);
+        map.put("RSD", RSD);
+        map.put("RUB", RUB);
+        map.put("RWF", RWF);
+        map.put("SAR", SAR);
+        map.put("SBD", SBD);
+        map.put("SCR", SCR);
+        map.put("SDG", SDG);
+        map.put("SEK", SEK);
+        map.put("SGD", SGD);
+        map.put("SHP", SHP);
+        map.put("SLL", SLL);
+        map.put("SOS", SOS);
+        map.put("SRD", SRD);
+        map.put("SSP", SSP);
+        map.put("STD", STD);
+        map.put("SVC", SVC);
+        map.put("SYP", SYP);
+        map.put("SZL", SZL);
+        map.put("THB", THB);
+        map.put("TJS", TJS);
+        map.put("TMT", TMT);
+        map.put("TND", TND);
+        map.put("TOP", TOP);
+        map.put("TRC", TRC);
+        map.put("TRY", TRY);
+        map.put("TTD", TTD);
+        map.put("TWD", TWD);
+        map.put("TZS", TZS);
+        map.put("UAH", UAH);
+        map.put("UGX", UGX);
+        map.put("USD", USD);
+        map.put("USN", USN);
+        map.put("USS", USS);
+        map.put("UYI", UYI);
+        map.put("UYU", UYU);
+        map.put("UZS", UZS);
+        map.put("VEF", VEF);
+        map.put("VND", VND);
+        map.put("VUV", VUV);
+        map.put("WST", WST);
+        map.put("XAF", XAF);
+        map.put("XAG", XAG);
+        map.put("XAU", XAU);
+        map.put("XBA", XBA);
+        map.put("XBB", XBB);
+        map.put("XBC", XBC);
+        map.put("XBD", XBD);
+        map.put("XCD", XCD);
+        map.put("XDR", XDR);
+        map.put("XOF", XOF);
+        map.put("XPD", XPD);
+        map.put("XPF", XPF);
+        map.put("XPT", XPT);
+        map.put("XTS", XTS);
+        map.put("XXX", XXX);
+        map.put("YER", YER);
+        map.put("ZAR", ZAR);
+        map.put("ZMK", ZMK);
+        map.put("ZMW", ZMW);
+        map.put("BTC", BTC);
+        map.put("ETH", ETH);
+        return map;
+    }
+
+    private static final Map<String, CurrencyEnum> createEnumsMap() {
+        Map<String, CurrencyEnum> map = new HashMap<>();
+        map.put("UNKNOWN_CURRENCY", CurrencyEnum.UNKNOWN_CURRENCY);
+        map.put("AED", CurrencyEnum.AED);
+        map.put("AFN", CurrencyEnum.AFN);
+        map.put("ALL", CurrencyEnum.ALL);
+        map.put("AMD", CurrencyEnum.AMD);
+        map.put("ANG", CurrencyEnum.ANG);
+        map.put("AOA", CurrencyEnum.AOA);
+        map.put("ARS", CurrencyEnum.ARS);
+        map.put("AUD", CurrencyEnum.AUD);
+        map.put("AWG", CurrencyEnum.AWG);
+        map.put("AZN", CurrencyEnum.AZN);
+        map.put("BAM", CurrencyEnum.BAM);
+        map.put("BBD", CurrencyEnum.BBD);
+        map.put("BDT", CurrencyEnum.BDT);
+        map.put("BGN", CurrencyEnum.BGN);
+        map.put("BHD", CurrencyEnum.BHD);
+        map.put("BIF", CurrencyEnum.BIF);
+        map.put("BMD", CurrencyEnum.BMD);
+        map.put("BND", CurrencyEnum.BND);
+        map.put("BOB", CurrencyEnum.BOB);
+        map.put("BOV", CurrencyEnum.BOV);
+        map.put("BRL", CurrencyEnum.BRL);
+        map.put("BSD", CurrencyEnum.BSD);
+        map.put("BTN", CurrencyEnum.BTN);
+        map.put("BWP", CurrencyEnum.BWP);
+        map.put("BYR", CurrencyEnum.BYR);
+        map.put("BZD", CurrencyEnum.BZD);
+        map.put("CAD", CurrencyEnum.CAD);
+        map.put("CDF", CurrencyEnum.CDF);
+        map.put("CHE", CurrencyEnum.CHE);
+        map.put("CHF", CurrencyEnum.CHF);
+        map.put("CHW", CurrencyEnum.CHW);
+        map.put("CLF", CurrencyEnum.CLF);
+        map.put("CLP", CurrencyEnum.CLP);
+        map.put("CNY", CurrencyEnum.CNY);
+        map.put("COP", CurrencyEnum.COP);
+        map.put("COU", CurrencyEnum.COU);
+        map.put("CRC", CurrencyEnum.CRC);
+        map.put("CUC", CurrencyEnum.CUC);
+        map.put("CUP", CurrencyEnum.CUP);
+        map.put("CVE", CurrencyEnum.CVE);
+        map.put("CZK", CurrencyEnum.CZK);
+        map.put("DJF", CurrencyEnum.DJF);
+        map.put("DKK", CurrencyEnum.DKK);
+        map.put("DOP", CurrencyEnum.DOP);
+        map.put("DZD", CurrencyEnum.DZD);
+        map.put("EGP", CurrencyEnum.EGP);
+        map.put("ERN", CurrencyEnum.ERN);
+        map.put("ETB", CurrencyEnum.ETB);
+        map.put("EUR", CurrencyEnum.EUR);
+        map.put("FJD", CurrencyEnum.FJD);
+        map.put("FKP", CurrencyEnum.FKP);
+        map.put("GBP", CurrencyEnum.GBP);
+        map.put("GEL", CurrencyEnum.GEL);
+        map.put("GHS", CurrencyEnum.GHS);
+        map.put("GIP", CurrencyEnum.GIP);
+        map.put("GMD", CurrencyEnum.GMD);
+        map.put("GNF", CurrencyEnum.GNF);
+        map.put("GTQ", CurrencyEnum.GTQ);
+        map.put("GYD", CurrencyEnum.GYD);
+        map.put("HKD", CurrencyEnum.HKD);
+        map.put("HNL", CurrencyEnum.HNL);
+        map.put("HRK", CurrencyEnum.HRK);
+        map.put("HTG", CurrencyEnum.HTG);
+        map.put("HUF", CurrencyEnum.HUF);
+        map.put("IDR", CurrencyEnum.IDR);
+        map.put("ILS", CurrencyEnum.ILS);
+        map.put("INR", CurrencyEnum.INR);
+        map.put("IQD", CurrencyEnum.IQD);
+        map.put("IRR", CurrencyEnum.IRR);
+        map.put("ISK", CurrencyEnum.ISK);
+        map.put("JMD", CurrencyEnum.JMD);
+        map.put("JOD", CurrencyEnum.JOD);
+        map.put("JPY", CurrencyEnum.JPY);
+        map.put("KES", CurrencyEnum.KES);
+        map.put("KGS", CurrencyEnum.KGS);
+        map.put("KHR", CurrencyEnum.KHR);
+        map.put("KMF", CurrencyEnum.KMF);
+        map.put("KPW", CurrencyEnum.KPW);
+        map.put("KRW", CurrencyEnum.KRW);
+        map.put("KWD", CurrencyEnum.KWD);
+        map.put("KYD", CurrencyEnum.KYD);
+        map.put("KZT", CurrencyEnum.KZT);
+        map.put("LAK", CurrencyEnum.LAK);
+        map.put("LBP", CurrencyEnum.LBP);
+        map.put("LKR", CurrencyEnum.LKR);
+        map.put("LRD", CurrencyEnum.LRD);
+        map.put("LSL", CurrencyEnum.LSL);
+        map.put("LTL", CurrencyEnum.LTL);
+        map.put("LVL", CurrencyEnum.LVL);
+        map.put("LYD", CurrencyEnum.LYD);
+        map.put("MAD", CurrencyEnum.MAD);
+        map.put("MDL", CurrencyEnum.MDL);
+        map.put("MGA", CurrencyEnum.MGA);
+        map.put("MKD", CurrencyEnum.MKD);
+        map.put("MMK", CurrencyEnum.MMK);
+        map.put("MNT", CurrencyEnum.MNT);
+        map.put("MOP", CurrencyEnum.MOP);
+        map.put("MRO", CurrencyEnum.MRO);
+        map.put("MUR", CurrencyEnum.MUR);
+        map.put("MVR", CurrencyEnum.MVR);
+        map.put("MWK", CurrencyEnum.MWK);
+        map.put("MXN", CurrencyEnum.MXN);
+        map.put("MXV", CurrencyEnum.MXV);
+        map.put("MYR", CurrencyEnum.MYR);
+        map.put("MZN", CurrencyEnum.MZN);
+        map.put("NAD", CurrencyEnum.NAD);
+        map.put("NGN", CurrencyEnum.NGN);
+        map.put("NIO", CurrencyEnum.NIO);
+        map.put("NOK", CurrencyEnum.NOK);
+        map.put("NPR", CurrencyEnum.NPR);
+        map.put("NZD", CurrencyEnum.NZD);
+        map.put("OMR", CurrencyEnum.OMR);
+        map.put("PAB", CurrencyEnum.PAB);
+        map.put("PEN", CurrencyEnum.PEN);
+        map.put("PGK", CurrencyEnum.PGK);
+        map.put("PHP", CurrencyEnum.PHP);
+        map.put("PKR", CurrencyEnum.PKR);
+        map.put("PLN", CurrencyEnum.PLN);
+        map.put("PYG", CurrencyEnum.PYG);
+        map.put("QAR", CurrencyEnum.QAR);
+        map.put("RON", CurrencyEnum.RON);
+        map.put("RSD", CurrencyEnum.RSD);
+        map.put("RUB", CurrencyEnum.RUB);
+        map.put("RWF", CurrencyEnum.RWF);
+        map.put("SAR", CurrencyEnum.SAR);
+        map.put("SBD", CurrencyEnum.SBD);
+        map.put("SCR", CurrencyEnum.SCR);
+        map.put("SDG", CurrencyEnum.SDG);
+        map.put("SEK", CurrencyEnum.SEK);
+        map.put("SGD", CurrencyEnum.SGD);
+        map.put("SHP", CurrencyEnum.SHP);
+        map.put("SLL", CurrencyEnum.SLL);
+        map.put("SOS", CurrencyEnum.SOS);
+        map.put("SRD", CurrencyEnum.SRD);
+        map.put("SSP", CurrencyEnum.SSP);
+        map.put("STD", CurrencyEnum.STD);
+        map.put("SVC", CurrencyEnum.SVC);
+        map.put("SYP", CurrencyEnum.SYP);
+        map.put("SZL", CurrencyEnum.SZL);
+        map.put("THB", CurrencyEnum.THB);
+        map.put("TJS", CurrencyEnum.TJS);
+        map.put("TMT", CurrencyEnum.TMT);
+        map.put("TND", CurrencyEnum.TND);
+        map.put("TOP", CurrencyEnum.TOP);
+        map.put("TRC", CurrencyEnum.TRC);
+        map.put("TRY", CurrencyEnum.TRY);
+        map.put("TTD", CurrencyEnum.TTD);
+        map.put("TWD", CurrencyEnum.TWD);
+        map.put("TZS", CurrencyEnum.TZS);
+        map.put("UAH", CurrencyEnum.UAH);
+        map.put("UGX", CurrencyEnum.UGX);
+        map.put("USD", CurrencyEnum.USD);
+        map.put("USN", CurrencyEnum.USN);
+        map.put("USS", CurrencyEnum.USS);
+        map.put("UYI", CurrencyEnum.UYI);
+        map.put("UYU", CurrencyEnum.UYU);
+        map.put("UZS", CurrencyEnum.UZS);
+        map.put("VEF", CurrencyEnum.VEF);
+        map.put("VND", CurrencyEnum.VND);
+        map.put("VUV", CurrencyEnum.VUV);
+        map.put("WST", CurrencyEnum.WST);
+        map.put("XAF", CurrencyEnum.XAF);
+        map.put("XAG", CurrencyEnum.XAG);
+        map.put("XAU", CurrencyEnum.XAU);
+        map.put("XBA", CurrencyEnum.XBA);
+        map.put("XBB", CurrencyEnum.XBB);
+        map.put("XBC", CurrencyEnum.XBC);
+        map.put("XBD", CurrencyEnum.XBD);
+        map.put("XCD", CurrencyEnum.XCD);
+        map.put("XDR", CurrencyEnum.XDR);
+        map.put("XOF", CurrencyEnum.XOF);
+        map.put("XPD", CurrencyEnum.XPD);
+        map.put("XPF", CurrencyEnum.XPF);
+        map.put("XPT", CurrencyEnum.XPT);
+        map.put("XTS", CurrencyEnum.XTS);
+        map.put("XXX", CurrencyEnum.XXX);
+        map.put("YER", CurrencyEnum.YER);
+        map.put("ZAR", CurrencyEnum.ZAR);
+        map.put("ZMK", CurrencyEnum.ZMK);
+        map.put("ZMW", CurrencyEnum.ZMW);
+        map.put("BTC", CurrencyEnum.BTC);
+        map.put("ETH", CurrencyEnum.ETH);
+        return map;
+    }
+    
+    
+    public enum CurrencyEnum {
+
+        UNKNOWN_CURRENCY("UNKNOWN_CURRENCY"),
+        AED("AED"),
+        AFN("AFN"),
+        ALL("ALL"),
+        AMD("AMD"),
+        ANG("ANG"),
+        AOA("AOA"),
+        ARS("ARS"),
+        AUD("AUD"),
+        AWG("AWG"),
+        AZN("AZN"),
+        BAM("BAM"),
+        BBD("BBD"),
+        BDT("BDT"),
+        BGN("BGN"),
+        BHD("BHD"),
+        BIF("BIF"),
+        BMD("BMD"),
+        BND("BND"),
+        BOB("BOB"),
+        BOV("BOV"),
+        BRL("BRL"),
+        BSD("BSD"),
+        BTN("BTN"),
+        BWP("BWP"),
+        BYR("BYR"),
+        BZD("BZD"),
+        CAD("CAD"),
+        CDF("CDF"),
+        CHE("CHE"),
+        CHF("CHF"),
+        CHW("CHW"),
+        CLF("CLF"),
+        CLP("CLP"),
+        CNY("CNY"),
+        COP("COP"),
+        COU("COU"),
+        CRC("CRC"),
+        CUC("CUC"),
+        CUP("CUP"),
+        CVE("CVE"),
+        CZK("CZK"),
+        DJF("DJF"),
+        DKK("DKK"),
+        DOP("DOP"),
+        DZD("DZD"),
+        EGP("EGP"),
+        ERN("ERN"),
+        ETB("ETB"),
+        EUR("EUR"),
+        FJD("FJD"),
+        FKP("FKP"),
+        GBP("GBP"),
+        GEL("GEL"),
+        GHS("GHS"),
+        GIP("GIP"),
+        GMD("GMD"),
+        GNF("GNF"),
+        GTQ("GTQ"),
+        GYD("GYD"),
+        HKD("HKD"),
+        HNL("HNL"),
+        HRK("HRK"),
+        HTG("HTG"),
+        HUF("HUF"),
+        IDR("IDR"),
+        ILS("ILS"),
+        INR("INR"),
+        IQD("IQD"),
+        IRR("IRR"),
+        ISK("ISK"),
+        JMD("JMD"),
+        JOD("JOD"),
+        JPY("JPY"),
+        KES("KES"),
+        KGS("KGS"),
+        KHR("KHR"),
+        KMF("KMF"),
+        KPW("KPW"),
+        KRW("KRW"),
+        KWD("KWD"),
+        KYD("KYD"),
+        KZT("KZT"),
+        LAK("LAK"),
+        LBP("LBP"),
+        LKR("LKR"),
+        LRD("LRD"),
+        LSL("LSL"),
+        LTL("LTL"),
+        LVL("LVL"),
+        LYD("LYD"),
+        MAD("MAD"),
+        MDL("MDL"),
+        MGA("MGA"),
+        MKD("MKD"),
+        MMK("MMK"),
+        MNT("MNT"),
+        MOP("MOP"),
+        MRO("MRO"),
+        MUR("MUR"),
+        MVR("MVR"),
+        MWK("MWK"),
+        MXN("MXN"),
+        MXV("MXV"),
+        MYR("MYR"),
+        MZN("MZN"),
+        NAD("NAD"),
+        NGN("NGN"),
+        NIO("NIO"),
+        NOK("NOK"),
+        NPR("NPR"),
+        NZD("NZD"),
+        OMR("OMR"),
+        PAB("PAB"),
+        PEN("PEN"),
+        PGK("PGK"),
+        PHP("PHP"),
+        PKR("PKR"),
+        PLN("PLN"),
+        PYG("PYG"),
+        QAR("QAR"),
+        RON("RON"),
+        RSD("RSD"),
+        RUB("RUB"),
+        RWF("RWF"),
+        SAR("SAR"),
+        SBD("SBD"),
+        SCR("SCR"),
+        SDG("SDG"),
+        SEK("SEK"),
+        SGD("SGD"),
+        SHP("SHP"),
+        SLL("SLL"),
+        SOS("SOS"),
+        SRD("SRD"),
+        SSP("SSP"),
+        STD("STD"),
+        SVC("SVC"),
+        SYP("SYP"),
+        SZL("SZL"),
+        THB("THB"),
+        TJS("TJS"),
+        TMT("TMT"),
+        TND("TND"),
+        TOP("TOP"),
+        TRC("TRC"),
+        TRY("TRY"),
+        TTD("TTD"),
+        TWD("TWD"),
+        TZS("TZS"),
+        UAH("UAH"),
+        UGX("UGX"),
+        USD("USD"),
+        USN("USN"),
+        USS("USS"),
+        UYI("UYI"),
+        UYU("UYU"),
+        UZS("UZS"),
+        VEF("VEF"),
+        VND("VND"),
+        VUV("VUV"),
+        WST("WST"),
+        XAF("XAF"),
+        XAG("XAG"),
+        XAU("XAU"),
+        XBA("XBA"),
+        XBB("XBB"),
+        XBC("XBC"),
+        XBD("XBD"),
+        XCD("XCD"),
+        XDR("XDR"),
+        XOF("XOF"),
+        XPD("XPD"),
+        XPF("XPF"),
+        XPT("XPT"),
+        XTS("XTS"),
+        XXX("XXX"),
+        YER("YER"),
+        ZAR("ZAR"),
+        ZMK("ZMK"),
+        ZMW("ZMW"),
+        BTC("BTC"),
+        ETH("ETH"),;
+
+        private final String value;
+
+        private CurrencyEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

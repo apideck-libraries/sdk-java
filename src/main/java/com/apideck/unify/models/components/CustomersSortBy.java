@@ -3,38 +3,130 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * CustomersSortBy
  * 
  * <p>The field on which to sort the Customers
  */
-public enum CustomersSortBy {
-    CREATED_AT("created_at"),
-    UPDATED_AT("updated_at");
+public class CustomersSortBy {
 
-    @JsonValue
+    public static final CustomersSortBy CREATED_AT = new CustomersSortBy("created_at");
+    public static final CustomersSortBy UPDATED_AT = new CustomersSortBy("updated_at");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, CustomersSortBy> values = createValuesMap();
+    private static final Map<String, CustomersSortByEnum> enums = createEnumsMap();
+
     private final String value;
 
-    CustomersSortBy(String value) {
+    private CustomersSortBy(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a CustomersSortBy with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as CustomersSortBy
+     */ 
+    @JsonCreator
+    public static CustomersSortBy of(String value) {
+        synchronized (CustomersSortBy.class) {
+            return values.computeIfAbsent(value, v -> new CustomersSortBy(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<CustomersSortBy> fromValue(String value) {
-        for (CustomersSortBy o: CustomersSortBy.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<CustomersSortByEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        CustomersSortBy other = (CustomersSortBy) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "CustomersSortBy [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static CustomersSortBy[] values() {
+        synchronized (CustomersSortBy.class) {
+            return values.values().toArray(new CustomersSortBy[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, CustomersSortBy> createValuesMap() {
+        Map<String, CustomersSortBy> map = new LinkedHashMap<>();
+        map.put("created_at", CREATED_AT);
+        map.put("updated_at", UPDATED_AT);
+        return map;
+    }
+
+    private static final Map<String, CustomersSortByEnum> createEnumsMap() {
+        Map<String, CustomersSortByEnum> map = new HashMap<>();
+        map.put("created_at", CustomersSortByEnum.CREATED_AT);
+        map.put("updated_at", CustomersSortByEnum.UPDATED_AT);
+        return map;
+    }
+    
+    
+    public enum CustomersSortByEnum {
+
+        CREATED_AT("created_at"),
+        UPDATED_AT("updated_at"),;
+
+        private final String value;
+
+        private CustomersSortByEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

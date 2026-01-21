@@ -3,41 +3,142 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * BalanceByTransactionTransactionType
  * 
  * <p>Type of the transaction.
  */
-public enum BalanceByTransactionTransactionType {
-    INVOICE("invoice"),
-    CREDIT_NOTE("credit_note"),
-    BILL("bill"),
-    PAYMENT("payment"),
-    BILL_PAYMENT("bill_payment");
+public class BalanceByTransactionTransactionType {
 
-    @JsonValue
+    public static final BalanceByTransactionTransactionType INVOICE = new BalanceByTransactionTransactionType("invoice");
+    public static final BalanceByTransactionTransactionType CREDIT_NOTE = new BalanceByTransactionTransactionType("credit_note");
+    public static final BalanceByTransactionTransactionType BILL = new BalanceByTransactionTransactionType("bill");
+    public static final BalanceByTransactionTransactionType PAYMENT = new BalanceByTransactionTransactionType("payment");
+    public static final BalanceByTransactionTransactionType BILL_PAYMENT = new BalanceByTransactionTransactionType("bill_payment");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, BalanceByTransactionTransactionType> values = createValuesMap();
+    private static final Map<String, BalanceByTransactionTransactionTypeEnum> enums = createEnumsMap();
+
     private final String value;
 
-    BalanceByTransactionTransactionType(String value) {
+    private BalanceByTransactionTransactionType(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a BalanceByTransactionTransactionType with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as BalanceByTransactionTransactionType
+     */ 
+    @JsonCreator
+    public static BalanceByTransactionTransactionType of(String value) {
+        synchronized (BalanceByTransactionTransactionType.class) {
+            return values.computeIfAbsent(value, v -> new BalanceByTransactionTransactionType(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<BalanceByTransactionTransactionType> fromValue(String value) {
-        for (BalanceByTransactionTransactionType o: BalanceByTransactionTransactionType.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<BalanceByTransactionTransactionTypeEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        BalanceByTransactionTransactionType other = (BalanceByTransactionTransactionType) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "BalanceByTransactionTransactionType [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static BalanceByTransactionTransactionType[] values() {
+        synchronized (BalanceByTransactionTransactionType.class) {
+            return values.values().toArray(new BalanceByTransactionTransactionType[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, BalanceByTransactionTransactionType> createValuesMap() {
+        Map<String, BalanceByTransactionTransactionType> map = new LinkedHashMap<>();
+        map.put("invoice", INVOICE);
+        map.put("credit_note", CREDIT_NOTE);
+        map.put("bill", BILL);
+        map.put("payment", PAYMENT);
+        map.put("bill_payment", BILL_PAYMENT);
+        return map;
+    }
+
+    private static final Map<String, BalanceByTransactionTransactionTypeEnum> createEnumsMap() {
+        Map<String, BalanceByTransactionTransactionTypeEnum> map = new HashMap<>();
+        map.put("invoice", BalanceByTransactionTransactionTypeEnum.INVOICE);
+        map.put("credit_note", BalanceByTransactionTransactionTypeEnum.CREDIT_NOTE);
+        map.put("bill", BalanceByTransactionTransactionTypeEnum.BILL);
+        map.put("payment", BalanceByTransactionTransactionTypeEnum.PAYMENT);
+        map.put("bill_payment", BalanceByTransactionTransactionTypeEnum.BILL_PAYMENT);
+        return map;
+    }
+    
+    
+    public enum BalanceByTransactionTransactionTypeEnum {
+
+        INVOICE("invoice"),
+        CREDIT_NOTE("credit_note"),
+        BILL("bill"),
+        PAYMENT("payment"),
+        BILL_PAYMENT("bill_payment"),;
+
+        private final String value;
+
+        private BalanceByTransactionTransactionTypeEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

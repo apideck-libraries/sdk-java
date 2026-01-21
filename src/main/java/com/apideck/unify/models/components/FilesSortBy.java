@@ -3,39 +3,134 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * FilesSortBy
  * 
  * <p>The field on which to sort the Files
  */
-public enum FilesSortBy {
-    CREATED_AT("created_at"),
-    UPDATED_AT("updated_at"),
-    NAME("name");
+public class FilesSortBy {
 
-    @JsonValue
+    public static final FilesSortBy CREATED_AT = new FilesSortBy("created_at");
+    public static final FilesSortBy UPDATED_AT = new FilesSortBy("updated_at");
+    public static final FilesSortBy NAME = new FilesSortBy("name");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, FilesSortBy> values = createValuesMap();
+    private static final Map<String, FilesSortByEnum> enums = createEnumsMap();
+
     private final String value;
 
-    FilesSortBy(String value) {
+    private FilesSortBy(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a FilesSortBy with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as FilesSortBy
+     */ 
+    @JsonCreator
+    public static FilesSortBy of(String value) {
+        synchronized (FilesSortBy.class) {
+            return values.computeIfAbsent(value, v -> new FilesSortBy(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<FilesSortBy> fromValue(String value) {
-        for (FilesSortBy o: FilesSortBy.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<FilesSortByEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        FilesSortBy other = (FilesSortBy) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "FilesSortBy [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static FilesSortBy[] values() {
+        synchronized (FilesSortBy.class) {
+            return values.values().toArray(new FilesSortBy[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, FilesSortBy> createValuesMap() {
+        Map<String, FilesSortBy> map = new LinkedHashMap<>();
+        map.put("created_at", CREATED_AT);
+        map.put("updated_at", UPDATED_AT);
+        map.put("name", NAME);
+        return map;
+    }
+
+    private static final Map<String, FilesSortByEnum> createEnumsMap() {
+        Map<String, FilesSortByEnum> map = new HashMap<>();
+        map.put("created_at", FilesSortByEnum.CREATED_AT);
+        map.put("updated_at", FilesSortByEnum.UPDATED_AT);
+        map.put("name", FilesSortByEnum.NAME);
+        return map;
+    }
+    
+    
+    public enum FilesSortByEnum {
+
+        CREATED_AT("created_at"),
+        UPDATED_AT("updated_at"),
+        NAME("name"),;
+
+        private final String value;
+
+        private FilesSortByEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

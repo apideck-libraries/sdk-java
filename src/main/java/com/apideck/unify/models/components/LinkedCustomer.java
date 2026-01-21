@@ -45,7 +45,7 @@ public class LinkedCustomer {
     /**
      * The name of the customer. Deprecated, use display_name instead.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated. Use display_name instead..
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
@@ -120,7 +120,7 @@ public class LinkedCustomer {
     /**
      * The name of the customer. Deprecated, use display_name instead.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated. Use display_name instead..
      */
     @Deprecated
     @JsonIgnore
@@ -207,7 +207,7 @@ public class LinkedCustomer {
     /**
      * The name of the customer. Deprecated, use display_name instead.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated. Use display_name instead..
      */
     @Deprecated
     public LinkedCustomer withName(String name) {
@@ -220,7 +220,7 @@ public class LinkedCustomer {
     /**
      * The name of the customer. Deprecated, use display_name instead.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated. Use display_name instead..
      */
     @Deprecated
     public LinkedCustomer withName(Optional<String> name) {
@@ -383,7 +383,7 @@ public class LinkedCustomer {
         /**
          * The name of the customer. Deprecated, use display_name instead.
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: Deprecated. Use display_name instead..
          */
         @Deprecated
         public Builder name(String name) {
@@ -395,7 +395,7 @@ public class LinkedCustomer {
         /**
          * The name of the customer. Deprecated, use display_name instead.
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: Deprecated. Use display_name instead..
          */
         @Deprecated
         public Builder name(Optional<String> name) {

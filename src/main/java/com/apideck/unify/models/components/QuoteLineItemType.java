@@ -3,42 +3,146 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * QuoteLineItemType
  * 
  * <p>Item type
  */
-public enum QuoteLineItemType {
-    SALES_ITEM("sales_item"),
-    DISCOUNT("discount"),
-    INFO("info"),
-    SUB_TOTAL("sub_total"),
-    SERVICE("service"),
-    OTHER("other");
+public class QuoteLineItemType {
 
-    @JsonValue
+    public static final QuoteLineItemType SALES_ITEM = new QuoteLineItemType("sales_item");
+    public static final QuoteLineItemType DISCOUNT = new QuoteLineItemType("discount");
+    public static final QuoteLineItemType INFO = new QuoteLineItemType("info");
+    public static final QuoteLineItemType SUB_TOTAL = new QuoteLineItemType("sub_total");
+    public static final QuoteLineItemType SERVICE = new QuoteLineItemType("service");
+    public static final QuoteLineItemType OTHER = new QuoteLineItemType("other");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, QuoteLineItemType> values = createValuesMap();
+    private static final Map<String, QuoteLineItemTypeEnum> enums = createEnumsMap();
+
     private final String value;
 
-    QuoteLineItemType(String value) {
+    private QuoteLineItemType(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a QuoteLineItemType with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as QuoteLineItemType
+     */ 
+    @JsonCreator
+    public static QuoteLineItemType of(String value) {
+        synchronized (QuoteLineItemType.class) {
+            return values.computeIfAbsent(value, v -> new QuoteLineItemType(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<QuoteLineItemType> fromValue(String value) {
-        for (QuoteLineItemType o: QuoteLineItemType.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<QuoteLineItemTypeEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        QuoteLineItemType other = (QuoteLineItemType) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "QuoteLineItemType [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static QuoteLineItemType[] values() {
+        synchronized (QuoteLineItemType.class) {
+            return values.values().toArray(new QuoteLineItemType[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, QuoteLineItemType> createValuesMap() {
+        Map<String, QuoteLineItemType> map = new LinkedHashMap<>();
+        map.put("sales_item", SALES_ITEM);
+        map.put("discount", DISCOUNT);
+        map.put("info", INFO);
+        map.put("sub_total", SUB_TOTAL);
+        map.put("service", SERVICE);
+        map.put("other", OTHER);
+        return map;
+    }
+
+    private static final Map<String, QuoteLineItemTypeEnum> createEnumsMap() {
+        Map<String, QuoteLineItemTypeEnum> map = new HashMap<>();
+        map.put("sales_item", QuoteLineItemTypeEnum.SALES_ITEM);
+        map.put("discount", QuoteLineItemTypeEnum.DISCOUNT);
+        map.put("info", QuoteLineItemTypeEnum.INFO);
+        map.put("sub_total", QuoteLineItemTypeEnum.SUB_TOTAL);
+        map.put("service", QuoteLineItemTypeEnum.SERVICE);
+        map.put("other", QuoteLineItemTypeEnum.OTHER);
+        return map;
+    }
+    
+    
+    public enum QuoteLineItemTypeEnum {
+
+        SALES_ITEM("sales_item"),
+        DISCOUNT("discount"),
+        INFO("info"),
+        SUB_TOTAL("sub_total"),
+        SERVICE("service"),
+        OTHER("other"),;
+
+        private final String value;
+
+        private QuoteLineItemTypeEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

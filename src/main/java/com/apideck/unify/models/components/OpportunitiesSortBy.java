@@ -3,42 +3,146 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * OpportunitiesSortBy
  * 
  * <p>The field on which to sort the Opportunities
  */
-public enum OpportunitiesSortBy {
-    CREATED_AT("created_at"),
-    UPDATED_AT("updated_at"),
-    TITLE("title"),
-    WIN_PROBABILITY("win_probability"),
-    MONETARY_AMOUNT("monetary_amount"),
-    STATUS("status");
+public class OpportunitiesSortBy {
 
-    @JsonValue
+    public static final OpportunitiesSortBy CREATED_AT = new OpportunitiesSortBy("created_at");
+    public static final OpportunitiesSortBy UPDATED_AT = new OpportunitiesSortBy("updated_at");
+    public static final OpportunitiesSortBy TITLE = new OpportunitiesSortBy("title");
+    public static final OpportunitiesSortBy WIN_PROBABILITY = new OpportunitiesSortBy("win_probability");
+    public static final OpportunitiesSortBy MONETARY_AMOUNT = new OpportunitiesSortBy("monetary_amount");
+    public static final OpportunitiesSortBy STATUS = new OpportunitiesSortBy("status");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, OpportunitiesSortBy> values = createValuesMap();
+    private static final Map<String, OpportunitiesSortByEnum> enums = createEnumsMap();
+
     private final String value;
 
-    OpportunitiesSortBy(String value) {
+    private OpportunitiesSortBy(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a OpportunitiesSortBy with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as OpportunitiesSortBy
+     */ 
+    @JsonCreator
+    public static OpportunitiesSortBy of(String value) {
+        synchronized (OpportunitiesSortBy.class) {
+            return values.computeIfAbsent(value, v -> new OpportunitiesSortBy(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<OpportunitiesSortBy> fromValue(String value) {
-        for (OpportunitiesSortBy o: OpportunitiesSortBy.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<OpportunitiesSortByEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        OpportunitiesSortBy other = (OpportunitiesSortBy) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "OpportunitiesSortBy [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static OpportunitiesSortBy[] values() {
+        synchronized (OpportunitiesSortBy.class) {
+            return values.values().toArray(new OpportunitiesSortBy[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, OpportunitiesSortBy> createValuesMap() {
+        Map<String, OpportunitiesSortBy> map = new LinkedHashMap<>();
+        map.put("created_at", CREATED_AT);
+        map.put("updated_at", UPDATED_AT);
+        map.put("title", TITLE);
+        map.put("win_probability", WIN_PROBABILITY);
+        map.put("monetary_amount", MONETARY_AMOUNT);
+        map.put("status", STATUS);
+        return map;
+    }
+
+    private static final Map<String, OpportunitiesSortByEnum> createEnumsMap() {
+        Map<String, OpportunitiesSortByEnum> map = new HashMap<>();
+        map.put("created_at", OpportunitiesSortByEnum.CREATED_AT);
+        map.put("updated_at", OpportunitiesSortByEnum.UPDATED_AT);
+        map.put("title", OpportunitiesSortByEnum.TITLE);
+        map.put("win_probability", OpportunitiesSortByEnum.WIN_PROBABILITY);
+        map.put("monetary_amount", OpportunitiesSortByEnum.MONETARY_AMOUNT);
+        map.put("status", OpportunitiesSortByEnum.STATUS);
+        return map;
+    }
+    
+    
+    public enum OpportunitiesSortByEnum {
+
+        CREATED_AT("created_at"),
+        UPDATED_AT("updated_at"),
+        TITLE("title"),
+        WIN_PROBABILITY("win_probability"),
+        MONETARY_AMOUNT("monetary_amount"),
+        STATUS("status"),;
+
+        private final String value;
+
+        private OpportunitiesSortByEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

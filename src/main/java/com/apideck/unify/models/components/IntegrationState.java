@@ -3,39 +3,134 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * IntegrationState
  * 
  * <p>The current state of the Integration.
  */
-public enum IntegrationState {
-    DISABLED("disabled"),
-    NEEDS_CONFIGURATION("needs_configuration"),
-    CONFIGURED("configured");
+public class IntegrationState {
 
-    @JsonValue
+    public static final IntegrationState DISABLED = new IntegrationState("disabled");
+    public static final IntegrationState NEEDS_CONFIGURATION = new IntegrationState("needs_configuration");
+    public static final IntegrationState CONFIGURED = new IntegrationState("configured");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, IntegrationState> values = createValuesMap();
+    private static final Map<String, IntegrationStateEnum> enums = createEnumsMap();
+
     private final String value;
 
-    IntegrationState(String value) {
+    private IntegrationState(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a IntegrationState with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as IntegrationState
+     */ 
+    @JsonCreator
+    public static IntegrationState of(String value) {
+        synchronized (IntegrationState.class) {
+            return values.computeIfAbsent(value, v -> new IntegrationState(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<IntegrationState> fromValue(String value) {
-        for (IntegrationState o: IntegrationState.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<IntegrationStateEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        IntegrationState other = (IntegrationState) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "IntegrationState [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static IntegrationState[] values() {
+        synchronized (IntegrationState.class) {
+            return values.values().toArray(new IntegrationState[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, IntegrationState> createValuesMap() {
+        Map<String, IntegrationState> map = new LinkedHashMap<>();
+        map.put("disabled", DISABLED);
+        map.put("needs_configuration", NEEDS_CONFIGURATION);
+        map.put("configured", CONFIGURED);
+        return map;
+    }
+
+    private static final Map<String, IntegrationStateEnum> createEnumsMap() {
+        Map<String, IntegrationStateEnum> map = new HashMap<>();
+        map.put("disabled", IntegrationStateEnum.DISABLED);
+        map.put("needs_configuration", IntegrationStateEnum.NEEDS_CONFIGURATION);
+        map.put("configured", IntegrationStateEnum.CONFIGURED);
+        return map;
+    }
+    
+    
+    public enum IntegrationStateEnum {
+
+        DISABLED("disabled"),
+        NEEDS_CONFIGURATION("needs_configuration"),
+        CONFIGURED("configured"),;
+
+        private final String value;
+
+        private IntegrationStateEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

@@ -3,41 +3,142 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * WebsiteType
  * 
  * <p>The type of website
  */
-public enum WebsiteType {
-    PRIMARY("primary"),
-    SECONDARY("secondary"),
-    WORK("work"),
-    PERSONAL("personal"),
-    OTHER("other");
+public class WebsiteType {
 
-    @JsonValue
+    public static final WebsiteType PRIMARY = new WebsiteType("primary");
+    public static final WebsiteType SECONDARY = new WebsiteType("secondary");
+    public static final WebsiteType WORK = new WebsiteType("work");
+    public static final WebsiteType PERSONAL = new WebsiteType("personal");
+    public static final WebsiteType OTHER = new WebsiteType("other");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, WebsiteType> values = createValuesMap();
+    private static final Map<String, WebsiteTypeEnum> enums = createEnumsMap();
+
     private final String value;
 
-    WebsiteType(String value) {
+    private WebsiteType(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a WebsiteType with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as WebsiteType
+     */ 
+    @JsonCreator
+    public static WebsiteType of(String value) {
+        synchronized (WebsiteType.class) {
+            return values.computeIfAbsent(value, v -> new WebsiteType(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<WebsiteType> fromValue(String value) {
-        for (WebsiteType o: WebsiteType.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<WebsiteTypeEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        WebsiteType other = (WebsiteType) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "WebsiteType [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static WebsiteType[] values() {
+        synchronized (WebsiteType.class) {
+            return values.values().toArray(new WebsiteType[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, WebsiteType> createValuesMap() {
+        Map<String, WebsiteType> map = new LinkedHashMap<>();
+        map.put("primary", PRIMARY);
+        map.put("secondary", SECONDARY);
+        map.put("work", WORK);
+        map.put("personal", PERSONAL);
+        map.put("other", OTHER);
+        return map;
+    }
+
+    private static final Map<String, WebsiteTypeEnum> createEnumsMap() {
+        Map<String, WebsiteTypeEnum> map = new HashMap<>();
+        map.put("primary", WebsiteTypeEnum.PRIMARY);
+        map.put("secondary", WebsiteTypeEnum.SECONDARY);
+        map.put("work", WebsiteTypeEnum.WORK);
+        map.put("personal", WebsiteTypeEnum.PERSONAL);
+        map.put("other", WebsiteTypeEnum.OTHER);
+        return map;
+    }
+    
+    
+    public enum WebsiteTypeEnum {
+
+        PRIMARY("primary"),
+        SECONDARY("secondary"),
+        WORK("work"),
+        PERSONAL("personal"),
+        OTHER("other"),;
+
+        private final String value;
+
+        private WebsiteTypeEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

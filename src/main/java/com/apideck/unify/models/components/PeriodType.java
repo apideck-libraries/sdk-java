@@ -3,39 +3,134 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * PeriodType
  * 
  * <p>The type of period to include in the resource: month, quarter, year.
  */
-public enum PeriodType {
-    MONTH("month"),
-    QUARTER("quarter"),
-    YEAR("year");
+public class PeriodType {
 
-    @JsonValue
+    public static final PeriodType MONTH = new PeriodType("month");
+    public static final PeriodType QUARTER = new PeriodType("quarter");
+    public static final PeriodType YEAR = new PeriodType("year");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, PeriodType> values = createValuesMap();
+    private static final Map<String, PeriodTypeEnum> enums = createEnumsMap();
+
     private final String value;
 
-    PeriodType(String value) {
+    private PeriodType(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a PeriodType with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as PeriodType
+     */ 
+    @JsonCreator
+    public static PeriodType of(String value) {
+        synchronized (PeriodType.class) {
+            return values.computeIfAbsent(value, v -> new PeriodType(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<PeriodType> fromValue(String value) {
-        for (PeriodType o: PeriodType.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<PeriodTypeEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        PeriodType other = (PeriodType) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "PeriodType [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static PeriodType[] values() {
+        synchronized (PeriodType.class) {
+            return values.values().toArray(new PeriodType[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, PeriodType> createValuesMap() {
+        Map<String, PeriodType> map = new LinkedHashMap<>();
+        map.put("month", MONTH);
+        map.put("quarter", QUARTER);
+        map.put("year", YEAR);
+        return map;
+    }
+
+    private static final Map<String, PeriodTypeEnum> createEnumsMap() {
+        Map<String, PeriodTypeEnum> map = new HashMap<>();
+        map.put("month", PeriodTypeEnum.MONTH);
+        map.put("quarter", PeriodTypeEnum.QUARTER);
+        map.put("year", PeriodTypeEnum.YEAR);
+        return map;
+    }
+    
+    
+    public enum PeriodTypeEnum {
+
+        MONTH("month"),
+        QUARTER("quarter"),
+        YEAR("year"),;
+
+        private final String value;
+
+        private PeriodTypeEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

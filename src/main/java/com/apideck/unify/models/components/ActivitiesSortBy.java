@@ -3,38 +3,130 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * ActivitiesSortBy
  * 
  * <p>The field on which to sort the Activities
  */
-public enum ActivitiesSortBy {
-    CREATED_AT("created_at"),
-    UPDATED_AT("updated_at");
+public class ActivitiesSortBy {
 
-    @JsonValue
+    public static final ActivitiesSortBy CREATED_AT = new ActivitiesSortBy("created_at");
+    public static final ActivitiesSortBy UPDATED_AT = new ActivitiesSortBy("updated_at");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, ActivitiesSortBy> values = createValuesMap();
+    private static final Map<String, ActivitiesSortByEnum> enums = createEnumsMap();
+
     private final String value;
 
-    ActivitiesSortBy(String value) {
+    private ActivitiesSortBy(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a ActivitiesSortBy with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as ActivitiesSortBy
+     */ 
+    @JsonCreator
+    public static ActivitiesSortBy of(String value) {
+        synchronized (ActivitiesSortBy.class) {
+            return values.computeIfAbsent(value, v -> new ActivitiesSortBy(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<ActivitiesSortBy> fromValue(String value) {
-        for (ActivitiesSortBy o: ActivitiesSortBy.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<ActivitiesSortByEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        ActivitiesSortBy other = (ActivitiesSortBy) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "ActivitiesSortBy [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static ActivitiesSortBy[] values() {
+        synchronized (ActivitiesSortBy.class) {
+            return values.values().toArray(new ActivitiesSortBy[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, ActivitiesSortBy> createValuesMap() {
+        Map<String, ActivitiesSortBy> map = new LinkedHashMap<>();
+        map.put("created_at", CREATED_AT);
+        map.put("updated_at", UPDATED_AT);
+        return map;
+    }
+
+    private static final Map<String, ActivitiesSortByEnum> createEnumsMap() {
+        Map<String, ActivitiesSortByEnum> map = new HashMap<>();
+        map.put("created_at", ActivitiesSortByEnum.CREATED_AT);
+        map.put("updated_at", ActivitiesSortByEnum.UPDATED_AT);
+        return map;
+    }
+    
+    
+    public enum ActivitiesSortByEnum {
+
+        CREATED_AT("created_at"),
+        UPDATED_AT("updated_at"),;
+
+        private final String value;
+
+        private ActivitiesSortByEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

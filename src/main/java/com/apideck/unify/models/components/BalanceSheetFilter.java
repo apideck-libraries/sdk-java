@@ -19,7 +19,7 @@ public class BalanceSheetFilter {
     /**
      * The start date of the period to include in the resource.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: This field is deprecated and may be removed in a future version..
      */
     @SpeakeasyMetadata("queryParam:name=start_date")
     @Deprecated
@@ -85,7 +85,7 @@ public class BalanceSheetFilter {
     /**
      * The start date of the period to include in the resource.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: This field is deprecated and may be removed in a future version..
      */
     @Deprecated
     @JsonIgnore
@@ -143,7 +143,7 @@ public class BalanceSheetFilter {
     /**
      * The start date of the period to include in the resource.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: This field is deprecated and may be removed in a future version..
      */
     @Deprecated
     public BalanceSheetFilter withStartDate(String startDate) {
@@ -156,7 +156,7 @@ public class BalanceSheetFilter {
     /**
      * The start date of the period to include in the resource.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: This field is deprecated and may be removed in a future version..
      */
     @Deprecated
     public BalanceSheetFilter withStartDate(Optional<String> startDate) {
@@ -320,7 +320,7 @@ public class BalanceSheetFilter {
         /**
          * The start date of the period to include in the resource.
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: This field is deprecated and may be removed in a future version..
          */
         @Deprecated
         public Builder startDate(String startDate) {
@@ -332,7 +332,7 @@ public class BalanceSheetFilter {
         /**
          * The start date of the period to include in the resource.
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: This field is deprecated and may be removed in a future version..
          */
         @Deprecated
         public Builder startDate(Optional<String> startDate) {

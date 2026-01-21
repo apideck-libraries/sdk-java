@@ -3,38 +3,130 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * SortBy
  * 
  * <p>The field to sort by
  */
-public enum SortBy {
-    CREATED_AT("created_at"),
-    UPDATED_AT("updated_at");
+public class SortBy {
 
-    @JsonValue
+    public static final SortBy CREATED_AT = new SortBy("created_at");
+    public static final SortBy UPDATED_AT = new SortBy("updated_at");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, SortBy> values = createValuesMap();
+    private static final Map<String, SortByEnum> enums = createEnumsMap();
+
     private final String value;
 
-    SortBy(String value) {
+    private SortBy(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a SortBy with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as SortBy
+     */ 
+    @JsonCreator
+    public static SortBy of(String value) {
+        synchronized (SortBy.class) {
+            return values.computeIfAbsent(value, v -> new SortBy(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<SortBy> fromValue(String value) {
-        for (SortBy o: SortBy.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<SortByEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        SortBy other = (SortBy) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "SortBy [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static SortBy[] values() {
+        synchronized (SortBy.class) {
+            return values.values().toArray(new SortBy[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, SortBy> createValuesMap() {
+        Map<String, SortBy> map = new LinkedHashMap<>();
+        map.put("created_at", CREATED_AT);
+        map.put("updated_at", UPDATED_AT);
+        return map;
+    }
+
+    private static final Map<String, SortByEnum> createEnumsMap() {
+        Map<String, SortByEnum> map = new HashMap<>();
+        map.put("created_at", SortByEnum.CREATED_AT);
+        map.put("updated_at", SortByEnum.UPDATED_AT);
+        return map;
+    }
+    
+    
+    public enum SortByEnum {
+
+        CREATED_AT("created_at"),
+        UPDATED_AT("updated_at"),;
+
+        private final String value;
+
+        private SortByEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

@@ -3,40 +3,138 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * ExpensePaymentType
  * 
  * <p>The type of payment for the expense.
  */
-public enum ExpensePaymentType {
-    CASH("cash"),
-    CHECK("check"),
-    CREDIT_CARD("credit_card"),
-    OTHER("other");
+public class ExpensePaymentType {
 
-    @JsonValue
+    public static final ExpensePaymentType CASH = new ExpensePaymentType("cash");
+    public static final ExpensePaymentType CHECK = new ExpensePaymentType("check");
+    public static final ExpensePaymentType CREDIT_CARD = new ExpensePaymentType("credit_card");
+    public static final ExpensePaymentType OTHER = new ExpensePaymentType("other");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, ExpensePaymentType> values = createValuesMap();
+    private static final Map<String, ExpensePaymentTypeEnum> enums = createEnumsMap();
+
     private final String value;
 
-    ExpensePaymentType(String value) {
+    private ExpensePaymentType(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a ExpensePaymentType with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as ExpensePaymentType
+     */ 
+    @JsonCreator
+    public static ExpensePaymentType of(String value) {
+        synchronized (ExpensePaymentType.class) {
+            return values.computeIfAbsent(value, v -> new ExpensePaymentType(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<ExpensePaymentType> fromValue(String value) {
-        for (ExpensePaymentType o: ExpensePaymentType.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<ExpensePaymentTypeEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        ExpensePaymentType other = (ExpensePaymentType) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "ExpensePaymentType [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static ExpensePaymentType[] values() {
+        synchronized (ExpensePaymentType.class) {
+            return values.values().toArray(new ExpensePaymentType[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, ExpensePaymentType> createValuesMap() {
+        Map<String, ExpensePaymentType> map = new LinkedHashMap<>();
+        map.put("cash", CASH);
+        map.put("check", CHECK);
+        map.put("credit_card", CREDIT_CARD);
+        map.put("other", OTHER);
+        return map;
+    }
+
+    private static final Map<String, ExpensePaymentTypeEnum> createEnumsMap() {
+        Map<String, ExpensePaymentTypeEnum> map = new HashMap<>();
+        map.put("cash", ExpensePaymentTypeEnum.CASH);
+        map.put("check", ExpensePaymentTypeEnum.CHECK);
+        map.put("credit_card", ExpensePaymentTypeEnum.CREDIT_CARD);
+        map.put("other", ExpensePaymentTypeEnum.OTHER);
+        return map;
+    }
+    
+    
+    public enum ExpensePaymentTypeEnum {
+
+        CASH("cash"),
+        CHECK("check"),
+        CREDIT_CARD("credit_card"),
+        OTHER("other"),;
+
+        private final String value;
+
+        private ExpensePaymentTypeEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

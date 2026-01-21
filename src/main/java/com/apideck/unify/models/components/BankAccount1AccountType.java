@@ -3,39 +3,134 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * BankAccount1AccountType
  * 
  * <p>The type of bank account.
  */
-public enum BankAccount1AccountType {
-    BANK_ACCOUNT("bank_account"),
-    CREDIT_CARD("credit_card"),
-    OTHER("other");
+public class BankAccount1AccountType {
 
-    @JsonValue
+    public static final BankAccount1AccountType BANK_ACCOUNT = new BankAccount1AccountType("bank_account");
+    public static final BankAccount1AccountType CREDIT_CARD = new BankAccount1AccountType("credit_card");
+    public static final BankAccount1AccountType OTHER = new BankAccount1AccountType("other");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, BankAccount1AccountType> values = createValuesMap();
+    private static final Map<String, BankAccount1AccountTypeEnum> enums = createEnumsMap();
+
     private final String value;
 
-    BankAccount1AccountType(String value) {
+    private BankAccount1AccountType(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a BankAccount1AccountType with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as BankAccount1AccountType
+     */ 
+    @JsonCreator
+    public static BankAccount1AccountType of(String value) {
+        synchronized (BankAccount1AccountType.class) {
+            return values.computeIfAbsent(value, v -> new BankAccount1AccountType(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<BankAccount1AccountType> fromValue(String value) {
-        for (BankAccount1AccountType o: BankAccount1AccountType.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<BankAccount1AccountTypeEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        BankAccount1AccountType other = (BankAccount1AccountType) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "BankAccount1AccountType [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static BankAccount1AccountType[] values() {
+        synchronized (BankAccount1AccountType.class) {
+            return values.values().toArray(new BankAccount1AccountType[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, BankAccount1AccountType> createValuesMap() {
+        Map<String, BankAccount1AccountType> map = new LinkedHashMap<>();
+        map.put("bank_account", BANK_ACCOUNT);
+        map.put("credit_card", CREDIT_CARD);
+        map.put("other", OTHER);
+        return map;
+    }
+
+    private static final Map<String, BankAccount1AccountTypeEnum> createEnumsMap() {
+        Map<String, BankAccount1AccountTypeEnum> map = new HashMap<>();
+        map.put("bank_account", BankAccount1AccountTypeEnum.BANK_ACCOUNT);
+        map.put("credit_card", BankAccount1AccountTypeEnum.CREDIT_CARD);
+        map.put("other", BankAccount1AccountTypeEnum.OTHER);
+        return map;
+    }
+    
+    
+    public enum BankAccount1AccountTypeEnum {
+
+        BANK_ACCOUNT("bank_account"),
+        CREDIT_CARD("credit_card"),
+        OTHER("other"),;
+
+        private final String value;
+
+        private BankAccount1AccountTypeEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

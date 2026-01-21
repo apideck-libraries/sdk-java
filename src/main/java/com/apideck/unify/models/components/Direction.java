@@ -3,41 +3,142 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * Direction
  * 
  * <p>The direction of the message.
  */
-public enum Direction {
-    INBOUND("inbound"),
-    OUTBOUND_API("outbound-api"),
-    OUTBOUND_CALL("outbound-call"),
-    OUTBOUND_REPLY("outbound-reply"),
-    UNKNOWN("unknown");
+public class Direction {
 
-    @JsonValue
+    public static final Direction INBOUND = new Direction("inbound");
+    public static final Direction OUTBOUND_API = new Direction("outbound-api");
+    public static final Direction OUTBOUND_CALL = new Direction("outbound-call");
+    public static final Direction OUTBOUND_REPLY = new Direction("outbound-reply");
+    public static final Direction UNKNOWN = new Direction("unknown");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, Direction> values = createValuesMap();
+    private static final Map<String, DirectionEnum> enums = createEnumsMap();
+
     private final String value;
 
-    Direction(String value) {
+    private Direction(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a Direction with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as Direction
+     */ 
+    @JsonCreator
+    public static Direction of(String value) {
+        synchronized (Direction.class) {
+            return values.computeIfAbsent(value, v -> new Direction(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<Direction> fromValue(String value) {
-        for (Direction o: Direction.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<DirectionEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Direction other = (Direction) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "Direction [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static Direction[] values() {
+        synchronized (Direction.class) {
+            return values.values().toArray(new Direction[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, Direction> createValuesMap() {
+        Map<String, Direction> map = new LinkedHashMap<>();
+        map.put("inbound", INBOUND);
+        map.put("outbound-api", OUTBOUND_API);
+        map.put("outbound-call", OUTBOUND_CALL);
+        map.put("outbound-reply", OUTBOUND_REPLY);
+        map.put("unknown", UNKNOWN);
+        return map;
+    }
+
+    private static final Map<String, DirectionEnum> createEnumsMap() {
+        Map<String, DirectionEnum> map = new HashMap<>();
+        map.put("inbound", DirectionEnum.INBOUND);
+        map.put("outbound-api", DirectionEnum.OUTBOUND_API);
+        map.put("outbound-call", DirectionEnum.OUTBOUND_CALL);
+        map.put("outbound-reply", DirectionEnum.OUTBOUND_REPLY);
+        map.put("unknown", DirectionEnum.UNKNOWN);
+        return map;
+    }
+    
+    
+    public enum DirectionEnum {
+
+        INBOUND("inbound"),
+        OUTBOUND_API("outbound-api"),
+        OUTBOUND_CALL("outbound-call"),
+        OUTBOUND_REPLY("outbound-reply"),
+        UNKNOWN("unknown"),;
+
+        private final String value;
+
+        private DirectionEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

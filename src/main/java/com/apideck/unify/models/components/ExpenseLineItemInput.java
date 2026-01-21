@@ -31,7 +31,7 @@ public class ExpenseLineItemInput {
     /**
      * The unique identifier for the ledger account. Deprecated, use account instead.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated. Use account instead..
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("account_id")
@@ -46,7 +46,7 @@ public class ExpenseLineItemInput {
     /**
      * The ID of the customer this expense item is linked to. Deprecated in favor of `customer`.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated. Use customer instead..
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("customer_id")
@@ -229,7 +229,7 @@ public class ExpenseLineItemInput {
     /**
      * The unique identifier for the ledger account. Deprecated, use account instead.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated. Use account instead..
      */
     @Deprecated
     @JsonIgnore
@@ -246,7 +246,7 @@ public class ExpenseLineItemInput {
     /**
      * The ID of the customer this expense item is linked to. Deprecated in favor of `customer`.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated. Use customer instead..
      */
     @Deprecated
     @JsonIgnore
@@ -389,7 +389,7 @@ public class ExpenseLineItemInput {
     /**
      * The unique identifier for the ledger account. Deprecated, use account instead.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated. Use account instead..
      */
     @Deprecated
     public ExpenseLineItemInput withAccountId(String accountId) {
@@ -402,7 +402,7 @@ public class ExpenseLineItemInput {
     /**
      * The unique identifier for the ledger account. Deprecated, use account instead.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated. Use account instead..
      */
     @Deprecated
     public ExpenseLineItemInput withAccountId(Optional<String> accountId) {
@@ -426,7 +426,7 @@ public class ExpenseLineItemInput {
     /**
      * The ID of the customer this expense item is linked to. Deprecated in favor of `customer`.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated. Use customer instead..
      */
     @Deprecated
     public ExpenseLineItemInput withCustomerId(String customerId) {
@@ -439,7 +439,7 @@ public class ExpenseLineItemInput {
     /**
      * The ID of the customer this expense item is linked to. Deprecated in favor of `customer`.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: Deprecated. Use customer instead..
      */
     @Deprecated
     public ExpenseLineItemInput withCustomerId(Optional<String> customerId) {
@@ -822,7 +822,7 @@ public class ExpenseLineItemInput {
         /**
          * The unique identifier for the ledger account. Deprecated, use account instead.
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: Deprecated. Use account instead..
          */
         @Deprecated
         public Builder accountId(String accountId) {
@@ -834,7 +834,7 @@ public class ExpenseLineItemInput {
         /**
          * The unique identifier for the ledger account. Deprecated, use account instead.
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: Deprecated. Use account instead..
          */
         @Deprecated
         public Builder accountId(Optional<String> accountId) {
@@ -860,7 +860,7 @@ public class ExpenseLineItemInput {
         /**
          * The ID of the customer this expense item is linked to. Deprecated in favor of `customer`.
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: Deprecated. Use customer instead..
          */
         @Deprecated
         public Builder customerId(String customerId) {
@@ -872,7 +872,7 @@ public class ExpenseLineItemInput {
         /**
          * The ID of the customer this expense item is linked to. Deprecated in favor of `customer`.
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: Deprecated. Use customer instead..
          */
         @Deprecated
         public Builder customerId(Optional<String> customerId) {

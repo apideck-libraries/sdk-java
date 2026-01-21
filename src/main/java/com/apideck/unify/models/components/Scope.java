@@ -3,38 +3,130 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * Scope
  * 
  * <p>The scope of the shared link.
  */
-public enum Scope {
-    PUBLIC("public"),
-    COMPANY("company");
+public class Scope {
 
-    @JsonValue
+    public static final Scope PUBLIC = new Scope("public");
+    public static final Scope COMPANY = new Scope("company");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, Scope> values = createValuesMap();
+    private static final Map<String, ScopeEnum> enums = createEnumsMap();
+
     private final String value;
 
-    Scope(String value) {
+    private Scope(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a Scope with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as Scope
+     */ 
+    @JsonCreator
+    public static Scope of(String value) {
+        synchronized (Scope.class) {
+            return values.computeIfAbsent(value, v -> new Scope(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<Scope> fromValue(String value) {
-        for (Scope o: Scope.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<ScopeEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Scope other = (Scope) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "Scope [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static Scope[] values() {
+        synchronized (Scope.class) {
+            return values.values().toArray(new Scope[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, Scope> createValuesMap() {
+        Map<String, Scope> map = new LinkedHashMap<>();
+        map.put("public", PUBLIC);
+        map.put("company", COMPANY);
+        return map;
+    }
+
+    private static final Map<String, ScopeEnum> createEnumsMap() {
+        Map<String, ScopeEnum> map = new HashMap<>();
+        map.put("public", ScopeEnum.PUBLIC);
+        map.put("company", ScopeEnum.COMPANY);
+        return map;
+    }
+    
+    
+    public enum ScopeEnum {
+
+        PUBLIC("public"),
+        COMPANY("company"),;
+
+        private final String value;
+
+        private ScopeEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

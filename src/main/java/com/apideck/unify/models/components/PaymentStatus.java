@@ -3,42 +3,146 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * PaymentStatus
  * 
  * <p>Status of payment
  */
-public enum PaymentStatus {
-    DRAFT("draft"),
-    AUTHORISED("authorised"),
-    REJECTED("rejected"),
-    PAID("paid"),
-    VOIDED("voided"),
-    DELETED("deleted");
+public class PaymentStatus {
 
-    @JsonValue
+    public static final PaymentStatus DRAFT = new PaymentStatus("draft");
+    public static final PaymentStatus AUTHORISED = new PaymentStatus("authorised");
+    public static final PaymentStatus REJECTED = new PaymentStatus("rejected");
+    public static final PaymentStatus PAID = new PaymentStatus("paid");
+    public static final PaymentStatus VOIDED = new PaymentStatus("voided");
+    public static final PaymentStatus DELETED = new PaymentStatus("deleted");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, PaymentStatus> values = createValuesMap();
+    private static final Map<String, PaymentStatusEnum> enums = createEnumsMap();
+
     private final String value;
 
-    PaymentStatus(String value) {
+    private PaymentStatus(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a PaymentStatus with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as PaymentStatus
+     */ 
+    @JsonCreator
+    public static PaymentStatus of(String value) {
+        synchronized (PaymentStatus.class) {
+            return values.computeIfAbsent(value, v -> new PaymentStatus(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<PaymentStatus> fromValue(String value) {
-        for (PaymentStatus o: PaymentStatus.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<PaymentStatusEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        PaymentStatus other = (PaymentStatus) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "PaymentStatus [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static PaymentStatus[] values() {
+        synchronized (PaymentStatus.class) {
+            return values.values().toArray(new PaymentStatus[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, PaymentStatus> createValuesMap() {
+        Map<String, PaymentStatus> map = new LinkedHashMap<>();
+        map.put("draft", DRAFT);
+        map.put("authorised", AUTHORISED);
+        map.put("rejected", REJECTED);
+        map.put("paid", PAID);
+        map.put("voided", VOIDED);
+        map.put("deleted", DELETED);
+        return map;
+    }
+
+    private static final Map<String, PaymentStatusEnum> createEnumsMap() {
+        Map<String, PaymentStatusEnum> map = new HashMap<>();
+        map.put("draft", PaymentStatusEnum.DRAFT);
+        map.put("authorised", PaymentStatusEnum.AUTHORISED);
+        map.put("rejected", PaymentStatusEnum.REJECTED);
+        map.put("paid", PaymentStatusEnum.PAID);
+        map.put("voided", PaymentStatusEnum.VOIDED);
+        map.put("deleted", PaymentStatusEnum.DELETED);
+        return map;
+    }
+    
+    
+    public enum PaymentStatusEnum {
+
+        DRAFT("draft"),
+        AUTHORISED("authorised"),
+        REJECTED("rejected"),
+        PAID("paid"),
+        VOIDED("voided"),
+        DELETED("deleted"),;
+
+        private final String value;
+
+        private PaymentStatusEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

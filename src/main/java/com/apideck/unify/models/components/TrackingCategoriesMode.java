@@ -3,40 +3,138 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * TrackingCategoriesMode
  * 
  * <p>The mode of tracking categories for the company on transactions
  */
-public enum TrackingCategoriesMode {
-    TRANSACTION("transaction"),
-    LINE("line"),
-    BOTH("both"),
-    DISABLED("disabled");
+public class TrackingCategoriesMode {
 
-    @JsonValue
+    public static final TrackingCategoriesMode TRANSACTION = new TrackingCategoriesMode("transaction");
+    public static final TrackingCategoriesMode LINE = new TrackingCategoriesMode("line");
+    public static final TrackingCategoriesMode BOTH = new TrackingCategoriesMode("both");
+    public static final TrackingCategoriesMode DISABLED = new TrackingCategoriesMode("disabled");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, TrackingCategoriesMode> values = createValuesMap();
+    private static final Map<String, TrackingCategoriesModeEnum> enums = createEnumsMap();
+
     private final String value;
 
-    TrackingCategoriesMode(String value) {
+    private TrackingCategoriesMode(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a TrackingCategoriesMode with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as TrackingCategoriesMode
+     */ 
+    @JsonCreator
+    public static TrackingCategoriesMode of(String value) {
+        synchronized (TrackingCategoriesMode.class) {
+            return values.computeIfAbsent(value, v -> new TrackingCategoriesMode(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<TrackingCategoriesMode> fromValue(String value) {
-        for (TrackingCategoriesMode o: TrackingCategoriesMode.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<TrackingCategoriesModeEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        TrackingCategoriesMode other = (TrackingCategoriesMode) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "TrackingCategoriesMode [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static TrackingCategoriesMode[] values() {
+        synchronized (TrackingCategoriesMode.class) {
+            return values.values().toArray(new TrackingCategoriesMode[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, TrackingCategoriesMode> createValuesMap() {
+        Map<String, TrackingCategoriesMode> map = new LinkedHashMap<>();
+        map.put("transaction", TRANSACTION);
+        map.put("line", LINE);
+        map.put("both", BOTH);
+        map.put("disabled", DISABLED);
+        return map;
+    }
+
+    private static final Map<String, TrackingCategoriesModeEnum> createEnumsMap() {
+        Map<String, TrackingCategoriesModeEnum> map = new HashMap<>();
+        map.put("transaction", TrackingCategoriesModeEnum.TRANSACTION);
+        map.put("line", TrackingCategoriesModeEnum.LINE);
+        map.put("both", TrackingCategoriesModeEnum.BOTH);
+        map.put("disabled", TrackingCategoriesModeEnum.DISABLED);
+        return map;
+    }
+    
+    
+    public enum TrackingCategoriesModeEnum {
+
+        TRANSACTION("transaction"),
+        LINE("line"),
+        BOTH("both"),
+        DISABLED("disabled"),;
+
+        private final String value;
+
+        private TrackingCategoriesModeEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

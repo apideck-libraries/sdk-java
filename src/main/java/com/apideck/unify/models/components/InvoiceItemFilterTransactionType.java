@@ -3,38 +3,130 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * InvoiceItemFilterTransactionType
  * 
  * <p>The kind of transaction, indicating whether it is a sales transaction or a purchase transaction.
  */
-public enum InvoiceItemFilterTransactionType {
-    SALE("sale"),
-    PURCHASE("purchase");
+public class InvoiceItemFilterTransactionType {
 
-    @JsonValue
+    public static final InvoiceItemFilterTransactionType SALE = new InvoiceItemFilterTransactionType("sale");
+    public static final InvoiceItemFilterTransactionType PURCHASE = new InvoiceItemFilterTransactionType("purchase");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, InvoiceItemFilterTransactionType> values = createValuesMap();
+    private static final Map<String, InvoiceItemFilterTransactionTypeEnum> enums = createEnumsMap();
+
     private final String value;
 
-    InvoiceItemFilterTransactionType(String value) {
+    private InvoiceItemFilterTransactionType(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a InvoiceItemFilterTransactionType with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as InvoiceItemFilterTransactionType
+     */ 
+    @JsonCreator
+    public static InvoiceItemFilterTransactionType of(String value) {
+        synchronized (InvoiceItemFilterTransactionType.class) {
+            return values.computeIfAbsent(value, v -> new InvoiceItemFilterTransactionType(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<InvoiceItemFilterTransactionType> fromValue(String value) {
-        for (InvoiceItemFilterTransactionType o: InvoiceItemFilterTransactionType.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<InvoiceItemFilterTransactionTypeEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        InvoiceItemFilterTransactionType other = (InvoiceItemFilterTransactionType) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "InvoiceItemFilterTransactionType [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static InvoiceItemFilterTransactionType[] values() {
+        synchronized (InvoiceItemFilterTransactionType.class) {
+            return values.values().toArray(new InvoiceItemFilterTransactionType[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, InvoiceItemFilterTransactionType> createValuesMap() {
+        Map<String, InvoiceItemFilterTransactionType> map = new LinkedHashMap<>();
+        map.put("sale", SALE);
+        map.put("purchase", PURCHASE);
+        return map;
+    }
+
+    private static final Map<String, InvoiceItemFilterTransactionTypeEnum> createEnumsMap() {
+        Map<String, InvoiceItemFilterTransactionTypeEnum> map = new HashMap<>();
+        map.put("sale", InvoiceItemFilterTransactionTypeEnum.SALE);
+        map.put("purchase", InvoiceItemFilterTransactionTypeEnum.PURCHASE);
+        return map;
+    }
+    
+    
+    public enum InvoiceItemFilterTransactionTypeEnum {
+
+        SALE("sale"),
+        PURCHASE("purchase"),;
+
+        private final String value;
+
+        private InvoiceItemFilterTransactionTypeEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

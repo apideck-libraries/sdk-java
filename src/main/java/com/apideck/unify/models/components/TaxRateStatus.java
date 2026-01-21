@@ -3,39 +3,134 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * TaxRateStatus
  * 
  * <p>Tax rate status
  */
-public enum TaxRateStatus {
-    ACTIVE("active"),
-    INACTIVE("inactive"),
-    ARCHIVED("archived");
+public class TaxRateStatus {
 
-    @JsonValue
+    public static final TaxRateStatus ACTIVE = new TaxRateStatus("active");
+    public static final TaxRateStatus INACTIVE = new TaxRateStatus("inactive");
+    public static final TaxRateStatus ARCHIVED = new TaxRateStatus("archived");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, TaxRateStatus> values = createValuesMap();
+    private static final Map<String, TaxRateStatusEnum> enums = createEnumsMap();
+
     private final String value;
 
-    TaxRateStatus(String value) {
+    private TaxRateStatus(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a TaxRateStatus with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as TaxRateStatus
+     */ 
+    @JsonCreator
+    public static TaxRateStatus of(String value) {
+        synchronized (TaxRateStatus.class) {
+            return values.computeIfAbsent(value, v -> new TaxRateStatus(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<TaxRateStatus> fromValue(String value) {
-        for (TaxRateStatus o: TaxRateStatus.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<TaxRateStatusEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        TaxRateStatus other = (TaxRateStatus) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "TaxRateStatus [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static TaxRateStatus[] values() {
+        synchronized (TaxRateStatus.class) {
+            return values.values().toArray(new TaxRateStatus[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, TaxRateStatus> createValuesMap() {
+        Map<String, TaxRateStatus> map = new LinkedHashMap<>();
+        map.put("active", ACTIVE);
+        map.put("inactive", INACTIVE);
+        map.put("archived", ARCHIVED);
+        return map;
+    }
+
+    private static final Map<String, TaxRateStatusEnum> createEnumsMap() {
+        Map<String, TaxRateStatusEnum> map = new HashMap<>();
+        map.put("active", TaxRateStatusEnum.ACTIVE);
+        map.put("inactive", TaxRateStatusEnum.INACTIVE);
+        map.put("archived", TaxRateStatusEnum.ARCHIVED);
+        return map;
+    }
+    
+    
+    public enum TaxRateStatusEnum {
+
+        ACTIVE("active"),
+        INACTIVE("inactive"),
+        ARCHIVED("archived"),;
+
+        private final String value;
+
+        private TaxRateStatusEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

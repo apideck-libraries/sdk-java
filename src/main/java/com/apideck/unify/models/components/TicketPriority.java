@@ -3,40 +3,138 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * TicketPriority
  * 
  * <p>Priority of the ticket
  */
-public enum TicketPriority {
-    LOW("low"),
-    NORMAL("normal"),
-    HIGH("high"),
-    URGENT("urgent");
+public class TicketPriority {
 
-    @JsonValue
+    public static final TicketPriority LOW = new TicketPriority("low");
+    public static final TicketPriority NORMAL = new TicketPriority("normal");
+    public static final TicketPriority HIGH = new TicketPriority("high");
+    public static final TicketPriority URGENT = new TicketPriority("urgent");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, TicketPriority> values = createValuesMap();
+    private static final Map<String, TicketPriorityEnum> enums = createEnumsMap();
+
     private final String value;
 
-    TicketPriority(String value) {
+    private TicketPriority(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a TicketPriority with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as TicketPriority
+     */ 
+    @JsonCreator
+    public static TicketPriority of(String value) {
+        synchronized (TicketPriority.class) {
+            return values.computeIfAbsent(value, v -> new TicketPriority(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<TicketPriority> fromValue(String value) {
-        for (TicketPriority o: TicketPriority.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<TicketPriorityEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        TicketPriority other = (TicketPriority) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "TicketPriority [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static TicketPriority[] values() {
+        synchronized (TicketPriority.class) {
+            return values.values().toArray(new TicketPriority[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, TicketPriority> createValuesMap() {
+        Map<String, TicketPriority> map = new LinkedHashMap<>();
+        map.put("low", LOW);
+        map.put("normal", NORMAL);
+        map.put("high", HIGH);
+        map.put("urgent", URGENT);
+        return map;
+    }
+
+    private static final Map<String, TicketPriorityEnum> createEnumsMap() {
+        Map<String, TicketPriorityEnum> map = new HashMap<>();
+        map.put("low", TicketPriorityEnum.LOW);
+        map.put("normal", TicketPriorityEnum.NORMAL);
+        map.put("high", TicketPriorityEnum.HIGH);
+        map.put("urgent", TicketPriorityEnum.URGENT);
+        return map;
+    }
+    
+    
+    public enum TicketPriorityEnum {
+
+        LOW("low"),
+        NORMAL("normal"),
+        HIGH("high"),
+        URGENT("urgent"),;
+
+        private final String value;
+
+        private TicketPriorityEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

@@ -32,7 +32,7 @@ public class LedgerAccountInput {
     /**
      * The nominal code of the ledger account.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: This field is deprecated and may be removed in a future version..
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("nominal_code")
@@ -305,7 +305,7 @@ public class LedgerAccountInput {
     /**
      * The nominal code of the ledger account.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: This field is deprecated and may be removed in a future version..
      */
     @Deprecated
     @JsonIgnore
@@ -530,7 +530,7 @@ public class LedgerAccountInput {
     /**
      * The nominal code of the ledger account.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: This field is deprecated and may be removed in a future version..
      */
     @Deprecated
     public LedgerAccountInput withNominalCode(String nominalCode) {
@@ -542,7 +542,7 @@ public class LedgerAccountInput {
     /**
      * The nominal code of the ledger account.
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: This field is deprecated and may be removed in a future version..
      */
     @Deprecated
     public LedgerAccountInput withNominalCode(JsonNullable<String> nominalCode) {
@@ -1132,7 +1132,7 @@ public class LedgerAccountInput {
         /**
          * The nominal code of the ledger account.
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: This field is deprecated and may be removed in a future version..
          */
         @Deprecated
         public Builder nominalCode(String nominalCode) {
@@ -1144,7 +1144,7 @@ public class LedgerAccountInput {
         /**
          * The nominal code of the ledger account.
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: This field is deprecated and may be removed in a future version..
          */
         @Deprecated
         public Builder nominalCode(JsonNullable<String> nominalCode) {

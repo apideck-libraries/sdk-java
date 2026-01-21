@@ -18,7 +18,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 /**
  * DeprecatedLinkedTrackingCategory
  * 
- * @deprecated class: This will be removed in a future release, please migrate away from it as soon as possible.
+ * @deprecated class: This field is deprecated and may be removed in a future version..
  */
 @Deprecated
 public class DeprecatedLinkedTrackingCategory {

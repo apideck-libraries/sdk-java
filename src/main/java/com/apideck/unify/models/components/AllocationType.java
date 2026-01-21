@@ -3,45 +3,158 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * AllocationType
  * 
  * <p>Type of entity this payment should be attributed to.
  */
-public enum AllocationType {
-    INVOICE("invoice"),
-    ORDER("order"),
-    EXPENSE("expense"),
-    CREDIT_MEMO("credit_memo"),
-    OVER_PAYMENT("over_payment"),
-    PRE_PAYMENT("pre_payment"),
-    JOURNAL_ENTRY("journal_entry"),
-    OTHER("other"),
-    BILL("bill");
+public class AllocationType {
 
-    @JsonValue
+    public static final AllocationType INVOICE = new AllocationType("invoice");
+    public static final AllocationType ORDER = new AllocationType("order");
+    public static final AllocationType EXPENSE = new AllocationType("expense");
+    public static final AllocationType CREDIT_MEMO = new AllocationType("credit_memo");
+    public static final AllocationType OVER_PAYMENT = new AllocationType("over_payment");
+    public static final AllocationType PRE_PAYMENT = new AllocationType("pre_payment");
+    public static final AllocationType JOURNAL_ENTRY = new AllocationType("journal_entry");
+    public static final AllocationType OTHER = new AllocationType("other");
+    public static final AllocationType BILL = new AllocationType("bill");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, AllocationType> values = createValuesMap();
+    private static final Map<String, AllocationTypeEnum> enums = createEnumsMap();
+
     private final String value;
 
-    AllocationType(String value) {
+    private AllocationType(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a AllocationType with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as AllocationType
+     */ 
+    @JsonCreator
+    public static AllocationType of(String value) {
+        synchronized (AllocationType.class) {
+            return values.computeIfAbsent(value, v -> new AllocationType(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<AllocationType> fromValue(String value) {
-        for (AllocationType o: AllocationType.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<AllocationTypeEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        AllocationType other = (AllocationType) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "AllocationType [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static AllocationType[] values() {
+        synchronized (AllocationType.class) {
+            return values.values().toArray(new AllocationType[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, AllocationType> createValuesMap() {
+        Map<String, AllocationType> map = new LinkedHashMap<>();
+        map.put("invoice", INVOICE);
+        map.put("order", ORDER);
+        map.put("expense", EXPENSE);
+        map.put("credit_memo", CREDIT_MEMO);
+        map.put("over_payment", OVER_PAYMENT);
+        map.put("pre_payment", PRE_PAYMENT);
+        map.put("journal_entry", JOURNAL_ENTRY);
+        map.put("other", OTHER);
+        map.put("bill", BILL);
+        return map;
+    }
+
+    private static final Map<String, AllocationTypeEnum> createEnumsMap() {
+        Map<String, AllocationTypeEnum> map = new HashMap<>();
+        map.put("invoice", AllocationTypeEnum.INVOICE);
+        map.put("order", AllocationTypeEnum.ORDER);
+        map.put("expense", AllocationTypeEnum.EXPENSE);
+        map.put("credit_memo", AllocationTypeEnum.CREDIT_MEMO);
+        map.put("over_payment", AllocationTypeEnum.OVER_PAYMENT);
+        map.put("pre_payment", AllocationTypeEnum.PRE_PAYMENT);
+        map.put("journal_entry", AllocationTypeEnum.JOURNAL_ENTRY);
+        map.put("other", AllocationTypeEnum.OTHER);
+        map.put("bill", AllocationTypeEnum.BILL);
+        return map;
+    }
+    
+    
+    public enum AllocationTypeEnum {
+
+        INVOICE("invoice"),
+        ORDER("order"),
+        EXPENSE("expense"),
+        CREDIT_MEMO("credit_memo"),
+        OVER_PAYMENT("over_payment"),
+        PRE_PAYMENT("pre_payment"),
+        JOURNAL_ENTRY("journal_entry"),
+        OTHER("other"),
+        BILL("bill"),;
+
+        private final String value;
+
+        private AllocationTypeEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

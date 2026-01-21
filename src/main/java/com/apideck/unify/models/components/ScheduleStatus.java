@@ -3,40 +3,138 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * ScheduleStatus
  * 
  * <p>Current status of project schedule compared to plan
  */
-public enum ScheduleStatus {
-    AHEAD_OF_SCHEDULE("ahead_of_schedule"),
-    ON_SCHEDULE("on_schedule"),
-    BEHIND_SCHEDULE("behind_schedule"),
-    CRITICAL_DELAY("critical_delay");
+public class ScheduleStatus {
 
-    @JsonValue
+    public static final ScheduleStatus AHEAD_OF_SCHEDULE = new ScheduleStatus("ahead_of_schedule");
+    public static final ScheduleStatus ON_SCHEDULE = new ScheduleStatus("on_schedule");
+    public static final ScheduleStatus BEHIND_SCHEDULE = new ScheduleStatus("behind_schedule");
+    public static final ScheduleStatus CRITICAL_DELAY = new ScheduleStatus("critical_delay");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, ScheduleStatus> values = createValuesMap();
+    private static final Map<String, ScheduleStatusEnum> enums = createEnumsMap();
+
     private final String value;
 
-    ScheduleStatus(String value) {
+    private ScheduleStatus(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a ScheduleStatus with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as ScheduleStatus
+     */ 
+    @JsonCreator
+    public static ScheduleStatus of(String value) {
+        synchronized (ScheduleStatus.class) {
+            return values.computeIfAbsent(value, v -> new ScheduleStatus(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<ScheduleStatus> fromValue(String value) {
-        for (ScheduleStatus o: ScheduleStatus.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<ScheduleStatusEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        ScheduleStatus other = (ScheduleStatus) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "ScheduleStatus [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static ScheduleStatus[] values() {
+        synchronized (ScheduleStatus.class) {
+            return values.values().toArray(new ScheduleStatus[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, ScheduleStatus> createValuesMap() {
+        Map<String, ScheduleStatus> map = new LinkedHashMap<>();
+        map.put("ahead_of_schedule", AHEAD_OF_SCHEDULE);
+        map.put("on_schedule", ON_SCHEDULE);
+        map.put("behind_schedule", BEHIND_SCHEDULE);
+        map.put("critical_delay", CRITICAL_DELAY);
+        return map;
+    }
+
+    private static final Map<String, ScheduleStatusEnum> createEnumsMap() {
+        Map<String, ScheduleStatusEnum> map = new HashMap<>();
+        map.put("ahead_of_schedule", ScheduleStatusEnum.AHEAD_OF_SCHEDULE);
+        map.put("on_schedule", ScheduleStatusEnum.ON_SCHEDULE);
+        map.put("behind_schedule", ScheduleStatusEnum.BEHIND_SCHEDULE);
+        map.put("critical_delay", ScheduleStatusEnum.CRITICAL_DELAY);
+        return map;
+    }
+    
+    
+    public enum ScheduleStatusEnum {
+
+        AHEAD_OF_SCHEDULE("ahead_of_schedule"),
+        ON_SCHEDULE("on_schedule"),
+        BEHIND_SCHEDULE("behind_schedule"),
+        CRITICAL_DELAY("critical_delay"),;
+
+        private final String value;
+
+        private ScheduleStatusEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

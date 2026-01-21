@@ -3,45 +3,158 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * ActivityType
  * 
  * <p>The type of the activity
  */
-public enum ActivityType {
-    CALL("call"),
-    MEETING("meeting"),
-    EMAIL("email"),
-    NOTE("note"),
-    TASK("task"),
-    DEADLINE("deadline"),
-    SEND_LETTER("send-letter"),
-    SEND_QUOTE("send-quote"),
-    OTHER("other");
+public class ActivityType {
 
-    @JsonValue
+    public static final ActivityType CALL = new ActivityType("call");
+    public static final ActivityType MEETING = new ActivityType("meeting");
+    public static final ActivityType EMAIL = new ActivityType("email");
+    public static final ActivityType NOTE = new ActivityType("note");
+    public static final ActivityType TASK = new ActivityType("task");
+    public static final ActivityType DEADLINE = new ActivityType("deadline");
+    public static final ActivityType SEND_LETTER = new ActivityType("send-letter");
+    public static final ActivityType SEND_QUOTE = new ActivityType("send-quote");
+    public static final ActivityType OTHER = new ActivityType("other");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, ActivityType> values = createValuesMap();
+    private static final Map<String, ActivityTypeEnum> enums = createEnumsMap();
+
     private final String value;
 
-    ActivityType(String value) {
+    private ActivityType(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a ActivityType with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as ActivityType
+     */ 
+    @JsonCreator
+    public static ActivityType of(String value) {
+        synchronized (ActivityType.class) {
+            return values.computeIfAbsent(value, v -> new ActivityType(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<ActivityType> fromValue(String value) {
-        for (ActivityType o: ActivityType.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<ActivityTypeEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        ActivityType other = (ActivityType) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "ActivityType [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static ActivityType[] values() {
+        synchronized (ActivityType.class) {
+            return values.values().toArray(new ActivityType[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, ActivityType> createValuesMap() {
+        Map<String, ActivityType> map = new LinkedHashMap<>();
+        map.put("call", CALL);
+        map.put("meeting", MEETING);
+        map.put("email", EMAIL);
+        map.put("note", NOTE);
+        map.put("task", TASK);
+        map.put("deadline", DEADLINE);
+        map.put("send-letter", SEND_LETTER);
+        map.put("send-quote", SEND_QUOTE);
+        map.put("other", OTHER);
+        return map;
+    }
+
+    private static final Map<String, ActivityTypeEnum> createEnumsMap() {
+        Map<String, ActivityTypeEnum> map = new HashMap<>();
+        map.put("call", ActivityTypeEnum.CALL);
+        map.put("meeting", ActivityTypeEnum.MEETING);
+        map.put("email", ActivityTypeEnum.EMAIL);
+        map.put("note", ActivityTypeEnum.NOTE);
+        map.put("task", ActivityTypeEnum.TASK);
+        map.put("deadline", ActivityTypeEnum.DEADLINE);
+        map.put("send-letter", ActivityTypeEnum.SEND_LETTER);
+        map.put("send-quote", ActivityTypeEnum.SEND_QUOTE);
+        map.put("other", ActivityTypeEnum.OTHER);
+        return map;
+    }
+    
+    
+    public enum ActivityTypeEnum {
+
+        CALL("call"),
+        MEETING("meeting"),
+        EMAIL("email"),
+        NOTE("note"),
+        TASK("task"),
+        DEADLINE("deadline"),
+        SEND_LETTER("send-letter"),
+        SEND_QUOTE("send-quote"),
+        OTHER("other"),;
+
+        private final String value;
+
+        private ActivityTypeEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

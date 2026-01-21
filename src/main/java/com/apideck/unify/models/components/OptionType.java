@@ -3,32 +3,121 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-public enum OptionType {
-    SIMPLE("simple");
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
+public class OptionType {
 
-    @JsonValue
+    public static final OptionType SIMPLE = new OptionType("simple");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, OptionType> values = createValuesMap();
+    private static final Map<String, OptionTypeEnum> enums = createEnumsMap();
+
     private final String value;
 
-    OptionType(String value) {
+    private OptionType(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a OptionType with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as OptionType
+     */ 
+    @JsonCreator
+    public static OptionType of(String value) {
+        synchronized (OptionType.class) {
+            return values.computeIfAbsent(value, v -> new OptionType(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<OptionType> fromValue(String value) {
-        for (OptionType o: OptionType.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<OptionTypeEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        OptionType other = (OptionType) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "OptionType [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static OptionType[] values() {
+        synchronized (OptionType.class) {
+            return values.values().toArray(new OptionType[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, OptionType> createValuesMap() {
+        Map<String, OptionType> map = new LinkedHashMap<>();
+        map.put("simple", SIMPLE);
+        return map;
+    }
+
+    private static final Map<String, OptionTypeEnum> createEnumsMap() {
+        Map<String, OptionTypeEnum> map = new HashMap<>();
+        map.put("simple", OptionTypeEnum.SIMPLE);
+        return map;
+    }
+    
+    
+    public enum OptionTypeEnum {
+
+        SIMPLE("simple"),;
+
+        private final String value;
+
+        private OptionTypeEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

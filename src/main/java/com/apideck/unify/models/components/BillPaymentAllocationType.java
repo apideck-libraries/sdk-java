@@ -3,43 +3,150 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * BillPaymentAllocationType
  * 
  * <p>Type of entity this payment should be attributed to.
  */
-public enum BillPaymentAllocationType {
-    BILL("bill"),
-    EXPENSE("expense"),
-    CREDIT_MEMO("credit_memo"),
-    OVER_PAYMENT("over_payment"),
-    PRE_PAYMENT("pre_payment"),
-    JOURNAL_ENTRY("journal_entry"),
-    OTHER("other");
+public class BillPaymentAllocationType {
 
-    @JsonValue
+    public static final BillPaymentAllocationType BILL = new BillPaymentAllocationType("bill");
+    public static final BillPaymentAllocationType EXPENSE = new BillPaymentAllocationType("expense");
+    public static final BillPaymentAllocationType CREDIT_MEMO = new BillPaymentAllocationType("credit_memo");
+    public static final BillPaymentAllocationType OVER_PAYMENT = new BillPaymentAllocationType("over_payment");
+    public static final BillPaymentAllocationType PRE_PAYMENT = new BillPaymentAllocationType("pre_payment");
+    public static final BillPaymentAllocationType JOURNAL_ENTRY = new BillPaymentAllocationType("journal_entry");
+    public static final BillPaymentAllocationType OTHER = new BillPaymentAllocationType("other");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, BillPaymentAllocationType> values = createValuesMap();
+    private static final Map<String, BillPaymentAllocationTypeEnum> enums = createEnumsMap();
+
     private final String value;
 
-    BillPaymentAllocationType(String value) {
+    private BillPaymentAllocationType(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a BillPaymentAllocationType with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as BillPaymentAllocationType
+     */ 
+    @JsonCreator
+    public static BillPaymentAllocationType of(String value) {
+        synchronized (BillPaymentAllocationType.class) {
+            return values.computeIfAbsent(value, v -> new BillPaymentAllocationType(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<BillPaymentAllocationType> fromValue(String value) {
-        for (BillPaymentAllocationType o: BillPaymentAllocationType.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<BillPaymentAllocationTypeEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        BillPaymentAllocationType other = (BillPaymentAllocationType) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "BillPaymentAllocationType [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static BillPaymentAllocationType[] values() {
+        synchronized (BillPaymentAllocationType.class) {
+            return values.values().toArray(new BillPaymentAllocationType[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, BillPaymentAllocationType> createValuesMap() {
+        Map<String, BillPaymentAllocationType> map = new LinkedHashMap<>();
+        map.put("bill", BILL);
+        map.put("expense", EXPENSE);
+        map.put("credit_memo", CREDIT_MEMO);
+        map.put("over_payment", OVER_PAYMENT);
+        map.put("pre_payment", PRE_PAYMENT);
+        map.put("journal_entry", JOURNAL_ENTRY);
+        map.put("other", OTHER);
+        return map;
+    }
+
+    private static final Map<String, BillPaymentAllocationTypeEnum> createEnumsMap() {
+        Map<String, BillPaymentAllocationTypeEnum> map = new HashMap<>();
+        map.put("bill", BillPaymentAllocationTypeEnum.BILL);
+        map.put("expense", BillPaymentAllocationTypeEnum.EXPENSE);
+        map.put("credit_memo", BillPaymentAllocationTypeEnum.CREDIT_MEMO);
+        map.put("over_payment", BillPaymentAllocationTypeEnum.OVER_PAYMENT);
+        map.put("pre_payment", BillPaymentAllocationTypeEnum.PRE_PAYMENT);
+        map.put("journal_entry", BillPaymentAllocationTypeEnum.JOURNAL_ENTRY);
+        map.put("other", BillPaymentAllocationTypeEnum.OTHER);
+        return map;
+    }
+    
+    
+    public enum BillPaymentAllocationTypeEnum {
+
+        BILL("bill"),
+        EXPENSE("expense"),
+        CREDIT_MEMO("credit_memo"),
+        OVER_PAYMENT("over_payment"),
+        PRE_PAYMENT("pre_payment"),
+        JOURNAL_ENTRY("journal_entry"),
+        OTHER("other"),;
+
+        private final String value;
+
+        private BillPaymentAllocationTypeEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

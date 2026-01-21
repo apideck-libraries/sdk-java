@@ -3,39 +3,134 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * Visibility
  * 
  * <p>The visibility of the job
  */
-public enum Visibility {
-    DRAFT("draft"),
-    PUBLIC("public"),
-    INTERNAL("internal");
+public class Visibility {
 
-    @JsonValue
+    public static final Visibility DRAFT = new Visibility("draft");
+    public static final Visibility PUBLIC = new Visibility("public");
+    public static final Visibility INTERNAL = new Visibility("internal");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, Visibility> values = createValuesMap();
+    private static final Map<String, VisibilityEnum> enums = createEnumsMap();
+
     private final String value;
 
-    Visibility(String value) {
+    private Visibility(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a Visibility with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as Visibility
+     */ 
+    @JsonCreator
+    public static Visibility of(String value) {
+        synchronized (Visibility.class) {
+            return values.computeIfAbsent(value, v -> new Visibility(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<Visibility> fromValue(String value) {
-        for (Visibility o: Visibility.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<VisibilityEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Visibility other = (Visibility) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "Visibility [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static Visibility[] values() {
+        synchronized (Visibility.class) {
+            return values.values().toArray(new Visibility[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, Visibility> createValuesMap() {
+        Map<String, Visibility> map = new LinkedHashMap<>();
+        map.put("draft", DRAFT);
+        map.put("public", PUBLIC);
+        map.put("internal", INTERNAL);
+        return map;
+    }
+
+    private static final Map<String, VisibilityEnum> createEnumsMap() {
+        Map<String, VisibilityEnum> map = new HashMap<>();
+        map.put("draft", VisibilityEnum.DRAFT);
+        map.put("public", VisibilityEnum.PUBLIC);
+        map.put("internal", VisibilityEnum.INTERNAL);
+        return map;
+    }
+    
+    
+    public enum VisibilityEnum {
+
+        DRAFT("draft"),
+        PUBLIC("public"),
+        INTERNAL("internal"),;
+
+        private final String value;
+
+        private VisibilityEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

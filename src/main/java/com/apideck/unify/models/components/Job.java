@@ -187,7 +187,7 @@ public class Job {
     /**
      * URL of the job description
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: This field is deprecated and may be removed in a future version..
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("url")
@@ -197,7 +197,7 @@ public class Job {
     /**
      * URL of the job portal
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: This field is deprecated and may be removed in a future version..
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("job_portal_url")
@@ -206,7 +206,7 @@ public class Job {
 
     /**
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: This field is deprecated and may be removed in a future version..
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("record_url")
@@ -632,7 +632,7 @@ public class Job {
     /**
      * URL of the job description
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: This field is deprecated and may be removed in a future version..
      */
     @Deprecated
     @JsonIgnore
@@ -643,7 +643,7 @@ public class Job {
     /**
      * URL of the job portal
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: This field is deprecated and may be removed in a future version..
      */
     @Deprecated
     @JsonIgnore
@@ -653,7 +653,7 @@ public class Job {
 
     /**
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: This field is deprecated and may be removed in a future version..
      */
     @Deprecated
     @JsonIgnore
@@ -1177,7 +1177,7 @@ public class Job {
     /**
      * URL of the job description
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: This field is deprecated and may be removed in a future version..
      */
     @Deprecated
     public Job withUrl(String url) {
@@ -1189,7 +1189,7 @@ public class Job {
     /**
      * URL of the job description
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: This field is deprecated and may be removed in a future version..
      */
     @Deprecated
     public Job withUrl(JsonNullable<String> url) {
@@ -1201,7 +1201,7 @@ public class Job {
     /**
      * URL of the job portal
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: This field is deprecated and may be removed in a future version..
      */
     @Deprecated
     public Job withJobPortalUrl(String jobPortalUrl) {
@@ -1213,7 +1213,7 @@ public class Job {
     /**
      * URL of the job portal
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: This field is deprecated and may be removed in a future version..
      */
     @Deprecated
     public Job withJobPortalUrl(JsonNullable<String> jobPortalUrl) {
@@ -1224,7 +1224,7 @@ public class Job {
 
     /**
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: This field is deprecated and may be removed in a future version..
      */
     @Deprecated
     public Job withRecordUrl(String recordUrl) {
@@ -1235,7 +1235,7 @@ public class Job {
 
     /**
      * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     * @deprecated field: This field is deprecated and may be removed in a future version..
      */
     @Deprecated
     public Job withRecordUrl(JsonNullable<String> recordUrl) {
@@ -2102,7 +2102,7 @@ public class Job {
         /**
          * URL of the job description
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: This field is deprecated and may be removed in a future version..
          */
         @Deprecated
         public Builder url(String url) {
@@ -2114,7 +2114,7 @@ public class Job {
         /**
          * URL of the job description
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: This field is deprecated and may be removed in a future version..
          */
         @Deprecated
         public Builder url(JsonNullable<String> url) {
@@ -2127,7 +2127,7 @@ public class Job {
         /**
          * URL of the job portal
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: This field is deprecated and may be removed in a future version..
          */
         @Deprecated
         public Builder jobPortalUrl(String jobPortalUrl) {
@@ -2139,7 +2139,7 @@ public class Job {
         /**
          * URL of the job portal
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: This field is deprecated and may be removed in a future version..
          */
         @Deprecated
         public Builder jobPortalUrl(JsonNullable<String> jobPortalUrl) {
@@ -2151,7 +2151,7 @@ public class Job {
 
         /**
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: This field is deprecated and may be removed in a future version..
          */
         @Deprecated
         public Builder recordUrl(String recordUrl) {
@@ -2162,7 +2162,7 @@ public class Job {
 
         /**
          * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         * @deprecated field: This field is deprecated and may be removed in a future version..
          */
         @Deprecated
         public Builder recordUrl(JsonNullable<String> recordUrl) {

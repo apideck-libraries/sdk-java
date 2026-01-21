@@ -3,38 +3,130 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * CreditNoteType
  * 
  * <p>Type of payment
  */
-public enum CreditNoteType {
-    ACCOUNTS_RECEIVABLE_CREDIT("accounts_receivable_credit"),
-    ACCOUNTS_PAYABLE_CREDIT("accounts_payable_credit");
+public class CreditNoteType {
 
-    @JsonValue
+    public static final CreditNoteType ACCOUNTS_RECEIVABLE_CREDIT = new CreditNoteType("accounts_receivable_credit");
+    public static final CreditNoteType ACCOUNTS_PAYABLE_CREDIT = new CreditNoteType("accounts_payable_credit");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, CreditNoteType> values = createValuesMap();
+    private static final Map<String, CreditNoteTypeEnum> enums = createEnumsMap();
+
     private final String value;
 
-    CreditNoteType(String value) {
+    private CreditNoteType(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a CreditNoteType with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as CreditNoteType
+     */ 
+    @JsonCreator
+    public static CreditNoteType of(String value) {
+        synchronized (CreditNoteType.class) {
+            return values.computeIfAbsent(value, v -> new CreditNoteType(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<CreditNoteType> fromValue(String value) {
-        for (CreditNoteType o: CreditNoteType.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<CreditNoteTypeEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        CreditNoteType other = (CreditNoteType) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "CreditNoteType [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static CreditNoteType[] values() {
+        synchronized (CreditNoteType.class) {
+            return values.values().toArray(new CreditNoteType[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, CreditNoteType> createValuesMap() {
+        Map<String, CreditNoteType> map = new LinkedHashMap<>();
+        map.put("accounts_receivable_credit", ACCOUNTS_RECEIVABLE_CREDIT);
+        map.put("accounts_payable_credit", ACCOUNTS_PAYABLE_CREDIT);
+        return map;
+    }
+
+    private static final Map<String, CreditNoteTypeEnum> createEnumsMap() {
+        Map<String, CreditNoteTypeEnum> map = new HashMap<>();
+        map.put("accounts_receivable_credit", CreditNoteTypeEnum.ACCOUNTS_RECEIVABLE_CREDIT);
+        map.put("accounts_payable_credit", CreditNoteTypeEnum.ACCOUNTS_PAYABLE_CREDIT);
+        return map;
+    }
+    
+    
+    public enum CreditNoteTypeEnum {
+
+        ACCOUNTS_RECEIVABLE_CREDIT("accounts_receivable_credit"),
+        ACCOUNTS_PAYABLE_CREDIT("accounts_payable_credit"),;
+
+        private final String value;
+
+        private CreditNoteTypeEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

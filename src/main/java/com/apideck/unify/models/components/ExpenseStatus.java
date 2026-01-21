@@ -3,38 +3,130 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * ExpenseStatus
  * 
  * <p>Expense status
  */
-public enum ExpenseStatus {
-    DRAFT("draft"),
-    POSTED("posted");
+public class ExpenseStatus {
 
-    @JsonValue
+    public static final ExpenseStatus DRAFT = new ExpenseStatus("draft");
+    public static final ExpenseStatus POSTED = new ExpenseStatus("posted");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, ExpenseStatus> values = createValuesMap();
+    private static final Map<String, ExpenseStatusEnum> enums = createEnumsMap();
+
     private final String value;
 
-    ExpenseStatus(String value) {
+    private ExpenseStatus(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a ExpenseStatus with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as ExpenseStatus
+     */ 
+    @JsonCreator
+    public static ExpenseStatus of(String value) {
+        synchronized (ExpenseStatus.class) {
+            return values.computeIfAbsent(value, v -> new ExpenseStatus(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<ExpenseStatus> fromValue(String value) {
-        for (ExpenseStatus o: ExpenseStatus.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<ExpenseStatusEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        ExpenseStatus other = (ExpenseStatus) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "ExpenseStatus [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static ExpenseStatus[] values() {
+        synchronized (ExpenseStatus.class) {
+            return values.values().toArray(new ExpenseStatus[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, ExpenseStatus> createValuesMap() {
+        Map<String, ExpenseStatus> map = new LinkedHashMap<>();
+        map.put("draft", DRAFT);
+        map.put("posted", POSTED);
+        return map;
+    }
+
+    private static final Map<String, ExpenseStatusEnum> createEnumsMap() {
+        Map<String, ExpenseStatusEnum> map = new HashMap<>();
+        map.put("draft", ExpenseStatusEnum.DRAFT);
+        map.put("posted", ExpenseStatusEnum.POSTED);
+        return map;
+    }
+    
+    
+    public enum ExpenseStatusEnum {
+
+        DRAFT("draft"),
+        POSTED("posted"),;
+
+        private final String value;
+
+        private ExpenseStatusEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

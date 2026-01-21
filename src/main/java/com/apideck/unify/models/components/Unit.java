@@ -3,40 +3,138 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * Unit
  * 
  * <p>The window unit for the rate.
  */
-public enum Unit {
-    SECOND("second"),
-    MINUTE("minute"),
-    HOUR("hour"),
-    DAY("day");
+public class Unit {
 
-    @JsonValue
+    public static final Unit SECOND = new Unit("second");
+    public static final Unit MINUTE = new Unit("minute");
+    public static final Unit HOUR = new Unit("hour");
+    public static final Unit DAY = new Unit("day");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, Unit> values = createValuesMap();
+    private static final Map<String, UnitEnum> enums = createEnumsMap();
+
     private final String value;
 
-    Unit(String value) {
+    private Unit(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a Unit with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as Unit
+     */ 
+    @JsonCreator
+    public static Unit of(String value) {
+        synchronized (Unit.class) {
+            return values.computeIfAbsent(value, v -> new Unit(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<Unit> fromValue(String value) {
-        for (Unit o: Unit.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<UnitEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Unit other = (Unit) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "Unit [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static Unit[] values() {
+        synchronized (Unit.class) {
+            return values.values().toArray(new Unit[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, Unit> createValuesMap() {
+        Map<String, Unit> map = new LinkedHashMap<>();
+        map.put("second", SECOND);
+        map.put("minute", MINUTE);
+        map.put("hour", HOUR);
+        map.put("day", DAY);
+        return map;
+    }
+
+    private static final Map<String, UnitEnum> createEnumsMap() {
+        Map<String, UnitEnum> map = new HashMap<>();
+        map.put("second", UnitEnum.SECOND);
+        map.put("minute", UnitEnum.MINUTE);
+        map.put("hour", UnitEnum.HOUR);
+        map.put("day", UnitEnum.DAY);
+        return map;
+    }
+    
+    
+    public enum UnitEnum {
+
+        SECOND("second"),
+        MINUTE("minute"),
+        HOUR("hour"),
+        DAY("day"),;
+
+        private final String value;
+
+        private UnitEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

@@ -3,46 +3,162 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * InvoiceStatus
  * 
  * <p>Invoice status
  */
-public enum InvoiceStatus {
-    DRAFT("draft"),
-    SUBMITTED("submitted"),
-    AUTHORISED("authorised"),
-    PARTIALLY_PAID("partially_paid"),
-    PAID("paid"),
-    UNPAID("unpaid"),
-    VOID("void"),
-    CREDIT("credit"),
-    DELETED("deleted"),
-    POSTED("posted");
+public class InvoiceStatus {
 
-    @JsonValue
+    public static final InvoiceStatus DRAFT = new InvoiceStatus("draft");
+    public static final InvoiceStatus SUBMITTED = new InvoiceStatus("submitted");
+    public static final InvoiceStatus AUTHORISED = new InvoiceStatus("authorised");
+    public static final InvoiceStatus PARTIALLY_PAID = new InvoiceStatus("partially_paid");
+    public static final InvoiceStatus PAID = new InvoiceStatus("paid");
+    public static final InvoiceStatus UNPAID = new InvoiceStatus("unpaid");
+    public static final InvoiceStatus VOID = new InvoiceStatus("void");
+    public static final InvoiceStatus CREDIT = new InvoiceStatus("credit");
+    public static final InvoiceStatus DELETED = new InvoiceStatus("deleted");
+    public static final InvoiceStatus POSTED = new InvoiceStatus("posted");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, InvoiceStatus> values = createValuesMap();
+    private static final Map<String, InvoiceStatusEnum> enums = createEnumsMap();
+
     private final String value;
 
-    InvoiceStatus(String value) {
+    private InvoiceStatus(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a InvoiceStatus with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as InvoiceStatus
+     */ 
+    @JsonCreator
+    public static InvoiceStatus of(String value) {
+        synchronized (InvoiceStatus.class) {
+            return values.computeIfAbsent(value, v -> new InvoiceStatus(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<InvoiceStatus> fromValue(String value) {
-        for (InvoiceStatus o: InvoiceStatus.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<InvoiceStatusEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        InvoiceStatus other = (InvoiceStatus) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "InvoiceStatus [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static InvoiceStatus[] values() {
+        synchronized (InvoiceStatus.class) {
+            return values.values().toArray(new InvoiceStatus[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, InvoiceStatus> createValuesMap() {
+        Map<String, InvoiceStatus> map = new LinkedHashMap<>();
+        map.put("draft", DRAFT);
+        map.put("submitted", SUBMITTED);
+        map.put("authorised", AUTHORISED);
+        map.put("partially_paid", PARTIALLY_PAID);
+        map.put("paid", PAID);
+        map.put("unpaid", UNPAID);
+        map.put("void", VOID);
+        map.put("credit", CREDIT);
+        map.put("deleted", DELETED);
+        map.put("posted", POSTED);
+        return map;
+    }
+
+    private static final Map<String, InvoiceStatusEnum> createEnumsMap() {
+        Map<String, InvoiceStatusEnum> map = new HashMap<>();
+        map.put("draft", InvoiceStatusEnum.DRAFT);
+        map.put("submitted", InvoiceStatusEnum.SUBMITTED);
+        map.put("authorised", InvoiceStatusEnum.AUTHORISED);
+        map.put("partially_paid", InvoiceStatusEnum.PARTIALLY_PAID);
+        map.put("paid", InvoiceStatusEnum.PAID);
+        map.put("unpaid", InvoiceStatusEnum.UNPAID);
+        map.put("void", InvoiceStatusEnum.VOID);
+        map.put("credit", InvoiceStatusEnum.CREDIT);
+        map.put("deleted", InvoiceStatusEnum.DELETED);
+        map.put("posted", InvoiceStatusEnum.POSTED);
+        return map;
+    }
+    
+    
+    public enum InvoiceStatusEnum {
+
+        DRAFT("draft"),
+        SUBMITTED("submitted"),
+        AUTHORISED("authorised"),
+        PARTIALLY_PAID("partially_paid"),
+        PAID("paid"),
+        UNPAID("unpaid"),
+        VOID("void"),
+        CREDIT("credit"),
+        DELETED("deleted"),
+        POSTED("posted"),;
+
+        private final String value;
+
+        private InvoiceStatusEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

@@ -3,38 +3,130 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * CreditOrDebit
  * 
  * <p>Whether the amount is a credit or debit.
  */
-public enum CreditOrDebit {
-    CREDIT("credit"),
-    DEBIT("debit");
+public class CreditOrDebit {
 
-    @JsonValue
+    public static final CreditOrDebit CREDIT = new CreditOrDebit("credit");
+    public static final CreditOrDebit DEBIT = new CreditOrDebit("debit");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, CreditOrDebit> values = createValuesMap();
+    private static final Map<String, CreditOrDebitEnum> enums = createEnumsMap();
+
     private final String value;
 
-    CreditOrDebit(String value) {
+    private CreditOrDebit(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a CreditOrDebit with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as CreditOrDebit
+     */ 
+    @JsonCreator
+    public static CreditOrDebit of(String value) {
+        synchronized (CreditOrDebit.class) {
+            return values.computeIfAbsent(value, v -> new CreditOrDebit(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<CreditOrDebit> fromValue(String value) {
-        for (CreditOrDebit o: CreditOrDebit.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<CreditOrDebitEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        CreditOrDebit other = (CreditOrDebit) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "CreditOrDebit [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static CreditOrDebit[] values() {
+        synchronized (CreditOrDebit.class) {
+            return values.values().toArray(new CreditOrDebit[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, CreditOrDebit> createValuesMap() {
+        Map<String, CreditOrDebit> map = new LinkedHashMap<>();
+        map.put("credit", CREDIT);
+        map.put("debit", DEBIT);
+        return map;
+    }
+
+    private static final Map<String, CreditOrDebitEnum> createEnumsMap() {
+        Map<String, CreditOrDebitEnum> map = new HashMap<>();
+        map.put("credit", CreditOrDebitEnum.CREDIT);
+        map.put("debit", CreditOrDebitEnum.DEBIT);
+        return map;
+    }
+    
+    
+    public enum CreditOrDebitEnum {
+
+        CREDIT("credit"),
+        DEBIT("debit"),;
+
+        private final String value;
+
+        private CreditOrDebitEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

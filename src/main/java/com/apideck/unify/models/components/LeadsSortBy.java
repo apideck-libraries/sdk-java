@@ -3,42 +3,146 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * LeadsSortBy
  * 
  * <p>The field on which to sort the Leads
  */
-public enum LeadsSortBy {
-    CREATED_AT("created_at"),
-    UPDATED_AT("updated_at"),
-    NAME("name"),
-    FIRST_NAME("first_name"),
-    LAST_NAME("last_name"),
-    EMAIL("email");
+public class LeadsSortBy {
 
-    @JsonValue
+    public static final LeadsSortBy CREATED_AT = new LeadsSortBy("created_at");
+    public static final LeadsSortBy UPDATED_AT = new LeadsSortBy("updated_at");
+    public static final LeadsSortBy NAME = new LeadsSortBy("name");
+    public static final LeadsSortBy FIRST_NAME = new LeadsSortBy("first_name");
+    public static final LeadsSortBy LAST_NAME = new LeadsSortBy("last_name");
+    public static final LeadsSortBy EMAIL = new LeadsSortBy("email");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, LeadsSortBy> values = createValuesMap();
+    private static final Map<String, LeadsSortByEnum> enums = createEnumsMap();
+
     private final String value;
 
-    LeadsSortBy(String value) {
+    private LeadsSortBy(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a LeadsSortBy with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as LeadsSortBy
+     */ 
+    @JsonCreator
+    public static LeadsSortBy of(String value) {
+        synchronized (LeadsSortBy.class) {
+            return values.computeIfAbsent(value, v -> new LeadsSortBy(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<LeadsSortBy> fromValue(String value) {
-        for (LeadsSortBy o: LeadsSortBy.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<LeadsSortByEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        LeadsSortBy other = (LeadsSortBy) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "LeadsSortBy [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static LeadsSortBy[] values() {
+        synchronized (LeadsSortBy.class) {
+            return values.values().toArray(new LeadsSortBy[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, LeadsSortBy> createValuesMap() {
+        Map<String, LeadsSortBy> map = new LinkedHashMap<>();
+        map.put("created_at", CREATED_AT);
+        map.put("updated_at", UPDATED_AT);
+        map.put("name", NAME);
+        map.put("first_name", FIRST_NAME);
+        map.put("last_name", LAST_NAME);
+        map.put("email", EMAIL);
+        return map;
+    }
+
+    private static final Map<String, LeadsSortByEnum> createEnumsMap() {
+        Map<String, LeadsSortByEnum> map = new HashMap<>();
+        map.put("created_at", LeadsSortByEnum.CREATED_AT);
+        map.put("updated_at", LeadsSortByEnum.UPDATED_AT);
+        map.put("name", LeadsSortByEnum.NAME);
+        map.put("first_name", LeadsSortByEnum.FIRST_NAME);
+        map.put("last_name", LeadsSortByEnum.LAST_NAME);
+        map.put("email", LeadsSortByEnum.EMAIL);
+        return map;
+    }
+    
+    
+    public enum LeadsSortByEnum {
+
+        CREATED_AT("created_at"),
+        UPDATED_AT("updated_at"),
+        NAME("name"),
+        FIRST_NAME("first_name"),
+        LAST_NAME("last_name"),
+        EMAIL("email"),;
+
+        private final String value;
+
+        private LeadsSortByEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

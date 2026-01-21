@@ -3,39 +3,134 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * OAuthGrantType
  * 
  * <p>OAuth grant type used by the connector. More info: https://oauth.net/2/grant-types
  */
-public enum OAuthGrantType {
-    AUTHORIZATION_CODE("authorization_code"),
-    CLIENT_CREDENTIALS("client_credentials"),
-    PASSWORD("password");
+public class OAuthGrantType {
 
-    @JsonValue
+    public static final OAuthGrantType AUTHORIZATION_CODE = new OAuthGrantType("authorization_code");
+    public static final OAuthGrantType CLIENT_CREDENTIALS = new OAuthGrantType("client_credentials");
+    public static final OAuthGrantType PASSWORD = new OAuthGrantType("password");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, OAuthGrantType> values = createValuesMap();
+    private static final Map<String, OAuthGrantTypeEnum> enums = createEnumsMap();
+
     private final String value;
 
-    OAuthGrantType(String value) {
+    private OAuthGrantType(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a OAuthGrantType with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as OAuthGrantType
+     */ 
+    @JsonCreator
+    public static OAuthGrantType of(String value) {
+        synchronized (OAuthGrantType.class) {
+            return values.computeIfAbsent(value, v -> new OAuthGrantType(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<OAuthGrantType> fromValue(String value) {
-        for (OAuthGrantType o: OAuthGrantType.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<OAuthGrantTypeEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        OAuthGrantType other = (OAuthGrantType) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "OAuthGrantType [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static OAuthGrantType[] values() {
+        synchronized (OAuthGrantType.class) {
+            return values.values().toArray(new OAuthGrantType[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, OAuthGrantType> createValuesMap() {
+        Map<String, OAuthGrantType> map = new LinkedHashMap<>();
+        map.put("authorization_code", AUTHORIZATION_CODE);
+        map.put("client_credentials", CLIENT_CREDENTIALS);
+        map.put("password", PASSWORD);
+        return map;
+    }
+
+    private static final Map<String, OAuthGrantTypeEnum> createEnumsMap() {
+        Map<String, OAuthGrantTypeEnum> map = new HashMap<>();
+        map.put("authorization_code", OAuthGrantTypeEnum.AUTHORIZATION_CODE);
+        map.put("client_credentials", OAuthGrantTypeEnum.CLIENT_CREDENTIALS);
+        map.put("password", OAuthGrantTypeEnum.PASSWORD);
+        return map;
+    }
+    
+    
+    public enum OAuthGrantTypeEnum {
+
+        AUTHORIZATION_CODE("authorization_code"),
+        CLIENT_CREDENTIALS("client_credentials"),
+        PASSWORD("password"),;
+
+        private final String value;
+
+        private OAuthGrantTypeEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

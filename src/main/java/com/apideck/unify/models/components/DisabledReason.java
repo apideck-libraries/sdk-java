@@ -3,11 +3,21 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * DisabledReason
  * 
@@ -16,30 +26,118 @@ import java.util.Optional;
  * 
  * <p>`delivery_url_validation_failed`: delivery URL failed validation during webhook creation or update.
  */
-public enum DisabledReason {
-    NONE("none"),
-    RETRY_LIMIT("retry_limit"),
-    USAGE_LIMIT("usage_limit"),
-    DELIVERY_URL_VALIDATION_FAILED("delivery_url_validation_failed");
+public class DisabledReason {
 
-    @JsonValue
+    public static final DisabledReason NONE = new DisabledReason("none");
+    public static final DisabledReason RETRY_LIMIT = new DisabledReason("retry_limit");
+    public static final DisabledReason USAGE_LIMIT = new DisabledReason("usage_limit");
+    public static final DisabledReason DELIVERY_URL_VALIDATION_FAILED = new DisabledReason("delivery_url_validation_failed");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, DisabledReason> values = createValuesMap();
+    private static final Map<String, DisabledReasonEnum> enums = createEnumsMap();
+
     private final String value;
 
-    DisabledReason(String value) {
+    private DisabledReason(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a DisabledReason with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as DisabledReason
+     */ 
+    @JsonCreator
+    public static DisabledReason of(String value) {
+        synchronized (DisabledReason.class) {
+            return values.computeIfAbsent(value, v -> new DisabledReason(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<DisabledReason> fromValue(String value) {
-        for (DisabledReason o: DisabledReason.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<DisabledReasonEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        DisabledReason other = (DisabledReason) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "DisabledReason [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static DisabledReason[] values() {
+        synchronized (DisabledReason.class) {
+            return values.values().toArray(new DisabledReason[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, DisabledReason> createValuesMap() {
+        Map<String, DisabledReason> map = new LinkedHashMap<>();
+        map.put("none", NONE);
+        map.put("retry_limit", RETRY_LIMIT);
+        map.put("usage_limit", USAGE_LIMIT);
+        map.put("delivery_url_validation_failed", DELIVERY_URL_VALIDATION_FAILED);
+        return map;
+    }
+
+    private static final Map<String, DisabledReasonEnum> createEnumsMap() {
+        Map<String, DisabledReasonEnum> map = new HashMap<>();
+        map.put("none", DisabledReasonEnum.NONE);
+        map.put("retry_limit", DisabledReasonEnum.RETRY_LIMIT);
+        map.put("usage_limit", DisabledReasonEnum.USAGE_LIMIT);
+        map.put("delivery_url_validation_failed", DisabledReasonEnum.DELIVERY_URL_VALIDATION_FAILED);
+        return map;
+    }
+    
+    
+    public enum DisabledReasonEnum {
+
+        NONE("none"),
+        RETRY_LIMIT("retry_limit"),
+        USAGE_LIMIT("usage_limit"),
+        DELIVERY_URL_VALIDATION_FAILED("delivery_url_validation_failed"),;
+
+        private final String value;
+
+        private DisabledReasonEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

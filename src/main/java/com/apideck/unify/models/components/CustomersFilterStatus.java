@@ -3,40 +3,138 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * CustomersFilterStatus
  * 
  * <p>Status of customer to filter on
  */
-public enum CustomersFilterStatus {
-    ACTIVE("active"),
-    INACTIVE("inactive"),
-    ARCHIVED("archived"),
-    ALL("all");
+public class CustomersFilterStatus {
 
-    @JsonValue
+    public static final CustomersFilterStatus ACTIVE = new CustomersFilterStatus("active");
+    public static final CustomersFilterStatus INACTIVE = new CustomersFilterStatus("inactive");
+    public static final CustomersFilterStatus ARCHIVED = new CustomersFilterStatus("archived");
+    public static final CustomersFilterStatus ALL = new CustomersFilterStatus("all");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, CustomersFilterStatus> values = createValuesMap();
+    private static final Map<String, CustomersFilterStatusEnum> enums = createEnumsMap();
+
     private final String value;
 
-    CustomersFilterStatus(String value) {
+    private CustomersFilterStatus(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a CustomersFilterStatus with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as CustomersFilterStatus
+     */ 
+    @JsonCreator
+    public static CustomersFilterStatus of(String value) {
+        synchronized (CustomersFilterStatus.class) {
+            return values.computeIfAbsent(value, v -> new CustomersFilterStatus(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<CustomersFilterStatus> fromValue(String value) {
-        for (CustomersFilterStatus o: CustomersFilterStatus.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<CustomersFilterStatusEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        CustomersFilterStatus other = (CustomersFilterStatus) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "CustomersFilterStatus [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static CustomersFilterStatus[] values() {
+        synchronized (CustomersFilterStatus.class) {
+            return values.values().toArray(new CustomersFilterStatus[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, CustomersFilterStatus> createValuesMap() {
+        Map<String, CustomersFilterStatus> map = new LinkedHashMap<>();
+        map.put("active", ACTIVE);
+        map.put("inactive", INACTIVE);
+        map.put("archived", ARCHIVED);
+        map.put("all", ALL);
+        return map;
+    }
+
+    private static final Map<String, CustomersFilterStatusEnum> createEnumsMap() {
+        Map<String, CustomersFilterStatusEnum> map = new HashMap<>();
+        map.put("active", CustomersFilterStatusEnum.ACTIVE);
+        map.put("inactive", CustomersFilterStatusEnum.INACTIVE);
+        map.put("archived", CustomersFilterStatusEnum.ARCHIVED);
+        map.put("all", CustomersFilterStatusEnum.ALL);
+        return map;
+    }
+    
+    
+    public enum CustomersFilterStatusEnum {
+
+        ACTIVE("active"),
+        INACTIVE("inactive"),
+        ARCHIVED("archived"),
+        ALL("all"),;
+
+        private final String value;
+
+        private CustomersFilterStatusEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

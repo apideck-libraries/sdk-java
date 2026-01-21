@@ -3,40 +3,138 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * EmployeesFilterEmploymentStatus
  * 
  * <p>Employment status to filter on
  */
-public enum EmployeesFilterEmploymentStatus {
-    ACTIVE("active"),
-    INACTIVE("inactive"),
-    TERMINATED("terminated"),
-    OTHER("other");
+public class EmployeesFilterEmploymentStatus {
 
-    @JsonValue
+    public static final EmployeesFilterEmploymentStatus ACTIVE = new EmployeesFilterEmploymentStatus("active");
+    public static final EmployeesFilterEmploymentStatus INACTIVE = new EmployeesFilterEmploymentStatus("inactive");
+    public static final EmployeesFilterEmploymentStatus TERMINATED = new EmployeesFilterEmploymentStatus("terminated");
+    public static final EmployeesFilterEmploymentStatus OTHER = new EmployeesFilterEmploymentStatus("other");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, EmployeesFilterEmploymentStatus> values = createValuesMap();
+    private static final Map<String, EmployeesFilterEmploymentStatusEnum> enums = createEnumsMap();
+
     private final String value;
 
-    EmployeesFilterEmploymentStatus(String value) {
+    private EmployeesFilterEmploymentStatus(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a EmployeesFilterEmploymentStatus with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as EmployeesFilterEmploymentStatus
+     */ 
+    @JsonCreator
+    public static EmployeesFilterEmploymentStatus of(String value) {
+        synchronized (EmployeesFilterEmploymentStatus.class) {
+            return values.computeIfAbsent(value, v -> new EmployeesFilterEmploymentStatus(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<EmployeesFilterEmploymentStatus> fromValue(String value) {
-        for (EmployeesFilterEmploymentStatus o: EmployeesFilterEmploymentStatus.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<EmployeesFilterEmploymentStatusEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        EmployeesFilterEmploymentStatus other = (EmployeesFilterEmploymentStatus) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "EmployeesFilterEmploymentStatus [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static EmployeesFilterEmploymentStatus[] values() {
+        synchronized (EmployeesFilterEmploymentStatus.class) {
+            return values.values().toArray(new EmployeesFilterEmploymentStatus[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, EmployeesFilterEmploymentStatus> createValuesMap() {
+        Map<String, EmployeesFilterEmploymentStatus> map = new LinkedHashMap<>();
+        map.put("active", ACTIVE);
+        map.put("inactive", INACTIVE);
+        map.put("terminated", TERMINATED);
+        map.put("other", OTHER);
+        return map;
+    }
+
+    private static final Map<String, EmployeesFilterEmploymentStatusEnum> createEnumsMap() {
+        Map<String, EmployeesFilterEmploymentStatusEnum> map = new HashMap<>();
+        map.put("active", EmployeesFilterEmploymentStatusEnum.ACTIVE);
+        map.put("inactive", EmployeesFilterEmploymentStatusEnum.INACTIVE);
+        map.put("terminated", EmployeesFilterEmploymentStatusEnum.TERMINATED);
+        map.put("other", EmployeesFilterEmploymentStatusEnum.OTHER);
+        return map;
+    }
+    
+    
+    public enum EmployeesFilterEmploymentStatusEnum {
+
+        ACTIVE("active"),
+        INACTIVE("inactive"),
+        TERMINATED("terminated"),
+        OTHER("other"),;
+
+        private final String value;
+
+        private EmployeesFilterEmploymentStatusEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

@@ -3,39 +3,134 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * BillsFilterStatus
  * 
  * <p>Filter by bill status
  */
-public enum BillsFilterStatus {
-    PAID("paid"),
-    UNPAID("unpaid"),
-    PARTIALLY_PAID("partially_paid");
+public class BillsFilterStatus {
 
-    @JsonValue
+    public static final BillsFilterStatus PAID = new BillsFilterStatus("paid");
+    public static final BillsFilterStatus UNPAID = new BillsFilterStatus("unpaid");
+    public static final BillsFilterStatus PARTIALLY_PAID = new BillsFilterStatus("partially_paid");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, BillsFilterStatus> values = createValuesMap();
+    private static final Map<String, BillsFilterStatusEnum> enums = createEnumsMap();
+
     private final String value;
 
-    BillsFilterStatus(String value) {
+    private BillsFilterStatus(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a BillsFilterStatus with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as BillsFilterStatus
+     */ 
+    @JsonCreator
+    public static BillsFilterStatus of(String value) {
+        synchronized (BillsFilterStatus.class) {
+            return values.computeIfAbsent(value, v -> new BillsFilterStatus(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<BillsFilterStatus> fromValue(String value) {
-        for (BillsFilterStatus o: BillsFilterStatus.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<BillsFilterStatusEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        BillsFilterStatus other = (BillsFilterStatus) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "BillsFilterStatus [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static BillsFilterStatus[] values() {
+        synchronized (BillsFilterStatus.class) {
+            return values.values().toArray(new BillsFilterStatus[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, BillsFilterStatus> createValuesMap() {
+        Map<String, BillsFilterStatus> map = new LinkedHashMap<>();
+        map.put("paid", PAID);
+        map.put("unpaid", UNPAID);
+        map.put("partially_paid", PARTIALLY_PAID);
+        return map;
+    }
+
+    private static final Map<String, BillsFilterStatusEnum> createEnumsMap() {
+        Map<String, BillsFilterStatusEnum> map = new HashMap<>();
+        map.put("paid", BillsFilterStatusEnum.PAID);
+        map.put("unpaid", BillsFilterStatusEnum.UNPAID);
+        map.put("partially_paid", BillsFilterStatusEnum.PARTIALLY_PAID);
+        return map;
+    }
+    
+    
+    public enum BillsFilterStatusEnum {
+
+        PAID("paid"),
+        UNPAID("unpaid"),
+        PARTIALLY_PAID("partially_paid"),;
+
+        private final String value;
+
+        private BillsFilterStatusEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

@@ -3,37 +3,141 @@
  */
 package com.apideck.unify.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-public enum PurchaseOrderStatus {
-    DRAFT("draft"),
-    OPEN("open"),
-    CLOSED("closed"),
-    DELETED("deleted"),
-    BILLED("billed"),
-    OTHER("other");
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
+public class PurchaseOrderStatus {
 
-    @JsonValue
+    public static final PurchaseOrderStatus DRAFT = new PurchaseOrderStatus("draft");
+    public static final PurchaseOrderStatus OPEN = new PurchaseOrderStatus("open");
+    public static final PurchaseOrderStatus CLOSED = new PurchaseOrderStatus("closed");
+    public static final PurchaseOrderStatus DELETED = new PurchaseOrderStatus("deleted");
+    public static final PurchaseOrderStatus BILLED = new PurchaseOrderStatus("billed");
+    public static final PurchaseOrderStatus OTHER = new PurchaseOrderStatus("other");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, PurchaseOrderStatus> values = createValuesMap();
+    private static final Map<String, PurchaseOrderStatusEnum> enums = createEnumsMap();
+
     private final String value;
 
-    PurchaseOrderStatus(String value) {
+    private PurchaseOrderStatus(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a PurchaseOrderStatus with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as PurchaseOrderStatus
+     */ 
+    @JsonCreator
+    public static PurchaseOrderStatus of(String value) {
+        synchronized (PurchaseOrderStatus.class) {
+            return values.computeIfAbsent(value, v -> new PurchaseOrderStatus(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<PurchaseOrderStatus> fromValue(String value) {
-        for (PurchaseOrderStatus o: PurchaseOrderStatus.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<PurchaseOrderStatusEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        PurchaseOrderStatus other = (PurchaseOrderStatus) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "PurchaseOrderStatus [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static PurchaseOrderStatus[] values() {
+        synchronized (PurchaseOrderStatus.class) {
+            return values.values().toArray(new PurchaseOrderStatus[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, PurchaseOrderStatus> createValuesMap() {
+        Map<String, PurchaseOrderStatus> map = new LinkedHashMap<>();
+        map.put("draft", DRAFT);
+        map.put("open", OPEN);
+        map.put("closed", CLOSED);
+        map.put("deleted", DELETED);
+        map.put("billed", BILLED);
+        map.put("other", OTHER);
+        return map;
+    }
+
+    private static final Map<String, PurchaseOrderStatusEnum> createEnumsMap() {
+        Map<String, PurchaseOrderStatusEnum> map = new HashMap<>();
+        map.put("draft", PurchaseOrderStatusEnum.DRAFT);
+        map.put("open", PurchaseOrderStatusEnum.OPEN);
+        map.put("closed", PurchaseOrderStatusEnum.CLOSED);
+        map.put("deleted", PurchaseOrderStatusEnum.DELETED);
+        map.put("billed", PurchaseOrderStatusEnum.BILLED);
+        map.put("other", PurchaseOrderStatusEnum.OTHER);
+        return map;
+    }
+    
+    
+    public enum PurchaseOrderStatusEnum {
+
+        DRAFT("draft"),
+        OPEN("open"),
+        CLOSED("closed"),
+        DELETED("deleted"),
+        BILLED("billed"),
+        OTHER("other"),;
+
+        private final String value;
+
+        private PurchaseOrderStatusEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

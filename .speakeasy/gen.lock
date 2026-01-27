@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 38254260-287a-40b6-9ac5-c2fcb654c9cc
 management:
-  docChecksum: 39aae8d40e55105bc1e048ac01f04376
-  docVersion: 10.23.10
-  speakeasyVersion: 1.692.0
-  generationVersion: 2.797.1
-  releaseVersion: 0.30.1
-  configChecksum: 3dc321b61b3852c655a31669f58cc05c
+  docChecksum: 2aab0c769b29d535b97cfe244da95d30
+  docVersion: 10.23.11
+  speakeasyVersion: 1.698.0
+  generationVersion: 2.801.0
+  releaseVersion: 0.30.2
+  configChecksum: 9e0b080a085a8c0fca4ce2ee9fe16a9d
   repoURL: https://github.com/apideck-libraries/sdk-java.git
   published: true
 persistentEdits:
-  generation_id: b23a4af0-5b70-46e2-8c16-98db4a9749f0
-  pristine_commit_hash: 5427154fe50e20039a1436b674dee70e3085608c
-  pristine_tree_hash: 2c21d6c8bd44042c1dbd58d613138904ca76e7ba
+  generation_id: aa332466-4408-4167-b90e-c316a12a972f
+  pristine_commit_hash: 91d79d9ba7899fd2de9c59f5afa71e37f211ba68
+  pristine_tree_hash: 9f05c1931e1a5944bf784ea7bce3231edb448f51
 features:
   java:
     acceptHeaders: 2.81.2
@@ -1392,8 +1392,8 @@ trackedFiles:
     pristine_git_object: b3e4662616b4d842063afd7da445c1a4d350c25f
   docs/models/components/EcommerceCustomersFilter.md:
     id: 0d3dbdc51073
-    last_write_checksum: sha1:a38872661996ec2266127510569d519fd377a1a3
-    pristine_git_object: cfe425b90c292a9c95630095e963f101caa0fbe7
+    last_write_checksum: sha1:0f6a0f994ccee3d9df3e51e4754ce4158f06e39e
+    pristine_git_object: c5601e9ec83df9c7f8195abbf5d38be1f46da184
   docs/models/components/EcommerceDiscount.md:
     id: a87acb0bc78f
     last_write_checksum: sha1:894d550b5a717387ae895b3bdf4450838e5db272
@@ -5188,8 +5188,8 @@ trackedFiles:
     pristine_git_object: fbe6e012d6f168e9a5454ce37ee87796c3441c38
   docs/models/operations/EcommerceCustomersAllRequest.md:
     id: 5c3d7fd00ceb
-    last_write_checksum: sha1:3c8968c1e501a2dfe37d2b9e02040eddae9c0b62
-    pristine_git_object: c82f01e277d8b1c3ce20472c13ac20d1963046be
+    last_write_checksum: sha1:cfbb522e9fd60c486ae7fd82200c63ed6be922f4
+    pristine_git_object: 169ac495c629bd61584ce9ba9d97e6053600dc82
   docs/models/operations/EcommerceCustomersAllResponse.md:
     id: fc99466983e0
     last_write_checksum: sha1:dd13e97aef90172d34d4e11a01dfab36a05ebe9c
@@ -6440,8 +6440,8 @@ trackedFiles:
     pristine_git_object: c755c6aa377f358344e761e9cc3e7b67bc1fb479
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:0a7914c0fa7f9f251a65d406da9ee4d94cba4d7a
-    pristine_git_object: 32326ca6688f019cf056457280cd3ca7b09112f0
+    last_write_checksum: sha1:e137dbf80891743b98732589f0a36e9e13c5d1d8
+    pristine_git_object: cfede886efc4ee3bbb54f234331a9cf4de6f2b3e
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -7212,8 +7212,8 @@ trackedFiles:
     pristine_git_object: f19fbaf1b4f5fe0ee68b6b2ccf4ce38637bae104
   src/main/java/com/apideck/unify/SDKConfiguration.java:
     id: a2b330a87142
-    last_write_checksum: sha1:e7c3e6ed6577ad5a839c320884bba2feb5a74519
-    pristine_git_object: bbb6d1b2cf51a2f75403de10ec6b42078fb5162f
+    last_write_checksum: sha1:ebcb6141b86ea88e267cbe85df3e14d5536c52c8
+    pristine_git_object: 2901596ee930955c11b214b3d5ee41912ab8adba
   src/main/java/com/apideck/unify/SecuritySource.java:
     id: e4566c6c806b
     last_write_checksum: sha1:101bf1a9f5cf4e8c37abb4540147276eebb2bab0
@@ -8616,8 +8616,8 @@ trackedFiles:
     pristine_git_object: 487a18daffce98a598213569d4f14fb9af06b3b5
   src/main/java/com/apideck/unify/models/components/EcommerceCustomersFilter.java:
     id: 1a4b9ef5de2e
-    last_write_checksum: sha1:fcc44a10a29041fd3bc43a07e8314e7cd6dd54e4
-    pristine_git_object: 8a5ab0fa66c9758c4126f27ff28fd85f1d7e10a4
+    last_write_checksum: sha1:7e297ce0a0e165d30991d4f779631962cdef8f58
+    pristine_git_object: 2679b2e503ad97064bd99c64835dee35e5c9c323
   src/main/java/com/apideck/unify/models/components/EcommerceDiscount.java:
     id: 79a77fc35ba6
     last_write_checksum: sha1:22f47d6a0cd16bbee8965c4ea1699be08c66ceaa
@@ -27112,7 +27112,7 @@ examples:
         query:
           raw: false
           limit: 20
-          filter: {"email": "elon@musk.com", "phone_number": "111-111-1111"}
+          filter: {"email": "elon@musk.com", "phone_number": "111-111-1111", "customer_ids": ["12345", "67890"]}
           pass_through: {"search": "San Francisco"}
           fields: "id,updated_at"
         header:
@@ -33951,6 +33951,7 @@ examples:
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: "## Java SDK Changes:\n* `apideck.ecommerce.customers.list()`: \n  *  `request.filter` **Changed**\n"
 generatedFiles:
   - .gitattributes
   - USAGE.md

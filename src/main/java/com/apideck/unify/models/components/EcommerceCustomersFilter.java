@@ -9,6 +9,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -25,18 +27,27 @@ public class EcommerceCustomersFilter {
     @SpeakeasyMetadata("queryParam:name=phone_number")
     private Optional<String> phoneNumber;
 
+    /**
+     * Filter by customer IDs
+     */
+    @SpeakeasyMetadata("queryParam:name=customer_ids")
+    private Optional<? extends List<String>> customerIds;
+
     @JsonCreator
     public EcommerceCustomersFilter(
             Optional<String> email,
-            Optional<String> phoneNumber) {
+            Optional<String> phoneNumber,
+            Optional<? extends List<String>> customerIds) {
         Utils.checkNotNull(email, "email");
         Utils.checkNotNull(phoneNumber, "phoneNumber");
+        Utils.checkNotNull(customerIds, "customerIds");
         this.email = email;
         this.phoneNumber = phoneNumber;
+        this.customerIds = customerIds;
     }
     
     public EcommerceCustomersFilter() {
-        this(Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -53,6 +64,15 @@ public class EcommerceCustomersFilter {
     @JsonIgnore
     public Optional<String> phoneNumber() {
         return phoneNumber;
+    }
+
+    /**
+     * Filter by customer IDs
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<String>> customerIds() {
+        return (Optional<List<String>>) customerIds;
     }
 
     public static Builder builder() {
@@ -98,6 +118,25 @@ public class EcommerceCustomersFilter {
         return this;
     }
 
+    /**
+     * Filter by customer IDs
+     */
+    public EcommerceCustomersFilter withCustomerIds(List<String> customerIds) {
+        Utils.checkNotNull(customerIds, "customerIds");
+        this.customerIds = Optional.ofNullable(customerIds);
+        return this;
+    }
+
+
+    /**
+     * Filter by customer IDs
+     */
+    public EcommerceCustomersFilter withCustomerIds(Optional<? extends List<String>> customerIds) {
+        Utils.checkNotNull(customerIds, "customerIds");
+        this.customerIds = customerIds;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -109,20 +148,22 @@ public class EcommerceCustomersFilter {
         EcommerceCustomersFilter other = (EcommerceCustomersFilter) o;
         return 
             Utils.enhancedDeepEquals(this.email, other.email) &&
-            Utils.enhancedDeepEquals(this.phoneNumber, other.phoneNumber);
+            Utils.enhancedDeepEquals(this.phoneNumber, other.phoneNumber) &&
+            Utils.enhancedDeepEquals(this.customerIds, other.customerIds);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            email, phoneNumber);
+            email, phoneNumber, customerIds);
     }
     
     @Override
     public String toString() {
         return Utils.toString(EcommerceCustomersFilter.class,
                 "email", email,
-                "phoneNumber", phoneNumber);
+                "phoneNumber", phoneNumber,
+                "customerIds", customerIds);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -131,6 +172,8 @@ public class EcommerceCustomersFilter {
         private Optional<String> email = Optional.empty();
 
         private Optional<String> phoneNumber = Optional.empty();
+
+        private Optional<? extends List<String>> customerIds = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -174,10 +217,29 @@ public class EcommerceCustomersFilter {
             return this;
         }
 
+
+        /**
+         * Filter by customer IDs
+         */
+        public Builder customerIds(List<String> customerIds) {
+            Utils.checkNotNull(customerIds, "customerIds");
+            this.customerIds = Optional.ofNullable(customerIds);
+            return this;
+        }
+
+        /**
+         * Filter by customer IDs
+         */
+        public Builder customerIds(Optional<? extends List<String>> customerIds) {
+            Utils.checkNotNull(customerIds, "customerIds");
+            this.customerIds = customerIds;
+            return this;
+        }
+
         public EcommerceCustomersFilter build() {
 
             return new EcommerceCustomersFilter(
-                email, phoneNumber);
+                email, phoneNumber, customerIds);
         }
 
     }

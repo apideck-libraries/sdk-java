@@ -94,11 +94,18 @@ public class ProjectInput {
     private JsonNullable<LocalDate> startDate;
 
     /**
-     * Expected or actual end date of the project
+     * Expected or planned end date of the project
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("end_date")
     private JsonNullable<LocalDate> endDate;
+
+    /**
+     * Actual end date of the project
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("completion_date")
+    private JsonNullable<LocalDate> completionDate;
 
     /**
      * The customer this entity is linked to.
@@ -279,6 +286,7 @@ public class ProjectInput {
             @JsonProperty("completion_percentage") JsonNullable<Double> completionPercentage,
             @JsonProperty("start_date") JsonNullable<LocalDate> startDate,
             @JsonProperty("end_date") JsonNullable<LocalDate> endDate,
+            @JsonProperty("completion_date") JsonNullable<LocalDate> completionDate,
             @JsonProperty("customer") JsonNullable<? extends LinkedCustomerInput> customer,
             @JsonProperty("department") JsonNullable<? extends ProjectDepartment> department,
             @JsonProperty("company_id") JsonNullable<String> companyId,
@@ -314,6 +322,7 @@ public class ProjectInput {
         Utils.checkNotNull(completionPercentage, "completionPercentage");
         Utils.checkNotNull(startDate, "startDate");
         Utils.checkNotNull(endDate, "endDate");
+        Utils.checkNotNull(completionDate, "completionDate");
         Utils.checkNotNull(customer, "customer");
         Utils.checkNotNull(department, "department");
         Utils.checkNotNull(companyId, "companyId");
@@ -349,6 +358,7 @@ public class ProjectInput {
         this.completionPercentage = completionPercentage;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.completionDate = completionDate;
         this.customer = customer;
         this.department = department;
         this.companyId = companyId;
@@ -385,10 +395,10 @@ public class ProjectInput {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined());
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -475,11 +485,19 @@ public class ProjectInput {
     }
 
     /**
-     * Expected or actual end date of the project
+     * Expected or planned end date of the project
      */
     @JsonIgnore
     public JsonNullable<LocalDate> endDate() {
         return endDate;
+    }
+
+    /**
+     * Actual end date of the project
+     */
+    @JsonIgnore
+    public JsonNullable<LocalDate> completionDate() {
+        return completionDate;
     }
 
     /**
@@ -859,7 +877,7 @@ public class ProjectInput {
     }
 
     /**
-     * Expected or actual end date of the project
+     * Expected or planned end date of the project
      */
     public ProjectInput withEndDate(LocalDate endDate) {
         Utils.checkNotNull(endDate, "endDate");
@@ -868,11 +886,29 @@ public class ProjectInput {
     }
 
     /**
-     * Expected or actual end date of the project
+     * Expected or planned end date of the project
      */
     public ProjectInput withEndDate(JsonNullable<LocalDate> endDate) {
         Utils.checkNotNull(endDate, "endDate");
         this.endDate = endDate;
+        return this;
+    }
+
+    /**
+     * Actual end date of the project
+     */
+    public ProjectInput withCompletionDate(LocalDate completionDate) {
+        Utils.checkNotNull(completionDate, "completionDate");
+        this.completionDate = JsonNullable.of(completionDate);
+        return this;
+    }
+
+    /**
+     * Actual end date of the project
+     */
+    public ProjectInput withCompletionDate(JsonNullable<LocalDate> completionDate) {
+        Utils.checkNotNull(completionDate, "completionDate");
+        this.completionDate = completionDate;
         return this;
     }
 
@@ -1325,6 +1361,7 @@ public class ProjectInput {
             Utils.enhancedDeepEquals(this.completionPercentage, other.completionPercentage) &&
             Utils.enhancedDeepEquals(this.startDate, other.startDate) &&
             Utils.enhancedDeepEquals(this.endDate, other.endDate) &&
+            Utils.enhancedDeepEquals(this.completionDate, other.completionDate) &&
             Utils.enhancedDeepEquals(this.customer, other.customer) &&
             Utils.enhancedDeepEquals(this.department, other.department) &&
             Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
@@ -1357,15 +1394,15 @@ public class ProjectInput {
             name, displayId, referenceId,
             description, status, active,
             projectType, priority, completionPercentage,
-            startDate, endDate, customer,
-            department, companyId, ownerId,
-            parentProject, currency, budgetAmount,
-            approvedAmount, budgetHours, hourlyRate,
-            billingMethod, isBillable, phase,
-            taxRate, trackingCategories, tags,
-            notes, contractNumber, profitMargin,
-            scheduleStatus, addresses, teamSize,
-            customFields, rowVersion);
+            startDate, endDate, completionDate,
+            customer, department, companyId,
+            ownerId, parentProject, currency,
+            budgetAmount, approvedAmount, budgetHours,
+            hourlyRate, billingMethod, isBillable,
+            phase, taxRate, trackingCategories,
+            tags, notes, contractNumber,
+            profitMargin, scheduleStatus, addresses,
+            teamSize, customFields, rowVersion);
     }
     
     @Override
@@ -1382,6 +1419,7 @@ public class ProjectInput {
                 "completionPercentage", completionPercentage,
                 "startDate", startDate,
                 "endDate", endDate,
+                "completionDate", completionDate,
                 "customer", customer,
                 "department", department,
                 "companyId", companyId,
@@ -1432,6 +1470,8 @@ public class ProjectInput {
         private JsonNullable<LocalDate> startDate = JsonNullable.undefined();
 
         private JsonNullable<LocalDate> endDate = JsonNullable.undefined();
+
+        private JsonNullable<LocalDate> completionDate = JsonNullable.undefined();
 
         private JsonNullable<? extends LinkedCustomerInput> customer = JsonNullable.undefined();
 
@@ -1668,7 +1708,7 @@ public class ProjectInput {
 
 
         /**
-         * Expected or actual end date of the project
+         * Expected or planned end date of the project
          */
         public Builder endDate(LocalDate endDate) {
             Utils.checkNotNull(endDate, "endDate");
@@ -1677,11 +1717,30 @@ public class ProjectInput {
         }
 
         /**
-         * Expected or actual end date of the project
+         * Expected or planned end date of the project
          */
         public Builder endDate(JsonNullable<LocalDate> endDate) {
             Utils.checkNotNull(endDate, "endDate");
             this.endDate = endDate;
+            return this;
+        }
+
+
+        /**
+         * Actual end date of the project
+         */
+        public Builder completionDate(LocalDate completionDate) {
+            Utils.checkNotNull(completionDate, "completionDate");
+            this.completionDate = JsonNullable.of(completionDate);
+            return this;
+        }
+
+        /**
+         * Actual end date of the project
+         */
+        public Builder completionDate(JsonNullable<LocalDate> completionDate) {
+            Utils.checkNotNull(completionDate, "completionDate");
+            this.completionDate = completionDate;
             return this;
         }
 
@@ -2142,15 +2201,15 @@ public class ProjectInput {
                 name, displayId, referenceId,
                 description, status, active,
                 projectType, priority, completionPercentage,
-                startDate, endDate, customer,
-                department, companyId, ownerId,
-                parentProject, currency, budgetAmount,
-                approvedAmount, budgetHours, hourlyRate,
-                billingMethod, isBillable, phase,
-                taxRate, trackingCategories, tags,
-                notes, contractNumber, profitMargin,
-                scheduleStatus, addresses, teamSize,
-                customFields, rowVersion);
+                startDate, endDate, completionDate,
+                customer, department, companyId,
+                ownerId, parentProject, currency,
+                budgetAmount, approvedAmount, budgetHours,
+                hourlyRate, billingMethod, isBillable,
+                phase, taxRate, trackingCategories,
+                tags, notes, contractNumber,
+                profitMargin, scheduleStatus, addresses,
+                teamSize, customFields, rowVersion);
         }
 
 

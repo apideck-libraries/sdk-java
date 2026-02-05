@@ -30,6 +30,9 @@ public class ProjectStatus {
     public static final ProjectStatus ON_HOLD = new ProjectStatus("on_hold");
     public static final ProjectStatus CANCELLED = new ProjectStatus("cancelled");
     public static final ProjectStatus DRAFT = new ProjectStatus("draft");
+    public static final ProjectStatus IN_PROGRESS = new ProjectStatus("in_progress");
+    public static final ProjectStatus APPROVED = new ProjectStatus("approved");
+    public static final ProjectStatus OTHER = new ProjectStatus("other");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -108,6 +111,9 @@ public class ProjectStatus {
         map.put("on_hold", ON_HOLD);
         map.put("cancelled", CANCELLED);
         map.put("draft", DRAFT);
+        map.put("in_progress", IN_PROGRESS);
+        map.put("approved", APPROVED);
+        map.put("other", OTHER);
         return map;
     }
 
@@ -118,6 +124,9 @@ public class ProjectStatus {
         map.put("on_hold", ProjectStatusEnum.ON_HOLD);
         map.put("cancelled", ProjectStatusEnum.CANCELLED);
         map.put("draft", ProjectStatusEnum.DRAFT);
+        map.put("in_progress", ProjectStatusEnum.IN_PROGRESS);
+        map.put("approved", ProjectStatusEnum.APPROVED);
+        map.put("other", ProjectStatusEnum.OTHER);
         return map;
     }
     
@@ -128,7 +137,10 @@ public class ProjectStatus {
         COMPLETED("completed"),
         ON_HOLD("on_hold"),
         CANCELLED("cancelled"),
-        DRAFT("draft"),;
+        DRAFT("draft"),
+        IN_PROGRESS("in_progress"),
+        APPROVED("approved"),
+        OTHER("other"),;
 
         private final String value;
 

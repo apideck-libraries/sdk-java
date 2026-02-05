@@ -21,6 +21,7 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.lang.Throwable;
 import java.net.http.HttpResponse;
+import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
@@ -137,6 +138,15 @@ public class BadRequestResponse extends ApideckError {
         return data().flatMap(Data::ref);
     }
 
+    /**
+     * Contains downstream errors returned from the connector. Only present when type_name is
+     * ConnectorExecutionError.
+     */
+    @Deprecated
+    public Optional<List<DownstreamErrors>> downstreamErrors() {
+        return data().flatMap(Data::downstreamErrors);
+    }
+
     public Optional<Data> data() {
         return Optional.ofNullable(data);
     }
@@ -195,6 +205,14 @@ public class BadRequestResponse extends ApideckError {
         @JsonProperty("ref")
         private Optional<String> ref;
 
+        /**
+         * Contains downstream errors returned from the connector. Only present when type_name is
+         * ConnectorExecutionError.
+         */
+        @JsonInclude(Include.NON_ABSENT)
+        @JsonProperty("downstream_errors")
+        private Optional<? extends List<DownstreamErrors>> downstreamErrors;
+
         @JsonCreator
         public Data(
                 @JsonProperty("status_code") Optional<Double> statusCode,
@@ -202,24 +220,28 @@ public class BadRequestResponse extends ApideckError {
                 @JsonProperty("type_name") Optional<String> typeName,
                 @JsonProperty("message") Optional<String> message,
                 @JsonProperty("detail") Optional<? extends Detail> detail,
-                @JsonProperty("ref") Optional<String> ref) {
+                @JsonProperty("ref") Optional<String> ref,
+                @JsonProperty("downstream_errors") Optional<? extends List<DownstreamErrors>> downstreamErrors) {
             Utils.checkNotNull(statusCode, "statusCode");
             Utils.checkNotNull(error, "error");
             Utils.checkNotNull(typeName, "typeName");
             Utils.checkNotNull(message, "message");
             Utils.checkNotNull(detail, "detail");
             Utils.checkNotNull(ref, "ref");
+            Utils.checkNotNull(downstreamErrors, "downstreamErrors");
             this.statusCode = statusCode;
             this.error = error;
             this.typeName = typeName;
             this.message = message;
             this.detail = detail;
             this.ref = ref;
+            this.downstreamErrors = downstreamErrors;
         }
         
         public Data() {
             this(Optional.empty(), Optional.empty(), Optional.empty(),
-                Optional.empty(), Optional.empty(), Optional.empty());
+                Optional.empty(), Optional.empty(), Optional.empty(),
+                Optional.empty());
         }
 
         /**
@@ -269,6 +291,16 @@ public class BadRequestResponse extends ApideckError {
         @JsonIgnore
         public Optional<String> ref() {
             return ref;
+        }
+
+        /**
+         * Contains downstream errors returned from the connector. Only present when type_name is
+         * ConnectorExecutionError.
+         */
+        @SuppressWarnings("unchecked")
+        @JsonIgnore
+        public Optional<List<DownstreamErrors>> downstreamErrors() {
+            return (Optional<List<DownstreamErrors>>) downstreamErrors;
         }
 
         public static Builder builder() {
@@ -390,6 +422,27 @@ public class BadRequestResponse extends ApideckError {
             return this;
         }
 
+        /**
+         * Contains downstream errors returned from the connector. Only present when type_name is
+         * ConnectorExecutionError.
+         */
+        public Data withDownstreamErrors(List<DownstreamErrors> downstreamErrors) {
+            Utils.checkNotNull(downstreamErrors, "downstreamErrors");
+            this.downstreamErrors = Optional.ofNullable(downstreamErrors);
+            return this;
+        }
+
+
+        /**
+         * Contains downstream errors returned from the connector. Only present when type_name is
+         * ConnectorExecutionError.
+         */
+        public Data withDownstreamErrors(Optional<? extends List<DownstreamErrors>> downstreamErrors) {
+            Utils.checkNotNull(downstreamErrors, "downstreamErrors");
+            this.downstreamErrors = downstreamErrors;
+            return this;
+        }
+
         @Override
         public boolean equals(java.lang.Object o) {
             if (this == o) {
@@ -405,14 +458,16 @@ public class BadRequestResponse extends ApideckError {
                 Utils.enhancedDeepEquals(this.typeName, other.typeName) &&
                 Utils.enhancedDeepEquals(this.message, other.message) &&
                 Utils.enhancedDeepEquals(this.detail, other.detail) &&
-                Utils.enhancedDeepEquals(this.ref, other.ref);
+                Utils.enhancedDeepEquals(this.ref, other.ref) &&
+                Utils.enhancedDeepEquals(this.downstreamErrors, other.downstreamErrors);
         }
         
         @Override
         public int hashCode() {
             return Utils.enhancedHash(
                 statusCode, error, typeName,
-                message, detail, ref);
+                message, detail, ref,
+                downstreamErrors);
         }
         
         @Override
@@ -423,7 +478,8 @@ public class BadRequestResponse extends ApideckError {
                     "typeName", typeName,
                     "message", message,
                     "detail", detail,
-                    "ref", ref);
+                    "ref", ref,
+                    "downstreamErrors", downstreamErrors);
         }
 
         @SuppressWarnings("UnusedReturnValue")
@@ -440,6 +496,8 @@ public class BadRequestResponse extends ApideckError {
             private Optional<? extends Detail> detail = Optional.empty();
 
             private Optional<String> ref = Optional.empty();
+
+            private Optional<? extends List<DownstreamErrors>> downstreamErrors = Optional.empty();
 
             private Builder() {
               // force use of static builder() method
@@ -559,11 +617,33 @@ public class BadRequestResponse extends ApideckError {
                 return this;
             }
 
+
+            /**
+             * Contains downstream errors returned from the connector. Only present when type_name is
+             * ConnectorExecutionError.
+             */
+            public Builder downstreamErrors(List<DownstreamErrors> downstreamErrors) {
+                Utils.checkNotNull(downstreamErrors, "downstreamErrors");
+                this.downstreamErrors = Optional.ofNullable(downstreamErrors);
+                return this;
+            }
+
+            /**
+             * Contains downstream errors returned from the connector. Only present when type_name is
+             * ConnectorExecutionError.
+             */
+            public Builder downstreamErrors(Optional<? extends List<DownstreamErrors>> downstreamErrors) {
+                Utils.checkNotNull(downstreamErrors, "downstreamErrors");
+                this.downstreamErrors = downstreamErrors;
+                return this;
+            }
+
             public Data build() {
 
                 return new Data(
                     statusCode, error, typeName,
-                    message, detail, ref);
+                    message, detail, ref,
+                    downstreamErrors);
             }
 
         }

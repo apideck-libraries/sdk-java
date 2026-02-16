@@ -31,6 +31,8 @@ public class AsyncApideck {
 
     private final AsyncConnector connector;
 
+    private final AsyncProxy proxy;
+
     private final AsyncVault vault;
 
     private final AsyncWebhook webhook;
@@ -71,6 +73,10 @@ public class AsyncApideck {
         return connector;
     }
 
+    public AsyncProxy proxy() {
+        return proxy;
+    }
+
     public AsyncVault vault() {
         return vault;
     }
@@ -94,6 +100,7 @@ public class AsyncApideck {
         this.sms = new AsyncSms(syncSDK.sms(), sdkConfiguration);
         this.issueTracking = new AsyncIssueTracking(syncSDK.issueTracking(), sdkConfiguration);
         this.connector = new AsyncConnector(syncSDK.connector(), sdkConfiguration);
+        this.proxy = new AsyncProxy(syncSDK.proxy(), sdkConfiguration);
         this.vault = new AsyncVault(syncSDK.vault(), sdkConfiguration);
         this.webhook = new AsyncWebhook(syncSDK.webhook(), sdkConfiguration);
     }

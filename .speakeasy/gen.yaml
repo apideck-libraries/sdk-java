@@ -28,7 +28,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 java:
-  version: 0.30.2
+  version: 0.30.3
   additionalDependencies: []
   additionalPlugins: []
   artifactID: unify
@@ -44,6 +44,7 @@ java:
   enableStreamingUploads: false
   flattenGlobalSecurity: true
   forwardCompatibleEnumsByDefault: true
+  forwardCompatibleUnionsByDefault: "false"
   generateOptionalUnionAccessors: false
   generateSpringBootStarter: true
   githubURL: github.com/apideck-libraries/sdk-java
@@ -65,7 +66,6 @@ java:
   maxMethodParams: 4
   multipartArrayFormat: legacy
   nullFriendlyParameters: false
-  openUnions: true
   operationScopedParams: true
   outputModelSuffix: output
   projectName: Apideck

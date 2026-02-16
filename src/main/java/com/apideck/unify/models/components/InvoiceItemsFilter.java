@@ -10,11 +10,16 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.time.OffsetDateTime;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class InvoiceItemsFilter {
+
+    @SpeakeasyMetadata("queryParam:name=updated_since")
+    private Optional<OffsetDateTime> updatedSince;
+
     /**
      * Name of Invoice Items to search for
      */
@@ -35,19 +40,28 @@ public class InvoiceItemsFilter {
 
     @JsonCreator
     public InvoiceItemsFilter(
+            Optional<OffsetDateTime> updatedSince,
             Optional<String> name,
             JsonNullable<? extends InvoiceItemType> type,
             JsonNullable<? extends TransactionType> transactionType) {
+        Utils.checkNotNull(updatedSince, "updatedSince");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(type, "type");
         Utils.checkNotNull(transactionType, "transactionType");
+        this.updatedSince = updatedSince;
         this.name = name;
         this.type = type;
         this.transactionType = transactionType;
     }
     
     public InvoiceItemsFilter() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined());
+    }
+
+    @JsonIgnore
+    public Optional<OffsetDateTime> updatedSince() {
+        return updatedSince;
     }
 
     /**
@@ -80,6 +94,19 @@ public class InvoiceItemsFilter {
         return new Builder();
     }
 
+
+    public InvoiceItemsFilter withUpdatedSince(OffsetDateTime updatedSince) {
+        Utils.checkNotNull(updatedSince, "updatedSince");
+        this.updatedSince = Optional.ofNullable(updatedSince);
+        return this;
+    }
+
+
+    public InvoiceItemsFilter withUpdatedSince(Optional<OffsetDateTime> updatedSince) {
+        Utils.checkNotNull(updatedSince, "updatedSince");
+        this.updatedSince = updatedSince;
+        return this;
+    }
 
     /**
      * Name of Invoice Items to search for
@@ -146,6 +173,7 @@ public class InvoiceItemsFilter {
         }
         InvoiceItemsFilter other = (InvoiceItemsFilter) o;
         return 
+            Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince) &&
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.type, other.type) &&
             Utils.enhancedDeepEquals(this.transactionType, other.transactionType);
@@ -154,12 +182,14 @@ public class InvoiceItemsFilter {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name, type, transactionType);
+            updatedSince, name, type,
+            transactionType);
     }
     
     @Override
     public String toString() {
         return Utils.toString(InvoiceItemsFilter.class,
+                "updatedSince", updatedSince,
                 "name", name,
                 "type", type,
                 "transactionType", transactionType);
@@ -167,6 +197,8 @@ public class InvoiceItemsFilter {
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
+
+        private Optional<OffsetDateTime> updatedSince = Optional.empty();
 
         private Optional<String> name = Optional.empty();
 
@@ -176,6 +208,19 @@ public class InvoiceItemsFilter {
 
         private Builder() {
           // force use of static builder() method
+        }
+
+
+        public Builder updatedSince(OffsetDateTime updatedSince) {
+            Utils.checkNotNull(updatedSince, "updatedSince");
+            this.updatedSince = Optional.ofNullable(updatedSince);
+            return this;
+        }
+
+        public Builder updatedSince(Optional<OffsetDateTime> updatedSince) {
+            Utils.checkNotNull(updatedSince, "updatedSince");
+            this.updatedSince = updatedSince;
+            return this;
         }
 
 
@@ -238,7 +283,8 @@ public class InvoiceItemsFilter {
         public InvoiceItemsFilter build() {
 
             return new InvoiceItemsFilter(
-                name, type, transactionType);
+                updatedSince, name, type,
+                transactionType);
         }
 
     }

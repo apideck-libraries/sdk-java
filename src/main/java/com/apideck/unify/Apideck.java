@@ -60,6 +60,9 @@ public class Apideck {
     private final Connector connector;
 
 
+    private final Proxy proxy;
+
+
     private final Vault vault;
 
 
@@ -108,6 +111,11 @@ public class Apideck {
 
     public Connector connector() {
         return connector;
+    }
+
+
+    public Proxy proxy() {
+        return proxy;
     }
 
 
@@ -300,6 +308,7 @@ public class Apideck {
         this.sms = new Sms(sdkConfiguration);
         this.issueTracking = new IssueTracking(sdkConfiguration);
         this.connector = new Connector(sdkConfiguration);
+        this.proxy = new Proxy(sdkConfiguration);
         this.vault = new Vault(sdkConfiguration);
         this.webhook = new Webhook(sdkConfiguration);
         SdkInitData data = sdkConfiguration.hooks().sdkInit(

@@ -346,6 +346,17 @@ public class UnifyAutoConfig {
         return apideck.connector();
     }
     /**
+     * Creates a Proxy sub-SDK bean if none exists.
+     *
+     * @param apideck the main SDK instance
+     * @return A configured Proxy instance
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    public Proxy proxy(Apideck apideck) {
+        return apideck.proxy();
+    }
+    /**
      * Creates a Vault sub-SDK bean if none exists.
      *
      * @param apideck the main SDK instance
@@ -478,6 +489,17 @@ public class UnifyAutoConfig {
     @ConditionalOnMissingBean
     public AsyncConnector asyncConnector(AsyncApideck asyncApideck) {
         return asyncApideck.connector();
+    }
+    /**
+     * Creates an AsyncProxy sub-SDK bean if none exists.
+     *
+     * @param asyncApideck the async SDK instance
+     * @return A configured AsyncProxy instance
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    public AsyncProxy asyncProxy(AsyncApideck asyncApideck) {
+        return asyncApideck.proxy();
     }
     /**
      * Creates an AsyncVault sub-SDK bean if none exists.

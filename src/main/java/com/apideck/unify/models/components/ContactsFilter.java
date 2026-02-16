@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
+import java.time.OffsetDateTime;
 import java.util.Optional;
 
 
@@ -55,6 +56,14 @@ public class ContactsFilter {
     @SpeakeasyMetadata("queryParam:name=owner_id")
     private Optional<String> ownerId;
 
+
+    @SpeakeasyMetadata("queryParam:name=updated_since")
+    private Optional<OffsetDateTime> updatedSince;
+
+
+    @SpeakeasyMetadata("queryParam:name=created_since")
+    private Optional<OffsetDateTime> createdSince;
+
     @JsonCreator
     public ContactsFilter(
             Optional<String> name,
@@ -63,7 +72,9 @@ public class ContactsFilter {
             Optional<String> email,
             Optional<String> phoneNumber,
             Optional<String> companyId,
-            Optional<String> ownerId) {
+            Optional<String> ownerId,
+            Optional<OffsetDateTime> updatedSince,
+            Optional<OffsetDateTime> createdSince) {
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(firstName, "firstName");
         Utils.checkNotNull(lastName, "lastName");
@@ -71,6 +82,8 @@ public class ContactsFilter {
         Utils.checkNotNull(phoneNumber, "phoneNumber");
         Utils.checkNotNull(companyId, "companyId");
         Utils.checkNotNull(ownerId, "ownerId");
+        Utils.checkNotNull(updatedSince, "updatedSince");
+        Utils.checkNotNull(createdSince, "createdSince");
         this.name = name;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -78,12 +91,14 @@ public class ContactsFilter {
         this.phoneNumber = phoneNumber;
         this.companyId = companyId;
         this.ownerId = ownerId;
+        this.updatedSince = updatedSince;
+        this.createdSince = createdSince;
     }
     
     public ContactsFilter() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -140,6 +155,16 @@ public class ContactsFilter {
     @JsonIgnore
     public Optional<String> ownerId() {
         return ownerId;
+    }
+
+    @JsonIgnore
+    public Optional<OffsetDateTime> updatedSince() {
+        return updatedSince;
+    }
+
+    @JsonIgnore
+    public Optional<OffsetDateTime> createdSince() {
+        return createdSince;
     }
 
     public static Builder builder() {
@@ -280,6 +305,32 @@ public class ContactsFilter {
         return this;
     }
 
+    public ContactsFilter withUpdatedSince(OffsetDateTime updatedSince) {
+        Utils.checkNotNull(updatedSince, "updatedSince");
+        this.updatedSince = Optional.ofNullable(updatedSince);
+        return this;
+    }
+
+
+    public ContactsFilter withUpdatedSince(Optional<OffsetDateTime> updatedSince) {
+        Utils.checkNotNull(updatedSince, "updatedSince");
+        this.updatedSince = updatedSince;
+        return this;
+    }
+
+    public ContactsFilter withCreatedSince(OffsetDateTime createdSince) {
+        Utils.checkNotNull(createdSince, "createdSince");
+        this.createdSince = Optional.ofNullable(createdSince);
+        return this;
+    }
+
+
+    public ContactsFilter withCreatedSince(Optional<OffsetDateTime> createdSince) {
+        Utils.checkNotNull(createdSince, "createdSince");
+        this.createdSince = createdSince;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -296,7 +347,9 @@ public class ContactsFilter {
             Utils.enhancedDeepEquals(this.email, other.email) &&
             Utils.enhancedDeepEquals(this.phoneNumber, other.phoneNumber) &&
             Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
-            Utils.enhancedDeepEquals(this.ownerId, other.ownerId);
+            Utils.enhancedDeepEquals(this.ownerId, other.ownerId) &&
+            Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince) &&
+            Utils.enhancedDeepEquals(this.createdSince, other.createdSince);
     }
     
     @Override
@@ -304,7 +357,7 @@ public class ContactsFilter {
         return Utils.enhancedHash(
             name, firstName, lastName,
             email, phoneNumber, companyId,
-            ownerId);
+            ownerId, updatedSince, createdSince);
     }
     
     @Override
@@ -316,7 +369,9 @@ public class ContactsFilter {
                 "email", email,
                 "phoneNumber", phoneNumber,
                 "companyId", companyId,
-                "ownerId", ownerId);
+                "ownerId", ownerId,
+                "updatedSince", updatedSince,
+                "createdSince", createdSince);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -335,6 +390,10 @@ public class ContactsFilter {
         private Optional<String> companyId = Optional.empty();
 
         private Optional<String> ownerId = Optional.empty();
+
+        private Optional<OffsetDateTime> updatedSince = Optional.empty();
+
+        private Optional<OffsetDateTime> createdSince = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -473,12 +532,38 @@ public class ContactsFilter {
             return this;
         }
 
+
+        public Builder updatedSince(OffsetDateTime updatedSince) {
+            Utils.checkNotNull(updatedSince, "updatedSince");
+            this.updatedSince = Optional.ofNullable(updatedSince);
+            return this;
+        }
+
+        public Builder updatedSince(Optional<OffsetDateTime> updatedSince) {
+            Utils.checkNotNull(updatedSince, "updatedSince");
+            this.updatedSince = updatedSince;
+            return this;
+        }
+
+
+        public Builder createdSince(OffsetDateTime createdSince) {
+            Utils.checkNotNull(createdSince, "createdSince");
+            this.createdSince = Optional.ofNullable(createdSince);
+            return this;
+        }
+
+        public Builder createdSince(Optional<OffsetDateTime> createdSince) {
+            Utils.checkNotNull(createdSince, "createdSince");
+            this.createdSince = createdSince;
+            return this;
+        }
+
         public ContactsFilter build() {
 
             return new ContactsFilter(
                 name, firstName, lastName,
                 email, phoneNumber, companyId,
-                ownerId);
+                ownerId, updatedSince, createdSince);
         }
 
     }

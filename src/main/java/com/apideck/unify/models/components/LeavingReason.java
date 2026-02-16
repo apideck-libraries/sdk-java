@@ -28,6 +28,7 @@ public class LeavingReason {
     public static final LeavingReason DISMISSED = new LeavingReason("dismissed");
     public static final LeavingReason RESIGNED = new LeavingReason("resigned");
     public static final LeavingReason REDUNDANCY = new LeavingReason("redundancy");
+    public static final LeavingReason RETIRED = new LeavingReason("retired");
     public static final LeavingReason OTHER = new LeavingReason("other");
 
     // This map will grow whenever a Color gets created with a new
@@ -105,6 +106,7 @@ public class LeavingReason {
         map.put("dismissed", DISMISSED);
         map.put("resigned", RESIGNED);
         map.put("redundancy", REDUNDANCY);
+        map.put("retired", RETIRED);
         map.put("other", OTHER);
         return map;
     }
@@ -114,6 +116,7 @@ public class LeavingReason {
         map.put("dismissed", LeavingReasonEnum.DISMISSED);
         map.put("resigned", LeavingReasonEnum.RESIGNED);
         map.put("redundancy", LeavingReasonEnum.REDUNDANCY);
+        map.put("retired", LeavingReasonEnum.RETIRED);
         map.put("other", LeavingReasonEnum.OTHER);
         return map;
     }
@@ -124,6 +127,7 @@ public class LeavingReason {
         DISMISSED("dismissed"),
         RESIGNED("resigned"),
         REDUNDANCY("redundancy"),
+        RETIRED("retired"),
         OTHER("other"),;
 
         private final String value;

@@ -31,21 +31,40 @@ public class EcommerceCustomersFilter {
     @SpeakeasyMetadata("queryParam:name=customer_ids")
     private Optional<String> customerIds;
 
+    /**
+     * Minimum date the customer was last modified
+     */
+    @SpeakeasyMetadata("queryParam:name=updated_since")
+    private Optional<String> updatedSince;
+
+    /**
+     * Minimum date the customer was created
+     */
+    @SpeakeasyMetadata("queryParam:name=created_since")
+    private Optional<String> createdSince;
+
     @JsonCreator
     public EcommerceCustomersFilter(
             Optional<String> email,
             Optional<String> phoneNumber,
-            Optional<String> customerIds) {
+            Optional<String> customerIds,
+            Optional<String> updatedSince,
+            Optional<String> createdSince) {
         Utils.checkNotNull(email, "email");
         Utils.checkNotNull(phoneNumber, "phoneNumber");
         Utils.checkNotNull(customerIds, "customerIds");
+        Utils.checkNotNull(updatedSince, "updatedSince");
+        Utils.checkNotNull(createdSince, "createdSince");
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.customerIds = customerIds;
+        this.updatedSince = updatedSince;
+        this.createdSince = createdSince;
     }
     
     public EcommerceCustomersFilter() {
-        this(Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -70,6 +89,22 @@ public class EcommerceCustomersFilter {
     @JsonIgnore
     public Optional<String> customerIds() {
         return customerIds;
+    }
+
+    /**
+     * Minimum date the customer was last modified
+     */
+    @JsonIgnore
+    public Optional<String> updatedSince() {
+        return updatedSince;
+    }
+
+    /**
+     * Minimum date the customer was created
+     */
+    @JsonIgnore
+    public Optional<String> createdSince() {
+        return createdSince;
     }
 
     public static Builder builder() {
@@ -134,6 +169,44 @@ public class EcommerceCustomersFilter {
         return this;
     }
 
+    /**
+     * Minimum date the customer was last modified
+     */
+    public EcommerceCustomersFilter withUpdatedSince(String updatedSince) {
+        Utils.checkNotNull(updatedSince, "updatedSince");
+        this.updatedSince = Optional.ofNullable(updatedSince);
+        return this;
+    }
+
+
+    /**
+     * Minimum date the customer was last modified
+     */
+    public EcommerceCustomersFilter withUpdatedSince(Optional<String> updatedSince) {
+        Utils.checkNotNull(updatedSince, "updatedSince");
+        this.updatedSince = updatedSince;
+        return this;
+    }
+
+    /**
+     * Minimum date the customer was created
+     */
+    public EcommerceCustomersFilter withCreatedSince(String createdSince) {
+        Utils.checkNotNull(createdSince, "createdSince");
+        this.createdSince = Optional.ofNullable(createdSince);
+        return this;
+    }
+
+
+    /**
+     * Minimum date the customer was created
+     */
+    public EcommerceCustomersFilter withCreatedSince(Optional<String> createdSince) {
+        Utils.checkNotNull(createdSince, "createdSince");
+        this.createdSince = createdSince;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -146,13 +219,16 @@ public class EcommerceCustomersFilter {
         return 
             Utils.enhancedDeepEquals(this.email, other.email) &&
             Utils.enhancedDeepEquals(this.phoneNumber, other.phoneNumber) &&
-            Utils.enhancedDeepEquals(this.customerIds, other.customerIds);
+            Utils.enhancedDeepEquals(this.customerIds, other.customerIds) &&
+            Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince) &&
+            Utils.enhancedDeepEquals(this.createdSince, other.createdSince);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            email, phoneNumber, customerIds);
+            email, phoneNumber, customerIds,
+            updatedSince, createdSince);
     }
     
     @Override
@@ -160,7 +236,9 @@ public class EcommerceCustomersFilter {
         return Utils.toString(EcommerceCustomersFilter.class,
                 "email", email,
                 "phoneNumber", phoneNumber,
-                "customerIds", customerIds);
+                "customerIds", customerIds,
+                "updatedSince", updatedSince,
+                "createdSince", createdSince);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -171,6 +249,10 @@ public class EcommerceCustomersFilter {
         private Optional<String> phoneNumber = Optional.empty();
 
         private Optional<String> customerIds = Optional.empty();
+
+        private Optional<String> updatedSince = Optional.empty();
+
+        private Optional<String> createdSince = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -233,10 +315,49 @@ public class EcommerceCustomersFilter {
             return this;
         }
 
+
+        /**
+         * Minimum date the customer was last modified
+         */
+        public Builder updatedSince(String updatedSince) {
+            Utils.checkNotNull(updatedSince, "updatedSince");
+            this.updatedSince = Optional.ofNullable(updatedSince);
+            return this;
+        }
+
+        /**
+         * Minimum date the customer was last modified
+         */
+        public Builder updatedSince(Optional<String> updatedSince) {
+            Utils.checkNotNull(updatedSince, "updatedSince");
+            this.updatedSince = updatedSince;
+            return this;
+        }
+
+
+        /**
+         * Minimum date the customer was created
+         */
+        public Builder createdSince(String createdSince) {
+            Utils.checkNotNull(createdSince, "createdSince");
+            this.createdSince = Optional.ofNullable(createdSince);
+            return this;
+        }
+
+        /**
+         * Minimum date the customer was created
+         */
+        public Builder createdSince(Optional<String> createdSince) {
+            Utils.checkNotNull(createdSince, "createdSince");
+            this.createdSince = createdSince;
+            return this;
+        }
+
         public EcommerceCustomersFilter build() {
 
             return new EcommerceCustomersFilter(
-                email, phoneNumber, customerIds);
+                email, phoneNumber, customerIds,
+                updatedSince, createdSince);
         }
 
     }

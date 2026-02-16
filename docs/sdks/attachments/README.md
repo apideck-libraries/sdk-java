@@ -82,7 +82,7 @@ Upload attachment
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="accounting.attachmentsUpload" method="post" path="/accounting/attachments/{reference_type}/{reference_id}" -->
+<!-- UsageSnippet language="java" operationID="accounting.attachmentsUpload" method="post" path="/accounting/attachments/{reference_type}/{reference_id}" example="basic" -->
 ```java
 package hello.world;
 
@@ -106,8 +106,8 @@ public class Application {
 
         AccountingAttachmentsUploadRequest req = AccountingAttachmentsUploadRequest.builder()
                 .referenceType(AttachmentReferenceType.INVOICE)
-                .referenceId("123456")
-                .requestBody("0x506D4BD16D".getBytes(StandardCharsets.UTF_8))
+                .referenceId("12345")
+                .requestBody("0xF6a0e3a2dC".getBytes(StandardCharsets.UTF_8))
                 .xApideckMetadata("{\"name\":\"document.pdf\",\"description\":\"Invoice attachment\"}")
                 .serviceId("salesforce")
                 .build();

@@ -50,7 +50,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.apideck:unify:0.30.2'
+implementation 'com.apideck:unify:0.30.3'
 ```
 
 Maven:
@@ -58,7 +58,7 @@ Maven:
 <dependency>
     <groupId>com.apideck</groupId>
     <artifactId>unify</artifactId>
-    <version>0.30.2</version>
+    <version>0.30.3</version>
 </dependency>
 ```
 
@@ -670,6 +670,15 @@ public class Application {
 * [list](docs/sdks/collectionusers/README.md#list) - List Users
 * [get](docs/sdks/collectionusers/README.md#get) - Get user
 
+### [Proxy](docs/sdks/proxy/README.md)
+
+* [get](docs/sdks/proxy/README.md#get) - GET
+* [options](docs/sdks/proxy/README.md#options) - OPTIONS
+* [post](docs/sdks/proxy/README.md#post) - POST
+* [put](docs/sdks/proxy/README.md#put) - PUT
+* [patch](docs/sdks/proxy/README.md#patch) - PATCH
+* [delete](docs/sdks/proxy/README.md#delete) - DELETE
+
 ### [Sms.Messages](docs/sdks/messages/README.md)
 
 * [list](docs/sdks/messages/README.md#list) - List Messages
@@ -1104,13 +1113,13 @@ public class Application {
 ### Error Classes
 **Primary errors:**
 * [`ApideckError`](./src/main/java/models/errors/ApideckError.java): The base class for HTTP error responses.
-  * [`com.apideck.unify.models.errors.UnauthorizedResponse`](./src/main/java/models/errors/com.apideck.unify.models.errors.UnauthorizedResponse.java): Unauthorized. Status code `401`.
-  * [`com.apideck.unify.models.errors.PaymentRequiredResponse`](./src/main/java/models/errors/com.apideck.unify.models.errors.PaymentRequiredResponse.java): Payment Required. Status code `402`.
+  * [`com.apideck.unify.models.errors.UnauthorizedResponse`](./src/main/java/models/errors/com.apideck.unify.models.errors.UnauthorizedResponse.java): Unauthorized. Status code `401`. *
+  * [`com.apideck.unify.models.errors.PaymentRequiredResponse`](./src/main/java/models/errors/com.apideck.unify.models.errors.PaymentRequiredResponse.java): Payment Required. Status code `402`. *
   * [`com.apideck.unify.models.errors.NotFoundResponse`](./src/main/java/models/errors/com.apideck.unify.models.errors.NotFoundResponse.java): The specified resource was not found. Status code `404`. *
   * [`com.apideck.unify.models.errors.BadRequestResponse`](./src/main/java/models/errors/com.apideck.unify.models.errors.BadRequestResponse.java): Bad Request. Status code `400`. *
   * [`com.apideck.unify.models.errors.UnprocessableResponse`](./src/main/java/models/errors/com.apideck.unify.models.errors.UnprocessableResponse.java): Unprocessable. Status code `422`. *
 
-<details><summary>Less common errors (6)</summary>
+<details><summary>Less common errors (7)</summary>
 
 <br />
 
@@ -1120,6 +1129,7 @@ public class Application {
 many more subclasses in the JDK platform).
 
 **Inherit from [`ApideckError`](./src/main/java/models/errors/ApideckError.java)**:
+* [`com.apideck.unify.models.errors.Unauthorized`](./src/main/java/models/errors/com.apideck.unify.models.errors.Unauthorized.java): Unauthorized. Status code `401`. Applicable to 6 of 310 methods.*
 
 
 </details>

@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
+import java.time.OffsetDateTime;
 import java.util.Optional;
 
 
@@ -19,15 +20,29 @@ public class CompaniesFilter {
     @SpeakeasyMetadata("queryParam:name=name")
     private Optional<String> name;
 
+
+    @SpeakeasyMetadata("queryParam:name=updated_since")
+    private Optional<OffsetDateTime> updatedSince;
+
+
+    @SpeakeasyMetadata("queryParam:name=created_since")
+    private Optional<OffsetDateTime> createdSince;
+
     @JsonCreator
     public CompaniesFilter(
-            Optional<String> name) {
+            Optional<String> name,
+            Optional<OffsetDateTime> updatedSince,
+            Optional<OffsetDateTime> createdSince) {
         Utils.checkNotNull(name, "name");
+        Utils.checkNotNull(updatedSince, "updatedSince");
+        Utils.checkNotNull(createdSince, "createdSince");
         this.name = name;
+        this.updatedSince = updatedSince;
+        this.createdSince = createdSince;
     }
     
     public CompaniesFilter() {
-        this(Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -36,6 +51,16 @@ public class CompaniesFilter {
     @JsonIgnore
     public Optional<String> name() {
         return name;
+    }
+
+    @JsonIgnore
+    public Optional<OffsetDateTime> updatedSince() {
+        return updatedSince;
+    }
+
+    @JsonIgnore
+    public Optional<OffsetDateTime> createdSince() {
+        return createdSince;
     }
 
     public static Builder builder() {
@@ -62,6 +87,32 @@ public class CompaniesFilter {
         return this;
     }
 
+    public CompaniesFilter withUpdatedSince(OffsetDateTime updatedSince) {
+        Utils.checkNotNull(updatedSince, "updatedSince");
+        this.updatedSince = Optional.ofNullable(updatedSince);
+        return this;
+    }
+
+
+    public CompaniesFilter withUpdatedSince(Optional<OffsetDateTime> updatedSince) {
+        Utils.checkNotNull(updatedSince, "updatedSince");
+        this.updatedSince = updatedSince;
+        return this;
+    }
+
+    public CompaniesFilter withCreatedSince(OffsetDateTime createdSince) {
+        Utils.checkNotNull(createdSince, "createdSince");
+        this.createdSince = Optional.ofNullable(createdSince);
+        return this;
+    }
+
+
+    public CompaniesFilter withCreatedSince(Optional<OffsetDateTime> createdSince) {
+        Utils.checkNotNull(createdSince, "createdSince");
+        this.createdSince = createdSince;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -72,25 +123,33 @@ public class CompaniesFilter {
         }
         CompaniesFilter other = (CompaniesFilter) o;
         return 
-            Utils.enhancedDeepEquals(this.name, other.name);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince) &&
+            Utils.enhancedDeepEquals(this.createdSince, other.createdSince);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name);
+            name, updatedSince, createdSince);
     }
     
     @Override
     public String toString() {
         return Utils.toString(CompaniesFilter.class,
-                "name", name);
+                "name", name,
+                "updatedSince", updatedSince,
+                "createdSince", createdSince);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
         private Optional<String> name = Optional.empty();
+
+        private Optional<OffsetDateTime> updatedSince = Optional.empty();
+
+        private Optional<OffsetDateTime> createdSince = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -115,10 +174,36 @@ public class CompaniesFilter {
             return this;
         }
 
+
+        public Builder updatedSince(OffsetDateTime updatedSince) {
+            Utils.checkNotNull(updatedSince, "updatedSince");
+            this.updatedSince = Optional.ofNullable(updatedSince);
+            return this;
+        }
+
+        public Builder updatedSince(Optional<OffsetDateTime> updatedSince) {
+            Utils.checkNotNull(updatedSince, "updatedSince");
+            this.updatedSince = updatedSince;
+            return this;
+        }
+
+
+        public Builder createdSince(OffsetDateTime createdSince) {
+            Utils.checkNotNull(createdSince, "createdSince");
+            this.createdSince = Optional.ofNullable(createdSince);
+            return this;
+        }
+
+        public Builder createdSince(Optional<OffsetDateTime> createdSince) {
+            Utils.checkNotNull(createdSince, "createdSince");
+            this.createdSince = createdSince;
+            return this;
+        }
+
         public CompaniesFilter build() {
 
             return new CompaniesFilter(
-                name);
+                name, updatedSince, createdSince);
         }
 
     }

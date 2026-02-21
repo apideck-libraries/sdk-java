@@ -39,6 +39,9 @@ public class Accounting {
     private final Categories categories;
     private final Quotes quotes;
     private final Projects projects;
+    private final Employees employees;
+    private final ExpenseCategories expenseCategories;
+    private final ExpenseReports expenseReports;
 
     Accounting(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -71,6 +74,9 @@ public class Accounting {
         this.categories = new Categories(this.sdkConfiguration);
         this.quotes = new Quotes(this.sdkConfiguration);
         this.projects = new Projects(this.sdkConfiguration);
+        this.employees = new Employees(this.sdkConfiguration);
+        this.expenseCategories = new ExpenseCategories(this.sdkConfiguration);
+        this.expenseReports = new ExpenseReports(this.sdkConfiguration);
         this.asyncSDK = new AsyncAccounting(this, sdkConfiguration);
     }
 
@@ -188,6 +194,18 @@ public class Accounting {
 
     public final Projects projects() {
         return projects;
+    }
+
+    public final Employees employees() {
+        return employees;
+    }
+
+    public final ExpenseCategories expenseCategories() {
+        return expenseCategories;
+    }
+
+    public final ExpenseReports expenseReports() {
+        return expenseReports;
     }
 
     /**

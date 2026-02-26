@@ -50,7 +50,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.apideck:unify:0.30.3'
+implementation 'com.apideck:unify:0.30.4'
 ```
 
 Maven:
@@ -58,7 +58,7 @@ Maven:
 <dependency>
     <groupId>com.apideck</groupId>
     <artifactId>unify</artifactId>
-    <version>0.30.3</version>
+    <version>0.30.4</version>
 </dependency>
 ```
 
@@ -281,6 +281,30 @@ public class Application {
 * [get](docs/sdks/departments/README.md#get) - Get Department
 * [update](docs/sdks/departments/README.md#update) - Update Department
 * [delete](docs/sdks/departments/README.md#delete) - Delete Department
+
+### [Accounting.Employees](docs/sdks/employees/README.md)
+
+* [list](docs/sdks/employees/README.md#list) - List Employees
+* [create](docs/sdks/employees/README.md#create) - Create Employee
+* [get](docs/sdks/employees/README.md#get) - Get Employee
+* [update](docs/sdks/employees/README.md#update) - Update Employee
+* [delete](docs/sdks/employees/README.md#delete) - Delete Employee
+
+### [Accounting.ExpenseCategories](docs/sdks/expensecategories/README.md)
+
+* [list](docs/sdks/expensecategories/README.md#list) - List Expense Categories
+* [create](docs/sdks/expensecategories/README.md#create) - Create Expense Category
+* [get](docs/sdks/expensecategories/README.md#get) - Get Expense Category
+* [update](docs/sdks/expensecategories/README.md#update) - Update Expense Category
+* [delete](docs/sdks/expensecategories/README.md#delete) - Delete Expense Category
+
+### [Accounting.ExpenseReports](docs/sdks/expensereports/README.md)
+
+* [list](docs/sdks/expensereports/README.md#list) - List Expense Reports
+* [create](docs/sdks/expensereports/README.md#create) - Create Expense Report
+* [get](docs/sdks/expensereports/README.md#get) - Get Expense Report
+* [update](docs/sdks/expensereports/README.md#update) - Update Expense Report
+* [delete](docs/sdks/expensereports/README.md#delete) - Delete Expense Report
 
 ### [Accounting.Expenses](docs/sdks/expenses/README.md)
 
@@ -615,13 +639,13 @@ public class Application {
 * [list](docs/sdks/employeepayrolls/README.md#list) - List Employee Payrolls
 * [get](docs/sdks/employeepayrolls/README.md#get) - Get Employee Payroll
 
-### [Hris.Employees](docs/sdks/employees/README.md)
+### [Hris.Employees](docs/sdks/apideckemployees/README.md)
 
-* [list](docs/sdks/employees/README.md#list) - List Employees
-* [create](docs/sdks/employees/README.md#create) - Create Employee
-* [get](docs/sdks/employees/README.md#get) - Get Employee
-* [update](docs/sdks/employees/README.md#update) - Update Employee
-* [delete](docs/sdks/employees/README.md#delete) - Delete Employee
+* [list](docs/sdks/apideckemployees/README.md#list) - List Employees
+* [create](docs/sdks/apideckemployees/README.md#create) - Create Employee
+* [get](docs/sdks/apideckemployees/README.md#get) - Get Employee
+* [update](docs/sdks/apideckemployees/README.md#update) - Update Employee
+* [delete](docs/sdks/apideckemployees/README.md#delete) - Delete Employee
 
 ### [Hris.EmployeeSchedules](docs/sdks/employeeschedules/README.md)
 
@@ -1129,7 +1153,7 @@ public class Application {
 many more subclasses in the JDK platform).
 
 **Inherit from [`ApideckError`](./src/main/java/models/errors/ApideckError.java)**:
-* [`com.apideck.unify.models.errors.Unauthorized`](./src/main/java/models/errors/com.apideck.unify.models.errors.Unauthorized.java): Unauthorized. Status code `401`. Applicable to 6 of 310 methods.*
+* [`com.apideck.unify.models.errors.Unauthorized`](./src/main/java/models/errors/com.apideck.unify.models.errors.Unauthorized.java): Unauthorized. Status code `401`. Applicable to 6 of 325 methods.*
 
 
 </details>

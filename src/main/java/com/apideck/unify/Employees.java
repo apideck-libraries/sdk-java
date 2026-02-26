@@ -5,26 +5,26 @@ package com.apideck.unify;
 
 import static com.apideck.unify.operations.Operations.RequestOperation;
 
-import com.apideck.unify.models.operations.HrisEmployeesAddRequest;
-import com.apideck.unify.models.operations.HrisEmployeesAddRequestBuilder;
-import com.apideck.unify.models.operations.HrisEmployeesAddResponse;
-import com.apideck.unify.models.operations.HrisEmployeesAllRequest;
-import com.apideck.unify.models.operations.HrisEmployeesAllRequestBuilder;
-import com.apideck.unify.models.operations.HrisEmployeesAllResponse;
-import com.apideck.unify.models.operations.HrisEmployeesDeleteRequest;
-import com.apideck.unify.models.operations.HrisEmployeesDeleteRequestBuilder;
-import com.apideck.unify.models.operations.HrisEmployeesDeleteResponse;
-import com.apideck.unify.models.operations.HrisEmployeesOneRequest;
-import com.apideck.unify.models.operations.HrisEmployeesOneRequestBuilder;
-import com.apideck.unify.models.operations.HrisEmployeesOneResponse;
-import com.apideck.unify.models.operations.HrisEmployeesUpdateRequest;
-import com.apideck.unify.models.operations.HrisEmployeesUpdateRequestBuilder;
-import com.apideck.unify.models.operations.HrisEmployeesUpdateResponse;
-import com.apideck.unify.operations.HrisEmployeesAdd;
-import com.apideck.unify.operations.HrisEmployeesAll;
-import com.apideck.unify.operations.HrisEmployeesDelete;
-import com.apideck.unify.operations.HrisEmployeesOne;
-import com.apideck.unify.operations.HrisEmployeesUpdate;
+import com.apideck.unify.models.operations.AccountingEmployeesAddRequest;
+import com.apideck.unify.models.operations.AccountingEmployeesAddRequestBuilder;
+import com.apideck.unify.models.operations.AccountingEmployeesAddResponse;
+import com.apideck.unify.models.operations.AccountingEmployeesAllRequest;
+import com.apideck.unify.models.operations.AccountingEmployeesAllRequestBuilder;
+import com.apideck.unify.models.operations.AccountingEmployeesAllResponse;
+import com.apideck.unify.models.operations.AccountingEmployeesDeleteRequest;
+import com.apideck.unify.models.operations.AccountingEmployeesDeleteRequestBuilder;
+import com.apideck.unify.models.operations.AccountingEmployeesDeleteResponse;
+import com.apideck.unify.models.operations.AccountingEmployeesOneRequest;
+import com.apideck.unify.models.operations.AccountingEmployeesOneRequestBuilder;
+import com.apideck.unify.models.operations.AccountingEmployeesOneResponse;
+import com.apideck.unify.models.operations.AccountingEmployeesUpdateRequest;
+import com.apideck.unify.models.operations.AccountingEmployeesUpdateRequestBuilder;
+import com.apideck.unify.models.operations.AccountingEmployeesUpdateResponse;
+import com.apideck.unify.operations.AccountingEmployeesAdd;
+import com.apideck.unify.operations.AccountingEmployeesAll;
+import com.apideck.unify.operations.AccountingEmployeesDelete;
+import com.apideck.unify.operations.AccountingEmployeesOne;
+import com.apideck.unify.operations.AccountingEmployeesUpdate;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
@@ -52,49 +52,40 @@ public class Employees {
     /**
      * List Employees
      * 
-     * <p>Apideck operates as a stateless Unified API, which means that the list endpoint only provides a
-     * portion of the employee model. This is due to the fact that most HRIS systems do not readily provide
-     * all data in every call. However, you can access the complete employee model through an employee
-     * detail call.
+     * <p>List Employees
      * 
      * @return The call builder
      */
-    public HrisEmployeesAllRequestBuilder list() {
-        return new HrisEmployeesAllRequestBuilder(sdkConfiguration);
+    public AccountingEmployeesAllRequestBuilder list() {
+        return new AccountingEmployeesAllRequestBuilder(sdkConfiguration);
     }
 
     /**
      * List Employees
      * 
-     * <p>Apideck operates as a stateless Unified API, which means that the list endpoint only provides a
-     * portion of the employee model. This is due to the fact that most HRIS systems do not readily provide
-     * all data in every call. However, you can access the complete employee model through an employee
-     * detail call.
+     * <p>List Employees
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public HrisEmployeesAllResponse list(HrisEmployeesAllRequest request) {
+    public AccountingEmployeesAllResponse list(AccountingEmployeesAllRequest request) {
         return list(request, Optional.empty());
     }
 
     /**
      * List Employees
      * 
-     * <p>Apideck operates as a stateless Unified API, which means that the list endpoint only provides a
-     * portion of the employee model. This is due to the fact that most HRIS systems do not readily provide
-     * all data in every call. However, you can access the complete employee model through an employee
-     * detail call.
+     * <p>List Employees
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public HrisEmployeesAllResponse list(HrisEmployeesAllRequest request, Optional<Options> options) {
-        RequestOperation<HrisEmployeesAllRequest, HrisEmployeesAllResponse> operation
-              = new HrisEmployeesAll.Sync(sdkConfiguration, options, _headers);
+    public AccountingEmployeesAllResponse list(AccountingEmployeesAllRequest request, Optional<Options> options) {
+        RequestOperation<AccountingEmployeesAllRequest, AccountingEmployeesAllResponse> operation
+              = new AccountingEmployeesAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -105,8 +96,8 @@ public class Employees {
      * 
      * @return The call builder
      */
-    public HrisEmployeesAddRequestBuilder create() {
-        return new HrisEmployeesAddRequestBuilder(sdkConfiguration);
+    public AccountingEmployeesAddRequestBuilder create() {
+        return new AccountingEmployeesAddRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -118,7 +109,7 @@ public class Employees {
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public HrisEmployeesAddResponse create(HrisEmployeesAddRequest request) {
+    public AccountingEmployeesAddResponse create(AccountingEmployeesAddRequest request) {
         return create(request, Optional.empty());
     }
 
@@ -132,9 +123,9 @@ public class Employees {
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public HrisEmployeesAddResponse create(HrisEmployeesAddRequest request, Optional<Options> options) {
-        RequestOperation<HrisEmployeesAddRequest, HrisEmployeesAddResponse> operation
-              = new HrisEmployeesAdd.Sync(sdkConfiguration, options, _headers);
+    public AccountingEmployeesAddResponse create(AccountingEmployeesAddRequest request, Optional<Options> options) {
+        RequestOperation<AccountingEmployeesAddRequest, AccountingEmployeesAddResponse> operation
+              = new AccountingEmployeesAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -145,8 +136,8 @@ public class Employees {
      * 
      * @return The call builder
      */
-    public HrisEmployeesOneRequestBuilder get() {
-        return new HrisEmployeesOneRequestBuilder(sdkConfiguration);
+    public AccountingEmployeesOneRequestBuilder get() {
+        return new AccountingEmployeesOneRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -158,7 +149,7 @@ public class Employees {
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public HrisEmployeesOneResponse get(HrisEmployeesOneRequest request) {
+    public AccountingEmployeesOneResponse get(AccountingEmployeesOneRequest request) {
         return get(request, Optional.empty());
     }
 
@@ -172,9 +163,9 @@ public class Employees {
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public HrisEmployeesOneResponse get(HrisEmployeesOneRequest request, Optional<Options> options) {
-        RequestOperation<HrisEmployeesOneRequest, HrisEmployeesOneResponse> operation
-              = new HrisEmployeesOne.Sync(sdkConfiguration, options, _headers);
+    public AccountingEmployeesOneResponse get(AccountingEmployeesOneRequest request, Optional<Options> options) {
+        RequestOperation<AccountingEmployeesOneRequest, AccountingEmployeesOneResponse> operation
+              = new AccountingEmployeesOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -185,8 +176,8 @@ public class Employees {
      * 
      * @return The call builder
      */
-    public HrisEmployeesUpdateRequestBuilder update() {
-        return new HrisEmployeesUpdateRequestBuilder(sdkConfiguration);
+    public AccountingEmployeesUpdateRequestBuilder update() {
+        return new AccountingEmployeesUpdateRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -198,7 +189,7 @@ public class Employees {
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public HrisEmployeesUpdateResponse update(HrisEmployeesUpdateRequest request) {
+    public AccountingEmployeesUpdateResponse update(AccountingEmployeesUpdateRequest request) {
         return update(request, Optional.empty());
     }
 
@@ -212,9 +203,9 @@ public class Employees {
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public HrisEmployeesUpdateResponse update(HrisEmployeesUpdateRequest request, Optional<Options> options) {
-        RequestOperation<HrisEmployeesUpdateRequest, HrisEmployeesUpdateResponse> operation
-              = new HrisEmployeesUpdate.Sync(sdkConfiguration, options, _headers);
+    public AccountingEmployeesUpdateResponse update(AccountingEmployeesUpdateRequest request, Optional<Options> options) {
+        RequestOperation<AccountingEmployeesUpdateRequest, AccountingEmployeesUpdateResponse> operation
+              = new AccountingEmployeesUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -225,8 +216,8 @@ public class Employees {
      * 
      * @return The call builder
      */
-    public HrisEmployeesDeleteRequestBuilder delete() {
-        return new HrisEmployeesDeleteRequestBuilder(sdkConfiguration);
+    public AccountingEmployeesDeleteRequestBuilder delete() {
+        return new AccountingEmployeesDeleteRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -238,7 +229,7 @@ public class Employees {
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public HrisEmployeesDeleteResponse delete(HrisEmployeesDeleteRequest request) {
+    public AccountingEmployeesDeleteResponse delete(AccountingEmployeesDeleteRequest request) {
         return delete(request, Optional.empty());
     }
 
@@ -252,9 +243,9 @@ public class Employees {
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public HrisEmployeesDeleteResponse delete(HrisEmployeesDeleteRequest request, Optional<Options> options) {
-        RequestOperation<HrisEmployeesDeleteRequest, HrisEmployeesDeleteResponse> operation
-              = new HrisEmployeesDelete.Sync(sdkConfiguration, options, _headers);
+    public AccountingEmployeesDeleteResponse delete(AccountingEmployeesDeleteRequest request, Optional<Options> options) {
+        RequestOperation<AccountingEmployeesDeleteRequest, AccountingEmployeesDeleteResponse> operation
+              = new AccountingEmployeesDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

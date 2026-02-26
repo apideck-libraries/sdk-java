@@ -38,6 +38,9 @@ public class AsyncAccounting {
     private final AsyncCategories categories;
     private final AsyncQuotes quotes;
     private final AsyncProjects projects;
+    private final AsyncEmployees employees;
+    private final AsyncExpenseCategories expenseCategories;
+    private final AsyncExpenseReports expenseReports;
     private final Accounting syncSDK;
 
     AsyncAccounting(Accounting syncSDK, SDKConfiguration sdkConfiguration) {
@@ -71,6 +74,9 @@ public class AsyncAccounting {
         this.categories = new AsyncCategories(syncSDK.categories(), this.sdkConfiguration);
         this.quotes = new AsyncQuotes(syncSDK.quotes(), this.sdkConfiguration);
         this.projects = new AsyncProjects(syncSDK.projects(), this.sdkConfiguration);
+        this.employees = new AsyncEmployees(syncSDK.employees(), this.sdkConfiguration);
+        this.expenseCategories = new AsyncExpenseCategories(syncSDK.expenseCategories(), this.sdkConfiguration);
+        this.expenseReports = new AsyncExpenseReports(syncSDK.expenseReports(), this.sdkConfiguration);
         this.syncSDK = syncSDK;
     }
 
@@ -188,6 +194,18 @@ public class AsyncAccounting {
 
     public final AsyncProjects projects() {
         return projects;
+    }
+
+    public final AsyncEmployees employees() {
+        return employees;
+    }
+
+    public final AsyncExpenseCategories expenseCategories() {
+        return expenseCategories;
+    }
+
+    public final AsyncExpenseReports expenseReports() {
+        return expenseReports;
     }
 
     /**

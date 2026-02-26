@@ -9,7 +9,7 @@ import com.apideck.unify.utils.Headers;
 public class AsyncHris {
     private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
-    private final AsyncEmployees employees;
+    private final AsyncApideckEmployees employees;
     private final AsyncApideckCompanies companies;
     private final AsyncApideckDepartments departments;
     private final AsyncPayrolls payrolls;
@@ -20,7 +20,7 @@ public class AsyncHris {
 
     AsyncHris(Hris syncSDK, SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
-        this.employees = new AsyncEmployees(syncSDK.employees(), this.sdkConfiguration);
+        this.employees = new AsyncApideckEmployees(syncSDK.employees(), this.sdkConfiguration);
         this.companies = new AsyncApideckCompanies(syncSDK.companies(), this.sdkConfiguration);
         this.departments = new AsyncApideckDepartments(syncSDK.departments(), this.sdkConfiguration);
         this.payrolls = new AsyncPayrolls(syncSDK.payrolls(), this.sdkConfiguration);
@@ -30,7 +30,7 @@ public class AsyncHris {
         this.syncSDK = syncSDK;
     }
 
-    public final AsyncEmployees employees() {
+    public final AsyncApideckEmployees employees() {
         return employees;
     }
 

@@ -5,26 +5,26 @@ package com.apideck.unify;
 
 import static com.apideck.unify.operations.Operations.AsyncRequestOperation;
 
-import com.apideck.unify.models.operations.HrisEmployeesAddRequest;
-import com.apideck.unify.models.operations.HrisEmployeesAllRequest;
-import com.apideck.unify.models.operations.HrisEmployeesDeleteRequest;
-import com.apideck.unify.models.operations.HrisEmployeesOneRequest;
-import com.apideck.unify.models.operations.HrisEmployeesUpdateRequest;
-import com.apideck.unify.models.operations.async.HrisEmployeesAddRequestBuilder;
-import com.apideck.unify.models.operations.async.HrisEmployeesAddResponse;
-import com.apideck.unify.models.operations.async.HrisEmployeesAllRequestBuilder;
-import com.apideck.unify.models.operations.async.HrisEmployeesAllResponse;
-import com.apideck.unify.models.operations.async.HrisEmployeesDeleteRequestBuilder;
-import com.apideck.unify.models.operations.async.HrisEmployeesDeleteResponse;
-import com.apideck.unify.models.operations.async.HrisEmployeesOneRequestBuilder;
-import com.apideck.unify.models.operations.async.HrisEmployeesOneResponse;
-import com.apideck.unify.models.operations.async.HrisEmployeesUpdateRequestBuilder;
-import com.apideck.unify.models.operations.async.HrisEmployeesUpdateResponse;
-import com.apideck.unify.operations.HrisEmployeesAdd;
-import com.apideck.unify.operations.HrisEmployeesAll;
-import com.apideck.unify.operations.HrisEmployeesDelete;
-import com.apideck.unify.operations.HrisEmployeesOne;
-import com.apideck.unify.operations.HrisEmployeesUpdate;
+import com.apideck.unify.models.operations.AccountingEmployeesAddRequest;
+import com.apideck.unify.models.operations.AccountingEmployeesAllRequest;
+import com.apideck.unify.models.operations.AccountingEmployeesDeleteRequest;
+import com.apideck.unify.models.operations.AccountingEmployeesOneRequest;
+import com.apideck.unify.models.operations.AccountingEmployeesUpdateRequest;
+import com.apideck.unify.models.operations.async.AccountingEmployeesAddRequestBuilder;
+import com.apideck.unify.models.operations.async.AccountingEmployeesAddResponse;
+import com.apideck.unify.models.operations.async.AccountingEmployeesAllRequestBuilder;
+import com.apideck.unify.models.operations.async.AccountingEmployeesAllResponse;
+import com.apideck.unify.models.operations.async.AccountingEmployeesDeleteRequestBuilder;
+import com.apideck.unify.models.operations.async.AccountingEmployeesDeleteResponse;
+import com.apideck.unify.models.operations.async.AccountingEmployeesOneRequestBuilder;
+import com.apideck.unify.models.operations.async.AccountingEmployeesOneResponse;
+import com.apideck.unify.models.operations.async.AccountingEmployeesUpdateRequestBuilder;
+import com.apideck.unify.models.operations.async.AccountingEmployeesUpdateResponse;
+import com.apideck.unify.operations.AccountingEmployeesAdd;
+import com.apideck.unify.operations.AccountingEmployeesAll;
+import com.apideck.unify.operations.AccountingEmployeesDelete;
+import com.apideck.unify.operations.AccountingEmployeesOne;
+import com.apideck.unify.operations.AccountingEmployeesUpdate;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
@@ -54,47 +54,38 @@ public class AsyncEmployees {
     /**
      * List Employees
      * 
-     * <p>Apideck operates as a stateless Unified API, which means that the list endpoint only provides a
-     * portion of the employee model. This is due to the fact that most HRIS systems do not readily provide
-     * all data in every call. However, you can access the complete employee model through an employee
-     * detail call.
+     * <p>List Employees
      * 
      * @return The async call builder
      */
-    public HrisEmployeesAllRequestBuilder list() {
-        return new HrisEmployeesAllRequestBuilder(sdkConfiguration);
+    public AccountingEmployeesAllRequestBuilder list() {
+        return new AccountingEmployeesAllRequestBuilder(sdkConfiguration);
     }
 
     /**
      * List Employees
      * 
-     * <p>Apideck operates as a stateless Unified API, which means that the list endpoint only provides a
-     * portion of the employee model. This is due to the fact that most HRIS systems do not readily provide
-     * all data in every call. However, you can access the complete employee model through an employee
-     * detail call.
+     * <p>List Employees
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return {@code CompletableFuture<HrisEmployeesAllResponse>} - The async response
+     * @return {@code CompletableFuture<AccountingEmployeesAllResponse>} - The async response
      */
-    public CompletableFuture<HrisEmployeesAllResponse> list(HrisEmployeesAllRequest request) {
+    public CompletableFuture<AccountingEmployeesAllResponse> list(AccountingEmployeesAllRequest request) {
         return list(request, Optional.empty());
     }
 
     /**
      * List Employees
      * 
-     * <p>Apideck operates as a stateless Unified API, which means that the list endpoint only provides a
-     * portion of the employee model. This is due to the fact that most HRIS systems do not readily provide
-     * all data in every call. However, you can access the complete employee model through an employee
-     * detail call.
+     * <p>List Employees
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return {@code CompletableFuture<HrisEmployeesAllResponse>} - The async response
+     * @return {@code CompletableFuture<AccountingEmployeesAllResponse>} - The async response
      */
-    public CompletableFuture<HrisEmployeesAllResponse> list(HrisEmployeesAllRequest request, Optional<Options> options) {
-        AsyncRequestOperation<HrisEmployeesAllRequest, HrisEmployeesAllResponse> operation
-              = new HrisEmployeesAll.Async(
+    public CompletableFuture<AccountingEmployeesAllResponse> list(AccountingEmployeesAllRequest request, Optional<Options> options) {
+        AsyncRequestOperation<AccountingEmployeesAllRequest, AccountingEmployeesAllResponse> operation
+              = new AccountingEmployeesAll.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);
         return operation.doRequest(request)
@@ -109,8 +100,8 @@ public class AsyncEmployees {
      * 
      * @return The async call builder
      */
-    public HrisEmployeesAddRequestBuilder create() {
-        return new HrisEmployeesAddRequestBuilder(sdkConfiguration);
+    public AccountingEmployeesAddRequestBuilder create() {
+        return new AccountingEmployeesAddRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -119,9 +110,9 @@ public class AsyncEmployees {
      * <p>Create Employee
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return {@code CompletableFuture<HrisEmployeesAddResponse>} - The async response
+     * @return {@code CompletableFuture<AccountingEmployeesAddResponse>} - The async response
      */
-    public CompletableFuture<HrisEmployeesAddResponse> create(HrisEmployeesAddRequest request) {
+    public CompletableFuture<AccountingEmployeesAddResponse> create(AccountingEmployeesAddRequest request) {
         return create(request, Optional.empty());
     }
 
@@ -132,11 +123,11 @@ public class AsyncEmployees {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return {@code CompletableFuture<HrisEmployeesAddResponse>} - The async response
+     * @return {@code CompletableFuture<AccountingEmployeesAddResponse>} - The async response
      */
-    public CompletableFuture<HrisEmployeesAddResponse> create(HrisEmployeesAddRequest request, Optional<Options> options) {
-        AsyncRequestOperation<HrisEmployeesAddRequest, HrisEmployeesAddResponse> operation
-              = new HrisEmployeesAdd.Async(
+    public CompletableFuture<AccountingEmployeesAddResponse> create(AccountingEmployeesAddRequest request, Optional<Options> options) {
+        AsyncRequestOperation<AccountingEmployeesAddRequest, AccountingEmployeesAddResponse> operation
+              = new AccountingEmployeesAdd.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);
         return operation.doRequest(request)
@@ -151,8 +142,8 @@ public class AsyncEmployees {
      * 
      * @return The async call builder
      */
-    public HrisEmployeesOneRequestBuilder get() {
-        return new HrisEmployeesOneRequestBuilder(sdkConfiguration);
+    public AccountingEmployeesOneRequestBuilder get() {
+        return new AccountingEmployeesOneRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -161,9 +152,9 @@ public class AsyncEmployees {
      * <p>Get Employee
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return {@code CompletableFuture<HrisEmployeesOneResponse>} - The async response
+     * @return {@code CompletableFuture<AccountingEmployeesOneResponse>} - The async response
      */
-    public CompletableFuture<HrisEmployeesOneResponse> get(HrisEmployeesOneRequest request) {
+    public CompletableFuture<AccountingEmployeesOneResponse> get(AccountingEmployeesOneRequest request) {
         return get(request, Optional.empty());
     }
 
@@ -174,11 +165,11 @@ public class AsyncEmployees {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return {@code CompletableFuture<HrisEmployeesOneResponse>} - The async response
+     * @return {@code CompletableFuture<AccountingEmployeesOneResponse>} - The async response
      */
-    public CompletableFuture<HrisEmployeesOneResponse> get(HrisEmployeesOneRequest request, Optional<Options> options) {
-        AsyncRequestOperation<HrisEmployeesOneRequest, HrisEmployeesOneResponse> operation
-              = new HrisEmployeesOne.Async(
+    public CompletableFuture<AccountingEmployeesOneResponse> get(AccountingEmployeesOneRequest request, Optional<Options> options) {
+        AsyncRequestOperation<AccountingEmployeesOneRequest, AccountingEmployeesOneResponse> operation
+              = new AccountingEmployeesOne.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);
         return operation.doRequest(request)
@@ -193,8 +184,8 @@ public class AsyncEmployees {
      * 
      * @return The async call builder
      */
-    public HrisEmployeesUpdateRequestBuilder update() {
-        return new HrisEmployeesUpdateRequestBuilder(sdkConfiguration);
+    public AccountingEmployeesUpdateRequestBuilder update() {
+        return new AccountingEmployeesUpdateRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -203,9 +194,9 @@ public class AsyncEmployees {
      * <p>Update Employee
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return {@code CompletableFuture<HrisEmployeesUpdateResponse>} - The async response
+     * @return {@code CompletableFuture<AccountingEmployeesUpdateResponse>} - The async response
      */
-    public CompletableFuture<HrisEmployeesUpdateResponse> update(HrisEmployeesUpdateRequest request) {
+    public CompletableFuture<AccountingEmployeesUpdateResponse> update(AccountingEmployeesUpdateRequest request) {
         return update(request, Optional.empty());
     }
 
@@ -216,11 +207,11 @@ public class AsyncEmployees {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return {@code CompletableFuture<HrisEmployeesUpdateResponse>} - The async response
+     * @return {@code CompletableFuture<AccountingEmployeesUpdateResponse>} - The async response
      */
-    public CompletableFuture<HrisEmployeesUpdateResponse> update(HrisEmployeesUpdateRequest request, Optional<Options> options) {
-        AsyncRequestOperation<HrisEmployeesUpdateRequest, HrisEmployeesUpdateResponse> operation
-              = new HrisEmployeesUpdate.Async(
+    public CompletableFuture<AccountingEmployeesUpdateResponse> update(AccountingEmployeesUpdateRequest request, Optional<Options> options) {
+        AsyncRequestOperation<AccountingEmployeesUpdateRequest, AccountingEmployeesUpdateResponse> operation
+              = new AccountingEmployeesUpdate.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);
         return operation.doRequest(request)
@@ -235,8 +226,8 @@ public class AsyncEmployees {
      * 
      * @return The async call builder
      */
-    public HrisEmployeesDeleteRequestBuilder delete() {
-        return new HrisEmployeesDeleteRequestBuilder(sdkConfiguration);
+    public AccountingEmployeesDeleteRequestBuilder delete() {
+        return new AccountingEmployeesDeleteRequestBuilder(sdkConfiguration);
     }
 
     /**
@@ -245,9 +236,9 @@ public class AsyncEmployees {
      * <p>Delete Employee
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return {@code CompletableFuture<HrisEmployeesDeleteResponse>} - The async response
+     * @return {@code CompletableFuture<AccountingEmployeesDeleteResponse>} - The async response
      */
-    public CompletableFuture<HrisEmployeesDeleteResponse> delete(HrisEmployeesDeleteRequest request) {
+    public CompletableFuture<AccountingEmployeesDeleteResponse> delete(AccountingEmployeesDeleteRequest request) {
         return delete(request, Optional.empty());
     }
 
@@ -258,11 +249,11 @@ public class AsyncEmployees {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return {@code CompletableFuture<HrisEmployeesDeleteResponse>} - The async response
+     * @return {@code CompletableFuture<AccountingEmployeesDeleteResponse>} - The async response
      */
-    public CompletableFuture<HrisEmployeesDeleteResponse> delete(HrisEmployeesDeleteRequest request, Optional<Options> options) {
-        AsyncRequestOperation<HrisEmployeesDeleteRequest, HrisEmployeesDeleteResponse> operation
-              = new HrisEmployeesDelete.Async(
+    public CompletableFuture<AccountingEmployeesDeleteResponse> delete(AccountingEmployeesDeleteRequest request, Optional<Options> options) {
+        AsyncRequestOperation<AccountingEmployeesDeleteRequest, AccountingEmployeesDeleteResponse> operation
+              = new AccountingEmployeesDelete.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);
         return operation.doRequest(request)

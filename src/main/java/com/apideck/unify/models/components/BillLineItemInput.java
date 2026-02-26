@@ -36,7 +36,7 @@ public class BillLineItemInput {
     private JsonNullable<String> code;
 
     /**
-     * Line number in the invoice
+     * Line number of the resource
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("line_number")
@@ -375,7 +375,7 @@ public class BillLineItemInput {
     }
 
     /**
-     * Line number in the invoice
+     * Line number of the resource
      */
     @JsonIgnore
     public JsonNullable<Long> lineNumber() {
@@ -657,7 +657,7 @@ public class BillLineItemInput {
     }
 
     /**
-     * Line number in the invoice
+     * Line number of the resource
      */
     public BillLineItemInput withLineNumber(long lineNumber) {
         Utils.checkNotNull(lineNumber, "lineNumber");
@@ -666,7 +666,7 @@ public class BillLineItemInput {
     }
 
     /**
-     * Line number in the invoice
+     * Line number of the resource
      */
     public BillLineItemInput withLineNumber(JsonNullable<Long> lineNumber) {
         Utils.checkNotNull(lineNumber, "lineNumber");
@@ -1395,7 +1395,7 @@ public class BillLineItemInput {
 
 
         /**
-         * Line number in the invoice
+         * Line number of the resource
          */
         public Builder lineNumber(long lineNumber) {
             Utils.checkNotNull(lineNumber, "lineNumber");
@@ -1404,7 +1404,7 @@ public class BillLineItemInput {
         }
 
         /**
-         * Line number in the invoice
+         * Line number of the resource
          */
         public Builder lineNumber(JsonNullable<Long> lineNumber) {
             Utils.checkNotNull(lineNumber, "lineNumber");

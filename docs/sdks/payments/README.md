@@ -41,6 +41,7 @@ public class Application {
 
         AccountingPaymentsAllRequest req = AccountingPaymentsAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .filter(PaymentsFilter.builder()
                     .updatedSince(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
                     .invoiceId("123")
@@ -195,6 +196,7 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingPaymentsAddResponse res = sdk.accounting().payments().create()
@@ -258,6 +260,7 @@ public class Application {
         AccountingPaymentsOneRequest req = AccountingPaymentsOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .fields("id,updated_at")
                 .build();
 
@@ -402,6 +405,7 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingPaymentsUpdateResponse res = sdk.accounting().payments().update()
@@ -465,6 +469,7 @@ public class Application {
         AccountingPaymentsDeleteRequest req = AccountingPaymentsDeleteRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingPaymentsDeleteResponse res = sdk.accounting().payments().delete()

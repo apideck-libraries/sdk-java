@@ -41,6 +41,7 @@ public class Application {
                 .referenceType(AttachmentReferenceType.INVOICE)
                 .referenceId("123456")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .fields("id,updated_at")
                 .build();
 
@@ -174,6 +175,7 @@ public class Application {
                 .referenceId("123456")
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .fields("id,updated_at")
                 .build();
 
@@ -307,6 +309,7 @@ public class Application {
                 .referenceId("123456")
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .fields("id,updated_at")
                 .build();
 

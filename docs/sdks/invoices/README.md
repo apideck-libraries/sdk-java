@@ -41,6 +41,7 @@ public class Application {
 
         AccountingInvoicesAllRequest req = AccountingInvoicesAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .filter(InvoicesFilter.builder()
                     .updatedSince(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
                     .createdSince(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
@@ -321,6 +322,7 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingInvoicesAddResponse res = sdk.accounting().invoices().create()
@@ -384,6 +386,7 @@ public class Application {
         AccountingInvoicesOneRequest req = AccountingInvoicesOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .fields("id,updated_at")
                 .build();
 

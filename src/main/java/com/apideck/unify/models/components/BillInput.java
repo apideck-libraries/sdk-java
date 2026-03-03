@@ -134,6 +134,13 @@ public class BillInput {
     private JsonNullable<String> terms;
 
     /**
+     * The ID of the payment terms
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("terms_id")
+    private JsonNullable<String> termsId;
+
+    /**
      * Balance of bill due.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -334,6 +341,7 @@ public class BillInput {
             @JsonProperty("reference") JsonNullable<String> reference,
             @JsonProperty("line_items") Optional<? extends List<BillLineItemInput>> lineItems,
             @JsonProperty("terms") JsonNullable<String> terms,
+            @JsonProperty("terms_id") JsonNullable<String> termsId,
             @JsonProperty("balance") JsonNullable<Double> balance,
             @JsonProperty("deposit") JsonNullable<Double> deposit,
             @JsonProperty("sub_total") JsonNullable<Double> subTotal,
@@ -377,6 +385,7 @@ public class BillInput {
         Utils.checkNotNull(reference, "reference");
         Utils.checkNotNull(lineItems, "lineItems");
         Utils.checkNotNull(terms, "terms");
+        Utils.checkNotNull(termsId, "termsId");
         Utils.checkNotNull(balance, "balance");
         Utils.checkNotNull(deposit, "deposit");
         Utils.checkNotNull(subTotal, "subTotal");
@@ -420,6 +429,7 @@ public class BillInput {
         this.reference = reference;
         this.lineItems = lineItems;
         this.terms = terms;
+        this.termsId = termsId;
         this.balance = balance;
         this.deposit = deposit;
         this.subTotal = subTotal;
@@ -459,12 +469,12 @@ public class BillInput {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty());
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -595,6 +605,14 @@ public class BillInput {
     @JsonIgnore
     public JsonNullable<String> terms() {
         return terms;
+    }
+
+    /**
+     * The ID of the payment terms
+     */
+    @JsonIgnore
+    public JsonNullable<String> termsId() {
+        return termsId;
     }
 
     /**
@@ -1103,6 +1121,24 @@ public class BillInput {
     }
 
     /**
+     * The ID of the payment terms
+     */
+    public BillInput withTermsId(String termsId) {
+        Utils.checkNotNull(termsId, "termsId");
+        this.termsId = JsonNullable.of(termsId);
+        return this;
+    }
+
+    /**
+     * The ID of the payment terms
+     */
+    public BillInput withTermsId(JsonNullable<String> termsId) {
+        Utils.checkNotNull(termsId, "termsId");
+        this.termsId = termsId;
+        return this;
+    }
+
+    /**
      * Balance of bill due.
      */
     public BillInput withBalance(double balance) {
@@ -1596,6 +1632,7 @@ public class BillInput {
             Utils.enhancedDeepEquals(this.reference, other.reference) &&
             Utils.enhancedDeepEquals(this.lineItems, other.lineItems) &&
             Utils.enhancedDeepEquals(this.terms, other.terms) &&
+            Utils.enhancedDeepEquals(this.termsId, other.termsId) &&
             Utils.enhancedDeepEquals(this.balance, other.balance) &&
             Utils.enhancedDeepEquals(this.deposit, other.deposit) &&
             Utils.enhancedDeepEquals(this.subTotal, other.subTotal) &&
@@ -1633,16 +1670,16 @@ public class BillInput {
             currency, currencyRate, taxInclusive,
             billDate, dueDate, paidDate,
             poNumber, reference, lineItems,
-            terms, balance, deposit,
-            subTotal, totalTax, total,
-            taxCode, notes, status,
-            ledgerAccount, paymentMethod, channel,
-            language, accountingByRow, bankAccount,
-            discountPercentage, templateId, approvedBy,
-            amortizationType, taxMethod, documentReceived,
-            sourceDocumentUrl, trackingCategories, rowVersion,
-            customFields, passThrough, accountingPeriod,
-            attachments);
+            terms, termsId, balance,
+            deposit, subTotal, totalTax,
+            total, taxCode, notes,
+            status, ledgerAccount, paymentMethod,
+            channel, language, accountingByRow,
+            bankAccount, discountPercentage, templateId,
+            approvedBy, amortizationType, taxMethod,
+            documentReceived, sourceDocumentUrl, trackingCategories,
+            rowVersion, customFields, passThrough,
+            accountingPeriod, attachments);
     }
     
     @Override
@@ -1664,6 +1701,7 @@ public class BillInput {
                 "reference", reference,
                 "lineItems", lineItems,
                 "terms", terms,
+                "termsId", termsId,
                 "balance", balance,
                 "deposit", deposit,
                 "subTotal", subTotal,
@@ -1727,6 +1765,8 @@ public class BillInput {
         private Optional<? extends List<BillLineItemInput>> lineItems = Optional.empty();
 
         private JsonNullable<String> terms = JsonNullable.undefined();
+
+        private JsonNullable<String> termsId = JsonNullable.undefined();
 
         private JsonNullable<Double> balance = JsonNullable.undefined();
 
@@ -2085,6 +2125,25 @@ public class BillInput {
         public Builder terms(JsonNullable<String> terms) {
             Utils.checkNotNull(terms, "terms");
             this.terms = terms;
+            return this;
+        }
+
+
+        /**
+         * The ID of the payment terms
+         */
+        public Builder termsId(String termsId) {
+            Utils.checkNotNull(termsId, "termsId");
+            this.termsId = JsonNullable.of(termsId);
+            return this;
+        }
+
+        /**
+         * The ID of the payment terms
+         */
+        public Builder termsId(JsonNullable<String> termsId) {
+            Utils.checkNotNull(termsId, "termsId");
+            this.termsId = termsId;
             return this;
         }
 
@@ -2587,16 +2646,16 @@ public class BillInput {
                 currency, currencyRate, taxInclusive,
                 billDate, dueDate, paidDate,
                 poNumber, reference, lineItems,
-                terms, balance, deposit,
-                subTotal, totalTax, total,
-                taxCode, notes, status,
-                ledgerAccount, paymentMethod, channel,
-                language, accountingByRow, bankAccount,
-                discountPercentage, templateId, approvedBy,
-                amortizationType, taxMethod, documentReceived,
-                sourceDocumentUrl, trackingCategories, rowVersion,
-                customFields, passThrough, accountingPeriod,
-                attachments);
+                terms, termsId, balance,
+                deposit, subTotal, totalTax,
+                total, taxCode, notes,
+                status, ledgerAccount, paymentMethod,
+                channel, language, accountingByRow,
+                bankAccount, discountPercentage, templateId,
+                approvedBy, amortizationType, taxMethod,
+                documentReceived, sourceDocumentUrl, trackingCategories,
+                rowVersion, customFields, passThrough,
+                accountingPeriod, attachments);
         }
 
     }

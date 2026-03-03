@@ -39,6 +39,7 @@ public class Application {
 
         AccountingLocationsAllRequest req = AccountingLocationsAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .fields("id,updated_at")
                 .filter(AccountingLocationsFilter.builder()
                     .subsidiary("1")
@@ -160,6 +161,7 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingLocationsAddResponse res = sdk.accounting().locations().create()
@@ -223,6 +225,7 @@ public class Application {
         AccountingLocationsOneRequest req = AccountingLocationsOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .fields("id,updated_at")
                 .build();
 
@@ -409,6 +412,7 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingLocationsUpdateResponse res = sdk.accounting().locations().update()
@@ -472,6 +476,7 @@ public class Application {
         AccountingLocationsDeleteRequest req = AccountingLocationsDeleteRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingLocationsDeleteResponse res = sdk.accounting().locations().delete()

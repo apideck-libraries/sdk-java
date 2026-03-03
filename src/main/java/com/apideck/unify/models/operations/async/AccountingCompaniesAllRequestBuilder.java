@@ -7,8 +7,8 @@ import static com.apideck.unify.operations.Operations.AsyncRequestOperation;
 import static com.apideck.unify.utils.reactive.ReactiveUtils.mapAsync;
 
 import com.apideck.unify.SDKConfiguration;
-import com.apideck.unify.models.operations.HrisCompaniesAllRequest;
-import com.apideck.unify.operations.HrisCompaniesAll;
+import com.apideck.unify.models.operations.AccountingCompaniesAllRequest;
+import com.apideck.unify.operations.AccountingCompaniesAll;
 import com.apideck.unify.utils.Blob;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
@@ -24,42 +24,42 @@ import java.util.concurrent.Flow;
 import org.reactivestreams.FlowAdapters;
 import org.reactivestreams.Publisher;
 
-public class HrisCompaniesAllRequestBuilder {
+public class AccountingCompaniesAllRequestBuilder {
 
-    private HrisCompaniesAllRequest request;
+    private AccountingCompaniesAllRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
-    public HrisCompaniesAllRequestBuilder(SDKConfiguration sdkConfiguration) {
+    public AccountingCompaniesAllRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public HrisCompaniesAllRequestBuilder request(HrisCompaniesAllRequest request) {
+    public AccountingCompaniesAllRequestBuilder request(AccountingCompaniesAllRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;
     }
                 
-    public HrisCompaniesAllRequestBuilder retryConfig(RetryConfig retryConfig) {
+    public AccountingCompaniesAllRequestBuilder retryConfig(RetryConfig retryConfig) {
         Utils.checkNotNull(retryConfig, "retryConfig");
         this.retryConfig = Optional.of(retryConfig);
         return this;
     }
 
-    public HrisCompaniesAllRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
+    public AccountingCompaniesAllRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
         Utils.checkNotNull(retryConfig, "retryConfig");
         this.retryConfig = retryConfig;
         return this;
     }
 
-    public CompletableFuture<HrisCompaniesAllResponse> call() {
+    public CompletableFuture<AccountingCompaniesAllResponse> call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
             .build());
 
-        AsyncRequestOperation<HrisCompaniesAllRequest, HrisCompaniesAllResponse> operation
-              = new HrisCompaniesAll.Async(
+        AsyncRequestOperation<AccountingCompaniesAllRequest, AccountingCompaniesAllResponse> operation
+              = new AccountingCompaniesAll.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);
 
@@ -73,32 +73,32 @@ public class HrisCompaniesAllRequestBuilder {
      *
      * <p>The returned publisher can be used with reactive frameworks:
      * <pre><code>
-     * Publisher&lt;HrisCompaniesAllResponse&gt; publisher = builder.callAsPublisher();
-     * publisher.subscribe(new Subscriber&lt;HrisCompaniesAllResponse&gt;() {
+     * Publisher&lt;AccountingCompaniesAllResponse&gt; publisher = builder.callAsPublisher();
+     * publisher.subscribe(new Subscriber&lt;AccountingCompaniesAllResponse&gt;() {
      *     // Handle onNext, onError, onComplete
      * });
      * </code></pre>
      *
      * @return A Publisher that emits pages asynchronously
      */
-    public Publisher<HrisCompaniesAllResponse> callAsPublisher() {
-        HrisCompaniesAllRequest request = this.request;
+    public Publisher<AccountingCompaniesAllResponse> callAsPublisher() {
+        AccountingCompaniesAllRequest request = this.request;
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
             .build());
 
-        AsyncRequestOperation<HrisCompaniesAllRequest, HrisCompaniesAllResponse> operation
-              = new HrisCompaniesAll.Async(
+        AsyncRequestOperation<AccountingCompaniesAllRequest, AccountingCompaniesAllResponse> operation
+              = new AccountingCompaniesAll.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);
 
         Flow.Publisher<HttpResponse<Blob>> asyncPaginator = new AsyncPaginator<>(
             request,
             new CursorTracker<>("$.meta.cursors.next", String.class),
-                    HrisCompaniesAllRequest::withCursor,
+                    AccountingCompaniesAllRequest::withCursor,
             operation::doRequest);
 
-        Flow.Publisher<HrisCompaniesAllResponse> flowPublisher = mapAsync(asyncPaginator, operation::handleResponse);
+        Flow.Publisher<AccountingCompaniesAllResponse> flowPublisher = mapAsync(asyncPaginator, operation::handleResponse);
 
         // Convert Flow.Publisher to Reactive Streams Publisher at the last stage
         return FlowAdapters.toPublisher(flowPublisher);

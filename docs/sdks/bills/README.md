@@ -41,6 +41,7 @@ public class Application {
 
         AccountingBillsAllRequest req = AccountingBillsAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .filter(BillsFilter.builder()
                     .updatedSince(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
                     .build())
@@ -390,6 +391,7 @@ public class Application {
         AccountingBillsOneRequest req = AccountingBillsOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .fields("id,updated_at")
                 .build();
 

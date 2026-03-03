@@ -41,6 +41,7 @@ public class Application {
 
         AccountingLedgerAccountsAllRequest req = AccountingLedgerAccountsAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .filter(LedgerAccountsFilter.builder()
                     .updatedSince(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
                     .build())
@@ -198,6 +199,7 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingLedgerAccountsAddResponse res = sdk.accounting().ledgerAccounts().create()
@@ -261,6 +263,7 @@ public class Application {
         AccountingLedgerAccountsOneRequest req = AccountingLedgerAccountsOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .fields("id,updated_at")
                 .build();
 
@@ -402,6 +405,7 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingLedgerAccountsUpdateResponse res = sdk.accounting().ledgerAccounts().update()
@@ -465,6 +469,7 @@ public class Application {
         AccountingLedgerAccountsDeleteRequest req = AccountingLedgerAccountsDeleteRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingLedgerAccountsDeleteResponse res = sdk.accounting().ledgerAccounts().delete()

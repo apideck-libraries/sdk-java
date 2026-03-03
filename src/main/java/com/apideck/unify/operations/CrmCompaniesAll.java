@@ -9,7 +9,7 @@ import static com.apideck.unify.operations.Operations.AsyncRequestOperation;
 
 import com.apideck.unify.SDKConfiguration;
 import com.apideck.unify.SecuritySource;
-import com.apideck.unify.models.components.GetCompaniesResponse;
+import com.apideck.unify.models.components.GetCompaniesResponse1;
 import com.apideck.unify.models.components.UnexpectedErrorResponse;
 import com.apideck.unify.models.errors.APIException;
 import com.apideck.unify.models.errors.BadRequestResponse;
@@ -210,7 +210,7 @@ public class CrmCompaniesAll {
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    return res.withGetCompaniesResponse(Utils.unmarshal(response, new TypeReference<GetCompaniesResponse>() {}));
+                    return res.withGetCompaniesResponse1(Utils.unmarshal(response, new TypeReference<GetCompaniesResponse1>() {}));
                 } else {
                     throw APIException.from("Unexpected content-type received: " + contentType, response);
                 }
@@ -333,8 +333,8 @@ public class CrmCompaniesAll {
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
-                    return Utils.unmarshalAsync(response, new TypeReference<GetCompaniesResponse>() {})
-                            .thenApply(res::withGetCompaniesResponse);
+                    return Utils.unmarshalAsync(response, new TypeReference<GetCompaniesResponse1>() {})
+                            .thenApply(res::withGetCompaniesResponse1);
                 } else {
                     return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
                 }

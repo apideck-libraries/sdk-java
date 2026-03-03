@@ -38,6 +38,7 @@ public class Application {
 
         AccountingQuotesAllRequest req = AccountingQuotesAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
 
@@ -117,6 +118,7 @@ public class Application {
                     .quoteDate(LocalDate.parse("2020-09-30"))
                     .expiryDate(LocalDate.parse("2020-10-30"))
                     .terms("Valid for 30 days")
+                    .termsId("12345")
                     .reference("INV-2024-001")
                     .status(QuoteStatus.DRAFT)
                     .currency(Currency.USD)
@@ -261,6 +263,7 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingQuotesAddResponse res = sdk.accounting().quotes().create()
@@ -324,6 +327,7 @@ public class Application {
         AccountingQuotesOneRequest req = AccountingQuotesOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingQuotesOneResponse res = sdk.accounting().quotes().get()
@@ -405,6 +409,7 @@ public class Application {
                     .quoteDate(LocalDate.parse("2020-09-30"))
                     .expiryDate(LocalDate.parse("2020-10-30"))
                     .terms("Valid for 30 days")
+                    .termsId("12345")
                     .reference("INV-2024-001")
                     .status(QuoteStatus.DRAFT)
                     .currency(Currency.USD)
@@ -543,6 +548,7 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingQuotesUpdateResponse res = sdk.accounting().quotes().update()
@@ -606,6 +612,7 @@ public class Application {
         AccountingQuotesDeleteRequest req = AccountingQuotesDeleteRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingQuotesDeleteResponse res = sdk.accounting().quotes().delete()

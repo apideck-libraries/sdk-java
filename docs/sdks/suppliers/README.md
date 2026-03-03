@@ -41,6 +41,7 @@ public class Application {
 
         AccountingSuppliersAllRequest req = AccountingSuppliersAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .filter(SuppliersFilter.builder()
                     .companyName("SpaceX")
                     .displayName("Elon Musk")
@@ -264,6 +265,7 @@ public class Application {
                     .subsidiaryId("12345")
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingSuppliersAddResponse res = sdk.accounting().suppliers().create()
@@ -327,6 +329,7 @@ public class Application {
         AccountingSuppliersOneRequest req = AccountingSuppliersOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .fields("id,updated_at")
                 .build();
 
@@ -530,6 +533,7 @@ public class Application {
                     .subsidiaryId("12345")
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingSuppliersUpdateResponse res = sdk.accounting().suppliers().update()
@@ -593,6 +597,7 @@ public class Application {
         AccountingSuppliersDeleteRequest req = AccountingSuppliersDeleteRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingSuppliersDeleteResponse res = sdk.accounting().suppliers().delete()

@@ -3,7 +3,7 @@
  */
 package com.apideck.unify.models.operations.async;
 
-import com.apideck.unify.models.components.GetHrisCompaniesResponse;
+import com.apideck.unify.models.components.GetCompaniesResponse;
 import com.apideck.unify.models.components.UnexpectedErrorResponse;
 import com.apideck.unify.utils.AsyncResponse;
 import com.apideck.unify.utils.Blob;
@@ -18,7 +18,7 @@ import java.net.http.HttpResponse;
 import java.util.Optional;
 
 
-public class HrisCompaniesAllResponse implements AsyncResponse {
+public class AccountingCompaniesAllResponse implements AsyncResponse {
     /**
      * HTTP response content type for this operation
      */
@@ -37,7 +37,7 @@ public class HrisCompaniesAllResponse implements AsyncResponse {
     /**
      * Companies
      */
-    private Optional<? extends GetHrisCompaniesResponse> getHrisCompaniesResponse;
+    private Optional<? extends GetCompaniesResponse> getCompaniesResponse;
 
     /**
      * Unexpected error
@@ -45,25 +45,25 @@ public class HrisCompaniesAllResponse implements AsyncResponse {
     private Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse;
 
     @JsonCreator
-    public HrisCompaniesAllResponse(
+    public AccountingCompaniesAllResponse(
             String contentType,
             int statusCode,
             HttpResponse<Blob> rawResponse,
-            Optional<? extends GetHrisCompaniesResponse> getHrisCompaniesResponse,
+            Optional<? extends GetCompaniesResponse> getCompaniesResponse,
             Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(getHrisCompaniesResponse, "getHrisCompaniesResponse");
+        Utils.checkNotNull(getCompaniesResponse, "getCompaniesResponse");
         Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.getHrisCompaniesResponse = getHrisCompaniesResponse;
+        this.getCompaniesResponse = getCompaniesResponse;
         this.unexpectedErrorResponse = unexpectedErrorResponse;
     }
     
-    public HrisCompaniesAllResponse(
+    public AccountingCompaniesAllResponse(
             String contentType,
             int statusCode,
             HttpResponse<Blob> rawResponse) {
@@ -100,8 +100,8 @@ public class HrisCompaniesAllResponse implements AsyncResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetHrisCompaniesResponse> getHrisCompaniesResponse() {
-        return (Optional<GetHrisCompaniesResponse>) getHrisCompaniesResponse;
+    public Optional<GetCompaniesResponse> getCompaniesResponse() {
+        return (Optional<GetCompaniesResponse>) getCompaniesResponse;
     }
 
     /**
@@ -121,7 +121,7 @@ public class HrisCompaniesAllResponse implements AsyncResponse {
     /**
      * HTTP response content type for this operation
      */
-    public HrisCompaniesAllResponse withContentType(String contentType) {
+    public AccountingCompaniesAllResponse withContentType(String contentType) {
         Utils.checkNotNull(contentType, "contentType");
         this.contentType = contentType;
         return this;
@@ -130,7 +130,7 @@ public class HrisCompaniesAllResponse implements AsyncResponse {
     /**
      * HTTP response status code for this operation
      */
-    public HrisCompaniesAllResponse withStatusCode(int statusCode) {
+    public AccountingCompaniesAllResponse withStatusCode(int statusCode) {
         Utils.checkNotNull(statusCode, "statusCode");
         this.statusCode = statusCode;
         return this;
@@ -139,7 +139,7 @@ public class HrisCompaniesAllResponse implements AsyncResponse {
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
-    public HrisCompaniesAllResponse withRawResponse(HttpResponse<Blob> rawResponse) {
+    public AccountingCompaniesAllResponse withRawResponse(HttpResponse<Blob> rawResponse) {
         Utils.checkNotNull(rawResponse, "rawResponse");
         this.rawResponse = rawResponse;
         return this;
@@ -148,9 +148,9 @@ public class HrisCompaniesAllResponse implements AsyncResponse {
     /**
      * Companies
      */
-    public HrisCompaniesAllResponse withGetHrisCompaniesResponse(GetHrisCompaniesResponse getHrisCompaniesResponse) {
-        Utils.checkNotNull(getHrisCompaniesResponse, "getHrisCompaniesResponse");
-        this.getHrisCompaniesResponse = Optional.ofNullable(getHrisCompaniesResponse);
+    public AccountingCompaniesAllResponse withGetCompaniesResponse(GetCompaniesResponse getCompaniesResponse) {
+        Utils.checkNotNull(getCompaniesResponse, "getCompaniesResponse");
+        this.getCompaniesResponse = Optional.ofNullable(getCompaniesResponse);
         return this;
     }
 
@@ -158,16 +158,16 @@ public class HrisCompaniesAllResponse implements AsyncResponse {
     /**
      * Companies
      */
-    public HrisCompaniesAllResponse withGetHrisCompaniesResponse(Optional<? extends GetHrisCompaniesResponse> getHrisCompaniesResponse) {
-        Utils.checkNotNull(getHrisCompaniesResponse, "getHrisCompaniesResponse");
-        this.getHrisCompaniesResponse = getHrisCompaniesResponse;
+    public AccountingCompaniesAllResponse withGetCompaniesResponse(Optional<? extends GetCompaniesResponse> getCompaniesResponse) {
+        Utils.checkNotNull(getCompaniesResponse, "getCompaniesResponse");
+        this.getCompaniesResponse = getCompaniesResponse;
         return this;
     }
 
     /**
      * Unexpected error
      */
-    public HrisCompaniesAllResponse withUnexpectedErrorResponse(UnexpectedErrorResponse unexpectedErrorResponse) {
+    public AccountingCompaniesAllResponse withUnexpectedErrorResponse(UnexpectedErrorResponse unexpectedErrorResponse) {
         Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
         this.unexpectedErrorResponse = Optional.ofNullable(unexpectedErrorResponse);
         return this;
@@ -177,7 +177,7 @@ public class HrisCompaniesAllResponse implements AsyncResponse {
     /**
      * Unexpected error
      */
-    public HrisCompaniesAllResponse withUnexpectedErrorResponse(Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse) {
+    public AccountingCompaniesAllResponse withUnexpectedErrorResponse(Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse) {
         Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
         this.unexpectedErrorResponse = unexpectedErrorResponse;
         return this;
@@ -191,12 +191,12 @@ public class HrisCompaniesAllResponse implements AsyncResponse {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        HrisCompaniesAllResponse other = (HrisCompaniesAllResponse) o;
+        AccountingCompaniesAllResponse other = (AccountingCompaniesAllResponse) o;
         return 
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.getHrisCompaniesResponse, other.getHrisCompaniesResponse) &&
+            Utils.enhancedDeepEquals(this.getCompaniesResponse, other.getCompaniesResponse) &&
             Utils.enhancedDeepEquals(this.unexpectedErrorResponse, other.unexpectedErrorResponse);
     }
     
@@ -204,16 +204,16 @@ public class HrisCompaniesAllResponse implements AsyncResponse {
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            getHrisCompaniesResponse, unexpectedErrorResponse);
+            getCompaniesResponse, unexpectedErrorResponse);
     }
     
     @Override
     public String toString() {
-        return Utils.toString(HrisCompaniesAllResponse.class,
+        return Utils.toString(AccountingCompaniesAllResponse.class,
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "getHrisCompaniesResponse", getHrisCompaniesResponse,
+                "getCompaniesResponse", getCompaniesResponse,
                 "unexpectedErrorResponse", unexpectedErrorResponse);
     }
 
@@ -226,7 +226,7 @@ public class HrisCompaniesAllResponse implements AsyncResponse {
 
         private HttpResponse<Blob> rawResponse;
 
-        private Optional<? extends GetHrisCompaniesResponse> getHrisCompaniesResponse = Optional.empty();
+        private Optional<? extends GetCompaniesResponse> getCompaniesResponse = Optional.empty();
 
         private Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse = Optional.empty();
 
@@ -268,18 +268,18 @@ public class HrisCompaniesAllResponse implements AsyncResponse {
         /**
          * Companies
          */
-        public Builder getHrisCompaniesResponse(GetHrisCompaniesResponse getHrisCompaniesResponse) {
-            Utils.checkNotNull(getHrisCompaniesResponse, "getHrisCompaniesResponse");
-            this.getHrisCompaniesResponse = Optional.ofNullable(getHrisCompaniesResponse);
+        public Builder getCompaniesResponse(GetCompaniesResponse getCompaniesResponse) {
+            Utils.checkNotNull(getCompaniesResponse, "getCompaniesResponse");
+            this.getCompaniesResponse = Optional.ofNullable(getCompaniesResponse);
             return this;
         }
 
         /**
          * Companies
          */
-        public Builder getHrisCompaniesResponse(Optional<? extends GetHrisCompaniesResponse> getHrisCompaniesResponse) {
-            Utils.checkNotNull(getHrisCompaniesResponse, "getHrisCompaniesResponse");
-            this.getHrisCompaniesResponse = getHrisCompaniesResponse;
+        public Builder getCompaniesResponse(Optional<? extends GetCompaniesResponse> getCompaniesResponse) {
+            Utils.checkNotNull(getCompaniesResponse, "getCompaniesResponse");
+            this.getCompaniesResponse = getCompaniesResponse;
             return this;
         }
 
@@ -302,11 +302,11 @@ public class HrisCompaniesAllResponse implements AsyncResponse {
             return this;
         }
 
-        public HrisCompaniesAllResponse build() {
+        public AccountingCompaniesAllResponse build() {
 
-            return new HrisCompaniesAllResponse(
+            return new AccountingCompaniesAllResponse(
                 contentType, statusCode, rawResponse,
-                getHrisCompaniesResponse, unexpectedErrorResponse);
+                getCompaniesResponse, unexpectedErrorResponse);
         }
 
     }

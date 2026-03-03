@@ -50,7 +50,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.apideck:unify:0.30.4'
+implementation 'com.apideck:unify:0.31.0'
 ```
 
 Maven:
@@ -58,7 +58,7 @@ Maven:
 <dependency>
     <groupId>com.apideck</groupId>
     <artifactId>unify</artifactId>
-    <version>0.30.4</version>
+    <version>0.31.0</version>
 </dependency>
 ```
 
@@ -105,6 +105,7 @@ public class Application {
 
         AccountingTaxRatesAllRequest req = AccountingTaxRatesAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .filter(TaxRatesFilter.builder()
                     .assets(true)
                     .equity(true)
@@ -153,6 +154,7 @@ public class Application {
 
         AccountingTaxRatesAllRequest req = AccountingTaxRatesAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .filter(TaxRatesFilter.builder()
                     .assets(true)
                     .equity(true)
@@ -253,6 +255,10 @@ public class Application {
 
 * [list](docs/sdks/categories/README.md#list) - List Categories
 * [get](docs/sdks/categories/README.md#get) - Get Category
+
+### [Accounting.Companies](docs/sdks/companies/README.md)
+
+* [list](docs/sdks/companies/README.md#list) - List companies
 
 ### [Accounting.CompanyInfo](docs/sdks/companyinfo/README.md)
 
@@ -477,13 +483,13 @@ public class Application {
 * [update](docs/sdks/activities/README.md#update) - Update activity
 * [delete](docs/sdks/activities/README.md#delete) - Delete activity
 
-### [Crm.Companies](docs/sdks/companies/README.md)
+### [Crm.Companies](docs/sdks/apideckcompanies/README.md)
 
-* [list](docs/sdks/companies/README.md#list) - List companies
-* [create](docs/sdks/companies/README.md#create) - Create company
-* [get](docs/sdks/companies/README.md#get) - Get company
-* [update](docs/sdks/companies/README.md#update) - Update company
-* [delete](docs/sdks/companies/README.md#delete) - Delete company
+* [list](docs/sdks/apideckcompanies/README.md#list) - List companies
+* [create](docs/sdks/apideckcompanies/README.md#create) - Create company
+* [get](docs/sdks/apideckcompanies/README.md#get) - Get company
+* [update](docs/sdks/apideckcompanies/README.md#update) - Update company
+* [delete](docs/sdks/apideckcompanies/README.md#delete) - Delete company
 
 ### [Crm.Contacts](docs/sdks/contacts/README.md)
 
@@ -618,13 +624,13 @@ public class Application {
 * [delete](docs/sdks/uploadsessions/README.md#delete) - Abort Upload Session
 * [finish](docs/sdks/uploadsessions/README.md#finish) - Finish Upload Session
 
-### [Hris.Companies](docs/sdks/apideckcompanies/README.md)
+### [Hris.Companies](docs/sdks/apideckhriscompanies/README.md)
 
-* [list](docs/sdks/apideckcompanies/README.md#list) - List Companies
-* [create](docs/sdks/apideckcompanies/README.md#create) - Create Company
-* [get](docs/sdks/apideckcompanies/README.md#get) - Get Company
-* [update](docs/sdks/apideckcompanies/README.md#update) - Update Company
-* [delete](docs/sdks/apideckcompanies/README.md#delete) - Delete Company
+* [all](docs/sdks/apideckhriscompanies/README.md#all) - List Companies
+* [create](docs/sdks/apideckhriscompanies/README.md#create) - Create Company
+* [get](docs/sdks/apideckhriscompanies/README.md#get) - Get Company
+* [update](docs/sdks/apideckhriscompanies/README.md#update) - Update Company
+* [delete](docs/sdks/apideckhriscompanies/README.md#delete) - Delete Company
 
 ### [Hris.Departments](docs/sdks/apideckdepartments/README.md)
 
@@ -816,6 +822,7 @@ public class Application {
 
         AccountingTaxRatesAllRequest req = AccountingTaxRatesAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .filter(TaxRatesFilter.builder()
                     .assets(true)
                     .equity(true)
@@ -876,6 +883,7 @@ public class Application {
 
         AccountingTaxRatesAllRequest req = AccountingTaxRatesAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .filter(TaxRatesFilter.builder()
                     .assets(true)
                     .equity(true)
@@ -938,6 +946,7 @@ public class Application {
 
         AccountingTaxRatesAllRequest req = AccountingTaxRatesAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .filter(TaxRatesFilter.builder()
                     .assets(true)
                     .equity(true)
@@ -1008,6 +1017,7 @@ public class Application {
 
         AccountingTaxRatesAllRequest req = AccountingTaxRatesAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .filter(TaxRatesFilter.builder()
                     .assets(true)
                     .equity(true)
@@ -1078,6 +1088,7 @@ public class Application {
 
             AccountingTaxRatesAllRequest req = AccountingTaxRatesAllRequest.builder()
                     .serviceId("salesforce")
+                    .companyId("12345")
                     .filter(TaxRatesFilter.builder()
                         .assets(true)
                         .equity(true)
@@ -1153,7 +1164,7 @@ public class Application {
 many more subclasses in the JDK platform).
 
 **Inherit from [`ApideckError`](./src/main/java/models/errors/ApideckError.java)**:
-* [`com.apideck.unify.models.errors.Unauthorized`](./src/main/java/models/errors/com.apideck.unify.models.errors.Unauthorized.java): Unauthorized. Status code `401`. Applicable to 6 of 325 methods.*
+* [`com.apideck.unify.models.errors.Unauthorized`](./src/main/java/models/errors/com.apideck.unify.models.errors.Unauthorized.java): Unauthorized. Status code `401`. Applicable to 6 of 326 methods.*
 
 
 </details>
@@ -1191,6 +1202,7 @@ public class Application {
 
         AccountingTaxRatesAllRequest req = AccountingTaxRatesAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .filter(TaxRatesFilter.builder()
                     .assets(true)
                     .equity(true)
@@ -1357,6 +1369,7 @@ public class Application {
 
         AccountingTaxRatesAllRequest req = AccountingTaxRatesAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .filter(TaxRatesFilter.builder()
                     .assets(true)
                     .equity(true)

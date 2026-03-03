@@ -43,6 +43,13 @@ public class AccountingLocationsOneRequest {
     private Optional<String> serviceId;
 
     /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-company-id")
+    private Optional<String> companyId;
+
+    /**
      * Include raw response. Mostly used for debugging purposes
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=raw")
@@ -68,18 +75,21 @@ public class AccountingLocationsOneRequest {
             Optional<String> consumerId,
             Optional<String> appId,
             Optional<String> serviceId,
+            Optional<String> companyId,
             Optional<Boolean> raw,
             JsonNullable<String> fields) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(serviceId, "serviceId");
+        Utils.checkNotNull(companyId, "companyId");
         Utils.checkNotNull(raw, "raw");
         Utils.checkNotNull(fields, "fields");
         this.id = id;
         this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
+        this.companyId = companyId;
         this.raw = raw;
         this.fields = fields;
     }
@@ -87,7 +97,8 @@ public class AccountingLocationsOneRequest {
     public AccountingLocationsOneRequest(
             String id) {
         this(id, Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -121,6 +132,15 @@ public class AccountingLocationsOneRequest {
     @JsonIgnore
     public Optional<String> serviceId() {
         return serviceId;
+    }
+
+    /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    @JsonIgnore
+    public Optional<String> companyId() {
+        return companyId;
     }
 
     /**
@@ -221,6 +241,27 @@ public class AccountingLocationsOneRequest {
     }
 
     /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    public AccountingLocationsOneRequest withCompanyId(String companyId) {
+        Utils.checkNotNull(companyId, "companyId");
+        this.companyId = Optional.ofNullable(companyId);
+        return this;
+    }
+
+
+    /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    public AccountingLocationsOneRequest withCompanyId(Optional<String> companyId) {
+        Utils.checkNotNull(companyId, "companyId");
+        this.companyId = companyId;
+        return this;
+    }
+
+    /**
      * Include raw response. Mostly used for debugging purposes
      */
     public AccountingLocationsOneRequest withRaw(boolean raw) {
@@ -287,6 +328,7 @@ public class AccountingLocationsOneRequest {
             Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
             Utils.enhancedDeepEquals(this.appId, other.appId) &&
             Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
             Utils.enhancedDeepEquals(this.raw, other.raw) &&
             Utils.enhancedDeepEquals(this.fields, other.fields);
     }
@@ -295,7 +337,8 @@ public class AccountingLocationsOneRequest {
     public int hashCode() {
         return Utils.enhancedHash(
             id, consumerId, appId,
-            serviceId, raw, fields);
+            serviceId, companyId, raw,
+            fields);
     }
     
     @Override
@@ -305,6 +348,7 @@ public class AccountingLocationsOneRequest {
                 "consumerId", consumerId,
                 "appId", appId,
                 "serviceId", serviceId,
+                "companyId", companyId,
                 "raw", raw,
                 "fields", fields);
     }
@@ -319,6 +363,8 @@ public class AccountingLocationsOneRequest {
         private Optional<String> appId = Optional.empty();
 
         private Optional<String> serviceId = Optional.empty();
+
+        private Optional<String> companyId = Optional.empty();
 
         private Optional<Boolean> raw;
 
@@ -399,6 +445,27 @@ public class AccountingLocationsOneRequest {
 
 
         /**
+         * The ID of the company to scope requests to. For connectors that support multi-company, this
+         * overrides the default company configured in connection settings.
+         */
+        public Builder companyId(String companyId) {
+            Utils.checkNotNull(companyId, "companyId");
+            this.companyId = Optional.ofNullable(companyId);
+            return this;
+        }
+
+        /**
+         * The ID of the company to scope requests to. For connectors that support multi-company, this
+         * overrides the default company configured in connection settings.
+         */
+        public Builder companyId(Optional<String> companyId) {
+            Utils.checkNotNull(companyId, "companyId");
+            this.companyId = companyId;
+            return this;
+        }
+
+
+        /**
          * Include raw response. Mostly used for debugging purposes
          */
         public Builder raw(boolean raw) {
@@ -458,7 +525,8 @@ public class AccountingLocationsOneRequest {
 
             return new AccountingLocationsOneRequest(
                 id, consumerId, appId,
-                serviceId, raw, fields);
+                serviceId, companyId, raw,
+                fields);
         }
 
 

@@ -38,6 +38,7 @@ public class Application {
 
         AccountingSubsidiariesAllRequest req = AccountingSubsidiariesAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .fields("id,updated_at")
                 .build();
 
@@ -141,6 +142,7 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingSubsidiariesAddResponse res = sdk.accounting().subsidiaries().create()
@@ -204,6 +206,7 @@ public class Application {
         AccountingSubsidiariesOneRequest req = AccountingSubsidiariesOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .fields("id,updated_at")
                 .build();
 
@@ -294,6 +297,7 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingSubsidiariesUpdateResponse res = sdk.accounting().subsidiaries().update()
@@ -357,6 +361,7 @@ public class Application {
         AccountingSubsidiariesDeleteRequest req = AccountingSubsidiariesDeleteRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingSubsidiariesDeleteResponse res = sdk.accounting().subsidiaries().delete()

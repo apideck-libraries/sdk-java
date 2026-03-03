@@ -36,6 +36,7 @@ public class Application {
 
         AccountingAgedDebtorsOneRequest req = AccountingAgedDebtorsOneRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .filter(AgedReportFilter.builder()
                     .customerId("123abc")
                     .supplierId("123abc")

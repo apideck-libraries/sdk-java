@@ -151,6 +151,13 @@ public class Bill {
     private JsonNullable<String> terms;
 
     /**
+     * The ID of the payment terms
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("terms_id")
+    private JsonNullable<String> termsId;
+
+    /**
      * Balance of bill due.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -388,6 +395,7 @@ public class Bill {
             @JsonProperty("reference") JsonNullable<String> reference,
             @JsonProperty("line_items") Optional<? extends List<BillLineItem>> lineItems,
             @JsonProperty("terms") JsonNullable<String> terms,
+            @JsonProperty("terms_id") JsonNullable<String> termsId,
             @JsonProperty("balance") JsonNullable<Double> balance,
             @JsonProperty("deposit") JsonNullable<Double> deposit,
             @JsonProperty("sub_total") JsonNullable<Double> subTotal,
@@ -438,6 +446,7 @@ public class Bill {
         Utils.checkNotNull(reference, "reference");
         Utils.checkNotNull(lineItems, "lineItems");
         Utils.checkNotNull(terms, "terms");
+        Utils.checkNotNull(termsId, "termsId");
         Utils.checkNotNull(balance, "balance");
         Utils.checkNotNull(deposit, "deposit");
         Utils.checkNotNull(subTotal, "subTotal");
@@ -488,6 +497,7 @@ public class Bill {
         this.reference = reference;
         this.lineItems = lineItems;
         this.terms = terms;
+        this.termsId = termsId;
         this.balance = balance;
         this.deposit = deposit;
         this.subTotal = subTotal;
@@ -533,13 +543,13 @@ public class Bill {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined(), Optional.empty());
+            Optional.empty(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -686,6 +696,14 @@ public class Bill {
     @JsonIgnore
     public JsonNullable<String> terms() {
         return terms;
+    }
+
+    /**
+     * The ID of the payment terms
+     */
+    @JsonIgnore
+    public JsonNullable<String> termsId() {
+        return termsId;
     }
 
     /**
@@ -1268,6 +1286,24 @@ public class Bill {
     public Bill withTerms(JsonNullable<String> terms) {
         Utils.checkNotNull(terms, "terms");
         this.terms = terms;
+        return this;
+    }
+
+    /**
+     * The ID of the payment terms
+     */
+    public Bill withTermsId(String termsId) {
+        Utils.checkNotNull(termsId, "termsId");
+        this.termsId = JsonNullable.of(termsId);
+        return this;
+    }
+
+    /**
+     * The ID of the payment terms
+     */
+    public Bill withTermsId(JsonNullable<String> termsId) {
+        Utils.checkNotNull(termsId, "termsId");
+        this.termsId = termsId;
         return this;
     }
 
@@ -1857,6 +1893,7 @@ public class Bill {
             Utils.enhancedDeepEquals(this.reference, other.reference) &&
             Utils.enhancedDeepEquals(this.lineItems, other.lineItems) &&
             Utils.enhancedDeepEquals(this.terms, other.terms) &&
+            Utils.enhancedDeepEquals(this.termsId, other.termsId) &&
             Utils.enhancedDeepEquals(this.balance, other.balance) &&
             Utils.enhancedDeepEquals(this.deposit, other.deposit) &&
             Utils.enhancedDeepEquals(this.subTotal, other.subTotal) &&
@@ -1900,17 +1937,17 @@ public class Bill {
             currencyRate, taxInclusive, billDate,
             dueDate, paidDate, poNumber,
             reference, lineItems, terms,
-            balance, deposit, subTotal,
-            totalTax, total, taxCode,
-            notes, status, ledgerAccount,
-            paymentMethod, channel, language,
-            accountingByRow, bankAccount, discountPercentage,
-            templateId, approvedBy, amortizationType,
-            taxMethod, documentReceived, sourceDocumentUrl,
-            trackingCategories, updatedBy, createdBy,
-            updatedAt, createdAt, rowVersion,
-            customFields, customMappings, passThrough,
-            accountingPeriod, attachments);
+            termsId, balance, deposit,
+            subTotal, totalTax, total,
+            taxCode, notes, status,
+            ledgerAccount, paymentMethod, channel,
+            language, accountingByRow, bankAccount,
+            discountPercentage, templateId, approvedBy,
+            amortizationType, taxMethod, documentReceived,
+            sourceDocumentUrl, trackingCategories, updatedBy,
+            createdBy, updatedAt, createdAt,
+            rowVersion, customFields, customMappings,
+            passThrough, accountingPeriod, attachments);
     }
     
     @Override
@@ -1934,6 +1971,7 @@ public class Bill {
                 "reference", reference,
                 "lineItems", lineItems,
                 "terms", terms,
+                "termsId", termsId,
                 "balance", balance,
                 "deposit", deposit,
                 "subTotal", subTotal,
@@ -2006,6 +2044,8 @@ public class Bill {
         private Optional<? extends List<BillLineItem>> lineItems = Optional.empty();
 
         private JsonNullable<String> terms = JsonNullable.undefined();
+
+        private JsonNullable<String> termsId = JsonNullable.undefined();
 
         private JsonNullable<Double> balance = JsonNullable.undefined();
 
@@ -2412,6 +2452,25 @@ public class Bill {
         public Builder terms(JsonNullable<String> terms) {
             Utils.checkNotNull(terms, "terms");
             this.terms = terms;
+            return this;
+        }
+
+
+        /**
+         * The ID of the payment terms
+         */
+        public Builder termsId(String termsId) {
+            Utils.checkNotNull(termsId, "termsId");
+            this.termsId = JsonNullable.of(termsId);
+            return this;
+        }
+
+        /**
+         * The ID of the payment terms
+         */
+        public Builder termsId(JsonNullable<String> termsId) {
+            Utils.checkNotNull(termsId, "termsId");
+            this.termsId = termsId;
             return this;
         }
 
@@ -3010,17 +3069,17 @@ public class Bill {
                 currencyRate, taxInclusive, billDate,
                 dueDate, paidDate, poNumber,
                 reference, lineItems, terms,
-                balance, deposit, subTotal,
-                totalTax, total, taxCode,
-                notes, status, ledgerAccount,
-                paymentMethod, channel, language,
-                accountingByRow, bankAccount, discountPercentage,
-                templateId, approvedBy, amortizationType,
-                taxMethod, documentReceived, sourceDocumentUrl,
-                trackingCategories, updatedBy, createdBy,
-                updatedAt, createdAt, rowVersion,
-                customFields, customMappings, passThrough,
-                accountingPeriod, attachments);
+                termsId, balance, deposit,
+                subTotal, totalTax, total,
+                taxCode, notes, status,
+                ledgerAccount, paymentMethod, channel,
+                language, accountingByRow, bankAccount,
+                discountPercentage, templateId, approvedBy,
+                amortizationType, taxMethod, documentReceived,
+                sourceDocumentUrl, trackingCategories, updatedBy,
+                createdBy, updatedAt, createdAt,
+                rowVersion, customFields, customMappings,
+                passThrough, accountingPeriod, attachments);
         }
 
     }

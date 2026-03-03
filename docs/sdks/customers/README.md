@@ -41,6 +41,7 @@ public class Application {
 
         AccountingCustomersAllRequest req = AccountingCustomersAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .filter(CustomersFilter.builder()
                     .companyName("SpaceX")
                     .displayName("Elon Musk")
@@ -278,6 +279,7 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingCustomersAddResponse res = sdk.accounting().customers().create()
@@ -341,6 +343,7 @@ public class Application {
         AccountingCustomersOneRequest req = AccountingCustomersOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .fields("id,updated_at")
                 .build();
 

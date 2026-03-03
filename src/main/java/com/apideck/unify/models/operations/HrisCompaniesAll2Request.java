@@ -20,7 +20,7 @@ import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
-public class HrisCompaniesAllRequest {
+public class HrisCompaniesAll2Request {
     /**
      * Include raw response. Mostly used for debugging purposes
      */
@@ -81,7 +81,7 @@ public class HrisCompaniesAllRequest {
     private JsonNullable<String> fields;
 
     @JsonCreator
-    public HrisCompaniesAllRequest(
+    public HrisCompaniesAll2Request(
             Optional<Boolean> raw,
             Optional<String> consumerId,
             Optional<String> appId,
@@ -108,7 +108,7 @@ public class HrisCompaniesAllRequest {
         this.fields = fields;
     }
     
-    public HrisCompaniesAllRequest() {
+    public HrisCompaniesAll2Request() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), JsonNullable.undefined(), Optional.empty(),
             Optional.empty(), JsonNullable.undefined());
@@ -198,7 +198,7 @@ public class HrisCompaniesAllRequest {
     /**
      * Include raw response. Mostly used for debugging purposes
      */
-    public HrisCompaniesAllRequest withRaw(boolean raw) {
+    public HrisCompaniesAll2Request withRaw(boolean raw) {
         Utils.checkNotNull(raw, "raw");
         this.raw = Optional.ofNullable(raw);
         return this;
@@ -208,7 +208,7 @@ public class HrisCompaniesAllRequest {
     /**
      * Include raw response. Mostly used for debugging purposes
      */
-    public HrisCompaniesAllRequest withRaw(Optional<Boolean> raw) {
+    public HrisCompaniesAll2Request withRaw(Optional<Boolean> raw) {
         Utils.checkNotNull(raw, "raw");
         this.raw = raw;
         return this;
@@ -217,7 +217,7 @@ public class HrisCompaniesAllRequest {
     /**
      * ID of the consumer which you want to get or push data from
      */
-    public HrisCompaniesAllRequest withConsumerId(String consumerId) {
+    public HrisCompaniesAll2Request withConsumerId(String consumerId) {
         Utils.checkNotNull(consumerId, "consumerId");
         this.consumerId = Optional.ofNullable(consumerId);
         return this;
@@ -227,7 +227,7 @@ public class HrisCompaniesAllRequest {
     /**
      * ID of the consumer which you want to get or push data from
      */
-    public HrisCompaniesAllRequest withConsumerId(Optional<String> consumerId) {
+    public HrisCompaniesAll2Request withConsumerId(Optional<String> consumerId) {
         Utils.checkNotNull(consumerId, "consumerId");
         this.consumerId = consumerId;
         return this;
@@ -236,7 +236,7 @@ public class HrisCompaniesAllRequest {
     /**
      * The ID of your Unify application
      */
-    public HrisCompaniesAllRequest withAppId(String appId) {
+    public HrisCompaniesAll2Request withAppId(String appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = Optional.ofNullable(appId);
         return this;
@@ -246,7 +246,7 @@ public class HrisCompaniesAllRequest {
     /**
      * The ID of your Unify application
      */
-    public HrisCompaniesAllRequest withAppId(Optional<String> appId) {
+    public HrisCompaniesAll2Request withAppId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
         return this;
@@ -256,7 +256,7 @@ public class HrisCompaniesAllRequest {
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated
      * multiple integrations for a Unified API.
      */
-    public HrisCompaniesAllRequest withServiceId(String serviceId) {
+    public HrisCompaniesAll2Request withServiceId(String serviceId) {
         Utils.checkNotNull(serviceId, "serviceId");
         this.serviceId = Optional.ofNullable(serviceId);
         return this;
@@ -267,7 +267,7 @@ public class HrisCompaniesAllRequest {
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated
      * multiple integrations for a Unified API.
      */
-    public HrisCompaniesAllRequest withServiceId(Optional<String> serviceId) {
+    public HrisCompaniesAll2Request withServiceId(Optional<String> serviceId) {
         Utils.checkNotNull(serviceId, "serviceId");
         this.serviceId = serviceId;
         return this;
@@ -277,7 +277,7 @@ public class HrisCompaniesAllRequest {
      * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of
      * the response.
      */
-    public HrisCompaniesAllRequest withCursor(String cursor) {
+    public HrisCompaniesAll2Request withCursor(String cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = JsonNullable.of(cursor);
         return this;
@@ -287,7 +287,7 @@ public class HrisCompaniesAllRequest {
      * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of
      * the response.
      */
-    public HrisCompaniesAllRequest withCursor(JsonNullable<String> cursor) {
+    public HrisCompaniesAll2Request withCursor(JsonNullable<String> cursor) {
         Utils.checkNotNull(cursor, "cursor");
         this.cursor = cursor;
         return this;
@@ -296,7 +296,7 @@ public class HrisCompaniesAllRequest {
     /**
      * Number of results to return. Minimum 1, Maximum 200, Default 20
      */
-    public HrisCompaniesAllRequest withLimit(long limit) {
+    public HrisCompaniesAll2Request withLimit(long limit) {
         Utils.checkNotNull(limit, "limit");
         this.limit = Optional.ofNullable(limit);
         return this;
@@ -306,7 +306,7 @@ public class HrisCompaniesAllRequest {
     /**
      * Number of results to return. Minimum 1, Maximum 200, Default 20
      */
-    public HrisCompaniesAllRequest withLimit(Optional<Long> limit) {
+    public HrisCompaniesAll2Request withLimit(Optional<Long> limit) {
         Utils.checkNotNull(limit, "limit");
         this.limit = limit;
         return this;
@@ -316,7 +316,7 @@ public class HrisCompaniesAllRequest {
      * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie:
      * ?pass_through[search]=leads becomes ?search=leads
      */
-    public HrisCompaniesAllRequest withPassThrough(Map<String, Object> passThrough) {
+    public HrisCompaniesAll2Request withPassThrough(Map<String, Object> passThrough) {
         Utils.checkNotNull(passThrough, "passThrough");
         this.passThrough = Optional.ofNullable(passThrough);
         return this;
@@ -327,7 +327,7 @@ public class HrisCompaniesAllRequest {
      * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie:
      * ?pass_through[search]=leads becomes ?search=leads
      */
-    public HrisCompaniesAllRequest withPassThrough(Optional<? extends Map<String, Object>> passThrough) {
+    public HrisCompaniesAll2Request withPassThrough(Optional<? extends Map<String, Object>> passThrough) {
         Utils.checkNotNull(passThrough, "passThrough");
         this.passThrough = passThrough;
         return this;
@@ -344,7 +344,7 @@ public class HrisCompaniesAllRequest {
      * the fields "name", "email" and "addresses.city". If any other fields are available, they will be
      * excluded.
      */
-    public HrisCompaniesAllRequest withFields(String fields) {
+    public HrisCompaniesAll2Request withFields(String fields) {
         Utils.checkNotNull(fields, "fields");
         this.fields = JsonNullable.of(fields);
         return this;
@@ -361,7 +361,7 @@ public class HrisCompaniesAllRequest {
      * the fields "name", "email" and "addresses.city". If any other fields are available, they will be
      * excluded.
      */
-    public HrisCompaniesAllRequest withFields(JsonNullable<String> fields) {
+    public HrisCompaniesAll2Request withFields(JsonNullable<String> fields) {
         Utils.checkNotNull(fields, "fields");
         this.fields = fields;
         return this;
@@ -375,7 +375,7 @@ public class HrisCompaniesAllRequest {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        HrisCompaniesAllRequest other = (HrisCompaniesAllRequest) o;
+        HrisCompaniesAll2Request other = (HrisCompaniesAll2Request) o;
         return 
             Utils.enhancedDeepEquals(this.raw, other.raw) &&
             Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
@@ -397,7 +397,7 @@ public class HrisCompaniesAllRequest {
     
     @Override
     public String toString() {
-        return Utils.toString(HrisCompaniesAllRequest.class,
+        return Utils.toString(HrisCompaniesAll2Request.class,
                 "raw", raw,
                 "consumerId", consumerId,
                 "appId", appId,
@@ -605,7 +605,7 @@ public class HrisCompaniesAllRequest {
             return this;
         }
 
-        public HrisCompaniesAllRequest build() {
+        public HrisCompaniesAll2Request build() {
             if (raw == null) {
                 raw = _SINGLETON_VALUE_Raw.value();
             }
@@ -613,7 +613,7 @@ public class HrisCompaniesAllRequest {
                 limit = _SINGLETON_VALUE_Limit.value();
             }
 
-            return new HrisCompaniesAllRequest(
+            return new HrisCompaniesAll2Request(
                 raw, consumerId, appId,
                 serviceId, cursor, limit,
                 passThrough, fields);

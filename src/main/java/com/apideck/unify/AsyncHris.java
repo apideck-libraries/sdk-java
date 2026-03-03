@@ -10,7 +10,7 @@ public class AsyncHris {
     private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncApideckEmployees employees;
-    private final AsyncApideckCompanies companies;
+    private final AsyncApideckHrisCompanies companies;
     private final AsyncApideckDepartments departments;
     private final AsyncPayrolls payrolls;
     private final AsyncEmployeePayrolls employeePayrolls;
@@ -21,7 +21,7 @@ public class AsyncHris {
     AsyncHris(Hris syncSDK, SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
         this.employees = new AsyncApideckEmployees(syncSDK.employees(), this.sdkConfiguration);
-        this.companies = new AsyncApideckCompanies(syncSDK.companies(), this.sdkConfiguration);
+        this.companies = new AsyncApideckHrisCompanies(syncSDK.companies(), this.sdkConfiguration);
         this.departments = new AsyncApideckDepartments(syncSDK.departments(), this.sdkConfiguration);
         this.payrolls = new AsyncPayrolls(syncSDK.payrolls(), this.sdkConfiguration);
         this.employeePayrolls = new AsyncEmployeePayrolls(syncSDK.employeePayrolls(), this.sdkConfiguration);
@@ -34,7 +34,7 @@ public class AsyncHris {
         return employees;
     }
 
-    public final AsyncApideckCompanies companies() {
+    public final AsyncApideckHrisCompanies companies() {
         return companies;
     }
 

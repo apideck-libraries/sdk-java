@@ -40,6 +40,7 @@ public class Application {
 
         AccountingBankAccountsAllRequest req = AccountingBankAccountsAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .filter(BankAccountsFilter.builder()
                     .name("Main Operating")
                     .accountType(BankAccountsFilterAccountType.CHECKING)
@@ -217,6 +218,7 @@ public class Application {
                     .accountType(BankAccountFilterAccountType.CHECKING)
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .fields("id,updated_at")
                 .build();
 

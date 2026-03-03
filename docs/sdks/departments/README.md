@@ -39,6 +39,7 @@ public class Application {
 
         AccountingDepartmentsAllRequest req = AccountingDepartmentsAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .fields("id,updated_at")
                 .filter(AccountingDepartmentsFilter.builder()
                     .subsidiary("1")
@@ -136,6 +137,7 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingDepartmentsAddResponse res = sdk.accounting().departments().create()
@@ -199,6 +201,7 @@ public class Application {
         AccountingDepartmentsOneRequest req = AccountingDepartmentsOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .fields("id,updated_at")
                 .build();
 

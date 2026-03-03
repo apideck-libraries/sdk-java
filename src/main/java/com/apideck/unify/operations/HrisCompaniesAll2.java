@@ -17,8 +17,8 @@ import com.apideck.unify.models.errors.NotFoundResponse;
 import com.apideck.unify.models.errors.PaymentRequiredResponse;
 import com.apideck.unify.models.errors.UnauthorizedResponse;
 import com.apideck.unify.models.errors.UnprocessableResponse;
-import com.apideck.unify.models.operations.HrisCompaniesAllRequest;
-import com.apideck.unify.models.operations.HrisCompaniesAllResponse;
+import com.apideck.unify.models.operations.HrisCompaniesAll2Request;
+import com.apideck.unify.models.operations.HrisCompaniesAll2Response;
 import com.apideck.unify.utils.AsyncRetries;
 import com.apideck.unify.utils.BackoffStrategy;
 import com.apideck.unify.utils.Blob;
@@ -49,7 +49,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
 
-public class HrisCompaniesAll {
+public class HrisCompaniesAll2 {
 
     static abstract class Base {
         final SDKConfiguration sdkConfiguration;
@@ -98,7 +98,7 @@ public class HrisCompaniesAll {
             return new BeforeRequestContextImpl(
                     this.sdkConfiguration,
                     this.baseUrl,
-                    "hris.companiesAll",
+                    "hris.companiesAll2",
                     java.util.Optional.empty(),
                     securitySource());
         }
@@ -107,7 +107,7 @@ public class HrisCompaniesAll {
             return new AfterSuccessContextImpl(
                     this.sdkConfiguration,
                     this.baseUrl,
-                    "hris.companiesAll",
+                    "hris.companiesAll2",
                     java.util.Optional.empty(),
                     securitySource());
         }
@@ -116,7 +116,7 @@ public class HrisCompaniesAll {
             return new AfterErrorContextImpl(
                     this.sdkConfiguration,
                     this.baseUrl,
-                    "hris.companiesAll",
+                    "hris.companiesAll2",
                     java.util.Optional.empty(),
                     securitySource());
         }
@@ -141,7 +141,7 @@ public class HrisCompaniesAll {
     }
 
     public static class Sync extends Base
-            implements RequestOperation<HrisCompaniesAllRequest, HrisCompaniesAllResponse> {
+            implements RequestOperation<HrisCompaniesAll2Request, HrisCompaniesAll2Response> {
         public Sync(
                 SDKConfiguration sdkConfiguration, Optional<Options> options,
                 Headers _headers) {
@@ -150,8 +150,8 @@ public class HrisCompaniesAll {
                   _headers);
         }
 
-        private HttpRequest onBuildRequest(HrisCompaniesAllRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, HrisCompaniesAllRequest.class);
+        private HttpRequest onBuildRequest(HrisCompaniesAll2Request request) throws Exception {
+            HttpRequest req = buildRequest(request, HrisCompaniesAll2Request.class);
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -167,7 +167,7 @@ public class HrisCompaniesAll {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(HrisCompaniesAllRequest request) {
+        public HttpResponse<InputStream> doRequest(HrisCompaniesAll2Request request) {
             Retries retries = Retries.builder()
                     .action(() -> {
                         HttpRequest r;
@@ -194,19 +194,19 @@ public class HrisCompaniesAll {
 
 
         @Override
-        public HrisCompaniesAllResponse handleResponse(HttpResponse<InputStream> response) {
+        public HrisCompaniesAll2Response handleResponse(HttpResponse<InputStream> response) {
             String contentType = response
                     .headers()
                     .firstValue("Content-Type")
                     .orElse("application/octet-stream");
-            HrisCompaniesAllResponse.Builder resBuilder =
-                    HrisCompaniesAllResponse
+            HrisCompaniesAll2Response.Builder resBuilder =
+                    HrisCompaniesAll2Response
                             .builder()
                             .contentType(contentType)
                             .statusCode(response.statusCode())
                             .rawResponse(response);
 
-            HrisCompaniesAllResponse res = resBuilder.build();
+            HrisCompaniesAll2Response res = resBuilder.build();
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
@@ -269,7 +269,7 @@ public class HrisCompaniesAll {
         }
     }
     public static class Async extends Base
-            implements AsyncRequestOperation<HrisCompaniesAllRequest, com.apideck.unify.models.operations.async.HrisCompaniesAllResponse> {
+            implements AsyncRequestOperation<HrisCompaniesAll2Request, com.apideck.unify.models.operations.async.HrisCompaniesAll2Response> {
         private final ScheduledExecutorService retryScheduler;
 
         public Async(
@@ -281,8 +281,8 @@ public class HrisCompaniesAll {
             this.retryScheduler = retryScheduler;
         }
 
-        private CompletableFuture<HttpRequest> onBuildRequest(HrisCompaniesAllRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, HrisCompaniesAllRequest.class);
+        private CompletableFuture<HttpRequest> onBuildRequest(HrisCompaniesAll2Request request) throws Exception {
+            HttpRequest req = buildRequest(request, HrisCompaniesAll2Request.class);
             return this.sdkConfiguration.asyncHooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -295,7 +295,7 @@ public class HrisCompaniesAll {
         }
 
         @Override
-        public CompletableFuture<HttpResponse<Blob>> doRequest(HrisCompaniesAllRequest request) {
+        public CompletableFuture<HttpResponse<Blob>> doRequest(HrisCompaniesAll2Request request) {
             AsyncRetries retries = AsyncRetries.builder()
                     .retryConfig(retryConfig)
                     .statusCodes(retryStatusCodes)
@@ -316,20 +316,20 @@ public class HrisCompaniesAll {
         }
 
         @Override
-        public CompletableFuture<com.apideck.unify.models.operations.async.HrisCompaniesAllResponse> handleResponse(
+        public CompletableFuture<com.apideck.unify.models.operations.async.HrisCompaniesAll2Response> handleResponse(
                 HttpResponse<Blob> response) {
             String contentType = response
                     .headers()
                     .firstValue("Content-Type")
                     .orElse("application/octet-stream");
-            com.apideck.unify.models.operations.async.HrisCompaniesAllResponse.Builder resBuilder =
-                    com.apideck.unify.models.operations.async.HrisCompaniesAllResponse
+            com.apideck.unify.models.operations.async.HrisCompaniesAll2Response.Builder resBuilder =
+                    com.apideck.unify.models.operations.async.HrisCompaniesAll2Response
                             .builder()
                             .contentType(contentType)
                             .statusCode(response.statusCode())
                             .rawResponse(response);
 
-            com.apideck.unify.models.operations.async.HrisCompaniesAllResponse res = resBuilder.build();
+            com.apideck.unify.models.operations.async.HrisCompaniesAll2Response res = resBuilder.build();
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {

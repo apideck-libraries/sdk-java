@@ -40,6 +40,7 @@ public class Application {
 
         AccountingExpensesAllRequest req = AccountingExpensesAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .filter(ExpensesFilter.builder()
                     .updatedSince(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
                     .status(ExpensesFilterStatus.DRAFT)
@@ -221,6 +222,7 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingExpensesAddResponse res = sdk.accounting().expenses().create()
@@ -284,6 +286,7 @@ public class Application {
         AccountingExpensesOneRequest req = AccountingExpensesOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingExpensesOneResponse res = sdk.accounting().expenses().get()

@@ -36,6 +36,7 @@ public class Application {
 
         AccountingProfitAndLossOneRequest req = AccountingProfitAndLossOneRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .filter(ProfitAndLossFilter.builder()
                     .customerId("123abc")
                     .startDate("2021-01-01")

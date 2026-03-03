@@ -5,26 +5,26 @@ package com.apideck.unify;
 
 import static com.apideck.unify.operations.Operations.AsyncRequestOperation;
 
-import com.apideck.unify.models.operations.HrisCompaniesAddRequest;
-import com.apideck.unify.models.operations.HrisCompaniesAllRequest;
-import com.apideck.unify.models.operations.HrisCompaniesDeleteRequest;
-import com.apideck.unify.models.operations.HrisCompaniesOneRequest;
-import com.apideck.unify.models.operations.HrisCompaniesUpdateRequest;
-import com.apideck.unify.models.operations.async.HrisCompaniesAddRequestBuilder;
-import com.apideck.unify.models.operations.async.HrisCompaniesAddResponse;
-import com.apideck.unify.models.operations.async.HrisCompaniesAllRequestBuilder;
-import com.apideck.unify.models.operations.async.HrisCompaniesAllResponse;
-import com.apideck.unify.models.operations.async.HrisCompaniesDeleteRequestBuilder;
-import com.apideck.unify.models.operations.async.HrisCompaniesDeleteResponse;
-import com.apideck.unify.models.operations.async.HrisCompaniesOneRequestBuilder;
-import com.apideck.unify.models.operations.async.HrisCompaniesOneResponse;
-import com.apideck.unify.models.operations.async.HrisCompaniesUpdateRequestBuilder;
-import com.apideck.unify.models.operations.async.HrisCompaniesUpdateResponse;
-import com.apideck.unify.operations.HrisCompaniesAdd;
-import com.apideck.unify.operations.HrisCompaniesAll;
-import com.apideck.unify.operations.HrisCompaniesDelete;
-import com.apideck.unify.operations.HrisCompaniesOne;
-import com.apideck.unify.operations.HrisCompaniesUpdate;
+import com.apideck.unify.models.operations.CrmCompaniesAddRequest;
+import com.apideck.unify.models.operations.CrmCompaniesAllRequest;
+import com.apideck.unify.models.operations.CrmCompaniesDeleteRequest;
+import com.apideck.unify.models.operations.CrmCompaniesOneRequest;
+import com.apideck.unify.models.operations.CrmCompaniesUpdateRequest;
+import com.apideck.unify.models.operations.async.CrmCompaniesAddRequestBuilder;
+import com.apideck.unify.models.operations.async.CrmCompaniesAddResponse;
+import com.apideck.unify.models.operations.async.CrmCompaniesAllRequestBuilder;
+import com.apideck.unify.models.operations.async.CrmCompaniesAllResponse;
+import com.apideck.unify.models.operations.async.CrmCompaniesDeleteRequestBuilder;
+import com.apideck.unify.models.operations.async.CrmCompaniesDeleteResponse;
+import com.apideck.unify.models.operations.async.CrmCompaniesOneRequestBuilder;
+import com.apideck.unify.models.operations.async.CrmCompaniesOneResponse;
+import com.apideck.unify.models.operations.async.CrmCompaniesUpdateRequestBuilder;
+import com.apideck.unify.models.operations.async.CrmCompaniesUpdateResponse;
+import com.apideck.unify.operations.CrmCompaniesAdd;
+import com.apideck.unify.operations.CrmCompaniesAll;
+import com.apideck.unify.operations.CrmCompaniesDelete;
+import com.apideck.unify.operations.CrmCompaniesOne;
+import com.apideck.unify.operations.CrmCompaniesUpdate;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
@@ -52,40 +52,40 @@ public class AsyncApideckCompanies {
 
 
     /**
-     * List Companies
+     * List companies
      * 
-     * <p>List Companies
+     * <p>List companies
      * 
      * @return The async call builder
      */
-    public HrisCompaniesAllRequestBuilder list() {
-        return new HrisCompaniesAllRequestBuilder(sdkConfiguration);
+    public CrmCompaniesAllRequestBuilder list() {
+        return new CrmCompaniesAllRequestBuilder(sdkConfiguration);
     }
 
     /**
-     * List Companies
+     * List companies
      * 
-     * <p>List Companies
+     * <p>List companies
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return {@code CompletableFuture<HrisCompaniesAllResponse>} - The async response
+     * @return {@code CompletableFuture<CrmCompaniesAllResponse>} - The async response
      */
-    public CompletableFuture<HrisCompaniesAllResponse> list(HrisCompaniesAllRequest request) {
+    public CompletableFuture<CrmCompaniesAllResponse> list(CrmCompaniesAllRequest request) {
         return list(request, Optional.empty());
     }
 
     /**
-     * List Companies
+     * List companies
      * 
-     * <p>List Companies
+     * <p>List companies
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return {@code CompletableFuture<HrisCompaniesAllResponse>} - The async response
+     * @return {@code CompletableFuture<CrmCompaniesAllResponse>} - The async response
      */
-    public CompletableFuture<HrisCompaniesAllResponse> list(HrisCompaniesAllRequest request, Optional<Options> options) {
-        AsyncRequestOperation<HrisCompaniesAllRequest, HrisCompaniesAllResponse> operation
-              = new HrisCompaniesAll.Async(
+    public CompletableFuture<CrmCompaniesAllResponse> list(CrmCompaniesAllRequest request, Optional<Options> options) {
+        AsyncRequestOperation<CrmCompaniesAllRequest, CrmCompaniesAllResponse> operation
+              = new CrmCompaniesAll.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);
         return operation.doRequest(request)
@@ -94,40 +94,40 @@ public class AsyncApideckCompanies {
 
 
     /**
-     * Create Company
+     * Create company
      * 
-     * <p>Create Company
+     * <p>Create company
      * 
      * @return The async call builder
      */
-    public HrisCompaniesAddRequestBuilder create() {
-        return new HrisCompaniesAddRequestBuilder(sdkConfiguration);
+    public CrmCompaniesAddRequestBuilder create() {
+        return new CrmCompaniesAddRequestBuilder(sdkConfiguration);
     }
 
     /**
-     * Create Company
+     * Create company
      * 
-     * <p>Create Company
+     * <p>Create company
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return {@code CompletableFuture<HrisCompaniesAddResponse>} - The async response
+     * @return {@code CompletableFuture<CrmCompaniesAddResponse>} - The async response
      */
-    public CompletableFuture<HrisCompaniesAddResponse> create(HrisCompaniesAddRequest request) {
+    public CompletableFuture<CrmCompaniesAddResponse> create(CrmCompaniesAddRequest request) {
         return create(request, Optional.empty());
     }
 
     /**
-     * Create Company
+     * Create company
      * 
-     * <p>Create Company
+     * <p>Create company
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return {@code CompletableFuture<HrisCompaniesAddResponse>} - The async response
+     * @return {@code CompletableFuture<CrmCompaniesAddResponse>} - The async response
      */
-    public CompletableFuture<HrisCompaniesAddResponse> create(HrisCompaniesAddRequest request, Optional<Options> options) {
-        AsyncRequestOperation<HrisCompaniesAddRequest, HrisCompaniesAddResponse> operation
-              = new HrisCompaniesAdd.Async(
+    public CompletableFuture<CrmCompaniesAddResponse> create(CrmCompaniesAddRequest request, Optional<Options> options) {
+        AsyncRequestOperation<CrmCompaniesAddRequest, CrmCompaniesAddResponse> operation
+              = new CrmCompaniesAdd.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);
         return operation.doRequest(request)
@@ -136,40 +136,40 @@ public class AsyncApideckCompanies {
 
 
     /**
-     * Get Company
+     * Get company
      * 
-     * <p>Get Company
+     * <p>Get company
      * 
      * @return The async call builder
      */
-    public HrisCompaniesOneRequestBuilder get() {
-        return new HrisCompaniesOneRequestBuilder(sdkConfiguration);
+    public CrmCompaniesOneRequestBuilder get() {
+        return new CrmCompaniesOneRequestBuilder(sdkConfiguration);
     }
 
     /**
-     * Get Company
+     * Get company
      * 
-     * <p>Get Company
+     * <p>Get company
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return {@code CompletableFuture<HrisCompaniesOneResponse>} - The async response
+     * @return {@code CompletableFuture<CrmCompaniesOneResponse>} - The async response
      */
-    public CompletableFuture<HrisCompaniesOneResponse> get(HrisCompaniesOneRequest request) {
+    public CompletableFuture<CrmCompaniesOneResponse> get(CrmCompaniesOneRequest request) {
         return get(request, Optional.empty());
     }
 
     /**
-     * Get Company
+     * Get company
      * 
-     * <p>Get Company
+     * <p>Get company
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return {@code CompletableFuture<HrisCompaniesOneResponse>} - The async response
+     * @return {@code CompletableFuture<CrmCompaniesOneResponse>} - The async response
      */
-    public CompletableFuture<HrisCompaniesOneResponse> get(HrisCompaniesOneRequest request, Optional<Options> options) {
-        AsyncRequestOperation<HrisCompaniesOneRequest, HrisCompaniesOneResponse> operation
-              = new HrisCompaniesOne.Async(
+    public CompletableFuture<CrmCompaniesOneResponse> get(CrmCompaniesOneRequest request, Optional<Options> options) {
+        AsyncRequestOperation<CrmCompaniesOneRequest, CrmCompaniesOneResponse> operation
+              = new CrmCompaniesOne.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);
         return operation.doRequest(request)
@@ -178,40 +178,40 @@ public class AsyncApideckCompanies {
 
 
     /**
-     * Update Company
+     * Update company
      * 
-     * <p>Update Company
+     * <p>Update company
      * 
      * @return The async call builder
      */
-    public HrisCompaniesUpdateRequestBuilder update() {
-        return new HrisCompaniesUpdateRequestBuilder(sdkConfiguration);
+    public CrmCompaniesUpdateRequestBuilder update() {
+        return new CrmCompaniesUpdateRequestBuilder(sdkConfiguration);
     }
 
     /**
-     * Update Company
+     * Update company
      * 
-     * <p>Update Company
+     * <p>Update company
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return {@code CompletableFuture<HrisCompaniesUpdateResponse>} - The async response
+     * @return {@code CompletableFuture<CrmCompaniesUpdateResponse>} - The async response
      */
-    public CompletableFuture<HrisCompaniesUpdateResponse> update(HrisCompaniesUpdateRequest request) {
+    public CompletableFuture<CrmCompaniesUpdateResponse> update(CrmCompaniesUpdateRequest request) {
         return update(request, Optional.empty());
     }
 
     /**
-     * Update Company
+     * Update company
      * 
-     * <p>Update Company
+     * <p>Update company
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return {@code CompletableFuture<HrisCompaniesUpdateResponse>} - The async response
+     * @return {@code CompletableFuture<CrmCompaniesUpdateResponse>} - The async response
      */
-    public CompletableFuture<HrisCompaniesUpdateResponse> update(HrisCompaniesUpdateRequest request, Optional<Options> options) {
-        AsyncRequestOperation<HrisCompaniesUpdateRequest, HrisCompaniesUpdateResponse> operation
-              = new HrisCompaniesUpdate.Async(
+    public CompletableFuture<CrmCompaniesUpdateResponse> update(CrmCompaniesUpdateRequest request, Optional<Options> options) {
+        AsyncRequestOperation<CrmCompaniesUpdateRequest, CrmCompaniesUpdateResponse> operation
+              = new CrmCompaniesUpdate.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);
         return operation.doRequest(request)
@@ -220,40 +220,40 @@ public class AsyncApideckCompanies {
 
 
     /**
-     * Delete Company
+     * Delete company
      * 
-     * <p>Delete Company
+     * <p>Delete company
      * 
      * @return The async call builder
      */
-    public HrisCompaniesDeleteRequestBuilder delete() {
-        return new HrisCompaniesDeleteRequestBuilder(sdkConfiguration);
+    public CrmCompaniesDeleteRequestBuilder delete() {
+        return new CrmCompaniesDeleteRequestBuilder(sdkConfiguration);
     }
 
     /**
-     * Delete Company
+     * Delete company
      * 
-     * <p>Delete Company
+     * <p>Delete company
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return {@code CompletableFuture<HrisCompaniesDeleteResponse>} - The async response
+     * @return {@code CompletableFuture<CrmCompaniesDeleteResponse>} - The async response
      */
-    public CompletableFuture<HrisCompaniesDeleteResponse> delete(HrisCompaniesDeleteRequest request) {
+    public CompletableFuture<CrmCompaniesDeleteResponse> delete(CrmCompaniesDeleteRequest request) {
         return delete(request, Optional.empty());
     }
 
     /**
-     * Delete Company
+     * Delete company
      * 
-     * <p>Delete Company
+     * <p>Delete company
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return {@code CompletableFuture<HrisCompaniesDeleteResponse>} - The async response
+     * @return {@code CompletableFuture<CrmCompaniesDeleteResponse>} - The async response
      */
-    public CompletableFuture<HrisCompaniesDeleteResponse> delete(HrisCompaniesDeleteRequest request, Optional<Options> options) {
-        AsyncRequestOperation<HrisCompaniesDeleteRequest, HrisCompaniesDeleteResponse> operation
-              = new HrisCompaniesDelete.Async(
+    public CompletableFuture<CrmCompaniesDeleteResponse> delete(CrmCompaniesDeleteRequest request, Optional<Options> options) {
+        AsyncRequestOperation<CrmCompaniesDeleteRequest, CrmCompaniesDeleteResponse> operation
+              = new CrmCompaniesDelete.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);
         return operation.doRequest(request)

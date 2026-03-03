@@ -41,6 +41,7 @@ public class Application {
 
         AccountingProjectsAllRequest req = AccountingProjectsAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .filter(ProjectsFilter.builder()
                     .name("Website Redesign")
                     .status(ProjectStatus.ACTIVE)
@@ -211,6 +212,7 @@ public class Application {
                     .rowVersion("1-12345")
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingProjectsAddResponse res = sdk.accounting().projects().create()
@@ -274,6 +276,7 @@ public class Application {
         AccountingProjectsOneRequest req = AccountingProjectsOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingProjectsOneResponse res = sdk.accounting().projects().get()
@@ -430,6 +433,7 @@ public class Application {
                     .rowVersion("1-12345")
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingProjectsUpdateResponse res = sdk.accounting().projects().update()
@@ -493,6 +497,7 @@ public class Application {
         AccountingProjectsDeleteRequest req = AccountingProjectsDeleteRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingProjectsDeleteResponse res = sdk.accounting().projects().delete()

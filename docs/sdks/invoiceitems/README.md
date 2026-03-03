@@ -40,6 +40,7 @@ public class Application {
 
         AccountingInvoiceItemsAllRequest req = AccountingInvoiceItemsAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .filter(InvoiceItemsFilter.builder()
                     .name("Widgets Large")
                     .type(InvoiceItemType.SERVICE)
@@ -188,6 +189,7 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingInvoiceItemsAddResponse res = sdk.accounting().invoiceItems().create()
@@ -253,6 +255,7 @@ public class Application {
         AccountingInvoiceItemsOneRequest req = AccountingInvoiceItemsOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .fields("id,updated_at")
                 .filter(InvoiceItemFilter.builder()
                     .type(InvoiceItemFilterInvoiceItemType.SERVICE)

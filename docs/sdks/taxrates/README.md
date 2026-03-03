@@ -41,6 +41,7 @@ public class Application {
 
         AccountingTaxRatesAllRequest req = AccountingTaxRatesAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .filter(TaxRatesFilter.builder()
                     .assets(true)
                     .equity(true)
@@ -176,6 +177,7 @@ public class Application {
                             .build())))
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingTaxRatesAddResponse res = sdk.accounting().taxRates().create()
@@ -240,6 +242,7 @@ public class Application {
         AccountingTaxRatesOneRequest req = AccountingTaxRatesOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .fields("id,updated_at")
                 .build();
 
@@ -399,6 +402,7 @@ public class Application {
                             .build())))
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingTaxRatesUpdateResponse res = sdk.accounting().taxRates().update()
@@ -462,6 +466,7 @@ public class Application {
         AccountingTaxRatesDeleteRequest req = AccountingTaxRatesDeleteRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingTaxRatesDeleteResponse res = sdk.accounting().taxRates().delete()

@@ -4,6 +4,8 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -12,10 +14,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Deprecated;
 import java.lang.Double;
 import java.lang.Long;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -59,8 +64,9 @@ public class JournalEntryLineItem {
     /**
      * Debit entries are considered positive, and credit entries are considered negative.
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
-    private JournalEntryLineItemType type;
+    private Optional<? extends JournalEntryLineItemType> type;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -84,9 +90,9 @@ public class JournalEntryLineItem {
     private JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories;
 
 
-    @JsonInclude(Include.ALWAYS)
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ledger_account")
-    private Optional<? extends LinkedLedgerAccount> ledgerAccount;
+    private JsonNullable<? extends LinkedLedgerAccount> ledgerAccount;
 
     /**
      * The customer this entity is linked to.
@@ -130,6 +136,10 @@ public class JournalEntryLineItem {
     @JsonProperty("worktags")
     private Optional<? extends List<LinkedWorktag>> worktags;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public JournalEntryLineItem(
             @JsonProperty("id") Optional<String> id,
@@ -137,11 +147,11 @@ public class JournalEntryLineItem {
             @JsonProperty("tax_amount") JsonNullable<Double> taxAmount,
             @JsonProperty("sub_total") JsonNullable<Double> subTotal,
             @JsonProperty("total_amount") JsonNullable<Double> totalAmount,
-            @JsonProperty("type") JournalEntryLineItemType type,
+            @JsonProperty("type") Optional<? extends JournalEntryLineItemType> type,
             @JsonProperty("tax_rate") Optional<? extends LinkedTaxRate> taxRate,
             @JsonProperty("tracking_category") JsonNullable<? extends DeprecatedLinkedTrackingCategory> trackingCategory,
             @JsonProperty("tracking_categories") JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories,
-            @JsonProperty("ledger_account") Optional<? extends LinkedLedgerAccount> ledgerAccount,
+            @JsonProperty("ledger_account") JsonNullable<? extends LinkedLedgerAccount> ledgerAccount,
             @JsonProperty("customer") JsonNullable<? extends LinkedCustomer> customer,
             @JsonProperty("supplier") JsonNullable<? extends LinkedSupplier> supplier,
             @JsonProperty("department_id") JsonNullable<String> departmentId,
@@ -180,14 +190,14 @@ public class JournalEntryLineItem {
         this.locationId = locationId;
         this.lineNumber = lineNumber;
         this.worktags = worktags;
+        this.additionalProperties = new HashMap<>();
     }
     
-    public JournalEntryLineItem(
-            JournalEntryLineItemType type) {
+    public JournalEntryLineItem() {
         this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), type,
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             Optional.empty());
     }
@@ -235,9 +245,10 @@ public class JournalEntryLineItem {
     /**
      * Debit entries are considered positive, and credit entries are considered negative.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JournalEntryLineItemType type() {
-        return type;
+    public Optional<JournalEntryLineItemType> type() {
+        return (Optional<JournalEntryLineItemType>) type;
     }
 
     @SuppressWarnings("unchecked")
@@ -268,8 +279,8 @@ public class JournalEntryLineItem {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<LinkedLedgerAccount> ledgerAccount() {
-        return (Optional<LinkedLedgerAccount>) ledgerAccount;
+    public JsonNullable<LinkedLedgerAccount> ledgerAccount() {
+        return (JsonNullable<LinkedLedgerAccount>) ledgerAccount;
     }
 
     /**
@@ -321,6 +332,11 @@ public class JournalEntryLineItem {
     @JsonIgnore
     public Optional<List<LinkedWorktag>> worktags() {
         return (Optional<List<LinkedWorktag>>) worktags;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
     }
 
     public static Builder builder() {
@@ -424,6 +440,16 @@ public class JournalEntryLineItem {
      */
     public JournalEntryLineItem withType(JournalEntryLineItemType type) {
         Utils.checkNotNull(type, "type");
+        this.type = Optional.ofNullable(type);
+        return this;
+    }
+
+
+    /**
+     * Debit entries are considered positive, and credit entries are considered negative.
+     */
+    public JournalEntryLineItem withType(Optional<? extends JournalEntryLineItemType> type) {
+        Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
     }
@@ -483,12 +509,11 @@ public class JournalEntryLineItem {
 
     public JournalEntryLineItem withLedgerAccount(LinkedLedgerAccount ledgerAccount) {
         Utils.checkNotNull(ledgerAccount, "ledgerAccount");
-        this.ledgerAccount = Optional.ofNullable(ledgerAccount);
+        this.ledgerAccount = JsonNullable.of(ledgerAccount);
         return this;
     }
 
-
-    public JournalEntryLineItem withLedgerAccount(Optional<? extends LinkedLedgerAccount> ledgerAccount) {
+    public JournalEntryLineItem withLedgerAccount(JsonNullable<? extends LinkedLedgerAccount> ledgerAccount) {
         Utils.checkNotNull(ledgerAccount, "ledgerAccount");
         this.ledgerAccount = ledgerAccount;
         return this;
@@ -603,6 +628,19 @@ public class JournalEntryLineItem {
         return this;
     }
 
+    @JsonAnySetter
+    public JournalEntryLineItem withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public JournalEntryLineItem withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -628,7 +666,8 @@ public class JournalEntryLineItem {
             Utils.enhancedDeepEquals(this.departmentId, other.departmentId) &&
             Utils.enhancedDeepEquals(this.locationId, other.locationId) &&
             Utils.enhancedDeepEquals(this.lineNumber, other.lineNumber) &&
-            Utils.enhancedDeepEquals(this.worktags, other.worktags);
+            Utils.enhancedDeepEquals(this.worktags, other.worktags) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
@@ -639,7 +678,7 @@ public class JournalEntryLineItem {
             taxRate, trackingCategory, trackingCategories,
             ledgerAccount, customer, supplier,
             departmentId, locationId, lineNumber,
-            worktags);
+            worktags, additionalProperties);
     }
     
     @Override
@@ -660,7 +699,8 @@ public class JournalEntryLineItem {
                 "departmentId", departmentId,
                 "locationId", locationId,
                 "lineNumber", lineNumber,
-                "worktags", worktags);
+                "worktags", worktags,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -676,7 +716,7 @@ public class JournalEntryLineItem {
 
         private JsonNullable<Double> totalAmount = JsonNullable.undefined();
 
-        private JournalEntryLineItemType type;
+        private Optional<? extends JournalEntryLineItemType> type = Optional.empty();
 
         private Optional<? extends LinkedTaxRate> taxRate = Optional.empty();
 
@@ -685,7 +725,7 @@ public class JournalEntryLineItem {
 
         private JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories = JsonNullable.undefined();
 
-        private Optional<? extends LinkedLedgerAccount> ledgerAccount = Optional.empty();
+        private JsonNullable<? extends LinkedLedgerAccount> ledgerAccount = JsonNullable.undefined();
 
         private JsonNullable<? extends LinkedCustomer> customer = JsonNullable.undefined();
 
@@ -698,6 +738,8 @@ public class JournalEntryLineItem {
         private JsonNullable<Long> lineNumber = JsonNullable.undefined();
 
         private Optional<? extends List<LinkedWorktag>> worktags = Optional.empty();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -804,6 +846,15 @@ public class JournalEntryLineItem {
          */
         public Builder type(JournalEntryLineItemType type) {
             Utils.checkNotNull(type, "type");
+            this.type = Optional.ofNullable(type);
+            return this;
+        }
+
+        /**
+         * Debit entries are considered positive, and credit entries are considered negative.
+         */
+        public Builder type(Optional<? extends JournalEntryLineItemType> type) {
+            Utils.checkNotNull(type, "type");
             this.type = type;
             return this;
         }
@@ -866,11 +917,11 @@ public class JournalEntryLineItem {
 
         public Builder ledgerAccount(LinkedLedgerAccount ledgerAccount) {
             Utils.checkNotNull(ledgerAccount, "ledgerAccount");
-            this.ledgerAccount = Optional.ofNullable(ledgerAccount);
+            this.ledgerAccount = JsonNullable.of(ledgerAccount);
             return this;
         }
 
-        public Builder ledgerAccount(Optional<? extends LinkedLedgerAccount> ledgerAccount) {
+        public Builder ledgerAccount(JsonNullable<? extends LinkedLedgerAccount> ledgerAccount) {
             Utils.checkNotNull(ledgerAccount, "ledgerAccount");
             this.ledgerAccount = ledgerAccount;
             return this;
@@ -990,6 +1041,22 @@ public class JournalEntryLineItem {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public JournalEntryLineItem build() {
 
             return new JournalEntryLineItem(
@@ -998,7 +1065,8 @@ public class JournalEntryLineItem {
                 taxRate, trackingCategory, trackingCategories,
                 ledgerAccount, customer, supplier,
                 departmentId, locationId, lineNumber,
-                worktags);
+                worktags)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

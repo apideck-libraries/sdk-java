@@ -21,13 +21,8 @@ import java.util.Optional;
 public class ExpensesFilterStatus {
 
     public static final ExpensesFilterStatus DRAFT = new ExpensesFilterStatus("draft");
-    public static final ExpensesFilterStatus PENDING_APPROVAL = new ExpensesFilterStatus("pending_approval");
-    public static final ExpensesFilterStatus APPROVED = new ExpensesFilterStatus("approved");
     public static final ExpensesFilterStatus POSTED = new ExpensesFilterStatus("posted");
     public static final ExpensesFilterStatus VOIDED = new ExpensesFilterStatus("voided");
-    public static final ExpensesFilterStatus REJECTED = new ExpensesFilterStatus("rejected");
-    public static final ExpensesFilterStatus DELETED = new ExpensesFilterStatus("deleted");
-    public static final ExpensesFilterStatus OTHER = new ExpensesFilterStatus("other");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -102,26 +97,16 @@ public class ExpensesFilterStatus {
     private static final Map<String, ExpensesFilterStatus> createValuesMap() {
         Map<String, ExpensesFilterStatus> map = new LinkedHashMap<>();
         map.put("draft", DRAFT);
-        map.put("pending_approval", PENDING_APPROVAL);
-        map.put("approved", APPROVED);
         map.put("posted", POSTED);
         map.put("voided", VOIDED);
-        map.put("rejected", REJECTED);
-        map.put("deleted", DELETED);
-        map.put("other", OTHER);
         return map;
     }
 
     private static final Map<String, ExpensesFilterStatusEnum> createEnumsMap() {
         Map<String, ExpensesFilterStatusEnum> map = new HashMap<>();
         map.put("draft", ExpensesFilterStatusEnum.DRAFT);
-        map.put("pending_approval", ExpensesFilterStatusEnum.PENDING_APPROVAL);
-        map.put("approved", ExpensesFilterStatusEnum.APPROVED);
         map.put("posted", ExpensesFilterStatusEnum.POSTED);
         map.put("voided", ExpensesFilterStatusEnum.VOIDED);
-        map.put("rejected", ExpensesFilterStatusEnum.REJECTED);
-        map.put("deleted", ExpensesFilterStatusEnum.DELETED);
-        map.put("other", ExpensesFilterStatusEnum.OTHER);
         return map;
     }
     
@@ -129,13 +114,8 @@ public class ExpensesFilterStatus {
     public enum ExpensesFilterStatusEnum {
 
         DRAFT("draft"),
-        PENDING_APPROVAL("pending_approval"),
-        APPROVED("approved"),
         POSTED("posted"),
-        VOIDED("voided"),
-        REJECTED("rejected"),
-        DELETED("deleted"),
-        OTHER("other"),;
+        VOIDED("voided"),;
 
         private final String value;
 

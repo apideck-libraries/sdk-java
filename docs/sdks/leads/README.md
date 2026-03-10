@@ -137,13 +137,13 @@ public class Application {
                     .fax("+12129876543")
                     .websites(List.of(
                         Website.builder()
-                            .url("http://example.com")
                             .id("12345")
+                            .url("http://example.com")
                             .type(WebsiteType.PRIMARY)
                             .build(),
                         Website.builder()
-                            .url("http://example.com")
                             .id("12345")
+                            .url("http://example.com")
                             .type(WebsiteType.PRIMARY)
                             .build()))
                     .addresses(List.of(
@@ -227,53 +227,53 @@ public class Application {
                             .build()))
                     .socialLinks(List.of(
                         SocialLink.builder()
-                            .url("https://www.twitter.com/apideck")
                             .id("12345")
+                            .url("https://www.twitter.com/apideck")
                             .type("twitter")
                             .build(),
                         SocialLink.builder()
-                            .url("https://www.twitter.com/apideck")
                             .id("12345")
+                            .url("https://www.twitter.com/apideck")
                             .type("twitter")
                             .build(),
                         SocialLink.builder()
-                            .url("https://www.twitter.com/apideck")
                             .id("12345")
+                            .url("https://www.twitter.com/apideck")
                             .type("twitter")
                             .build()))
                     .phoneNumbers(List.of(
                         PhoneNumber.builder()
-                            .number("111-111-1111")
                             .id("12345")
                             .countryCode("1")
                             .areaCode("323")
+                            .number("111-111-1111")
                             .extension("105")
                             .type(PhoneNumberType.PRIMARY)
                             .build()))
                     .emails(List.of(
                         Email.builder()
-                            .email("elon@musk.com")
                             .id("123")
+                            .email("elon@musk.com")
                             .type(EmailType.PRIMARY)
                             .build(),
                         Email.builder()
-                            .email("elon@musk.com")
                             .id("123")
+                            .email("elon@musk.com")
                             .type(EmailType.PRIMARY)
                             .build()))
                     .customFields(List.of(
-                        CustomField.of(CustomField1.builder()
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build()),
-                        CustomField.of(CustomField1.builder()
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build(),
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build())))
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build()))
                     .tags(List.of(
                         "New"))
                     .passThrough(List.of(
@@ -352,7 +352,7 @@ public class Application {
                 .call();
 
         if (res.createLeadResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createLeadResponse().get());
         }
     }
 }
@@ -416,7 +416,7 @@ public class Application {
                 .call();
 
         if (res.getLeadResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getLeadResponse().get());
         }
     }
 }
@@ -494,18 +494,18 @@ public class Application {
                     .fax("+12129876543")
                     .websites(List.of(
                         Website.builder()
-                            .url("http://example.com")
                             .id("12345")
+                            .url("http://example.com")
                             .type(WebsiteType.PRIMARY)
                             .build(),
                         Website.builder()
-                            .url("http://example.com")
                             .id("12345")
+                            .url("http://example.com")
                             .type(WebsiteType.PRIMARY)
                             .build(),
                         Website.builder()
-                            .url("http://example.com")
                             .id("12345")
+                            .url("http://example.com")
                             .type(WebsiteType.PRIMARY)
                             .build()))
                     .addresses(List.of(
@@ -589,49 +589,49 @@ public class Application {
                             .build()))
                     .socialLinks(List.of(
                         SocialLink.builder()
-                            .url("https://www.twitter.com/apideck")
                             .id("12345")
+                            .url("https://www.twitter.com/apideck")
                             .type("twitter")
                             .build(),
                         SocialLink.builder()
-                            .url("https://www.twitter.com/apideck")
                             .id("12345")
+                            .url("https://www.twitter.com/apideck")
                             .type("twitter")
                             .build()))
                     .phoneNumbers(List.of(
                         PhoneNumber.builder()
-                            .number("111-111-1111")
                             .id("12345")
                             .countryCode("1")
                             .areaCode("323")
+                            .number("111-111-1111")
                             .extension("105")
                             .type(PhoneNumberType.PRIMARY)
                             .build()))
                     .emails(List.of(
                         Email.builder()
-                            .email("elon@musk.com")
                             .id("123")
+                            .email("elon@musk.com")
                             .type(EmailType.PRIMARY)
                             .build()))
                     .customFields(List.of(
-                        CustomField.of(CustomField1.builder()
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build()),
-                        CustomField.of(CustomField1.builder()
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build(),
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build()),
-                        CustomField.of(CustomField1.builder()
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build(),
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build())))
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build()))
                     .tags(List.of(
                         "New"))
                     .passThrough(List.of(
@@ -676,7 +676,7 @@ public class Application {
                 .call();
 
         if (res.updateLeadResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateLeadResponse().get());
         }
     }
 }
@@ -739,7 +739,7 @@ public class Application {
                 .call();
 
         if (res.deleteLeadResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteLeadResponse().get());
         }
     }
 }

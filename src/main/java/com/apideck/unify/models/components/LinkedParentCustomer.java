@@ -22,8 +22,9 @@ public class LinkedParentCustomer {
     /**
      * The parent ID of the customer this entity is linked to.
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private String id;
+    private Optional<String> id;
 
     /**
      * The name of the parent customer.
@@ -34,7 +35,7 @@ public class LinkedParentCustomer {
 
     @JsonCreator
     public LinkedParentCustomer(
-            @JsonProperty("id") String id,
+            @JsonProperty("id") Optional<String> id,
             @JsonProperty("name") Optional<String> name) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(name, "name");
@@ -42,16 +43,15 @@ public class LinkedParentCustomer {
         this.name = name;
     }
     
-    public LinkedParentCustomer(
-            String id) {
-        this(id, Optional.empty());
+    public LinkedParentCustomer() {
+        this(Optional.empty(), Optional.empty());
     }
 
     /**
      * The parent ID of the customer this entity is linked to.
      */
     @JsonIgnore
-    public String id() {
+    public Optional<String> id() {
         return id;
     }
 
@@ -72,6 +72,16 @@ public class LinkedParentCustomer {
      * The parent ID of the customer this entity is linked to.
      */
     public LinkedParentCustomer withId(String id) {
+        Utils.checkNotNull(id, "id");
+        this.id = Optional.ofNullable(id);
+        return this;
+    }
+
+
+    /**
+     * The parent ID of the customer this entity is linked to.
+     */
+    public LinkedParentCustomer withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
@@ -126,7 +136,7 @@ public class LinkedParentCustomer {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String id;
+        private Optional<String> id = Optional.empty();
 
         private Optional<String> name = Optional.empty();
 
@@ -139,6 +149,15 @@ public class LinkedParentCustomer {
          * The parent ID of the customer this entity is linked to.
          */
         public Builder id(String id) {
+            Utils.checkNotNull(id, "id");
+            this.id = Optional.ofNullable(id);
+            return this;
+        }
+
+        /**
+         * The parent ID of the customer this entity is linked to.
+         */
+        public Builder id(Optional<String> id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;

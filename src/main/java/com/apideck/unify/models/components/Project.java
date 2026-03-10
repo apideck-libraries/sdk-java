@@ -5,6 +5,8 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -14,12 +16,15 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Long;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -42,8 +47,9 @@ public class Project {
     /**
      * Name of the project
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
-    private String name;
+    private Optional<String> name;
 
     /**
      * User-friendly project identifier
@@ -330,11 +336,15 @@ public class Project {
     @JsonProperty("updated_at")
     private JsonNullable<OffsetDateTime> updatedAt;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public Project(
             @JsonProperty("id") Optional<String> id,
             @JsonProperty("downstream_id") JsonNullable<String> downstreamId,
-            @JsonProperty("name") String name,
+            @JsonProperty("name") Optional<String> name,
             @JsonProperty("display_id") JsonNullable<String> displayId,
             @JsonProperty("reference_id") JsonNullable<String> referenceId,
             @JsonProperty("description") JsonNullable<String> description,
@@ -464,11 +474,11 @@ public class Project {
         this.createdBy = createdBy;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.additionalProperties = new HashMap<>();
     }
     
-    public Project(
-            String name) {
-        this(Optional.empty(), JsonNullable.undefined(), name,
+    public Project() {
+        this(Optional.empty(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
@@ -505,7 +515,7 @@ public class Project {
      * Name of the project
      */
     @JsonIgnore
-    public String name() {
+    public Optional<String> name() {
         return name;
     }
 
@@ -848,6 +858,11 @@ public class Project {
         return updatedAt;
     }
 
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -894,6 +909,16 @@ public class Project {
      * Name of the project
      */
     public Project withName(String name) {
+        Utils.checkNotNull(name, "name");
+        this.name = Optional.ofNullable(name);
+        return this;
+    }
+
+
+    /**
+     * Name of the project
+     */
+    public Project withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
@@ -1633,6 +1658,19 @@ public class Project {
         return this;
     }
 
+    @JsonAnySetter
+    public Project withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public Project withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -1686,7 +1724,8 @@ public class Project {
             Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
             Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
-            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt);
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
@@ -1706,7 +1745,7 @@ public class Project {
             contractNumber, profitMargin, scheduleStatus,
             addresses, teamSize, customFields,
             rowVersion, updatedBy, createdBy,
-            createdAt, updatedAt);
+            createdAt, updatedAt, additionalProperties);
     }
     
     @Override
@@ -1755,7 +1794,8 @@ public class Project {
                 "updatedBy", updatedBy,
                 "createdBy", createdBy,
                 "createdAt", createdAt,
-                "updatedAt", updatedAt);
+                "updatedAt", updatedAt,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -1765,7 +1805,7 @@ public class Project {
 
         private JsonNullable<String> downstreamId = JsonNullable.undefined();
 
-        private String name;
+        private Optional<String> name = Optional.empty();
 
         private JsonNullable<String> displayId = JsonNullable.undefined();
 
@@ -1849,6 +1889,8 @@ public class Project {
 
         private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
 
+        private Map<String, Object> additionalProperties = new HashMap<>();
+
         private Builder() {
           // force use of static builder() method
         }
@@ -1896,6 +1938,15 @@ public class Project {
          * Name of the project
          */
         public Builder name(String name) {
+            Utils.checkNotNull(name, "name");
+            this.name = Optional.ofNullable(name);
+            return this;
+        }
+
+        /**
+         * Name of the project
+         */
+        public Builder name(Optional<String> name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
@@ -2672,6 +2723,22 @@ public class Project {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public Project build() {
             if (isBillable == null) {
                 isBillable = _SINGLETON_VALUE_IsBillable.value();
@@ -2692,7 +2759,8 @@ public class Project {
                 contractNumber, profitMargin, scheduleStatus,
                 addresses, teamSize, customFields,
                 rowVersion, updatedBy, createdBy,
-                createdAt, updatedAt);
+                createdAt, updatedAt)
+                .withAdditionalProperties(additionalProperties);
         }
 
 

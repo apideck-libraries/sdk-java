@@ -115,7 +115,7 @@ public class Application {
                 .call();
 
         if (res.getCollectionResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getCollectionResponse().get());
         }
     }
 }

@@ -9,3 +9,4 @@
 | `code`                  | *JsonNullable\<String>* | :heavy_minus_sign:      | Tax rate code           | N-T                     |
 | `name`                  | *JsonNullable\<String>* | :heavy_minus_sign:      | Name of the tax rate    | GST on Purchases        |
 | `rate`                  | *JsonNullable\<Double>* | :heavy_minus_sign:      | Rate of the tax rate    | 10                      |
+| `additionalProperties`  | Map\<String, *Object*>  | :heavy_minus_sign:      | N/A                     |                         |

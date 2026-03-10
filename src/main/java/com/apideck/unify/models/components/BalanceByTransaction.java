@@ -4,16 +4,21 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Double;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 
@@ -67,6 +72,10 @@ public class BalanceByTransaction {
     @JsonProperty("transaction_number")
     private Optional<String> transactionNumber;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public BalanceByTransaction(
             @JsonProperty("transaction_id") Optional<String> transactionId,
@@ -90,6 +99,7 @@ public class BalanceByTransaction {
         this.originalAmount = originalAmount;
         this.outstandingBalance = outstandingBalance;
         this.transactionNumber = transactionNumber;
+        this.additionalProperties = new HashMap<>();
     }
     
     public BalanceByTransaction() {
@@ -153,6 +163,11 @@ public class BalanceByTransaction {
     @JsonIgnore
     public Optional<String> transactionNumber() {
         return transactionNumber;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
     }
 
     public static Builder builder() {
@@ -293,6 +308,19 @@ public class BalanceByTransaction {
         return this;
     }
 
+    @JsonAnySetter
+    public BalanceByTransaction withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public BalanceByTransaction withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -309,7 +337,8 @@ public class BalanceByTransaction {
             Utils.enhancedDeepEquals(this.dueDate, other.dueDate) &&
             Utils.enhancedDeepEquals(this.originalAmount, other.originalAmount) &&
             Utils.enhancedDeepEquals(this.outstandingBalance, other.outstandingBalance) &&
-            Utils.enhancedDeepEquals(this.transactionNumber, other.transactionNumber);
+            Utils.enhancedDeepEquals(this.transactionNumber, other.transactionNumber) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
@@ -317,7 +346,7 @@ public class BalanceByTransaction {
         return Utils.enhancedHash(
             transactionId, transactionDate, transactionType,
             dueDate, originalAmount, outstandingBalance,
-            transactionNumber);
+            transactionNumber, additionalProperties);
     }
     
     @Override
@@ -329,7 +358,8 @@ public class BalanceByTransaction {
                 "dueDate", dueDate,
                 "originalAmount", originalAmount,
                 "outstandingBalance", outstandingBalance,
-                "transactionNumber", transactionNumber);
+                "transactionNumber", transactionNumber,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -348,6 +378,8 @@ public class BalanceByTransaction {
         private Optional<Double> outstandingBalance = Optional.empty();
 
         private Optional<String> transactionNumber = Optional.empty();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -486,12 +518,29 @@ public class BalanceByTransaction {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public BalanceByTransaction build() {
 
             return new BalanceByTransaction(
                 transactionId, transactionDate, transactionType,
                 dueDate, originalAmount, outstandingBalance,
-                transactionNumber);
+                transactionNumber)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

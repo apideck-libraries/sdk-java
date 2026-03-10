@@ -2,6 +2,17 @@
 
 Customer status
 
+## Example Usage
+
+```java
+import com.apideck.unify.models.components.CustomerStatusStatus;
+
+CustomerStatusStatus value = CustomerStatusStatus.ACTIVE;
+
+// Open enum: use .of() to create instances from custom string values
+CustomerStatusStatus custom = CustomerStatusStatus.of("custom_value");
+```
+
 
 ## Values
 

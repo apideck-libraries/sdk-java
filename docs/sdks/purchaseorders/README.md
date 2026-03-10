@@ -41,6 +41,7 @@ public class Application {
 
         AccountingPurchaseOrdersAllRequest req = AccountingPurchaseOrdersAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
                 .filter(PurchaseOrdersFilter.builder()
@@ -198,12 +199,12 @@ public class Application {
                                 .code("453")
                                 .build())
                             .customFields(List.of(
-                                CustomField.of(CustomField1.builder()
+                                CustomField.builder()
                                     .id("2389328923893298")
                                     .name("employee_level")
                                     .description("Employee Level")
-                                    .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                                    .build())))
+                                    .value(Value.of("Uses Salesforce and Marketo"))
+                                    .build()))
                             .rowVersion("1-12345")
                             .build(),
                         InvoiceLineItemInput.builder()
@@ -242,12 +243,12 @@ public class Application {
                                 .code("453")
                                 .build())
                             .customFields(List.of(
-                                CustomField.of(CustomField1.builder()
+                                CustomField.builder()
                                     .id("2389328923893298")
                                     .name("employee_level")
                                     .description("Employee Level")
-                                    .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                                    .build())))
+                                    .value(Value.of("Uses Salesforce and Marketo"))
+                                    .build()))
                             .rowVersion("1-12345")
                             .build(),
                         InvoiceLineItemInput.builder()
@@ -286,12 +287,12 @@ public class Application {
                                 .code("453")
                                 .build())
                             .customFields(List.of(
-                                CustomField.of(CustomField1.builder()
+                                CustomField.builder()
                                     .id("2389328923893298")
                                     .name("employee_level")
                                     .description("Employee Level")
-                                    .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                                    .build())))
+                                    .value(Value.of("Uses Salesforce and Marketo"))
+                                    .build()))
                             .rowVersion("1-12345")
                             .build()))
                     .shippingAddress(Address.builder()
@@ -352,12 +353,12 @@ public class Application {
                             .name("New York")
                             .build()))
                     .customFields(List.of(
-                        CustomField.of(CustomField1.builder()
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build())))
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build()))
                     .rowVersion("1-12345")
                     .passThrough(List.of(
                         PassThroughBody.builder()
@@ -410,6 +411,7 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingPurchaseOrdersAddResponse res = sdk.accounting().purchaseOrders().create()
@@ -417,7 +419,7 @@ public class Application {
                 .call();
 
         if (res.createPurchaseOrderResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createPurchaseOrderResponse().get());
         }
     }
 }
@@ -473,6 +475,7 @@ public class Application {
         AccountingPurchaseOrdersOneRequest req = AccountingPurchaseOrdersOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingPurchaseOrdersOneResponse res = sdk.accounting().purchaseOrders().get()
@@ -480,7 +483,7 @@ public class Application {
                 .call();
 
         if (res.getPurchaseOrderResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getPurchaseOrderResponse().get());
         }
     }
 }
@@ -618,24 +621,24 @@ public class Application {
                                 .code("453")
                                 .build())
                             .customFields(List.of(
-                                CustomField.of(CustomField1.builder()
+                                CustomField.builder()
                                     .id("2389328923893298")
                                     .name("employee_level")
                                     .description("Employee Level")
-                                    .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                                    .build()),
-                                CustomField.of(CustomField1.builder()
+                                    .value(Value.of("Uses Salesforce and Marketo"))
+                                    .build(),
+                                CustomField.builder()
                                     .id("2389328923893298")
                                     .name("employee_level")
                                     .description("Employee Level")
-                                    .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                                    .build()),
-                                CustomField.of(CustomField1.builder()
+                                    .value(Value.of("Uses Salesforce and Marketo"))
+                                    .build(),
+                                CustomField.builder()
                                     .id("2389328923893298")
                                     .name("employee_level")
                                     .description("Employee Level")
-                                    .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                                    .build())))
+                                    .value(Value.of("Uses Salesforce and Marketo"))
+                                    .build()))
                             .rowVersion("1-12345")
                             .build(),
                         InvoiceLineItemInput.builder()
@@ -670,24 +673,24 @@ public class Application {
                                 .code("453")
                                 .build())
                             .customFields(List.of(
-                                CustomField.of(CustomField1.builder()
+                                CustomField.builder()
                                     .id("2389328923893298")
                                     .name("employee_level")
                                     .description("Employee Level")
-                                    .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                                    .build()),
-                                CustomField.of(CustomField1.builder()
+                                    .value(Value.of("Uses Salesforce and Marketo"))
+                                    .build(),
+                                CustomField.builder()
                                     .id("2389328923893298")
                                     .name("employee_level")
                                     .description("Employee Level")
-                                    .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                                    .build()),
-                                CustomField.of(CustomField1.builder()
+                                    .value(Value.of("Uses Salesforce and Marketo"))
+                                    .build(),
+                                CustomField.builder()
                                     .id("2389328923893298")
                                     .name("employee_level")
                                     .description("Employee Level")
-                                    .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                                    .build())))
+                                    .value(Value.of("Uses Salesforce and Marketo"))
+                                    .build()))
                             .rowVersion("1-12345")
                             .build()))
                     .shippingAddress(Address.builder()
@@ -748,18 +751,18 @@ public class Application {
                             .name("New York")
                             .build()))
                     .customFields(List.of(
-                        CustomField.of(CustomField1.builder()
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build()),
-                        CustomField.of(CustomField1.builder()
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build(),
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build())))
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build()))
                     .rowVersion("1-12345")
                     .passThrough(List.of(
                         PassThroughBody.builder()
@@ -786,6 +789,7 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingPurchaseOrdersUpdateResponse res = sdk.accounting().purchaseOrders().update()
@@ -793,7 +797,7 @@ public class Application {
                 .call();
 
         if (res.updatePurchaseOrderResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updatePurchaseOrderResponse().get());
         }
     }
 }
@@ -849,6 +853,7 @@ public class Application {
         AccountingPurchaseOrdersDeleteRequest req = AccountingPurchaseOrdersDeleteRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingPurchaseOrdersDeleteResponse res = sdk.accounting().purchaseOrders().delete()
@@ -856,7 +861,7 @@ public class Application {
                 .call();
 
         if (res.deletePurchaseOrderResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deletePurchaseOrderResponse().get());
         }
     }
 }

@@ -36,6 +36,7 @@ public class Application {
 
         AccountingAgedCreditorsOneRequest req = AccountingAgedCreditorsOneRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .filter(AgedReportFilter.builder()
                     .customerId("123abc")
                     .supplierId("123abc")
@@ -53,7 +54,7 @@ public class Application {
                 .call();
 
         if (res.getAgedCreditorsResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getAgedCreditorsResponse().get());
         }
     }
 }

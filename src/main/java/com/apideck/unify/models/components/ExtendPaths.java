@@ -4,12 +4,16 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class ExtendPaths {
@@ -25,6 +29,10 @@ public class ExtendPaths {
     @JsonProperty("value")
     private Object value;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public ExtendPaths(
             @JsonProperty("path") String path,
@@ -33,6 +41,7 @@ public class ExtendPaths {
         Utils.checkNotNull(value, "value");
         this.path = path;
         this.value = value;
+        this.additionalProperties = new HashMap<>();
     }
 
     /**
@@ -49,6 +58,11 @@ public class ExtendPaths {
     @JsonIgnore
     public Object value() {
         return value;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
     }
 
     public static Builder builder() {
@@ -74,6 +88,19 @@ public class ExtendPaths {
         return this;
     }
 
+    @JsonAnySetter
+    public ExtendPaths withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public ExtendPaths withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -85,20 +112,22 @@ public class ExtendPaths {
         ExtendPaths other = (ExtendPaths) o;
         return 
             Utils.enhancedDeepEquals(this.path, other.path) &&
-            Utils.enhancedDeepEquals(this.value, other.value);
+            Utils.enhancedDeepEquals(this.value, other.value) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            path, value);
+            path, value, additionalProperties);
     }
     
     @Override
     public String toString() {
         return Utils.toString(ExtendPaths.class,
                 "path", path,
-                "value", value);
+                "value", value,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -107,6 +136,8 @@ public class ExtendPaths {
         private String path;
 
         private Object value;
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -132,10 +163,27 @@ public class ExtendPaths {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public ExtendPaths build() {
 
             return new ExtendPaths(
-                path, value);
+                path, value)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

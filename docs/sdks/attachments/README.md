@@ -41,6 +41,7 @@ public class Application {
                 .referenceType(AttachmentReferenceType.INVOICE)
                 .referenceId("123456")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .fields("id,updated_at")
                 .build();
 
@@ -174,6 +175,7 @@ public class Application {
                 .referenceId("123456")
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .fields("id,updated_at")
                 .build();
 
@@ -182,7 +184,7 @@ public class Application {
                 .call();
 
         if (res.getAttachmentResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getAttachmentResponse().get());
         }
     }
 }
@@ -248,7 +250,7 @@ public class Application {
                 .call();
 
         if (res.deleteAttachmentResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteAttachmentResponse().get());
         }
     }
 }
@@ -307,6 +309,7 @@ public class Application {
                 .referenceId("123456")
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .fields("id,updated_at")
                 .build();
 

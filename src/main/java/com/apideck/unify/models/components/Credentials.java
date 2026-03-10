@@ -4,15 +4,20 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Long;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -46,6 +51,10 @@ public class Credentials {
     @JsonProperty("expires_in")
     private JsonNullable<Long> expiresIn;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public Credentials(
             @JsonProperty("refresh_token") JsonNullable<String> refreshToken,
@@ -60,6 +69,7 @@ public class Credentials {
         this.accessToken = accessToken;
         this.issuedAt = issuedAt;
         this.expiresIn = expiresIn;
+        this.additionalProperties = new HashMap<>();
     }
     
     public Credentials() {
@@ -97,6 +107,11 @@ public class Credentials {
     @JsonIgnore
     public JsonNullable<Long> expiresIn() {
         return expiresIn;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
     }
 
     public static Builder builder() {
@@ -177,6 +192,19 @@ public class Credentials {
         return this;
     }
 
+    @JsonAnySetter
+    public Credentials withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public Credentials withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -190,14 +218,15 @@ public class Credentials {
             Utils.enhancedDeepEquals(this.refreshToken, other.refreshToken) &&
             Utils.enhancedDeepEquals(this.accessToken, other.accessToken) &&
             Utils.enhancedDeepEquals(this.issuedAt, other.issuedAt) &&
-            Utils.enhancedDeepEquals(this.expiresIn, other.expiresIn);
+            Utils.enhancedDeepEquals(this.expiresIn, other.expiresIn) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             refreshToken, accessToken, issuedAt,
-            expiresIn);
+            expiresIn, additionalProperties);
     }
     
     @Override
@@ -206,7 +235,8 @@ public class Credentials {
                 "refreshToken", refreshToken,
                 "accessToken", accessToken,
                 "issuedAt", issuedAt,
-                "expiresIn", expiresIn);
+                "expiresIn", expiresIn,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -219,6 +249,8 @@ public class Credentials {
         private JsonNullable<OffsetDateTime> issuedAt = JsonNullable.undefined();
 
         private JsonNullable<Long> expiresIn = JsonNullable.undefined();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -300,11 +332,28 @@ public class Credentials {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public Credentials build() {
 
             return new Credentials(
                 refreshToken, accessToken, issuedAt,
-                expiresIn);
+                expiresIn)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

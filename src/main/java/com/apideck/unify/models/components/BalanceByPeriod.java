@@ -4,17 +4,22 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Double;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -48,6 +53,10 @@ public class BalanceByPeriod {
     @JsonProperty("balances_by_transaction")
     private Optional<? extends List<BalanceByTransaction>> balancesByTransaction;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public BalanceByPeriod(
             @JsonProperty("start_date") JsonNullable<LocalDate> startDate,
@@ -62,6 +71,7 @@ public class BalanceByPeriod {
         this.endDate = endDate;
         this.totalAmount = totalAmount;
         this.balancesByTransaction = balancesByTransaction;
+        this.additionalProperties = new HashMap<>();
     }
     
     public BalanceByPeriod() {
@@ -99,6 +109,11 @@ public class BalanceByPeriod {
     @JsonIgnore
     public Optional<List<BalanceByTransaction>> balancesByTransaction() {
         return (Optional<List<BalanceByTransaction>>) balancesByTransaction;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
     }
 
     public static Builder builder() {
@@ -178,6 +193,19 @@ public class BalanceByPeriod {
         return this;
     }
 
+    @JsonAnySetter
+    public BalanceByPeriod withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public BalanceByPeriod withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -191,14 +219,15 @@ public class BalanceByPeriod {
             Utils.enhancedDeepEquals(this.startDate, other.startDate) &&
             Utils.enhancedDeepEquals(this.endDate, other.endDate) &&
             Utils.enhancedDeepEquals(this.totalAmount, other.totalAmount) &&
-            Utils.enhancedDeepEquals(this.balancesByTransaction, other.balancesByTransaction);
+            Utils.enhancedDeepEquals(this.balancesByTransaction, other.balancesByTransaction) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             startDate, endDate, totalAmount,
-            balancesByTransaction);
+            balancesByTransaction, additionalProperties);
     }
     
     @Override
@@ -207,7 +236,8 @@ public class BalanceByPeriod {
                 "startDate", startDate,
                 "endDate", endDate,
                 "totalAmount", totalAmount,
-                "balancesByTransaction", balancesByTransaction);
+                "balancesByTransaction", balancesByTransaction,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -220,6 +250,8 @@ public class BalanceByPeriod {
         private Optional<Double> totalAmount = Optional.empty();
 
         private Optional<? extends List<BalanceByTransaction>> balancesByTransaction = Optional.empty();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -299,11 +331,28 @@ public class BalanceByPeriod {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public BalanceByPeriod build() {
 
             return new BalanceByPeriod(
                 startDate, endDate, totalAmount,
-                balancesByTransaction);
+                balancesByTransaction)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

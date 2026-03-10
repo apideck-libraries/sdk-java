@@ -4,13 +4,18 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.Map;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -35,6 +40,10 @@ public class SocialLinks {
     @JsonProperty("type")
     private JsonNullable<String> type;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public SocialLinks(
             @JsonProperty("id") JsonNullable<String> id,
@@ -46,6 +55,7 @@ public class SocialLinks {
         this.id = id;
         this.url = url;
         this.type = type;
+        this.additionalProperties = new HashMap<>();
     }
     
     public SocialLinks(
@@ -75,6 +85,11 @@ public class SocialLinks {
     @JsonIgnore
     public JsonNullable<String> type() {
         return type;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
     }
 
     public static Builder builder() {
@@ -127,6 +142,19 @@ public class SocialLinks {
         return this;
     }
 
+    @JsonAnySetter
+    public SocialLinks withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public SocialLinks withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -139,13 +167,15 @@ public class SocialLinks {
         return 
             Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.url, other.url) &&
-            Utils.enhancedDeepEquals(this.type, other.type);
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, url, type);
+            id, url, type,
+            additionalProperties);
     }
     
     @Override
@@ -153,7 +183,8 @@ public class SocialLinks {
         return Utils.toString(SocialLinks.class,
                 "id", id,
                 "url", url,
-                "type", type);
+                "type", type,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -164,6 +195,8 @@ public class SocialLinks {
         private String url;
 
         private JsonNullable<String> type = JsonNullable.undefined();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -217,10 +250,27 @@ public class SocialLinks {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public SocialLinks build() {
 
             return new SocialLinks(
-                id, url, type);
+                id, url, type)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

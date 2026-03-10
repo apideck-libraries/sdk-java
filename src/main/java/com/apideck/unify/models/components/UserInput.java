@@ -133,8 +133,9 @@ public class UserInput {
     private Optional<? extends List<PhoneNumber>> phoneNumbers;
 
 
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("emails")
-    private List<Email> emails;
+    private Optional<? extends List<Email>> emails;
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications
@@ -162,7 +163,7 @@ public class UserInput {
             @JsonProperty("password") JsonNullable<String> password,
             @JsonProperty("addresses") Optional<? extends List<Address>> addresses,
             @JsonProperty("phone_numbers") Optional<? extends List<PhoneNumber>> phoneNumbers,
-            @JsonProperty("emails") List<Email> emails,
+            @JsonProperty("emails") Optional<? extends List<Email>> emails,
             @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
         Utils.checkNotNull(parentId, "parentId");
         Utils.checkNotNull(username, "username");
@@ -202,14 +203,13 @@ public class UserInput {
         this.passThrough = passThrough;
     }
     
-    public UserInput(
-            List<Email> emails) {
+    public UserInput() {
         this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), emails, Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -341,9 +341,10 @@ public class UserInput {
         return (Optional<List<PhoneNumber>>) phoneNumbers;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public List<Email> emails() {
-        return emails;
+    public Optional<List<Email>> emails() {
+        return (Optional<List<Email>>) emails;
     }
 
     /**
@@ -651,6 +652,13 @@ public class UserInput {
 
     public UserInput withEmails(List<Email> emails) {
         Utils.checkNotNull(emails, "emails");
+        this.emails = Optional.ofNullable(emails);
+        return this;
+    }
+
+
+    public UserInput withEmails(Optional<? extends List<Email>> emails) {
+        Utils.checkNotNull(emails, "emails");
         this.emails = emails;
         return this;
     }
@@ -776,7 +784,7 @@ public class UserInput {
 
         private Optional<? extends List<PhoneNumber>> phoneNumbers = Optional.empty();
 
-        private List<Email> emails;
+        private Optional<? extends List<Email>> emails = Optional.empty();
 
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
 
@@ -1088,6 +1096,12 @@ public class UserInput {
 
 
         public Builder emails(List<Email> emails) {
+            Utils.checkNotNull(emails, "emails");
+            this.emails = Optional.ofNullable(emails);
+            return this;
+        }
+
+        public Builder emails(Optional<? extends List<Email>> emails) {
             Utils.checkNotNull(emails, "emails");
             this.emails = emails;
             return this;

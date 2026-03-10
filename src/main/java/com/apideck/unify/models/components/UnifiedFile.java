@@ -4,6 +4,8 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -16,6 +18,7 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -26,8 +29,9 @@ public class UnifiedFile {
     /**
      * A unique identifier for an object.
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private String id;
+    private Optional<String> id;
 
     /**
      * The third-party API ID of original entity
@@ -39,9 +43,9 @@ public class UnifiedFile {
     /**
      * The name of the file
      */
-    @JsonInclude(Include.ALWAYS)
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
-    private Optional<String> name;
+    private JsonNullable<String> name;
 
     /**
      * Optional description of the file
@@ -53,9 +57,9 @@ public class UnifiedFile {
     /**
      * The type of resource. Could be file, folder or url
      */
-    @JsonInclude(Include.ALWAYS)
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
-    private Optional<? extends FileType> type;
+    private JsonNullable<? extends FileType> type;
 
     /**
      * The full path of the file or folder (includes the file name)
@@ -162,13 +166,17 @@ public class UnifiedFile {
     @JsonProperty("created_at")
     private JsonNullable<OffsetDateTime> createdAt;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public UnifiedFile(
-            @JsonProperty("id") String id,
+            @JsonProperty("id") Optional<String> id,
             @JsonProperty("downstream_id") JsonNullable<String> downstreamId,
-            @JsonProperty("name") Optional<String> name,
+            @JsonProperty("name") JsonNullable<String> name,
             @JsonProperty("description") JsonNullable<String> description,
-            @JsonProperty("type") Optional<? extends FileType> type,
+            @JsonProperty("type") JsonNullable<? extends FileType> type,
             @JsonProperty("path") JsonNullable<String> path,
             @JsonProperty("mime_type") JsonNullable<String> mimeType,
             @JsonProperty("downloadable") Optional<Boolean> downloadable,
@@ -224,12 +232,12 @@ public class UnifiedFile {
         this.createdBy = createdBy;
         this.updatedAt = updatedAt;
         this.createdAt = createdAt;
+        this.additionalProperties = new HashMap<>();
     }
     
-    public UnifiedFile(
-            String id) {
-        this(id, JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+    public UnifiedFile() {
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), JsonNullable.undefined(),
@@ -241,7 +249,7 @@ public class UnifiedFile {
      * A unique identifier for an object.
      */
     @JsonIgnore
-    public String id() {
+    public Optional<String> id() {
         return id;
     }
 
@@ -257,7 +265,7 @@ public class UnifiedFile {
      * The name of the file
      */
     @JsonIgnore
-    public Optional<String> name() {
+    public JsonNullable<String> name() {
         return name;
     }
 
@@ -274,8 +282,8 @@ public class UnifiedFile {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<FileType> type() {
-        return (Optional<FileType>) type;
+    public JsonNullable<FileType> type() {
+        return (JsonNullable<FileType>) type;
     }
 
     /**
@@ -402,6 +410,11 @@ public class UnifiedFile {
         return createdAt;
     }
 
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -411,6 +424,16 @@ public class UnifiedFile {
      * A unique identifier for an object.
      */
     public UnifiedFile withId(String id) {
+        Utils.checkNotNull(id, "id");
+        this.id = Optional.ofNullable(id);
+        return this;
+    }
+
+
+    /**
+     * A unique identifier for an object.
+     */
+    public UnifiedFile withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
@@ -439,15 +462,14 @@ public class UnifiedFile {
      */
     public UnifiedFile withName(String name) {
         Utils.checkNotNull(name, "name");
-        this.name = Optional.ofNullable(name);
+        this.name = JsonNullable.of(name);
         return this;
     }
-
 
     /**
      * The name of the file
      */
-    public UnifiedFile withName(Optional<String> name) {
+    public UnifiedFile withName(JsonNullable<String> name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
@@ -476,15 +498,14 @@ public class UnifiedFile {
      */
     public UnifiedFile withType(FileType type) {
         Utils.checkNotNull(type, "type");
-        this.type = Optional.ofNullable(type);
+        this.type = JsonNullable.of(type);
         return this;
     }
-
 
     /**
      * The type of resource. Could be file, folder or url
      */
-    public UnifiedFile withType(Optional<? extends FileType> type) {
+    public UnifiedFile withType(JsonNullable<? extends FileType> type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
@@ -764,6 +785,19 @@ public class UnifiedFile {
         return this;
     }
 
+    @JsonAnySetter
+    public UnifiedFile withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public UnifiedFile withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -793,7 +827,8 @@ public class UnifiedFile {
             Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
             Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
             Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
-            Utils.enhancedDeepEquals(this.createdAt, other.createdAt);
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
@@ -805,7 +840,7 @@ public class UnifiedFile {
             owner, parentFolders, parentFoldersComplete,
             permissions, exportable, exportFormats,
             customMappings, updatedBy, createdBy,
-            updatedAt, createdAt);
+            updatedAt, createdAt, additionalProperties);
     }
     
     @Override
@@ -830,21 +865,22 @@ public class UnifiedFile {
                 "updatedBy", updatedBy,
                 "createdBy", createdBy,
                 "updatedAt", updatedAt,
-                "createdAt", createdAt);
+                "createdAt", createdAt,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String id;
+        private Optional<String> id = Optional.empty();
 
         private JsonNullable<String> downstreamId = JsonNullable.undefined();
 
-        private Optional<String> name = Optional.empty();
+        private JsonNullable<String> name = JsonNullable.undefined();
 
         private JsonNullable<String> description = JsonNullable.undefined();
 
-        private Optional<? extends FileType> type = Optional.empty();
+        private JsonNullable<? extends FileType> type = JsonNullable.undefined();
 
         private JsonNullable<String> path = JsonNullable.undefined();
 
@@ -876,6 +912,8 @@ public class UnifiedFile {
 
         private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
 
+        private Map<String, Object> additionalProperties = new HashMap<>();
+
         private Builder() {
           // force use of static builder() method
         }
@@ -885,6 +923,15 @@ public class UnifiedFile {
          * A unique identifier for an object.
          */
         public Builder id(String id) {
+            Utils.checkNotNull(id, "id");
+            this.id = Optional.ofNullable(id);
+            return this;
+        }
+
+        /**
+         * A unique identifier for an object.
+         */
+        public Builder id(Optional<String> id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
@@ -915,14 +962,14 @@ public class UnifiedFile {
          */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
-            this.name = Optional.ofNullable(name);
+            this.name = JsonNullable.of(name);
             return this;
         }
 
         /**
          * The name of the file
          */
-        public Builder name(Optional<String> name) {
+        public Builder name(JsonNullable<String> name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
@@ -953,14 +1000,14 @@ public class UnifiedFile {
          */
         public Builder type(FileType type) {
             Utils.checkNotNull(type, "type");
-            this.type = Optional.ofNullable(type);
+            this.type = JsonNullable.of(type);
             return this;
         }
 
         /**
          * The type of resource. Could be file, folder or url
          */
-        public Builder type(Optional<? extends FileType> type) {
+        public Builder type(JsonNullable<? extends FileType> type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;
@@ -1249,6 +1296,22 @@ public class UnifiedFile {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public UnifiedFile build() {
 
             return new UnifiedFile(
@@ -1258,7 +1321,8 @@ public class UnifiedFile {
                 owner, parentFolders, parentFoldersComplete,
                 permissions, exportable, exportFormats,
                 customMappings, updatedBy, createdBy,
-                updatedAt, createdAt);
+                updatedAt, createdAt)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

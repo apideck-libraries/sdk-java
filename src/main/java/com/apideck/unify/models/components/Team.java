@@ -4,13 +4,18 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.Map;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -33,6 +38,10 @@ public class Team {
     @JsonProperty("name")
     private JsonNullable<String> name;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public Team(
             @JsonProperty("id") JsonNullable<String> id,
@@ -41,6 +50,7 @@ public class Team {
         Utils.checkNotNull(name, "name");
         this.id = id;
         this.name = name;
+        this.additionalProperties = new HashMap<>();
     }
     
     public Team() {
@@ -61,6 +71,11 @@ public class Team {
     @JsonIgnore
     public JsonNullable<String> name() {
         return name;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
     }
 
     public static Builder builder() {
@@ -104,6 +119,19 @@ public class Team {
         return this;
     }
 
+    @JsonAnySetter
+    public Team withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public Team withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -115,20 +143,22 @@ public class Team {
         Team other = (Team) o;
         return 
             Utils.enhancedDeepEquals(this.id, other.id) &&
-            Utils.enhancedDeepEquals(this.name, other.name);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, name);
+            id, name, additionalProperties);
     }
     
     @Override
     public String toString() {
         return Utils.toString(Team.class,
                 "id", id,
-                "name", name);
+                "name", name,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -137,6 +167,8 @@ public class Team {
         private JsonNullable<String> id = JsonNullable.undefined();
 
         private JsonNullable<String> name = JsonNullable.undefined();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -180,10 +212,27 @@ public class Team {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public Team build() {
 
             return new Team(
-                id, name);
+                id, name)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

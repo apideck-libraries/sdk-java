@@ -37,6 +37,7 @@ public class Application {
 
         AccountingCategoriesAllRequest req = AccountingCategoriesAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .fields("id,updated_at")
                 .filter(CategoriesFilter.builder()
                     .type(CategoriesFilterType.EXPENSE)
@@ -106,6 +107,7 @@ public class Application {
         AccountingCategoriesOneRequest req = AccountingCategoriesOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .fields("id,updated_at")
                 .filter(CategoriesFilter.builder()
                     .type(CategoriesFilterType.EXPENSE)
@@ -117,7 +119,7 @@ public class Application {
                 .call();
 
         if (res.getCategoryResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getCategoryResponse().get());
         }
     }
 }

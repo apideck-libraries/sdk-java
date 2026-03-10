@@ -11,3 +11,4 @@
 | `code`                                 | *JsonNullable\<String>*                | :heavy_minus_sign:                     | The code assigned to the account.      | 453                                    |
 | `parentId`                             | *JsonNullable\<String>*                | :heavy_minus_sign:                     | The parent ID of the account.          | 123456                                 |
 | `displayId`                            | *JsonNullable\<String>*                | :heavy_minus_sign:                     | The display ID of the account.         | 123456                                 |
+| `additionalProperties`                 | Map\<String, *Object*>                 | :heavy_minus_sign:                     | N/A                                    |                                        |

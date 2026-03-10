@@ -6,43 +6,51 @@ package com.apideck.unify.models.components;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Optional;
 
 
 public class ConsentRecord {
     /**
      * Unique identifier for this consent record
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private String id;
+    private Optional<String> id;
 
     /**
      * ISO timestamp when consent was recorded
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("created_at")
-    private String createdAt;
+    private Optional<String> createdAt;
 
     /**
      * Whether consent was granted (true) or denied/revoked (false)
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("granted")
-    private boolean granted;
+    private Optional<Boolean> granted;
 
     /**
      * Data scopes resource configuration that can be either detailed field permissions or a wildcard
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resources")
-    private DataScopesResources resources;
+    private Optional<? extends DataScopesResources> resources;
 
     @JsonCreator
     public ConsentRecord(
-            @JsonProperty("id") String id,
-            @JsonProperty("created_at") String createdAt,
-            @JsonProperty("granted") boolean granted,
-            @JsonProperty("resources") DataScopesResources resources) {
+            @JsonProperty("id") Optional<String> id,
+            @JsonProperty("created_at") Optional<String> createdAt,
+            @JsonProperty("granted") Optional<Boolean> granted,
+            @JsonProperty("resources") Optional<? extends DataScopesResources> resources) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(granted, "granted");
@@ -52,12 +60,17 @@ public class ConsentRecord {
         this.granted = granted;
         this.resources = resources;
     }
+    
+    public ConsentRecord() {
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
+    }
 
     /**
      * Unique identifier for this consent record
      */
     @JsonIgnore
-    public String id() {
+    public Optional<String> id() {
         return id;
     }
 
@@ -65,7 +78,7 @@ public class ConsentRecord {
      * ISO timestamp when consent was recorded
      */
     @JsonIgnore
-    public String createdAt() {
+    public Optional<String> createdAt() {
         return createdAt;
     }
 
@@ -73,16 +86,17 @@ public class ConsentRecord {
      * Whether consent was granted (true) or denied/revoked (false)
      */
     @JsonIgnore
-    public boolean granted() {
+    public Optional<Boolean> granted() {
         return granted;
     }
 
     /**
      * Data scopes resource configuration that can be either detailed field permissions or a wildcard
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public DataScopesResources resources() {
-        return resources;
+    public Optional<DataScopesResources> resources() {
+        return (Optional<DataScopesResources>) resources;
     }
 
     public static Builder builder() {
@@ -95,6 +109,16 @@ public class ConsentRecord {
      */
     public ConsentRecord withId(String id) {
         Utils.checkNotNull(id, "id");
+        this.id = Optional.ofNullable(id);
+        return this;
+    }
+
+
+    /**
+     * Unique identifier for this consent record
+     */
+    public ConsentRecord withId(Optional<String> id) {
+        Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
@@ -103,6 +127,16 @@ public class ConsentRecord {
      * ISO timestamp when consent was recorded
      */
     public ConsentRecord withCreatedAt(String createdAt) {
+        Utils.checkNotNull(createdAt, "createdAt");
+        this.createdAt = Optional.ofNullable(createdAt);
+        return this;
+    }
+
+
+    /**
+     * ISO timestamp when consent was recorded
+     */
+    public ConsentRecord withCreatedAt(Optional<String> createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
@@ -113,6 +147,16 @@ public class ConsentRecord {
      */
     public ConsentRecord withGranted(boolean granted) {
         Utils.checkNotNull(granted, "granted");
+        this.granted = Optional.ofNullable(granted);
+        return this;
+    }
+
+
+    /**
+     * Whether consent was granted (true) or denied/revoked (false)
+     */
+    public ConsentRecord withGranted(Optional<Boolean> granted) {
+        Utils.checkNotNull(granted, "granted");
         this.granted = granted;
         return this;
     }
@@ -121,6 +165,16 @@ public class ConsentRecord {
      * Data scopes resource configuration that can be either detailed field permissions or a wildcard
      */
     public ConsentRecord withResources(DataScopesResources resources) {
+        Utils.checkNotNull(resources, "resources");
+        this.resources = Optional.ofNullable(resources);
+        return this;
+    }
+
+
+    /**
+     * Data scopes resource configuration that can be either detailed field permissions or a wildcard
+     */
+    public ConsentRecord withResources(Optional<? extends DataScopesResources> resources) {
         Utils.checkNotNull(resources, "resources");
         this.resources = resources;
         return this;
@@ -161,13 +215,13 @@ public class ConsentRecord {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String id;
+        private Optional<String> id = Optional.empty();
 
-        private String createdAt;
+        private Optional<String> createdAt = Optional.empty();
 
-        private Boolean granted;
+        private Optional<Boolean> granted = Optional.empty();
 
-        private DataScopesResources resources;
+        private Optional<? extends DataScopesResources> resources = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -179,6 +233,15 @@ public class ConsentRecord {
          */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
+            this.id = Optional.ofNullable(id);
+            return this;
+        }
+
+        /**
+         * Unique identifier for this consent record
+         */
+        public Builder id(Optional<String> id) {
+            Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
         }
@@ -188,6 +251,15 @@ public class ConsentRecord {
          * ISO timestamp when consent was recorded
          */
         public Builder createdAt(String createdAt) {
+            Utils.checkNotNull(createdAt, "createdAt");
+            this.createdAt = Optional.ofNullable(createdAt);
+            return this;
+        }
+
+        /**
+         * ISO timestamp when consent was recorded
+         */
+        public Builder createdAt(Optional<String> createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
             return this;
@@ -199,6 +271,15 @@ public class ConsentRecord {
          */
         public Builder granted(boolean granted) {
             Utils.checkNotNull(granted, "granted");
+            this.granted = Optional.ofNullable(granted);
+            return this;
+        }
+
+        /**
+         * Whether consent was granted (true) or denied/revoked (false)
+         */
+        public Builder granted(Optional<Boolean> granted) {
+            Utils.checkNotNull(granted, "granted");
             this.granted = granted;
             return this;
         }
@@ -208,6 +289,15 @@ public class ConsentRecord {
          * Data scopes resource configuration that can be either detailed field permissions or a wildcard
          */
         public Builder resources(DataScopesResources resources) {
+            Utils.checkNotNull(resources, "resources");
+            this.resources = Optional.ofNullable(resources);
+            return this;
+        }
+
+        /**
+         * Data scopes resource configuration that can be either detailed field permissions or a wildcard
+         */
+        public Builder resources(Optional<? extends DataScopesResources> resources) {
             Utils.checkNotNull(resources, "resources");
             this.resources = resources;
             return this;

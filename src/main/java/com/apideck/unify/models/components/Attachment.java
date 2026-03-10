@@ -4,17 +4,22 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Long;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -110,6 +115,10 @@ public class Attachment {
     @JsonProperty("pass_through")
     private Optional<? extends List<PassThroughBody>> passThrough;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public Attachment(
             @JsonProperty("id") Optional<String> id,
@@ -151,6 +160,7 @@ public class Attachment {
         this.updatedAt = updatedAt;
         this.createdAt = createdAt;
         this.passThrough = passThrough;
+        this.additionalProperties = new HashMap<>();
     }
     
     public Attachment() {
@@ -263,6 +273,11 @@ public class Attachment {
     @JsonIgnore
     public Optional<List<PassThroughBody>> passThrough() {
         return (Optional<List<PassThroughBody>>) passThrough;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
     }
 
     public static Builder builder() {
@@ -503,6 +518,19 @@ public class Attachment {
         return this;
     }
 
+    @JsonAnySetter
+    public Attachment withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public Attachment withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -525,7 +553,8 @@ public class Attachment {
             Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
             Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
-            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
@@ -535,7 +564,7 @@ public class Attachment {
             mimeType, size, reference,
             description, parentFolderId, updatedBy,
             createdBy, updatedAt, createdAt,
-            passThrough);
+            passThrough, additionalProperties);
     }
     
     @Override
@@ -553,7 +582,8 @@ public class Attachment {
                 "createdBy", createdBy,
                 "updatedAt", updatedAt,
                 "createdAt", createdAt,
-                "passThrough", passThrough);
+                "passThrough", passThrough,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -584,6 +614,8 @@ public class Attachment {
         private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
 
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -832,6 +864,22 @@ public class Attachment {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public Attachment build() {
 
             return new Attachment(
@@ -839,7 +887,8 @@ public class Attachment {
                 mimeType, size, reference,
                 description, parentFolderId, updatedBy,
                 createdBy, updatedAt, createdAt,
-                passThrough);
+                passThrough)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

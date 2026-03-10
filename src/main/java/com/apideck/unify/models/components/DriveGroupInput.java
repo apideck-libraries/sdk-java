@@ -4,15 +4,20 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -21,8 +26,9 @@ public class DriveGroupInput {
     /**
      * The name of the drive group
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
-    private String name;
+    private Optional<String> name;
 
     /**
      * The display name of the drive group
@@ -46,9 +52,13 @@ public class DriveGroupInput {
     @JsonProperty("pass_through")
     private Optional<? extends List<PassThroughBody>> passThrough;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public DriveGroupInput(
-            @JsonProperty("name") String name,
+            @JsonProperty("name") Optional<String> name,
             @JsonProperty("display_name") JsonNullable<String> displayName,
             @JsonProperty("description") JsonNullable<String> description,
             @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
@@ -60,11 +70,11 @@ public class DriveGroupInput {
         this.displayName = displayName;
         this.description = description;
         this.passThrough = passThrough;
+        this.additionalProperties = new HashMap<>();
     }
     
-    public DriveGroupInput(
-            String name) {
-        this(name, JsonNullable.undefined(), JsonNullable.undefined(),
+    public DriveGroupInput() {
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             Optional.empty());
     }
 
@@ -72,7 +82,7 @@ public class DriveGroupInput {
      * The name of the drive group
      */
     @JsonIgnore
-    public String name() {
+    public Optional<String> name() {
         return name;
     }
 
@@ -102,6 +112,11 @@ public class DriveGroupInput {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -111,6 +126,16 @@ public class DriveGroupInput {
      * The name of the drive group
      */
     public DriveGroupInput withName(String name) {
+        Utils.checkNotNull(name, "name");
+        this.name = Optional.ofNullable(name);
+        return this;
+    }
+
+
+    /**
+     * The name of the drive group
+     */
+    public DriveGroupInput withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
@@ -173,6 +198,19 @@ public class DriveGroupInput {
         return this;
     }
 
+    @JsonAnySetter
+    public DriveGroupInput withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public DriveGroupInput withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -186,14 +224,15 @@ public class DriveGroupInput {
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.displayName, other.displayName) &&
             Utils.enhancedDeepEquals(this.description, other.description) &&
-            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             name, displayName, description,
-            passThrough);
+            passThrough, additionalProperties);
     }
     
     @Override
@@ -202,19 +241,22 @@ public class DriveGroupInput {
                 "name", name,
                 "displayName", displayName,
                 "description", description,
-                "passThrough", passThrough);
+                "passThrough", passThrough,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String name;
+        private Optional<String> name = Optional.empty();
 
         private JsonNullable<String> displayName = JsonNullable.undefined();
 
         private JsonNullable<String> description = JsonNullable.undefined();
 
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -225,6 +267,15 @@ public class DriveGroupInput {
          * The name of the drive group
          */
         public Builder name(String name) {
+            Utils.checkNotNull(name, "name");
+            this.name = Optional.ofNullable(name);
+            return this;
+        }
+
+        /**
+         * The name of the drive group
+         */
+        public Builder name(Optional<String> name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
@@ -289,11 +340,28 @@ public class DriveGroupInput {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public DriveGroupInput build() {
 
             return new DriveGroupInput(
                 name, displayName, description,
-                passThrough);
+                passThrough)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

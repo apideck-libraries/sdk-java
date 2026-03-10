@@ -3,7 +3,7 @@
  */
 package com.apideck.unify.models.operations.async;
 
-import com.apideck.unify.models.components.GetCompaniesResponse;
+import com.apideck.unify.models.components.GetCompaniesResponse1;
 import com.apideck.unify.models.components.UnexpectedErrorResponse;
 import com.apideck.unify.utils.AsyncResponse;
 import com.apideck.unify.utils.Blob;
@@ -37,7 +37,7 @@ public class CrmCompaniesAllResponse implements AsyncResponse {
     /**
      * Companies
      */
-    private Optional<? extends GetCompaniesResponse> getCompaniesResponse;
+    private Optional<? extends GetCompaniesResponse1> getCompaniesResponse1;
 
     /**
      * Unexpected error
@@ -49,17 +49,17 @@ public class CrmCompaniesAllResponse implements AsyncResponse {
             String contentType,
             int statusCode,
             HttpResponse<Blob> rawResponse,
-            Optional<? extends GetCompaniesResponse> getCompaniesResponse,
+            Optional<? extends GetCompaniesResponse1> getCompaniesResponse1,
             Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(getCompaniesResponse, "getCompaniesResponse");
+        Utils.checkNotNull(getCompaniesResponse1, "getCompaniesResponse1");
         Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.getCompaniesResponse = getCompaniesResponse;
+        this.getCompaniesResponse1 = getCompaniesResponse1;
         this.unexpectedErrorResponse = unexpectedErrorResponse;
     }
     
@@ -100,8 +100,8 @@ public class CrmCompaniesAllResponse implements AsyncResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetCompaniesResponse> getCompaniesResponse() {
-        return (Optional<GetCompaniesResponse>) getCompaniesResponse;
+    public Optional<GetCompaniesResponse1> getCompaniesResponse1() {
+        return (Optional<GetCompaniesResponse1>) getCompaniesResponse1;
     }
 
     /**
@@ -148,9 +148,9 @@ public class CrmCompaniesAllResponse implements AsyncResponse {
     /**
      * Companies
      */
-    public CrmCompaniesAllResponse withGetCompaniesResponse(GetCompaniesResponse getCompaniesResponse) {
-        Utils.checkNotNull(getCompaniesResponse, "getCompaniesResponse");
-        this.getCompaniesResponse = Optional.ofNullable(getCompaniesResponse);
+    public CrmCompaniesAllResponse withGetCompaniesResponse1(GetCompaniesResponse1 getCompaniesResponse1) {
+        Utils.checkNotNull(getCompaniesResponse1, "getCompaniesResponse1");
+        this.getCompaniesResponse1 = Optional.ofNullable(getCompaniesResponse1);
         return this;
     }
 
@@ -158,9 +158,9 @@ public class CrmCompaniesAllResponse implements AsyncResponse {
     /**
      * Companies
      */
-    public CrmCompaniesAllResponse withGetCompaniesResponse(Optional<? extends GetCompaniesResponse> getCompaniesResponse) {
-        Utils.checkNotNull(getCompaniesResponse, "getCompaniesResponse");
-        this.getCompaniesResponse = getCompaniesResponse;
+    public CrmCompaniesAllResponse withGetCompaniesResponse1(Optional<? extends GetCompaniesResponse1> getCompaniesResponse1) {
+        Utils.checkNotNull(getCompaniesResponse1, "getCompaniesResponse1");
+        this.getCompaniesResponse1 = getCompaniesResponse1;
         return this;
     }
 
@@ -196,7 +196,7 @@ public class CrmCompaniesAllResponse implements AsyncResponse {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.getCompaniesResponse, other.getCompaniesResponse) &&
+            Utils.enhancedDeepEquals(this.getCompaniesResponse1, other.getCompaniesResponse1) &&
             Utils.enhancedDeepEquals(this.unexpectedErrorResponse, other.unexpectedErrorResponse);
     }
     
@@ -204,7 +204,7 @@ public class CrmCompaniesAllResponse implements AsyncResponse {
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            getCompaniesResponse, unexpectedErrorResponse);
+            getCompaniesResponse1, unexpectedErrorResponse);
     }
     
     @Override
@@ -213,7 +213,7 @@ public class CrmCompaniesAllResponse implements AsyncResponse {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "getCompaniesResponse", getCompaniesResponse,
+                "getCompaniesResponse1", getCompaniesResponse1,
                 "unexpectedErrorResponse", unexpectedErrorResponse);
     }
 
@@ -226,7 +226,7 @@ public class CrmCompaniesAllResponse implements AsyncResponse {
 
         private HttpResponse<Blob> rawResponse;
 
-        private Optional<? extends GetCompaniesResponse> getCompaniesResponse = Optional.empty();
+        private Optional<? extends GetCompaniesResponse1> getCompaniesResponse1 = Optional.empty();
 
         private Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse = Optional.empty();
 
@@ -268,18 +268,18 @@ public class CrmCompaniesAllResponse implements AsyncResponse {
         /**
          * Companies
          */
-        public Builder getCompaniesResponse(GetCompaniesResponse getCompaniesResponse) {
-            Utils.checkNotNull(getCompaniesResponse, "getCompaniesResponse");
-            this.getCompaniesResponse = Optional.ofNullable(getCompaniesResponse);
+        public Builder getCompaniesResponse1(GetCompaniesResponse1 getCompaniesResponse1) {
+            Utils.checkNotNull(getCompaniesResponse1, "getCompaniesResponse1");
+            this.getCompaniesResponse1 = Optional.ofNullable(getCompaniesResponse1);
             return this;
         }
 
         /**
          * Companies
          */
-        public Builder getCompaniesResponse(Optional<? extends GetCompaniesResponse> getCompaniesResponse) {
-            Utils.checkNotNull(getCompaniesResponse, "getCompaniesResponse");
-            this.getCompaniesResponse = getCompaniesResponse;
+        public Builder getCompaniesResponse1(Optional<? extends GetCompaniesResponse1> getCompaniesResponse1) {
+            Utils.checkNotNull(getCompaniesResponse1, "getCompaniesResponse1");
+            this.getCompaniesResponse1 = getCompaniesResponse1;
             return this;
         }
 
@@ -306,7 +306,7 @@ public class CrmCompaniesAllResponse implements AsyncResponse {
 
             return new CrmCompaniesAllResponse(
                 contentType, statusCode, rawResponse,
-                getCompaniesResponse, unexpectedErrorResponse);
+                getCompaniesResponse1, unexpectedErrorResponse);
         }
 
     }

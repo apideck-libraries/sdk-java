@@ -4,6 +4,8 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -15,6 +17,7 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -189,6 +192,10 @@ public class TaxRate {
     @JsonProperty("custom_fields")
     private Optional<? extends List<CustomField>> customFields;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public TaxRate(
             @JsonProperty("id") JsonNullable<String> id,
@@ -263,6 +270,7 @@ public class TaxRate {
         this.passThrough = passThrough;
         this.subsidiaries = subsidiaries;
         this.customFields = customFields;
+        this.additionalProperties = new HashMap<>();
     }
     
     public TaxRate() {
@@ -469,6 +477,11 @@ public class TaxRate {
     @JsonIgnore
     public Optional<List<CustomField>> customFields() {
         return (Optional<List<CustomField>>) customFields;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
     }
 
     public static Builder builder() {
@@ -906,6 +919,19 @@ public class TaxRate {
         return this;
     }
 
+    @JsonAnySetter
+    public TaxRate withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public TaxRate withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -939,7 +965,8 @@ public class TaxRate {
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
             Utils.enhancedDeepEquals(this.passThrough, other.passThrough) &&
             Utils.enhancedDeepEquals(this.subsidiaries, other.subsidiaries) &&
-            Utils.enhancedDeepEquals(this.customFields, other.customFields);
+            Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
@@ -952,7 +979,8 @@ public class TaxRate {
             reportTaxType, originalTaxRateId, status,
             customMappings, rowVersion, updatedBy,
             createdBy, updatedAt, createdAt,
-            passThrough, subsidiaries, customFields);
+            passThrough, subsidiaries, customFields,
+            additionalProperties);
     }
     
     @Override
@@ -981,7 +1009,8 @@ public class TaxRate {
                 "createdAt", createdAt,
                 "passThrough", passThrough,
                 "subsidiaries", subsidiaries,
-                "customFields", customFields);
+                "customFields", customFields,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -1034,6 +1063,8 @@ public class TaxRate {
         private Optional<? extends List<Subsidiaries>> subsidiaries = Optional.empty();
 
         private Optional<? extends List<CustomField>> customFields = Optional.empty();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -1489,6 +1520,22 @@ public class TaxRate {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public TaxRate build() {
 
             return new TaxRate(
@@ -1499,7 +1546,8 @@ public class TaxRate {
                 reportTaxType, originalTaxRateId, status,
                 customMappings, rowVersion, updatedBy,
                 createdBy, updatedAt, createdAt,
-                passThrough, subsidiaries, customFields);
+                passThrough, subsidiaries, customFields)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

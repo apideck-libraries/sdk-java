@@ -4,6 +4,8 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -12,11 +14,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Long;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -61,8 +66,9 @@ public class ExpenseReportLineItemInput {
     /**
      * The amount of the expense line item.
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amount")
-    private double amount;
+    private Optional<Double> amount;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -143,6 +149,10 @@ public class ExpenseReportLineItemInput {
     @JsonProperty("currency")
     private JsonNullable<? extends Currency> currency;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public ExpenseReportLineItemInput(
             @JsonProperty("line_number") JsonNullable<Long> lineNumber,
@@ -151,7 +161,7 @@ public class ExpenseReportLineItemInput {
             @JsonProperty("description") JsonNullable<String> description,
             @JsonProperty("quantity") JsonNullable<Double> quantity,
             @JsonProperty("unit_price") JsonNullable<Double> unitPrice,
-            @JsonProperty("amount") double amount,
+            @JsonProperty("amount") Optional<Double> amount,
             @JsonProperty("tax_rate") Optional<? extends LinkedTaxRateInput> taxRate,
             @JsonProperty("tax_amount") JsonNullable<Double> taxAmount,
             @JsonProperty("total_amount") JsonNullable<Double> totalAmount,
@@ -202,13 +212,13 @@ public class ExpenseReportLineItemInput {
         this.trackingCategories = trackingCategories;
         this.receiptUrl = receiptUrl;
         this.currency = currency;
+        this.additionalProperties = new HashMap<>();
     }
     
-    public ExpenseReportLineItemInput(
-            double amount) {
+    public ExpenseReportLineItemInput() {
         this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            amount, Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
@@ -260,7 +270,7 @@ public class ExpenseReportLineItemInput {
      * The amount of the expense line item.
      */
     @JsonIgnore
-    public double amount() {
+    public Optional<Double> amount() {
         return amount;
     }
 
@@ -356,6 +366,11 @@ public class ExpenseReportLineItemInput {
     @JsonIgnore
     public JsonNullable<Currency> currency() {
         return (JsonNullable<Currency>) currency;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
     }
 
     public static Builder builder() {
@@ -458,6 +473,16 @@ public class ExpenseReportLineItemInput {
      * The amount of the expense line item.
      */
     public ExpenseReportLineItemInput withAmount(double amount) {
+        Utils.checkNotNull(amount, "amount");
+        this.amount = Optional.ofNullable(amount);
+        return this;
+    }
+
+
+    /**
+     * The amount of the expense line item.
+     */
+    public ExpenseReportLineItemInput withAmount(Optional<Double> amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
         return this;
@@ -664,6 +689,19 @@ public class ExpenseReportLineItemInput {
         return this;
     }
 
+    @JsonAnySetter
+    public ExpenseReportLineItemInput withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public ExpenseReportLineItemInput withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -692,7 +730,8 @@ public class ExpenseReportLineItemInput {
             Utils.enhancedDeepEquals(this.location, other.location) &&
             Utils.enhancedDeepEquals(this.trackingCategories, other.trackingCategories) &&
             Utils.enhancedDeepEquals(this.receiptUrl, other.receiptUrl) &&
-            Utils.enhancedDeepEquals(this.currency, other.currency);
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
@@ -704,7 +743,7 @@ public class ExpenseReportLineItemInput {
             totalAmount, transactionDate, billable,
             reimbursable, customer, department,
             location, trackingCategories, receiptUrl,
-            currency);
+            currency, additionalProperties);
     }
     
     @Override
@@ -728,7 +767,8 @@ public class ExpenseReportLineItemInput {
                 "location", location,
                 "trackingCategories", trackingCategories,
                 "receiptUrl", receiptUrl,
-                "currency", currency);
+                "currency", currency,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -746,7 +786,7 @@ public class ExpenseReportLineItemInput {
 
         private JsonNullable<Double> unitPrice = JsonNullable.undefined();
 
-        private Double amount;
+        private Optional<Double> amount = Optional.empty();
 
         private Optional<? extends LinkedTaxRateInput> taxRate = Optional.empty();
 
@@ -771,6 +811,8 @@ public class ExpenseReportLineItemInput {
         private JsonNullable<String> receiptUrl = JsonNullable.undefined();
 
         private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -877,6 +919,15 @@ public class ExpenseReportLineItemInput {
          * The amount of the expense line item.
          */
         public Builder amount(double amount) {
+            Utils.checkNotNull(amount, "amount");
+            this.amount = Optional.ofNullable(amount);
+            return this;
+        }
+
+        /**
+         * The amount of the expense line item.
+         */
+        public Builder amount(Optional<Double> amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = amount;
             return this;
@@ -1094,6 +1145,22 @@ public class ExpenseReportLineItemInput {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public ExpenseReportLineItemInput build() {
 
             return new ExpenseReportLineItemInput(
@@ -1103,7 +1170,8 @@ public class ExpenseReportLineItemInput {
                 totalAmount, transactionDate, billable,
                 reimbursable, customer, department,
                 location, trackingCategories, receiptUrl,
-                currency);
+                currency)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

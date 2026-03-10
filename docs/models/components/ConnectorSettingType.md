@@ -1,5 +1,16 @@
 # ConnectorSettingType
 
+## Example Usage
+
+```java
+import com.apideck.unify.models.components.ConnectorSettingType;
+
+ConnectorSettingType value = ConnectorSettingType.TEXT;
+
+// Open enum: use .of() to create instances from custom string values
+ConnectorSettingType custom = ConnectorSettingType.of("custom_value");
+```
+
 
 ## Values
 

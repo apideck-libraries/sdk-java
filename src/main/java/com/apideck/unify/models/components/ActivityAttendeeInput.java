@@ -4,15 +4,20 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Boolean;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.HashMap;
+import java.util.Map;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -80,6 +85,10 @@ public class ActivityAttendeeInput {
     @JsonProperty("status")
     private JsonNullable<? extends ActivityAttendeeStatus> status;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public ActivityAttendeeInput(
             @JsonProperty("name") JsonNullable<String> name,
@@ -109,6 +118,7 @@ public class ActivityAttendeeInput {
         this.emailAddress = emailAddress;
         this.isOrganizer = isOrganizer;
         this.status = status;
+        this.additionalProperties = new HashMap<>();
     }
     
     public ActivityAttendeeInput() {
@@ -188,6 +198,11 @@ public class ActivityAttendeeInput {
     @JsonIgnore
     public JsonNullable<ActivityAttendeeStatus> status() {
         return (JsonNullable<ActivityAttendeeStatus>) status;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
     }
 
     public static Builder builder() {
@@ -357,6 +372,19 @@ public class ActivityAttendeeInput {
         return this;
     }
 
+    @JsonAnySetter
+    public ActivityAttendeeInput withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public ActivityAttendeeInput withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -375,7 +403,8 @@ public class ActivityAttendeeInput {
             Utils.enhancedDeepEquals(this.suffix, other.suffix) &&
             Utils.enhancedDeepEquals(this.emailAddress, other.emailAddress) &&
             Utils.enhancedDeepEquals(this.isOrganizer, other.isOrganizer) &&
-            Utils.enhancedDeepEquals(this.status, other.status);
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
@@ -383,7 +412,8 @@ public class ActivityAttendeeInput {
         return Utils.enhancedHash(
             name, firstName, middleName,
             lastName, prefix, suffix,
-            emailAddress, isOrganizer, status);
+            emailAddress, isOrganizer, status,
+            additionalProperties);
     }
     
     @Override
@@ -397,7 +427,8 @@ public class ActivityAttendeeInput {
                 "suffix", suffix,
                 "emailAddress", emailAddress,
                 "isOrganizer", isOrganizer,
-                "status", status);
+                "status", status,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -420,6 +451,8 @@ public class ActivityAttendeeInput {
         private JsonNullable<Boolean> isOrganizer = JsonNullable.undefined();
 
         private JsonNullable<? extends ActivityAttendeeStatus> status = JsonNullable.undefined();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -596,12 +629,29 @@ public class ActivityAttendeeInput {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public ActivityAttendeeInput build() {
 
             return new ActivityAttendeeInput(
                 name, firstName, middleName,
                 lastName, prefix, suffix,
-                emailAddress, isOrganizer, status);
+                emailAddress, isOrganizer, status)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

@@ -4,6 +4,8 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -11,10 +13,13 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Boolean;
 import java.lang.Long;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -135,9 +140,9 @@ public class ActivityInput {
     /**
      * The type of the activity
      */
-    @JsonInclude(Include.ALWAYS)
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
-    private Optional<? extends ActivityType> type;
+    private JsonNullable<? extends ActivityType> type;
 
     /**
      * The title of the activity
@@ -323,6 +328,10 @@ public class ActivityInput {
     @JsonProperty("pass_through")
     private Optional<? extends List<PassThroughBody>> passThrough;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public ActivityInput(
             @JsonProperty("activity_datetime") JsonNullable<String> activityDatetime,
@@ -341,7 +350,7 @@ public class ActivityInput {
             @JsonProperty("product_id") JsonNullable<String> productId,
             @JsonProperty("solution_id") JsonNullable<String> solutionId,
             @JsonProperty("custom_object_id") JsonNullable<String> customObjectId,
-            @JsonProperty("type") Optional<? extends ActivityType> type,
+            @JsonProperty("type") JsonNullable<? extends ActivityType> type,
             @JsonProperty("title") JsonNullable<String> title,
             @JsonProperty("description") JsonNullable<String> description,
             @JsonProperty("note") JsonNullable<String> note,
@@ -457,6 +466,7 @@ public class ActivityInput {
         this.customFields = customFields;
         this.attendees = attendees;
         this.passThrough = passThrough;
+        this.additionalProperties = new HashMap<>();
     }
     
     public ActivityInput() {
@@ -465,7 +475,7 @@ public class ActivityInput {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
@@ -610,8 +620,8 @@ public class ActivityInput {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ActivityType> type() {
-        return (Optional<ActivityType>) type;
+    public JsonNullable<ActivityType> type() {
+        return (JsonNullable<ActivityType>) type;
     }
 
     /**
@@ -825,6 +835,11 @@ public class ActivityInput {
     @JsonIgnore
     public Optional<List<PassThroughBody>> passThrough() {
         return (Optional<List<PassThroughBody>>) passThrough;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
     }
 
     public static Builder builder() {
@@ -1125,15 +1140,14 @@ public class ActivityInput {
      */
     public ActivityInput withType(ActivityType type) {
         Utils.checkNotNull(type, "type");
-        this.type = Optional.ofNullable(type);
+        this.type = JsonNullable.of(type);
         return this;
     }
-
 
     /**
      * The type of the activity
      */
-    public ActivityInput withType(Optional<? extends ActivityType> type) {
+    public ActivityInput withType(JsonNullable<? extends ActivityType> type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
@@ -1614,6 +1628,19 @@ public class ActivityInput {
         return this;
     }
 
+    @JsonAnySetter
+    public ActivityInput withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public ActivityInput withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -1667,7 +1694,8 @@ public class ActivityInput {
             Utils.enhancedDeepEquals(this.videoConferenceId, other.videoConferenceId) &&
             Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
             Utils.enhancedDeepEquals(this.attendees, other.attendees) &&
-            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
@@ -1687,7 +1715,7 @@ public class ActivityInput {
             endDatetime, activityDate, endDate,
             recurrent, reminderDatetime, reminderSet,
             videoConferenceUrl, videoConferenceId, customFields,
-            attendees, passThrough);
+            attendees, passThrough, additionalProperties);
     }
     
     @Override
@@ -1736,7 +1764,8 @@ public class ActivityInput {
                 "videoConferenceId", videoConferenceId,
                 "customFields", customFields,
                 "attendees", attendees,
-                "passThrough", passThrough);
+                "passThrough", passThrough,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -1774,7 +1803,7 @@ public class ActivityInput {
 
         private JsonNullable<String> customObjectId = JsonNullable.undefined();
 
-        private Optional<? extends ActivityType> type = Optional.empty();
+        private JsonNullable<? extends ActivityType> type = JsonNullable.undefined();
 
         private JsonNullable<String> title = JsonNullable.undefined();
 
@@ -1829,6 +1858,8 @@ public class ActivityInput {
         private Optional<? extends List<ActivityAttendeeInput>> attendees = Optional.empty();
 
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -2144,14 +2175,14 @@ public class ActivityInput {
          */
         public Builder type(ActivityType type) {
             Utils.checkNotNull(type, "type");
-            this.type = Optional.ofNullable(type);
+            this.type = JsonNullable.of(type);
             return this;
         }
 
         /**
          * The type of the activity
          */
-        public Builder type(Optional<? extends ActivityType> type) {
+        public Builder type(JsonNullable<? extends ActivityType> type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;
@@ -2654,6 +2685,22 @@ public class ActivityInput {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public ActivityInput build() {
 
             return new ActivityInput(
@@ -2671,7 +2718,8 @@ public class ActivityInput {
                 endDatetime, activityDate, endDate,
                 recurrent, reminderDatetime, reminderSet,
                 videoConferenceUrl, videoConferenceId, customFields,
-                attendees, passThrough);
+                attendees, passThrough)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

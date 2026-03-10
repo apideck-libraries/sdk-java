@@ -4,6 +4,8 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -12,10 +14,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Deprecated;
 import java.lang.Double;
 import java.lang.Long;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -106,9 +111,9 @@ public class ExpenseLineItemInput {
     /**
      * The total amount of the expense line item.
      */
-    @JsonInclude(Include.ALWAYS)
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("total_amount")
-    private Optional<Double> totalAmount;
+    private JsonNullable<Double> totalAmount;
 
     /**
      * Tax amount
@@ -146,6 +151,10 @@ public class ExpenseLineItemInput {
     @JsonProperty("rebilling")
     private JsonNullable<? extends Rebilling> rebilling;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public ExpenseLineItemInput(
             @JsonProperty("tracking_categories") JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories,
@@ -160,7 +169,7 @@ public class ExpenseLineItemInput {
             @JsonProperty("tax_rate") Optional<? extends LinkedTaxRateInput> taxRate,
             @JsonProperty("description") JsonNullable<String> description,
             @JsonProperty("type") JsonNullable<? extends LineItemType> type,
-            @JsonProperty("total_amount") Optional<Double> totalAmount,
+            @JsonProperty("total_amount") JsonNullable<Double> totalAmount,
             @JsonProperty("tax_amount") JsonNullable<Double> taxAmount,
             @JsonProperty("quantity") JsonNullable<Double> quantity,
             @JsonProperty("unit_price") JsonNullable<Double> unitPrice,
@@ -205,6 +214,7 @@ public class ExpenseLineItemInput {
         this.item = item;
         this.lineNumber = lineNumber;
         this.rebilling = rebilling;
+        this.additionalProperties = new HashMap<>();
     }
     
     public ExpenseLineItemInput() {
@@ -212,7 +222,7 @@ public class ExpenseLineItemInput {
             Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined());
     }
@@ -318,7 +328,7 @@ public class ExpenseLineItemInput {
      * The total amount of the expense line item.
      */
     @JsonIgnore
-    public Optional<Double> totalAmount() {
+    public JsonNullable<Double> totalAmount() {
         return totalAmount;
     }
 
@@ -361,6 +371,11 @@ public class ExpenseLineItemInput {
     @JsonIgnore
     public JsonNullable<Rebilling> rebilling() {
         return (JsonNullable<Rebilling>) rebilling;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
     }
 
     public static Builder builder() {
@@ -580,15 +595,14 @@ public class ExpenseLineItemInput {
      */
     public ExpenseLineItemInput withTotalAmount(double totalAmount) {
         Utils.checkNotNull(totalAmount, "totalAmount");
-        this.totalAmount = Optional.ofNullable(totalAmount);
+        this.totalAmount = JsonNullable.of(totalAmount);
         return this;
     }
-
 
     /**
      * The total amount of the expense line item.
      */
-    public ExpenseLineItemInput withTotalAmount(Optional<Double> totalAmount) {
+    public ExpenseLineItemInput withTotalAmount(JsonNullable<Double> totalAmount) {
         Utils.checkNotNull(totalAmount, "totalAmount");
         this.totalAmount = totalAmount;
         return this;
@@ -685,6 +699,19 @@ public class ExpenseLineItemInput {
         return this;
     }
 
+    @JsonAnySetter
+    public ExpenseLineItemInput withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public ExpenseLineItemInput withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -713,7 +740,8 @@ public class ExpenseLineItemInput {
             Utils.enhancedDeepEquals(this.unitPrice, other.unitPrice) &&
             Utils.enhancedDeepEquals(this.item, other.item) &&
             Utils.enhancedDeepEquals(this.lineNumber, other.lineNumber) &&
-            Utils.enhancedDeepEquals(this.rebilling, other.rebilling);
+            Utils.enhancedDeepEquals(this.rebilling, other.rebilling) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
@@ -725,7 +753,7 @@ public class ExpenseLineItemInput {
             taxRate, description, type,
             totalAmount, taxAmount, quantity,
             unitPrice, item, lineNumber,
-            rebilling);
+            rebilling, additionalProperties);
     }
     
     @Override
@@ -749,7 +777,8 @@ public class ExpenseLineItemInput {
                 "unitPrice", unitPrice,
                 "item", item,
                 "lineNumber", lineNumber,
-                "rebilling", rebilling);
+                "rebilling", rebilling,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -781,7 +810,7 @@ public class ExpenseLineItemInput {
 
         private JsonNullable<? extends LineItemType> type = JsonNullable.undefined();
 
-        private Optional<Double> totalAmount = Optional.empty();
+        private JsonNullable<Double> totalAmount = JsonNullable.undefined();
 
         private JsonNullable<Double> taxAmount = JsonNullable.undefined();
 
@@ -794,6 +823,8 @@ public class ExpenseLineItemInput {
         private JsonNullable<Long> lineNumber = JsonNullable.undefined();
 
         private JsonNullable<? extends Rebilling> rebilling = JsonNullable.undefined();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -1021,14 +1052,14 @@ public class ExpenseLineItemInput {
          */
         public Builder totalAmount(double totalAmount) {
             Utils.checkNotNull(totalAmount, "totalAmount");
-            this.totalAmount = Optional.ofNullable(totalAmount);
+            this.totalAmount = JsonNullable.of(totalAmount);
             return this;
         }
 
         /**
          * The total amount of the expense line item.
          */
-        public Builder totalAmount(Optional<Double> totalAmount) {
+        public Builder totalAmount(JsonNullable<Double> totalAmount) {
             Utils.checkNotNull(totalAmount, "totalAmount");
             this.totalAmount = totalAmount;
             return this;
@@ -1130,6 +1161,22 @@ public class ExpenseLineItemInput {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public ExpenseLineItemInput build() {
 
             return new ExpenseLineItemInput(
@@ -1139,7 +1186,8 @@ public class ExpenseLineItemInput {
                 taxRate, description, type,
                 totalAmount, taxAmount, quantity,
                 unitPrice, item, lineNumber,
-                rebilling);
+                rebilling)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

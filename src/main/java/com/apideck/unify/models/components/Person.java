@@ -4,6 +4,8 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -14,6 +16,7 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.Map;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -82,6 +85,10 @@ public class Person {
     @JsonProperty("custom_mappings")
     private JsonNullable<? extends Map<String, Object>> customMappings;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public Person(
             @JsonProperty("id") JsonNullable<String> id,
@@ -111,6 +118,7 @@ public class Person {
         this.birthday = birthday;
         this.deceasedOn = deceasedOn;
         this.customMappings = customMappings;
+        this.additionalProperties = new HashMap<>();
     }
     
     public Person() {
@@ -191,6 +199,11 @@ public class Person {
     @JsonIgnore
     public JsonNullable<Map<String, Object>> customMappings() {
         return (JsonNullable<Map<String, Object>>) customMappings;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
     }
 
     public static Builder builder() {
@@ -360,6 +373,19 @@ public class Person {
         return this;
     }
 
+    @JsonAnySetter
+    public Person withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public Person withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -378,7 +404,8 @@ public class Person {
             Utils.enhancedDeepEquals(this.initials, other.initials) &&
             Utils.enhancedDeepEquals(this.birthday, other.birthday) &&
             Utils.enhancedDeepEquals(this.deceasedOn, other.deceasedOn) &&
-            Utils.enhancedDeepEquals(this.customMappings, other.customMappings);
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
@@ -386,7 +413,8 @@ public class Person {
         return Utils.enhancedHash(
             id, firstName, lastName,
             middleName, gender, initials,
-            birthday, deceasedOn, customMappings);
+            birthday, deceasedOn, customMappings,
+            additionalProperties);
     }
     
     @Override
@@ -400,7 +428,8 @@ public class Person {
                 "initials", initials,
                 "birthday", birthday,
                 "deceasedOn", deceasedOn,
-                "customMappings", customMappings);
+                "customMappings", customMappings,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -423,6 +452,8 @@ public class Person {
         private JsonNullable<LocalDate> deceasedOn = JsonNullable.undefined();
 
         private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -599,12 +630,29 @@ public class Person {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public Person build() {
 
             return new Person(
                 id, firstName, lastName,
                 middleName, gender, initials,
-                birthday, deceasedOn, customMappings);
+                birthday, deceasedOn, customMappings)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

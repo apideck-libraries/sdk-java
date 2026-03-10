@@ -4,6 +4,8 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -11,9 +13,12 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Boolean;
 import java.lang.Long;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
+import java.util.HashMap;
+import java.util.Map;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -74,6 +79,10 @@ public class Stages {
     @JsonProperty("updated_at")
     private JsonNullable<OffsetDateTime> updatedAt;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public Stages(
             @JsonProperty("id") JsonNullable<String> id,
@@ -100,6 +109,7 @@ public class Stages {
         this.archived = archived;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.additionalProperties = new HashMap<>();
     }
     
     public Stages() {
@@ -170,6 +180,11 @@ public class Stages {
     @JsonIgnore
     public JsonNullable<OffsetDateTime> updatedAt() {
         return updatedAt;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
     }
 
     public static Builder builder() {
@@ -321,6 +336,19 @@ public class Stages {
         return this;
     }
 
+    @JsonAnySetter
+    public Stages withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public Stages withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -338,7 +366,8 @@ public class Stages {
             Utils.enhancedDeepEquals(this.displayOrder, other.displayOrder) &&
             Utils.enhancedDeepEquals(this.archived, other.archived) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
-            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt);
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
@@ -346,7 +375,7 @@ public class Stages {
         return Utils.enhancedHash(
             id, name, value,
             winProbability, displayOrder, archived,
-            createdAt, updatedAt);
+            createdAt, updatedAt, additionalProperties);
     }
     
     @Override
@@ -359,7 +388,8 @@ public class Stages {
                 "displayOrder", displayOrder,
                 "archived", archived,
                 "createdAt", createdAt,
-                "updatedAt", updatedAt);
+                "updatedAt", updatedAt,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -380,6 +410,8 @@ public class Stages {
         private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
 
         private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -537,12 +569,29 @@ public class Stages {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public Stages build() {
 
             return new Stages(
                 id, name, value,
                 winProbability, displayOrder, archived,
-                createdAt, updatedAt);
+                createdAt, updatedAt)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

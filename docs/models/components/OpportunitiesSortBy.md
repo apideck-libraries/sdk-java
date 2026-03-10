@@ -2,6 +2,17 @@
 
 The field on which to sort the Opportunities
 
+## Example Usage
+
+```java
+import com.apideck.unify.models.components.OpportunitiesSortBy;
+
+OpportunitiesSortBy value = OpportunitiesSortBy.CREATED_AT;
+
+// Open enum: use .of() to create instances from custom string values
+OpportunitiesSortBy custom = OpportunitiesSortBy.of("custom_value");
+```
+
 
 ## Values
 

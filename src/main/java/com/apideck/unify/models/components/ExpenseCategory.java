@@ -4,6 +4,8 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -16,6 +18,7 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -40,8 +43,9 @@ public class ExpenseCategory {
     /**
      * The name of the expense category.
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
-    private String name;
+    private Optional<String> name;
 
     /**
      * The code or external identifier of the expense category.
@@ -151,11 +155,15 @@ public class ExpenseCategory {
     @JsonProperty("pass_through")
     private Optional<? extends List<PassThroughBody>> passThrough;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public ExpenseCategory(
             @JsonProperty("id") Optional<String> id,
             @JsonProperty("display_id") JsonNullable<String> displayId,
-            @JsonProperty("name") String name,
+            @JsonProperty("name") Optional<String> name,
             @JsonProperty("code") JsonNullable<String> code,
             @JsonProperty("description") JsonNullable<String> description,
             @JsonProperty("status") JsonNullable<? extends ExpenseCategoryStatus> status,
@@ -210,11 +218,11 @@ public class ExpenseCategory {
         this.updatedAt = updatedAt;
         this.createdAt = createdAt;
         this.passThrough = passThrough;
+        this.additionalProperties = new HashMap<>();
     }
     
-    public ExpenseCategory(
-            String name) {
-        this(Optional.empty(), JsonNullable.undefined(), name,
+    public ExpenseCategory() {
+        this(Optional.empty(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
@@ -243,7 +251,7 @@ public class ExpenseCategory {
      * The name of the expense category.
      */
     @JsonIgnore
-    public String name() {
+    public Optional<String> name() {
         return name;
     }
 
@@ -374,6 +382,11 @@ public class ExpenseCategory {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -420,6 +433,16 @@ public class ExpenseCategory {
      * The name of the expense category.
      */
     public ExpenseCategory withName(String name) {
+        Utils.checkNotNull(name, "name");
+        this.name = Optional.ofNullable(name);
+        return this;
+    }
+
+
+    /**
+     * The name of the expense category.
+     */
+    public ExpenseCategory withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
@@ -701,6 +724,19 @@ public class ExpenseCategory {
         return this;
     }
 
+    @JsonAnySetter
+    public ExpenseCategory withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public ExpenseCategory withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -729,7 +765,8 @@ public class ExpenseCategory {
             Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
             Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
-            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
@@ -741,7 +778,7 @@ public class ExpenseCategory {
             rateRequired, defaultRate, customMappings,
             downstreamId, rowVersion, updatedBy,
             createdBy, updatedAt, createdAt,
-            passThrough);
+            passThrough, additionalProperties);
     }
     
     @Override
@@ -765,7 +802,8 @@ public class ExpenseCategory {
                 "createdBy", createdBy,
                 "updatedAt", updatedAt,
                 "createdAt", createdAt,
-                "passThrough", passThrough);
+                "passThrough", passThrough,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -775,7 +813,7 @@ public class ExpenseCategory {
 
         private JsonNullable<String> displayId = JsonNullable.undefined();
 
-        private String name;
+        private Optional<String> name = Optional.empty();
 
         private JsonNullable<String> code = JsonNullable.undefined();
 
@@ -808,6 +846,8 @@ public class ExpenseCategory {
         private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
 
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -856,6 +896,15 @@ public class ExpenseCategory {
          * The name of the expense category.
          */
         public Builder name(String name) {
+            Utils.checkNotNull(name, "name");
+            this.name = Optional.ofNullable(name);
+            return this;
+        }
+
+        /**
+         * The name of the expense category.
+         */
+        public Builder name(Optional<String> name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
@@ -1151,6 +1200,22 @@ public class ExpenseCategory {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public ExpenseCategory build() {
 
             return new ExpenseCategory(
@@ -1160,7 +1225,8 @@ public class ExpenseCategory {
                 rateRequired, defaultRate, customMappings,
                 downstreamId, rowVersion, updatedBy,
                 createdBy, updatedAt, createdAt,
-                passThrough);
+                passThrough)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

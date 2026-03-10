@@ -47,6 +47,13 @@ public class AccountingAgedCreditorsOneRequest {
     private Optional<String> serviceId;
 
     /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-company-id")
+    private Optional<String> companyId;
+
+    /**
      * Apply filters
      */
     @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=filter")
@@ -79,6 +86,7 @@ public class AccountingAgedCreditorsOneRequest {
             Optional<String> consumerId,
             Optional<String> appId,
             Optional<String> serviceId,
+            Optional<String> companyId,
             Optional<? extends AgedReportFilter> filter,
             Optional<? extends Map<String, Object>> passThrough,
             JsonNullable<String> fields) {
@@ -86,6 +94,7 @@ public class AccountingAgedCreditorsOneRequest {
         Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(serviceId, "serviceId");
+        Utils.checkNotNull(companyId, "companyId");
         Utils.checkNotNull(filter, "filter");
         Utils.checkNotNull(passThrough, "passThrough");
         Utils.checkNotNull(fields, "fields");
@@ -93,6 +102,7 @@ public class AccountingAgedCreditorsOneRequest {
         this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
+        this.companyId = companyId;
         this.filter = filter;
         this.passThrough = passThrough;
         this.fields = fields;
@@ -101,7 +111,7 @@ public class AccountingAgedCreditorsOneRequest {
     public AccountingAgedCreditorsOneRequest() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            JsonNullable.undefined());
+            Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -135,6 +145,15 @@ public class AccountingAgedCreditorsOneRequest {
     @JsonIgnore
     public Optional<String> serviceId() {
         return serviceId;
+    }
+
+    /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    @JsonIgnore
+    public Optional<String> companyId() {
+        return companyId;
     }
 
     /**
@@ -256,6 +275,27 @@ public class AccountingAgedCreditorsOneRequest {
     }
 
     /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    public AccountingAgedCreditorsOneRequest withCompanyId(String companyId) {
+        Utils.checkNotNull(companyId, "companyId");
+        this.companyId = Optional.ofNullable(companyId);
+        return this;
+    }
+
+
+    /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    public AccountingAgedCreditorsOneRequest withCompanyId(Optional<String> companyId) {
+        Utils.checkNotNull(companyId, "companyId");
+        this.companyId = companyId;
+        return this;
+    }
+
+    /**
      * Apply filters
      */
     public AccountingAgedCreditorsOneRequest withFilter(AgedReportFilter filter) {
@@ -343,6 +383,7 @@ public class AccountingAgedCreditorsOneRequest {
             Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
             Utils.enhancedDeepEquals(this.appId, other.appId) &&
             Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
             Utils.enhancedDeepEquals(this.filter, other.filter) &&
             Utils.enhancedDeepEquals(this.passThrough, other.passThrough) &&
             Utils.enhancedDeepEquals(this.fields, other.fields);
@@ -352,8 +393,8 @@ public class AccountingAgedCreditorsOneRequest {
     public int hashCode() {
         return Utils.enhancedHash(
             raw, consumerId, appId,
-            serviceId, filter, passThrough,
-            fields);
+            serviceId, companyId, filter,
+            passThrough, fields);
     }
     
     @Override
@@ -363,6 +404,7 @@ public class AccountingAgedCreditorsOneRequest {
                 "consumerId", consumerId,
                 "appId", appId,
                 "serviceId", serviceId,
+                "companyId", companyId,
                 "filter", filter,
                 "passThrough", passThrough,
                 "fields", fields);
@@ -378,6 +420,8 @@ public class AccountingAgedCreditorsOneRequest {
         private Optional<String> appId = Optional.empty();
 
         private Optional<String> serviceId = Optional.empty();
+
+        private Optional<String> companyId = Optional.empty();
 
         private Optional<? extends AgedReportFilter> filter = Optional.empty();
 
@@ -469,6 +513,27 @@ public class AccountingAgedCreditorsOneRequest {
 
 
         /**
+         * The ID of the company to scope requests to. For connectors that support multi-company, this
+         * overrides the default company configured in connection settings.
+         */
+        public Builder companyId(String companyId) {
+            Utils.checkNotNull(companyId, "companyId");
+            this.companyId = Optional.ofNullable(companyId);
+            return this;
+        }
+
+        /**
+         * The ID of the company to scope requests to. For connectors that support multi-company, this
+         * overrides the default company configured in connection settings.
+         */
+        public Builder companyId(Optional<String> companyId) {
+            Utils.checkNotNull(companyId, "companyId");
+            this.companyId = companyId;
+            return this;
+        }
+
+
+        /**
          * Apply filters
          */
         public Builder filter(AgedReportFilter filter) {
@@ -549,8 +614,8 @@ public class AccountingAgedCreditorsOneRequest {
 
             return new AccountingAgedCreditorsOneRequest(
                 raw, consumerId, appId,
-                serviceId, filter, passThrough,
-                fields);
+                serviceId, companyId, filter,
+                passThrough, fields);
         }
 
 

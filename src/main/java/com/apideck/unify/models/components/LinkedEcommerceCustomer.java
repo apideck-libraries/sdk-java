@@ -4,15 +4,20 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -66,6 +71,10 @@ public class LinkedEcommerceCustomer {
     @JsonProperty("emails")
     private JsonNullable<? extends List<Email>> emails;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public LinkedEcommerceCustomer(
             @JsonProperty("id") JsonNullable<String> id,
@@ -89,6 +98,7 @@ public class LinkedEcommerceCustomer {
         this.companyName = companyName;
         this.phoneNumbers = phoneNumbers;
         this.emails = emails;
+        this.additionalProperties = new HashMap<>();
     }
     
     public LinkedEcommerceCustomer() {
@@ -147,6 +157,11 @@ public class LinkedEcommerceCustomer {
     @JsonIgnore
     public JsonNullable<List<Email>> emails() {
         return (JsonNullable<List<Email>>) emails;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
     }
 
     public static Builder builder() {
@@ -268,6 +283,19 @@ public class LinkedEcommerceCustomer {
         return this;
     }
 
+    @JsonAnySetter
+    public LinkedEcommerceCustomer withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public LinkedEcommerceCustomer withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -284,7 +312,8 @@ public class LinkedEcommerceCustomer {
             Utils.enhancedDeepEquals(this.lastName, other.lastName) &&
             Utils.enhancedDeepEquals(this.companyName, other.companyName) &&
             Utils.enhancedDeepEquals(this.phoneNumbers, other.phoneNumbers) &&
-            Utils.enhancedDeepEquals(this.emails, other.emails);
+            Utils.enhancedDeepEquals(this.emails, other.emails) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
@@ -292,7 +321,7 @@ public class LinkedEcommerceCustomer {
         return Utils.enhancedHash(
             id, name, firstName,
             lastName, companyName, phoneNumbers,
-            emails);
+            emails, additionalProperties);
     }
     
     @Override
@@ -304,7 +333,8 @@ public class LinkedEcommerceCustomer {
                 "lastName", lastName,
                 "companyName", companyName,
                 "phoneNumbers", phoneNumbers,
-                "emails", emails);
+                "emails", emails,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -323,6 +353,8 @@ public class LinkedEcommerceCustomer {
         private JsonNullable<? extends List<PhoneNumber>> phoneNumbers = JsonNullable.undefined();
 
         private JsonNullable<? extends List<Email>> emails = JsonNullable.undefined();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -449,12 +481,29 @@ public class LinkedEcommerceCustomer {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public LinkedEcommerceCustomer build() {
 
             return new LinkedEcommerceCustomer(
                 id, name, firstName,
                 lastName, companyName, phoneNumbers,
-                emails);
+                emails)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

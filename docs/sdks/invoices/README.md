@@ -41,6 +41,7 @@ public class Application {
 
         AccountingInvoicesAllRequest req = AccountingInvoicesAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .filter(InvoicesFilter.builder()
                     .updatedSince(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
                     .createdSince(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
@@ -186,18 +187,18 @@ public class Application {
                                     .build()))
                             .ledgerAccount(JsonNullable.of(null))
                             .customFields(List.of(
-                                CustomField.of(CustomField1.builder()
+                                CustomField.builder()
                                     .id("2389328923893298")
                                     .name("employee_level")
                                     .description("Employee Level")
-                                    .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                                    .build()),
-                                CustomField.of(CustomField1.builder()
+                                    .value(Value.of("Uses Salesforce and Marketo"))
+                                    .build(),
+                                CustomField.builder()
                                     .id("2389328923893298")
                                     .name("employee_level")
                                     .description("Employee Level")
-                                    .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                                    .build())))
+                                    .value(Value.of("Uses Salesforce and Marketo"))
+                                    .build()))
                             .rowVersion("1-12345")
                             .build()))
                     .billingAddress(Address.builder()
@@ -283,24 +284,24 @@ public class Application {
                         .code("453")
                         .build())
                     .customFields(List.of(
-                        CustomField.of(CustomField1.builder()
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build()),
-                        CustomField.of(CustomField1.builder()
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build(),
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build()),
-                        CustomField.of(CustomField1.builder()
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build(),
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build())))
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build()))
                     .rowVersion("1-12345")
                     .passThrough(List.of(
                         PassThroughBody.builder()
@@ -321,6 +322,7 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingInvoicesAddResponse res = sdk.accounting().invoices().create()
@@ -328,7 +330,7 @@ public class Application {
                 .call();
 
         if (res.createInvoiceResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createInvoiceResponse().get());
         }
     }
 }
@@ -384,6 +386,7 @@ public class Application {
         AccountingInvoicesOneRequest req = AccountingInvoicesOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .fields("id,updated_at")
                 .build();
 
@@ -392,7 +395,7 @@ public class Application {
                 .call();
 
         if (res.getInvoiceResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getInvoiceResponse().get());
         }
     }
 }
@@ -531,24 +534,24 @@ public class Application {
                                 .code("453")
                                 .build())
                             .customFields(List.of(
-                                CustomField.of(CustomField1.builder()
+                                CustomField.builder()
                                     .id("2389328923893298")
                                     .name("employee_level")
                                     .description("Employee Level")
                                     .value(JsonNullable.of(null))
-                                    .build()),
-                                CustomField.of(CustomField1.builder()
+                                    .build(),
+                                CustomField.builder()
                                     .id("2389328923893298")
                                     .name("employee_level")
                                     .description("Employee Level")
                                     .value(JsonNullable.of(null))
-                                    .build()),
-                                CustomField.of(CustomField1.builder()
+                                    .build(),
+                                CustomField.builder()
                                     .id("2389328923893298")
                                     .name("employee_level")
                                     .description("Employee Level")
                                     .value(JsonNullable.of(null))
-                                    .build())))
+                                    .build()))
                             .rowVersion("1-12345")
                             .build()))
                     .billingAddress(Address.builder()
@@ -639,12 +642,12 @@ public class Application {
                         .code("453")
                         .build())
                     .customFields(List.of(
-                        CustomField.of(CustomField1.builder()
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
                             .value(JsonNullable.of(null))
-                            .build())))
+                            .build()))
                     .rowVersion("1-12345")
                     .passThrough(List.of(
                         PassThroughBody.builder()
@@ -722,7 +725,7 @@ public class Application {
                 .call();
 
         if (res.updateInvoiceResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateInvoiceResponse().get());
         }
     }
 }
@@ -785,7 +788,7 @@ public class Application {
                 .call();
 
         if (res.deleteInvoiceResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteInvoiceResponse().get());
         }
     }
 }

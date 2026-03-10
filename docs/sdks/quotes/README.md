@@ -38,6 +38,7 @@ public class Application {
 
         AccountingQuotesAllRequest req = AccountingQuotesAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
 
@@ -117,6 +118,7 @@ public class Application {
                     .quoteDate(LocalDate.parse("2020-09-30"))
                     .expiryDate(LocalDate.parse("2020-10-30"))
                     .terms("Valid for 30 days")
+                    .termsId("12345")
                     .reference("INV-2024-001")
                     .status(QuoteStatus.DRAFT)
                     .currency(Currency.USD)
@@ -169,12 +171,12 @@ public class Application {
                                 .code("453")
                                 .build())
                             .customFields(List.of(
-                                CustomField.of(CustomField1.builder()
+                                CustomField.builder()
                                     .id("2389328923893298")
                                     .name("employee_level")
                                     .description("Employee Level")
-                                    .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                                    .build())))
+                                    .value(Value.of("Uses Salesforce and Marketo"))
+                                    .build()))
                             .rowVersion("1-12345")
                             .build()))
                     .billingAddress(Address.builder()
@@ -241,12 +243,12 @@ public class Application {
                     .templateId("123456")
                     .sourceDocumentUrl("https://www.quotesolution.com/quote/123456")
                     .customFields(List.of(
-                        CustomField.of(CustomField1.builder()
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build())))
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build()))
                     .rowVersion("1-12345")
                     .passThrough(List.of(
                         PassThroughBody.builder()
@@ -261,6 +263,7 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingQuotesAddResponse res = sdk.accounting().quotes().create()
@@ -268,7 +271,7 @@ public class Application {
                 .call();
 
         if (res.createQuoteResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createQuoteResponse().get());
         }
     }
 }
@@ -324,6 +327,7 @@ public class Application {
         AccountingQuotesOneRequest req = AccountingQuotesOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingQuotesOneResponse res = sdk.accounting().quotes().get()
@@ -331,7 +335,7 @@ public class Application {
                 .call();
 
         if (res.getQuoteResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getQuoteResponse().get());
         }
     }
 }
@@ -405,6 +409,7 @@ public class Application {
                     .quoteDate(LocalDate.parse("2020-09-30"))
                     .expiryDate(LocalDate.parse("2020-10-30"))
                     .terms("Valid for 30 days")
+                    .termsId("12345")
                     .reference("INV-2024-001")
                     .status(QuoteStatus.DRAFT)
                     .currency(Currency.USD)
@@ -451,12 +456,12 @@ public class Application {
                                 .code("453")
                                 .build())
                             .customFields(List.of(
-                                CustomField.of(CustomField1.builder()
+                                CustomField.builder()
                                     .id("2389328923893298")
                                     .name("employee_level")
                                     .description("Employee Level")
-                                    .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                                    .build())))
+                                    .value(Value.of("Uses Salesforce and Marketo"))
+                                    .build()))
                             .rowVersion("1-12345")
                             .build()))
                     .billingAddress(Address.builder()
@@ -523,12 +528,12 @@ public class Application {
                     .templateId("123456")
                     .sourceDocumentUrl("https://www.quotesolution.com/quote/123456")
                     .customFields(List.of(
-                        CustomField.of(CustomField1.builder()
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build())))
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build()))
                     .rowVersion("1-12345")
                     .passThrough(List.of(
                         PassThroughBody.builder()
@@ -543,6 +548,7 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingQuotesUpdateResponse res = sdk.accounting().quotes().update()
@@ -550,7 +556,7 @@ public class Application {
                 .call();
 
         if (res.updateQuoteResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateQuoteResponse().get());
         }
     }
 }
@@ -606,6 +612,7 @@ public class Application {
         AccountingQuotesDeleteRequest req = AccountingQuotesDeleteRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingQuotesDeleteResponse res = sdk.accounting().quotes().delete()
@@ -613,7 +620,7 @@ public class Application {
                 .call();
 
         if (res.deleteQuoteResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteQuoteResponse().get());
         }
     }
 }

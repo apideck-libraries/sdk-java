@@ -4,14 +4,20 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -19,8 +25,9 @@ public class SharedLinkTarget {
     /**
      * A unique identifier for an object.
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private String id;
+    private Optional<String> id;
 
     /**
      * The name of the file
@@ -36,9 +43,13 @@ public class SharedLinkTarget {
     @JsonProperty("type")
     private JsonNullable<? extends FileType> type;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public SharedLinkTarget(
-            @JsonProperty("id") String id,
+            @JsonProperty("id") Optional<String> id,
             @JsonProperty("name") JsonNullable<String> name,
             @JsonProperty("type") JsonNullable<? extends FileType> type) {
         Utils.checkNotNull(id, "id");
@@ -47,18 +58,18 @@ public class SharedLinkTarget {
         this.id = id;
         this.name = name;
         this.type = type;
+        this.additionalProperties = new HashMap<>();
     }
     
-    public SharedLinkTarget(
-            String id) {
-        this(id, JsonNullable.undefined(), JsonNullable.undefined());
+    public SharedLinkTarget() {
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
      * A unique identifier for an object.
      */
     @JsonIgnore
-    public String id() {
+    public Optional<String> id() {
         return id;
     }
 
@@ -79,6 +90,11 @@ public class SharedLinkTarget {
         return (JsonNullable<FileType>) type;
     }
 
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -88,6 +104,16 @@ public class SharedLinkTarget {
      * A unique identifier for an object.
      */
     public SharedLinkTarget withId(String id) {
+        Utils.checkNotNull(id, "id");
+        this.id = Optional.ofNullable(id);
+        return this;
+    }
+
+
+    /**
+     * A unique identifier for an object.
+     */
+    public SharedLinkTarget withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
@@ -129,6 +155,19 @@ public class SharedLinkTarget {
         return this;
     }
 
+    @JsonAnySetter
+    public SharedLinkTarget withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public SharedLinkTarget withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -141,13 +180,15 @@ public class SharedLinkTarget {
         return 
             Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.name, other.name) &&
-            Utils.enhancedDeepEquals(this.type, other.type);
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, name, type);
+            id, name, type,
+            additionalProperties);
     }
     
     @Override
@@ -155,17 +196,20 @@ public class SharedLinkTarget {
         return Utils.toString(SharedLinkTarget.class,
                 "id", id,
                 "name", name,
-                "type", type);
+                "type", type,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String id;
+        private Optional<String> id = Optional.empty();
 
         private JsonNullable<String> name = JsonNullable.undefined();
 
         private JsonNullable<? extends FileType> type = JsonNullable.undefined();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -176,6 +220,15 @@ public class SharedLinkTarget {
          * A unique identifier for an object.
          */
         public Builder id(String id) {
+            Utils.checkNotNull(id, "id");
+            this.id = Optional.ofNullable(id);
+            return this;
+        }
+
+        /**
+         * A unique identifier for an object.
+         */
+        public Builder id(Optional<String> id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
@@ -219,10 +272,27 @@ public class SharedLinkTarget {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public SharedLinkTarget build() {
 
             return new SharedLinkTarget(
-                id, name, type);
+                id, name, type)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

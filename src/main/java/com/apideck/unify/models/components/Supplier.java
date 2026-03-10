@@ -4,6 +4,8 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -15,6 +17,7 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -25,8 +28,9 @@ public class Supplier {
     /**
      * A unique identifier for an object.
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private String id;
+    private Optional<String> id;
 
     /**
      * The third-party API ID of original entity
@@ -194,6 +198,13 @@ public class Supplier {
     private JsonNullable<String> terms;
 
     /**
+     * The ID of the payment terms
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("terms_id")
+    private JsonNullable<String> termsId;
+
+    /**
      * The channel through which the transaction is processed.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -294,9 +305,13 @@ public class Supplier {
     @JsonProperty("integration_system_id")
     private Optional<String> integrationSystemId;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public Supplier(
-            @JsonProperty("id") String id,
+            @JsonProperty("id") Optional<String> id,
             @JsonProperty("downstream_id") JsonNullable<String> downstreamId,
             @JsonProperty("display_id") JsonNullable<String> displayId,
             @JsonProperty("display_name") JsonNullable<String> displayName,
@@ -323,6 +338,7 @@ public class Supplier {
             @JsonProperty("status") JsonNullable<? extends SupplierStatus> status,
             @JsonProperty("payment_method") JsonNullable<String> paymentMethod,
             @JsonProperty("terms") JsonNullable<String> terms,
+            @JsonProperty("terms_id") JsonNullable<String> termsId,
             @JsonProperty("channel") JsonNullable<String> channel,
             @JsonProperty("issued_method") JsonNullable<String> issuedMethod,
             @JsonProperty("issued_email") JsonNullable<String> issuedEmail,
@@ -365,6 +381,7 @@ public class Supplier {
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(paymentMethod, "paymentMethod");
         Utils.checkNotNull(terms, "terms");
+        Utils.checkNotNull(termsId, "termsId");
         Utils.checkNotNull(channel, "channel");
         Utils.checkNotNull(issuedMethod, "issuedMethod");
         Utils.checkNotNull(issuedEmail, "issuedEmail");
@@ -407,6 +424,7 @@ public class Supplier {
         this.status = status;
         this.paymentMethod = paymentMethod;
         this.terms = terms;
+        this.termsId = termsId;
         this.channel = channel;
         this.issuedMethod = issuedMethod;
         this.issuedEmail = issuedEmail;
@@ -422,11 +440,11 @@ public class Supplier {
         this.passThrough = passThrough;
         this.subsidiaryId = subsidiaryId;
         this.integrationSystemId = integrationSystemId;
+        this.additionalProperties = new HashMap<>();
     }
     
-    public Supplier(
-            String id) {
-        this(id, JsonNullable.undefined(), JsonNullable.undefined(),
+    public Supplier() {
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
@@ -436,17 +454,18 @@ public class Supplier {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), Optional.empty());
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
      * A unique identifier for an object.
      */
     @JsonIgnore
-    public String id() {
+    public Optional<String> id() {
         return id;
     }
 
@@ -642,6 +661,14 @@ public class Supplier {
     }
 
     /**
+     * The ID of the payment terms
+     */
+    @JsonIgnore
+    public JsonNullable<String> termsId() {
+        return termsId;
+    }
+
+    /**
      * The channel through which the transaction is processed.
      */
     @JsonIgnore
@@ -759,6 +786,11 @@ public class Supplier {
         return integrationSystemId;
     }
 
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -768,6 +800,16 @@ public class Supplier {
      * A unique identifier for an object.
      */
     public Supplier withId(String id) {
+        Utils.checkNotNull(id, "id");
+        this.id = Optional.ofNullable(id);
+        return this;
+    }
+
+
+    /**
+     * A unique identifier for an object.
+     */
+    public Supplier withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
@@ -1196,6 +1238,24 @@ public class Supplier {
     }
 
     /**
+     * The ID of the payment terms
+     */
+    public Supplier withTermsId(String termsId) {
+        Utils.checkNotNull(termsId, "termsId");
+        this.termsId = JsonNullable.of(termsId);
+        return this;
+    }
+
+    /**
+     * The ID of the payment terms
+     */
+    public Supplier withTermsId(JsonNullable<String> termsId) {
+        Utils.checkNotNull(termsId, "termsId");
+        this.termsId = termsId;
+        return this;
+    }
+
+    /**
      * The channel through which the transaction is processed.
      */
     public Supplier withChannel(String channel) {
@@ -1457,6 +1517,19 @@ public class Supplier {
         return this;
     }
 
+    @JsonAnySetter
+    public Supplier withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public Supplier withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -1494,6 +1567,7 @@ public class Supplier {
             Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.paymentMethod, other.paymentMethod) &&
             Utils.enhancedDeepEquals(this.terms, other.terms) &&
+            Utils.enhancedDeepEquals(this.termsId, other.termsId) &&
             Utils.enhancedDeepEquals(this.channel, other.channel) &&
             Utils.enhancedDeepEquals(this.issuedMethod, other.issuedMethod) &&
             Utils.enhancedDeepEquals(this.issuedEmail, other.issuedEmail) &&
@@ -1508,7 +1582,8 @@ public class Supplier {
             Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion) &&
             Utils.enhancedDeepEquals(this.passThrough, other.passThrough) &&
             Utils.enhancedDeepEquals(this.subsidiaryId, other.subsidiaryId) &&
-            Utils.enhancedDeepEquals(this.integrationSystemId, other.integrationSystemId);
+            Utils.enhancedDeepEquals(this.integrationSystemId, other.integrationSystemId) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
@@ -1523,11 +1598,12 @@ public class Supplier {
             notes, taxRate, taxNumber,
             taxable, currency, account,
             status, paymentMethod, terms,
-            channel, issuedMethod, issuedEmail,
-            customMappings, customFields, taxDetails,
-            taxStatusDetails, updatedBy, createdBy,
-            updatedAt, createdAt, rowVersion,
-            passThrough, subsidiaryId, integrationSystemId);
+            termsId, channel, issuedMethod,
+            issuedEmail, customMappings, customFields,
+            taxDetails, taxStatusDetails, updatedBy,
+            createdBy, updatedAt, createdAt,
+            rowVersion, passThrough, subsidiaryId,
+            integrationSystemId, additionalProperties);
     }
     
     @Override
@@ -1560,6 +1636,7 @@ public class Supplier {
                 "status", status,
                 "paymentMethod", paymentMethod,
                 "terms", terms,
+                "termsId", termsId,
                 "channel", channel,
                 "issuedMethod", issuedMethod,
                 "issuedEmail", issuedEmail,
@@ -1574,13 +1651,14 @@ public class Supplier {
                 "rowVersion", rowVersion,
                 "passThrough", passThrough,
                 "subsidiaryId", subsidiaryId,
-                "integrationSystemId", integrationSystemId);
+                "integrationSystemId", integrationSystemId,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String id;
+        private Optional<String> id = Optional.empty();
 
         private JsonNullable<String> downstreamId = JsonNullable.undefined();
 
@@ -1634,6 +1712,8 @@ public class Supplier {
 
         private JsonNullable<String> terms = JsonNullable.undefined();
 
+        private JsonNullable<String> termsId = JsonNullable.undefined();
+
         private JsonNullable<String> channel = JsonNullable.undefined();
 
         private JsonNullable<String> issuedMethod = JsonNullable.undefined();
@@ -1664,6 +1744,8 @@ public class Supplier {
 
         private Optional<String> integrationSystemId = Optional.empty();
 
+        private Map<String, Object> additionalProperties = new HashMap<>();
+
         private Builder() {
           // force use of static builder() method
         }
@@ -1673,6 +1755,15 @@ public class Supplier {
          * A unique identifier for an object.
          */
         public Builder id(String id) {
+            Utils.checkNotNull(id, "id");
+            this.id = Optional.ofNullable(id);
+            return this;
+        }
+
+        /**
+         * A unique identifier for an object.
+         */
+        public Builder id(Optional<String> id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
@@ -2122,6 +2213,25 @@ public class Supplier {
 
 
         /**
+         * The ID of the payment terms
+         */
+        public Builder termsId(String termsId) {
+            Utils.checkNotNull(termsId, "termsId");
+            this.termsId = JsonNullable.of(termsId);
+            return this;
+        }
+
+        /**
+         * The ID of the payment terms
+         */
+        public Builder termsId(JsonNullable<String> termsId) {
+            Utils.checkNotNull(termsId, "termsId");
+            this.termsId = termsId;
+            return this;
+        }
+
+
+        /**
          * The channel through which the transaction is processed.
          */
         public Builder channel(String channel) {
@@ -2391,6 +2501,22 @@ public class Supplier {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public Supplier build() {
 
             return new Supplier(
@@ -2403,11 +2529,13 @@ public class Supplier {
                 notes, taxRate, taxNumber,
                 taxable, currency, account,
                 status, paymentMethod, terms,
-                channel, issuedMethod, issuedEmail,
-                customMappings, customFields, taxDetails,
-                taxStatusDetails, updatedBy, createdBy,
-                updatedAt, createdAt, rowVersion,
-                passThrough, subsidiaryId, integrationSystemId);
+                termsId, channel, issuedMethod,
+                issuedEmail, customMappings, customFields,
+                taxDetails, taxStatusDetails, updatedBy,
+                createdBy, updatedAt, createdAt,
+                rowVersion, passThrough, subsidiaryId,
+                integrationSystemId)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

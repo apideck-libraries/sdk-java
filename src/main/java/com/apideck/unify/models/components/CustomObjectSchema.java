@@ -4,16 +4,21 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Boolean;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -97,6 +102,10 @@ public class CustomObjectSchema {
     @JsonProperty("pass_through")
     private Optional<? extends List<PassThroughBody>> passThrough;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public CustomObjectSchema(
             @JsonProperty("id") Optional<String> id,
@@ -132,6 +141,7 @@ public class CustomObjectSchema {
         this.updatedAt = updatedAt;
         this.createdAt = createdAt;
         this.passThrough = passThrough;
+        this.additionalProperties = new HashMap<>();
     }
     
     public CustomObjectSchema() {
@@ -230,6 +240,11 @@ public class CustomObjectSchema {
     @JsonIgnore
     public Optional<List<PassThroughBody>> passThrough() {
         return (Optional<List<PassThroughBody>>) passThrough;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
     }
 
     public static Builder builder() {
@@ -440,6 +455,19 @@ public class CustomObjectSchema {
         return this;
     }
 
+    @JsonAnySetter
+    public CustomObjectSchema withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public CustomObjectSchema withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -460,7 +488,8 @@ public class CustomObjectSchema {
             Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
             Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
-            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
@@ -469,7 +498,7 @@ public class CustomObjectSchema {
             id, name, description,
             fields, visible, active,
             createdBy, updatedBy, updatedAt,
-            createdAt, passThrough);
+            createdAt, passThrough, additionalProperties);
     }
     
     @Override
@@ -485,7 +514,8 @@ public class CustomObjectSchema {
                 "updatedBy", updatedBy,
                 "updatedAt", updatedAt,
                 "createdAt", createdAt,
-                "passThrough", passThrough);
+                "passThrough", passThrough,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -512,6 +542,8 @@ public class CustomObjectSchema {
         private JsonNullable<String> createdAt = JsonNullable.undefined();
 
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -728,13 +760,30 @@ public class CustomObjectSchema {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public CustomObjectSchema build() {
 
             return new CustomObjectSchema(
                 id, name, description,
                 fields, visible, active,
                 createdBy, updatedBy, updatedAt,
-                createdAt, passThrough);
+                createdAt, passThrough)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

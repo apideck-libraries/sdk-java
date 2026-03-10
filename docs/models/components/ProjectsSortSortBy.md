@@ -2,6 +2,17 @@
 
 The field to sort by
 
+## Example Usage
+
+```java
+import com.apideck.unify.models.components.ProjectsSortSortBy;
+
+ProjectsSortSortBy value = ProjectsSortSortBy.NAME;
+
+// Open enum: use .of() to create instances from custom string values
+ProjectsSortSortBy custom = ProjectsSortSortBy.of("custom_value");
+```
+
 
 ## Values
 

@@ -2,6 +2,17 @@
 
 Type of payment
 
+## Example Usage
+
+```java
+import com.apideck.unify.models.components.PaymentType;
+
+PaymentType value = PaymentType.ACCOUNTS_RECEIVABLE;
+
+// Open enum: use .of() to create instances from custom string values
+PaymentType custom = PaymentType.of("custom_value");
+```
+
 
 ## Values
 

@@ -4,17 +4,22 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Double;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 
@@ -82,6 +87,10 @@ public class BankFeedStatementInput {
     @JsonProperty("transactions")
     private Optional<? extends List<Transactions>> transactions;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public BankFeedStatementInput(
             @JsonProperty("bank_feed_account_id") Optional<String> bankFeedAccountId,
@@ -111,6 +120,7 @@ public class BankFeedStatementInput {
         this.endBalance = endBalance;
         this.endBalanceCreditOrDebit = endBalanceCreditOrDebit;
         this.transactions = transactions;
+        this.additionalProperties = new HashMap<>();
     }
     
     public BankFeedStatementInput() {
@@ -193,6 +203,11 @@ public class BankFeedStatementInput {
     @JsonIgnore
     public Optional<List<Transactions>> transactions() {
         return (Optional<List<Transactions>>) transactions;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
     }
 
     public static Builder builder() {
@@ -371,6 +386,19 @@ public class BankFeedStatementInput {
         return this;
     }
 
+    @JsonAnySetter
+    public BankFeedStatementInput withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public BankFeedStatementInput withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -389,7 +417,8 @@ public class BankFeedStatementInput {
             Utils.enhancedDeepEquals(this.startBalanceCreditOrDebit, other.startBalanceCreditOrDebit) &&
             Utils.enhancedDeepEquals(this.endBalance, other.endBalance) &&
             Utils.enhancedDeepEquals(this.endBalanceCreditOrDebit, other.endBalanceCreditOrDebit) &&
-            Utils.enhancedDeepEquals(this.transactions, other.transactions);
+            Utils.enhancedDeepEquals(this.transactions, other.transactions) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
@@ -397,7 +426,8 @@ public class BankFeedStatementInput {
         return Utils.enhancedHash(
             bankFeedAccountId, status, startDate,
             endDate, startBalance, startBalanceCreditOrDebit,
-            endBalance, endBalanceCreditOrDebit, transactions);
+            endBalance, endBalanceCreditOrDebit, transactions,
+            additionalProperties);
     }
     
     @Override
@@ -411,7 +441,8 @@ public class BankFeedStatementInput {
                 "startBalanceCreditOrDebit", startBalanceCreditOrDebit,
                 "endBalance", endBalance,
                 "endBalanceCreditOrDebit", endBalanceCreditOrDebit,
-                "transactions", transactions);
+                "transactions", transactions,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -434,6 +465,8 @@ public class BankFeedStatementInput {
         private Optional<? extends CreditOrDebit> endBalanceCreditOrDebit = Optional.empty();
 
         private Optional<? extends List<Transactions>> transactions = Optional.empty();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -610,12 +643,29 @@ public class BankFeedStatementInput {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public BankFeedStatementInput build() {
 
             return new BankFeedStatementInput(
                 bankFeedAccountId, status, startDate,
                 endDate, startBalance, startBalanceCreditOrDebit,
-                endBalance, endBalanceCreditOrDebit, transactions);
+                endBalance, endBalanceCreditOrDebit, transactions)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

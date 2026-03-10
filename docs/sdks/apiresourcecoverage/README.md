@@ -36,7 +36,7 @@ public class Application {
                 .call();
 
         if (res.getApiResourceCoverageResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getApiResourceCoverageResponse().get());
         }
     }
 }

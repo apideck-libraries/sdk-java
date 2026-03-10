@@ -4,12 +4,17 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Long;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * RequestRate
@@ -35,6 +40,10 @@ public class RequestRate {
     @JsonProperty("unit")
     private Unit unit;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public RequestRate(
             @JsonProperty("rate") long rate,
@@ -46,6 +55,7 @@ public class RequestRate {
         this.rate = rate;
         this.size = size;
         this.unit = unit;
+        this.additionalProperties = new HashMap<>();
     }
 
     /**
@@ -70,6 +80,11 @@ public class RequestRate {
     @JsonIgnore
     public Unit unit() {
         return unit;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
     }
 
     public static Builder builder() {
@@ -104,6 +119,19 @@ public class RequestRate {
         return this;
     }
 
+    @JsonAnySetter
+    public RequestRate withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public RequestRate withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -116,13 +144,15 @@ public class RequestRate {
         return 
             Utils.enhancedDeepEquals(this.rate, other.rate) &&
             Utils.enhancedDeepEquals(this.size, other.size) &&
-            Utils.enhancedDeepEquals(this.unit, other.unit);
+            Utils.enhancedDeepEquals(this.unit, other.unit) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            rate, size, unit);
+            rate, size, unit,
+            additionalProperties);
     }
     
     @Override
@@ -130,7 +160,8 @@ public class RequestRate {
         return Utils.toString(RequestRate.class,
                 "rate", rate,
                 "size", size,
-                "unit", unit);
+                "unit", unit,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -141,6 +172,8 @@ public class RequestRate {
         private Long size;
 
         private Unit unit;
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -176,10 +209,27 @@ public class RequestRate {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public RequestRate build() {
 
             return new RequestRate(
-                rate, size, unit);
+                rate, size, unit)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

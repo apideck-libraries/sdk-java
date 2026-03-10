@@ -4,6 +4,8 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -11,11 +13,14 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Boolean;
 import java.lang.Double;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -88,8 +93,9 @@ public class CreditNoteInput {
     /**
      * Amount of transaction
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("total_amount")
-    private double totalAmount;
+    private Optional<Double> totalAmount;
 
     /**
      * Total tax amount applied to this invoice.
@@ -183,6 +189,13 @@ public class CreditNoteInput {
     @JsonProperty("terms")
     private JsonNullable<String> terms;
 
+    /**
+     * The ID of the payment terms
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("terms_id")
+    private JsonNullable<String> termsId;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("billing_address")
@@ -221,6 +234,10 @@ public class CreditNoteInput {
     @JsonProperty("pass_through")
     private Optional<? extends List<PassThroughBody>> passThrough;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public CreditNoteInput(
             @JsonProperty("number") JsonNullable<String> number,
@@ -232,7 +249,7 @@ public class CreditNoteInput {
             @JsonProperty("currency_rate") JsonNullable<Double> currencyRate,
             @JsonProperty("tax_inclusive") JsonNullable<Boolean> taxInclusive,
             @JsonProperty("sub_total") JsonNullable<Double> subTotal,
-            @JsonProperty("total_amount") double totalAmount,
+            @JsonProperty("total_amount") Optional<Double> totalAmount,
             @JsonProperty("total_tax") JsonNullable<Double> totalTax,
             @JsonProperty("tax_code") JsonNullable<String> taxCode,
             @JsonProperty("balance") JsonNullable<Double> balance,
@@ -247,6 +264,7 @@ public class CreditNoteInput {
             @JsonProperty("allocations") Optional<? extends List<AllocationInput>> allocations,
             @JsonProperty("note") JsonNullable<String> note,
             @JsonProperty("terms") JsonNullable<String> terms,
+            @JsonProperty("terms_id") JsonNullable<String> termsId,
             @JsonProperty("billing_address") Optional<? extends Address> billingAddress,
             @JsonProperty("shipping_address") Optional<? extends Address> shippingAddress,
             @JsonProperty("tracking_categories") JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories,
@@ -277,6 +295,7 @@ public class CreditNoteInput {
         Utils.checkNotNull(allocations, "allocations");
         Utils.checkNotNull(note, "note");
         Utils.checkNotNull(terms, "terms");
+        Utils.checkNotNull(termsId, "termsId");
         Utils.checkNotNull(billingAddress, "billingAddress");
         Utils.checkNotNull(shippingAddress, "shippingAddress");
         Utils.checkNotNull(trackingCategories, "trackingCategories");
@@ -307,26 +326,28 @@ public class CreditNoteInput {
         this.allocations = allocations;
         this.note = note;
         this.terms = terms;
+        this.termsId = termsId;
         this.billingAddress = billingAddress;
         this.shippingAddress = shippingAddress;
         this.trackingCategories = trackingCategories;
         this.customFields = customFields;
         this.rowVersion = rowVersion;
         this.passThrough = passThrough;
+        this.additionalProperties = new HashMap<>();
     }
     
-    public CreditNoteInput(
-            double totalAmount) {
+    public CreditNoteInput() {
         this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            totalAmount, JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
             Optional.empty(), JsonNullable.undefined(), Optional.empty(),
             Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), Optional.empty());
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -408,7 +429,7 @@ public class CreditNoteInput {
      * Amount of transaction
      */
     @JsonIgnore
-    public double totalAmount() {
+    public Optional<Double> totalAmount() {
         return totalAmount;
     }
 
@@ -520,6 +541,14 @@ public class CreditNoteInput {
         return terms;
     }
 
+    /**
+     * The ID of the payment terms
+     */
+    @JsonIgnore
+    public JsonNullable<String> termsId() {
+        return termsId;
+    }
+
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Address> billingAddress() {
@@ -564,6 +593,11 @@ public class CreditNoteInput {
     @JsonIgnore
     public Optional<List<PassThroughBody>> passThrough() {
         return (Optional<List<PassThroughBody>>) passThrough;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
     }
 
     public static Builder builder() {
@@ -739,6 +773,16 @@ public class CreditNoteInput {
      * Amount of transaction
      */
     public CreditNoteInput withTotalAmount(double totalAmount) {
+        Utils.checkNotNull(totalAmount, "totalAmount");
+        this.totalAmount = Optional.ofNullable(totalAmount);
+        return this;
+    }
+
+
+    /**
+     * Amount of transaction
+     */
+    public CreditNoteInput withTotalAmount(Optional<Double> totalAmount) {
         Utils.checkNotNull(totalAmount, "totalAmount");
         this.totalAmount = totalAmount;
         return this;
@@ -983,6 +1027,24 @@ public class CreditNoteInput {
         return this;
     }
 
+    /**
+     * The ID of the payment terms
+     */
+    public CreditNoteInput withTermsId(String termsId) {
+        Utils.checkNotNull(termsId, "termsId");
+        this.termsId = JsonNullable.of(termsId);
+        return this;
+    }
+
+    /**
+     * The ID of the payment terms
+     */
+    public CreditNoteInput withTermsId(JsonNullable<String> termsId) {
+        Utils.checkNotNull(termsId, "termsId");
+        this.termsId = termsId;
+        return this;
+    }
+
     public CreditNoteInput withBillingAddress(Address billingAddress) {
         Utils.checkNotNull(billingAddress, "billingAddress");
         this.billingAddress = Optional.ofNullable(billingAddress);
@@ -1081,6 +1143,19 @@ public class CreditNoteInput {
         return this;
     }
 
+    @JsonAnySetter
+    public CreditNoteInput withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public CreditNoteInput withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -1115,12 +1190,14 @@ public class CreditNoteInput {
             Utils.enhancedDeepEquals(this.allocations, other.allocations) &&
             Utils.enhancedDeepEquals(this.note, other.note) &&
             Utils.enhancedDeepEquals(this.terms, other.terms) &&
+            Utils.enhancedDeepEquals(this.termsId, other.termsId) &&
             Utils.enhancedDeepEquals(this.billingAddress, other.billingAddress) &&
             Utils.enhancedDeepEquals(this.shippingAddress, other.shippingAddress) &&
             Utils.enhancedDeepEquals(this.trackingCategories, other.trackingCategories) &&
             Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
             Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion) &&
-            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
@@ -1134,8 +1211,9 @@ public class CreditNoteInput {
             reference, dateIssued, datePaid,
             type, account, lineItems,
             allocations, note, terms,
-            billingAddress, shippingAddress, trackingCategories,
-            customFields, rowVersion, passThrough);
+            termsId, billingAddress, shippingAddress,
+            trackingCategories, customFields, rowVersion,
+            passThrough, additionalProperties);
     }
     
     @Override
@@ -1165,12 +1243,14 @@ public class CreditNoteInput {
                 "allocations", allocations,
                 "note", note,
                 "terms", terms,
+                "termsId", termsId,
                 "billingAddress", billingAddress,
                 "shippingAddress", shippingAddress,
                 "trackingCategories", trackingCategories,
                 "customFields", customFields,
                 "rowVersion", rowVersion,
-                "passThrough", passThrough);
+                "passThrough", passThrough,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -1194,7 +1274,7 @@ public class CreditNoteInput {
 
         private JsonNullable<Double> subTotal = JsonNullable.undefined();
 
-        private Double totalAmount;
+        private Optional<Double> totalAmount = Optional.empty();
 
         private JsonNullable<Double> totalTax = JsonNullable.undefined();
 
@@ -1224,6 +1304,8 @@ public class CreditNoteInput {
 
         private JsonNullable<String> terms = JsonNullable.undefined();
 
+        private JsonNullable<String> termsId = JsonNullable.undefined();
+
         private Optional<? extends Address> billingAddress = Optional.empty();
 
         private Optional<? extends Address> shippingAddress = Optional.empty();
@@ -1235,6 +1317,8 @@ public class CreditNoteInput {
         private JsonNullable<String> rowVersion = JsonNullable.undefined();
 
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -1418,6 +1502,15 @@ public class CreditNoteInput {
          * Amount of transaction
          */
         public Builder totalAmount(double totalAmount) {
+            Utils.checkNotNull(totalAmount, "totalAmount");
+            this.totalAmount = Optional.ofNullable(totalAmount);
+            return this;
+        }
+
+        /**
+         * Amount of transaction
+         */
+        public Builder totalAmount(Optional<Double> totalAmount) {
             Utils.checkNotNull(totalAmount, "totalAmount");
             this.totalAmount = totalAmount;
             return this;
@@ -1672,6 +1765,25 @@ public class CreditNoteInput {
         }
 
 
+        /**
+         * The ID of the payment terms
+         */
+        public Builder termsId(String termsId) {
+            Utils.checkNotNull(termsId, "termsId");
+            this.termsId = JsonNullable.of(termsId);
+            return this;
+        }
+
+        /**
+         * The ID of the payment terms
+         */
+        public Builder termsId(JsonNullable<String> termsId) {
+            Utils.checkNotNull(termsId, "termsId");
+            this.termsId = termsId;
+            return this;
+        }
+
+
         public Builder billingAddress(Address billingAddress) {
             Utils.checkNotNull(billingAddress, "billingAddress");
             this.billingAddress = Optional.ofNullable(billingAddress);
@@ -1771,6 +1883,22 @@ public class CreditNoteInput {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public CreditNoteInput build() {
 
             return new CreditNoteInput(
@@ -1782,8 +1910,10 @@ public class CreditNoteInput {
                 reference, dateIssued, datePaid,
                 type, account, lineItems,
                 allocations, note, terms,
-                billingAddress, shippingAddress, trackingCategories,
-                customFields, rowVersion, passThrough);
+                termsId, billingAddress, shippingAddress,
+                trackingCategories, customFields, rowVersion,
+                passThrough)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

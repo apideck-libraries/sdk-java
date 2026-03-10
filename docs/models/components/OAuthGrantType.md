@@ -2,6 +2,17 @@
 
 OAuth grant type used by the connector. More info: https://oauth.net/2/grant-types
 
+## Example Usage
+
+```java
+import com.apideck.unify.models.components.OAuthGrantType;
+
+OAuthGrantType value = OAuthGrantType.AUTHORIZATION_CODE;
+
+// Open enum: use .of() to create instances from custom string values
+OAuthGrantType custom = OAuthGrantType.of("custom_value");
+```
+
 
 ## Values
 

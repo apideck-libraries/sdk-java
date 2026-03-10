@@ -41,6 +41,7 @@ public class Application {
 
         AccountingJournalEntriesAllRequest req = AccountingJournalEntriesAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .filter(JournalEntriesFilter.builder()
                     .updatedSince(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
                     .build())
@@ -124,16 +125,11 @@ public class Application {
                     .companyId("12345")
                     .lineItems(List.of(
                         JournalEntryLineItemInput.builder()
-                            .type(JournalEntryLineItemType.DEBIT)
-                            .ledgerAccount(LinkedLedgerAccount.builder()
-                                .id("123456")
-                                .nominalCode("N091")
-                                .code("453")
-                                .build())
                             .description("Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.")
                             .taxAmount(27500d)
                             .subTotal(27500d)
                             .totalAmount(27500d)
+                            .type(JournalEntryLineItemType.DEBIT)
                             .taxRate(LinkedTaxRateInput.builder()
                                 .id("123456")
                                 .rate(10d)
@@ -151,6 +147,11 @@ public class Application {
                                     .id("123456")
                                     .name("New York")
                                     .build()))
+                            .ledgerAccount(LinkedLedgerAccount.builder()
+                                .id("123456")
+                                .nominalCode("N091")
+                                .code("453")
+                                .build())
                             .customer(LinkedCustomerInput.builder()
                                 .id("12345")
                                 .displayName("Windsurf Shop")
@@ -201,12 +202,12 @@ public class Application {
                     .accountingPeriod("01-24")
                     .rowVersion("1-12345")
                     .customFields(List.of(
-                        CustomField.of(CustomField1.builder()
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build())))
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build()))
                     .passThrough(List.of(
                         PassThroughBody.builder()
                             .serviceId("<id>")
@@ -276,6 +277,7 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingJournalEntriesAddResponse res = sdk.accounting().journalEntries().create()
@@ -283,7 +285,7 @@ public class Application {
                 .call();
 
         if (res.createJournalEntryResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createJournalEntryResponse().get());
         }
     }
 }
@@ -339,6 +341,7 @@ public class Application {
         AccountingJournalEntriesOneRequest req = AccountingJournalEntriesOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .fields("id,updated_at")
                 .build();
 
@@ -347,7 +350,7 @@ public class Application {
                 .call();
 
         if (res.getJournalEntryResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getJournalEntryResponse().get());
         }
     }
 }
@@ -413,16 +416,11 @@ public class Application {
                     .companyId("12345")
                     .lineItems(List.of(
                         JournalEntryLineItemInput.builder()
-                            .type(JournalEntryLineItemType.DEBIT)
-                            .ledgerAccount(LinkedLedgerAccount.builder()
-                                .id("123456")
-                                .nominalCode("N091")
-                                .code("453")
-                                .build())
                             .description("Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.")
                             .taxAmount(27500d)
                             .subTotal(27500d)
                             .totalAmount(27500d)
+                            .type(JournalEntryLineItemType.DEBIT)
                             .taxRate(LinkedTaxRateInput.builder()
                                 .id("123456")
                                 .rate(10d)
@@ -440,6 +438,11 @@ public class Application {
                                     .id("123456")
                                     .name("New York")
                                     .build()))
+                            .ledgerAccount(LinkedLedgerAccount.builder()
+                                .id("123456")
+                                .nominalCode("N091")
+                                .code("453")
+                                .build())
                             .customer(LinkedCustomerInput.builder()
                                 .id("12345")
                                 .displayName("Windsurf Shop")
@@ -498,12 +501,12 @@ public class Application {
                     .accountingPeriod("01-24")
                     .rowVersion("1-12345")
                     .customFields(List.of(
-                        CustomField.of(CustomField1.builder()
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build())))
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build()))
                     .passThrough(List.of(
                         PassThroughBody.builder()
                             .serviceId("<id>")
@@ -539,6 +542,7 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingJournalEntriesUpdateResponse res = sdk.accounting().journalEntries().update()
@@ -546,7 +550,7 @@ public class Application {
                 .call();
 
         if (res.updateJournalEntryResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateJournalEntryResponse().get());
         }
     }
 }
@@ -602,6 +606,7 @@ public class Application {
         AccountingJournalEntriesDeleteRequest req = AccountingJournalEntriesDeleteRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingJournalEntriesDeleteResponse res = sdk.accounting().journalEntries().delete()
@@ -609,7 +614,7 @@ public class Application {
                 .call();
 
         if (res.deleteJournalEntryResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteJournalEntryResponse().get());
         }
     }
 }

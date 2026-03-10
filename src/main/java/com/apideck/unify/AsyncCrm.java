@@ -9,7 +9,7 @@ import com.apideck.unify.utils.Headers;
 public class AsyncCrm {
     private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
-    private final AsyncCompanies companies;
+    private final AsyncApideckCompanies companies;
     private final AsyncContacts contacts;
     private final AsyncOpportunities opportunities;
     private final AsyncLeads leads;
@@ -23,7 +23,7 @@ public class AsyncCrm {
 
     AsyncCrm(Crm syncSDK, SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
-        this.companies = new AsyncCompanies(syncSDK.companies(), this.sdkConfiguration);
+        this.companies = new AsyncApideckCompanies(syncSDK.companies(), this.sdkConfiguration);
         this.contacts = new AsyncContacts(syncSDK.contacts(), this.sdkConfiguration);
         this.opportunities = new AsyncOpportunities(syncSDK.opportunities(), this.sdkConfiguration);
         this.leads = new AsyncLeads(syncSDK.leads(), this.sdkConfiguration);
@@ -36,7 +36,7 @@ public class AsyncCrm {
         this.syncSDK = syncSDK;
     }
 
-    public final AsyncCompanies companies() {
+    public final AsyncApideckCompanies companies() {
         return companies;
     }
 

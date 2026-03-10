@@ -4,6 +4,8 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -16,6 +18,7 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -26,8 +29,9 @@ public class CreditNote {
     /**
      * Unique identifier representing the entity
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private String id;
+    private Optional<String> id;
 
     /**
      * Credit note number.
@@ -96,8 +100,9 @@ public class CreditNote {
     /**
      * Amount of transaction
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("total_amount")
-    private double totalAmount;
+    private Optional<Double> totalAmount;
 
     /**
      * Total tax amount applied to this invoice.
@@ -191,6 +196,13 @@ public class CreditNote {
     @JsonProperty("terms")
     private JsonNullable<String> terms;
 
+    /**
+     * The ID of the payment terms
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("terms_id")
+    private JsonNullable<String> termsId;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("billing_address")
@@ -264,9 +276,13 @@ public class CreditNote {
     @JsonProperty("pass_through")
     private Optional<? extends List<PassThroughBody>> passThrough;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public CreditNote(
-            @JsonProperty("id") String id,
+            @JsonProperty("id") Optional<String> id,
             @JsonProperty("number") JsonNullable<String> number,
             @JsonProperty("customer") JsonNullable<? extends LinkedCustomer> customer,
             @JsonProperty("company_id") JsonNullable<String> companyId,
@@ -276,7 +292,7 @@ public class CreditNote {
             @JsonProperty("currency_rate") JsonNullable<Double> currencyRate,
             @JsonProperty("tax_inclusive") JsonNullable<Boolean> taxInclusive,
             @JsonProperty("sub_total") JsonNullable<Double> subTotal,
-            @JsonProperty("total_amount") double totalAmount,
+            @JsonProperty("total_amount") Optional<Double> totalAmount,
             @JsonProperty("total_tax") JsonNullable<Double> totalTax,
             @JsonProperty("tax_code") JsonNullable<String> taxCode,
             @JsonProperty("balance") JsonNullable<Double> balance,
@@ -291,6 +307,7 @@ public class CreditNote {
             @JsonProperty("allocations") Optional<? extends List<Allocation>> allocations,
             @JsonProperty("note") JsonNullable<String> note,
             @JsonProperty("terms") JsonNullable<String> terms,
+            @JsonProperty("terms_id") JsonNullable<String> termsId,
             @JsonProperty("billing_address") Optional<? extends Address> billingAddress,
             @JsonProperty("shipping_address") Optional<? extends Address> shippingAddress,
             @JsonProperty("tracking_categories") JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories,
@@ -327,6 +344,7 @@ public class CreditNote {
         Utils.checkNotNull(allocations, "allocations");
         Utils.checkNotNull(note, "note");
         Utils.checkNotNull(terms, "terms");
+        Utils.checkNotNull(termsId, "termsId");
         Utils.checkNotNull(billingAddress, "billingAddress");
         Utils.checkNotNull(shippingAddress, "shippingAddress");
         Utils.checkNotNull(trackingCategories, "trackingCategories");
@@ -363,6 +381,7 @@ public class CreditNote {
         this.allocations = allocations;
         this.note = note;
         this.terms = terms;
+        this.termsId = termsId;
         this.billingAddress = billingAddress;
         this.shippingAddress = shippingAddress;
         this.trackingCategories = trackingCategories;
@@ -374,30 +393,30 @@ public class CreditNote {
         this.updatedAt = updatedAt;
         this.createdAt = createdAt;
         this.passThrough = passThrough;
+        this.additionalProperties = new HashMap<>();
     }
     
-    public CreditNote(
-            String id,
-            double totalAmount) {
-        this(id, JsonNullable.undefined(), JsonNullable.undefined(),
+    public CreditNote() {
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), totalAmount, JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             Optional.empty(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
             Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+            Optional.empty());
     }
 
     /**
      * Unique identifier representing the entity
      */
     @JsonIgnore
-    public String id() {
+    public Optional<String> id() {
         return id;
     }
 
@@ -480,7 +499,7 @@ public class CreditNote {
      * Amount of transaction
      */
     @JsonIgnore
-    public double totalAmount() {
+    public Optional<Double> totalAmount() {
         return totalAmount;
     }
 
@@ -592,6 +611,14 @@ public class CreditNote {
         return terms;
     }
 
+    /**
+     * The ID of the payment terms
+     */
+    @JsonIgnore
+    public JsonNullable<String> termsId() {
+        return termsId;
+    }
+
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Address> billingAddress() {
@@ -679,6 +706,11 @@ public class CreditNote {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -688,6 +720,16 @@ public class CreditNote {
      * Unique identifier representing the entity
      */
     public CreditNote withId(String id) {
+        Utils.checkNotNull(id, "id");
+        this.id = Optional.ofNullable(id);
+        return this;
+    }
+
+
+    /**
+     * Unique identifier representing the entity
+     */
+    public CreditNote withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
@@ -861,6 +903,16 @@ public class CreditNote {
      * Amount of transaction
      */
     public CreditNote withTotalAmount(double totalAmount) {
+        Utils.checkNotNull(totalAmount, "totalAmount");
+        this.totalAmount = Optional.ofNullable(totalAmount);
+        return this;
+    }
+
+
+    /**
+     * Amount of transaction
+     */
+    public CreditNote withTotalAmount(Optional<Double> totalAmount) {
         Utils.checkNotNull(totalAmount, "totalAmount");
         this.totalAmount = totalAmount;
         return this;
@@ -1105,6 +1157,24 @@ public class CreditNote {
         return this;
     }
 
+    /**
+     * The ID of the payment terms
+     */
+    public CreditNote withTermsId(String termsId) {
+        Utils.checkNotNull(termsId, "termsId");
+        this.termsId = JsonNullable.of(termsId);
+        return this;
+    }
+
+    /**
+     * The ID of the payment terms
+     */
+    public CreditNote withTermsId(JsonNullable<String> termsId) {
+        Utils.checkNotNull(termsId, "termsId");
+        this.termsId = termsId;
+        return this;
+    }
+
     public CreditNote withBillingAddress(Address billingAddress) {
         Utils.checkNotNull(billingAddress, "billingAddress");
         this.billingAddress = Optional.ofNullable(billingAddress);
@@ -1293,6 +1363,19 @@ public class CreditNote {
         return this;
     }
 
+    @JsonAnySetter
+    public CreditNote withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public CreditNote withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -1328,6 +1411,7 @@ public class CreditNote {
             Utils.enhancedDeepEquals(this.allocations, other.allocations) &&
             Utils.enhancedDeepEquals(this.note, other.note) &&
             Utils.enhancedDeepEquals(this.terms, other.terms) &&
+            Utils.enhancedDeepEquals(this.termsId, other.termsId) &&
             Utils.enhancedDeepEquals(this.billingAddress, other.billingAddress) &&
             Utils.enhancedDeepEquals(this.shippingAddress, other.shippingAddress) &&
             Utils.enhancedDeepEquals(this.trackingCategories, other.trackingCategories) &&
@@ -1338,7 +1422,8 @@ public class CreditNote {
             Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
             Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
-            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
@@ -1352,10 +1437,11 @@ public class CreditNote {
             status, reference, dateIssued,
             datePaid, type, account,
             lineItems, allocations, note,
-            terms, billingAddress, shippingAddress,
-            trackingCategories, customMappings, customFields,
-            rowVersion, updatedBy, createdBy,
-            updatedAt, createdAt, passThrough);
+            terms, termsId, billingAddress,
+            shippingAddress, trackingCategories, customMappings,
+            customFields, rowVersion, updatedBy,
+            createdBy, updatedAt, createdAt,
+            passThrough, additionalProperties);
     }
     
     @Override
@@ -1386,6 +1472,7 @@ public class CreditNote {
                 "allocations", allocations,
                 "note", note,
                 "terms", terms,
+                "termsId", termsId,
                 "billingAddress", billingAddress,
                 "shippingAddress", shippingAddress,
                 "trackingCategories", trackingCategories,
@@ -1396,13 +1483,14 @@ public class CreditNote {
                 "createdBy", createdBy,
                 "updatedAt", updatedAt,
                 "createdAt", createdAt,
-                "passThrough", passThrough);
+                "passThrough", passThrough,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String id;
+        private Optional<String> id = Optional.empty();
 
         private JsonNullable<String> number = JsonNullable.undefined();
 
@@ -1422,7 +1510,7 @@ public class CreditNote {
 
         private JsonNullable<Double> subTotal = JsonNullable.undefined();
 
-        private Double totalAmount;
+        private Optional<Double> totalAmount = Optional.empty();
 
         private JsonNullable<Double> totalTax = JsonNullable.undefined();
 
@@ -1452,6 +1540,8 @@ public class CreditNote {
 
         private JsonNullable<String> terms = JsonNullable.undefined();
 
+        private JsonNullable<String> termsId = JsonNullable.undefined();
+
         private Optional<? extends Address> billingAddress = Optional.empty();
 
         private Optional<? extends Address> shippingAddress = Optional.empty();
@@ -1474,6 +1564,8 @@ public class CreditNote {
 
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
 
+        private Map<String, Object> additionalProperties = new HashMap<>();
+
         private Builder() {
           // force use of static builder() method
         }
@@ -1483,6 +1575,15 @@ public class CreditNote {
          * Unique identifier representing the entity
          */
         public Builder id(String id) {
+            Utils.checkNotNull(id, "id");
+            this.id = Optional.ofNullable(id);
+            return this;
+        }
+
+        /**
+         * Unique identifier representing the entity
+         */
+        public Builder id(Optional<String> id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
@@ -1666,6 +1767,15 @@ public class CreditNote {
          * Amount of transaction
          */
         public Builder totalAmount(double totalAmount) {
+            Utils.checkNotNull(totalAmount, "totalAmount");
+            this.totalAmount = Optional.ofNullable(totalAmount);
+            return this;
+        }
+
+        /**
+         * Amount of transaction
+         */
+        public Builder totalAmount(Optional<Double> totalAmount) {
             Utils.checkNotNull(totalAmount, "totalAmount");
             this.totalAmount = totalAmount;
             return this;
@@ -1920,6 +2030,25 @@ public class CreditNote {
         }
 
 
+        /**
+         * The ID of the payment terms
+         */
+        public Builder termsId(String termsId) {
+            Utils.checkNotNull(termsId, "termsId");
+            this.termsId = JsonNullable.of(termsId);
+            return this;
+        }
+
+        /**
+         * The ID of the payment terms
+         */
+        public Builder termsId(JsonNullable<String> termsId) {
+            Utils.checkNotNull(termsId, "termsId");
+            this.termsId = termsId;
+            return this;
+        }
+
+
         public Builder billingAddress(Address billingAddress) {
             Utils.checkNotNull(billingAddress, "billingAddress");
             this.billingAddress = Optional.ofNullable(billingAddress);
@@ -2114,6 +2243,22 @@ public class CreditNote {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public CreditNote build() {
 
             return new CreditNote(
@@ -2125,10 +2270,12 @@ public class CreditNote {
                 status, reference, dateIssued,
                 datePaid, type, account,
                 lineItems, allocations, note,
-                terms, billingAddress, shippingAddress,
-                trackingCategories, customMappings, customFields,
-                rowVersion, updatedBy, createdBy,
-                updatedAt, createdAt, passThrough);
+                terms, termsId, billingAddress,
+                shippingAddress, trackingCategories, customMappings,
+                customFields, rowVersion, updatedBy,
+                createdBy, updatedAt, createdAt,
+                passThrough)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

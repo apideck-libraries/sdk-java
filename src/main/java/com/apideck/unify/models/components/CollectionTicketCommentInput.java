@@ -4,15 +4,20 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -33,6 +38,10 @@ public class CollectionTicketCommentInput {
     @JsonProperty("pass_through")
     private Optional<? extends List<PassThroughBody>> passThrough;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public CollectionTicketCommentInput(
             @JsonProperty("body") JsonNullable<String> body,
@@ -41,6 +50,7 @@ public class CollectionTicketCommentInput {
         Utils.checkNotNull(passThrough, "passThrough");
         this.body = body;
         this.passThrough = passThrough;
+        this.additionalProperties = new HashMap<>();
     }
     
     public CollectionTicketCommentInput() {
@@ -63,6 +73,11 @@ public class CollectionTicketCommentInput {
     @JsonIgnore
     public Optional<List<PassThroughBody>> passThrough() {
         return (Optional<List<PassThroughBody>>) passThrough;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
     }
 
     public static Builder builder() {
@@ -109,6 +124,19 @@ public class CollectionTicketCommentInput {
         return this;
     }
 
+    @JsonAnySetter
+    public CollectionTicketCommentInput withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public CollectionTicketCommentInput withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -120,20 +148,22 @@ public class CollectionTicketCommentInput {
         CollectionTicketCommentInput other = (CollectionTicketCommentInput) o;
         return 
             Utils.enhancedDeepEquals(this.body, other.body) &&
-            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            body, passThrough);
+            body, passThrough, additionalProperties);
     }
     
     @Override
     public String toString() {
         return Utils.toString(CollectionTicketCommentInput.class,
                 "body", body,
-                "passThrough", passThrough);
+                "passThrough", passThrough,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -142,6 +172,8 @@ public class CollectionTicketCommentInput {
         private JsonNullable<String> body = JsonNullable.undefined();
 
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -187,10 +219,27 @@ public class CollectionTicketCommentInput {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public CollectionTicketCommentInput build() {
 
             return new CollectionTicketCommentInput(
-                body, passThrough);
+                body, passThrough)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

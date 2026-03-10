@@ -4,11 +4,16 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class CreateSessionResponseData {
@@ -20,6 +25,10 @@ public class CreateSessionResponseData {
     @JsonProperty("session_token")
     private String sessionToken;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public CreateSessionResponseData(
             @JsonProperty("session_uri") String sessionUri,
@@ -28,6 +37,7 @@ public class CreateSessionResponseData {
         Utils.checkNotNull(sessionToken, "sessionToken");
         this.sessionUri = sessionUri;
         this.sessionToken = sessionToken;
+        this.additionalProperties = new HashMap<>();
     }
 
     @JsonIgnore
@@ -38,6 +48,11 @@ public class CreateSessionResponseData {
     @JsonIgnore
     public String sessionToken() {
         return sessionToken;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
     }
 
     public static Builder builder() {
@@ -57,6 +72,19 @@ public class CreateSessionResponseData {
         return this;
     }
 
+    @JsonAnySetter
+    public CreateSessionResponseData withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public CreateSessionResponseData withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -68,20 +96,22 @@ public class CreateSessionResponseData {
         CreateSessionResponseData other = (CreateSessionResponseData) o;
         return 
             Utils.enhancedDeepEquals(this.sessionUri, other.sessionUri) &&
-            Utils.enhancedDeepEquals(this.sessionToken, other.sessionToken);
+            Utils.enhancedDeepEquals(this.sessionToken, other.sessionToken) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            sessionUri, sessionToken);
+            sessionUri, sessionToken, additionalProperties);
     }
     
     @Override
     public String toString() {
         return Utils.toString(CreateSessionResponseData.class,
                 "sessionUri", sessionUri,
-                "sessionToken", sessionToken);
+                "sessionToken", sessionToken,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -90,6 +120,8 @@ public class CreateSessionResponseData {
         private String sessionUri;
 
         private String sessionToken;
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -109,10 +141,27 @@ public class CreateSessionResponseData {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public CreateSessionResponseData build() {
 
             return new CreateSessionResponseData(
-                sessionUri, sessionToken);
+                sessionUri, sessionToken)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

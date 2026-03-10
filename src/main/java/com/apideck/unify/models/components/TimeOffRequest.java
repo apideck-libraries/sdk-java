@@ -4,6 +4,8 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -15,6 +17,7 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -168,6 +171,10 @@ public class TimeOffRequest {
     @JsonProperty("policy_type")
     private Optional<String> policyType;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public TimeOffRequest(
             @JsonProperty("id") Optional<String> id,
@@ -233,6 +240,7 @@ public class TimeOffRequest {
         this.createdAt = createdAt;
         this.passThrough = passThrough;
         this.policyType = policyType;
+        this.additionalProperties = new HashMap<>();
     }
     
     public TimeOffRequest() {
@@ -415,6 +423,11 @@ public class TimeOffRequest {
     @JsonIgnore
     public Optional<String> policyType() {
         return policyType;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
     }
 
     public static Builder builder() {
@@ -800,6 +813,19 @@ public class TimeOffRequest {
         return this;
     }
 
+    @JsonAnySetter
+    public TimeOffRequest withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public TimeOffRequest withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -830,7 +856,8 @@ public class TimeOffRequest {
             Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
             Utils.enhancedDeepEquals(this.passThrough, other.passThrough) &&
-            Utils.enhancedDeepEquals(this.policyType, other.policyType);
+            Utils.enhancedDeepEquals(this.policyType, other.policyType) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
@@ -842,7 +869,8 @@ public class TimeOffRequest {
             approvalDate, units, amount,
             dayPart, notes, customMappings,
             updatedBy, createdBy, updatedAt,
-            createdAt, passThrough, policyType);
+            createdAt, passThrough, policyType,
+            additionalProperties);
     }
     
     @Override
@@ -868,7 +896,8 @@ public class TimeOffRequest {
                 "updatedAt", updatedAt,
                 "createdAt", createdAt,
                 "passThrough", passThrough,
-                "policyType", policyType);
+                "policyType", policyType,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -915,6 +944,8 @@ public class TimeOffRequest {
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
 
         private Optional<String> policyType = Optional.empty();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -1315,6 +1346,22 @@ public class TimeOffRequest {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public TimeOffRequest build() {
 
             return new TimeOffRequest(
@@ -1324,7 +1371,8 @@ public class TimeOffRequest {
                 approvalDate, units, amount,
                 dayPart, notes, customMappings,
                 updatedBy, createdBy, updatedAt,
-                createdAt, passThrough, policyType);
+                createdAt, passThrough, policyType)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

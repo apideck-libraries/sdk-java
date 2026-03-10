@@ -118,8 +118,8 @@ public class Application {
                     .displayName("John Doe")
                     .emails(List.of(
                         Email.builder()
-                            .email("elon@musk.com")
                             .id("123")
+                            .email("elon@musk.com")
                             .type(EmailType.PRIMARY)
                             .build()))
                     .employeeNumber("EMP-001")
@@ -187,20 +187,20 @@ public class Application {
                             .build()))
                     .phoneNumbers(List.of(
                         PhoneNumber.builder()
-                            .number("111-111-1111")
                             .id("12345")
                             .countryCode("1")
                             .areaCode("323")
+                            .number("111-111-1111")
                             .extension("105")
                             .type(PhoneNumberType.PRIMARY)
                             .build()))
                     .customFields(List.of(
-                        CustomField.of(CustomField1.builder()
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build())))
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build()))
                     .rowVersion("1-12345")
                     .passThrough(List.of(
                         PassThroughBody.builder()
@@ -222,7 +222,7 @@ public class Application {
                 .call();
 
         if (res.createAccountingEmployeeResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createAccountingEmployeeResponse().get());
         }
     }
 }
@@ -286,7 +286,7 @@ public class Application {
                 .call();
 
         if (res.getAccountingEmployeeResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getAccountingEmployeeResponse().get());
         }
     }
 }
@@ -352,8 +352,8 @@ public class Application {
                     .displayName("John Doe")
                     .emails(List.of(
                         Email.builder()
-                            .email("elon@musk.com")
                             .id("123")
+                            .email("elon@musk.com")
                             .type(EmailType.PRIMARY)
                             .build()))
                     .employeeNumber("EMP-001")
@@ -421,20 +421,20 @@ public class Application {
                             .build()))
                     .phoneNumbers(List.of(
                         PhoneNumber.builder()
-                            .number("111-111-1111")
                             .id("12345")
                             .countryCode("1")
                             .areaCode("323")
+                            .number("111-111-1111")
                             .extension("105")
                             .type(PhoneNumberType.PRIMARY)
                             .build()))
                     .customFields(List.of(
-                        CustomField.of(CustomField1.builder()
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build())))
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build()))
                     .rowVersion("1-12345")
                     .passThrough(List.of(
                         PassThroughBody.builder()
@@ -456,7 +456,7 @@ public class Application {
                 .call();
 
         if (res.updateAccountingEmployeeResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateAccountingEmployeeResponse().get());
         }
     }
 }
@@ -519,7 +519,7 @@ public class Application {
                 .call();
 
         if (res.deleteAccountingEmployeeResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteAccountingEmployeeResponse().get());
         }
     }
 }

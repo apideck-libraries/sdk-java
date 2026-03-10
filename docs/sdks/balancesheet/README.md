@@ -37,6 +37,7 @@ public class Application {
 
         AccountingBalanceSheetOneRequest req = AccountingBalanceSheetOneRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
                 .filter(BalanceSheetFilter.builder()
@@ -52,7 +53,7 @@ public class Application {
                 .call();
 
         if (res.getBalanceSheetResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getBalanceSheetResponse().get());
         }
     }
 }

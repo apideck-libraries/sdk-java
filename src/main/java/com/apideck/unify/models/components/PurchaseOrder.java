@@ -4,6 +4,8 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -17,6 +19,7 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -232,6 +235,13 @@ public class PurchaseOrder {
     private JsonNullable<String> terms;
 
     /**
+     * The ID of the payment terms
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("terms_id")
+    private JsonNullable<String> termsId;
+
+    /**
      * Type of amortization
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -350,6 +360,10 @@ public class PurchaseOrder {
     @JsonProperty("pass_through")
     private Optional<? extends List<PassThroughBody>> passThrough;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public PurchaseOrder(
             @JsonProperty("id") Optional<String> id,
@@ -383,6 +397,7 @@ public class PurchaseOrder {
             @JsonProperty("due_date") JsonNullable<LocalDate> dueDate,
             @JsonProperty("payment_method") JsonNullable<String> paymentMethod,
             @JsonProperty("terms") JsonNullable<String> terms,
+            @JsonProperty("terms_id") JsonNullable<String> termsId,
             @JsonProperty("amortization_type") JsonNullable<? extends PurchaseOrderAmortizationType> amortizationType,
             @JsonProperty("tax_code") JsonNullable<String> taxCode,
             @JsonProperty("tax_method") JsonNullable<String> taxMethod,
@@ -431,6 +446,7 @@ public class PurchaseOrder {
         Utils.checkNotNull(dueDate, "dueDate");
         Utils.checkNotNull(paymentMethod, "paymentMethod");
         Utils.checkNotNull(terms, "terms");
+        Utils.checkNotNull(termsId, "termsId");
         Utils.checkNotNull(amortizationType, "amortizationType");
         Utils.checkNotNull(taxCode, "taxCode");
         Utils.checkNotNull(taxMethod, "taxMethod");
@@ -479,6 +495,7 @@ public class PurchaseOrder {
         this.dueDate = dueDate;
         this.paymentMethod = paymentMethod;
         this.terms = terms;
+        this.termsId = termsId;
         this.amortizationType = amortizationType;
         this.taxCode = taxCode;
         this.taxMethod = taxMethod;
@@ -496,6 +513,7 @@ public class PurchaseOrder {
         this.updatedAt = updatedAt;
         this.createdAt = createdAt;
         this.passThrough = passThrough;
+        this.additionalProperties = new HashMap<>();
     }
     
     public PurchaseOrder() {
@@ -512,9 +530,10 @@ public class PurchaseOrder {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -758,6 +777,14 @@ public class PurchaseOrder {
     }
 
     /**
+     * The ID of the payment terms
+     */
+    @JsonIgnore
+    public JsonNullable<String> termsId() {
+        return termsId;
+    }
+
+    /**
      * Type of amortization
      */
     @SuppressWarnings("unchecked")
@@ -895,6 +922,11 @@ public class PurchaseOrder {
     @JsonIgnore
     public Optional<List<PassThroughBody>> passThrough() {
         return (Optional<List<PassThroughBody>>) passThrough;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
     }
 
     public static Builder builder() {
@@ -1434,6 +1466,24 @@ public class PurchaseOrder {
     }
 
     /**
+     * The ID of the payment terms
+     */
+    public PurchaseOrder withTermsId(String termsId) {
+        Utils.checkNotNull(termsId, "termsId");
+        this.termsId = JsonNullable.of(termsId);
+        return this;
+    }
+
+    /**
+     * The ID of the payment terms
+     */
+    public PurchaseOrder withTermsId(JsonNullable<String> termsId) {
+        Utils.checkNotNull(termsId, "termsId");
+        this.termsId = termsId;
+        return this;
+    }
+
+    /**
      * Type of amortization
      */
     public PurchaseOrder withAmortizationType(PurchaseOrderAmortizationType amortizationType) {
@@ -1739,6 +1789,19 @@ public class PurchaseOrder {
         return this;
     }
 
+    @JsonAnySetter
+    public PurchaseOrder withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public PurchaseOrder withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -1780,6 +1843,7 @@ public class PurchaseOrder {
             Utils.enhancedDeepEquals(this.dueDate, other.dueDate) &&
             Utils.enhancedDeepEquals(this.paymentMethod, other.paymentMethod) &&
             Utils.enhancedDeepEquals(this.terms, other.terms) &&
+            Utils.enhancedDeepEquals(this.termsId, other.termsId) &&
             Utils.enhancedDeepEquals(this.amortizationType, other.amortizationType) &&
             Utils.enhancedDeepEquals(this.taxCode, other.taxCode) &&
             Utils.enhancedDeepEquals(this.taxMethod, other.taxMethod) &&
@@ -1796,7 +1860,8 @@ public class PurchaseOrder {
             Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
             Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
-            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
@@ -1812,12 +1877,13 @@ public class PurchaseOrder {
             billingAddress, shippingAddress, ledgerAccount,
             templateId, discountPercentage, bankAccount,
             accountingByRow, dueDate, paymentMethod,
-            terms, amortizationType, taxCode,
-            taxMethod, issuedMethod, issuedEmail,
-            channel, memo, notes,
-            trackingCategories, customMappings, customFields,
-            rowVersion, updatedBy, createdBy,
-            updatedAt, createdAt, passThrough);
+            terms, termsId, amortizationType,
+            taxCode, taxMethod, issuedMethod,
+            issuedEmail, channel, memo,
+            notes, trackingCategories, customMappings,
+            customFields, rowVersion, updatedBy,
+            createdBy, updatedAt, createdAt,
+            passThrough, additionalProperties);
     }
     
     @Override
@@ -1854,6 +1920,7 @@ public class PurchaseOrder {
                 "dueDate", dueDate,
                 "paymentMethod", paymentMethod,
                 "terms", terms,
+                "termsId", termsId,
                 "amortizationType", amortizationType,
                 "taxCode", taxCode,
                 "taxMethod", taxMethod,
@@ -1870,7 +1937,8 @@ public class PurchaseOrder {
                 "createdBy", createdBy,
                 "updatedAt", updatedAt,
                 "createdAt", createdAt,
-                "passThrough", passThrough);
+                "passThrough", passThrough,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -1938,6 +2006,8 @@ public class PurchaseOrder {
 
         private JsonNullable<String> terms = JsonNullable.undefined();
 
+        private JsonNullable<String> termsId = JsonNullable.undefined();
+
         private JsonNullable<? extends PurchaseOrderAmortizationType> amortizationType = JsonNullable.undefined();
 
         private JsonNullable<String> taxCode = JsonNullable.undefined();
@@ -1971,6 +2041,8 @@ public class PurchaseOrder {
         private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
 
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -2535,6 +2607,25 @@ public class PurchaseOrder {
 
 
         /**
+         * The ID of the payment terms
+         */
+        public Builder termsId(String termsId) {
+            Utils.checkNotNull(termsId, "termsId");
+            this.termsId = JsonNullable.of(termsId);
+            return this;
+        }
+
+        /**
+         * The ID of the payment terms
+         */
+        public Builder termsId(JsonNullable<String> termsId) {
+            Utils.checkNotNull(termsId, "termsId");
+            this.termsId = termsId;
+            return this;
+        }
+
+
+        /**
          * Type of amortization
          */
         public Builder amortizationType(PurchaseOrderAmortizationType amortizationType) {
@@ -2854,6 +2945,22 @@ public class PurchaseOrder {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public PurchaseOrder build() {
 
             return new PurchaseOrder(
@@ -2867,12 +2974,14 @@ public class PurchaseOrder {
                 billingAddress, shippingAddress, ledgerAccount,
                 templateId, discountPercentage, bankAccount,
                 accountingByRow, dueDate, paymentMethod,
-                terms, amortizationType, taxCode,
-                taxMethod, issuedMethod, issuedEmail,
-                channel, memo, notes,
-                trackingCategories, customMappings, customFields,
-                rowVersion, updatedBy, createdBy,
-                updatedAt, createdAt, passThrough);
+                terms, termsId, amortizationType,
+                taxCode, taxMethod, issuedMethod,
+                issuedEmail, channel, memo,
+                notes, trackingCategories, customMappings,
+                customFields, rowVersion, updatedBy,
+                createdBy, updatedAt, createdAt,
+                passThrough)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

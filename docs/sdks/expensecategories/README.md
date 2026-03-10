@@ -111,8 +111,8 @@ public class Application {
 
         AccountingExpenseCategoriesAddRequest req = AccountingExpenseCategoriesAddRequest.builder()
                 .expenseCategory(ExpenseCategoryInput.builder()
-                    .name("Travel")
                     .displayId("123456")
+                    .name("Travel")
                     .code("TRAVEL-001")
                     .description("Travel-related expenses including flights, hotels, and ground transportation.")
                     .status(ExpenseCategoryStatus.ACTIVE)
@@ -160,7 +160,7 @@ public class Application {
                 .call();
 
         if (res.createExpenseCategoryResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createExpenseCategoryResponse().get());
         }
     }
 }
@@ -224,7 +224,7 @@ public class Application {
                 .call();
 
         if (res.getExpenseCategoryResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getExpenseCategoryResponse().get());
         }
     }
 }
@@ -283,8 +283,8 @@ public class Application {
         AccountingExpenseCategoriesUpdateRequest req = AccountingExpenseCategoriesUpdateRequest.builder()
                 .id("<id>")
                 .expenseCategory(ExpenseCategoryInput.builder()
-                    .name("Travel")
                     .displayId("123456")
+                    .name("Travel")
                     .code("TRAVEL-001")
                     .description("Travel-related expenses including flights, hotels, and ground transportation.")
                     .status(ExpenseCategoryStatus.ACTIVE)
@@ -332,7 +332,7 @@ public class Application {
                 .call();
 
         if (res.updateExpenseCategoryResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateExpenseCategoryResponse().get());
         }
     }
 }
@@ -395,7 +395,7 @@ public class Application {
                 .call();
 
         if (res.deleteExpenseCategoryResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteExpenseCategoryResponse().get());
         }
     }
 }

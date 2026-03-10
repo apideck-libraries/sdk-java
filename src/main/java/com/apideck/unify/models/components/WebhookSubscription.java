@@ -4,15 +4,20 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 
@@ -52,6 +57,10 @@ public class WebhookSubscription {
     @JsonProperty("created_at")
     private Optional<String> createdAt;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public WebhookSubscription(
             @JsonProperty("downstream_id") Optional<String> downstreamId,
@@ -69,6 +78,7 @@ public class WebhookSubscription {
         this.downstreamEventTypes = downstreamEventTypes;
         this.executeUrl = executeUrl;
         this.createdAt = createdAt;
+        this.additionalProperties = new HashMap<>();
     }
     
     public WebhookSubscription() {
@@ -116,6 +126,11 @@ public class WebhookSubscription {
     @JsonIgnore
     public Optional<String> createdAt() {
         return createdAt;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
     }
 
     public static Builder builder() {
@@ -218,6 +233,19 @@ public class WebhookSubscription {
         return this;
     }
 
+    @JsonAnySetter
+    public WebhookSubscription withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public WebhookSubscription withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -232,14 +260,15 @@ public class WebhookSubscription {
             Utils.enhancedDeepEquals(this.unifyEventTypes, other.unifyEventTypes) &&
             Utils.enhancedDeepEquals(this.downstreamEventTypes, other.downstreamEventTypes) &&
             Utils.enhancedDeepEquals(this.executeUrl, other.executeUrl) &&
-            Utils.enhancedDeepEquals(this.createdAt, other.createdAt);
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             downstreamId, unifyEventTypes, downstreamEventTypes,
-            executeUrl, createdAt);
+            executeUrl, createdAt, additionalProperties);
     }
     
     @Override
@@ -249,7 +278,8 @@ public class WebhookSubscription {
                 "unifyEventTypes", unifyEventTypes,
                 "downstreamEventTypes", downstreamEventTypes,
                 "executeUrl", executeUrl,
-                "createdAt", createdAt);
+                "createdAt", createdAt,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -264,6 +294,8 @@ public class WebhookSubscription {
         private Optional<String> executeUrl = Optional.empty();
 
         private Optional<String> createdAt = Optional.empty();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -364,11 +396,28 @@ public class WebhookSubscription {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public WebhookSubscription build() {
 
             return new WebhookSubscription(
                 downstreamId, unifyEventTypes, downstreamEventTypes,
-                executeUrl, createdAt);
+                executeUrl, createdAt)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

@@ -41,6 +41,7 @@ public class Application {
 
         AccountingCreditNotesAllRequest req = AccountingCreditNotesAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .filter(CreditNotesFilter.builder()
                     .updatedSince(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
                     .build())
@@ -117,7 +118,6 @@ public class Application {
 
         AccountingCreditNotesAddRequest req = AccountingCreditNotesAddRequest.builder()
                 .creditNote(CreditNoteInput.builder()
-                    .totalAmount(49.99)
                     .number("OIT00546")
                     .customer(LinkedCustomerInput.builder()
                         .id("12345")
@@ -129,6 +129,7 @@ public class Application {
                     .currencyRate(0.69)
                     .taxInclusive(true)
                     .subTotal(27500d)
+                    .totalAmount(49.99)
                     .totalTax(2500d)
                     .taxCode("1234")
                     .balance(27500d)
@@ -184,12 +185,12 @@ public class Application {
                                 .code("453")
                                 .build())
                             .customFields(List.of(
-                                CustomField.of(CustomField1.builder()
+                                CustomField.builder()
                                     .id("2389328923893298")
                                     .name("employee_level")
                                     .description("Employee Level")
-                                    .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                                    .build())))
+                                    .value(Value.of("Uses Salesforce and Marketo"))
+                                    .build()))
                             .rowVersion("1-12345")
                             .build()))
                     .allocations(List.of(
@@ -258,24 +259,24 @@ public class Application {
                             .name("New York")
                             .build()))
                     .customFields(List.of(
-                        CustomField.of(CustomField1.builder()
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build()),
-                        CustomField.of(CustomField1.builder()
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build(),
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build()),
-                        CustomField.of(CustomField1.builder()
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build(),
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build())))
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build()))
                     .rowVersion("1-12345")
                     .passThrough(List.of(
                         PassThroughBody.builder()
@@ -290,6 +291,7 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingCreditNotesAddResponse res = sdk.accounting().creditNotes().create()
@@ -297,7 +299,7 @@ public class Application {
                 .call();
 
         if (res.createCreditNoteResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createCreditNoteResponse().get());
         }
     }
 }
@@ -353,6 +355,7 @@ public class Application {
         AccountingCreditNotesOneRequest req = AccountingCreditNotesOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .fields("id,updated_at")
                 .build();
 
@@ -361,7 +364,7 @@ public class Application {
                 .call();
 
         if (res.getCreditNoteResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getCreditNoteResponse().get());
         }
     }
 }
@@ -421,7 +424,6 @@ public class Application {
         AccountingCreditNotesUpdateRequest req = AccountingCreditNotesUpdateRequest.builder()
                 .id("<id>")
                 .creditNote(CreditNoteInput.builder()
-                    .totalAmount(49.99)
                     .number("OIT00546")
                     .customer(LinkedCustomerInput.builder()
                         .id("12345")
@@ -433,6 +435,7 @@ public class Application {
                     .currencyRate(0.69)
                     .taxInclusive(true)
                     .subTotal(27500d)
+                    .totalAmount(49.99)
                     .totalTax(2500d)
                     .taxCode("1234")
                     .balance(27500d)
@@ -484,24 +487,24 @@ public class Application {
                                 .code("453")
                                 .build())
                             .customFields(List.of(
-                                CustomField.of(CustomField1.builder()
+                                CustomField.builder()
                                     .id("2389328923893298")
                                     .name("employee_level")
                                     .description("Employee Level")
-                                    .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                                    .build()),
-                                CustomField.of(CustomField1.builder()
+                                    .value(Value.of("Uses Salesforce and Marketo"))
+                                    .build(),
+                                CustomField.builder()
                                     .id("2389328923893298")
                                     .name("employee_level")
                                     .description("Employee Level")
-                                    .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                                    .build()),
-                                CustomField.of(CustomField1.builder()
+                                    .value(Value.of("Uses Salesforce and Marketo"))
+                                    .build(),
+                                CustomField.builder()
                                     .id("2389328923893298")
                                     .name("employee_level")
                                     .description("Employee Level")
-                                    .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                                    .build())))
+                                    .value(Value.of("Uses Salesforce and Marketo"))
+                                    .build()))
                             .rowVersion("1-12345")
                             .build()))
                     .allocations(List.of(
@@ -579,18 +582,18 @@ public class Application {
                             .name("New York")
                             .build()))
                     .customFields(List.of(
-                        CustomField.of(CustomField1.builder()
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build()),
-                        CustomField.of(CustomField1.builder()
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build(),
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build())))
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build()))
                     .rowVersion("1-12345")
                     .passThrough(List.of(
                         PassThroughBody.builder()
@@ -612,7 +615,7 @@ public class Application {
                 .call();
 
         if (res.updateCreditNoteResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateCreditNoteResponse().get());
         }
     }
 }
@@ -675,7 +678,7 @@ public class Application {
                 .call();
 
         if (res.deleteCreditNoteResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteCreditNoteResponse().get());
         }
     }
 }

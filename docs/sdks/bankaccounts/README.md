@@ -40,6 +40,7 @@ public class Application {
 
         AccountingBankAccountsAllRequest req = AccountingBankAccountsAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .filter(BankAccountsFilter.builder()
                     .name("Main Operating")
                     .accountType(BankAccountsFilterAccountType.CHECKING)
@@ -141,12 +142,12 @@ public class Application {
                     .status(AccountingBankAccountStatus.ACTIVE)
                     .description("Primary operating account for daily transactions")
                     .customFields(List.of(
-                        CustomField.of(CustomField1.builder()
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build())))
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build()))
                     .build())
                 .serviceId("salesforce")
                 .build();
@@ -156,7 +157,7 @@ public class Application {
                 .call();
 
         if (res.createBankAccountResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createBankAccountResponse().get());
         }
     }
 }
@@ -217,6 +218,7 @@ public class Application {
                     .accountType(BankAccountFilterAccountType.CHECKING)
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .fields("id,updated_at")
                 .build();
 
@@ -225,7 +227,7 @@ public class Application {
                 .call();
 
         if (res.getBankAccountResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getBankAccountResponse().get());
         }
     }
 }
@@ -310,12 +312,12 @@ public class Application {
                     .status(AccountingBankAccountStatus.ACTIVE)
                     .description("Primary operating account for daily transactions")
                     .customFields(List.of(
-                        CustomField.of(CustomField1.builder()
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build())))
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build()))
                     .build())
                 .serviceId("salesforce")
                 .build();
@@ -325,7 +327,7 @@ public class Application {
                 .call();
 
         if (res.updateBankAccountResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateBankAccountResponse().get());
         }
     }
 }
@@ -388,7 +390,7 @@ public class Application {
                 .call();
 
         if (res.deleteBankAccountResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteBankAccountResponse().get());
         }
     }
 }

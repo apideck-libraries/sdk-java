@@ -4,6 +4,8 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -13,8 +15,8 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -22,9 +24,9 @@ public class CollectionTag {
     /**
      * A unique identifier for an object.
      */
-    @JsonInclude(Include.ALWAYS)
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private JsonNullable<String> id;
 
     /**
      * The name of the tag.
@@ -40,9 +42,13 @@ public class CollectionTag {
     @JsonProperty("custom_mappings")
     private JsonNullable<? extends Map<String, Object>> customMappings;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public CollectionTag(
-            @JsonProperty("id") Optional<String> id,
+            @JsonProperty("id") JsonNullable<String> id,
             @JsonProperty("name") JsonNullable<String> name,
             @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings) {
         Utils.checkNotNull(id, "id");
@@ -51,17 +57,18 @@ public class CollectionTag {
         this.id = id;
         this.name = name;
         this.customMappings = customMappings;
+        this.additionalProperties = new HashMap<>();
     }
     
     public CollectionTag() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
      * A unique identifier for an object.
      */
     @JsonIgnore
-    public Optional<String> id() {
+    public JsonNullable<String> id() {
         return id;
     }
 
@@ -82,6 +89,11 @@ public class CollectionTag {
         return (JsonNullable<Map<String, Object>>) customMappings;
     }
 
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -92,15 +104,14 @@ public class CollectionTag {
      */
     public CollectionTag withId(String id) {
         Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
+        this.id = JsonNullable.of(id);
         return this;
     }
-
 
     /**
      * A unique identifier for an object.
      */
-    public CollectionTag withId(Optional<String> id) {
+    public CollectionTag withId(JsonNullable<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
@@ -142,6 +153,19 @@ public class CollectionTag {
         return this;
     }
 
+    @JsonAnySetter
+    public CollectionTag withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public CollectionTag withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -154,13 +178,15 @@ public class CollectionTag {
         return 
             Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.name, other.name) &&
-            Utils.enhancedDeepEquals(this.customMappings, other.customMappings);
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, name, customMappings);
+            id, name, customMappings,
+            additionalProperties);
     }
     
     @Override
@@ -168,17 +194,20 @@ public class CollectionTag {
         return Utils.toString(CollectionTag.class,
                 "id", id,
                 "name", name,
-                "customMappings", customMappings);
+                "customMappings", customMappings,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private JsonNullable<String> id = JsonNullable.undefined();
 
         private JsonNullable<String> name = JsonNullable.undefined();
 
         private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -190,14 +219,14 @@ public class CollectionTag {
          */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
+            this.id = JsonNullable.of(id);
             return this;
         }
 
         /**
          * A unique identifier for an object.
          */
-        public Builder id(Optional<String> id) {
+        public Builder id(JsonNullable<String> id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
@@ -241,10 +270,27 @@ public class CollectionTag {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public CollectionTag build() {
 
             return new CollectionTag(
-                id, name, customMappings);
+                id, name, customMappings)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

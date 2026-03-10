@@ -51,7 +51,7 @@ public class Application {
                 .call();
 
         if (res.getPayrollsResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getPayrollsResponse().get());
         }
     }
 }
@@ -115,7 +115,7 @@ public class Application {
                 .call();
 
         if (res.getPayrollResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getPayrollResponse().get());
         }
     }
 }

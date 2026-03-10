@@ -2,6 +2,17 @@
 
 The field on which to sort the Companies
 
+## Example Usage
+
+```java
+import com.apideck.unify.models.components.CompaniesSortBy;
+
+CompaniesSortBy value = CompaniesSortBy.CREATED_AT;
+
+// Open enum: use .of() to create instances from custom string values
+CompaniesSortBy custom = CompaniesSortBy.of("custom_value");
+```
+
 
 ## Values
 

@@ -2,6 +2,17 @@
 
 Type of entity this payment should be attributed to.
 
+## Example Usage
+
+```java
+import com.apideck.unify.models.components.BillPaymentAllocationType;
+
+BillPaymentAllocationType value = BillPaymentAllocationType.BILL;
+
+// Open enum: use .of() to create instances from custom string values
+BillPaymentAllocationType custom = BillPaymentAllocationType.of("custom_value");
+```
+
 
 ## Values
 

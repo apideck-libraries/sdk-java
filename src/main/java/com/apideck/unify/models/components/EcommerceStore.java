@@ -4,6 +4,8 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -14,7 +16,9 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -22,8 +26,9 @@ public class EcommerceStore {
     /**
      * A unique identifier for an object.
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private String id;
+    private Optional<String> id;
 
     /**
      * The store's name
@@ -67,9 +72,13 @@ public class EcommerceStore {
     @JsonProperty("updated_at")
     private JsonNullable<OffsetDateTime> updatedAt;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public EcommerceStore(
-            @JsonProperty("id") String id,
+            @JsonProperty("id") Optional<String> id,
             @JsonProperty("name") JsonNullable<String> name,
             @JsonProperty("store_url") JsonNullable<String> storeUrl,
             @JsonProperty("admin_url") JsonNullable<String> adminUrl,
@@ -90,11 +99,11 @@ public class EcommerceStore {
         this.customMappings = customMappings;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.additionalProperties = new HashMap<>();
     }
     
-    public EcommerceStore(
-            String id) {
-        this(id, JsonNullable.undefined(), JsonNullable.undefined(),
+    public EcommerceStore() {
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined());
     }
@@ -103,7 +112,7 @@ public class EcommerceStore {
      * A unique identifier for an object.
      */
     @JsonIgnore
-    public String id() {
+    public Optional<String> id() {
         return id;
     }
 
@@ -156,6 +165,11 @@ public class EcommerceStore {
         return updatedAt;
     }
 
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -165,6 +179,16 @@ public class EcommerceStore {
      * A unique identifier for an object.
      */
     public EcommerceStore withId(String id) {
+        Utils.checkNotNull(id, "id");
+        this.id = Optional.ofNullable(id);
+        return this;
+    }
+
+
+    /**
+     * A unique identifier for an object.
+     */
+    public EcommerceStore withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
@@ -278,6 +302,19 @@ public class EcommerceStore {
         return this;
     }
 
+    @JsonAnySetter
+    public EcommerceStore withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public EcommerceStore withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -294,7 +331,8 @@ public class EcommerceStore {
             Utils.enhancedDeepEquals(this.adminUrl, other.adminUrl) &&
             Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
-            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt);
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
@@ -302,7 +340,7 @@ public class EcommerceStore {
         return Utils.enhancedHash(
             id, name, storeUrl,
             adminUrl, customMappings, createdAt,
-            updatedAt);
+            updatedAt, additionalProperties);
     }
     
     @Override
@@ -314,13 +352,14 @@ public class EcommerceStore {
                 "adminUrl", adminUrl,
                 "customMappings", customMappings,
                 "createdAt", createdAt,
-                "updatedAt", updatedAt);
+                "updatedAt", updatedAt,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String id;
+        private Optional<String> id = Optional.empty();
 
         private JsonNullable<String> name = JsonNullable.undefined();
 
@@ -334,6 +373,8 @@ public class EcommerceStore {
 
         private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
 
+        private Map<String, Object> additionalProperties = new HashMap<>();
+
         private Builder() {
           // force use of static builder() method
         }
@@ -343,6 +384,15 @@ public class EcommerceStore {
          * A unique identifier for an object.
          */
         public Builder id(String id) {
+            Utils.checkNotNull(id, "id");
+            this.id = Optional.ofNullable(id);
+            return this;
+        }
+
+        /**
+         * A unique identifier for an object.
+         */
+        public Builder id(Optional<String> id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
@@ -462,12 +512,29 @@ public class EcommerceStore {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public EcommerceStore build() {
 
             return new EcommerceStore(
                 id, name, storeUrl,
                 adminUrl, customMappings, createdAt,
-                updatedAt);
+                updatedAt)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

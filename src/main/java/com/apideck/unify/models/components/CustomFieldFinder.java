@@ -4,6 +4,8 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -13,6 +15,8 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -53,6 +57,10 @@ public class CustomFieldFinder {
     @JsonProperty("finder")
     private Optional<String> finder;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public CustomFieldFinder(
             @JsonProperty("id") Optional<String> id,
@@ -70,6 +78,7 @@ public class CustomFieldFinder {
         this.description = description;
         this.value = value;
         this.finder = finder;
+        this.additionalProperties = new HashMap<>();
     }
     
     public CustomFieldFinder() {
@@ -116,6 +125,11 @@ public class CustomFieldFinder {
     @JsonIgnore
     public Optional<String> finder() {
         return finder;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
     }
 
     public static Builder builder() {
@@ -216,6 +230,19 @@ public class CustomFieldFinder {
         return this;
     }
 
+    @JsonAnySetter
+    public CustomFieldFinder withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public CustomFieldFinder withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -230,14 +257,15 @@ public class CustomFieldFinder {
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.description, other.description) &&
             Utils.enhancedDeepEquals(this.value, other.value) &&
-            Utils.enhancedDeepEquals(this.finder, other.finder);
+            Utils.enhancedDeepEquals(this.finder, other.finder) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             id, name, description,
-            value, finder);
+            value, finder, additionalProperties);
     }
     
     @Override
@@ -247,7 +275,8 @@ public class CustomFieldFinder {
                 "name", name,
                 "description", description,
                 "value", value,
-                "finder", finder);
+                "finder", finder,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -262,6 +291,8 @@ public class CustomFieldFinder {
         private Optional<? extends Object> value = Optional.empty();
 
         private Optional<String> finder = Optional.empty();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -362,11 +393,28 @@ public class CustomFieldFinder {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public CustomFieldFinder build() {
 
             return new CustomFieldFinder(
                 id, name, description,
-                value, finder);
+                value, finder)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

@@ -2,6 +2,17 @@
 
 Email type
 
+## Example Usage
+
+```java
+import com.apideck.unify.models.components.EmailType;
+
+EmailType value = EmailType.PRIMARY;
+
+// Open enum: use .of() to create instances from custom string values
+EmailType custom = EmailType.of("custom_value");
+```
+
 
 ## Values
 

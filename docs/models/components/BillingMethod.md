@@ -2,6 +2,17 @@
 
 Method used for billing this project
 
+## Example Usage
+
+```java
+import com.apideck.unify.models.components.BillingMethod;
+
+BillingMethod value = BillingMethod.FIXED_PRICE;
+
+// Open enum: use .of() to create instances from custom string values
+BillingMethod custom = BillingMethod.of("custom_value");
+```
+
 
 ## Values
 

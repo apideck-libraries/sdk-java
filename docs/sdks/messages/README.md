@@ -107,8 +107,8 @@ public class Application {
                 .message(MessageInput.builder()
                     .from("+15017122661")
                     .to("+15017122662")
-                    .body("Hi! How are you doing?")
                     .subject("Picture")
+                    .body("Hi! How are you doing?")
                     .type(MessageType.SMS)
                     .scheduledAt(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
                     .webhookUrl("https://unify.apideck.com/webhook/webhooks/eyz329dkffdl4949/x/sms")
@@ -156,7 +156,7 @@ public class Application {
                 .call();
 
         if (res.createMessageResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createMessageResponse().get());
         }
     }
 }
@@ -220,7 +220,7 @@ public class Application {
                 .call();
 
         if (res.getMessageResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getMessageResponse().get());
         }
     }
 }
@@ -282,8 +282,8 @@ public class Application {
                 .message(MessageInput.builder()
                     .from("+15017122661")
                     .to("+15017122662")
-                    .body("Hi! How are you doing?")
                     .subject("Picture")
+                    .body("Hi! How are you doing?")
                     .type(MessageType.SMS)
                     .scheduledAt(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
                     .webhookUrl("https://unify.apideck.com/webhook/webhooks/eyz329dkffdl4949/x/sms")
@@ -319,7 +319,7 @@ public class Application {
                 .call();
 
         if (res.updateMessageResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateMessageResponse().get());
         }
     }
 }
@@ -382,7 +382,7 @@ public class Application {
                 .call();
 
         if (res.deleteMessageResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteMessageResponse().get());
         }
     }
 }

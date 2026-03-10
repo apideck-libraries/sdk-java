@@ -41,6 +41,7 @@ public class Application {
 
         AccountingSuppliersAllRequest req = AccountingSuppliersAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .filter(SuppliersFilter.builder()
                     .companyName("SpaceX")
                     .displayName("Elon Musk")
@@ -160,41 +161,41 @@ public class Application {
                             .build()))
                     .phoneNumbers(List.of(
                         PhoneNumber.builder()
-                            .number("111-111-1111")
                             .id("12345")
                             .countryCode("1")
                             .areaCode("323")
+                            .number("111-111-1111")
                             .extension("105")
                             .type(PhoneNumberType.PRIMARY)
                             .build(),
                         PhoneNumber.builder()
-                            .number("111-111-1111")
                             .id("12345")
                             .countryCode("1")
                             .areaCode("323")
+                            .number("111-111-1111")
                             .extension("105")
                             .type(PhoneNumberType.PRIMARY)
                             .build()))
                     .emails(List.of(
                         Email.builder()
-                            .email("elon@musk.com")
                             .id("123")
+                            .email("elon@musk.com")
                             .type(EmailType.PRIMARY)
                             .build()))
                     .websites(List.of(
                         Website.builder()
-                            .url("http://example.com")
                             .id("12345")
+                            .url("http://example.com")
                             .type(WebsiteType.PRIMARY)
                             .build(),
                         Website.builder()
-                            .url("http://example.com")
                             .id("12345")
+                            .url("http://example.com")
                             .type(WebsiteType.PRIMARY)
                             .build(),
                         Website.builder()
-                            .url("http://example.com")
                             .id("12345")
+                            .url("http://example.com")
                             .type(WebsiteType.PRIMARY)
                             .build()))
                     .bankAccounts(List.of(
@@ -227,18 +228,18 @@ public class Application {
                     .paymentMethod("cash")
                     .channel("email")
                     .customFields(List.of(
-                        CustomField.of(CustomField1.builder()
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build()),
-                        CustomField.of(CustomField1.builder()
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build(),
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build())))
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build()))
                     .rowVersion("1-12345")
                     .passThrough(List.of(
                         PassThroughBody.builder()
@@ -264,6 +265,7 @@ public class Application {
                     .subsidiaryId("12345")
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingSuppliersAddResponse res = sdk.accounting().suppliers().create()
@@ -271,7 +273,7 @@ public class Application {
                 .call();
 
         if (res.createSupplierResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createSupplierResponse().get());
         }
     }
 }
@@ -327,6 +329,7 @@ public class Application {
         AccountingSuppliersOneRequest req = AccountingSuppliersOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .fields("id,updated_at")
                 .build();
 
@@ -335,7 +338,7 @@ public class Application {
                 .call();
 
         if (res.getSupplierResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getSupplierResponse().get());
         }
     }
 }
@@ -433,31 +436,31 @@ public class Application {
                             .build()))
                     .phoneNumbers(List.of(
                         PhoneNumber.builder()
-                            .number("111-111-1111")
                             .id("12345")
                             .countryCode("1")
                             .areaCode("323")
+                            .number("111-111-1111")
                             .extension("105")
                             .type(PhoneNumberType.PRIMARY)
                             .build(),
                         PhoneNumber.builder()
-                            .number("111-111-1111")
                             .id("12345")
                             .countryCode("1")
                             .areaCode("323")
+                            .number("111-111-1111")
                             .extension("105")
                             .type(PhoneNumberType.PRIMARY)
                             .build()))
                     .emails(List.of(
                         Email.builder()
-                            .email("elon@musk.com")
                             .id("123")
+                            .email("elon@musk.com")
                             .type(EmailType.PRIMARY)
                             .build()))
                     .websites(List.of(
                         Website.builder()
-                            .url("http://example.com")
                             .id("12345")
+                            .url("http://example.com")
                             .type(WebsiteType.PRIMARY)
                             .build()))
                     .bankAccounts(List.of(
@@ -503,18 +506,18 @@ public class Application {
                     .paymentMethod("cash")
                     .channel("email")
                     .customFields(List.of(
-                        CustomField.of(CustomField1.builder()
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build()),
-                        CustomField.of(CustomField1.builder()
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build(),
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build())))
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build()))
                     .rowVersion("1-12345")
                     .passThrough(List.of(
                         PassThroughBody.builder()
@@ -530,6 +533,7 @@ public class Application {
                     .subsidiaryId("12345")
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingSuppliersUpdateResponse res = sdk.accounting().suppliers().update()
@@ -537,7 +541,7 @@ public class Application {
                 .call();
 
         if (res.updateSupplierResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateSupplierResponse().get());
         }
     }
 }
@@ -593,6 +597,7 @@ public class Application {
         AccountingSuppliersDeleteRequest req = AccountingSuppliersDeleteRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingSuppliersDeleteResponse res = sdk.accounting().suppliers().delete()
@@ -600,7 +605,7 @@ public class Application {
                 .call();
 
         if (res.deleteSupplierResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteSupplierResponse().get());
         }
     }
 }

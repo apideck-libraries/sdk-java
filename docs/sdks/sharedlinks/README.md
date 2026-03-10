@@ -107,8 +107,8 @@ public class Application {
 
         FileStorageSharedLinksAddRequest req = FileStorageSharedLinksAddRequest.builder()
                 .sharedLink(SharedLinkInput.builder()
-                    .targetId("<id>")
                     .downloadUrl("https://www.box.com/shared/static/rh935iit6ewrmw0unyul.jpeg")
+                    .targetId("<id>")
                     .scope(Scope.COMPANY)
                     .passThrough(List.of(
                         PassThroughBody.builder()
@@ -150,7 +150,7 @@ public class Application {
                 .call();
 
         if (res.createSharedLinkResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createSharedLinkResponse().get());
         }
     }
 }
@@ -214,7 +214,7 @@ public class Application {
                 .call();
 
         if (res.getSharedLinkResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getSharedLinkResponse().get());
         }
     }
 }
@@ -273,8 +273,8 @@ public class Application {
         FileStorageSharedLinksUpdateRequest req = FileStorageSharedLinksUpdateRequest.builder()
                 .id("<id>")
                 .sharedLink(SharedLinkInput.builder()
-                    .targetId("<id>")
                     .downloadUrl("https://www.box.com/shared/static/rh935iit6ewrmw0unyul.jpeg")
+                    .targetId("<id>")
                     .scope(Scope.COMPANY)
                     .passThrough(List.of(
                         PassThroughBody.builder()
@@ -318,7 +318,7 @@ public class Application {
                 .call();
 
         if (res.updateSharedLinkResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateSharedLinkResponse().get());
         }
     }
 }
@@ -381,7 +381,7 @@ public class Application {
                 .call();
 
         if (res.deleteSharedLinkResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteSharedLinkResponse().get());
         }
     }
 }

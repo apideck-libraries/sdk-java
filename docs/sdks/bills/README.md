@@ -41,6 +41,7 @@ public class Application {
 
         AccountingBillsAllRequest req = AccountingBillsAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .filter(BillsFilter.builder()
                     .updatedSince(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
                     .build())
@@ -239,24 +240,24 @@ public class Application {
                     .trackingCategories(JsonNullable.of(null))
                     .rowVersion("1-12345")
                     .customFields(List.of(
-                        CustomField.of(CustomField1.builder()
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build()),
-                        CustomField.of(CustomField1.builder()
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build(),
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build()),
-                        CustomField.of(CustomField1.builder()
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build(),
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build())))
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build()))
                     .passThrough(List.of(
                         PassThroughBody.builder()
                             .serviceId("<id>")
@@ -334,7 +335,7 @@ public class Application {
                 .call();
 
         if (res.createBillResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createBillResponse().get());
         }
     }
 }
@@ -390,6 +391,7 @@ public class Application {
         AccountingBillsOneRequest req = AccountingBillsOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .fields("id,updated_at")
                 .build();
 
@@ -398,7 +400,7 @@ public class Application {
                 .call();
 
         if (res.getBillResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getBillResponse().get());
         }
     }
 }
@@ -611,18 +613,18 @@ public class Application {
                             .build()))
                     .rowVersion("1-12345")
                     .customFields(List.of(
-                        CustomField.of(CustomField1.builder()
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build()),
-                        CustomField.of(CustomField1.builder()
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build(),
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build())))
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build()))
                     .passThrough(List.of(
                         PassThroughBody.builder()
                             .serviceId("<id>")
@@ -654,7 +656,7 @@ public class Application {
                 .call();
 
         if (res.updateBillResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateBillResponse().get());
         }
     }
 }
@@ -717,7 +719,7 @@ public class Application {
                 .call();
 
         if (res.deleteBillResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteBillResponse().get());
         }
     }
 }

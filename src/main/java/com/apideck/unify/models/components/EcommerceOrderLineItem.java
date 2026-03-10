@@ -74,9 +74,9 @@ public class EcommerceOrderLineItem {
     /**
      * The quantity of the product or variant associated with the line item.
      */
-    @JsonInclude(Include.ALWAYS)
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("quantity")
-    private Optional<String> quantity;
+    private JsonNullable<String> quantity;
 
     /**
      * The unit price of the product or variant associated with the line item.
@@ -150,7 +150,7 @@ public class EcommerceOrderLineItem {
             @JsonProperty("name") JsonNullable<String> name,
             @JsonProperty("description") JsonNullable<String> description,
             @JsonProperty("options") Optional<? extends List<Options>> options,
-            @JsonProperty("quantity") Optional<String> quantity,
+            @JsonProperty("quantity") JsonNullable<String> quantity,
             @JsonProperty("unit_price") JsonNullable<String> unitPrice,
             @JsonProperty("tax_rate") JsonNullable<String> taxRate,
             @JsonProperty("tax_amount") JsonNullable<String> taxAmount,
@@ -199,7 +199,7 @@ public class EcommerceOrderLineItem {
     public EcommerceOrderLineItem() {
         this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), Optional.empty());
@@ -263,7 +263,7 @@ public class EcommerceOrderLineItem {
      * The quantity of the product or variant associated with the line item.
      */
     @JsonIgnore
-    public Optional<String> quantity() {
+    public JsonNullable<String> quantity() {
         return quantity;
     }
 
@@ -470,15 +470,14 @@ public class EcommerceOrderLineItem {
      */
     public EcommerceOrderLineItem withQuantity(String quantity) {
         Utils.checkNotNull(quantity, "quantity");
-        this.quantity = Optional.ofNullable(quantity);
+        this.quantity = JsonNullable.of(quantity);
         return this;
     }
-
 
     /**
      * The quantity of the product or variant associated with the line item.
      */
-    public EcommerceOrderLineItem withQuantity(Optional<String> quantity) {
+    public EcommerceOrderLineItem withQuantity(JsonNullable<String> quantity) {
         Utils.checkNotNull(quantity, "quantity");
         this.quantity = quantity;
         return this;
@@ -724,7 +723,7 @@ public class EcommerceOrderLineItem {
 
         private Optional<? extends List<Options>> options = Optional.empty();
 
-        private Optional<String> quantity = Optional.empty();
+        private JsonNullable<String> quantity = JsonNullable.undefined();
 
         private JsonNullable<String> unitPrice = JsonNullable.undefined();
 
@@ -881,14 +880,14 @@ public class EcommerceOrderLineItem {
          */
         public Builder quantity(String quantity) {
             Utils.checkNotNull(quantity, "quantity");
-            this.quantity = Optional.ofNullable(quantity);
+            this.quantity = JsonNullable.of(quantity);
             return this;
         }
 
         /**
          * The quantity of the product or variant associated with the line item.
          */
-        public Builder quantity(Optional<String> quantity) {
+        public Builder quantity(JsonNullable<String> quantity) {
             Utils.checkNotNull(quantity, "quantity");
             this.quantity = quantity;
             return this;

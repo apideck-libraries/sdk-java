@@ -9,3 +9,4 @@ The team the person is currently in.
 | ---------------------------------- | ---------------------------------- | ---------------------------------- | ---------------------------------- | ---------------------------------- |
 | `id`                               | *JsonNullable\<String>*            | :heavy_minus_sign:                 | The unique identifier of the team. | 1234                               |
 | `name`                             | *JsonNullable\<String>*            | :heavy_minus_sign:                 | The name of the team.              | Full Stack Engineers               |
+| `additionalProperties`             | Map\<String, *Object*>             | :heavy_minus_sign:                 | N/A                                |                                    |

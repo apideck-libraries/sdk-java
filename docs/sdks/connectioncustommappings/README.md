@@ -44,7 +44,7 @@ public class Application {
                 .call();
 
         if (res.getCustomMappingsResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getCustomMappingsResponse().get());
         }
     }
 }

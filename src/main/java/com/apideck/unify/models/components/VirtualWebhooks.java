@@ -4,14 +4,18 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
@@ -34,6 +38,10 @@ public class VirtualWebhooks {
     @JsonProperty("resources")
     private Optional<? extends Map<String, WebhookSupportResources>> resources;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public VirtualWebhooks(
             @JsonProperty("request_rate") RequestRate requestRate,
@@ -42,6 +50,7 @@ public class VirtualWebhooks {
         Utils.checkNotNull(resources, "resources");
         this.requestRate = requestRate;
         this.resources = resources;
+        this.additionalProperties = new HashMap<>();
     }
     
     public VirtualWebhooks(
@@ -64,6 +73,11 @@ public class VirtualWebhooks {
     @JsonIgnore
     public Optional<Map<String, WebhookSupportResources>> resources() {
         return (Optional<Map<String, WebhookSupportResources>>) resources;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
     }
 
     public static Builder builder() {
@@ -99,6 +113,19 @@ public class VirtualWebhooks {
         return this;
     }
 
+    @JsonAnySetter
+    public VirtualWebhooks withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public VirtualWebhooks withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -110,20 +137,22 @@ public class VirtualWebhooks {
         VirtualWebhooks other = (VirtualWebhooks) o;
         return 
             Utils.enhancedDeepEquals(this.requestRate, other.requestRate) &&
-            Utils.enhancedDeepEquals(this.resources, other.resources);
+            Utils.enhancedDeepEquals(this.resources, other.resources) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            requestRate, resources);
+            requestRate, resources, additionalProperties);
     }
     
     @Override
     public String toString() {
         return Utils.toString(VirtualWebhooks.class,
                 "requestRate", requestRate,
-                "resources", resources);
+                "resources", resources,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -132,6 +161,8 @@ public class VirtualWebhooks {
         private RequestRate requestRate;
 
         private Optional<? extends Map<String, WebhookSupportResources>> resources = Optional.empty();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -166,10 +197,27 @@ public class VirtualWebhooks {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public VirtualWebhooks build() {
 
             return new VirtualWebhooks(
-                requestRate, resources);
+                requestRate, resources)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

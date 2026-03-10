@@ -6,9 +6,12 @@ package com.apideck.unify.models.components;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Optional;
 
 /**
  * UnifiedId
@@ -19,21 +22,26 @@ public class UnifiedId {
     /**
      * The unique identifier of the resource
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private String id;
+    private Optional<String> id;
 
     @JsonCreator
     public UnifiedId(
-            @JsonProperty("id") String id) {
+            @JsonProperty("id") Optional<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
+    }
+    
+    public UnifiedId() {
+        this(Optional.empty());
     }
 
     /**
      * The unique identifier of the resource
      */
     @JsonIgnore
-    public String id() {
+    public Optional<String> id() {
         return id;
     }
 
@@ -46,6 +54,16 @@ public class UnifiedId {
      * The unique identifier of the resource
      */
     public UnifiedId withId(String id) {
+        Utils.checkNotNull(id, "id");
+        this.id = Optional.ofNullable(id);
+        return this;
+    }
+
+
+    /**
+     * The unique identifier of the resource
+     */
+    public UnifiedId withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
@@ -79,7 +97,7 @@ public class UnifiedId {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String id;
+        private Optional<String> id = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -90,6 +108,15 @@ public class UnifiedId {
          * The unique identifier of the resource
          */
         public Builder id(String id) {
+            Utils.checkNotNull(id, "id");
+            this.id = Optional.ofNullable(id);
+            return this;
+        }
+
+        /**
+         * The unique identifier of the resource
+         */
+        public Builder id(Optional<String> id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;

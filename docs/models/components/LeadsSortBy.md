@@ -2,6 +2,17 @@
 
 The field on which to sort the Leads
 
+## Example Usage
+
+```java
+import com.apideck.unify.models.components.LeadsSortBy;
+
+LeadsSortBy value = LeadsSortBy.CREATED_AT;
+
+// Open enum: use .of() to create instances from custom string values
+LeadsSortBy custom = LeadsSortBy.of("custom_value");
+```
+
 
 ## Values
 

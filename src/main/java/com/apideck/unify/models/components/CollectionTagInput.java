@@ -4,41 +4,56 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Optional;
+import java.util.HashMap;
+import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class CollectionTagInput {
     /**
      * A unique identifier for an object.
      */
-    @JsonInclude(Include.ALWAYS)
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private JsonNullable<String> id;
+
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
 
     @JsonCreator
     public CollectionTagInput(
-            @JsonProperty("id") Optional<String> id) {
+            @JsonProperty("id") JsonNullable<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
+        this.additionalProperties = new HashMap<>();
     }
     
     public CollectionTagInput() {
-        this(Optional.empty());
+        this(JsonNullable.undefined());
     }
 
     /**
      * A unique identifier for an object.
      */
     @JsonIgnore
-    public Optional<String> id() {
+    public JsonNullable<String> id() {
         return id;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
     }
 
     public static Builder builder() {
@@ -51,17 +66,29 @@ public class CollectionTagInput {
      */
     public CollectionTagInput withId(String id) {
         Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
+        this.id = JsonNullable.of(id);
         return this;
     }
-
 
     /**
      * A unique identifier for an object.
      */
-    public CollectionTagInput withId(Optional<String> id) {
+    public CollectionTagInput withId(JsonNullable<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
+        return this;
+    }
+
+    @JsonAnySetter
+    public CollectionTagInput withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public CollectionTagInput withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
         return this;
     }
 
@@ -75,25 +102,29 @@ public class CollectionTagInput {
         }
         CollectionTagInput other = (CollectionTagInput) o;
         return 
-            Utils.enhancedDeepEquals(this.id, other.id);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id);
+            id, additionalProperties);
     }
     
     @Override
     public String toString() {
         return Utils.toString(CollectionTagInput.class,
-                "id", id);
+                "id", id,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private JsonNullable<String> id = JsonNullable.undefined();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -105,23 +136,40 @@ public class CollectionTagInput {
          */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
+            this.id = JsonNullable.of(id);
             return this;
         }
 
         /**
          * A unique identifier for an object.
          */
-        public Builder id(Optional<String> id) {
+        public Builder id(JsonNullable<String> id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
+            return this;
+        }
+
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
             return this;
         }
 
         public CollectionTagInput build() {
 
             return new CollectionTagInput(
-                id);
+                id)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

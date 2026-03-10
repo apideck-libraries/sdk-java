@@ -41,6 +41,7 @@ public class Application {
 
         AccountingCustomersAllRequest req = AccountingCustomersAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .filter(CustomersFilter.builder()
                     .companyName("SpaceX")
                     .displayName("Elon Musk")
@@ -164,33 +165,33 @@ public class Application {
                             .build()))
                     .phoneNumbers(List.of(
                         PhoneNumber.builder()
-                            .number("111-111-1111")
                             .id("12345")
                             .countryCode("1")
                             .areaCode("323")
+                            .number("111-111-1111")
                             .extension("105")
                             .type(PhoneNumberType.PRIMARY)
                             .build()))
                     .emails(List.of(
                         Email.builder()
-                            .email("elon@musk.com")
                             .id("123")
+                            .email("elon@musk.com")
                             .type(EmailType.PRIMARY)
                             .build()))
                     .websites(List.of(
                         Website.builder()
-                            .url("http://example.com")
                             .id("12345")
+                            .url("http://example.com")
                             .type(WebsiteType.PRIMARY)
                             .build(),
                         Website.builder()
-                            .url("http://example.com")
                             .id("12345")
+                            .url("http://example.com")
                             .type(WebsiteType.PRIMARY)
                             .build(),
                         Website.builder()
-                            .url("http://example.com")
                             .id("12345")
+                            .url("http://example.com")
                             .type(WebsiteType.PRIMARY)
                             .build()))
                     .bankAccounts(List.of(
@@ -240,24 +241,24 @@ public class Application {
                     .paymentMethod("cash")
                     .channel("email")
                     .customFields(List.of(
-                        CustomField.of(CustomField1.builder()
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
                             .value(JsonNullable.of(null))
-                            .build()),
-                        CustomField.of(CustomField1.builder()
+                            .build(),
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
                             .value(JsonNullable.of(null))
-                            .build()),
-                        CustomField.of(CustomField1.builder()
+                            .build(),
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
                             .value(JsonNullable.of(null))
-                            .build())))
+                            .build()))
                     .rowVersion("1-12345")
                     .passThrough(List.of(
                         PassThroughBody.builder()
@@ -278,6 +279,7 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingCustomersAddResponse res = sdk.accounting().customers().create()
@@ -285,7 +287,7 @@ public class Application {
                 .call();
 
         if (res.createCustomerResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createCustomerResponse().get());
         }
     }
 }
@@ -341,6 +343,7 @@ public class Application {
         AccountingCustomersOneRequest req = AccountingCustomersOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .fields("id,updated_at")
                 .build();
 
@@ -349,7 +352,7 @@ public class Application {
                 .call();
 
         if (res.getCustomerResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getCustomerResponse().get());
         }
     }
 }
@@ -448,41 +451,41 @@ public class Application {
                             .build()))
                     .phoneNumbers(List.of(
                         PhoneNumber.builder()
-                            .number("111-111-1111")
                             .id("12345")
                             .countryCode("1")
                             .areaCode("323")
+                            .number("111-111-1111")
                             .extension("105")
                             .type(PhoneNumberType.PRIMARY)
                             .build(),
                         PhoneNumber.builder()
-                            .number("111-111-1111")
                             .id("12345")
                             .countryCode("1")
                             .areaCode("323")
+                            .number("111-111-1111")
                             .extension("105")
                             .type(PhoneNumberType.PRIMARY)
                             .build()))
                     .emails(List.of(
                         Email.builder()
-                            .email("elon@musk.com")
                             .id("123")
+                            .email("elon@musk.com")
                             .type(EmailType.PRIMARY)
                             .build()))
                     .websites(List.of(
                         Website.builder()
-                            .url("http://example.com")
                             .id("12345")
+                            .url("http://example.com")
                             .type(WebsiteType.PRIMARY)
                             .build(),
                         Website.builder()
-                            .url("http://example.com")
                             .id("12345")
+                            .url("http://example.com")
                             .type(WebsiteType.PRIMARY)
                             .build(),
                         Website.builder()
-                            .url("http://example.com")
                             .id("12345")
+                            .url("http://example.com")
                             .type(WebsiteType.PRIMARY)
                             .build()))
                     .bankAccounts(List.of(
@@ -545,12 +548,12 @@ public class Application {
                     .paymentMethod("cash")
                     .channel("email")
                     .customFields(List.of(
-                        CustomField.of(CustomField1.builder()
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build())))
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build()))
                     .rowVersion("1-12345")
                     .passThrough(List.of(
                         PassThroughBody.builder()
@@ -584,7 +587,7 @@ public class Application {
                 .call();
 
         if (res.updateCustomerResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateCustomerResponse().get());
         }
     }
 }
@@ -647,7 +650,7 @@ public class Application {
                 .call();
 
         if (res.deleteCustomerResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteCustomerResponse().get());
         }
     }
 }

@@ -21,13 +21,11 @@ List Employees
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.AccountingEmployeesFilter;
-import com.apideck.unify.models.components.AccountingEmployeesFilterStatus;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingEmployeesAllRequest;
 import com.apideck.unify.models.operations.AccountingEmployeesAllResponse;
 import java.lang.Exception;
-import java.time.OffsetDateTime;
+import java.util.Map;
 
 public class Application {
 
@@ -42,10 +40,9 @@ public class Application {
         AccountingEmployeesAllRequest req = AccountingEmployeesAllRequest.builder()
                 .serviceId("salesforce")
                 .fields("id,updated_at")
-                .filter(AccountingEmployeesFilter.builder()
-                    .updatedSince(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
-                    .status(AccountingEmployeesFilterStatus.ACTIVE)
-                    .build())
+                .filter(Map.ofEntries(
+                    Map.entry("updated_since", "2020-09-30T07:43:32.000Z"),
+                    Map.entry("status", "active")))
                 .build();
 
 
@@ -118,8 +115,8 @@ public class Application {
                     .displayName("John Doe")
                     .emails(List.of(
                         Email.builder()
-                            .email("elon@musk.com")
                             .id("123")
+                            .email("elon@musk.com")
                             .type(EmailType.PRIMARY)
                             .build()))
                     .employeeNumber("EMP-001")
@@ -187,20 +184,20 @@ public class Application {
                             .build()))
                     .phoneNumbers(List.of(
                         PhoneNumber.builder()
-                            .number("111-111-1111")
                             .id("12345")
                             .countryCode("1")
                             .areaCode("323")
+                            .number("111-111-1111")
                             .extension("105")
                             .type(PhoneNumberType.PRIMARY)
                             .build()))
                     .customFields(List.of(
-                        CustomField.of(CustomField1.builder()
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build())))
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build()))
                     .rowVersion("1-12345")
                     .passThrough(List.of(
                         PassThroughBody.builder()
@@ -222,7 +219,7 @@ public class Application {
                 .call();
 
         if (res.createAccountingEmployeeResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createAccountingEmployeeResponse().get());
         }
     }
 }
@@ -286,7 +283,7 @@ public class Application {
                 .call();
 
         if (res.getAccountingEmployeeResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getAccountingEmployeeResponse().get());
         }
     }
 }
@@ -352,8 +349,8 @@ public class Application {
                     .displayName("John Doe")
                     .emails(List.of(
                         Email.builder()
-                            .email("elon@musk.com")
                             .id("123")
+                            .email("elon@musk.com")
                             .type(EmailType.PRIMARY)
                             .build()))
                     .employeeNumber("EMP-001")
@@ -421,20 +418,20 @@ public class Application {
                             .build()))
                     .phoneNumbers(List.of(
                         PhoneNumber.builder()
-                            .number("111-111-1111")
                             .id("12345")
                             .countryCode("1")
                             .areaCode("323")
+                            .number("111-111-1111")
                             .extension("105")
                             .type(PhoneNumberType.PRIMARY)
                             .build()))
                     .customFields(List.of(
-                        CustomField.of(CustomField1.builder()
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build())))
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build()))
                     .rowVersion("1-12345")
                     .passThrough(List.of(
                         PassThroughBody.builder()
@@ -456,7 +453,7 @@ public class Application {
                 .call();
 
         if (res.updateAccountingEmployeeResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateAccountingEmployeeResponse().get());
         }
     }
 }
@@ -519,7 +516,7 @@ public class Application {
                 .call();
 
         if (res.deleteAccountingEmployeeResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteAccountingEmployeeResponse().get());
         }
     }
 }

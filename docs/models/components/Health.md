@@ -2,6 +2,17 @@
 
 Operational health status of the connection
 
+## Example Usage
+
+```java
+import com.apideck.unify.models.components.Health;
+
+Health value = Health.REVOKED;
+
+// Open enum: use .of() to create instances from custom string values
+Health custom = Health.of("custom_value");
+```
+
 
 ## Values
 

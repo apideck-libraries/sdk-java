@@ -4,6 +4,8 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -18,6 +20,7 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -61,7 +64,7 @@ public class LedgerAccount {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("classification")
-    private JsonNullable<? extends LedgerAccountClassification> classification;
+    private JsonNullable<? extends Classification> classification;
 
     /**
      * The type of account.
@@ -259,13 +262,17 @@ public class LedgerAccount {
     @JsonProperty("pass_through")
     private Optional<? extends List<PassThroughBody>> passThrough;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public LedgerAccount(
             @JsonProperty("id") Optional<String> id,
             @JsonProperty("display_id") Optional<String> displayId,
             @JsonProperty("nominal_code") JsonNullable<String> nominalCode,
             @JsonProperty("code") JsonNullable<String> code,
-            @JsonProperty("classification") JsonNullable<? extends LedgerAccountClassification> classification,
+            @JsonProperty("classification") JsonNullable<? extends Classification> classification,
             @JsonProperty("type") Optional<? extends LedgerAccountType> type,
             @JsonProperty("sub_type") JsonNullable<String> subType,
             @JsonProperty("name") JsonNullable<String> name,
@@ -363,6 +370,7 @@ public class LedgerAccount {
         this.updatedAt = updatedAt;
         this.createdAt = createdAt;
         this.passThrough = passThrough;
+        this.additionalProperties = new HashMap<>();
     }
     
     public LedgerAccount() {
@@ -420,8 +428,8 @@ public class LedgerAccount {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<LedgerAccountClassification> classification() {
-        return (JsonNullable<LedgerAccountClassification>) classification;
+    public JsonNullable<Classification> classification() {
+        return (JsonNullable<Classification>) classification;
     }
 
     /**
@@ -656,6 +664,11 @@ public class LedgerAccount {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -744,7 +757,7 @@ public class LedgerAccount {
     /**
      * The classification of account.
      */
-    public LedgerAccount withClassification(LedgerAccountClassification classification) {
+    public LedgerAccount withClassification(Classification classification) {
         Utils.checkNotNull(classification, "classification");
         this.classification = JsonNullable.of(classification);
         return this;
@@ -753,7 +766,7 @@ public class LedgerAccount {
     /**
      * The classification of account.
      */
-    public LedgerAccount withClassification(JsonNullable<? extends LedgerAccountClassification> classification) {
+    public LedgerAccount withClassification(JsonNullable<? extends Classification> classification) {
         Utils.checkNotNull(classification, "classification");
         this.classification = classification;
         return this;
@@ -1266,6 +1279,19 @@ public class LedgerAccount {
         return this;
     }
 
+    @JsonAnySetter
+    public LedgerAccount withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public LedgerAccount withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -1309,7 +1335,8 @@ public class LedgerAccount {
             Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
             Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
-            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
@@ -1326,7 +1353,7 @@ public class LedgerAccount {
             lastReconciliationDate, subsidiaries, customMappings,
             customFields, rowVersion, updatedBy,
             createdBy, updatedAt, createdAt,
-            passThrough);
+            passThrough, additionalProperties);
     }
     
     @Override
@@ -1365,7 +1392,8 @@ public class LedgerAccount {
                 "createdBy", createdBy,
                 "updatedAt", updatedAt,
                 "createdAt", createdAt,
-                "passThrough", passThrough);
+                "passThrough", passThrough,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -1380,7 +1408,7 @@ public class LedgerAccount {
 
         private JsonNullable<String> code = JsonNullable.undefined();
 
-        private JsonNullable<? extends LedgerAccountClassification> classification = JsonNullable.undefined();
+        private JsonNullable<? extends Classification> classification = JsonNullable.undefined();
 
         private Optional<? extends LedgerAccountType> type = Optional.empty();
 
@@ -1439,6 +1467,8 @@ public class LedgerAccount {
         private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
 
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -1530,7 +1560,7 @@ public class LedgerAccount {
         /**
          * The classification of account.
          */
-        public Builder classification(LedgerAccountClassification classification) {
+        public Builder classification(Classification classification) {
             Utils.checkNotNull(classification, "classification");
             this.classification = JsonNullable.of(classification);
             return this;
@@ -1539,7 +1569,7 @@ public class LedgerAccount {
         /**
          * The classification of account.
          */
-        public Builder classification(JsonNullable<? extends LedgerAccountClassification> classification) {
+        public Builder classification(JsonNullable<? extends Classification> classification) {
             Utils.checkNotNull(classification, "classification");
             this.classification = classification;
             return this;
@@ -2072,6 +2102,22 @@ public class LedgerAccount {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public LedgerAccount build() {
 
             return new LedgerAccount(
@@ -2086,7 +2132,8 @@ public class LedgerAccount {
                 lastReconciliationDate, subsidiaries, customMappings,
                 customFields, rowVersion, updatedBy,
                 createdBy, updatedAt, createdAt,
-                passThrough);
+                passThrough)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

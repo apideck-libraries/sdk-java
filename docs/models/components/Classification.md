@@ -1,6 +1,17 @@
 # Classification
 
-Filter by account classification.
+The classification of account.
+
+## Example Usage
+
+```java
+import com.apideck.unify.models.components.Classification;
+
+Classification value = Classification.ASSET;
+
+// Open enum: use .of() to create instances from custom string values
+Classification custom = Classification.of("custom_value");
+```
 
 
 ## Values

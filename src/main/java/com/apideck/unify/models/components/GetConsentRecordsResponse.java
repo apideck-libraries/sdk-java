@@ -4,6 +4,8 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -14,6 +16,7 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -47,6 +50,10 @@ public class GetConsentRecordsResponse {
     @JsonProperty("_raw")
     private JsonNullable<? extends Map<String, Object>> raw;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public GetConsentRecordsResponse(
             @JsonProperty("status_code") long statusCode,
@@ -61,6 +68,7 @@ public class GetConsentRecordsResponse {
         this.status = status;
         this.data = data;
         this.raw = raw;
+        this.additionalProperties = new HashMap<>();
     }
     
     public GetConsentRecordsResponse(
@@ -99,6 +107,11 @@ public class GetConsentRecordsResponse {
     @JsonIgnore
     public JsonNullable<Map<String, Object>> raw() {
         return (JsonNullable<Map<String, Object>>) raw;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
     }
 
     public static Builder builder() {
@@ -148,6 +161,19 @@ public class GetConsentRecordsResponse {
         return this;
     }
 
+    @JsonAnySetter
+    public GetConsentRecordsResponse withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public GetConsentRecordsResponse withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -161,14 +187,15 @@ public class GetConsentRecordsResponse {
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.data, other.data) &&
-            Utils.enhancedDeepEquals(this.raw, other.raw);
+            Utils.enhancedDeepEquals(this.raw, other.raw) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             statusCode, status, data,
-            raw);
+            raw, additionalProperties);
     }
     
     @Override
@@ -177,7 +204,8 @@ public class GetConsentRecordsResponse {
                 "statusCode", statusCode,
                 "status", status,
                 "data", data,
-                "raw", raw);
+                "raw", raw,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -190,6 +218,8 @@ public class GetConsentRecordsResponse {
         private List<ConsentRecord> data;
 
         private JsonNullable<? extends Map<String, Object>> raw = JsonNullable.undefined();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -241,11 +271,28 @@ public class GetConsentRecordsResponse {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public GetConsentRecordsResponse build() {
 
             return new GetConsentRecordsResponse(
                 statusCode, status, data,
-                raw);
+                raw)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

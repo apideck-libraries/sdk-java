@@ -121,7 +121,7 @@ public class Application {
                 .call();
 
         if (res.createUploadSessionResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createUploadSessionResponse().get());
         }
     }
 }
@@ -186,7 +186,7 @@ public class Application {
                 .call();
 
         if (res.getUploadSessionResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getUploadSessionResponse().get());
         }
     }
 }
@@ -315,7 +315,7 @@ public class Application {
                 .call();
 
         if (res.deleteUploadSessionResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteUploadSessionResponse().get());
         }
     }
 }
@@ -379,7 +379,7 @@ public class Application {
                 .call();
 
         if (res.getFileResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getFileResponse().get());
         }
     }
 }

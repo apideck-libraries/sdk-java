@@ -39,6 +39,7 @@ public class Application {
 
         AccountingTrackingCategoriesAllRequest req = AccountingTrackingCategoriesAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
                 .fields("id,updated_at")
@@ -159,6 +160,7 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingTrackingCategoriesAddResponse res = sdk.accounting().trackingCategories().create()
@@ -166,7 +168,7 @@ public class Application {
                 .call();
 
         if (res.createTrackingCategoryResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createTrackingCategoryResponse().get());
         }
     }
 }
@@ -222,6 +224,7 @@ public class Application {
         AccountingTrackingCategoriesOneRequest req = AccountingTrackingCategoriesOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .fields("id,updated_at")
                 .build();
 
@@ -230,7 +233,7 @@ public class Application {
                 .call();
 
         if (res.getTrackingCategoryResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getTrackingCategoryResponse().get());
         }
     }
 }
@@ -313,6 +316,7 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingTrackingCategoriesUpdateResponse res = sdk.accounting().trackingCategories().update()
@@ -320,7 +324,7 @@ public class Application {
                 .call();
 
         if (res.updateTrackingCategoryResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateTrackingCategoryResponse().get());
         }
     }
 }
@@ -376,6 +380,7 @@ public class Application {
         AccountingTrackingCategoriesDeleteRequest req = AccountingTrackingCategoriesDeleteRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingTrackingCategoriesDeleteResponse res = sdk.accounting().trackingCategories().delete()
@@ -383,7 +388,7 @@ public class Application {
                 .call();
 
         if (res.deleteTrackingCategoryResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteTrackingCategoryResponse().get());
         }
     }
 }

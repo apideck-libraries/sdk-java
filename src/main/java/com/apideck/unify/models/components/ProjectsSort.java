@@ -20,7 +20,7 @@ public class ProjectsSort {
      * The field to sort by
      */
     @SpeakeasyMetadata("queryParam:name=by")
-    private Optional<? extends ProjectsSortSortBy> by;
+    private Optional<? extends SortBy> by;
 
     /**
      * The direction in which to sort the results
@@ -30,7 +30,7 @@ public class ProjectsSort {
 
     @JsonCreator
     public ProjectsSort(
-            Optional<? extends ProjectsSortSortBy> by,
+            Optional<? extends SortBy> by,
             Optional<? extends SortDirection> direction) {
         Utils.checkNotNull(by, "by");
         Utils.checkNotNull(direction, "direction");
@@ -47,8 +47,8 @@ public class ProjectsSort {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ProjectsSortSortBy> by() {
-        return (Optional<ProjectsSortSortBy>) by;
+    public Optional<SortBy> by() {
+        return (Optional<SortBy>) by;
     }
 
     /**
@@ -68,7 +68,7 @@ public class ProjectsSort {
     /**
      * The field to sort by
      */
-    public ProjectsSort withBy(ProjectsSortSortBy by) {
+    public ProjectsSort withBy(SortBy by) {
         Utils.checkNotNull(by, "by");
         this.by = Optional.ofNullable(by);
         return this;
@@ -78,7 +78,7 @@ public class ProjectsSort {
     /**
      * The field to sort by
      */
-    public ProjectsSort withBy(Optional<? extends ProjectsSortSortBy> by) {
+    public ProjectsSort withBy(Optional<? extends SortBy> by) {
         Utils.checkNotNull(by, "by");
         this.by = by;
         return this;
@@ -133,7 +133,7 @@ public class ProjectsSort {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends ProjectsSortSortBy> by = Optional.empty();
+        private Optional<? extends SortBy> by = Optional.empty();
 
         private Optional<? extends SortDirection> direction;
 
@@ -145,7 +145,7 @@ public class ProjectsSort {
         /**
          * The field to sort by
          */
-        public Builder by(ProjectsSortSortBy by) {
+        public Builder by(SortBy by) {
             Utils.checkNotNull(by, "by");
             this.by = Optional.ofNullable(by);
             return this;
@@ -154,7 +154,7 @@ public class ProjectsSort {
         /**
          * The field to sort by
          */
-        public Builder by(Optional<? extends ProjectsSortSortBy> by) {
+        public Builder by(Optional<? extends SortBy> by) {
             Utils.checkNotNull(by, "by");
             this.by = by;
             return this;

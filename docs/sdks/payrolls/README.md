@@ -18,7 +18,6 @@ List Payroll
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.PayrollsFilter;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.HrisPayrollsAllRequest;
 import com.apideck.unify.models.operations.HrisPayrollsAllResponse;
@@ -37,10 +36,9 @@ public class Application {
 
         HrisPayrollsAllRequest req = HrisPayrollsAllRequest.builder()
                 .serviceId("salesforce")
-                .filter(PayrollsFilter.builder()
-                    .startDate("2022-04-08")
-                    .endDate("2022-04-21")
-                    .build())
+                .filter(Map.ofEntries(
+                    Map.entry("start_date", "2022-04-08"),
+                    Map.entry("end_date", "2022-04-21")))
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
                 .fields("id,updated_at")
@@ -51,7 +49,7 @@ public class Application {
                 .call();
 
         if (res.getPayrollsResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getPayrollsResponse().get());
         }
     }
 }
@@ -115,7 +113,7 @@ public class Application {
                 .call();
 
         if (res.getPayrollResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getPayrollResponse().get());
         }
     }
 }

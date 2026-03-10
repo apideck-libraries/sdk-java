@@ -110,7 +110,7 @@ public class Application {
                 .call();
 
         if (res.getJobResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getJobResponse().get());
         }
     }
 }

@@ -21,7 +21,6 @@ List Comments
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.*;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.IssueTrackingCollectionTicketCommentsAllRequest;
 import com.apideck.unify.models.operations.IssueTrackingCollectionTicketCommentsAllResponse;
@@ -42,10 +41,9 @@ public class Application {
                 .collectionId("apideck-io")
                 .ticketId("<id>")
                 .serviceId("salesforce")
-                .sort(CommentsSort.builder()
-                    .by(CommentsSortBy.CREATED_AT)
-                    .direction(SortDirection.DESC)
-                    .build())
+                .sort(Map.ofEntries(
+                    Map.entry("by", "created_at"),
+                    Map.entry("direction", "desc")))
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
                 .fields("id,updated_at")
@@ -171,7 +169,7 @@ public class Application {
                 .call();
 
         if (res.createCommentResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createCommentResponse().get());
         }
     }
 }
@@ -325,7 +323,7 @@ public class Application {
                 .call();
 
         if (res.updateCommentResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateCommentResponse().get());
         }
     }
 }
@@ -390,7 +388,7 @@ public class Application {
                 .call();
 
         if (res.deleteCommentResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteCommentResponse().get());
         }
     }
 }

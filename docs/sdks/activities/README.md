@@ -21,12 +21,10 @@ List activities
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.*;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.CrmActivitiesAllRequest;
 import com.apideck.unify.models.operations.CrmActivitiesAllResponse;
 import java.lang.Exception;
-import java.time.OffsetDateTime;
 import java.util.Map;
 
 public class Application {
@@ -41,13 +39,11 @@ public class Application {
 
         CrmActivitiesAllRequest req = CrmActivitiesAllRequest.builder()
                 .serviceId("salesforce")
-                .filter(ActivitiesFilter.builder()
-                    .updatedSince(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
-                    .build())
-                .sort(ActivitiesSort.builder()
-                    .by(ActivitiesSortBy.CREATED_AT)
-                    .direction(SortDirection.DESC)
-                    .build())
+                .filter(Map.ofEntries(
+                    Map.entry("updated_since", "2020-09-30T07:43:32.000Z")))
+                .sort(Map.ofEntries(
+                    Map.entry("by", "created_at"),
+                    Map.entry("direction", "desc")))
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
                 .fields("id,updated_at")
@@ -117,7 +113,6 @@ public class Application {
 
         CrmActivitiesAddRequest req = CrmActivitiesAddRequest.builder()
                 .activity(ActivityInput.builder()
-                    .type(ActivityType.MEETING)
                     .activityDatetime("2021-05-01T12:00:00.000Z")
                     .durationSeconds(1800L)
                     .userId("12345")
@@ -134,6 +129,7 @@ public class Application {
                     .productId("12345")
                     .solutionId("12345")
                     .customObjectId("12345")
+                    .type(ActivityType.MEETING)
                     .title("Meeting")
                     .description("More info about the meeting")
                     .note("An internal note about the meeting")
@@ -184,12 +180,12 @@ public class Application {
                     .videoConferenceUrl("https://us02web.zoom.us/j/88120759396")
                     .videoConferenceId("zoom:88120759396")
                     .customFields(List.of(
-                        CustomField.of(CustomField1.builder()
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
                             .value(JsonNullable.of(null))
-                            .build())))
+                            .build()))
                     .attendees(List.of(
                         ActivityAttendeeInput.builder()
                             .name("Elon Musk")
@@ -222,7 +218,7 @@ public class Application {
                 .call();
 
         if (res.createActivityResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createActivityResponse().get());
         }
     }
 }
@@ -286,7 +282,7 @@ public class Application {
                 .call();
 
         if (res.getActivityResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getActivityResponse().get());
         }
     }
 }
@@ -345,7 +341,6 @@ public class Application {
         CrmActivitiesUpdateRequest req = CrmActivitiesUpdateRequest.builder()
                 .id("<id>")
                 .activity(ActivityInput.builder()
-                    .type(ActivityType.MEETING)
                     .activityDatetime("2021-05-01T12:00:00.000Z")
                     .durationSeconds(1800L)
                     .userId("12345")
@@ -362,6 +357,7 @@ public class Application {
                     .productId("12345")
                     .solutionId("12345")
                     .customObjectId("12345")
+                    .type(ActivityType.MEETING)
                     .title("Meeting")
                     .description("More info about the meeting")
                     .note("An internal note about the meeting")
@@ -412,18 +408,18 @@ public class Application {
                     .videoConferenceUrl("https://us02web.zoom.us/j/88120759396")
                     .videoConferenceId("zoom:88120759396")
                     .customFields(List.of(
-                        CustomField.of(CustomField1.builder()
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build()),
-                        CustomField.of(CustomField1.builder()
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build(),
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build())))
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build()))
                     .attendees(List.of(
                         ActivityAttendeeInput.builder()
                             .name("Elon Musk")
@@ -516,7 +512,7 @@ public class Application {
                 .call();
 
         if (res.updateActivityResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateActivityResponse().get());
         }
     }
 }
@@ -579,7 +575,7 @@ public class Application {
                 .call();
 
         if (res.deleteActivityResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteActivityResponse().get());
         }
     }
 }

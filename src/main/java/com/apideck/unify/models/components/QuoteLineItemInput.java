@@ -4,6 +4,8 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -11,11 +13,14 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Double;
 import java.lang.Long;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -171,6 +176,10 @@ public class QuoteLineItemInput {
     @JsonProperty("row_version")
     private JsonNullable<String> rowVersion;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public QuoteLineItemInput(
             @JsonProperty("id") JsonNullable<String> id,
@@ -242,6 +251,7 @@ public class QuoteLineItemInput {
         this.ledgerAccount = ledgerAccount;
         this.customFields = customFields;
         this.rowVersion = rowVersion;
+        this.additionalProperties = new HashMap<>();
     }
     
     public QuoteLineItemInput() {
@@ -426,6 +436,11 @@ public class QuoteLineItemInput {
     @JsonIgnore
     public JsonNullable<String> rowVersion() {
         return rowVersion;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
     }
 
     public static Builder builder() {
@@ -817,6 +832,19 @@ public class QuoteLineItemInput {
         return this;
     }
 
+    @JsonAnySetter
+    public QuoteLineItemInput withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public QuoteLineItemInput withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -849,7 +877,8 @@ public class QuoteLineItemInput {
             Utils.enhancedDeepEquals(this.trackingCategories, other.trackingCategories) &&
             Utils.enhancedDeepEquals(this.ledgerAccount, other.ledgerAccount) &&
             Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
-            Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion);
+            Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
@@ -862,7 +891,7 @@ public class QuoteLineItemInput {
             discountAmount, serviceDate, categoryId,
             locationId, departmentId, item,
             taxRate, trackingCategories, ledgerAccount,
-            customFields, rowVersion);
+            customFields, rowVersion, additionalProperties);
     }
     
     @Override
@@ -890,7 +919,8 @@ public class QuoteLineItemInput {
                 "trackingCategories", trackingCategories,
                 "ledgerAccount", ledgerAccount,
                 "customFields", customFields,
-                "rowVersion", rowVersion);
+                "rowVersion", rowVersion,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -941,6 +971,8 @@ public class QuoteLineItemInput {
         private Optional<? extends List<CustomField>> customFields = Optional.empty();
 
         private JsonNullable<String> rowVersion = JsonNullable.undefined();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -1349,6 +1381,22 @@ public class QuoteLineItemInput {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public QuoteLineItemInput build() {
 
             return new QuoteLineItemInput(
@@ -1359,7 +1407,8 @@ public class QuoteLineItemInput {
                 discountAmount, serviceDate, categoryId,
                 locationId, departmentId, item,
                 taxRate, trackingCategories, ledgerAccount,
-                customFields, rowVersion);
+                customFields, rowVersion)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

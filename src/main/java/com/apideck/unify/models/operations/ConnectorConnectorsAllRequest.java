@@ -3,7 +3,6 @@
  */
 package com.apideck.unify.models.operations;
 
-import com.apideck.unify.models.components.ConnectorsFilter;
 import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
@@ -11,9 +10,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import java.lang.Long;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -42,14 +43,14 @@ public class ConnectorConnectorsAllRequest {
      * Apply filters
      */
     @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=filter")
-    private Optional<? extends ConnectorsFilter> filter;
+    private Optional<? extends Map<String, Object>> filter;
 
     @JsonCreator
     public ConnectorConnectorsAllRequest(
             Optional<String> appId,
             JsonNullable<String> cursor,
             Optional<Long> limit,
-            Optional<? extends ConnectorsFilter> filter) {
+            Optional<? extends Map<String, Object>> filter) {
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(limit, "limit");
@@ -95,8 +96,8 @@ public class ConnectorConnectorsAllRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ConnectorsFilter> filter() {
-        return (Optional<ConnectorsFilter>) filter;
+    public Optional<Map<String, Object>> filter() {
+        return (Optional<Map<String, Object>>) filter;
     }
 
     public static Builder builder() {
@@ -165,7 +166,7 @@ public class ConnectorConnectorsAllRequest {
     /**
      * Apply filters
      */
-    public ConnectorConnectorsAllRequest withFilter(ConnectorsFilter filter) {
+    public ConnectorConnectorsAllRequest withFilter(Map<String, Object> filter) {
         Utils.checkNotNull(filter, "filter");
         this.filter = Optional.ofNullable(filter);
         return this;
@@ -175,7 +176,7 @@ public class ConnectorConnectorsAllRequest {
     /**
      * Apply filters
      */
-    public ConnectorConnectorsAllRequest withFilter(Optional<? extends ConnectorsFilter> filter) {
+    public ConnectorConnectorsAllRequest withFilter(Optional<? extends Map<String, Object>> filter) {
         Utils.checkNotNull(filter, "filter");
         this.filter = filter;
         return this;
@@ -222,7 +223,7 @@ public class ConnectorConnectorsAllRequest {
 
         private Optional<Long> limit;
 
-        private Optional<? extends ConnectorsFilter> filter = Optional.empty();
+        private Optional<? extends Map<String, Object>> filter = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -291,7 +292,7 @@ public class ConnectorConnectorsAllRequest {
         /**
          * Apply filters
          */
-        public Builder filter(ConnectorsFilter filter) {
+        public Builder filter(Map<String, Object> filter) {
             Utils.checkNotNull(filter, "filter");
             this.filter = Optional.ofNullable(filter);
             return this;
@@ -300,7 +301,7 @@ public class ConnectorConnectorsAllRequest {
         /**
          * Apply filters
          */
-        public Builder filter(Optional<? extends ConnectorsFilter> filter) {
+        public Builder filter(Optional<? extends Map<String, Object>> filter) {
             Utils.checkNotNull(filter, "filter");
             this.filter = filter;
             return this;

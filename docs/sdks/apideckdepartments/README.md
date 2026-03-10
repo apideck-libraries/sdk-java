@@ -150,7 +150,7 @@ public class Application {
                 .call();
 
         if (res.createDepartmentResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createDepartmentResponse().get());
         }
     }
 }
@@ -214,7 +214,7 @@ public class Application {
                 .call();
 
         if (res.getDepartmentResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getDepartmentResponse().get());
         }
     }
 }
@@ -296,7 +296,7 @@ public class Application {
                 .call();
 
         if (res.updateDepartmentResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateDepartmentResponse().get());
         }
     }
 }
@@ -359,7 +359,7 @@ public class Application {
                 .call();
 
         if (res.deleteDepartmentResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteDepartmentResponse().get());
         }
     }
 }

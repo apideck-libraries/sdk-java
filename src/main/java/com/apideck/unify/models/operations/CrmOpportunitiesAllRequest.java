@@ -3,8 +3,6 @@
  */
 package com.apideck.unify.models.operations;
 
-import com.apideck.unify.models.components.OpportunitiesFilter;
-import com.apideck.unify.models.components.OpportunitiesSort;
 import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
@@ -65,13 +63,13 @@ public class CrmOpportunitiesAllRequest {
      * Apply filters
      */
     @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=filter")
-    private Optional<? extends OpportunitiesFilter> filter;
+    private Optional<? extends Map<String, Object>> filter;
 
     /**
      * Apply sorting
      */
     @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=sort")
-    private Optional<? extends OpportunitiesSort> sort;
+    private Optional<? extends Map<String, Object>> sort;
 
     /**
      * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie:
@@ -102,8 +100,8 @@ public class CrmOpportunitiesAllRequest {
             Optional<String> serviceId,
             JsonNullable<String> cursor,
             Optional<Long> limit,
-            Optional<? extends OpportunitiesFilter> filter,
-            Optional<? extends OpportunitiesSort> sort,
+            Optional<? extends Map<String, Object>> filter,
+            Optional<? extends Map<String, Object>> sort,
             Optional<? extends Map<String, Object>> passThrough,
             JsonNullable<String> fields) {
         Utils.checkNotNull(raw, "raw");
@@ -190,8 +188,8 @@ public class CrmOpportunitiesAllRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<OpportunitiesFilter> filter() {
-        return (Optional<OpportunitiesFilter>) filter;
+    public Optional<Map<String, Object>> filter() {
+        return (Optional<Map<String, Object>>) filter;
     }
 
     /**
@@ -199,8 +197,8 @@ public class CrmOpportunitiesAllRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<OpportunitiesSort> sort() {
-        return (Optional<OpportunitiesSort>) sort;
+    public Optional<Map<String, Object>> sort() {
+        return (Optional<Map<String, Object>>) sort;
     }
 
     /**
@@ -354,7 +352,7 @@ public class CrmOpportunitiesAllRequest {
     /**
      * Apply filters
      */
-    public CrmOpportunitiesAllRequest withFilter(OpportunitiesFilter filter) {
+    public CrmOpportunitiesAllRequest withFilter(Map<String, Object> filter) {
         Utils.checkNotNull(filter, "filter");
         this.filter = Optional.ofNullable(filter);
         return this;
@@ -364,7 +362,7 @@ public class CrmOpportunitiesAllRequest {
     /**
      * Apply filters
      */
-    public CrmOpportunitiesAllRequest withFilter(Optional<? extends OpportunitiesFilter> filter) {
+    public CrmOpportunitiesAllRequest withFilter(Optional<? extends Map<String, Object>> filter) {
         Utils.checkNotNull(filter, "filter");
         this.filter = filter;
         return this;
@@ -373,7 +371,7 @@ public class CrmOpportunitiesAllRequest {
     /**
      * Apply sorting
      */
-    public CrmOpportunitiesAllRequest withSort(OpportunitiesSort sort) {
+    public CrmOpportunitiesAllRequest withSort(Map<String, Object> sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = Optional.ofNullable(sort);
         return this;
@@ -383,7 +381,7 @@ public class CrmOpportunitiesAllRequest {
     /**
      * Apply sorting
      */
-    public CrmOpportunitiesAllRequest withSort(Optional<? extends OpportunitiesSort> sort) {
+    public CrmOpportunitiesAllRequest withSort(Optional<? extends Map<String, Object>> sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = sort;
         return this;
@@ -505,9 +503,9 @@ public class CrmOpportunitiesAllRequest {
 
         private Optional<Long> limit;
 
-        private Optional<? extends OpportunitiesFilter> filter = Optional.empty();
+        private Optional<? extends Map<String, Object>> filter = Optional.empty();
 
-        private Optional<? extends OpportunitiesSort> sort = Optional.empty();
+        private Optional<? extends Map<String, Object>> sort = Optional.empty();
 
         private Optional<? extends Map<String, Object>> passThrough = Optional.empty();
 
@@ -639,7 +637,7 @@ public class CrmOpportunitiesAllRequest {
         /**
          * Apply filters
          */
-        public Builder filter(OpportunitiesFilter filter) {
+        public Builder filter(Map<String, Object> filter) {
             Utils.checkNotNull(filter, "filter");
             this.filter = Optional.ofNullable(filter);
             return this;
@@ -648,7 +646,7 @@ public class CrmOpportunitiesAllRequest {
         /**
          * Apply filters
          */
-        public Builder filter(Optional<? extends OpportunitiesFilter> filter) {
+        public Builder filter(Optional<? extends Map<String, Object>> filter) {
             Utils.checkNotNull(filter, "filter");
             this.filter = filter;
             return this;
@@ -658,7 +656,7 @@ public class CrmOpportunitiesAllRequest {
         /**
          * Apply sorting
          */
-        public Builder sort(OpportunitiesSort sort) {
+        public Builder sort(Map<String, Object> sort) {
             Utils.checkNotNull(sort, "sort");
             this.sort = Optional.ofNullable(sort);
             return this;
@@ -667,7 +665,7 @@ public class CrmOpportunitiesAllRequest {
         /**
          * Apply sorting
          */
-        public Builder sort(Optional<? extends OpportunitiesSort> sort) {
+        public Builder sort(Optional<? extends Map<String, Object>> sort) {
             Utils.checkNotNull(sort, "sort");
             this.sort = sort;
             return this;

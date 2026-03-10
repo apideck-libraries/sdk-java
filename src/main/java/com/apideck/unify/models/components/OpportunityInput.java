@@ -4,18 +4,23 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Double;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -24,8 +29,9 @@ public class OpportunityInput {
     /**
      * The title or name of the opportunity.
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("title")
-    private String title;
+    private Optional<String> title;
 
     /**
      * The unique identifier of the primary contact associated with the opportunity.
@@ -222,9 +228,13 @@ public class OpportunityInput {
     @JsonProperty("pass_through")
     private Optional<? extends List<PassThroughBody>> passThrough;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public OpportunityInput(
-            @JsonProperty("title") String title,
+            @JsonProperty("title") Optional<String> title,
             @JsonProperty("primary_contact_id") JsonNullable<String> primaryContactId,
             @JsonProperty("description") JsonNullable<String> description,
             @JsonProperty("type") JsonNullable<String> type,
@@ -311,11 +321,11 @@ public class OpportunityInput {
         this.customFields = customFields;
         this.stageLastChangedAt = stageLastChangedAt;
         this.passThrough = passThrough;
+        this.additionalProperties = new HashMap<>();
     }
     
-    public OpportunityInput(
-            String title) {
-        this(title, JsonNullable.undefined(), JsonNullable.undefined(),
+    public OpportunityInput() {
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
@@ -331,7 +341,7 @@ public class OpportunityInput {
      * The title or name of the opportunity.
      */
     @JsonIgnore
-    public String title() {
+    public Optional<String> title() {
         return title;
     }
 
@@ -561,6 +571,11 @@ public class OpportunityInput {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -570,6 +585,16 @@ public class OpportunityInput {
      * The title or name of the opportunity.
      */
     public OpportunityInput withTitle(String title) {
+        Utils.checkNotNull(title, "title");
+        this.title = Optional.ofNullable(title);
+        return this;
+    }
+
+
+    /**
+     * The title or name of the opportunity.
+     */
+    public OpportunityInput withTitle(Optional<String> title) {
         Utils.checkNotNull(title, "title");
         this.title = title;
         return this;
@@ -1076,6 +1101,19 @@ public class OpportunityInput {
         return this;
     }
 
+    @JsonAnySetter
+    public OpportunityInput withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public OpportunityInput withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -1114,7 +1152,8 @@ public class OpportunityInput {
             Utils.enhancedDeepEquals(this.tags, other.tags) &&
             Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
             Utils.enhancedDeepEquals(this.stageLastChangedAt, other.stageLastChangedAt) &&
-            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
@@ -1129,7 +1168,7 @@ public class OpportunityInput {
             contactIds, companyId, companyName,
             ownerId, priority, status,
             statusId, tags, customFields,
-            stageLastChangedAt, passThrough);
+            stageLastChangedAt, passThrough, additionalProperties);
     }
     
     @Override
@@ -1163,13 +1202,14 @@ public class OpportunityInput {
                 "tags", tags,
                 "customFields", customFields,
                 "stageLastChangedAt", stageLastChangedAt,
-                "passThrough", passThrough);
+                "passThrough", passThrough,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String title;
+        private Optional<String> title = Optional.empty();
 
         private JsonNullable<String> primaryContactId = JsonNullable.undefined();
 
@@ -1227,6 +1267,8 @@ public class OpportunityInput {
 
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
 
+        private Map<String, Object> additionalProperties = new HashMap<>();
+
         private Builder() {
           // force use of static builder() method
         }
@@ -1236,6 +1278,15 @@ public class OpportunityInput {
          * The title or name of the opportunity.
          */
         public Builder title(String title) {
+            Utils.checkNotNull(title, "title");
+            this.title = Optional.ofNullable(title);
+            return this;
+        }
+
+        /**
+         * The title or name of the opportunity.
+         */
+        public Builder title(Optional<String> title) {
             Utils.checkNotNull(title, "title");
             this.title = title;
             return this;
@@ -1767,6 +1818,22 @@ public class OpportunityInput {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public OpportunityInput build() {
 
             return new OpportunityInput(
@@ -1779,7 +1846,8 @@ public class OpportunityInput {
                 contactIds, companyId, companyName,
                 ownerId, priority, status,
                 statusId, tags, customFields,
-                stageLastChangedAt, passThrough);
+                stageLastChangedAt, passThrough)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

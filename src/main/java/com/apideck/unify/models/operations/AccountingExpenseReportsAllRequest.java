@@ -3,7 +3,6 @@
  */
 package com.apideck.unify.models.operations;
 
-import com.apideck.unify.models.components.ExpenseReportsFilter;
 import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
@@ -12,9 +11,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import java.lang.Boolean;
 import java.lang.Long;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -76,7 +77,7 @@ public class AccountingExpenseReportsAllRequest {
      * Apply filters
      */
     @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=filter")
-    private Optional<? extends ExpenseReportsFilter> filter;
+    private Optional<? extends Map<String, Object>> filter;
 
     @JsonCreator
     public AccountingExpenseReportsAllRequest(
@@ -87,7 +88,7 @@ public class AccountingExpenseReportsAllRequest {
             JsonNullable<String> cursor,
             Optional<Long> limit,
             JsonNullable<String> fields,
-            Optional<? extends ExpenseReportsFilter> filter) {
+            Optional<? extends Map<String, Object>> filter) {
         Utils.checkNotNull(raw, "raw");
         Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
@@ -183,8 +184,8 @@ public class AccountingExpenseReportsAllRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ExpenseReportsFilter> filter() {
-        return (Optional<ExpenseReportsFilter>) filter;
+    public Optional<Map<String, Object>> filter() {
+        return (Optional<Map<String, Object>>) filter;
     }
 
     public static Builder builder() {
@@ -346,7 +347,7 @@ public class AccountingExpenseReportsAllRequest {
     /**
      * Apply filters
      */
-    public AccountingExpenseReportsAllRequest withFilter(ExpenseReportsFilter filter) {
+    public AccountingExpenseReportsAllRequest withFilter(Map<String, Object> filter) {
         Utils.checkNotNull(filter, "filter");
         this.filter = Optional.ofNullable(filter);
         return this;
@@ -356,7 +357,7 @@ public class AccountingExpenseReportsAllRequest {
     /**
      * Apply filters
      */
-    public AccountingExpenseReportsAllRequest withFilter(Optional<? extends ExpenseReportsFilter> filter) {
+    public AccountingExpenseReportsAllRequest withFilter(Optional<? extends Map<String, Object>> filter) {
         Utils.checkNotNull(filter, "filter");
         this.filter = filter;
         return this;
@@ -420,7 +421,7 @@ public class AccountingExpenseReportsAllRequest {
 
         private JsonNullable<String> fields = JsonNullable.undefined();
 
-        private Optional<? extends ExpenseReportsFilter> filter = Optional.empty();
+        private Optional<? extends Map<String, Object>> filter = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -583,7 +584,7 @@ public class AccountingExpenseReportsAllRequest {
         /**
          * Apply filters
          */
-        public Builder filter(ExpenseReportsFilter filter) {
+        public Builder filter(Map<String, Object> filter) {
             Utils.checkNotNull(filter, "filter");
             this.filter = Optional.ofNullable(filter);
             return this;
@@ -592,7 +593,7 @@ public class AccountingExpenseReportsAllRequest {
         /**
          * Apply filters
          */
-        public Builder filter(Optional<? extends ExpenseReportsFilter> filter) {
+        public Builder filter(Optional<? extends Map<String, Object>> filter) {
             Utils.checkNotNull(filter, "filter");
             this.filter = filter;
             return this;

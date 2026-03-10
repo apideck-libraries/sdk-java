@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -24,17 +23,17 @@ public class TrackingItem {
     /**
      * The name or code of the carrier or shipping company that is handling the shipment.
      */
-    @JsonInclude(Include.ALWAYS)
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("provider")
-    private Optional<String> provider;
+    private JsonNullable<String> provider;
 
     /**
      * The tracking number associated with the shipment, which can be used to track the progress of the
      * delivery.
      */
-    @JsonInclude(Include.ALWAYS)
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("number")
-    private Optional<String> number;
+    private JsonNullable<String> number;
 
     /**
      * The URL of the carrier's tracking page, which can be used to view detailed information about the
@@ -53,8 +52,8 @@ public class TrackingItem {
 
     @JsonCreator
     public TrackingItem(
-            @JsonProperty("provider") Optional<String> provider,
-            @JsonProperty("number") Optional<String> number,
+            @JsonProperty("provider") JsonNullable<String> provider,
+            @JsonProperty("number") JsonNullable<String> number,
             @JsonProperty("url") JsonNullable<String> url,
             @JsonProperty("updated_at") JsonNullable<OffsetDateTime> updatedAt) {
         Utils.checkNotNull(provider, "provider");
@@ -68,7 +67,7 @@ public class TrackingItem {
     }
     
     public TrackingItem() {
-        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined());
     }
 
@@ -76,7 +75,7 @@ public class TrackingItem {
      * The name or code of the carrier or shipping company that is handling the shipment.
      */
     @JsonIgnore
-    public Optional<String> provider() {
+    public JsonNullable<String> provider() {
         return provider;
     }
 
@@ -85,7 +84,7 @@ public class TrackingItem {
      * delivery.
      */
     @JsonIgnore
-    public Optional<String> number() {
+    public JsonNullable<String> number() {
         return number;
     }
 
@@ -116,15 +115,14 @@ public class TrackingItem {
      */
     public TrackingItem withProvider(String provider) {
         Utils.checkNotNull(provider, "provider");
-        this.provider = Optional.ofNullable(provider);
+        this.provider = JsonNullable.of(provider);
         return this;
     }
-
 
     /**
      * The name or code of the carrier or shipping company that is handling the shipment.
      */
-    public TrackingItem withProvider(Optional<String> provider) {
+    public TrackingItem withProvider(JsonNullable<String> provider) {
         Utils.checkNotNull(provider, "provider");
         this.provider = provider;
         return this;
@@ -136,16 +134,15 @@ public class TrackingItem {
      */
     public TrackingItem withNumber(String number) {
         Utils.checkNotNull(number, "number");
-        this.number = Optional.ofNullable(number);
+        this.number = JsonNullable.of(number);
         return this;
     }
-
 
     /**
      * The tracking number associated with the shipment, which can be used to track the progress of the
      * delivery.
      */
-    public TrackingItem withNumber(Optional<String> number) {
+    public TrackingItem withNumber(JsonNullable<String> number) {
         Utils.checkNotNull(number, "number");
         this.number = number;
         return this;
@@ -224,9 +221,9 @@ public class TrackingItem {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> provider = Optional.empty();
+        private JsonNullable<String> provider = JsonNullable.undefined();
 
-        private Optional<String> number = Optional.empty();
+        private JsonNullable<String> number = JsonNullable.undefined();
 
         private JsonNullable<String> url = JsonNullable.undefined();
 
@@ -242,14 +239,14 @@ public class TrackingItem {
          */
         public Builder provider(String provider) {
             Utils.checkNotNull(provider, "provider");
-            this.provider = Optional.ofNullable(provider);
+            this.provider = JsonNullable.of(provider);
             return this;
         }
 
         /**
          * The name or code of the carrier or shipping company that is handling the shipment.
          */
-        public Builder provider(Optional<String> provider) {
+        public Builder provider(JsonNullable<String> provider) {
             Utils.checkNotNull(provider, "provider");
             this.provider = provider;
             return this;
@@ -262,7 +259,7 @@ public class TrackingItem {
          */
         public Builder number(String number) {
             Utils.checkNotNull(number, "number");
-            this.number = Optional.ofNullable(number);
+            this.number = JsonNullable.of(number);
             return this;
         }
 
@@ -270,7 +267,7 @@ public class TrackingItem {
          * The tracking number associated with the shipment, which can be used to track the progress of the
          * delivery.
          */
-        public Builder number(Optional<String> number) {
+        public Builder number(JsonNullable<String> number) {
             Utils.checkNotNull(number, "number");
             this.number = number;
             return this;

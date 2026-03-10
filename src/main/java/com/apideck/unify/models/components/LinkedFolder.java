@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -18,8 +19,9 @@ public class LinkedFolder {
     /**
      * A unique identifier for an object.
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private String id;
+    private Optional<String> id;
 
     /**
      * The name of the folder
@@ -30,7 +32,7 @@ public class LinkedFolder {
 
     @JsonCreator
     public LinkedFolder(
-            @JsonProperty("id") String id,
+            @JsonProperty("id") Optional<String> id,
             @JsonProperty("name") JsonNullable<String> name) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(name, "name");
@@ -38,16 +40,15 @@ public class LinkedFolder {
         this.name = name;
     }
     
-    public LinkedFolder(
-            String id) {
-        this(id, JsonNullable.undefined());
+    public LinkedFolder() {
+        this(Optional.empty(), JsonNullable.undefined());
     }
 
     /**
      * A unique identifier for an object.
      */
     @JsonIgnore
-    public String id() {
+    public Optional<String> id() {
         return id;
     }
 
@@ -68,6 +69,16 @@ public class LinkedFolder {
      * A unique identifier for an object.
      */
     public LinkedFolder withId(String id) {
+        Utils.checkNotNull(id, "id");
+        this.id = Optional.ofNullable(id);
+        return this;
+    }
+
+
+    /**
+     * A unique identifier for an object.
+     */
+    public LinkedFolder withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
@@ -121,7 +132,7 @@ public class LinkedFolder {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String id;
+        private Optional<String> id = Optional.empty();
 
         private JsonNullable<String> name = JsonNullable.undefined();
 
@@ -134,6 +145,15 @@ public class LinkedFolder {
          * A unique identifier for an object.
          */
         public Builder id(String id) {
+            Utils.checkNotNull(id, "id");
+            this.id = Optional.ofNullable(id);
+            return this;
+        }
+
+        /**
+         * A unique identifier for an object.
+         */
+        public Builder id(Optional<String> id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;

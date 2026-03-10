@@ -3,7 +3,6 @@
  */
 package com.apideck.unify.models.operations;
 
-import com.apideck.unify.models.components.BalanceSheetFilter;
 import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
@@ -40,6 +39,13 @@ public class AccountingBalanceSheetOneRequest {
     private Optional<String> serviceId;
 
     /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-company-id")
+    private Optional<String> companyId;
+
+    /**
      * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie:
      * ?pass_through[search]=leads becomes ?search=leads
      */
@@ -50,7 +56,7 @@ public class AccountingBalanceSheetOneRequest {
      * Apply filters
      */
     @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=filter")
-    private Optional<? extends BalanceSheetFilter> filter;
+    private Optional<? extends Map<String, Object>> filter;
 
     /**
      * Include raw response. Mostly used for debugging purposes
@@ -63,18 +69,21 @@ public class AccountingBalanceSheetOneRequest {
             Optional<String> consumerId,
             Optional<String> appId,
             Optional<String> serviceId,
+            Optional<String> companyId,
             Optional<? extends Map<String, Object>> passThrough,
-            Optional<? extends BalanceSheetFilter> filter,
+            Optional<? extends Map<String, Object>> filter,
             Optional<Boolean> raw) {
         Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(serviceId, "serviceId");
+        Utils.checkNotNull(companyId, "companyId");
         Utils.checkNotNull(passThrough, "passThrough");
         Utils.checkNotNull(filter, "filter");
         Utils.checkNotNull(raw, "raw");
         this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
+        this.companyId = companyId;
         this.passThrough = passThrough;
         this.filter = filter;
         this.raw = raw;
@@ -82,7 +91,8 @@ public class AccountingBalanceSheetOneRequest {
     
     public AccountingBalanceSheetOneRequest() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -111,6 +121,15 @@ public class AccountingBalanceSheetOneRequest {
     }
 
     /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    @JsonIgnore
+    public Optional<String> companyId() {
+        return companyId;
+    }
+
+    /**
      * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie:
      * ?pass_through[search]=leads becomes ?search=leads
      */
@@ -125,8 +144,8 @@ public class AccountingBalanceSheetOneRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<BalanceSheetFilter> filter() {
-        return (Optional<BalanceSheetFilter>) filter;
+    public Optional<Map<String, Object>> filter() {
+        return (Optional<Map<String, Object>>) filter;
     }
 
     /**
@@ -202,6 +221,27 @@ public class AccountingBalanceSheetOneRequest {
     }
 
     /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    public AccountingBalanceSheetOneRequest withCompanyId(String companyId) {
+        Utils.checkNotNull(companyId, "companyId");
+        this.companyId = Optional.ofNullable(companyId);
+        return this;
+    }
+
+
+    /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    public AccountingBalanceSheetOneRequest withCompanyId(Optional<String> companyId) {
+        Utils.checkNotNull(companyId, "companyId");
+        this.companyId = companyId;
+        return this;
+    }
+
+    /**
      * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie:
      * ?pass_through[search]=leads becomes ?search=leads
      */
@@ -225,7 +265,7 @@ public class AccountingBalanceSheetOneRequest {
     /**
      * Apply filters
      */
-    public AccountingBalanceSheetOneRequest withFilter(BalanceSheetFilter filter) {
+    public AccountingBalanceSheetOneRequest withFilter(Map<String, Object> filter) {
         Utils.checkNotNull(filter, "filter");
         this.filter = Optional.ofNullable(filter);
         return this;
@@ -235,7 +275,7 @@ public class AccountingBalanceSheetOneRequest {
     /**
      * Apply filters
      */
-    public AccountingBalanceSheetOneRequest withFilter(Optional<? extends BalanceSheetFilter> filter) {
+    public AccountingBalanceSheetOneRequest withFilter(Optional<? extends Map<String, Object>> filter) {
         Utils.checkNotNull(filter, "filter");
         this.filter = filter;
         return this;
@@ -273,6 +313,7 @@ public class AccountingBalanceSheetOneRequest {
             Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
             Utils.enhancedDeepEquals(this.appId, other.appId) &&
             Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
             Utils.enhancedDeepEquals(this.passThrough, other.passThrough) &&
             Utils.enhancedDeepEquals(this.filter, other.filter) &&
             Utils.enhancedDeepEquals(this.raw, other.raw);
@@ -282,7 +323,8 @@ public class AccountingBalanceSheetOneRequest {
     public int hashCode() {
         return Utils.enhancedHash(
             consumerId, appId, serviceId,
-            passThrough, filter, raw);
+            companyId, passThrough, filter,
+            raw);
     }
     
     @Override
@@ -291,6 +333,7 @@ public class AccountingBalanceSheetOneRequest {
                 "consumerId", consumerId,
                 "appId", appId,
                 "serviceId", serviceId,
+                "companyId", companyId,
                 "passThrough", passThrough,
                 "filter", filter,
                 "raw", raw);
@@ -305,9 +348,11 @@ public class AccountingBalanceSheetOneRequest {
 
         private Optional<String> serviceId = Optional.empty();
 
+        private Optional<String> companyId = Optional.empty();
+
         private Optional<? extends Map<String, Object>> passThrough = Optional.empty();
 
-        private Optional<? extends BalanceSheetFilter> filter = Optional.empty();
+        private Optional<? extends Map<String, Object>> filter = Optional.empty();
 
         private Optional<Boolean> raw;
 
@@ -376,6 +421,27 @@ public class AccountingBalanceSheetOneRequest {
 
 
         /**
+         * The ID of the company to scope requests to. For connectors that support multi-company, this
+         * overrides the default company configured in connection settings.
+         */
+        public Builder companyId(String companyId) {
+            Utils.checkNotNull(companyId, "companyId");
+            this.companyId = Optional.ofNullable(companyId);
+            return this;
+        }
+
+        /**
+         * The ID of the company to scope requests to. For connectors that support multi-company, this
+         * overrides the default company configured in connection settings.
+         */
+        public Builder companyId(Optional<String> companyId) {
+            Utils.checkNotNull(companyId, "companyId");
+            this.companyId = companyId;
+            return this;
+        }
+
+
+        /**
          * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie:
          * ?pass_through[search]=leads becomes ?search=leads
          */
@@ -399,7 +465,7 @@ public class AccountingBalanceSheetOneRequest {
         /**
          * Apply filters
          */
-        public Builder filter(BalanceSheetFilter filter) {
+        public Builder filter(Map<String, Object> filter) {
             Utils.checkNotNull(filter, "filter");
             this.filter = Optional.ofNullable(filter);
             return this;
@@ -408,7 +474,7 @@ public class AccountingBalanceSheetOneRequest {
         /**
          * Apply filters
          */
-        public Builder filter(Optional<? extends BalanceSheetFilter> filter) {
+        public Builder filter(Optional<? extends Map<String, Object>> filter) {
             Utils.checkNotNull(filter, "filter");
             this.filter = filter;
             return this;
@@ -440,7 +506,8 @@ public class AccountingBalanceSheetOneRequest {
 
             return new AccountingBalanceSheetOneRequest(
                 consumerId, appId, serviceId,
-                passThrough, filter, raw);
+                companyId, passThrough, filter,
+                raw);
         }
 
 

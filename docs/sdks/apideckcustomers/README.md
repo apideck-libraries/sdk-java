@@ -18,7 +18,6 @@ List Customers
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.EcommerceCustomersFilter;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.EcommerceCustomersAllRequest;
 import com.apideck.unify.models.operations.EcommerceCustomersAllResponse;
@@ -37,10 +36,9 @@ public class Application {
 
         EcommerceCustomersAllRequest req = EcommerceCustomersAllRequest.builder()
                 .serviceId("salesforce")
-                .filter(EcommerceCustomersFilter.builder()
-                    .email("elon@musk.com")
-                    .phoneNumber("111-111-1111")
-                    .build())
+                .filter(Map.ofEntries(
+                    Map.entry("email", "elon@musk.com"),
+                    Map.entry("phone_number", "111-111-1111")))
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
                 .fields("id,updated_at")
@@ -115,7 +113,7 @@ public class Application {
                 .call();
 
         if (res.getEcommerceCustomerResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getEcommerceCustomerResponse().get());
         }
     }
 }

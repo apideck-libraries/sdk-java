@@ -4,6 +4,8 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -18,6 +20,7 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -297,6 +300,10 @@ public class Job {
     @JsonProperty("created_at")
     private JsonNullable<OffsetDateTime> createdAt;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public Job(
             @JsonProperty("id") Optional<String> id,
@@ -425,6 +432,7 @@ public class Job {
         this.createdBy = createdBy;
         this.updatedAt = updatedAt;
         this.createdAt = createdAt;
+        this.additionalProperties = new HashMap<>();
     }
     
     public Job() {
@@ -755,6 +763,11 @@ public class Job {
     @JsonIgnore
     public JsonNullable<OffsetDateTime> createdAt() {
         return createdAt;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
     }
 
     public static Builder builder() {
@@ -1459,6 +1472,19 @@ public class Job {
         return this;
     }
 
+    @JsonAnySetter
+    public Job withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public Job withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -1510,7 +1536,8 @@ public class Job {
             Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
             Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
             Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
-            Utils.enhancedDeepEquals(this.createdAt, other.createdAt);
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
@@ -1529,7 +1556,8 @@ public class Job {
             availableToEmployees, tags, addresses,
             customFields, deleted, ownerId,
             publishedAt, customMappings, updatedBy,
-            createdBy, updatedAt, createdAt);
+            createdBy, updatedAt, createdAt,
+            additionalProperties);
     }
     
     @Override
@@ -1576,7 +1604,8 @@ public class Job {
                 "updatedBy", updatedBy,
                 "createdBy", createdBy,
                 "updatedAt", updatedAt,
-                "createdAt", createdAt);
+                "createdAt", createdAt,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -1668,6 +1697,8 @@ public class Job {
         private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
 
         private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -2395,6 +2426,22 @@ public class Job {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public Job build() {
 
             return new Job(
@@ -2411,7 +2458,8 @@ public class Job {
                 availableToEmployees, tags, addresses,
                 customFields, deleted, ownerId,
                 publishedAt, customMappings, updatedBy,
-                createdBy, updatedAt, createdAt);
+                createdBy, updatedAt, createdAt)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

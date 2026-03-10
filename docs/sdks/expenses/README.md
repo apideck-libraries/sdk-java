@@ -21,12 +21,11 @@ List Expenses
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.*;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingExpensesAllRequest;
 import com.apideck.unify.models.operations.AccountingExpensesAllResponse;
 import java.lang.Exception;
-import java.time.OffsetDateTime;
+import java.util.Map;
 
 public class Application {
 
@@ -40,11 +39,11 @@ public class Application {
 
         AccountingExpensesAllRequest req = AccountingExpensesAllRequest.builder()
                 .serviceId("salesforce")
-                .filter(ExpensesFilter.builder()
-                    .updatedSince(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
-                    .status(ExpensesFilterStatus.DRAFT)
-                    .type(ExpensesFilterType.EXPENSE)
-                    .build())
+                .companyId("12345")
+                .filter(Map.ofEntries(
+                    Map.entry("updated_since", "2020-09-30T07:43:32.000Z"),
+                    Map.entry("status", "draft"),
+                    Map.entry("type", "expense")))
                 .build();
 
 
@@ -111,10 +110,24 @@ public class Application {
 
         AccountingExpensesAddRequest req = AccountingExpensesAddRequest.builder()
                 .expense(ExpenseInput.builder()
+                    .number("OIT00546")
                     .transactionDate(OffsetDateTime.parse("2021-05-01T12:00:00.000Z"))
+                    .accountId("123456")
+                    .supplierId("12345")
+                    .companyId("12345")
+                    .departmentId("12345")
+                    .paymentType(ExpensePaymentType.CASH)
+                    .currency(Currency.USD)
+                    .currencyRate(0.69)
+                    .type(ExpenseType.EXPENSE)
+                    .memo("For travel expenses incurred on 2024-05-15")
+                    .taxRate(LinkedTaxRateInput.builder()
+                        .id("123456")
+                        .rate(10d)
+                        .build())
+                    .totalAmount(275d)
                     .lineItems(List.of(
                         ExpenseLineItemInput.builder()
-                            .totalAmount(275d)
                             .trackingCategories(List.of(
                                 LinkedTrackingCategory.builder()
                                     .id("123456")
@@ -137,42 +150,31 @@ public class Application {
                                 .rate(10d)
                                 .build())
                             .description("Travel US.")
+                            .totalAmount(275d)
                             .lineNumber(1L)
+                            .additionalProperties(Map.ofEntries(
+                                Map.entry("subsidiary_id", "12345"),
+                                Map.entry("billable", true)))
                             .build()))
-                    .number("OIT00546")
-                    .accountId("123456")
-                    .supplierId("12345")
-                    .companyId("12345")
-                    .departmentId("12345")
-                    .paymentType(ExpensePaymentType.CASH)
-                    .currency(Currency.USD)
-                    .currencyRate(0.69)
-                    .type(ExpenseType.EXPENSE)
-                    .memo("For travel expenses incurred on 2024-05-15")
-                    .taxRate(LinkedTaxRateInput.builder()
-                        .id("123456")
-                        .rate(10d)
-                        .build())
-                    .totalAmount(275d)
                     .customFields(List.of(
-                        CustomField.of(CustomField1.builder()
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build()),
-                        CustomField.of(CustomField1.builder()
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build(),
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build()),
-                        CustomField.of(CustomField1.builder()
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build(),
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build())))
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build()))
                     .rowVersion("1-12345")
                     .passThrough(List.of(
                         PassThroughBody.builder()
@@ -219,8 +221,11 @@ public class Application {
                                             Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build()))
+                    .additionalProperties(Map.ofEntries(
+                        Map.entry("customer_id", "12345")))
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingExpensesAddResponse res = sdk.accounting().expenses().create()
@@ -228,7 +233,7 @@ public class Application {
                 .call();
 
         if (res.createExpenseResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createExpenseResponse().get());
         }
     }
 }
@@ -284,6 +289,7 @@ public class Application {
         AccountingExpensesOneRequest req = AccountingExpensesOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingExpensesOneResponse res = sdk.accounting().expenses().get()
@@ -291,7 +297,7 @@ public class Application {
                 .call();
 
         if (res.getExpenseResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getExpenseResponse().get());
         }
     }
 }
@@ -351,10 +357,24 @@ public class Application {
         AccountingExpensesUpdateRequest req = AccountingExpensesUpdateRequest.builder()
                 .id("<id>")
                 .expense(ExpenseInput.builder()
+                    .number("OIT00546")
                     .transactionDate(OffsetDateTime.parse("2021-05-01T12:00:00.000Z"))
+                    .accountId("123456")
+                    .supplierId("12345")
+                    .companyId("12345")
+                    .departmentId("12345")
+                    .paymentType(ExpensePaymentType.CASH)
+                    .currency(Currency.USD)
+                    .currencyRate(0.69)
+                    .type(ExpenseType.EXPENSE)
+                    .memo("For travel expenses incurred on 2024-05-15")
+                    .taxRate(LinkedTaxRateInput.builder()
+                        .id("123456")
+                        .rate(10d)
+                        .build())
+                    .totalAmount(275d)
                     .lineItems(List.of(
                         ExpenseLineItemInput.builder()
-                            .totalAmount(275d)
                             .trackingCategories(List.of(
                                 LinkedTrackingCategory.builder()
                                     .id("123456")
@@ -377,30 +397,19 @@ public class Application {
                                 .rate(10d)
                                 .build())
                             .description("Travel US.")
+                            .totalAmount(275d)
                             .lineNumber(1L)
+                            .additionalProperties(Map.ofEntries(
+                                Map.entry("subsidiary_id", "12345"),
+                                Map.entry("billable", true)))
                             .build()))
-                    .number("OIT00546")
-                    .accountId("123456")
-                    .supplierId("12345")
-                    .companyId("12345")
-                    .departmentId("12345")
-                    .paymentType(ExpensePaymentType.CASH)
-                    .currency(Currency.USD)
-                    .currencyRate(0.69)
-                    .type(ExpenseType.EXPENSE)
-                    .memo("For travel expenses incurred on 2024-05-15")
-                    .taxRate(LinkedTaxRateInput.builder()
-                        .id("123456")
-                        .rate(10d)
-                        .build())
-                    .totalAmount(275d)
                     .customFields(List.of(
-                        CustomField.of(CustomField1.builder()
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build())))
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build()))
                     .rowVersion("1-12345")
                     .passThrough(List.of(
                         PassThroughBody.builder()
@@ -433,6 +442,8 @@ public class Application {
                                             Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build()))
+                    .additionalProperties(Map.ofEntries(
+                        Map.entry("customer_id", "12345")))
                     .build())
                 .serviceId("salesforce")
                 .build();
@@ -442,7 +453,7 @@ public class Application {
                 .call();
 
         if (res.updateExpenseResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateExpenseResponse().get());
         }
     }
 }
@@ -505,7 +516,7 @@ public class Application {
                 .call();
 
         if (res.deleteExpenseResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteExpenseResponse().get());
         }
     }
 }

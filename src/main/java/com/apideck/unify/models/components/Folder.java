@@ -4,6 +4,8 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -16,6 +18,7 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -40,8 +43,9 @@ public class Folder {
     /**
      * The name of the folder
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
-    private String name;
+    private Optional<String> name;
 
     /**
      * Optional description of the folder
@@ -79,8 +83,9 @@ public class Folder {
     /**
      * The parent folders of the file, starting from the root
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("parent_folders")
-    private List<LinkedFolder> parentFolders;
+    private Optional<? extends List<LinkedFolder>> parentFolders;
 
     /**
      * Whether the list of parent folder is complete. Some connectors only return the direct parent of a
@@ -125,17 +130,21 @@ public class Folder {
     @JsonProperty("created_at")
     private JsonNullable<OffsetDateTime> createdAt;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public Folder(
             @JsonProperty("id") Optional<String> id,
             @JsonProperty("downstream_id") JsonNullable<String> downstreamId,
-            @JsonProperty("name") String name,
+            @JsonProperty("name") Optional<String> name,
             @JsonProperty("description") JsonNullable<String> description,
             @JsonProperty("path") JsonNullable<String> path,
             @JsonProperty("size") JsonNullable<Long> size,
             @JsonProperty("downloadable") JsonNullable<Boolean> downloadable,
             @JsonProperty("owner") Optional<? extends Owner> owner,
-            @JsonProperty("parent_folders") List<LinkedFolder> parentFolders,
+            @JsonProperty("parent_folders") Optional<? extends List<LinkedFolder>> parentFolders,
             @JsonProperty("parent_folders_complete") Optional<Boolean> parentFoldersComplete,
             @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings,
             @JsonProperty("updated_by") JsonNullable<String> updatedBy,
@@ -172,14 +181,13 @@ public class Folder {
         this.createdBy = createdBy;
         this.updatedAt = updatedAt;
         this.createdAt = createdAt;
+        this.additionalProperties = new HashMap<>();
     }
     
-    public Folder(
-            String name,
-            List<LinkedFolder> parentFolders) {
-        this(Optional.empty(), JsonNullable.undefined(), name,
+    public Folder() {
+        this(Optional.empty(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), parentFolders,
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
             Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
@@ -204,7 +212,7 @@ public class Folder {
      * The name of the folder
      */
     @JsonIgnore
-    public String name() {
+    public Optional<String> name() {
         return name;
     }
 
@@ -249,9 +257,10 @@ public class Folder {
     /**
      * The parent folders of the file, starting from the root
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public List<LinkedFolder> parentFolders() {
-        return parentFolders;
+    public Optional<List<LinkedFolder>> parentFolders() {
+        return (Optional<List<LinkedFolder>>) parentFolders;
     }
 
     /**
@@ -304,6 +313,11 @@ public class Folder {
         return createdAt;
     }
 
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -350,6 +364,16 @@ public class Folder {
      * The name of the folder
      */
     public Folder withName(String name) {
+        Utils.checkNotNull(name, "name");
+        this.name = Optional.ofNullable(name);
+        return this;
+    }
+
+
+    /**
+     * The name of the folder
+     */
+    public Folder withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
@@ -444,6 +468,16 @@ public class Folder {
      * The parent folders of the file, starting from the root
      */
     public Folder withParentFolders(List<LinkedFolder> parentFolders) {
+        Utils.checkNotNull(parentFolders, "parentFolders");
+        this.parentFolders = Optional.ofNullable(parentFolders);
+        return this;
+    }
+
+
+    /**
+     * The parent folders of the file, starting from the root
+     */
+    public Folder withParentFolders(Optional<? extends List<LinkedFolder>> parentFolders) {
         Utils.checkNotNull(parentFolders, "parentFolders");
         this.parentFolders = parentFolders;
         return this;
@@ -560,6 +594,19 @@ public class Folder {
         return this;
     }
 
+    @JsonAnySetter
+    public Folder withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public Folder withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -584,7 +631,8 @@ public class Folder {
             Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
             Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
             Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
-            Utils.enhancedDeepEquals(this.createdAt, other.createdAt);
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
@@ -594,7 +642,8 @@ public class Folder {
             description, path, size,
             downloadable, owner, parentFolders,
             parentFoldersComplete, customMappings, updatedBy,
-            createdBy, updatedAt, createdAt);
+            createdBy, updatedAt, createdAt,
+            additionalProperties);
     }
     
     @Override
@@ -614,7 +663,8 @@ public class Folder {
                 "updatedBy", updatedBy,
                 "createdBy", createdBy,
                 "updatedAt", updatedAt,
-                "createdAt", createdAt);
+                "createdAt", createdAt,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -624,7 +674,7 @@ public class Folder {
 
         private JsonNullable<String> downstreamId = JsonNullable.undefined();
 
-        private String name;
+        private Optional<String> name = Optional.empty();
 
         private JsonNullable<String> description = JsonNullable.undefined();
 
@@ -636,7 +686,7 @@ public class Folder {
 
         private Optional<? extends Owner> owner = Optional.empty();
 
-        private List<LinkedFolder> parentFolders;
+        private Optional<? extends List<LinkedFolder>> parentFolders = Optional.empty();
 
         private Optional<Boolean> parentFoldersComplete = Optional.empty();
 
@@ -649,6 +699,8 @@ public class Folder {
         private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
 
         private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -697,6 +749,15 @@ public class Folder {
          * The name of the folder
          */
         public Builder name(String name) {
+            Utils.checkNotNull(name, "name");
+            this.name = Optional.ofNullable(name);
+            return this;
+        }
+
+        /**
+         * The name of the folder
+         */
+        public Builder name(Optional<String> name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
@@ -796,6 +857,15 @@ public class Folder {
          * The parent folders of the file, starting from the root
          */
         public Builder parentFolders(List<LinkedFolder> parentFolders) {
+            Utils.checkNotNull(parentFolders, "parentFolders");
+            this.parentFolders = Optional.ofNullable(parentFolders);
+            return this;
+        }
+
+        /**
+         * The parent folders of the file, starting from the root
+         */
+        public Builder parentFolders(Optional<? extends List<LinkedFolder>> parentFolders) {
             Utils.checkNotNull(parentFolders, "parentFolders");
             this.parentFolders = parentFolders;
             return this;
@@ -917,6 +987,22 @@ public class Folder {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public Folder build() {
 
             return new Folder(
@@ -924,7 +1010,8 @@ public class Folder {
                 description, path, size,
                 downloadable, owner, parentFolders,
                 parentFoldersComplete, customMappings, updatedBy,
-                createdBy, updatedAt, createdAt);
+                createdBy, updatedAt, createdAt)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

@@ -42,7 +42,7 @@ public class Application {
                 .call();
 
         if (res.getStoreResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getStoreResponse().get());
         }
     }
 }

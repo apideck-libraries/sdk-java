@@ -23,7 +23,6 @@ List Files
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.*;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.FileStorageFilesAllRequest;
 import com.apideck.unify.models.operations.FileStorageFilesAllResponse;
@@ -42,15 +41,13 @@ public class Application {
 
         FileStorageFilesAllRequest req = FileStorageFilesAllRequest.builder()
                 .serviceId("salesforce")
-                .filter(FilesFilter.builder()
-                    .driveId("1234")
-                    .folderId("root")
-                    .shared(true)
-                    .build())
-                .sort(FilesSort.builder()
-                    .by(FilesSortBy.UPDATED_AT)
-                    .direction(SortDirection.DESC)
-                    .build())
+                .filter(Map.ofEntries(
+                    Map.entry("drive_id", "1234"),
+                    Map.entry("folder_id", "root"),
+                    Map.entry("shared", true)))
+                .sort(Map.ofEntries(
+                    Map.entry("by", "updated_at"),
+                    Map.entry("direction", "desc")))
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
                 .fields("id,updated_at")
@@ -99,7 +96,6 @@ Search Files
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.FilesFilter;
 import com.apideck.unify.models.components.FilesSearch;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.FileStorageFilesSearchRequest;
@@ -125,11 +121,10 @@ public class Application {
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
                 .fields("id,updated_at")
-                .filter(FilesFilter.builder()
-                    .driveId("1234")
-                    .folderId("root")
-                    .shared(true)
-                    .build())
+                .filter(Map.ofEntries(
+                    Map.entry("drive_id", "1234"),
+                    Map.entry("folder_id", "root"),
+                    Map.entry("shared", true)))
                 .build();
 
         FileStorageFilesSearchResponse res = sdk.fileStorage().files().search()
@@ -137,7 +132,7 @@ public class Application {
                 .call();
 
         if (res.getFilesResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getFilesResponse().get());
         }
     }
 }
@@ -201,7 +196,7 @@ public class Application {
                 .call();
 
         if (res.getFileResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getFileResponse().get());
         }
     }
 }
@@ -283,7 +278,7 @@ public class Application {
                 .call();
 
         if (res.updateFileResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateFileResponse().get());
         }
     }
 }
@@ -346,7 +341,7 @@ public class Application {
                 .call();
 
         if (res.deleteFileResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteFileResponse().get());
         }
     }
 }

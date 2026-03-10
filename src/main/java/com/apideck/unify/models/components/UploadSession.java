@@ -4,6 +4,8 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -11,9 +13,12 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Boolean;
 import java.lang.Double;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -60,6 +65,10 @@ public class UploadSession {
     @JsonProperty("expires_at")
     private JsonNullable<OffsetDateTime> expiresAt;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public UploadSession(
             @JsonProperty("id") Optional<String> id,
@@ -80,6 +89,7 @@ public class UploadSession {
         this.parallelUploadSupported = parallelUploadSupported;
         this.uploadedByteRange = uploadedByteRange;
         this.expiresAt = expiresAt;
+        this.additionalProperties = new HashMap<>();
     }
     
     public UploadSession() {
@@ -131,6 +141,11 @@ public class UploadSession {
     @JsonIgnore
     public JsonNullable<OffsetDateTime> expiresAt() {
         return expiresAt;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
     }
 
     public static Builder builder() {
@@ -247,6 +262,19 @@ public class UploadSession {
         return this;
     }
 
+    @JsonAnySetter
+    public UploadSession withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public UploadSession withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -262,14 +290,16 @@ public class UploadSession {
             Utils.enhancedDeepEquals(this.partSize, other.partSize) &&
             Utils.enhancedDeepEquals(this.parallelUploadSupported, other.parallelUploadSupported) &&
             Utils.enhancedDeepEquals(this.uploadedByteRange, other.uploadedByteRange) &&
-            Utils.enhancedDeepEquals(this.expiresAt, other.expiresAt);
+            Utils.enhancedDeepEquals(this.expiresAt, other.expiresAt) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             id, success, partSize,
-            parallelUploadSupported, uploadedByteRange, expiresAt);
+            parallelUploadSupported, uploadedByteRange, expiresAt,
+            additionalProperties);
     }
     
     @Override
@@ -280,7 +310,8 @@ public class UploadSession {
                 "partSize", partSize,
                 "parallelUploadSupported", parallelUploadSupported,
                 "uploadedByteRange", uploadedByteRange,
-                "expiresAt", expiresAt);
+                "expiresAt", expiresAt,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -297,6 +328,8 @@ public class UploadSession {
         private Optional<String> uploadedByteRange = Optional.empty();
 
         private JsonNullable<OffsetDateTime> expiresAt = JsonNullable.undefined();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -412,11 +445,28 @@ public class UploadSession {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public UploadSession build() {
 
             return new UploadSession(
                 id, success, partSize,
-                parallelUploadSupported, uploadedByteRange, expiresAt);
+                parallelUploadSupported, uploadedByteRange, expiresAt)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

@@ -21,11 +21,11 @@ List Departments
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.AccountingDepartmentsFilter;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingDepartmentsAllRequest;
 import com.apideck.unify.models.operations.AccountingDepartmentsAllResponse;
 import java.lang.Exception;
+import java.util.Map;
 
 public class Application {
 
@@ -39,10 +39,10 @@ public class Application {
 
         AccountingDepartmentsAllRequest req = AccountingDepartmentsAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .fields("id,updated_at")
-                .filter(AccountingDepartmentsFilter.builder()
-                    .subsidiary("1")
-                    .build())
+                .filter(Map.ofEntries(
+                    Map.entry("subsidiary", "1")))
                 .build();
 
 
@@ -136,6 +136,7 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingDepartmentsAddResponse res = sdk.accounting().departments().create()
@@ -143,7 +144,7 @@ public class Application {
                 .call();
 
         if (res.createAccountingDepartmentResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createAccountingDepartmentResponse().get());
         }
     }
 }
@@ -199,6 +200,7 @@ public class Application {
         AccountingDepartmentsOneRequest req = AccountingDepartmentsOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .fields("id,updated_at")
                 .build();
 
@@ -207,7 +209,7 @@ public class Application {
                 .call();
 
         if (res.getAccountingDepartmentResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getAccountingDepartmentResponse().get());
         }
     }
 }
@@ -313,7 +315,7 @@ public class Application {
                 .call();
 
         if (res.updateAccountingDepartmentResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateAccountingDepartmentResponse().get());
         }
     }
 }
@@ -376,7 +378,7 @@ public class Application {
                 .call();
 
         if (res.deleteAccountingDepartmentResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteAccountingDepartmentResponse().get());
         }
     }
 }

@@ -4,15 +4,20 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -80,6 +85,10 @@ public class BankFeedAccountInput {
     @JsonProperty("custom_fields")
     private Optional<? extends List<CustomField>> customFields;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public BankFeedAccountInput(
             @JsonProperty("bank_account_type") Optional<? extends BankAccountType> bankAccountType,
@@ -109,6 +118,7 @@ public class BankFeedAccountInput {
         this.feedStatus = feedStatus;
         this.country = country;
         this.customFields = customFields;
+        this.additionalProperties = new HashMap<>();
     }
     
     public BankFeedAccountInput() {
@@ -189,6 +199,11 @@ public class BankFeedAccountInput {
     @JsonIgnore
     public Optional<List<CustomField>> customFields() {
         return (Optional<List<CustomField>>) customFields;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
     }
 
     public static Builder builder() {
@@ -361,6 +376,19 @@ public class BankFeedAccountInput {
         return this;
     }
 
+    @JsonAnySetter
+    public BankFeedAccountInput withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public BankFeedAccountInput withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -379,7 +407,8 @@ public class BankFeedAccountInput {
             Utils.enhancedDeepEquals(this.currency, other.currency) &&
             Utils.enhancedDeepEquals(this.feedStatus, other.feedStatus) &&
             Utils.enhancedDeepEquals(this.country, other.country) &&
-            Utils.enhancedDeepEquals(this.customFields, other.customFields);
+            Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
@@ -387,7 +416,8 @@ public class BankFeedAccountInput {
         return Utils.enhancedHash(
             bankAccountType, sourceAccountId, targetAccountId,
             targetAccountName, targetAccountNumber, currency,
-            feedStatus, country, customFields);
+            feedStatus, country, customFields,
+            additionalProperties);
     }
     
     @Override
@@ -401,7 +431,8 @@ public class BankFeedAccountInput {
                 "currency", currency,
                 "feedStatus", feedStatus,
                 "country", country,
-                "customFields", customFields);
+                "customFields", customFields,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -424,6 +455,8 @@ public class BankFeedAccountInput {
         private JsonNullable<String> country = JsonNullable.undefined();
 
         private Optional<? extends List<CustomField>> customFields = Optional.empty();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -596,12 +629,29 @@ public class BankFeedAccountInput {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public BankFeedAccountInput build() {
 
             return new BankFeedAccountInput(
                 bankAccountType, sourceAccountId, targetAccountId,
                 targetAccountName, targetAccountNumber, currency,
-                feedStatus, country, customFields);
+                feedStatus, country, customFields)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

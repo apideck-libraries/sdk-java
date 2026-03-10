@@ -3,7 +3,6 @@
  */
 package com.apideck.unify.models.operations;
 
-import com.apideck.unify.models.components.CategoriesFilter;
 import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
@@ -11,9 +10,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import java.lang.Boolean;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -45,6 +46,13 @@ public class AccountingCategoriesOneRequest {
     private Optional<String> serviceId;
 
     /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-company-id")
+    private Optional<String> companyId;
+
+    /**
      * Include raw response. Mostly used for debugging purposes
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=raw")
@@ -68,7 +76,7 @@ public class AccountingCategoriesOneRequest {
      * Apply filters
      */
     @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=filter")
-    private Optional<? extends CategoriesFilter> filter;
+    private Optional<? extends Map<String, Object>> filter;
 
     @JsonCreator
     public AccountingCategoriesOneRequest(
@@ -76,13 +84,15 @@ public class AccountingCategoriesOneRequest {
             Optional<String> consumerId,
             Optional<String> appId,
             Optional<String> serviceId,
+            Optional<String> companyId,
             Optional<Boolean> raw,
             JsonNullable<String> fields,
-            Optional<? extends CategoriesFilter> filter) {
+            Optional<? extends Map<String, Object>> filter) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(serviceId, "serviceId");
+        Utils.checkNotNull(companyId, "companyId");
         Utils.checkNotNull(raw, "raw");
         Utils.checkNotNull(fields, "fields");
         Utils.checkNotNull(filter, "filter");
@@ -90,6 +100,7 @@ public class AccountingCategoriesOneRequest {
         this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
+        this.companyId = companyId;
         this.raw = raw;
         this.fields = fields;
         this.filter = filter;
@@ -98,8 +109,8 @@ public class AccountingCategoriesOneRequest {
     public AccountingCategoriesOneRequest(
             String id) {
         this(id, Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -136,6 +147,15 @@ public class AccountingCategoriesOneRequest {
     }
 
     /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    @JsonIgnore
+    public Optional<String> companyId() {
+        return companyId;
+    }
+
+    /**
      * Include raw response. Mostly used for debugging purposes
      */
     @JsonIgnore
@@ -164,8 +184,8 @@ public class AccountingCategoriesOneRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CategoriesFilter> filter() {
-        return (Optional<CategoriesFilter>) filter;
+    public Optional<Map<String, Object>> filter() {
+        return (Optional<Map<String, Object>>) filter;
     }
 
     public static Builder builder() {
@@ -242,6 +262,27 @@ public class AccountingCategoriesOneRequest {
     }
 
     /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    public AccountingCategoriesOneRequest withCompanyId(String companyId) {
+        Utils.checkNotNull(companyId, "companyId");
+        this.companyId = Optional.ofNullable(companyId);
+        return this;
+    }
+
+
+    /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    public AccountingCategoriesOneRequest withCompanyId(Optional<String> companyId) {
+        Utils.checkNotNull(companyId, "companyId");
+        this.companyId = companyId;
+        return this;
+    }
+
+    /**
      * Include raw response. Mostly used for debugging purposes
      */
     public AccountingCategoriesOneRequest withRaw(boolean raw) {
@@ -297,7 +338,7 @@ public class AccountingCategoriesOneRequest {
     /**
      * Apply filters
      */
-    public AccountingCategoriesOneRequest withFilter(CategoriesFilter filter) {
+    public AccountingCategoriesOneRequest withFilter(Map<String, Object> filter) {
         Utils.checkNotNull(filter, "filter");
         this.filter = Optional.ofNullable(filter);
         return this;
@@ -307,7 +348,7 @@ public class AccountingCategoriesOneRequest {
     /**
      * Apply filters
      */
-    public AccountingCategoriesOneRequest withFilter(Optional<? extends CategoriesFilter> filter) {
+    public AccountingCategoriesOneRequest withFilter(Optional<? extends Map<String, Object>> filter) {
         Utils.checkNotNull(filter, "filter");
         this.filter = filter;
         return this;
@@ -327,6 +368,7 @@ public class AccountingCategoriesOneRequest {
             Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
             Utils.enhancedDeepEquals(this.appId, other.appId) &&
             Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
             Utils.enhancedDeepEquals(this.raw, other.raw) &&
             Utils.enhancedDeepEquals(this.fields, other.fields) &&
             Utils.enhancedDeepEquals(this.filter, other.filter);
@@ -336,8 +378,8 @@ public class AccountingCategoriesOneRequest {
     public int hashCode() {
         return Utils.enhancedHash(
             id, consumerId, appId,
-            serviceId, raw, fields,
-            filter);
+            serviceId, companyId, raw,
+            fields, filter);
     }
     
     @Override
@@ -347,6 +389,7 @@ public class AccountingCategoriesOneRequest {
                 "consumerId", consumerId,
                 "appId", appId,
                 "serviceId", serviceId,
+                "companyId", companyId,
                 "raw", raw,
                 "fields", fields,
                 "filter", filter);
@@ -363,11 +406,13 @@ public class AccountingCategoriesOneRequest {
 
         private Optional<String> serviceId = Optional.empty();
 
+        private Optional<String> companyId = Optional.empty();
+
         private Optional<Boolean> raw;
 
         private JsonNullable<String> fields = JsonNullable.undefined();
 
-        private Optional<? extends CategoriesFilter> filter = Optional.empty();
+        private Optional<? extends Map<String, Object>> filter = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -444,6 +489,27 @@ public class AccountingCategoriesOneRequest {
 
 
         /**
+         * The ID of the company to scope requests to. For connectors that support multi-company, this
+         * overrides the default company configured in connection settings.
+         */
+        public Builder companyId(String companyId) {
+            Utils.checkNotNull(companyId, "companyId");
+            this.companyId = Optional.ofNullable(companyId);
+            return this;
+        }
+
+        /**
+         * The ID of the company to scope requests to. For connectors that support multi-company, this
+         * overrides the default company configured in connection settings.
+         */
+        public Builder companyId(Optional<String> companyId) {
+            Utils.checkNotNull(companyId, "companyId");
+            this.companyId = companyId;
+            return this;
+        }
+
+
+        /**
          * Include raw response. Mostly used for debugging purposes
          */
         public Builder raw(boolean raw) {
@@ -500,7 +566,7 @@ public class AccountingCategoriesOneRequest {
         /**
          * Apply filters
          */
-        public Builder filter(CategoriesFilter filter) {
+        public Builder filter(Map<String, Object> filter) {
             Utils.checkNotNull(filter, "filter");
             this.filter = Optional.ofNullable(filter);
             return this;
@@ -509,7 +575,7 @@ public class AccountingCategoriesOneRequest {
         /**
          * Apply filters
          */
-        public Builder filter(Optional<? extends CategoriesFilter> filter) {
+        public Builder filter(Optional<? extends Map<String, Object>> filter) {
             Utils.checkNotNull(filter, "filter");
             this.filter = filter;
             return this;
@@ -522,8 +588,8 @@ public class AccountingCategoriesOneRequest {
 
             return new AccountingCategoriesOneRequest(
                 id, consumerId, appId,
-                serviceId, raw, fields,
-                filter);
+                serviceId, companyId, raw,
+                fields, filter);
         }
 
 

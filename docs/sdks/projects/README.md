@@ -41,6 +41,7 @@ public class Application {
 
         AccountingProjectsAllRequest req = AccountingProjectsAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .filter(ProjectsFilter.builder()
                     .name("Website Redesign")
                     .status(ProjectStatus.ACTIVE)
@@ -48,7 +49,7 @@ public class Application {
                     .updatedSince(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
                     .build())
                 .sort(ProjectsSort.builder()
-                    .by(ProjectsSortSortBy.NAME)
+                    .by(SortBy.NAME)
                     .build())
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
@@ -202,15 +203,16 @@ public class Application {
                             .build()))
                     .teamSize(8L)
                     .customFields(List.of(
-                        CustomField.of(CustomField1.builder()
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build())))
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build()))
                     .rowVersion("1-12345")
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingProjectsAddResponse res = sdk.accounting().projects().create()
@@ -218,7 +220,7 @@ public class Application {
                 .call();
 
         if (res.createProjectResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createProjectResponse().get());
         }
     }
 }
@@ -274,6 +276,7 @@ public class Application {
         AccountingProjectsOneRequest req = AccountingProjectsOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingProjectsOneResponse res = sdk.accounting().projects().get()
@@ -281,7 +284,7 @@ public class Application {
                 .call();
 
         if (res.getProjectResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getProjectResponse().get());
         }
     }
 }
@@ -421,15 +424,16 @@ public class Application {
                             .build()))
                     .teamSize(8L)
                     .customFields(List.of(
-                        CustomField.of(CustomField1.builder()
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build())))
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build()))
                     .rowVersion("1-12345")
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingProjectsUpdateResponse res = sdk.accounting().projects().update()
@@ -437,7 +441,7 @@ public class Application {
                 .call();
 
         if (res.updateProjectResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateProjectResponse().get());
         }
     }
 }
@@ -493,6 +497,7 @@ public class Application {
         AccountingProjectsDeleteRequest req = AccountingProjectsDeleteRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingProjectsDeleteResponse res = sdk.accounting().projects().delete()
@@ -500,7 +505,7 @@ public class Application {
                 .call();
 
         if (res.deleteProjectResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteProjectResponse().get());
         }
     }
 }

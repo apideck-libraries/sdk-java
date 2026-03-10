@@ -4,6 +4,8 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -15,6 +17,7 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -151,9 +154,9 @@ public class Activity {
     /**
      * The type of the activity
      */
-    @JsonInclude(Include.ALWAYS)
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
-    private Optional<? extends ActivityType> type;
+    private JsonNullable<? extends ActivityType> type;
 
     /**
      * The title of the activity
@@ -381,6 +384,10 @@ public class Activity {
     @JsonProperty("pass_through")
     private Optional<? extends List<PassThroughBody>> passThrough;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public Activity(
             @JsonProperty("id") Optional<String> id,
@@ -401,7 +408,7 @@ public class Activity {
             @JsonProperty("product_id") JsonNullable<String> productId,
             @JsonProperty("solution_id") JsonNullable<String> solutionId,
             @JsonProperty("custom_object_id") JsonNullable<String> customObjectId,
-            @JsonProperty("type") Optional<? extends ActivityType> type,
+            @JsonProperty("type") JsonNullable<? extends ActivityType> type,
             @JsonProperty("title") JsonNullable<String> title,
             @JsonProperty("description") JsonNullable<String> description,
             @JsonProperty("note") JsonNullable<String> note,
@@ -539,6 +546,7 @@ public class Activity {
         this.updatedAt = updatedAt;
         this.createdAt = createdAt;
         this.passThrough = passThrough;
+        this.additionalProperties = new HashMap<>();
     }
     
     public Activity() {
@@ -548,7 +556,7 @@ public class Activity {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
@@ -711,8 +719,8 @@ public class Activity {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ActivityType> type() {
-        return (Optional<ActivityType>) type;
+    public JsonNullable<ActivityType> type() {
+        return (JsonNullable<ActivityType>) type;
     }
 
     /**
@@ -975,6 +983,11 @@ public class Activity {
     @JsonIgnore
     public Optional<List<PassThroughBody>> passThrough() {
         return (Optional<List<PassThroughBody>>) passThrough;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
     }
 
     public static Builder builder() {
@@ -1312,15 +1325,14 @@ public class Activity {
      */
     public Activity withType(ActivityType type) {
         Utils.checkNotNull(type, "type");
-        this.type = Optional.ofNullable(type);
+        this.type = JsonNullable.of(type);
         return this;
     }
-
 
     /**
      * The type of the activity
      */
-    public Activity withType(Optional<? extends ActivityType> type) {
+    public Activity withType(JsonNullable<? extends ActivityType> type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
@@ -1909,6 +1921,19 @@ public class Activity {
         return this;
     }
 
+    @JsonAnySetter
+    public Activity withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public Activity withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -1970,7 +1995,8 @@ public class Activity {
             Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
             Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
-            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
@@ -1993,7 +2019,7 @@ public class Activity {
             videoConferenceUrl, videoConferenceId, customFields,
             attendees, customMappings, updatedBy,
             createdBy, updatedAt, createdAt,
-            passThrough);
+            passThrough, additionalProperties);
     }
     
     @Override
@@ -2050,7 +2076,8 @@ public class Activity {
                 "createdBy", createdBy,
                 "updatedAt", updatedAt,
                 "createdAt", createdAt,
-                "passThrough", passThrough);
+                "passThrough", passThrough,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -2092,7 +2119,7 @@ public class Activity {
 
         private JsonNullable<String> customObjectId = JsonNullable.undefined();
 
-        private Optional<? extends ActivityType> type = Optional.empty();
+        private JsonNullable<? extends ActivityType> type = JsonNullable.undefined();
 
         private JsonNullable<String> title = JsonNullable.undefined();
 
@@ -2159,6 +2186,8 @@ public class Activity {
         private JsonNullable<String> createdAt = JsonNullable.undefined();
 
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -2512,14 +2541,14 @@ public class Activity {
          */
         public Builder type(ActivityType type) {
             Utils.checkNotNull(type, "type");
-            this.type = Optional.ofNullable(type);
+            this.type = JsonNullable.of(type);
             return this;
         }
 
         /**
          * The type of the activity
          */
-        public Builder type(Optional<? extends ActivityType> type) {
+        public Builder type(JsonNullable<? extends ActivityType> type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;
@@ -3136,6 +3165,22 @@ public class Activity {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public Activity build() {
 
             return new Activity(
@@ -3156,7 +3201,8 @@ public class Activity {
                 videoConferenceUrl, videoConferenceId, customFields,
                 attendees, customMappings, updatedBy,
                 createdBy, updatedAt, createdAt,
-                passThrough);
+                passThrough)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

@@ -18,7 +18,6 @@ List Orders
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.*;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.EcommerceOrdersAllRequest;
 import com.apideck.unify.models.operations.EcommerceOrdersAllResponse;
@@ -37,16 +36,14 @@ public class Application {
 
         EcommerceOrdersAllRequest req = EcommerceOrdersAllRequest.builder()
                 .serviceId("salesforce")
-                .filter(EcommerceOrdersFilter.builder()
-                    .email("elon@musk.com")
-                    .customerId("123")
-                    .updatedSince("2020-09-30T07:43:32.000Z")
-                    .createdSince("2020-09-30T07:43:32.000Z")
-                    .build())
-                .sort(OrdersSort.builder()
-                    .by(OrdersSortBy.CREATED_AT)
-                    .direction(SortDirection.DESC)
-                    .build())
+                .filter(Map.ofEntries(
+                    Map.entry("email", "elon@musk.com"),
+                    Map.entry("customer_id", "123"),
+                    Map.entry("updated_since", "2020-09-30T07:43:32.000Z"),
+                    Map.entry("created_since", "2020-09-30T07:43:32.000Z")))
+                .sort(Map.ofEntries(
+                    Map.entry("by", "created_at"),
+                    Map.entry("direction", "desc")))
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
                 .fields("id,updated_at")
@@ -121,7 +118,7 @@ public class Application {
                 .call();
 
         if (res.getEcommerceOrderResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getEcommerceOrderResponse().get());
         }
     }
 }

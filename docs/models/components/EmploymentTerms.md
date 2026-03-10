@@ -1,5 +1,16 @@
 # EmploymentTerms
 
+## Example Usage
+
+```java
+import com.apideck.unify.models.components.EmploymentTerms;
+
+EmploymentTerms value = EmploymentTerms.FULL_TIME;
+
+// Open enum: use .of() to create instances from custom string values
+EmploymentTerms custom = EmploymentTerms.of("custom_value");
+```
+
 
 ## Values
 

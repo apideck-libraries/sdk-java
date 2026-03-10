@@ -174,7 +174,7 @@ public class Application {
                 .call();
 
         if (res.createNoteResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createNoteResponse().get());
         }
     }
 }
@@ -238,7 +238,7 @@ public class Application {
                 .call();
 
         if (res.getNoteResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getNoteResponse().get());
         }
     }
 }
@@ -364,7 +364,7 @@ public class Application {
                 .call();
 
         if (res.updateNoteResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateNoteResponse().get());
         }
     }
 }
@@ -427,7 +427,7 @@ public class Application {
                 .call();
 
         if (res.deleteNoteResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteNoteResponse().get());
         }
     }
 }

@@ -4,6 +4,8 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -11,11 +13,14 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Boolean;
 import java.lang.Double;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -132,6 +137,13 @@ public class BillInput {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("terms")
     private JsonNullable<String> terms;
+
+    /**
+     * The ID of the payment terms
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("terms_id")
+    private JsonNullable<String> termsId;
 
     /**
      * Balance of bill due.
@@ -316,6 +328,10 @@ public class BillInput {
     @JsonProperty("attachments")
     private Optional<? extends List<LinkedAttachment>> attachments;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public BillInput(
             @JsonProperty("display_id") JsonNullable<String> displayId,
@@ -334,6 +350,7 @@ public class BillInput {
             @JsonProperty("reference") JsonNullable<String> reference,
             @JsonProperty("line_items") Optional<? extends List<BillLineItemInput>> lineItems,
             @JsonProperty("terms") JsonNullable<String> terms,
+            @JsonProperty("terms_id") JsonNullable<String> termsId,
             @JsonProperty("balance") JsonNullable<Double> balance,
             @JsonProperty("deposit") JsonNullable<Double> deposit,
             @JsonProperty("sub_total") JsonNullable<Double> subTotal,
@@ -377,6 +394,7 @@ public class BillInput {
         Utils.checkNotNull(reference, "reference");
         Utils.checkNotNull(lineItems, "lineItems");
         Utils.checkNotNull(terms, "terms");
+        Utils.checkNotNull(termsId, "termsId");
         Utils.checkNotNull(balance, "balance");
         Utils.checkNotNull(deposit, "deposit");
         Utils.checkNotNull(subTotal, "subTotal");
@@ -420,6 +438,7 @@ public class BillInput {
         this.reference = reference;
         this.lineItems = lineItems;
         this.terms = terms;
+        this.termsId = termsId;
         this.balance = balance;
         this.deposit = deposit;
         this.subTotal = subTotal;
@@ -447,6 +466,7 @@ public class BillInput {
         this.passThrough = passThrough;
         this.accountingPeriod = accountingPeriod;
         this.attachments = attachments;
+        this.additionalProperties = new HashMap<>();
     }
     
     public BillInput() {
@@ -459,12 +479,12 @@ public class BillInput {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty());
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -595,6 +615,14 @@ public class BillInput {
     @JsonIgnore
     public JsonNullable<String> terms() {
         return terms;
+    }
+
+    /**
+     * The ID of the payment terms
+     */
+    @JsonIgnore
+    public JsonNullable<String> termsId() {
+        return termsId;
     }
 
     /**
@@ -808,6 +836,11 @@ public class BillInput {
     @JsonIgnore
     public Optional<List<LinkedAttachment>> attachments() {
         return (Optional<List<LinkedAttachment>>) attachments;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
     }
 
     public static Builder builder() {
@@ -1099,6 +1132,24 @@ public class BillInput {
     public BillInput withTerms(JsonNullable<String> terms) {
         Utils.checkNotNull(terms, "terms");
         this.terms = terms;
+        return this;
+    }
+
+    /**
+     * The ID of the payment terms
+     */
+    public BillInput withTermsId(String termsId) {
+        Utils.checkNotNull(termsId, "termsId");
+        this.termsId = JsonNullable.of(termsId);
+        return this;
+    }
+
+    /**
+     * The ID of the payment terms
+     */
+    public BillInput withTermsId(JsonNullable<String> termsId) {
+        Utils.checkNotNull(termsId, "termsId");
+        this.termsId = termsId;
         return this;
     }
 
@@ -1570,6 +1621,19 @@ public class BillInput {
         return this;
     }
 
+    @JsonAnySetter
+    public BillInput withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public BillInput withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -1596,6 +1660,7 @@ public class BillInput {
             Utils.enhancedDeepEquals(this.reference, other.reference) &&
             Utils.enhancedDeepEquals(this.lineItems, other.lineItems) &&
             Utils.enhancedDeepEquals(this.terms, other.terms) &&
+            Utils.enhancedDeepEquals(this.termsId, other.termsId) &&
             Utils.enhancedDeepEquals(this.balance, other.balance) &&
             Utils.enhancedDeepEquals(this.deposit, other.deposit) &&
             Utils.enhancedDeepEquals(this.subTotal, other.subTotal) &&
@@ -1622,7 +1687,8 @@ public class BillInput {
             Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
             Utils.enhancedDeepEquals(this.passThrough, other.passThrough) &&
             Utils.enhancedDeepEquals(this.accountingPeriod, other.accountingPeriod) &&
-            Utils.enhancedDeepEquals(this.attachments, other.attachments);
+            Utils.enhancedDeepEquals(this.attachments, other.attachments) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
@@ -1633,16 +1699,16 @@ public class BillInput {
             currency, currencyRate, taxInclusive,
             billDate, dueDate, paidDate,
             poNumber, reference, lineItems,
-            terms, balance, deposit,
-            subTotal, totalTax, total,
-            taxCode, notes, status,
-            ledgerAccount, paymentMethod, channel,
-            language, accountingByRow, bankAccount,
-            discountPercentage, templateId, approvedBy,
-            amortizationType, taxMethod, documentReceived,
-            sourceDocumentUrl, trackingCategories, rowVersion,
-            customFields, passThrough, accountingPeriod,
-            attachments);
+            terms, termsId, balance,
+            deposit, subTotal, totalTax,
+            total, taxCode, notes,
+            status, ledgerAccount, paymentMethod,
+            channel, language, accountingByRow,
+            bankAccount, discountPercentage, templateId,
+            approvedBy, amortizationType, taxMethod,
+            documentReceived, sourceDocumentUrl, trackingCategories,
+            rowVersion, customFields, passThrough,
+            accountingPeriod, attachments, additionalProperties);
     }
     
     @Override
@@ -1664,6 +1730,7 @@ public class BillInput {
                 "reference", reference,
                 "lineItems", lineItems,
                 "terms", terms,
+                "termsId", termsId,
                 "balance", balance,
                 "deposit", deposit,
                 "subTotal", subTotal,
@@ -1690,7 +1757,8 @@ public class BillInput {
                 "customFields", customFields,
                 "passThrough", passThrough,
                 "accountingPeriod", accountingPeriod,
-                "attachments", attachments);
+                "attachments", attachments,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -1727,6 +1795,8 @@ public class BillInput {
         private Optional<? extends List<BillLineItemInput>> lineItems = Optional.empty();
 
         private JsonNullable<String> terms = JsonNullable.undefined();
+
+        private JsonNullable<String> termsId = JsonNullable.undefined();
 
         private JsonNullable<Double> balance = JsonNullable.undefined();
 
@@ -1781,6 +1851,8 @@ public class BillInput {
         private JsonNullable<String> accountingPeriod = JsonNullable.undefined();
 
         private Optional<? extends List<LinkedAttachment>> attachments = Optional.empty();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -2085,6 +2157,25 @@ public class BillInput {
         public Builder terms(JsonNullable<String> terms) {
             Utils.checkNotNull(terms, "terms");
             this.terms = terms;
+            return this;
+        }
+
+
+        /**
+         * The ID of the payment terms
+         */
+        public Builder termsId(String termsId) {
+            Utils.checkNotNull(termsId, "termsId");
+            this.termsId = JsonNullable.of(termsId);
+            return this;
+        }
+
+        /**
+         * The ID of the payment terms
+         */
+        public Builder termsId(JsonNullable<String> termsId) {
+            Utils.checkNotNull(termsId, "termsId");
+            this.termsId = termsId;
             return this;
         }
 
@@ -2579,6 +2670,22 @@ public class BillInput {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public BillInput build() {
 
             return new BillInput(
@@ -2587,16 +2694,17 @@ public class BillInput {
                 currency, currencyRate, taxInclusive,
                 billDate, dueDate, paidDate,
                 poNumber, reference, lineItems,
-                terms, balance, deposit,
-                subTotal, totalTax, total,
-                taxCode, notes, status,
-                ledgerAccount, paymentMethod, channel,
-                language, accountingByRow, bankAccount,
-                discountPercentage, templateId, approvedBy,
-                amortizationType, taxMethod, documentReceived,
-                sourceDocumentUrl, trackingCategories, rowVersion,
-                customFields, passThrough, accountingPeriod,
-                attachments);
+                terms, termsId, balance,
+                deposit, subTotal, totalTax,
+                total, taxCode, notes,
+                status, ledgerAccount, paymentMethod,
+                channel, language, accountingByRow,
+                bankAccount, discountPercentage, templateId,
+                approvedBy, amortizationType, taxMethod,
+                documentReceived, sourceDocumentUrl, trackingCategories,
+                rowVersion, customFields, passThrough,
+                accountingPeriod, attachments)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

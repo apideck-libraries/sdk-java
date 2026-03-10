@@ -2,6 +2,17 @@
 
 Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
 
+## Example Usage
+
+```java
+import com.apideck.unify.models.components.Currency;
+
+Currency value = Currency.UNKNOWN_CURRENCY;
+
+// Open enum: use .of() to create instances from custom string values
+Currency custom = Currency.of("custom_value");
+```
+
 
 ## Values
 

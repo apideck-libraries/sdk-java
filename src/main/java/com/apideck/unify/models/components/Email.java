@@ -4,15 +4,19 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Optional;
+import java.util.HashMap;
+import java.util.Map;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -27,9 +31,9 @@ public class Email {
     /**
      * Email address
      */
-    @JsonInclude(Include.ALWAYS)
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("email")
-    private Optional<String> email;
+    private JsonNullable<String> email;
 
     /**
      * Email type
@@ -38,10 +42,14 @@ public class Email {
     @JsonProperty("type")
     private JsonNullable<? extends EmailType> type;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public Email(
             @JsonProperty("id") JsonNullable<String> id,
-            @JsonProperty("email") Optional<String> email,
+            @JsonProperty("email") JsonNullable<String> email,
             @JsonProperty("type") JsonNullable<? extends EmailType> type) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(email, "email");
@@ -49,10 +57,11 @@ public class Email {
         this.id = id;
         this.email = email;
         this.type = type;
+        this.additionalProperties = new HashMap<>();
     }
     
     public Email() {
-        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -67,7 +76,7 @@ public class Email {
      * Email address
      */
     @JsonIgnore
-    public Optional<String> email() {
+    public JsonNullable<String> email() {
         return email;
     }
 
@@ -78,6 +87,11 @@ public class Email {
     @JsonIgnore
     public JsonNullable<EmailType> type() {
         return (JsonNullable<EmailType>) type;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
     }
 
     public static Builder builder() {
@@ -108,15 +122,14 @@ public class Email {
      */
     public Email withEmail(String email) {
         Utils.checkNotNull(email, "email");
-        this.email = Optional.ofNullable(email);
+        this.email = JsonNullable.of(email);
         return this;
     }
-
 
     /**
      * Email address
      */
-    public Email withEmail(Optional<String> email) {
+    public Email withEmail(JsonNullable<String> email) {
         Utils.checkNotNull(email, "email");
         this.email = email;
         return this;
@@ -140,6 +153,19 @@ public class Email {
         return this;
     }
 
+    @JsonAnySetter
+    public Email withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public Email withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -152,13 +178,15 @@ public class Email {
         return 
             Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.email, other.email) &&
-            Utils.enhancedDeepEquals(this.type, other.type);
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, email, type);
+            id, email, type,
+            additionalProperties);
     }
     
     @Override
@@ -166,7 +194,8 @@ public class Email {
         return Utils.toString(Email.class,
                 "id", id,
                 "email", email,
-                "type", type);
+                "type", type,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -174,9 +203,11 @@ public class Email {
 
         private JsonNullable<String> id = JsonNullable.undefined();
 
-        private Optional<String> email = Optional.empty();
+        private JsonNullable<String> email = JsonNullable.undefined();
 
         private JsonNullable<? extends EmailType> type = JsonNullable.undefined();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -207,14 +238,14 @@ public class Email {
          */
         public Builder email(String email) {
             Utils.checkNotNull(email, "email");
-            this.email = Optional.ofNullable(email);
+            this.email = JsonNullable.of(email);
             return this;
         }
 
         /**
          * Email address
          */
-        public Builder email(Optional<String> email) {
+        public Builder email(JsonNullable<String> email) {
             Utils.checkNotNull(email, "email");
             this.email = email;
             return this;
@@ -239,10 +270,27 @@ public class Email {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public Email build() {
 
             return new Email(
-                id, email, type);
+                id, email, type)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

@@ -4,14 +4,20 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -40,8 +46,9 @@ public class PhoneNumber {
     /**
      * The phone number
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("number")
-    private String number;
+    private Optional<String> number;
 
     /**
      * The extension of the phone number
@@ -57,12 +64,16 @@ public class PhoneNumber {
     @JsonProperty("type")
     private JsonNullable<? extends PhoneNumberType> type;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public PhoneNumber(
             @JsonProperty("id") JsonNullable<String> id,
             @JsonProperty("country_code") JsonNullable<String> countryCode,
             @JsonProperty("area_code") JsonNullable<String> areaCode,
-            @JsonProperty("number") String number,
+            @JsonProperty("number") Optional<String> number,
             @JsonProperty("extension") JsonNullable<String> extension,
             @JsonProperty("type") JsonNullable<? extends PhoneNumberType> type) {
         Utils.checkNotNull(id, "id");
@@ -77,12 +88,12 @@ public class PhoneNumber {
         this.number = number;
         this.extension = extension;
         this.type = type;
+        this.additionalProperties = new HashMap<>();
     }
     
-    public PhoneNumber(
-            String number) {
+    public PhoneNumber() {
         this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            number, JsonNullable.undefined(), JsonNullable.undefined());
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -113,7 +124,7 @@ public class PhoneNumber {
      * The phone number
      */
     @JsonIgnore
-    public String number() {
+    public Optional<String> number() {
         return number;
     }
 
@@ -132,6 +143,11 @@ public class PhoneNumber {
     @JsonIgnore
     public JsonNullable<PhoneNumberType> type() {
         return (JsonNullable<PhoneNumberType>) type;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
     }
 
     public static Builder builder() {
@@ -198,6 +214,16 @@ public class PhoneNumber {
      */
     public PhoneNumber withNumber(String number) {
         Utils.checkNotNull(number, "number");
+        this.number = Optional.ofNullable(number);
+        return this;
+    }
+
+
+    /**
+     * The phone number
+     */
+    public PhoneNumber withNumber(Optional<String> number) {
+        Utils.checkNotNull(number, "number");
         this.number = number;
         return this;
     }
@@ -238,6 +264,19 @@ public class PhoneNumber {
         return this;
     }
 
+    @JsonAnySetter
+    public PhoneNumber withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public PhoneNumber withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -253,14 +292,16 @@ public class PhoneNumber {
             Utils.enhancedDeepEquals(this.areaCode, other.areaCode) &&
             Utils.enhancedDeepEquals(this.number, other.number) &&
             Utils.enhancedDeepEquals(this.extension, other.extension) &&
-            Utils.enhancedDeepEquals(this.type, other.type);
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             id, countryCode, areaCode,
-            number, extension, type);
+            number, extension, type,
+            additionalProperties);
     }
     
     @Override
@@ -271,7 +312,8 @@ public class PhoneNumber {
                 "areaCode", areaCode,
                 "number", number,
                 "extension", extension,
-                "type", type);
+                "type", type,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -283,11 +325,13 @@ public class PhoneNumber {
 
         private JsonNullable<String> areaCode = JsonNullable.undefined();
 
-        private String number;
+        private Optional<String> number = Optional.empty();
 
         private JsonNullable<String> extension = JsonNullable.undefined();
 
         private JsonNullable<? extends PhoneNumberType> type = JsonNullable.undefined();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -356,6 +400,15 @@ public class PhoneNumber {
          */
         public Builder number(String number) {
             Utils.checkNotNull(number, "number");
+            this.number = Optional.ofNullable(number);
+            return this;
+        }
+
+        /**
+         * The phone number
+         */
+        public Builder number(Optional<String> number) {
+            Utils.checkNotNull(number, "number");
             this.number = number;
             return this;
         }
@@ -398,11 +451,28 @@ public class PhoneNumber {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public PhoneNumber build() {
 
             return new PhoneNumber(
                 id, countryCode, areaCode,
-                number, extension, type);
+                number, extension, type)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

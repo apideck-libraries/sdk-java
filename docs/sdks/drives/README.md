@@ -21,11 +21,11 @@ List Drives
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.DrivesFilter;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.FileStorageDrivesAllRequest;
 import com.apideck.unify.models.operations.FileStorageDrivesAllResponse;
 import java.lang.Exception;
+import java.util.Map;
 
 public class Application {
 
@@ -39,9 +39,8 @@ public class Application {
 
         FileStorageDrivesAllRequest req = FileStorageDrivesAllRequest.builder()
                 .serviceId("salesforce")
-                .filter(DrivesFilter.builder()
-                    .groupId("1234")
-                    .build())
+                .filter(Map.ofEntries(
+                    Map.entry("group_id", "1234")))
                 .fields("id,updated_at")
                 .build();
 
@@ -150,7 +149,7 @@ public class Application {
                 .call();
 
         if (res.createDriveResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createDriveResponse().get());
         }
     }
 }
@@ -214,7 +213,7 @@ public class Application {
                 .call();
 
         if (res.getDriveResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getDriveResponse().get());
         }
     }
 }
@@ -295,7 +294,7 @@ public class Application {
                 .call();
 
         if (res.updateDriveResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateDriveResponse().get());
         }
     }
 }
@@ -358,7 +357,7 @@ public class Application {
                 .call();
 
         if (res.deleteDriveResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteDriveResponse().get());
         }
     }
 }

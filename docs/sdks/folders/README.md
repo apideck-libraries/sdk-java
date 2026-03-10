@@ -66,7 +66,7 @@ public class Application {
                 .call();
 
         if (res.createFolderResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createFolderResponse().get());
         }
     }
 }
@@ -130,7 +130,7 @@ public class Application {
                 .call();
 
         if (res.getFolderResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getFolderResponse().get());
         }
     }
 }
@@ -218,7 +218,7 @@ public class Application {
                 .call();
 
         if (res.updateFolderResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateFolderResponse().get());
         }
     }
 }
@@ -281,7 +281,7 @@ public class Application {
                 .call();
 
         if (res.deleteFolderResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteFolderResponse().get());
         }
     }
 }
@@ -373,7 +373,7 @@ public class Application {
                 .call();
 
         if (res.updateFolderResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateFolderResponse().get());
         }
     }
 }

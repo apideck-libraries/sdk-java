@@ -18,7 +18,6 @@ List Collections
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.*;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.IssueTrackingCollectionsAllRequest;
 import com.apideck.unify.models.operations.IssueTrackingCollectionsAllResponse;
@@ -37,10 +36,9 @@ public class Application {
 
         IssueTrackingCollectionsAllRequest req = IssueTrackingCollectionsAllRequest.builder()
                 .serviceId("salesforce")
-                .sort(CollectionsSort.builder()
-                    .by(CollectionsSortBy.NAME)
-                    .direction(SortDirection.DESC)
-                    .build())
+                .sort(Map.ofEntries(
+                    Map.entry("by", "name"),
+                    Map.entry("direction", "desc")))
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
                 .fields("id,updated_at")
@@ -115,7 +113,7 @@ public class Application {
                 .call();
 
         if (res.getCollectionResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getCollectionResponse().get());
         }
     }
 }

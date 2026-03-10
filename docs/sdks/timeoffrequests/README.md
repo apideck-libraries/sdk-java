@@ -21,8 +21,6 @@ List Time Off Requests
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.TimeOffRequestStatus;
-import com.apideck.unify.models.components.TimeOffRequestsFilter;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.HrisTimeOffRequestsAllRequest;
 import com.apideck.unify.models.operations.HrisTimeOffRequestsAllResponse;
@@ -41,14 +39,13 @@ public class Application {
 
         HrisTimeOffRequestsAllRequest req = HrisTimeOffRequestsAllRequest.builder()
                 .serviceId("salesforce")
-                .filter(TimeOffRequestsFilter.builder()
-                    .startDate("2022-04-08")
-                    .endDate("2022-04-21")
-                    .updatedSince("2020-09-30T07:43:32.000Z")
-                    .employeeId("1234")
-                    .timeOffRequestStatus(TimeOffRequestStatus.APPROVED)
-                    .companyId("1234")
-                    .build())
+                .filter(Map.ofEntries(
+                    Map.entry("start_date", "2022-04-08"),
+                    Map.entry("end_date", "2022-04-21"),
+                    Map.entry("updated_since", "2020-09-30T07:43:32.000Z"),
+                    Map.entry("employee_id", "1234"),
+                    Map.entry("time_off_request_status", "approved"),
+                    Map.entry("company_id", "1234")))
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
                 .fields("id,updated_at")
@@ -119,7 +116,7 @@ public class Application {
                 .timeOffRequest(TimeOffRequestInput.builder()
                     .employeeId("12345")
                     .policyId("12345")
-                    .status(TimeOffRequestStatusStatus.APPROVED)
+                    .status(TimeOffRequestStatus.APPROVED)
                     .description("Enjoying some sun.")
                     .startDate("2022-04-01")
                     .endDate("2022-04-01")
@@ -154,7 +151,7 @@ public class Application {
                 .call();
 
         if (res.createTimeOffRequestResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createTimeOffRequestResponse().get());
         }
     }
 }
@@ -219,7 +216,7 @@ public class Application {
                 .call();
 
         if (res.getTimeOffRequestResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getTimeOffRequestResponse().get());
         }
     }
 }
@@ -281,7 +278,7 @@ public class Application {
                 .timeOffRequest(TimeOffRequestInput.builder()
                     .employeeId("12345")
                     .policyId("12345")
-                    .status(TimeOffRequestStatusStatus.APPROVED)
+                    .status(TimeOffRequestStatus.APPROVED)
                     .description("Enjoying some sun.")
                     .startDate("2022-04-01")
                     .endDate("2022-04-01")
@@ -328,7 +325,7 @@ public class Application {
                 .call();
 
         if (res.updateTimeOffRequestResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateTimeOffRequestResponse().get());
         }
     }
 }
@@ -392,7 +389,7 @@ public class Application {
                 .call();
 
         if (res.deleteTimeOffRequestResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteTimeOffRequestResponse().get());
         }
     }
 }

@@ -3,7 +3,6 @@
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.TaxRatesFilter;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingTaxRatesAllRequest;
 import com.apideck.unify.models.operations.AccountingTaxRatesAllResponse;
@@ -22,13 +21,13 @@ public class Application {
 
         AccountingTaxRatesAllRequest req = AccountingTaxRatesAllRequest.builder()
                 .serviceId("salesforce")
-                .filter(TaxRatesFilter.builder()
-                    .assets(true)
-                    .equity(true)
-                    .expenses(true)
-                    .liabilities(true)
-                    .revenue(true)
-                    .build())
+                .companyId("12345")
+                .filter(Map.ofEntries(
+                    Map.entry("assets", true),
+                    Map.entry("equity", true),
+                    Map.entry("expenses", true),
+                    Map.entry("liabilities", true),
+                    Map.entry("revenue", true)))
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
                 .fields("id,updated_at")

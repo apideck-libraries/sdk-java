@@ -4,13 +4,18 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 
@@ -22,11 +27,16 @@ public class CustomMappingInput {
     @JsonProperty("value")
     private Optional<String> value;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public CustomMappingInput(
             @JsonProperty("value") Optional<String> value) {
         Utils.checkNotNull(value, "value");
         this.value = value;
+        this.additionalProperties = new HashMap<>();
     }
     
     public CustomMappingInput() {
@@ -39,6 +49,11 @@ public class CustomMappingInput {
     @JsonIgnore
     public Optional<String> value() {
         return value;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
     }
 
     public static Builder builder() {
@@ -65,6 +80,19 @@ public class CustomMappingInput {
         return this;
     }
 
+    @JsonAnySetter
+    public CustomMappingInput withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public CustomMappingInput withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -75,25 +103,29 @@ public class CustomMappingInput {
         }
         CustomMappingInput other = (CustomMappingInput) o;
         return 
-            Utils.enhancedDeepEquals(this.value, other.value);
+            Utils.enhancedDeepEquals(this.value, other.value) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            value);
+            value, additionalProperties);
     }
     
     @Override
     public String toString() {
         return Utils.toString(CustomMappingInput.class,
-                "value", value);
+                "value", value,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
         private Optional<String> value = Optional.empty();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -118,10 +150,27 @@ public class CustomMappingInput {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public CustomMappingInput build() {
 
             return new CustomMappingInput(
-                value);
+                value)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

@@ -4,6 +4,8 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -13,6 +15,7 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -47,6 +50,10 @@ public class PassThroughBody {
     @JsonProperty("extend_paths")
     private Optional<? extends List<ExtendPaths>> extendPaths;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public PassThroughBody(
             @JsonProperty("service_id") String serviceId,
@@ -61,6 +68,7 @@ public class PassThroughBody {
         this.operationId = operationId;
         this.extendObject = extendObject;
         this.extendPaths = extendPaths;
+        this.additionalProperties = new HashMap<>();
     }
     
     public PassThroughBody(
@@ -102,6 +110,11 @@ public class PassThroughBody {
     @JsonIgnore
     public Optional<List<ExtendPaths>> extendPaths() {
         return (Optional<List<ExtendPaths>>) extendPaths;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
     }
 
     public static Builder builder() {
@@ -177,6 +190,19 @@ public class PassThroughBody {
         return this;
     }
 
+    @JsonAnySetter
+    public PassThroughBody withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public PassThroughBody withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -190,14 +216,15 @@ public class PassThroughBody {
             Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
             Utils.enhancedDeepEquals(this.operationId, other.operationId) &&
             Utils.enhancedDeepEquals(this.extendObject, other.extendObject) &&
-            Utils.enhancedDeepEquals(this.extendPaths, other.extendPaths);
+            Utils.enhancedDeepEquals(this.extendPaths, other.extendPaths) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             serviceId, operationId, extendObject,
-            extendPaths);
+            extendPaths, additionalProperties);
     }
     
     @Override
@@ -206,7 +233,8 @@ public class PassThroughBody {
                 "serviceId", serviceId,
                 "operationId", operationId,
                 "extendObject", extendObject,
-                "extendPaths", extendPaths);
+                "extendPaths", extendPaths,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -219,6 +247,8 @@ public class PassThroughBody {
         private Optional<? extends Map<String, Object>> extendObject = Optional.empty();
 
         private Optional<? extends List<ExtendPaths>> extendPaths = Optional.empty();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -293,11 +323,28 @@ public class PassThroughBody {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public PassThroughBody build() {
 
             return new PassThroughBody(
                 serviceId, operationId, extendObject,
-                extendPaths);
+                extendPaths)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

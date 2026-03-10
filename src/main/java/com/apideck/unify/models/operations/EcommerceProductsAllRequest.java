@@ -3,7 +3,6 @@
  */
 package com.apideck.unify.models.operations;
 
-import com.apideck.unify.models.components.EcommerceProductsFilter;
 import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
@@ -85,7 +84,7 @@ public class EcommerceProductsAllRequest {
      * Apply filters
      */
     @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=filter")
-    private Optional<? extends EcommerceProductsFilter> filter;
+    private Optional<? extends Map<String, Object>> filter;
 
     @JsonCreator
     public EcommerceProductsAllRequest(
@@ -97,7 +96,7 @@ public class EcommerceProductsAllRequest {
             Optional<Long> limit,
             Optional<? extends Map<String, Object>> passThrough,
             JsonNullable<String> fields,
-            Optional<? extends EcommerceProductsFilter> filter) {
+            Optional<? extends Map<String, Object>> filter) {
         Utils.checkNotNull(raw, "raw");
         Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
@@ -205,8 +204,8 @@ public class EcommerceProductsAllRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<EcommerceProductsFilter> filter() {
-        return (Optional<EcommerceProductsFilter>) filter;
+    public Optional<Map<String, Object>> filter() {
+        return (Optional<Map<String, Object>>) filter;
     }
 
     public static Builder builder() {
@@ -389,7 +388,7 @@ public class EcommerceProductsAllRequest {
     /**
      * Apply filters
      */
-    public EcommerceProductsAllRequest withFilter(EcommerceProductsFilter filter) {
+    public EcommerceProductsAllRequest withFilter(Map<String, Object> filter) {
         Utils.checkNotNull(filter, "filter");
         this.filter = Optional.ofNullable(filter);
         return this;
@@ -399,7 +398,7 @@ public class EcommerceProductsAllRequest {
     /**
      * Apply filters
      */
-    public EcommerceProductsAllRequest withFilter(Optional<? extends EcommerceProductsFilter> filter) {
+    public EcommerceProductsAllRequest withFilter(Optional<? extends Map<String, Object>> filter) {
         Utils.checkNotNull(filter, "filter");
         this.filter = filter;
         return this;
@@ -467,7 +466,7 @@ public class EcommerceProductsAllRequest {
 
         private JsonNullable<String> fields = JsonNullable.undefined();
 
-        private Optional<? extends EcommerceProductsFilter> filter = Optional.empty();
+        private Optional<? extends Map<String, Object>> filter = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -651,7 +650,7 @@ public class EcommerceProductsAllRequest {
         /**
          * Apply filters
          */
-        public Builder filter(EcommerceProductsFilter filter) {
+        public Builder filter(Map<String, Object> filter) {
             Utils.checkNotNull(filter, "filter");
             this.filter = Optional.ofNullable(filter);
             return this;
@@ -660,7 +659,7 @@ public class EcommerceProductsAllRequest {
         /**
          * Apply filters
          */
-        public Builder filter(Optional<? extends EcommerceProductsFilter> filter) {
+        public Builder filter(Optional<? extends Map<String, Object>> filter) {
             Utils.checkNotNull(filter, "filter");
             this.filter = filter;
             return this;

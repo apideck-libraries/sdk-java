@@ -21,7 +21,6 @@ List Invoice Items
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.*;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingInvoiceItemsAllRequest;
 import com.apideck.unify.models.operations.AccountingInvoiceItemsAllResponse;
@@ -40,14 +39,13 @@ public class Application {
 
         AccountingInvoiceItemsAllRequest req = AccountingInvoiceItemsAllRequest.builder()
                 .serviceId("salesforce")
-                .filter(InvoiceItemsFilter.builder()
-                    .name("Widgets Large")
-                    .type(InvoiceItemType.SERVICE)
-                    .build())
-                .sort(InvoiceItemsSort.builder()
-                    .by(InvoiceItemsSortBy.UPDATED_AT)
-                    .direction(SortDirection.DESC)
-                    .build())
+                .companyId("12345")
+                .filter(Map.ofEntries(
+                    Map.entry("name", "Widgets Large"),
+                    Map.entry("type", "service")))
+                .sort(Map.ofEntries(
+                    Map.entry("by", "updated_at"),
+                    Map.entry("direction", "desc")))
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
                 .fields("id,updated_at")
@@ -126,7 +124,7 @@ public class Application {
                     .tracked(true)
                     .taxable(true)
                     .inventoryDate(LocalDate.parse("2020-10-30"))
-                    .type(InvoiceItemTypeType.INVENTORY)
+                    .type(InvoiceItemType.INVENTORY)
                     .salesDetails(InvoiceItemSalesDetails.builder()
                         .unitPrice(27500.5)
                         .unitOfMeasure("pc.")
@@ -188,6 +186,7 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingInvoiceItemsAddResponse res = sdk.accounting().invoiceItems().create()
@@ -195,7 +194,7 @@ public class Application {
                 .call();
 
         if (res.createInvoiceItemResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createInvoiceItemResponse().get());
         }
     }
 }
@@ -233,12 +232,11 @@ Get Invoice Item
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.InvoiceItemFilter;
-import com.apideck.unify.models.components.InvoiceItemFilterInvoiceItemType;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingInvoiceItemsOneRequest;
 import com.apideck.unify.models.operations.AccountingInvoiceItemsOneResponse;
 import java.lang.Exception;
+import java.util.Map;
 
 public class Application {
 
@@ -253,10 +251,10 @@ public class Application {
         AccountingInvoiceItemsOneRequest req = AccountingInvoiceItemsOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .fields("id,updated_at")
-                .filter(InvoiceItemFilter.builder()
-                    .type(InvoiceItemFilterInvoiceItemType.SERVICE)
-                    .build())
+                .filter(Map.ofEntries(
+                    Map.entry("type", "service")))
                 .build();
 
         AccountingInvoiceItemsOneResponse res = sdk.accounting().invoiceItems().get()
@@ -264,7 +262,7 @@ public class Application {
                 .call();
 
         if (res.getInvoiceItemResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getInvoiceItemResponse().get());
         }
     }
 }
@@ -333,7 +331,7 @@ public class Application {
                     .tracked(true)
                     .taxable(true)
                     .inventoryDate(LocalDate.parse("2020-10-30"))
-                    .type(InvoiceItemTypeType.INVENTORY)
+                    .type(InvoiceItemType.INVENTORY)
                     .salesDetails(InvoiceItemSalesDetails.builder()
                         .unitPrice(27500.5)
                         .unitOfMeasure("pc.")
@@ -410,7 +408,7 @@ public class Application {
                 .call();
 
         if (res.updateInvoiceItemsResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateInvoiceItemsResponse().get());
         }
     }
 }
@@ -473,7 +471,7 @@ public class Application {
                 .call();
 
         if (res.deleteTaxRateResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteTaxRateResponse().get());
         }
     }
 }

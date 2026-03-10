@@ -3,7 +3,6 @@
  */
 package com.apideck.unify.models.operations;
 
-import com.apideck.unify.models.components.ExpensesFilter;
 import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
@@ -12,9 +11,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import java.lang.Boolean;
 import java.lang.Long;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -46,6 +47,13 @@ public class AccountingExpensesAllRequest {
     private Optional<String> serviceId;
 
     /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-company-id")
+    private Optional<String> companyId;
+
+    /**
      * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of
      * the response.
      */
@@ -62,7 +70,7 @@ public class AccountingExpensesAllRequest {
      * Apply filters
      */
     @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=filter")
-    private Optional<? extends ExpensesFilter> filter;
+    private Optional<? extends Map<String, Object>> filter;
 
     @JsonCreator
     public AccountingExpensesAllRequest(
@@ -70,13 +78,15 @@ public class AccountingExpensesAllRequest {
             Optional<String> consumerId,
             Optional<String> appId,
             Optional<String> serviceId,
+            Optional<String> companyId,
             JsonNullable<String> cursor,
             Optional<Long> limit,
-            Optional<? extends ExpensesFilter> filter) {
+            Optional<? extends Map<String, Object>> filter) {
         Utils.checkNotNull(raw, "raw");
         Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(serviceId, "serviceId");
+        Utils.checkNotNull(companyId, "companyId");
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(limit, "limit");
         Utils.checkNotNull(filter, "filter");
@@ -84,6 +94,7 @@ public class AccountingExpensesAllRequest {
         this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
+        this.companyId = companyId;
         this.cursor = cursor;
         this.limit = limit;
         this.filter = filter;
@@ -91,8 +102,8 @@ public class AccountingExpensesAllRequest {
     
     public AccountingExpensesAllRequest() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty());
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -129,6 +140,15 @@ public class AccountingExpensesAllRequest {
     }
 
     /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    @JsonIgnore
+    public Optional<String> companyId() {
+        return companyId;
+    }
+
+    /**
      * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of
      * the response.
      */
@@ -150,8 +170,8 @@ public class AccountingExpensesAllRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ExpensesFilter> filter() {
-        return (Optional<ExpensesFilter>) filter;
+    public Optional<Map<String, Object>> filter() {
+        return (Optional<Map<String, Object>>) filter;
     }
 
     public static Builder builder() {
@@ -238,6 +258,27 @@ public class AccountingExpensesAllRequest {
     }
 
     /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    public AccountingExpensesAllRequest withCompanyId(String companyId) {
+        Utils.checkNotNull(companyId, "companyId");
+        this.companyId = Optional.ofNullable(companyId);
+        return this;
+    }
+
+
+    /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    public AccountingExpensesAllRequest withCompanyId(Optional<String> companyId) {
+        Utils.checkNotNull(companyId, "companyId");
+        this.companyId = companyId;
+        return this;
+    }
+
+    /**
      * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of
      * the response.
      */
@@ -279,7 +320,7 @@ public class AccountingExpensesAllRequest {
     /**
      * Apply filters
      */
-    public AccountingExpensesAllRequest withFilter(ExpensesFilter filter) {
+    public AccountingExpensesAllRequest withFilter(Map<String, Object> filter) {
         Utils.checkNotNull(filter, "filter");
         this.filter = Optional.ofNullable(filter);
         return this;
@@ -289,7 +330,7 @@ public class AccountingExpensesAllRequest {
     /**
      * Apply filters
      */
-    public AccountingExpensesAllRequest withFilter(Optional<? extends ExpensesFilter> filter) {
+    public AccountingExpensesAllRequest withFilter(Optional<? extends Map<String, Object>> filter) {
         Utils.checkNotNull(filter, "filter");
         this.filter = filter;
         return this;
@@ -309,6 +350,7 @@ public class AccountingExpensesAllRequest {
             Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
             Utils.enhancedDeepEquals(this.appId, other.appId) &&
             Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
             Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
             Utils.enhancedDeepEquals(this.limit, other.limit) &&
             Utils.enhancedDeepEquals(this.filter, other.filter);
@@ -318,8 +360,8 @@ public class AccountingExpensesAllRequest {
     public int hashCode() {
         return Utils.enhancedHash(
             raw, consumerId, appId,
-            serviceId, cursor, limit,
-            filter);
+            serviceId, companyId, cursor,
+            limit, filter);
     }
     
     @Override
@@ -329,6 +371,7 @@ public class AccountingExpensesAllRequest {
                 "consumerId", consumerId,
                 "appId", appId,
                 "serviceId", serviceId,
+                "companyId", companyId,
                 "cursor", cursor,
                 "limit", limit,
                 "filter", filter);
@@ -345,11 +388,13 @@ public class AccountingExpensesAllRequest {
 
         private Optional<String> serviceId = Optional.empty();
 
+        private Optional<String> companyId = Optional.empty();
+
         private JsonNullable<String> cursor = JsonNullable.undefined();
 
         private Optional<Long> limit;
 
-        private Optional<? extends ExpensesFilter> filter = Optional.empty();
+        private Optional<? extends Map<String, Object>> filter = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -435,6 +480,27 @@ public class AccountingExpensesAllRequest {
 
 
         /**
+         * The ID of the company to scope requests to. For connectors that support multi-company, this
+         * overrides the default company configured in connection settings.
+         */
+        public Builder companyId(String companyId) {
+            Utils.checkNotNull(companyId, "companyId");
+            this.companyId = Optional.ofNullable(companyId);
+            return this;
+        }
+
+        /**
+         * The ID of the company to scope requests to. For connectors that support multi-company, this
+         * overrides the default company configured in connection settings.
+         */
+        public Builder companyId(Optional<String> companyId) {
+            Utils.checkNotNull(companyId, "companyId");
+            this.companyId = companyId;
+            return this;
+        }
+
+
+        /**
          * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of
          * the response.
          */
@@ -477,7 +543,7 @@ public class AccountingExpensesAllRequest {
         /**
          * Apply filters
          */
-        public Builder filter(ExpensesFilter filter) {
+        public Builder filter(Map<String, Object> filter) {
             Utils.checkNotNull(filter, "filter");
             this.filter = Optional.ofNullable(filter);
             return this;
@@ -486,7 +552,7 @@ public class AccountingExpensesAllRequest {
         /**
          * Apply filters
          */
-        public Builder filter(Optional<? extends ExpensesFilter> filter) {
+        public Builder filter(Optional<? extends Map<String, Object>> filter) {
             Utils.checkNotNull(filter, "filter");
             this.filter = filter;
             return this;
@@ -502,8 +568,8 @@ public class AccountingExpensesAllRequest {
 
             return new AccountingExpensesAllRequest(
                 raw, consumerId, appId,
-                serviceId, cursor, limit,
-                filter);
+                serviceId, companyId, cursor,
+                limit, filter);
         }
 
 

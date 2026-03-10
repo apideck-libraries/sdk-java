@@ -21,12 +21,14 @@ import java.util.Optional;
 /**
  * InvoiceItemType
  * 
- * <p>The type of invoice item, indicating whether it is an inventory item, a service, or another type.
+ * <p>Item type
  */
 public class InvoiceItemType {
 
     public static final InvoiceItemType INVENTORY = new InvoiceItemType("inventory");
+    public static final InvoiceItemType NON_INVENTORY = new InvoiceItemType("non_inventory");
     public static final InvoiceItemType SERVICE = new InvoiceItemType("service");
+    public static final InvoiceItemType DESCRIPTION = new InvoiceItemType("description");
     public static final InvoiceItemType OTHER = new InvoiceItemType("other");
 
     // This map will grow whenever a Color gets created with a new
@@ -102,7 +104,9 @@ public class InvoiceItemType {
     private static final Map<String, InvoiceItemType> createValuesMap() {
         Map<String, InvoiceItemType> map = new LinkedHashMap<>();
         map.put("inventory", INVENTORY);
+        map.put("non_inventory", NON_INVENTORY);
         map.put("service", SERVICE);
+        map.put("description", DESCRIPTION);
         map.put("other", OTHER);
         return map;
     }
@@ -110,7 +114,9 @@ public class InvoiceItemType {
     private static final Map<String, InvoiceItemTypeEnum> createEnumsMap() {
         Map<String, InvoiceItemTypeEnum> map = new HashMap<>();
         map.put("inventory", InvoiceItemTypeEnum.INVENTORY);
+        map.put("non_inventory", InvoiceItemTypeEnum.NON_INVENTORY);
         map.put("service", InvoiceItemTypeEnum.SERVICE);
+        map.put("description", InvoiceItemTypeEnum.DESCRIPTION);
         map.put("other", InvoiceItemTypeEnum.OTHER);
         return map;
     }
@@ -119,7 +125,9 @@ public class InvoiceItemType {
     public enum InvoiceItemTypeEnum {
 
         INVENTORY("inventory"),
+        NON_INVENTORY("non_inventory"),
         SERVICE("service"),
+        DESCRIPTION("description"),
         OTHER("other"),;
 
         private final String value;

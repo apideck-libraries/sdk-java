@@ -5,7 +5,6 @@ package com.apideck.unify;
 
 import static com.apideck.unify.operations.Operations.RequestOperation;
 
-import com.apideck.unify.models.components.ApisFilter;
 import com.apideck.unify.models.operations.ConnectorApisAllRequest;
 import com.apideck.unify.models.operations.ConnectorApisAllRequestBuilder;
 import com.apideck.unify.models.operations.ConnectorApisAllResponse;
@@ -17,7 +16,9 @@ import com.apideck.unify.operations.ConnectorApisOne;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.lang.Long;
+import java.lang.Object;
 import java.lang.String;
+import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -73,14 +74,14 @@ public class Apis {
      * @param appId The ID of your Unify application
      * @param cursor Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
      * @param limit Number of results to return. Minimum 1, Maximum 200, Default 20
-     * @param filter 
+     * @param filter Apply filters
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public ConnectorApisAllResponse list(
             Optional<String> appId, JsonNullable<String> cursor,
-            Optional<Long> limit, Optional<? extends ApisFilter> filter,
+            Optional<Long> limit, Optional<? extends Map<String, Object>> filter,
             Optional<Options> options) {
         ConnectorApisAllRequest request =
             ConnectorApisAllRequest

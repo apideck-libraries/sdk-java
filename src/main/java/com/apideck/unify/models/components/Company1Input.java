@@ -4,17 +4,22 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Boolean;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -23,9 +28,9 @@ public class Company1Input {
     /**
      * Name of the company
      */
-    @JsonInclude(Include.ALWAYS)
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
-    private Optional<String> name;
+    private JsonNullable<String> name;
 
     /**
      * Owner ID
@@ -233,9 +238,13 @@ public class Company1Input {
     @JsonProperty("pass_through")
     private Optional<? extends List<PassThroughBody>> passThrough;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public Company1Input(
-            @JsonProperty("name") Optional<String> name,
+            @JsonProperty("name") JsonNullable<String> name,
             @JsonProperty("owner_id") JsonNullable<String> ownerId,
             @JsonProperty("image") JsonNullable<String> image,
             @JsonProperty("description") JsonNullable<String> description,
@@ -331,10 +340,11 @@ public class Company1Input {
         this.salutation = salutation;
         this.birthday = birthday;
         this.passThrough = passThrough;
+        this.additionalProperties = new HashMap<>();
     }
     
     public Company1Input() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
@@ -351,7 +361,7 @@ public class Company1Input {
      * Name of the company
      */
     @JsonIgnore
-    public Optional<String> name() {
+    public JsonNullable<String> name() {
         return name;
     }
 
@@ -594,6 +604,11 @@ public class Company1Input {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -604,15 +619,14 @@ public class Company1Input {
      */
     public Company1Input withName(String name) {
         Utils.checkNotNull(name, "name");
-        this.name = Optional.ofNullable(name);
+        this.name = JsonNullable.of(name);
         return this;
     }
-
 
     /**
      * Name of the company
      */
-    public Company1Input withName(Optional<String> name) {
+    public Company1Input withName(JsonNullable<String> name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
@@ -1145,6 +1159,19 @@ public class Company1Input {
         return this;
     }
 
+    @JsonAnySetter
+    public Company1Input withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public Company1Input withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -1186,7 +1213,8 @@ public class Company1Input {
             Utils.enhancedDeepEquals(this.readOnly, other.readOnly) &&
             Utils.enhancedDeepEquals(this.salutation, other.salutation) &&
             Utils.enhancedDeepEquals(this.birthday, other.birthday) &&
-            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
@@ -1202,7 +1230,7 @@ public class Company1Input {
             addresses, socialLinks, phoneNumbers,
             emails, rowType, customFields,
             tags, readOnly, salutation,
-            birthday, passThrough);
+            birthday, passThrough, additionalProperties);
     }
     
     @Override
@@ -1239,13 +1267,14 @@ public class Company1Input {
                 "readOnly", readOnly,
                 "salutation", salutation,
                 "birthday", birthday,
-                "passThrough", passThrough);
+                "passThrough", passThrough,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> name = Optional.empty();
+        private JsonNullable<String> name = JsonNullable.undefined();
 
         private JsonNullable<String> ownerId = JsonNullable.undefined();
 
@@ -1309,6 +1338,8 @@ public class Company1Input {
 
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
 
+        private Map<String, Object> additionalProperties = new HashMap<>();
+
         private Builder() {
           // force use of static builder() method
         }
@@ -1319,14 +1350,14 @@ public class Company1Input {
          */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
-            this.name = Optional.ofNullable(name);
+            this.name = JsonNullable.of(name);
             return this;
         }
 
         /**
          * Name of the company
          */
-        public Builder name(Optional<String> name) {
+        public Builder name(JsonNullable<String> name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
@@ -1881,6 +1912,22 @@ public class Company1Input {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public Company1Input build() {
 
             return new Company1Input(
@@ -1894,7 +1941,8 @@ public class Company1Input {
                 addresses, socialLinks, phoneNumbers,
                 emails, rowType, customFields,
                 tags, readOnly, salutation,
-                birthday, passThrough);
+                birthday, passThrough)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

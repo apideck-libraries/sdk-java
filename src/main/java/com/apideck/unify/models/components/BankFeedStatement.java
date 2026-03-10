@@ -4,17 +4,22 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Double;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -23,8 +28,9 @@ public class BankFeedStatement {
     /**
      * A unique identifier for an object.
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private String id;
+    private Optional<String> id;
 
     /**
      * The ID of the bank feed account this statement belongs to.
@@ -117,9 +123,13 @@ public class BankFeedStatement {
     @JsonProperty("updated_by")
     private JsonNullable<String> updatedBy;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public BankFeedStatement(
-            @JsonProperty("id") String id,
+            @JsonProperty("id") Optional<String> id,
             @JsonProperty("bank_feed_account_id") Optional<String> bankFeedAccountId,
             @JsonProperty("status") Optional<? extends StatementStatus> status,
             @JsonProperty("start_date") Optional<OffsetDateTime> startDate,
@@ -161,11 +171,11 @@ public class BankFeedStatement {
         this.createdBy = createdBy;
         this.updatedAt = updatedAt;
         this.updatedBy = updatedBy;
+        this.additionalProperties = new HashMap<>();
     }
     
-    public BankFeedStatement(
-            String id) {
-        this(id, Optional.empty(), Optional.empty(),
+    public BankFeedStatement() {
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
@@ -176,7 +186,7 @@ public class BankFeedStatement {
      * A unique identifier for an object.
      */
     @JsonIgnore
-    public String id() {
+    public Optional<String> id() {
         return id;
     }
 
@@ -288,6 +298,11 @@ public class BankFeedStatement {
         return updatedBy;
     }
 
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -297,6 +312,16 @@ public class BankFeedStatement {
      * A unique identifier for an object.
      */
     public BankFeedStatement withId(String id) {
+        Utils.checkNotNull(id, "id");
+        this.id = Optional.ofNullable(id);
+        return this;
+    }
+
+
+    /**
+     * A unique identifier for an object.
+     */
+    public BankFeedStatement withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
@@ -545,6 +570,19 @@ public class BankFeedStatement {
         return this;
     }
 
+    @JsonAnySetter
+    public BankFeedStatement withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public BankFeedStatement withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -568,7 +606,8 @@ public class BankFeedStatement {
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
             Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
             Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
-            Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy);
+            Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
@@ -578,7 +617,7 @@ public class BankFeedStatement {
             startDate, endDate, startBalance,
             startBalanceCreditOrDebit, endBalance, endBalanceCreditOrDebit,
             transactions, createdAt, createdBy,
-            updatedAt, updatedBy);
+            updatedAt, updatedBy, additionalProperties);
     }
     
     @Override
@@ -597,13 +636,14 @@ public class BankFeedStatement {
                 "createdAt", createdAt,
                 "createdBy", createdBy,
                 "updatedAt", updatedAt,
-                "updatedBy", updatedBy);
+                "updatedBy", updatedBy,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String id;
+        private Optional<String> id = Optional.empty();
 
         private Optional<String> bankFeedAccountId = Optional.empty();
 
@@ -631,6 +671,8 @@ public class BankFeedStatement {
 
         private JsonNullable<String> updatedBy = JsonNullable.undefined();
 
+        private Map<String, Object> additionalProperties = new HashMap<>();
+
         private Builder() {
           // force use of static builder() method
         }
@@ -640,6 +682,15 @@ public class BankFeedStatement {
          * A unique identifier for an object.
          */
         public Builder id(String id) {
+            Utils.checkNotNull(id, "id");
+            this.id = Optional.ofNullable(id);
+            return this;
+        }
+
+        /**
+         * A unique identifier for an object.
+         */
+        public Builder id(Optional<String> id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
@@ -892,6 +943,22 @@ public class BankFeedStatement {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public BankFeedStatement build() {
 
             return new BankFeedStatement(
@@ -899,7 +966,8 @@ public class BankFeedStatement {
                 startDate, endDate, startBalance,
                 startBalanceCreditOrDebit, endBalance, endBalanceCreditOrDebit,
                 transactions, createdAt, createdBy,
-                updatedAt, updatedBy);
+                updatedAt, updatedBy)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

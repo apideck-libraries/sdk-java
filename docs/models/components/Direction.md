@@ -2,6 +2,17 @@
 
 The direction of the message.
 
+## Example Usage
+
+```java
+import com.apideck.unify.models.components.Direction;
+
+Direction value = Direction.INBOUND;
+
+// Open enum: use .of() to create instances from custom string values
+Direction custom = Direction.of("custom_value");
+```
+
 
 ## Values
 

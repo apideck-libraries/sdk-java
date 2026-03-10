@@ -9,7 +9,6 @@ import static com.apideck.unify.utils.Utils.transform;
 import static com.apideck.unify.utils.Utils.toStream;
 
 import com.apideck.unify.SDKConfiguration;
-import com.apideck.unify.models.components.ApisFilter;
 import com.apideck.unify.operations.ConnectorApisAll;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.LazySingletonValue;
@@ -22,9 +21,11 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import java.io.InputStream;
 import java.lang.Iterable;
 import java.lang.Long;
+import java.lang.Object;
 import java.lang.String;
 import java.net.http.HttpResponse;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -37,7 +38,7 @@ public class ConnectorApisAllRequestBuilder {
                             "limit",
                             "20",
                             new TypeReference<Optional<Long>>() {});
-    private Optional<? extends ApisFilter> filter = Optional.empty();
+    private Optional<? extends Map<String, Object>> filter = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -82,13 +83,13 @@ public class ConnectorApisAllRequestBuilder {
         return this;
     }
                 
-    public ConnectorApisAllRequestBuilder filter(ApisFilter filter) {
+    public ConnectorApisAllRequestBuilder filter(Map<String, Object> filter) {
         Utils.checkNotNull(filter, "filter");
         this.filter = Optional.of(filter);
         return this;
     }
 
-    public ConnectorApisAllRequestBuilder filter(Optional<? extends ApisFilter> filter) {
+    public ConnectorApisAllRequestBuilder filter(Optional<? extends Map<String, Object>> filter) {
         Utils.checkNotNull(filter, "filter");
         this.filter = filter;
         return this;

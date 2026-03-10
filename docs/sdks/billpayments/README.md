@@ -21,12 +21,10 @@ List Bill Payments
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.*;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingBillPaymentsAllRequest;
 import com.apideck.unify.models.operations.AccountingBillPaymentsAllResponse;
 import java.lang.Exception;
-import java.time.OffsetDateTime;
 import java.util.Map;
 
 public class Application {
@@ -41,14 +39,13 @@ public class Application {
 
         AccountingBillPaymentsAllRequest req = AccountingBillPaymentsAllRequest.builder()
                 .serviceId("salesforce")
-                .filter(PaymentsFilter.builder()
-                    .updatedSince(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
-                    .invoiceId("123")
-                    .build())
-                .sort(PaymentsSort.builder()
-                    .by(PaymentsSortBy.UPDATED_AT)
-                    .direction(SortDirection.DESC)
-                    .build())
+                .companyId("12345")
+                .filter(Map.ofEntries(
+                    Map.entry("updated_since", "2020-09-30T07:43:32.000Z"),
+                    Map.entry("invoice_id", "123")))
+                .sort(Map.ofEntries(
+                    Map.entry("by", "updated_at"),
+                    Map.entry("direction", "desc")))
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
                 .fields("id,updated_at")
@@ -118,10 +115,9 @@ public class Application {
 
         AccountingBillPaymentsAddRequest req = AccountingBillPaymentsAddRequest.builder()
                 .billPayment(BillPaymentInput.builder()
-                    .totalAmount(49.99)
-                    .transactionDate(OffsetDateTime.parse("2021-05-01T12:00:00.000Z"))
                     .currency(Currency.USD)
                     .currencyRate(0.69)
+                    .totalAmount(49.99)
                     .reference("123456")
                     .paymentMethod("cash")
                     .paymentMethodReference("123456")
@@ -131,6 +127,7 @@ public class Application {
                         .nominalCode("N091")
                         .code("453")
                         .build())
+                    .transactionDate(OffsetDateTime.parse("2021-05-01T12:00:00.000Z"))
                     .supplier(LinkedSupplierInput.builder()
                         .id("12345")
                         .displayName("Windsurf Shop")
@@ -192,24 +189,24 @@ public class Application {
                             .name("New York")
                             .build()))
                     .customFields(List.of(
-                        CustomField.of(CustomField1.builder()
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build()),
-                        CustomField.of(CustomField1.builder()
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build(),
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build()),
-                        CustomField.of(CustomField1.builder()
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build(),
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build())))
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build()))
                     .rowVersion("1-12345")
                     .displayId("123456")
                     .passThrough(List.of(
@@ -237,6 +234,7 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingBillPaymentsAddResponse res = sdk.accounting().billPayments().create()
@@ -244,7 +242,7 @@ public class Application {
                 .call();
 
         if (res.createBillPaymentResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createBillPaymentResponse().get());
         }
     }
 }
@@ -300,6 +298,7 @@ public class Application {
         AccountingBillPaymentsOneRequest req = AccountingBillPaymentsOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .fields("id,updated_at")
                 .build();
 
@@ -308,7 +307,7 @@ public class Application {
                 .call();
 
         if (res.getBillPaymentResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getBillPaymentResponse().get());
         }
     }
 }
@@ -369,10 +368,9 @@ public class Application {
         AccountingBillPaymentsUpdateRequest req = AccountingBillPaymentsUpdateRequest.builder()
                 .id("<id>")
                 .billPayment(BillPaymentInput.builder()
-                    .totalAmount(49.99)
-                    .transactionDate(OffsetDateTime.parse("2021-05-01T12:00:00.000Z"))
                     .currency(Currency.USD)
                     .currencyRate(0.69)
+                    .totalAmount(49.99)
                     .reference("123456")
                     .paymentMethod("cash")
                     .paymentMethodReference("123456")
@@ -382,6 +380,7 @@ public class Application {
                         .nominalCode("N091")
                         .code("453")
                         .build())
+                    .transactionDate(OffsetDateTime.parse("2021-05-01T12:00:00.000Z"))
                     .supplier(LinkedSupplierInput.builder()
                         .id("12345")
                         .displayName("Windsurf Shop")
@@ -439,12 +438,12 @@ public class Application {
                     .number("123456")
                     .trackingCategories(JsonNullable.of(null))
                     .customFields(List.of(
-                        CustomField.of(CustomField1.builder()
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build())))
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build()))
                     .rowVersion("1-12345")
                     .displayId("123456")
                     .passThrough(List.of(
@@ -477,7 +476,7 @@ public class Application {
                 .call();
 
         if (res.updateBillPaymentResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateBillPaymentResponse().get());
         }
     }
 }
@@ -540,7 +539,7 @@ public class Application {
                 .call();
 
         if (res.deleteBillPaymentResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteBillPaymentResponse().get());
         }
     }
 }

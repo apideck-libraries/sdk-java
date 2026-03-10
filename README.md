@@ -33,6 +33,7 @@ For more information about the API: [Apideck Developer Docs](https://developers.
   * [Authentication](#authentication)
   * [Custom HTTP Client](#custom-http-client)
   * [Debugging](#debugging)
+  * [Jackson Configuration](#jackson-configuration)
 * [Development](#development)
   * [Maturity](#maturity)
   * [Contributions](#contributions)
@@ -50,7 +51,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.apideck:unify:0.30.4'
+implementation 'com.apideck:unify:0.31.0'
 ```
 
 Maven:
@@ -58,7 +59,7 @@ Maven:
 <dependency>
     <groupId>com.apideck</groupId>
     <artifactId>unify</artifactId>
-    <version>0.30.4</version>
+    <version>0.31.0</version>
 </dependency>
 ```
 
@@ -86,7 +87,6 @@ gradlew.bat publishToMavenLocal -Pskip.signing
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.TaxRatesFilter;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingTaxRatesAllRequest;
 import com.apideck.unify.models.operations.AccountingTaxRatesAllResponse;
@@ -105,13 +105,13 @@ public class Application {
 
         AccountingTaxRatesAllRequest req = AccountingTaxRatesAllRequest.builder()
                 .serviceId("salesforce")
-                .filter(TaxRatesFilter.builder()
-                    .assets(true)
-                    .equity(true)
-                    .expenses(true)
-                    .liabilities(true)
-                    .revenue(true)
-                    .build())
+                .companyId("12345")
+                .filter(Map.ofEntries(
+                    Map.entry("assets", true),
+                    Map.entry("equity", true),
+                    Map.entry("expenses", true),
+                    Map.entry("liabilities", true),
+                    Map.entry("revenue", true)))
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
                 .fields("id,updated_at")
@@ -134,7 +134,6 @@ package hello.world;
 
 import com.apideck.unify.Apideck;
 import com.apideck.unify.AsyncApideck;
-import com.apideck.unify.models.components.TaxRatesFilter;
 import com.apideck.unify.models.operations.AccountingTaxRatesAllRequest;
 import com.apideck.unify.models.operations.async.AccountingTaxRatesAllResponse;
 import java.util.Map;
@@ -153,13 +152,13 @@ public class Application {
 
         AccountingTaxRatesAllRequest req = AccountingTaxRatesAllRequest.builder()
                 .serviceId("salesforce")
-                .filter(TaxRatesFilter.builder()
-                    .assets(true)
-                    .equity(true)
-                    .expenses(true)
-                    .liabilities(true)
-                    .revenue(true)
-                    .build())
+                .companyId("12345")
+                .filter(Map.ofEntries(
+                    Map.entry("assets", true),
+                    Map.entry("equity", true),
+                    Map.entry("expenses", true),
+                    Map.entry("liabilities", true),
+                    Map.entry("revenue", true)))
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
                 .fields("id,updated_at")
@@ -181,6 +180,15 @@ public class Application {
 ```
 
 [comp-fut]: https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html
+
+#### Union Consumption Patterns
+
+When a response field is a union model:
+
+- Discriminated unions: branch on the discriminator (`switch`) and then narrow to the concrete type.
+- Non-discriminated unions: use generated accessors (for example `string()`, `asLong()`, `simpleObject()`) to determine the active variant.
+
+For full model-specific examples (including Java 11/16/21 variants), see each union model's **Supported Types** section in the generated model docs.
 <!-- End SDK Example Usage [usage] -->
 
 <!-- Start Available Resources and Operations [operations] -->
@@ -253,6 +261,10 @@ public class Application {
 
 * [list](docs/sdks/categories/README.md#list) - List Categories
 * [get](docs/sdks/categories/README.md#get) - Get Category
+
+### [Accounting.Companies](docs/sdks/companies/README.md)
+
+* [list](docs/sdks/companies/README.md#list) - List companies
 
 ### [Accounting.CompanyInfo](docs/sdks/companyinfo/README.md)
 
@@ -477,13 +489,13 @@ public class Application {
 * [update](docs/sdks/activities/README.md#update) - Update activity
 * [delete](docs/sdks/activities/README.md#delete) - Delete activity
 
-### [Crm.Companies](docs/sdks/companies/README.md)
+### [Crm.Companies](docs/sdks/apideckcompanies/README.md)
 
-* [list](docs/sdks/companies/README.md#list) - List companies
-* [create](docs/sdks/companies/README.md#create) - Create company
-* [get](docs/sdks/companies/README.md#get) - Get company
-* [update](docs/sdks/companies/README.md#update) - Update company
-* [delete](docs/sdks/companies/README.md#delete) - Delete company
+* [list](docs/sdks/apideckcompanies/README.md#list) - List companies
+* [create](docs/sdks/apideckcompanies/README.md#create) - Create company
+* [get](docs/sdks/apideckcompanies/README.md#get) - Get company
+* [update](docs/sdks/apideckcompanies/README.md#update) - Update company
+* [delete](docs/sdks/apideckcompanies/README.md#delete) - Delete company
 
 ### [Crm.Contacts](docs/sdks/contacts/README.md)
 
@@ -618,13 +630,13 @@ public class Application {
 * [delete](docs/sdks/uploadsessions/README.md#delete) - Abort Upload Session
 * [finish](docs/sdks/uploadsessions/README.md#finish) - Finish Upload Session
 
-### [Hris.Companies](docs/sdks/apideckcompanies/README.md)
+### [Hris.Companies](docs/sdks/apideckhriscompanies/README.md)
 
-* [list](docs/sdks/apideckcompanies/README.md#list) - List Companies
-* [create](docs/sdks/apideckcompanies/README.md#create) - Create Company
-* [get](docs/sdks/apideckcompanies/README.md#get) - Get Company
-* [update](docs/sdks/apideckcompanies/README.md#update) - Update Company
-* [delete](docs/sdks/apideckcompanies/README.md#delete) - Delete Company
+* [all](docs/sdks/apideckhriscompanies/README.md#all) - List Companies
+* [create](docs/sdks/apideckhriscompanies/README.md#create) - Create Company
+* [get](docs/sdks/apideckhriscompanies/README.md#get) - Get Company
+* [update](docs/sdks/apideckhriscompanies/README.md#update) - Update Company
+* [delete](docs/sdks/apideckhriscompanies/README.md#delete) - Delete Company
 
 ### [Hris.Departments](docs/sdks/apideckdepartments/README.md)
 
@@ -796,7 +808,6 @@ Here's an example depicting the different ways to use pagination:
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.TaxRatesFilter;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingTaxRatesAllRequest;
 import com.apideck.unify.models.operations.AccountingTaxRatesAllResponse;
@@ -816,13 +827,13 @@ public class Application {
 
         AccountingTaxRatesAllRequest req = AccountingTaxRatesAllRequest.builder()
                 .serviceId("salesforce")
-                .filter(TaxRatesFilter.builder()
-                    .assets(true)
-                    .equity(true)
-                    .expenses(true)
-                    .liabilities(true)
-                    .revenue(true)
-                    .build())
+                .companyId("12345")
+                .filter(Map.ofEntries(
+                    Map.entry("assets", true),
+                    Map.entry("equity", true),
+                    Map.entry("expenses", true),
+                    Map.entry("liabilities", true),
+                    Map.entry("revenue", true)))
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
                 .fields("id,updated_at")
@@ -857,7 +868,6 @@ package hello.world;
 
 import com.apideck.unify.Apideck;
 import com.apideck.unify.AsyncApideck;
-import com.apideck.unify.models.components.TaxRatesFilter;
 import com.apideck.unify.models.operations.AccountingTaxRatesAllRequest;
 import com.apideck.unify.models.operations.async.AccountingTaxRatesAllResponse;
 import java.util.Map;
@@ -876,13 +886,13 @@ public class Application {
 
         AccountingTaxRatesAllRequest req = AccountingTaxRatesAllRequest.builder()
                 .serviceId("salesforce")
-                .filter(TaxRatesFilter.builder()
-                    .assets(true)
-                    .equity(true)
-                    .expenses(true)
-                    .liabilities(true)
-                    .revenue(true)
-                    .build())
+                .companyId("12345")
+                .filter(Map.ofEntries(
+                    Map.entry("assets", true),
+                    Map.entry("equity", true),
+                    Map.entry("expenses", true),
+                    Map.entry("liabilities", true),
+                    Map.entry("revenue", true)))
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
                 .fields("id,updated_at")
@@ -916,7 +926,6 @@ To change the default retry strategy for a single API call, you can provide a `R
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.TaxRatesFilter;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingTaxRatesAllRequest;
 import com.apideck.unify.models.operations.AccountingTaxRatesAllResponse;
@@ -938,13 +947,13 @@ public class Application {
 
         AccountingTaxRatesAllRequest req = AccountingTaxRatesAllRequest.builder()
                 .serviceId("salesforce")
-                .filter(TaxRatesFilter.builder()
-                    .assets(true)
-                    .equity(true)
-                    .expenses(true)
-                    .liabilities(true)
-                    .revenue(true)
-                    .build())
+                .companyId("12345")
+                .filter(Map.ofEntries(
+                    Map.entry("assets", true),
+                    Map.entry("equity", true),
+                    Map.entry("expenses", true),
+                    Map.entry("liabilities", true),
+                    Map.entry("revenue", true)))
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
                 .fields("id,updated_at")
@@ -976,7 +985,6 @@ If you'd like to override the default retry strategy for all operations that sup
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.TaxRatesFilter;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingTaxRatesAllRequest;
 import com.apideck.unify.models.operations.AccountingTaxRatesAllResponse;
@@ -1008,13 +1016,13 @@ public class Application {
 
         AccountingTaxRatesAllRequest req = AccountingTaxRatesAllRequest.builder()
                 .serviceId("salesforce")
-                .filter(TaxRatesFilter.builder()
-                    .assets(true)
-                    .equity(true)
-                    .expenses(true)
-                    .liabilities(true)
-                    .revenue(true)
-                    .build())
+                .companyId("12345")
+                .filter(Map.ofEntries(
+                    Map.entry("assets", true),
+                    Map.entry("equity", true),
+                    Map.entry("expenses", true),
+                    Map.entry("liabilities", true),
+                    Map.entry("revenue", true)))
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
                 .fields("id,updated_at")
@@ -1054,7 +1062,6 @@ Handling errors in this SDK should largely match your expectations. All operatio
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.TaxRatesFilter;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingTaxRatesAllRequest;
 import com.apideck.unify.models.operations.AccountingTaxRatesAllResponse;
@@ -1078,13 +1085,13 @@ public class Application {
 
             AccountingTaxRatesAllRequest req = AccountingTaxRatesAllRequest.builder()
                     .serviceId("salesforce")
-                    .filter(TaxRatesFilter.builder()
-                        .assets(true)
-                        .equity(true)
-                        .expenses(true)
-                        .liabilities(true)
-                        .revenue(true)
-                        .build())
+                    .companyId("12345")
+                    .filter(Map.ofEntries(
+                        Map.entry("assets", true),
+                        Map.entry("equity", true),
+                        Map.entry("expenses", true),
+                        Map.entry("liabilities", true),
+                        Map.entry("revenue", true)))
                     .passThrough(Map.ofEntries(
                         Map.entry("search", "San Francisco")))
                     .fields("id,updated_at")
@@ -1153,7 +1160,7 @@ public class Application {
 many more subclasses in the JDK platform).
 
 **Inherit from [`ApideckError`](./src/main/java/models/errors/ApideckError.java)**:
-* [`com.apideck.unify.models.errors.Unauthorized`](./src/main/java/models/errors/com.apideck.unify.models.errors.Unauthorized.java): Unauthorized. Status code `401`. Applicable to 6 of 325 methods.*
+* [`com.apideck.unify.models.errors.Unauthorized`](./src/main/java/models/errors/com.apideck.unify.models.errors.Unauthorized.java): Unauthorized. Status code `401`. Applicable to 6 of 326 methods.*
 
 
 </details>
@@ -1171,7 +1178,6 @@ The default server can be overridden globally using the `.serverURL(String serve
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.TaxRatesFilter;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingTaxRatesAllRequest;
 import com.apideck.unify.models.operations.AccountingTaxRatesAllResponse;
@@ -1191,13 +1197,13 @@ public class Application {
 
         AccountingTaxRatesAllRequest req = AccountingTaxRatesAllRequest.builder()
                 .serviceId("salesforce")
-                .filter(TaxRatesFilter.builder()
-                    .assets(true)
-                    .equity(true)
-                    .expenses(true)
-                    .liabilities(true)
-                    .revenue(true)
-                    .build())
+                .companyId("12345")
+                .filter(Map.ofEntries(
+                    Map.entry("assets", true),
+                    Map.entry("equity", true),
+                    Map.entry("expenses", true),
+                    Map.entry("liabilities", true),
+                    Map.entry("revenue", true)))
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
                 .fields("id,updated_at")
@@ -1338,7 +1344,6 @@ To authenticate with the API the `apiKey` parameter must be set when initializin
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.TaxRatesFilter;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingTaxRatesAllRequest;
 import com.apideck.unify.models.operations.AccountingTaxRatesAllResponse;
@@ -1357,13 +1362,13 @@ public class Application {
 
         AccountingTaxRatesAllRequest req = AccountingTaxRatesAllRequest.builder()
                 .serviceId("salesforce")
-                .filter(TaxRatesFilter.builder()
-                    .assets(true)
-                    .equity(true)
-                    .expenses(true)
-                    .liabilities(true)
-                    .revenue(true)
-                    .build())
+                .companyId("12345")
+                .filter(Map.ofEntries(
+                    Map.entry("assets", true),
+                    Map.entry("equity", true),
+                    Map.entry("expenses", true),
+                    Map.entry("liabilities", true),
+                    Map.entry("revenue", true)))
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
                 .fields("id,updated_at")
@@ -1550,6 +1555,36 @@ __NOTE__: This is a convenience method that calls `HTTPClient.enableDebugLogging
 
 Another option is to set the System property `-Djdk.httpclient.HttpClient.log=all`. However, this second option does not log bodies.
 <!-- End Debugging [debug] -->
+
+<!-- Start Jackson Configuration [jackson] -->
+## Jackson Configuration
+
+The SDK ships with a pre-configured Jackson [`ObjectMapper`][jackson-databind] accessible via
+`JSON.getMapper()`. It is set up with type modules, strict deserializers, and the feature flags
+needed for full SDK compatibility (including ISO-8601 `OffsetDateTime` serialization):
+
+```java
+import com.apideck.unify.utils.JSON;
+
+String json = JSON.getMapper().writeValueAsString(response);
+```
+
+To compose with your own `ObjectMapper`, register the provided `UnifyJacksonModule`, which
+bundles all the same modules and feature flags as a single plug-and-play module:
+
+```java
+import com.apideck.unify.utils.UnifyJacksonModule;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+ObjectMapper myMapper = new ObjectMapper()
+    .registerModule(new UnifyJacksonModule());
+
+String json = myMapper.writeValueAsString(response);
+```
+
+[jackson-databind]: https://github.com/FasterXML/jackson-databind
+[jackson-jsr310]: https://github.com/FasterXML/jackson-modules-java8/tree/master/datetime
+<!-- End Jackson Configuration [jackson] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

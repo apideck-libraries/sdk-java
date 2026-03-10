@@ -4,15 +4,20 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 
@@ -20,8 +25,9 @@ public class FilesSearch {
     /**
      * The query to search for. May match across multiple fields.
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("query")
-    private String query;
+    private Optional<String> query;
 
     /**
      * ID of the drive to filter on
@@ -38,9 +44,13 @@ public class FilesSearch {
     @JsonProperty("pass_through")
     private Optional<? extends List<PassThroughBody>> passThrough;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public FilesSearch(
-            @JsonProperty("query") String query,
+            @JsonProperty("query") Optional<String> query,
             @JsonProperty("drive_id") Optional<String> driveId,
             @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
         Utils.checkNotNull(query, "query");
@@ -49,18 +59,18 @@ public class FilesSearch {
         this.query = query;
         this.driveId = driveId;
         this.passThrough = passThrough;
+        this.additionalProperties = new HashMap<>();
     }
     
-    public FilesSearch(
-            String query) {
-        this(query, Optional.empty(), Optional.empty());
+    public FilesSearch() {
+        this(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
      * The query to search for. May match across multiple fields.
      */
     @JsonIgnore
-    public String query() {
+    public Optional<String> query() {
         return query;
     }
 
@@ -82,6 +92,11 @@ public class FilesSearch {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -91,6 +106,16 @@ public class FilesSearch {
      * The query to search for. May match across multiple fields.
      */
     public FilesSearch withQuery(String query) {
+        Utils.checkNotNull(query, "query");
+        this.query = Optional.ofNullable(query);
+        return this;
+    }
+
+
+    /**
+     * The query to search for. May match across multiple fields.
+     */
+    public FilesSearch withQuery(Optional<String> query) {
         Utils.checkNotNull(query, "query");
         this.query = query;
         return this;
@@ -136,6 +161,19 @@ public class FilesSearch {
         return this;
     }
 
+    @JsonAnySetter
+    public FilesSearch withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public FilesSearch withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -148,13 +186,15 @@ public class FilesSearch {
         return 
             Utils.enhancedDeepEquals(this.query, other.query) &&
             Utils.enhancedDeepEquals(this.driveId, other.driveId) &&
-            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            query, driveId, passThrough);
+            query, driveId, passThrough,
+            additionalProperties);
     }
     
     @Override
@@ -162,17 +202,20 @@ public class FilesSearch {
         return Utils.toString(FilesSearch.class,
                 "query", query,
                 "driveId", driveId,
-                "passThrough", passThrough);
+                "passThrough", passThrough,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String query;
+        private Optional<String> query = Optional.empty();
 
         private Optional<String> driveId = Optional.empty();
 
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -183,6 +226,15 @@ public class FilesSearch {
          * The query to search for. May match across multiple fields.
          */
         public Builder query(String query) {
+            Utils.checkNotNull(query, "query");
+            this.query = Optional.ofNullable(query);
+            return this;
+        }
+
+        /**
+         * The query to search for. May match across multiple fields.
+         */
+        public Builder query(Optional<String> query) {
             Utils.checkNotNull(query, "query");
             this.query = query;
             return this;
@@ -228,10 +280,27 @@ public class FilesSearch {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public FilesSearch build() {
 
             return new FilesSearch(
-                query, driveId, passThrough);
+                query, driveId, passThrough)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

@@ -34,6 +34,7 @@ public class Application {
 
         AccountingCompanyInfoOneRequest req = AccountingCompanyInfoOneRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .fields("id,updated_at")
                 .build();
 
@@ -42,7 +43,7 @@ public class Application {
                 .call();
 
         if (res.getCompanyInfoResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getCompanyInfoResponse().get());
         }
     }
 }

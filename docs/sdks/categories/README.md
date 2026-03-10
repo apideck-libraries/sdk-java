@@ -18,12 +18,11 @@ List Categories
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.CategoriesFilter;
-import com.apideck.unify.models.components.CategoriesFilterType;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingCategoriesAllRequest;
 import com.apideck.unify.models.operations.AccountingCategoriesAllResponse;
 import java.lang.Exception;
+import java.util.Map;
 
 public class Application {
 
@@ -37,10 +36,10 @@ public class Application {
 
         AccountingCategoriesAllRequest req = AccountingCategoriesAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .fields("id,updated_at")
-                .filter(CategoriesFilter.builder()
-                    .type(CategoriesFilterType.EXPENSE)
-                    .build())
+                .filter(Map.ofEntries(
+                    Map.entry("type", "expense")))
                 .build();
 
 
@@ -86,12 +85,11 @@ Get Category
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.CategoriesFilter;
-import com.apideck.unify.models.components.CategoriesFilterType;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingCategoriesOneRequest;
 import com.apideck.unify.models.operations.AccountingCategoriesOneResponse;
 import java.lang.Exception;
+import java.util.Map;
 
 public class Application {
 
@@ -106,10 +104,10 @@ public class Application {
         AccountingCategoriesOneRequest req = AccountingCategoriesOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .fields("id,updated_at")
-                .filter(CategoriesFilter.builder()
-                    .type(CategoriesFilterType.EXPENSE)
-                    .build())
+                .filter(Map.ofEntries(
+                    Map.entry("type", "expense")))
                 .build();
 
         AccountingCategoriesOneResponse res = sdk.accounting().categories().get()
@@ -117,7 +115,7 @@ public class Application {
                 .call();
 
         if (res.getCategoryResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getCategoryResponse().get());
         }
     }
 }

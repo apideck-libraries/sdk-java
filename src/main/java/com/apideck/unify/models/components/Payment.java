@@ -4,6 +4,8 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -17,6 +19,7 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -27,8 +30,9 @@ public class Payment {
     /**
      * A unique identifier for an object.
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private String id;
+    private Optional<String> id;
 
     /**
      * The third-party API ID of original entity
@@ -55,9 +59,9 @@ public class Payment {
     /**
      * The total amount of the transaction or record
      */
-    @JsonInclude(Include.ALWAYS)
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("total_amount")
-    private Optional<Double> totalAmount;
+    private JsonNullable<Double> totalAmount;
 
     /**
      * Optional transaction reference message ie: Debit remittance detail.
@@ -115,9 +119,9 @@ public class Payment {
     /**
      * The date of the transaction - YYYY:MM::DDThh:mm:ss.sTZD
      */
-    @JsonInclude(Include.ALWAYS)
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("transaction_date")
-    private Optional<OffsetDateTime> transactionDate;
+    private JsonNullable<OffsetDateTime> transactionDate;
 
     /**
      * The customer this entity is linked to.
@@ -253,13 +257,17 @@ public class Payment {
     @JsonProperty("pass_through")
     private Optional<? extends List<PassThroughBody>> passThrough;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public Payment(
-            @JsonProperty("id") String id,
+            @JsonProperty("id") Optional<String> id,
             @JsonProperty("downstream_id") JsonNullable<String> downstreamId,
             @JsonProperty("currency") JsonNullable<? extends Currency> currency,
             @JsonProperty("currency_rate") JsonNullable<Double> currencyRate,
-            @JsonProperty("total_amount") Optional<Double> totalAmount,
+            @JsonProperty("total_amount") JsonNullable<Double> totalAmount,
             @JsonProperty("reference") JsonNullable<String> reference,
             @JsonProperty("payment_method") JsonNullable<String> paymentMethod,
             @JsonProperty("payment_method_reference") JsonNullable<String> paymentMethodReference,
@@ -267,7 +275,7 @@ public class Payment {
             @JsonProperty("accounts_receivable_account_type") JsonNullable<String> accountsReceivableAccountType,
             @JsonProperty("accounts_receivable_account_id") JsonNullable<String> accountsReceivableAccountId,
             @JsonProperty("account") JsonNullable<? extends LinkedLedgerAccount> account,
-            @JsonProperty("transaction_date") Optional<OffsetDateTime> transactionDate,
+            @JsonProperty("transaction_date") JsonNullable<OffsetDateTime> transactionDate,
             @JsonProperty("customer") JsonNullable<? extends LinkedCustomer> customer,
             @JsonProperty("supplier") JsonNullable<? extends DeprecatedLinkedSupplier> supplier,
             @JsonProperty("company_id") JsonNullable<String> companyId,
@@ -351,15 +359,15 @@ public class Payment {
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.passThrough = passThrough;
+        this.additionalProperties = new HashMap<>();
     }
     
-    public Payment(
-            String id) {
-        this(id, JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+    public Payment() {
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             Optional.empty(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
@@ -372,7 +380,7 @@ public class Payment {
      * A unique identifier for an object.
      */
     @JsonIgnore
-    public String id() {
+    public Optional<String> id() {
         return id;
     }
 
@@ -406,7 +414,7 @@ public class Payment {
      * The total amount of the transaction or record
      */
     @JsonIgnore
-    public Optional<Double> totalAmount() {
+    public JsonNullable<Double> totalAmount() {
         return totalAmount;
     }
 
@@ -474,7 +482,7 @@ public class Payment {
      * The date of the transaction - YYYY:MM::DDThh:mm:ss.sTZD
      */
     @JsonIgnore
-    public Optional<OffsetDateTime> transactionDate() {
+    public JsonNullable<OffsetDateTime> transactionDate() {
         return transactionDate;
     }
 
@@ -638,6 +646,11 @@ public class Payment {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -647,6 +660,16 @@ public class Payment {
      * A unique identifier for an object.
      */
     public Payment withId(String id) {
+        Utils.checkNotNull(id, "id");
+        this.id = Optional.ofNullable(id);
+        return this;
+    }
+
+
+    /**
+     * A unique identifier for an object.
+     */
+    public Payment withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
@@ -713,15 +736,14 @@ public class Payment {
      */
     public Payment withTotalAmount(double totalAmount) {
         Utils.checkNotNull(totalAmount, "totalAmount");
-        this.totalAmount = Optional.ofNullable(totalAmount);
+        this.totalAmount = JsonNullable.of(totalAmount);
         return this;
     }
-
 
     /**
      * The total amount of the transaction or record
      */
-    public Payment withTotalAmount(Optional<Double> totalAmount) {
+    public Payment withTotalAmount(JsonNullable<Double> totalAmount) {
         Utils.checkNotNull(totalAmount, "totalAmount");
         this.totalAmount = totalAmount;
         return this;
@@ -864,15 +886,14 @@ public class Payment {
      */
     public Payment withTransactionDate(OffsetDateTime transactionDate) {
         Utils.checkNotNull(transactionDate, "transactionDate");
-        this.transactionDate = Optional.ofNullable(transactionDate);
+        this.transactionDate = JsonNullable.of(transactionDate);
         return this;
     }
-
 
     /**
      * The date of the transaction - YYYY:MM::DDThh:mm:ss.sTZD
      */
-    public Payment withTransactionDate(Optional<OffsetDateTime> transactionDate) {
+    public Payment withTransactionDate(JsonNullable<OffsetDateTime> transactionDate) {
         Utils.checkNotNull(transactionDate, "transactionDate");
         this.transactionDate = transactionDate;
         return this;
@@ -1223,6 +1244,19 @@ public class Payment {
         return this;
     }
 
+    @JsonAnySetter
+    public Payment withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public Payment withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -1264,7 +1298,8 @@ public class Payment {
             Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
             Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
-            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
@@ -1280,7 +1315,7 @@ public class Payment {
             number, trackingCategories, customFields,
             rowVersion, displayId, customMappings,
             updatedBy, createdBy, createdAt,
-            updatedAt, passThrough);
+            updatedAt, passThrough, additionalProperties);
     }
     
     @Override
@@ -1317,13 +1352,14 @@ public class Payment {
                 "createdBy", createdBy,
                 "createdAt", createdAt,
                 "updatedAt", updatedAt,
-                "passThrough", passThrough);
+                "passThrough", passThrough,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String id;
+        private Optional<String> id = Optional.empty();
 
         private JsonNullable<String> downstreamId = JsonNullable.undefined();
 
@@ -1331,7 +1367,7 @@ public class Payment {
 
         private JsonNullable<Double> currencyRate = JsonNullable.undefined();
 
-        private Optional<Double> totalAmount = Optional.empty();
+        private JsonNullable<Double> totalAmount = JsonNullable.undefined();
 
         private JsonNullable<String> reference = JsonNullable.undefined();
 
@@ -1349,7 +1385,7 @@ public class Payment {
 
         private JsonNullable<? extends LinkedLedgerAccount> account = JsonNullable.undefined();
 
-        private Optional<OffsetDateTime> transactionDate = Optional.empty();
+        private JsonNullable<OffsetDateTime> transactionDate = JsonNullable.undefined();
 
         private JsonNullable<? extends LinkedCustomer> customer = JsonNullable.undefined();
 
@@ -1390,6 +1426,8 @@ public class Payment {
 
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
 
+        private Map<String, Object> additionalProperties = new HashMap<>();
+
         private Builder() {
           // force use of static builder() method
         }
@@ -1399,6 +1437,15 @@ public class Payment {
          * A unique identifier for an object.
          */
         public Builder id(String id) {
+            Utils.checkNotNull(id, "id");
+            this.id = Optional.ofNullable(id);
+            return this;
+        }
+
+        /**
+         * A unique identifier for an object.
+         */
+        public Builder id(Optional<String> id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
@@ -1469,14 +1516,14 @@ public class Payment {
          */
         public Builder totalAmount(double totalAmount) {
             Utils.checkNotNull(totalAmount, "totalAmount");
-            this.totalAmount = Optional.ofNullable(totalAmount);
+            this.totalAmount = JsonNullable.of(totalAmount);
             return this;
         }
 
         /**
          * The total amount of the transaction or record
          */
-        public Builder totalAmount(Optional<Double> totalAmount) {
+        public Builder totalAmount(JsonNullable<Double> totalAmount) {
             Utils.checkNotNull(totalAmount, "totalAmount");
             this.totalAmount = totalAmount;
             return this;
@@ -1627,14 +1674,14 @@ public class Payment {
          */
         public Builder transactionDate(OffsetDateTime transactionDate) {
             Utils.checkNotNull(transactionDate, "transactionDate");
-            this.transactionDate = Optional.ofNullable(transactionDate);
+            this.transactionDate = JsonNullable.of(transactionDate);
             return this;
         }
 
         /**
          * The date of the transaction - YYYY:MM::DDThh:mm:ss.sTZD
          */
-        public Builder transactionDate(Optional<OffsetDateTime> transactionDate) {
+        public Builder transactionDate(JsonNullable<OffsetDateTime> transactionDate) {
             Utils.checkNotNull(transactionDate, "transactionDate");
             this.transactionDate = transactionDate;
             return this;
@@ -1999,6 +2046,22 @@ public class Payment {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public Payment build() {
 
             return new Payment(
@@ -2012,7 +2075,8 @@ public class Payment {
                 number, trackingCategories, customFields,
                 rowVersion, displayId, customMappings,
                 updatedBy, createdBy, createdAt,
-                updatedAt, passThrough);
+                updatedAt, passThrough)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

@@ -107,17 +107,6 @@ public class Application {
 
         CrmUsersAddRequest req = CrmUsersAddRequest.builder()
                 .user(UserInput.builder()
-                    .emails(List.of(
-                        Email.builder()
-                            .email("elon@musk.com")
-                            .id("123")
-                            .type(EmailType.PRIMARY)
-                            .build(),
-                        Email.builder()
-                            .email("elon@musk.com")
-                            .id("123")
-                            .type(EmailType.PRIMARY)
-                            .build()))
                     .parentId("54321")
                     .username("masterofcoin")
                     .firstName("Elon")
@@ -212,20 +201,31 @@ public class Application {
                             .build()))
                     .phoneNumbers(List.of(
                         PhoneNumber.builder()
-                            .number("111-111-1111")
                             .id("12345")
                             .countryCode("1")
                             .areaCode("323")
+                            .number("111-111-1111")
                             .extension("105")
                             .type(PhoneNumberType.PRIMARY)
                             .build(),
                         PhoneNumber.builder()
-                            .number("111-111-1111")
                             .id("12345")
                             .countryCode("1")
                             .areaCode("323")
+                            .number("111-111-1111")
                             .extension("105")
                             .type(PhoneNumberType.PRIMARY)
+                            .build()))
+                    .emails(List.of(
+                        Email.builder()
+                            .id("123")
+                            .email("elon@musk.com")
+                            .type(EmailType.PRIMARY)
+                            .build(),
+                        Email.builder()
+                            .id("123")
+                            .email("elon@musk.com")
+                            .type(EmailType.PRIMARY)
                             .build()))
                     .passThrough(List.of(
                         PassThroughBody.builder()
@@ -267,7 +267,7 @@ public class Application {
                 .call();
 
         if (res.createUserResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createUserResponse().get());
         }
     }
 }
@@ -331,7 +331,7 @@ public class Application {
                 .call();
 
         if (res.getUserResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getUserResponse().get());
         }
     }
 }
@@ -390,17 +390,6 @@ public class Application {
         CrmUsersUpdateRequest req = CrmUsersUpdateRequest.builder()
                 .id("<id>")
                 .user(UserInput.builder()
-                    .emails(List.of(
-                        Email.builder()
-                            .email("elon@musk.com")
-                            .id("123")
-                            .type(EmailType.PRIMARY)
-                            .build(),
-                        Email.builder()
-                            .email("elon@musk.com")
-                            .id("123")
-                            .type(EmailType.PRIMARY)
-                            .build()))
                     .parentId("54321")
                     .username("masterofcoin")
                     .firstName("Elon")
@@ -469,20 +458,31 @@ public class Application {
                             .build()))
                     .phoneNumbers(List.of(
                         PhoneNumber.builder()
-                            .number("111-111-1111")
                             .id("12345")
                             .countryCode("1")
                             .areaCode("323")
+                            .number("111-111-1111")
                             .extension("105")
                             .type(PhoneNumberType.PRIMARY)
                             .build(),
                         PhoneNumber.builder()
-                            .number("111-111-1111")
                             .id("12345")
                             .countryCode("1")
                             .areaCode("323")
+                            .number("111-111-1111")
                             .extension("105")
                             .type(PhoneNumberType.PRIMARY)
+                            .build()))
+                    .emails(List.of(
+                        Email.builder()
+                            .id("123")
+                            .email("elon@musk.com")
+                            .type(EmailType.PRIMARY)
+                            .build(),
+                        Email.builder()
+                            .id("123")
+                            .email("elon@musk.com")
+                            .type(EmailType.PRIMARY)
                             .build()))
                     .passThrough(List.of(
                         PassThroughBody.builder()
@@ -516,7 +516,7 @@ public class Application {
                 .call();
 
         if (res.updateUserResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateUserResponse().get());
         }
     }
 }
@@ -579,7 +579,7 @@ public class Application {
                 .call();
 
         if (res.deleteUserResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteUserResponse().get());
         }
     }
 }

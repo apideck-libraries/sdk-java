@@ -4,6 +4,8 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -13,6 +15,7 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -29,8 +32,9 @@ public class ProfitAndLoss {
     /**
      * The name of the report
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("report_name")
-    private String reportName;
+    private Optional<String> reportName;
 
     /**
      * The start date of the report
@@ -57,8 +61,9 @@ public class ProfitAndLoss {
     /**
      * The operating income accounts
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("income")
-    private Income income;
+    private Optional<? extends Income> income;
 
     /**
      * The cost of goods sold accounts
@@ -70,8 +75,9 @@ public class ProfitAndLoss {
     /**
      * The operating expenses accounts
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("expenses")
-    private Expenses expenses;
+    private Optional<? extends Expenses> expenses;
 
     /**
      * The other income accounts
@@ -123,16 +129,20 @@ public class ProfitAndLoss {
     @JsonProperty("customer")
     private Optional<String> customer;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public ProfitAndLoss(
             @JsonProperty("id") Optional<String> id,
-            @JsonProperty("report_name") String reportName,
+            @JsonProperty("report_name") Optional<String> reportName,
             @JsonProperty("start_date") Optional<String> startDate,
             @JsonProperty("end_date") Optional<String> endDate,
             @JsonProperty("currency") JsonNullable<? extends Currency> currency,
-            @JsonProperty("income") Income income,
+            @JsonProperty("income") Optional<? extends Income> income,
             @JsonProperty("cost_of_goods_sold") Optional<? extends CostOfGoodsSold> costOfGoodsSold,
-            @JsonProperty("expenses") Expenses expenses,
+            @JsonProperty("expenses") Optional<? extends Expenses> expenses,
             @JsonProperty("other_income") Optional<? extends OtherIncome> otherIncome,
             @JsonProperty("other_expenses") Optional<? extends OtherExpenses> otherExpenses,
             @JsonProperty("uncategorized_accounts") Optional<? extends UncategorizedAccounts> uncategorizedAccounts,
@@ -173,15 +183,13 @@ public class ProfitAndLoss {
         this.netIncome = netIncome;
         this.customMappings = customMappings;
         this.customer = customer;
+        this.additionalProperties = new HashMap<>();
     }
     
-    public ProfitAndLoss(
-            String reportName,
-            Income income,
-            Expenses expenses) {
-        this(Optional.empty(), reportName, Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), income,
-            Optional.empty(), expenses, Optional.empty(),
+    public ProfitAndLoss() {
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), JsonNullable.undefined(),
             Optional.empty());
@@ -199,7 +207,7 @@ public class ProfitAndLoss {
      * The name of the report
      */
     @JsonIgnore
-    public String reportName() {
+    public Optional<String> reportName() {
         return reportName;
     }
 
@@ -232,9 +240,10 @@ public class ProfitAndLoss {
     /**
      * The operating income accounts
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Income income() {
-        return income;
+    public Optional<Income> income() {
+        return (Optional<Income>) income;
     }
 
     /**
@@ -249,9 +258,10 @@ public class ProfitAndLoss {
     /**
      * The operating expenses accounts
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Expenses expenses() {
-        return expenses;
+    public Optional<Expenses> expenses() {
+        return (Optional<Expenses>) expenses;
     }
 
     /**
@@ -316,6 +326,11 @@ public class ProfitAndLoss {
         return customer;
     }
 
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -344,6 +359,16 @@ public class ProfitAndLoss {
      * The name of the report
      */
     public ProfitAndLoss withReportName(String reportName) {
+        Utils.checkNotNull(reportName, "reportName");
+        this.reportName = Optional.ofNullable(reportName);
+        return this;
+    }
+
+
+    /**
+     * The name of the report
+     */
+    public ProfitAndLoss withReportName(Optional<String> reportName) {
         Utils.checkNotNull(reportName, "reportName");
         this.reportName = reportName;
         return this;
@@ -412,6 +437,16 @@ public class ProfitAndLoss {
      */
     public ProfitAndLoss withIncome(Income income) {
         Utils.checkNotNull(income, "income");
+        this.income = Optional.ofNullable(income);
+        return this;
+    }
+
+
+    /**
+     * The operating income accounts
+     */
+    public ProfitAndLoss withIncome(Optional<? extends Income> income) {
+        Utils.checkNotNull(income, "income");
         this.income = income;
         return this;
     }
@@ -439,6 +474,16 @@ public class ProfitAndLoss {
      * The operating expenses accounts
      */
     public ProfitAndLoss withExpenses(Expenses expenses) {
+        Utils.checkNotNull(expenses, "expenses");
+        this.expenses = Optional.ofNullable(expenses);
+        return this;
+    }
+
+
+    /**
+     * The operating expenses accounts
+     */
+    public ProfitAndLoss withExpenses(Optional<? extends Expenses> expenses) {
         Utils.checkNotNull(expenses, "expenses");
         this.expenses = expenses;
         return this;
@@ -577,6 +622,19 @@ public class ProfitAndLoss {
         return this;
     }
 
+    @JsonAnySetter
+    public ProfitAndLoss withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public ProfitAndLoss withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -602,7 +660,8 @@ public class ProfitAndLoss {
             Utils.enhancedDeepEquals(this.netOperatingIncome, other.netOperatingIncome) &&
             Utils.enhancedDeepEquals(this.netIncome, other.netIncome) &&
             Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
-            Utils.enhancedDeepEquals(this.customer, other.customer);
+            Utils.enhancedDeepEquals(this.customer, other.customer) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
@@ -613,7 +672,7 @@ public class ProfitAndLoss {
             costOfGoodsSold, expenses, otherIncome,
             otherExpenses, uncategorizedAccounts, grossProfit,
             netOperatingIncome, netIncome, customMappings,
-            customer);
+            customer, additionalProperties);
     }
     
     @Override
@@ -634,7 +693,8 @@ public class ProfitAndLoss {
                 "netOperatingIncome", netOperatingIncome,
                 "netIncome", netIncome,
                 "customMappings", customMappings,
-                "customer", customer);
+                "customer", customer,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -642,7 +702,7 @@ public class ProfitAndLoss {
 
         private Optional<String> id = Optional.empty();
 
-        private String reportName;
+        private Optional<String> reportName = Optional.empty();
 
         private Optional<String> startDate = Optional.empty();
 
@@ -650,11 +710,11 @@ public class ProfitAndLoss {
 
         private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
 
-        private Income income;
+        private Optional<? extends Income> income = Optional.empty();
 
         private Optional<? extends CostOfGoodsSold> costOfGoodsSold = Optional.empty();
 
-        private Expenses expenses;
+        private Optional<? extends Expenses> expenses = Optional.empty();
 
         private Optional<? extends OtherIncome> otherIncome = Optional.empty();
 
@@ -671,6 +731,8 @@ public class ProfitAndLoss {
         private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
 
         private Optional<String> customer = Optional.empty();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -700,6 +762,15 @@ public class ProfitAndLoss {
          * The name of the report
          */
         public Builder reportName(String reportName) {
+            Utils.checkNotNull(reportName, "reportName");
+            this.reportName = Optional.ofNullable(reportName);
+            return this;
+        }
+
+        /**
+         * The name of the report
+         */
+        public Builder reportName(Optional<String> reportName) {
             Utils.checkNotNull(reportName, "reportName");
             this.reportName = reportName;
             return this;
@@ -770,6 +841,15 @@ public class ProfitAndLoss {
          */
         public Builder income(Income income) {
             Utils.checkNotNull(income, "income");
+            this.income = Optional.ofNullable(income);
+            return this;
+        }
+
+        /**
+         * The operating income accounts
+         */
+        public Builder income(Optional<? extends Income> income) {
+            Utils.checkNotNull(income, "income");
             this.income = income;
             return this;
         }
@@ -798,6 +878,15 @@ public class ProfitAndLoss {
          * The operating expenses accounts
          */
         public Builder expenses(Expenses expenses) {
+            Utils.checkNotNull(expenses, "expenses");
+            this.expenses = Optional.ofNullable(expenses);
+            return this;
+        }
+
+        /**
+         * The operating expenses accounts
+         */
+        public Builder expenses(Optional<? extends Expenses> expenses) {
             Utils.checkNotNull(expenses, "expenses");
             this.expenses = expenses;
             return this;
@@ -937,6 +1026,22 @@ public class ProfitAndLoss {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public ProfitAndLoss build() {
 
             return new ProfitAndLoss(
@@ -945,7 +1050,8 @@ public class ProfitAndLoss {
                 costOfGoodsSold, expenses, otherIncome,
                 otherExpenses, uncategorizedAccounts, grossProfit,
                 netOperatingIncome, netIncome, customMappings,
-                customer);
+                customer)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

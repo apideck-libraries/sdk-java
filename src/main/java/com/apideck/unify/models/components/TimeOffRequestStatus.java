@@ -21,7 +21,7 @@ import java.util.Optional;
 /**
  * TimeOffRequestStatus
  * 
- * <p>Time off request status to filter on
+ * <p>The status of the time off request.
  */
 public class TimeOffRequestStatus {
 

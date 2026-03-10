@@ -17,7 +17,6 @@ Get Profit and Loss
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.ProfitAndLossFilter;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingProfitAndLossOneRequest;
 import com.apideck.unify.models.operations.AccountingProfitAndLossOneResponse;
@@ -36,11 +35,11 @@ public class Application {
 
         AccountingProfitAndLossOneRequest req = AccountingProfitAndLossOneRequest.builder()
                 .serviceId("salesforce")
-                .filter(ProfitAndLossFilter.builder()
-                    .customerId("123abc")
-                    .startDate("2021-01-01")
-                    .endDate("2021-12-31")
-                    .build())
+                .companyId("12345")
+                .filter(Map.ofEntries(
+                    Map.entry("customer_id", "123abc"),
+                    Map.entry("start_date", "2021-01-01"),
+                    Map.entry("end_date", "2021-12-31")))
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
                 .fields("id,updated_at")
@@ -51,7 +50,7 @@ public class Application {
                 .call();
 
         if (res.getProfitAndLossResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getProfitAndLossResponse().get());
         }
     }
 }

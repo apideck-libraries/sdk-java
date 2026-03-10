@@ -5,6 +5,8 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -14,11 +16,14 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Long;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -27,8 +32,9 @@ public class ProjectInput {
     /**
      * Name of the project
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
-    private String name;
+    private Optional<String> name;
 
     /**
      * User-friendly project identifier
@@ -273,9 +279,13 @@ public class ProjectInput {
     @JsonProperty("row_version")
     private JsonNullable<String> rowVersion;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public ProjectInput(
-            @JsonProperty("name") String name,
+            @JsonProperty("name") Optional<String> name,
             @JsonProperty("display_id") JsonNullable<String> displayId,
             @JsonProperty("reference_id") JsonNullable<String> referenceId,
             @JsonProperty("description") JsonNullable<String> description,
@@ -383,11 +393,11 @@ public class ProjectInput {
         this.teamSize = teamSize;
         this.customFields = customFields;
         this.rowVersion = rowVersion;
+        this.additionalProperties = new HashMap<>();
     }
     
-    public ProjectInput(
-            String name) {
-        this(name, JsonNullable.undefined(), JsonNullable.undefined(),
+    public ProjectInput() {
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
@@ -405,7 +415,7 @@ public class ProjectInput {
      * Name of the project
      */
     @JsonIgnore
-    public String name() {
+    public Optional<String> name() {
         return name;
     }
 
@@ -700,6 +710,11 @@ public class ProjectInput {
         return rowVersion;
     }
 
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -709,6 +724,16 @@ public class ProjectInput {
      * Name of the project
      */
     public ProjectInput withName(String name) {
+        Utils.checkNotNull(name, "name");
+        this.name = Optional.ofNullable(name);
+        return this;
+    }
+
+
+    /**
+     * Name of the project
+     */
+    public ProjectInput withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
@@ -1340,6 +1365,19 @@ public class ProjectInput {
         return this;
     }
 
+    @JsonAnySetter
+    public ProjectInput withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public ProjectInput withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -1385,7 +1423,8 @@ public class ProjectInput {
             Utils.enhancedDeepEquals(this.addresses, other.addresses) &&
             Utils.enhancedDeepEquals(this.teamSize, other.teamSize) &&
             Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
-            Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion);
+            Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
@@ -1402,7 +1441,8 @@ public class ProjectInput {
             phase, taxRate, trackingCategories,
             tags, notes, contractNumber,
             profitMargin, scheduleStatus, addresses,
-            teamSize, customFields, rowVersion);
+            teamSize, customFields, rowVersion,
+            additionalProperties);
     }
     
     @Override
@@ -1443,13 +1483,14 @@ public class ProjectInput {
                 "addresses", addresses,
                 "teamSize", teamSize,
                 "customFields", customFields,
-                "rowVersion", rowVersion);
+                "rowVersion", rowVersion,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String name;
+        private Optional<String> name = Optional.empty();
 
         private JsonNullable<String> displayId = JsonNullable.undefined();
 
@@ -1521,6 +1562,8 @@ public class ProjectInput {
 
         private JsonNullable<String> rowVersion = JsonNullable.undefined();
 
+        private Map<String, Object> additionalProperties = new HashMap<>();
+
         private Builder() {
           // force use of static builder() method
         }
@@ -1530,6 +1573,15 @@ public class ProjectInput {
          * Name of the project
          */
         public Builder name(String name) {
+            Utils.checkNotNull(name, "name");
+            this.name = Optional.ofNullable(name);
+            return this;
+        }
+
+        /**
+         * Name of the project
+         */
+        public Builder name(Optional<String> name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
@@ -2192,6 +2244,22 @@ public class ProjectInput {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public ProjectInput build() {
             if (isBillable == null) {
                 isBillable = _SINGLETON_VALUE_IsBillable.value();
@@ -2209,7 +2277,8 @@ public class ProjectInput {
                 phase, taxRate, trackingCategories,
                 tags, notes, contractNumber,
                 profitMargin, scheduleStatus, addresses,
-                teamSize, customFields, rowVersion);
+                teamSize, customFields, rowVersion)
+                .withAdditionalProperties(additionalProperties);
         }
 
 

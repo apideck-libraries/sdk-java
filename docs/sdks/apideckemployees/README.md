@@ -21,7 +21,6 @@ Apideck operates as a stateless Unified API, which means that the list endpoint 
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.*;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.HrisEmployeesAllRequest;
 import com.apideck.unify.models.operations.HrisEmployeesAllResponse;
@@ -40,23 +39,21 @@ public class Application {
 
         HrisEmployeesAllRequest req = HrisEmployeesAllRequest.builder()
                 .serviceId("salesforce")
-                .filter(EmployeesFilter.builder()
-                    .companyId("1234")
-                    .email("elon@tesla.com")
-                    .firstName("Elon")
-                    .title("Manager")
-                    .lastName("Musk")
-                    .managerId("1234")
-                    .employmentStatus(EmployeesFilterEmploymentStatus.ACTIVE)
-                    .employeeNumber("123456-AB")
-                    .departmentId("1234")
-                    .city("San Francisco")
-                    .country("US")
-                    .build())
-                .sort(EmployeesSort.builder()
-                    .by(EmployeesSortBy.CREATED_AT)
-                    .direction(SortDirection.DESC)
-                    .build())
+                .filter(Map.ofEntries(
+                    Map.entry("company_id", "1234"),
+                    Map.entry("email", "elon@tesla.com"),
+                    Map.entry("first_name", "Elon"),
+                    Map.entry("title", "Manager"),
+                    Map.entry("last_name", "Musk"),
+                    Map.entry("manager_id", "1234"),
+                    Map.entry("employment_status", "active"),
+                    Map.entry("employee_number", "123456-AB"),
+                    Map.entry("department_id", "1234"),
+                    Map.entry("city", "San Francisco"),
+                    Map.entry("country", "US")))
+                .sort(Map.ofEntries(
+                    Map.entry("by", "created_at"),
+                    Map.entry("direction", "desc")))
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
                 .fields("id,updated_at")
@@ -370,41 +367,41 @@ public class Application {
                             .build()))
                     .phoneNumbers(List.of(
                         PhoneNumber.builder()
-                            .number("111-111-1111")
                             .id("12345")
                             .countryCode("1")
                             .areaCode("323")
+                            .number("111-111-1111")
                             .extension("105")
                             .type(PhoneNumberType.PRIMARY)
                             .build()))
                     .emails(List.of(
                         Email.builder()
-                            .email("elon@musk.com")
                             .id("123")
+                            .email("elon@musk.com")
                             .type(EmailType.PRIMARY)
                             .build()))
                     .customFields(List.of(
-                        CustomField.of(CustomField1.builder()
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build()),
-                        CustomField.of(CustomField1.builder()
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build(),
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build())))
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build()))
                     .socialLinks(List.of(
                         SocialLink.builder()
-                            .url("https://www.twitter.com/apideck")
                             .id("12345")
+                            .url("https://www.twitter.com/apideck")
                             .type("twitter")
                             .build(),
                         SocialLink.builder()
-                            .url("https://www.twitter.com/apideck")
                             .id("12345")
+                            .url("https://www.twitter.com/apideck")
                             .type("twitter")
                             .build()))
                     .bankAccounts(List.of(
@@ -518,7 +515,7 @@ public class Application {
                 .call();
 
         if (res.createEmployeeResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createEmployeeResponse().get());
         }
     }
 }
@@ -556,7 +553,6 @@ Get Employee
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.EmployeesOneFilter;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.HrisEmployeesOneRequest;
 import com.apideck.unify.models.operations.HrisEmployeesOneResponse;
@@ -577,9 +573,8 @@ public class Application {
                 .id("<id>")
                 .serviceId("salesforce")
                 .fields("id,updated_at")
-                .filter(EmployeesOneFilter.builder()
-                    .companyId("1234")
-                    .build())
+                .filter(Map.ofEntries(
+                    Map.entry("company_id", "1234")))
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
                 .build();
@@ -589,7 +584,7 @@ public class Application {
                 .call();
 
         if (res.getEmployeeResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getEmployeeResponse().get());
         }
     }
 }
@@ -789,55 +784,55 @@ public class Application {
                             .build()))
                     .phoneNumbers(List.of(
                         PhoneNumber.builder()
-                            .number("111-111-1111")
                             .id("12345")
                             .countryCode("1")
                             .areaCode("323")
+                            .number("111-111-1111")
                             .extension("105")
                             .type(PhoneNumberType.PRIMARY)
                             .build(),
                         PhoneNumber.builder()
-                            .number("111-111-1111")
                             .id("12345")
                             .countryCode("1")
                             .areaCode("323")
+                            .number("111-111-1111")
                             .extension("105")
                             .type(PhoneNumberType.PRIMARY)
                             .build()))
                     .emails(List.of(
                         Email.builder()
-                            .email("elon@musk.com")
                             .id("123")
+                            .email("elon@musk.com")
                             .type(EmailType.PRIMARY)
                             .build()))
                     .customFields(List.of(
-                        CustomField.of(CustomField1.builder()
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build()),
-                        CustomField.of(CustomField1.builder()
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build(),
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build()),
-                        CustomField.of(CustomField1.builder()
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build(),
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build())))
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build()))
                     .socialLinks(List.of(
                         SocialLink.builder()
-                            .url("https://www.twitter.com/apideck")
                             .id("12345")
+                            .url("https://www.twitter.com/apideck")
                             .type("twitter")
                             .build(),
                         SocialLink.builder()
-                            .url("https://www.twitter.com/apideck")
                             .id("12345")
+                            .url("https://www.twitter.com/apideck")
                             .type("twitter")
                             .build()))
                     .bankAccounts(List.of(
@@ -897,7 +892,7 @@ public class Application {
                 .call();
 
         if (res.updateEmployeeResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateEmployeeResponse().get());
         }
     }
 }
@@ -960,7 +955,7 @@ public class Application {
                 .call();
 
         if (res.deleteEmployeeResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteEmployeeResponse().get());
         }
     }
 }

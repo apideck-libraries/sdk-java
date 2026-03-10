@@ -6,3 +6,4 @@
 | Field                      | Type                       | Required                   | Description                | Example                    |
 | -------------------------- | -------------------------- | -------------------------- | -------------------------- | -------------------------- |
 | `value`                    | *Optional\<String>*        | :heavy_minus_sign:         | Target Field Mapping value | $.root.training.first_aid  |
+| `additionalProperties`     | Map\<String, *Object*>     | :heavy_minus_sign:         | N/A                        |                            |

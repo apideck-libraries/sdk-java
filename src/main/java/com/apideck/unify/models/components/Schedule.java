@@ -4,42 +4,59 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
 
 public class Schedule {
     /**
      * A unique identifier for an object.
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private String id;
+    private Optional<String> id;
 
     /**
      * The start date, inclusive, of the schedule period.
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("start_date")
-    private String startDate;
+    private Optional<String> startDate;
 
     /**
      * The end date, inclusive, of the schedule period.
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("end_date")
-    private String endDate;
+    private Optional<String> endDate;
 
 
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("work_pattern")
-    private WorkPattern workPattern;
+    private Optional<? extends WorkPattern> workPattern;
+
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
 
     @JsonCreator
     public Schedule(
-            @JsonProperty("id") String id,
-            @JsonProperty("start_date") String startDate,
-            @JsonProperty("end_date") String endDate,
-            @JsonProperty("work_pattern") WorkPattern workPattern) {
+            @JsonProperty("id") Optional<String> id,
+            @JsonProperty("start_date") Optional<String> startDate,
+            @JsonProperty("end_date") Optional<String> endDate,
+            @JsonProperty("work_pattern") Optional<? extends WorkPattern> workPattern) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(startDate, "startDate");
         Utils.checkNotNull(endDate, "endDate");
@@ -48,13 +65,19 @@ public class Schedule {
         this.startDate = startDate;
         this.endDate = endDate;
         this.workPattern = workPattern;
+        this.additionalProperties = new HashMap<>();
+    }
+    
+    public Schedule() {
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
      * A unique identifier for an object.
      */
     @JsonIgnore
-    public String id() {
+    public Optional<String> id() {
         return id;
     }
 
@@ -62,7 +85,7 @@ public class Schedule {
      * The start date, inclusive, of the schedule period.
      */
     @JsonIgnore
-    public String startDate() {
+    public Optional<String> startDate() {
         return startDate;
     }
 
@@ -70,13 +93,19 @@ public class Schedule {
      * The end date, inclusive, of the schedule period.
      */
     @JsonIgnore
-    public String endDate() {
+    public Optional<String> endDate() {
         return endDate;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public WorkPattern workPattern() {
-        return workPattern;
+    public Optional<WorkPattern> workPattern() {
+        return (Optional<WorkPattern>) workPattern;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
     }
 
     public static Builder builder() {
@@ -89,6 +118,16 @@ public class Schedule {
      */
     public Schedule withId(String id) {
         Utils.checkNotNull(id, "id");
+        this.id = Optional.ofNullable(id);
+        return this;
+    }
+
+
+    /**
+     * A unique identifier for an object.
+     */
+    public Schedule withId(Optional<String> id) {
+        Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
@@ -97,6 +136,16 @@ public class Schedule {
      * The start date, inclusive, of the schedule period.
      */
     public Schedule withStartDate(String startDate) {
+        Utils.checkNotNull(startDate, "startDate");
+        this.startDate = Optional.ofNullable(startDate);
+        return this;
+    }
+
+
+    /**
+     * The start date, inclusive, of the schedule period.
+     */
+    public Schedule withStartDate(Optional<String> startDate) {
         Utils.checkNotNull(startDate, "startDate");
         this.startDate = startDate;
         return this;
@@ -107,13 +156,43 @@ public class Schedule {
      */
     public Schedule withEndDate(String endDate) {
         Utils.checkNotNull(endDate, "endDate");
+        this.endDate = Optional.ofNullable(endDate);
+        return this;
+    }
+
+
+    /**
+     * The end date, inclusive, of the schedule period.
+     */
+    public Schedule withEndDate(Optional<String> endDate) {
+        Utils.checkNotNull(endDate, "endDate");
         this.endDate = endDate;
         return this;
     }
 
     public Schedule withWorkPattern(WorkPattern workPattern) {
         Utils.checkNotNull(workPattern, "workPattern");
+        this.workPattern = Optional.ofNullable(workPattern);
+        return this;
+    }
+
+
+    public Schedule withWorkPattern(Optional<? extends WorkPattern> workPattern) {
+        Utils.checkNotNull(workPattern, "workPattern");
         this.workPattern = workPattern;
+        return this;
+    }
+
+    @JsonAnySetter
+    public Schedule withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public Schedule withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
         return this;
     }
 
@@ -130,14 +209,15 @@ public class Schedule {
             Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.startDate, other.startDate) &&
             Utils.enhancedDeepEquals(this.endDate, other.endDate) &&
-            Utils.enhancedDeepEquals(this.workPattern, other.workPattern);
+            Utils.enhancedDeepEquals(this.workPattern, other.workPattern) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             id, startDate, endDate,
-            workPattern);
+            workPattern, additionalProperties);
     }
     
     @Override
@@ -146,19 +226,22 @@ public class Schedule {
                 "id", id,
                 "startDate", startDate,
                 "endDate", endDate,
-                "workPattern", workPattern);
+                "workPattern", workPattern,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String id;
+        private Optional<String> id = Optional.empty();
 
-        private String startDate;
+        private Optional<String> startDate = Optional.empty();
 
-        private String endDate;
+        private Optional<String> endDate = Optional.empty();
 
-        private WorkPattern workPattern;
+        private Optional<? extends WorkPattern> workPattern = Optional.empty();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -170,6 +253,15 @@ public class Schedule {
          */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
+            this.id = Optional.ofNullable(id);
+            return this;
+        }
+
+        /**
+         * A unique identifier for an object.
+         */
+        public Builder id(Optional<String> id) {
+            Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
         }
@@ -179,6 +271,15 @@ public class Schedule {
          * The start date, inclusive, of the schedule period.
          */
         public Builder startDate(String startDate) {
+            Utils.checkNotNull(startDate, "startDate");
+            this.startDate = Optional.ofNullable(startDate);
+            return this;
+        }
+
+        /**
+         * The start date, inclusive, of the schedule period.
+         */
+        public Builder startDate(Optional<String> startDate) {
             Utils.checkNotNull(startDate, "startDate");
             this.startDate = startDate;
             return this;
@@ -190,6 +291,15 @@ public class Schedule {
          */
         public Builder endDate(String endDate) {
             Utils.checkNotNull(endDate, "endDate");
+            this.endDate = Optional.ofNullable(endDate);
+            return this;
+        }
+
+        /**
+         * The end date, inclusive, of the schedule period.
+         */
+        public Builder endDate(Optional<String> endDate) {
+            Utils.checkNotNull(endDate, "endDate");
             this.endDate = endDate;
             return this;
         }
@@ -197,7 +307,29 @@ public class Schedule {
 
         public Builder workPattern(WorkPattern workPattern) {
             Utils.checkNotNull(workPattern, "workPattern");
+            this.workPattern = Optional.ofNullable(workPattern);
+            return this;
+        }
+
+        public Builder workPattern(Optional<? extends WorkPattern> workPattern) {
+            Utils.checkNotNull(workPattern, "workPattern");
             this.workPattern = workPattern;
+            return this;
+        }
+
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
             return this;
         }
 
@@ -205,7 +337,8 @@ public class Schedule {
 
             return new Schedule(
                 id, startDate, endDate,
-                workPattern);
+                workPattern)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

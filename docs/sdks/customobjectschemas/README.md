@@ -154,7 +154,7 @@ public class Application {
                 .call();
 
         if (res.createCustomObjectSchemaResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createCustomObjectSchemaResponse().get());
         }
     }
 }
@@ -217,7 +217,7 @@ public class Application {
                 .call();
 
         if (res.getCustomObjectSchemaResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getCustomObjectSchemaResponse().get());
         }
     }
 }
@@ -408,7 +408,7 @@ public class Application {
                 .call();
 
         if (res.updateCustomObjectSchemaResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateCustomObjectSchemaResponse().get());
         }
     }
 }
@@ -471,7 +471,7 @@ public class Application {
                 .call();
 
         if (res.deleteCustomObjectSchemaResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteCustomObjectSchemaResponse().get());
         }
     }
 }

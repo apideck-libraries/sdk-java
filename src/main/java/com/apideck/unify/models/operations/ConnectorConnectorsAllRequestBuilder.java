@@ -9,7 +9,6 @@ import static com.apideck.unify.utils.Utils.transform;
 import static com.apideck.unify.utils.Utils.toStream;
 
 import com.apideck.unify.SDKConfiguration;
-import com.apideck.unify.models.components.ConnectorsFilter;
 import com.apideck.unify.operations.ConnectorConnectorsAll;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.LazySingletonValue;
@@ -22,9 +21,11 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import java.io.InputStream;
 import java.lang.Iterable;
 import java.lang.Long;
+import java.lang.Object;
 import java.lang.String;
 import java.net.http.HttpResponse;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -37,7 +38,7 @@ public class ConnectorConnectorsAllRequestBuilder {
                             "limit",
                             "20",
                             new TypeReference<Optional<Long>>() {});
-    private Optional<? extends ConnectorsFilter> filter = Optional.empty();
+    private Optional<? extends Map<String, Object>> filter = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -82,13 +83,13 @@ public class ConnectorConnectorsAllRequestBuilder {
         return this;
     }
                 
-    public ConnectorConnectorsAllRequestBuilder filter(ConnectorsFilter filter) {
+    public ConnectorConnectorsAllRequestBuilder filter(Map<String, Object> filter) {
         Utils.checkNotNull(filter, "filter");
         this.filter = Optional.of(filter);
         return this;
     }
 
-    public ConnectorConnectorsAllRequestBuilder filter(Optional<? extends ConnectorsFilter> filter) {
+    public ConnectorConnectorsAllRequestBuilder filter(Optional<? extends Map<String, Object>> filter) {
         Utils.checkNotNull(filter, "filter");
         this.filter = filter;
         return this;

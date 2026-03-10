@@ -4,6 +4,8 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -12,11 +14,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Long;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -277,6 +282,10 @@ public class BillLineItem {
     @JsonProperty("worktags")
     private Optional<? extends List<LinkedWorktag>> worktags;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public BillLineItem(
             @JsonProperty("id") Optional<String> id,
@@ -393,6 +402,7 @@ public class BillLineItem {
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.worktags = worktags;
+        this.additionalProperties = new HashMap<>();
     }
     
     public BillLineItem() {
@@ -705,6 +715,11 @@ public class BillLineItem {
     @JsonIgnore
     public Optional<List<LinkedWorktag>> worktags() {
         return (Optional<List<LinkedWorktag>>) worktags;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
     }
 
     public static Builder builder() {
@@ -1367,6 +1382,19 @@ public class BillLineItem {
         return this;
     }
 
+    @JsonAnySetter
+    public BillLineItem withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public BillLineItem withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -1414,7 +1442,8 @@ public class BillLineItem {
             Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
             Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
-            Utils.enhancedDeepEquals(this.worktags, other.worktags);
+            Utils.enhancedDeepEquals(this.worktags, other.worktags) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
@@ -1432,7 +1461,7 @@ public class BillLineItem {
             ledgerAccount, purchaseOrder, trackingCategories,
             customer, rebilling, rowVersion,
             updatedBy, createdBy, createdAt,
-            updatedAt, worktags);
+            updatedAt, worktags, additionalProperties);
     }
     
     @Override
@@ -1475,7 +1504,8 @@ public class BillLineItem {
                 "createdBy", createdBy,
                 "createdAt", createdAt,
                 "updatedAt", updatedAt,
-                "worktags", worktags);
+                "worktags", worktags,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -1556,6 +1586,8 @@ public class BillLineItem {
         private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
 
         private Optional<? extends List<LinkedWorktag>> worktags = Optional.empty();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -2249,6 +2281,22 @@ public class BillLineItem {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public BillLineItem build() {
 
             return new BillLineItem(
@@ -2264,7 +2312,8 @@ public class BillLineItem {
                 ledgerAccount, purchaseOrder, trackingCategories,
                 customer, rebilling, rowVersion,
                 updatedBy, createdBy, createdAt,
-                updatedAt, worktags);
+                updatedAt, worktags)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

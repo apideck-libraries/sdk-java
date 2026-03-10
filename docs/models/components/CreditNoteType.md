@@ -2,6 +2,17 @@
 
 Type of payment
 
+## Example Usage
+
+```java
+import com.apideck.unify.models.components.CreditNoteType;
+
+CreditNoteType value = CreditNoteType.ACCOUNTS_RECEIVABLE_CREDIT;
+
+// Open enum: use .of() to create instances from custom string values
+CreditNoteType custom = CreditNoteType.of("custom_value");
+```
+
 
 ## Values
 

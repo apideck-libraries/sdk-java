@@ -4,6 +4,8 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -11,11 +13,14 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Boolean;
 import java.lang.Long;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -31,8 +36,9 @@ public class Pipeline {
     /**
      * The name of the Pipeline.
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
-    private String name;
+    private Optional<String> name;
 
     /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO
@@ -99,10 +105,14 @@ public class Pipeline {
     @JsonProperty("pass_through")
     private Optional<? extends List<PassThroughBody>> passThrough;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public Pipeline(
             @JsonProperty("id") Optional<String> id,
-            @JsonProperty("name") String name,
+            @JsonProperty("name") Optional<String> name,
             @JsonProperty("currency") JsonNullable<? extends Currency> currency,
             @JsonProperty("archived") Optional<Boolean> archived,
             @JsonProperty("active") Optional<Boolean> active,
@@ -134,11 +144,11 @@ public class Pipeline {
         this.updatedAt = updatedAt;
         this.createdAt = createdAt;
         this.passThrough = passThrough;
+        this.additionalProperties = new HashMap<>();
     }
     
-    public Pipeline(
-            String name) {
-        this(Optional.empty(), name, JsonNullable.undefined(),
+    public Pipeline() {
+        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(),
             Optional.empty(), Optional.empty(), JsonNullable.undefined(),
             Optional.empty(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), Optional.empty());
@@ -156,7 +166,7 @@ public class Pipeline {
      * The name of the Pipeline.
      */
     @JsonIgnore
-    public String name() {
+    public Optional<String> name() {
         return name;
     }
 
@@ -237,6 +247,11 @@ public class Pipeline {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -265,6 +280,16 @@ public class Pipeline {
      * The name of the Pipeline.
      */
     public Pipeline withName(String name) {
+        Utils.checkNotNull(name, "name");
+        this.name = Optional.ofNullable(name);
+        return this;
+    }
+
+
+    /**
+     * The name of the Pipeline.
+     */
+    public Pipeline withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
@@ -441,6 +466,19 @@ public class Pipeline {
         return this;
     }
 
+    @JsonAnySetter
+    public Pipeline withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public Pipeline withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -461,7 +499,8 @@ public class Pipeline {
             Utils.enhancedDeepEquals(this.stages, other.stages) &&
             Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
-            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
@@ -470,7 +509,7 @@ public class Pipeline {
             id, name, currency,
             archived, active, displayOrder,
             winProbabilityEnabled, stages, updatedAt,
-            createdAt, passThrough);
+            createdAt, passThrough, additionalProperties);
     }
     
     @Override
@@ -486,7 +525,8 @@ public class Pipeline {
                 "stages", stages,
                 "updatedAt", updatedAt,
                 "createdAt", createdAt,
-                "passThrough", passThrough);
+                "passThrough", passThrough,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -494,7 +534,7 @@ public class Pipeline {
 
         private Optional<String> id = Optional.empty();
 
-        private String name;
+        private Optional<String> name = Optional.empty();
 
         private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
 
@@ -513,6 +553,8 @@ public class Pipeline {
         private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
 
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -542,6 +584,15 @@ public class Pipeline {
          * The name of the Pipeline.
          */
         public Builder name(String name) {
+            Utils.checkNotNull(name, "name");
+            this.name = Optional.ofNullable(name);
+            return this;
+        }
+
+        /**
+         * The name of the Pipeline.
+         */
+        public Builder name(Optional<String> name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
@@ -722,13 +773,30 @@ public class Pipeline {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public Pipeline build() {
 
             return new Pipeline(
                 id, name, currency,
                 archived, active, displayOrder,
                 winProbabilityEnabled, stages, updatedAt,
-                createdAt, passThrough);
+                createdAt, passThrough)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

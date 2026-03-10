@@ -20,6 +20,7 @@ public class Accounting {
     private final Suppliers suppliers;
     private final Payments payments;
     private final CompanyInfo companyInfo;
+    private final Companies companies;
     private final BalanceSheet balanceSheet;
     private final ProfitAndLoss profitAndLoss;
     private final JournalEntries journalEntries;
@@ -55,6 +56,7 @@ public class Accounting {
         this.suppliers = new Suppliers(this.sdkConfiguration);
         this.payments = new Payments(this.sdkConfiguration);
         this.companyInfo = new CompanyInfo(this.sdkConfiguration);
+        this.companies = new Companies(this.sdkConfiguration);
         this.balanceSheet = new BalanceSheet(this.sdkConfiguration);
         this.profitAndLoss = new ProfitAndLoss(this.sdkConfiguration);
         this.journalEntries = new JournalEntries(this.sdkConfiguration);
@@ -118,6 +120,10 @@ public class Accounting {
 
     public final CompanyInfo companyInfo() {
         return companyInfo;
+    }
+
+    public final Companies companies() {
+        return companies;
     }
 
     public final BalanceSheet balanceSheet() {

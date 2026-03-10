@@ -4,14 +4,19 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -71,6 +76,10 @@ public class Addresses {
     @JsonProperty("country")
     private JsonNullable<String> country;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public Addresses(
             @JsonProperty("type") Optional<? extends EcommerceCustomerType> type,
@@ -97,6 +106,7 @@ public class Addresses {
         this.state = state;
         this.postalCode = postalCode;
         this.country = country;
+        this.additionalProperties = new HashMap<>();
     }
     
     public Addresses() {
@@ -165,6 +175,11 @@ public class Addresses {
     @JsonIgnore
     public JsonNullable<String> country() {
         return country;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
     }
 
     public static Builder builder() {
@@ -311,6 +326,19 @@ public class Addresses {
         return this;
     }
 
+    @JsonAnySetter
+    public Addresses withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public Addresses withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -328,7 +356,8 @@ public class Addresses {
             Utils.enhancedDeepEquals(this.city, other.city) &&
             Utils.enhancedDeepEquals(this.state, other.state) &&
             Utils.enhancedDeepEquals(this.postalCode, other.postalCode) &&
-            Utils.enhancedDeepEquals(this.country, other.country);
+            Utils.enhancedDeepEquals(this.country, other.country) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
@@ -336,7 +365,7 @@ public class Addresses {
         return Utils.enhancedHash(
             type, id, line1,
             line2, city, state,
-            postalCode, country);
+            postalCode, country, additionalProperties);
     }
     
     @Override
@@ -349,7 +378,8 @@ public class Addresses {
                 "city", city,
                 "state", state,
                 "postalCode", postalCode,
-                "country", country);
+                "country", country,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -370,6 +400,8 @@ public class Addresses {
         private JsonNullable<String> postalCode = JsonNullable.undefined();
 
         private JsonNullable<String> country = JsonNullable.undefined();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -521,12 +553,29 @@ public class Addresses {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public Addresses build() {
 
             return new Addresses(
                 type, id, line1,
                 line2, city, state,
-                postalCode, country);
+                postalCode, country)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

@@ -5,26 +5,10 @@ package com.apideck.unify;
 
 import static com.apideck.unify.operations.Operations.RequestOperation;
 
-import com.apideck.unify.models.operations.CrmCompaniesAddRequest;
-import com.apideck.unify.models.operations.CrmCompaniesAddRequestBuilder;
-import com.apideck.unify.models.operations.CrmCompaniesAddResponse;
-import com.apideck.unify.models.operations.CrmCompaniesAllRequest;
-import com.apideck.unify.models.operations.CrmCompaniesAllRequestBuilder;
-import com.apideck.unify.models.operations.CrmCompaniesAllResponse;
-import com.apideck.unify.models.operations.CrmCompaniesDeleteRequest;
-import com.apideck.unify.models.operations.CrmCompaniesDeleteRequestBuilder;
-import com.apideck.unify.models.operations.CrmCompaniesDeleteResponse;
-import com.apideck.unify.models.operations.CrmCompaniesOneRequest;
-import com.apideck.unify.models.operations.CrmCompaniesOneRequestBuilder;
-import com.apideck.unify.models.operations.CrmCompaniesOneResponse;
-import com.apideck.unify.models.operations.CrmCompaniesUpdateRequest;
-import com.apideck.unify.models.operations.CrmCompaniesUpdateRequestBuilder;
-import com.apideck.unify.models.operations.CrmCompaniesUpdateResponse;
-import com.apideck.unify.operations.CrmCompaniesAdd;
-import com.apideck.unify.operations.CrmCompaniesAll;
-import com.apideck.unify.operations.CrmCompaniesDelete;
-import com.apideck.unify.operations.CrmCompaniesOne;
-import com.apideck.unify.operations.CrmCompaniesUpdate;
+import com.apideck.unify.models.operations.AccountingCompaniesAllRequest;
+import com.apideck.unify.models.operations.AccountingCompaniesAllRequestBuilder;
+import com.apideck.unify.models.operations.AccountingCompaniesAllResponse;
+import com.apideck.unify.operations.AccountingCompaniesAll;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
@@ -52,200 +36,49 @@ public class Companies {
     /**
      * List companies
      * 
-     * <p>List companies
+     * <p>List all companies accessible through the current connection. Only connectors that support
+     * multi-company access (x-apideck-supports-multi-company) will return a list of companies. Use the
+     * returned company ID in the x-apideck-company-id header to scope subsequent requests to a specific
+     * company.
      * 
      * @return The call builder
      */
-    public CrmCompaniesAllRequestBuilder list() {
-        return new CrmCompaniesAllRequestBuilder(sdkConfiguration);
+    public AccountingCompaniesAllRequestBuilder list() {
+        return new AccountingCompaniesAllRequestBuilder(sdkConfiguration);
     }
 
     /**
      * List companies
      * 
-     * <p>List companies
+     * <p>List all companies accessible through the current connection. Only connectors that support
+     * multi-company access (x-apideck-supports-multi-company) will return a list of companies. Use the
+     * returned company ID in the x-apideck-company-id header to scope subsequent requests to a specific
+     * company.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public CrmCompaniesAllResponse list(CrmCompaniesAllRequest request) {
+    public AccountingCompaniesAllResponse list(AccountingCompaniesAllRequest request) {
         return list(request, Optional.empty());
     }
 
     /**
      * List companies
      * 
-     * <p>List companies
+     * <p>List all companies accessible through the current connection. Only connectors that support
+     * multi-company access (x-apideck-supports-multi-company) will return a list of companies. Use the
+     * returned company ID in the x-apideck-company-id header to scope subsequent requests to a specific
+     * company.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public CrmCompaniesAllResponse list(CrmCompaniesAllRequest request, Optional<Options> options) {
-        RequestOperation<CrmCompaniesAllRequest, CrmCompaniesAllResponse> operation
-              = new CrmCompaniesAll.Sync(sdkConfiguration, options, _headers);
-        return operation.handleResponse(operation.doRequest(request));
-    }
-
-    /**
-     * Create company
-     * 
-     * <p>Create company
-     * 
-     * @return The call builder
-     */
-    public CrmCompaniesAddRequestBuilder create() {
-        return new CrmCompaniesAddRequestBuilder(sdkConfiguration);
-    }
-
-    /**
-     * Create company
-     * 
-     * <p>Create company
-     * 
-     * @param request The request object containing all the parameters for the API call.
-     * @return The response from the API call
-     * @throws RuntimeException subclass if the API call fails
-     */
-    public CrmCompaniesAddResponse create(CrmCompaniesAddRequest request) {
-        return create(request, Optional.empty());
-    }
-
-    /**
-     * Create company
-     * 
-     * <p>Create company
-     * 
-     * @param request The request object containing all the parameters for the API call.
-     * @param options additional options
-     * @return The response from the API call
-     * @throws RuntimeException subclass if the API call fails
-     */
-    public CrmCompaniesAddResponse create(CrmCompaniesAddRequest request, Optional<Options> options) {
-        RequestOperation<CrmCompaniesAddRequest, CrmCompaniesAddResponse> operation
-              = new CrmCompaniesAdd.Sync(sdkConfiguration, options, _headers);
-        return operation.handleResponse(operation.doRequest(request));
-    }
-
-    /**
-     * Get company
-     * 
-     * <p>Get company
-     * 
-     * @return The call builder
-     */
-    public CrmCompaniesOneRequestBuilder get() {
-        return new CrmCompaniesOneRequestBuilder(sdkConfiguration);
-    }
-
-    /**
-     * Get company
-     * 
-     * <p>Get company
-     * 
-     * @param request The request object containing all the parameters for the API call.
-     * @return The response from the API call
-     * @throws RuntimeException subclass if the API call fails
-     */
-    public CrmCompaniesOneResponse get(CrmCompaniesOneRequest request) {
-        return get(request, Optional.empty());
-    }
-
-    /**
-     * Get company
-     * 
-     * <p>Get company
-     * 
-     * @param request The request object containing all the parameters for the API call.
-     * @param options additional options
-     * @return The response from the API call
-     * @throws RuntimeException subclass if the API call fails
-     */
-    public CrmCompaniesOneResponse get(CrmCompaniesOneRequest request, Optional<Options> options) {
-        RequestOperation<CrmCompaniesOneRequest, CrmCompaniesOneResponse> operation
-              = new CrmCompaniesOne.Sync(sdkConfiguration, options, _headers);
-        return operation.handleResponse(operation.doRequest(request));
-    }
-
-    /**
-     * Update company
-     * 
-     * <p>Update company
-     * 
-     * @return The call builder
-     */
-    public CrmCompaniesUpdateRequestBuilder update() {
-        return new CrmCompaniesUpdateRequestBuilder(sdkConfiguration);
-    }
-
-    /**
-     * Update company
-     * 
-     * <p>Update company
-     * 
-     * @param request The request object containing all the parameters for the API call.
-     * @return The response from the API call
-     * @throws RuntimeException subclass if the API call fails
-     */
-    public CrmCompaniesUpdateResponse update(CrmCompaniesUpdateRequest request) {
-        return update(request, Optional.empty());
-    }
-
-    /**
-     * Update company
-     * 
-     * <p>Update company
-     * 
-     * @param request The request object containing all the parameters for the API call.
-     * @param options additional options
-     * @return The response from the API call
-     * @throws RuntimeException subclass if the API call fails
-     */
-    public CrmCompaniesUpdateResponse update(CrmCompaniesUpdateRequest request, Optional<Options> options) {
-        RequestOperation<CrmCompaniesUpdateRequest, CrmCompaniesUpdateResponse> operation
-              = new CrmCompaniesUpdate.Sync(sdkConfiguration, options, _headers);
-        return operation.handleResponse(operation.doRequest(request));
-    }
-
-    /**
-     * Delete company
-     * 
-     * <p>Delete company
-     * 
-     * @return The call builder
-     */
-    public CrmCompaniesDeleteRequestBuilder delete() {
-        return new CrmCompaniesDeleteRequestBuilder(sdkConfiguration);
-    }
-
-    /**
-     * Delete company
-     * 
-     * <p>Delete company
-     * 
-     * @param request The request object containing all the parameters for the API call.
-     * @return The response from the API call
-     * @throws RuntimeException subclass if the API call fails
-     */
-    public CrmCompaniesDeleteResponse delete(CrmCompaniesDeleteRequest request) {
-        return delete(request, Optional.empty());
-    }
-
-    /**
-     * Delete company
-     * 
-     * <p>Delete company
-     * 
-     * @param request The request object containing all the parameters for the API call.
-     * @param options additional options
-     * @return The response from the API call
-     * @throws RuntimeException subclass if the API call fails
-     */
-    public CrmCompaniesDeleteResponse delete(CrmCompaniesDeleteRequest request, Optional<Options> options) {
-        RequestOperation<CrmCompaniesDeleteRequest, CrmCompaniesDeleteResponse> operation
-              = new CrmCompaniesDelete.Sync(sdkConfiguration, options, _headers);
+    public AccountingCompaniesAllResponse list(AccountingCompaniesAllRequest request, Optional<Options> options) {
+        RequestOperation<AccountingCompaniesAllRequest, AccountingCompaniesAllResponse> operation
+              = new AccountingCompaniesAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

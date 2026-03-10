@@ -3,7 +3,6 @@
  */
 package com.apideck.unify.models.operations;
 
-import com.apideck.unify.models.components.DrivesFilter;
 import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
@@ -12,9 +11,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import java.lang.Boolean;
 import java.lang.Long;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -62,7 +63,7 @@ public class FileStorageDrivesAllRequest {
      * Apply filters
      */
     @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=filter")
-    private Optional<? extends DrivesFilter> filter;
+    private Optional<? extends Map<String, Object>> filter;
 
     /**
      * The 'fields' parameter allows API users to specify the fields they want to include in the API
@@ -86,7 +87,7 @@ public class FileStorageDrivesAllRequest {
             Optional<String> serviceId,
             JsonNullable<String> cursor,
             Optional<Long> limit,
-            Optional<? extends DrivesFilter> filter,
+            Optional<? extends Map<String, Object>> filter,
             JsonNullable<String> fields) {
         Utils.checkNotNull(raw, "raw");
         Utils.checkNotNull(consumerId, "consumerId");
@@ -167,8 +168,8 @@ public class FileStorageDrivesAllRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<DrivesFilter> filter() {
-        return (Optional<DrivesFilter>) filter;
+    public Optional<Map<String, Object>> filter() {
+        return (Optional<Map<String, Object>>) filter;
     }
 
     /**
@@ -312,7 +313,7 @@ public class FileStorageDrivesAllRequest {
     /**
      * Apply filters
      */
-    public FileStorageDrivesAllRequest withFilter(DrivesFilter filter) {
+    public FileStorageDrivesAllRequest withFilter(Map<String, Object> filter) {
         Utils.checkNotNull(filter, "filter");
         this.filter = Optional.ofNullable(filter);
         return this;
@@ -322,7 +323,7 @@ public class FileStorageDrivesAllRequest {
     /**
      * Apply filters
      */
-    public FileStorageDrivesAllRequest withFilter(Optional<? extends DrivesFilter> filter) {
+    public FileStorageDrivesAllRequest withFilter(Optional<? extends Map<String, Object>> filter) {
         Utils.checkNotNull(filter, "filter");
         this.filter = filter;
         return this;
@@ -418,7 +419,7 @@ public class FileStorageDrivesAllRequest {
 
         private Optional<Long> limit;
 
-        private Optional<? extends DrivesFilter> filter = Optional.empty();
+        private Optional<? extends Map<String, Object>> filter = Optional.empty();
 
         private JsonNullable<String> fields = JsonNullable.undefined();
 
@@ -548,7 +549,7 @@ public class FileStorageDrivesAllRequest {
         /**
          * Apply filters
          */
-        public Builder filter(DrivesFilter filter) {
+        public Builder filter(Map<String, Object> filter) {
             Utils.checkNotNull(filter, "filter");
             this.filter = Optional.ofNullable(filter);
             return this;
@@ -557,7 +558,7 @@ public class FileStorageDrivesAllRequest {
         /**
          * Apply filters
          */
-        public Builder filter(Optional<? extends DrivesFilter> filter) {
+        public Builder filter(Optional<? extends Map<String, Object>> filter) {
             Utils.checkNotNull(filter, "filter");
             this.filter = filter;
             return this;

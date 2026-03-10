@@ -17,23 +17,25 @@ import java.util.Optional;
 
 public class SimpleFormFieldOption implements FormFieldOption {
 
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("label")
-    private String label;
+    private Optional<String> label;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("value")
-    private Optional<? extends Value> value;
+    private Optional<? extends SimpleFormFieldOptionValue> value;
 
 
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("option_type")
-    private OptionType optionType;
+    private Optional<? extends OptionType> optionType;
 
     @JsonCreator
     public SimpleFormFieldOption(
-            @JsonProperty("label") String label,
-            @JsonProperty("value") Optional<? extends Value> value,
-            @JsonProperty("option_type") OptionType optionType) {
+            @JsonProperty("label") Optional<String> label,
+            @JsonProperty("value") Optional<? extends SimpleFormFieldOptionValue> value,
+            @JsonProperty("option_type") Optional<? extends OptionType> optionType) {
         Utils.checkNotNull(label, "label");
         Utils.checkNotNull(value, "value");
         Utils.checkNotNull(optionType, "optionType");
@@ -42,21 +44,19 @@ public class SimpleFormFieldOption implements FormFieldOption {
         this.optionType = optionType;
     }
     
-    public SimpleFormFieldOption(
-            String label,
-            OptionType optionType) {
-        this(label, Optional.empty(), optionType);
+    public SimpleFormFieldOption() {
+        this(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
-    public String label() {
+    public Optional<String> label() {
         return label;
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Value> value() {
-        return (Optional<Value>) value;
+    public Optional<SimpleFormFieldOptionValue> value() {
+        return (Optional<SimpleFormFieldOptionValue>) value;
     }
 
     @JsonIgnore
@@ -72,24 +72,38 @@ public class SimpleFormFieldOption implements FormFieldOption {
 
     public SimpleFormFieldOption withLabel(String label) {
         Utils.checkNotNull(label, "label");
+        this.label = Optional.ofNullable(label);
+        return this;
+    }
+
+
+    public SimpleFormFieldOption withLabel(Optional<String> label) {
+        Utils.checkNotNull(label, "label");
         this.label = label;
         return this;
     }
 
-    public SimpleFormFieldOption withValue(Value value) {
+    public SimpleFormFieldOption withValue(SimpleFormFieldOptionValue value) {
         Utils.checkNotNull(value, "value");
         this.value = Optional.ofNullable(value);
         return this;
     }
 
 
-    public SimpleFormFieldOption withValue(Optional<? extends Value> value) {
+    public SimpleFormFieldOption withValue(Optional<? extends SimpleFormFieldOptionValue> value) {
         Utils.checkNotNull(value, "value");
         this.value = value;
         return this;
     }
 
     public SimpleFormFieldOption withOptionType(OptionType optionType) {
+        Utils.checkNotNull(optionType, "optionType");
+        this.optionType = Optional.ofNullable(optionType);
+        return this;
+    }
+
+
+    public SimpleFormFieldOption withOptionType(Optional<? extends OptionType> optionType) {
         Utils.checkNotNull(optionType, "optionType");
         this.optionType = optionType;
         return this;
@@ -127,11 +141,11 @@ public class SimpleFormFieldOption implements FormFieldOption {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String label;
+        private Optional<String> label = Optional.empty();
 
-        private Optional<? extends Value> value = Optional.empty();
+        private Optional<? extends SimpleFormFieldOptionValue> value = Optional.empty();
 
-        private OptionType optionType;
+        private Optional<? extends OptionType> optionType = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -140,18 +154,24 @@ public class SimpleFormFieldOption implements FormFieldOption {
 
         public Builder label(String label) {
             Utils.checkNotNull(label, "label");
+            this.label = Optional.ofNullable(label);
+            return this;
+        }
+
+        public Builder label(Optional<String> label) {
+            Utils.checkNotNull(label, "label");
             this.label = label;
             return this;
         }
 
 
-        public Builder value(Value value) {
+        public Builder value(SimpleFormFieldOptionValue value) {
             Utils.checkNotNull(value, "value");
             this.value = Optional.ofNullable(value);
             return this;
         }
 
-        public Builder value(Optional<? extends Value> value) {
+        public Builder value(Optional<? extends SimpleFormFieldOptionValue> value) {
             Utils.checkNotNull(value, "value");
             this.value = value;
             return this;
@@ -159,6 +179,12 @@ public class SimpleFormFieldOption implements FormFieldOption {
 
 
         public Builder optionType(OptionType optionType) {
+            Utils.checkNotNull(optionType, "optionType");
+            this.optionType = Optional.ofNullable(optionType);
+            return this;
+        }
+
+        public Builder optionType(Optional<? extends OptionType> optionType) {
             Utils.checkNotNull(optionType, "optionType");
             this.optionType = optionType;
             return this;

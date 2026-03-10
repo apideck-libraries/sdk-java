@@ -25,8 +25,9 @@ public class Consumer {
      * 
      * <p>If the consumer doesn't exist yet, Vault will upsert a consumer based on your ID.
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("consumer_id")
-    private String consumerId;
+    private Optional<String> consumerId;
 
     /**
      * ID of your Apideck Application
@@ -80,7 +81,7 @@ public class Consumer {
 
     @JsonCreator
     public Consumer(
-            @JsonProperty("consumer_id") String consumerId,
+            @JsonProperty("consumer_id") Optional<String> consumerId,
             @JsonProperty("application_id") Optional<String> applicationId,
             @JsonProperty("metadata") Optional<? extends ConsumerMetadata> metadata,
             @JsonProperty("connections") Optional<? extends List<ConsumerConnection>> connections,
@@ -112,9 +113,8 @@ public class Consumer {
         this.requestCountUpdated = requestCountUpdated;
     }
     
-    public Consumer(
-            String consumerId) {
-        this(consumerId, Optional.empty(), Optional.empty(),
+    public Consumer() {
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty());
@@ -128,7 +128,7 @@ public class Consumer {
      * <p>If the consumer doesn't exist yet, Vault will upsert a consumer based on your ID.
      */
     @JsonIgnore
-    public String consumerId() {
+    public Optional<String> consumerId() {
         return consumerId;
     }
 
@@ -201,6 +201,20 @@ public class Consumer {
      * <p>If the consumer doesn't exist yet, Vault will upsert a consumer based on your ID.
      */
     public Consumer withConsumerId(String consumerId) {
+        Utils.checkNotNull(consumerId, "consumerId");
+        this.consumerId = Optional.ofNullable(consumerId);
+        return this;
+    }
+
+
+    /**
+     * Unique consumer identifier. You can freely choose a consumer ID yourself. Most of the time, this is
+     * an ID of your internal data model that represents a user or account in your system (for example
+     * account:12345).
+     * 
+     * <p>If the consumer doesn't exist yet, Vault will upsert a consumer based on your ID.
+     */
+    public Consumer withConsumerId(Optional<String> consumerId) {
         Utils.checkNotNull(consumerId, "consumerId");
         this.consumerId = consumerId;
         return this;
@@ -386,7 +400,7 @@ public class Consumer {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String consumerId;
+        private Optional<String> consumerId = Optional.empty();
 
         private Optional<String> applicationId = Optional.empty();
 
@@ -419,6 +433,19 @@ public class Consumer {
          * <p>If the consumer doesn't exist yet, Vault will upsert a consumer based on your ID.
          */
         public Builder consumerId(String consumerId) {
+            Utils.checkNotNull(consumerId, "consumerId");
+            this.consumerId = Optional.ofNullable(consumerId);
+            return this;
+        }
+
+        /**
+         * Unique consumer identifier. You can freely choose a consumer ID yourself. Most of the time, this is
+         * an ID of your internal data model that represents a user or account in your system (for example
+         * account:12345).
+         * 
+         * <p>If the consumer doesn't exist yet, Vault will upsert a consumer based on your ID.
+         */
+        public Builder consumerId(Optional<String> consumerId) {
             Utils.checkNotNull(consumerId, "consumerId");
             this.consumerId = consumerId;
             return this;

@@ -2,6 +2,17 @@
 
 The type of request
 
+## Example Usage
+
+```java
+import com.apideck.unify.models.components.RequestType;
+
+RequestType value = RequestType.VACATION;
+
+// Open enum: use .of() to create instances from custom string values
+RequestType custom = RequestType.of("custom_value");
+```
+
 
 ## Values
 

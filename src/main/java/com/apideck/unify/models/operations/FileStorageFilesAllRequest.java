@@ -3,8 +3,6 @@
  */
 package com.apideck.unify.models.operations;
 
-import com.apideck.unify.models.components.FilesFilter;
-import com.apideck.unify.models.components.FilesSort;
 import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
@@ -65,13 +63,13 @@ public class FileStorageFilesAllRequest {
      * Apply filters
      */
     @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=filter")
-    private Optional<? extends FilesFilter> filter;
+    private Optional<? extends Map<String, Object>> filter;
 
     /**
      * Apply sorting
      */
     @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=sort")
-    private Optional<? extends FilesSort> sort;
+    private Optional<? extends Map<String, Object>> sort;
 
     /**
      * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie:
@@ -102,8 +100,8 @@ public class FileStorageFilesAllRequest {
             Optional<String> serviceId,
             JsonNullable<String> cursor,
             Optional<Long> limit,
-            Optional<? extends FilesFilter> filter,
-            Optional<? extends FilesSort> sort,
+            Optional<? extends Map<String, Object>> filter,
+            Optional<? extends Map<String, Object>> sort,
             Optional<? extends Map<String, Object>> passThrough,
             JsonNullable<String> fields) {
         Utils.checkNotNull(raw, "raw");
@@ -190,8 +188,8 @@ public class FileStorageFilesAllRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<FilesFilter> filter() {
-        return (Optional<FilesFilter>) filter;
+    public Optional<Map<String, Object>> filter() {
+        return (Optional<Map<String, Object>>) filter;
     }
 
     /**
@@ -199,8 +197,8 @@ public class FileStorageFilesAllRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<FilesSort> sort() {
-        return (Optional<FilesSort>) sort;
+    public Optional<Map<String, Object>> sort() {
+        return (Optional<Map<String, Object>>) sort;
     }
 
     /**
@@ -354,7 +352,7 @@ public class FileStorageFilesAllRequest {
     /**
      * Apply filters
      */
-    public FileStorageFilesAllRequest withFilter(FilesFilter filter) {
+    public FileStorageFilesAllRequest withFilter(Map<String, Object> filter) {
         Utils.checkNotNull(filter, "filter");
         this.filter = Optional.ofNullable(filter);
         return this;
@@ -364,7 +362,7 @@ public class FileStorageFilesAllRequest {
     /**
      * Apply filters
      */
-    public FileStorageFilesAllRequest withFilter(Optional<? extends FilesFilter> filter) {
+    public FileStorageFilesAllRequest withFilter(Optional<? extends Map<String, Object>> filter) {
         Utils.checkNotNull(filter, "filter");
         this.filter = filter;
         return this;
@@ -373,7 +371,7 @@ public class FileStorageFilesAllRequest {
     /**
      * Apply sorting
      */
-    public FileStorageFilesAllRequest withSort(FilesSort sort) {
+    public FileStorageFilesAllRequest withSort(Map<String, Object> sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = Optional.ofNullable(sort);
         return this;
@@ -383,7 +381,7 @@ public class FileStorageFilesAllRequest {
     /**
      * Apply sorting
      */
-    public FileStorageFilesAllRequest withSort(Optional<? extends FilesSort> sort) {
+    public FileStorageFilesAllRequest withSort(Optional<? extends Map<String, Object>> sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = sort;
         return this;
@@ -505,9 +503,9 @@ public class FileStorageFilesAllRequest {
 
         private Optional<Long> limit;
 
-        private Optional<? extends FilesFilter> filter = Optional.empty();
+        private Optional<? extends Map<String, Object>> filter = Optional.empty();
 
-        private Optional<? extends FilesSort> sort = Optional.empty();
+        private Optional<? extends Map<String, Object>> sort = Optional.empty();
 
         private Optional<? extends Map<String, Object>> passThrough = Optional.empty();
 
@@ -639,7 +637,7 @@ public class FileStorageFilesAllRequest {
         /**
          * Apply filters
          */
-        public Builder filter(FilesFilter filter) {
+        public Builder filter(Map<String, Object> filter) {
             Utils.checkNotNull(filter, "filter");
             this.filter = Optional.ofNullable(filter);
             return this;
@@ -648,7 +646,7 @@ public class FileStorageFilesAllRequest {
         /**
          * Apply filters
          */
-        public Builder filter(Optional<? extends FilesFilter> filter) {
+        public Builder filter(Optional<? extends Map<String, Object>> filter) {
             Utils.checkNotNull(filter, "filter");
             this.filter = filter;
             return this;
@@ -658,7 +656,7 @@ public class FileStorageFilesAllRequest {
         /**
          * Apply sorting
          */
-        public Builder sort(FilesSort sort) {
+        public Builder sort(Map<String, Object> sort) {
             Utils.checkNotNull(sort, "sort");
             this.sort = Optional.ofNullable(sort);
             return this;
@@ -667,7 +665,7 @@ public class FileStorageFilesAllRequest {
         /**
          * Apply sorting
          */
-        public Builder sort(Optional<? extends FilesSort> sort) {
+        public Builder sort(Optional<? extends Map<String, Object>> sort) {
             Utils.checkNotNull(sort, "sort");
             this.sort = sort;
             return this;

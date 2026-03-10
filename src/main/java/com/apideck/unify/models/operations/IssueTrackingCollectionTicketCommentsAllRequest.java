@@ -3,7 +3,6 @@
  */
 package com.apideck.unify.models.operations;
 
-import com.apideck.unify.models.components.CommentsSort;
 import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
@@ -76,7 +75,7 @@ public class IssueTrackingCollectionTicketCommentsAllRequest {
      * Apply sorting
      */
     @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=sort")
-    private Optional<? extends CommentsSort> sort;
+    private Optional<? extends Map<String, Object>> sort;
 
     /**
      * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie:
@@ -109,7 +108,7 @@ public class IssueTrackingCollectionTicketCommentsAllRequest {
             Optional<Long> limit,
             String collectionId,
             String ticketId,
-            Optional<? extends CommentsSort> sort,
+            Optional<? extends Map<String, Object>> sort,
             Optional<? extends Map<String, Object>> passThrough,
             JsonNullable<String> fields) {
         Utils.checkNotNull(raw, "raw");
@@ -216,8 +215,8 @@ public class IssueTrackingCollectionTicketCommentsAllRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CommentsSort> sort() {
-        return (Optional<CommentsSort>) sort;
+    public Optional<Map<String, Object>> sort() {
+        return (Optional<Map<String, Object>>) sort;
     }
 
     /**
@@ -389,7 +388,7 @@ public class IssueTrackingCollectionTicketCommentsAllRequest {
     /**
      * Apply sorting
      */
-    public IssueTrackingCollectionTicketCommentsAllRequest withSort(CommentsSort sort) {
+    public IssueTrackingCollectionTicketCommentsAllRequest withSort(Map<String, Object> sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = Optional.ofNullable(sort);
         return this;
@@ -399,7 +398,7 @@ public class IssueTrackingCollectionTicketCommentsAllRequest {
     /**
      * Apply sorting
      */
-    public IssueTrackingCollectionTicketCommentsAllRequest withSort(Optional<? extends CommentsSort> sort) {
+    public IssueTrackingCollectionTicketCommentsAllRequest withSort(Optional<? extends Map<String, Object>> sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = sort;
         return this;
@@ -527,7 +526,7 @@ public class IssueTrackingCollectionTicketCommentsAllRequest {
 
         private String ticketId;
 
-        private Optional<? extends CommentsSort> sort = Optional.empty();
+        private Optional<? extends Map<String, Object>> sort = Optional.empty();
 
         private Optional<? extends Map<String, Object>> passThrough = Optional.empty();
 
@@ -679,7 +678,7 @@ public class IssueTrackingCollectionTicketCommentsAllRequest {
         /**
          * Apply sorting
          */
-        public Builder sort(CommentsSort sort) {
+        public Builder sort(Map<String, Object> sort) {
             Utils.checkNotNull(sort, "sort");
             this.sort = Optional.ofNullable(sort);
             return this;
@@ -688,7 +687,7 @@ public class IssueTrackingCollectionTicketCommentsAllRequest {
         /**
          * Apply sorting
          */
-        public Builder sort(Optional<? extends CommentsSort> sort) {
+        public Builder sort(Optional<? extends Map<String, Object>> sort) {
             Utils.checkNotNull(sort, "sort");
             this.sort = sort;
             return this;

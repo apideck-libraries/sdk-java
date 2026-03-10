@@ -4,14 +4,19 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Long;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -57,6 +62,10 @@ public class GetBankAccountResponse {
     @JsonProperty("data")
     private AccountingBankAccount data;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public GetBankAccountResponse(
             @JsonProperty("status_code") long statusCode,
@@ -77,6 +86,7 @@ public class GetBankAccountResponse {
         this.resource = resource;
         this.operation = operation;
         this.data = data;
+        this.additionalProperties = new HashMap<>();
     }
     
     public GetBankAccountResponse(
@@ -130,6 +140,11 @@ public class GetBankAccountResponse {
     @JsonIgnore
     public AccountingBankAccount data() {
         return data;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
     }
 
     public static Builder builder() {
@@ -218,6 +233,19 @@ public class GetBankAccountResponse {
         return this;
     }
 
+    @JsonAnySetter
+    public GetBankAccountResponse withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public GetBankAccountResponse withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -233,14 +261,16 @@ public class GetBankAccountResponse {
             Utils.enhancedDeepEquals(this.service, other.service) &&
             Utils.enhancedDeepEquals(this.resource, other.resource) &&
             Utils.enhancedDeepEquals(this.operation, other.operation) &&
-            Utils.enhancedDeepEquals(this.data, other.data);
+            Utils.enhancedDeepEquals(this.data, other.data) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             statusCode, status, service,
-            resource, operation, data);
+            resource, operation, data,
+            additionalProperties);
     }
     
     @Override
@@ -251,7 +281,8 @@ public class GetBankAccountResponse {
                 "service", service,
                 "resource", resource,
                 "operation", operation,
-                "data", data);
+                "data", data,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -268,6 +299,8 @@ public class GetBankAccountResponse {
         private Optional<String> operation = Optional.empty();
 
         private AccountingBankAccount data;
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -357,11 +390,28 @@ public class GetBankAccountResponse {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public GetBankAccountResponse build() {
 
             return new GetBankAccountResponse(
                 statusCode, status, service,
-                resource, operation, data);
+                resource, operation, data)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

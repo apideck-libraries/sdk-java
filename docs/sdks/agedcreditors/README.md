@@ -17,7 +17,6 @@ Get Aged Creditors
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.AgedReportFilter;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingAgedCreditorsOneRequest;
 import com.apideck.unify.models.operations.AccountingAgedCreditorsOneResponse;
@@ -36,13 +35,13 @@ public class Application {
 
         AccountingAgedCreditorsOneRequest req = AccountingAgedCreditorsOneRequest.builder()
                 .serviceId("salesforce")
-                .filter(AgedReportFilter.builder()
-                    .customerId("123abc")
-                    .supplierId("123abc")
-                    .reportAsOfDate("2024-01-01")
-                    .periodCount(3L)
-                    .periodLength(30L)
-                    .build())
+                .companyId("12345")
+                .filter(Map.ofEntries(
+                    Map.entry("customer_id", "123abc"),
+                    Map.entry("supplier_id", "123abc"),
+                    Map.entry("report_as_of_date", "2024-01-01"),
+                    Map.entry("period_count", 3L),
+                    Map.entry("period_length", 30L)))
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
                 .fields("id,updated_at")
@@ -53,7 +52,7 @@ public class Application {
                 .call();
 
         if (res.getAgedCreditorsResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getAgedCreditorsResponse().get());
         }
     }
 }

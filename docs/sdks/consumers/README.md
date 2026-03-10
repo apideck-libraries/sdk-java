@@ -49,7 +49,7 @@ public class Application {
                 .call();
 
         if (res.createConsumerResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createConsumerResponse().get());
         }
     }
 }
@@ -167,7 +167,7 @@ public class Application {
                 .call();
 
         if (res.getConsumerResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getConsumerResponse().get());
         }
     }
 }
@@ -234,7 +234,7 @@ public class Application {
                 .call();
 
         if (res.updateConsumerResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateConsumerResponse().get());
         }
     }
 }
@@ -292,7 +292,7 @@ public class Application {
                 .call();
 
         if (res.deleteConsumerResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteConsumerResponse().get());
         }
     }
 }

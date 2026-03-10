@@ -18,11 +18,10 @@ List Connectors
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.ConnectorsFilter;
-import com.apideck.unify.models.components.UnifiedApiId;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.ConnectorConnectorsAllResponse;
 import java.lang.Exception;
+import java.util.Map;
 
 public class Application {
 
@@ -36,9 +35,8 @@ public class Application {
 
         sdk.connector().connectors().list()
                 .limit(20L)
-                .filter(ConnectorsFilter.builder()
-                    .unifiedApi(UnifiedApiId.FILE_STORAGE)
-                    .build())
+                .filter(Map.ofEntries(
+                    Map.entry("unified_api", "file-storage")))
                 .callAsStream()
                 .forEach((ConnectorConnectorsAllResponse item) -> {
                    // handle page
@@ -55,7 +53,7 @@ public class Application {
 | `appId`                                                                                                          | *Optional\<String>*                                                                                              | :heavy_minus_sign:                                                                                               | The ID of your Unify application                                                                                 | dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX                                                                          |
 | `cursor`                                                                                                         | *JsonNullable\<String>*                                                                                          | :heavy_minus_sign:                                                                                               | Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response. |                                                                                                                  |
 | `limit`                                                                                                          | *Optional\<Long>*                                                                                                | :heavy_minus_sign:                                                                                               | Number of results to return. Minimum 1, Maximum 200, Default 20                                                  |                                                                                                                  |
-| `filter`                                                                                                         | [Optional\<ConnectorsFilter>](../../models/components/ConnectorsFilter.md)                                       | :heavy_minus_sign:                                                                                               | Apply filters                                                                                                    | {<br/>"unified_api": "file-storage"<br/>}                                                                        |
+| `filter`                                                                                                         | Map\<String, *Object*>                                                                                           | :heavy_minus_sign:                                                                                               | Apply filters                                                                                                    | {<br/>"unified_api": "file-storage"<br/>}                                                                        |
 
 ### Response
 
@@ -99,7 +97,7 @@ public class Application {
                 .call();
 
         if (res.getConnectorResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getConnectorResponse().get());
         }
     }
 }

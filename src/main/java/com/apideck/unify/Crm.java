@@ -10,7 +10,7 @@ public class Crm {
     private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncCrm asyncSDK;
-    private final Companies companies;
+    private final ApideckCompanies companies;
     private final Contacts contacts;
     private final Opportunities opportunities;
     private final Leads leads;
@@ -23,7 +23,7 @@ public class Crm {
 
     Crm(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
-        this.companies = new Companies(this.sdkConfiguration);
+        this.companies = new ApideckCompanies(this.sdkConfiguration);
         this.contacts = new Contacts(this.sdkConfiguration);
         this.opportunities = new Opportunities(this.sdkConfiguration);
         this.leads = new Leads(this.sdkConfiguration);
@@ -36,7 +36,7 @@ public class Crm {
         this.asyncSDK = new AsyncCrm(this, sdkConfiguration);
     }
 
-    public final Companies companies() {
+    public final ApideckCompanies companies() {
         return companies;
     }
 

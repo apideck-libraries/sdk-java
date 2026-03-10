@@ -21,7 +21,7 @@ import java.util.Optional;
 /**
  * Classification
  * 
- * <p>Filter by account classification.
+ * <p>The classification of account.
  */
 public class Classification {
 

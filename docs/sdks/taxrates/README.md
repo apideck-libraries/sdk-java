@@ -22,7 +22,6 @@ List Tax Rates. Note: Not all connectors return the actual rate/percentage value
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.TaxRatesFilter;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingTaxRatesAllRequest;
 import com.apideck.unify.models.operations.AccountingTaxRatesAllResponse;
@@ -41,13 +40,13 @@ public class Application {
 
         AccountingTaxRatesAllRequest req = AccountingTaxRatesAllRequest.builder()
                 .serviceId("salesforce")
-                .filter(TaxRatesFilter.builder()
-                    .assets(true)
-                    .equity(true)
-                    .expenses(true)
-                    .liabilities(true)
-                    .revenue(true)
-                    .build())
+                .companyId("12345")
+                .filter(Map.ofEntries(
+                    Map.entry("assets", true),
+                    Map.entry("equity", true),
+                    Map.entry("expenses", true),
+                    Map.entry("liabilities", true),
+                    Map.entry("revenue", true)))
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
                 .fields("id,updated_at")
@@ -168,14 +167,15 @@ public class Application {
                                     .build()))
                             .build()))
                     .customFields(List.of(
-                        CustomField.of(CustomField1.builder()
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build())))
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build()))
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingTaxRatesAddResponse res = sdk.accounting().taxRates().create()
@@ -183,7 +183,7 @@ public class Application {
                 .call();
 
         if (res.createTaxRateResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createTaxRateResponse().get());
         }
     }
 }
@@ -240,6 +240,7 @@ public class Application {
         AccountingTaxRatesOneRequest req = AccountingTaxRatesOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .fields("id,updated_at")
                 .build();
 
@@ -248,7 +249,7 @@ public class Application {
                 .call();
 
         if (res.getTaxRateResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getTaxRateResponse().get());
         }
     }
 }
@@ -385,20 +386,21 @@ public class Application {
                                     .build()))
                             .build()))
                     .customFields(List.of(
-                        CustomField.of(CustomField1.builder()
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build()),
-                        CustomField.of(CustomField1.builder()
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build(),
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build())))
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build()))
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingTaxRatesUpdateResponse res = sdk.accounting().taxRates().update()
@@ -406,7 +408,7 @@ public class Application {
                 .call();
 
         if (res.updateTaxRateResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateTaxRateResponse().get());
         }
     }
 }
@@ -462,6 +464,7 @@ public class Application {
         AccountingTaxRatesDeleteRequest req = AccountingTaxRatesDeleteRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingTaxRatesDeleteResponse res = sdk.accounting().taxRates().delete()
@@ -469,7 +472,7 @@ public class Application {
                 .call();
 
         if (res.deleteTaxRateResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteTaxRateResponse().get());
         }
     }
 }

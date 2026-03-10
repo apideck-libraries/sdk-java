@@ -4,15 +4,20 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -28,9 +33,9 @@ public class SharedLinkInput {
     /**
      * The ID of the file or folder to link.
      */
-    @JsonInclude(Include.ALWAYS)
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("target_id")
-    private Optional<String> targetId;
+    private JsonNullable<String> targetId;
 
     /**
      * The scope of the shared link.
@@ -54,10 +59,14 @@ public class SharedLinkInput {
     @JsonProperty("pass_through")
     private Optional<? extends List<PassThroughBody>> passThrough;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public SharedLinkInput(
             @JsonProperty("download_url") JsonNullable<String> downloadUrl,
-            @JsonProperty("target_id") Optional<String> targetId,
+            @JsonProperty("target_id") JsonNullable<String> targetId,
             @JsonProperty("scope") JsonNullable<? extends Scope> scope,
             @JsonProperty("password") JsonNullable<String> password,
             @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
@@ -71,10 +80,11 @@ public class SharedLinkInput {
         this.scope = scope;
         this.password = password;
         this.passThrough = passThrough;
+        this.additionalProperties = new HashMap<>();
     }
     
     public SharedLinkInput() {
-        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), Optional.empty());
     }
 
@@ -90,7 +100,7 @@ public class SharedLinkInput {
      * The ID of the file or folder to link.
      */
     @JsonIgnore
-    public Optional<String> targetId() {
+    public JsonNullable<String> targetId() {
         return targetId;
     }
 
@@ -121,6 +131,11 @@ public class SharedLinkInput {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -149,15 +164,14 @@ public class SharedLinkInput {
      */
     public SharedLinkInput withTargetId(String targetId) {
         Utils.checkNotNull(targetId, "targetId");
-        this.targetId = Optional.ofNullable(targetId);
+        this.targetId = JsonNullable.of(targetId);
         return this;
     }
-
 
     /**
      * The ID of the file or folder to link.
      */
-    public SharedLinkInput withTargetId(Optional<String> targetId) {
+    public SharedLinkInput withTargetId(JsonNullable<String> targetId) {
         Utils.checkNotNull(targetId, "targetId");
         this.targetId = targetId;
         return this;
@@ -220,6 +234,19 @@ public class SharedLinkInput {
         return this;
     }
 
+    @JsonAnySetter
+    public SharedLinkInput withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public SharedLinkInput withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -234,14 +261,15 @@ public class SharedLinkInput {
             Utils.enhancedDeepEquals(this.targetId, other.targetId) &&
             Utils.enhancedDeepEquals(this.scope, other.scope) &&
             Utils.enhancedDeepEquals(this.password, other.password) &&
-            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             downloadUrl, targetId, scope,
-            password, passThrough);
+            password, passThrough, additionalProperties);
     }
     
     @Override
@@ -251,7 +279,8 @@ public class SharedLinkInput {
                 "targetId", targetId,
                 "scope", scope,
                 "password", password,
-                "passThrough", passThrough);
+                "passThrough", passThrough,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -259,13 +288,15 @@ public class SharedLinkInput {
 
         private JsonNullable<String> downloadUrl = JsonNullable.undefined();
 
-        private Optional<String> targetId = Optional.empty();
+        private JsonNullable<String> targetId = JsonNullable.undefined();
 
         private JsonNullable<? extends Scope> scope = JsonNullable.undefined();
 
         private JsonNullable<String> password = JsonNullable.undefined();
 
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -296,14 +327,14 @@ public class SharedLinkInput {
          */
         public Builder targetId(String targetId) {
             Utils.checkNotNull(targetId, "targetId");
-            this.targetId = Optional.ofNullable(targetId);
+            this.targetId = JsonNullable.of(targetId);
             return this;
         }
 
         /**
          * The ID of the file or folder to link.
          */
-        public Builder targetId(Optional<String> targetId) {
+        public Builder targetId(JsonNullable<String> targetId) {
             Utils.checkNotNull(targetId, "targetId");
             this.targetId = targetId;
             return this;
@@ -368,11 +399,28 @@ public class SharedLinkInput {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public SharedLinkInput build() {
 
             return new SharedLinkInput(
                 downloadUrl, targetId, scope,
-                password, passThrough);
+                password, passThrough)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

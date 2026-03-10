@@ -21,7 +21,6 @@ List Bank Accounts
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.*;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingBankAccountsAllRequest;
 import com.apideck.unify.models.operations.AccountingBankAccountsAllResponse;
@@ -40,13 +39,14 @@ public class Application {
 
         AccountingBankAccountsAllRequest req = AccountingBankAccountsAllRequest.builder()
                 .serviceId("salesforce")
-                .filter(BankAccountsFilter.builder()
-                    .name("Main Operating")
-                    .accountType(BankAccountsFilterAccountType.CHECKING)
-                    .status(BankAccountsFilterStatus.ACTIVE)
-                    .build())
-                .sort(BankAccountsSort.builder()
-                    .build())
+                .companyId("12345")
+                .filter(Map.ofEntries(
+                    Map.entry("name", "Main Operating"),
+                    Map.entry("account_type", "checking"),
+                    Map.entry("status", "active")))
+                .sort(Map.ofEntries(
+                    Map.entry("by", "updated_at"),
+                    Map.entry("direction", "asc")))
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
                 .fields("id,updated_at")
@@ -141,12 +141,12 @@ public class Application {
                     .status(AccountingBankAccountStatus.ACTIVE)
                     .description("Primary operating account for daily transactions")
                     .customFields(List.of(
-                        CustomField.of(CustomField1.builder()
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build())))
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build()))
                     .build())
                 .serviceId("salesforce")
                 .build();
@@ -156,7 +156,7 @@ public class Application {
                 .call();
 
         if (res.createBankAccountResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createBankAccountResponse().get());
         }
     }
 }
@@ -194,12 +194,11 @@ Get Bank Account
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.BankAccountFilter;
-import com.apideck.unify.models.components.BankAccountFilterAccountType;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingBankAccountsOneRequest;
 import com.apideck.unify.models.operations.AccountingBankAccountsOneResponse;
 import java.lang.Exception;
+import java.util.Map;
 
 public class Application {
 
@@ -213,10 +212,10 @@ public class Application {
 
         AccountingBankAccountsOneRequest req = AccountingBankAccountsOneRequest.builder()
                 .id("<id>")
-                .filter(BankAccountFilter.builder()
-                    .accountType(BankAccountFilterAccountType.CHECKING)
-                    .build())
+                .filter(Map.ofEntries(
+                    Map.entry("account_type", "checking")))
                 .serviceId("salesforce")
+                .companyId("12345")
                 .fields("id,updated_at")
                 .build();
 
@@ -225,7 +224,7 @@ public class Application {
                 .call();
 
         if (res.getBankAccountResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getBankAccountResponse().get());
         }
     }
 }
@@ -310,12 +309,12 @@ public class Application {
                     .status(AccountingBankAccountStatus.ACTIVE)
                     .description("Primary operating account for daily transactions")
                     .customFields(List.of(
-                        CustomField.of(CustomField1.builder()
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build())))
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build()))
                     .build())
                 .serviceId("salesforce")
                 .build();
@@ -325,7 +324,7 @@ public class Application {
                 .call();
 
         if (res.updateBankAccountResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateBankAccountResponse().get());
         }
     }
 }
@@ -388,7 +387,7 @@ public class Application {
                 .call();
 
         if (res.deleteBankAccountResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteBankAccountResponse().get());
         }
     }
 }

@@ -21,7 +21,6 @@ List Applicants
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.ApplicantsFilter;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AtsApplicantsAllRequest;
 import com.apideck.unify.models.operations.AtsApplicantsAllResponse;
@@ -40,9 +39,8 @@ public class Application {
 
         AtsApplicantsAllRequest req = AtsApplicantsAllRequest.builder()
                 .serviceId("salesforce")
-                .filter(ApplicantsFilter.builder()
-                    .jobId("1234")
-                    .build())
+                .filter(Map.ofEntries(
+                    Map.entry("job_id", "1234")))
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
                 .fields("id,updated_at")
@@ -124,29 +122,29 @@ public class Application {
                     .title("CEO")
                     .emails(List.of(
                         Email.builder()
-                            .email("elon@musk.com")
                             .id("123")
+                            .email("elon@musk.com")
                             .type(EmailType.PRIMARY)
                             .build()))
                     .customFields(List.of(
-                        CustomField.of(CustomField1.builder()
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build()),
-                        CustomField.of(CustomField1.builder()
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build(),
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build())))
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build()))
                     .phoneNumbers(List.of(
                         PhoneNumber.builder()
-                            .number("111-111-1111")
                             .id("12345")
                             .countryCode("1")
                             .areaCode("323")
+                            .number("111-111-1111")
                             .extension("105")
                             .type(PhoneNumberType.PRIMARY)
                             .build()))
@@ -306,7 +304,7 @@ public class Application {
                 .call();
 
         if (res.createApplicantResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createApplicantResponse().get());
         }
     }
 }
@@ -370,7 +368,7 @@ public class Application {
                 .call();
 
         if (res.getApplicantResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getApplicantResponse().get());
         }
     }
 }
@@ -442,41 +440,41 @@ public class Application {
                     .title("CEO")
                     .emails(List.of(
                         Email.builder()
-                            .email("elon@musk.com")
                             .id("123")
+                            .email("elon@musk.com")
                             .type(EmailType.PRIMARY)
                             .build(),
                         Email.builder()
-                            .email("elon@musk.com")
                             .id("123")
+                            .email("elon@musk.com")
                             .type(EmailType.PRIMARY)
                             .build(),
                         Email.builder()
-                            .email("elon@musk.com")
                             .id("123")
+                            .email("elon@musk.com")
                             .type(EmailType.PRIMARY)
                             .build()))
                     .customFields(List.of(
-                        CustomField.of(CustomField1.builder()
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build())))
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build()))
                     .phoneNumbers(List.of(
                         PhoneNumber.builder()
-                            .number("111-111-1111")
                             .id("12345")
                             .countryCode("1")
                             .areaCode("323")
+                            .number("111-111-1111")
                             .extension("105")
                             .type(PhoneNumberType.PRIMARY)
                             .build(),
                         PhoneNumber.builder()
-                            .number("111-111-1111")
                             .id("12345")
                             .countryCode("1")
                             .areaCode("323")
+                            .number("111-111-1111")
                             .extension("105")
                             .type(PhoneNumberType.PRIMARY)
                             .build()))
@@ -640,7 +638,7 @@ public class Application {
                 .call();
 
         if (res.updateApplicantResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateApplicantResponse().get());
         }
     }
 }
@@ -703,7 +701,7 @@ public class Application {
                 .call();
 
         if (res.deleteApplicantResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteApplicantResponse().get());
         }
     }
 }

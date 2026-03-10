@@ -4,6 +4,8 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -11,11 +13,14 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Boolean;
 import java.lang.Double;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -83,6 +88,13 @@ public class QuoteInput {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("terms")
     private JsonNullable<String> terms;
+
+    /**
+     * The ID of the payment terms
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("terms_id")
+    private JsonNullable<String> termsId;
 
     /**
      * Optional reference identifier for the transaction.
@@ -226,6 +238,10 @@ public class QuoteInput {
     @JsonProperty("pass_through")
     private Optional<? extends List<PassThroughBody>> passThrough;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public QuoteInput(
             @JsonProperty("number") JsonNullable<String> number,
@@ -237,6 +253,7 @@ public class QuoteInput {
             @JsonProperty("quote_date") JsonNullable<LocalDate> quoteDate,
             @JsonProperty("expiry_date") JsonNullable<LocalDate> expiryDate,
             @JsonProperty("terms") JsonNullable<String> terms,
+            @JsonProperty("terms_id") JsonNullable<String> termsId,
             @JsonProperty("reference") JsonNullable<String> reference,
             @JsonProperty("status") JsonNullable<? extends QuoteStatus> status,
             @JsonProperty("currency") JsonNullable<? extends Currency> currency,
@@ -267,6 +284,7 @@ public class QuoteInput {
         Utils.checkNotNull(quoteDate, "quoteDate");
         Utils.checkNotNull(expiryDate, "expiryDate");
         Utils.checkNotNull(terms, "terms");
+        Utils.checkNotNull(termsId, "termsId");
         Utils.checkNotNull(reference, "reference");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(currency, "currency");
@@ -297,6 +315,7 @@ public class QuoteInput {
         this.quoteDate = quoteDate;
         this.expiryDate = expiryDate;
         this.terms = terms;
+        this.termsId = termsId;
         this.reference = reference;
         this.status = status;
         this.currency = currency;
@@ -318,6 +337,7 @@ public class QuoteInput {
         this.customFields = customFields;
         this.rowVersion = rowVersion;
         this.passThrough = passThrough;
+        this.additionalProperties = new HashMap<>();
     }
     
     public QuoteInput() {
@@ -328,9 +348,10 @@ public class QuoteInput {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), Optional.empty());
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -404,6 +425,14 @@ public class QuoteInput {
     @JsonIgnore
     public JsonNullable<String> terms() {
         return terms;
+    }
+
+    /**
+     * The ID of the payment terms
+     */
+    @JsonIgnore
+    public JsonNullable<String> termsId() {
+        return termsId;
     }
 
     /**
@@ -573,6 +602,11 @@ public class QuoteInput {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -738,6 +772,24 @@ public class QuoteInput {
     public QuoteInput withTerms(JsonNullable<String> terms) {
         Utils.checkNotNull(terms, "terms");
         this.terms = terms;
+        return this;
+    }
+
+    /**
+     * The ID of the payment terms
+     */
+    public QuoteInput withTermsId(String termsId) {
+        Utils.checkNotNull(termsId, "termsId");
+        this.termsId = JsonNullable.of(termsId);
+        return this;
+    }
+
+    /**
+     * The ID of the payment terms
+     */
+    public QuoteInput withTermsId(JsonNullable<String> termsId) {
+        Utils.checkNotNull(termsId, "termsId");
+        this.termsId = termsId;
         return this;
     }
 
@@ -1106,6 +1158,19 @@ public class QuoteInput {
         return this;
     }
 
+    @JsonAnySetter
+    public QuoteInput withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public QuoteInput withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -1125,6 +1190,7 @@ public class QuoteInput {
             Utils.enhancedDeepEquals(this.quoteDate, other.quoteDate) &&
             Utils.enhancedDeepEquals(this.expiryDate, other.expiryDate) &&
             Utils.enhancedDeepEquals(this.terms, other.terms) &&
+            Utils.enhancedDeepEquals(this.termsId, other.termsId) &&
             Utils.enhancedDeepEquals(this.reference, other.reference) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.currency, other.currency) &&
@@ -1145,7 +1211,8 @@ public class QuoteInput {
             Utils.enhancedDeepEquals(this.sourceDocumentUrl, other.sourceDocumentUrl) &&
             Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
             Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion) &&
-            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
@@ -1154,13 +1221,14 @@ public class QuoteInput {
             number, customer, salesOrderId,
             companyId, departmentId, projectId,
             quoteDate, expiryDate, terms,
-            reference, status, currency,
-            currencyRate, taxInclusive, subTotal,
-            totalTax, taxCode, discountPercentage,
-            discountAmount, total, customerMemo,
-            lineItems, billingAddress, shippingAddress,
-            trackingCategories, templateId, sourceDocumentUrl,
-            customFields, rowVersion, passThrough);
+            termsId, reference, status,
+            currency, currencyRate, taxInclusive,
+            subTotal, totalTax, taxCode,
+            discountPercentage, discountAmount, total,
+            customerMemo, lineItems, billingAddress,
+            shippingAddress, trackingCategories, templateId,
+            sourceDocumentUrl, customFields, rowVersion,
+            passThrough, additionalProperties);
     }
     
     @Override
@@ -1175,6 +1243,7 @@ public class QuoteInput {
                 "quoteDate", quoteDate,
                 "expiryDate", expiryDate,
                 "terms", terms,
+                "termsId", termsId,
                 "reference", reference,
                 "status", status,
                 "currency", currency,
@@ -1195,7 +1264,8 @@ public class QuoteInput {
                 "sourceDocumentUrl", sourceDocumentUrl,
                 "customFields", customFields,
                 "rowVersion", rowVersion,
-                "passThrough", passThrough);
+                "passThrough", passThrough,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -1218,6 +1288,8 @@ public class QuoteInput {
         private JsonNullable<LocalDate> expiryDate = JsonNullable.undefined();
 
         private JsonNullable<String> terms = JsonNullable.undefined();
+
+        private JsonNullable<String> termsId = JsonNullable.undefined();
 
         private JsonNullable<String> reference = JsonNullable.undefined();
 
@@ -1260,6 +1332,8 @@ public class QuoteInput {
         private JsonNullable<String> rowVersion = JsonNullable.undefined();
 
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -1433,6 +1507,25 @@ public class QuoteInput {
         public Builder terms(JsonNullable<String> terms) {
             Utils.checkNotNull(terms, "terms");
             this.terms = terms;
+            return this;
+        }
+
+
+        /**
+         * The ID of the payment terms
+         */
+        public Builder termsId(String termsId) {
+            Utils.checkNotNull(termsId, "termsId");
+            this.termsId = JsonNullable.of(termsId);
+            return this;
+        }
+
+        /**
+         * The ID of the payment terms
+         */
+        public Builder termsId(JsonNullable<String> termsId) {
+            Utils.checkNotNull(termsId, "termsId");
+            this.termsId = termsId;
             return this;
         }
 
@@ -1817,19 +1910,37 @@ public class QuoteInput {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public QuoteInput build() {
 
             return new QuoteInput(
                 number, customer, salesOrderId,
                 companyId, departmentId, projectId,
                 quoteDate, expiryDate, terms,
-                reference, status, currency,
-                currencyRate, taxInclusive, subTotal,
-                totalTax, taxCode, discountPercentage,
-                discountAmount, total, customerMemo,
-                lineItems, billingAddress, shippingAddress,
-                trackingCategories, templateId, sourceDocumentUrl,
-                customFields, rowVersion, passThrough);
+                termsId, reference, status,
+                currency, currencyRate, taxInclusive,
+                subTotal, totalTax, taxCode,
+                discountPercentage, discountAmount, total,
+                customerMemo, lineItems, billingAddress,
+                shippingAddress, trackingCategories, templateId,
+                sourceDocumentUrl, customFields, rowVersion,
+                passThrough)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

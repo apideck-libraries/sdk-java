@@ -4,6 +4,8 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -14,6 +16,7 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -29,14 +32,14 @@ public class Application {
     private Optional<String> id;
 
 
-    @JsonInclude(Include.ALWAYS)
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("applicant_id")
-    private Optional<String> applicantId;
+    private JsonNullable<String> applicantId;
 
 
-    @JsonInclude(Include.ALWAYS)
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("job_id")
-    private Optional<String> jobId;
+    private JsonNullable<String> jobId;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -91,11 +94,15 @@ public class Application {
     @JsonProperty("pass_through")
     private Optional<? extends List<PassThroughBody>> passThrough;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public Application(
             @JsonProperty("id") Optional<String> id,
-            @JsonProperty("applicant_id") Optional<String> applicantId,
-            @JsonProperty("job_id") Optional<String> jobId,
+            @JsonProperty("applicant_id") JsonNullable<String> applicantId,
+            @JsonProperty("job_id") JsonNullable<String> jobId,
             @JsonProperty("status") JsonNullable<? extends ApplicationStatus> status,
             @JsonProperty("stage") Optional<? extends Stage> stage,
             @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings,
@@ -126,10 +133,11 @@ public class Application {
         this.updatedAt = updatedAt;
         this.createdAt = createdAt;
         this.passThrough = passThrough;
+        this.additionalProperties = new HashMap<>();
     }
     
     public Application() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), Optional.empty());
@@ -144,12 +152,12 @@ public class Application {
     }
 
     @JsonIgnore
-    public Optional<String> applicantId() {
+    public JsonNullable<String> applicantId() {
         return applicantId;
     }
 
     @JsonIgnore
-    public Optional<String> jobId() {
+    public JsonNullable<String> jobId() {
         return jobId;
     }
 
@@ -216,6 +224,11 @@ public class Application {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -242,12 +255,11 @@ public class Application {
 
     public Application withApplicantId(String applicantId) {
         Utils.checkNotNull(applicantId, "applicantId");
-        this.applicantId = Optional.ofNullable(applicantId);
+        this.applicantId = JsonNullable.of(applicantId);
         return this;
     }
 
-
-    public Application withApplicantId(Optional<String> applicantId) {
+    public Application withApplicantId(JsonNullable<String> applicantId) {
         Utils.checkNotNull(applicantId, "applicantId");
         this.applicantId = applicantId;
         return this;
@@ -255,12 +267,11 @@ public class Application {
 
     public Application withJobId(String jobId) {
         Utils.checkNotNull(jobId, "jobId");
-        this.jobId = Optional.ofNullable(jobId);
+        this.jobId = JsonNullable.of(jobId);
         return this;
     }
 
-
-    public Application withJobId(Optional<String> jobId) {
+    public Application withJobId(JsonNullable<String> jobId) {
         Utils.checkNotNull(jobId, "jobId");
         this.jobId = jobId;
         return this;
@@ -402,6 +413,19 @@ public class Application {
         return this;
     }
 
+    @JsonAnySetter
+    public Application withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public Application withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -422,7 +446,8 @@ public class Application {
             Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
             Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
-            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
@@ -431,7 +456,7 @@ public class Application {
             id, applicantId, jobId,
             status, stage, customMappings,
             updatedBy, createdBy, updatedAt,
-            createdAt, passThrough);
+            createdAt, passThrough, additionalProperties);
     }
     
     @Override
@@ -447,7 +472,8 @@ public class Application {
                 "createdBy", createdBy,
                 "updatedAt", updatedAt,
                 "createdAt", createdAt,
-                "passThrough", passThrough);
+                "passThrough", passThrough,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -455,9 +481,9 @@ public class Application {
 
         private Optional<String> id = Optional.empty();
 
-        private Optional<String> applicantId = Optional.empty();
+        private JsonNullable<String> applicantId = JsonNullable.undefined();
 
-        private Optional<String> jobId = Optional.empty();
+        private JsonNullable<String> jobId = JsonNullable.undefined();
 
         private JsonNullable<? extends ApplicationStatus> status = JsonNullable.undefined();
 
@@ -474,6 +500,8 @@ public class Application {
         private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
 
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -501,11 +529,11 @@ public class Application {
 
         public Builder applicantId(String applicantId) {
             Utils.checkNotNull(applicantId, "applicantId");
-            this.applicantId = Optional.ofNullable(applicantId);
+            this.applicantId = JsonNullable.of(applicantId);
             return this;
         }
 
-        public Builder applicantId(Optional<String> applicantId) {
+        public Builder applicantId(JsonNullable<String> applicantId) {
             Utils.checkNotNull(applicantId, "applicantId");
             this.applicantId = applicantId;
             return this;
@@ -514,11 +542,11 @@ public class Application {
 
         public Builder jobId(String jobId) {
             Utils.checkNotNull(jobId, "jobId");
-            this.jobId = Optional.ofNullable(jobId);
+            this.jobId = JsonNullable.of(jobId);
             return this;
         }
 
-        public Builder jobId(Optional<String> jobId) {
+        public Builder jobId(JsonNullable<String> jobId) {
             Utils.checkNotNull(jobId, "jobId");
             this.jobId = jobId;
             return this;
@@ -666,13 +694,30 @@ public class Application {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public Application build() {
 
             return new Application(
                 id, applicantId, jobId,
                 status, stage, customMappings,
                 updatedBy, createdBy, updatedAt,
-                createdAt, passThrough);
+                createdAt, passThrough)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

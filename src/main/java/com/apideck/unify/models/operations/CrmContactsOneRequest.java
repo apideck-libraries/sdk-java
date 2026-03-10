@@ -3,7 +3,6 @@
  */
 package com.apideck.unify.models.operations;
 
-import com.apideck.unify.models.components.ContactsFilter;
 import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
@@ -11,9 +10,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import java.lang.Boolean;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -68,7 +69,7 @@ public class CrmContactsOneRequest {
      * Apply filters
      */
     @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=filter")
-    private Optional<? extends ContactsFilter> filter;
+    private Optional<? extends Map<String, Object>> filter;
 
     @JsonCreator
     public CrmContactsOneRequest(
@@ -78,7 +79,7 @@ public class CrmContactsOneRequest {
             Optional<String> serviceId,
             Optional<Boolean> raw,
             JsonNullable<String> fields,
-            Optional<? extends ContactsFilter> filter) {
+            Optional<? extends Map<String, Object>> filter) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
@@ -164,8 +165,8 @@ public class CrmContactsOneRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ContactsFilter> filter() {
-        return (Optional<ContactsFilter>) filter;
+    public Optional<Map<String, Object>> filter() {
+        return (Optional<Map<String, Object>>) filter;
     }
 
     public static Builder builder() {
@@ -297,7 +298,7 @@ public class CrmContactsOneRequest {
     /**
      * Apply filters
      */
-    public CrmContactsOneRequest withFilter(ContactsFilter filter) {
+    public CrmContactsOneRequest withFilter(Map<String, Object> filter) {
         Utils.checkNotNull(filter, "filter");
         this.filter = Optional.ofNullable(filter);
         return this;
@@ -307,7 +308,7 @@ public class CrmContactsOneRequest {
     /**
      * Apply filters
      */
-    public CrmContactsOneRequest withFilter(Optional<? extends ContactsFilter> filter) {
+    public CrmContactsOneRequest withFilter(Optional<? extends Map<String, Object>> filter) {
         Utils.checkNotNull(filter, "filter");
         this.filter = filter;
         return this;
@@ -367,7 +368,7 @@ public class CrmContactsOneRequest {
 
         private JsonNullable<String> fields = JsonNullable.undefined();
 
-        private Optional<? extends ContactsFilter> filter = Optional.empty();
+        private Optional<? extends Map<String, Object>> filter = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -500,7 +501,7 @@ public class CrmContactsOneRequest {
         /**
          * Apply filters
          */
-        public Builder filter(ContactsFilter filter) {
+        public Builder filter(Map<String, Object> filter) {
             Utils.checkNotNull(filter, "filter");
             this.filter = Optional.ofNullable(filter);
             return this;
@@ -509,7 +510,7 @@ public class CrmContactsOneRequest {
         /**
          * Apply filters
          */
-        public Builder filter(Optional<? extends ContactsFilter> filter) {
+        public Builder filter(Optional<? extends Map<String, Object>> filter) {
             Utils.checkNotNull(filter, "filter");
             this.filter = filter;
             return this;

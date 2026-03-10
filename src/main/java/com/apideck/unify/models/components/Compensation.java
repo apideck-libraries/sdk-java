@@ -4,17 +4,21 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Double;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
+import java.util.Map;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -22,9 +26,9 @@ public class Compensation {
     /**
      * A unique identifier for an object.
      */
-    @JsonInclude(Include.ALWAYS)
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("employee_id")
-    private Optional<String> employeeId;
+    private JsonNullable<String> employeeId;
 
     /**
      * The employee's net pay. Only available when payroll has been processed
@@ -61,9 +65,13 @@ public class Compensation {
     @JsonProperty("benefits")
     private JsonNullable<? extends List<Benefit>> benefits;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public Compensation(
-            @JsonProperty("employee_id") Optional<String> employeeId,
+            @JsonProperty("employee_id") JsonNullable<String> employeeId,
             @JsonProperty("net_pay") JsonNullable<Double> netPay,
             @JsonProperty("gross_pay") JsonNullable<Double> grossPay,
             @JsonProperty("taxes") JsonNullable<? extends List<Tax>> taxes,
@@ -81,10 +89,11 @@ public class Compensation {
         this.taxes = taxes;
         this.deductions = deductions;
         this.benefits = benefits;
+        this.additionalProperties = new HashMap<>();
     }
     
     public Compensation() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
@@ -92,7 +101,7 @@ public class Compensation {
      * A unique identifier for an object.
      */
     @JsonIgnore
-    public Optional<String> employeeId() {
+    public JsonNullable<String> employeeId() {
         return employeeId;
     }
 
@@ -139,6 +148,11 @@ public class Compensation {
         return (JsonNullable<List<Benefit>>) benefits;
     }
 
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -149,15 +163,14 @@ public class Compensation {
      */
     public Compensation withEmployeeId(String employeeId) {
         Utils.checkNotNull(employeeId, "employeeId");
-        this.employeeId = Optional.ofNullable(employeeId);
+        this.employeeId = JsonNullable.of(employeeId);
         return this;
     }
-
 
     /**
      * A unique identifier for an object.
      */
-    public Compensation withEmployeeId(Optional<String> employeeId) {
+    public Compensation withEmployeeId(JsonNullable<String> employeeId) {
         Utils.checkNotNull(employeeId, "employeeId");
         this.employeeId = employeeId;
         return this;
@@ -253,6 +266,19 @@ public class Compensation {
         return this;
     }
 
+    @JsonAnySetter
+    public Compensation withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public Compensation withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -268,14 +294,16 @@ public class Compensation {
             Utils.enhancedDeepEquals(this.grossPay, other.grossPay) &&
             Utils.enhancedDeepEquals(this.taxes, other.taxes) &&
             Utils.enhancedDeepEquals(this.deductions, other.deductions) &&
-            Utils.enhancedDeepEquals(this.benefits, other.benefits);
+            Utils.enhancedDeepEquals(this.benefits, other.benefits) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             employeeId, netPay, grossPay,
-            taxes, deductions, benefits);
+            taxes, deductions, benefits,
+            additionalProperties);
     }
     
     @Override
@@ -286,13 +314,14 @@ public class Compensation {
                 "grossPay", grossPay,
                 "taxes", taxes,
                 "deductions", deductions,
-                "benefits", benefits);
+                "benefits", benefits,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> employeeId = Optional.empty();
+        private JsonNullable<String> employeeId = JsonNullable.undefined();
 
         private JsonNullable<Double> netPay = JsonNullable.undefined();
 
@@ -304,6 +333,8 @@ public class Compensation {
 
         private JsonNullable<? extends List<Benefit>> benefits = JsonNullable.undefined();
 
+        private Map<String, Object> additionalProperties = new HashMap<>();
+
         private Builder() {
           // force use of static builder() method
         }
@@ -314,14 +345,14 @@ public class Compensation {
          */
         public Builder employeeId(String employeeId) {
             Utils.checkNotNull(employeeId, "employeeId");
-            this.employeeId = Optional.ofNullable(employeeId);
+            this.employeeId = JsonNullable.of(employeeId);
             return this;
         }
 
         /**
          * A unique identifier for an object.
          */
-        public Builder employeeId(Optional<String> employeeId) {
+        public Builder employeeId(JsonNullable<String> employeeId) {
             Utils.checkNotNull(employeeId, "employeeId");
             this.employeeId = employeeId;
             return this;
@@ -422,11 +453,28 @@ public class Compensation {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public Compensation build() {
 
             return new Compensation(
                 employeeId, netPay, grossPay,
-                taxes, deductions, benefits);
+                taxes, deductions, benefits)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

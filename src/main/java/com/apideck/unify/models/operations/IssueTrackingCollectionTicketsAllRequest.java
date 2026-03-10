@@ -3,8 +3,6 @@
  */
 package com.apideck.unify.models.operations;
 
-import com.apideck.unify.models.components.IssuesFilter;
-import com.apideck.unify.models.components.TicketsSort;
 import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
@@ -71,13 +69,13 @@ public class IssueTrackingCollectionTicketsAllRequest {
      * Apply sorting
      */
     @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=sort")
-    private Optional<? extends TicketsSort> sort;
+    private Optional<? extends Map<String, Object>> sort;
 
     /**
      * Apply filters
      */
     @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=filter")
-    private Optional<? extends IssuesFilter> filter;
+    private Optional<? extends Map<String, Object>> filter;
 
     /**
      * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie:
@@ -109,8 +107,8 @@ public class IssueTrackingCollectionTicketsAllRequest {
             JsonNullable<String> cursor,
             Optional<Long> limit,
             String collectionId,
-            Optional<? extends TicketsSort> sort,
-            Optional<? extends IssuesFilter> filter,
+            Optional<? extends Map<String, Object>> sort,
+            Optional<? extends Map<String, Object>> filter,
             Optional<? extends Map<String, Object>> passThrough,
             JsonNullable<String> fields) {
         Utils.checkNotNull(raw, "raw");
@@ -208,8 +206,8 @@ public class IssueTrackingCollectionTicketsAllRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<TicketsSort> sort() {
-        return (Optional<TicketsSort>) sort;
+    public Optional<Map<String, Object>> sort() {
+        return (Optional<Map<String, Object>>) sort;
     }
 
     /**
@@ -217,8 +215,8 @@ public class IssueTrackingCollectionTicketsAllRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<IssuesFilter> filter() {
-        return (Optional<IssuesFilter>) filter;
+    public Optional<Map<String, Object>> filter() {
+        return (Optional<Map<String, Object>>) filter;
     }
 
     /**
@@ -381,7 +379,7 @@ public class IssueTrackingCollectionTicketsAllRequest {
     /**
      * Apply sorting
      */
-    public IssueTrackingCollectionTicketsAllRequest withSort(TicketsSort sort) {
+    public IssueTrackingCollectionTicketsAllRequest withSort(Map<String, Object> sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = Optional.ofNullable(sort);
         return this;
@@ -391,7 +389,7 @@ public class IssueTrackingCollectionTicketsAllRequest {
     /**
      * Apply sorting
      */
-    public IssueTrackingCollectionTicketsAllRequest withSort(Optional<? extends TicketsSort> sort) {
+    public IssueTrackingCollectionTicketsAllRequest withSort(Optional<? extends Map<String, Object>> sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = sort;
         return this;
@@ -400,7 +398,7 @@ public class IssueTrackingCollectionTicketsAllRequest {
     /**
      * Apply filters
      */
-    public IssueTrackingCollectionTicketsAllRequest withFilter(IssuesFilter filter) {
+    public IssueTrackingCollectionTicketsAllRequest withFilter(Map<String, Object> filter) {
         Utils.checkNotNull(filter, "filter");
         this.filter = Optional.ofNullable(filter);
         return this;
@@ -410,7 +408,7 @@ public class IssueTrackingCollectionTicketsAllRequest {
     /**
      * Apply filters
      */
-    public IssueTrackingCollectionTicketsAllRequest withFilter(Optional<? extends IssuesFilter> filter) {
+    public IssueTrackingCollectionTicketsAllRequest withFilter(Optional<? extends Map<String, Object>> filter) {
         Utils.checkNotNull(filter, "filter");
         this.filter = filter;
         return this;
@@ -536,9 +534,9 @@ public class IssueTrackingCollectionTicketsAllRequest {
 
         private String collectionId;
 
-        private Optional<? extends TicketsSort> sort = Optional.empty();
+        private Optional<? extends Map<String, Object>> sort = Optional.empty();
 
-        private Optional<? extends IssuesFilter> filter = Optional.empty();
+        private Optional<? extends Map<String, Object>> filter = Optional.empty();
 
         private Optional<? extends Map<String, Object>> passThrough = Optional.empty();
 
@@ -680,7 +678,7 @@ public class IssueTrackingCollectionTicketsAllRequest {
         /**
          * Apply sorting
          */
-        public Builder sort(TicketsSort sort) {
+        public Builder sort(Map<String, Object> sort) {
             Utils.checkNotNull(sort, "sort");
             this.sort = Optional.ofNullable(sort);
             return this;
@@ -689,7 +687,7 @@ public class IssueTrackingCollectionTicketsAllRequest {
         /**
          * Apply sorting
          */
-        public Builder sort(Optional<? extends TicketsSort> sort) {
+        public Builder sort(Optional<? extends Map<String, Object>> sort) {
             Utils.checkNotNull(sort, "sort");
             this.sort = sort;
             return this;
@@ -699,7 +697,7 @@ public class IssueTrackingCollectionTicketsAllRequest {
         /**
          * Apply filters
          */
-        public Builder filter(IssuesFilter filter) {
+        public Builder filter(Map<String, Object> filter) {
             Utils.checkNotNull(filter, "filter");
             this.filter = Optional.ofNullable(filter);
             return this;
@@ -708,7 +706,7 @@ public class IssueTrackingCollectionTicketsAllRequest {
         /**
          * Apply filters
          */
-        public Builder filter(Optional<? extends IssuesFilter> filter) {
+        public Builder filter(Optional<? extends Map<String, Object>> filter) {
             Utils.checkNotNull(filter, "filter");
             this.filter = filter;
             return this;

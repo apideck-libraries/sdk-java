@@ -21,13 +21,11 @@ List Expense Categories
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.ExpenseCategoriesFilter;
-import com.apideck.unify.models.components.ExpenseCategoriesFilterStatus;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingExpenseCategoriesAllRequest;
 import com.apideck.unify.models.operations.AccountingExpenseCategoriesAllResponse;
 import java.lang.Exception;
-import java.time.OffsetDateTime;
+import java.util.Map;
 
 public class Application {
 
@@ -42,10 +40,9 @@ public class Application {
         AccountingExpenseCategoriesAllRequest req = AccountingExpenseCategoriesAllRequest.builder()
                 .serviceId("salesforce")
                 .fields("id,updated_at")
-                .filter(ExpenseCategoriesFilter.builder()
-                    .updatedSince(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
-                    .status(ExpenseCategoriesFilterStatus.ACTIVE)
-                    .build())
+                .filter(Map.ofEntries(
+                    Map.entry("updated_since", "2020-09-30T07:43:32.000Z"),
+                    Map.entry("status", "active")))
                 .build();
 
 
@@ -111,8 +108,8 @@ public class Application {
 
         AccountingExpenseCategoriesAddRequest req = AccountingExpenseCategoriesAddRequest.builder()
                 .expenseCategory(ExpenseCategoryInput.builder()
-                    .name("Travel")
                     .displayId("123456")
+                    .name("Travel")
                     .code("TRAVEL-001")
                     .description("Travel-related expenses including flights, hotels, and ground transportation.")
                     .status(ExpenseCategoryStatus.ACTIVE)
@@ -160,7 +157,7 @@ public class Application {
                 .call();
 
         if (res.createExpenseCategoryResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createExpenseCategoryResponse().get());
         }
     }
 }
@@ -224,7 +221,7 @@ public class Application {
                 .call();
 
         if (res.getExpenseCategoryResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getExpenseCategoryResponse().get());
         }
     }
 }
@@ -283,8 +280,8 @@ public class Application {
         AccountingExpenseCategoriesUpdateRequest req = AccountingExpenseCategoriesUpdateRequest.builder()
                 .id("<id>")
                 .expenseCategory(ExpenseCategoryInput.builder()
-                    .name("Travel")
                     .displayId("123456")
+                    .name("Travel")
                     .code("TRAVEL-001")
                     .description("Travel-related expenses including flights, hotels, and ground transportation.")
                     .status(ExpenseCategoryStatus.ACTIVE)
@@ -332,7 +329,7 @@ public class Application {
                 .call();
 
         if (res.updateExpenseCategoryResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateExpenseCategoryResponse().get());
         }
     }
 }
@@ -395,7 +392,7 @@ public class Application {
                 .call();
 
         if (res.deleteExpenseCategoryResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteExpenseCategoryResponse().get());
         }
     }
 }

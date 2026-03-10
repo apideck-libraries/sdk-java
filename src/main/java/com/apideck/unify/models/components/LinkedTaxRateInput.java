@@ -4,14 +4,19 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Double;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.Map;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -37,6 +42,10 @@ public class LinkedTaxRateInput {
     @JsonProperty("rate")
     private JsonNullable<Double> rate;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public LinkedTaxRateInput(
             @JsonProperty("id") JsonNullable<String> id,
@@ -48,6 +57,7 @@ public class LinkedTaxRateInput {
         this.id = id;
         this.code = code;
         this.rate = rate;
+        this.additionalProperties = new HashMap<>();
     }
     
     public LinkedTaxRateInput() {
@@ -76,6 +86,11 @@ public class LinkedTaxRateInput {
     @JsonIgnore
     public JsonNullable<Double> rate() {
         return rate;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
     }
 
     public static Builder builder() {
@@ -137,6 +152,19 @@ public class LinkedTaxRateInput {
         return this;
     }
 
+    @JsonAnySetter
+    public LinkedTaxRateInput withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public LinkedTaxRateInput withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -149,13 +177,15 @@ public class LinkedTaxRateInput {
         return 
             Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.code, other.code) &&
-            Utils.enhancedDeepEquals(this.rate, other.rate);
+            Utils.enhancedDeepEquals(this.rate, other.rate) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, code, rate);
+            id, code, rate,
+            additionalProperties);
     }
     
     @Override
@@ -163,7 +193,8 @@ public class LinkedTaxRateInput {
         return Utils.toString(LinkedTaxRateInput.class,
                 "id", id,
                 "code", code,
-                "rate", rate);
+                "rate", rate,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -174,6 +205,8 @@ public class LinkedTaxRateInput {
         private JsonNullable<String> code = JsonNullable.undefined();
 
         private JsonNullable<Double> rate = JsonNullable.undefined();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -236,10 +269,27 @@ public class LinkedTaxRateInput {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public LinkedTaxRateInput build() {
 
             return new LinkedTaxRateInput(
-                id, code, rate);
+                id, code, rate)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

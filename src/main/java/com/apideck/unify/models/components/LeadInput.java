@@ -4,16 +4,21 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Double;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -22,8 +27,9 @@ public class LeadInput {
     /**
      * Full name of the lead.
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
-    private String name;
+    private Optional<String> name;
 
     /**
      * The name of the company the lead is associated with.
@@ -186,9 +192,13 @@ public class LeadInput {
     @JsonProperty("pass_through")
     private Optional<? extends List<PassThroughBody>> passThrough;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public LeadInput(
-            @JsonProperty("name") String name,
+            @JsonProperty("name") Optional<String> name,
             @JsonProperty("company_name") JsonNullable<String> companyName,
             @JsonProperty("owner_id") JsonNullable<String> ownerId,
             @JsonProperty("owner_name") JsonNullable<String> ownerName,
@@ -266,11 +276,11 @@ public class LeadInput {
         this.customFields = customFields;
         this.tags = tags;
         this.passThrough = passThrough;
+        this.additionalProperties = new HashMap<>();
     }
     
-    public LeadInput(
-            String name) {
-        this(name, JsonNullable.undefined(), JsonNullable.undefined(),
+    public LeadInput() {
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
@@ -285,7 +295,7 @@ public class LeadInput {
      * Full name of the lead.
      */
     @JsonIgnore
-    public String name() {
+    public Optional<String> name() {
         return name;
     }
 
@@ -476,6 +486,11 @@ public class LeadInput {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -485,6 +500,16 @@ public class LeadInput {
      * Full name of the lead.
      */
     public LeadInput withName(String name) {
+        Utils.checkNotNull(name, "name");
+        this.name = Optional.ofNullable(name);
+        return this;
+    }
+
+
+    /**
+     * Full name of the lead.
+     */
+    public LeadInput withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
@@ -902,6 +927,19 @@ public class LeadInput {
         return this;
     }
 
+    @JsonAnySetter
+    public LeadInput withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public LeadInput withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -937,7 +975,8 @@ public class LeadInput {
             Utils.enhancedDeepEquals(this.emails, other.emails) &&
             Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
             Utils.enhancedDeepEquals(this.tags, other.tags) &&
-            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
@@ -951,7 +990,7 @@ public class LeadInput {
             monetaryAmount, currency, fax,
             websites, addresses, socialLinks,
             phoneNumbers, emails, customFields,
-            tags, passThrough);
+            tags, passThrough, additionalProperties);
     }
     
     @Override
@@ -982,13 +1021,14 @@ public class LeadInput {
                 "emails", emails,
                 "customFields", customFields,
                 "tags", tags,
-                "passThrough", passThrough);
+                "passThrough", passThrough,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String name;
+        private Optional<String> name = Optional.empty();
 
         private JsonNullable<String> companyName = JsonNullable.undefined();
 
@@ -1040,6 +1080,8 @@ public class LeadInput {
 
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
 
+        private Map<String, Object> additionalProperties = new HashMap<>();
+
         private Builder() {
           // force use of static builder() method
         }
@@ -1049,6 +1091,15 @@ public class LeadInput {
          * Full name of the lead.
          */
         public Builder name(String name) {
+            Utils.checkNotNull(name, "name");
+            this.name = Optional.ofNullable(name);
+            return this;
+        }
+
+        /**
+         * Full name of the lead.
+         */
+        public Builder name(Optional<String> name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
@@ -1485,6 +1536,22 @@ public class LeadInput {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public LeadInput build() {
 
             return new LeadInput(
@@ -1496,7 +1563,8 @@ public class LeadInput {
                 monetaryAmount, currency, fax,
                 websites, addresses, socialLinks,
                 phoneNumbers, emails, customFields,
-                tags, passThrough);
+                tags, passThrough)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

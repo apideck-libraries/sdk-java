@@ -4,6 +4,8 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -18,6 +20,7 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -109,6 +112,13 @@ public class Invoice {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("terms")
     private JsonNullable<String> terms;
+
+    /**
+     * The ID of the payment terms
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("terms_id")
+    private JsonNullable<String> termsId;
 
     /**
      * A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer
@@ -372,6 +382,10 @@ public class Invoice {
     @JsonProperty("pass_through")
     private Optional<? extends List<PassThroughBody>> passThrough;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public Invoice(
             @JsonProperty("id") Optional<String> id,
@@ -386,6 +400,7 @@ public class Invoice {
             @JsonProperty("invoice_date") JsonNullable<LocalDate> invoiceDate,
             @JsonProperty("due_date") JsonNullable<LocalDate> dueDate,
             @JsonProperty("terms") JsonNullable<String> terms,
+            @JsonProperty("terms_id") JsonNullable<String> termsId,
             @JsonProperty("po_number") JsonNullable<String> poNumber,
             @JsonProperty("reference") JsonNullable<String> reference,
             @JsonProperty("status") JsonNullable<? extends InvoiceStatus> status,
@@ -436,6 +451,7 @@ public class Invoice {
         Utils.checkNotNull(invoiceDate, "invoiceDate");
         Utils.checkNotNull(dueDate, "dueDate");
         Utils.checkNotNull(terms, "terms");
+        Utils.checkNotNull(termsId, "termsId");
         Utils.checkNotNull(poNumber, "poNumber");
         Utils.checkNotNull(reference, "reference");
         Utils.checkNotNull(status, "status");
@@ -486,6 +502,7 @@ public class Invoice {
         this.invoiceDate = invoiceDate;
         this.dueDate = dueDate;
         this.terms = terms;
+        this.termsId = termsId;
         this.poNumber = poNumber;
         this.reference = reference;
         this.status = status;
@@ -524,6 +541,7 @@ public class Invoice {
         this.updatedAt = updatedAt;
         this.createdAt = createdAt;
         this.passThrough = passThrough;
+        this.additionalProperties = new HashMap<>();
     }
     
     public Invoice() {
@@ -532,18 +550,18 @@ public class Invoice {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
             Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty());
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -643,6 +661,14 @@ public class Invoice {
     @JsonIgnore
     public JsonNullable<String> terms() {
         return terms;
+    }
+
+    /**
+     * The ID of the payment terms
+     */
+    @JsonIgnore
+    public JsonNullable<String> termsId() {
+        return termsId;
     }
 
     /**
@@ -952,6 +978,11 @@ public class Invoice {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -1173,6 +1204,24 @@ public class Invoice {
     public Invoice withTerms(JsonNullable<String> terms) {
         Utils.checkNotNull(terms, "terms");
         this.terms = terms;
+        return this;
+    }
+
+    /**
+     * The ID of the payment terms
+     */
+    public Invoice withTermsId(String termsId) {
+        Utils.checkNotNull(termsId, "termsId");
+        this.termsId = JsonNullable.of(termsId);
+        return this;
+    }
+
+    /**
+     * The ID of the payment terms
+     */
+    public Invoice withTermsId(JsonNullable<String> termsId) {
+        Utils.checkNotNull(termsId, "termsId");
+        this.termsId = termsId;
         return this;
     }
 
@@ -1847,6 +1896,19 @@ public class Invoice {
         return this;
     }
 
+    @JsonAnySetter
+    public Invoice withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public Invoice withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -1869,6 +1931,7 @@ public class Invoice {
             Utils.enhancedDeepEquals(this.invoiceDate, other.invoiceDate) &&
             Utils.enhancedDeepEquals(this.dueDate, other.dueDate) &&
             Utils.enhancedDeepEquals(this.terms, other.terms) &&
+            Utils.enhancedDeepEquals(this.termsId, other.termsId) &&
             Utils.enhancedDeepEquals(this.poNumber, other.poNumber) &&
             Utils.enhancedDeepEquals(this.reference, other.reference) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
@@ -1906,7 +1969,8 @@ public class Invoice {
             Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
             Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
-            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
@@ -1916,19 +1980,20 @@ public class Invoice {
             type, number, customer,
             companyId, locationId, departmentId,
             invoiceDate, dueDate, terms,
-            poNumber, reference, status,
-            invoiceSent, currency, currencyRate,
-            taxInclusive, subTotal, totalTax,
-            taxCode, discountPercentage, discountAmount,
-            total, balance, deposit,
-            customerMemo, trackingCategory, trackingCategories,
-            lineItems, billingAddress, shippingAddress,
-            templateId, sourceDocumentUrl, paymentAllocations,
-            paymentMethod, channel, language,
-            accountingByRow, bankAccount, ledgerAccount,
-            customMappings, customFields, rowVersion,
-            updatedBy, createdBy, updatedAt,
-            createdAt, passThrough);
+            termsId, poNumber, reference,
+            status, invoiceSent, currency,
+            currencyRate, taxInclusive, subTotal,
+            totalTax, taxCode, discountPercentage,
+            discountAmount, total, balance,
+            deposit, customerMemo, trackingCategory,
+            trackingCategories, lineItems, billingAddress,
+            shippingAddress, templateId, sourceDocumentUrl,
+            paymentAllocations, paymentMethod, channel,
+            language, accountingByRow, bankAccount,
+            ledgerAccount, customMappings, customFields,
+            rowVersion, updatedBy, createdBy,
+            updatedAt, createdAt, passThrough,
+            additionalProperties);
     }
     
     @Override
@@ -1946,6 +2011,7 @@ public class Invoice {
                 "invoiceDate", invoiceDate,
                 "dueDate", dueDate,
                 "terms", terms,
+                "termsId", termsId,
                 "poNumber", poNumber,
                 "reference", reference,
                 "status", status,
@@ -1983,7 +2049,8 @@ public class Invoice {
                 "createdBy", createdBy,
                 "updatedAt", updatedAt,
                 "createdAt", createdAt,
-                "passThrough", passThrough);
+                "passThrough", passThrough,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -2012,6 +2079,8 @@ public class Invoice {
         private JsonNullable<LocalDate> dueDate = JsonNullable.undefined();
 
         private JsonNullable<String> terms = JsonNullable.undefined();
+
+        private JsonNullable<String> termsId = JsonNullable.undefined();
 
         private JsonNullable<String> poNumber = JsonNullable.undefined();
 
@@ -2089,6 +2158,8 @@ public class Invoice {
         private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
 
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -2321,6 +2392,25 @@ public class Invoice {
         public Builder terms(JsonNullable<String> terms) {
             Utils.checkNotNull(terms, "terms");
             this.terms = terms;
+            return this;
+        }
+
+
+        /**
+         * The ID of the payment terms
+         */
+        public Builder termsId(String termsId) {
+            Utils.checkNotNull(termsId, "termsId");
+            this.termsId = JsonNullable.of(termsId);
+            return this;
+        }
+
+        /**
+         * The ID of the payment terms
+         */
+        public Builder termsId(JsonNullable<String> termsId) {
+            Utils.checkNotNull(termsId, "termsId");
+            this.termsId = termsId;
             return this;
         }
 
@@ -3026,6 +3116,22 @@ public class Invoice {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public Invoice build() {
 
             return new Invoice(
@@ -3033,19 +3139,20 @@ public class Invoice {
                 type, number, customer,
                 companyId, locationId, departmentId,
                 invoiceDate, dueDate, terms,
-                poNumber, reference, status,
-                invoiceSent, currency, currencyRate,
-                taxInclusive, subTotal, totalTax,
-                taxCode, discountPercentage, discountAmount,
-                total, balance, deposit,
-                customerMemo, trackingCategory, trackingCategories,
-                lineItems, billingAddress, shippingAddress,
-                templateId, sourceDocumentUrl, paymentAllocations,
-                paymentMethod, channel, language,
-                accountingByRow, bankAccount, ledgerAccount,
-                customMappings, customFields, rowVersion,
-                updatedBy, createdBy, updatedAt,
-                createdAt, passThrough);
+                termsId, poNumber, reference,
+                status, invoiceSent, currency,
+                currencyRate, taxInclusive, subTotal,
+                totalTax, taxCode, discountPercentage,
+                discountAmount, total, balance,
+                deposit, customerMemo, trackingCategory,
+                trackingCategories, lineItems, billingAddress,
+                shippingAddress, templateId, sourceDocumentUrl,
+                paymentAllocations, paymentMethod, channel,
+                language, accountingByRow, bankAccount,
+                ledgerAccount, customMappings, customFields,
+                rowVersion, updatedBy, createdBy,
+                updatedAt, createdAt, passThrough)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

@@ -17,8 +17,6 @@ Get BalanceSheet
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.BalanceSheetFilter;
-import com.apideck.unify.models.components.PeriodType;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingBalanceSheetOneRequest;
 import com.apideck.unify.models.operations.AccountingBalanceSheetOneResponse;
@@ -37,14 +35,14 @@ public class Application {
 
         AccountingBalanceSheetOneRequest req = AccountingBalanceSheetOneRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
-                .filter(BalanceSheetFilter.builder()
-                    .startDate("2021-01-01")
-                    .endDate("2021-12-31")
-                    .periodCount(3L)
-                    .periodType(PeriodType.MONTH)
-                    .build())
+                .filter(Map.ofEntries(
+                    Map.entry("start_date", "2021-01-01"),
+                    Map.entry("end_date", "2021-12-31"),
+                    Map.entry("period_count", 3L),
+                    Map.entry("period_type", "month")))
                 .build();
 
         AccountingBalanceSheetOneResponse res = sdk.accounting().balanceSheet().get()
@@ -52,7 +50,7 @@ public class Application {
                 .call();
 
         if (res.getBalanceSheetResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getBalanceSheetResponse().get());
         }
     }
 }

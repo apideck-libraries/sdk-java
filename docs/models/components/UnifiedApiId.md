@@ -2,6 +2,17 @@
 
 Name of Apideck Unified API
 
+## Example Usage
+
+```java
+import com.apideck.unify.models.components.UnifiedApiId;
+
+UnifiedApiId value = UnifiedApiId.ACCOUNTING;
+
+// Open enum: use .of() to create instances from custom string values
+UnifiedApiId custom = UnifiedApiId.of("custom_value");
+```
+
 
 ## Values
 

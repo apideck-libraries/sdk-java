@@ -1,5 +1,16 @@
 # WebhookEventType
 
+## Example Usage
+
+```java
+import com.apideck.unify.models.components.WebhookEventType;
+
+WebhookEventType value = WebhookEventType.WILDCARD;
+
+// Open enum: use .of() to create instances from custom string values
+WebhookEventType custom = WebhookEventType.of("custom_value");
+```
+
 
 ## Values
 

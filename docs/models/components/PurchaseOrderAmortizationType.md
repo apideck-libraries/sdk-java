@@ -2,6 +2,17 @@
 
 Type of amortization
 
+## Example Usage
+
+```java
+import com.apideck.unify.models.components.PurchaseOrderAmortizationType;
+
+PurchaseOrderAmortizationType value = PurchaseOrderAmortizationType.MANUAL;
+
+// Open enum: use .of() to create instances from custom string values
+PurchaseOrderAmortizationType custom = PurchaseOrderAmortizationType.of("custom_value");
+```
+
 
 ## Values
 

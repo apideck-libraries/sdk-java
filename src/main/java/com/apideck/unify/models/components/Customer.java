@@ -4,6 +4,8 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -15,6 +17,7 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -25,8 +28,9 @@ public class Customer {
     /**
      * A unique identifier for an object.
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private String id;
+    private Optional<String> id;
 
     /**
      * The third-party API ID of original entity
@@ -208,6 +212,13 @@ public class Customer {
     private JsonNullable<String> terms;
 
     /**
+     * The ID of the payment terms
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("terms_id")
+    private JsonNullable<String> termsId;
+
+    /**
      * The channel through which the transaction is processed.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -270,9 +281,13 @@ public class Customer {
     @JsonProperty("pass_through")
     private Optional<? extends List<PassThroughBody>> passThrough;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public Customer(
-            @JsonProperty("id") String id,
+            @JsonProperty("id") Optional<String> id,
             @JsonProperty("downstream_id") JsonNullable<String> downstreamId,
             @JsonProperty("display_id") JsonNullable<String> displayId,
             @JsonProperty("display_name") JsonNullable<String> displayName,
@@ -301,6 +316,7 @@ public class Customer {
             @JsonProperty("status") JsonNullable<? extends CustomerStatusStatus> status,
             @JsonProperty("payment_method") JsonNullable<String> paymentMethod,
             @JsonProperty("terms") JsonNullable<String> terms,
+            @JsonProperty("terms_id") JsonNullable<String> termsId,
             @JsonProperty("channel") JsonNullable<String> channel,
             @JsonProperty("custom_fields") Optional<? extends List<CustomField>> customFields,
             @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings,
@@ -339,6 +355,7 @@ public class Customer {
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(paymentMethod, "paymentMethod");
         Utils.checkNotNull(terms, "terms");
+        Utils.checkNotNull(termsId, "termsId");
         Utils.checkNotNull(channel, "channel");
         Utils.checkNotNull(customFields, "customFields");
         Utils.checkNotNull(customMappings, "customMappings");
@@ -377,6 +394,7 @@ public class Customer {
         this.status = status;
         this.paymentMethod = paymentMethod;
         this.terms = terms;
+        this.termsId = termsId;
         this.channel = channel;
         this.customFields = customFields;
         this.customMappings = customMappings;
@@ -386,11 +404,11 @@ public class Customer {
         this.createdAt = createdAt;
         this.rowVersion = rowVersion;
         this.passThrough = passThrough;
+        this.additionalProperties = new HashMap<>();
     }
     
-    public Customer(
-            String id) {
-        this(id, JsonNullable.undefined(), JsonNullable.undefined(),
+    public Customer() {
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
@@ -400,16 +418,16 @@ public class Customer {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty());
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
      * A unique identifier for an object.
      */
     @JsonIgnore
-    public String id() {
+    public Optional<String> id() {
         return id;
     }
 
@@ -622,6 +640,14 @@ public class Customer {
     }
 
     /**
+     * The ID of the payment terms
+     */
+    @JsonIgnore
+    public JsonNullable<String> termsId() {
+        return termsId;
+    }
+
+    /**
      * The channel through which the transaction is processed.
      */
     @JsonIgnore
@@ -695,6 +721,11 @@ public class Customer {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -704,6 +735,16 @@ public class Customer {
      * A unique identifier for an object.
      */
     public Customer withId(String id) {
+        Utils.checkNotNull(id, "id");
+        this.id = Optional.ofNullable(id);
+        return this;
+    }
+
+
+    /**
+     * A unique identifier for an object.
+     */
+    public Customer withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
@@ -1168,6 +1209,24 @@ public class Customer {
     }
 
     /**
+     * The ID of the payment terms
+     */
+    public Customer withTermsId(String termsId) {
+        Utils.checkNotNull(termsId, "termsId");
+        this.termsId = JsonNullable.of(termsId);
+        return this;
+    }
+
+    /**
+     * The ID of the payment terms
+     */
+    public Customer withTermsId(JsonNullable<String> termsId) {
+        Utils.checkNotNull(termsId, "termsId");
+        this.termsId = termsId;
+        return this;
+    }
+
+    /**
      * The channel through which the transaction is processed.
      */
     public Customer withChannel(String channel) {
@@ -1329,6 +1388,19 @@ public class Customer {
         return this;
     }
 
+    @JsonAnySetter
+    public Customer withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public Customer withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -1368,6 +1440,7 @@ public class Customer {
             Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.paymentMethod, other.paymentMethod) &&
             Utils.enhancedDeepEquals(this.terms, other.terms) &&
+            Utils.enhancedDeepEquals(this.termsId, other.termsId) &&
             Utils.enhancedDeepEquals(this.channel, other.channel) &&
             Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
             Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
@@ -1376,7 +1449,8 @@ public class Customer {
             Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
             Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion) &&
-            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
@@ -1391,10 +1465,11 @@ public class Customer {
             bankAccounts, notes, taxRate,
             taxNumber, taxable, currency,
             account, parent, status,
-            paymentMethod, terms, channel,
-            customFields, customMappings, updatedBy,
-            createdBy, updatedAt, createdAt,
-            rowVersion, passThrough);
+            paymentMethod, terms, termsId,
+            channel, customFields, customMappings,
+            updatedBy, createdBy, updatedAt,
+            createdAt, rowVersion, passThrough,
+            additionalProperties);
     }
     
     @Override
@@ -1429,6 +1504,7 @@ public class Customer {
                 "status", status,
                 "paymentMethod", paymentMethod,
                 "terms", terms,
+                "termsId", termsId,
                 "channel", channel,
                 "customFields", customFields,
                 "customMappings", customMappings,
@@ -1437,13 +1513,14 @@ public class Customer {
                 "updatedAt", updatedAt,
                 "createdAt", createdAt,
                 "rowVersion", rowVersion,
-                "passThrough", passThrough);
+                "passThrough", passThrough,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String id;
+        private Optional<String> id = Optional.empty();
 
         private JsonNullable<String> downstreamId = JsonNullable.undefined();
 
@@ -1501,6 +1578,8 @@ public class Customer {
 
         private JsonNullable<String> terms = JsonNullable.undefined();
 
+        private JsonNullable<String> termsId = JsonNullable.undefined();
+
         private JsonNullable<String> channel = JsonNullable.undefined();
 
         private Optional<? extends List<CustomField>> customFields = Optional.empty();
@@ -1519,6 +1598,8 @@ public class Customer {
 
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
 
+        private Map<String, Object> additionalProperties = new HashMap<>();
+
         private Builder() {
           // force use of static builder() method
         }
@@ -1528,6 +1609,15 @@ public class Customer {
          * A unique identifier for an object.
          */
         public Builder id(String id) {
+            Utils.checkNotNull(id, "id");
+            this.id = Optional.ofNullable(id);
+            return this;
+        }
+
+        /**
+         * A unique identifier for an object.
+         */
+        public Builder id(Optional<String> id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
@@ -2015,6 +2105,25 @@ public class Customer {
 
 
         /**
+         * The ID of the payment terms
+         */
+        public Builder termsId(String termsId) {
+            Utils.checkNotNull(termsId, "termsId");
+            this.termsId = JsonNullable.of(termsId);
+            return this;
+        }
+
+        /**
+         * The ID of the payment terms
+         */
+        public Builder termsId(JsonNullable<String> termsId) {
+            Utils.checkNotNull(termsId, "termsId");
+            this.termsId = termsId;
+            return this;
+        }
+
+
+        /**
          * The channel through which the transaction is processed.
          */
         public Builder channel(String channel) {
@@ -2182,6 +2291,22 @@ public class Customer {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public Customer build() {
 
             return new Customer(
@@ -2194,10 +2319,11 @@ public class Customer {
                 bankAccounts, notes, taxRate,
                 taxNumber, taxable, currency,
                 account, parent, status,
-                paymentMethod, terms, channel,
-                customFields, customMappings, updatedBy,
-                createdBy, updatedAt, createdAt,
-                rowVersion, passThrough);
+                paymentMethod, terms, termsId,
+                channel, customFields, customMappings,
+                updatedBy, createdBy, updatedAt,
+                createdAt, rowVersion, passThrough)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

@@ -135,8 +135,9 @@ public class User {
     private Optional<? extends List<PhoneNumber>> phoneNumbers;
 
 
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("emails")
-    private List<Email> emails;
+    private Optional<? extends List<Email>> emails;
 
     /**
      * When custom mappings are configured on the resource, the result is included here.
@@ -185,7 +186,7 @@ public class User {
             @JsonProperty("status") JsonNullable<String> status,
             @JsonProperty("addresses") Optional<? extends List<Address>> addresses,
             @JsonProperty("phone_numbers") Optional<? extends List<PhoneNumber>> phoneNumbers,
-            @JsonProperty("emails") List<Email> emails,
+            @JsonProperty("emails") Optional<? extends List<Email>> emails,
             @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings,
             @JsonProperty("updated_at") JsonNullable<String> updatedAt,
             @JsonProperty("created_at") JsonNullable<String> createdAt,
@@ -234,14 +235,13 @@ public class User {
         this.passThrough = passThrough;
     }
     
-    public User(
-            List<Email> emails) {
+    public User() {
         this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), emails, JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
 
@@ -374,9 +374,10 @@ public class User {
         return (Optional<List<PhoneNumber>>) phoneNumbers;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public List<Email> emails() {
-        return emails;
+    public Optional<List<Email>> emails() {
+        return (Optional<List<Email>>) emails;
     }
 
     /**
@@ -710,6 +711,13 @@ public class User {
 
     public User withEmails(List<Email> emails) {
         Utils.checkNotNull(emails, "emails");
+        this.emails = Optional.ofNullable(emails);
+        return this;
+    }
+
+
+    public User withEmails(Optional<? extends List<Email>> emails) {
+        Utils.checkNotNull(emails, "emails");
         this.emails = emails;
         return this;
     }
@@ -896,7 +904,7 @@ public class User {
 
         private Optional<? extends List<PhoneNumber>> phoneNumbers = Optional.empty();
 
-        private List<Email> emails;
+        private Optional<? extends List<Email>> emails = Optional.empty();
 
         private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
 
@@ -1214,6 +1222,12 @@ public class User {
 
 
         public Builder emails(List<Email> emails) {
+            Utils.checkNotNull(emails, "emails");
+            this.emails = Optional.ofNullable(emails);
+            return this;
+        }
+
+        public Builder emails(Optional<? extends List<Email>> emails) {
             Utils.checkNotNull(emails, "emails");
             this.emails = emails;
             return this;

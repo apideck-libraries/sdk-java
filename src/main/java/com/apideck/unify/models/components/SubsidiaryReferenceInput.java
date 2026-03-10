@@ -4,13 +4,18 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.Map;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -22,11 +27,16 @@ public class SubsidiaryReferenceInput {
     @JsonProperty("name")
     private JsonNullable<String> name;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public SubsidiaryReferenceInput(
             @JsonProperty("name") JsonNullable<String> name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
+        this.additionalProperties = new HashMap<>();
     }
     
     public SubsidiaryReferenceInput() {
@@ -39,6 +49,11 @@ public class SubsidiaryReferenceInput {
     @JsonIgnore
     public JsonNullable<String> name() {
         return name;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
     }
 
     public static Builder builder() {
@@ -64,6 +79,19 @@ public class SubsidiaryReferenceInput {
         return this;
     }
 
+    @JsonAnySetter
+    public SubsidiaryReferenceInput withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public SubsidiaryReferenceInput withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -74,25 +102,29 @@ public class SubsidiaryReferenceInput {
         }
         SubsidiaryReferenceInput other = (SubsidiaryReferenceInput) o;
         return 
-            Utils.enhancedDeepEquals(this.name, other.name);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name);
+            name, additionalProperties);
     }
     
     @Override
     public String toString() {
         return Utils.toString(SubsidiaryReferenceInput.class,
-                "name", name);
+                "name", name,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
         private JsonNullable<String> name = JsonNullable.undefined();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -117,10 +149,27 @@ public class SubsidiaryReferenceInput {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public SubsidiaryReferenceInput build() {
 
             return new SubsidiaryReferenceInput(
-                name);
+                name)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

@@ -25,6 +25,12 @@ import java.util.Optional;
  */
 public class SortBy {
 
+    public static final SortBy NAME = new SortBy("name");
+    public static final SortBy STATUS = new SortBy("status");
+    public static final SortBy START_DATE = new SortBy("start_date");
+    public static final SortBy END_DATE = new SortBy("end_date");
+    public static final SortBy BUDGET_AMOUNT = new SortBy("budget_amount");
+    public static final SortBy ACTUAL_AMOUNT = new SortBy("actual_amount");
     public static final SortBy CREATED_AT = new SortBy("created_at");
     public static final SortBy UPDATED_AT = new SortBy("updated_at");
 
@@ -100,6 +106,12 @@ public class SortBy {
 
     private static final Map<String, SortBy> createValuesMap() {
         Map<String, SortBy> map = new LinkedHashMap<>();
+        map.put("name", NAME);
+        map.put("status", STATUS);
+        map.put("start_date", START_DATE);
+        map.put("end_date", END_DATE);
+        map.put("budget_amount", BUDGET_AMOUNT);
+        map.put("actual_amount", ACTUAL_AMOUNT);
         map.put("created_at", CREATED_AT);
         map.put("updated_at", UPDATED_AT);
         return map;
@@ -107,6 +119,12 @@ public class SortBy {
 
     private static final Map<String, SortByEnum> createEnumsMap() {
         Map<String, SortByEnum> map = new HashMap<>();
+        map.put("name", SortByEnum.NAME);
+        map.put("status", SortByEnum.STATUS);
+        map.put("start_date", SortByEnum.START_DATE);
+        map.put("end_date", SortByEnum.END_DATE);
+        map.put("budget_amount", SortByEnum.BUDGET_AMOUNT);
+        map.put("actual_amount", SortByEnum.ACTUAL_AMOUNT);
         map.put("created_at", SortByEnum.CREATED_AT);
         map.put("updated_at", SortByEnum.UPDATED_AT);
         return map;
@@ -115,6 +133,12 @@ public class SortBy {
     
     public enum SortByEnum {
 
+        NAME("name"),
+        STATUS("status"),
+        START_DATE("start_date"),
+        END_DATE("end_date"),
+        BUDGET_AMOUNT("budget_amount"),
+        ACTUAL_AMOUNT("actual_amount"),
         CREATED_AT("created_at"),
         UPDATED_AT("updated_at"),;
 

@@ -4,6 +4,8 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -15,6 +17,7 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -32,14 +35,16 @@ public class Message {
     /**
      * The phone number that initiated the message.
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("from")
-    private String from;
+    private Optional<String> from;
 
     /**
      * The phone number that received the message.
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("to")
-    private String to;
+    private Optional<String> to;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -49,8 +54,9 @@ public class Message {
     /**
      * The message text.
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("body")
-    private String body;
+    private Optional<String> body;
 
     /**
      * Set to sms for SMS messages and mms for MMS messages.
@@ -181,13 +187,17 @@ public class Message {
     @JsonProperty("pass_through")
     private Optional<? extends List<PassThroughBody>> passThrough;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public Message(
             @JsonProperty("id") Optional<String> id,
-            @JsonProperty("from") String from,
-            @JsonProperty("to") String to,
+            @JsonProperty("from") Optional<String> from,
+            @JsonProperty("to") Optional<String> to,
             @JsonProperty("subject") Optional<String> subject,
-            @JsonProperty("body") String body,
+            @JsonProperty("body") Optional<String> body,
             @JsonProperty("type") Optional<? extends MessageType> type,
             @JsonProperty("number_of_units") Optional<Long> numberOfUnits,
             @JsonProperty("number_of_media_files") Optional<Long> numberOfMediaFiles,
@@ -252,14 +262,12 @@ public class Message {
         this.updatedAt = updatedAt;
         this.createdAt = createdAt;
         this.passThrough = passThrough;
+        this.additionalProperties = new HashMap<>();
     }
     
-    public Message(
-            String from,
-            String to,
-            String body) {
-        this(Optional.empty(), from, to,
-            Optional.empty(), body, Optional.empty(),
+    public Message() {
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
@@ -280,7 +288,7 @@ public class Message {
      * The phone number that initiated the message.
      */
     @JsonIgnore
-    public String from() {
+    public Optional<String> from() {
         return from;
     }
 
@@ -288,7 +296,7 @@ public class Message {
      * The phone number that received the message.
      */
     @JsonIgnore
-    public String to() {
+    public Optional<String> to() {
         return to;
     }
 
@@ -301,7 +309,7 @@ public class Message {
      * The message text.
      */
     @JsonIgnore
-    public String body() {
+    public Optional<String> body() {
         return body;
     }
 
@@ -459,6 +467,11 @@ public class Message {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -488,6 +501,16 @@ public class Message {
      */
     public Message withFrom(String from) {
         Utils.checkNotNull(from, "from");
+        this.from = Optional.ofNullable(from);
+        return this;
+    }
+
+
+    /**
+     * The phone number that initiated the message.
+     */
+    public Message withFrom(Optional<String> from) {
+        Utils.checkNotNull(from, "from");
         this.from = from;
         return this;
     }
@@ -496,6 +519,16 @@ public class Message {
      * The phone number that received the message.
      */
     public Message withTo(String to) {
+        Utils.checkNotNull(to, "to");
+        this.to = Optional.ofNullable(to);
+        return this;
+    }
+
+
+    /**
+     * The phone number that received the message.
+     */
+    public Message withTo(Optional<String> to) {
         Utils.checkNotNull(to, "to");
         this.to = to;
         return this;
@@ -518,6 +551,16 @@ public class Message {
      * The message text.
      */
     public Message withBody(String body) {
+        Utils.checkNotNull(body, "body");
+        this.body = Optional.ofNullable(body);
+        return this;
+    }
+
+
+    /**
+     * The message text.
+     */
+    public Message withBody(Optional<String> body) {
         Utils.checkNotNull(body, "body");
         this.body = body;
         return this;
@@ -866,6 +909,19 @@ public class Message {
         return this;
     }
 
+    @JsonAnySetter
+    public Message withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public Message withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -898,7 +954,8 @@ public class Message {
             Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
             Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
-            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
@@ -911,7 +968,7 @@ public class Message {
             webhookUrl, reference, price,
             error, messagingServiceId, customMappings,
             updatedBy, createdBy, updatedAt,
-            createdAt, passThrough);
+            createdAt, passThrough, additionalProperties);
     }
     
     @Override
@@ -939,7 +996,8 @@ public class Message {
                 "createdBy", createdBy,
                 "updatedAt", updatedAt,
                 "createdAt", createdAt,
-                "passThrough", passThrough);
+                "passThrough", passThrough,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -947,13 +1005,13 @@ public class Message {
 
         private Optional<String> id = Optional.empty();
 
-        private String from;
+        private Optional<String> from = Optional.empty();
 
-        private String to;
+        private Optional<String> to = Optional.empty();
 
         private Optional<String> subject = Optional.empty();
 
-        private String body;
+        private Optional<String> body = Optional.empty();
 
         private Optional<? extends MessageType> type = Optional.empty();
 
@@ -991,6 +1049,8 @@ public class Message {
 
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
 
+        private Map<String, Object> additionalProperties = new HashMap<>();
+
         private Builder() {
           // force use of static builder() method
         }
@@ -1020,6 +1080,15 @@ public class Message {
          */
         public Builder from(String from) {
             Utils.checkNotNull(from, "from");
+            this.from = Optional.ofNullable(from);
+            return this;
+        }
+
+        /**
+         * The phone number that initiated the message.
+         */
+        public Builder from(Optional<String> from) {
+            Utils.checkNotNull(from, "from");
             this.from = from;
             return this;
         }
@@ -1029,6 +1098,15 @@ public class Message {
          * The phone number that received the message.
          */
         public Builder to(String to) {
+            Utils.checkNotNull(to, "to");
+            this.to = Optional.ofNullable(to);
+            return this;
+        }
+
+        /**
+         * The phone number that received the message.
+         */
+        public Builder to(Optional<String> to) {
             Utils.checkNotNull(to, "to");
             this.to = to;
             return this;
@@ -1052,6 +1130,15 @@ public class Message {
          * The message text.
          */
         public Builder body(String body) {
+            Utils.checkNotNull(body, "body");
+            this.body = Optional.ofNullable(body);
+            return this;
+        }
+
+        /**
+         * The message text.
+         */
+        public Builder body(Optional<String> body) {
             Utils.checkNotNull(body, "body");
             this.body = body;
             return this;
@@ -1405,6 +1492,22 @@ public class Message {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public Message build() {
 
             return new Message(
@@ -1415,7 +1518,8 @@ public class Message {
                 webhookUrl, reference, price,
                 error, messagingServiceId, customMappings,
                 updatedBy, createdBy, updatedAt,
-                createdAt, passThrough);
+                createdAt, passThrough)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

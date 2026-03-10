@@ -21,7 +21,6 @@ List Tickets
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.*;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.IssueTrackingCollectionTicketsAllRequest;
 import com.apideck.unify.models.operations.IssueTrackingCollectionTicketsAllResponse;
@@ -42,14 +41,12 @@ public class Application {
         IssueTrackingCollectionTicketsAllRequest req = IssueTrackingCollectionTicketsAllRequest.builder()
                 .collectionId("apideck-io")
                 .serviceId("salesforce")
-                .sort(TicketsSort.builder()
-                    .by(TicketsSortBy.CREATED_AT)
-                    .direction(SortDirection.DESC)
-                    .build())
-                .filter(IssuesFilter.builder()
-                    .status(List.of(
-                        "open"))
-                    .build())
+                .sort(Map.ofEntries(
+                    Map.entry("by", "created_at"),
+                    Map.entry("direction", "desc")))
+                .filter(Map.ofEntries(
+                    Map.entry("status", List.of(
+                        "open"))))
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
                 .fields("id,updated_at")
@@ -205,7 +202,7 @@ public class Application {
                 .call();
 
         if (res.createTicketResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createTicketResponse().get());
         }
     }
 }
@@ -270,7 +267,7 @@ public class Application {
                 .call();
 
         if (res.getTicketResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getTicketResponse().get());
         }
     }
 }
@@ -407,7 +404,7 @@ public class Application {
                 .call();
 
         if (res.updateTicketResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateTicketResponse().get());
         }
     }
 }
@@ -471,7 +468,7 @@ public class Application {
                 .call();
 
         if (res.deleteTicketResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteTicketResponse().get());
         }
     }
 }

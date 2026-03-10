@@ -4,6 +4,8 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -15,6 +17,7 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -30,9 +33,9 @@ public class HrisCompany {
     private Optional<String> id;
 
 
-    @JsonInclude(Include.ALWAYS)
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("legal_name")
-    private Optional<String> legalName;
+    private JsonNullable<String> legalName;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -138,10 +141,14 @@ public class HrisCompany {
     @JsonProperty("pass_through")
     private Optional<? extends List<PassThroughBody>> passThrough;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public HrisCompany(
             @JsonProperty("id") Optional<String> id,
-            @JsonProperty("legal_name") Optional<String> legalName,
+            @JsonProperty("legal_name") JsonNullable<String> legalName,
             @JsonProperty("display_name") JsonNullable<String> displayName,
             @JsonProperty("subdomain") JsonNullable<String> subdomain,
             @JsonProperty("status") Optional<? extends HrisCompanyStatus> status,
@@ -197,10 +204,11 @@ public class HrisCompany {
         this.updatedAt = updatedAt;
         this.createdAt = createdAt;
         this.passThrough = passThrough;
+        this.additionalProperties = new HashMap<>();
     }
     
     public HrisCompany() {
-        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), JsonNullable.undefined(),
@@ -218,7 +226,7 @@ public class HrisCompany {
     }
 
     @JsonIgnore
-    public Optional<String> legalName() {
+    public JsonNullable<String> legalName() {
         return legalName;
     }
 
@@ -342,6 +350,11 @@ public class HrisCompany {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -368,12 +381,11 @@ public class HrisCompany {
 
     public HrisCompany withLegalName(String legalName) {
         Utils.checkNotNull(legalName, "legalName");
-        this.legalName = Optional.ofNullable(legalName);
+        this.legalName = JsonNullable.of(legalName);
         return this;
     }
 
-
-    public HrisCompany withLegalName(Optional<String> legalName) {
+    public HrisCompany withLegalName(JsonNullable<String> legalName) {
         Utils.checkNotNull(legalName, "legalName");
         this.legalName = legalName;
         return this;
@@ -644,6 +656,19 @@ public class HrisCompany {
         return this;
     }
 
+    @JsonAnySetter
+    public HrisCompany withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public HrisCompany withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -672,7 +697,8 @@ public class HrisCompany {
             Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
             Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
-            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
@@ -684,7 +710,7 @@ public class HrisCompany {
             emails, websites, debtorId,
             customMappings, deleted, updatedBy,
             createdBy, updatedAt, createdAt,
-            passThrough);
+            passThrough, additionalProperties);
     }
     
     @Override
@@ -708,7 +734,8 @@ public class HrisCompany {
                 "createdBy", createdBy,
                 "updatedAt", updatedAt,
                 "createdAt", createdAt,
-                "passThrough", passThrough);
+                "passThrough", passThrough,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -716,7 +743,7 @@ public class HrisCompany {
 
         private Optional<String> id = Optional.empty();
 
-        private Optional<String> legalName = Optional.empty();
+        private JsonNullable<String> legalName = JsonNullable.undefined();
 
         private JsonNullable<String> displayName = JsonNullable.undefined();
 
@@ -752,6 +779,8 @@ public class HrisCompany {
 
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
 
+        private Map<String, Object> additionalProperties = new HashMap<>();
+
         private Builder() {
           // force use of static builder() method
         }
@@ -778,11 +807,11 @@ public class HrisCompany {
 
         public Builder legalName(String legalName) {
             Utils.checkNotNull(legalName, "legalName");
-            this.legalName = Optional.ofNullable(legalName);
+            this.legalName = JsonNullable.of(legalName);
             return this;
         }
 
-        public Builder legalName(Optional<String> legalName) {
+        public Builder legalName(JsonNullable<String> legalName) {
             Utils.checkNotNull(legalName, "legalName");
             this.legalName = legalName;
             return this;
@@ -1063,6 +1092,22 @@ public class HrisCompany {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public HrisCompany build() {
 
             return new HrisCompany(
@@ -1072,7 +1117,8 @@ public class HrisCompany {
                 emails, websites, debtorId,
                 customMappings, deleted, updatedBy,
                 createdBy, updatedAt, createdAt,
-                passThrough);
+                passThrough)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

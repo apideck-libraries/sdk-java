@@ -107,8 +107,8 @@ public class Application {
 
         CrmPipelinesAddRequest req = CrmPipelinesAddRequest.builder()
                 .pipeline(PipelineInput.builder()
-                    .name("Sales Pipeline")
                     .id("default")
+                    .name("Sales Pipeline")
                     .currency(Currency.USD)
                     .archived(false)
                     .active(false)
@@ -157,7 +157,7 @@ public class Application {
                 .call();
 
         if (res.createPipelineResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createPipelineResponse().get());
         }
     }
 }
@@ -221,7 +221,7 @@ public class Application {
                 .call();
 
         if (res.getPipelineResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getPipelineResponse().get());
         }
     }
 }
@@ -280,8 +280,8 @@ public class Application {
         CrmPipelinesUpdateRequest req = CrmPipelinesUpdateRequest.builder()
                 .id("<id>")
                 .pipeline(PipelineInput.builder()
-                    .name("Sales Pipeline")
                     .id("default")
+                    .name("Sales Pipeline")
                     .currency(Currency.USD)
                     .archived(false)
                     .active(false)
@@ -354,7 +354,7 @@ public class Application {
                 .call();
 
         if (res.updatePipelineResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updatePipelineResponse().get());
         }
     }
 }
@@ -417,7 +417,7 @@ public class Application {
                 .call();
 
         if (res.deletePipelineResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deletePipelineResponse().get());
         }
     }
 }

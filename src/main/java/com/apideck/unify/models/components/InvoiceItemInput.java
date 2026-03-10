@@ -4,6 +4,8 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -12,11 +14,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Boolean;
 import java.lang.Deprecated;
 import java.lang.Double;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -90,7 +95,7 @@ public class InvoiceItemInput {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
-    private JsonNullable<? extends InvoiceItemTypeType> type;
+    private JsonNullable<? extends InvoiceItemType> type;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -207,6 +212,10 @@ public class InvoiceItemInput {
     @JsonProperty("pass_through")
     private Optional<? extends List<PassThroughBody>> passThrough;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public InvoiceItemInput(
             @JsonProperty("name") JsonNullable<String> name,
@@ -218,7 +227,7 @@ public class InvoiceItemInput {
             @JsonProperty("tracked") JsonNullable<Boolean> tracked,
             @JsonProperty("taxable") JsonNullable<Boolean> taxable,
             @JsonProperty("inventory_date") JsonNullable<LocalDate> inventoryDate,
-            @JsonProperty("type") JsonNullable<? extends InvoiceItemTypeType> type,
+            @JsonProperty("type") JsonNullable<? extends InvoiceItemType> type,
             @JsonProperty("sales_details") Optional<? extends InvoiceItemSalesDetails> salesDetails,
             @JsonProperty("purchase_details") Optional<? extends InvoiceItemPurchaseDetails> purchaseDetails,
             @JsonProperty("quantity") JsonNullable<Double> quantity,
@@ -293,6 +302,7 @@ public class InvoiceItemInput {
         this.taxScheduleId = taxScheduleId;
         this.rowVersion = rowVersion;
         this.passThrough = passThrough;
+        this.additionalProperties = new HashMap<>();
     }
     
     public InvoiceItemInput() {
@@ -385,8 +395,8 @@ public class InvoiceItemInput {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<InvoiceItemTypeType> type() {
-        return (JsonNullable<InvoiceItemTypeType>) type;
+    public JsonNullable<InvoiceItemType> type() {
+        return (JsonNullable<InvoiceItemType>) type;
     }
 
     @SuppressWarnings("unchecked")
@@ -521,6 +531,11 @@ public class InvoiceItemInput {
     @JsonIgnore
     public Optional<List<PassThroughBody>> passThrough() {
         return (Optional<List<PassThroughBody>>) passThrough;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
     }
 
     public static Builder builder() {
@@ -693,7 +708,7 @@ public class InvoiceItemInput {
     /**
      * Item type
      */
-    public InvoiceItemInput withType(InvoiceItemTypeType type) {
+    public InvoiceItemInput withType(InvoiceItemType type) {
         Utils.checkNotNull(type, "type");
         this.type = JsonNullable.of(type);
         return this;
@@ -702,7 +717,7 @@ public class InvoiceItemInput {
     /**
      * Item type
      */
-    public InvoiceItemInput withType(JsonNullable<? extends InvoiceItemTypeType> type) {
+    public InvoiceItemInput withType(JsonNullable<? extends InvoiceItemType> type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
@@ -997,6 +1012,19 @@ public class InvoiceItemInput {
         return this;
     }
 
+    @JsonAnySetter
+    public InvoiceItemInput withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public InvoiceItemInput withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -1034,7 +1062,8 @@ public class InvoiceItemInput {
             Utils.enhancedDeepEquals(this.categoryId, other.categoryId) &&
             Utils.enhancedDeepEquals(this.taxScheduleId, other.taxScheduleId) &&
             Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion) &&
-            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
@@ -1049,7 +1078,7 @@ public class InvoiceItemInput {
             trackingCategory, trackingCategories, active,
             departmentId, locationId, subsidiaryId,
             categoryId, taxScheduleId, rowVersion,
-            passThrough);
+            passThrough, additionalProperties);
     }
     
     @Override
@@ -1082,7 +1111,8 @@ public class InvoiceItemInput {
                 "categoryId", categoryId,
                 "taxScheduleId", taxScheduleId,
                 "rowVersion", rowVersion,
-                "passThrough", passThrough);
+                "passThrough", passThrough,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -1106,7 +1136,7 @@ public class InvoiceItemInput {
 
         private JsonNullable<LocalDate> inventoryDate = JsonNullable.undefined();
 
-        private JsonNullable<? extends InvoiceItemTypeType> type = JsonNullable.undefined();
+        private JsonNullable<? extends InvoiceItemType> type = JsonNullable.undefined();
 
         private Optional<? extends InvoiceItemSalesDetails> salesDetails = Optional.empty();
 
@@ -1144,6 +1174,8 @@ public class InvoiceItemInput {
         private JsonNullable<String> rowVersion = JsonNullable.undefined();
 
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -1324,7 +1356,7 @@ public class InvoiceItemInput {
         /**
          * Item type
          */
-        public Builder type(InvoiceItemTypeType type) {
+        public Builder type(InvoiceItemType type) {
             Utils.checkNotNull(type, "type");
             this.type = JsonNullable.of(type);
             return this;
@@ -1333,7 +1365,7 @@ public class InvoiceItemInput {
         /**
          * Item type
          */
-        public Builder type(JsonNullable<? extends InvoiceItemTypeType> type) {
+        public Builder type(JsonNullable<? extends InvoiceItemType> type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;
@@ -1643,6 +1675,22 @@ public class InvoiceItemInput {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public InvoiceItemInput build() {
 
             return new InvoiceItemInput(
@@ -1655,7 +1703,8 @@ public class InvoiceItemInput {
                 trackingCategory, trackingCategories, active,
                 departmentId, locationId, subsidiaryId,
                 categoryId, taxScheduleId, rowVersion,
-                passThrough);
+                passThrough)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

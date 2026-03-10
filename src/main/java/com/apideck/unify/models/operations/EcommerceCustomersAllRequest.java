@@ -3,7 +3,6 @@
  */
 package com.apideck.unify.models.operations;
 
-import com.apideck.unify.models.components.EcommerceCustomersFilter;
 import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
@@ -64,7 +63,7 @@ public class EcommerceCustomersAllRequest {
      * Apply filters
      */
     @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=filter")
-    private Optional<? extends EcommerceCustomersFilter> filter;
+    private Optional<? extends Map<String, Object>> filter;
 
     /**
      * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie:
@@ -95,7 +94,7 @@ public class EcommerceCustomersAllRequest {
             Optional<String> serviceId,
             JsonNullable<String> cursor,
             Optional<Long> limit,
-            Optional<? extends EcommerceCustomersFilter> filter,
+            Optional<? extends Map<String, Object>> filter,
             Optional<? extends Map<String, Object>> passThrough,
             JsonNullable<String> fields) {
         Utils.checkNotNull(raw, "raw");
@@ -179,8 +178,8 @@ public class EcommerceCustomersAllRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<EcommerceCustomersFilter> filter() {
-        return (Optional<EcommerceCustomersFilter>) filter;
+    public Optional<Map<String, Object>> filter() {
+        return (Optional<Map<String, Object>>) filter;
     }
 
     /**
@@ -334,7 +333,7 @@ public class EcommerceCustomersAllRequest {
     /**
      * Apply filters
      */
-    public EcommerceCustomersAllRequest withFilter(EcommerceCustomersFilter filter) {
+    public EcommerceCustomersAllRequest withFilter(Map<String, Object> filter) {
         Utils.checkNotNull(filter, "filter");
         this.filter = Optional.ofNullable(filter);
         return this;
@@ -344,7 +343,7 @@ public class EcommerceCustomersAllRequest {
     /**
      * Apply filters
      */
-    public EcommerceCustomersAllRequest withFilter(Optional<? extends EcommerceCustomersFilter> filter) {
+    public EcommerceCustomersAllRequest withFilter(Optional<? extends Map<String, Object>> filter) {
         Utils.checkNotNull(filter, "filter");
         this.filter = filter;
         return this;
@@ -463,7 +462,7 @@ public class EcommerceCustomersAllRequest {
 
         private Optional<Long> limit;
 
-        private Optional<? extends EcommerceCustomersFilter> filter = Optional.empty();
+        private Optional<? extends Map<String, Object>> filter = Optional.empty();
 
         private Optional<? extends Map<String, Object>> passThrough = Optional.empty();
 
@@ -595,7 +594,7 @@ public class EcommerceCustomersAllRequest {
         /**
          * Apply filters
          */
-        public Builder filter(EcommerceCustomersFilter filter) {
+        public Builder filter(Map<String, Object> filter) {
             Utils.checkNotNull(filter, "filter");
             this.filter = Optional.ofNullable(filter);
             return this;
@@ -604,7 +603,7 @@ public class EcommerceCustomersAllRequest {
         /**
          * Apply filters
          */
-        public Builder filter(Optional<? extends EcommerceCustomersFilter> filter) {
+        public Builder filter(Optional<? extends Map<String, Object>> filter) {
             Utils.checkNotNull(filter, "filter");
             this.filter = filter;
             return this;

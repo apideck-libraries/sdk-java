@@ -5,6 +5,8 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -12,12 +14,15 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import java.lang.Long;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 
@@ -55,6 +60,10 @@ public class AgedDebtors {
     @JsonProperty("outstanding_balances")
     private Optional<? extends List<OutstandingBalanceByCustomer>> outstandingBalances;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public AgedDebtors(
             @JsonProperty("report_generated_at") Optional<OffsetDateTime> reportGeneratedAt,
@@ -72,6 +81,7 @@ public class AgedDebtors {
         this.periodCount = periodCount;
         this.periodLength = periodLength;
         this.outstandingBalances = outstandingBalances;
+        this.additionalProperties = new HashMap<>();
     }
     
     public AgedDebtors() {
@@ -115,6 +125,11 @@ public class AgedDebtors {
     @JsonIgnore
     public Optional<List<OutstandingBalanceByCustomer>> outstandingBalances() {
         return (Optional<List<OutstandingBalanceByCustomer>>) outstandingBalances;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
     }
 
     public static Builder builder() {
@@ -211,6 +226,19 @@ public class AgedDebtors {
         return this;
     }
 
+    @JsonAnySetter
+    public AgedDebtors withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public AgedDebtors withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -225,14 +253,15 @@ public class AgedDebtors {
             Utils.enhancedDeepEquals(this.reportAsOfDate, other.reportAsOfDate) &&
             Utils.enhancedDeepEquals(this.periodCount, other.periodCount) &&
             Utils.enhancedDeepEquals(this.periodLength, other.periodLength) &&
-            Utils.enhancedDeepEquals(this.outstandingBalances, other.outstandingBalances);
+            Utils.enhancedDeepEquals(this.outstandingBalances, other.outstandingBalances) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             reportGeneratedAt, reportAsOfDate, periodCount,
-            periodLength, outstandingBalances);
+            periodLength, outstandingBalances, additionalProperties);
     }
     
     @Override
@@ -242,7 +271,8 @@ public class AgedDebtors {
                 "reportAsOfDate", reportAsOfDate,
                 "periodCount", periodCount,
                 "periodLength", periodLength,
-                "outstandingBalances", outstandingBalances);
+                "outstandingBalances", outstandingBalances,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -257,6 +287,8 @@ public class AgedDebtors {
         private Optional<Long> periodLength;
 
         private Optional<? extends List<OutstandingBalanceByCustomer>> outstandingBalances = Optional.empty();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -351,6 +383,22 @@ public class AgedDebtors {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public AgedDebtors build() {
             if (periodCount == null) {
                 periodCount = _SINGLETON_VALUE_PeriodCount.value();
@@ -361,7 +409,8 @@ public class AgedDebtors {
 
             return new AgedDebtors(
                 reportGeneratedAt, reportAsOfDate, periodCount,
-                periodLength, outstandingBalances);
+                periodLength, outstandingBalances)
+                .withAdditionalProperties(additionalProperties);
         }
 
 

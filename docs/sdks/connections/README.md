@@ -45,7 +45,7 @@ public class Application {
                 .call();
 
         if (res.getConnectionsResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getConnectionsResponse().get());
         }
     }
 }
@@ -106,7 +106,7 @@ public class Application {
                 .call();
 
         if (res.getConnectionResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getConnectionResponse().get());
         }
     }
 }
@@ -261,7 +261,7 @@ public class Application {
                 .call();
 
         if (res.updateConnectionResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateConnectionResponse().get());
         }
     }
 }
@@ -319,7 +319,7 @@ public class Application {
                 .call();
 
         if (res.unexpectedErrorResponse().isPresent()) {
-            // handle response
+            System.out.println(res.unexpectedErrorResponse().get());
         }
     }
 }
@@ -402,7 +402,7 @@ public class Application {
                 .call();
 
         if (res.createConnectionResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createConnectionResponse().get());
         }
     }
 }
@@ -471,7 +471,7 @@ public class Application {
                 .call();
 
         if (res.getConnectionResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getConnectionResponse().get());
         }
     }
 }

@@ -6,49 +6,60 @@ package com.apideck.unify.models.components;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Optional;
 
 
 public class ConsentRecordInput {
     /**
      * Whether consent was granted (true) or denied/revoked (false)
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("granted")
-    private boolean granted;
+    private Optional<Boolean> granted;
 
     /**
      * Data scopes resource configuration that can be either detailed field permissions or a wildcard
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resources")
-    private DataScopesResources resources;
+    private Optional<? extends DataScopesResources> resources;
 
     @JsonCreator
     public ConsentRecordInput(
-            @JsonProperty("granted") boolean granted,
-            @JsonProperty("resources") DataScopesResources resources) {
+            @JsonProperty("granted") Optional<Boolean> granted,
+            @JsonProperty("resources") Optional<? extends DataScopesResources> resources) {
         Utils.checkNotNull(granted, "granted");
         Utils.checkNotNull(resources, "resources");
         this.granted = granted;
         this.resources = resources;
+    }
+    
+    public ConsentRecordInput() {
+        this(Optional.empty(), Optional.empty());
     }
 
     /**
      * Whether consent was granted (true) or denied/revoked (false)
      */
     @JsonIgnore
-    public boolean granted() {
+    public Optional<Boolean> granted() {
         return granted;
     }
 
     /**
      * Data scopes resource configuration that can be either detailed field permissions or a wildcard
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public DataScopesResources resources() {
-        return resources;
+    public Optional<DataScopesResources> resources() {
+        return (Optional<DataScopesResources>) resources;
     }
 
     public static Builder builder() {
@@ -61,6 +72,16 @@ public class ConsentRecordInput {
      */
     public ConsentRecordInput withGranted(boolean granted) {
         Utils.checkNotNull(granted, "granted");
+        this.granted = Optional.ofNullable(granted);
+        return this;
+    }
+
+
+    /**
+     * Whether consent was granted (true) or denied/revoked (false)
+     */
+    public ConsentRecordInput withGranted(Optional<Boolean> granted) {
+        Utils.checkNotNull(granted, "granted");
         this.granted = granted;
         return this;
     }
@@ -69,6 +90,16 @@ public class ConsentRecordInput {
      * Data scopes resource configuration that can be either detailed field permissions or a wildcard
      */
     public ConsentRecordInput withResources(DataScopesResources resources) {
+        Utils.checkNotNull(resources, "resources");
+        this.resources = Optional.ofNullable(resources);
+        return this;
+    }
+
+
+    /**
+     * Data scopes resource configuration that can be either detailed field permissions or a wildcard
+     */
+    public ConsentRecordInput withResources(Optional<? extends DataScopesResources> resources) {
         Utils.checkNotNull(resources, "resources");
         this.resources = resources;
         return this;
@@ -104,9 +135,9 @@ public class ConsentRecordInput {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Boolean granted;
+        private Optional<Boolean> granted = Optional.empty();
 
-        private DataScopesResources resources;
+        private Optional<? extends DataScopesResources> resources = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -118,6 +149,15 @@ public class ConsentRecordInput {
          */
         public Builder granted(boolean granted) {
             Utils.checkNotNull(granted, "granted");
+            this.granted = Optional.ofNullable(granted);
+            return this;
+        }
+
+        /**
+         * Whether consent was granted (true) or denied/revoked (false)
+         */
+        public Builder granted(Optional<Boolean> granted) {
+            Utils.checkNotNull(granted, "granted");
             this.granted = granted;
             return this;
         }
@@ -127,6 +167,15 @@ public class ConsentRecordInput {
          * Data scopes resource configuration that can be either detailed field permissions or a wildcard
          */
         public Builder resources(DataScopesResources resources) {
+            Utils.checkNotNull(resources, "resources");
+            this.resources = Optional.ofNullable(resources);
+            return this;
+        }
+
+        /**
+         * Data scopes resource configuration that can be either detailed field permissions or a wildcard
+         */
+        public Builder resources(Optional<? extends DataScopesResources> resources) {
             Utils.checkNotNull(resources, "resources");
             this.resources = resources;
             return this;

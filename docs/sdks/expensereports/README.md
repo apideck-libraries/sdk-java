@@ -21,13 +21,11 @@ List Expense Reports
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.ExpenseReportsFilter;
-import com.apideck.unify.models.components.ExpenseReportsFilterStatus;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingExpenseReportsAllRequest;
 import com.apideck.unify.models.operations.AccountingExpenseReportsAllResponse;
 import java.lang.Exception;
-import java.time.OffsetDateTime;
+import java.util.Map;
 
 public class Application {
 
@@ -42,10 +40,9 @@ public class Application {
         AccountingExpenseReportsAllRequest req = AccountingExpenseReportsAllRequest.builder()
                 .serviceId("salesforce")
                 .fields("id,updated_at")
-                .filter(ExpenseReportsFilter.builder()
-                    .updatedSince(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
-                    .status(ExpenseReportsFilterStatus.SUBMITTED)
-                    .build())
+                .filter(Map.ofEntries(
+                    Map.entry("updated_since", "2020-09-30T07:43:32.000Z"),
+                    Map.entry("status", "submitted")))
                 .build();
 
 
@@ -114,16 +111,15 @@ public class Application {
 
         AccountingExpenseReportsAddRequest req = AccountingExpenseReportsAddRequest.builder()
                 .expenseReport(ExpenseReportInput.builder()
+                    .displayId("123456")
+                    .number("ER-001")
+                    .title("Q1 Business Travel")
                     .employee(ExpenseReportEmployee.builder()
                         .id("12345")
                         .displayName("John Doe")
                         .build())
-                    .transactionDate(OffsetDateTime.parse("2021-05-01T12:00:00.000Z"))
-                    .lineItems(List.of())
-                    .displayId("123456")
-                    .number("ER-001")
-                    .title("Q1 Business Travel")
                     .status(ExpenseReportStatus.SUBMITTED)
+                    .transactionDate(OffsetDateTime.parse("2021-05-01T12:00:00.000Z"))
                     .postingDate(LocalDate.parse("2024-06-01"))
                     .dueDate(LocalDate.parse("2024-06-15"))
                     .currency(Currency.USD)
@@ -147,6 +143,7 @@ public class Application {
                         .id("12345")
                         .name("Q1 2024")
                         .build())
+                    .lineItems(List.of())
                     .subsidiary(LinkedSubsidiaryInput.builder()
                         .displayId("123456")
                         .name("Acme Inc.")
@@ -165,12 +162,12 @@ public class Application {
                         .displayName("Jane Smith")
                         .build())
                     .customFields(List.of(
-                        CustomField.of(CustomField1.builder()
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build())))
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build()))
                     .rowVersion("1-12345")
                     .passThrough(List.of(
                         PassThroughBody.builder()
@@ -192,7 +189,7 @@ public class Application {
                 .call();
 
         if (res.createExpenseReportResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createExpenseReportResponse().get());
         }
     }
 }
@@ -256,7 +253,7 @@ public class Application {
                 .call();
 
         if (res.getExpenseReportResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getExpenseReportResponse().get());
         }
     }
 }
@@ -318,16 +315,15 @@ public class Application {
         AccountingExpenseReportsUpdateRequest req = AccountingExpenseReportsUpdateRequest.builder()
                 .id("<id>")
                 .expenseReport(ExpenseReportInput.builder()
+                    .displayId("123456")
+                    .number("ER-001")
+                    .title("Q1 Business Travel")
                     .employee(ExpenseReportEmployee.builder()
                         .id("12345")
                         .displayName("John Doe")
                         .build())
-                    .transactionDate(OffsetDateTime.parse("2021-05-01T12:00:00.000Z"))
-                    .lineItems(List.of())
-                    .displayId("123456")
-                    .number("ER-001")
-                    .title("Q1 Business Travel")
                     .status(ExpenseReportStatus.SUBMITTED)
+                    .transactionDate(OffsetDateTime.parse("2021-05-01T12:00:00.000Z"))
                     .postingDate(LocalDate.parse("2024-06-01"))
                     .dueDate(LocalDate.parse("2024-06-15"))
                     .currency(Currency.USD)
@@ -358,6 +354,7 @@ public class Application {
                         .id("12345")
                         .name("Q1 2024")
                         .build())
+                    .lineItems(List.of())
                     .subsidiary(LinkedSubsidiaryInput.builder()
                         .displayId("123456")
                         .name("Acme Inc.")
@@ -369,12 +366,12 @@ public class Application {
                         .displayName("Jane Smith")
                         .build())
                     .customFields(List.of(
-                        CustomField.of(CustomField1.builder()
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build())))
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build()))
                     .rowVersion("1-12345")
                     .passThrough(List.of(
                         PassThroughBody.builder()
@@ -396,7 +393,7 @@ public class Application {
                 .call();
 
         if (res.updateExpenseReportResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateExpenseReportResponse().get());
         }
     }
 }
@@ -459,7 +456,7 @@ public class Application {
                 .call();
 
         if (res.deleteExpenseReportResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteExpenseReportResponse().get());
         }
     }
 }

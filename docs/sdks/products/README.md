@@ -18,7 +18,6 @@ List Products
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.EcommerceProductsFilter;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.EcommerceProductsAllRequest;
 import com.apideck.unify.models.operations.EcommerceProductsAllResponse;
@@ -40,11 +39,10 @@ public class Application {
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
                 .fields("id,updated_at")
-                .filter(EcommerceProductsFilter.builder()
-                    .name("Product Name")
-                    .updatedSince("2020-09-30T07:43:32.000Z")
-                    .createdSince("2020-09-30T07:43:32.000Z")
-                    .build())
+                .filter(Map.ofEntries(
+                    Map.entry("name", "Product Name"),
+                    Map.entry("updated_since", "2020-09-30T07:43:32.000Z"),
+                    Map.entry("created_since", "2020-09-30T07:43:32.000Z")))
                 .build();
 
 
@@ -116,7 +114,7 @@ public class Application {
                 .call();
 
         if (res.getProductResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getProductResponse().get());
         }
     }
 }

@@ -4,16 +4,21 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -34,14 +39,16 @@ public class Webhook {
     /**
      * Name of Apideck Unified API
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("unified_api")
-    private UnifiedApiId unifiedApi;
+    private Optional<? extends UnifiedApiId> unifiedApi;
 
     /**
      * The status of the webhook.
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Status status;
+    private Optional<? extends Status> status;
 
     /**
      * Indicates why the webhook has been disabled. `retry_limit`: webhook reached its retry limit.
@@ -56,20 +63,23 @@ public class Webhook {
     /**
      * The delivery url of the webhook endpoint.
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("delivery_url")
-    private String deliveryUrl;
+    private Optional<String> deliveryUrl;
 
     /**
      * The Unify Base URL events from connectors will be sent to after service id is appended.
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("execute_base_url")
-    private String executeBaseUrl;
+    private Optional<String> executeBaseUrl;
 
     /**
      * The list of subscribed events for this webhook. [`*`] indicates that all events are enabled.
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("events")
-    private List<WebhookEventType> events;
+    private Optional<? extends List<WebhookEventType>> events;
 
     /**
      * The date and time when the object was last updated.
@@ -85,16 +95,20 @@ public class Webhook {
     @JsonProperty("created_at")
     private JsonNullable<OffsetDateTime> createdAt;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public Webhook(
             @JsonProperty("id") Optional<String> id,
             @JsonProperty("description") JsonNullable<String> description,
-            @JsonProperty("unified_api") UnifiedApiId unifiedApi,
-            @JsonProperty("status") Status status,
+            @JsonProperty("unified_api") Optional<? extends UnifiedApiId> unifiedApi,
+            @JsonProperty("status") Optional<? extends Status> status,
             @JsonProperty("disabled_reason") Optional<? extends DisabledReason> disabledReason,
-            @JsonProperty("delivery_url") String deliveryUrl,
-            @JsonProperty("execute_base_url") String executeBaseUrl,
-            @JsonProperty("events") List<WebhookEventType> events,
+            @JsonProperty("delivery_url") Optional<String> deliveryUrl,
+            @JsonProperty("execute_base_url") Optional<String> executeBaseUrl,
+            @JsonProperty("events") Optional<? extends List<WebhookEventType>> events,
             @JsonProperty("updated_at") JsonNullable<OffsetDateTime> updatedAt,
             @JsonProperty("created_at") JsonNullable<OffsetDateTime> createdAt) {
         Utils.checkNotNull(id, "id");
@@ -117,17 +131,13 @@ public class Webhook {
         this.events = events;
         this.updatedAt = updatedAt;
         this.createdAt = createdAt;
+        this.additionalProperties = new HashMap<>();
     }
     
-    public Webhook(
-            UnifiedApiId unifiedApi,
-            Status status,
-            String deliveryUrl,
-            String executeBaseUrl,
-            List<WebhookEventType> events) {
-        this(Optional.empty(), JsonNullable.undefined(), unifiedApi,
-            status, Optional.empty(), deliveryUrl,
-            executeBaseUrl, events, JsonNullable.undefined(),
+    public Webhook() {
+        this(Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined());
     }
 
@@ -147,17 +157,19 @@ public class Webhook {
     /**
      * Name of Apideck Unified API
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public UnifiedApiId unifiedApi() {
-        return unifiedApi;
+    public Optional<UnifiedApiId> unifiedApi() {
+        return (Optional<UnifiedApiId>) unifiedApi;
     }
 
     /**
      * The status of the webhook.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Status status() {
-        return status;
+    public Optional<Status> status() {
+        return (Optional<Status>) status;
     }
 
     /**
@@ -176,7 +188,7 @@ public class Webhook {
      * The delivery url of the webhook endpoint.
      */
     @JsonIgnore
-    public String deliveryUrl() {
+    public Optional<String> deliveryUrl() {
         return deliveryUrl;
     }
 
@@ -184,16 +196,17 @@ public class Webhook {
      * The Unify Base URL events from connectors will be sent to after service id is appended.
      */
     @JsonIgnore
-    public String executeBaseUrl() {
+    public Optional<String> executeBaseUrl() {
         return executeBaseUrl;
     }
 
     /**
      * The list of subscribed events for this webhook. [`*`] indicates that all events are enabled.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public List<WebhookEventType> events() {
-        return events;
+    public Optional<List<WebhookEventType>> events() {
+        return (Optional<List<WebhookEventType>>) events;
     }
 
     /**
@@ -210,6 +223,11 @@ public class Webhook {
     @JsonIgnore
     public JsonNullable<OffsetDateTime> createdAt() {
         return createdAt;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
     }
 
     public static Builder builder() {
@@ -253,6 +271,16 @@ public class Webhook {
      */
     public Webhook withUnifiedApi(UnifiedApiId unifiedApi) {
         Utils.checkNotNull(unifiedApi, "unifiedApi");
+        this.unifiedApi = Optional.ofNullable(unifiedApi);
+        return this;
+    }
+
+
+    /**
+     * Name of Apideck Unified API
+     */
+    public Webhook withUnifiedApi(Optional<? extends UnifiedApiId> unifiedApi) {
+        Utils.checkNotNull(unifiedApi, "unifiedApi");
         this.unifiedApi = unifiedApi;
         return this;
     }
@@ -261,6 +289,16 @@ public class Webhook {
      * The status of the webhook.
      */
     public Webhook withStatus(Status status) {
+        Utils.checkNotNull(status, "status");
+        this.status = Optional.ofNullable(status);
+        return this;
+    }
+
+
+    /**
+     * The status of the webhook.
+     */
+    public Webhook withStatus(Optional<? extends Status> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -296,6 +334,16 @@ public class Webhook {
      */
     public Webhook withDeliveryUrl(String deliveryUrl) {
         Utils.checkNotNull(deliveryUrl, "deliveryUrl");
+        this.deliveryUrl = Optional.ofNullable(deliveryUrl);
+        return this;
+    }
+
+
+    /**
+     * The delivery url of the webhook endpoint.
+     */
+    public Webhook withDeliveryUrl(Optional<String> deliveryUrl) {
+        Utils.checkNotNull(deliveryUrl, "deliveryUrl");
         this.deliveryUrl = deliveryUrl;
         return this;
     }
@@ -305,6 +353,16 @@ public class Webhook {
      */
     public Webhook withExecuteBaseUrl(String executeBaseUrl) {
         Utils.checkNotNull(executeBaseUrl, "executeBaseUrl");
+        this.executeBaseUrl = Optional.ofNullable(executeBaseUrl);
+        return this;
+    }
+
+
+    /**
+     * The Unify Base URL events from connectors will be sent to after service id is appended.
+     */
+    public Webhook withExecuteBaseUrl(Optional<String> executeBaseUrl) {
+        Utils.checkNotNull(executeBaseUrl, "executeBaseUrl");
         this.executeBaseUrl = executeBaseUrl;
         return this;
     }
@@ -313,6 +371,16 @@ public class Webhook {
      * The list of subscribed events for this webhook. [`*`] indicates that all events are enabled.
      */
     public Webhook withEvents(List<WebhookEventType> events) {
+        Utils.checkNotNull(events, "events");
+        this.events = Optional.ofNullable(events);
+        return this;
+    }
+
+
+    /**
+     * The list of subscribed events for this webhook. [`*`] indicates that all events are enabled.
+     */
+    public Webhook withEvents(Optional<? extends List<WebhookEventType>> events) {
         Utils.checkNotNull(events, "events");
         this.events = events;
         return this;
@@ -354,6 +422,19 @@ public class Webhook {
         return this;
     }
 
+    @JsonAnySetter
+    public Webhook withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public Webhook withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -373,7 +454,8 @@ public class Webhook {
             Utils.enhancedDeepEquals(this.executeBaseUrl, other.executeBaseUrl) &&
             Utils.enhancedDeepEquals(this.events, other.events) &&
             Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
-            Utils.enhancedDeepEquals(this.createdAt, other.createdAt);
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
@@ -382,7 +464,7 @@ public class Webhook {
             id, description, unifiedApi,
             status, disabledReason, deliveryUrl,
             executeBaseUrl, events, updatedAt,
-            createdAt);
+            createdAt, additionalProperties);
     }
     
     @Override
@@ -397,7 +479,8 @@ public class Webhook {
                 "executeBaseUrl", executeBaseUrl,
                 "events", events,
                 "updatedAt", updatedAt,
-                "createdAt", createdAt);
+                "createdAt", createdAt,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -407,21 +490,23 @@ public class Webhook {
 
         private JsonNullable<String> description = JsonNullable.undefined();
 
-        private UnifiedApiId unifiedApi;
+        private Optional<? extends UnifiedApiId> unifiedApi = Optional.empty();
 
-        private Status status;
+        private Optional<? extends Status> status = Optional.empty();
 
         private Optional<? extends DisabledReason> disabledReason = Optional.empty();
 
-        private String deliveryUrl;
+        private Optional<String> deliveryUrl = Optional.empty();
 
-        private String executeBaseUrl;
+        private Optional<String> executeBaseUrl = Optional.empty();
 
-        private List<WebhookEventType> events;
+        private Optional<? extends List<WebhookEventType>> events = Optional.empty();
 
         private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
 
         private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -465,6 +550,15 @@ public class Webhook {
          */
         public Builder unifiedApi(UnifiedApiId unifiedApi) {
             Utils.checkNotNull(unifiedApi, "unifiedApi");
+            this.unifiedApi = Optional.ofNullable(unifiedApi);
+            return this;
+        }
+
+        /**
+         * Name of Apideck Unified API
+         */
+        public Builder unifiedApi(Optional<? extends UnifiedApiId> unifiedApi) {
+            Utils.checkNotNull(unifiedApi, "unifiedApi");
             this.unifiedApi = unifiedApi;
             return this;
         }
@@ -474,6 +568,15 @@ public class Webhook {
          * The status of the webhook.
          */
         public Builder status(Status status) {
+            Utils.checkNotNull(status, "status");
+            this.status = Optional.ofNullable(status);
+            return this;
+        }
+
+        /**
+         * The status of the webhook.
+         */
+        public Builder status(Optional<? extends Status> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
@@ -510,6 +613,15 @@ public class Webhook {
          */
         public Builder deliveryUrl(String deliveryUrl) {
             Utils.checkNotNull(deliveryUrl, "deliveryUrl");
+            this.deliveryUrl = Optional.ofNullable(deliveryUrl);
+            return this;
+        }
+
+        /**
+         * The delivery url of the webhook endpoint.
+         */
+        public Builder deliveryUrl(Optional<String> deliveryUrl) {
+            Utils.checkNotNull(deliveryUrl, "deliveryUrl");
             this.deliveryUrl = deliveryUrl;
             return this;
         }
@@ -520,6 +632,15 @@ public class Webhook {
          */
         public Builder executeBaseUrl(String executeBaseUrl) {
             Utils.checkNotNull(executeBaseUrl, "executeBaseUrl");
+            this.executeBaseUrl = Optional.ofNullable(executeBaseUrl);
+            return this;
+        }
+
+        /**
+         * The Unify Base URL events from connectors will be sent to after service id is appended.
+         */
+        public Builder executeBaseUrl(Optional<String> executeBaseUrl) {
+            Utils.checkNotNull(executeBaseUrl, "executeBaseUrl");
             this.executeBaseUrl = executeBaseUrl;
             return this;
         }
@@ -529,6 +650,15 @@ public class Webhook {
          * The list of subscribed events for this webhook. [`*`] indicates that all events are enabled.
          */
         public Builder events(List<WebhookEventType> events) {
+            Utils.checkNotNull(events, "events");
+            this.events = Optional.ofNullable(events);
+            return this;
+        }
+
+        /**
+         * The list of subscribed events for this webhook. [`*`] indicates that all events are enabled.
+         */
+        public Builder events(Optional<? extends List<WebhookEventType>> events) {
             Utils.checkNotNull(events, "events");
             this.events = events;
             return this;
@@ -572,13 +702,30 @@ public class Webhook {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public Webhook build() {
 
             return new Webhook(
                 id, description, unifiedApi,
                 status, disabledReason, deliveryUrl,
                 executeBaseUrl, events, updatedAt,
-                createdAt);
+                createdAt)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

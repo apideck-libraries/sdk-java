@@ -47,7 +47,7 @@ public class Application {
                 .call();
 
         if (res.updateConsentResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateConsentResponse().get());
         }
     }
 }

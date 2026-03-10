@@ -5,6 +5,8 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -12,10 +14,13 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import java.lang.Boolean;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -114,6 +119,10 @@ public class Settings {
     @JsonProperty("allow_actions")
     private Optional<? extends List<AllowActions>> allowActions;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public Settings(
             @JsonProperty("unified_apis") Optional<? extends List<UnifiedApiId>> unifiedApis,
@@ -149,6 +158,7 @@ public class Settings {
         this.autoRedirect = autoRedirect;
         this.hideGuides = hideGuides;
         this.allowActions = allowActions;
+        this.additionalProperties = new HashMap<>();
     }
     
     public Settings() {
@@ -259,6 +269,11 @@ public class Settings {
     @JsonIgnore
     public Optional<List<AllowActions>> allowActions() {
         return (Optional<List<AllowActions>>) allowActions;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
     }
 
     public static Builder builder() {
@@ -501,6 +516,19 @@ public class Settings {
         return this;
     }
 
+    @JsonAnySetter
+    public Settings withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public Settings withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -521,7 +549,8 @@ public class Settings {
             Utils.enhancedDeepEquals(this.showSidebar, other.showSidebar) &&
             Utils.enhancedDeepEquals(this.autoRedirect, other.autoRedirect) &&
             Utils.enhancedDeepEquals(this.hideGuides, other.hideGuides) &&
-            Utils.enhancedDeepEquals(this.allowActions, other.allowActions);
+            Utils.enhancedDeepEquals(this.allowActions, other.allowActions) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
@@ -530,7 +559,7 @@ public class Settings {
             unifiedApis, hideResourceSettings, sandboxMode,
             isolationMode, sessionLength, showLogs,
             showSuggestions, showSidebar, autoRedirect,
-            hideGuides, allowActions);
+            hideGuides, allowActions, additionalProperties);
     }
     
     @Override
@@ -546,7 +575,8 @@ public class Settings {
                 "showSidebar", showSidebar,
                 "autoRedirect", autoRedirect,
                 "hideGuides", hideGuides,
-                "allowActions", allowActions);
+                "allowActions", allowActions,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -573,6 +603,8 @@ public class Settings {
         private Optional<Boolean> hideGuides;
 
         private Optional<? extends List<AllowActions>> allowActions = Optional.empty();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -813,6 +845,22 @@ public class Settings {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public Settings build() {
             if (hideResourceSettings == null) {
                 hideResourceSettings = _SINGLETON_VALUE_HideResourceSettings.value();
@@ -846,7 +894,8 @@ public class Settings {
                 unifiedApis, hideResourceSettings, sandboxMode,
                 isolationMode, sessionLength, showLogs,
                 showSuggestions, showSidebar, autoRedirect,
-                hideGuides, allowActions);
+                hideGuides, allowActions)
+                .withAdditionalProperties(additionalProperties);
         }
 
 

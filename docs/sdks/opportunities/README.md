@@ -21,7 +21,6 @@ List opportunities
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.*;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.CrmOpportunitiesAllRequest;
 import com.apideck.unify.models.operations.CrmOpportunitiesAllResponse;
@@ -40,14 +39,12 @@ public class Application {
 
         CrmOpportunitiesAllRequest req = CrmOpportunitiesAllRequest.builder()
                 .serviceId("salesforce")
-                .filter(OpportunitiesFilter.builder()
-                    .status("Completed")
-                    .monetaryAmount(75000d)
-                    .build())
-                .sort(OpportunitiesSort.builder()
-                    .by(OpportunitiesSortBy.CREATED_AT)
-                    .direction(SortDirection.DESC)
-                    .build())
+                .filter(Map.ofEntries(
+                    Map.entry("status", "Completed"),
+                    Map.entry("monetary_amount", 75000L)))
+                .sort(Map.ofEntries(
+                    Map.entry("by", "created_at"),
+                    Map.entry("direction", "desc")))
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
                 .fields("id,updated_at")
@@ -147,24 +144,24 @@ public class Application {
                     .tags(List.of(
                         "New"))
                     .customFields(List.of(
-                        CustomField.of(CustomField1.builder()
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build()),
-                        CustomField.of(CustomField1.builder()
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build(),
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build()),
-                        CustomField.of(CustomField1.builder()
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build(),
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build())))
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build()))
                     .stageLastChangedAt(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
                     .passThrough(List.of(
                         PassThroughBody.builder()
@@ -192,7 +189,7 @@ public class Application {
                 .call();
 
         if (res.createOpportunityResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createOpportunityResponse().get());
         }
     }
 }
@@ -256,7 +253,7 @@ public class Application {
                 .call();
 
         if (res.getOpportunityResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getOpportunityResponse().get());
         }
     }
 }
@@ -346,24 +343,24 @@ public class Application {
                     .tags(List.of(
                         "New"))
                     .customFields(List.of(
-                        CustomField.of(CustomField1.builder()
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build()),
-                        CustomField.of(CustomField1.builder()
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build(),
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build()),
-                        CustomField.of(CustomField1.builder()
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build(),
+                        CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(CustomField1Value.of("Uses Salesforce and Marketo"))
-                            .build())))
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build()))
                     .stageLastChangedAt(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
                     .passThrough(List.of(
                         PassThroughBody.builder()
@@ -397,7 +394,7 @@ public class Application {
                 .call();
 
         if (res.updateOpportunityResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateOpportunityResponse().get());
         }
     }
 }
@@ -460,7 +457,7 @@ public class Application {
                 .call();
 
         if (res.deleteOpportunityResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteOpportunityResponse().get());
         }
     }
 }

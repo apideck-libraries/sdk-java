@@ -21,11 +21,11 @@ List Locations
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.AccountingLocationsFilter;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingLocationsAllRequest;
 import com.apideck.unify.models.operations.AccountingLocationsAllResponse;
 import java.lang.Exception;
+import java.util.Map;
 
 public class Application {
 
@@ -39,10 +39,10 @@ public class Application {
 
         AccountingLocationsAllRequest req = AccountingLocationsAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .fields("id,updated_at")
-                .filter(AccountingLocationsFilter.builder()
-                    .subsidiary("1")
-                    .build())
+                .filter(Map.ofEntries(
+                    Map.entry("subsidiary", "1")))
                 .build();
 
 
@@ -160,6 +160,7 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingLocationsAddResponse res = sdk.accounting().locations().create()
@@ -167,7 +168,7 @@ public class Application {
                 .call();
 
         if (res.createAccountingLocationResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createAccountingLocationResponse().get());
         }
     }
 }
@@ -223,6 +224,7 @@ public class Application {
         AccountingLocationsOneRequest req = AccountingLocationsOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .fields("id,updated_at")
                 .build();
 
@@ -231,7 +233,7 @@ public class Application {
                 .call();
 
         if (res.getAccountingLocationResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getAccountingLocationResponse().get());
         }
     }
 }
@@ -409,6 +411,7 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingLocationsUpdateResponse res = sdk.accounting().locations().update()
@@ -416,7 +419,7 @@ public class Application {
                 .call();
 
         if (res.updateAccountingLocationResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateAccountingLocationResponse().get());
         }
     }
 }
@@ -472,6 +475,7 @@ public class Application {
         AccountingLocationsDeleteRequest req = AccountingLocationsDeleteRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingLocationsDeleteResponse res = sdk.accounting().locations().delete()
@@ -479,7 +483,7 @@ public class Application {
                 .call();
 
         if (res.deleteAccountingLocationResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteAccountingLocationResponse().get());
         }
     }
 }

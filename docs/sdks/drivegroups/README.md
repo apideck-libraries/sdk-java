@@ -21,7 +21,6 @@ List DriveGroups
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.DriveGroupsFilter;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.FileStorageDriveGroupsAllRequest;
 import com.apideck.unify.models.operations.FileStorageDriveGroupsAllResponse;
@@ -40,9 +39,8 @@ public class Application {
 
         FileStorageDriveGroupsAllRequest req = FileStorageDriveGroupsAllRequest.builder()
                 .serviceId("salesforce")
-                .filter(DriveGroupsFilter.builder()
-                    .parentGroupId("1234")
-                    .build())
+                .filter(Map.ofEntries(
+                    Map.entry("parent_group_id", "1234")))
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
                 .fields("id,updated_at")
@@ -156,7 +154,7 @@ public class Application {
                 .call();
 
         if (res.createDriveGroupResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createDriveGroupResponse().get());
         }
     }
 }
@@ -220,7 +218,7 @@ public class Application {
                 .call();
 
         if (res.getDriveGroupResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getDriveGroupResponse().get());
         }
     }
 }
@@ -340,7 +338,7 @@ public class Application {
                 .call();
 
         if (res.updateDriveGroupResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateDriveGroupResponse().get());
         }
     }
 }
@@ -403,7 +401,7 @@ public class Application {
                 .call();
 
         if (res.deleteDriveGroupResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteDriveGroupResponse().get());
         }
     }
 }

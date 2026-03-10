@@ -3,8 +3,6 @@
  */
 package com.apideck.unify.models.operations;
 
-import com.apideck.unify.models.components.InvoiceItemsFilter;
-import com.apideck.unify.models.components.InvoiceItemsSort;
 import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
@@ -49,6 +47,13 @@ public class AccountingInvoiceItemsAllRequest {
     private Optional<String> serviceId;
 
     /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-company-id")
+    private Optional<String> companyId;
+
+    /**
      * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of
      * the response.
      */
@@ -65,13 +70,13 @@ public class AccountingInvoiceItemsAllRequest {
      * Apply filters
      */
     @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=filter")
-    private Optional<? extends InvoiceItemsFilter> filter;
+    private Optional<? extends Map<String, Object>> filter;
 
     /**
      * Apply sorting
      */
     @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=sort")
-    private Optional<? extends InvoiceItemsSort> sort;
+    private Optional<? extends Map<String, Object>> sort;
 
     /**
      * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie:
@@ -100,16 +105,18 @@ public class AccountingInvoiceItemsAllRequest {
             Optional<String> consumerId,
             Optional<String> appId,
             Optional<String> serviceId,
+            Optional<String> companyId,
             JsonNullable<String> cursor,
             Optional<Long> limit,
-            Optional<? extends InvoiceItemsFilter> filter,
-            Optional<? extends InvoiceItemsSort> sort,
+            Optional<? extends Map<String, Object>> filter,
+            Optional<? extends Map<String, Object>> sort,
             Optional<? extends Map<String, Object>> passThrough,
             JsonNullable<String> fields) {
         Utils.checkNotNull(raw, "raw");
         Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(serviceId, "serviceId");
+        Utils.checkNotNull(companyId, "companyId");
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(limit, "limit");
         Utils.checkNotNull(filter, "filter");
@@ -120,6 +127,7 @@ public class AccountingInvoiceItemsAllRequest {
         this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
+        this.companyId = companyId;
         this.cursor = cursor;
         this.limit = limit;
         this.filter = filter;
@@ -130,9 +138,9 @@ public class AccountingInvoiceItemsAllRequest {
     
     public AccountingInvoiceItemsAllRequest() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            JsonNullable.undefined());
+            Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -169,6 +177,15 @@ public class AccountingInvoiceItemsAllRequest {
     }
 
     /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    @JsonIgnore
+    public Optional<String> companyId() {
+        return companyId;
+    }
+
+    /**
      * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of
      * the response.
      */
@@ -190,8 +207,8 @@ public class AccountingInvoiceItemsAllRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<InvoiceItemsFilter> filter() {
-        return (Optional<InvoiceItemsFilter>) filter;
+    public Optional<Map<String, Object>> filter() {
+        return (Optional<Map<String, Object>>) filter;
     }
 
     /**
@@ -199,8 +216,8 @@ public class AccountingInvoiceItemsAllRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<InvoiceItemsSort> sort() {
-        return (Optional<InvoiceItemsSort>) sort;
+    public Optional<Map<String, Object>> sort() {
+        return (Optional<Map<String, Object>>) sort;
     }
 
     /**
@@ -313,6 +330,27 @@ public class AccountingInvoiceItemsAllRequest {
     }
 
     /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    public AccountingInvoiceItemsAllRequest withCompanyId(String companyId) {
+        Utils.checkNotNull(companyId, "companyId");
+        this.companyId = Optional.ofNullable(companyId);
+        return this;
+    }
+
+
+    /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    public AccountingInvoiceItemsAllRequest withCompanyId(Optional<String> companyId) {
+        Utils.checkNotNull(companyId, "companyId");
+        this.companyId = companyId;
+        return this;
+    }
+
+    /**
      * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of
      * the response.
      */
@@ -354,7 +392,7 @@ public class AccountingInvoiceItemsAllRequest {
     /**
      * Apply filters
      */
-    public AccountingInvoiceItemsAllRequest withFilter(InvoiceItemsFilter filter) {
+    public AccountingInvoiceItemsAllRequest withFilter(Map<String, Object> filter) {
         Utils.checkNotNull(filter, "filter");
         this.filter = Optional.ofNullable(filter);
         return this;
@@ -364,7 +402,7 @@ public class AccountingInvoiceItemsAllRequest {
     /**
      * Apply filters
      */
-    public AccountingInvoiceItemsAllRequest withFilter(Optional<? extends InvoiceItemsFilter> filter) {
+    public AccountingInvoiceItemsAllRequest withFilter(Optional<? extends Map<String, Object>> filter) {
         Utils.checkNotNull(filter, "filter");
         this.filter = filter;
         return this;
@@ -373,7 +411,7 @@ public class AccountingInvoiceItemsAllRequest {
     /**
      * Apply sorting
      */
-    public AccountingInvoiceItemsAllRequest withSort(InvoiceItemsSort sort) {
+    public AccountingInvoiceItemsAllRequest withSort(Map<String, Object> sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = Optional.ofNullable(sort);
         return this;
@@ -383,7 +421,7 @@ public class AccountingInvoiceItemsAllRequest {
     /**
      * Apply sorting
      */
-    public AccountingInvoiceItemsAllRequest withSort(Optional<? extends InvoiceItemsSort> sort) {
+    public AccountingInvoiceItemsAllRequest withSort(Optional<? extends Map<String, Object>> sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = sort;
         return this;
@@ -458,6 +496,7 @@ public class AccountingInvoiceItemsAllRequest {
             Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
             Utils.enhancedDeepEquals(this.appId, other.appId) &&
             Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
             Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
             Utils.enhancedDeepEquals(this.limit, other.limit) &&
             Utils.enhancedDeepEquals(this.filter, other.filter) &&
@@ -470,9 +509,9 @@ public class AccountingInvoiceItemsAllRequest {
     public int hashCode() {
         return Utils.enhancedHash(
             raw, consumerId, appId,
-            serviceId, cursor, limit,
-            filter, sort, passThrough,
-            fields);
+            serviceId, companyId, cursor,
+            limit, filter, sort,
+            passThrough, fields);
     }
     
     @Override
@@ -482,6 +521,7 @@ public class AccountingInvoiceItemsAllRequest {
                 "consumerId", consumerId,
                 "appId", appId,
                 "serviceId", serviceId,
+                "companyId", companyId,
                 "cursor", cursor,
                 "limit", limit,
                 "filter", filter,
@@ -501,13 +541,15 @@ public class AccountingInvoiceItemsAllRequest {
 
         private Optional<String> serviceId = Optional.empty();
 
+        private Optional<String> companyId = Optional.empty();
+
         private JsonNullable<String> cursor = JsonNullable.undefined();
 
         private Optional<Long> limit;
 
-        private Optional<? extends InvoiceItemsFilter> filter = Optional.empty();
+        private Optional<? extends Map<String, Object>> filter = Optional.empty();
 
-        private Optional<? extends InvoiceItemsSort> sort = Optional.empty();
+        private Optional<? extends Map<String, Object>> sort = Optional.empty();
 
         private Optional<? extends Map<String, Object>> passThrough = Optional.empty();
 
@@ -597,6 +639,27 @@ public class AccountingInvoiceItemsAllRequest {
 
 
         /**
+         * The ID of the company to scope requests to. For connectors that support multi-company, this
+         * overrides the default company configured in connection settings.
+         */
+        public Builder companyId(String companyId) {
+            Utils.checkNotNull(companyId, "companyId");
+            this.companyId = Optional.ofNullable(companyId);
+            return this;
+        }
+
+        /**
+         * The ID of the company to scope requests to. For connectors that support multi-company, this
+         * overrides the default company configured in connection settings.
+         */
+        public Builder companyId(Optional<String> companyId) {
+            Utils.checkNotNull(companyId, "companyId");
+            this.companyId = companyId;
+            return this;
+        }
+
+
+        /**
          * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of
          * the response.
          */
@@ -639,7 +702,7 @@ public class AccountingInvoiceItemsAllRequest {
         /**
          * Apply filters
          */
-        public Builder filter(InvoiceItemsFilter filter) {
+        public Builder filter(Map<String, Object> filter) {
             Utils.checkNotNull(filter, "filter");
             this.filter = Optional.ofNullable(filter);
             return this;
@@ -648,7 +711,7 @@ public class AccountingInvoiceItemsAllRequest {
         /**
          * Apply filters
          */
-        public Builder filter(Optional<? extends InvoiceItemsFilter> filter) {
+        public Builder filter(Optional<? extends Map<String, Object>> filter) {
             Utils.checkNotNull(filter, "filter");
             this.filter = filter;
             return this;
@@ -658,7 +721,7 @@ public class AccountingInvoiceItemsAllRequest {
         /**
          * Apply sorting
          */
-        public Builder sort(InvoiceItemsSort sort) {
+        public Builder sort(Map<String, Object> sort) {
             Utils.checkNotNull(sort, "sort");
             this.sort = Optional.ofNullable(sort);
             return this;
@@ -667,7 +730,7 @@ public class AccountingInvoiceItemsAllRequest {
         /**
          * Apply sorting
          */
-        public Builder sort(Optional<? extends InvoiceItemsSort> sort) {
+        public Builder sort(Optional<? extends Map<String, Object>> sort) {
             Utils.checkNotNull(sort, "sort");
             this.sort = sort;
             return this;
@@ -739,9 +802,9 @@ public class AccountingInvoiceItemsAllRequest {
 
             return new AccountingInvoiceItemsAllRequest(
                 raw, consumerId, appId,
-                serviceId, cursor, limit,
-                filter, sort, passThrough,
-                fields);
+                serviceId, companyId, cursor,
+                limit, filter, sort,
+                passThrough, fields);
         }
 
 

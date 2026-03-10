@@ -4,6 +4,8 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -11,12 +13,15 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Boolean;
 import java.lang.Double;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -46,8 +51,9 @@ public class ExpenseReportInput {
     /**
      * The employee who submitted the expense report.
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("employee")
-    private ExpenseReportEmployee employee;
+    private Optional<? extends ExpenseReportEmployee> employee;
 
     /**
      * The status of the expense report.
@@ -59,9 +65,9 @@ public class ExpenseReportInput {
     /**
      * The date of the transaction - YYYY:MM::DDThh:mm:ss.sTZD
      */
-    @JsonInclude(Include.ALWAYS)
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("transaction_date")
-    private Optional<OffsetDateTime> transactionDate;
+    private JsonNullable<OffsetDateTime> transactionDate;
 
     /**
      * The date the expense report was posted to the general ledger.
@@ -152,8 +158,9 @@ public class ExpenseReportInput {
     /**
      * Expense line items linked to this expense report.
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("line_items")
-    private List<ExpenseReportLineItemInput> lineItems;
+    private Optional<? extends List<ExpenseReportLineItemInput>> lineItems;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -202,14 +209,18 @@ public class ExpenseReportInput {
     @JsonProperty("pass_through")
     private Optional<? extends List<PassThroughBody>> passThrough;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public ExpenseReportInput(
             @JsonProperty("display_id") JsonNullable<String> displayId,
             @JsonProperty("number") JsonNullable<String> number,
             @JsonProperty("title") JsonNullable<String> title,
-            @JsonProperty("employee") ExpenseReportEmployee employee,
+            @JsonProperty("employee") Optional<? extends ExpenseReportEmployee> employee,
             @JsonProperty("status") JsonNullable<? extends ExpenseReportStatus> status,
-            @JsonProperty("transaction_date") Optional<OffsetDateTime> transactionDate,
+            @JsonProperty("transaction_date") JsonNullable<OffsetDateTime> transactionDate,
             @JsonProperty("posting_date") JsonNullable<LocalDate> postingDate,
             @JsonProperty("due_date") JsonNullable<LocalDate> dueDate,
             @JsonProperty("currency") JsonNullable<? extends Currency> currency,
@@ -223,7 +234,7 @@ public class ExpenseReportInput {
             @JsonProperty("location") JsonNullable<? extends LinkedLocationInput> location,
             @JsonProperty("account") JsonNullable<? extends LinkedLedgerAccount> account,
             @JsonProperty("accounting_period") JsonNullable<? extends AccountingPeriod> accountingPeriod,
-            @JsonProperty("line_items") List<ExpenseReportLineItemInput> lineItems,
+            @JsonProperty("line_items") Optional<? extends List<ExpenseReportLineItemInput>> lineItems,
             @JsonProperty("subsidiary") JsonNullable<? extends LinkedSubsidiaryInput> subsidiary,
             @JsonProperty("tracking_categories") JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories,
             @JsonProperty("tax_inclusive") JsonNullable<Boolean> taxInclusive,
@@ -285,18 +296,17 @@ public class ExpenseReportInput {
         this.customFields = customFields;
         this.rowVersion = rowVersion;
         this.passThrough = passThrough;
+        this.additionalProperties = new HashMap<>();
     }
     
-    public ExpenseReportInput(
-            ExpenseReportEmployee employee,
-            List<ExpenseReportLineItemInput> lineItems) {
+    public ExpenseReportInput() {
         this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            employee, JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), lineItems, JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             Optional.empty(), JsonNullable.undefined(), Optional.empty());
     }
@@ -328,9 +338,10 @@ public class ExpenseReportInput {
     /**
      * The employee who submitted the expense report.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public ExpenseReportEmployee employee() {
-        return employee;
+    public Optional<ExpenseReportEmployee> employee() {
+        return (Optional<ExpenseReportEmployee>) employee;
     }
 
     /**
@@ -346,7 +357,7 @@ public class ExpenseReportInput {
      * The date of the transaction - YYYY:MM::DDThh:mm:ss.sTZD
      */
     @JsonIgnore
-    public Optional<OffsetDateTime> transactionDate() {
+    public JsonNullable<OffsetDateTime> transactionDate() {
         return transactionDate;
     }
 
@@ -454,9 +465,10 @@ public class ExpenseReportInput {
     /**
      * Expense line items linked to this expense report.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public List<ExpenseReportLineItemInput> lineItems() {
-        return lineItems;
+    public Optional<List<ExpenseReportLineItemInput>> lineItems() {
+        return (Optional<List<ExpenseReportLineItemInput>>) lineItems;
     }
 
     @SuppressWarnings("unchecked")
@@ -514,6 +526,11 @@ public class ExpenseReportInput {
     @JsonIgnore
     public Optional<List<PassThroughBody>> passThrough() {
         return (Optional<List<PassThroughBody>>) passThrough;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
     }
 
     public static Builder builder() {
@@ -580,6 +597,16 @@ public class ExpenseReportInput {
      */
     public ExpenseReportInput withEmployee(ExpenseReportEmployee employee) {
         Utils.checkNotNull(employee, "employee");
+        this.employee = Optional.ofNullable(employee);
+        return this;
+    }
+
+
+    /**
+     * The employee who submitted the expense report.
+     */
+    public ExpenseReportInput withEmployee(Optional<? extends ExpenseReportEmployee> employee) {
+        Utils.checkNotNull(employee, "employee");
         this.employee = employee;
         return this;
     }
@@ -607,15 +634,14 @@ public class ExpenseReportInput {
      */
     public ExpenseReportInput withTransactionDate(OffsetDateTime transactionDate) {
         Utils.checkNotNull(transactionDate, "transactionDate");
-        this.transactionDate = Optional.ofNullable(transactionDate);
+        this.transactionDate = JsonNullable.of(transactionDate);
         return this;
     }
-
 
     /**
      * The date of the transaction - YYYY:MM::DDThh:mm:ss.sTZD
      */
-    public ExpenseReportInput withTransactionDate(Optional<OffsetDateTime> transactionDate) {
+    public ExpenseReportInput withTransactionDate(JsonNullable<OffsetDateTime> transactionDate) {
         Utils.checkNotNull(transactionDate, "transactionDate");
         this.transactionDate = transactionDate;
         return this;
@@ -844,6 +870,16 @@ public class ExpenseReportInput {
      */
     public ExpenseReportInput withLineItems(List<ExpenseReportLineItemInput> lineItems) {
         Utils.checkNotNull(lineItems, "lineItems");
+        this.lineItems = Optional.ofNullable(lineItems);
+        return this;
+    }
+
+
+    /**
+     * Expense line items linked to this expense report.
+     */
+    public ExpenseReportInput withLineItems(Optional<? extends List<ExpenseReportLineItemInput>> lineItems) {
+        Utils.checkNotNull(lineItems, "lineItems");
         this.lineItems = lineItems;
         return this;
     }
@@ -968,6 +1004,19 @@ public class ExpenseReportInput {
         return this;
     }
 
+    @JsonAnySetter
+    public ExpenseReportInput withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public ExpenseReportInput withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -1004,7 +1053,8 @@ public class ExpenseReportInput {
             Utils.enhancedDeepEquals(this.approvedBy, other.approvedBy) &&
             Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
             Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion) &&
-            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
@@ -1018,7 +1068,8 @@ public class ExpenseReportInput {
             department, location, account,
             accountingPeriod, lineItems, subsidiary,
             trackingCategories, taxInclusive, approvedBy,
-            customFields, rowVersion, passThrough);
+            customFields, rowVersion, passThrough,
+            additionalProperties);
     }
     
     @Override
@@ -1050,7 +1101,8 @@ public class ExpenseReportInput {
                 "approvedBy", approvedBy,
                 "customFields", customFields,
                 "rowVersion", rowVersion,
-                "passThrough", passThrough);
+                "passThrough", passThrough,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -1062,11 +1114,11 @@ public class ExpenseReportInput {
 
         private JsonNullable<String> title = JsonNullable.undefined();
 
-        private ExpenseReportEmployee employee;
+        private Optional<? extends ExpenseReportEmployee> employee = Optional.empty();
 
         private JsonNullable<? extends ExpenseReportStatus> status = JsonNullable.undefined();
 
-        private Optional<OffsetDateTime> transactionDate = Optional.empty();
+        private JsonNullable<OffsetDateTime> transactionDate = JsonNullable.undefined();
 
         private JsonNullable<LocalDate> postingDate = JsonNullable.undefined();
 
@@ -1094,7 +1146,7 @@ public class ExpenseReportInput {
 
         private JsonNullable<? extends AccountingPeriod> accountingPeriod = JsonNullable.undefined();
 
-        private List<ExpenseReportLineItemInput> lineItems;
+        private Optional<? extends List<ExpenseReportLineItemInput>> lineItems = Optional.empty();
 
         private JsonNullable<? extends LinkedSubsidiaryInput> subsidiary = JsonNullable.undefined();
 
@@ -1109,6 +1161,8 @@ public class ExpenseReportInput {
         private JsonNullable<String> rowVersion = JsonNullable.undefined();
 
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -1177,6 +1231,15 @@ public class ExpenseReportInput {
          */
         public Builder employee(ExpenseReportEmployee employee) {
             Utils.checkNotNull(employee, "employee");
+            this.employee = Optional.ofNullable(employee);
+            return this;
+        }
+
+        /**
+         * The employee who submitted the expense report.
+         */
+        public Builder employee(Optional<? extends ExpenseReportEmployee> employee) {
+            Utils.checkNotNull(employee, "employee");
             this.employee = employee;
             return this;
         }
@@ -1206,14 +1269,14 @@ public class ExpenseReportInput {
          */
         public Builder transactionDate(OffsetDateTime transactionDate) {
             Utils.checkNotNull(transactionDate, "transactionDate");
-            this.transactionDate = Optional.ofNullable(transactionDate);
+            this.transactionDate = JsonNullable.of(transactionDate);
             return this;
         }
 
         /**
          * The date of the transaction - YYYY:MM::DDThh:mm:ss.sTZD
          */
-        public Builder transactionDate(Optional<OffsetDateTime> transactionDate) {
+        public Builder transactionDate(JsonNullable<OffsetDateTime> transactionDate) {
             Utils.checkNotNull(transactionDate, "transactionDate");
             this.transactionDate = transactionDate;
             return this;
@@ -1456,6 +1519,15 @@ public class ExpenseReportInput {
          */
         public Builder lineItems(List<ExpenseReportLineItemInput> lineItems) {
             Utils.checkNotNull(lineItems, "lineItems");
+            this.lineItems = Optional.ofNullable(lineItems);
+            return this;
+        }
+
+        /**
+         * Expense line items linked to this expense report.
+         */
+        public Builder lineItems(Optional<? extends List<ExpenseReportLineItemInput>> lineItems) {
+            Utils.checkNotNull(lineItems, "lineItems");
             this.lineItems = lineItems;
             return this;
         }
@@ -1585,6 +1657,22 @@ public class ExpenseReportInput {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public ExpenseReportInput build() {
 
             return new ExpenseReportInput(
@@ -1596,7 +1684,8 @@ public class ExpenseReportInput {
                 department, location, account,
                 accountingPeriod, lineItems, subsidiary,
                 trackingCategories, taxInclusive, approvedBy,
-                customFields, rowVersion, passThrough);
+                customFields, rowVersion, passThrough)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

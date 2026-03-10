@@ -21,12 +21,15 @@ import java.util.Optional;
 /**
  * TransactionType
  * 
- * <p>The kind of transaction, indicating whether it is a sales transaction or a purchase transaction.
+ * <p>Type of the transaction.
  */
 public class TransactionType {
 
-    public static final TransactionType SALE = new TransactionType("sale");
-    public static final TransactionType PURCHASE = new TransactionType("purchase");
+    public static final TransactionType INVOICE = new TransactionType("invoice");
+    public static final TransactionType CREDIT_NOTE = new TransactionType("credit_note");
+    public static final TransactionType BILL = new TransactionType("bill");
+    public static final TransactionType PAYMENT = new TransactionType("payment");
+    public static final TransactionType BILL_PAYMENT = new TransactionType("bill_payment");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -100,23 +103,32 @@ public class TransactionType {
 
     private static final Map<String, TransactionType> createValuesMap() {
         Map<String, TransactionType> map = new LinkedHashMap<>();
-        map.put("sale", SALE);
-        map.put("purchase", PURCHASE);
+        map.put("invoice", INVOICE);
+        map.put("credit_note", CREDIT_NOTE);
+        map.put("bill", BILL);
+        map.put("payment", PAYMENT);
+        map.put("bill_payment", BILL_PAYMENT);
         return map;
     }
 
     private static final Map<String, TransactionTypeEnum> createEnumsMap() {
         Map<String, TransactionTypeEnum> map = new HashMap<>();
-        map.put("sale", TransactionTypeEnum.SALE);
-        map.put("purchase", TransactionTypeEnum.PURCHASE);
+        map.put("invoice", TransactionTypeEnum.INVOICE);
+        map.put("credit_note", TransactionTypeEnum.CREDIT_NOTE);
+        map.put("bill", TransactionTypeEnum.BILL);
+        map.put("payment", TransactionTypeEnum.PAYMENT);
+        map.put("bill_payment", TransactionTypeEnum.BILL_PAYMENT);
         return map;
     }
     
     
     public enum TransactionTypeEnum {
 
-        SALE("sale"),
-        PURCHASE("purchase"),;
+        INVOICE("invoice"),
+        CREDIT_NOTE("credit_note"),
+        BILL("bill"),
+        PAYMENT("payment"),
+        BILL_PAYMENT("bill_payment"),;
 
         private final String value;
 

@@ -4,6 +4,8 @@
 package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -14,6 +16,7 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -24,9 +27,9 @@ public class Payroll {
     /**
      * A unique identifier for an object.
      */
-    @JsonInclude(Include.ALWAYS)
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private JsonNullable<String> id;
 
     /**
      * The unique identifier of the company.
@@ -39,9 +42,9 @@ public class Payroll {
      * Whether or not the payroll has been successfully processed. Note that processed payrolls cannot be
      * updated.
      */
-    @JsonInclude(Include.ALWAYS)
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("processed")
-    private Optional<Boolean> processed;
+    private JsonNullable<Boolean> processed;
 
     /**
      * The date the payroll was processed.
@@ -53,23 +56,23 @@ public class Payroll {
     /**
      * The date on which employees will be paid for the payroll.
      */
-    @JsonInclude(Include.ALWAYS)
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("check_date")
-    private Optional<String> checkDate;
+    private JsonNullable<String> checkDate;
 
     /**
      * The start date, inclusive, of the pay period.
      */
-    @JsonInclude(Include.ALWAYS)
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("start_date")
-    private Optional<String> startDate;
+    private JsonNullable<String> startDate;
 
     /**
      * The end date, inclusive, of the pay period.
      */
-    @JsonInclude(Include.ALWAYS)
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("end_date")
-    private Optional<String> endDate;
+    private JsonNullable<String> endDate;
 
     /**
      * The overview of the payroll totals.
@@ -92,15 +95,19 @@ public class Payroll {
     @JsonProperty("custom_mappings")
     private JsonNullable<? extends Map<String, Object>> customMappings;
 
+
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
+
     @JsonCreator
     public Payroll(
-            @JsonProperty("id") Optional<String> id,
+            @JsonProperty("id") JsonNullable<String> id,
             @JsonProperty("company_id") JsonNullable<String> companyId,
-            @JsonProperty("processed") Optional<Boolean> processed,
+            @JsonProperty("processed") JsonNullable<Boolean> processed,
             @JsonProperty("processed_date") JsonNullable<String> processedDate,
-            @JsonProperty("check_date") Optional<String> checkDate,
-            @JsonProperty("start_date") Optional<String> startDate,
-            @JsonProperty("end_date") Optional<String> endDate,
+            @JsonProperty("check_date") JsonNullable<String> checkDate,
+            @JsonProperty("start_date") JsonNullable<String> startDate,
+            @JsonProperty("end_date") JsonNullable<String> endDate,
             @JsonProperty("totals") Optional<? extends PayrollTotals> totals,
             @JsonProperty("compensations") Optional<? extends List<Compensation>> compensations,
             @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings) {
@@ -124,12 +131,13 @@ public class Payroll {
         this.totals = totals;
         this.compensations = compensations;
         this.customMappings = customMappings;
+        this.additionalProperties = new HashMap<>();
     }
     
     public Payroll() {
-        this(Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
             JsonNullable.undefined());
     }
 
@@ -137,7 +145,7 @@ public class Payroll {
      * A unique identifier for an object.
      */
     @JsonIgnore
-    public Optional<String> id() {
+    public JsonNullable<String> id() {
         return id;
     }
 
@@ -154,7 +162,7 @@ public class Payroll {
      * updated.
      */
     @JsonIgnore
-    public Optional<Boolean> processed() {
+    public JsonNullable<Boolean> processed() {
         return processed;
     }
 
@@ -170,7 +178,7 @@ public class Payroll {
      * The date on which employees will be paid for the payroll.
      */
     @JsonIgnore
-    public Optional<String> checkDate() {
+    public JsonNullable<String> checkDate() {
         return checkDate;
     }
 
@@ -178,7 +186,7 @@ public class Payroll {
      * The start date, inclusive, of the pay period.
      */
     @JsonIgnore
-    public Optional<String> startDate() {
+    public JsonNullable<String> startDate() {
         return startDate;
     }
 
@@ -186,7 +194,7 @@ public class Payroll {
      * The end date, inclusive, of the pay period.
      */
     @JsonIgnore
-    public Optional<String> endDate() {
+    public JsonNullable<String> endDate() {
         return endDate;
     }
 
@@ -217,6 +225,11 @@ public class Payroll {
         return (JsonNullable<Map<String, Object>>) customMappings;
     }
 
+    @JsonAnyGetter
+    public Map<String, Object> additionalProperties() {
+        return additionalProperties;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -227,15 +240,14 @@ public class Payroll {
      */
     public Payroll withId(String id) {
         Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
+        this.id = JsonNullable.of(id);
         return this;
     }
-
 
     /**
      * A unique identifier for an object.
      */
-    public Payroll withId(Optional<String> id) {
+    public Payroll withId(JsonNullable<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
@@ -265,16 +277,15 @@ public class Payroll {
      */
     public Payroll withProcessed(boolean processed) {
         Utils.checkNotNull(processed, "processed");
-        this.processed = Optional.ofNullable(processed);
+        this.processed = JsonNullable.of(processed);
         return this;
     }
-
 
     /**
      * Whether or not the payroll has been successfully processed. Note that processed payrolls cannot be
      * updated.
      */
-    public Payroll withProcessed(Optional<Boolean> processed) {
+    public Payroll withProcessed(JsonNullable<Boolean> processed) {
         Utils.checkNotNull(processed, "processed");
         this.processed = processed;
         return this;
@@ -303,15 +314,14 @@ public class Payroll {
      */
     public Payroll withCheckDate(String checkDate) {
         Utils.checkNotNull(checkDate, "checkDate");
-        this.checkDate = Optional.ofNullable(checkDate);
+        this.checkDate = JsonNullable.of(checkDate);
         return this;
     }
-
 
     /**
      * The date on which employees will be paid for the payroll.
      */
-    public Payroll withCheckDate(Optional<String> checkDate) {
+    public Payroll withCheckDate(JsonNullable<String> checkDate) {
         Utils.checkNotNull(checkDate, "checkDate");
         this.checkDate = checkDate;
         return this;
@@ -322,15 +332,14 @@ public class Payroll {
      */
     public Payroll withStartDate(String startDate) {
         Utils.checkNotNull(startDate, "startDate");
-        this.startDate = Optional.ofNullable(startDate);
+        this.startDate = JsonNullable.of(startDate);
         return this;
     }
-
 
     /**
      * The start date, inclusive, of the pay period.
      */
-    public Payroll withStartDate(Optional<String> startDate) {
+    public Payroll withStartDate(JsonNullable<String> startDate) {
         Utils.checkNotNull(startDate, "startDate");
         this.startDate = startDate;
         return this;
@@ -341,15 +350,14 @@ public class Payroll {
      */
     public Payroll withEndDate(String endDate) {
         Utils.checkNotNull(endDate, "endDate");
-        this.endDate = Optional.ofNullable(endDate);
+        this.endDate = JsonNullable.of(endDate);
         return this;
     }
-
 
     /**
      * The end date, inclusive, of the pay period.
      */
-    public Payroll withEndDate(Optional<String> endDate) {
+    public Payroll withEndDate(JsonNullable<String> endDate) {
         Utils.checkNotNull(endDate, "endDate");
         this.endDate = endDate;
         return this;
@@ -411,6 +419,19 @@ public class Payroll {
         return this;
     }
 
+    @JsonAnySetter
+    public Payroll withAdditionalProperty(String key, Object value) {
+        // note that value can be null because of the way JsonAnySetter works
+        Utils.checkNotNull(key, "key");
+        additionalProperties.put(key, value); 
+        return this;
+    }
+    public Payroll withAdditionalProperties(Map<String, Object> additionalProperties) {
+        Utils.checkNotNull(additionalProperties, "additionalProperties");
+        this.additionalProperties = additionalProperties;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -430,7 +451,8 @@ public class Payroll {
             Utils.enhancedDeepEquals(this.endDate, other.endDate) &&
             Utils.enhancedDeepEquals(this.totals, other.totals) &&
             Utils.enhancedDeepEquals(this.compensations, other.compensations) &&
-            Utils.enhancedDeepEquals(this.customMappings, other.customMappings);
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
+            Utils.enhancedDeepEquals(this.additionalProperties, other.additionalProperties);
     }
     
     @Override
@@ -439,7 +461,7 @@ public class Payroll {
             id, companyId, processed,
             processedDate, checkDate, startDate,
             endDate, totals, compensations,
-            customMappings);
+            customMappings, additionalProperties);
     }
     
     @Override
@@ -454,31 +476,34 @@ public class Payroll {
                 "endDate", endDate,
                 "totals", totals,
                 "compensations", compensations,
-                "customMappings", customMappings);
+                "customMappings", customMappings,
+                "additionalProperties", additionalProperties);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private JsonNullable<String> id = JsonNullable.undefined();
 
         private JsonNullable<String> companyId = JsonNullable.undefined();
 
-        private Optional<Boolean> processed = Optional.empty();
+        private JsonNullable<Boolean> processed = JsonNullable.undefined();
 
         private JsonNullable<String> processedDate = JsonNullable.undefined();
 
-        private Optional<String> checkDate = Optional.empty();
+        private JsonNullable<String> checkDate = JsonNullable.undefined();
 
-        private Optional<String> startDate = Optional.empty();
+        private JsonNullable<String> startDate = JsonNullable.undefined();
 
-        private Optional<String> endDate = Optional.empty();
+        private JsonNullable<String> endDate = JsonNullable.undefined();
 
         private Optional<? extends PayrollTotals> totals = Optional.empty();
 
         private Optional<? extends List<Compensation>> compensations = Optional.empty();
 
         private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
+
+        private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {
           // force use of static builder() method
@@ -490,14 +515,14 @@ public class Payroll {
          */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
+            this.id = JsonNullable.of(id);
             return this;
         }
 
         /**
          * A unique identifier for an object.
          */
-        public Builder id(Optional<String> id) {
+        public Builder id(JsonNullable<String> id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
@@ -529,7 +554,7 @@ public class Payroll {
          */
         public Builder processed(boolean processed) {
             Utils.checkNotNull(processed, "processed");
-            this.processed = Optional.ofNullable(processed);
+            this.processed = JsonNullable.of(processed);
             return this;
         }
 
@@ -537,7 +562,7 @@ public class Payroll {
          * Whether or not the payroll has been successfully processed. Note that processed payrolls cannot be
          * updated.
          */
-        public Builder processed(Optional<Boolean> processed) {
+        public Builder processed(JsonNullable<Boolean> processed) {
             Utils.checkNotNull(processed, "processed");
             this.processed = processed;
             return this;
@@ -568,14 +593,14 @@ public class Payroll {
          */
         public Builder checkDate(String checkDate) {
             Utils.checkNotNull(checkDate, "checkDate");
-            this.checkDate = Optional.ofNullable(checkDate);
+            this.checkDate = JsonNullable.of(checkDate);
             return this;
         }
 
         /**
          * The date on which employees will be paid for the payroll.
          */
-        public Builder checkDate(Optional<String> checkDate) {
+        public Builder checkDate(JsonNullable<String> checkDate) {
             Utils.checkNotNull(checkDate, "checkDate");
             this.checkDate = checkDate;
             return this;
@@ -587,14 +612,14 @@ public class Payroll {
          */
         public Builder startDate(String startDate) {
             Utils.checkNotNull(startDate, "startDate");
-            this.startDate = Optional.ofNullable(startDate);
+            this.startDate = JsonNullable.of(startDate);
             return this;
         }
 
         /**
          * The start date, inclusive, of the pay period.
          */
-        public Builder startDate(Optional<String> startDate) {
+        public Builder startDate(JsonNullable<String> startDate) {
             Utils.checkNotNull(startDate, "startDate");
             this.startDate = startDate;
             return this;
@@ -606,14 +631,14 @@ public class Payroll {
          */
         public Builder endDate(String endDate) {
             Utils.checkNotNull(endDate, "endDate");
-            this.endDate = Optional.ofNullable(endDate);
+            this.endDate = JsonNullable.of(endDate);
             return this;
         }
 
         /**
          * The end date, inclusive, of the pay period.
          */
-        public Builder endDate(Optional<String> endDate) {
+        public Builder endDate(JsonNullable<String> endDate) {
             Utils.checkNotNull(endDate, "endDate");
             this.endDate = endDate;
             return this;
@@ -676,13 +701,30 @@ public class Payroll {
             return this;
         }
 
+        public Builder additionalProperty(String key, Object value) {
+            Utils.checkNotNull(key, "key");
+            // we could be strict about null values (force the user
+            // to pass `JsonNullable.of(null)`) but likely to be a bit 
+            // annoying for additional properties building so we'll 
+            // relax preconditions.
+            this.additionalProperties.put(key, value);
+            return this;
+        }
+
+        public Builder additionalProperties(Map<String, Object> additionalProperties) {
+            Utils.checkNotNull(additionalProperties, "additionalProperties");
+            this.additionalProperties = additionalProperties;
+            return this;
+        }
+
         public Payroll build() {
 
             return new Payroll(
                 id, companyId, processed,
                 processedDate, checkDate, startDate,
                 endDate, totals, compensations,
-                customMappings);
+                customMappings)
+                .withAdditionalProperties(additionalProperties);
         }
 
     }

@@ -3,7 +3,6 @@
  */
 package com.apideck.unify.models.operations;
 
-import com.apideck.unify.models.components.EmployeesOneFilter;
 import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
@@ -70,7 +69,7 @@ public class HrisEmployeesOneRequest {
      * Apply filters
      */
     @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=filter")
-    private Optional<? extends EmployeesOneFilter> filter;
+    private Optional<? extends Map<String, Object>> filter;
 
     /**
      * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie:
@@ -87,7 +86,7 @@ public class HrisEmployeesOneRequest {
             Optional<String> serviceId,
             Optional<Boolean> raw,
             JsonNullable<String> fields,
-            Optional<? extends EmployeesOneFilter> filter,
+            Optional<? extends Map<String, Object>> filter,
             Optional<? extends Map<String, Object>> passThrough) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(consumerId, "consumerId");
@@ -176,8 +175,8 @@ public class HrisEmployeesOneRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<EmployeesOneFilter> filter() {
-        return (Optional<EmployeesOneFilter>) filter;
+    public Optional<Map<String, Object>> filter() {
+        return (Optional<Map<String, Object>>) filter;
     }
 
     /**
@@ -319,7 +318,7 @@ public class HrisEmployeesOneRequest {
     /**
      * Apply filters
      */
-    public HrisEmployeesOneRequest withFilter(EmployeesOneFilter filter) {
+    public HrisEmployeesOneRequest withFilter(Map<String, Object> filter) {
         Utils.checkNotNull(filter, "filter");
         this.filter = Optional.ofNullable(filter);
         return this;
@@ -329,7 +328,7 @@ public class HrisEmployeesOneRequest {
     /**
      * Apply filters
      */
-    public HrisEmployeesOneRequest withFilter(Optional<? extends EmployeesOneFilter> filter) {
+    public HrisEmployeesOneRequest withFilter(Optional<? extends Map<String, Object>> filter) {
         Utils.checkNotNull(filter, "filter");
         this.filter = filter;
         return this;
@@ -412,7 +411,7 @@ public class HrisEmployeesOneRequest {
 
         private JsonNullable<String> fields = JsonNullable.undefined();
 
-        private Optional<? extends EmployeesOneFilter> filter = Optional.empty();
+        private Optional<? extends Map<String, Object>> filter = Optional.empty();
 
         private Optional<? extends Map<String, Object>> passThrough = Optional.empty();
 
@@ -547,7 +546,7 @@ public class HrisEmployeesOneRequest {
         /**
          * Apply filters
          */
-        public Builder filter(EmployeesOneFilter filter) {
+        public Builder filter(Map<String, Object> filter) {
             Utils.checkNotNull(filter, "filter");
             this.filter = Optional.ofNullable(filter);
             return this;
@@ -556,7 +555,7 @@ public class HrisEmployeesOneRequest {
         /**
          * Apply filters
          */
-        public Builder filter(Optional<? extends EmployeesOneFilter> filter) {
+        public Builder filter(Optional<? extends Map<String, Object>> filter) {
             Utils.checkNotNull(filter, "filter");
             this.filter = filter;
             return this;

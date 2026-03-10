@@ -3,7 +3,6 @@
  */
 package com.apideck.unify.models.operations;
 
-import com.apideck.unify.models.components.FilesFilter;
 import com.apideck.unify.models.components.FilesSearch;
 import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
@@ -86,7 +85,7 @@ public class FileStorageFilesSearchRequest {
      * Apply filters
      */
     @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=filter")
-    private Optional<? extends FilesFilter> filter;
+    private Optional<? extends Map<String, Object>> filter;
 
 
     @SpeakeasyMetadata("request:mediaType=application/json")
@@ -102,7 +101,7 @@ public class FileStorageFilesSearchRequest {
             JsonNullable<String> cursor,
             Optional<Long> limit,
             Optional<Boolean> raw,
-            Optional<? extends FilesFilter> filter,
+            Optional<? extends Map<String, Object>> filter,
             FilesSearch filesSearch) {
         Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
@@ -215,8 +214,8 @@ public class FileStorageFilesSearchRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<FilesFilter> filter() {
-        return (Optional<FilesFilter>) filter;
+    public Optional<Map<String, Object>> filter() {
+        return (Optional<Map<String, Object>>) filter;
     }
 
     @JsonIgnore
@@ -404,7 +403,7 @@ public class FileStorageFilesSearchRequest {
     /**
      * Apply filters
      */
-    public FileStorageFilesSearchRequest withFilter(FilesFilter filter) {
+    public FileStorageFilesSearchRequest withFilter(Map<String, Object> filter) {
         Utils.checkNotNull(filter, "filter");
         this.filter = Optional.ofNullable(filter);
         return this;
@@ -414,7 +413,7 @@ public class FileStorageFilesSearchRequest {
     /**
      * Apply filters
      */
-    public FileStorageFilesSearchRequest withFilter(Optional<? extends FilesFilter> filter) {
+    public FileStorageFilesSearchRequest withFilter(Optional<? extends Map<String, Object>> filter) {
         Utils.checkNotNull(filter, "filter");
         this.filter = filter;
         return this;
@@ -491,7 +490,7 @@ public class FileStorageFilesSearchRequest {
 
         private Optional<Boolean> raw;
 
-        private Optional<? extends FilesFilter> filter = Optional.empty();
+        private Optional<? extends Map<String, Object>> filter = Optional.empty();
 
         private FilesSearch filesSearch;
 
@@ -677,7 +676,7 @@ public class FileStorageFilesSearchRequest {
         /**
          * Apply filters
          */
-        public Builder filter(FilesFilter filter) {
+        public Builder filter(Map<String, Object> filter) {
             Utils.checkNotNull(filter, "filter");
             this.filter = Optional.ofNullable(filter);
             return this;
@@ -686,7 +685,7 @@ public class FileStorageFilesSearchRequest {
         /**
          * Apply filters
          */
-        public Builder filter(Optional<? extends FilesFilter> filter) {
+        public Builder filter(Optional<? extends Map<String, Object>> filter) {
             Utils.checkNotNull(filter, "filter");
             this.filter = filter;
             return this;

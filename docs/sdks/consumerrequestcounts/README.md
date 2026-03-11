@@ -38,7 +38,7 @@ public class Application {
                 .call();
 
         if (res.consumerRequestCountsInDateRangeResponse().isPresent()) {
-            // handle response
+            System.out.println(res.consumerRequestCountsInDateRangeResponse().get());
         }
     }
 }

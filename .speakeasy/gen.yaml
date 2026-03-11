@@ -29,7 +29,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 java:
-  version: 0.30.4
+  version: 0.31.0
   additionalDependencies: []
   additionalPlugins: []
   artifactID: unify
@@ -44,11 +44,13 @@ java:
   enableFormatting: false
   enableSlf4jLogging: false
   enableStreamingUploads: false
+  explicitDocImports: false
   flattenGlobalSecurity: true
   forwardCompatibleEnumsByDefault: true
   forwardCompatibleUnionsByDefault: "false"
   generateOptionalUnionAccessors: false
   generateSpringBootStarter: true
+  generateUnionDocs: false
   githubURL: github.com/apideck-libraries/sdk-java
   groupID: com.apideck
   imports:
@@ -71,7 +73,9 @@ java:
   nullFriendlyParameters: false
   operationScopedParams: true
   outputModelSuffix: output
+  prefixModeMethodNames: false
   projectName: Apideck
   respectTitlesForPrimitiveUnionMembers: false
+  showSetterGetterTypesInDocs: false
   templateVersion: v2
   unionStrategy: populated-fields

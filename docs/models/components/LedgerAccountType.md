@@ -2,6 +2,17 @@
 
 The type of account.
 
+## Example Usage
+
+```java
+import com.apideck.unify.models.components.LedgerAccountType;
+
+LedgerAccountType value = LedgerAccountType.ACCOUNTS_PAYABLE;
+
+// Open enum: use .of() to create instances from custom string values
+LedgerAccountType custom = LedgerAccountType.of("custom_value");
+```
+
 
 ## Values
 

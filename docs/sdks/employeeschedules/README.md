@@ -46,7 +46,7 @@ public class Application {
                 .call();
 
         if (res.getEmployeeSchedulesResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getEmployeeSchedulesResponse().get());
         }
     }
 }

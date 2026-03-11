@@ -2,6 +2,17 @@
 
 Invoice status
 
+## Example Usage
+
+```java
+import com.apideck.unify.models.components.BillStatus;
+
+BillStatus value = BillStatus.DRAFT;
+
+// Open enum: use .of() to create instances from custom string values
+BillStatus custom = BillStatus.of("custom_value");
+```
+
 
 ## Values
 

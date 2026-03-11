@@ -121,7 +121,7 @@ public class Application {
                 .call();
 
         if (res.getEcommerceOrderResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getEcommerceOrderResponse().get());
         }
     }
 }

@@ -39,6 +39,7 @@ public class Application {
 
         AccountingBankFeedStatementsAllRequest req = AccountingBankFeedStatementsAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
                 .fields("id,updated_at")
@@ -148,6 +149,7 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingBankFeedStatementsAddResponse res = sdk.accounting().bankFeedStatements().create()
@@ -155,7 +157,7 @@ public class Application {
                 .call();
 
         if (res.createBankFeedStatementResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createBankFeedStatementResponse().get());
         }
     }
 }
@@ -211,6 +213,7 @@ public class Application {
         AccountingBankFeedStatementsOneRequest req = AccountingBankFeedStatementsOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .fields("id,updated_at")
                 .build();
 
@@ -219,7 +222,7 @@ public class Application {
                 .call();
 
         if (res.getBankFeedStatementResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getBankFeedStatementResponse().get());
         }
     }
 }
@@ -316,7 +319,7 @@ public class Application {
                 .call();
 
         if (res.updateBankFeedStatementResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateBankFeedStatementResponse().get());
         }
     }
 }
@@ -379,7 +382,7 @@ public class Application {
                 .call();
 
         if (res.deleteBankFeedStatementResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteBankFeedStatementResponse().get());
         }
     }
 }

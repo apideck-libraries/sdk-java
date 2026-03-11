@@ -1,5 +1,16 @@
 # JournalEntriesFilterStatus
 
+## Example Usage
+
+```java
+import com.apideck.unify.models.components.JournalEntriesFilterStatus;
+
+JournalEntriesFilterStatus value = JournalEntriesFilterStatus.DRAFT;
+
+// Open enum: use .of() to create instances from custom string values
+JournalEntriesFilterStatus custom = JournalEntriesFilterStatus.of("custom_value");
+```
+
 
 ## Values
 

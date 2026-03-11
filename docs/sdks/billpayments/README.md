@@ -41,6 +41,7 @@ public class Application {
 
         AccountingBillPaymentsAllRequest req = AccountingBillPaymentsAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .filter(PaymentsFilter.builder()
                     .updatedSince(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
                     .invoiceId("123")
@@ -237,6 +238,7 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingBillPaymentsAddResponse res = sdk.accounting().billPayments().create()
@@ -244,7 +246,7 @@ public class Application {
                 .call();
 
         if (res.createBillPaymentResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createBillPaymentResponse().get());
         }
     }
 }
@@ -300,6 +302,7 @@ public class Application {
         AccountingBillPaymentsOneRequest req = AccountingBillPaymentsOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .fields("id,updated_at")
                 .build();
 
@@ -308,7 +311,7 @@ public class Application {
                 .call();
 
         if (res.getBillPaymentResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getBillPaymentResponse().get());
         }
     }
 }
@@ -477,7 +480,7 @@ public class Application {
                 .call();
 
         if (res.updateBillPaymentResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateBillPaymentResponse().get());
         }
     }
 }
@@ -540,7 +543,7 @@ public class Application {
                 .call();
 
         if (res.deleteBillPaymentResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteBillPaymentResponse().get());
         }
     }
 }

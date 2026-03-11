@@ -41,6 +41,7 @@ public class Application {
 
         AccountingCustomersAllRequest req = AccountingCustomersAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .filter(CustomersFilter.builder()
                     .companyName("SpaceX")
                     .displayName("Elon Musk")
@@ -278,6 +279,7 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingCustomersAddResponse res = sdk.accounting().customers().create()
@@ -285,7 +287,7 @@ public class Application {
                 .call();
 
         if (res.createCustomerResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createCustomerResponse().get());
         }
     }
 }
@@ -341,6 +343,7 @@ public class Application {
         AccountingCustomersOneRequest req = AccountingCustomersOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .fields("id,updated_at")
                 .build();
 
@@ -349,7 +352,7 @@ public class Application {
                 .call();
 
         if (res.getCustomerResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getCustomerResponse().get());
         }
     }
 }
@@ -584,7 +587,7 @@ public class Application {
                 .call();
 
         if (res.updateCustomerResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateCustomerResponse().get());
         }
     }
 }
@@ -647,7 +650,7 @@ public class Application {
                 .call();
 
         if (res.deleteCustomerResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteCustomerResponse().get());
         }
     }
 }

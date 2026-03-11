@@ -95,8 +95,10 @@ public class CrmOpportunitiesAllRequestBuilder {
         Flow.Publisher<HttpResponse<Blob>> asyncPaginator = new AsyncPaginator<>(
             request,
             new CursorTracker<>("$.meta.cursors.next", String.class),
-                    CrmOpportunitiesAllRequest::withCursor,
-            operation::doRequest);
+            (req, pos) -> {
+                var modifiedReq = pos == null ? req : req.withCursor(pos);
+                return operation.doRequest(modifiedReq);
+            });
 
         Flow.Publisher<CrmOpportunitiesAllResponse> flowPublisher = mapAsync(asyncPaginator, operation::handleResponse);
 

@@ -40,6 +40,7 @@ public class Application {
 
         AccountingInvoiceItemsAllRequest req = AccountingInvoiceItemsAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .filter(InvoiceItemsFilter.builder()
                     .name("Widgets Large")
                     .type(InvoiceItemType.SERVICE)
@@ -188,6 +189,7 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingInvoiceItemsAddResponse res = sdk.accounting().invoiceItems().create()
@@ -195,7 +197,7 @@ public class Application {
                 .call();
 
         if (res.createInvoiceItemResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createInvoiceItemResponse().get());
         }
     }
 }
@@ -253,6 +255,7 @@ public class Application {
         AccountingInvoiceItemsOneRequest req = AccountingInvoiceItemsOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .fields("id,updated_at")
                 .filter(InvoiceItemFilter.builder()
                     .type(InvoiceItemFilterInvoiceItemType.SERVICE)
@@ -264,7 +267,7 @@ public class Application {
                 .call();
 
         if (res.getInvoiceItemResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getInvoiceItemResponse().get());
         }
     }
 }
@@ -410,7 +413,7 @@ public class Application {
                 .call();
 
         if (res.updateInvoiceItemsResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateInvoiceItemsResponse().get());
         }
     }
 }
@@ -473,7 +476,7 @@ public class Application {
                 .call();
 
         if (res.deleteTaxRateResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteTaxRateResponse().get());
         }
     }
 }

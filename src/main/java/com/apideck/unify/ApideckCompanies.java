@@ -5,26 +5,26 @@ package com.apideck.unify;
 
 import static com.apideck.unify.operations.Operations.RequestOperation;
 
-import com.apideck.unify.models.operations.HrisCompaniesAddRequest;
-import com.apideck.unify.models.operations.HrisCompaniesAddRequestBuilder;
-import com.apideck.unify.models.operations.HrisCompaniesAddResponse;
-import com.apideck.unify.models.operations.HrisCompaniesAllRequest;
-import com.apideck.unify.models.operations.HrisCompaniesAllRequestBuilder;
-import com.apideck.unify.models.operations.HrisCompaniesAllResponse;
-import com.apideck.unify.models.operations.HrisCompaniesDeleteRequest;
-import com.apideck.unify.models.operations.HrisCompaniesDeleteRequestBuilder;
-import com.apideck.unify.models.operations.HrisCompaniesDeleteResponse;
-import com.apideck.unify.models.operations.HrisCompaniesOneRequest;
-import com.apideck.unify.models.operations.HrisCompaniesOneRequestBuilder;
-import com.apideck.unify.models.operations.HrisCompaniesOneResponse;
-import com.apideck.unify.models.operations.HrisCompaniesUpdateRequest;
-import com.apideck.unify.models.operations.HrisCompaniesUpdateRequestBuilder;
-import com.apideck.unify.models.operations.HrisCompaniesUpdateResponse;
-import com.apideck.unify.operations.HrisCompaniesAdd;
-import com.apideck.unify.operations.HrisCompaniesAll;
-import com.apideck.unify.operations.HrisCompaniesDelete;
-import com.apideck.unify.operations.HrisCompaniesOne;
-import com.apideck.unify.operations.HrisCompaniesUpdate;
+import com.apideck.unify.models.operations.CrmCompaniesAddRequest;
+import com.apideck.unify.models.operations.CrmCompaniesAddRequestBuilder;
+import com.apideck.unify.models.operations.CrmCompaniesAddResponse;
+import com.apideck.unify.models.operations.CrmCompaniesAllRequest;
+import com.apideck.unify.models.operations.CrmCompaniesAllRequestBuilder;
+import com.apideck.unify.models.operations.CrmCompaniesAllResponse;
+import com.apideck.unify.models.operations.CrmCompaniesDeleteRequest;
+import com.apideck.unify.models.operations.CrmCompaniesDeleteRequestBuilder;
+import com.apideck.unify.models.operations.CrmCompaniesDeleteResponse;
+import com.apideck.unify.models.operations.CrmCompaniesOneRequest;
+import com.apideck.unify.models.operations.CrmCompaniesOneRequestBuilder;
+import com.apideck.unify.models.operations.CrmCompaniesOneResponse;
+import com.apideck.unify.models.operations.CrmCompaniesUpdateRequest;
+import com.apideck.unify.models.operations.CrmCompaniesUpdateRequestBuilder;
+import com.apideck.unify.models.operations.CrmCompaniesUpdateResponse;
+import com.apideck.unify.operations.CrmCompaniesAdd;
+import com.apideck.unify.operations.CrmCompaniesAll;
+import com.apideck.unify.operations.CrmCompaniesDelete;
+import com.apideck.unify.operations.CrmCompaniesOne;
+import com.apideck.unify.operations.CrmCompaniesUpdate;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
@@ -50,202 +50,202 @@ public class ApideckCompanies {
     }
 
     /**
-     * List Companies
+     * List companies
      * 
-     * <p>List Companies
+     * <p>List companies
      * 
      * @return The call builder
      */
-    public HrisCompaniesAllRequestBuilder list() {
-        return new HrisCompaniesAllRequestBuilder(sdkConfiguration);
+    public CrmCompaniesAllRequestBuilder list() {
+        return new CrmCompaniesAllRequestBuilder(sdkConfiguration);
     }
 
     /**
-     * List Companies
+     * List companies
      * 
-     * <p>List Companies
+     * <p>List companies
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public HrisCompaniesAllResponse list(HrisCompaniesAllRequest request) {
+    public CrmCompaniesAllResponse list(CrmCompaniesAllRequest request) {
         return list(request, Optional.empty());
     }
 
     /**
-     * List Companies
+     * List companies
      * 
-     * <p>List Companies
+     * <p>List companies
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public HrisCompaniesAllResponse list(HrisCompaniesAllRequest request, Optional<Options> options) {
-        RequestOperation<HrisCompaniesAllRequest, HrisCompaniesAllResponse> operation
-              = new HrisCompaniesAll.Sync(sdkConfiguration, options, _headers);
+    public CrmCompaniesAllResponse list(CrmCompaniesAllRequest request, Optional<Options> options) {
+        RequestOperation<CrmCompaniesAllRequest, CrmCompaniesAllResponse> operation
+              = new CrmCompaniesAll.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
-     * Create Company
+     * Create company
      * 
-     * <p>Create Company
+     * <p>Create company
      * 
      * @return The call builder
      */
-    public HrisCompaniesAddRequestBuilder create() {
-        return new HrisCompaniesAddRequestBuilder(sdkConfiguration);
+    public CrmCompaniesAddRequestBuilder create() {
+        return new CrmCompaniesAddRequestBuilder(sdkConfiguration);
     }
 
     /**
-     * Create Company
+     * Create company
      * 
-     * <p>Create Company
+     * <p>Create company
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public HrisCompaniesAddResponse create(HrisCompaniesAddRequest request) {
+    public CrmCompaniesAddResponse create(CrmCompaniesAddRequest request) {
         return create(request, Optional.empty());
     }
 
     /**
-     * Create Company
+     * Create company
      * 
-     * <p>Create Company
+     * <p>Create company
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public HrisCompaniesAddResponse create(HrisCompaniesAddRequest request, Optional<Options> options) {
-        RequestOperation<HrisCompaniesAddRequest, HrisCompaniesAddResponse> operation
-              = new HrisCompaniesAdd.Sync(sdkConfiguration, options, _headers);
+    public CrmCompaniesAddResponse create(CrmCompaniesAddRequest request, Optional<Options> options) {
+        RequestOperation<CrmCompaniesAddRequest, CrmCompaniesAddResponse> operation
+              = new CrmCompaniesAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
-     * Get Company
+     * Get company
      * 
-     * <p>Get Company
+     * <p>Get company
      * 
      * @return The call builder
      */
-    public HrisCompaniesOneRequestBuilder get() {
-        return new HrisCompaniesOneRequestBuilder(sdkConfiguration);
+    public CrmCompaniesOneRequestBuilder get() {
+        return new CrmCompaniesOneRequestBuilder(sdkConfiguration);
     }
 
     /**
-     * Get Company
+     * Get company
      * 
-     * <p>Get Company
+     * <p>Get company
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public HrisCompaniesOneResponse get(HrisCompaniesOneRequest request) {
+    public CrmCompaniesOneResponse get(CrmCompaniesOneRequest request) {
         return get(request, Optional.empty());
     }
 
     /**
-     * Get Company
+     * Get company
      * 
-     * <p>Get Company
+     * <p>Get company
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public HrisCompaniesOneResponse get(HrisCompaniesOneRequest request, Optional<Options> options) {
-        RequestOperation<HrisCompaniesOneRequest, HrisCompaniesOneResponse> operation
-              = new HrisCompaniesOne.Sync(sdkConfiguration, options, _headers);
+    public CrmCompaniesOneResponse get(CrmCompaniesOneRequest request, Optional<Options> options) {
+        RequestOperation<CrmCompaniesOneRequest, CrmCompaniesOneResponse> operation
+              = new CrmCompaniesOne.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
-     * Update Company
+     * Update company
      * 
-     * <p>Update Company
+     * <p>Update company
      * 
      * @return The call builder
      */
-    public HrisCompaniesUpdateRequestBuilder update() {
-        return new HrisCompaniesUpdateRequestBuilder(sdkConfiguration);
+    public CrmCompaniesUpdateRequestBuilder update() {
+        return new CrmCompaniesUpdateRequestBuilder(sdkConfiguration);
     }
 
     /**
-     * Update Company
+     * Update company
      * 
-     * <p>Update Company
+     * <p>Update company
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public HrisCompaniesUpdateResponse update(HrisCompaniesUpdateRequest request) {
+    public CrmCompaniesUpdateResponse update(CrmCompaniesUpdateRequest request) {
         return update(request, Optional.empty());
     }
 
     /**
-     * Update Company
+     * Update company
      * 
-     * <p>Update Company
+     * <p>Update company
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public HrisCompaniesUpdateResponse update(HrisCompaniesUpdateRequest request, Optional<Options> options) {
-        RequestOperation<HrisCompaniesUpdateRequest, HrisCompaniesUpdateResponse> operation
-              = new HrisCompaniesUpdate.Sync(sdkConfiguration, options, _headers);
+    public CrmCompaniesUpdateResponse update(CrmCompaniesUpdateRequest request, Optional<Options> options) {
+        RequestOperation<CrmCompaniesUpdateRequest, CrmCompaniesUpdateResponse> operation
+              = new CrmCompaniesUpdate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
-     * Delete Company
+     * Delete company
      * 
-     * <p>Delete Company
+     * <p>Delete company
      * 
      * @return The call builder
      */
-    public HrisCompaniesDeleteRequestBuilder delete() {
-        return new HrisCompaniesDeleteRequestBuilder(sdkConfiguration);
+    public CrmCompaniesDeleteRequestBuilder delete() {
+        return new CrmCompaniesDeleteRequestBuilder(sdkConfiguration);
     }
 
     /**
-     * Delete Company
+     * Delete company
      * 
-     * <p>Delete Company
+     * <p>Delete company
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public HrisCompaniesDeleteResponse delete(HrisCompaniesDeleteRequest request) {
+    public CrmCompaniesDeleteResponse delete(CrmCompaniesDeleteRequest request) {
         return delete(request, Optional.empty());
     }
 
     /**
-     * Delete Company
+     * Delete company
      * 
-     * <p>Delete Company
+     * <p>Delete company
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public HrisCompaniesDeleteResponse delete(HrisCompaniesDeleteRequest request, Optional<Options> options) {
-        RequestOperation<HrisCompaniesDeleteRequest, HrisCompaniesDeleteResponse> operation
-              = new HrisCompaniesDelete.Sync(sdkConfiguration, options, _headers);
+    public CrmCompaniesDeleteResponse delete(CrmCompaniesDeleteRequest request, Optional<Options> options) {
+        RequestOperation<CrmCompaniesDeleteRequest, CrmCompaniesDeleteResponse> operation
+              = new CrmCompaniesDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

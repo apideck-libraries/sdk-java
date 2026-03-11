@@ -38,6 +38,7 @@ public class Application {
 
         AccountingSubsidiariesAllRequest req = AccountingSubsidiariesAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .fields("id,updated_at")
                 .build();
 
@@ -141,6 +142,7 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingSubsidiariesAddResponse res = sdk.accounting().subsidiaries().create()
@@ -148,7 +150,7 @@ public class Application {
                 .call();
 
         if (res.createSubsidiaryResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createSubsidiaryResponse().get());
         }
     }
 }
@@ -204,6 +206,7 @@ public class Application {
         AccountingSubsidiariesOneRequest req = AccountingSubsidiariesOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .fields("id,updated_at")
                 .build();
 
@@ -212,7 +215,7 @@ public class Application {
                 .call();
 
         if (res.getSubsidiaryResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getSubsidiaryResponse().get());
         }
     }
 }
@@ -294,6 +297,7 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingSubsidiariesUpdateResponse res = sdk.accounting().subsidiaries().update()
@@ -301,7 +305,7 @@ public class Application {
                 .call();
 
         if (res.updateSubsidiaryResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateSubsidiaryResponse().get());
         }
     }
 }
@@ -357,6 +361,7 @@ public class Application {
         AccountingSubsidiariesDeleteRequest req = AccountingSubsidiariesDeleteRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingSubsidiariesDeleteResponse res = sdk.accounting().subsidiaries().delete()
@@ -364,7 +369,7 @@ public class Application {
                 .call();
 
         if (res.deleteSubsidiaryResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteSubsidiaryResponse().get());
         }
     }
 }

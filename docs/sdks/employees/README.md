@@ -222,7 +222,7 @@ public class Application {
                 .call();
 
         if (res.createAccountingEmployeeResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createAccountingEmployeeResponse().get());
         }
     }
 }
@@ -286,7 +286,7 @@ public class Application {
                 .call();
 
         if (res.getAccountingEmployeeResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getAccountingEmployeeResponse().get());
         }
     }
 }
@@ -456,7 +456,7 @@ public class Application {
                 .call();
 
         if (res.updateAccountingEmployeeResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateAccountingEmployeeResponse().get());
         }
     }
 }
@@ -519,7 +519,7 @@ public class Application {
                 .call();
 
         if (res.deleteAccountingEmployeeResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteAccountingEmployeeResponse().get());
         }
     }
 }

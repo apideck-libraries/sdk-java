@@ -45,7 +45,7 @@ public class Application {
                 .call();
 
         if (res.getCustomFieldsResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getCustomFieldsResponse().get());
         }
     }
 }

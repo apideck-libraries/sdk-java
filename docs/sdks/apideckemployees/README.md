@@ -518,7 +518,7 @@ public class Application {
                 .call();
 
         if (res.createEmployeeResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createEmployeeResponse().get());
         }
     }
 }
@@ -589,7 +589,7 @@ public class Application {
                 .call();
 
         if (res.getEmployeeResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getEmployeeResponse().get());
         }
     }
 }
@@ -897,7 +897,7 @@ public class Application {
                 .call();
 
         if (res.updateEmployeeResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateEmployeeResponse().get());
         }
     }
 }
@@ -960,7 +960,7 @@ public class Application {
                 .call();
 
         if (res.deleteEmployeeResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteEmployeeResponse().get());
         }
     }
 }

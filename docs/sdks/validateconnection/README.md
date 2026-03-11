@@ -48,7 +48,7 @@ public class Application {
                 .call();
 
         if (res.validateConnectionStateResponse().isPresent()) {
-            // handle response
+            System.out.println(res.validateConnectionStateResponse().get());
         }
     }
 }

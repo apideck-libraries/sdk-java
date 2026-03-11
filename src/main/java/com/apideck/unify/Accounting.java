@@ -19,7 +19,9 @@ public class Accounting {
     private final Customers customers;
     private final Suppliers suppliers;
     private final Payments payments;
+    private final Refunds refunds;
     private final CompanyInfo companyInfo;
+    private final Companies companies;
     private final BalanceSheet balanceSheet;
     private final ProfitAndLoss profitAndLoss;
     private final JournalEntries journalEntries;
@@ -54,7 +56,9 @@ public class Accounting {
         this.customers = new Customers(this.sdkConfiguration);
         this.suppliers = new Suppliers(this.sdkConfiguration);
         this.payments = new Payments(this.sdkConfiguration);
+        this.refunds = new Refunds(this.sdkConfiguration);
         this.companyInfo = new CompanyInfo(this.sdkConfiguration);
+        this.companies = new Companies(this.sdkConfiguration);
         this.balanceSheet = new BalanceSheet(this.sdkConfiguration);
         this.profitAndLoss = new ProfitAndLoss(this.sdkConfiguration);
         this.journalEntries = new JournalEntries(this.sdkConfiguration);
@@ -116,8 +120,16 @@ public class Accounting {
         return payments;
     }
 
+    public final Refunds refunds() {
+        return refunds;
+    }
+
     public final CompanyInfo companyInfo() {
         return companyInfo;
+    }
+
+    public final Companies companies() {
+        return companies;
     }
 
     public final BalanceSheet balanceSheet() {

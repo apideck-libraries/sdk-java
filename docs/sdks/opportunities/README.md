@@ -192,7 +192,7 @@ public class Application {
                 .call();
 
         if (res.createOpportunityResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createOpportunityResponse().get());
         }
     }
 }
@@ -256,7 +256,7 @@ public class Application {
                 .call();
 
         if (res.getOpportunityResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getOpportunityResponse().get());
         }
     }
 }
@@ -397,7 +397,7 @@ public class Application {
                 .call();
 
         if (res.updateOpportunityResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateOpportunityResponse().get());
         }
     }
 }
@@ -460,7 +460,7 @@ public class Application {
                 .call();
 
         if (res.deleteOpportunityResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteOpportunityResponse().get());
         }
     }
 }

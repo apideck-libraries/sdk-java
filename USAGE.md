@@ -22,6 +22,7 @@ public class Application {
 
         AccountingTaxRatesAllRequest req = AccountingTaxRatesAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .filter(TaxRatesFilter.builder()
                     .assets(true)
                     .equity(true)

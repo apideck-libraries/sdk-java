@@ -1,0 +1,636 @@
+# Hris.Companies
+
+## Overview
+
+### Available Operations
+
+* [list](#list) - List Companies
+* [create](#create) - Create Company
+* [get](#get) - Get Company
+* [update](#update) - Update Company
+* [delete](#delete) - Delete Company
+
+## list
+
+List Companies
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="hris.companiesAll" method="get" path="/hris/companies" -->
+```java
+package hello.world;
+
+import com.apideck.unify.Apideck;
+import com.apideck.unify.models.errors.*;
+import com.apideck.unify.models.operations.HrisCompaniesAllRequest;
+import com.apideck.unify.models.operations.HrisCompaniesAllResponse;
+import java.lang.Exception;
+import java.util.Map;
+
+public class Application {
+
+    public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
+
+        Apideck sdk = Apideck.builder()
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+            .build();
+
+        HrisCompaniesAllRequest req = HrisCompaniesAllRequest.builder()
+                .serviceId("salesforce")
+                .passThrough(Map.ofEntries(
+                    Map.entry("search", "San Francisco")))
+                .fields("id,updated_at")
+                .build();
+
+
+        sdk.hris().companies().list()
+                .callAsStream()
+                .forEach((HrisCompaniesAllResponse item) -> {
+                   // handle page
+                });
+
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
+| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `request`                                                                     | [HrisCompaniesAllRequest](../../models/operations/HrisCompaniesAllRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
+
+### Response
+
+**[HrisCompaniesAllResponse](../../models/operations/HrisCompaniesAllResponse.md)**
+
+### Errors
+
+| Error Type                            | Status Code                           | Content Type                          |
+| ------------------------------------- | ------------------------------------- | ------------------------------------- |
+| models/errors/BadRequestResponse      | 400                                   | application/json                      |
+| models/errors/UnauthorizedResponse    | 401                                   | application/json                      |
+| models/errors/PaymentRequiredResponse | 402                                   | application/json                      |
+| models/errors/NotFoundResponse        | 404                                   | application/json                      |
+| models/errors/UnprocessableResponse   | 422                                   | application/json                      |
+| models/errors/APIException            | 4XX, 5XX                              | \*/\*                                 |
+
+## create
+
+Create Company
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="hris.companiesAdd" method="post" path="/hris/companies" -->
+```java
+package hello.world;
+
+import com.apideck.unify.Apideck;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
+import com.apideck.unify.models.operations.HrisCompaniesAddRequest;
+import com.apideck.unify.models.operations.HrisCompaniesAddResponse;
+import java.lang.Exception;
+import java.util.List;
+import java.util.Map;
+
+public class Application {
+
+    public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
+
+        Apideck sdk = Apideck.builder()
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+            .build();
+
+        HrisCompaniesAddRequest req = HrisCompaniesAddRequest.builder()
+                .hrisCompany(HrisCompanyInput.builder()
+                    .legalName("SpaceX")
+                    .displayName("SpaceX")
+                    .subdomain("company")
+                    .status(HrisCompanyStatus.ACTIVE)
+                    .companyNumber("123456-AB")
+                    .currency(Currency.USD)
+                    .addresses(List.of(
+                        Address.builder()
+                            .id("123")
+                            .type(Type.PRIMARY)
+                            .string("25 Spring Street, Blackburn, VIC 3130")
+                            .name("HQ US")
+                            .line1("Main street")
+                            .line2("apt #")
+                            .line3("Suite #")
+                            .line4("delivery instructions")
+                            .streetNumber("25")
+                            .city("San Francisco")
+                            .state("CA")
+                            .postalCode("94104")
+                            .country("US")
+                            .latitude("40.759211")
+                            .longitude("-73.984638")
+                            .county("Santa Clara")
+                            .contactName("Elon Musk")
+                            .salutation("Mr")
+                            .phoneNumber("111-111-1111")
+                            .fax("122-111-1111")
+                            .email("elon@musk.com")
+                            .website("https://elonmusk.com")
+                            .notes("Address notes or delivery instructions.")
+                            .rowVersion("1-12345")
+                            .build(),
+                        Address.builder()
+                            .id("123")
+                            .type(Type.PRIMARY)
+                            .string("25 Spring Street, Blackburn, VIC 3130")
+                            .name("HQ US")
+                            .line1("Main street")
+                            .line2("apt #")
+                            .line3("Suite #")
+                            .line4("delivery instructions")
+                            .streetNumber("25")
+                            .city("San Francisco")
+                            .state("CA")
+                            .postalCode("94104")
+                            .country("US")
+                            .latitude("40.759211")
+                            .longitude("-73.984638")
+                            .county("Santa Clara")
+                            .contactName("Elon Musk")
+                            .salutation("Mr")
+                            .phoneNumber("111-111-1111")
+                            .fax("122-111-1111")
+                            .email("elon@musk.com")
+                            .website("https://elonmusk.com")
+                            .notes("Address notes or delivery instructions.")
+                            .rowVersion("1-12345")
+                            .build(),
+                        Address.builder()
+                            .id("123")
+                            .type(Type.PRIMARY)
+                            .string("25 Spring Street, Blackburn, VIC 3130")
+                            .name("HQ US")
+                            .line1("Main street")
+                            .line2("apt #")
+                            .line3("Suite #")
+                            .line4("delivery instructions")
+                            .streetNumber("25")
+                            .city("San Francisco")
+                            .state("CA")
+                            .postalCode("94104")
+                            .country("US")
+                            .latitude("40.759211")
+                            .longitude("-73.984638")
+                            .county("Santa Clara")
+                            .contactName("Elon Musk")
+                            .salutation("Mr")
+                            .phoneNumber("111-111-1111")
+                            .fax("122-111-1111")
+                            .email("elon@musk.com")
+                            .website("https://elonmusk.com")
+                            .notes("Address notes or delivery instructions.")
+                            .rowVersion("1-12345")
+                            .build()))
+                    .phoneNumbers(List.of(
+                        PhoneNumber.builder()
+                            .number("111-111-1111")
+                            .id("12345")
+                            .countryCode("1")
+                            .areaCode("323")
+                            .extension("105")
+                            .type(PhoneNumberType.PRIMARY)
+                            .build(),
+                        PhoneNumber.builder()
+                            .number("111-111-1111")
+                            .id("12345")
+                            .countryCode("1")
+                            .areaCode("323")
+                            .extension("105")
+                            .type(PhoneNumberType.PRIMARY)
+                            .build()))
+                    .emails(List.of(
+                        Email.builder()
+                            .email("elon@musk.com")
+                            .id("123")
+                            .type(EmailType.PRIMARY)
+                            .build(),
+                        Email.builder()
+                            .email("elon@musk.com")
+                            .id("123")
+                            .type(EmailType.PRIMARY)
+                            .build(),
+                        Email.builder()
+                            .email("elon@musk.com")
+                            .id("123")
+                            .type(EmailType.PRIMARY)
+                            .build()))
+                    .websites(List.of(
+                        Website.builder()
+                            .url("http://example.com")
+                            .id("12345")
+                            .type(WebsiteType.PRIMARY)
+                            .build()))
+                    .debtorId("12345")
+                    .passThrough(List.of(
+                        PassThroughBody.builder()
+                            .serviceId("<id>")
+                            .extendPaths(List.of(
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build(),
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build(),
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build()))
+                            .build()))
+                    .build())
+                .serviceId("salesforce")
+                .build();
+
+        HrisCompaniesAddResponse res = sdk.hris().companies().create()
+                .request(req)
+                .call();
+
+        if (res.createHrisCompanyResponse().isPresent()) {
+            System.out.println(res.createHrisCompanyResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
+| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `request`                                                                     | [HrisCompaniesAddRequest](../../models/operations/HrisCompaniesAddRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
+
+### Response
+
+**[HrisCompaniesAddResponse](../../models/operations/HrisCompaniesAddResponse.md)**
+
+### Errors
+
+| Error Type                            | Status Code                           | Content Type                          |
+| ------------------------------------- | ------------------------------------- | ------------------------------------- |
+| models/errors/BadRequestResponse      | 400                                   | application/json                      |
+| models/errors/UnauthorizedResponse    | 401                                   | application/json                      |
+| models/errors/PaymentRequiredResponse | 402                                   | application/json                      |
+| models/errors/NotFoundResponse        | 404                                   | application/json                      |
+| models/errors/UnprocessableResponse   | 422                                   | application/json                      |
+| models/errors/APIException            | 4XX, 5XX                              | \*/\*                                 |
+
+## get
+
+Get Company
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="hris.companiesOne" method="get" path="/hris/companies/{id}" -->
+```java
+package hello.world;
+
+import com.apideck.unify.Apideck;
+import com.apideck.unify.models.errors.*;
+import com.apideck.unify.models.operations.HrisCompaniesOneRequest;
+import com.apideck.unify.models.operations.HrisCompaniesOneResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
+
+        Apideck sdk = Apideck.builder()
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+            .build();
+
+        HrisCompaniesOneRequest req = HrisCompaniesOneRequest.builder()
+                .id("<id>")
+                .serviceId("salesforce")
+                .fields("id,updated_at")
+                .build();
+
+        HrisCompaniesOneResponse res = sdk.hris().companies().get()
+                .request(req)
+                .call();
+
+        if (res.getHrisCompanyResponse().isPresent()) {
+            System.out.println(res.getHrisCompanyResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
+| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `request`                                                                     | [HrisCompaniesOneRequest](../../models/operations/HrisCompaniesOneRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
+
+### Response
+
+**[HrisCompaniesOneResponse](../../models/operations/HrisCompaniesOneResponse.md)**
+
+### Errors
+
+| Error Type                            | Status Code                           | Content Type                          |
+| ------------------------------------- | ------------------------------------- | ------------------------------------- |
+| models/errors/BadRequestResponse      | 400                                   | application/json                      |
+| models/errors/UnauthorizedResponse    | 401                                   | application/json                      |
+| models/errors/PaymentRequiredResponse | 402                                   | application/json                      |
+| models/errors/NotFoundResponse        | 404                                   | application/json                      |
+| models/errors/UnprocessableResponse   | 422                                   | application/json                      |
+| models/errors/APIException            | 4XX, 5XX                              | \*/\*                                 |
+
+## update
+
+Update Company
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="hris.companiesUpdate" method="patch" path="/hris/companies/{id}" -->
+```java
+package hello.world;
+
+import com.apideck.unify.Apideck;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
+import com.apideck.unify.models.operations.HrisCompaniesUpdateRequest;
+import com.apideck.unify.models.operations.HrisCompaniesUpdateResponse;
+import java.lang.Exception;
+import java.util.List;
+import java.util.Map;
+
+public class Application {
+
+    public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
+
+        Apideck sdk = Apideck.builder()
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+            .build();
+
+        HrisCompaniesUpdateRequest req = HrisCompaniesUpdateRequest.builder()
+                .id("<id>")
+                .hrisCompany(HrisCompanyInput.builder()
+                    .legalName("SpaceX")
+                    .displayName("SpaceX")
+                    .subdomain("company")
+                    .status(HrisCompanyStatus.ACTIVE)
+                    .companyNumber("123456-AB")
+                    .currency(Currency.USD)
+                    .addresses(List.of(
+                        Address.builder()
+                            .id("123")
+                            .type(Type.PRIMARY)
+                            .string("25 Spring Street, Blackburn, VIC 3130")
+                            .name("HQ US")
+                            .line1("Main street")
+                            .line2("apt #")
+                            .line3("Suite #")
+                            .line4("delivery instructions")
+                            .streetNumber("25")
+                            .city("San Francisco")
+                            .state("CA")
+                            .postalCode("94104")
+                            .country("US")
+                            .latitude("40.759211")
+                            .longitude("-73.984638")
+                            .county("Santa Clara")
+                            .contactName("Elon Musk")
+                            .salutation("Mr")
+                            .phoneNumber("111-111-1111")
+                            .fax("122-111-1111")
+                            .email("elon@musk.com")
+                            .website("https://elonmusk.com")
+                            .notes("Address notes or delivery instructions.")
+                            .rowVersion("1-12345")
+                            .build(),
+                        Address.builder()
+                            .id("123")
+                            .type(Type.PRIMARY)
+                            .string("25 Spring Street, Blackburn, VIC 3130")
+                            .name("HQ US")
+                            .line1("Main street")
+                            .line2("apt #")
+                            .line3("Suite #")
+                            .line4("delivery instructions")
+                            .streetNumber("25")
+                            .city("San Francisco")
+                            .state("CA")
+                            .postalCode("94104")
+                            .country("US")
+                            .latitude("40.759211")
+                            .longitude("-73.984638")
+                            .county("Santa Clara")
+                            .contactName("Elon Musk")
+                            .salutation("Mr")
+                            .phoneNumber("111-111-1111")
+                            .fax("122-111-1111")
+                            .email("elon@musk.com")
+                            .website("https://elonmusk.com")
+                            .notes("Address notes or delivery instructions.")
+                            .rowVersion("1-12345")
+                            .build(),
+                        Address.builder()
+                            .id("123")
+                            .type(Type.PRIMARY)
+                            .string("25 Spring Street, Blackburn, VIC 3130")
+                            .name("HQ US")
+                            .line1("Main street")
+                            .line2("apt #")
+                            .line3("Suite #")
+                            .line4("delivery instructions")
+                            .streetNumber("25")
+                            .city("San Francisco")
+                            .state("CA")
+                            .postalCode("94104")
+                            .country("US")
+                            .latitude("40.759211")
+                            .longitude("-73.984638")
+                            .county("Santa Clara")
+                            .contactName("Elon Musk")
+                            .salutation("Mr")
+                            .phoneNumber("111-111-1111")
+                            .fax("122-111-1111")
+                            .email("elon@musk.com")
+                            .website("https://elonmusk.com")
+                            .notes("Address notes or delivery instructions.")
+                            .rowVersion("1-12345")
+                            .build()))
+                    .phoneNumbers(List.of(
+                        PhoneNumber.builder()
+                            .number("111-111-1111")
+                            .id("12345")
+                            .countryCode("1")
+                            .areaCode("323")
+                            .extension("105")
+                            .type(PhoneNumberType.PRIMARY)
+                            .build(),
+                        PhoneNumber.builder()
+                            .number("111-111-1111")
+                            .id("12345")
+                            .countryCode("1")
+                            .areaCode("323")
+                            .extension("105")
+                            .type(PhoneNumberType.PRIMARY)
+                            .build(),
+                        PhoneNumber.builder()
+                            .number("111-111-1111")
+                            .id("12345")
+                            .countryCode("1")
+                            .areaCode("323")
+                            .extension("105")
+                            .type(PhoneNumberType.PRIMARY)
+                            .build()))
+                    .emails(List.of(
+                        Email.builder()
+                            .email("elon@musk.com")
+                            .id("123")
+                            .type(EmailType.PRIMARY)
+                            .build()))
+                    .websites(List.of(
+                        Website.builder()
+                            .url("http://example.com")
+                            .id("12345")
+                            .type(WebsiteType.PRIMARY)
+                            .build(),
+                        Website.builder()
+                            .url("http://example.com")
+                            .id("12345")
+                            .type(WebsiteType.PRIMARY)
+                            .build()))
+                    .debtorId("12345")
+                    .passThrough(List.of(
+                        PassThroughBody.builder()
+                            .serviceId("<id>")
+                            .extendPaths(List.of(
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build()))
+                            .build(),
+                        PassThroughBody.builder()
+                            .serviceId("<id>")
+                            .extendPaths(List.of(
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build()))
+                            .build()))
+                    .build())
+                .serviceId("salesforce")
+                .build();
+
+        HrisCompaniesUpdateResponse res = sdk.hris().companies().update()
+                .request(req)
+                .call();
+
+        if (res.updateHrisCompanyResponse().isPresent()) {
+            System.out.println(res.updateHrisCompanyResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                           | Type                                                                                | Required                                                                            | Description                                                                         |
+| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `request`                                                                           | [HrisCompaniesUpdateRequest](../../models/operations/HrisCompaniesUpdateRequest.md) | :heavy_check_mark:                                                                  | The request object to use for the request.                                          |
+
+### Response
+
+**[HrisCompaniesUpdateResponse](../../models/operations/HrisCompaniesUpdateResponse.md)**
+
+### Errors
+
+| Error Type                            | Status Code                           | Content Type                          |
+| ------------------------------------- | ------------------------------------- | ------------------------------------- |
+| models/errors/BadRequestResponse      | 400                                   | application/json                      |
+| models/errors/UnauthorizedResponse    | 401                                   | application/json                      |
+| models/errors/PaymentRequiredResponse | 402                                   | application/json                      |
+| models/errors/NotFoundResponse        | 404                                   | application/json                      |
+| models/errors/UnprocessableResponse   | 422                                   | application/json                      |
+| models/errors/APIException            | 4XX, 5XX                              | \*/\*                                 |
+
+## delete
+
+Delete Company
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="hris.companiesDelete" method="delete" path="/hris/companies/{id}" -->
+```java
+package hello.world;
+
+import com.apideck.unify.Apideck;
+import com.apideck.unify.models.errors.*;
+import com.apideck.unify.models.operations.HrisCompaniesDeleteRequest;
+import com.apideck.unify.models.operations.HrisCompaniesDeleteResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
+
+        Apideck sdk = Apideck.builder()
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+            .build();
+
+        HrisCompaniesDeleteRequest req = HrisCompaniesDeleteRequest.builder()
+                .id("<id>")
+                .serviceId("salesforce")
+                .build();
+
+        HrisCompaniesDeleteResponse res = sdk.hris().companies().delete()
+                .request(req)
+                .call();
+
+        if (res.deleteHrisCompanyResponse().isPresent()) {
+            System.out.println(res.deleteHrisCompanyResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                           | Type                                                                                | Required                                                                            | Description                                                                         |
+| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `request`                                                                           | [HrisCompaniesDeleteRequest](../../models/operations/HrisCompaniesDeleteRequest.md) | :heavy_check_mark:                                                                  | The request object to use for the request.                                          |
+
+### Response
+
+**[HrisCompaniesDeleteResponse](../../models/operations/HrisCompaniesDeleteResponse.md)**
+
+### Errors
+
+| Error Type                            | Status Code                           | Content Type                          |
+| ------------------------------------- | ------------------------------------- | ------------------------------------- |
+| models/errors/BadRequestResponse      | 400                                   | application/json                      |
+| models/errors/UnauthorizedResponse    | 401                                   | application/json                      |
+| models/errors/PaymentRequiredResponse | 402                                   | application/json                      |
+| models/errors/NotFoundResponse        | 404                                   | application/json                      |
+| models/errors/UnprocessableResponse   | 422                                   | application/json                      |
+| models/errors/APIException            | 4XX, 5XX                              | \*/\*                                 |

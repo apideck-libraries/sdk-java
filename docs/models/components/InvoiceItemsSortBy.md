@@ -2,6 +2,17 @@
 
 The field on which to sort the Invoice Items
 
+## Example Usage
+
+```java
+import com.apideck.unify.models.components.InvoiceItemsSortBy;
+
+InvoiceItemsSortBy value = InvoiceItemsSortBy.CREATED_AT;
+
+// Open enum: use .of() to create instances from custom string values
+InvoiceItemsSortBy custom = InvoiceItemsSortBy.of("custom_value");
+```
+
 
 ## Values
 

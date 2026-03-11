@@ -42,6 +42,13 @@ public class AccountingLedgerAccountsAddRequest {
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-service-id")
     private Optional<String> serviceId;
 
+    /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-company-id")
+    private Optional<String> companyId;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private LedgerAccountInput ledgerAccount;
@@ -52,23 +59,26 @@ public class AccountingLedgerAccountsAddRequest {
             Optional<String> consumerId,
             Optional<String> appId,
             Optional<String> serviceId,
+            Optional<String> companyId,
             LedgerAccountInput ledgerAccount) {
         Utils.checkNotNull(raw, "raw");
         Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(serviceId, "serviceId");
+        Utils.checkNotNull(companyId, "companyId");
         Utils.checkNotNull(ledgerAccount, "ledgerAccount");
         this.raw = raw;
         this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
+        this.companyId = companyId;
         this.ledgerAccount = ledgerAccount;
     }
     
     public AccountingLedgerAccountsAddRequest(
             LedgerAccountInput ledgerAccount) {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), ledgerAccount);
+            Optional.empty(), Optional.empty(), ledgerAccount);
     }
 
     /**
@@ -102,6 +112,15 @@ public class AccountingLedgerAccountsAddRequest {
     @JsonIgnore
     public Optional<String> serviceId() {
         return serviceId;
+    }
+
+    /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    @JsonIgnore
+    public Optional<String> companyId() {
+        return companyId;
     }
 
     @JsonIgnore
@@ -192,6 +211,27 @@ public class AccountingLedgerAccountsAddRequest {
         return this;
     }
 
+    /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    public AccountingLedgerAccountsAddRequest withCompanyId(String companyId) {
+        Utils.checkNotNull(companyId, "companyId");
+        this.companyId = Optional.ofNullable(companyId);
+        return this;
+    }
+
+
+    /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    public AccountingLedgerAccountsAddRequest withCompanyId(Optional<String> companyId) {
+        Utils.checkNotNull(companyId, "companyId");
+        this.companyId = companyId;
+        return this;
+    }
+
     public AccountingLedgerAccountsAddRequest withLedgerAccount(LedgerAccountInput ledgerAccount) {
         Utils.checkNotNull(ledgerAccount, "ledgerAccount");
         this.ledgerAccount = ledgerAccount;
@@ -212,6 +252,7 @@ public class AccountingLedgerAccountsAddRequest {
             Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
             Utils.enhancedDeepEquals(this.appId, other.appId) &&
             Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
             Utils.enhancedDeepEquals(this.ledgerAccount, other.ledgerAccount);
     }
     
@@ -219,7 +260,7 @@ public class AccountingLedgerAccountsAddRequest {
     public int hashCode() {
         return Utils.enhancedHash(
             raw, consumerId, appId,
-            serviceId, ledgerAccount);
+            serviceId, companyId, ledgerAccount);
     }
     
     @Override
@@ -229,6 +270,7 @@ public class AccountingLedgerAccountsAddRequest {
                 "consumerId", consumerId,
                 "appId", appId,
                 "serviceId", serviceId,
+                "companyId", companyId,
                 "ledgerAccount", ledgerAccount);
     }
 
@@ -242,6 +284,8 @@ public class AccountingLedgerAccountsAddRequest {
         private Optional<String> appId = Optional.empty();
 
         private Optional<String> serviceId = Optional.empty();
+
+        private Optional<String> companyId = Optional.empty();
 
         private LedgerAccountInput ledgerAccount;
 
@@ -328,6 +372,27 @@ public class AccountingLedgerAccountsAddRequest {
         }
 
 
+        /**
+         * The ID of the company to scope requests to. For connectors that support multi-company, this
+         * overrides the default company configured in connection settings.
+         */
+        public Builder companyId(String companyId) {
+            Utils.checkNotNull(companyId, "companyId");
+            this.companyId = Optional.ofNullable(companyId);
+            return this;
+        }
+
+        /**
+         * The ID of the company to scope requests to. For connectors that support multi-company, this
+         * overrides the default company configured in connection settings.
+         */
+        public Builder companyId(Optional<String> companyId) {
+            Utils.checkNotNull(companyId, "companyId");
+            this.companyId = companyId;
+            return this;
+        }
+
+
         public Builder ledgerAccount(LedgerAccountInput ledgerAccount) {
             Utils.checkNotNull(ledgerAccount, "ledgerAccount");
             this.ledgerAccount = ledgerAccount;
@@ -341,7 +406,7 @@ public class AccountingLedgerAccountsAddRequest {
 
             return new AccountingLedgerAccountsAddRequest(
                 raw, consumerId, appId,
-                serviceId, ledgerAccount);
+                serviceId, companyId, ledgerAccount);
         }
 
 

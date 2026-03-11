@@ -41,6 +41,7 @@ public class Application {
 
         AccountingJournalEntriesAllRequest req = AccountingJournalEntriesAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .filter(JournalEntriesFilter.builder()
                     .updatedSince(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
                     .build())
@@ -276,6 +277,7 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingJournalEntriesAddResponse res = sdk.accounting().journalEntries().create()
@@ -283,7 +285,7 @@ public class Application {
                 .call();
 
         if (res.createJournalEntryResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createJournalEntryResponse().get());
         }
     }
 }
@@ -339,6 +341,7 @@ public class Application {
         AccountingJournalEntriesOneRequest req = AccountingJournalEntriesOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .fields("id,updated_at")
                 .build();
 
@@ -347,7 +350,7 @@ public class Application {
                 .call();
 
         if (res.getJournalEntryResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getJournalEntryResponse().get());
         }
     }
 }
@@ -539,6 +542,7 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingJournalEntriesUpdateResponse res = sdk.accounting().journalEntries().update()
@@ -546,7 +550,7 @@ public class Application {
                 .call();
 
         if (res.updateJournalEntryResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateJournalEntryResponse().get());
         }
     }
 }
@@ -602,6 +606,7 @@ public class Application {
         AccountingJournalEntriesDeleteRequest req = AccountingJournalEntriesDeleteRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingJournalEntriesDeleteResponse res = sdk.accounting().journalEntries().delete()
@@ -609,7 +614,7 @@ public class Application {
                 .call();
 
         if (res.deleteJournalEntryResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteJournalEntryResponse().get());
         }
     }
 }

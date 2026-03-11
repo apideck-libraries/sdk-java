@@ -9,6 +9,7 @@ import static com.apideck.unify.utils.Utils.transform;
 import static com.apideck.unify.utils.Utils.toStream;
 
 import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.models.components.ConsumersFilter;
 import com.apideck.unify.operations.VaultConsumersAll;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.LazySingletonValue;
@@ -31,6 +32,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 public class VaultConsumersAllRequestBuilder {
 
     private Optional<String> appId = Optional.empty();
+    private Optional<? extends ConsumersFilter> filter = Optional.empty();
     private JsonNullable<String> cursor = JsonNullable.undefined();
     private Optional<Long> limit = Utils.readDefaultOrConstValue(
                             "limit",
@@ -53,6 +55,18 @@ public class VaultConsumersAllRequestBuilder {
     public VaultConsumersAllRequestBuilder appId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
+        return this;
+    }
+                
+    public VaultConsumersAllRequestBuilder filter(ConsumersFilter filter) {
+        Utils.checkNotNull(filter, "filter");
+        this.filter = Optional.of(filter);
+        return this;
+    }
+
+    public VaultConsumersAllRequestBuilder filter(Optional<? extends ConsumersFilter> filter) {
+        Utils.checkNotNull(filter, "filter");
+        this.filter = filter;
         return this;
     }
 
@@ -99,6 +113,7 @@ public class VaultConsumersAllRequestBuilder {
         }
 
         VaultConsumersAllRequest request = new VaultConsumersAllRequest(appId,
+            filter,
             cursor,
             limit);
 
@@ -141,9 +156,11 @@ public class VaultConsumersAllRequestBuilder {
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,
             new CursorTracker<>("$.meta.cursors.next", String.class),
-                VaultConsumersAllRequest::withCursor,
-            nextRequest -> unchecked(() -> operation.doRequest(request)).get());
-        
+            (req, pos) -> {
+                var modifiedReq = pos == null ? req : req.withCursor(pos);
+                return unchecked(() -> operation.doRequest(modifiedReq)).get();
+            });
+
         return () -> transform(iterator, operation::handleResponse);
     }
 

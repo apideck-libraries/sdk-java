@@ -49,7 +49,7 @@ public class Application {
                 .call();
 
         if (res.createConsumerResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createConsumerResponse().get());
         }
     }
 }
@@ -89,6 +89,7 @@ This endpoint includes all application consumers, along with an aggregated count
 package hello.world;
 
 import com.apideck.unify.Apideck;
+import com.apideck.unify.models.components.ConsumersFilter;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.VaultConsumersAllResponse;
 import java.lang.Exception;
@@ -104,6 +105,10 @@ public class Application {
 
 
         sdk.vault().consumers().list()
+                .filter(ConsumersFilter.builder()
+                    .consumerId("test-consumer")
+                    .search("john")
+                    .build())
                 .limit(20L)
                 .callAsStream()
                 .forEach((VaultConsumersAllResponse item) -> {
@@ -119,6 +124,7 @@ public class Application {
 | Parameter                                                                                                        | Type                                                                                                             | Required                                                                                                         | Description                                                                                                      | Example                                                                                                          |
 | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
 | `appId`                                                                                                          | *Optional\<String>*                                                                                              | :heavy_minus_sign:                                                                                               | The ID of your Unify application                                                                                 | dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX                                                                          |
+| `filter`                                                                                                         | [Optional\<ConsumersFilter>](../../models/components/ConsumersFilter.md)                                         | :heavy_minus_sign:                                                                                               | Filter results                                                                                                   |                                                                                                                  |
 | `cursor`                                                                                                         | *JsonNullable\<String>*                                                                                          | :heavy_minus_sign:                                                                                               | Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response. |                                                                                                                  |
 | `limit`                                                                                                          | *Optional\<Long>*                                                                                                | :heavy_minus_sign:                                                                                               | Number of results to return. Minimum 1, Maximum 200, Default 20                                                  |                                                                                                                  |
 
@@ -167,7 +173,7 @@ public class Application {
                 .call();
 
         if (res.getConsumerResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getConsumerResponse().get());
         }
     }
 }
@@ -234,7 +240,7 @@ public class Application {
                 .call();
 
         if (res.updateConsumerResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateConsumerResponse().get());
         }
     }
 }
@@ -292,7 +298,7 @@ public class Application {
                 .call();
 
         if (res.deleteConsumerResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteConsumerResponse().get());
         }
     }
 }

@@ -2,6 +2,17 @@
 
 The status of the job.
 
+## Example Usage
+
+```java
+import com.apideck.unify.models.components.JobStatus;
+
+JobStatus value = JobStatus.DRAFT;
+
+// Open enum: use .of() to create instances from custom string values
+JobStatus custom = JobStatus.of("custom_value");
+```
+
 
 ## Values
 

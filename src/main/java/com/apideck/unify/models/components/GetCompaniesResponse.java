@@ -10,14 +10,11 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Long;
-import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * GetCompaniesResponse
@@ -57,7 +54,7 @@ public class GetCompaniesResponse {
 
 
     @JsonProperty("data")
-    private List<Company1> data;
+    private List<AccountingConnectionCompany> data;
 
     /**
      * Response metadata
@@ -73,13 +70,6 @@ public class GetCompaniesResponse {
     @JsonProperty("links")
     private Optional<? extends Links> links;
 
-    /**
-     * Raw response from the integration when raw=true query param is provided
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("_raw")
-    private JsonNullable<? extends Map<String, Object>> raw;
-
     @JsonCreator
     public GetCompaniesResponse(
             @JsonProperty("status_code") long statusCode,
@@ -87,10 +77,9 @@ public class GetCompaniesResponse {
             @JsonProperty("service") String service,
             @JsonProperty("resource") String resource,
             @JsonProperty("operation") String operation,
-            @JsonProperty("data") List<Company1> data,
+            @JsonProperty("data") List<AccountingConnectionCompany> data,
             @JsonProperty("meta") Optional<? extends Meta> meta,
-            @JsonProperty("links") Optional<? extends Links> links,
-            @JsonProperty("_raw") JsonNullable<? extends Map<String, Object>> raw) {
+            @JsonProperty("links") Optional<? extends Links> links) {
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(service, "service");
@@ -99,7 +88,6 @@ public class GetCompaniesResponse {
         Utils.checkNotNull(data, "data");
         Utils.checkNotNull(meta, "meta");
         Utils.checkNotNull(links, "links");
-        Utils.checkNotNull(raw, "raw");
         this.statusCode = statusCode;
         this.status = status;
         this.service = service;
@@ -108,7 +96,6 @@ public class GetCompaniesResponse {
         this.data = data;
         this.meta = meta;
         this.links = links;
-        this.raw = raw;
     }
     
     public GetCompaniesResponse(
@@ -117,10 +104,10 @@ public class GetCompaniesResponse {
             String service,
             String resource,
             String operation,
-            List<Company1> data) {
+            List<AccountingConnectionCompany> data) {
         this(statusCode, status, service,
             resource, operation, data,
-            Optional.empty(), Optional.empty(), JsonNullable.undefined());
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -164,7 +151,7 @@ public class GetCompaniesResponse {
     }
 
     @JsonIgnore
-    public List<Company1> data() {
+    public List<AccountingConnectionCompany> data() {
         return data;
     }
 
@@ -184,15 +171,6 @@ public class GetCompaniesResponse {
     @JsonIgnore
     public Optional<Links> links() {
         return (Optional<Links>) links;
-    }
-
-    /**
-     * Raw response from the integration when raw=true query param is provided
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public JsonNullable<Map<String, Object>> raw() {
-        return (JsonNullable<Map<String, Object>>) raw;
     }
 
     public static Builder builder() {
@@ -245,7 +223,7 @@ public class GetCompaniesResponse {
         return this;
     }
 
-    public GetCompaniesResponse withData(List<Company1> data) {
+    public GetCompaniesResponse withData(List<AccountingConnectionCompany> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
         return this;
@@ -289,24 +267,6 @@ public class GetCompaniesResponse {
         return this;
     }
 
-    /**
-     * Raw response from the integration when raw=true query param is provided
-     */
-    public GetCompaniesResponse withRaw(Map<String, Object> raw) {
-        Utils.checkNotNull(raw, "raw");
-        this.raw = JsonNullable.of(raw);
-        return this;
-    }
-
-    /**
-     * Raw response from the integration when raw=true query param is provided
-     */
-    public GetCompaniesResponse withRaw(JsonNullable<? extends Map<String, Object>> raw) {
-        Utils.checkNotNull(raw, "raw");
-        this.raw = raw;
-        return this;
-    }
-
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -324,8 +284,7 @@ public class GetCompaniesResponse {
             Utils.enhancedDeepEquals(this.operation, other.operation) &&
             Utils.enhancedDeepEquals(this.data, other.data) &&
             Utils.enhancedDeepEquals(this.meta, other.meta) &&
-            Utils.enhancedDeepEquals(this.links, other.links) &&
-            Utils.enhancedDeepEquals(this.raw, other.raw);
+            Utils.enhancedDeepEquals(this.links, other.links);
     }
     
     @Override
@@ -333,7 +292,7 @@ public class GetCompaniesResponse {
         return Utils.enhancedHash(
             statusCode, status, service,
             resource, operation, data,
-            meta, links, raw);
+            meta, links);
     }
     
     @Override
@@ -346,8 +305,7 @@ public class GetCompaniesResponse {
                 "operation", operation,
                 "data", data,
                 "meta", meta,
-                "links", links,
-                "raw", raw);
+                "links", links);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -363,13 +321,11 @@ public class GetCompaniesResponse {
 
         private String operation;
 
-        private List<Company1> data;
+        private List<AccountingConnectionCompany> data;
 
         private Optional<? extends Meta> meta = Optional.empty();
 
         private Optional<? extends Links> links = Optional.empty();
-
-        private JsonNullable<? extends Map<String, Object>> raw = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -426,7 +382,7 @@ public class GetCompaniesResponse {
         }
 
 
-        public Builder data(List<Company1> data) {
+        public Builder data(List<AccountingConnectionCompany> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
             return this;
@@ -470,31 +426,12 @@ public class GetCompaniesResponse {
             return this;
         }
 
-
-        /**
-         * Raw response from the integration when raw=true query param is provided
-         */
-        public Builder raw(Map<String, Object> raw) {
-            Utils.checkNotNull(raw, "raw");
-            this.raw = JsonNullable.of(raw);
-            return this;
-        }
-
-        /**
-         * Raw response from the integration when raw=true query param is provided
-         */
-        public Builder raw(JsonNullable<? extends Map<String, Object>> raw) {
-            Utils.checkNotNull(raw, "raw");
-            this.raw = raw;
-            return this;
-        }
-
         public GetCompaniesResponse build() {
 
             return new GetCompaniesResponse(
                 statusCode, status, service,
                 resource, operation, data,
-                meta, links, raw);
+                meta, links);
         }
 
     }

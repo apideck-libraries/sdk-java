@@ -1,5 +1,16 @@
 # FormFieldType
 
+## Example Usage
+
+```java
+import com.apideck.unify.models.components.FormFieldType;
+
+FormFieldType value = FormFieldType.TEXT;
+
+// Open enum: use .of() to create instances from custom string values
+FormFieldType custom = FormFieldType.of("custom_value");
+```
+
 
 ## Values
 

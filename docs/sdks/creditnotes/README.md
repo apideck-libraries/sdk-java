@@ -41,6 +41,7 @@ public class Application {
 
         AccountingCreditNotesAllRequest req = AccountingCreditNotesAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .filter(CreditNotesFilter.builder()
                     .updatedSince(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
                     .build())
@@ -290,6 +291,7 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingCreditNotesAddResponse res = sdk.accounting().creditNotes().create()
@@ -297,7 +299,7 @@ public class Application {
                 .call();
 
         if (res.createCreditNoteResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createCreditNoteResponse().get());
         }
     }
 }
@@ -353,6 +355,7 @@ public class Application {
         AccountingCreditNotesOneRequest req = AccountingCreditNotesOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .fields("id,updated_at")
                 .build();
 
@@ -361,7 +364,7 @@ public class Application {
                 .call();
 
         if (res.getCreditNoteResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getCreditNoteResponse().get());
         }
     }
 }
@@ -612,7 +615,7 @@ public class Application {
                 .call();
 
         if (res.updateCreditNoteResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateCreditNoteResponse().get());
         }
     }
 }
@@ -675,7 +678,7 @@ public class Application {
                 .call();
 
         if (res.deleteCreditNoteResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteCreditNoteResponse().get());
         }
     }
 }

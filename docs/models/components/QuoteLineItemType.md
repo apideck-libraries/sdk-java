@@ -2,6 +2,17 @@
 
 Item type
 
+## Example Usage
+
+```java
+import com.apideck.unify.models.components.QuoteLineItemType;
+
+QuoteLineItemType value = QuoteLineItemType.SALES_ITEM;
+
+// Open enum: use .of() to create instances from custom string values
+QuoteLineItemType custom = QuoteLineItemType.of("custom_value");
+```
+
 
 ## Values
 

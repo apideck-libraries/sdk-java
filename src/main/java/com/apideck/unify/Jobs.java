@@ -5,14 +5,26 @@ package com.apideck.unify;
 
 import static com.apideck.unify.operations.Operations.RequestOperation;
 
+import com.apideck.unify.models.operations.AtsJobsAddRequest;
+import com.apideck.unify.models.operations.AtsJobsAddRequestBuilder;
+import com.apideck.unify.models.operations.AtsJobsAddResponse;
 import com.apideck.unify.models.operations.AtsJobsAllRequest;
 import com.apideck.unify.models.operations.AtsJobsAllRequestBuilder;
 import com.apideck.unify.models.operations.AtsJobsAllResponse;
+import com.apideck.unify.models.operations.AtsJobsDeleteRequest;
+import com.apideck.unify.models.operations.AtsJobsDeleteRequestBuilder;
+import com.apideck.unify.models.operations.AtsJobsDeleteResponse;
 import com.apideck.unify.models.operations.AtsJobsOneRequest;
 import com.apideck.unify.models.operations.AtsJobsOneRequestBuilder;
 import com.apideck.unify.models.operations.AtsJobsOneResponse;
+import com.apideck.unify.models.operations.AtsJobsUpdateRequest;
+import com.apideck.unify.models.operations.AtsJobsUpdateRequestBuilder;
+import com.apideck.unify.models.operations.AtsJobsUpdateResponse;
+import com.apideck.unify.operations.AtsJobsAdd;
 import com.apideck.unify.operations.AtsJobsAll;
+import com.apideck.unify.operations.AtsJobsDelete;
 import com.apideck.unify.operations.AtsJobsOne;
+import com.apideck.unify.operations.AtsJobsUpdate;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
@@ -78,6 +90,46 @@ public class Jobs {
     }
 
     /**
+     * Create Job
+     * 
+     * <p>Create Job
+     * 
+     * @return The call builder
+     */
+    public AtsJobsAddRequestBuilder create() {
+        return new AtsJobsAddRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Create Job
+     * 
+     * <p>Create Job
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public AtsJobsAddResponse create(AtsJobsAddRequest request) {
+        return create(request, Optional.empty());
+    }
+
+    /**
+     * Create Job
+     * 
+     * <p>Create Job
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public AtsJobsAddResponse create(AtsJobsAddRequest request, Optional<Options> options) {
+        RequestOperation<AtsJobsAddRequest, AtsJobsAddResponse> operation
+              = new AtsJobsAdd.Sync(sdkConfiguration, options, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
      * Get Job
      * 
      * <p>Get Job
@@ -114,6 +166,86 @@ public class Jobs {
     public AtsJobsOneResponse get(AtsJobsOneRequest request, Optional<Options> options) {
         RequestOperation<AtsJobsOneRequest, AtsJobsOneResponse> operation
               = new AtsJobsOne.Sync(sdkConfiguration, options, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Update Job
+     * 
+     * <p>Update Job
+     * 
+     * @return The call builder
+     */
+    public AtsJobsUpdateRequestBuilder update() {
+        return new AtsJobsUpdateRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Update Job
+     * 
+     * <p>Update Job
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public AtsJobsUpdateResponse update(AtsJobsUpdateRequest request) {
+        return update(request, Optional.empty());
+    }
+
+    /**
+     * Update Job
+     * 
+     * <p>Update Job
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public AtsJobsUpdateResponse update(AtsJobsUpdateRequest request, Optional<Options> options) {
+        RequestOperation<AtsJobsUpdateRequest, AtsJobsUpdateResponse> operation
+              = new AtsJobsUpdate.Sync(sdkConfiguration, options, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Delete Job
+     * 
+     * <p>Delete Job
+     * 
+     * @return The call builder
+     */
+    public AtsJobsDeleteRequestBuilder delete() {
+        return new AtsJobsDeleteRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Delete Job
+     * 
+     * <p>Delete Job
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public AtsJobsDeleteResponse delete(AtsJobsDeleteRequest request) {
+        return delete(request, Optional.empty());
+    }
+
+    /**
+     * Delete Job
+     * 
+     * <p>Delete Job
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public AtsJobsDeleteResponse delete(AtsJobsDeleteRequest request, Optional<Options> options) {
+        RequestOperation<AtsJobsDeleteRequest, AtsJobsDeleteResponse> operation
+              = new AtsJobsDelete.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

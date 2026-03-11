@@ -137,7 +137,7 @@ public class Application {
                 .call();
 
         if (res.getFilesResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getFilesResponse().get());
         }
     }
 }
@@ -201,7 +201,7 @@ public class Application {
                 .call();
 
         if (res.getFileResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getFileResponse().get());
         }
     }
 }
@@ -283,7 +283,7 @@ public class Application {
                 .call();
 
         if (res.updateFileResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateFileResponse().get());
         }
     }
 }
@@ -346,7 +346,7 @@ public class Application {
                 .call();
 
         if (res.deleteFileResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteFileResponse().get());
         }
     }
 }

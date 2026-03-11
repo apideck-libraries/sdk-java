@@ -5,6 +5,7 @@ package com.apideck.unify;
 
 import static com.apideck.unify.operations.Operations.RequestOperation;
 
+import com.apideck.unify.models.components.ConsumersFilter;
 import com.apideck.unify.models.components.CreateConsumerRequest;
 import com.apideck.unify.models.components.UpdateConsumerRequest;
 import com.apideck.unify.models.operations.VaultConsumersAddRequest;
@@ -123,8 +124,8 @@ public class Consumers {
      * @throws RuntimeException subclass if the API call fails
      */
     public VaultConsumersAllResponse listDirect() {
-        return list(Optional.empty(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty());
+        return list(Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -133,6 +134,7 @@ public class Consumers {
      * <p>This endpoint includes all application consumers, along with an aggregated count of requests made.
      * 
      * @param appId The ID of your Unify application
+     * @param filter 
      * @param cursor Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
      * @param limit Number of results to return. Minimum 1, Maximum 200, Default 20
      * @param options additional options
@@ -140,12 +142,14 @@ public class Consumers {
      * @throws RuntimeException subclass if the API call fails
      */
     public VaultConsumersAllResponse list(
-            Optional<String> appId, JsonNullable<String> cursor,
-            Optional<Long> limit, Optional<Options> options) {
+            Optional<String> appId, Optional<? extends ConsumersFilter> filter,
+            JsonNullable<String> cursor, Optional<Long> limit,
+            Optional<Options> options) {
         VaultConsumersAllRequest request =
             VaultConsumersAllRequest
                 .builder()
                 .appId(appId)
+                .filter(filter)
                 .cursor(cursor)
                 .limit(limit)
                 .build();

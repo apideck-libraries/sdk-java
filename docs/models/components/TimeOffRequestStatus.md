@@ -2,6 +2,17 @@
 
 Time off request status to filter on
 
+## Example Usage
+
+```java
+import com.apideck.unify.models.components.TimeOffRequestStatus;
+
+TimeOffRequestStatus value = TimeOffRequestStatus.REQUESTED;
+
+// Open enum: use .of() to create instances from custom string values
+TimeOffRequestStatus custom = TimeOffRequestStatus.of("custom_value");
+```
+
 
 ## Values
 

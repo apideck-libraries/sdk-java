@@ -1,5 +1,16 @@
 # PaymentsFilterType
 
+## Example Usage
+
+```java
+import com.apideck.unify.models.components.PaymentsFilterType;
+
+PaymentsFilterType value = PaymentsFilterType.ACCOUNTS_RECEIVABLE;
+
+// Open enum: use .of() to create instances from custom string values
+PaymentsFilterType custom = PaymentsFilterType.of("custom_value");
+```
+
 
 ## Values
 

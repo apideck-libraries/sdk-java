@@ -40,6 +40,7 @@ public class Application {
 
         AccountingBankAccountsAllRequest req = AccountingBankAccountsAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .filter(BankAccountsFilter.builder()
                     .name("Main Operating")
                     .accountType(BankAccountsFilterAccountType.CHECKING)
@@ -156,7 +157,7 @@ public class Application {
                 .call();
 
         if (res.createBankAccountResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createBankAccountResponse().get());
         }
     }
 }
@@ -217,6 +218,7 @@ public class Application {
                     .accountType(BankAccountFilterAccountType.CHECKING)
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .fields("id,updated_at")
                 .build();
 
@@ -225,7 +227,7 @@ public class Application {
                 .call();
 
         if (res.getBankAccountResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getBankAccountResponse().get());
         }
     }
 }
@@ -325,7 +327,7 @@ public class Application {
                 .call();
 
         if (res.updateBankAccountResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateBankAccountResponse().get());
         }
     }
 }
@@ -388,7 +390,7 @@ public class Application {
                 .call();
 
         if (res.deleteBankAccountResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteBankAccountResponse().get());
         }
     }
 }

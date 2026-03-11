@@ -160,7 +160,7 @@ public class Application {
                 .call();
 
         if (res.createExpenseCategoryResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createExpenseCategoryResponse().get());
         }
     }
 }
@@ -224,7 +224,7 @@ public class Application {
                 .call();
 
         if (res.getExpenseCategoryResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getExpenseCategoryResponse().get());
         }
     }
 }
@@ -332,7 +332,7 @@ public class Application {
                 .call();
 
         if (res.updateExpenseCategoryResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateExpenseCategoryResponse().get());
         }
     }
 }
@@ -395,7 +395,7 @@ public class Application {
                 .call();
 
         if (res.deleteExpenseCategoryResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteExpenseCategoryResponse().get());
         }
     }
 }

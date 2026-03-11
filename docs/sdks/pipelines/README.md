@@ -157,7 +157,7 @@ public class Application {
                 .call();
 
         if (res.createPipelineResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createPipelineResponse().get());
         }
     }
 }
@@ -221,7 +221,7 @@ public class Application {
                 .call();
 
         if (res.getPipelineResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getPipelineResponse().get());
         }
     }
 }
@@ -354,7 +354,7 @@ public class Application {
                 .call();
 
         if (res.updatePipelineResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updatePipelineResponse().get());
         }
     }
 }
@@ -417,7 +417,7 @@ public class Application {
                 .call();
 
         if (res.deletePipelineResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deletePipelineResponse().get());
         }
     }
 }

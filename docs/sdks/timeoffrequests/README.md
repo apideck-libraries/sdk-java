@@ -154,7 +154,7 @@ public class Application {
                 .call();
 
         if (res.createTimeOffRequestResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createTimeOffRequestResponse().get());
         }
     }
 }
@@ -219,7 +219,7 @@ public class Application {
                 .call();
 
         if (res.getTimeOffRequestResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getTimeOffRequestResponse().get());
         }
     }
 }
@@ -328,7 +328,7 @@ public class Application {
                 .call();
 
         if (res.updateTimeOffRequestResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateTimeOffRequestResponse().get());
         }
     }
 }
@@ -392,7 +392,7 @@ public class Application {
                 .call();
 
         if (res.deleteTimeOffRequestResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteTimeOffRequestResponse().get());
         }
     }
 }

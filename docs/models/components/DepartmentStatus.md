@@ -2,6 +2,17 @@
 
 Based on the status some functionality is enabled or disabled.
 
+## Example Usage
+
+```java
+import com.apideck.unify.models.components.DepartmentStatus;
+
+DepartmentStatus value = DepartmentStatus.ACTIVE;
+
+// Open enum: use .of() to create instances from custom string values
+DepartmentStatus custom = DepartmentStatus.of("custom_value");
+```
+
 
 ## Values
 

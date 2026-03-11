@@ -2,6 +2,17 @@
 
 Which Unified Api request was made to.
 
+## Example Usage
+
+```java
+import com.apideck.unify.models.components.UnifiedApi;
+
+UnifiedApi value = UnifiedApi.CRM;
+
+// Open enum: use .of() to create instances from custom string values
+UnifiedApi custom = UnifiedApi.of("custom_value");
+```
+
 
 ## Values
 

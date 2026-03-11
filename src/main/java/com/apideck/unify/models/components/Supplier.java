@@ -194,6 +194,13 @@ public class Supplier {
     private JsonNullable<String> terms;
 
     /**
+     * The ID of the payment terms
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("terms_id")
+    private JsonNullable<String> termsId;
+
+    /**
      * The channel through which the transaction is processed.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -323,6 +330,7 @@ public class Supplier {
             @JsonProperty("status") JsonNullable<? extends SupplierStatus> status,
             @JsonProperty("payment_method") JsonNullable<String> paymentMethod,
             @JsonProperty("terms") JsonNullable<String> terms,
+            @JsonProperty("terms_id") JsonNullable<String> termsId,
             @JsonProperty("channel") JsonNullable<String> channel,
             @JsonProperty("issued_method") JsonNullable<String> issuedMethod,
             @JsonProperty("issued_email") JsonNullable<String> issuedEmail,
@@ -365,6 +373,7 @@ public class Supplier {
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(paymentMethod, "paymentMethod");
         Utils.checkNotNull(terms, "terms");
+        Utils.checkNotNull(termsId, "termsId");
         Utils.checkNotNull(channel, "channel");
         Utils.checkNotNull(issuedMethod, "issuedMethod");
         Utils.checkNotNull(issuedEmail, "issuedEmail");
@@ -407,6 +416,7 @@ public class Supplier {
         this.status = status;
         this.paymentMethod = paymentMethod;
         this.terms = terms;
+        this.termsId = termsId;
         this.channel = channel;
         this.issuedMethod = issuedMethod;
         this.issuedEmail = issuedEmail;
@@ -436,10 +446,11 @@ public class Supplier {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), Optional.empty());
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -639,6 +650,14 @@ public class Supplier {
     @JsonIgnore
     public JsonNullable<String> terms() {
         return terms;
+    }
+
+    /**
+     * The ID of the payment terms
+     */
+    @JsonIgnore
+    public JsonNullable<String> termsId() {
+        return termsId;
     }
 
     /**
@@ -1196,6 +1215,24 @@ public class Supplier {
     }
 
     /**
+     * The ID of the payment terms
+     */
+    public Supplier withTermsId(String termsId) {
+        Utils.checkNotNull(termsId, "termsId");
+        this.termsId = JsonNullable.of(termsId);
+        return this;
+    }
+
+    /**
+     * The ID of the payment terms
+     */
+    public Supplier withTermsId(JsonNullable<String> termsId) {
+        Utils.checkNotNull(termsId, "termsId");
+        this.termsId = termsId;
+        return this;
+    }
+
+    /**
      * The channel through which the transaction is processed.
      */
     public Supplier withChannel(String channel) {
@@ -1494,6 +1531,7 @@ public class Supplier {
             Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.paymentMethod, other.paymentMethod) &&
             Utils.enhancedDeepEquals(this.terms, other.terms) &&
+            Utils.enhancedDeepEquals(this.termsId, other.termsId) &&
             Utils.enhancedDeepEquals(this.channel, other.channel) &&
             Utils.enhancedDeepEquals(this.issuedMethod, other.issuedMethod) &&
             Utils.enhancedDeepEquals(this.issuedEmail, other.issuedEmail) &&
@@ -1523,11 +1561,12 @@ public class Supplier {
             notes, taxRate, taxNumber,
             taxable, currency, account,
             status, paymentMethod, terms,
-            channel, issuedMethod, issuedEmail,
-            customMappings, customFields, taxDetails,
-            taxStatusDetails, updatedBy, createdBy,
-            updatedAt, createdAt, rowVersion,
-            passThrough, subsidiaryId, integrationSystemId);
+            termsId, channel, issuedMethod,
+            issuedEmail, customMappings, customFields,
+            taxDetails, taxStatusDetails, updatedBy,
+            createdBy, updatedAt, createdAt,
+            rowVersion, passThrough, subsidiaryId,
+            integrationSystemId);
     }
     
     @Override
@@ -1560,6 +1599,7 @@ public class Supplier {
                 "status", status,
                 "paymentMethod", paymentMethod,
                 "terms", terms,
+                "termsId", termsId,
                 "channel", channel,
                 "issuedMethod", issuedMethod,
                 "issuedEmail", issuedEmail,
@@ -1633,6 +1673,8 @@ public class Supplier {
         private JsonNullable<String> paymentMethod = JsonNullable.undefined();
 
         private JsonNullable<String> terms = JsonNullable.undefined();
+
+        private JsonNullable<String> termsId = JsonNullable.undefined();
 
         private JsonNullable<String> channel = JsonNullable.undefined();
 
@@ -2122,6 +2164,25 @@ public class Supplier {
 
 
         /**
+         * The ID of the payment terms
+         */
+        public Builder termsId(String termsId) {
+            Utils.checkNotNull(termsId, "termsId");
+            this.termsId = JsonNullable.of(termsId);
+            return this;
+        }
+
+        /**
+         * The ID of the payment terms
+         */
+        public Builder termsId(JsonNullable<String> termsId) {
+            Utils.checkNotNull(termsId, "termsId");
+            this.termsId = termsId;
+            return this;
+        }
+
+
+        /**
          * The channel through which the transaction is processed.
          */
         public Builder channel(String channel) {
@@ -2403,11 +2464,12 @@ public class Supplier {
                 notes, taxRate, taxNumber,
                 taxable, currency, account,
                 status, paymentMethod, terms,
-                channel, issuedMethod, issuedEmail,
-                customMappings, customFields, taxDetails,
-                taxStatusDetails, updatedBy, createdBy,
-                updatedAt, createdAt, rowVersion,
-                passThrough, subsidiaryId, integrationSystemId);
+                termsId, channel, issuedMethod,
+                issuedEmail, customMappings, customFields,
+                taxDetails, taxStatusDetails, updatedBy,
+                createdBy, updatedAt, createdAt,
+                rowVersion, passThrough, subsidiaryId,
+                integrationSystemId);
         }
 
     }

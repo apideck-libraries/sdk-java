@@ -2,6 +2,17 @@
 
 Status of credit notes
 
+## Example Usage
+
+```java
+import com.apideck.unify.models.components.CreditNoteStatus;
+
+CreditNoteStatus value = CreditNoteStatus.DRAFT;
+
+// Open enum: use .of() to create instances from custom string values
+CreditNoteStatus custom = CreditNoteStatus.of("custom_value");
+```
+
 
 ## Values
 

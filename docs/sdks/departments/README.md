@@ -39,6 +39,7 @@ public class Application {
 
         AccountingDepartmentsAllRequest req = AccountingDepartmentsAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .fields("id,updated_at")
                 .filter(AccountingDepartmentsFilter.builder()
                     .subsidiary("1")
@@ -136,6 +137,7 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .companyId("12345")
                 .build();
 
         AccountingDepartmentsAddResponse res = sdk.accounting().departments().create()
@@ -143,7 +145,7 @@ public class Application {
                 .call();
 
         if (res.createAccountingDepartmentResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createAccountingDepartmentResponse().get());
         }
     }
 }
@@ -199,6 +201,7 @@ public class Application {
         AccountingDepartmentsOneRequest req = AccountingDepartmentsOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .fields("id,updated_at")
                 .build();
 
@@ -207,7 +210,7 @@ public class Application {
                 .call();
 
         if (res.getAccountingDepartmentResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getAccountingDepartmentResponse().get());
         }
     }
 }
@@ -313,7 +316,7 @@ public class Application {
                 .call();
 
         if (res.updateAccountingDepartmentResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateAccountingDepartmentResponse().get());
         }
     }
 }
@@ -376,7 +379,7 @@ public class Application {
                 .call();
 
         if (res.deleteAccountingDepartmentResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteAccountingDepartmentResponse().get());
         }
     }
 }

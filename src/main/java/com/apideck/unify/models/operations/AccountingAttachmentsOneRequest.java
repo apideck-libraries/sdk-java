@@ -56,6 +56,13 @@ public class AccountingAttachmentsOneRequest {
     private Optional<String> serviceId;
 
     /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-company-id")
+    private Optional<String> companyId;
+
+    /**
      * Include raw response. Mostly used for debugging purposes
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=raw")
@@ -83,6 +90,7 @@ public class AccountingAttachmentsOneRequest {
             Optional<String> consumerId,
             Optional<String> appId,
             Optional<String> serviceId,
+            Optional<String> companyId,
             Optional<Boolean> raw,
             JsonNullable<String> fields) {
         Utils.checkNotNull(referenceType, "referenceType");
@@ -91,6 +99,7 @@ public class AccountingAttachmentsOneRequest {
         Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(serviceId, "serviceId");
+        Utils.checkNotNull(companyId, "companyId");
         Utils.checkNotNull(raw, "raw");
         Utils.checkNotNull(fields, "fields");
         this.referenceType = referenceType;
@@ -99,6 +108,7 @@ public class AccountingAttachmentsOneRequest {
         this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
+        this.companyId = companyId;
         this.raw = raw;
         this.fields = fields;
     }
@@ -109,7 +119,7 @@ public class AccountingAttachmentsOneRequest {
             String id) {
         this(referenceType, referenceId, id,
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined());
+            Optional.empty(), Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -159,6 +169,15 @@ public class AccountingAttachmentsOneRequest {
     @JsonIgnore
     public Optional<String> serviceId() {
         return serviceId;
+    }
+
+    /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    @JsonIgnore
+    public Optional<String> companyId() {
+        return companyId;
     }
 
     /**
@@ -277,6 +296,27 @@ public class AccountingAttachmentsOneRequest {
     }
 
     /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    public AccountingAttachmentsOneRequest withCompanyId(String companyId) {
+        Utils.checkNotNull(companyId, "companyId");
+        this.companyId = Optional.ofNullable(companyId);
+        return this;
+    }
+
+
+    /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    public AccountingAttachmentsOneRequest withCompanyId(Optional<String> companyId) {
+        Utils.checkNotNull(companyId, "companyId");
+        this.companyId = companyId;
+        return this;
+    }
+
+    /**
      * Include raw response. Mostly used for debugging purposes
      */
     public AccountingAttachmentsOneRequest withRaw(boolean raw) {
@@ -345,6 +385,7 @@ public class AccountingAttachmentsOneRequest {
             Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
             Utils.enhancedDeepEquals(this.appId, other.appId) &&
             Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
             Utils.enhancedDeepEquals(this.raw, other.raw) &&
             Utils.enhancedDeepEquals(this.fields, other.fields);
     }
@@ -354,7 +395,7 @@ public class AccountingAttachmentsOneRequest {
         return Utils.enhancedHash(
             referenceType, referenceId, id,
             consumerId, appId, serviceId,
-            raw, fields);
+            companyId, raw, fields);
     }
     
     @Override
@@ -366,6 +407,7 @@ public class AccountingAttachmentsOneRequest {
                 "consumerId", consumerId,
                 "appId", appId,
                 "serviceId", serviceId,
+                "companyId", companyId,
                 "raw", raw,
                 "fields", fields);
     }
@@ -384,6 +426,8 @@ public class AccountingAttachmentsOneRequest {
         private Optional<String> appId = Optional.empty();
 
         private Optional<String> serviceId = Optional.empty();
+
+        private Optional<String> companyId = Optional.empty();
 
         private Optional<Boolean> raw;
 
@@ -484,6 +528,27 @@ public class AccountingAttachmentsOneRequest {
 
 
         /**
+         * The ID of the company to scope requests to. For connectors that support multi-company, this
+         * overrides the default company configured in connection settings.
+         */
+        public Builder companyId(String companyId) {
+            Utils.checkNotNull(companyId, "companyId");
+            this.companyId = Optional.ofNullable(companyId);
+            return this;
+        }
+
+        /**
+         * The ID of the company to scope requests to. For connectors that support multi-company, this
+         * overrides the default company configured in connection settings.
+         */
+        public Builder companyId(Optional<String> companyId) {
+            Utils.checkNotNull(companyId, "companyId");
+            this.companyId = companyId;
+            return this;
+        }
+
+
+        /**
          * Include raw response. Mostly used for debugging purposes
          */
         public Builder raw(boolean raw) {
@@ -544,7 +609,7 @@ public class AccountingAttachmentsOneRequest {
             return new AccountingAttachmentsOneRequest(
                 referenceType, referenceId, id,
                 consumerId, appId, serviceId,
-                raw, fields);
+                companyId, raw, fields);
         }
 
 

@@ -2,6 +2,17 @@
 
 Filter by account type
 
+## Example Usage
+
+```java
+import com.apideck.unify.models.components.BankAccountFilterAccountType;
+
+BankAccountFilterAccountType value = BankAccountFilterAccountType.CHECKING;
+
+// Open enum: use .of() to create instances from custom string values
+BankAccountFilterAccountType custom = BankAccountFilterAccountType.of("custom_value");
+```
+
 
 ## Values
 

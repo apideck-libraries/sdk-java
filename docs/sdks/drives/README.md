@@ -150,7 +150,7 @@ public class Application {
                 .call();
 
         if (res.createDriveResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createDriveResponse().get());
         }
     }
 }
@@ -214,7 +214,7 @@ public class Application {
                 .call();
 
         if (res.getDriveResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getDriveResponse().get());
         }
     }
 }
@@ -295,7 +295,7 @@ public class Application {
                 .call();
 
         if (res.updateDriveResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateDriveResponse().get());
         }
     }
 }
@@ -358,7 +358,7 @@ public class Application {
                 .call();
 
         if (res.deleteDriveResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteDriveResponse().get());
         }
     }
 }

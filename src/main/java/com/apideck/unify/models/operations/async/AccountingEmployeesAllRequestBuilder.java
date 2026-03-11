@@ -95,8 +95,10 @@ public class AccountingEmployeesAllRequestBuilder {
         Flow.Publisher<HttpResponse<Blob>> asyncPaginator = new AsyncPaginator<>(
             request,
             new CursorTracker<>("$.meta.cursors.next", String.class),
-                    AccountingEmployeesAllRequest::withCursor,
-            operation::doRequest);
+            (req, pos) -> {
+                var modifiedReq = pos == null ? req : req.withCursor(pos);
+                return operation.doRequest(modifiedReq);
+            });
 
         Flow.Publisher<AccountingEmployeesAllResponse> flowPublisher = mapAsync(asyncPaginator, operation::handleResponse);
 

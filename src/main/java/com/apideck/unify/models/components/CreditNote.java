@@ -191,6 +191,13 @@ public class CreditNote {
     @JsonProperty("terms")
     private JsonNullable<String> terms;
 
+    /**
+     * The ID of the payment terms
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("terms_id")
+    private JsonNullable<String> termsId;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("billing_address")
@@ -291,6 +298,7 @@ public class CreditNote {
             @JsonProperty("allocations") Optional<? extends List<Allocation>> allocations,
             @JsonProperty("note") JsonNullable<String> note,
             @JsonProperty("terms") JsonNullable<String> terms,
+            @JsonProperty("terms_id") JsonNullable<String> termsId,
             @JsonProperty("billing_address") Optional<? extends Address> billingAddress,
             @JsonProperty("shipping_address") Optional<? extends Address> shippingAddress,
             @JsonProperty("tracking_categories") JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories,
@@ -327,6 +335,7 @@ public class CreditNote {
         Utils.checkNotNull(allocations, "allocations");
         Utils.checkNotNull(note, "note");
         Utils.checkNotNull(terms, "terms");
+        Utils.checkNotNull(termsId, "termsId");
         Utils.checkNotNull(billingAddress, "billingAddress");
         Utils.checkNotNull(shippingAddress, "shippingAddress");
         Utils.checkNotNull(trackingCategories, "trackingCategories");
@@ -363,6 +372,7 @@ public class CreditNote {
         this.allocations = allocations;
         this.note = note;
         this.terms = terms;
+        this.termsId = termsId;
         this.billingAddress = billingAddress;
         this.shippingAddress = shippingAddress;
         this.trackingCategories = trackingCategories;
@@ -387,10 +397,11 @@ public class CreditNote {
             Optional.empty(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
             Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+            Optional.empty());
     }
 
     /**
@@ -590,6 +601,14 @@ public class CreditNote {
     @JsonIgnore
     public JsonNullable<String> terms() {
         return terms;
+    }
+
+    /**
+     * The ID of the payment terms
+     */
+    @JsonIgnore
+    public JsonNullable<String> termsId() {
+        return termsId;
     }
 
     @SuppressWarnings("unchecked")
@@ -1105,6 +1124,24 @@ public class CreditNote {
         return this;
     }
 
+    /**
+     * The ID of the payment terms
+     */
+    public CreditNote withTermsId(String termsId) {
+        Utils.checkNotNull(termsId, "termsId");
+        this.termsId = JsonNullable.of(termsId);
+        return this;
+    }
+
+    /**
+     * The ID of the payment terms
+     */
+    public CreditNote withTermsId(JsonNullable<String> termsId) {
+        Utils.checkNotNull(termsId, "termsId");
+        this.termsId = termsId;
+        return this;
+    }
+
     public CreditNote withBillingAddress(Address billingAddress) {
         Utils.checkNotNull(billingAddress, "billingAddress");
         this.billingAddress = Optional.ofNullable(billingAddress);
@@ -1328,6 +1365,7 @@ public class CreditNote {
             Utils.enhancedDeepEquals(this.allocations, other.allocations) &&
             Utils.enhancedDeepEquals(this.note, other.note) &&
             Utils.enhancedDeepEquals(this.terms, other.terms) &&
+            Utils.enhancedDeepEquals(this.termsId, other.termsId) &&
             Utils.enhancedDeepEquals(this.billingAddress, other.billingAddress) &&
             Utils.enhancedDeepEquals(this.shippingAddress, other.shippingAddress) &&
             Utils.enhancedDeepEquals(this.trackingCategories, other.trackingCategories) &&
@@ -1352,10 +1390,11 @@ public class CreditNote {
             status, reference, dateIssued,
             datePaid, type, account,
             lineItems, allocations, note,
-            terms, billingAddress, shippingAddress,
-            trackingCategories, customMappings, customFields,
-            rowVersion, updatedBy, createdBy,
-            updatedAt, createdAt, passThrough);
+            terms, termsId, billingAddress,
+            shippingAddress, trackingCategories, customMappings,
+            customFields, rowVersion, updatedBy,
+            createdBy, updatedAt, createdAt,
+            passThrough);
     }
     
     @Override
@@ -1386,6 +1425,7 @@ public class CreditNote {
                 "allocations", allocations,
                 "note", note,
                 "terms", terms,
+                "termsId", termsId,
                 "billingAddress", billingAddress,
                 "shippingAddress", shippingAddress,
                 "trackingCategories", trackingCategories,
@@ -1451,6 +1491,8 @@ public class CreditNote {
         private JsonNullable<String> note = JsonNullable.undefined();
 
         private JsonNullable<String> terms = JsonNullable.undefined();
+
+        private JsonNullable<String> termsId = JsonNullable.undefined();
 
         private Optional<? extends Address> billingAddress = Optional.empty();
 
@@ -1920,6 +1962,25 @@ public class CreditNote {
         }
 
 
+        /**
+         * The ID of the payment terms
+         */
+        public Builder termsId(String termsId) {
+            Utils.checkNotNull(termsId, "termsId");
+            this.termsId = JsonNullable.of(termsId);
+            return this;
+        }
+
+        /**
+         * The ID of the payment terms
+         */
+        public Builder termsId(JsonNullable<String> termsId) {
+            Utils.checkNotNull(termsId, "termsId");
+            this.termsId = termsId;
+            return this;
+        }
+
+
         public Builder billingAddress(Address billingAddress) {
             Utils.checkNotNull(billingAddress, "billingAddress");
             this.billingAddress = Optional.ofNullable(billingAddress);
@@ -2125,10 +2186,11 @@ public class CreditNote {
                 status, reference, dateIssued,
                 datePaid, type, account,
                 lineItems, allocations, note,
-                terms, billingAddress, shippingAddress,
-                trackingCategories, customMappings, customFields,
-                rowVersion, updatedBy, createdBy,
-                updatedAt, createdAt, passThrough);
+                terms, termsId, billingAddress,
+                shippingAddress, trackingCategories, customMappings,
+                customFields, rowVersion, updatedBy,
+                createdBy, updatedAt, createdAt,
+                passThrough);
         }
 
     }

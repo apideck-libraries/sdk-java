@@ -38,7 +38,7 @@ public class Application {
                 .call();
 
         if (res.getConnectorResourceResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getConnectorResourceResponse().get());
         }
     }
 }

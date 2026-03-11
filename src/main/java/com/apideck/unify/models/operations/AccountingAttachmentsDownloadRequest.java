@@ -53,6 +53,13 @@ public class AccountingAttachmentsDownloadRequest {
     private Optional<String> serviceId;
 
     /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-company-id")
+    private Optional<String> companyId;
+
+    /**
      * The 'fields' parameter allows API users to specify the fields they want to include in the API
      * response. If this parameter is not present, the API will return all available fields. If this
      * parameter is present, only the fields specified in the comma-separated string will be included in
@@ -74,6 +81,7 @@ public class AccountingAttachmentsDownloadRequest {
             Optional<String> consumerId,
             Optional<String> appId,
             Optional<String> serviceId,
+            Optional<String> companyId,
             JsonNullable<String> fields) {
         Utils.checkNotNull(referenceType, "referenceType");
         Utils.checkNotNull(referenceId, "referenceId");
@@ -81,6 +89,7 @@ public class AccountingAttachmentsDownloadRequest {
         Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(serviceId, "serviceId");
+        Utils.checkNotNull(companyId, "companyId");
         Utils.checkNotNull(fields, "fields");
         this.referenceType = referenceType;
         this.referenceId = referenceId;
@@ -88,6 +97,7 @@ public class AccountingAttachmentsDownloadRequest {
         this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
+        this.companyId = companyId;
         this.fields = fields;
     }
     
@@ -97,7 +107,7 @@ public class AccountingAttachmentsDownloadRequest {
             String id) {
         this(referenceType, referenceId, id,
             Optional.empty(), Optional.empty(), Optional.empty(),
-            JsonNullable.undefined());
+            Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -147,6 +157,15 @@ public class AccountingAttachmentsDownloadRequest {
     @JsonIgnore
     public Optional<String> serviceId() {
         return serviceId;
+    }
+
+    /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    @JsonIgnore
+    public Optional<String> companyId() {
+        return companyId;
     }
 
     /**
@@ -257,6 +276,27 @@ public class AccountingAttachmentsDownloadRequest {
     }
 
     /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    public AccountingAttachmentsDownloadRequest withCompanyId(String companyId) {
+        Utils.checkNotNull(companyId, "companyId");
+        this.companyId = Optional.ofNullable(companyId);
+        return this;
+    }
+
+
+    /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    public AccountingAttachmentsDownloadRequest withCompanyId(Optional<String> companyId) {
+        Utils.checkNotNull(companyId, "companyId");
+        this.companyId = companyId;
+        return this;
+    }
+
+    /**
      * The 'fields' parameter allows API users to specify the fields they want to include in the API
      * response. If this parameter is not present, the API will return all available fields. If this
      * parameter is present, only the fields specified in the comma-separated string will be included in
@@ -306,6 +346,7 @@ public class AccountingAttachmentsDownloadRequest {
             Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
             Utils.enhancedDeepEquals(this.appId, other.appId) &&
             Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
             Utils.enhancedDeepEquals(this.fields, other.fields);
     }
     
@@ -314,7 +355,7 @@ public class AccountingAttachmentsDownloadRequest {
         return Utils.enhancedHash(
             referenceType, referenceId, id,
             consumerId, appId, serviceId,
-            fields);
+            companyId, fields);
     }
     
     @Override
@@ -326,6 +367,7 @@ public class AccountingAttachmentsDownloadRequest {
                 "consumerId", consumerId,
                 "appId", appId,
                 "serviceId", serviceId,
+                "companyId", companyId,
                 "fields", fields);
     }
 
@@ -343,6 +385,8 @@ public class AccountingAttachmentsDownloadRequest {
         private Optional<String> appId = Optional.empty();
 
         private Optional<String> serviceId = Optional.empty();
+
+        private Optional<String> companyId = Optional.empty();
 
         private JsonNullable<String> fields = JsonNullable.undefined();
 
@@ -441,6 +485,27 @@ public class AccountingAttachmentsDownloadRequest {
 
 
         /**
+         * The ID of the company to scope requests to. For connectors that support multi-company, this
+         * overrides the default company configured in connection settings.
+         */
+        public Builder companyId(String companyId) {
+            Utils.checkNotNull(companyId, "companyId");
+            this.companyId = Optional.ofNullable(companyId);
+            return this;
+        }
+
+        /**
+         * The ID of the company to scope requests to. For connectors that support multi-company, this
+         * overrides the default company configured in connection settings.
+         */
+        public Builder companyId(Optional<String> companyId) {
+            Utils.checkNotNull(companyId, "companyId");
+            this.companyId = companyId;
+            return this;
+        }
+
+
+        /**
          * The 'fields' parameter allows API users to specify the fields they want to include in the API
          * response. If this parameter is not present, the API will return all available fields. If this
          * parameter is present, only the fields specified in the comma-separated string will be included in
@@ -479,7 +544,7 @@ public class AccountingAttachmentsDownloadRequest {
             return new AccountingAttachmentsDownloadRequest(
                 referenceType, referenceId, id,
                 consumerId, appId, serviceId,
-                fields);
+                companyId, fields);
         }
 
     }

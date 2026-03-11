@@ -2,6 +2,17 @@
 
 Type of entity this payment should be attributed to.
 
+## Example Usage
+
+```java
+import com.apideck.unify.models.components.AllocationType;
+
+AllocationType value = AllocationType.INVOICE;
+
+// Open enum: use .of() to create instances from custom string values
+AllocationType custom = AllocationType.of("custom_value");
+```
+
 
 ## Values
 

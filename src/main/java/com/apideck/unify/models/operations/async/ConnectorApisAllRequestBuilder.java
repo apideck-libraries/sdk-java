@@ -163,8 +163,10 @@ public class ConnectorApisAllRequestBuilder {
         Flow.Publisher<HttpResponse<Blob>> asyncPaginator = new AsyncPaginator<>(
             request,
             new CursorTracker<>("$.meta.cursors.next", String.class),
-                    ConnectorApisAllRequest::withCursor,
-            operation::doRequest);
+            (req, pos) -> {
+                var modifiedReq = pos == null ? req : req.withCursor(pos);
+                return operation.doRequest(modifiedReq);
+            });
 
         Flow.Publisher<ConnectorApisAllResponse> flowPublisher = mapAsync(asyncPaginator, operation::handleResponse);
 

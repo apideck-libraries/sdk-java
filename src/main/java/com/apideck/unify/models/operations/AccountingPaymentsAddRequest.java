@@ -42,6 +42,13 @@ public class AccountingPaymentsAddRequest {
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-service-id")
     private Optional<String> serviceId;
 
+    /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-company-id")
+    private Optional<String> companyId;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private PaymentInput payment;
@@ -52,23 +59,26 @@ public class AccountingPaymentsAddRequest {
             Optional<String> consumerId,
             Optional<String> appId,
             Optional<String> serviceId,
+            Optional<String> companyId,
             PaymentInput payment) {
         Utils.checkNotNull(raw, "raw");
         Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(serviceId, "serviceId");
+        Utils.checkNotNull(companyId, "companyId");
         Utils.checkNotNull(payment, "payment");
         this.raw = raw;
         this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
+        this.companyId = companyId;
         this.payment = payment;
     }
     
     public AccountingPaymentsAddRequest(
             PaymentInput payment) {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), payment);
+            Optional.empty(), Optional.empty(), payment);
     }
 
     /**
@@ -102,6 +112,15 @@ public class AccountingPaymentsAddRequest {
     @JsonIgnore
     public Optional<String> serviceId() {
         return serviceId;
+    }
+
+    /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    @JsonIgnore
+    public Optional<String> companyId() {
+        return companyId;
     }
 
     @JsonIgnore
@@ -192,6 +211,27 @@ public class AccountingPaymentsAddRequest {
         return this;
     }
 
+    /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    public AccountingPaymentsAddRequest withCompanyId(String companyId) {
+        Utils.checkNotNull(companyId, "companyId");
+        this.companyId = Optional.ofNullable(companyId);
+        return this;
+    }
+
+
+    /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    public AccountingPaymentsAddRequest withCompanyId(Optional<String> companyId) {
+        Utils.checkNotNull(companyId, "companyId");
+        this.companyId = companyId;
+        return this;
+    }
+
     public AccountingPaymentsAddRequest withPayment(PaymentInput payment) {
         Utils.checkNotNull(payment, "payment");
         this.payment = payment;
@@ -212,6 +252,7 @@ public class AccountingPaymentsAddRequest {
             Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
             Utils.enhancedDeepEquals(this.appId, other.appId) &&
             Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
             Utils.enhancedDeepEquals(this.payment, other.payment);
     }
     
@@ -219,7 +260,7 @@ public class AccountingPaymentsAddRequest {
     public int hashCode() {
         return Utils.enhancedHash(
             raw, consumerId, appId,
-            serviceId, payment);
+            serviceId, companyId, payment);
     }
     
     @Override
@@ -229,6 +270,7 @@ public class AccountingPaymentsAddRequest {
                 "consumerId", consumerId,
                 "appId", appId,
                 "serviceId", serviceId,
+                "companyId", companyId,
                 "payment", payment);
     }
 
@@ -242,6 +284,8 @@ public class AccountingPaymentsAddRequest {
         private Optional<String> appId = Optional.empty();
 
         private Optional<String> serviceId = Optional.empty();
+
+        private Optional<String> companyId = Optional.empty();
 
         private PaymentInput payment;
 
@@ -328,6 +372,27 @@ public class AccountingPaymentsAddRequest {
         }
 
 
+        /**
+         * The ID of the company to scope requests to. For connectors that support multi-company, this
+         * overrides the default company configured in connection settings.
+         */
+        public Builder companyId(String companyId) {
+            Utils.checkNotNull(companyId, "companyId");
+            this.companyId = Optional.ofNullable(companyId);
+            return this;
+        }
+
+        /**
+         * The ID of the company to scope requests to. For connectors that support multi-company, this
+         * overrides the default company configured in connection settings.
+         */
+        public Builder companyId(Optional<String> companyId) {
+            Utils.checkNotNull(companyId, "companyId");
+            this.companyId = companyId;
+            return this;
+        }
+
+
         public Builder payment(PaymentInput payment) {
             Utils.checkNotNull(payment, "payment");
             this.payment = payment;
@@ -341,7 +406,7 @@ public class AccountingPaymentsAddRequest {
 
             return new AccountingPaymentsAddRequest(
                 raw, consumerId, appId,
-                serviceId, payment);
+                serviceId, companyId, payment);
         }
 
 

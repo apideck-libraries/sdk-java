@@ -36,6 +36,7 @@ public class Application {
 
         AccountingProfitAndLossOneRequest req = AccountingProfitAndLossOneRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .filter(ProfitAndLossFilter.builder()
                     .customerId("123abc")
                     .startDate("2021-01-01")
@@ -51,7 +52,7 @@ public class Application {
                 .call();
 
         if (res.getProfitAndLossResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getProfitAndLossResponse().get());
         }
     }
 }

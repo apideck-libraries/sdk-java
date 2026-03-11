@@ -150,7 +150,7 @@ public class Application {
                 .call();
 
         if (res.createSharedLinkResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createSharedLinkResponse().get());
         }
     }
 }
@@ -214,7 +214,7 @@ public class Application {
                 .call();
 
         if (res.getSharedLinkResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getSharedLinkResponse().get());
         }
     }
 }
@@ -318,7 +318,7 @@ public class Application {
                 .call();
 
         if (res.updateSharedLinkResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateSharedLinkResponse().get());
         }
     }
 }
@@ -381,7 +381,7 @@ public class Application {
                 .call();
 
         if (res.deleteSharedLinkResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteSharedLinkResponse().get());
         }
     }
 }

@@ -42,6 +42,13 @@ public class AccountingTrackingCategoriesAddRequest {
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-service-id")
     private Optional<String> serviceId;
 
+    /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-company-id")
+    private Optional<String> companyId;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private TrackingCategoryInput trackingCategory;
@@ -52,23 +59,26 @@ public class AccountingTrackingCategoriesAddRequest {
             Optional<String> consumerId,
             Optional<String> appId,
             Optional<String> serviceId,
+            Optional<String> companyId,
             TrackingCategoryInput trackingCategory) {
         Utils.checkNotNull(raw, "raw");
         Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(serviceId, "serviceId");
+        Utils.checkNotNull(companyId, "companyId");
         Utils.checkNotNull(trackingCategory, "trackingCategory");
         this.raw = raw;
         this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
+        this.companyId = companyId;
         this.trackingCategory = trackingCategory;
     }
     
     public AccountingTrackingCategoriesAddRequest(
             TrackingCategoryInput trackingCategory) {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), trackingCategory);
+            Optional.empty(), Optional.empty(), trackingCategory);
     }
 
     /**
@@ -102,6 +112,15 @@ public class AccountingTrackingCategoriesAddRequest {
     @JsonIgnore
     public Optional<String> serviceId() {
         return serviceId;
+    }
+
+    /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    @JsonIgnore
+    public Optional<String> companyId() {
+        return companyId;
     }
 
     @JsonIgnore
@@ -192,6 +211,27 @@ public class AccountingTrackingCategoriesAddRequest {
         return this;
     }
 
+    /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    public AccountingTrackingCategoriesAddRequest withCompanyId(String companyId) {
+        Utils.checkNotNull(companyId, "companyId");
+        this.companyId = Optional.ofNullable(companyId);
+        return this;
+    }
+
+
+    /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    public AccountingTrackingCategoriesAddRequest withCompanyId(Optional<String> companyId) {
+        Utils.checkNotNull(companyId, "companyId");
+        this.companyId = companyId;
+        return this;
+    }
+
     public AccountingTrackingCategoriesAddRequest withTrackingCategory(TrackingCategoryInput trackingCategory) {
         Utils.checkNotNull(trackingCategory, "trackingCategory");
         this.trackingCategory = trackingCategory;
@@ -212,6 +252,7 @@ public class AccountingTrackingCategoriesAddRequest {
             Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
             Utils.enhancedDeepEquals(this.appId, other.appId) &&
             Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
             Utils.enhancedDeepEquals(this.trackingCategory, other.trackingCategory);
     }
     
@@ -219,7 +260,7 @@ public class AccountingTrackingCategoriesAddRequest {
     public int hashCode() {
         return Utils.enhancedHash(
             raw, consumerId, appId,
-            serviceId, trackingCategory);
+            serviceId, companyId, trackingCategory);
     }
     
     @Override
@@ -229,6 +270,7 @@ public class AccountingTrackingCategoriesAddRequest {
                 "consumerId", consumerId,
                 "appId", appId,
                 "serviceId", serviceId,
+                "companyId", companyId,
                 "trackingCategory", trackingCategory);
     }
 
@@ -242,6 +284,8 @@ public class AccountingTrackingCategoriesAddRequest {
         private Optional<String> appId = Optional.empty();
 
         private Optional<String> serviceId = Optional.empty();
+
+        private Optional<String> companyId = Optional.empty();
 
         private TrackingCategoryInput trackingCategory;
 
@@ -328,6 +372,27 @@ public class AccountingTrackingCategoriesAddRequest {
         }
 
 
+        /**
+         * The ID of the company to scope requests to. For connectors that support multi-company, this
+         * overrides the default company configured in connection settings.
+         */
+        public Builder companyId(String companyId) {
+            Utils.checkNotNull(companyId, "companyId");
+            this.companyId = Optional.ofNullable(companyId);
+            return this;
+        }
+
+        /**
+         * The ID of the company to scope requests to. For connectors that support multi-company, this
+         * overrides the default company configured in connection settings.
+         */
+        public Builder companyId(Optional<String> companyId) {
+            Utils.checkNotNull(companyId, "companyId");
+            this.companyId = companyId;
+            return this;
+        }
+
+
         public Builder trackingCategory(TrackingCategoryInput trackingCategory) {
             Utils.checkNotNull(trackingCategory, "trackingCategory");
             this.trackingCategory = trackingCategory;
@@ -341,7 +406,7 @@ public class AccountingTrackingCategoriesAddRequest {
 
             return new AccountingTrackingCategoriesAddRequest(
                 raw, consumerId, appId,
-                serviceId, trackingCategory);
+                serviceId, companyId, trackingCategory);
         }
 
 

@@ -39,6 +39,7 @@ public class Application {
 
         AccountingBankFeedAccountsAllRequest req = AccountingBankFeedAccountsAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
                 .fields("id,updated_at")
@@ -142,7 +143,7 @@ public class Application {
                 .call();
 
         if (res.createBankFeedAccountResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createBankFeedAccountResponse().get());
         }
     }
 }
@@ -198,6 +199,7 @@ public class Application {
         AccountingBankFeedAccountsOneRequest req = AccountingBankFeedAccountsOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .companyId("12345")
                 .fields("id,updated_at")
                 .build();
 
@@ -206,7 +208,7 @@ public class Application {
                 .call();
 
         if (res.getBankFeedAccountResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getBankFeedAccountResponse().get());
         }
     }
 }
@@ -294,7 +296,7 @@ public class Application {
                 .call();
 
         if (res.updateBankFeedAccountResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateBankFeedAccountResponse().get());
         }
     }
 }
@@ -357,7 +359,7 @@ public class Application {
                 .call();
 
         if (res.deleteBankFeedAccountResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteBankFeedAccountResponse().get());
         }
     }
 }

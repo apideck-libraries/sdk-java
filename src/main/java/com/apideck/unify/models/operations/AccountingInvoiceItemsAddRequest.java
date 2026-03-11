@@ -42,6 +42,13 @@ public class AccountingInvoiceItemsAddRequest {
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-service-id")
     private Optional<String> serviceId;
 
+    /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-company-id")
+    private Optional<String> companyId;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private InvoiceItemInput invoiceItem;
@@ -52,23 +59,26 @@ public class AccountingInvoiceItemsAddRequest {
             Optional<String> consumerId,
             Optional<String> appId,
             Optional<String> serviceId,
+            Optional<String> companyId,
             InvoiceItemInput invoiceItem) {
         Utils.checkNotNull(raw, "raw");
         Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(serviceId, "serviceId");
+        Utils.checkNotNull(companyId, "companyId");
         Utils.checkNotNull(invoiceItem, "invoiceItem");
         this.raw = raw;
         this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
+        this.companyId = companyId;
         this.invoiceItem = invoiceItem;
     }
     
     public AccountingInvoiceItemsAddRequest(
             InvoiceItemInput invoiceItem) {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), invoiceItem);
+            Optional.empty(), Optional.empty(), invoiceItem);
     }
 
     /**
@@ -102,6 +112,15 @@ public class AccountingInvoiceItemsAddRequest {
     @JsonIgnore
     public Optional<String> serviceId() {
         return serviceId;
+    }
+
+    /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    @JsonIgnore
+    public Optional<String> companyId() {
+        return companyId;
     }
 
     @JsonIgnore
@@ -192,6 +211,27 @@ public class AccountingInvoiceItemsAddRequest {
         return this;
     }
 
+    /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    public AccountingInvoiceItemsAddRequest withCompanyId(String companyId) {
+        Utils.checkNotNull(companyId, "companyId");
+        this.companyId = Optional.ofNullable(companyId);
+        return this;
+    }
+
+
+    /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    public AccountingInvoiceItemsAddRequest withCompanyId(Optional<String> companyId) {
+        Utils.checkNotNull(companyId, "companyId");
+        this.companyId = companyId;
+        return this;
+    }
+
     public AccountingInvoiceItemsAddRequest withInvoiceItem(InvoiceItemInput invoiceItem) {
         Utils.checkNotNull(invoiceItem, "invoiceItem");
         this.invoiceItem = invoiceItem;
@@ -212,6 +252,7 @@ public class AccountingInvoiceItemsAddRequest {
             Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
             Utils.enhancedDeepEquals(this.appId, other.appId) &&
             Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
             Utils.enhancedDeepEquals(this.invoiceItem, other.invoiceItem);
     }
     
@@ -219,7 +260,7 @@ public class AccountingInvoiceItemsAddRequest {
     public int hashCode() {
         return Utils.enhancedHash(
             raw, consumerId, appId,
-            serviceId, invoiceItem);
+            serviceId, companyId, invoiceItem);
     }
     
     @Override
@@ -229,6 +270,7 @@ public class AccountingInvoiceItemsAddRequest {
                 "consumerId", consumerId,
                 "appId", appId,
                 "serviceId", serviceId,
+                "companyId", companyId,
                 "invoiceItem", invoiceItem);
     }
 
@@ -242,6 +284,8 @@ public class AccountingInvoiceItemsAddRequest {
         private Optional<String> appId = Optional.empty();
 
         private Optional<String> serviceId = Optional.empty();
+
+        private Optional<String> companyId = Optional.empty();
 
         private InvoiceItemInput invoiceItem;
 
@@ -328,6 +372,27 @@ public class AccountingInvoiceItemsAddRequest {
         }
 
 
+        /**
+         * The ID of the company to scope requests to. For connectors that support multi-company, this
+         * overrides the default company configured in connection settings.
+         */
+        public Builder companyId(String companyId) {
+            Utils.checkNotNull(companyId, "companyId");
+            this.companyId = Optional.ofNullable(companyId);
+            return this;
+        }
+
+        /**
+         * The ID of the company to scope requests to. For connectors that support multi-company, this
+         * overrides the default company configured in connection settings.
+         */
+        public Builder companyId(Optional<String> companyId) {
+            Utils.checkNotNull(companyId, "companyId");
+            this.companyId = companyId;
+            return this;
+        }
+
+
         public Builder invoiceItem(InvoiceItemInput invoiceItem) {
             Utils.checkNotNull(invoiceItem, "invoiceItem");
             this.invoiceItem = invoiceItem;
@@ -341,7 +406,7 @@ public class AccountingInvoiceItemsAddRequest {
 
             return new AccountingInvoiceItemsAddRequest(
                 raw, consumerId, appId,
-                serviceId, invoiceItem);
+                serviceId, companyId, invoiceItem);
         }
 
 

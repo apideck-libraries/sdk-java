@@ -215,6 +215,13 @@ public class PurchaseOrderInput {
     private JsonNullable<String> terms;
 
     /**
+     * The ID of the payment terms
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("terms_id")
+    private JsonNullable<String> termsId;
+
+    /**
      * Type of amortization
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -329,6 +336,7 @@ public class PurchaseOrderInput {
             @JsonProperty("due_date") JsonNullable<LocalDate> dueDate,
             @JsonProperty("payment_method") JsonNullable<String> paymentMethod,
             @JsonProperty("terms") JsonNullable<String> terms,
+            @JsonProperty("terms_id") JsonNullable<String> termsId,
             @JsonProperty("amortization_type") JsonNullable<? extends PurchaseOrderAmortizationType> amortizationType,
             @JsonProperty("tax_code") JsonNullable<String> taxCode,
             @JsonProperty("tax_method") JsonNullable<String> taxMethod,
@@ -370,6 +378,7 @@ public class PurchaseOrderInput {
         Utils.checkNotNull(dueDate, "dueDate");
         Utils.checkNotNull(paymentMethod, "paymentMethod");
         Utils.checkNotNull(terms, "terms");
+        Utils.checkNotNull(termsId, "termsId");
         Utils.checkNotNull(amortizationType, "amortizationType");
         Utils.checkNotNull(taxCode, "taxCode");
         Utils.checkNotNull(taxMethod, "taxMethod");
@@ -411,6 +420,7 @@ public class PurchaseOrderInput {
         this.dueDate = dueDate;
         this.paymentMethod = paymentMethod;
         this.terms = terms;
+        this.termsId = termsId;
         this.amortizationType = amortizationType;
         this.taxCode = taxCode;
         this.taxMethod = taxMethod;
@@ -438,8 +448,8 @@ public class PurchaseOrderInput {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined(), Optional.empty());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -664,6 +674,14 @@ public class PurchaseOrderInput {
     @JsonIgnore
     public JsonNullable<String> terms() {
         return terms;
+    }
+
+    /**
+     * The ID of the payment terms
+     */
+    @JsonIgnore
+    public JsonNullable<String> termsId() {
+        return termsId;
     }
 
     /**
@@ -1265,6 +1283,24 @@ public class PurchaseOrderInput {
     }
 
     /**
+     * The ID of the payment terms
+     */
+    public PurchaseOrderInput withTermsId(String termsId) {
+        Utils.checkNotNull(termsId, "termsId");
+        this.termsId = JsonNullable.of(termsId);
+        return this;
+    }
+
+    /**
+     * The ID of the payment terms
+     */
+    public PurchaseOrderInput withTermsId(JsonNullable<String> termsId) {
+        Utils.checkNotNull(termsId, "termsId");
+        this.termsId = termsId;
+        return this;
+    }
+
+    /**
      * Type of amortization
      */
     public PurchaseOrderInput withAmortizationType(PurchaseOrderAmortizationType amortizationType) {
@@ -1519,6 +1555,7 @@ public class PurchaseOrderInput {
             Utils.enhancedDeepEquals(this.dueDate, other.dueDate) &&
             Utils.enhancedDeepEquals(this.paymentMethod, other.paymentMethod) &&
             Utils.enhancedDeepEquals(this.terms, other.terms) &&
+            Utils.enhancedDeepEquals(this.termsId, other.termsId) &&
             Utils.enhancedDeepEquals(this.amortizationType, other.amortizationType) &&
             Utils.enhancedDeepEquals(this.taxCode, other.taxCode) &&
             Utils.enhancedDeepEquals(this.taxMethod, other.taxMethod) &&
@@ -1545,11 +1582,11 @@ public class PurchaseOrderInput {
             lineItems, billingAddress, shippingAddress,
             ledgerAccount, templateId, discountPercentage,
             bankAccount, accountingByRow, dueDate,
-            paymentMethod, terms, amortizationType,
-            taxCode, taxMethod, issuedMethod,
-            issuedEmail, channel, memo,
-            notes, trackingCategories, customFields,
-            rowVersion, passThrough);
+            paymentMethod, terms, termsId,
+            amortizationType, taxCode, taxMethod,
+            issuedMethod, issuedEmail, channel,
+            memo, notes, trackingCategories,
+            customFields, rowVersion, passThrough);
     }
     
     @Override
@@ -1584,6 +1621,7 @@ public class PurchaseOrderInput {
                 "dueDate", dueDate,
                 "paymentMethod", paymentMethod,
                 "terms", terms,
+                "termsId", termsId,
                 "amortizationType", amortizationType,
                 "taxCode", taxCode,
                 "taxMethod", taxMethod,
@@ -1658,6 +1696,8 @@ public class PurchaseOrderInput {
         private JsonNullable<String> paymentMethod = JsonNullable.undefined();
 
         private JsonNullable<String> terms = JsonNullable.undefined();
+
+        private JsonNullable<String> termsId = JsonNullable.undefined();
 
         private JsonNullable<? extends PurchaseOrderAmortizationType> amortizationType = JsonNullable.undefined();
 
@@ -2208,6 +2248,25 @@ public class PurchaseOrderInput {
 
 
         /**
+         * The ID of the payment terms
+         */
+        public Builder termsId(String termsId) {
+            Utils.checkNotNull(termsId, "termsId");
+            this.termsId = JsonNullable.of(termsId);
+            return this;
+        }
+
+        /**
+         * The ID of the payment terms
+         */
+        public Builder termsId(JsonNullable<String> termsId) {
+            Utils.checkNotNull(termsId, "termsId");
+            this.termsId = termsId;
+            return this;
+        }
+
+
+        /**
          * Type of amortization
          */
         public Builder amortizationType(PurchaseOrderAmortizationType amortizationType) {
@@ -2444,11 +2503,11 @@ public class PurchaseOrderInput {
                 lineItems, billingAddress, shippingAddress,
                 ledgerAccount, templateId, discountPercentage,
                 bankAccount, accountingByRow, dueDate,
-                paymentMethod, terms, amortizationType,
-                taxCode, taxMethod, issuedMethod,
-                issuedEmail, channel, memo,
-                notes, trackingCategories, customFields,
-                rowVersion, passThrough);
+                paymentMethod, terms, termsId,
+                amortizationType, taxCode, taxMethod,
+                issuedMethod, issuedEmail, channel,
+                memo, notes, trackingCategories,
+                customFields, rowVersion, passThrough);
         }
 
     }

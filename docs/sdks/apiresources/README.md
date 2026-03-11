@@ -36,7 +36,7 @@ public class Application {
                 .call();
 
         if (res.getApiResourceResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getApiResourceResponse().get());
         }
     }
 }

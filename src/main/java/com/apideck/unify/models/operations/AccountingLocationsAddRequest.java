@@ -42,6 +42,13 @@ public class AccountingLocationsAddRequest {
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-service-id")
     private Optional<String> serviceId;
 
+    /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-company-id")
+    private Optional<String> companyId;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private AccountingLocationInput accountingLocation;
@@ -52,23 +59,26 @@ public class AccountingLocationsAddRequest {
             Optional<String> consumerId,
             Optional<String> appId,
             Optional<String> serviceId,
+            Optional<String> companyId,
             AccountingLocationInput accountingLocation) {
         Utils.checkNotNull(raw, "raw");
         Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(serviceId, "serviceId");
+        Utils.checkNotNull(companyId, "companyId");
         Utils.checkNotNull(accountingLocation, "accountingLocation");
         this.raw = raw;
         this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
+        this.companyId = companyId;
         this.accountingLocation = accountingLocation;
     }
     
     public AccountingLocationsAddRequest(
             AccountingLocationInput accountingLocation) {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), accountingLocation);
+            Optional.empty(), Optional.empty(), accountingLocation);
     }
 
     /**
@@ -102,6 +112,15 @@ public class AccountingLocationsAddRequest {
     @JsonIgnore
     public Optional<String> serviceId() {
         return serviceId;
+    }
+
+    /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    @JsonIgnore
+    public Optional<String> companyId() {
+        return companyId;
     }
 
     @JsonIgnore
@@ -192,6 +211,27 @@ public class AccountingLocationsAddRequest {
         return this;
     }
 
+    /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    public AccountingLocationsAddRequest withCompanyId(String companyId) {
+        Utils.checkNotNull(companyId, "companyId");
+        this.companyId = Optional.ofNullable(companyId);
+        return this;
+    }
+
+
+    /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    public AccountingLocationsAddRequest withCompanyId(Optional<String> companyId) {
+        Utils.checkNotNull(companyId, "companyId");
+        this.companyId = companyId;
+        return this;
+    }
+
     public AccountingLocationsAddRequest withAccountingLocation(AccountingLocationInput accountingLocation) {
         Utils.checkNotNull(accountingLocation, "accountingLocation");
         this.accountingLocation = accountingLocation;
@@ -212,6 +252,7 @@ public class AccountingLocationsAddRequest {
             Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
             Utils.enhancedDeepEquals(this.appId, other.appId) &&
             Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
             Utils.enhancedDeepEquals(this.accountingLocation, other.accountingLocation);
     }
     
@@ -219,7 +260,7 @@ public class AccountingLocationsAddRequest {
     public int hashCode() {
         return Utils.enhancedHash(
             raw, consumerId, appId,
-            serviceId, accountingLocation);
+            serviceId, companyId, accountingLocation);
     }
     
     @Override
@@ -229,6 +270,7 @@ public class AccountingLocationsAddRequest {
                 "consumerId", consumerId,
                 "appId", appId,
                 "serviceId", serviceId,
+                "companyId", companyId,
                 "accountingLocation", accountingLocation);
     }
 
@@ -242,6 +284,8 @@ public class AccountingLocationsAddRequest {
         private Optional<String> appId = Optional.empty();
 
         private Optional<String> serviceId = Optional.empty();
+
+        private Optional<String> companyId = Optional.empty();
 
         private AccountingLocationInput accountingLocation;
 
@@ -328,6 +372,27 @@ public class AccountingLocationsAddRequest {
         }
 
 
+        /**
+         * The ID of the company to scope requests to. For connectors that support multi-company, this
+         * overrides the default company configured in connection settings.
+         */
+        public Builder companyId(String companyId) {
+            Utils.checkNotNull(companyId, "companyId");
+            this.companyId = Optional.ofNullable(companyId);
+            return this;
+        }
+
+        /**
+         * The ID of the company to scope requests to. For connectors that support multi-company, this
+         * overrides the default company configured in connection settings.
+         */
+        public Builder companyId(Optional<String> companyId) {
+            Utils.checkNotNull(companyId, "companyId");
+            this.companyId = companyId;
+            return this;
+        }
+
+
         public Builder accountingLocation(AccountingLocationInput accountingLocation) {
             Utils.checkNotNull(accountingLocation, "accountingLocation");
             this.accountingLocation = accountingLocation;
@@ -341,7 +406,7 @@ public class AccountingLocationsAddRequest {
 
             return new AccountingLocationsAddRequest(
                 raw, consumerId, appId,
-                serviceId, accountingLocation);
+                serviceId, companyId, accountingLocation);
         }
 
 

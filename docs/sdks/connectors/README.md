@@ -99,7 +99,7 @@ public class Application {
                 .call();
 
         if (res.getConnectorResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getConnectorResponse().get());
         }
     }
 }

@@ -2,6 +2,17 @@
 
 The type of phone number
 
+## Example Usage
+
+```java
+import com.apideck.unify.models.components.PhoneNumberType;
+
+PhoneNumberType value = PhoneNumberType.PRIMARY;
+
+// Open enum: use .of() to create instances from custom string values
+PhoneNumberType custom = PhoneNumberType.of("custom_value");
+```
+
 
 ## Values
 

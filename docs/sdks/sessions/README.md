@@ -75,7 +75,7 @@ public class Application {
                 .call();
 
         if (res.createSessionResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createSessionResponse().get());
         }
     }
 }

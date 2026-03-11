@@ -42,6 +42,13 @@ public class AccountingSubsidiariesAddRequest {
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-service-id")
     private Optional<String> serviceId;
 
+    /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-company-id")
+    private Optional<String> companyId;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private SubsidiaryInput subsidiary;
@@ -52,23 +59,26 @@ public class AccountingSubsidiariesAddRequest {
             Optional<String> consumerId,
             Optional<String> appId,
             Optional<String> serviceId,
+            Optional<String> companyId,
             SubsidiaryInput subsidiary) {
         Utils.checkNotNull(raw, "raw");
         Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(serviceId, "serviceId");
+        Utils.checkNotNull(companyId, "companyId");
         Utils.checkNotNull(subsidiary, "subsidiary");
         this.raw = raw;
         this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
+        this.companyId = companyId;
         this.subsidiary = subsidiary;
     }
     
     public AccountingSubsidiariesAddRequest(
             SubsidiaryInput subsidiary) {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), subsidiary);
+            Optional.empty(), Optional.empty(), subsidiary);
     }
 
     /**
@@ -102,6 +112,15 @@ public class AccountingSubsidiariesAddRequest {
     @JsonIgnore
     public Optional<String> serviceId() {
         return serviceId;
+    }
+
+    /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    @JsonIgnore
+    public Optional<String> companyId() {
+        return companyId;
     }
 
     @JsonIgnore
@@ -192,6 +211,27 @@ public class AccountingSubsidiariesAddRequest {
         return this;
     }
 
+    /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    public AccountingSubsidiariesAddRequest withCompanyId(String companyId) {
+        Utils.checkNotNull(companyId, "companyId");
+        this.companyId = Optional.ofNullable(companyId);
+        return this;
+    }
+
+
+    /**
+     * The ID of the company to scope requests to. For connectors that support multi-company, this
+     * overrides the default company configured in connection settings.
+     */
+    public AccountingSubsidiariesAddRequest withCompanyId(Optional<String> companyId) {
+        Utils.checkNotNull(companyId, "companyId");
+        this.companyId = companyId;
+        return this;
+    }
+
     public AccountingSubsidiariesAddRequest withSubsidiary(SubsidiaryInput subsidiary) {
         Utils.checkNotNull(subsidiary, "subsidiary");
         this.subsidiary = subsidiary;
@@ -212,6 +252,7 @@ public class AccountingSubsidiariesAddRequest {
             Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
             Utils.enhancedDeepEquals(this.appId, other.appId) &&
             Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
             Utils.enhancedDeepEquals(this.subsidiary, other.subsidiary);
     }
     
@@ -219,7 +260,7 @@ public class AccountingSubsidiariesAddRequest {
     public int hashCode() {
         return Utils.enhancedHash(
             raw, consumerId, appId,
-            serviceId, subsidiary);
+            serviceId, companyId, subsidiary);
     }
     
     @Override
@@ -229,6 +270,7 @@ public class AccountingSubsidiariesAddRequest {
                 "consumerId", consumerId,
                 "appId", appId,
                 "serviceId", serviceId,
+                "companyId", companyId,
                 "subsidiary", subsidiary);
     }
 
@@ -242,6 +284,8 @@ public class AccountingSubsidiariesAddRequest {
         private Optional<String> appId = Optional.empty();
 
         private Optional<String> serviceId = Optional.empty();
+
+        private Optional<String> companyId = Optional.empty();
 
         private SubsidiaryInput subsidiary;
 
@@ -328,6 +372,27 @@ public class AccountingSubsidiariesAddRequest {
         }
 
 
+        /**
+         * The ID of the company to scope requests to. For connectors that support multi-company, this
+         * overrides the default company configured in connection settings.
+         */
+        public Builder companyId(String companyId) {
+            Utils.checkNotNull(companyId, "companyId");
+            this.companyId = Optional.ofNullable(companyId);
+            return this;
+        }
+
+        /**
+         * The ID of the company to scope requests to. For connectors that support multi-company, this
+         * overrides the default company configured in connection settings.
+         */
+        public Builder companyId(Optional<String> companyId) {
+            Utils.checkNotNull(companyId, "companyId");
+            this.companyId = companyId;
+            return this;
+        }
+
+
         public Builder subsidiary(SubsidiaryInput subsidiary) {
             Utils.checkNotNull(subsidiary, "subsidiary");
             this.subsidiary = subsidiary;
@@ -341,7 +406,7 @@ public class AccountingSubsidiariesAddRequest {
 
             return new AccountingSubsidiariesAddRequest(
                 raw, consumerId, appId,
-                serviceId, subsidiary);
+                serviceId, companyId, subsidiary);
         }
 
 

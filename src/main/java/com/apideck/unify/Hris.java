@@ -11,7 +11,7 @@ public class Hris {
     private final SDKConfiguration sdkConfiguration;
     private final AsyncHris asyncSDK;
     private final ApideckEmployees employees;
-    private final ApideckCompanies companies;
+    private final ApideckHrisCompanies companies;
     private final ApideckDepartments departments;
     private final Payrolls payrolls;
     private final EmployeePayrolls employeePayrolls;
@@ -21,7 +21,7 @@ public class Hris {
     Hris(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
         this.employees = new ApideckEmployees(this.sdkConfiguration);
-        this.companies = new ApideckCompanies(this.sdkConfiguration);
+        this.companies = new ApideckHrisCompanies(this.sdkConfiguration);
         this.departments = new ApideckDepartments(this.sdkConfiguration);
         this.payrolls = new Payrolls(this.sdkConfiguration);
         this.employeePayrolls = new EmployeePayrolls(this.sdkConfiguration);
@@ -34,7 +34,7 @@ public class Hris {
         return employees;
     }
 
-    public final ApideckCompanies companies() {
+    public final ApideckHrisCompanies companies() {
         return companies;
     }
 

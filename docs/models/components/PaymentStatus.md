@@ -2,6 +2,17 @@
 
 Status of payment
 
+## Example Usage
+
+```java
+import com.apideck.unify.models.components.PaymentStatus;
+
+PaymentStatus value = PaymentStatus.DRAFT;
+
+// Open enum: use .of() to create instances from custom string values
+PaymentStatus custom = PaymentStatus.of("custom_value");
+```
+
 
 ## Values
 

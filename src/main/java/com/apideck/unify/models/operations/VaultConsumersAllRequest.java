@@ -3,6 +3,7 @@
  */
 package com.apideck.unify.models.operations;
 
+import com.apideck.unify.models.components.ConsumersFilter;
 import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
@@ -12,6 +13,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -22,6 +24,12 @@ public class VaultConsumersAllRequest {
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-app-id")
     private Optional<String> appId;
+
+    /**
+     * Filter results
+     */
+    @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=filter")
+    private Optional<? extends ConsumersFilter> filter;
 
     /**
      * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of
@@ -39,18 +47,22 @@ public class VaultConsumersAllRequest {
     @JsonCreator
     public VaultConsumersAllRequest(
             Optional<String> appId,
+            Optional<? extends ConsumersFilter> filter,
             JsonNullable<String> cursor,
             Optional<Long> limit) {
         Utils.checkNotNull(appId, "appId");
+        Utils.checkNotNull(filter, "filter");
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(limit, "limit");
         this.appId = appId;
+        this.filter = filter;
         this.cursor = cursor;
         this.limit = limit;
     }
     
     public VaultConsumersAllRequest() {
-        this(Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -59,6 +71,15 @@ public class VaultConsumersAllRequest {
     @JsonIgnore
     public Optional<String> appId() {
         return appId;
+    }
+
+    /**
+     * Filter results
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<ConsumersFilter> filter() {
+        return (Optional<ConsumersFilter>) filter;
     }
 
     /**
@@ -99,6 +120,25 @@ public class VaultConsumersAllRequest {
     public VaultConsumersAllRequest withAppId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
+        return this;
+    }
+
+    /**
+     * Filter results
+     */
+    public VaultConsumersAllRequest withFilter(ConsumersFilter filter) {
+        Utils.checkNotNull(filter, "filter");
+        this.filter = Optional.ofNullable(filter);
+        return this;
+    }
+
+
+    /**
+     * Filter results
+     */
+    public VaultConsumersAllRequest withFilter(Optional<? extends ConsumersFilter> filter) {
+        Utils.checkNotNull(filter, "filter");
+        this.filter = filter;
         return this;
     }
 
@@ -152,6 +192,7 @@ public class VaultConsumersAllRequest {
         VaultConsumersAllRequest other = (VaultConsumersAllRequest) o;
         return 
             Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.filter, other.filter) &&
             Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
             Utils.enhancedDeepEquals(this.limit, other.limit);
     }
@@ -159,13 +200,15 @@ public class VaultConsumersAllRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            appId, cursor, limit);
+            appId, filter, cursor,
+            limit);
     }
     
     @Override
     public String toString() {
         return Utils.toString(VaultConsumersAllRequest.class,
                 "appId", appId,
+                "filter", filter,
                 "cursor", cursor,
                 "limit", limit);
     }
@@ -174,6 +217,8 @@ public class VaultConsumersAllRequest {
     public final static class Builder {
 
         private Optional<String> appId = Optional.empty();
+
+        private Optional<? extends ConsumersFilter> filter = Optional.empty();
 
         private JsonNullable<String> cursor = JsonNullable.undefined();
 
@@ -199,6 +244,25 @@ public class VaultConsumersAllRequest {
         public Builder appId(Optional<String> appId) {
             Utils.checkNotNull(appId, "appId");
             this.appId = appId;
+            return this;
+        }
+
+
+        /**
+         * Filter results
+         */
+        public Builder filter(ConsumersFilter filter) {
+            Utils.checkNotNull(filter, "filter");
+            this.filter = Optional.ofNullable(filter);
+            return this;
+        }
+
+        /**
+         * Filter results
+         */
+        public Builder filter(Optional<? extends ConsumersFilter> filter) {
+            Utils.checkNotNull(filter, "filter");
+            this.filter = filter;
             return this;
         }
 
@@ -248,7 +312,8 @@ public class VaultConsumersAllRequest {
             }
 
             return new VaultConsumersAllRequest(
-                appId, cursor, limit);
+                appId, filter, cursor,
+                limit);
         }
 
 

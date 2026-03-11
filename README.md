@@ -33,6 +33,7 @@ For more information about the API: [Apideck Developer Docs](https://developers.
   * [Authentication](#authentication)
   * [Custom HTTP Client](#custom-http-client)
   * [Debugging](#debugging)
+  * [Jackson Configuration](#jackson-configuration)
 * [Development](#development)
   * [Maturity](#maturity)
   * [Contributions](#contributions)
@@ -50,7 +51,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.apideck:unify:0.30.4'
+implementation 'com.apideck:unify:0.31.0'
 ```
 
 Maven:
@@ -58,7 +59,7 @@ Maven:
 <dependency>
     <groupId>com.apideck</groupId>
     <artifactId>unify</artifactId>
-    <version>0.30.4</version>
+    <version>0.31.0</version>
 </dependency>
 ```
 
@@ -105,6 +106,7 @@ public class Application {
 
         AccountingTaxRatesAllRequest req = AccountingTaxRatesAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .filter(TaxRatesFilter.builder()
                     .assets(true)
                     .equity(true)
@@ -153,6 +155,7 @@ public class Application {
 
         AccountingTaxRatesAllRequest req = AccountingTaxRatesAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .filter(TaxRatesFilter.builder()
                     .assets(true)
                     .equity(true)
@@ -181,6 +184,15 @@ public class Application {
 ```
 
 [comp-fut]: https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html
+
+#### Union Consumption Patterns
+
+When a response field is a union model:
+
+- Discriminated unions: branch on the discriminator (`switch`) and then narrow to the concrete type.
+- Non-discriminated unions: use generated accessors (for example `string()`, `asLong()`, `simpleObject()`) to determine the active variant.
+
+For full model-specific examples (including Java 11/16/21 variants), see each union model's **Supported Types** section in the generated model docs.
 <!-- End SDK Example Usage [usage] -->
 
 <!-- Start Available Resources and Operations [operations] -->
@@ -253,6 +265,10 @@ public class Application {
 
 * [list](docs/sdks/categories/README.md#list) - List Categories
 * [get](docs/sdks/categories/README.md#get) - Get Category
+
+### [Accounting.Companies](docs/sdks/companies/README.md)
+
+* [list](docs/sdks/companies/README.md#list) - List companies
 
 ### [Accounting.CompanyInfo](docs/sdks/companyinfo/README.md)
 
@@ -390,6 +406,14 @@ public class Application {
 * [update](docs/sdks/quotes/README.md#update) - Update Quote
 * [delete](docs/sdks/quotes/README.md#delete) - Delete Quote
 
+### [Accounting.Refunds](docs/sdks/refunds/README.md)
+
+* [list](docs/sdks/refunds/README.md#list) - List Refunds
+* [create](docs/sdks/refunds/README.md#create) - Create Refund
+* [get](docs/sdks/refunds/README.md#get) - Get Refund
+* [update](docs/sdks/refunds/README.md#update) - Update Refund
+* [delete](docs/sdks/refunds/README.md#delete) - Delete Refund
+
 ### [Accounting.Subsidiaries](docs/sdks/subsidiaries/README.md)
 
 * [list](docs/sdks/subsidiaries/README.md#list) - List Subsidiaries
@@ -441,7 +465,10 @@ public class Application {
 ### [Ats.Jobs](docs/sdks/jobs/README.md)
 
 * [list](docs/sdks/jobs/README.md#list) - List Jobs
+* [create](docs/sdks/jobs/README.md#create) - Create Job
 * [get](docs/sdks/jobs/README.md#get) - Get Job
+* [update](docs/sdks/jobs/README.md#update) - Update Job
+* [delete](docs/sdks/jobs/README.md#delete) - Delete Job
 
 ### [Connector.ApiResourceCoverage](docs/sdks/apiresourcecoverage/README.md)
 
@@ -477,13 +504,13 @@ public class Application {
 * [update](docs/sdks/activities/README.md#update) - Update activity
 * [delete](docs/sdks/activities/README.md#delete) - Delete activity
 
-### [Crm.Companies](docs/sdks/companies/README.md)
+### [Crm.Companies](docs/sdks/apideckcompanies/README.md)
 
-* [list](docs/sdks/companies/README.md#list) - List companies
-* [create](docs/sdks/companies/README.md#create) - Create company
-* [get](docs/sdks/companies/README.md#get) - Get company
-* [update](docs/sdks/companies/README.md#update) - Update company
-* [delete](docs/sdks/companies/README.md#delete) - Delete company
+* [list](docs/sdks/apideckcompanies/README.md#list) - List companies
+* [create](docs/sdks/apideckcompanies/README.md#create) - Create company
+* [get](docs/sdks/apideckcompanies/README.md#get) - Get company
+* [update](docs/sdks/apideckcompanies/README.md#update) - Update company
+* [delete](docs/sdks/apideckcompanies/README.md#delete) - Delete company
 
 ### [Crm.Contacts](docs/sdks/contacts/README.md)
 
@@ -618,13 +645,13 @@ public class Application {
 * [delete](docs/sdks/uploadsessions/README.md#delete) - Abort Upload Session
 * [finish](docs/sdks/uploadsessions/README.md#finish) - Finish Upload Session
 
-### [Hris.Companies](docs/sdks/apideckcompanies/README.md)
+### [Hris.Companies](docs/sdks/apideckhriscompanies/README.md)
 
-* [list](docs/sdks/apideckcompanies/README.md#list) - List Companies
-* [create](docs/sdks/apideckcompanies/README.md#create) - Create Company
-* [get](docs/sdks/apideckcompanies/README.md#get) - Get Company
-* [update](docs/sdks/apideckcompanies/README.md#update) - Update Company
-* [delete](docs/sdks/apideckcompanies/README.md#delete) - Delete Company
+* [list](docs/sdks/apideckhriscompanies/README.md#list) - List Companies
+* [create](docs/sdks/apideckhriscompanies/README.md#create) - Create Company
+* [get](docs/sdks/apideckhriscompanies/README.md#get) - Get Company
+* [update](docs/sdks/apideckhriscompanies/README.md#update) - Update Company
+* [delete](docs/sdks/apideckhriscompanies/README.md#delete) - Delete Company
 
 ### [Hris.Departments](docs/sdks/apideckdepartments/README.md)
 
@@ -816,6 +843,7 @@ public class Application {
 
         AccountingTaxRatesAllRequest req = AccountingTaxRatesAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .filter(TaxRatesFilter.builder()
                     .assets(true)
                     .equity(true)
@@ -876,6 +904,7 @@ public class Application {
 
         AccountingTaxRatesAllRequest req = AccountingTaxRatesAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .filter(TaxRatesFilter.builder()
                     .assets(true)
                     .equity(true)
@@ -938,6 +967,7 @@ public class Application {
 
         AccountingTaxRatesAllRequest req = AccountingTaxRatesAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .filter(TaxRatesFilter.builder()
                     .assets(true)
                     .equity(true)
@@ -1008,6 +1038,7 @@ public class Application {
 
         AccountingTaxRatesAllRequest req = AccountingTaxRatesAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .filter(TaxRatesFilter.builder()
                     .assets(true)
                     .equity(true)
@@ -1078,6 +1109,7 @@ public class Application {
 
             AccountingTaxRatesAllRequest req = AccountingTaxRatesAllRequest.builder()
                     .serviceId("salesforce")
+                    .companyId("12345")
                     .filter(TaxRatesFilter.builder()
                         .assets(true)
                         .equity(true)
@@ -1153,7 +1185,7 @@ public class Application {
 many more subclasses in the JDK platform).
 
 **Inherit from [`ApideckError`](./src/main/java/models/errors/ApideckError.java)**:
-* [`com.apideck.unify.models.errors.Unauthorized`](./src/main/java/models/errors/com.apideck.unify.models.errors.Unauthorized.java): Unauthorized. Status code `401`. Applicable to 6 of 325 methods.*
+* [`com.apideck.unify.models.errors.Unauthorized`](./src/main/java/models/errors/com.apideck.unify.models.errors.Unauthorized.java): Unauthorized. Status code `401`. Applicable to 6 of 334 methods.*
 
 
 </details>
@@ -1191,6 +1223,7 @@ public class Application {
 
         AccountingTaxRatesAllRequest req = AccountingTaxRatesAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .filter(TaxRatesFilter.builder()
                     .assets(true)
                     .equity(true)
@@ -1357,6 +1390,7 @@ public class Application {
 
         AccountingTaxRatesAllRequest req = AccountingTaxRatesAllRequest.builder()
                 .serviceId("salesforce")
+                .companyId("12345")
                 .filter(TaxRatesFilter.builder()
                     .assets(true)
                     .equity(true)
@@ -1550,6 +1584,36 @@ __NOTE__: This is a convenience method that calls `HTTPClient.enableDebugLogging
 
 Another option is to set the System property `-Djdk.httpclient.HttpClient.log=all`. However, this second option does not log bodies.
 <!-- End Debugging [debug] -->
+
+<!-- Start Jackson Configuration [jackson] -->
+## Jackson Configuration
+
+The SDK ships with a pre-configured Jackson [`ObjectMapper`][jackson-databind] accessible via
+`JSON.getMapper()`. It is set up with type modules, strict deserializers, and the feature flags
+needed for full SDK compatibility (including ISO-8601 `OffsetDateTime` serialization):
+
+```java
+import com.apideck.unify.utils.JSON;
+
+String json = JSON.getMapper().writeValueAsString(response);
+```
+
+To compose with your own `ObjectMapper`, register the provided `UnifyJacksonModule`, which
+bundles all the same modules and feature flags as a single plug-and-play module:
+
+```java
+import com.apideck.unify.utils.UnifyJacksonModule;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+ObjectMapper myMapper = new ObjectMapper()
+    .registerModule(new UnifyJacksonModule());
+
+String json = myMapper.writeValueAsString(response);
+```
+
+[jackson-databind]: https://github.com/FasterXML/jackson-databind
+[jackson-jsr310]: https://github.com/FasterXML/jackson-modules-java8/tree/master/datetime
+<!-- End Jackson Configuration [jackson] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

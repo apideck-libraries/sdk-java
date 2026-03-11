@@ -171,7 +171,7 @@ public class Application {
                 .call();
 
         if (res.createCommentResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createCommentResponse().get());
         }
     }
 }
@@ -325,7 +325,7 @@ public class Application {
                 .call();
 
         if (res.updateCommentResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateCommentResponse().get());
         }
     }
 }
@@ -390,7 +390,7 @@ public class Application {
                 .call();
 
         if (res.deleteCommentResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteCommentResponse().get());
         }
     }
 }

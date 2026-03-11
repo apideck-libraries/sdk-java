@@ -298,7 +298,7 @@ public class Application {
                 .call();
 
         if (res.createContactResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createContactResponse().get());
         }
     }
 }
@@ -370,7 +370,7 @@ public class Application {
                 .call();
 
         if (res.getContactResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getContactResponse().get());
         }
     }
 }
@@ -655,7 +655,7 @@ public class Application {
                 .call();
 
         if (res.updateContactResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateContactResponse().get());
         }
     }
 }
@@ -718,7 +718,7 @@ public class Application {
                 .call();
 
         if (res.deleteContactResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteContactResponse().get());
         }
     }
 }

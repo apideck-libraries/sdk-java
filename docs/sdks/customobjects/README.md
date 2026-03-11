@@ -163,7 +163,7 @@ public class Application {
                 .call();
 
         if (res.createCustomObjectResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createCustomObjectResponse().get());
         }
     }
 }
@@ -227,7 +227,7 @@ public class Application {
                 .call();
 
         if (res.getCustomObjectResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getCustomObjectResponse().get());
         }
     }
 }
@@ -323,7 +323,7 @@ public class Application {
                 .call();
 
         if (res.updateCustomObjectResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateCustomObjectResponse().get());
         }
     }
 }
@@ -387,7 +387,7 @@ public class Application {
                 .call();
 
         if (res.deleteCustomObjectResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteCustomObjectResponse().get());
         }
     }
 }

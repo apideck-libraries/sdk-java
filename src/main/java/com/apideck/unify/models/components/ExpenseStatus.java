@@ -27,6 +27,7 @@ public class ExpenseStatus {
 
     public static final ExpenseStatus DRAFT = new ExpenseStatus("draft");
     public static final ExpenseStatus POSTED = new ExpenseStatus("posted");
+    public static final ExpenseStatus VOIDED = new ExpenseStatus("voided");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -102,6 +103,7 @@ public class ExpenseStatus {
         Map<String, ExpenseStatus> map = new LinkedHashMap<>();
         map.put("draft", DRAFT);
         map.put("posted", POSTED);
+        map.put("voided", VOIDED);
         return map;
     }
 
@@ -109,6 +111,7 @@ public class ExpenseStatus {
         Map<String, ExpenseStatusEnum> map = new HashMap<>();
         map.put("draft", ExpenseStatusEnum.DRAFT);
         map.put("posted", ExpenseStatusEnum.POSTED);
+        map.put("voided", ExpenseStatusEnum.VOIDED);
         return map;
     }
     
@@ -116,7 +119,8 @@ public class ExpenseStatus {
     public enum ExpenseStatusEnum {
 
         DRAFT("draft"),
-        POSTED("posted"),;
+        POSTED("posted"),
+        VOIDED("voided"),;
 
         private final String value;
 

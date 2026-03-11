@@ -192,6 +192,13 @@ public class CustomerInput {
     private JsonNullable<String> terms;
 
     /**
+     * The ID of the payment terms
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("terms_id")
+    private JsonNullable<String> termsId;
+
+    /**
      * The channel through which the transaction is processed.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -248,6 +255,7 @@ public class CustomerInput {
             @JsonProperty("status") JsonNullable<? extends CustomerStatusStatus> status,
             @JsonProperty("payment_method") JsonNullable<String> paymentMethod,
             @JsonProperty("terms") JsonNullable<String> terms,
+            @JsonProperty("terms_id") JsonNullable<String> termsId,
             @JsonProperty("channel") JsonNullable<String> channel,
             @JsonProperty("custom_fields") Optional<? extends List<CustomField>> customFields,
             @JsonProperty("row_version") JsonNullable<String> rowVersion,
@@ -279,6 +287,7 @@ public class CustomerInput {
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(paymentMethod, "paymentMethod");
         Utils.checkNotNull(terms, "terms");
+        Utils.checkNotNull(termsId, "termsId");
         Utils.checkNotNull(channel, "channel");
         Utils.checkNotNull(customFields, "customFields");
         Utils.checkNotNull(rowVersion, "rowVersion");
@@ -310,6 +319,7 @@ public class CustomerInput {
         this.status = status;
         this.paymentMethod = paymentMethod;
         this.terms = terms;
+        this.termsId = termsId;
         this.channel = channel;
         this.customFields = customFields;
         this.rowVersion = rowVersion;
@@ -326,8 +336,8 @@ public class CustomerInput {
             Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty());
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -528,6 +538,14 @@ public class CustomerInput {
     @JsonIgnore
     public JsonNullable<String> terms() {
         return terms;
+    }
+
+    /**
+     * The ID of the payment terms
+     */
+    @JsonIgnore
+    public JsonNullable<String> termsId() {
+        return termsId;
     }
 
     /**
@@ -1009,6 +1027,24 @@ public class CustomerInput {
     }
 
     /**
+     * The ID of the payment terms
+     */
+    public CustomerInput withTermsId(String termsId) {
+        Utils.checkNotNull(termsId, "termsId");
+        this.termsId = JsonNullable.of(termsId);
+        return this;
+    }
+
+    /**
+     * The ID of the payment terms
+     */
+    public CustomerInput withTermsId(JsonNullable<String> termsId) {
+        Utils.checkNotNull(termsId, "termsId");
+        this.termsId = termsId;
+        return this;
+    }
+
+    /**
      * The channel through which the transaction is processed.
      */
     public CustomerInput withChannel(String channel) {
@@ -1117,6 +1153,7 @@ public class CustomerInput {
             Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.paymentMethod, other.paymentMethod) &&
             Utils.enhancedDeepEquals(this.terms, other.terms) &&
+            Utils.enhancedDeepEquals(this.termsId, other.termsId) &&
             Utils.enhancedDeepEquals(this.channel, other.channel) &&
             Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
             Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion) &&
@@ -1135,8 +1172,8 @@ public class CustomerInput {
             taxRate, taxNumber, taxable,
             currency, account, parent,
             status, paymentMethod, terms,
-            channel, customFields, rowVersion,
-            passThrough);
+            termsId, channel, customFields,
+            rowVersion, passThrough);
     }
     
     @Override
@@ -1169,6 +1206,7 @@ public class CustomerInput {
                 "status", status,
                 "paymentMethod", paymentMethod,
                 "terms", terms,
+                "termsId", termsId,
                 "channel", channel,
                 "customFields", customFields,
                 "rowVersion", rowVersion,
@@ -1231,6 +1269,8 @@ public class CustomerInput {
         private JsonNullable<String> paymentMethod = JsonNullable.undefined();
 
         private JsonNullable<String> terms = JsonNullable.undefined();
+
+        private JsonNullable<String> termsId = JsonNullable.undefined();
 
         private JsonNullable<String> channel = JsonNullable.undefined();
 
@@ -1707,6 +1747,25 @@ public class CustomerInput {
 
 
         /**
+         * The ID of the payment terms
+         */
+        public Builder termsId(String termsId) {
+            Utils.checkNotNull(termsId, "termsId");
+            this.termsId = JsonNullable.of(termsId);
+            return this;
+        }
+
+        /**
+         * The ID of the payment terms
+         */
+        public Builder termsId(JsonNullable<String> termsId) {
+            Utils.checkNotNull(termsId, "termsId");
+            this.termsId = termsId;
+            return this;
+        }
+
+
+        /**
          * The channel through which the transaction is processed.
          */
         public Builder channel(String channel) {
@@ -1791,8 +1850,8 @@ public class CustomerInput {
                 taxRate, taxNumber, taxable,
                 currency, account, parent,
                 status, paymentMethod, terms,
-                channel, customFields, rowVersion,
-                passThrough);
+                termsId, channel, customFields,
+                rowVersion, passThrough);
         }
 
     }

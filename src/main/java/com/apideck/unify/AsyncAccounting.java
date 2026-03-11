@@ -18,7 +18,9 @@ public class AsyncAccounting {
     private final AsyncCustomers customers;
     private final AsyncSuppliers suppliers;
     private final AsyncPayments payments;
+    private final AsyncRefunds refunds;
     private final AsyncCompanyInfo companyInfo;
+    private final AsyncCompanies companies;
     private final AsyncBalanceSheet balanceSheet;
     private final AsyncProfitAndLoss profitAndLoss;
     private final AsyncJournalEntries journalEntries;
@@ -54,7 +56,9 @@ public class AsyncAccounting {
         this.customers = new AsyncCustomers(syncSDK.customers(), this.sdkConfiguration);
         this.suppliers = new AsyncSuppliers(syncSDK.suppliers(), this.sdkConfiguration);
         this.payments = new AsyncPayments(syncSDK.payments(), this.sdkConfiguration);
+        this.refunds = new AsyncRefunds(syncSDK.refunds(), this.sdkConfiguration);
         this.companyInfo = new AsyncCompanyInfo(syncSDK.companyInfo(), this.sdkConfiguration);
+        this.companies = new AsyncCompanies(syncSDK.companies(), this.sdkConfiguration);
         this.balanceSheet = new AsyncBalanceSheet(syncSDK.balanceSheet(), this.sdkConfiguration);
         this.profitAndLoss = new AsyncProfitAndLoss(syncSDK.profitAndLoss(), this.sdkConfiguration);
         this.journalEntries = new AsyncJournalEntries(syncSDK.journalEntries(), this.sdkConfiguration);
@@ -116,8 +120,16 @@ public class AsyncAccounting {
         return payments;
     }
 
+    public final AsyncRefunds refunds() {
+        return refunds;
+    }
+
     public final AsyncCompanyInfo companyInfo() {
         return companyInfo;
+    }
+
+    public final AsyncCompanies companies() {
+        return companies;
     }
 
     public final AsyncBalanceSheet balanceSheet() {

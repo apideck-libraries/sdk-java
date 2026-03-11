@@ -111,6 +111,13 @@ public class Invoice {
     private JsonNullable<String> terms;
 
     /**
+     * The ID of the payment terms
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("terms_id")
+    private JsonNullable<String> termsId;
+
+    /**
      * A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer
      * will match the PO number in the invoice to the Purchase Order.
      */
@@ -386,6 +393,7 @@ public class Invoice {
             @JsonProperty("invoice_date") JsonNullable<LocalDate> invoiceDate,
             @JsonProperty("due_date") JsonNullable<LocalDate> dueDate,
             @JsonProperty("terms") JsonNullable<String> terms,
+            @JsonProperty("terms_id") JsonNullable<String> termsId,
             @JsonProperty("po_number") JsonNullable<String> poNumber,
             @JsonProperty("reference") JsonNullable<String> reference,
             @JsonProperty("status") JsonNullable<? extends InvoiceStatus> status,
@@ -436,6 +444,7 @@ public class Invoice {
         Utils.checkNotNull(invoiceDate, "invoiceDate");
         Utils.checkNotNull(dueDate, "dueDate");
         Utils.checkNotNull(terms, "terms");
+        Utils.checkNotNull(termsId, "termsId");
         Utils.checkNotNull(poNumber, "poNumber");
         Utils.checkNotNull(reference, "reference");
         Utils.checkNotNull(status, "status");
@@ -486,6 +495,7 @@ public class Invoice {
         this.invoiceDate = invoiceDate;
         this.dueDate = dueDate;
         this.terms = terms;
+        this.termsId = termsId;
         this.poNumber = poNumber;
         this.reference = reference;
         this.status = status;
@@ -532,18 +542,18 @@ public class Invoice {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
             Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty());
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -643,6 +653,14 @@ public class Invoice {
     @JsonIgnore
     public JsonNullable<String> terms() {
         return terms;
+    }
+
+    /**
+     * The ID of the payment terms
+     */
+    @JsonIgnore
+    public JsonNullable<String> termsId() {
+        return termsId;
     }
 
     /**
@@ -1173,6 +1191,24 @@ public class Invoice {
     public Invoice withTerms(JsonNullable<String> terms) {
         Utils.checkNotNull(terms, "terms");
         this.terms = terms;
+        return this;
+    }
+
+    /**
+     * The ID of the payment terms
+     */
+    public Invoice withTermsId(String termsId) {
+        Utils.checkNotNull(termsId, "termsId");
+        this.termsId = JsonNullable.of(termsId);
+        return this;
+    }
+
+    /**
+     * The ID of the payment terms
+     */
+    public Invoice withTermsId(JsonNullable<String> termsId) {
+        Utils.checkNotNull(termsId, "termsId");
+        this.termsId = termsId;
         return this;
     }
 
@@ -1869,6 +1905,7 @@ public class Invoice {
             Utils.enhancedDeepEquals(this.invoiceDate, other.invoiceDate) &&
             Utils.enhancedDeepEquals(this.dueDate, other.dueDate) &&
             Utils.enhancedDeepEquals(this.terms, other.terms) &&
+            Utils.enhancedDeepEquals(this.termsId, other.termsId) &&
             Utils.enhancedDeepEquals(this.poNumber, other.poNumber) &&
             Utils.enhancedDeepEquals(this.reference, other.reference) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
@@ -1916,19 +1953,19 @@ public class Invoice {
             type, number, customer,
             companyId, locationId, departmentId,
             invoiceDate, dueDate, terms,
-            poNumber, reference, status,
-            invoiceSent, currency, currencyRate,
-            taxInclusive, subTotal, totalTax,
-            taxCode, discountPercentage, discountAmount,
-            total, balance, deposit,
-            customerMemo, trackingCategory, trackingCategories,
-            lineItems, billingAddress, shippingAddress,
-            templateId, sourceDocumentUrl, paymentAllocations,
-            paymentMethod, channel, language,
-            accountingByRow, bankAccount, ledgerAccount,
-            customMappings, customFields, rowVersion,
-            updatedBy, createdBy, updatedAt,
-            createdAt, passThrough);
+            termsId, poNumber, reference,
+            status, invoiceSent, currency,
+            currencyRate, taxInclusive, subTotal,
+            totalTax, taxCode, discountPercentage,
+            discountAmount, total, balance,
+            deposit, customerMemo, trackingCategory,
+            trackingCategories, lineItems, billingAddress,
+            shippingAddress, templateId, sourceDocumentUrl,
+            paymentAllocations, paymentMethod, channel,
+            language, accountingByRow, bankAccount,
+            ledgerAccount, customMappings, customFields,
+            rowVersion, updatedBy, createdBy,
+            updatedAt, createdAt, passThrough);
     }
     
     @Override
@@ -1946,6 +1983,7 @@ public class Invoice {
                 "invoiceDate", invoiceDate,
                 "dueDate", dueDate,
                 "terms", terms,
+                "termsId", termsId,
                 "poNumber", poNumber,
                 "reference", reference,
                 "status", status,
@@ -2012,6 +2050,8 @@ public class Invoice {
         private JsonNullable<LocalDate> dueDate = JsonNullable.undefined();
 
         private JsonNullable<String> terms = JsonNullable.undefined();
+
+        private JsonNullable<String> termsId = JsonNullable.undefined();
 
         private JsonNullable<String> poNumber = JsonNullable.undefined();
 
@@ -2321,6 +2361,25 @@ public class Invoice {
         public Builder terms(JsonNullable<String> terms) {
             Utils.checkNotNull(terms, "terms");
             this.terms = terms;
+            return this;
+        }
+
+
+        /**
+         * The ID of the payment terms
+         */
+        public Builder termsId(String termsId) {
+            Utils.checkNotNull(termsId, "termsId");
+            this.termsId = JsonNullable.of(termsId);
+            return this;
+        }
+
+        /**
+         * The ID of the payment terms
+         */
+        public Builder termsId(JsonNullable<String> termsId) {
+            Utils.checkNotNull(termsId, "termsId");
+            this.termsId = termsId;
             return this;
         }
 
@@ -3033,19 +3092,19 @@ public class Invoice {
                 type, number, customer,
                 companyId, locationId, departmentId,
                 invoiceDate, dueDate, terms,
-                poNumber, reference, status,
-                invoiceSent, currency, currencyRate,
-                taxInclusive, subTotal, totalTax,
-                taxCode, discountPercentage, discountAmount,
-                total, balance, deposit,
-                customerMemo, trackingCategory, trackingCategories,
-                lineItems, billingAddress, shippingAddress,
-                templateId, sourceDocumentUrl, paymentAllocations,
-                paymentMethod, channel, language,
-                accountingByRow, bankAccount, ledgerAccount,
-                customMappings, customFields, rowVersion,
-                updatedBy, createdBy, updatedAt,
-                createdAt, passThrough);
+                termsId, poNumber, reference,
+                status, invoiceSent, currency,
+                currencyRate, taxInclusive, subTotal,
+                totalTax, taxCode, discountPercentage,
+                discountAmount, total, balance,
+                deposit, customerMemo, trackingCategory,
+                trackingCategories, lineItems, billingAddress,
+                shippingAddress, templateId, sourceDocumentUrl,
+                paymentAllocations, paymentMethod, channel,
+                language, accountingByRow, bankAccount,
+                ledgerAccount, customMappings, customFields,
+                rowVersion, updatedBy, createdBy,
+                updatedAt, createdAt, passThrough);
         }
 
     }

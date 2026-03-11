@@ -45,7 +45,7 @@ public class Application {
                 .call();
 
         if (res.getConnectionResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getConnectionResponse().get());
         }
     }
 }
@@ -193,7 +193,7 @@ public class Application {
                 .call();
 
         if (res.updateConnectionResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateConnectionResponse().get());
         }
     }
 }

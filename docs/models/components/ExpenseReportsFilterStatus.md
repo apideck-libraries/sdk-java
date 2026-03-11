@@ -1,5 +1,16 @@
 # ExpenseReportsFilterStatus
 
+## Example Usage
+
+```java
+import com.apideck.unify.models.components.ExpenseReportsFilterStatus;
+
+ExpenseReportsFilterStatus value = ExpenseReportsFilterStatus.DRAFT;
+
+// Open enum: use .of() to create instances from custom string values
+ExpenseReportsFilterStatus custom = ExpenseReportsFilterStatus.of("custom_value");
+```
+
 
 ## Values
 

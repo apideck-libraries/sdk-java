@@ -2,6 +2,17 @@
 
 Type of payment
 
+## Example Usage
+
+```java
+import com.apideck.unify.models.components.BillPaymentType;
+
+BillPaymentType value = BillPaymentType.ACCOUNTS_PAYABLE_CREDIT;
+
+// Open enum: use .of() to create instances from custom string values
+BillPaymentType custom = BillPaymentType.of("custom_value");
+```
+
 
 ## Values
 

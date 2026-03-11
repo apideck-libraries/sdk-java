@@ -85,6 +85,13 @@ public class QuoteInput {
     private JsonNullable<String> terms;
 
     /**
+     * The ID of the payment terms
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("terms_id")
+    private JsonNullable<String> termsId;
+
+    /**
      * Optional reference identifier for the transaction.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -237,6 +244,7 @@ public class QuoteInput {
             @JsonProperty("quote_date") JsonNullable<LocalDate> quoteDate,
             @JsonProperty("expiry_date") JsonNullable<LocalDate> expiryDate,
             @JsonProperty("terms") JsonNullable<String> terms,
+            @JsonProperty("terms_id") JsonNullable<String> termsId,
             @JsonProperty("reference") JsonNullable<String> reference,
             @JsonProperty("status") JsonNullable<? extends QuoteStatus> status,
             @JsonProperty("currency") JsonNullable<? extends Currency> currency,
@@ -267,6 +275,7 @@ public class QuoteInput {
         Utils.checkNotNull(quoteDate, "quoteDate");
         Utils.checkNotNull(expiryDate, "expiryDate");
         Utils.checkNotNull(terms, "terms");
+        Utils.checkNotNull(termsId, "termsId");
         Utils.checkNotNull(reference, "reference");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(currency, "currency");
@@ -297,6 +306,7 @@ public class QuoteInput {
         this.quoteDate = quoteDate;
         this.expiryDate = expiryDate;
         this.terms = terms;
+        this.termsId = termsId;
         this.reference = reference;
         this.status = status;
         this.currency = currency;
@@ -328,9 +338,10 @@ public class QuoteInput {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), Optional.empty());
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -404,6 +415,14 @@ public class QuoteInput {
     @JsonIgnore
     public JsonNullable<String> terms() {
         return terms;
+    }
+
+    /**
+     * The ID of the payment terms
+     */
+    @JsonIgnore
+    public JsonNullable<String> termsId() {
+        return termsId;
     }
 
     /**
@@ -738,6 +757,24 @@ public class QuoteInput {
     public QuoteInput withTerms(JsonNullable<String> terms) {
         Utils.checkNotNull(terms, "terms");
         this.terms = terms;
+        return this;
+    }
+
+    /**
+     * The ID of the payment terms
+     */
+    public QuoteInput withTermsId(String termsId) {
+        Utils.checkNotNull(termsId, "termsId");
+        this.termsId = JsonNullable.of(termsId);
+        return this;
+    }
+
+    /**
+     * The ID of the payment terms
+     */
+    public QuoteInput withTermsId(JsonNullable<String> termsId) {
+        Utils.checkNotNull(termsId, "termsId");
+        this.termsId = termsId;
         return this;
     }
 
@@ -1125,6 +1162,7 @@ public class QuoteInput {
             Utils.enhancedDeepEquals(this.quoteDate, other.quoteDate) &&
             Utils.enhancedDeepEquals(this.expiryDate, other.expiryDate) &&
             Utils.enhancedDeepEquals(this.terms, other.terms) &&
+            Utils.enhancedDeepEquals(this.termsId, other.termsId) &&
             Utils.enhancedDeepEquals(this.reference, other.reference) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.currency, other.currency) &&
@@ -1154,13 +1192,14 @@ public class QuoteInput {
             number, customer, salesOrderId,
             companyId, departmentId, projectId,
             quoteDate, expiryDate, terms,
-            reference, status, currency,
-            currencyRate, taxInclusive, subTotal,
-            totalTax, taxCode, discountPercentage,
-            discountAmount, total, customerMemo,
-            lineItems, billingAddress, shippingAddress,
-            trackingCategories, templateId, sourceDocumentUrl,
-            customFields, rowVersion, passThrough);
+            termsId, reference, status,
+            currency, currencyRate, taxInclusive,
+            subTotal, totalTax, taxCode,
+            discountPercentage, discountAmount, total,
+            customerMemo, lineItems, billingAddress,
+            shippingAddress, trackingCategories, templateId,
+            sourceDocumentUrl, customFields, rowVersion,
+            passThrough);
     }
     
     @Override
@@ -1175,6 +1214,7 @@ public class QuoteInput {
                 "quoteDate", quoteDate,
                 "expiryDate", expiryDate,
                 "terms", terms,
+                "termsId", termsId,
                 "reference", reference,
                 "status", status,
                 "currency", currency,
@@ -1218,6 +1258,8 @@ public class QuoteInput {
         private JsonNullable<LocalDate> expiryDate = JsonNullable.undefined();
 
         private JsonNullable<String> terms = JsonNullable.undefined();
+
+        private JsonNullable<String> termsId = JsonNullable.undefined();
 
         private JsonNullable<String> reference = JsonNullable.undefined();
 
@@ -1433,6 +1475,25 @@ public class QuoteInput {
         public Builder terms(JsonNullable<String> terms) {
             Utils.checkNotNull(terms, "terms");
             this.terms = terms;
+            return this;
+        }
+
+
+        /**
+         * The ID of the payment terms
+         */
+        public Builder termsId(String termsId) {
+            Utils.checkNotNull(termsId, "termsId");
+            this.termsId = JsonNullable.of(termsId);
+            return this;
+        }
+
+        /**
+         * The ID of the payment terms
+         */
+        public Builder termsId(JsonNullable<String> termsId) {
+            Utils.checkNotNull(termsId, "termsId");
+            this.termsId = termsId;
             return this;
         }
 
@@ -1823,13 +1884,14 @@ public class QuoteInput {
                 number, customer, salesOrderId,
                 companyId, departmentId, projectId,
                 quoteDate, expiryDate, terms,
-                reference, status, currency,
-                currencyRate, taxInclusive, subTotal,
-                totalTax, taxCode, discountPercentage,
-                discountAmount, total, customerMemo,
-                lineItems, billingAddress, shippingAddress,
-                trackingCategories, templateId, sourceDocumentUrl,
-                customFields, rowVersion, passThrough);
+                termsId, reference, status,
+                currency, currencyRate, taxInclusive,
+                subTotal, totalTax, taxCode,
+                discountPercentage, discountAmount, total,
+                customerMemo, lineItems, billingAddress,
+                shippingAddress, trackingCategories, templateId,
+                sourceDocumentUrl, customFields, rowVersion,
+                passThrough);
         }
 
     }

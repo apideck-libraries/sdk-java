@@ -5,14 +5,26 @@ package com.apideck.unify;
 
 import static com.apideck.unify.operations.Operations.AsyncRequestOperation;
 
+import com.apideck.unify.models.operations.AtsJobsAddRequest;
 import com.apideck.unify.models.operations.AtsJobsAllRequest;
+import com.apideck.unify.models.operations.AtsJobsDeleteRequest;
 import com.apideck.unify.models.operations.AtsJobsOneRequest;
+import com.apideck.unify.models.operations.AtsJobsUpdateRequest;
+import com.apideck.unify.models.operations.async.AtsJobsAddRequestBuilder;
+import com.apideck.unify.models.operations.async.AtsJobsAddResponse;
 import com.apideck.unify.models.operations.async.AtsJobsAllRequestBuilder;
 import com.apideck.unify.models.operations.async.AtsJobsAllResponse;
+import com.apideck.unify.models.operations.async.AtsJobsDeleteRequestBuilder;
+import com.apideck.unify.models.operations.async.AtsJobsDeleteResponse;
 import com.apideck.unify.models.operations.async.AtsJobsOneRequestBuilder;
 import com.apideck.unify.models.operations.async.AtsJobsOneResponse;
+import com.apideck.unify.models.operations.async.AtsJobsUpdateRequestBuilder;
+import com.apideck.unify.models.operations.async.AtsJobsUpdateResponse;
+import com.apideck.unify.operations.AtsJobsAdd;
 import com.apideck.unify.operations.AtsJobsAll;
+import com.apideck.unify.operations.AtsJobsDelete;
 import com.apideck.unify.operations.AtsJobsOne;
+import com.apideck.unify.operations.AtsJobsUpdate;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import java.util.Optional;
@@ -82,6 +94,48 @@ public class AsyncJobs {
 
 
     /**
+     * Create Job
+     * 
+     * <p>Create Job
+     * 
+     * @return The async call builder
+     */
+    public AtsJobsAddRequestBuilder create() {
+        return new AtsJobsAddRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Create Job
+     * 
+     * <p>Create Job
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return {@code CompletableFuture<AtsJobsAddResponse>} - The async response
+     */
+    public CompletableFuture<AtsJobsAddResponse> create(AtsJobsAddRequest request) {
+        return create(request, Optional.empty());
+    }
+
+    /**
+     * Create Job
+     * 
+     * <p>Create Job
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return {@code CompletableFuture<AtsJobsAddResponse>} - The async response
+     */
+    public CompletableFuture<AtsJobsAddResponse> create(AtsJobsAddRequest request, Optional<Options> options) {
+        AsyncRequestOperation<AtsJobsAddRequest, AtsJobsAddResponse> operation
+              = new AtsJobsAdd.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
      * Get Job
      * 
      * <p>Get Job
@@ -116,6 +170,90 @@ public class AsyncJobs {
     public CompletableFuture<AtsJobsOneResponse> get(AtsJobsOneRequest request, Optional<Options> options) {
         AsyncRequestOperation<AtsJobsOneRequest, AtsJobsOneResponse> operation
               = new AtsJobsOne.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * Update Job
+     * 
+     * <p>Update Job
+     * 
+     * @return The async call builder
+     */
+    public AtsJobsUpdateRequestBuilder update() {
+        return new AtsJobsUpdateRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Update Job
+     * 
+     * <p>Update Job
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return {@code CompletableFuture<AtsJobsUpdateResponse>} - The async response
+     */
+    public CompletableFuture<AtsJobsUpdateResponse> update(AtsJobsUpdateRequest request) {
+        return update(request, Optional.empty());
+    }
+
+    /**
+     * Update Job
+     * 
+     * <p>Update Job
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return {@code CompletableFuture<AtsJobsUpdateResponse>} - The async response
+     */
+    public CompletableFuture<AtsJobsUpdateResponse> update(AtsJobsUpdateRequest request, Optional<Options> options) {
+        AsyncRequestOperation<AtsJobsUpdateRequest, AtsJobsUpdateResponse> operation
+              = new AtsJobsUpdate.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * Delete Job
+     * 
+     * <p>Delete Job
+     * 
+     * @return The async call builder
+     */
+    public AtsJobsDeleteRequestBuilder delete() {
+        return new AtsJobsDeleteRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Delete Job
+     * 
+     * <p>Delete Job
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return {@code CompletableFuture<AtsJobsDeleteResponse>} - The async response
+     */
+    public CompletableFuture<AtsJobsDeleteResponse> delete(AtsJobsDeleteRequest request) {
+        return delete(request, Optional.empty());
+    }
+
+    /**
+     * Delete Job
+     * 
+     * <p>Delete Job
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return {@code CompletableFuture<AtsJobsDeleteResponse>} - The async response
+     */
+    public CompletableFuture<AtsJobsDeleteResponse> delete(AtsJobsDeleteRequest request, Optional<Options> options) {
+        AsyncRequestOperation<AtsJobsDeleteRequest, AtsJobsDeleteResponse> operation
+              = new AtsJobsDelete.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);
         return operation.doRequest(request)

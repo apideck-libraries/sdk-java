@@ -7,6 +7,7 @@ import static com.apideck.unify.operations.Operations.AsyncRequestOperation;
 import static com.apideck.unify.utils.reactive.ReactiveUtils.mapAsync;
 
 import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.models.components.ConsumersFilter;
 import com.apideck.unify.models.operations.VaultConsumersAllRequest;
 import com.apideck.unify.operations.VaultConsumersAll;
 import com.apideck.unify.utils.Blob;
@@ -31,6 +32,7 @@ import org.reactivestreams.Publisher;
 public class VaultConsumersAllRequestBuilder {
 
     private Optional<String> appId = Optional.empty();
+    private Optional<? extends ConsumersFilter> filter = Optional.empty();
     private JsonNullable<String> cursor = JsonNullable.undefined();
     private Optional<Long> limit = Utils.readDefaultOrConstValue(
                             "limit",
@@ -53,6 +55,18 @@ public class VaultConsumersAllRequestBuilder {
     public VaultConsumersAllRequestBuilder appId(Optional<String> appId) {
         Utils.checkNotNull(appId, "appId");
         this.appId = appId;
+        return this;
+    }
+                
+    public VaultConsumersAllRequestBuilder filter(ConsumersFilter filter) {
+        Utils.checkNotNull(filter, "filter");
+        this.filter = Optional.of(filter);
+        return this;
+    }
+
+    public VaultConsumersAllRequestBuilder filter(Optional<? extends ConsumersFilter> filter) {
+        Utils.checkNotNull(filter, "filter");
+        this.filter = filter;
         return this;
     }
 
@@ -99,6 +113,7 @@ public class VaultConsumersAllRequestBuilder {
         }
 
         VaultConsumersAllRequest request = new VaultConsumersAllRequest(appId,
+            filter,
             cursor,
             limit);
 
@@ -148,8 +163,10 @@ public class VaultConsumersAllRequestBuilder {
         Flow.Publisher<HttpResponse<Blob>> asyncPaginator = new AsyncPaginator<>(
             request,
             new CursorTracker<>("$.meta.cursors.next", String.class),
-                    VaultConsumersAllRequest::withCursor,
-            operation::doRequest);
+            (req, pos) -> {
+                var modifiedReq = pos == null ? req : req.withCursor(pos);
+                return operation.doRequest(modifiedReq);
+            });
 
         Flow.Publisher<VaultConsumersAllResponse> flowPublisher = mapAsync(asyncPaginator, operation::handleResponse);
 

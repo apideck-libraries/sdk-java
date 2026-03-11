@@ -47,7 +47,7 @@ public class Application {
                 .call();
 
         if (res.createCallbackStateResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createCallbackStateResponse().get());
         }
     }
 }

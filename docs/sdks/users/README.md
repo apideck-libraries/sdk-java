@@ -267,7 +267,7 @@ public class Application {
                 .call();
 
         if (res.createUserResponse().isPresent()) {
-            // handle response
+            System.out.println(res.createUserResponse().get());
         }
     }
 }
@@ -331,7 +331,7 @@ public class Application {
                 .call();
 
         if (res.getUserResponse().isPresent()) {
-            // handle response
+            System.out.println(res.getUserResponse().get());
         }
     }
 }
@@ -516,7 +516,7 @@ public class Application {
                 .call();
 
         if (res.updateUserResponse().isPresent()) {
-            // handle response
+            System.out.println(res.updateUserResponse().get());
         }
     }
 }
@@ -579,7 +579,7 @@ public class Application {
                 .call();
 
         if (res.deleteUserResponse().isPresent()) {
-            // handle response
+            System.out.println(res.deleteUserResponse().get());
         }
     }
 }

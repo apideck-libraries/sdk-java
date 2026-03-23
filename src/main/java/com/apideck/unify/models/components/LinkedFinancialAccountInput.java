@@ -18,8 +18,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
 /**
  * LinkedFinancialAccountInput
  * 
- * <p>A flexible account reference that can represent either a ledger account (GL account) or a bank
- * account, depending on the connector's requirements.
+ * <p>A flexible account reference that can represent a ledger account (GL account), a bank account, or an
+ * employee payable account, depending on the connector's requirements.
  */
 public class LinkedFinancialAccountInput {
     /**

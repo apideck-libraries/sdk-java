@@ -188,6 +188,11 @@ public class AccountingEmployee {
 
 
     @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("bank_account")
+    private Optional<? extends BankAccount> bankAccount;
+
+
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_fields")
     private Optional<? extends List<CustomField>> customFields;
 
@@ -254,6 +259,7 @@ public class AccountingEmployee {
             @JsonProperty("notes") JsonNullable<String> notes,
             @JsonProperty("addresses") Optional<? extends List<Address>> addresses,
             @JsonProperty("phone_numbers") Optional<? extends List<PhoneNumber>> phoneNumbers,
+            @JsonProperty("bank_account") Optional<? extends BankAccount> bankAccount,
             @JsonProperty("custom_fields") Optional<? extends List<CustomField>> customFields,
             @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings,
             @JsonProperty("row_version") JsonNullable<String> rowVersion,
@@ -284,6 +290,7 @@ public class AccountingEmployee {
         Utils.checkNotNull(notes, "notes");
         Utils.checkNotNull(addresses, "addresses");
         Utils.checkNotNull(phoneNumbers, "phoneNumbers");
+        Utils.checkNotNull(bankAccount, "bankAccount");
         Utils.checkNotNull(customFields, "customFields");
         Utils.checkNotNull(customMappings, "customMappings");
         Utils.checkNotNull(rowVersion, "rowVersion");
@@ -314,6 +321,7 @@ public class AccountingEmployee {
         this.notes = notes;
         this.addresses = addresses;
         this.phoneNumbers = phoneNumbers;
+        this.bankAccount = bankAccount;
         this.customFields = customFields;
         this.customMappings = customMappings;
         this.rowVersion = rowVersion;
@@ -331,8 +339,9 @@ public class AccountingEmployee {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), Optional.empty(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -528,6 +537,12 @@ public class AccountingEmployee {
     @JsonIgnore
     public Optional<List<PhoneNumber>> phoneNumbers() {
         return (Optional<List<PhoneNumber>>) phoneNumbers;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<BankAccount> bankAccount() {
+        return (Optional<BankAccount>) bankAccount;
     }
 
     @SuppressWarnings("unchecked")
@@ -1006,6 +1021,19 @@ public class AccountingEmployee {
         return this;
     }
 
+    public AccountingEmployee withBankAccount(BankAccount bankAccount) {
+        Utils.checkNotNull(bankAccount, "bankAccount");
+        this.bankAccount = Optional.ofNullable(bankAccount);
+        return this;
+    }
+
+
+    public AccountingEmployee withBankAccount(Optional<? extends BankAccount> bankAccount) {
+        Utils.checkNotNull(bankAccount, "bankAccount");
+        this.bankAccount = bankAccount;
+        return this;
+    }
+
     public AccountingEmployee withCustomFields(List<CustomField> customFields) {
         Utils.checkNotNull(customFields, "customFields");
         this.customFields = Optional.ofNullable(customFields);
@@ -1148,6 +1176,7 @@ public class AccountingEmployee {
             Utils.enhancedDeepEquals(this.notes, other.notes) &&
             Utils.enhancedDeepEquals(this.addresses, other.addresses) &&
             Utils.enhancedDeepEquals(this.phoneNumbers, other.phoneNumbers) &&
+            Utils.enhancedDeepEquals(this.bankAccount, other.bankAccount) &&
             Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
             Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
             Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion) &&
@@ -1167,8 +1196,9 @@ public class AccountingEmployee {
             terminationDate, gender, birthDate,
             subsidiary, trackingCategories, currency,
             notes, addresses, phoneNumbers,
-            customFields, customMappings, rowVersion,
-            updatedAt, createdAt, passThrough);
+            bankAccount, customFields, customMappings,
+            rowVersion, updatedAt, createdAt,
+            passThrough);
     }
     
     @Override
@@ -1198,6 +1228,7 @@ public class AccountingEmployee {
                 "notes", notes,
                 "addresses", addresses,
                 "phoneNumbers", phoneNumbers,
+                "bankAccount", bankAccount,
                 "customFields", customFields,
                 "customMappings", customMappings,
                 "rowVersion", rowVersion,
@@ -1256,6 +1287,8 @@ public class AccountingEmployee {
         private Optional<? extends List<Address>> addresses = Optional.empty();
 
         private Optional<? extends List<PhoneNumber>> phoneNumbers = Optional.empty();
+
+        private Optional<? extends BankAccount> bankAccount = Optional.empty();
 
         private Optional<? extends List<CustomField>> customFields = Optional.empty();
 
@@ -1714,6 +1747,19 @@ public class AccountingEmployee {
         }
 
 
+        public Builder bankAccount(BankAccount bankAccount) {
+            Utils.checkNotNull(bankAccount, "bankAccount");
+            this.bankAccount = Optional.ofNullable(bankAccount);
+            return this;
+        }
+
+        public Builder bankAccount(Optional<? extends BankAccount> bankAccount) {
+            Utils.checkNotNull(bankAccount, "bankAccount");
+            this.bankAccount = bankAccount;
+            return this;
+        }
+
+
         public Builder customFields(List<CustomField> customFields) {
             Utils.checkNotNull(customFields, "customFields");
             this.customFields = Optional.ofNullable(customFields);
@@ -1836,8 +1882,9 @@ public class AccountingEmployee {
                 terminationDate, gender, birthDate,
                 subsidiary, trackingCategories, currency,
                 notes, addresses, phoneNumbers,
-                customFields, customMappings, rowVersion,
-                updatedAt, createdAt, passThrough);
+                bankAccount, customFields, customMappings,
+                rowVersion, updatedAt, createdAt,
+                passThrough);
         }
 
     }

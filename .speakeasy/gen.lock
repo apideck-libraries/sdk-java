@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 38254260-287a-40b6-9ac5-c2fcb654c9cc
 management:
-  docChecksum: 91096ca41ff91b2d854ef8723bbf6e0a
-  docVersion: 10.24.3
-  speakeasyVersion: 1.751.0
-  generationVersion: 2.858.2
-  releaseVersion: 0.31.0
-  configChecksum: 4252ed51c697b50873c06e1e91405ef7
+  docChecksum: 8e30502b1de6fd23138eb9c321a354e9
+  docVersion: 10.24.7
+  speakeasyVersion: 1.759.1
+  generationVersion: 2.869.10
+  releaseVersion: 0.31.1
+  configChecksum: 26e977d937ea21eda35bebc846617924
   repoURL: https://github.com/apideck-libraries/sdk-java.git
   installationURL: https://github.com/apideck-libraries/sdk-java
   published: true
 persistentEdits:
-  generation_id: 51a8b9e3-a4b4-4418-b081-8ddf38c42475
-  pristine_commit_hash: 7f58406ee352aa48d743b7099bad3ddb4cd67081
-  pristine_tree_hash: 9d865e5c7e90bc4f5860d673bb2ecc173a3c0496
+  generation_id: 21d57337-b972-4c03-901e-dc72a37e55b6
+  pristine_commit_hash: cf4491713cca28fddf018e9302c33c4d18fa0386
+  pristine_tree_hash: 47fbcd024dd5717a6cd009b5e1c8bb387c67f9a9
 features:
   java:
     acceptHeaders: 2.81.2
@@ -97,12 +97,12 @@ trackedFiles:
     pristine_git_object: ecdbf6cbd33cbcc60299b4ba2c0c60e6fda0f418
   docs/models/components/AccountingEmployee.md:
     id: 010e07eced1a
-    last_write_checksum: sha1:40bb113f66c7c331a12a09e756656063dd2300af
-    pristine_git_object: 2a3295d17add0a2351064da719f82fae4f6ad0ba
+    last_write_checksum: sha1:6b2dc59eab4ef42c6d8edfb6e74b90a01091bf7a
+    pristine_git_object: debbfef6a733bc8b50d4f944fc7373399af7d5d9
   docs/models/components/AccountingEmployeeInput.md:
     id: 9a96e5c78566
-    last_write_checksum: sha1:8e9b6a5602335acda67d690ab113bd80de5e2866
-    pristine_git_object: 2f0109c88f8ba6a3219306e545edccc552019700
+    last_write_checksum: sha1:d923a7b5da4521d87e4106b22012ef092ee46d1f
+    pristine_git_object: 5178c43c3d28280a7f17de36bcae9ac439c20b36
   docs/models/components/AccountingEmployeeManager.md:
     id: 33c2d1e4bffd
     last_write_checksum: sha1:67a9ad54418112aab8e4c18d674cb10007495991
@@ -1629,8 +1629,8 @@ trackedFiles:
     pristine_git_object: dadb4af5f932c23d3d3d56bfcd61c4124633e4e4
   docs/models/components/Expense.md:
     id: bc4a7f3cbdf8
-    last_write_checksum: sha1:c78b23ae702cb967074b795333b46bd0fffeb545
-    pristine_git_object: c0a7dbbd04340f966b088ff8f1d62e50ffa17ed7
+    last_write_checksum: sha1:a998af3a9ba9a748e92793e58f04f94f3f4cf7bc
+    pristine_git_object: 4e1dd92ebf90f522a99887b1de9b1fd0a2b01797
   docs/models/components/ExpenseCategoriesFilter.md:
     id: b20fa883b95f
     last_write_checksum: sha1:b41a89aadc09398a36cd3cd86a473910149ae121
@@ -1653,8 +1653,8 @@ trackedFiles:
     pristine_git_object: 34e59d755adb129c5ec31c376223b21ad2a0dcc7
   docs/models/components/ExpenseInput.md:
     id: f0699569c2d2
-    last_write_checksum: sha1:bcebdc063ce9956b9d2bec615681593919b251e9
-    pristine_git_object: e3d6c43d0255a6f032ccd8eb6ce13fe9462ccab9
+    last_write_checksum: sha1:d6101081b86a930d1e6ee5ad72a6f4f0490abb2f
+    pristine_git_object: 303325ad60f99cbbd0040cc36646d78d73179f32
   docs/models/components/ExpenseLineItem.md:
     id: f30d020996cc
     last_write_checksum: sha1:e6f1d1105d977ac7498c10506171aef9a0314c1a
@@ -2549,20 +2549,20 @@ trackedFiles:
     pristine_git_object: 8e076cebbe07b602ddced3a05d3833c07c4da4c6
   docs/models/components/JournalEntry.md:
     id: 9439db9ea759
-    last_write_checksum: sha1:bcec1c151a5d060cf6eee6ea58d7aeced5eedd79
-    pristine_git_object: 12035f477497eddf03d50d96620e18ba8f244fa4
+    last_write_checksum: sha1:0555180c2bb4767ac72f37bdfefd8e0af18de34e
+    pristine_git_object: e59bede19d8a0a25a019f81946220d918f535033
   docs/models/components/JournalEntryInput.md:
     id: 13d690dfca5a
-    last_write_checksum: sha1:5367814aebc2a08cc71e956c98650a9c69163d2b
-    pristine_git_object: 438adb437385f585e3a9dc98aba2df69fb68fe66
+    last_write_checksum: sha1:082a70e78807737701bae69016ab3fc37cbd947c
+    pristine_git_object: afd200b026cc185467d772100f95b4dff0fa03c7
   docs/models/components/JournalEntryLineItem.md:
     id: 2855c0434aa1
-    last_write_checksum: sha1:0c1b425ff5b0dde2e33adf978c023cd9c4f0f0e3
-    pristine_git_object: 85d641388c55943c1c905aefc2016257e7a08c87
+    last_write_checksum: sha1:69d8dd2febfe8edf3ac113f4b21738de19affd4a
+    pristine_git_object: 7f03c7b08e3a93cc4bbf9c517823fa8bd6b4dcf7
   docs/models/components/JournalEntryLineItemInput.md:
     id: c62d552fbc8e
-    last_write_checksum: sha1:6572621adf702684c5bf1320bdeb3815a7b80a6c
-    pristine_git_object: ed67d07c1a6c3797e14ac4343b1505e212a344d4
+    last_write_checksum: sha1:00ac3b588b1bf7d360289da9acc6ca8cb72cda82
+    pristine_git_object: b9622437b4f59f17c4469031831b52230fdf813a
   docs/models/components/JournalEntryLineItemType.md:
     id: 0481fdd010c0
     last_write_checksum: sha1:87757892f694740a006668c2dd130df88356e2df
@@ -2663,22 +2663,26 @@ trackedFiles:
     id: 9b35e5f45794
     last_write_checksum: sha1:f8b1d312461e2b9bc0c828b92dabfce95c60d7f2
     pristine_git_object: 93220a844723c2e14929bddb249626148bf1dcdb
+  docs/models/components/LinkedEmployee.md:
+    id: 9b4d04fa9f3c
+    last_write_checksum: sha1:6a5299555e50735ae8f112380b8ebd24f156f49e
+    pristine_git_object: 385a019f9552101622f76c4714adfaa45bd010e5
   docs/models/components/LinkedExpenseCategory.md:
     id: 0e793a55828e
     last_write_checksum: sha1:380a1b9e37c60bdc5bc2d16b274975b4d98a5be2
     pristine_git_object: f1549a41c64fc298723cd0ba0dc31b24996474bf
   docs/models/components/LinkedFinancialAccount.md:
     id: f02ee7ffc7c5
-    last_write_checksum: sha1:ea3efb0b7ae7220bb2170b0856080738f3b6844d
-    pristine_git_object: d6a177544402de3e51e49fa1aded16ff3bf25b20
+    last_write_checksum: sha1:364791d9d254b43ef0f2b15679d12c2b0fff6864
+    pristine_git_object: d5f9b5da38fa83d260afd725dcef2ed5b691055f
   docs/models/components/LinkedFinancialAccountAccountType.md:
     id: 4a9d393943cf
-    last_write_checksum: sha1:cff36faae76a675b5b47ae08392d1196748ab703
-    pristine_git_object: 378ceceb859c3f4a529d5e01359428b4a854b04c
+    last_write_checksum: sha1:8ca8444450c907533beca7a97c34a145e9d5d9a8
+    pristine_git_object: d1bfcbd72d36ca3272722c9f5d8c7eec7a4e30c7
   docs/models/components/LinkedFinancialAccountInput.md:
     id: 398737238a69
-    last_write_checksum: sha1:b8e576e7655445c00248cb86dfb0c13c3ae3d736
-    pristine_git_object: d5e384d194313c672b93b7d04984fefd8a5e6b59
+    last_write_checksum: sha1:75a015959c9f9930297503e3e2906f8eb2e02ddf
+    pristine_git_object: 1cdb66555a31a35651c27cf5ec3469b026ad6a9a
   docs/models/components/LinkedFolder.md:
     id: 1993a68e36e1
     last_write_checksum: sha1:29eb5cedf99e9a9085faa1028c9eab9caf4f692c
@@ -3379,6 +3383,10 @@ trackedFiles:
     id: 2ebe746fd97e
     last_write_checksum: sha1:e991ac6cbbcc2e05f14052e872452c64bc221ce9
     pristine_git_object: 4d896172bbe8e34f9fb102cb9ae1f46fc785f49b
+  docs/models/components/TaxType.md:
+    id: aedc81095650
+    last_write_checksum: sha1:8846b649e2c36c8a90fda48902083ccf2f4ed0db
+    pristine_git_object: 59e28ef40d7c2e241068bf1e6b793de2490f8155
   docs/models/components/Team.md:
     id: bb190f399561
     last_write_checksum: sha1:8888fa14eb1236c16d5d2d773b45668a182beb50
@@ -6825,8 +6833,8 @@ trackedFiles:
     pristine_git_object: 1761c87a96fc9d4d10a2fcbdc4e2547cf4706958
   docs/sdks/employees/README.md:
     id: 3adbd327ce9d
-    last_write_checksum: sha1:8e2b09db8a64f98f11b6d01b2c7992286ad4dd5b
-    pristine_git_object: 6c9c5c703ff0445b553a3049414217916b3a0011
+    last_write_checksum: sha1:ee1e448976b07e4a81a922ce1705bb8ab1156f40
+    pristine_git_object: 6cf5ab4b40ff441878acd5f65da4e40b84d4df7f
   docs/sdks/employeeschedules/README.md:
     id: 9855d4282404
     last_write_checksum: sha1:4f42cd1915422eb20cc386993844a0e5469f338f
@@ -6993,8 +7001,8 @@ trackedFiles:
     pristine_git_object: c755c6aa377f358344e761e9cc3e7b67bc1fb479
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:a8e8792e5ab23f684de0775c7cabf8a78cf07cdb
-    pristine_git_object: 7ca453b9de20902209ee539f0b55faa8feb50244
+    last_write_checksum: sha1:2c6a696ac0d8a6e9ffbb7f0355f4bc4c6b4d8006
+    pristine_git_object: 0c5c4978b28754c141422ca29478a4b81acc3586
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -7813,8 +7821,8 @@ trackedFiles:
     pristine_git_object: 7296db7ebcdcff7ee348d1f993fc4aa2a7e6c145
   src/main/java/com/apideck/unify/SDKConfiguration.java:
     id: a2b330a87142
-    last_write_checksum: sha1:a493f2077658b6cf835ac7781a0991dab99715dd
-    pristine_git_object: 44f41d1197701cb980e4874912966774f772ceb0
+    last_write_checksum: sha1:0fda4d1091c9a0dbf7c5f87aea4835a72bb6ce3c
+    pristine_git_object: 31bb25a494748337ae7194225bc28ff047469089
   src/main/java/com/apideck/unify/SecuritySource.java:
     id: e4566c6c806b
     last_write_checksum: sha1:101bf1a9f5cf4e8c37abb4540147276eebb2bab0
@@ -7921,12 +7929,12 @@ trackedFiles:
     pristine_git_object: 1f0b264a1c048ed52b683a98dcaf0d38f8c1bdb1
   src/main/java/com/apideck/unify/models/components/AccountingEmployee.java:
     id: 7f65237cde07
-    last_write_checksum: sha1:898c544f957800f1db9b15dee7e08ac367daa8c6
-    pristine_git_object: 1913295fa8cc0a96d62c5f03c5f809e4dfab6ba0
+    last_write_checksum: sha1:5186d1993f00af2b67c2fcdec5c83389a76d8dcb
+    pristine_git_object: 67b068314dfc2b1a11ac4ad0aa7575a27bd7250d
   src/main/java/com/apideck/unify/models/components/AccountingEmployeeInput.java:
     id: 45b8e2d11911
-    last_write_checksum: sha1:e694fc9a2db856d9eb5fca63fc70e544cfad81b4
-    pristine_git_object: 31f1314178ff6e452b04c629850796824a51fd27
+    last_write_checksum: sha1:a2925269b06c6fb6b3950fa7fc270e6e0d6abdc9
+    pristine_git_object: 519d6e44c6da641b593d401a4684ae1cd5e7c61b
   src/main/java/com/apideck/unify/models/components/AccountingEmployeeManager.java:
     id: 1ae90149575e
     last_write_checksum: sha1:8cdb207553d4cc887ac7fd3bd9ed5685791f168f
@@ -9453,8 +9461,8 @@ trackedFiles:
     pristine_git_object: 3c56ee0e38375083d5bedcb8be833bb496ebf253
   src/main/java/com/apideck/unify/models/components/Expense.java:
     id: 4022deda663b
-    last_write_checksum: sha1:81bcf19a857a9374d439528f7dd5d79d669359ea
-    pristine_git_object: b534b72406d259c9cc5724708d89f977951d421a
+    last_write_checksum: sha1:dea20472f900b8561b3573611f35a80b3f16946e
+    pristine_git_object: 66546097c4227ba77c4cec3e61590177a5952fbc
   src/main/java/com/apideck/unify/models/components/ExpenseCategoriesFilter.java:
     id: a54819ecf1ed
     last_write_checksum: sha1:87923ca70b6d9ed0a9a9fb0b60d4ecc7170fb1b4
@@ -9477,8 +9485,8 @@ trackedFiles:
     pristine_git_object: df5de48132229c47af85339817f834e0eec1bd0a
   src/main/java/com/apideck/unify/models/components/ExpenseInput.java:
     id: 3981ac315d80
-    last_write_checksum: sha1:f579a150a00c4788cde031e8f3568b1fa80abdcf
-    pristine_git_object: 4d5d41c00174aae6faefe25b60062a0b5c37ebf8
+    last_write_checksum: sha1:f49ff761bbaf7357818eecedc21191711183a7ca
+    pristine_git_object: 8c8f52a725ff6b09b82d4620e284e74ccd24a4b3
   src/main/java/com/apideck/unify/models/components/ExpenseLineItem.java:
     id: 9e68c792e94e
     last_write_checksum: sha1:d53a5fe1ab02fd8b06efcf8440f2ec6d95619a4c
@@ -10377,20 +10385,20 @@ trackedFiles:
     pristine_git_object: f8109caf741d35370c22a59e4e00f397fa51ed40
   src/main/java/com/apideck/unify/models/components/JournalEntry.java:
     id: 9aff923796cf
-    last_write_checksum: sha1:5a49a628520dce8ac47a08431f89b6f438e7765f
-    pristine_git_object: 7d61d6a67c834e0978bade4f5b866a5f2c994013
+    last_write_checksum: sha1:2f81c95c2e46f94bba49f6a98b68203a13abc96c
+    pristine_git_object: 66b444a68e10b66f2325df600da9fc2e80a60ee7
   src/main/java/com/apideck/unify/models/components/JournalEntryInput.java:
     id: c8f02a5db39f
-    last_write_checksum: sha1:575115ba896572337adea384bf2f8fe82bf9f1c9
-    pristine_git_object: e0a64367419c812ec522aae1ecae5c5abfc64b95
+    last_write_checksum: sha1:30eed7c13eda546a7b9e3f4d53332998d916c5d6
+    pristine_git_object: 601226c19b340b580d863129398ae9c5e3fa510a
   src/main/java/com/apideck/unify/models/components/JournalEntryLineItem.java:
     id: f3d61638694f
-    last_write_checksum: sha1:2a1c4f83db4a2261ff840469a301676c9f727511
-    pristine_git_object: 470df79de76a523198157a33224892d77feaed86
+    last_write_checksum: sha1:54134ba84b2f28050e5b47460cd3f91afa14c753
+    pristine_git_object: 08b38f90de9bdeac32fa06c85ed14b80f30bdbed
   src/main/java/com/apideck/unify/models/components/JournalEntryLineItemInput.java:
     id: f2d0bec350a6
-    last_write_checksum: sha1:383c06c9da9af1649cb2815cba65119cf13a7ce2
-    pristine_git_object: 1febd586d2d1f9c038190c8801d4b875bcfae248
+    last_write_checksum: sha1:e962c489c793943c823257a69f3fa3f3aa03f712
+    pristine_git_object: 9c4817b8291f3665c397c3bd65243a21a2a6b1c7
   src/main/java/com/apideck/unify/models/components/JournalEntryLineItemType.java:
     id: 36c302acbadb
     last_write_checksum: sha1:1580155e64f6c58b9582c5b9af8289117a79090f
@@ -10491,22 +10499,26 @@ trackedFiles:
     id: d45513d2c2de
     last_write_checksum: sha1:d20ec31f5df2b053a3d17ea940bdccf369b31cd9
     pristine_git_object: 45b0844decb5bfc6f3a6ca83ae81e542c72fc9cc
+  src/main/java/com/apideck/unify/models/components/LinkedEmployee.java:
+    id: 4c83ab479c3a
+    last_write_checksum: sha1:e2a2db755f641c7e384b968f18c4559852a9f1a4
+    pristine_git_object: 6d81381eb3367ad91aef0eda16754c809b614d56
   src/main/java/com/apideck/unify/models/components/LinkedExpenseCategory.java:
     id: a1da79d70847
     last_write_checksum: sha1:4ee276d51a5742296caf9c5fad56ae6576d75317
     pristine_git_object: 00f8c342e63975d09ad27a5336c968606f4c1190
   src/main/java/com/apideck/unify/models/components/LinkedFinancialAccount.java:
     id: 5fc219335d3c
-    last_write_checksum: sha1:b9638ec71f020ca6242f4cd236527b73587a1122
-    pristine_git_object: 7335482b06beb65f1e3cf21096e9133c96dd63db
+    last_write_checksum: sha1:7fe29694ce518e7e2d6e639e6724f5282a4cc226
+    pristine_git_object: fe911eb0bf556a7372622f0643db3aa58428486e
   src/main/java/com/apideck/unify/models/components/LinkedFinancialAccountAccountType.java:
     id: 4c9e33421561
-    last_write_checksum: sha1:d5e6c033f07639d1731dd8c678f56ae01745e91c
-    pristine_git_object: 0b68d3640ccc4f0579d6d88938c1e0f983c10560
+    last_write_checksum: sha1:30c982cf4d643498e71e659a25e92405f9394e71
+    pristine_git_object: b6f3ab98964268f3fcb7b88ea771815f7a2a41cd
   src/main/java/com/apideck/unify/models/components/LinkedFinancialAccountInput.java:
     id: 6dfb670ee9a1
-    last_write_checksum: sha1:f6bc1cd8a45c59e795bdd2bc98152b0722f965aa
-    pristine_git_object: c16c62ca1a9851d6ca84d22c9f374f1786f79ebf
+    last_write_checksum: sha1:a58f8db972f4af0ecab252c621b8e062cb08c400
+    pristine_git_object: 6ac1b0369ee5f5083c1a08d91062ba6b99336501
   src/main/java/com/apideck/unify/models/components/LinkedFolder.java:
     id: 9b72e445b492
     last_write_checksum: sha1:f2f23327062dfc332aef66965b8ce85f87ea3ef3
@@ -11207,6 +11219,10 @@ trackedFiles:
     id: 54a43ad165c2
     last_write_checksum: sha1:c72d210a8bcfa7798c65d9adce852e1fa4412c23
     pristine_git_object: a24ee4e51006afba8aad0cf8b1dc608f7a7f1e22
+  src/main/java/com/apideck/unify/models/components/TaxType.java:
+    id: abfc1f2a9b5c
+    last_write_checksum: sha1:d5a14a8539dbb4e8a8da17c3e02ed51598a99989
+    pristine_git_object: 55f8f565a985bca006d5c796543be511cd76df67
   src/main/java/com/apideck/unify/models/components/Team.java:
     id: 277dd17998c7
     last_write_checksum: sha1:19d2bd39d952542036af3b7729403c8094f75e0e
@@ -19873,8 +19889,8 @@ trackedFiles:
     pristine_git_object: e1bd639816b06106a662664ec87e97e0a604d56f
   src/main/java/com/apideck/unify/utils/EventStream.java:
     id: 69607b1d4cfd
-    last_write_checksum: sha1:409f5b8db2121eec1e72ded5eab25f51458ae335
-    pristine_git_object: f3e6bab8857e3c7f4135fa7bb260674db3756a91
+    last_write_checksum: sha1:d2b45294dc2da8e5f90abf86d38dab70d5b68c9a
+    pristine_git_object: 107f40a475cb142ddea1670410dfe41f48fc0218
   src/main/java/com/apideck/unify/utils/EventStreamMessage.java:
     id: 84a0e5f7e8d3
     last_write_checksum: sha1:2903591933bf880067be04aef39e95c86c043f68
@@ -20113,8 +20129,8 @@ trackedFiles:
     pristine_git_object: b1f45a7cb82c76fb80f29540a5eeefe1304be2a7
   src/main/java/com/apideck/unify/utils/reactive/EventStream.java:
     id: 13429f4cc522
-    last_write_checksum: sha1:8f319438a24d9bd978992ae012b4e47edfa21470
-    pristine_git_object: 6004d6e830c605c4fc591bd57dcb94e3d18cb76a
+    last_write_checksum: sha1:58856457187a3acc2cd03b1f924014734fd8b0a5
+    pristine_git_object: 984d115f1086ea63344bc4e92a4fc0daa7ca8c1b
   src/main/java/com/apideck/unify/utils/reactive/ReactiveUtils.java:
     id: 9afb64b469cf
     last_write_checksum: sha1:242e9e532f698686b97eb01a076a74845c0471dc
@@ -22807,7 +22823,7 @@ examples:
           x-apideck-service-id: "salesforce"
           x-apideck-company-id: "12345"
       requestBody:
-        application/json: {"display_id": "12345", "title": "Purchase Invoice-Inventory (USD): 2019/02/01 Batch Summary Entry", "currency_rate": 0.69, "currency": "USD", "company_id": "12345", "line_items": [{"description": "Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.", "tax_amount": 27500, "sub_total": 27500, "total_amount": 27500, "type": "debit", "tax_rate": {"id": "123456", "rate": 10}, "tracking_categories": null, "ledger_account": {"id": "123456", "nominal_code": "N091", "code": "453"}, "customer": {"id": "12345", "display_name": "Windsurf Shop", "email": "boring@boring.com"}, "supplier": {"id": "12345", "display_name": "Windsurf Shop", "address": {"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}}, "department_id": "12345", "location_id": "12345", "line_number": 1}], "status": "draft", "memo": "Thank you for your business and have a great day!", "posted_at": "2020-09-30T07:43:32.000Z", "journal_symbol": "IND", "tax_type": "sales", "tax_code": "1234", "number": "OIT00546", "tracking_categories": [{"id": "123456", "name": "New York"}], "accounting_period": "01-24", "tax_inclusive": true, "source_type": "manual", "source_id": "12345", "row_version": "1-12345", "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
+        application/json: {"display_id": "12345", "title": "Purchase Invoice-Inventory (USD): 2019/02/01 Batch Summary Entry", "currency_rate": 0.69, "currency": "USD", "company_id": "12345", "line_items": [{"description": "Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.", "tax_amount": 27500, "sub_total": 27500, "total_amount": 27500, "type": "debit", "tax_rate": {"id": "123456", "rate": 10}, "tracking_categories": null, "ledger_account": {"id": "123456", "nominal_code": "N091", "code": "453"}, "customer": {"id": "12345", "display_name": "Windsurf Shop", "email": "boring@boring.com"}, "supplier": {"id": "12345", "display_name": "Windsurf Shop", "address": {"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}}, "department_id": "12345", "location_id": "12345", "line_number": 1}], "status": "draft", "memo": "Thank you for your business and have a great day!", "posted_at": "2020-09-30T07:43:32.000Z", "journal_symbol": "IND", "tax_code": "1234", "number": "OIT00546", "tracking_categories": [{"id": "123456", "name": "New York"}], "accounting_period": "01-24", "tax_inclusive": true, "source_type": "manual", "source_id": "12345", "row_version": "1-12345", "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
       responses:
         "201":
           application/json: {"status_code": 200, "status": "OK", "service": "quickbooks", "resource": "journal-entries", "operation": "add", "data": {"id": "12345"}}
@@ -22864,7 +22880,7 @@ examples:
           x-apideck-company-id: "12345"
       responses:
         "200":
-          application/json: {"status_code": 200, "status": "OK", "service": "quickbooks", "resource": "journal-entries", "operation": "one", "data": {"id": "12345", "downstream_id": "12345", "display_id": "12345", "title": "Purchase Invoice-Inventory (USD): 2019/02/01 Batch Summary Entry", "currency_rate": 0.69, "currency": "USD", "company_id": "12345", "line_items": [{"id": "12345", "description": "Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.", "tax_amount": 27500, "sub_total": 27500, "total_amount": 27500, "type": "debit", "tax_rate": {"id": "123456", "code": "N-T", "name": "GST on Purchases", "rate": 10}, "tracking_categories": [{"id": "123456", "name": "New York"}], "ledger_account": {"id": "123456", "name": "Bank account", "nominal_code": "N091", "code": "453"}, "customer": {"id": "12345", "display_id": "CUST00101", "display_name": "Windsurf Shop", "company_name": "The boring company", "email": "boring@boring.com"}, "supplier": {"id": "12345", "display_id": "SUPP00101", "display_name": "Windsurf Shop", "company_name": "The boring company", "address": {"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}}, "department_id": "12345", "location_id": "12345", "line_number": 1}], "status": "draft", "memo": "Thank you for your business and have a great day!", "posted_at": "2020-09-30T07:43:32.000Z", "journal_symbol": "IND", "tax_type": "sales", "tax_code": "1234", "number": "OIT00546", "tracking_categories": [{"id": "123456", "name": "New York"}], "accounting_period": "01-24", "tax_inclusive": true, "source_type": "manual", "source_id": "12345", "updated_by": "12345", "created_by": "12345", "updated_at": "2020-09-30T07:43:32.000Z", "created_at": "2020-09-30T07:43:32.000Z", "row_version": "1-12345", "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}}
+          application/json: {"status_code": 200, "status": "OK", "service": "quickbooks", "resource": "journal-entries", "operation": "one", "data": {"id": "12345", "downstream_id": "12345", "display_id": "12345", "title": "Purchase Invoice-Inventory (USD): 2019/02/01 Batch Summary Entry", "currency_rate": 0.69, "currency": "USD", "company_id": "12345", "line_items": [{"id": "12345", "description": "Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.", "tax_amount": 27500, "sub_total": 27500, "total_amount": 27500, "type": "debit", "tax_rate": {"id": "123456", "code": "N-T", "name": "GST on Purchases", "rate": 10}, "tracking_categories": [{"id": "123456", "name": "New York"}], "ledger_account": {"id": "123456", "name": "Bank account", "nominal_code": "N091", "code": "453"}, "customer": {"id": "12345", "display_id": "CUST00101", "display_name": "Windsurf Shop", "company_name": "The boring company", "email": "boring@boring.com"}, "supplier": {"id": "12345", "display_id": "SUPP00101", "display_name": "Windsurf Shop", "company_name": "The boring company", "address": {"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}}, "department_id": "12345", "location_id": "12345", "line_number": 1}], "status": "draft", "memo": "Thank you for your business and have a great day!", "posted_at": "2020-09-30T07:43:32.000Z", "journal_symbol": "IND", "tax_code": "1234", "number": "OIT00546", "tracking_categories": [{"id": "123456", "name": "New York"}], "accounting_period": "01-24", "tax_inclusive": true, "source_type": "manual", "source_id": "12345", "updated_by": "12345", "created_by": "12345", "updated_at": "2020-09-30T07:43:32.000Z", "created_at": "2020-09-30T07:43:32.000Z", "row_version": "1-12345", "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}}
         "400":
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror", "downstream_errors": [{"message": "Account code '100' has been archived or deleted", "detail": "Each line item must reference a valid account", "code": "VALIDATION_ERROR"}]}
         "401":
@@ -22917,7 +22933,7 @@ examples:
           x-apideck-service-id: "salesforce"
           x-apideck-company-id: "12345"
       requestBody:
-        application/json: {"display_id": "12345", "title": "Purchase Invoice-Inventory (USD): 2019/02/01 Batch Summary Entry", "currency_rate": 0.69, "currency": "USD", "company_id": "12345", "line_items": [{"description": "Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.", "tax_amount": 27500, "sub_total": 27500, "total_amount": 27500, "type": "debit", "tax_rate": {"id": "123456", "rate": 10}, "tracking_categories": [{"id": "123456", "name": "New York"}], "ledger_account": {"id": "123456", "nominal_code": "N091", "code": "453"}, "customer": {"id": "12345", "display_name": "Windsurf Shop", "email": "boring@boring.com"}, "supplier": {"id": "12345", "display_name": "Windsurf Shop", "address": {"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}}, "department_id": "12345", "location_id": "12345", "line_number": 1}], "status": "draft", "memo": "Thank you for your business and have a great day!", "posted_at": "2020-09-30T07:43:32.000Z", "journal_symbol": "IND", "tax_type": "sales", "tax_code": "1234", "number": "OIT00546", "tracking_categories": [{"id": "123456", "name": "New York"}], "accounting_period": "01-24", "tax_inclusive": true, "source_type": "manual", "source_id": "12345", "row_version": "1-12345", "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
+        application/json: {"display_id": "12345", "title": "Purchase Invoice-Inventory (USD): 2019/02/01 Batch Summary Entry", "currency_rate": 0.69, "currency": "USD", "company_id": "12345", "line_items": [{"description": "Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.", "tax_amount": 27500, "sub_total": 27500, "total_amount": 27500, "type": "debit", "tax_rate": {"id": "123456", "rate": 10}, "tracking_categories": [{"id": "123456", "name": "New York"}], "ledger_account": {"id": "123456", "nominal_code": "N091", "code": "453"}, "customer": {"id": "12345", "display_name": "Windsurf Shop", "email": "boring@boring.com"}, "supplier": {"id": "12345", "display_name": "Windsurf Shop", "address": {"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}}, "department_id": "12345", "location_id": "12345", "line_number": 1}], "status": "draft", "memo": "Thank you for your business and have a great day!", "posted_at": "2020-09-30T07:43:32.000Z", "journal_symbol": "IND", "tax_code": "1234", "number": "OIT00546", "tracking_categories": [{"id": "123456", "name": "New York"}], "accounting_period": "01-24", "tax_inclusive": true, "source_type": "manual", "source_id": "12345", "row_version": "1-12345", "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
       responses:
         "200":
           application/json: {"status_code": 200, "status": "OK", "service": "quickbooks", "resource": "journal-entries", "operation": "update", "data": {"id": "12345"}}
@@ -35849,7 +35865,7 @@ examples:
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
           x-apideck-service-id: "salesforce"
       requestBody:
-        application/json: {"display_id": "123456", "first_name": "John", "last_name": "Doe", "display_name": "John Doe", "emails": [{"id": "123", "email": "elon@musk.com", "type": "primary"}], "employee_number": "EMP-001", "job_title": "Senior Accountant", "status": "active", "is_contractor": false, "department": {"display_id": "123456", "name": "Acme Inc."}, "location": {"id": "123456", "display_id": "123456", "name": "New York Office"}, "manager": {"id": "12345", "name": "Jane Smith"}, "hire_date": "2020-01-15", "termination_date": "2025-12-31", "gender": "male", "birth_date": "1990-05-20", "subsidiary": {"display_id": "123456", "name": "Acme Inc."}, "tracking_categories": [{"id": "123456", "code": "100", "name": "New York", "parent_id": "123456", "parent_name": "New York"}], "currency": "USD", "notes": "Some notes about this employee", "addresses": [{"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "line5": "Attention: Finance Dept", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}], "phone_numbers": [{"id": "12345", "country_code": "1", "area_code": "323", "number": "111-111-1111", "extension": "105", "type": "primary"}], "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "row_version": "1-12345", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
+        application/json: {"display_id": "123456", "first_name": "John", "last_name": "Doe", "display_name": "John Doe", "emails": [{"id": "123", "email": "elon@musk.com", "type": "primary"}], "employee_number": "EMP-001", "job_title": "Senior Accountant", "status": "active", "is_contractor": false, "department": {"display_id": "123456", "name": "Acme Inc."}, "location": {"id": "123456", "display_id": "123456", "name": "New York Office"}, "manager": {"id": "12345", "name": "Jane Smith"}, "hire_date": "2020-01-15", "termination_date": "2025-12-31", "gender": "male", "birth_date": "1990-05-20", "subsidiary": {"display_id": "123456", "name": "Acme Inc."}, "tracking_categories": [{"id": "123456", "code": "100", "name": "New York", "parent_id": "123456", "parent_name": "New York"}], "currency": "USD", "notes": "Some notes about this employee", "addresses": [{"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "line5": "Attention: Finance Dept", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}], "phone_numbers": [{"id": "12345", "country_code": "1", "area_code": "323", "number": "111-111-1111", "extension": "105", "type": "primary"}], "bank_account": {"bank_name": "Chase Bank", "account_number": "123465", "account_name": "Main Operating Account", "account_type": "credit_card", "iban": "GB33BUKB20201555555555", "bic": "CHASUS33", "routing_number": "021000021", "bsb_number": "062-001", "branch_identifier": "001", "bank_code": "BNH", "currency": "USD", "country": "US"}, "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "row_version": "1-12345", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
       responses:
         "201":
           application/json: {"status_code": 200, "status": "OK", "service": "quickbooks", "resource": "Employees", "operation": "add", "data": {"id": "12345"}}
@@ -35879,7 +35895,7 @@ examples:
           x-apideck-service-id: "salesforce"
       responses:
         "200":
-          application/json: {"status_code": 200, "status": "OK", "service": "quickbooks", "resource": "Employees", "operation": "one", "data": {"id": "12345", "downstream_id": "12345", "display_id": "123456", "first_name": "John", "last_name": "Doe", "display_name": "John Doe", "emails": [{"id": "123", "email": "elon@musk.com", "type": "primary"}], "employee_number": "EMP-001", "job_title": "Senior Accountant", "status": "active", "is_contractor": false, "department": {"id": "12345", "display_id": "123456", "name": "Acme Inc.", "downstream_id": "12345"}, "location": {"id": "123456", "display_id": "123456", "name": "New York Office", "downstream_id": "12345"}, "manager": {"id": "12345", "name": "Jane Smith"}, "hire_date": "2020-01-15", "termination_date": "2025-12-31", "gender": "male", "birth_date": "1990-05-20", "subsidiary": {"id": "12345", "display_id": "123456", "name": "Acme Inc."}, "tracking_categories": [{"id": "123456", "code": "100", "name": "New York", "parent_id": "123456", "parent_name": "New York"}], "currency": "USD", "notes": "Some notes about this employee", "addresses": [{"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "line5": "Attention: Finance Dept", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}], "phone_numbers": [{"id": "12345", "country_code": "1", "area_code": "323", "number": "111-111-1111", "extension": "105", "type": "primary"}], "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "row_version": "1-12345", "updated_at": "2020-09-30T07:43:32.000Z", "created_at": "2020-09-30T07:43:32.000Z", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}}
+          application/json: {"status_code": 200, "status": "OK", "service": "quickbooks", "resource": "Employees", "operation": "one", "data": {"id": "12345", "downstream_id": "12345", "display_id": "123456", "first_name": "John", "last_name": "Doe", "display_name": "John Doe", "emails": [{"id": "123", "email": "elon@musk.com", "type": "primary"}], "employee_number": "EMP-001", "job_title": "Senior Accountant", "status": "active", "is_contractor": false, "department": {"id": "12345", "display_id": "123456", "name": "Acme Inc.", "downstream_id": "12345"}, "location": {"id": "123456", "display_id": "123456", "name": "New York Office", "downstream_id": "12345"}, "manager": {"id": "12345", "name": "Jane Smith"}, "hire_date": "2020-01-15", "termination_date": "2025-12-31", "gender": "male", "birth_date": "1990-05-20", "subsidiary": {"id": "12345", "display_id": "123456", "name": "Acme Inc."}, "tracking_categories": [{"id": "123456", "code": "100", "name": "New York", "parent_id": "123456", "parent_name": "New York"}], "currency": "USD", "notes": "Some notes about this employee", "addresses": [{"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "line5": "Attention: Finance Dept", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}], "phone_numbers": [{"id": "12345", "country_code": "1", "area_code": "323", "number": "111-111-1111", "extension": "105", "type": "primary"}], "bank_account": {"bank_name": "Chase Bank", "account_number": "123465", "account_name": "Main Operating Account", "account_type": "credit_card", "iban": "GB33BUKB20201555555555", "bic": "CHASUS33", "routing_number": "021000021", "bsb_number": "062-001", "branch_identifier": "001", "bank_code": "BNH", "currency": "USD", "country": "US"}, "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "row_version": "1-12345", "updated_at": "2020-09-30T07:43:32.000Z", "created_at": "2020-09-30T07:43:32.000Z", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}}
         "400":
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror", "downstream_errors": [{"message": "Account code '100' has been archived or deleted", "detail": "Each line item must reference a valid account", "code": "VALIDATION_ERROR"}]}
         "401":
@@ -35904,7 +35920,7 @@ examples:
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
           x-apideck-service-id: "salesforce"
       requestBody:
-        application/json: {"display_id": "123456", "first_name": "John", "last_name": "Doe", "display_name": "John Doe", "emails": [{"id": "123", "email": "elon@musk.com", "type": "primary"}], "employee_number": "EMP-001", "job_title": "Senior Accountant", "status": "active", "is_contractor": false, "department": {"display_id": "123456", "name": "Acme Inc."}, "location": {"id": "123456", "display_id": "123456", "name": "New York Office"}, "manager": {"id": "12345", "name": "Jane Smith"}, "hire_date": "2020-01-15", "termination_date": "2025-12-31", "gender": "male", "birth_date": "1990-05-20", "subsidiary": {"display_id": "123456", "name": "Acme Inc."}, "tracking_categories": [{"id": "123456", "code": "100", "name": "New York", "parent_id": "123456", "parent_name": "New York"}], "currency": "USD", "notes": "Some notes about this employee", "addresses": [{"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "line5": "Attention: Finance Dept", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}], "phone_numbers": [{"id": "12345", "country_code": "1", "area_code": "323", "number": "111-111-1111", "extension": "105", "type": "primary"}], "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "row_version": "1-12345", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
+        application/json: {"display_id": "123456", "first_name": "John", "last_name": "Doe", "display_name": "John Doe", "emails": [{"id": "123", "email": "elon@musk.com", "type": "primary"}], "employee_number": "EMP-001", "job_title": "Senior Accountant", "status": "active", "is_contractor": false, "department": {"display_id": "123456", "name": "Acme Inc."}, "location": {"id": "123456", "display_id": "123456", "name": "New York Office"}, "manager": {"id": "12345", "name": "Jane Smith"}, "hire_date": "2020-01-15", "termination_date": "2025-12-31", "gender": "male", "birth_date": "1990-05-20", "subsidiary": {"display_id": "123456", "name": "Acme Inc."}, "tracking_categories": [{"id": "123456", "code": "100", "name": "New York", "parent_id": "123456", "parent_name": "New York"}], "currency": "USD", "notes": "Some notes about this employee", "addresses": [{"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "line5": "Attention: Finance Dept", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}], "phone_numbers": [{"id": "12345", "country_code": "1", "area_code": "323", "number": "111-111-1111", "extension": "105", "type": "primary"}], "bank_account": {"bank_name": "Chase Bank", "account_number": "123465", "account_name": "Main Operating Account", "account_type": "credit_card", "iban": "GB33BUKB20201555555555", "bic": "CHASUS33", "routing_number": "021000021", "bsb_number": "062-001", "branch_identifier": "001", "bank_code": "BNH", "currency": "USD", "country": "US"}, "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "row_version": "1-12345", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
       responses:
         "200":
           application/json: {"status_code": 200, "status": "OK", "service": "quickbooks", "resource": "Employees", "operation": "update", "data": {"id": "12345"}}
@@ -36459,7 +36475,7 @@ examples:
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Java SDK Changes:\n* `apideck.accounting.expenses.list()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `response.data[].status.enum(voided)` **Added**\n* `apideck.accounting.refunds.list()`: **Added**\n* `apideck.accounting.refunds.create()`: **Added**\n* `apideck.accounting.refunds.get()`: **Added**\n* `apideck.accounting.refunds.update()`: **Added**\n* `apideck.accounting.refunds.delete()`: **Added**\n* `apideck.accounting.companies.list()`: **Added**\n* `apideck.ats.jobs.create()`: **Added**\n* `apideck.ats.jobs.update()`: **Added**\n* `apideck.ats.jobs.delete()`: **Added**\n* `apideck.accounting.taxRates.list()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.taxRates.create()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.taxRates.get()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.taxRates.update()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.taxRates.delete()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.bills.list()`: \n  *  `request.companyId` **Added**\n  *  `response.data[].termsId` **Added**\n* `apideck.accounting.bills.create()`: \n  *  `request.bill.termsId` **Added**\n* `apideck.accounting.bills.get()`: \n  *  `request.companyId` **Added**\n  *  `response.data.termsId` **Added**\n* `apideck.accounting.bills.update()`: \n  *  `request.bill.termsId` **Added**\n* `apideck.accounting.invoices.list()`: \n  *  `request.companyId` **Added**\n  *  `response.data[].termsId` **Added**\n* `apideck.accounting.invoices.create()`:  `request` **Changed**\n* `apideck.accounting.invoices.get()`: \n  *  `request.companyId` **Added**\n  *  `response.data.termsId` **Added**\n* `apideck.accounting.invoices.update()`: \n  *  `request.invoice.termsId` **Added**\n* `apideck.accounting.ledgerAccounts.list()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.ledgerAccounts.create()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.ledgerAccounts.get()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.ledgerAccounts.update()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.ledgerAccounts.delete()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.invoiceItems.list()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.invoiceItems.create()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.invoiceItems.get()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.creditNotes.list()`: \n  *  `request.companyId` **Added**\n  *  `response.data[].termsId` **Added**\n* `apideck.accounting.creditNotes.create()`:  `request` **Changed**\n* `apideck.accounting.creditNotes.get()`: \n  *  `request.companyId` **Added**\n  *  `response.data.termsId` **Added**\n* `apideck.accounting.creditNotes.update()`: \n  *  `request.creditNote.termsId` **Added**\n* `apideck.accounting.customers.list()`: \n  *  `request.companyId` **Added**\n  *  `response.data[].termsId` **Added**\n* `apideck.accounting.customers.create()`:  `request` **Changed**\n* `apideck.accounting.customers.get()`: \n  *  `request.companyId` **Added**\n  *  `response.data.termsId` **Added**\n* `apideck.accounting.customers.update()`: \n  *  `request.customer.termsId` **Added**\n* `apideck.accounting.suppliers.list()`: \n  *  `request.companyId` **Added**\n  *  `response.data[].termsId` **Added**\n* `apideck.accounting.suppliers.create()`:  `request` **Changed**\n* `apideck.accounting.suppliers.get()`: \n  *  `request.companyId` **Added**\n  *  `response.data.termsId` **Added**\n* `apideck.accounting.suppliers.update()`:  `request` **Changed**\n* `apideck.accounting.suppliers.delete()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.payments.list()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.payments.create()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.payments.get()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.payments.update()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.payments.delete()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.companyInfo.get()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.balanceSheet.get()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.profitAndLoss.get()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.journalEntries.list()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.journalEntries.create()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.journalEntries.get()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.journalEntries.update()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.journalEntries.delete()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.purchaseOrders.list()`: \n  *  `request.companyId` **Added**\n  *  `response.data[].termsId` **Added**\n* `apideck.accounting.purchaseOrders.create()`:  `request` **Changed**\n* `apideck.accounting.purchaseOrders.get()`: \n  *  `request.companyId` **Added**\n  *  `response.data.termsId` **Added**\n* `apideck.accounting.purchaseOrders.update()`:  `request` **Changed**\n* `apideck.accounting.purchaseOrders.delete()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.subsidiaries.list()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.subsidiaries.create()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.subsidiaries.get()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.subsidiaries.update()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.subsidiaries.delete()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.locations.list()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.locations.create()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.locations.get()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.locations.update()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.locations.delete()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.departments.list()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.departments.create()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.departments.get()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.attachments.list()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.attachments.get()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.attachments.download()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.bankAccounts.list()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.bankAccounts.get()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.trackingCategories.list()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.trackingCategories.create()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.trackingCategories.get()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.trackingCategories.update()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.trackingCategories.delete()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.billPayments.list()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.billPayments.create()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.billPayments.get()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.expenses.create()`:  `request` **Changed**\n* `apideck.accounting.expenses.get()`: \n  *  `request.companyId` **Added**\n  *  `response.data.status.enum(voided)` **Added**\n* `apideck.accounting.expenses.update()`: \n  *  `request.expense.status.enum(voided)` **Added**\n* `apideck.accounting.agedCreditors.get()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.agedDebtors.get()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.bankFeedAccounts.list()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.bankFeedAccounts.get()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.bankFeedStatements.list()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.bankFeedStatements.create()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.bankFeedStatements.get()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.categories.list()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.categories.get()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.quotes.list()`: \n  *  `request.companyId` **Added**\n  *  `response.data[].termsId` **Added**\n* `apideck.accounting.quotes.create()`:  `request` **Changed**\n* `apideck.accounting.quotes.get()`: \n  *  `request.companyId` **Added**\n  *  `response.data.termsId` **Added**\n* `apideck.accounting.quotes.update()`:  `request` **Changed**\n* `apideck.accounting.quotes.delete()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.projects.list()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.projects.create()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.projects.get()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.projects.update()`: \n  *  `request.companyId` **Added**\n* `apideck.accounting.projects.delete()`: \n  *  `request.companyId` **Added**\n* `apideck.vault.consumers.list()`:  `request.filter` **Added**\n"
+releaseNotes: "## Java SDK Changes:\n* `apideck.accounting.journalEntries.list()`:  `response.data[].lineItems[]` **Changed** (Breaking ⚠️)\n* `apideck.accounting.journalEntries.get()`:  `response.data.lineItems[]` **Changed** (Breaking ⚠️)\n* `apideck.accounting.journalEntries.create()`: \n  *  `request.journalEntry.lineItems[]` **Changed**\n* `apideck.accounting.journalEntries.update()`: \n  *  `request.journalEntry.lineItems[]` **Changed**\n* `apideck.accounting.expenses.list()`:  `response.data[].account.type.enum(employee)` **Added**\n* `apideck.accounting.expenses.create()`: \n  *  `request.expense.account.type.enum(employee)` **Added**\n* `apideck.accounting.expenses.get()`:  `response.data.account.type.enum(employee)` **Added**\n* `apideck.accounting.expenses.update()`: \n  *  `request.expense.account.type.enum(employee)` **Added**\n* `apideck.accounting.employees.list()`:  `response.data[].bankAccount` **Added**\n* `apideck.accounting.employees.create()`: \n  *  `request.accountingEmployee.bankAccount` **Added**\n* `apideck.accounting.employees.get()`:  `response.data.bankAccount` **Added**\n* `apideck.accounting.employees.update()`: \n  *  `request.accountingEmployee.bankAccount` **Added**\n"
 generatedFiles:
   - .gitattributes
   - USAGE.md

@@ -59,13 +59,21 @@ public class JournalEntryLineItem {
     /**
      * Debit entries are considered positive, and credit entries are considered negative.
      */
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("type")
-    private JournalEntryLineItemType type;
+    private Optional<? extends JournalEntryLineItemType> type;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tax_rate")
     private Optional<? extends LinkedTaxRate> taxRate;
+
+    /**
+     * The tax applicability of this line item. Overrides the root-level tax_type for this line.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("tax_type")
+    private JsonNullable<? extends TaxType> taxType;
 
     /**
      * 
@@ -103,6 +111,13 @@ public class JournalEntryLineItem {
     private JsonNullable<? extends LinkedSupplier> supplier;
 
     /**
+     * The employee this entity is linked to.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("employee")
+    private JsonNullable<? extends LinkedEmployee> employee;
+
+    /**
      * The ID of the department
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -137,13 +152,15 @@ public class JournalEntryLineItem {
             @JsonProperty("tax_amount") JsonNullable<Double> taxAmount,
             @JsonProperty("sub_total") JsonNullable<Double> subTotal,
             @JsonProperty("total_amount") JsonNullable<Double> totalAmount,
-            @JsonProperty("type") JournalEntryLineItemType type,
+            @JsonProperty("type") Optional<? extends JournalEntryLineItemType> type,
             @JsonProperty("tax_rate") Optional<? extends LinkedTaxRate> taxRate,
+            @JsonProperty("tax_type") JsonNullable<? extends TaxType> taxType,
             @JsonProperty("tracking_category") JsonNullable<? extends DeprecatedLinkedTrackingCategory> trackingCategory,
             @JsonProperty("tracking_categories") JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories,
             @JsonProperty("ledger_account") Optional<? extends LinkedLedgerAccount> ledgerAccount,
             @JsonProperty("customer") JsonNullable<? extends LinkedCustomer> customer,
             @JsonProperty("supplier") JsonNullable<? extends LinkedSupplier> supplier,
+            @JsonProperty("employee") JsonNullable<? extends LinkedEmployee> employee,
             @JsonProperty("department_id") JsonNullable<String> departmentId,
             @JsonProperty("location_id") JsonNullable<String> locationId,
             @JsonProperty("line_number") JsonNullable<Long> lineNumber,
@@ -155,11 +172,13 @@ public class JournalEntryLineItem {
         Utils.checkNotNull(totalAmount, "totalAmount");
         Utils.checkNotNull(type, "type");
         Utils.checkNotNull(taxRate, "taxRate");
+        Utils.checkNotNull(taxType, "taxType");
         Utils.checkNotNull(trackingCategory, "trackingCategory");
         Utils.checkNotNull(trackingCategories, "trackingCategories");
         Utils.checkNotNull(ledgerAccount, "ledgerAccount");
         Utils.checkNotNull(customer, "customer");
         Utils.checkNotNull(supplier, "supplier");
+        Utils.checkNotNull(employee, "employee");
         Utils.checkNotNull(departmentId, "departmentId");
         Utils.checkNotNull(locationId, "locationId");
         Utils.checkNotNull(lineNumber, "lineNumber");
@@ -171,25 +190,26 @@ public class JournalEntryLineItem {
         this.totalAmount = totalAmount;
         this.type = type;
         this.taxRate = taxRate;
+        this.taxType = taxType;
         this.trackingCategory = trackingCategory;
         this.trackingCategories = trackingCategories;
         this.ledgerAccount = ledgerAccount;
         this.customer = customer;
         this.supplier = supplier;
+        this.employee = employee;
         this.departmentId = departmentId;
         this.locationId = locationId;
         this.lineNumber = lineNumber;
         this.worktags = worktags;
     }
     
-    public JournalEntryLineItem(
-            JournalEntryLineItemType type) {
+    public JournalEntryLineItem() {
         this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), type,
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty());
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -235,15 +255,25 @@ public class JournalEntryLineItem {
     /**
      * Debit entries are considered positive, and credit entries are considered negative.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JournalEntryLineItemType type() {
-        return type;
+    public Optional<JournalEntryLineItemType> type() {
+        return (Optional<JournalEntryLineItemType>) type;
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<LinkedTaxRate> taxRate() {
         return (Optional<LinkedTaxRate>) taxRate;
+    }
+
+    /**
+     * The tax applicability of this line item. Overrides the root-level tax_type for this line.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<TaxType> taxType() {
+        return (JsonNullable<TaxType>) taxType;
     }
 
     /**
@@ -288,6 +318,15 @@ public class JournalEntryLineItem {
     @JsonIgnore
     public JsonNullable<LinkedSupplier> supplier() {
         return (JsonNullable<LinkedSupplier>) supplier;
+    }
+
+    /**
+     * The employee this entity is linked to.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<LinkedEmployee> employee() {
+        return (JsonNullable<LinkedEmployee>) employee;
     }
 
     /**
@@ -424,6 +463,16 @@ public class JournalEntryLineItem {
      */
     public JournalEntryLineItem withType(JournalEntryLineItemType type) {
         Utils.checkNotNull(type, "type");
+        this.type = Optional.ofNullable(type);
+        return this;
+    }
+
+
+    /**
+     * Debit entries are considered positive, and credit entries are considered negative.
+     */
+    public JournalEntryLineItem withType(Optional<? extends JournalEntryLineItemType> type) {
+        Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
     }
@@ -438,6 +487,24 @@ public class JournalEntryLineItem {
     public JournalEntryLineItem withTaxRate(Optional<? extends LinkedTaxRate> taxRate) {
         Utils.checkNotNull(taxRate, "taxRate");
         this.taxRate = taxRate;
+        return this;
+    }
+
+    /**
+     * The tax applicability of this line item. Overrides the root-level tax_type for this line.
+     */
+    public JournalEntryLineItem withTaxType(TaxType taxType) {
+        Utils.checkNotNull(taxType, "taxType");
+        this.taxType = JsonNullable.of(taxType);
+        return this;
+    }
+
+    /**
+     * The tax applicability of this line item. Overrides the root-level tax_type for this line.
+     */
+    public JournalEntryLineItem withTaxType(JsonNullable<? extends TaxType> taxType) {
+        Utils.checkNotNull(taxType, "taxType");
+        this.taxType = taxType;
         return this;
     }
 
@@ -531,6 +598,24 @@ public class JournalEntryLineItem {
     }
 
     /**
+     * The employee this entity is linked to.
+     */
+    public JournalEntryLineItem withEmployee(LinkedEmployee employee) {
+        Utils.checkNotNull(employee, "employee");
+        this.employee = JsonNullable.of(employee);
+        return this;
+    }
+
+    /**
+     * The employee this entity is linked to.
+     */
+    public JournalEntryLineItem withEmployee(JsonNullable<? extends LinkedEmployee> employee) {
+        Utils.checkNotNull(employee, "employee");
+        this.employee = employee;
+        return this;
+    }
+
+    /**
      * The ID of the department
      */
     public JournalEntryLineItem withDepartmentId(String departmentId) {
@@ -620,11 +705,13 @@ public class JournalEntryLineItem {
             Utils.enhancedDeepEquals(this.totalAmount, other.totalAmount) &&
             Utils.enhancedDeepEquals(this.type, other.type) &&
             Utils.enhancedDeepEquals(this.taxRate, other.taxRate) &&
+            Utils.enhancedDeepEquals(this.taxType, other.taxType) &&
             Utils.enhancedDeepEquals(this.trackingCategory, other.trackingCategory) &&
             Utils.enhancedDeepEquals(this.trackingCategories, other.trackingCategories) &&
             Utils.enhancedDeepEquals(this.ledgerAccount, other.ledgerAccount) &&
             Utils.enhancedDeepEquals(this.customer, other.customer) &&
             Utils.enhancedDeepEquals(this.supplier, other.supplier) &&
+            Utils.enhancedDeepEquals(this.employee, other.employee) &&
             Utils.enhancedDeepEquals(this.departmentId, other.departmentId) &&
             Utils.enhancedDeepEquals(this.locationId, other.locationId) &&
             Utils.enhancedDeepEquals(this.lineNumber, other.lineNumber) &&
@@ -636,10 +723,10 @@ public class JournalEntryLineItem {
         return Utils.enhancedHash(
             id, description, taxAmount,
             subTotal, totalAmount, type,
-            taxRate, trackingCategory, trackingCategories,
-            ledgerAccount, customer, supplier,
-            departmentId, locationId, lineNumber,
-            worktags);
+            taxRate, taxType, trackingCategory,
+            trackingCategories, ledgerAccount, customer,
+            supplier, employee, departmentId,
+            locationId, lineNumber, worktags);
     }
     
     @Override
@@ -652,11 +739,13 @@ public class JournalEntryLineItem {
                 "totalAmount", totalAmount,
                 "type", type,
                 "taxRate", taxRate,
+                "taxType", taxType,
                 "trackingCategory", trackingCategory,
                 "trackingCategories", trackingCategories,
                 "ledgerAccount", ledgerAccount,
                 "customer", customer,
                 "supplier", supplier,
+                "employee", employee,
                 "departmentId", departmentId,
                 "locationId", locationId,
                 "lineNumber", lineNumber,
@@ -676,9 +765,11 @@ public class JournalEntryLineItem {
 
         private JsonNullable<Double> totalAmount = JsonNullable.undefined();
 
-        private JournalEntryLineItemType type;
+        private Optional<? extends JournalEntryLineItemType> type = Optional.empty();
 
         private Optional<? extends LinkedTaxRate> taxRate = Optional.empty();
+
+        private JsonNullable<? extends TaxType> taxType = JsonNullable.undefined();
 
         @Deprecated
         private JsonNullable<? extends DeprecatedLinkedTrackingCategory> trackingCategory = JsonNullable.undefined();
@@ -690,6 +781,8 @@ public class JournalEntryLineItem {
         private JsonNullable<? extends LinkedCustomer> customer = JsonNullable.undefined();
 
         private JsonNullable<? extends LinkedSupplier> supplier = JsonNullable.undefined();
+
+        private JsonNullable<? extends LinkedEmployee> employee = JsonNullable.undefined();
 
         private JsonNullable<String> departmentId = JsonNullable.undefined();
 
@@ -804,6 +897,15 @@ public class JournalEntryLineItem {
          */
         public Builder type(JournalEntryLineItemType type) {
             Utils.checkNotNull(type, "type");
+            this.type = Optional.ofNullable(type);
+            return this;
+        }
+
+        /**
+         * Debit entries are considered positive, and credit entries are considered negative.
+         */
+        public Builder type(Optional<? extends JournalEntryLineItemType> type) {
+            Utils.checkNotNull(type, "type");
             this.type = type;
             return this;
         }
@@ -818,6 +920,25 @@ public class JournalEntryLineItem {
         public Builder taxRate(Optional<? extends LinkedTaxRate> taxRate) {
             Utils.checkNotNull(taxRate, "taxRate");
             this.taxRate = taxRate;
+            return this;
+        }
+
+
+        /**
+         * The tax applicability of this line item. Overrides the root-level tax_type for this line.
+         */
+        public Builder taxType(TaxType taxType) {
+            Utils.checkNotNull(taxType, "taxType");
+            this.taxType = JsonNullable.of(taxType);
+            return this;
+        }
+
+        /**
+         * The tax applicability of this line item. Overrides the root-level tax_type for this line.
+         */
+        public Builder taxType(JsonNullable<? extends TaxType> taxType) {
+            Utils.checkNotNull(taxType, "taxType");
+            this.taxType = taxType;
             return this;
         }
 
@@ -916,6 +1037,25 @@ public class JournalEntryLineItem {
 
 
         /**
+         * The employee this entity is linked to.
+         */
+        public Builder employee(LinkedEmployee employee) {
+            Utils.checkNotNull(employee, "employee");
+            this.employee = JsonNullable.of(employee);
+            return this;
+        }
+
+        /**
+         * The employee this entity is linked to.
+         */
+        public Builder employee(JsonNullable<? extends LinkedEmployee> employee) {
+            Utils.checkNotNull(employee, "employee");
+            this.employee = employee;
+            return this;
+        }
+
+
+        /**
          * The ID of the department
          */
         public Builder departmentId(String departmentId) {
@@ -995,10 +1135,10 @@ public class JournalEntryLineItem {
             return new JournalEntryLineItem(
                 id, description, taxAmount,
                 subTotal, totalAmount, type,
-                taxRate, trackingCategory, trackingCategories,
-                ledgerAccount, customer, supplier,
-                departmentId, locationId, lineNumber,
-                worktags);
+                taxRate, taxType, trackingCategory,
+                trackingCategories, ledgerAccount, customer,
+                supplier, employee, departmentId,
+                locationId, lineNumber, worktags);
         }
 
     }

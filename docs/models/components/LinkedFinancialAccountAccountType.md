@@ -20,3 +20,4 @@ LinkedFinancialAccountAccountType custom = LinkedFinancialAccountAccountType.of(
 | ---------------- | ---------------- |
 | `LEDGER_ACCOUNT` | ledger_account   |
 | `BANK_ACCOUNT`   | bank_account     |
+| `EMPLOYEE`       | employee         |

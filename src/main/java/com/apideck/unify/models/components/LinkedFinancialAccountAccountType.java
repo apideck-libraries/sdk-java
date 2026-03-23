@@ -29,6 +29,7 @@ public class LinkedFinancialAccountAccountType {
 
     public static final LinkedFinancialAccountAccountType LEDGER_ACCOUNT = new LinkedFinancialAccountAccountType("ledger_account");
     public static final LinkedFinancialAccountAccountType BANK_ACCOUNT = new LinkedFinancialAccountAccountType("bank_account");
+    public static final LinkedFinancialAccountAccountType EMPLOYEE = new LinkedFinancialAccountAccountType("employee");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -104,6 +105,7 @@ public class LinkedFinancialAccountAccountType {
         Map<String, LinkedFinancialAccountAccountType> map = new LinkedHashMap<>();
         map.put("ledger_account", LEDGER_ACCOUNT);
         map.put("bank_account", BANK_ACCOUNT);
+        map.put("employee", EMPLOYEE);
         return map;
     }
 
@@ -111,6 +113,7 @@ public class LinkedFinancialAccountAccountType {
         Map<String, LinkedFinancialAccountAccountTypeEnum> map = new HashMap<>();
         map.put("ledger_account", LinkedFinancialAccountAccountTypeEnum.LEDGER_ACCOUNT);
         map.put("bank_account", LinkedFinancialAccountAccountTypeEnum.BANK_ACCOUNT);
+        map.put("employee", LinkedFinancialAccountAccountTypeEnum.EMPLOYEE);
         return map;
     }
     
@@ -118,7 +121,8 @@ public class LinkedFinancialAccountAccountType {
     public enum LinkedFinancialAccountAccountTypeEnum {
 
         LEDGER_ACCOUNT("ledger_account"),
-        BANK_ACCOUNT("bank_account"),;
+        BANK_ACCOUNT("bank_account"),
+        EMPLOYEE("employee"),;
 
         private final String value;
 

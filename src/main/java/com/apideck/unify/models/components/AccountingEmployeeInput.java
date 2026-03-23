@@ -171,6 +171,11 @@ public class AccountingEmployeeInput {
 
 
     @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("bank_account")
+    private Optional<? extends BankAccount> bankAccount;
+
+
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_fields")
     private Optional<? extends List<CustomField>> customFields;
 
@@ -214,6 +219,7 @@ public class AccountingEmployeeInput {
             @JsonProperty("notes") JsonNullable<String> notes,
             @JsonProperty("addresses") Optional<? extends List<Address>> addresses,
             @JsonProperty("phone_numbers") Optional<? extends List<PhoneNumber>> phoneNumbers,
+            @JsonProperty("bank_account") Optional<? extends BankAccount> bankAccount,
             @JsonProperty("custom_fields") Optional<? extends List<CustomField>> customFields,
             @JsonProperty("row_version") JsonNullable<String> rowVersion,
             @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
@@ -239,6 +245,7 @@ public class AccountingEmployeeInput {
         Utils.checkNotNull(notes, "notes");
         Utils.checkNotNull(addresses, "addresses");
         Utils.checkNotNull(phoneNumbers, "phoneNumbers");
+        Utils.checkNotNull(bankAccount, "bankAccount");
         Utils.checkNotNull(customFields, "customFields");
         Utils.checkNotNull(rowVersion, "rowVersion");
         Utils.checkNotNull(passThrough, "passThrough");
@@ -264,6 +271,7 @@ public class AccountingEmployeeInput {
         this.notes = notes;
         this.addresses = addresses;
         this.phoneNumbers = phoneNumbers;
+        this.bankAccount = bankAccount;
         this.customFields = customFields;
         this.rowVersion = rowVersion;
         this.passThrough = passThrough;
@@ -277,8 +285,8 @@ public class AccountingEmployeeInput {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -458,6 +466,12 @@ public class AccountingEmployeeInput {
     @JsonIgnore
     public Optional<List<PhoneNumber>> phoneNumbers() {
         return (Optional<List<PhoneNumber>>) phoneNumbers;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<BankAccount> bankAccount() {
+        return (Optional<BankAccount>) bankAccount;
     }
 
     @SuppressWarnings("unchecked")
@@ -874,6 +888,19 @@ public class AccountingEmployeeInput {
         return this;
     }
 
+    public AccountingEmployeeInput withBankAccount(BankAccount bankAccount) {
+        Utils.checkNotNull(bankAccount, "bankAccount");
+        this.bankAccount = Optional.ofNullable(bankAccount);
+        return this;
+    }
+
+
+    public AccountingEmployeeInput withBankAccount(Optional<? extends BankAccount> bankAccount) {
+        Utils.checkNotNull(bankAccount, "bankAccount");
+        this.bankAccount = bankAccount;
+        return this;
+    }
+
     public AccountingEmployeeInput withCustomFields(List<CustomField> customFields) {
         Utils.checkNotNull(customFields, "customFields");
         this.customFields = Optional.ofNullable(customFields);
@@ -960,6 +987,7 @@ public class AccountingEmployeeInput {
             Utils.enhancedDeepEquals(this.notes, other.notes) &&
             Utils.enhancedDeepEquals(this.addresses, other.addresses) &&
             Utils.enhancedDeepEquals(this.phoneNumbers, other.phoneNumbers) &&
+            Utils.enhancedDeepEquals(this.bankAccount, other.bankAccount) &&
             Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
             Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion) &&
             Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
@@ -975,8 +1003,8 @@ public class AccountingEmployeeInput {
             hireDate, terminationDate, gender,
             birthDate, subsidiary, trackingCategories,
             currency, notes, addresses,
-            phoneNumbers, customFields, rowVersion,
-            passThrough);
+            phoneNumbers, bankAccount, customFields,
+            rowVersion, passThrough);
     }
     
     @Override
@@ -1004,6 +1032,7 @@ public class AccountingEmployeeInput {
                 "notes", notes,
                 "addresses", addresses,
                 "phoneNumbers", phoneNumbers,
+                "bankAccount", bankAccount,
                 "customFields", customFields,
                 "rowVersion", rowVersion,
                 "passThrough", passThrough);
@@ -1055,6 +1084,8 @@ public class AccountingEmployeeInput {
         private Optional<? extends List<Address>> addresses = Optional.empty();
 
         private Optional<? extends List<PhoneNumber>> phoneNumbers = Optional.empty();
+
+        private Optional<? extends BankAccount> bankAccount = Optional.empty();
 
         private Optional<? extends List<CustomField>> customFields = Optional.empty();
 
@@ -1469,6 +1500,19 @@ public class AccountingEmployeeInput {
         }
 
 
+        public Builder bankAccount(BankAccount bankAccount) {
+            Utils.checkNotNull(bankAccount, "bankAccount");
+            this.bankAccount = Optional.ofNullable(bankAccount);
+            return this;
+        }
+
+        public Builder bankAccount(Optional<? extends BankAccount> bankAccount) {
+            Utils.checkNotNull(bankAccount, "bankAccount");
+            this.bankAccount = bankAccount;
+            return this;
+        }
+
+
         public Builder customFields(List<CustomField> customFields) {
             Utils.checkNotNull(customFields, "customFields");
             this.customFields = Optional.ofNullable(customFields);
@@ -1533,8 +1577,8 @@ public class AccountingEmployeeInput {
                 hireDate, terminationDate, gender,
                 birthDate, subsidiary, trackingCategories,
                 currency, notes, addresses,
-                phoneNumbers, customFields, rowVersion,
-                passThrough);
+                phoneNumbers, bankAccount, customFields,
+                rowVersion, passThrough);
         }
 
     }

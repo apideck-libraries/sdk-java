@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Boolean;
+import java.lang.Deprecated;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
@@ -94,10 +95,14 @@ public class JournalEntryInput {
     private JsonNullable<String> journalSymbol;
 
     /**
-     * The specific category of tax associated with a transaction like sales or purchase
+     * Deprecated — use line_items[].tax_type for per-line tax applicability. Kept as fallback: applies to
+     * all lines that do not set their own tax_type.
+     * 
+     * @deprecated field: Deprecated — use line_items[]..
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tax_type")
+    @Deprecated
     private JsonNullable<String> taxType;
 
     /**
@@ -333,8 +338,12 @@ public class JournalEntryInput {
     }
 
     /**
-     * The specific category of tax associated with a transaction like sales or purchase
+     * Deprecated — use line_items[].tax_type for per-line tax applicability. Kept as fallback: applies to
+     * all lines that do not set their own tax_type.
+     * 
+     * @deprecated field: Deprecated — use line_items[]..
      */
+    @Deprecated
     @JsonIgnore
     public JsonNullable<String> taxType() {
         return taxType;
@@ -614,8 +623,12 @@ public class JournalEntryInput {
     }
 
     /**
-     * The specific category of tax associated with a transaction like sales or purchase
+     * Deprecated — use line_items[].tax_type for per-line tax applicability. Kept as fallback: applies to
+     * all lines that do not set their own tax_type.
+     * 
+     * @deprecated field: Deprecated — use line_items[]..
      */
+    @Deprecated
     public JournalEntryInput withTaxType(String taxType) {
         Utils.checkNotNull(taxType, "taxType");
         this.taxType = JsonNullable.of(taxType);
@@ -623,8 +636,12 @@ public class JournalEntryInput {
     }
 
     /**
-     * The specific category of tax associated with a transaction like sales or purchase
+     * Deprecated — use line_items[].tax_type for per-line tax applicability. Kept as fallback: applies to
+     * all lines that do not set their own tax_type.
+     * 
+     * @deprecated field: Deprecated — use line_items[]..
      */
+    @Deprecated
     public JournalEntryInput withTaxType(JsonNullable<String> taxType) {
         Utils.checkNotNull(taxType, "taxType");
         this.taxType = taxType;
@@ -905,6 +922,7 @@ public class JournalEntryInput {
 
         private JsonNullable<String> journalSymbol = JsonNullable.undefined();
 
+        @Deprecated
         private JsonNullable<String> taxType = JsonNullable.undefined();
 
         private JsonNullable<String> taxCode = JsonNullable.undefined();
@@ -1127,8 +1145,12 @@ public class JournalEntryInput {
 
 
         /**
-         * The specific category of tax associated with a transaction like sales or purchase
+         * Deprecated — use line_items[].tax_type for per-line tax applicability. Kept as fallback: applies to
+         * all lines that do not set their own tax_type.
+         * 
+         * @deprecated field: Deprecated — use line_items[]..
          */
+        @Deprecated
         public Builder taxType(String taxType) {
             Utils.checkNotNull(taxType, "taxType");
             this.taxType = JsonNullable.of(taxType);
@@ -1136,8 +1158,12 @@ public class JournalEntryInput {
         }
 
         /**
-         * The specific category of tax associated with a transaction like sales or purchase
+         * Deprecated — use line_items[].tax_type for per-line tax applicability. Kept as fallback: applies to
+         * all lines that do not set their own tax_type.
+         * 
+         * @deprecated field: Deprecated — use line_items[]..
          */
+        @Deprecated
         public Builder taxType(JsonNullable<String> taxType) {
             Utils.checkNotNull(taxType, "taxType");
             this.taxType = taxType;

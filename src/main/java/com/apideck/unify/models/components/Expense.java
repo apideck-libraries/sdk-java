@@ -64,8 +64,8 @@ public class Expense {
     private Optional<String> accountId;
 
     /**
-     * A flexible account reference that can represent either a ledger account (GL account) or a bank
-     * account, depending on the connector's requirements.
+     * A flexible account reference that can represent a ledger account (GL account), a bank account, or an
+     * employee payable account, depending on the connector's requirements.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("account")
@@ -442,8 +442,8 @@ public class Expense {
     }
 
     /**
-     * A flexible account reference that can represent either a ledger account (GL account) or a bank
-     * account, depending on the connector's requirements.
+     * A flexible account reference that can represent a ledger account (GL account), a bank account, or an
+     * employee payable account, depending on the connector's requirements.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -797,8 +797,8 @@ public class Expense {
     }
 
     /**
-     * A flexible account reference that can represent either a ledger account (GL account) or a bank
-     * account, depending on the connector's requirements.
+     * A flexible account reference that can represent a ledger account (GL account), a bank account, or an
+     * employee payable account, depending on the connector's requirements.
      */
     public Expense withAccount(LinkedFinancialAccount account) {
         Utils.checkNotNull(account, "account");
@@ -807,8 +807,8 @@ public class Expense {
     }
 
     /**
-     * A flexible account reference that can represent either a ledger account (GL account) or a bank
-     * account, depending on the connector's requirements.
+     * A flexible account reference that can represent a ledger account (GL account), a bank account, or an
+     * employee payable account, depending on the connector's requirements.
      */
     public Expense withAccount(JsonNullable<? extends LinkedFinancialAccount> account) {
         Utils.checkNotNull(account, "account");
@@ -1611,8 +1611,8 @@ public class Expense {
 
 
         /**
-         * A flexible account reference that can represent either a ledger account (GL account) or a bank
-         * account, depending on the connector's requirements.
+         * A flexible account reference that can represent a ledger account (GL account), a bank account, or an
+         * employee payable account, depending on the connector's requirements.
          */
         public Builder account(LinkedFinancialAccount account) {
             Utils.checkNotNull(account, "account");
@@ -1621,8 +1621,8 @@ public class Expense {
         }
 
         /**
-         * A flexible account reference that can represent either a ledger account (GL account) or a bank
-         * account, depending on the connector's requirements.
+         * A flexible account reference that can represent a ledger account (GL account), a bank account, or an
+         * employee payable account, depending on the connector's requirements.
          */
         public Builder account(JsonNullable<? extends LinkedFinancialAccount> account) {
             Utils.checkNotNull(account, "account");

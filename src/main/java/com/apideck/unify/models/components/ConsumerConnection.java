@@ -108,6 +108,29 @@ public class ConsumerConnection {
     @JsonProperty("state")
     private Optional<? extends ConnectionState> state;
 
+    /**
+     * The operational health status of the connection
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("health")
+    private Optional<? extends ConnectionHealth> health;
+
+    /**
+     * ISO 8601 timestamp indicating when credentials will be cleared if token refresh continues to fail.
+     * Only present when connection health is pending_refresh and a retention window is active.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("credentials_expire_at")
+    private JsonNullable<String> credentialsExpireAt;
+
+    /**
+     * ISO 8601 timestamp of the most recent token refresh failure. Only present when connection has
+     * experienced refresh failures.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("last_refresh_failed_at")
+    private JsonNullable<String> lastRefreshFailedAt;
+
     @JsonCreator
     public ConsumerConnection(
             @JsonProperty("id") Optional<String> id,
@@ -125,7 +148,10 @@ public class ConsumerConnection {
             @JsonProperty("metadata") JsonNullable<? extends Map<String, Object>> metadata,
             @JsonProperty("created_at") Optional<String> createdAt,
             @JsonProperty("updated_at") JsonNullable<String> updatedAt,
-            @JsonProperty("state") Optional<? extends ConnectionState> state) {
+            @JsonProperty("state") Optional<? extends ConnectionState> state,
+            @JsonProperty("health") Optional<? extends ConnectionHealth> health,
+            @JsonProperty("credentials_expire_at") JsonNullable<String> credentialsExpireAt,
+            @JsonProperty("last_refresh_failed_at") JsonNullable<String> lastRefreshFailedAt) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(icon, "icon");
@@ -142,6 +168,9 @@ public class ConsumerConnection {
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(updatedAt, "updatedAt");
         Utils.checkNotNull(state, "state");
+        Utils.checkNotNull(health, "health");
+        Utils.checkNotNull(credentialsExpireAt, "credentialsExpireAt");
+        Utils.checkNotNull(lastRefreshFailedAt, "lastRefreshFailedAt");
         this.id = id;
         this.name = name;
         this.icon = icon;
@@ -158,6 +187,9 @@ public class ConsumerConnection {
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.state = state;
+        this.health = health;
+        this.credentialsExpireAt = credentialsExpireAt;
+        this.lastRefreshFailedAt = lastRefreshFailedAt;
     }
     
     public ConsumerConnection() {
@@ -166,7 +198,8 @@ public class ConsumerConnection {
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty());
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     @JsonIgnore
@@ -263,6 +296,33 @@ public class ConsumerConnection {
     @JsonIgnore
     public Optional<ConnectionState> state() {
         return (Optional<ConnectionState>) state;
+    }
+
+    /**
+     * The operational health status of the connection
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<ConnectionHealth> health() {
+        return (Optional<ConnectionHealth>) health;
+    }
+
+    /**
+     * ISO 8601 timestamp indicating when credentials will be cleared if token refresh continues to fail.
+     * Only present when connection health is pending_refresh and a retention window is active.
+     */
+    @JsonIgnore
+    public JsonNullable<String> credentialsExpireAt() {
+        return credentialsExpireAt;
+    }
+
+    /**
+     * ISO 8601 timestamp of the most recent token refresh failure. Only present when connection has
+     * experienced refresh failures.
+     */
+    @JsonIgnore
+    public JsonNullable<String> lastRefreshFailedAt() {
+        return lastRefreshFailedAt;
     }
 
     public static Builder builder() {
@@ -499,6 +559,65 @@ public class ConsumerConnection {
         return this;
     }
 
+    /**
+     * The operational health status of the connection
+     */
+    public ConsumerConnection withHealth(ConnectionHealth health) {
+        Utils.checkNotNull(health, "health");
+        this.health = Optional.ofNullable(health);
+        return this;
+    }
+
+
+    /**
+     * The operational health status of the connection
+     */
+    public ConsumerConnection withHealth(Optional<? extends ConnectionHealth> health) {
+        Utils.checkNotNull(health, "health");
+        this.health = health;
+        return this;
+    }
+
+    /**
+     * ISO 8601 timestamp indicating when credentials will be cleared if token refresh continues to fail.
+     * Only present when connection health is pending_refresh and a retention window is active.
+     */
+    public ConsumerConnection withCredentialsExpireAt(String credentialsExpireAt) {
+        Utils.checkNotNull(credentialsExpireAt, "credentialsExpireAt");
+        this.credentialsExpireAt = JsonNullable.of(credentialsExpireAt);
+        return this;
+    }
+
+    /**
+     * ISO 8601 timestamp indicating when credentials will be cleared if token refresh continues to fail.
+     * Only present when connection health is pending_refresh and a retention window is active.
+     */
+    public ConsumerConnection withCredentialsExpireAt(JsonNullable<String> credentialsExpireAt) {
+        Utils.checkNotNull(credentialsExpireAt, "credentialsExpireAt");
+        this.credentialsExpireAt = credentialsExpireAt;
+        return this;
+    }
+
+    /**
+     * ISO 8601 timestamp of the most recent token refresh failure. Only present when connection has
+     * experienced refresh failures.
+     */
+    public ConsumerConnection withLastRefreshFailedAt(String lastRefreshFailedAt) {
+        Utils.checkNotNull(lastRefreshFailedAt, "lastRefreshFailedAt");
+        this.lastRefreshFailedAt = JsonNullable.of(lastRefreshFailedAt);
+        return this;
+    }
+
+    /**
+     * ISO 8601 timestamp of the most recent token refresh failure. Only present when connection has
+     * experienced refresh failures.
+     */
+    public ConsumerConnection withLastRefreshFailedAt(JsonNullable<String> lastRefreshFailedAt) {
+        Utils.checkNotNull(lastRefreshFailedAt, "lastRefreshFailedAt");
+        this.lastRefreshFailedAt = lastRefreshFailedAt;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -524,7 +643,10 @@ public class ConsumerConnection {
             Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
             Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
-            Utils.enhancedDeepEquals(this.state, other.state);
+            Utils.enhancedDeepEquals(this.state, other.state) &&
+            Utils.enhancedDeepEquals(this.health, other.health) &&
+            Utils.enhancedDeepEquals(this.credentialsExpireAt, other.credentialsExpireAt) &&
+            Utils.enhancedDeepEquals(this.lastRefreshFailedAt, other.lastRefreshFailedAt);
     }
     
     @Override
@@ -535,7 +657,8 @@ public class ConsumerConnection {
             serviceId, unifiedApi, consumerId,
             authType, enabled, settings,
             metadata, createdAt, updatedAt,
-            state);
+            state, health, credentialsExpireAt,
+            lastRefreshFailedAt);
     }
     
     @Override
@@ -556,7 +679,10 @@ public class ConsumerConnection {
                 "metadata", metadata,
                 "createdAt", createdAt,
                 "updatedAt", updatedAt,
-                "state", state);
+                "state", state,
+                "health", health,
+                "credentialsExpireAt", credentialsExpireAt,
+                "lastRefreshFailedAt", lastRefreshFailedAt);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -593,6 +719,12 @@ public class ConsumerConnection {
         private JsonNullable<String> updatedAt = JsonNullable.undefined();
 
         private Optional<? extends ConnectionState> state = Optional.empty();
+
+        private Optional<? extends ConnectionHealth> health = Optional.empty();
+
+        private JsonNullable<String> credentialsExpireAt = JsonNullable.undefined();
+
+        private JsonNullable<String> lastRefreshFailedAt = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -830,6 +962,67 @@ public class ConsumerConnection {
             return this;
         }
 
+
+        /**
+         * The operational health status of the connection
+         */
+        public Builder health(ConnectionHealth health) {
+            Utils.checkNotNull(health, "health");
+            this.health = Optional.ofNullable(health);
+            return this;
+        }
+
+        /**
+         * The operational health status of the connection
+         */
+        public Builder health(Optional<? extends ConnectionHealth> health) {
+            Utils.checkNotNull(health, "health");
+            this.health = health;
+            return this;
+        }
+
+
+        /**
+         * ISO 8601 timestamp indicating when credentials will be cleared if token refresh continues to fail.
+         * Only present when connection health is pending_refresh and a retention window is active.
+         */
+        public Builder credentialsExpireAt(String credentialsExpireAt) {
+            Utils.checkNotNull(credentialsExpireAt, "credentialsExpireAt");
+            this.credentialsExpireAt = JsonNullable.of(credentialsExpireAt);
+            return this;
+        }
+
+        /**
+         * ISO 8601 timestamp indicating when credentials will be cleared if token refresh continues to fail.
+         * Only present when connection health is pending_refresh and a retention window is active.
+         */
+        public Builder credentialsExpireAt(JsonNullable<String> credentialsExpireAt) {
+            Utils.checkNotNull(credentialsExpireAt, "credentialsExpireAt");
+            this.credentialsExpireAt = credentialsExpireAt;
+            return this;
+        }
+
+
+        /**
+         * ISO 8601 timestamp of the most recent token refresh failure. Only present when connection has
+         * experienced refresh failures.
+         */
+        public Builder lastRefreshFailedAt(String lastRefreshFailedAt) {
+            Utils.checkNotNull(lastRefreshFailedAt, "lastRefreshFailedAt");
+            this.lastRefreshFailedAt = JsonNullable.of(lastRefreshFailedAt);
+            return this;
+        }
+
+        /**
+         * ISO 8601 timestamp of the most recent token refresh failure. Only present when connection has
+         * experienced refresh failures.
+         */
+        public Builder lastRefreshFailedAt(JsonNullable<String> lastRefreshFailedAt) {
+            Utils.checkNotNull(lastRefreshFailedAt, "lastRefreshFailedAt");
+            this.lastRefreshFailedAt = lastRefreshFailedAt;
+            return this;
+        }
+
         public ConsumerConnection build() {
 
             return new ConsumerConnection(
@@ -838,7 +1031,8 @@ public class ConsumerConnection {
                 serviceId, unifiedApi, consumerId,
                 authType, enabled, settings,
                 metadata, createdAt, updatedAt,
-                state);
+                state, health, credentialsExpireAt,
+                lastRefreshFailedAt);
         }
 
     }

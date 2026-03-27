@@ -49,6 +49,8 @@ public class WebhookEventType {
     public static final WebhookEventType VAULT_CONNECTION_CALLABLE = new WebhookEventType("vault.connection.callable");
     public static final WebhookEventType VAULT_CONNECTION_REVOKED = new WebhookEventType("vault.connection.revoked");
     public static final WebhookEventType VAULT_CONNECTION_TOKEN_REFRESH_FAILED = new WebhookEventType("vault.connection.token_refresh.failed");
+    public static final WebhookEventType VAULT_CONNECTION_TOKEN_REFRESH_PENDING = new WebhookEventType("vault.connection.token_refresh.pending");
+    public static final WebhookEventType VAULT_CONNECTION_TOKEN_REFRESH_RECOVERED = new WebhookEventType("vault.connection.token_refresh.recovered");
     public static final WebhookEventType ATS_JOB_CREATED = new WebhookEventType("ats.job.created");
     public static final WebhookEventType ATS_JOB_UPDATED = new WebhookEventType("ats.job.updated");
     public static final WebhookEventType ATS_JOB_DELETED = new WebhookEventType("ats.job.deleted");
@@ -249,6 +251,8 @@ public class WebhookEventType {
         map.put("vault.connection.callable", VAULT_CONNECTION_CALLABLE);
         map.put("vault.connection.revoked", VAULT_CONNECTION_REVOKED);
         map.put("vault.connection.token_refresh.failed", VAULT_CONNECTION_TOKEN_REFRESH_FAILED);
+        map.put("vault.connection.token_refresh.pending", VAULT_CONNECTION_TOKEN_REFRESH_PENDING);
+        map.put("vault.connection.token_refresh.recovered", VAULT_CONNECTION_TOKEN_REFRESH_RECOVERED);
         map.put("ats.job.created", ATS_JOB_CREATED);
         map.put("ats.job.updated", ATS_JOB_UPDATED);
         map.put("ats.job.deleted", ATS_JOB_DELETED);
@@ -381,6 +385,8 @@ public class WebhookEventType {
         map.put("vault.connection.callable", WebhookEventTypeEnum.VAULT_CONNECTION_CALLABLE);
         map.put("vault.connection.revoked", WebhookEventTypeEnum.VAULT_CONNECTION_REVOKED);
         map.put("vault.connection.token_refresh.failed", WebhookEventTypeEnum.VAULT_CONNECTION_TOKEN_REFRESH_FAILED);
+        map.put("vault.connection.token_refresh.pending", WebhookEventTypeEnum.VAULT_CONNECTION_TOKEN_REFRESH_PENDING);
+        map.put("vault.connection.token_refresh.recovered", WebhookEventTypeEnum.VAULT_CONNECTION_TOKEN_REFRESH_RECOVERED);
         map.put("ats.job.created", WebhookEventTypeEnum.ATS_JOB_CREATED);
         map.put("ats.job.updated", WebhookEventTypeEnum.ATS_JOB_UPDATED);
         map.put("ats.job.deleted", WebhookEventTypeEnum.ATS_JOB_DELETED);
@@ -514,6 +520,8 @@ public class WebhookEventType {
         VAULT_CONNECTION_CALLABLE("vault.connection.callable"),
         VAULT_CONNECTION_REVOKED("vault.connection.revoked"),
         VAULT_CONNECTION_TOKEN_REFRESH_FAILED("vault.connection.token_refresh.failed"),
+        VAULT_CONNECTION_TOKEN_REFRESH_PENDING("vault.connection.token_refresh.pending"),
+        VAULT_CONNECTION_TOKEN_REFRESH_RECOVERED("vault.connection.token_refresh.recovered"),
         ATS_JOB_CREATED("ats.job.created"),
         ATS_JOB_UPDATED("ats.job.updated"),
         ATS_JOB_DELETED("ats.job.deleted"),

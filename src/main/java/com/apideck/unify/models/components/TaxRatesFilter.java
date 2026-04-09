@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.Optional;
 
 
@@ -44,28 +45,37 @@ public class TaxRatesFilter {
     @SpeakeasyMetadata("queryParam:name=revenue")
     private Optional<Boolean> revenue;
 
+    /**
+     * Filter by tax rate status
+     */
+    @SpeakeasyMetadata("queryParam:name=status")
+    private Optional<? extends TaxRatesFilterStatus> status;
+
     @JsonCreator
     public TaxRatesFilter(
             Optional<Boolean> assets,
             Optional<Boolean> equity,
             Optional<Boolean> expenses,
             Optional<Boolean> liabilities,
-            Optional<Boolean> revenue) {
+            Optional<Boolean> revenue,
+            Optional<? extends TaxRatesFilterStatus> status) {
         Utils.checkNotNull(assets, "assets");
         Utils.checkNotNull(equity, "equity");
         Utils.checkNotNull(expenses, "expenses");
         Utils.checkNotNull(liabilities, "liabilities");
         Utils.checkNotNull(revenue, "revenue");
+        Utils.checkNotNull(status, "status");
         this.assets = assets;
         this.equity = equity;
         this.expenses = expenses;
         this.liabilities = liabilities;
         this.revenue = revenue;
+        this.status = status;
     }
     
     public TaxRatesFilter() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -106,6 +116,15 @@ public class TaxRatesFilter {
     @JsonIgnore
     public Optional<Boolean> revenue() {
         return revenue;
+    }
+
+    /**
+     * Filter by tax rate status
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<TaxRatesFilterStatus> status() {
+        return (Optional<TaxRatesFilterStatus>) status;
     }
 
     public static Builder builder() {
@@ -208,6 +227,25 @@ public class TaxRatesFilter {
         return this;
     }
 
+    /**
+     * Filter by tax rate status
+     */
+    public TaxRatesFilter withStatus(TaxRatesFilterStatus status) {
+        Utils.checkNotNull(status, "status");
+        this.status = Optional.ofNullable(status);
+        return this;
+    }
+
+
+    /**
+     * Filter by tax rate status
+     */
+    public TaxRatesFilter withStatus(Optional<? extends TaxRatesFilterStatus> status) {
+        Utils.checkNotNull(status, "status");
+        this.status = status;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -222,14 +260,15 @@ public class TaxRatesFilter {
             Utils.enhancedDeepEquals(this.equity, other.equity) &&
             Utils.enhancedDeepEquals(this.expenses, other.expenses) &&
             Utils.enhancedDeepEquals(this.liabilities, other.liabilities) &&
-            Utils.enhancedDeepEquals(this.revenue, other.revenue);
+            Utils.enhancedDeepEquals(this.revenue, other.revenue) &&
+            Utils.enhancedDeepEquals(this.status, other.status);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             assets, equity, expenses,
-            liabilities, revenue);
+            liabilities, revenue, status);
     }
     
     @Override
@@ -239,7 +278,8 @@ public class TaxRatesFilter {
                 "equity", equity,
                 "expenses", expenses,
                 "liabilities", liabilities,
-                "revenue", revenue);
+                "revenue", revenue,
+                "status", status);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -254,6 +294,8 @@ public class TaxRatesFilter {
         private Optional<Boolean> liabilities = Optional.empty();
 
         private Optional<Boolean> revenue = Optional.empty();
+
+        private Optional<? extends TaxRatesFilterStatus> status = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -354,11 +396,30 @@ public class TaxRatesFilter {
             return this;
         }
 
+
+        /**
+         * Filter by tax rate status
+         */
+        public Builder status(TaxRatesFilterStatus status) {
+            Utils.checkNotNull(status, "status");
+            this.status = Optional.ofNullable(status);
+            return this;
+        }
+
+        /**
+         * Filter by tax rate status
+         */
+        public Builder status(Optional<? extends TaxRatesFilterStatus> status) {
+            Utils.checkNotNull(status, "status");
+            this.status = status;
+            return this;
+        }
+
         public TaxRatesFilter build() {
 
             return new TaxRatesFilter(
                 assets, equity, expenses,
-                liabilities, revenue);
+                liabilities, revenue, status);
         }
 
     }

@@ -44,6 +44,7 @@ public class Application {
                 .downstreamUrl("https://api.close.com/api/v1/lead")
                 .unifiedApi("hris")
                 .downstreamAuthorization("Bearer <token>")
+                .timeout(30000L)
                 .build();
 
         ProxyGetProxyResponse res = sdk.proxy().get()
@@ -107,6 +108,7 @@ public class Application {
                 .downstreamUrl("https://api.close.com/api/v1/lead")
                 .unifiedApi("hris")
                 .downstreamAuthorization("Bearer <token>")
+                .timeout(30000L)
                 .build();
 
         ProxyOptionsProxyResponse res = sdk.proxy().options()
@@ -170,6 +172,7 @@ public class Application {
                 .downstreamUrl("https://api.close.com/api/v1/lead")
                 .unifiedApi("hris")
                 .downstreamAuthorization("Bearer <token>")
+                .timeout(30000L)
                 .build();
 
         ProxyPostProxyResponse res = sdk.proxy().post()
@@ -230,6 +233,7 @@ public class Application {
                 .downstreamUrl("https://api.close.com/api/v1/lead")
                 .unifiedApi("hris")
                 .downstreamAuthorization("Bearer <token>")
+                .timeout(30000L)
                 .build();
 
         ProxyPutProxyResponse res = sdk.proxy().put()
@@ -290,6 +294,7 @@ public class Application {
                 .downstreamUrl("https://api.close.com/api/v1/lead")
                 .unifiedApi("hris")
                 .downstreamAuthorization("Bearer <token>")
+                .timeout(30000L)
                 .build();
 
         ProxyPatchProxyResponse res = sdk.proxy().patch()
@@ -350,6 +355,7 @@ public class Application {
                 .downstreamUrl("https://api.close.com/api/v1/lead")
                 .unifiedApi("hris")
                 .downstreamAuthorization("Bearer <token>")
+                .timeout(30000L)
                 .build();
 
         ProxyDeleteProxyResponse res = sdk.proxy().delete()

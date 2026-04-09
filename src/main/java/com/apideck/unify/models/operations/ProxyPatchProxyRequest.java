@@ -3,10 +3,13 @@
  */
 package com.apideck.unify.models.operations;
 
+import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.core.type.TypeReference;
+import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
@@ -52,6 +55,12 @@ public class ProxyPatchProxyRequest {
     private Optional<String> downstreamAuthorization;
 
     /**
+     * Override the default downstream request timeout in milliseconds. The default is 28000 (28 seconds).
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-timeout")
+    private Optional<Long> timeout;
+
+    /**
      * Depending on the verb/method of the request this will contain the request body you want to
      * POST/PATCH/PUT.
      */
@@ -66,6 +75,7 @@ public class ProxyPatchProxyRequest {
             Optional<String> unifiedApi,
             String downstreamUrl,
             Optional<String> downstreamAuthorization,
+            Optional<Long> timeout,
             Optional<byte[]> requestBody) {
         Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
@@ -73,6 +83,7 @@ public class ProxyPatchProxyRequest {
         Utils.checkNotNull(unifiedApi, "unifiedApi");
         Utils.checkNotNull(downstreamUrl, "downstreamUrl");
         Utils.checkNotNull(downstreamAuthorization, "downstreamAuthorization");
+        Utils.checkNotNull(timeout, "timeout");
         Utils.checkNotNull(requestBody, "requestBody");
         this.consumerId = consumerId;
         this.appId = appId;
@@ -80,6 +91,7 @@ public class ProxyPatchProxyRequest {
         this.unifiedApi = unifiedApi;
         this.downstreamUrl = downstreamUrl;
         this.downstreamAuthorization = downstreamAuthorization;
+        this.timeout = timeout;
         this.requestBody = requestBody;
     }
     
@@ -88,7 +100,7 @@ public class ProxyPatchProxyRequest {
             String downstreamUrl) {
         this(Optional.empty(), Optional.empty(), serviceId,
             Optional.empty(), downstreamUrl, Optional.empty(),
-            Optional.empty());
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -139,6 +151,14 @@ public class ProxyPatchProxyRequest {
     @JsonIgnore
     public Optional<String> downstreamAuthorization() {
         return downstreamAuthorization;
+    }
+
+    /**
+     * Override the default downstream request timeout in milliseconds. The default is 28000 (28 seconds).
+     */
+    @JsonIgnore
+    public Optional<Long> timeout() {
+        return timeout;
     }
 
     /**
@@ -253,6 +273,25 @@ public class ProxyPatchProxyRequest {
     }
 
     /**
+     * Override the default downstream request timeout in milliseconds. The default is 28000 (28 seconds).
+     */
+    public ProxyPatchProxyRequest withTimeout(long timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.ofNullable(timeout);
+        return this;
+    }
+
+
+    /**
+     * Override the default downstream request timeout in milliseconds. The default is 28000 (28 seconds).
+     */
+    public ProxyPatchProxyRequest withTimeout(Optional<Long> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
+
+    /**
      * Depending on the verb/method of the request this will contain the request body you want to
      * POST/PATCH/PUT.
      */
@@ -289,6 +328,7 @@ public class ProxyPatchProxyRequest {
             Utils.enhancedDeepEquals(this.unifiedApi, other.unifiedApi) &&
             Utils.enhancedDeepEquals(this.downstreamUrl, other.downstreamUrl) &&
             Utils.enhancedDeepEquals(this.downstreamAuthorization, other.downstreamAuthorization) &&
+            Utils.enhancedDeepEquals(this.timeout, other.timeout) &&
             Utils.enhancedDeepEquals(this.requestBody, other.requestBody);
     }
     
@@ -297,7 +337,7 @@ public class ProxyPatchProxyRequest {
         return Utils.enhancedHash(
             consumerId, appId, serviceId,
             unifiedApi, downstreamUrl, downstreamAuthorization,
-            requestBody);
+            timeout, requestBody);
     }
     
     @Override
@@ -309,6 +349,7 @@ public class ProxyPatchProxyRequest {
                 "unifiedApi", unifiedApi,
                 "downstreamUrl", downstreamUrl,
                 "downstreamAuthorization", downstreamAuthorization,
+                "timeout", timeout,
                 "requestBody", requestBody);
     }
 
@@ -326,6 +367,8 @@ public class ProxyPatchProxyRequest {
         private String downstreamUrl;
 
         private Optional<String> downstreamAuthorization = Optional.empty();
+
+        private Optional<Long> timeout;
 
         private Optional<byte[]> requestBody = Optional.empty();
 
@@ -434,6 +477,25 @@ public class ProxyPatchProxyRequest {
 
 
         /**
+         * Override the default downstream request timeout in milliseconds. The default is 28000 (28 seconds).
+         */
+        public Builder timeout(long timeout) {
+            Utils.checkNotNull(timeout, "timeout");
+            this.timeout = Optional.ofNullable(timeout);
+            return this;
+        }
+
+        /**
+         * Override the default downstream request timeout in milliseconds. The default is 28000 (28 seconds).
+         */
+        public Builder timeout(Optional<Long> timeout) {
+            Utils.checkNotNull(timeout, "timeout");
+            this.timeout = timeout;
+            return this;
+        }
+
+
+        /**
          * Depending on the verb/method of the request this will contain the request body you want to
          * POST/PATCH/PUT.
          */
@@ -454,12 +516,21 @@ public class ProxyPatchProxyRequest {
         }
 
         public ProxyPatchProxyRequest build() {
+            if (timeout == null) {
+                timeout = _SINGLETON_VALUE_Timeout.value();
+            }
 
             return new ProxyPatchProxyRequest(
                 consumerId, appId, serviceId,
                 unifiedApi, downstreamUrl, downstreamAuthorization,
-                requestBody);
+                timeout, requestBody);
         }
 
+
+        private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_Timeout =
+                new LazySingletonValue<>(
+                        "timeout",
+                        "28000",
+                        new TypeReference<Optional<Long>>() {});
     }
 }

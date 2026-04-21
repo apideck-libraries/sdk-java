@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 38254260-287a-40b6-9ac5-c2fcb654c9cc
 management:
-  docChecksum: e2684d88f2380916377e6ad3acdec71d
-  docVersion: 10.24.22
-  speakeasyVersion: 1.761.3
-  generationVersion: 2.879.11
-  releaseVersion: 0.31.7
-  configChecksum: 6ecceae2b66a449abb4f0a760d2715a5
+  docChecksum: 2b91077d3422f4b5c6cdfdac2d535068
+  docVersion: 10.24.24
+  speakeasyVersion: 1.761.9
+  generationVersion: 2.881.4
+  releaseVersion: 0.31.8
+  configChecksum: eaee2e64c02fc02cf3f1295e79bac028
   repoURL: https://github.com/apideck-libraries/sdk-java.git
   installationURL: https://github.com/apideck-libraries/sdk-java
   published: true
 persistentEdits:
-  generation_id: 8cdf27dd-fba7-45f1-bc20-210831df2885
-  pristine_commit_hash: 78997ae435d6429b85b806c8c8a255c595c3be23
-  pristine_tree_hash: 270353fe0d8ad346baa89165e10a080bd2f55217
+  generation_id: f1ad82e8-95d3-4db4-ae0c-a6d8675e7083
+  pristine_commit_hash: cc191ed1e44e7bb19c060d98328bbd62d8b17383
+  pristine_tree_hash: 1b60436cd4e7cc9da66906fb28b09f17b8d627a1
 features:
   java:
     acceptHeaders: 2.81.2
@@ -23,7 +23,7 @@ features:
     core: 3.55.23
     deprecations: 2.81.2
     downloadStreams: 0.1.1
-    errors: 1.0.0
+    errors: 1.0.1
     flattening: 2.81.1
     globalSecurity: 2.83.4
     globalSecurityCallbacks: 0.1.0
@@ -413,12 +413,12 @@ trackedFiles:
     pristine_git_object: f291afb441e9c25ef8789c7c54329f18fe958430
   docs/models/components/Bill.md:
     id: 12ac35b913cd
-    last_write_checksum: sha1:62aa3fefcbbfe2cbc968de885b90889110cfbc1c
-    pristine_git_object: aca8374a2f5cb83b34d669631d592e0ca248aea7
+    last_write_checksum: sha1:9077a31d09f0317eb329c161b64e5c66fa2dfef0
+    pristine_git_object: cf17552aaa0c57d72680e61d98115044e1fd1abc
   docs/models/components/BillInput.md:
     id: 5f17a29a52c3
-    last_write_checksum: sha1:016c142e1138a2ec8ab98f193155c2483d8dfbc0
-    pristine_git_object: 32ccc216f9bded72e7064e19b340b048ce07992c
+    last_write_checksum: sha1:5fc340095b3542a89c9238e810d0d706bc4fc771
+    pristine_git_object: 05eb6f00d241651c7abc806f10a36e83a02e9c27
   docs/models/components/BillLineItem.md:
     id: c94a273239d6
     last_write_checksum: sha1:07450a6b5056147208729ab3c59e60b9ac7f22e0
@@ -2711,6 +2711,10 @@ trackedFiles:
     id: dbd19f61e3a8
     last_write_checksum: sha1:e3e70d9da8940e4ec9c16ad2cb17b0f76c6a7bda
     pristine_git_object: d3f4faaa5bd305bb45e4c86e8e4cdb6109350349
+  docs/models/components/LinkedPaymentAllocations.md:
+    id: 107fa3174a46
+    last_write_checksum: sha1:28eec6837e4c2920208e8ec737a9b619d22ba440
+    pristine_git_object: f696a2e5e4f7dc0f9b67a292d658c392a4d4e7d7
   docs/models/components/LinkedPurchaseOrder.md:
     id: 4ffaffbae616
     last_write_checksum: sha1:1512108c4b89801e5acba13470b4ee62e92530c6
@@ -2953,8 +2957,8 @@ trackedFiles:
     pristine_git_object: 3c444a0ccb665ac600cfe6d05c336c12aa6156a2
   docs/models/components/PaymentsFilter.md:
     id: f6689fee2b35
-    last_write_checksum: sha1:8370ab196c94894db2150d1284b99436140acb0d
-    pristine_git_object: 5a6ae053d403d325084d387ad49822e5e54ac46c
+    last_write_checksum: sha1:5048ec70e96e6af5a61faafe2950fd7e80fedc05
+    pristine_git_object: 14a6cc1653c10eba7df0d2379321062128da9090
   docs/models/components/PaymentsFilterType.md:
     id: fd73ce9455c3
     last_write_checksum: sha1:6fcd2717de431e4b3a2609afcf8cc9fa4dbf6543
@@ -4125,8 +4129,8 @@ trackedFiles:
     pristine_git_object: b0f2fd0a5115f072b3ab64583aa143624d0c2cd6
   docs/models/operations/AccountingBillPaymentsAllRequest.md:
     id: 4e4cd2dd6e0f
-    last_write_checksum: sha1:6cadd05987bf8f963a31d0cd1af9b4d1e8add3f1
-    pristine_git_object: b10020acfe22c7054f4f225df4ad58a1f6bf4c5b
+    last_write_checksum: sha1:a6f77d3049973be3b0d30ecfd5c4e30c825b5f85
+    pristine_git_object: 6c2aac2d98ab9f064e3d5df049319b15a1a063b5
   docs/models/operations/AccountingBillPaymentsAllResponse.md:
     id: 6850c8e6f381
     last_write_checksum: sha1:d16e00ee62e8328908af3a321a3ff08b0c367d85
@@ -4717,8 +4721,8 @@ trackedFiles:
     pristine_git_object: 48987c0643f922adec590cf9332b6120c57cebc1
   docs/models/operations/AccountingPaymentsAllRequest.md:
     id: ac7045a11482
-    last_write_checksum: sha1:2cb9527f12f2bce0a7630ad545459dca32cb31c9
-    pristine_git_object: cb433101808086f721775567c9a3b1cc491c531b
+    last_write_checksum: sha1:426cf02773f2df4e5c8fd2eddade4b1dd12db771
+    pristine_git_object: b8b6f8698bd8e1b0d405d67b44019a2513f711d0
   docs/models/operations/AccountingPaymentsAllResponse.md:
     id: 38fed743b109
     last_write_checksum: sha1:9ec90b215cc71bae3cc43e78fd17172d65510241
@@ -7009,8 +7013,8 @@ trackedFiles:
     pristine_git_object: c755c6aa377f358344e761e9cc3e7b67bc1fb479
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:6be1fa1f7a20f0f57905055001bfb3053684c0e3
-    pristine_git_object: d2bcb59f4e11efb290c65bdf32a437132c323417
+    last_write_checksum: sha1:15f82f22bba55fd5fe22183a57f137ec41c6da89
+    pristine_git_object: 68ba23d835b8258845890d6e674dc9f206e58944
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -7829,8 +7833,8 @@ trackedFiles:
     pristine_git_object: 7296db7ebcdcff7ee348d1f993fc4aa2a7e6c145
   src/main/java/com/apideck/unify/SDKConfiguration.java:
     id: a2b330a87142
-    last_write_checksum: sha1:d1ee30b02d79981ec76a1dbcb52980c8cf557b0b
-    pristine_git_object: ab1a705c9dd148132705c0c1bebaf51ce94690c6
+    last_write_checksum: sha1:c557c06c733f3e0bcee22713fee6706583088ddc
+    pristine_git_object: 9c6e8f9aaf14662befbe79569130afbeb1650703
   src/main/java/com/apideck/unify/SecuritySource.java:
     id: e4566c6c806b
     last_write_checksum: sha1:101bf1a9f5cf4e8c37abb4540147276eebb2bab0
@@ -8253,12 +8257,12 @@ trackedFiles:
     pristine_git_object: 74c8d2ad3221f119ed09e9e041eaac0037080cb4
   src/main/java/com/apideck/unify/models/components/Bill.java:
     id: b35327a61f59
-    last_write_checksum: sha1:25e425a99dddc6582e73ec71d9cf2514e2ce86c7
-    pristine_git_object: 7d1ef160ee62a21cefa20afd09d6c530c2f5c8e3
+    last_write_checksum: sha1:63a81b1a40cf0d50607853e473117d7dcdaca7c6
+    pristine_git_object: bda204236536071395ce69ad7bab4a62a7c46e65
   src/main/java/com/apideck/unify/models/components/BillInput.java:
     id: 142ca1cfb422
-    last_write_checksum: sha1:3083b6f68c15901375985d037224592b513cbbbd
-    pristine_git_object: 07b4427af8b06241eb21e63911b3ebd06de4b688
+    last_write_checksum: sha1:a15a8ae9790a751054a0b463e6613fbb2a37fd28
+    pristine_git_object: 1d37ac79acaf48c247687d8233937d9d781970ee
   src/main/java/com/apideck/unify/models/components/BillLineItem.java:
     id: ed47ea87f79b
     last_write_checksum: sha1:659ed5bd20c8545446e960aa04a46c80f07a9198
@@ -10555,6 +10559,10 @@ trackedFiles:
     id: 9a19c9b14f1a
     last_write_checksum: sha1:d3d9a14a2460026190e54720184a8a7c9012a9e0
     pristine_git_object: deaddb934cb4dfbac2ff4a144deeb6ef1b82abc2
+  src/main/java/com/apideck/unify/models/components/LinkedPaymentAllocations.java:
+    id: c281869cec22
+    last_write_checksum: sha1:d7f8516b8bda28a34fd4ac0eba51fefe8d2c3048
+    pristine_git_object: 7c9a8bb203481f355d45a8535821b50041748516
   src/main/java/com/apideck/unify/models/components/LinkedPurchaseOrder.java:
     id: cea55f9d848c
     last_write_checksum: sha1:105783a97085544aaecad13cba39c4d681a3d216
@@ -10797,8 +10805,8 @@ trackedFiles:
     pristine_git_object: 4f9c1044a6f44398c63667231eb852946d5816e9
   src/main/java/com/apideck/unify/models/components/PaymentsFilter.java:
     id: 8eaedee76441
-    last_write_checksum: sha1:7b90f872a32a56407e70308db35a767689562170
-    pristine_git_object: 771ee0f0b924bfc058ef142684e9ae7f5120d4e3
+    last_write_checksum: sha1:0f96f0731e131e8c0b45c8f224b4d2031e6788a7
+    pristine_git_object: ed34996dd7d13f9d0221e5cd9c73f4b7f25589c9
   src/main/java/com/apideck/unify/models/components/PaymentsFilterType.java:
     id: d0433e9576db
     last_write_checksum: sha1:81500c71738b9eedddf96a9322313ad7b9574a22
@@ -18513,1344 +18521,1344 @@ trackedFiles:
     pristine_git_object: 5507e7219d838d437bfd4b257b5d30311f634f1e
   src/main/java/com/apideck/unify/operations/AccountingAgedCreditorsOne.java:
     id: ee875f769155
-    last_write_checksum: sha1:e87827e04f11ef53bf3a913802d32112e4c8a862
-    pristine_git_object: de50ada68c26504d64cc6b7b89b74dc1b9698bc6
+    last_write_checksum: sha1:15509b33cd65dd9848451b8f065381aebdae8434
+    pristine_git_object: 59f628c6fbad819b7698ff7e6b0aa2e5603bfb0e
   src/main/java/com/apideck/unify/operations/AccountingAgedDebtorsOne.java:
     id: 3289158fdf37
-    last_write_checksum: sha1:6ae08a54b48f19e156dc0ca7ca330545d15f184f
-    pristine_git_object: c7d1fbd97ed9d9a6f1d2ea82b0b838ef63bd81d5
+    last_write_checksum: sha1:304690f10cdb84d14cb07fe7e3e095f8fd754f84
+    pristine_git_object: 7754804522ae4d41781c1f8160b9e712239850ca
   src/main/java/com/apideck/unify/operations/AccountingAttachmentsAll.java:
     id: 6c21f1667ddf
-    last_write_checksum: sha1:33d11f74631b77a18689fe117fd507db7fa408dc
-    pristine_git_object: b1fb1b8a97a69023427915e9ffc328c5fab55aa3
+    last_write_checksum: sha1:80c5565db4738c309615d17b1481e3b19a6e3f31
+    pristine_git_object: 34dc22da52b99ca7fce40896efbee772b6111bc2
   src/main/java/com/apideck/unify/operations/AccountingAttachmentsDelete.java:
     id: c80ca34dc92e
-    last_write_checksum: sha1:a2ee460fffb1aa93ed52ce541dc2ab2e2e0a404c
-    pristine_git_object: 61a7bf5e69929acf8d72f173318c846bfc5153c9
+    last_write_checksum: sha1:59870f4ee1e9b707f3865852e04c28e035149d39
+    pristine_git_object: c0a1747ed0685acc2f36d88c9868cb8fbd40d0a7
   src/main/java/com/apideck/unify/operations/AccountingAttachmentsDownload.java:
     id: f82df37482b4
-    last_write_checksum: sha1:e8af5470bcf581249288aabe2cd938a0451bd979
-    pristine_git_object: d12783f8147f1fe730f2c30a6179c090fa9fb347
+    last_write_checksum: sha1:b19226e37ec936d9e8918962f825374dd8ac3b04
+    pristine_git_object: a3daef4373ad8150f3bc5d650b2eda32d5ac7186
   src/main/java/com/apideck/unify/operations/AccountingAttachmentsOne.java:
     id: 1ec39a09d863
-    last_write_checksum: sha1:dfe71dee1477448be6d597cff997f29f25f68cbf
-    pristine_git_object: 5d9b5b91bc063df6cfae141f0e28d7797f72b127
+    last_write_checksum: sha1:aa1a5bfc8e4d84fdb89034e152cb75db71b0ccc3
+    pristine_git_object: 3e80d72f446587169424b9203ee556379d52fe08
   src/main/java/com/apideck/unify/operations/AccountingAttachmentsUpload.java:
     id: 0893fb1edda4
-    last_write_checksum: sha1:2476327f94ac668ef85df633f133a0333f52a560
-    pristine_git_object: 2f7616842fffb82ee0cd74ceeebaf2c99e6aa3fe
+    last_write_checksum: sha1:44a80557d74cf4d159a800756ac7ee6162351eba
+    pristine_git_object: 1deb984f48b5b13cbdd19fe600efaba438ead2c1
   src/main/java/com/apideck/unify/operations/AccountingBalanceSheetOne.java:
     id: 2a7a78fe0c9e
-    last_write_checksum: sha1:274464ac4f31794b8cf76f087a7cab886457d258
-    pristine_git_object: c80a5285b85a329dcb60391e2c5e1651adc2307d
+    last_write_checksum: sha1:09fd180320309438a53c78453ac186b286406023
+    pristine_git_object: ead879f962467a90ff4c7ce1852dba68159444f3
   src/main/java/com/apideck/unify/operations/AccountingBankAccountsAdd.java:
     id: 4b5cf1b508c5
-    last_write_checksum: sha1:551381261eca2949bd427390f204fbd22abe5437
-    pristine_git_object: 704dcaa7e130417188bb8cccc40ff8993cce7177
+    last_write_checksum: sha1:56070ca66f5c9b15326bf6a479020b5562dd549c
+    pristine_git_object: af4a5639465a3b1e976390b31d5dc9636645c625
   src/main/java/com/apideck/unify/operations/AccountingBankAccountsAll.java:
     id: 2d9f42221517
-    last_write_checksum: sha1:bdb015d2d3b4be52d5bfc4b264baeec35a4ff82a
-    pristine_git_object: a77f67a25ca486679385bfab67c4fe4546554a20
+    last_write_checksum: sha1:3a58883534e11f7edebea1cbacb75c49564b0ab2
+    pristine_git_object: 0cd860c16746d6d3a6d38e5e0c00452cdb0991c4
   src/main/java/com/apideck/unify/operations/AccountingBankAccountsDelete.java:
     id: 52d2ac09d08d
-    last_write_checksum: sha1:63b691e074364e068b376194d26a8dab4141739d
-    pristine_git_object: 6642d92515976cdae665f7555c716b69b8489488
+    last_write_checksum: sha1:1f65427a6bc880bf27b2ca5447ce61dd8b05ee86
+    pristine_git_object: 2d4141b13c3e849bbd35efcb713f9b0531eeb579
   src/main/java/com/apideck/unify/operations/AccountingBankAccountsOne.java:
     id: b4576b209ad2
-    last_write_checksum: sha1:4214fcd6cefc3a17fe57fab8e6f0fb99a2a33213
-    pristine_git_object: 229db0cad3f7b04b93effe69a3dbe23bf314cf92
+    last_write_checksum: sha1:60b04298738ff18a817387ea6e66cad40a7af96c
+    pristine_git_object: d0d861784a1d7edc8f5f74c0b981fdf8682595d0
   src/main/java/com/apideck/unify/operations/AccountingBankAccountsUpdate.java:
     id: a4d537282be7
-    last_write_checksum: sha1:a17e445899d1e2051cf1f299416e64b93016ea22
-    pristine_git_object: dc276cd8e8d5b5cb606bfa5b3f7768561f765963
+    last_write_checksum: sha1:23afdb3630831ba5709ed77f5612ccaab5089b7d
+    pristine_git_object: d42212b9c8304af6cab5aef2b0dcf72cb11dfa65
   src/main/java/com/apideck/unify/operations/AccountingBankFeedAccountsAdd.java:
     id: fbf617335db9
-    last_write_checksum: sha1:207a45b03038aa0e403c067b0f9ec381c8212fdf
-    pristine_git_object: c8ce296dbc25d74ae29727101b33166b4deb7fe9
+    last_write_checksum: sha1:2db0f303ff34d315fe428d9f5fd50d93da14e53a
+    pristine_git_object: bd62ca3f0fab572d2de5a46bde36fc63ba4026cf
   src/main/java/com/apideck/unify/operations/AccountingBankFeedAccountsAll.java:
     id: 14fe34cd2ecb
-    last_write_checksum: sha1:f4aa45748603a68dd71e30a914f5a4fca168df1f
-    pristine_git_object: 00d72a63564b604f4b1360739b85cf252b3b3e25
+    last_write_checksum: sha1:3171716edc28903df8c79ffa65ef5be7d028a07c
+    pristine_git_object: 47cd7c6a23c0b729e1b5ab4c5141f9039deae311
   src/main/java/com/apideck/unify/operations/AccountingBankFeedAccountsDelete.java:
     id: 530fd9e942d6
-    last_write_checksum: sha1:4134b57b4d86717ec0c3b6d2d7025546f11e4d0a
-    pristine_git_object: fc62041fea70d8313db38523777860544038fc6f
+    last_write_checksum: sha1:dd602110618abcfe1f2d5fbb792abc316c23b234
+    pristine_git_object: 82f04235a4e26efdde2be07ab88ea32cc85c94d1
   src/main/java/com/apideck/unify/operations/AccountingBankFeedAccountsOne.java:
     id: 1a5dedda9161
-    last_write_checksum: sha1:aa023e8ae1cd038c335586c69079703a1e9a4a3b
-    pristine_git_object: 3ec4c42670fd5daab62c828027a0462e819696a8
+    last_write_checksum: sha1:0337253ae72b1e3d747d48d963ec3031be720f68
+    pristine_git_object: 11cdfec8326da712b2686745723484e173df6d49
   src/main/java/com/apideck/unify/operations/AccountingBankFeedAccountsUpdate.java:
     id: 47ba52c857b2
-    last_write_checksum: sha1:a522ffdbf6927f4e19da348c6853248be579644c
-    pristine_git_object: e4087f8a2ddf65dca2aaaa2540c603180352c7ba
+    last_write_checksum: sha1:45908deeb7de921061a190ae0700c8fa7c16cc40
+    pristine_git_object: d638c0ed3b8abe6fb28b60aa1ed3b2b139a63622
   src/main/java/com/apideck/unify/operations/AccountingBankFeedStatementsAdd.java:
     id: 71019e7f5bc4
-    last_write_checksum: sha1:2ce200842b496284d79d3672ce8297c7a702c1fa
-    pristine_git_object: 105a7aa4178414a4fd22d8ec87df7f89ed256442
+    last_write_checksum: sha1:edb3ff311da572489645d09348c948d249d2dd9b
+    pristine_git_object: a727ff601c6124263b61eb28c3b898989678981e
   src/main/java/com/apideck/unify/operations/AccountingBankFeedStatementsAll.java:
     id: bbddd17739db
-    last_write_checksum: sha1:0d5e33e6dd200828cddc3398649d1a492168d137
-    pristine_git_object: 8304702dd7bde65945875cd2c007dc11d0d7b7c1
+    last_write_checksum: sha1:4b301aa52b933ae4d7403ff52a906726a061683b
+    pristine_git_object: 6b1c109892c5b637db834ddbdf2fddae3bad0738
   src/main/java/com/apideck/unify/operations/AccountingBankFeedStatementsDelete.java:
     id: 5df0d59060af
-    last_write_checksum: sha1:f7064d8a8463ef19593adc553d501b4bd57481ea
-    pristine_git_object: dfb1dc41b4255c61b732a8be0fe3c2f15f5d52a6
+    last_write_checksum: sha1:caff76f55c602f377a5383ba9a711d4cfd60d4fd
+    pristine_git_object: 7a486698b88dfff530cd96655343255c5cdd51ea
   src/main/java/com/apideck/unify/operations/AccountingBankFeedStatementsOne.java:
     id: a19b6aa317a1
-    last_write_checksum: sha1:d56b37f327d42783aa3c7afe27ae98da9b310ac3
-    pristine_git_object: a73ccd5fe718d022d4987ba22ab00c20aa4693a0
+    last_write_checksum: sha1:f80c76599519348281d6529302dd4d3954915d5a
+    pristine_git_object: 672a239ebd8ad695527e1d613ae1b1e6d88f1515
   src/main/java/com/apideck/unify/operations/AccountingBankFeedStatementsUpdate.java:
     id: a88bf10f3463
-    last_write_checksum: sha1:a720b49a695a8fc5ac61ce1d8a2e21c02dce69f8
-    pristine_git_object: a6033f15af82b83c1ddc5aba67255745e9db134e
+    last_write_checksum: sha1:70887086dc4dea3bcfbeee16b7922312e595ff0e
+    pristine_git_object: 64b1dcf0f36ae375beb8c624e2a0f90d171e7fae
   src/main/java/com/apideck/unify/operations/AccountingBillPaymentsAdd.java:
     id: 6dcda37096d6
-    last_write_checksum: sha1:9976ea12ecbf994a6b40fa60afa1e2be222d06a6
-    pristine_git_object: 9abb7ee22a8de761e7156c3a22035e7d3e2ece5d
+    last_write_checksum: sha1:333250a7b5080b4135de8b9a229d253bc1bf03c1
+    pristine_git_object: 3b0da3acadea8d36a2c3e42c83894bb81b98a6d9
   src/main/java/com/apideck/unify/operations/AccountingBillPaymentsAll.java:
     id: 1eb963be63ef
-    last_write_checksum: sha1:0d7b4b4e8654c2a771c73ab548ffec07136fdc47
-    pristine_git_object: 54a6fe372907b0a32b383e3ed162a2d8e64afa47
+    last_write_checksum: sha1:270695de811ee2855f4976130bdcf57bdcdf1a36
+    pristine_git_object: f761fff2269de4f73e1e999e9d9fcec553afdc65
   src/main/java/com/apideck/unify/operations/AccountingBillPaymentsDelete.java:
     id: 41a10cd49059
-    last_write_checksum: sha1:31fef50974ec188d88f92945bbc632051667cc22
-    pristine_git_object: c23b839a9e82cdd67206eeab5761bbc0cf93050d
+    last_write_checksum: sha1:73fc1a35dc95b299f3dc5f8c03babf1734721a52
+    pristine_git_object: a9ffebb6aa0df4d00a18d02821414a11daa66731
   src/main/java/com/apideck/unify/operations/AccountingBillPaymentsOne.java:
     id: a290aa169231
-    last_write_checksum: sha1:c0151a5a2cc568b9b358fa7316f0ffc4a58525c1
-    pristine_git_object: 2a04be1ad80ab5357a9d416db9704ea69751eb34
+    last_write_checksum: sha1:f803e2811223748d46262df4790f4d7513c95b71
+    pristine_git_object: c68e80fff8e0609ffb4ed1d3131381bc5ca9642c
   src/main/java/com/apideck/unify/operations/AccountingBillPaymentsUpdate.java:
     id: 094fd3769674
-    last_write_checksum: sha1:5d193b4b1a90ee6a37097e571d8995354863ab14
-    pristine_git_object: b814533332f72dd38973e0c28a3f667148bb9e28
+    last_write_checksum: sha1:2b83054c228d3a981d80c2727d609e24539e04e3
+    pristine_git_object: 838768fe4e9a0b59e4c2046dfa37ae7aaceabb28
   src/main/java/com/apideck/unify/operations/AccountingBillsAdd.java:
     id: eb38fd654fdb
-    last_write_checksum: sha1:802fd797302899c3c729d101326b1121f8a17be9
-    pristine_git_object: b28e62f97beae0d632a8f4b6ac7334961d4e2d66
+    last_write_checksum: sha1:dd741696c3f20e6fc729f1654c01e339e91de9f0
+    pristine_git_object: 3bf1b161dba2f068e7f255792f2b05e031703094
   src/main/java/com/apideck/unify/operations/AccountingBillsAll.java:
     id: c61c12be3aa5
-    last_write_checksum: sha1:2b3abc668641a714def42a8f22122fc94440ba34
-    pristine_git_object: e74718403775804ff4406af5afee7d899966c71e
+    last_write_checksum: sha1:5cf94de049e2fbe9dc22e28546d7f096faa3bbd9
+    pristine_git_object: bf1b8f4a2890da9394421649a95362227f98cd59
   src/main/java/com/apideck/unify/operations/AccountingBillsDelete.java:
     id: 18a3ed854d8c
-    last_write_checksum: sha1:7016ed0b75281c5c8092623dc7a77265db693be0
-    pristine_git_object: 5b6e89837732186cef159f6b32b7a0fd37fc88d0
+    last_write_checksum: sha1:096aa7aea1e9bd78b7f2cfcd0bbc238cca9d3d09
+    pristine_git_object: b9aaf6d38e1d7ce1a84e51f64d7865002919b11a
   src/main/java/com/apideck/unify/operations/AccountingBillsOne.java:
     id: c2ad201c48e5
-    last_write_checksum: sha1:70456e54ecf0d05ef9b4a8581fbd94e3ed910548
-    pristine_git_object: f92c754f80b15420bda0f149271469630511adbe
+    last_write_checksum: sha1:7314aba319c4f2fd894106b8aba336b05899189e
+    pristine_git_object: 9e368ccc23b3615e14129f7456c113b0fb3bed69
   src/main/java/com/apideck/unify/operations/AccountingBillsUpdate.java:
     id: ac5ace3e735d
-    last_write_checksum: sha1:c5bd80736fbb2e20c237cdf524d82caa969d7f03
-    pristine_git_object: 532f7e4bcf3cde7d6082a216c50b1cdb76106cdf
+    last_write_checksum: sha1:13c0d59429910c9269f4226db277c7393eb83b21
+    pristine_git_object: bd16096e890561d42066804226c2dad5bdb45004
   src/main/java/com/apideck/unify/operations/AccountingCategoriesAll.java:
     id: 6e6c61d4a07f
-    last_write_checksum: sha1:fa289a202c41a7c3399930315fd47767570ffe24
-    pristine_git_object: 7b43094bac48cce4262c63a27ef8e0b064a3f0c5
+    last_write_checksum: sha1:8611011db1738b1f72e9497722fad20a7d1e2497
+    pristine_git_object: e1aafa53cb257d8e23e4eca0076c64bf5e28b26a
   src/main/java/com/apideck/unify/operations/AccountingCategoriesOne.java:
     id: 8ed5baab81cd
-    last_write_checksum: sha1:e63207d3b98dc67fc345768016da1ab3f92f5613
-    pristine_git_object: ee4bfa403d1fb378678f9c211823b6b1b754ef98
+    last_write_checksum: sha1:85be3ec8cd006b1c112d978f4b6e3c4c8ff16c18
+    pristine_git_object: e167b6cdd610136530e836dc49617cfce6f574ee
   src/main/java/com/apideck/unify/operations/AccountingCompaniesAll.java:
     id: a0d8b90760e2
-    last_write_checksum: sha1:3c2298e80f1464ae2dde01510d1915db5386c462
-    pristine_git_object: f605cc4b591e084638026e060bafd6a1ca23b535
+    last_write_checksum: sha1:90ec347e14236e90c6c03bdab16b2615c325f1c6
+    pristine_git_object: e5ae4eb8670977f01cfd17cc1d68c3408fed0956
   src/main/java/com/apideck/unify/operations/AccountingCompanyInfoOne.java:
     id: 1ec5360a7faa
-    last_write_checksum: sha1:bb39001c8af6bba05f9b18e666a9e5c73bfda081
-    pristine_git_object: 07f756cb0d6465177d51e4fcaeef7f140c3f0d63
+    last_write_checksum: sha1:4830e664161806a0979af9aa807354cf51ce9946
+    pristine_git_object: 44f41c2eac249045309279bf721d9bf72062375b
   src/main/java/com/apideck/unify/operations/AccountingCreditNotesAdd.java:
     id: 31877d510956
-    last_write_checksum: sha1:bb129961abc261c409552f14620a1a8a6aee36fe
-    pristine_git_object: 622be677be42e55e69054b093997c93ab122fc00
+    last_write_checksum: sha1:8a350b33131c07e8e0e3a2a1903f0180247fba37
+    pristine_git_object: 95fff77668de03eea95c40dbad8dc58264373713
   src/main/java/com/apideck/unify/operations/AccountingCreditNotesAll.java:
     id: 3e28708df10d
-    last_write_checksum: sha1:9fb4cc0fb9a964dc5c2577ec72e44f19fec864ae
-    pristine_git_object: 4bd9b1dbb47eaa93579933aa7ffd8f4be75c77b8
+    last_write_checksum: sha1:47934bbe883bc268be3829ea4c4286a23d125624
+    pristine_git_object: a03d9f5334ce3df70f704eb02c3584129fb84581
   src/main/java/com/apideck/unify/operations/AccountingCreditNotesDelete.java:
     id: d476f9356446
-    last_write_checksum: sha1:719b2aac5d92fa05ede53c0a1bcbbbb733f04f2b
-    pristine_git_object: f0dd155136ed5a4e1f969d153c845573b07b14ab
+    last_write_checksum: sha1:7f0d8a9515b59b38af87992e09338f5fda325f32
+    pristine_git_object: 25eed3955f9efa241b46417bee8895a779f46838
   src/main/java/com/apideck/unify/operations/AccountingCreditNotesOne.java:
     id: 78bc5cbeef6b
-    last_write_checksum: sha1:25d19e97c6fd20b5240ffe9ec8a3683552d6324c
-    pristine_git_object: 8914a6d12181401af63a700f92117df59af3bd53
+    last_write_checksum: sha1:9d255f9ed31dafdcbce1355ea3dffbf151760033
+    pristine_git_object: 18feb81966acde8399c65b0c5d5493854cd67328
   src/main/java/com/apideck/unify/operations/AccountingCreditNotesUpdate.java:
     id: eab24b7bd3b0
-    last_write_checksum: sha1:c15f75d345c904e1e071faed04f2c1231000853e
-    pristine_git_object: cc2d74670ae19fe7e3bc1c631e6ff85c46d19dd8
+    last_write_checksum: sha1:c65d196b14e5948a4a7298e38a17dbc630ca4118
+    pristine_git_object: 8d063d0743fa9cdb36c9f9fe81aeaa0d8130384f
   src/main/java/com/apideck/unify/operations/AccountingCustomersAdd.java:
     id: aa9f692446ee
-    last_write_checksum: sha1:4ed2be260333559d1bb7c10cfeb37147b0b0ebc2
-    pristine_git_object: fa92d33b88ece273047eb8c440c07e11e5a1cd28
+    last_write_checksum: sha1:a6d084c33ed61850218fd60685be159d5d50ffc5
+    pristine_git_object: a287d2602d5e5f2df1ba1154013f6e75211bca35
   src/main/java/com/apideck/unify/operations/AccountingCustomersAll.java:
     id: d53984ed0d8d
-    last_write_checksum: sha1:84775b3ad975a89f817d18232b32326e6743219c
-    pristine_git_object: 0299237a5e2c6c54d1d0d9089ab0426321e17c93
+    last_write_checksum: sha1:48fed4c3662d927d2b0932ada37caf5ac55818dd
+    pristine_git_object: 4bd090380b0d95dea5e2eb0662360b3a8c249702
   src/main/java/com/apideck/unify/operations/AccountingCustomersDelete.java:
     id: 825b0819fc51
-    last_write_checksum: sha1:a5851eef209d057974b14f2cf39f0d5f2deca0c7
-    pristine_git_object: 17062a5646bbf33fb56293dd2b46d6a00914f7e6
+    last_write_checksum: sha1:cdc7cad7d2b6918fd7961bd47eca2b445c823b0b
+    pristine_git_object: cd16e7bfff3d41848918f1a3d4b33de9b8c05cb6
   src/main/java/com/apideck/unify/operations/AccountingCustomersOne.java:
     id: db9a83a5051d
-    last_write_checksum: sha1:178f018e197693ab47e7ef076dde7b21e9ffdb79
-    pristine_git_object: ef17b37b600b7193f6487d57b96bf05a3be6e78a
+    last_write_checksum: sha1:e86bfe12ec47808605bcce76234f7fd46e69f0a1
+    pristine_git_object: f705b2664ce4158679f4937d3dc22ae232ef2c50
   src/main/java/com/apideck/unify/operations/AccountingCustomersUpdate.java:
     id: 6c68b6b50d8b
-    last_write_checksum: sha1:cc20ed5c77d3d2f566df07f27b965891a6158f12
-    pristine_git_object: 56199476a9f685c310f5a8b23a5e637f5c845ba2
+    last_write_checksum: sha1:10e8ca87474d05bf5ddc53b257f1d3a253f59bc0
+    pristine_git_object: 0084eea0667f03701bc0d59db3e0257802c63d2e
   src/main/java/com/apideck/unify/operations/AccountingDepartmentsAdd.java:
     id: c967d02116ee
-    last_write_checksum: sha1:f9068f18a6c4e6ef987a9fd91c05a7f4894fa4ed
-    pristine_git_object: 2ab0228c28b0752a6c882abe721d3fee25ecff25
+    last_write_checksum: sha1:7b19c967e356ae59d82581fba68320a630b2b736
+    pristine_git_object: 548f9a591b9f4e20b1bb71a18f78bc559df79537
   src/main/java/com/apideck/unify/operations/AccountingDepartmentsAll.java:
     id: 897afd58dd46
-    last_write_checksum: sha1:97d3829e1057da098f42681daefb9c79c779cc2f
-    pristine_git_object: 9c48d4fb927e5c34a29be5256c043dc729277afd
+    last_write_checksum: sha1:b1500f38e0b5eccfc49f1a1ef51bb9ddc6cd15bc
+    pristine_git_object: 75803242826ccfc8bf418fc57501bb86949317eb
   src/main/java/com/apideck/unify/operations/AccountingDepartmentsDelete.java:
     id: 149a4d9e8d5d
-    last_write_checksum: sha1:9c8c9ac531ecc8962b9ac4c02fa1757d3cefb3f8
-    pristine_git_object: 5e859872e049f392ccdcb3fa9fb6626d4ed2c35e
+    last_write_checksum: sha1:c46933e8e4cf1f1dd8bdd43c3a11ae9a5c8d3402
+    pristine_git_object: 90860bd302b7722176a79ca68e1b96210ca48583
   src/main/java/com/apideck/unify/operations/AccountingDepartmentsOne.java:
     id: e35911a272ac
-    last_write_checksum: sha1:f1589c89a4b4ce454d195df71dd9245b12312d1e
-    pristine_git_object: 32a90c88c944c8d1f486faae4402c774b0aa5db5
+    last_write_checksum: sha1:6aa1e2d788e01cb6ba3cea89cfeecbeab7cb7b26
+    pristine_git_object: 3f9b5736b332d1b1ca42a2e39cb54511d2127b63
   src/main/java/com/apideck/unify/operations/AccountingDepartmentsUpdate.java:
     id: 3201702b9ecb
-    last_write_checksum: sha1:05373eccfa1c4ae7e9936b69ba4cbced205b2497
-    pristine_git_object: 71717842070bb6b40a67ed99ce12b7312bc6d7a5
+    last_write_checksum: sha1:183d3068320e3b54ba54469c6e4f6e929e9faa8d
+    pristine_git_object: 4e4372f32a2598654681b805da7291ed65f93127
   src/main/java/com/apideck/unify/operations/AccountingEmployeesAdd.java:
     id: 21f3fab0d414
-    last_write_checksum: sha1:3332dfe4be6798cb8665e90bd6039e70980f7b7e
-    pristine_git_object: 86dc878df26561d03e4bc5f61cae995f19f3ba0a
+    last_write_checksum: sha1:fb6e10d8855d30cb2e70eec2d8cd540e0461dc01
+    pristine_git_object: 1dd5ea60a5d70b78cd04070731bcd10e907a6f9b
   src/main/java/com/apideck/unify/operations/AccountingEmployeesAll.java:
     id: 7ced8be67b66
-    last_write_checksum: sha1:27b471d0b376f19902c2e7e09696625c9988f35e
-    pristine_git_object: 777fb6d6e0609a7041a51722df487e06917d12a6
+    last_write_checksum: sha1:5907636983aef8ee1797973d0bc790138dcb26e7
+    pristine_git_object: 728421e992e66f67070b0adb5057ba001fc97800
   src/main/java/com/apideck/unify/operations/AccountingEmployeesDelete.java:
     id: ec38e1a39596
-    last_write_checksum: sha1:c1b6bd03a80bc7b516d40aa5e4457697696d6215
-    pristine_git_object: bd69675d2a2692bc6fe5489ce51dcd3ad073a16e
+    last_write_checksum: sha1:78626257896a192e7dfd936dfb3dddb84d3488ff
+    pristine_git_object: 5c522cacd665cffcd06b12a19e91bfc99f91fdaa
   src/main/java/com/apideck/unify/operations/AccountingEmployeesOne.java:
     id: f0b5c53b6cc8
-    last_write_checksum: sha1:ad4a0900a6fbc4d9654d484ea9bc9b75cd15df7f
-    pristine_git_object: 44ac022afa5f545fbc3a5fbcfc79cccbf4a05a4f
+    last_write_checksum: sha1:812ec77b677033e4c55786301b23c7fcc7c966bd
+    pristine_git_object: e0fdfafc341b2acbecefc2c39199857cd296b2e8
   src/main/java/com/apideck/unify/operations/AccountingEmployeesUpdate.java:
     id: 96afbc59b69a
-    last_write_checksum: sha1:f86eafc271b945509def9619c3bb9f375bdf6986
-    pristine_git_object: aa69128a9af84843eeffb7781856f42faa6b3e75
+    last_write_checksum: sha1:ffaf09e58308bfbe75844478a8d358ffdc8b8b81
+    pristine_git_object: 6849742003209b11fc010004c743b10cc580d8b8
   src/main/java/com/apideck/unify/operations/AccountingExpenseCategoriesAdd.java:
     id: 879d97aee6d4
-    last_write_checksum: sha1:0d39f13ac4d43a54ef31a3db05e068cf152ec07c
-    pristine_git_object: 826c1a5a5502775129cd5d78c5199f49ccdf19e4
+    last_write_checksum: sha1:6fb435379a1a4e9e2b75f2057750a8879dcf1ba6
+    pristine_git_object: 109c61ca6a3c08b17cb6062a5e30d96951a31fe4
   src/main/java/com/apideck/unify/operations/AccountingExpenseCategoriesAll.java:
     id: 62d0c40cb7c1
-    last_write_checksum: sha1:d6b85bf7350937a0a8c898cc589f9fd87e5f6543
-    pristine_git_object: ecdd35367fae615a16d4b0c600023b82f09a8760
+    last_write_checksum: sha1:7cf06d4220c02ac5c6d312c4b612f27d684e3795
+    pristine_git_object: c9e58cf40f8a884f5b9a93fa115fc1ab950be595
   src/main/java/com/apideck/unify/operations/AccountingExpenseCategoriesDelete.java:
     id: 80522cd5151b
-    last_write_checksum: sha1:f50220ad1d394cdd993329e21bdd9d1024a29093
-    pristine_git_object: 2d204cc2fe8f62afce4ea4b16f209603e2a318df
+    last_write_checksum: sha1:2e8f4ec8713c10fb290693f3f896821e83e22bc0
+    pristine_git_object: 10f450a74c2bfe7d0de74b4ecf78534dbd80b7c1
   src/main/java/com/apideck/unify/operations/AccountingExpenseCategoriesOne.java:
     id: c95cf2d1f672
-    last_write_checksum: sha1:fe2157519d82453f7df91b8d260a2d28eea20d5d
-    pristine_git_object: 1114c8f77c0a8d25406cca90a49371cb8fe4c572
+    last_write_checksum: sha1:0d9a53994e64381501accb55a613563c9680f4ae
+    pristine_git_object: 37354f959373b60687cc43f68b1a2750dff8aa7c
   src/main/java/com/apideck/unify/operations/AccountingExpenseCategoriesUpdate.java:
     id: b5493be69ac8
-    last_write_checksum: sha1:64fc645b06cf48a6895b78c9e5374677d36417c5
-    pristine_git_object: 30815fc032cadf146c27343657651af621a5997b
+    last_write_checksum: sha1:7c2cb076f1d3ce40e9fba74f808e47f2f01657c0
+    pristine_git_object: b0e8c0b7d0ee5b96d6896964cca56380faf36f38
   src/main/java/com/apideck/unify/operations/AccountingExpenseReportsAdd.java:
     id: 4205db943dd3
-    last_write_checksum: sha1:3974e301dc43012b5565273a33e20f8374158754
-    pristine_git_object: abc3ae0b202dd5ad691ca7eb92e31351aae018a3
+    last_write_checksum: sha1:c2fe2133bf74306c179defc64d34738f4f5b01bc
+    pristine_git_object: 987409227f1e61ecee7357bdf4a372e16b19df10
   src/main/java/com/apideck/unify/operations/AccountingExpenseReportsAll.java:
     id: 8245ffe3c236
-    last_write_checksum: sha1:a476fb53cfd9d7ffe84851dea1cd4c03a609523f
-    pristine_git_object: c1fb7538968c3181e70f2957dd7d4c8d62937b73
+    last_write_checksum: sha1:fe759c82212be4d4419e449175ab107de4ccd2d9
+    pristine_git_object: 0e74cfcdf8d310e8ea81f8dadd919aa929a44077
   src/main/java/com/apideck/unify/operations/AccountingExpenseReportsDelete.java:
     id: 04d9f5d41b00
-    last_write_checksum: sha1:204c977128834a9981383d1058a2d7ce3e5582db
-    pristine_git_object: ae2217ab9dcee12cb78934954e2398acd0dd90bb
+    last_write_checksum: sha1:abefd81c7d5e6573732ccc9f2969c2941b2916d3
+    pristine_git_object: a87be595a888d520b937b5b9aa999b3b2cbe9df1
   src/main/java/com/apideck/unify/operations/AccountingExpenseReportsOne.java:
     id: a34f6894d4e0
-    last_write_checksum: sha1:942c7afe0a9d7794de0944092a95b364fead62c5
-    pristine_git_object: c521e6f3bcd2cae593b87ed2e65c0d84899e205c
+    last_write_checksum: sha1:5fcd0e20b1b4b8959cde3cce6a2eff1f314caf93
+    pristine_git_object: 5c7df68ca6ccfa68a5f8a77560ea329032296f1c
   src/main/java/com/apideck/unify/operations/AccountingExpenseReportsUpdate.java:
     id: 920909cc7393
-    last_write_checksum: sha1:9d5f2532a98a585c8afaa21952b1eef08e0f874d
-    pristine_git_object: b437539bd5fd7f0c032ffbbf03de68d028e52694
+    last_write_checksum: sha1:be0197da4fc1272be09c81244e7d6c4cd29e7a03
+    pristine_git_object: 399b90f444ca7f03c6720b2cb527fbbdbc6a5afa
   src/main/java/com/apideck/unify/operations/AccountingExpensesAdd.java:
     id: 41a9de38d50f
-    last_write_checksum: sha1:d8905f2d22012602424d8c886cb564dfa5d4e8db
-    pristine_git_object: 398ebc984f284f8115e7be09453018a1cc3e5961
+    last_write_checksum: sha1:3789d4a8e144a1a3a32b2cfe075cdb205b69b7f8
+    pristine_git_object: 24c65676c655381c1bd45fd5eca1ac9cf1641560
   src/main/java/com/apideck/unify/operations/AccountingExpensesAll.java:
     id: 6c1e77071a97
-    last_write_checksum: sha1:8290c1fbf757b03446e355477753ed69eb46f520
-    pristine_git_object: 74c6215a1de8fdaf5c8e37048b4215a540fe13c3
+    last_write_checksum: sha1:1f669580f619bd9c440620696a7f7d4cb28664f8
+    pristine_git_object: ac5d68d92364958cb83ce9ceb4eb82bb5c5fbb45
   src/main/java/com/apideck/unify/operations/AccountingExpensesDelete.java:
     id: 78fbe3b1cdf8
-    last_write_checksum: sha1:5dc38095431e6035cb4703e52baf73849f0f170a
-    pristine_git_object: 2bbd967dbb3dec5c941908391df3e9857457f0a1
+    last_write_checksum: sha1:6b29cd68c618ff66ac332ba915d91dc30828e062
+    pristine_git_object: 4f7e84edc8bc0177e3987485843af11b9156ea7f
   src/main/java/com/apideck/unify/operations/AccountingExpensesOne.java:
     id: ba9c4294bca7
-    last_write_checksum: sha1:b8d952690525ee49677e9007698e502871541d69
-    pristine_git_object: 548c08939d003c3578114446de9899395c6d7810
+    last_write_checksum: sha1:9d5f50a861ecdefc5a09759db3357d58b0c0eca0
+    pristine_git_object: a3f70d9c68dcc78d70a39aea1e08ddc82190eadc
   src/main/java/com/apideck/unify/operations/AccountingExpensesUpdate.java:
     id: 0865254fb33d
-    last_write_checksum: sha1:96215ca51b5858c2740dbfda4da761bbe0b1c327
-    pristine_git_object: 956086a9e06c1e9e1df35a5bf7d54342ea7a481b
+    last_write_checksum: sha1:efa44e0e6280cc6e434c7a48bf843e3968abba21
+    pristine_git_object: 6c2bfa02e48cb483e20b64ec8a361c8db9560cde
   src/main/java/com/apideck/unify/operations/AccountingInvoiceItemsAdd.java:
     id: 7d842f9a6e88
-    last_write_checksum: sha1:aa29d26752ac176a385df99d9b1730db21ff4b23
-    pristine_git_object: c7801b08c1b944a012929e53696c21c177c64959
+    last_write_checksum: sha1:b49479bdc3dba4389070829467f2912200540920
+    pristine_git_object: 014f4654ba58bf20d93c0bed4b9679c6ed27ece1
   src/main/java/com/apideck/unify/operations/AccountingInvoiceItemsAll.java:
     id: 5c7ed1843d24
-    last_write_checksum: sha1:4dd826d2e7ea14077dc15f44b688527c1975f77c
-    pristine_git_object: fae017a85718977c20203c7984e7a45fb76ae126
+    last_write_checksum: sha1:53b918b9302257faddadd146e76cfacad5409d63
+    pristine_git_object: 8115bb95813b62b61c593a8c2f2d40b8ca5702ba
   src/main/java/com/apideck/unify/operations/AccountingInvoiceItemsDelete.java:
     id: 6dd8f05a2da5
-    last_write_checksum: sha1:f384ac0ebd48bef8d398efd0d9cfb811c52eb7f7
-    pristine_git_object: 59514f902d86e34db91ad98145ab6a40e04fd8d7
+    last_write_checksum: sha1:2d8a38e035b44569b3858c8837f449c31767ed6a
+    pristine_git_object: 6f5e372c5eb4d8740decfcf5358a04031f46c249
   src/main/java/com/apideck/unify/operations/AccountingInvoiceItemsOne.java:
     id: 764a05d3496c
-    last_write_checksum: sha1:f5f450b3e253e04d2d79b43f7d895c9ed56324a6
-    pristine_git_object: bd1d0ea54926546f1cb69d6ca242d26b74acc22b
+    last_write_checksum: sha1:033147591d2ca140ffd8a9e1eb73db5bc29b185d
+    pristine_git_object: 1bd8d451657e8ac2ada546607dd62412b25ea3fe
   src/main/java/com/apideck/unify/operations/AccountingInvoiceItemsUpdate.java:
     id: d1d6f4371514
-    last_write_checksum: sha1:64bb0076d6eb0206434dfc8fe10c8fde8c75e845
-    pristine_git_object: ed02475b868f3e83d7cf59f25979df4c7038e858
+    last_write_checksum: sha1:adc47f6b3c41e48cfcc07c68d13ed86fc581b1b1
+    pristine_git_object: 6b2a01d9c4fdddd3ec2362dd8c897574c3ba5621
   src/main/java/com/apideck/unify/operations/AccountingInvoicesAdd.java:
     id: 49102ccf6d44
-    last_write_checksum: sha1:bac67231a73b80f12299aec224de2a68c9ae7e6b
-    pristine_git_object: 0dcd25e7e77d0b7de2e5ef77cc2e3490d867a62f
+    last_write_checksum: sha1:c6bdf2da380d45b4c1652c80ab198943b2c19b9e
+    pristine_git_object: 3578a645474f0f093b4bdb5ef05771bf613cd9d7
   src/main/java/com/apideck/unify/operations/AccountingInvoicesAll.java:
     id: 8c0194e17724
-    last_write_checksum: sha1:5a270b626a80d535409a459a70f32b6b5b54634c
-    pristine_git_object: 8c727e18b8477596c08a9cee01b6dd7f9af55808
+    last_write_checksum: sha1:464d5fc9f9a87ddf895c4e622b7dedc34814944d
+    pristine_git_object: 064ada47612d780702a04978695d0197d6b4cbbe
   src/main/java/com/apideck/unify/operations/AccountingInvoicesDelete.java:
     id: 2482e539dd52
-    last_write_checksum: sha1:eee20ae844ef9a242e0dcea112ce16e16085c35d
-    pristine_git_object: 84aaa63defcf42e9ded471aab14b1ecbbbc8c138
+    last_write_checksum: sha1:d73778e1fce2ebec0dd04edbf7a89b9a00272710
+    pristine_git_object: 9594994f0415ccb6cae8b614777b02e52405225c
   src/main/java/com/apideck/unify/operations/AccountingInvoicesOne.java:
     id: e6f9c96bd89f
-    last_write_checksum: sha1:23236f9e15cdf1522e7dd9b8d20f4a05837bc2e9
-    pristine_git_object: 0b53457c3ecc5568c8587e6ff56bdec198b0aeea
+    last_write_checksum: sha1:54bfde47c7be9636e47b1fc28f42be2b88ca2bf6
+    pristine_git_object: 1be2e1af617bd07e204daa983e018980e5d4d902
   src/main/java/com/apideck/unify/operations/AccountingInvoicesUpdate.java:
     id: 9184222829a7
-    last_write_checksum: sha1:53dd445dc3bb51072324ed3c090b224c10ec01ec
-    pristine_git_object: d85cb26ef8369b9674e927242eaa68406c254f83
+    last_write_checksum: sha1:456465079836f7a160543b15658e8e5653aaebc4
+    pristine_git_object: 8fa2a5247db823bd8a8b4b15539a63116855c0bf
   src/main/java/com/apideck/unify/operations/AccountingJournalEntriesAdd.java:
     id: 80faca62f6e5
-    last_write_checksum: sha1:83eebb8052a02f8ef7cf01ab1ab6405b84667cd5
-    pristine_git_object: c787ab4ba94d2ff6f48a856d1c5c554edb125fa2
+    last_write_checksum: sha1:8af93ac75e85c8d2934109bb689a850511e3479d
+    pristine_git_object: 3a8e903485a7f848346dff5a5590bb46765c6b50
   src/main/java/com/apideck/unify/operations/AccountingJournalEntriesAll.java:
     id: f23b576b3ae9
-    last_write_checksum: sha1:c38a9c2b3cab69ab76b449b5b9cd550ff36fb159
-    pristine_git_object: e19596133cf8b67129a25e965a83b1456ddb7c09
+    last_write_checksum: sha1:7aaf2072f461e126d2a141f171250de7063dc20f
+    pristine_git_object: 470071c40c8592cf7e08beeb4b3b0dad68e5c5de
   src/main/java/com/apideck/unify/operations/AccountingJournalEntriesDelete.java:
     id: d9f9775052ea
-    last_write_checksum: sha1:109b50f00b4a7e200b355103da22ea7598052fed
-    pristine_git_object: abfd286b487a496eb797a6c2f1c8bccb77fc6757
+    last_write_checksum: sha1:4a26d580ff71e4096bd384cb975a6a9fbbd878df
+    pristine_git_object: 6d31a49120d5777997ecbbe346b34e87641069d3
   src/main/java/com/apideck/unify/operations/AccountingJournalEntriesOne.java:
     id: 7b6c732ee73c
-    last_write_checksum: sha1:10079ebed8988d342f8c88fc1b4c2d51c7264354
-    pristine_git_object: d7bd68c16e57e7bea03dbb8ea2c0c9b9b2014577
+    last_write_checksum: sha1:caef764ff5692aa893807b2a4e60006ab868b0d7
+    pristine_git_object: 7286f98b2bbf17d95ae384ef1e899776adbd15d8
   src/main/java/com/apideck/unify/operations/AccountingJournalEntriesUpdate.java:
     id: 058616c9732f
-    last_write_checksum: sha1:2d80a561650d589eb3645491ca74f27c8ccd3760
-    pristine_git_object: cdbeb0b027f829551d55137e0c2e39e5ea229481
+    last_write_checksum: sha1:4e600a26f7c717219cfae4fc0eefcd7bd342c654
+    pristine_git_object: e328bf08989632f2c86b34ff8e41f7fdd975308a
   src/main/java/com/apideck/unify/operations/AccountingLedgerAccountsAdd.java:
     id: 2d502a518935
-    last_write_checksum: sha1:9ac0e7feab31f54865a4c13b7a64f88aa4dca987
-    pristine_git_object: f1f4f688e404308a9b94b2735881b2204d402c95
+    last_write_checksum: sha1:ce0b8334c240c606a3467b98189e77974847e86c
+    pristine_git_object: aabab839d41f333e4dcb91e9dd50254312b7ff38
   src/main/java/com/apideck/unify/operations/AccountingLedgerAccountsAll.java:
     id: 962e15cf1891
-    last_write_checksum: sha1:0d57a7ced662961941a58d9c33f5f8db81d945b0
-    pristine_git_object: f10d5a6aceb05bcd57485b4deeb95958e444852a
+    last_write_checksum: sha1:512bd5e686f158d804c2ea919ad8606d42e4069e
+    pristine_git_object: eac02bc289512b9cfd509b66dc16aaabef46c8ae
   src/main/java/com/apideck/unify/operations/AccountingLedgerAccountsDelete.java:
     id: ad48ed283d57
-    last_write_checksum: sha1:1db4b4b4974df1c50cf72e098644068ee4371cf7
-    pristine_git_object: 461a04552a460c9de2f9a2fb76326ae76d9be4b1
+    last_write_checksum: sha1:6cbde094ef3b9f07a1f1612b85e70fbecbbd1f85
+    pristine_git_object: 1146af0fe1d51c61e632dcea6def73c6f1e6b198
   src/main/java/com/apideck/unify/operations/AccountingLedgerAccountsOne.java:
     id: 5362899020a6
-    last_write_checksum: sha1:443a4ab0c66549351f404cdcc825be8030074214
-    pristine_git_object: 49b9f7231d45a3f25ac3e240d5ea6806c54f6a87
+    last_write_checksum: sha1:edcb5cc188a10f5a7df137f7742c848584e727e7
+    pristine_git_object: cb6efe36b10f25f991bc08368ef06d68f21ee9e4
   src/main/java/com/apideck/unify/operations/AccountingLedgerAccountsUpdate.java:
     id: 5ce8939de16f
-    last_write_checksum: sha1:032d0b81e82a490cec9b9b4b1adfaca91cd3f39b
-    pristine_git_object: b95959df703b32cedbdbbe8ce5698261ee7d9b1e
+    last_write_checksum: sha1:5ff0abb3ac818343e88ee3fec39d75c648f7857b
+    pristine_git_object: 06f0b2c838c0a92c6858958351c6fd44f2a3299e
   src/main/java/com/apideck/unify/operations/AccountingLocationsAdd.java:
     id: 895c3f6efd16
-    last_write_checksum: sha1:5f7ee2dd0ec459a3b0b82ec2f443c4c5b7247f3e
-    pristine_git_object: 88eebb909f7a0501233814a12d9eb1d51e6a7e40
+    last_write_checksum: sha1:30a2584363b142cb6e154a51699db303ade9b376
+    pristine_git_object: 3e77821e0823a26354953e8a82d63ceaaaea02a6
   src/main/java/com/apideck/unify/operations/AccountingLocationsAll.java:
     id: 3c483f92e576
-    last_write_checksum: sha1:36ccfd37403f56745b6eed9b2385097c734e1b2c
-    pristine_git_object: 34dda72224bd20c4828587fbfc68786dc0ea1fd0
+    last_write_checksum: sha1:54204f5b3a4785b0221afef8f49f2c848fc286ec
+    pristine_git_object: 9cb609e2e2e8681efef49d9a62f77cf86c041cff
   src/main/java/com/apideck/unify/operations/AccountingLocationsDelete.java:
     id: 87aa70246379
-    last_write_checksum: sha1:f391995059b4d0b1f621cb582eb1dca0203f824d
-    pristine_git_object: fe3c14386f0efd7f239fc85d4103becb836dff25
+    last_write_checksum: sha1:2846fbef10519ba25d39a2a2604fa15d03e620ce
+    pristine_git_object: 81e8ae36fd2036e9b2eb4eae5e82168b40ff1833
   src/main/java/com/apideck/unify/operations/AccountingLocationsOne.java:
     id: 817eae7751f9
-    last_write_checksum: sha1:2417e96b2a13f0586aaee19958241737814595b4
-    pristine_git_object: 412edad7dab52a51b6b86405889ddcc34943dd42
+    last_write_checksum: sha1:31d6e811cd66e2f0cae0b2d24912d67e513dff53
+    pristine_git_object: 84f2469a7428151eb27090b3bcca52198e36c729
   src/main/java/com/apideck/unify/operations/AccountingLocationsUpdate.java:
     id: 9fabf83e401e
-    last_write_checksum: sha1:591703aa72eafab1f3d336f0f80d19bdcb7cffe7
-    pristine_git_object: 2564053aa94ea263cce06db915c865e22d130c64
+    last_write_checksum: sha1:01714da8d2e58cdadfe9b212f3cbe4103507262f
+    pristine_git_object: 0ba50c534d22f90553d936aba4c05bd8d7a56cbf
   src/main/java/com/apideck/unify/operations/AccountingPaymentsAdd.java:
     id: 43b59e4c504f
-    last_write_checksum: sha1:3003d496ecde50919b5e51366350fb2f5df5ad0e
-    pristine_git_object: 02934952354fb8590a9e3141c312fe90110a5f2c
+    last_write_checksum: sha1:afba4d674868d1971df78bcd1a8e02fa95085846
+    pristine_git_object: 69a3819f1e958249998d7f1b036e4e48d6a9cf7d
   src/main/java/com/apideck/unify/operations/AccountingPaymentsAll.java:
     id: 9d2fc21205bb
-    last_write_checksum: sha1:955cab09f032bf11c7812ac954dfdce8215d1efe
-    pristine_git_object: b73ec2e62d12d60549268bcacba81b1524d780c6
+    last_write_checksum: sha1:3468d4f011d0210335c5f000850250d6ac6f061d
+    pristine_git_object: 90a0c40eed47793c54d177f009f57b886e9c9bdb
   src/main/java/com/apideck/unify/operations/AccountingPaymentsDelete.java:
     id: 2b2cb440c6c3
-    last_write_checksum: sha1:55ebddf8b8eaf5714a739fb92fa5c34bf7905414
-    pristine_git_object: 1572abdb87daddbd8ba7eece22c4d95ffc107b38
+    last_write_checksum: sha1:8f43faac0604e732fae989bd376a3ded0cf0d4c7
+    pristine_git_object: 50686f31665c37d0f81af1bfce7678b858e41402
   src/main/java/com/apideck/unify/operations/AccountingPaymentsOne.java:
     id: 2fedcc56e627
-    last_write_checksum: sha1:8ece23ece4a2edd6d88c24c7b87cc7059ae9f12c
-    pristine_git_object: af9604508735fc40b81861b182eb0f9319665a6c
+    last_write_checksum: sha1:31ecf85fd38555b0b232cc88842f8e991cfc29cc
+    pristine_git_object: 6b44b429461e7952a7be188f61a01790f2dfcced
   src/main/java/com/apideck/unify/operations/AccountingPaymentsUpdate.java:
     id: 93a7013eb756
-    last_write_checksum: sha1:a8b97f3fd5e99d95ae91c3a374e32c543a75700a
-    pristine_git_object: 8fcd73398f978fe4a3eba6181ccecdb37401c6a5
+    last_write_checksum: sha1:7fe50ab7ebe08ca94b2435f8cfbb0c4c80b137c6
+    pristine_git_object: 13416cc5c40d4f7bd6206863547aa78d19e3df11
   src/main/java/com/apideck/unify/operations/AccountingProfitAndLossOne.java:
     id: 567d8ced9ec4
-    last_write_checksum: sha1:335f458a47014d43969c0832f0ba04b25cec0fd2
-    pristine_git_object: 6c8f2644e5350db3043e90c336db7bebe6db4769
+    last_write_checksum: sha1:6a0bd33b7f1456dc5e9e1419937ec9db9e76670d
+    pristine_git_object: e28ad4a30dfa4ffac99872ec509280992b18f4bc
   src/main/java/com/apideck/unify/operations/AccountingProjectsAdd.java:
     id: bd5113446520
-    last_write_checksum: sha1:eef1b25ab5eed4b127f5750e0637c3f6ac0f66f1
-    pristine_git_object: 69b79d198160c394c2e8abf85cf61c796ca4c40c
+    last_write_checksum: sha1:ea9c09b866cd7999f9888b54f149e2059d30d4e6
+    pristine_git_object: c4597ff3278eda616e572991a4ea6a378ba3c068
   src/main/java/com/apideck/unify/operations/AccountingProjectsAll.java:
     id: 1966982f740a
-    last_write_checksum: sha1:55e040602149372ba18abaef2503753e7b5466ea
-    pristine_git_object: be271c1fcdfa50c42c79b7cf7c57ea0ecab66cde
+    last_write_checksum: sha1:d0364f34ce94b6959700fb4e1f1c906eb48214fb
+    pristine_git_object: c76599928b7eebf4d4386b37ed95701fcf82ec64
   src/main/java/com/apideck/unify/operations/AccountingProjectsDelete.java:
     id: b6472aec3edb
-    last_write_checksum: sha1:76d3b3f87ef325a689faf09605ffaed2649e8ac4
-    pristine_git_object: 9432e2950d1bb080282079e2d98ba1176b2383ab
+    last_write_checksum: sha1:ab3d48b9c0e9fff9ac34394c5003e8e49d7f3366
+    pristine_git_object: 95b473c2c0c724e826dd9851230319eafdeb525d
   src/main/java/com/apideck/unify/operations/AccountingProjectsOne.java:
     id: 78d14e46314e
-    last_write_checksum: sha1:9d9ca157ec6fbf1d396fa207da56d64ea53dfbf6
-    pristine_git_object: 5f4a583dff9e13a9cf628994b0570946ce7d7312
+    last_write_checksum: sha1:f2679d480e918cac8deddb0972aa556ddfe04bc1
+    pristine_git_object: 13583076f11103aaeb4926da70afdce634374dfe
   src/main/java/com/apideck/unify/operations/AccountingProjectsUpdate.java:
     id: 4bb8f4f21c9b
-    last_write_checksum: sha1:c2b61812a22b05c448c535af78180d212064a06d
-    pristine_git_object: 88ec0951b79e16c625eadf901940d06fae886356
+    last_write_checksum: sha1:238e4f30909d988c815a2400a25d16cdc3c9e187
+    pristine_git_object: 2acce822c0a6d2ae4ea7735d09a8cfef2c1cd1ce
   src/main/java/com/apideck/unify/operations/AccountingPurchaseOrdersAdd.java:
     id: ef169820d005
-    last_write_checksum: sha1:beae0fc9cd7d388ae77f11e25dc2a54b86399529
-    pristine_git_object: fcb6e56302265180c6c541e3f09170796173a561
+    last_write_checksum: sha1:ab748ab70c40601eaf293338c240665d41a3b955
+    pristine_git_object: c12d6e342a4c9bfd09d1da035e91ca0faa35a692
   src/main/java/com/apideck/unify/operations/AccountingPurchaseOrdersAll.java:
     id: 14d374dddd38
-    last_write_checksum: sha1:bc65cd121741b7652ef8b75f002b3b1fbd3b6011
-    pristine_git_object: bd8f88a3812538b6960768193881d352cd35715b
+    last_write_checksum: sha1:21c13c3625478f17ee910e3067f69476f0829432
+    pristine_git_object: cfeb9d92650e2da3c9dc004b5cbb5e726330f053
   src/main/java/com/apideck/unify/operations/AccountingPurchaseOrdersDelete.java:
     id: c47fbb8f1784
-    last_write_checksum: sha1:a2fa11733da929ef5f1c61f0c3d7a9c8558cb3bb
-    pristine_git_object: a635e5ed1436ad372cacb2ba8dd21be5a869795e
+    last_write_checksum: sha1:feb100c49c73368ab9c5ae614bbb7165b69a87d0
+    pristine_git_object: 58ac07df918fceca77f62bf52ca6e0a9f557b830
   src/main/java/com/apideck/unify/operations/AccountingPurchaseOrdersOne.java:
     id: 3817515dc7ba
-    last_write_checksum: sha1:4c6c55bdbfa9927774612f8192818fdfe92ecf8c
-    pristine_git_object: 4722dd5ab49ac40a45d824f3328f26a51ea21f5f
+    last_write_checksum: sha1:cc0736183f5c941e435f5b31635db4774ea2d2b8
+    pristine_git_object: 13265f7c6a3d40b13ee1ada00cae567a8b8869b5
   src/main/java/com/apideck/unify/operations/AccountingPurchaseOrdersUpdate.java:
     id: d0cb7594c28a
-    last_write_checksum: sha1:d5aaae84d0633ce01463686eb35206464937ce16
-    pristine_git_object: bcc7bf9710e54ad4f0c1d1e7dd409cd5c3b39741
+    last_write_checksum: sha1:50148cf0360860b3a4c9a8b0d551f8b5e6356aba
+    pristine_git_object: bd4d0e5658019e8390b6137b97c113bbf086cc94
   src/main/java/com/apideck/unify/operations/AccountingQuotesAdd.java:
     id: b53326416e78
-    last_write_checksum: sha1:789c86d4389546ab5137fc07c3b761b6ee3da9f3
-    pristine_git_object: d9dafc721b45cd45d59711cf2d28ba675e77a802
+    last_write_checksum: sha1:6bc06f21c6b719c1ec263953996e9be6090fbb1f
+    pristine_git_object: a221cf7359fd1416d7775ac0009c8358dcab0814
   src/main/java/com/apideck/unify/operations/AccountingQuotesAll.java:
     id: 06631b61f34c
-    last_write_checksum: sha1:e6cc19574a21a3fa304420e70ae32e609f9a49d5
-    pristine_git_object: df73ac7c3cc02e5315bdf0e9813484240eb9ebe7
+    last_write_checksum: sha1:2a64129d5830084ad981d72b27650461b577436b
+    pristine_git_object: b01a5fc3a0d9f3711a23ae76809abe067ff2a2fa
   src/main/java/com/apideck/unify/operations/AccountingQuotesDelete.java:
     id: 2e13e26bf919
-    last_write_checksum: sha1:2768362e7a111db9cd5d54b58f7332ff49d74195
-    pristine_git_object: e265e74cd2b1b4187f158f2bae15cdd1174f9807
+    last_write_checksum: sha1:cb919dc5dcf4741e055d2bf7f02b4bba26762524
+    pristine_git_object: 8e8aa1f5d46d49610877ed27803908e402af2bfe
   src/main/java/com/apideck/unify/operations/AccountingQuotesOne.java:
     id: b52effff6aba
-    last_write_checksum: sha1:5ee77fd3905419421acc2ac58a1cc9364767d430
-    pristine_git_object: 451bf57a96c2036adefb0be2068500f4f24af27e
+    last_write_checksum: sha1:8f30424a8ae16cf394c9e869b2c7f3738cdc5bc4
+    pristine_git_object: a23fff11b3e1fef968e1a0182e2a3592cd3fe934
   src/main/java/com/apideck/unify/operations/AccountingQuotesUpdate.java:
     id: a3b4dc13ac72
-    last_write_checksum: sha1:88cba937c2390770ea0888b556d1ef3a88338217
-    pristine_git_object: ea369cd9dded53946ca6e2ac2b426e9bf1700091
+    last_write_checksum: sha1:5abc8881097a9c3f6eb720e520bbd20171f784e6
+    pristine_git_object: cbd2fb2244fac2f987c0457929c6578c4c33c67f
   src/main/java/com/apideck/unify/operations/AccountingRefundsAdd.java:
     id: 082df8ee026f
-    last_write_checksum: sha1:0482ee012e71dbf2e32e9bb1ef4bf259e5708373
-    pristine_git_object: 99cb21e6a7e0e1adde165018ec22b46a4bcf44cf
+    last_write_checksum: sha1:f9453aa8c82a3673f8b82c03e99fe74f83c0882f
+    pristine_git_object: e4be539a7f262746c586ad131b9eb220b4a8d7a7
   src/main/java/com/apideck/unify/operations/AccountingRefundsAll.java:
     id: 88c94a57e68a
-    last_write_checksum: sha1:8a29732ee0377c732aa24b799d5d7a2497f8a32d
-    pristine_git_object: d7fe569b2b6bb444f82fe3cc8519035087dcd87f
+    last_write_checksum: sha1:2c0dfc7a06c3b14a51b758cbff27212fa1d01cef
+    pristine_git_object: db37258d187fd7b3f33e9d03987b54dbd41ad5ec
   src/main/java/com/apideck/unify/operations/AccountingRefundsDelete.java:
     id: b0cf489102a1
-    last_write_checksum: sha1:a14690734e76957c9b963c022f1d51c66c58dd51
-    pristine_git_object: 4683d4599a85590dbddc6c65450c2eda080fb4bf
+    last_write_checksum: sha1:937bedf67088d7c146d9aed658de9e579fd776da
+    pristine_git_object: d68585b71ad53d1ed74c166b000533576d1758ff
   src/main/java/com/apideck/unify/operations/AccountingRefundsOne.java:
     id: 4b2819bb8255
-    last_write_checksum: sha1:0d3c4fe7fee58198c984cbebfe55cd73e3372e5f
-    pristine_git_object: 74d714d2934e766ccd4d134c05bc4c0710b532c8
+    last_write_checksum: sha1:4820318215f7710b2c6023eac621adf2f903a10d
+    pristine_git_object: d2f2b8be3540f6ff37e1a1dad7a92bb80bc5783c
   src/main/java/com/apideck/unify/operations/AccountingRefundsUpdate.java:
     id: 07bf563b44b7
-    last_write_checksum: sha1:b14fc18d31fd576371cf5f94a5a9474ba3a5b600
-    pristine_git_object: 0abc4cc484627e6176d8039c1d49528ae208c7cd
+    last_write_checksum: sha1:35a534fe769a780f7cac2584c137b995ca5adb69
+    pristine_git_object: 536d6af013f9dc0a64ff01808db00204c4e02fb1
   src/main/java/com/apideck/unify/operations/AccountingSubsidiariesAdd.java:
     id: 5cf8dd907b42
-    last_write_checksum: sha1:7c94ea32cfaf7a480d1a996c5ce36c8551e159e3
-    pristine_git_object: b599bcb46058d0e1b092345ff207f005bdf96548
+    last_write_checksum: sha1:0905fe6a0998579269f8ac91eec8c612911de698
+    pristine_git_object: 9b55ff55cd332fda912beeda61597dfa39f60990
   src/main/java/com/apideck/unify/operations/AccountingSubsidiariesAll.java:
     id: b9624e640f23
-    last_write_checksum: sha1:38dbb739d2607518d1b39d34e3f9701e28267a54
-    pristine_git_object: ab80198e9fe2f337d0373e1ab9fd4b55d5657777
+    last_write_checksum: sha1:79f24d8ddee707d05d97190bdfb38146c1966ca8
+    pristine_git_object: 22b459b42f0540fa7fdc6fa85354ecb42898cc96
   src/main/java/com/apideck/unify/operations/AccountingSubsidiariesDelete.java:
     id: b64ad384710c
-    last_write_checksum: sha1:786a44637e6e49d2110f90ff5e3e22589057596c
-    pristine_git_object: 791e3cb31a0159f5385d8ddd804822692b34fb2a
+    last_write_checksum: sha1:be74597d95731a56c8b0996f8984a2e5012c074a
+    pristine_git_object: 38291ecb387f2deac2310e3384f488ede99fa8d0
   src/main/java/com/apideck/unify/operations/AccountingSubsidiariesOne.java:
     id: 8806d3eeee02
-    last_write_checksum: sha1:3f4f229df7061f428ea29c951ee7310d1f4bf303
-    pristine_git_object: 030e57ead8e3fc7507d7ef881326b53e680a2eca
+    last_write_checksum: sha1:93140afb8004e72d37db4f37dd8a13eea537f3c6
+    pristine_git_object: af733cf37659e93df239a219d72f12bebbdee5c5
   src/main/java/com/apideck/unify/operations/AccountingSubsidiariesUpdate.java:
     id: c8b91b5725ed
-    last_write_checksum: sha1:23ce2ef5f4f2bcc2596097905b7d7c667e322e45
-    pristine_git_object: b77b3d18effa15f195895eb1b226c2080d9d643a
+    last_write_checksum: sha1:deb85220a2288998eff2288c786176dbd8bf6c3d
+    pristine_git_object: 46f8b7b32c3deac824a87a14280d8c22128f58c5
   src/main/java/com/apideck/unify/operations/AccountingSuppliersAdd.java:
     id: 7b4dfe20a962
-    last_write_checksum: sha1:bbe05139337ee3e7eab0db7dea73b29d97414bef
-    pristine_git_object: a259b05b97edb92f35b7af5ea0d2707d8f842017
+    last_write_checksum: sha1:0c748bff6cd5bb3d1f38d73aa00552ae31b2c52e
+    pristine_git_object: dc1c8de1630753d019b06d66cfe1772719c13d98
   src/main/java/com/apideck/unify/operations/AccountingSuppliersAll.java:
     id: 6909f18b1bca
-    last_write_checksum: sha1:dccf019dada12ecc3e35200405dd01f2e163a99a
-    pristine_git_object: 99d305ec597f3693af39506acade824ee2e994c4
+    last_write_checksum: sha1:1241502a5abc97eca12a8247fba7075bacfc7dd2
+    pristine_git_object: f28f87bcb54766bb58b94ae81329d993d0b52be9
   src/main/java/com/apideck/unify/operations/AccountingSuppliersDelete.java:
     id: 2c0b38427323
-    last_write_checksum: sha1:0408a0831a958225aecfcfdf24b2a108e2387450
-    pristine_git_object: fa7e86bf159a39e088ce4aa2ffa928fb159b395a
+    last_write_checksum: sha1:09734d9dc31fbbd8aecd9adaeefd2c55c4db9a19
+    pristine_git_object: 610f1d988bf67bc354b0569f001a9540c4cdcc9e
   src/main/java/com/apideck/unify/operations/AccountingSuppliersOne.java:
     id: 78d5246f30c6
-    last_write_checksum: sha1:2ef1bfc0a18607eeb031a30d425963b691b5fbb8
-    pristine_git_object: e64a59986a1f63fff001da84be1006db8fb12b36
+    last_write_checksum: sha1:c3a52aa82aa8814899e7e8fcdc216bec913bb9fd
+    pristine_git_object: 05f4331c7dbabab9040cb865a14a9d17382cd5d2
   src/main/java/com/apideck/unify/operations/AccountingSuppliersUpdate.java:
     id: 32bbb0294ac2
-    last_write_checksum: sha1:93b7855f091f49d744a77428ebac48ed7f7958bb
-    pristine_git_object: 79633453cd18aa4822da7699ca99454d5b2d86f6
+    last_write_checksum: sha1:bc3f291199d44e98fc3acc6a7813b0bc58d653f9
+    pristine_git_object: d031fd7a835d91f5fd9949136a30a4d53684c8f7
   src/main/java/com/apideck/unify/operations/AccountingTaxRatesAdd.java:
     id: 6a2cac0299ec
-    last_write_checksum: sha1:2390e715a50f3fa5c356382d01bf70e2c78d1843
-    pristine_git_object: a1fe858a9307125c0028bf7a3836d3a8e7413246
+    last_write_checksum: sha1:cf202619fc2cefb6a63e42bb4dbae8b6ac496038
+    pristine_git_object: 525fea1a62424c8a7f32307d3043c8248901f555
   src/main/java/com/apideck/unify/operations/AccountingTaxRatesAll.java:
     id: bc6cc090e28a
-    last_write_checksum: sha1:ad13943ccddb2a8660a911d4ac788bc7f437f121
-    pristine_git_object: 5dd7ac385d281399cb6a5f716e6537b345455c67
+    last_write_checksum: sha1:4414cf93baac15d3286ce4021a1e8eb451253269
+    pristine_git_object: 478a9aad0b251fb7d509c8e01bab6602dcb0ad3d
   src/main/java/com/apideck/unify/operations/AccountingTaxRatesDelete.java:
     id: b750d320af9c
-    last_write_checksum: sha1:5be67b009e31b15b9a844a046ea14cef0d870a29
-    pristine_git_object: e970d1bc9ff6885793961d8e45d7f620d8738dd2
+    last_write_checksum: sha1:4449f957511bd452e9b55920fe5cca92736349c1
+    pristine_git_object: 88276d883f9507b96d7d0c4540f145dda3ebea82
   src/main/java/com/apideck/unify/operations/AccountingTaxRatesOne.java:
     id: f5c217a58766
-    last_write_checksum: sha1:7f6458c56ce1a23b90f04ee7f39a3fcbc29fda4d
-    pristine_git_object: 41e0eb7b3cac5c255cd84fd304e7d47d7f9c6206
+    last_write_checksum: sha1:7ae31c128f13ad363da6e8256473ac7ceea72cd8
+    pristine_git_object: f5b9ff325ee2b7e0114b1eab8952efc2df5523af
   src/main/java/com/apideck/unify/operations/AccountingTaxRatesUpdate.java:
     id: 62c8c68f042b
-    last_write_checksum: sha1:50d418922a9eeefd5658a8e9ba563c2d216228f3
-    pristine_git_object: 0c4de12bd1bcbcecf0d5f82e2fd6c545eca19021
+    last_write_checksum: sha1:e4b6c449b63241907ef5a3cb746f13c59a78398b
+    pristine_git_object: ca0827d658e526122a66f64e3b85b13b6b709aab
   src/main/java/com/apideck/unify/operations/AccountingTrackingCategoriesAdd.java:
     id: d84c339f55c8
-    last_write_checksum: sha1:f1e4ef0e4be00f63d8fe5e6586287410e153ed32
-    pristine_git_object: 58a43a8026615d298c7b09761df0e52ff2bac8d2
+    last_write_checksum: sha1:1316892f3bfa9afe2ca36ced5e7435a29e4d7e8f
+    pristine_git_object: 767bd2f8b711bb51e99d8c316bfc6fc8db4a201b
   src/main/java/com/apideck/unify/operations/AccountingTrackingCategoriesAll.java:
     id: 56030b8044c1
-    last_write_checksum: sha1:866e26ecc4c7ba175ba37486b75f785318e5d855
-    pristine_git_object: 728708896b0dad9596d9c94b5d25c57c4079098f
+    last_write_checksum: sha1:327dd2d834538e208b2e4bd9e8a49815c64d37a8
+    pristine_git_object: cf2d359893cfec638752780fd34946e0adb4bb3a
   src/main/java/com/apideck/unify/operations/AccountingTrackingCategoriesDelete.java:
     id: b4846116ef7e
-    last_write_checksum: sha1:2a224ede26b738bb10304a3d0c6fb7c64d09ec92
-    pristine_git_object: b182a60cc2083f11041807e1778d054c76403ced
+    last_write_checksum: sha1:e21eb4041abb30827221d12744bc41e18c14c133
+    pristine_git_object: 26173c0592ed3b172c66c1d4158c3f0953cd0955
   src/main/java/com/apideck/unify/operations/AccountingTrackingCategoriesOne.java:
     id: 7f0fe8c233c5
-    last_write_checksum: sha1:e6d3ca275d8f977af36969464900ac7fbc73d2a8
-    pristine_git_object: e5f9e1b144b1196089b5b11779d7e959d664485c
+    last_write_checksum: sha1:62cb08bd88a708b484e5e035c90c9abc1eef0f43
+    pristine_git_object: 53d124433f563f205d8ece4dca9f8dc9f789b6a8
   src/main/java/com/apideck/unify/operations/AccountingTrackingCategoriesUpdate.java:
     id: 7279d10488f6
-    last_write_checksum: sha1:f2cbe9656086687fa9c31fa7c409fb9d04bdfba0
-    pristine_git_object: c9ff1ec7c625c04376204cdc43a8c2320464cb94
+    last_write_checksum: sha1:f69beb5b551d2a334e7a8747ac54bccf4694006e
+    pristine_git_object: 238e7dffbe7df18b83a2bc8761f3ec7687b53e90
   src/main/java/com/apideck/unify/operations/AtsApplicantsAdd.java:
     id: 95ccbc4ca49d
-    last_write_checksum: sha1:87886b049905111f50d0459bd73c978e17774f57
-    pristine_git_object: 2794968d5b171f2ef546a4f35c972c866d907dc4
+    last_write_checksum: sha1:5426b5c0e0e997b3b80b0dc3bdeb0082ea7a4d19
+    pristine_git_object: e4238c721ff94d08dffc69c93742e173bb5a8af3
   src/main/java/com/apideck/unify/operations/AtsApplicantsAll.java:
     id: 6eb17538dd3f
-    last_write_checksum: sha1:c801ab1ebabfa949adddc96093e94d3702972743
-    pristine_git_object: 7edef821aef6b996fd1b10b7fc2431904a5f6258
+    last_write_checksum: sha1:0e62357c442f2b97e13e97cbf148a892d90d2303
+    pristine_git_object: 309c24a004702d56912e6c7825abe30a473d2b7d
   src/main/java/com/apideck/unify/operations/AtsApplicantsDelete.java:
     id: 4c37156b1624
-    last_write_checksum: sha1:10b427434b05615dcf4409c4640f183b3d3b83fc
-    pristine_git_object: c8b41b7bb56195de12002fa8138230e39e8964dc
+    last_write_checksum: sha1:d684c1bd2d61a85561feac759a826a080a7e7f15
+    pristine_git_object: 98f62c7b6adbb5f1bbd0918a9124c97f03497330
   src/main/java/com/apideck/unify/operations/AtsApplicantsOne.java:
     id: 1ed02bd02c7b
-    last_write_checksum: sha1:6f016be121bd99744e074b6513bd37785001c313
-    pristine_git_object: 2198185bf9db0d140f0a8160094c673b7920cea1
+    last_write_checksum: sha1:c348fa82091c2ba26155d5ac57f862e95aeb755e
+    pristine_git_object: 6d49da873d1ec531e921972e2b274d6da64a520f
   src/main/java/com/apideck/unify/operations/AtsApplicantsUpdate.java:
     id: b3f21d95437c
-    last_write_checksum: sha1:d68ad71190c79cd8414e0bc460a435123bcbc85d
-    pristine_git_object: 76ac11bcae269152a49038c44656df7a80caa8ba
+    last_write_checksum: sha1:33a3a3a35ff879b10260fb4238fa5dfc0a07c314
+    pristine_git_object: 935b6fc9e847603b19b9b4a21d4f95a68f335a58
   src/main/java/com/apideck/unify/operations/AtsApplicationsAdd.java:
     id: 6a654516b48c
-    last_write_checksum: sha1:154ec541972333cadf2d85f1b2c5e39a57335059
-    pristine_git_object: 454b58e9da6c46582ba3a757a306ab23ea406593
+    last_write_checksum: sha1:52e6563e06e21afb1239ff89e9df176a49e315d6
+    pristine_git_object: 77b2061a55af1ce09d2a4cb1069079d37a04d749
   src/main/java/com/apideck/unify/operations/AtsApplicationsAll.java:
     id: 049f6fdc5ee4
-    last_write_checksum: sha1:736dcb15de38c5f76832ecd525257794bc09bd87
-    pristine_git_object: 0396f395d34f63f64f75c6b312c413cef66628d0
+    last_write_checksum: sha1:71eb2821ff33810958e7fc822a70418a04a82d7a
+    pristine_git_object: 039078c9289c3df2f8e864f5edaf65b6547259f8
   src/main/java/com/apideck/unify/operations/AtsApplicationsDelete.java:
     id: f6c69959c96f
-    last_write_checksum: sha1:dd7d34711760a94b17a1c226b2a9983ca3677c5b
-    pristine_git_object: c532b174e90f570645e01907cc84e369e36f9f63
+    last_write_checksum: sha1:9e3c0289cbb130ac08729fc73c984ab752a4835e
+    pristine_git_object: cacdf27abb6c23022842b65eda42e392e09376b9
   src/main/java/com/apideck/unify/operations/AtsApplicationsOne.java:
     id: 6ea89ac399c7
-    last_write_checksum: sha1:9399ec3eef3d5479d2b168de67cde7263f4a14a6
-    pristine_git_object: 67ca930b4e43dd5c8543b24e7b8a4075b196d695
+    last_write_checksum: sha1:3934a89545d90b222fe9a4a8bb1ca963d5c154eb
+    pristine_git_object: 760eb0c9d0ca5b09facb7d3b7c95cd7343a1bb21
   src/main/java/com/apideck/unify/operations/AtsApplicationsUpdate.java:
     id: 641479f88381
-    last_write_checksum: sha1:620d007b0af8dd94be6bc19282e89f4ed066258c
-    pristine_git_object: 34cf2f70bdc5e1b9aadb1fadcbef625a5632548b
+    last_write_checksum: sha1:7530cde56dfa5a57e3a248b03fff61c7c76ffc5b
+    pristine_git_object: 4bf91304ccdd942ede2dbc7c7b4e6950209b7768
   src/main/java/com/apideck/unify/operations/AtsJobsAdd.java:
     id: 812e5cbd5880
-    last_write_checksum: sha1:bde53a77a256ce4ace2a31df7fa70bb70fa65145
-    pristine_git_object: 0383dcf4334d1f697ae05933e059bb30ce72b39b
+    last_write_checksum: sha1:3b20740e9a04a8936bdc4a3efe460b3afd358986
+    pristine_git_object: 6e3278c9aa09c5fbbf2cac5f4dba569ac833a468
   src/main/java/com/apideck/unify/operations/AtsJobsAll.java:
     id: e55599a5fa58
-    last_write_checksum: sha1:517f0b7e4a78e34d533a28cb26595777d8de9f02
-    pristine_git_object: ac02497a8c2ca4e5d91d74b3c7c821f6ef42ffe3
+    last_write_checksum: sha1:a45c6ca4df2f422f0094cda403de077fb123b1a5
+    pristine_git_object: e67d8ea07784ff566e8972ce1170f6d33bde12d0
   src/main/java/com/apideck/unify/operations/AtsJobsDelete.java:
     id: 13aebba6f556
-    last_write_checksum: sha1:c7312901c212fbf7d03d30fa45e20ff03676694e
-    pristine_git_object: a0f11a65883b743fa0375f9ecce58f3c47dd030b
+    last_write_checksum: sha1:97f879c42382c1b49e1d176ee1bcd2f80495f1b4
+    pristine_git_object: 64422f447fae06cf358cdb438213988b63154567
   src/main/java/com/apideck/unify/operations/AtsJobsOne.java:
     id: 362fdea93b48
-    last_write_checksum: sha1:e83988cc7f306507df6f95f9d7404bb5672d72d6
-    pristine_git_object: c5a00af35a96734be5a54f890c9e0c600efdfec4
+    last_write_checksum: sha1:1fb0204ed03d42df2d2422dde18e3017442690f3
+    pristine_git_object: 9e5c1132ee854e1d1e5de3144ae07b703707675d
   src/main/java/com/apideck/unify/operations/AtsJobsUpdate.java:
     id: e281e14a2401
-    last_write_checksum: sha1:97cd425644656721ad67ddab3b42fc8ff49b8957
-    pristine_git_object: cf961b7c89c92ea458f03d2aae2acfe821722f7c
+    last_write_checksum: sha1:1895c60ab9e28dbb520b8c63e5d9d43ddc6c1bcc
+    pristine_git_object: bf964e6f189cbaf879fc2e562da37534e653dda7
   src/main/java/com/apideck/unify/operations/ConnectorApiResourceCoverageOne.java:
     id: 29469906ca0b
-    last_write_checksum: sha1:1dd5482ae0b0ccf5f63919bcdbab5467f3a7938b
-    pristine_git_object: a1aae942394a48839b37657c3771b5f4dc4eabef
+    last_write_checksum: sha1:1792e5ded52a3b8045d19c337ffc88c198e59bbe
+    pristine_git_object: 3e2872cb49c269bbcea5987c0c5cea538eaf1b19
   src/main/java/com/apideck/unify/operations/ConnectorApiResourcesOne.java:
     id: db9c26975fd8
-    last_write_checksum: sha1:c4adf809e86b4049b4945d92600b23dcbb69b556
-    pristine_git_object: 3c78d2d3ef1b2bbecf930e10764f9b33c5c9cdf2
+    last_write_checksum: sha1:47eb111ee09731d323556bc343d58cb6564b0eb9
+    pristine_git_object: c0290b8832cf95288528bf3e2783b04430788688
   src/main/java/com/apideck/unify/operations/ConnectorApisAll.java:
     id: 903d471ed0d9
-    last_write_checksum: sha1:7b486a3755bbf19b3933f6e98b2ac0f422f1c1f4
-    pristine_git_object: 5c9cd6acbeb21edb8833ed59a893e665a1a9948b
+    last_write_checksum: sha1:2236d71b57ccd8d2ff711ee0353f46c4850b56c7
+    pristine_git_object: 2c528127c3113b4dd25e8cde3a6adb0b68e6ab7b
   src/main/java/com/apideck/unify/operations/ConnectorApisOne.java:
     id: 2f5c85629dc4
-    last_write_checksum: sha1:fbbc7b73089ccdcc25fd9e7d1d10aec720cc33d6
-    pristine_git_object: fec29112129b2ac8e696b9614d6d955414ae33d0
+    last_write_checksum: sha1:bc576a39146fa6efe6182c29725783e760417b73
+    pristine_git_object: 613e1f8676fe76351592dc6fd4b4251232922812
   src/main/java/com/apideck/unify/operations/ConnectorConnectorDocsOne.java:
     id: fd97a92e373e
-    last_write_checksum: sha1:7cd7c5da217241bbbe102c21dba0c06c29f83381
-    pristine_git_object: daf185fc90e75a1bbcb1d40923a3af59206c0dae
+    last_write_checksum: sha1:48e82fcee1655f7fbf9c0ccaab0d856e11ff2333
+    pristine_git_object: 4dd46f31be69c8ca5a17e21cd9458a23764971ea
   src/main/java/com/apideck/unify/operations/ConnectorConnectorResourcesOne.java:
     id: 95240518deb9
-    last_write_checksum: sha1:070c87c7a3b1c8d9e722c3361ed84eafbc4b25af
-    pristine_git_object: cb8f2ed726d0cd247db3d2e723e9fec84f24970d
+    last_write_checksum: sha1:a166bd824f8ced5077ef18dc691e8ee3350c9c38
+    pristine_git_object: 656bdfba78d724ab744fe8b8c8dc08ca7b22388c
   src/main/java/com/apideck/unify/operations/ConnectorConnectorsAll.java:
     id: 11c7aab2b2d8
-    last_write_checksum: sha1:5aee5bf4d217b91bdbda5a5d3ba60ac666081492
-    pristine_git_object: 83d92f6709f016d86dcf687f2f3e573481753525
+    last_write_checksum: sha1:d3b378cde2a3958b8cc45b43f45bdcfdd3354117
+    pristine_git_object: eba416f4598cfa9d14d0b2b6a3e179bfe3e47b00
   src/main/java/com/apideck/unify/operations/ConnectorConnectorsOne.java:
     id: 937d3f966e94
-    last_write_checksum: sha1:56bf08d4f84503b4913eae143d9f184116de0800
-    pristine_git_object: a9e8b3fe2dec01498ebe36e7cc214ce675fc50fd
+    last_write_checksum: sha1:406ab7276c852c52ca25334cadf0877ccb702139
+    pristine_git_object: eadc0f4882ba0ef9c83e6f74883ff2d06f228b65
   src/main/java/com/apideck/unify/operations/CrmActivitiesAdd.java:
     id: fc283436d9cf
-    last_write_checksum: sha1:2a6f5481ae3f3706b5001d4e02f85cd78450265e
-    pristine_git_object: a52dde4bd0687f05688f083386b8406cf4d3b8ec
+    last_write_checksum: sha1:adff66921cc5f00eebf438fcf45ce5d286b01fae
+    pristine_git_object: 33bd2b82d77e1e7cdc79a17853cd584490993818
   src/main/java/com/apideck/unify/operations/CrmActivitiesAll.java:
     id: e7664b035f88
-    last_write_checksum: sha1:8f6396d015a2ddd47b6e6ac79d1c0919da461d62
-    pristine_git_object: f2ed3ba6e6a517779c34e352773d786a6ee38b97
+    last_write_checksum: sha1:36af35fd5676b3f2d466e43547ceba6f0b5519f6
+    pristine_git_object: b1c28c8f844a2620f360e33d702e24dc891b217d
   src/main/java/com/apideck/unify/operations/CrmActivitiesDelete.java:
     id: de36f04719f5
-    last_write_checksum: sha1:182e63b8eb4fd2b4863633542f37c3bb8690f800
-    pristine_git_object: 51b717fd319ccfd6e47c9558c9a2fd98d1e411f7
+    last_write_checksum: sha1:2d9b66f32a81f43629fdf468e8b9b7e2f65fbe62
+    pristine_git_object: d26b42e376211ab41bc0432555d5ed490e525419
   src/main/java/com/apideck/unify/operations/CrmActivitiesOne.java:
     id: 3ec377de2731
-    last_write_checksum: sha1:caa15cd9ea718f7844bac1e3ccd9117ffc1c1551
-    pristine_git_object: 84aefce2c5f08a58379cd1ac2ddfb3c6233166e4
+    last_write_checksum: sha1:9bc4d0bfe90ce3ecb94b9ecdd69377ebdc695976
+    pristine_git_object: 126e6cfd66affc12daaa61c5cfe165119adce5f8
   src/main/java/com/apideck/unify/operations/CrmActivitiesUpdate.java:
     id: 145bb47de682
-    last_write_checksum: sha1:4c807de63aec1fe34df1b64ae200d94d871bf9f5
-    pristine_git_object: 1b1e12374082b03be24a483f46c756c42d31ea72
+    last_write_checksum: sha1:252fd6c5ba12ff064e1e77eec2f0a2c12b3fbf06
+    pristine_git_object: 789bbf9fbf4ea9374dc01d1fdded5f59cb99b0ce
   src/main/java/com/apideck/unify/operations/CrmCompaniesAdd.java:
     id: 8179c1eb30ce
-    last_write_checksum: sha1:9f511f878d03eed585329491c7213e37e103f8a6
-    pristine_git_object: 4c00959671d8ea27e822599c68bddf08c18779c5
+    last_write_checksum: sha1:41f2e559d751162c31a99a6e9cc825e9228aea5c
+    pristine_git_object: d30c1a1904450d106cc76d78e7c4f77e2b11f1f8
   src/main/java/com/apideck/unify/operations/CrmCompaniesAll.java:
     id: be7b7ae48903
-    last_write_checksum: sha1:09c12b57022f5d64c2cd6cde0a11ccaca56128da
-    pristine_git_object: 327f1d4be2d50d189f636c8a3989b4f4aff4509d
+    last_write_checksum: sha1:1bc3a06f36269ad8a0213b5479a767a74fb4861c
+    pristine_git_object: c8c9577c5a545b43ff3e8dad4ac5111d4ea6a10f
   src/main/java/com/apideck/unify/operations/CrmCompaniesDelete.java:
     id: a49887f329b3
-    last_write_checksum: sha1:5c779d0be1df1e544c7d7c5cd5bf67cbe17e74c7
-    pristine_git_object: 3d10a74ee0a6c6183565d154d01df70ac720d05b
+    last_write_checksum: sha1:e0683ccb85a5de6fb4399eb81f3293dfcfa27a39
+    pristine_git_object: 9a61d8d3b677d91c1e007efa5d76ba17d410ec47
   src/main/java/com/apideck/unify/operations/CrmCompaniesOne.java:
     id: e5d3fca39e33
-    last_write_checksum: sha1:9620b695164805f506be1f80b00535ac56f1ffb9
-    pristine_git_object: 1ff30d20258b56eefc6f8c7e063ffa8d16fb1214
+    last_write_checksum: sha1:5e0e9366bfcfbfb31581cf53214ace8a3ebf20e2
+    pristine_git_object: c2779e753b172cd6ce16043febeb59a3fe82e2ed
   src/main/java/com/apideck/unify/operations/CrmCompaniesUpdate.java:
     id: e8518128a382
-    last_write_checksum: sha1:15070ec0bb49648b8980f8288693db74845c5d40
-    pristine_git_object: 8082b49fa48552ffa3ec5749d076811ede8af9b7
+    last_write_checksum: sha1:500f276fafaabea1fd196c764500323112ec85bc
+    pristine_git_object: ccaac14d144b5a28808ae8705abd36ef936d54cb
   src/main/java/com/apideck/unify/operations/CrmContactsAdd.java:
     id: 2b8f16ce7308
-    last_write_checksum: sha1:b2dbe4c3fd2d01c628b600a1c701cc9c0f1c38e1
-    pristine_git_object: f075226dc170e1d8928035a6512768b83f2442b1
+    last_write_checksum: sha1:6559e70a57b5e57dc64174a676f23f46e517709d
+    pristine_git_object: f611c372a10b774620d63b4c012bbdb7b8e69f23
   src/main/java/com/apideck/unify/operations/CrmContactsAll.java:
     id: f7212f26ff45
-    last_write_checksum: sha1:85e95abbd50c744128dfda9ca46f1d11daf95eca
-    pristine_git_object: f58bf2f369ee69aacfdc0c8b4bfabd3129fa8672
+    last_write_checksum: sha1:f859f5c149d74fda3fa55d15589945880e17fce8
+    pristine_git_object: 96cb808a3e1c87e8376c4cc7dc1d7efc8f2ec65b
   src/main/java/com/apideck/unify/operations/CrmContactsDelete.java:
     id: "55948432e156"
-    last_write_checksum: sha1:a3db2ede289d837b86254d93293a957e54181516
-    pristine_git_object: 2a2f0b0038fab5c520413d798ced47a0e6d76ebe
+    last_write_checksum: sha1:cb624782f09a806ca74a392ab16e31845acddde7
+    pristine_git_object: f79644fbf6ef565bda23c20a2e42c3b59a3b36fa
   src/main/java/com/apideck/unify/operations/CrmContactsOne.java:
     id: dc713cb8b995
-    last_write_checksum: sha1:bcd845041b7591c23c3ee26147ea2b6312c5c34d
-    pristine_git_object: d1191e44d9f45570336e96c517791261ca9d3d06
+    last_write_checksum: sha1:c911baa84702b5b33504926be0bcaca356b87d17
+    pristine_git_object: 4170d832538d167699e3b6562bf12df608348624
   src/main/java/com/apideck/unify/operations/CrmContactsUpdate.java:
     id: 38958de82113
-    last_write_checksum: sha1:063061372761dcf537ef9666078a3f71343fe7ad
-    pristine_git_object: bfd3d4c4dd73745f97f7ef16c77abb591aef6ecd
+    last_write_checksum: sha1:8b5489f4b66ea9c531461c98fa7f50e28b788c52
+    pristine_git_object: 2dd98831d8c75d876259de8b99a3f00bcceea241
   src/main/java/com/apideck/unify/operations/CrmCustomObjectSchemasAdd.java:
     id: 4e85172a25aa
-    last_write_checksum: sha1:8a644dbcc378cc5631049d5c6c76f19a7d01ebb6
-    pristine_git_object: 285e13aa451c51b19d7ab482b8e841db438e1df7
+    last_write_checksum: sha1:2ef94c391bda89866ed46f8b64157897df9f3c95
+    pristine_git_object: b5d1c0fb5c508f66e24a021f53059819022002b8
   src/main/java/com/apideck/unify/operations/CrmCustomObjectSchemasAll.java:
     id: 88ee75f309c9
-    last_write_checksum: sha1:aacb6b349aa2c7d6f6bc4c302bf7cb5b3175dc4c
-    pristine_git_object: 620a7015dc1d3e1daa3d86c4e634606e2b4c3d0a
+    last_write_checksum: sha1:c5bfe3b1e34f22db365747a8b44de74e71ac9d60
+    pristine_git_object: 31053aa274b044eaf330b60a8c4d40309a575cc4
   src/main/java/com/apideck/unify/operations/CrmCustomObjectSchemasDelete.java:
     id: abbaf505ea19
-    last_write_checksum: sha1:b7abd1bb9f39f2edcb3f5adfc88b306ee8c4fdc8
-    pristine_git_object: 876d4e9fadffff1af6434c117adbb388a65f1ce6
+    last_write_checksum: sha1:b9d888586a73cd3f7bdb43fe659e97970ddf27b0
+    pristine_git_object: 5be94eb6767e9b3808679a7957dd51a9e4881e49
   src/main/java/com/apideck/unify/operations/CrmCustomObjectSchemasOne.java:
     id: 2797a72ad23d
-    last_write_checksum: sha1:1374564789eb8bd723f3c67a60c9ee7713bce727
-    pristine_git_object: 80626325883a572b1515eb968fa9114dd01a1923
+    last_write_checksum: sha1:64568caecdfa02e8e6fd82a43048a46114081679
+    pristine_git_object: a0a08a61ff3f1fba47bffa4a56271b6f5f2c4b0b
   src/main/java/com/apideck/unify/operations/CrmCustomObjectSchemasUpdate.java:
     id: d1b563e8f12a
-    last_write_checksum: sha1:f91eabad45757a35cdbfd8289ae13490070f3e7e
-    pristine_git_object: 653d98a07e7dcc8ba04fe7661cc682f234114b8d
+    last_write_checksum: sha1:b97f114453add3f30c18b84881cd2cb91ead8433
+    pristine_git_object: 3f0184439ea102ccd8d562b6a61fdaf46db8f54a
   src/main/java/com/apideck/unify/operations/CrmCustomObjectsAdd.java:
     id: 06652266a081
-    last_write_checksum: sha1:6eae39a801a20aa07ae05564d2eccab63d3a811c
-    pristine_git_object: c5c4d90c0556bf59c389cf16141ffb3f3bc58160
+    last_write_checksum: sha1:4fce7194e844477434dddd245a6a85c73bba754c
+    pristine_git_object: 8fdd00f339fbaefe5142caf314b0c60a7ab6fa33
   src/main/java/com/apideck/unify/operations/CrmCustomObjectsAll.java:
     id: b5147b4d614d
-    last_write_checksum: sha1:841665c813ba24f70adb0e7b870b027423812663
-    pristine_git_object: 75928039073fb718c8dc01996af46d5bfd9788d3
+    last_write_checksum: sha1:398fc8e5062c6b0ed2f1302a30b0dc05fbef946f
+    pristine_git_object: 70d01ae7c2e4a0d69828301e8c4c1aea0e69ad17
   src/main/java/com/apideck/unify/operations/CrmCustomObjectsDelete.java:
     id: 00f61fedbcd3
-    last_write_checksum: sha1:d15c206304cc738eac63438cf7b99119216d15cf
-    pristine_git_object: 3c19044b8e185bdc8570e760a9c6b91d264dff8a
+    last_write_checksum: sha1:214c71d0df3219e3a4e3c0bab48df96be6487471
+    pristine_git_object: f404a8a782ecf403c7688e94ab6fc057d451c7fd
   src/main/java/com/apideck/unify/operations/CrmCustomObjectsOne.java:
     id: c84d19fd3f51
-    last_write_checksum: sha1:ab9da9703ed329105fc8a55b78033d03b7b44f1e
-    pristine_git_object: 9fa672a2cd91c4980e93b520485e9dbe05deb086
+    last_write_checksum: sha1:2c2d0e54bfd24086ab434ef6bc1487ac8ccbefac
+    pristine_git_object: dec6ebecfb3e69c6037de1f0a6bb61c08e5d32d9
   src/main/java/com/apideck/unify/operations/CrmCustomObjectsUpdate.java:
     id: 8d6b8e0f8e31
-    last_write_checksum: sha1:734eff515bbdb62c006839654c3dbebda9440264
-    pristine_git_object: d0a068096c4eb5512fe201913f7664a9b3912cb8
+    last_write_checksum: sha1:170a1363ec632370f41467cdd12de04054c6b430
+    pristine_git_object: a693f64b6b805785ec200f718fdda73c1225d7b6
   src/main/java/com/apideck/unify/operations/CrmLeadsAdd.java:
     id: 7e5686ac374c
-    last_write_checksum: sha1:0fff7b05f927277508fff08d4e148c111486acf7
-    pristine_git_object: e65491ea2e0ce782a9b651890fb21fc0368ea0d8
+    last_write_checksum: sha1:c07231d958ee29fe31c9c8712df9180578245519
+    pristine_git_object: 0a884129fa094d13415afef3802533a8b62432af
   src/main/java/com/apideck/unify/operations/CrmLeadsAll.java:
     id: 4f4d59a4e57b
-    last_write_checksum: sha1:cd34d99aa860c7ef219c229f2a8af0aba9d5b50a
-    pristine_git_object: c988ca3c3fff755bfa5216e59d2d2ebb2b5bd556
+    last_write_checksum: sha1:773a43a26e9cec60b297af6c3d1745185fa049ff
+    pristine_git_object: 7f2a8e7a93475f105a0aaa175d45a96cbb0110af
   src/main/java/com/apideck/unify/operations/CrmLeadsDelete.java:
     id: 8918ca4e6792
-    last_write_checksum: sha1:2398c7b8d828a248b5b164a917b3a375854b4ff1
-    pristine_git_object: cf99f941614cb7607b4f78bf26379956f71a2a6a
+    last_write_checksum: sha1:a9bd73ea89a66ac4005258e20d27cf76074f4224
+    pristine_git_object: e16e2c6de578a76411c12615c115886994c76401
   src/main/java/com/apideck/unify/operations/CrmLeadsOne.java:
     id: 823cc20d7933
-    last_write_checksum: sha1:cd715df7c4edd5ca6f746f6eb7b66f3f47db319e
-    pristine_git_object: c79abd49f1e5a9a6659888af2d30d57a5c7d0af9
+    last_write_checksum: sha1:053af3f84a1f5c5be03d9984cfca62f17b8abc3a
+    pristine_git_object: 8e33c057e0fb5440a2e6e4afb8aa13f354540430
   src/main/java/com/apideck/unify/operations/CrmLeadsUpdate.java:
     id: 36d452f1f9d8
-    last_write_checksum: sha1:e500108bb5468606b6c090844a821cee21966035
-    pristine_git_object: e96858e9e44a67486ce39f85687c3d0f1b810773
+    last_write_checksum: sha1:99f4dc5440bade6463fd3b14fd2f3769bf61c6af
+    pristine_git_object: a102e0ed5b9a64a8210d95d7b175eea2aff0d2f4
   src/main/java/com/apideck/unify/operations/CrmNotesAdd.java:
     id: 69468c3abe14
-    last_write_checksum: sha1:f561e3d3003d1ca63bbc13563e0933da2cca782a
-    pristine_git_object: e13ead44bcceadec4936af1eb75ad8c8d7137c19
+    last_write_checksum: sha1:fe6d7c3b3acb22d92609010644f0c2d6239e5f8b
+    pristine_git_object: 4cf5f297ba9085f639c0da8e46ddae1becdddadf
   src/main/java/com/apideck/unify/operations/CrmNotesAll.java:
     id: 4796b99633ec
-    last_write_checksum: sha1:e2ca75770758a847992ea55564a2699573485793
-    pristine_git_object: 3aaf127a92c5d700b4e1fe3de5f8e0bfa5b3a809
+    last_write_checksum: sha1:2515022d52ccc34e927daad98a28e2cd3bbe8a13
+    pristine_git_object: 8d8b4ce382ed59ca5d7c8b1557d2e556fa2b55d0
   src/main/java/com/apideck/unify/operations/CrmNotesDelete.java:
     id: "840333557452"
-    last_write_checksum: sha1:2f48cb7fecd09c48e5fdcf308d9674c1957e5fc2
-    pristine_git_object: a3c4f40659e323151c8044a8190fecff5e4fd16e
+    last_write_checksum: sha1:60f5b6e38197082ea2aac2aaf72da7276c618dc7
+    pristine_git_object: b1331e3b5b5dea3505fae002c7a4a74c26a94af3
   src/main/java/com/apideck/unify/operations/CrmNotesOne.java:
     id: 705fd4412c22
-    last_write_checksum: sha1:ec54c255df2266b8b50a7dc0036eb29c178bf314
-    pristine_git_object: 6955ffb87c639919c49346609413f1c3cac2e23e
+    last_write_checksum: sha1:94b79c10cb4a64985c2c1d13f82af0b379b1ad41
+    pristine_git_object: 58f91a2a41a16dec6fcdb357b40d428e236eb213
   src/main/java/com/apideck/unify/operations/CrmNotesUpdate.java:
     id: 9a269ae220b7
-    last_write_checksum: sha1:df7a77814ffecad1b8061f80d8d2a0d7ed65f3ab
-    pristine_git_object: 087de5e5cafde6b350c8814bca44f1b0fb4125a4
+    last_write_checksum: sha1:f83bdc2aecab10ff67254b4de5cb81584d191833
+    pristine_git_object: abdf2a9e25460fb151ae18a56385fe18db2d8a16
   src/main/java/com/apideck/unify/operations/CrmOpportunitiesAdd.java:
     id: 63f3b1a00ed4
-    last_write_checksum: sha1:25534cb523d31f8b223176718961e330cde4f946
-    pristine_git_object: 7b4657037985879f38fc5d9968931bd13f725918
+    last_write_checksum: sha1:03d4aaf9c2b8dd4f25220938878dad05cbc9a67f
+    pristine_git_object: 7e48800a466c6be4cd9470a761c770e6ef1cf979
   src/main/java/com/apideck/unify/operations/CrmOpportunitiesAll.java:
     id: 98862d608c2e
-    last_write_checksum: sha1:7d264d602e2fbdb991950cc5dab3b21a8a02bd03
-    pristine_git_object: 4a428d0f82f1abf5b386354a54359754a7332471
+    last_write_checksum: sha1:bdaf6441492626a76ef5a645a9209d06175ce6ec
+    pristine_git_object: 907b1006ddf6bfcda2b2f13a5a2bb20c8789a921
   src/main/java/com/apideck/unify/operations/CrmOpportunitiesDelete.java:
     id: 90bb192d3ca3
-    last_write_checksum: sha1:c88a0376bea7faf7d3dfdcb4275796908836d10b
-    pristine_git_object: 5afa17e89c7be6ff369725c1c4f6fbd12d0a368b
+    last_write_checksum: sha1:f200cae32d29242161a64b23022f1faa8dea3544
+    pristine_git_object: b578be83f72c3b492e043030ac176d16131eae1d
   src/main/java/com/apideck/unify/operations/CrmOpportunitiesOne.java:
     id: b073c41d7787
-    last_write_checksum: sha1:c119e727d5743a640478d006bccfa3954afd3296
-    pristine_git_object: dafd2b558d46244afdf5f65a46ff998b19c031d8
+    last_write_checksum: sha1:3f2a45534ce0568cdfe19f39603ddcb485ba15d6
+    pristine_git_object: f4493126cf470620665d57c61c306799421449eb
   src/main/java/com/apideck/unify/operations/CrmOpportunitiesUpdate.java:
     id: d1db9469ed9e
-    last_write_checksum: sha1:2d02c36d2a921fa3eb07c770284bd97c6160834d
-    pristine_git_object: 533796540727d311f073e9682ab3478a5ab532b7
+    last_write_checksum: sha1:c35181d69ee613312e2273c8d9ff391bc6bee9b3
+    pristine_git_object: be8523ab0a1257e0da577d8f605652204122b27b
   src/main/java/com/apideck/unify/operations/CrmPipelinesAdd.java:
     id: a25e69d02025
-    last_write_checksum: sha1:b4352da7f6be359583a9432c5fd50832127a825c
-    pristine_git_object: e27c83a6128217d655ead79c2f7bc7de6e1dbcfd
+    last_write_checksum: sha1:acd06951e37000600c9305a5e5578e3c84ae450a
+    pristine_git_object: 35556af959eb1426d8baaf249a5d69ee8283edd4
   src/main/java/com/apideck/unify/operations/CrmPipelinesAll.java:
     id: 398dcd74cd90
-    last_write_checksum: sha1:ececa7d7ca013b8df10422b1f14b6f3a2d44593d
-    pristine_git_object: 927cfb690d33de93d5ebdbd9ec87cb1335423e64
+    last_write_checksum: sha1:462253d9ad08c6acc65dfa4a204b3bc2637edd2f
+    pristine_git_object: 02244347007a25113eb21fcfd3ddb0d24a192bb9
   src/main/java/com/apideck/unify/operations/CrmPipelinesDelete.java:
     id: 5e2471a04754
-    last_write_checksum: sha1:cb85d1d1bb7128996165494233ffae7f12b50780
-    pristine_git_object: 09f07f794b3d733c4caa98d89477edb43f8a13ca
+    last_write_checksum: sha1:4a44abe48f0ecc870f882838b6e72caed18ecf95
+    pristine_git_object: 9c8e50ff85a6de2dce9298aaf611552b7ba2cc33
   src/main/java/com/apideck/unify/operations/CrmPipelinesOne.java:
     id: d57c7a8ffd1c
-    last_write_checksum: sha1:4c247e8fcda10ea518811e2984bef132c4eb59b2
-    pristine_git_object: cb9df5fb0ae550514efe046c5295781811bfcfad
+    last_write_checksum: sha1:3db8b4bbd5bc0f24170db27ee481c315cce98a6f
+    pristine_git_object: 042c7bb040feeb93113cf33b2e4a7b6447a2fa89
   src/main/java/com/apideck/unify/operations/CrmPipelinesUpdate.java:
     id: ea6071f445cb
-    last_write_checksum: sha1:1fae9592667ad8fe5b609f894ac0f714dcfc9f83
-    pristine_git_object: b1eec8a61c14c6b48c78df42cc8a023a70d06626
+    last_write_checksum: sha1:24fdc3461f70b236747f18417a82cf6b01b51f46
+    pristine_git_object: 284b7adeff958dc96ce93375d9e723e5e3648cf7
   src/main/java/com/apideck/unify/operations/CrmUsersAdd.java:
     id: 71e76bb681ef
-    last_write_checksum: sha1:e074dcbea4002992de1758f21ce9edd1296d37e4
-    pristine_git_object: 8be5ab03e6925cf6b189c8b1c693c0d4d2c2b613
+    last_write_checksum: sha1:f15b25e7c907595d74ede3071df96d878e87bc76
+    pristine_git_object: bb35935a3d1e7db2f6dfabb5ef428e71b6389be5
   src/main/java/com/apideck/unify/operations/CrmUsersAll.java:
     id: 25c9f041741c
-    last_write_checksum: sha1:1c5661f7c2bcacfa7d9446c36c47315953e93c21
-    pristine_git_object: 5b4ed54d8b1a147359835acf4815ef884d7440d8
+    last_write_checksum: sha1:337f060d5531a337476db5c7450b30987ba53b1a
+    pristine_git_object: a4fa79486c8a970523a08e19d754e6329895b654
   src/main/java/com/apideck/unify/operations/CrmUsersDelete.java:
     id: 422d1673d953
-    last_write_checksum: sha1:6ceeffc618e4b7d2a781043b10f7f4a346d0a39e
-    pristine_git_object: d11dd94ae7604b2bca75dc444dbe87ef5d09c535
+    last_write_checksum: sha1:44994de35619f02ab06c8306da975b8ea2fa15e0
+    pristine_git_object: 2542f26530c9790a2fd50218a973a083bff3675e
   src/main/java/com/apideck/unify/operations/CrmUsersOne.java:
     id: 4a33621d261a
-    last_write_checksum: sha1:37afbf7e9a2df1472c68aeac23d5a8cc90055df0
-    pristine_git_object: 45d960fe54a02310ae1abf2fff2bd270ecf22a90
+    last_write_checksum: sha1:cf29c3663add042bcfd63e1e491118344c86043d
+    pristine_git_object: ba73cb148facbba1470b918a07738c4815045c33
   src/main/java/com/apideck/unify/operations/CrmUsersUpdate.java:
     id: 097e5047e5ea
-    last_write_checksum: sha1:b872c397f347e1269187204d4327710e0e3f4f74
-    pristine_git_object: ab65c635496264fe65391a21f9dc8ac964404f19
+    last_write_checksum: sha1:2c0bb719eaca992b7986ee55a2de0215ecc0a6d6
+    pristine_git_object: 340b2f4f1654e9a0d189feaa153c828235af76ee
   src/main/java/com/apideck/unify/operations/EcommerceCustomersAll.java:
     id: a29081c9f221
-    last_write_checksum: sha1:bbaed2d9a14279e8a85e669c1157927afff911ba
-    pristine_git_object: bc9065a88e0ae4db9dcfb5ae2ebe06c84c442f2b
+    last_write_checksum: sha1:3922b28cf2944d4a400217c28f248011c1721998
+    pristine_git_object: ef39377cedb350e9dff1ed7b73653fb90346aa97
   src/main/java/com/apideck/unify/operations/EcommerceCustomersOne.java:
     id: 30227fd9ef84
-    last_write_checksum: sha1:6aecdf98f3d22234a41cb88d9b909ed924c3f7cb
-    pristine_git_object: c0d846de59d35f204a6a9cf13d5f5d8eb57db728
+    last_write_checksum: sha1:59f37b3c1234b5d38fbf7533c7eb9a7786f3de50
+    pristine_git_object: d7907add6ce7f1836639a02b2a1dc7ed0c075ad5
   src/main/java/com/apideck/unify/operations/EcommerceOrdersAll.java:
     id: 640852b122f6
-    last_write_checksum: sha1:d2378d74e3754d7f8401cb1a512bbab33826cdce
-    pristine_git_object: 1c84cf74e8e5118d209b9983729e0d97d1738ac6
+    last_write_checksum: sha1:b8a50bab1c4fe48035734c06795237058cd187b1
+    pristine_git_object: 34ec4b4699820b23c949e3091a51268391ea087c
   src/main/java/com/apideck/unify/operations/EcommerceOrdersOne.java:
     id: 6227232583a8
-    last_write_checksum: sha1:929d5372463d07ff9cd2d2679083ca478e4d67a3
-    pristine_git_object: 1d8f7cdba4884def0449eeeb586ddcafca499e78
+    last_write_checksum: sha1:dc88f8786699cc0df1c2e1a94daa11e8f8b7918b
+    pristine_git_object: a8b2e87ba58a081205606446143948a9bae9787d
   src/main/java/com/apideck/unify/operations/EcommerceProductsAll.java:
     id: 86a9c8cd1850
-    last_write_checksum: sha1:250aec359b027d02704cc38cc77f1925fcf1259c
-    pristine_git_object: 6208dc3569ebb18fd44a4df18af7be91c21f27d8
+    last_write_checksum: sha1:5441453b2ea0897292669fc04edad3e946348f18
+    pristine_git_object: f3b13c0a1a8453e62407f9bc0944f8120e86b0a6
   src/main/java/com/apideck/unify/operations/EcommerceProductsOne.java:
     id: 30625509e340
-    last_write_checksum: sha1:0ae056b6def4c97d6231f81deaf2e9a4f6f3a325
-    pristine_git_object: fe6ea784830817e40b39bcc6e556c65fc8fcd709
+    last_write_checksum: sha1:7e137e25ef30d1e93e9bc79bf3a9e682b15bf134
+    pristine_git_object: 26864726fcc0cc09fb80db278027426fe38f8b3f
   src/main/java/com/apideck/unify/operations/EcommerceStoresOne.java:
     id: 4ba2c6c45aa4
-    last_write_checksum: sha1:c914c0c7c2e257c7bb3f8b3a79fd22466cab2d95
-    pristine_git_object: d91d28763736b8278d553f3451710a618544b09c
+    last_write_checksum: sha1:b3b35afe1432aac5c1e9ff8a8efd9f4e9cf247d1
+    pristine_git_object: 563469205906d1be54566d8eb4f1cf1882a1d381
   src/main/java/com/apideck/unify/operations/FileStorageDriveGroupsAdd.java:
     id: b64088542022
-    last_write_checksum: sha1:b6385b74a8f1bfb881fe5547ffc943cde6e611d2
-    pristine_git_object: aaa9ea85315a8eadde3172247e9c4cdc0e51d1a6
+    last_write_checksum: sha1:4946d1ef4786416593beb9c703bb0d2692b3646f
+    pristine_git_object: b06b66bd69731cdd2cdad207d27ee609bda438c2
   src/main/java/com/apideck/unify/operations/FileStorageDriveGroupsAll.java:
     id: d8a46a8203d9
-    last_write_checksum: sha1:afd1baecaa106730b4f63d5c4b469f4612c28a3e
-    pristine_git_object: 699123b41f4a387ebe36445ec225d38fcc51d3ec
+    last_write_checksum: sha1:0aeb7675563072733a70e9654cfa306e426f9a80
+    pristine_git_object: 9561f12dc714b1ef93d5605b870d116003538b30
   src/main/java/com/apideck/unify/operations/FileStorageDriveGroupsDelete.java:
     id: 1be8e0ab686f
-    last_write_checksum: sha1:04619d06d22236e2c7ae59de1f2b20ea133062b5
-    pristine_git_object: f06181f341a1b077d7e186d7fa6d22bbb58fe29a
+    last_write_checksum: sha1:6623c9c35a3cedc1312a3dca51765ddb4855b141
+    pristine_git_object: fbe2e0b7833f3a0a2a53b0a5c5484913fbc4da9d
   src/main/java/com/apideck/unify/operations/FileStorageDriveGroupsOne.java:
     id: d625398a393b
-    last_write_checksum: sha1:3594ea36153ad5b9fb07d89d36cf2dfbee194a57
-    pristine_git_object: b5634c2ff28ab61b14f355b4087f072d51a90ad8
+    last_write_checksum: sha1:d2954127da04ad252f20d979bde7e92e1f4706fd
+    pristine_git_object: 792dcb647a5a0e3783ab6659f32ffd17ebbe60bf
   src/main/java/com/apideck/unify/operations/FileStorageDriveGroupsUpdate.java:
     id: 585a481f7234
-    last_write_checksum: sha1:f7df4c9cf8142ce081533a8b761a42b40779cd90
-    pristine_git_object: 2382c735cbda8db1196e54fb776e559069ca4a87
+    last_write_checksum: sha1:254c909e08f78a2e81bad6d65456125e5c17149c
+    pristine_git_object: f0c6a46d746ffb0afeb8e6b3de5408affafdb83a
   src/main/java/com/apideck/unify/operations/FileStorageDrivesAdd.java:
     id: aedca40019da
-    last_write_checksum: sha1:660e6d01a9e08f3d838c37b386c48790104cb49d
-    pristine_git_object: a736fee0f9379262116c37a325560f74f1102863
+    last_write_checksum: sha1:c1c2c8fcc7df9b2bf575b3ab1139b0d0e478fb66
+    pristine_git_object: 30e139b969266e5e4575df0cd47e134fa76a70e2
   src/main/java/com/apideck/unify/operations/FileStorageDrivesAll.java:
     id: b4992c31bec9
-    last_write_checksum: sha1:158427b1c4eb3fd07134bc3097eeebe0d94a5ff4
-    pristine_git_object: 586bba31a15e8eaef5ace39f1728d1cb013428c9
+    last_write_checksum: sha1:598e9516baf03c25b5f8fb82b6df7c3397360b35
+    pristine_git_object: e677c9e6cc87662cba40ae3bd31b5a0fed1c3103
   src/main/java/com/apideck/unify/operations/FileStorageDrivesDelete.java:
     id: 033cc6639679
-    last_write_checksum: sha1:fd3146f6cbe00b57c2e54b58a46a8592973bd76a
-    pristine_git_object: 06124e599fa01d09875fddf5e560c4d808aea719
+    last_write_checksum: sha1:825d069f0faa076b3121486170ac647bc40297af
+    pristine_git_object: 0b8f989f8fcd6f090a76fc8a1aa0738b8da07f94
   src/main/java/com/apideck/unify/operations/FileStorageDrivesOne.java:
     id: f057770cf582
-    last_write_checksum: sha1:7f1e14906b2c04b77074e4f5fa4a05f4aa35f936
-    pristine_git_object: ef79635f4450a6033c9447769635bd57667ea60a
+    last_write_checksum: sha1:beb16fc2db4266a6039b357fe454b612e5e14949
+    pristine_git_object: 2485da9d74a0d2b3a48ccf3ea3436a9cbf5f272c
   src/main/java/com/apideck/unify/operations/FileStorageDrivesUpdate.java:
     id: 4ada79fbf4db
-    last_write_checksum: sha1:3f23b4559a4439b6e35ec1e9f5e094cc7587dfeb
-    pristine_git_object: d9717035a5c084b748e77dedf0e9a18cb22fd162
+    last_write_checksum: sha1:4b11d51887b65ca471638f75225ad73591d1c2b9
+    pristine_git_object: 8441e701220ea3b00eb9da15321cb7b2b3647c84
   src/main/java/com/apideck/unify/operations/FileStorageFilesAll.java:
     id: 2ece14c1e9d6
-    last_write_checksum: sha1:f7794f28cc91088980c772a8bdc0daf1d36283c3
-    pristine_git_object: 92073884b9cd2e554f8194a65d7fe4f08800c311
+    last_write_checksum: sha1:ca17664796f41df222948ccc2def0682ce0aab65
+    pristine_git_object: 3d96906d47f6652ace30877daf2b3a5842655c44
   src/main/java/com/apideck/unify/operations/FileStorageFilesDelete.java:
     id: 4ded2edc8ec7
-    last_write_checksum: sha1:5b571661ec48fb554e68d282d4a039df1ad2e8e0
-    pristine_git_object: 452647a1787cf97a0fc953939fbab129a179679d
+    last_write_checksum: sha1:4d7f8f50c31c75a308ae78edb5a47950b4479dd5
+    pristine_git_object: b3d615c96580896151e029ff5c9bea813d314a3b
   src/main/java/com/apideck/unify/operations/FileStorageFilesDownload.java:
     id: 4ae23ee3cdf9
-    last_write_checksum: sha1:832271c8ee3ad53a37af4351638479ae786e8a01
-    pristine_git_object: fbb3f9adc70b0a44bd2dfac12e9ab826f26b5ae4
+    last_write_checksum: sha1:06011911a74afbc093c6d9090d609de121435d10
+    pristine_git_object: 55158f04f7ba9771a7426795f52ccd686e271f46
   src/main/java/com/apideck/unify/operations/FileStorageFilesExport.java:
     id: 59335121d1ea
-    last_write_checksum: sha1:f1fd6746664b069ac27412a6db1d4ade14dc800d
-    pristine_git_object: ef1f5d1d6f609e45870a9bd3d8c0b952fdd0e337
+    last_write_checksum: sha1:dc0971a8da9f605a8802a2c1b5020965e788a966
+    pristine_git_object: ba69ebcd3e8420e3d67dce660163e138b618c301
   src/main/java/com/apideck/unify/operations/FileStorageFilesOne.java:
     id: 634a642d0af2
-    last_write_checksum: sha1:8ee7f443636b43931a5441eac71ece049b3e7bc2
-    pristine_git_object: 3c1f5b2ff3027acbdddb26fb789ad85cccc0639d
+    last_write_checksum: sha1:5e9ee9aca51dfb51468b99ae504c0996482f28bb
+    pristine_git_object: e3af7dfdddea9e7290feb4e43857948c856382ff
   src/main/java/com/apideck/unify/operations/FileStorageFilesSearch.java:
     id: 9683c51489d7
-    last_write_checksum: sha1:6e9f0599f065c1492f69c1c858253a69e85dc2d5
-    pristine_git_object: 7e1fdb09500106b907a5a2fb84da626418c92642
+    last_write_checksum: sha1:25211621f898f3a3b2b9dceb7da7f472850f9baa
+    pristine_git_object: 2b4e4b73aaa7a030323d006924380c6e7e3e24b1
   src/main/java/com/apideck/unify/operations/FileStorageFilesUpdate.java:
     id: 1ed1d398472b
-    last_write_checksum: sha1:094d9e740562584e20fcef8c0ebe5a6fc92bc179
-    pristine_git_object: 46d68ed8522c8cab26d97ab5a8041790af352a02
+    last_write_checksum: sha1:a0fc97450fc0022b5694c52518de8c444f6fa703
+    pristine_git_object: 622479744a4edf6dfa828e592a1c0be854a40b83
   src/main/java/com/apideck/unify/operations/FileStorageFoldersAdd.java:
     id: 14b8e725f43f
-    last_write_checksum: sha1:d7e5698b0a4dca4db307a83d50d5638478370e27
-    pristine_git_object: 5f3abe1676aef9675464ae097463523e1334273a
+    last_write_checksum: sha1:6a8f40a34c89626dda9ff9a1820a215ab42fac78
+    pristine_git_object: 3805559a49b4f23ba6e3e8ed1436f160fc458cbf
   src/main/java/com/apideck/unify/operations/FileStorageFoldersCopy.java:
     id: ed179a38d6f2
-    last_write_checksum: sha1:370d737b43509ee6693c4953ab233ef44a21b309
-    pristine_git_object: a12e9f81d33ee334b331d6fcb74997b9937f557e
+    last_write_checksum: sha1:966e48ac78f515ad7681627fece33b67d04ed108
+    pristine_git_object: ccb49ec115b9d0928a530d7414969e2601359020
   src/main/java/com/apideck/unify/operations/FileStorageFoldersDelete.java:
     id: cda1a2f792e8
-    last_write_checksum: sha1:14f4bbaac5972de5f45c6d8e2a79af5e2a44800b
-    pristine_git_object: aa46394bd286d6c7e3d19df94c80c07adba7a464
+    last_write_checksum: sha1:e50c86e71b15df5e1acbe55de46b00eb0ad98747
+    pristine_git_object: 3c94018f446cb2119a58d8ae5a24d834073392eb
   src/main/java/com/apideck/unify/operations/FileStorageFoldersOne.java:
     id: 39427bf84efd
-    last_write_checksum: sha1:4386a843f665fa62f753c61694b8b3b3a5a90c8b
-    pristine_git_object: 36c3963afeb55a15c2dfb36aa23b96bcc4052659
+    last_write_checksum: sha1:214c604a54f90452d2c614ab36c15976a3449e5a
+    pristine_git_object: ba3d6d546deb108c37bf4971496d1650e22e2d55
   src/main/java/com/apideck/unify/operations/FileStorageFoldersUpdate.java:
     id: 6328a142344f
-    last_write_checksum: sha1:065106ba3f9f535e23e674b2a02f9c0252c96b10
-    pristine_git_object: 1e476a3282a1a7dd88efc6fa7f095cb377ae1bed
+    last_write_checksum: sha1:689a09c540036b709285bd6091549cb91743a851
+    pristine_git_object: 36ba843200c7c9ee4b040bfdc6c68a97c8cd9585
   src/main/java/com/apideck/unify/operations/FileStorageSharedLinksAdd.java:
     id: 1c4cd996ad57
-    last_write_checksum: sha1:48d63153fc59f23bbbfabaaffb089a4307a09ec2
-    pristine_git_object: ca723e1148fd75c044625d6cd8d4144a6123279b
+    last_write_checksum: sha1:6ade6878fded3d79103e04aa5ac6a126edb1da45
+    pristine_git_object: 490e961452e8561e8e7c143aa06f97d80216d058
   src/main/java/com/apideck/unify/operations/FileStorageSharedLinksAll.java:
     id: 66d9c3d9ed63
-    last_write_checksum: sha1:def3c7a859877497d0b82778ed4d061befa71f7c
-    pristine_git_object: 341df22691937a2cd3df9e100dc9491982a91fb8
+    last_write_checksum: sha1:81b8217c4fdedd2c1cc4205577e0a07312295db7
+    pristine_git_object: bf9a4df0583da16a18f99459c433799712ebd7c6
   src/main/java/com/apideck/unify/operations/FileStorageSharedLinksDelete.java:
     id: cef109aa7509
-    last_write_checksum: sha1:bdaca79107f78bfbf07bb184b873ee2993c0835a
-    pristine_git_object: 0a4ed0b4ab95079657cd66b855906aaee9882e14
+    last_write_checksum: sha1:b8bc8185dcc2f4503e4b56797199ab7c4cb4dd68
+    pristine_git_object: c7cfb208f923268877ceabbc47b1e81a41105d08
   src/main/java/com/apideck/unify/operations/FileStorageSharedLinksOne.java:
     id: f1339189c7e3
-    last_write_checksum: sha1:ceb33075d3432adba0107b70b0fabfc089179b44
-    pristine_git_object: 9553a4ff03e29e8b4290881250ab9c6101f7741a
+    last_write_checksum: sha1:4fb21a62cc6cadeceef5aaec4a8ca9c121ba4154
+    pristine_git_object: eaa8aa8f7b1afde7fc20e1b9a4ceb0d8991561f7
   src/main/java/com/apideck/unify/operations/FileStorageSharedLinksUpdate.java:
     id: 2cc92da7db4c
-    last_write_checksum: sha1:fb4ef3386d19457039880d2ebfbf3a0e424b8888
-    pristine_git_object: 430ec99e2997973401c0b53f4305d40462c5602c
+    last_write_checksum: sha1:632af2a66d8ba8ebf299d214342fc428cdb13533
+    pristine_git_object: 67c6105de5be8d8688c915337cfdce1bb8d9ec78
   src/main/java/com/apideck/unify/operations/FileStorageUploadSessionsAdd.java:
     id: 1af9f6adbec5
-    last_write_checksum: sha1:cb404b480f4b4460023583a3c7418aeccf8056b0
-    pristine_git_object: 80bd37501b027c97993f2c51139679e59854916d
+    last_write_checksum: sha1:114f91ae3d5915aaf6bec4616fd09caee424a8cb
+    pristine_git_object: 2bc01396c86553af5b05e8ee54751c763d9d9459
   src/main/java/com/apideck/unify/operations/FileStorageUploadSessionsDelete.java:
     id: 67131e865360
-    last_write_checksum: sha1:df0da53ea90140a38195fd70658e1a71d520a496
-    pristine_git_object: 37d15fddb2d2619c068fa2ec22b65a44e45e8ffb
+    last_write_checksum: sha1:e6b97bb7308d43429ec76825a75f59334062cecf
+    pristine_git_object: e790e8afc54cc7552a3d1086cf581192d21f485b
   src/main/java/com/apideck/unify/operations/FileStorageUploadSessionsFinish.java:
     id: cf22cba2093d
-    last_write_checksum: sha1:57c3bc2ce5fb328ce1dd19c523eb90c3107035de
-    pristine_git_object: ff49b0729587b8fb56f3ae92903642abad07d375
+    last_write_checksum: sha1:b4906a560e58b771f7387d36e5650a77d54436a6
+    pristine_git_object: a9b2ce047136c16650d31c97e38b174dbab4ca82
   src/main/java/com/apideck/unify/operations/FileStorageUploadSessionsOne.java:
     id: b0497e71d422
-    last_write_checksum: sha1:49a5980ef63b9893ca752b2ceae71b988ac36ee9
-    pristine_git_object: c99a340eb4efd174f88d7bbdb5fb261671662c53
+    last_write_checksum: sha1:99d319efc287aaef7d057f447e7e403c75e14e42
+    pristine_git_object: ed335b463c0a6128ac15d92c8e9e2c62b30599ce
   src/main/java/com/apideck/unify/operations/FileStorageUploadSessionsUpload.java:
     id: a4caaace5504
-    last_write_checksum: sha1:b051c3e872f647aa36787ccd4e0ebcea7dec9c13
-    pristine_git_object: 26158ee1e8d3425e9ee37942b8ab19919f1a9d2e
+    last_write_checksum: sha1:7a0120ba8473df45d621d2e5d2e0c8d722c188b6
+    pristine_git_object: 096b7f03df18b32ca16511b4ae9fa9f0eea4a3d8
   src/main/java/com/apideck/unify/operations/HrisCompaniesAdd.java:
     id: f14dd856ddda
-    last_write_checksum: sha1:2e38b908dbad1292c640af96fdb5103033b80147
-    pristine_git_object: b59f87d2c2d46ea8e8b8dd626ce0f3bb9a3b4865
+    last_write_checksum: sha1:8b386243237447f20997aeee66385ec635d95548
+    pristine_git_object: d42be61187a25e4d2e8a7e03fec7394ec86d70a5
   src/main/java/com/apideck/unify/operations/HrisCompaniesAll.java:
     id: d47200dbd01d
-    last_write_checksum: sha1:98748b369cc78d7eb86d535530ed874f6564da6c
-    pristine_git_object: befe9f63f337be8460d764a119e9685a0bb0219b
+    last_write_checksum: sha1:0356f8fba8fc01975a651be8d4fee69e65b2af79
+    pristine_git_object: 5bbb76840e2b9b634d75e142f5ec52b332f0f906
   src/main/java/com/apideck/unify/operations/HrisCompaniesDelete.java:
     id: 00dce1050230
-    last_write_checksum: sha1:db9db153ff7ca03e7077877f94c0496fba05f3e0
-    pristine_git_object: 7ab42d4c00f8bf1da58a9917da620011bec43113
+    last_write_checksum: sha1:cc94c19b27f2418653c58251f5f2b968c39f8154
+    pristine_git_object: 3c7b178d0162228968644f831939788ac4332098
   src/main/java/com/apideck/unify/operations/HrisCompaniesOne.java:
     id: 0d67c102bf1a
-    last_write_checksum: sha1:b2957cb3a3210893d32afbb1f75f02abb459e550
-    pristine_git_object: f9997b1fc4ec4f988065840585c7c2f6dd7c54b4
+    last_write_checksum: sha1:0c9c3907b91a2dc19616e65290411fdef777bbe5
+    pristine_git_object: 90ebeb826db921301e16a22819967fac4fcd6cf4
   src/main/java/com/apideck/unify/operations/HrisCompaniesUpdate.java:
     id: 8fded1f3db84
-    last_write_checksum: sha1:b870624c356be200916ea0707e348c9f051a755d
-    pristine_git_object: a819ec8266f395105470ba9a8d9bff4d771059ab
+    last_write_checksum: sha1:f400af37a5a674ad152b45598b71edff26ac789b
+    pristine_git_object: 7843660b94212cfaabb7386139907d84319e8d2c
   src/main/java/com/apideck/unify/operations/HrisDepartmentsAdd.java:
     id: 5547ddf20ab9
-    last_write_checksum: sha1:1211526deadd8faf429eec1e07e72530141acf04
-    pristine_git_object: 8963f9fe7fd7c94d02447e5506b859f6b11dfe59
+    last_write_checksum: sha1:97e3479165787815dc379aab40dec32bba8f8e03
+    pristine_git_object: cbdf9abd548d3932d6dabb72132d4f2dbd0ceeac
   src/main/java/com/apideck/unify/operations/HrisDepartmentsAll.java:
     id: 8ca13084ba07
-    last_write_checksum: sha1:ef2e70d7c27c018f6e555d207e4fa493f7e64864
-    pristine_git_object: 063218acc4e15e5b7e421c0f8a6cf3695d19462b
+    last_write_checksum: sha1:457c54988f907c5f460a5a3f2a0f9bd2a6007d4c
+    pristine_git_object: 3c3429db685d2cf40485e0e9713d344cb9501782
   src/main/java/com/apideck/unify/operations/HrisDepartmentsDelete.java:
     id: bb6a05824196
-    last_write_checksum: sha1:021d4839df944a402573c2365b98d3971940d84f
-    pristine_git_object: 4027657454ae114b7e4a4301d1fae1700f0a2bd9
+    last_write_checksum: sha1:3134b14775c556906ad670326556ce9bc53fef31
+    pristine_git_object: 86b955921b9892bbad7bbe921bc075727f47e034
   src/main/java/com/apideck/unify/operations/HrisDepartmentsOne.java:
     id: ee20501394cc
-    last_write_checksum: sha1:d0b27b172ec929ee75689c37708817504b618227
-    pristine_git_object: cc85ab35c0a982fe36e4dd0277bd94d6b4a26ebc
+    last_write_checksum: sha1:82cf76b8fa60f78f22749fe055200a8dc84c920b
+    pristine_git_object: 75c8495957cd3b956847cd5fb1a45b472ce8049d
   src/main/java/com/apideck/unify/operations/HrisDepartmentsUpdate.java:
     id: 197bb4203dd6
-    last_write_checksum: sha1:313d906186ee3457eaa9e6801d9587b4aa31d308
-    pristine_git_object: e0984782b2df090140eda97aa5688bc17458e287
+    last_write_checksum: sha1:c59331061db1748be062c6bf0c70d8c67470ae7d
+    pristine_git_object: 86b6c0b02e120e5807664f6b6991320859571521
   src/main/java/com/apideck/unify/operations/HrisEmployeePayrollsAll.java:
     id: e71ed8008de3
-    last_write_checksum: sha1:676927474b2d7619ce99129a6bdfd959aa7f3160
-    pristine_git_object: aea290f0c02bf2a7bcea5db408248b3a2f8a7504
+    last_write_checksum: sha1:a75d5d8533c1b22b2b141b2d92d2b116410c2adf
+    pristine_git_object: c7eca4554624409517511666012ae8abb46e681b
   src/main/java/com/apideck/unify/operations/HrisEmployeePayrollsOne.java:
     id: 027c6083ce1e
-    last_write_checksum: sha1:6ebed94ea44bd97810b1a1ff38f50806a06dc276
-    pristine_git_object: b0eb28cd69e24a1f0a65ba0c3467b815bd657576
+    last_write_checksum: sha1:899fedef2d0d81b9fec3b4da6b2dca5faaf5b570
+    pristine_git_object: b44802fb7b85a4ef9e85e2c3ce2e95b7890a465e
   src/main/java/com/apideck/unify/operations/HrisEmployeeSchedulesAll.java:
     id: faa202c6cb6c
-    last_write_checksum: sha1:e2981b4a7bf3203ebf9acab38e82fb5989d353fa
-    pristine_git_object: 8bf15f7a2cf0b396f9b2c0a2cdc10c0b4479a306
+    last_write_checksum: sha1:6b99704ab754c5ff04e80d87dae414e9fafe175e
+    pristine_git_object: 6aea6fb096f01eef88735d1ce68f9534fe56d723
   src/main/java/com/apideck/unify/operations/HrisEmployeesAdd.java:
     id: f4fd4f8a2529
-    last_write_checksum: sha1:4cfe45ce3bdd322e4f55e0e2d4b6c0debf7c5606
-    pristine_git_object: 6ee99c98cf2e2c108e34231f6a1460c9f99f5a99
+    last_write_checksum: sha1:54030144719bbb8f67a5af26c2b2267124f463e1
+    pristine_git_object: 4bfed46bd7894fde8bc6460563c7ed7cfd109a2e
   src/main/java/com/apideck/unify/operations/HrisEmployeesAll.java:
     id: ec77ac2c95bd
-    last_write_checksum: sha1:fad6182e49d42c93a24475ed1a576d3e9ef650a4
-    pristine_git_object: 977de41e6b3b0b566f3b279ece1f844dc6f9de04
+    last_write_checksum: sha1:e9cd3bc20509479e4b20e6c8568f8bc82ee51faa
+    pristine_git_object: 215cf706d21fd3f8f6cdf619d6067801aa0c0629
   src/main/java/com/apideck/unify/operations/HrisEmployeesDelete.java:
     id: 5b16a8dbb9ad
-    last_write_checksum: sha1:49eade7387bdada9e721efe8dbcb1957018865f9
-    pristine_git_object: 87e435d920ebef55271b93c0790341c2088cf8e8
+    last_write_checksum: sha1:0aac0550ac6fea2045fbb5d74b55fb992b51b338
+    pristine_git_object: 96aa1f194e82e7275f54b76c454ff7b261c0348c
   src/main/java/com/apideck/unify/operations/HrisEmployeesOne.java:
     id: cac8a86f2131
-    last_write_checksum: sha1:43cc9c59c163385b9a97a80e37202b4f6baeabcb
-    pristine_git_object: 1a9579178faae6bb05012cccc0edf87bdb6d41ba
+    last_write_checksum: sha1:e0572375709758c181d3d31859cfbde08a107532
+    pristine_git_object: 1ebb94853b4ec953559bdd66c4d98ef4e5f72c1d
   src/main/java/com/apideck/unify/operations/HrisEmployeesUpdate.java:
     id: 063481341a3e
-    last_write_checksum: sha1:a947c27c01abbacffdaf924bbec747db2ed5976c
-    pristine_git_object: 0511003218158755d9d72987e27099f3157207ae
+    last_write_checksum: sha1:aaebc657afca8c393c2ae97ac5980e78b40054a3
+    pristine_git_object: b3efcf2742aa05f1a88b57f2dd65bc693e3aefc8
   src/main/java/com/apideck/unify/operations/HrisPayrollsAll.java:
     id: 6055b3845445
-    last_write_checksum: sha1:d47861783865058f49a490914f197d34eb08dd40
-    pristine_git_object: dc839ae3c9224ecd5444cb6b84c26a87657f3c59
+    last_write_checksum: sha1:e44906931c9ef99ce60e016955b59fb15f2b9a6f
+    pristine_git_object: c37232d83f9a0f92040656b39689cb6b7d46022a
   src/main/java/com/apideck/unify/operations/HrisPayrollsOne.java:
     id: 9a93bd558aac
-    last_write_checksum: sha1:6101082ea3d4f4fc56da1b849afeb8b3d1dfa614
-    pristine_git_object: ea53267231fdcce109038de7d11c1bc184e3d6b4
+    last_write_checksum: sha1:1d42f54a626f6db6e7b2089ca0f045448551354b
+    pristine_git_object: ce7dd649100bce5e1ec880a67b9a8be3adc4ac81
   src/main/java/com/apideck/unify/operations/HrisTimeOffRequestsAdd.java:
     id: 5b7666c55792
-    last_write_checksum: sha1:bcfa330687088505760f9ab4423d4eb0530778f9
-    pristine_git_object: 6b493d25437f5bb9f9dd494a2e0072fa675572ea
+    last_write_checksum: sha1:4723ffc2cb0dd11c1565a735594e43478a6662bd
+    pristine_git_object: 0a90db1f63ca3ee1ee6b978b261d67b4e1f3054f
   src/main/java/com/apideck/unify/operations/HrisTimeOffRequestsAll.java:
     id: f646e47a91ca
-    last_write_checksum: sha1:17a14a8f9b7fa16ed80ff94b9c948d1fea5d321f
-    pristine_git_object: 64238a21b2e6e8ca5830220ce75672ec5555800d
+    last_write_checksum: sha1:54744f1df84ba84806239eff375eeb1a931521e0
+    pristine_git_object: 4771a82a9e71b62fb0ba385c680975fe4fd2d188
   src/main/java/com/apideck/unify/operations/HrisTimeOffRequestsDelete.java:
     id: 1659ee2c69e1
-    last_write_checksum: sha1:a720d0436b8cc6b8d34e4334e8d8b3a306048a84
-    pristine_git_object: ced49b50b1841da23a081676422113c12ca0e788
+    last_write_checksum: sha1:1bed191662b1d0bdba357186597ed41248d6f016
+    pristine_git_object: 16cd805d1ed390f2276134ac05dd8ec1e2922bb8
   src/main/java/com/apideck/unify/operations/HrisTimeOffRequestsOne.java:
     id: e9ce133906dc
-    last_write_checksum: sha1:9681612b439e6857864ea5b697be32b0e8945e39
-    pristine_git_object: 6aa211b6b75b3d7cc2ce5fa2c06b696de7bca710
+    last_write_checksum: sha1:c86efcb9ee4031296ae682689f70be5e84ab8f44
+    pristine_git_object: e1f77bcb27405ab27e6a5590b097a626f22599d2
   src/main/java/com/apideck/unify/operations/HrisTimeOffRequestsUpdate.java:
     id: be8e93c80372
-    last_write_checksum: sha1:158a59266e7fb5ff60bcae0b508590ec148ac7b6
-    pristine_git_object: f1bf65eafb76145831ab1d8ecdb1f7d1a4f7a1b6
+    last_write_checksum: sha1:f9da33adfe6ba35b6c510106b09155629b4fbd38
+    pristine_git_object: 0783b849fa2b12cd874a810de7b60298385165f8
   src/main/java/com/apideck/unify/operations/IssueTrackingCollectionTagsAll.java:
     id: f75687d1243d
-    last_write_checksum: sha1:43f70e9a5da66752c0e07b2fb5b506b42632eb9f
-    pristine_git_object: 518f688e46671964ed0831b59492335dd0d67565
+    last_write_checksum: sha1:2cd30f0b0bb17765bba2e627138afaf3841fc577
+    pristine_git_object: 2242d97d212cf8e61422b72407e79290e4b67a67
   src/main/java/com/apideck/unify/operations/IssueTrackingCollectionTicketCommentsAdd.java:
     id: 875afaa00c47
-    last_write_checksum: sha1:15050bd9531a797fc16fb6ea661e8f5c1f678400
-    pristine_git_object: 59c661c66d7ef18a186e112136d7a79e851d7f84
+    last_write_checksum: sha1:aa501082752cb4b5a63131e884d3bf735a44375a
+    pristine_git_object: f69655f14bc2e00374dbf75f7624ec8e9d03ecc2
   src/main/java/com/apideck/unify/operations/IssueTrackingCollectionTicketCommentsAll.java:
     id: 7f4985531b87
-    last_write_checksum: sha1:95a662b74f49bc1ac294277475aecf6c60996e75
-    pristine_git_object: 23c08c1ecc3bc99bfa7f6fbb253782e2237f4bc2
+    last_write_checksum: sha1:472eb67cb17ef131e804c740420a2f7b5db65095
+    pristine_git_object: c690f378057e73db8acf13a1d1e5e9e92850f5c6
   src/main/java/com/apideck/unify/operations/IssueTrackingCollectionTicketCommentsDelete.java:
     id: 689cadb9e37e
-    last_write_checksum: sha1:bdbf7419003e874b86f3b55ecac04e5011f7afa9
-    pristine_git_object: 7ef846d9cf5b538b5744eb09ccc81277a37c68ca
+    last_write_checksum: sha1:29a415cb1a7bb9d632998748412b79f91b6aa74d
+    pristine_git_object: 7481fdb332d6fd3bff02df40f26593a624324b56
   src/main/java/com/apideck/unify/operations/IssueTrackingCollectionTicketCommentsOne.java:
     id: 55d0f88b183f
-    last_write_checksum: sha1:4ef5e495ea77aae379f71922c79f9f9bc9f31806
-    pristine_git_object: 20cc8979cc249c5f06a36c1e7d2ad4c18ad5ec03
+    last_write_checksum: sha1:afd39d4eb93f443a59ebf889e4d30ff19a9667b3
+    pristine_git_object: 6a1a756e91f583b0b4332409e1e5097b976ee34e
   src/main/java/com/apideck/unify/operations/IssueTrackingCollectionTicketCommentsUpdate.java:
     id: 4baeb142945d
-    last_write_checksum: sha1:6f4ecdf0d92de56bb3f5b310188e030cc7ada76d
-    pristine_git_object: a2522be69af79b6650b849fa5674a142dce3decb
+    last_write_checksum: sha1:6cc2c7faa5ea7683b0921d5ade41ab7673e2b0a2
+    pristine_git_object: 7df29534b8b485dc1d5efcb89a1dc0883d462aaf
   src/main/java/com/apideck/unify/operations/IssueTrackingCollectionTicketsAdd.java:
     id: d7ad6802a1c1
-    last_write_checksum: sha1:f7b5ea4b76b956512dd8e973a09b52804dac9e08
-    pristine_git_object: 35957cc8890ca284567a8b66e8cad55857469a8b
+    last_write_checksum: sha1:88eea1c11116e21d306ad0ecc67d72fbc5bfe6db
+    pristine_git_object: 9a29b9727f5a5daf2ad207a205e8f024d6d12952
   src/main/java/com/apideck/unify/operations/IssueTrackingCollectionTicketsAll.java:
     id: 9e60b51ae05f
-    last_write_checksum: sha1:a8478bc676e9b15b7dd78c192d16ec13d0b496ec
-    pristine_git_object: 9d1f6371b6b1a50ac1806308648861644d7aef15
+    last_write_checksum: sha1:6709fd47d86178973ac878ffc4b01b3b95e5aa0f
+    pristine_git_object: cf876cbe4207c17a896096162d1204caf0cccefb
   src/main/java/com/apideck/unify/operations/IssueTrackingCollectionTicketsDelete.java:
     id: dd9f3acdac46
-    last_write_checksum: sha1:c546b8c7fcc84de30ffaf341ea1067b824f41521
-    pristine_git_object: 2907e119477b16e0a4d4e0b08215e3d2cba02de9
+    last_write_checksum: sha1:de9f524f1051a17d44032dd6ebb86eadb148c839
+    pristine_git_object: 3d670854b0256aa47c0f5d783c9ba0530926b2af
   src/main/java/com/apideck/unify/operations/IssueTrackingCollectionTicketsOne.java:
     id: 8b835e6985d5
-    last_write_checksum: sha1:ca65add0da370cfb590a8e8ae8db7afbd27cbbf8
-    pristine_git_object: 362108a9a7e5ed1cc1164db787a779f1bdd39bf4
+    last_write_checksum: sha1:a578da087fbf97e25b6abbc51a96269d74df33a2
+    pristine_git_object: 92276b31ab09282cf09f384796937310375ec0cd
   src/main/java/com/apideck/unify/operations/IssueTrackingCollectionTicketsUpdate.java:
     id: 2782ff16a1a7
-    last_write_checksum: sha1:9ea84a1d001d6815b1fe61e69b14cedf35c55796
-    pristine_git_object: 175ddeb580714f25044f05f2ea7baa225affed93
+    last_write_checksum: sha1:3d9b317e367c6aa54ae924dbd0534cd3d614a8ab
+    pristine_git_object: 7c90ae0e16ca2d525cc44889e547d2b382e7fe27
   src/main/java/com/apideck/unify/operations/IssueTrackingCollectionUsersAll.java:
     id: 686391bff67c
-    last_write_checksum: sha1:687707fc91cdde50ce3e39d906eb0220c412aa6a
-    pristine_git_object: a71ec1ff96d18a5d06e973c594327eeb104b9e72
+    last_write_checksum: sha1:cf73541a5ca0a19cf2119471d29feddec0a846da
+    pristine_git_object: 817a3ad72a75c303ad77a3acf5a4d2e4e67a29a3
   src/main/java/com/apideck/unify/operations/IssueTrackingCollectionUsersOne.java:
     id: cec016a23a62
-    last_write_checksum: sha1:ccd92223206f41d59a19291e58596ae5039bd852
-    pristine_git_object: 9221ed99c2774da5b70c594f96f5133e46101f92
+    last_write_checksum: sha1:6c9335cbfbfa297671296bcc71d2161a2b4f9330
+    pristine_git_object: bcf20fd46bb37bb64f04c8bde10b743cdf28f8c7
   src/main/java/com/apideck/unify/operations/IssueTrackingCollectionsAll.java:
     id: 7e1469db1b95
-    last_write_checksum: sha1:672676f886b636c8dfd0c30bec8bf6fdcdd02bb8
-    pristine_git_object: b975fa55c9d67d2d84f3fce546a72ee5aeb3627b
+    last_write_checksum: sha1:492c98ae3cb0eaabcb165e1954c9285c974f9588
+    pristine_git_object: 5e38e751232fe360f223e6aaa2f23b1fd3fb38f5
   src/main/java/com/apideck/unify/operations/IssueTrackingCollectionsOne.java:
     id: 5042ed15225e
-    last_write_checksum: sha1:d10fc8118aa8a511edd34a3a4e2caaf8190113d8
-    pristine_git_object: abed4519f6a51801ea08cc74db8139b24a6b3586
+    last_write_checksum: sha1:af806d68ef7e22ca349eb6a407b4b23b83808685
+    pristine_git_object: 2001849df9d20b7ef09e0419eca5fb46c467f41a
   src/main/java/com/apideck/unify/operations/Operations.java:
     id: 92f51ee710f6
     last_write_checksum: sha1:1560d060a4f214a5a4cea52a005ebe484ab44ab5
     pristine_git_object: 379098bb7c6676c376912241f3396f1a9dd5c7cb
   src/main/java/com/apideck/unify/operations/ProxyDeleteProxy.java:
     id: 87c2394af16a
-    last_write_checksum: sha1:3e7a48319ba25439bef9623d42456cdfd2935629
-    pristine_git_object: 5f447c88949a571dcd01c0c2780c76bc6237897b
+    last_write_checksum: sha1:3b4f6488945d56d675a5ea394546df5fc3160da6
+    pristine_git_object: 76669874c9e6b0d5c2ccfdbb3114356ead600e5c
   src/main/java/com/apideck/unify/operations/ProxyGetProxy.java:
     id: ea5c9dea5115
-    last_write_checksum: sha1:64954060a54b1821a4a8924acaebf6c5cc2dea30
-    pristine_git_object: 3d7c3b95238b8fa1366ba9a1d68d132c122963b6
+    last_write_checksum: sha1:61ffccaf4cc0b6f5bc512bf7de3db5a07d527b27
+    pristine_git_object: 44ee12ac62f52df76de68e779214e9e40428d8d6
   src/main/java/com/apideck/unify/operations/ProxyOptionsProxy.java:
     id: bb224731f426
-    last_write_checksum: sha1:a335b7861dc9afa9600c69689d59d72da9ced1e2
-    pristine_git_object: ec1ebf65c5404b045c6493d6b6db1735ea5e0313
+    last_write_checksum: sha1:4664c60ac5c80db582b6335921e5e143f01e955a
+    pristine_git_object: e133ad7acbd85c7ee0c0f5e65a1c51f4a741b994
   src/main/java/com/apideck/unify/operations/ProxyPatchProxy.java:
     id: db7fb2f5d25b
-    last_write_checksum: sha1:7b21c05ca5c19bba81998032f3fab2391997d134
-    pristine_git_object: 4118107a860eda172e69d4e266845bb320a81331
+    last_write_checksum: sha1:7650dac35df85dd184636d72032e3178eb582d8d
+    pristine_git_object: 6ef76ce5231f53e4789eb8a4abd49ff7b241c9ad
   src/main/java/com/apideck/unify/operations/ProxyPostProxy.java:
     id: c4116f385dc1
-    last_write_checksum: sha1:02aae5348b0ea500b74cd94f03a3e7075660c1f1
-    pristine_git_object: 46c4cb506725ac252119eec466ffc592f659a942
+    last_write_checksum: sha1:36b0c4b3b24ca34adab173686ab9b52421888784
+    pristine_git_object: 8c26bddba0ce78463f76744740da60389d7c4239
   src/main/java/com/apideck/unify/operations/ProxyPutProxy.java:
     id: 9c73d60c3f28
-    last_write_checksum: sha1:8c6b838c859a5e1d6b1a77f7c429864467590121
-    pristine_git_object: 63a2a3d5d2f7d2fab910c72d143acdbc11a4e4df
+    last_write_checksum: sha1:ca96706faafa5f5717b9aa5c7d915391a4b48a16
+    pristine_git_object: 00169a4782d802964685b880a0bf122a7037fa7d
   src/main/java/com/apideck/unify/operations/SmsMessagesAdd.java:
     id: a4876007a95f
-    last_write_checksum: sha1:7a0d23318c6b25176da675642e5e4c021ce98bfa
-    pristine_git_object: bc430d61c2e37b9d41fb4f55b5c7d8a702c8eefd
+    last_write_checksum: sha1:23e9eb815d80d559e7ebfc2c59c959c0bc8843ab
+    pristine_git_object: e8d9bf0dffdad594e53607cc6ff663b397ef7ad1
   src/main/java/com/apideck/unify/operations/SmsMessagesAll.java:
     id: b47414e0e44d
-    last_write_checksum: sha1:37cbbb3d227077f7801bff4fe8400b4d89096afc
-    pristine_git_object: 4e770bc8bc07507484f03c901018ddee18224a3d
+    last_write_checksum: sha1:0c868f5d40fad126f57e907861fe935d48300da7
+    pristine_git_object: 47885bda552737a1b1402c31d4aa0fb223c9aafc
   src/main/java/com/apideck/unify/operations/SmsMessagesDelete.java:
     id: 80eabbf78cfb
-    last_write_checksum: sha1:3afb76ef6078467fff5b1dc8504c7079b052ce21
-    pristine_git_object: 7c4b51524069a7298d7d250eea62cda15ec143fc
+    last_write_checksum: sha1:26658d1743a1aa7acf5713033444a493109de624
+    pristine_git_object: 4ddf29a8b6b232015bfb847119a9d1eb58c9449d
   src/main/java/com/apideck/unify/operations/SmsMessagesOne.java:
     id: 047fb03270ee
-    last_write_checksum: sha1:da8413066fa0bed0cb225a63d9d4836a1bbae9ba
-    pristine_git_object: 242cab8d0bb25ad6c8027d603f8b081ec255cc0c
+    last_write_checksum: sha1:6dbc6e6c4d7b9d6e0c60c3ca30b146e02501378f
+    pristine_git_object: 81ff2ebf91ed52b2543c3de92dd277ce5560eed1
   src/main/java/com/apideck/unify/operations/SmsMessagesUpdate.java:
     id: 57109affe106
-    last_write_checksum: sha1:1400f6c916760d4af569119fb6cad2be278b6b04
-    pristine_git_object: fbfecdc7d83b8f737155aa2069fe8517bc121e0d
+    last_write_checksum: sha1:39921879b7e3ca869d4e1a7dfe920a456ed6e4a6
+    pristine_git_object: a230b698de47074002aa860e4e516fd68b830e16
   src/main/java/com/apideck/unify/operations/VaultConnectionConsentUpdate.java:
     id: 4d60401c5006
-    last_write_checksum: sha1:234d0b5fe45fd437049651596e04ee73062e68c8
-    pristine_git_object: 142fa88d7141af481b6d72d0f61c8434db886281
+    last_write_checksum: sha1:726aca0494f277d91b549e5855b339869c6749bc
+    pristine_git_object: 40e1e911ab3c85ffafbcad9358bae18d932eca55
   src/main/java/com/apideck/unify/operations/VaultConnectionConsentsAll.java:
     id: 26db6ebf7e9a
-    last_write_checksum: sha1:ae9e8190649b7a3eec94c76318419e63a5e66374
-    pristine_git_object: a705da5b8a1c4f2a07a5f4e70d5c5f80b821ccbd
+    last_write_checksum: sha1:4c77522d5e8f5995b116f3c6a82f039cf1cda7be
+    pristine_git_object: 0fb3ae17cc64ce29ac436fd82fd2985f3826659a
   src/main/java/com/apideck/unify/operations/VaultConnectionCustomMappingsAll.java:
     id: 6812b8c280e2
-    last_write_checksum: sha1:4cc7fdd21f7f2e9e7d234fda3823859dc3fa7bca
-    pristine_git_object: 25db819f265e387dc312c605e932609a607f9d5a
+    last_write_checksum: sha1:4e2366dc01d755b9ee5859a97ddf95f17955f53a
+    pristine_git_object: 2a9d4974a90560c529539c927e4c1614dde94b12
   src/main/java/com/apideck/unify/operations/VaultConnectionSettingsAll.java:
     id: 8c65cb2814e5
-    last_write_checksum: sha1:cebf12910b29007e52dada16a8fd9987deaa6ae3
-    pristine_git_object: e077eb33aa179e699dd2711d7cc5f8df0ab58ef7
+    last_write_checksum: sha1:bff9952f4120499c0e28d7fa8efe2edcef63f793
+    pristine_git_object: 9a6846dabc0404085a3bde0bc0e3d6c34a81a90a
   src/main/java/com/apideck/unify/operations/VaultConnectionSettingsUpdate.java:
     id: 11aa42baeba2
-    last_write_checksum: sha1:eb25a3e1662f596ec7fe2cf9e91c3993cc4ac9ed
-    pristine_git_object: bcddac97313765bbb6614b254a707dba9875651d
+    last_write_checksum: sha1:3d3aa5e0fea789264ca60b99e84292976c81e7d7
+    pristine_git_object: 224620ab14595e86bd8414a06c985d4fa494c6bd
   src/main/java/com/apideck/unify/operations/VaultConnectionsAll.java:
     id: ce4effbc5797
-    last_write_checksum: sha1:5ed616e1fc99717d273e6c9cb8b5c4ec0d35003d
-    pristine_git_object: 21ebb7a282a35856929f7b6da39a6e13e859438c
+    last_write_checksum: sha1:2947b18c4bfb67d15f690c6fe0ca92c77523fa9b
+    pristine_git_object: c5bf7b4d84ccabb154f2dbc89805daa082fae3df
   src/main/java/com/apideck/unify/operations/VaultConnectionsDelete.java:
     id: 7bbfe018c84c
-    last_write_checksum: sha1:9232e3d0bebf1ed564c5da8301a8b12f83dcd872
-    pristine_git_object: cfef551da096ebf326ce56d689a3b3dc01f6e26d
+    last_write_checksum: sha1:1bbe3eb4d4819aa6cd067c895e5545bbfe783ea7
+    pristine_git_object: 29899624c14ecea538153bd4436b20cae0fa653a
   src/main/java/com/apideck/unify/operations/VaultConnectionsImport.java:
     id: 10aad02d46c3
-    last_write_checksum: sha1:e667000d7ff72f8f48e4b53792915ad39b20a900
-    pristine_git_object: cb686b36e51eba1ce8cf96581b3289a95ac966b7
+    last_write_checksum: sha1:e6a070f6c7c49513784bb9186f1bca754d8f001d
+    pristine_git_object: 121e9d871d21736ea0f407651d62fe8e93a723a9
   src/main/java/com/apideck/unify/operations/VaultConnectionsOne.java:
     id: 6c9674c79576
-    last_write_checksum: sha1:ff7ebcb6b8cf30411adf618d0d224d8c7be7bd0b
-    pristine_git_object: 73e56ab8d86b873b3e229c8862dd631525f44285
+    last_write_checksum: sha1:c7a0cbc69df7937de259cf70fdff3fb5bc128825
+    pristine_git_object: 0fc8e59be6776657e636300ee2f57ab0e7e1eff4
   src/main/java/com/apideck/unify/operations/VaultConnectionsToken.java:
     id: 29f0f998c17e
-    last_write_checksum: sha1:fa15f8db48763f2d00e4fb245d292ea799eb4abb
-    pristine_git_object: 78c27d0abca5d2385ccb0224e043c7ed1c704e3a
+    last_write_checksum: sha1:1ecc7351ad0ef6dd46cb9a3cb2ef1e22d4aae006
+    pristine_git_object: 5023660afce329d34e86d17d5af5a241af7b3919
   src/main/java/com/apideck/unify/operations/VaultConnectionsUpdate.java:
     id: f5b5248fb1cd
-    last_write_checksum: sha1:8ca763779e2d3d81510ab65c9c9fe06d77840dbc
-    pristine_git_object: 8f3841ecfc341ee9d175585fcbfbc021ecf44868
+    last_write_checksum: sha1:4001dacb93fa33c2d90968a0f9ee402cdf084e7d
+    pristine_git_object: d92d4062dd7c3d8492645c09e287f257ee4939bd
   src/main/java/com/apideck/unify/operations/VaultConsumerRequestCountsAll.java:
     id: 5cdf357753c7
-    last_write_checksum: sha1:9ceb6b9356b6d06c97ddc051adabcf2a6508798f
-    pristine_git_object: c1ecddc631d1ad2c2968f26cabddc406f45d8163
+    last_write_checksum: sha1:fe6b55160bf4132c7d3e91e4e61592c08fafd168
+    pristine_git_object: 06c3135b48fe3cc260924a0fc87be5e1f2a3601b
   src/main/java/com/apideck/unify/operations/VaultConsumersAdd.java:
     id: bd5b230598fd
-    last_write_checksum: sha1:e94f896f34179d485bd351d8efe24d6af4977293
-    pristine_git_object: c21d23975c1c4f9ff7f3859c6d40a7a72d39db07
+    last_write_checksum: sha1:dd5dde2f9f0a3d918a5ae60314fa3ad4fe8e4ed5
+    pristine_git_object: 1613ffad906b724d912e8c501afac9bc6312888a
   src/main/java/com/apideck/unify/operations/VaultConsumersAll.java:
     id: 310b499f5595
-    last_write_checksum: sha1:005d6fb457eb4bc9db2c76288e4e0fef0aa0912b
-    pristine_git_object: 9f72a8998fcbf4a4009f695b6a39cebbee76340b
+    last_write_checksum: sha1:132b74a1bed26e69d3995cca5cffcabed4ddf4ed
+    pristine_git_object: 93da8573eec0fce2d281838827731ac17067d2ba
   src/main/java/com/apideck/unify/operations/VaultConsumersDelete.java:
     id: 2f1ad588c089
-    last_write_checksum: sha1:96dc36b1bfa1ddfbb7a14296539106548d71e3d8
-    pristine_git_object: 96cfdc4790a9cd38a23b5ad5d987f9d33b701be5
+    last_write_checksum: sha1:9142789ed2ab103cb8f1c75c7937c56651cc85b1
+    pristine_git_object: 2945cf422e17219ca90d34bbb70c55d88971c075
   src/main/java/com/apideck/unify/operations/VaultConsumersOne.java:
     id: 664934c17c5a
-    last_write_checksum: sha1:bca2068b3b2e7d4f15ea860b26c4eb02af77f6cc
-    pristine_git_object: d70bb6e7d6d9cf3bc68d9614bda3f9889a20179f
+    last_write_checksum: sha1:c5d0294c55b38f912a537e0bd5f34a066e84550f
+    pristine_git_object: 394fbba024158c37babaa07d8ae7a6c7eca38ea5
   src/main/java/com/apideck/unify/operations/VaultConsumersUpdate.java:
     id: a4b58ab58b87
-    last_write_checksum: sha1:b9fc4532ca6a9c9b36bee115fd8ee100e9436c13
-    pristine_git_object: 1e6a5a0437f89e2628e3baa4f021a624496969a1
+    last_write_checksum: sha1:5a330d26e226e948cd277d005937550e690a6afa
+    pristine_git_object: 33625ed511844231f3abf055ae2498a34bf83a00
   src/main/java/com/apideck/unify/operations/VaultCreateCallbackState.java:
     id: 26ad7a4a7a69
-    last_write_checksum: sha1:cb7cba787abe52b789eee4838409663df772e323
-    pristine_git_object: 7e81d66a2c5d3686f6e8a408c107f95d50f979db
+    last_write_checksum: sha1:8abbd7984656393f29e6c7c69cf9f2ec934ba51a
+    pristine_git_object: a36ccc6867e2d28130d414dcf63d41b154df3901
   src/main/java/com/apideck/unify/operations/VaultCustomFieldsAll.java:
     id: ab9e50e35385
-    last_write_checksum: sha1:c70e75b9a88158d62f02686d9793ee50d2d438ec
-    pristine_git_object: d07a2e0add359f65e3b20c91f2a552b8ed6e3b55
+    last_write_checksum: sha1:e117c841ff570f810b06d85b2b97f1f2b6c5db86
+    pristine_git_object: 21136f62a9d3ed52bfd60d9785edf08a90f8666e
   src/main/java/com/apideck/unify/operations/VaultCustomMappingsAll.java:
     id: 327e2680b7c3
-    last_write_checksum: sha1:fc3911f2b07ff641c96dce404d796101349d3305
-    pristine_git_object: 67e3f350a5034a139fd4972257db7ef56e45b01a
+    last_write_checksum: sha1:e022ebd5c0a6adf56a4b3776c083ab30ece3b9b8
+    pristine_git_object: eb72ddfe7453bdf19b62069452c597779334aec6
   src/main/java/com/apideck/unify/operations/VaultLogsAll.java:
     id: 22540fb7c3ab
-    last_write_checksum: sha1:eb743ec2013fde492ab90d36a689e2225f610c23
-    pristine_git_object: d1f242f23910c9e383bda4bdaf241ba85f5cb206
+    last_write_checksum: sha1:129c43dbe4c8d2b0b12b4d74908ac26613d8c012
+    pristine_git_object: 802aed65070e19631115df3f622f21b455dc9539
   src/main/java/com/apideck/unify/operations/VaultSessionsCreate.java:
     id: 08b6cf8302bb
-    last_write_checksum: sha1:32b45bfd729fe18587dfb0d13dd5e279aeddc021
-    pristine_git_object: 5b2f6e32fe4408221c3b156f2d699c9613d6d484
+    last_write_checksum: sha1:891c00dec831f59d3f60bfc859c852388aeb47f6
+    pristine_git_object: ef79affd40bf2db7a7ce66b182d11185b998eb52
   src/main/java/com/apideck/unify/operations/VaultValidateConnectionState.java:
     id: 16f8ba2d5dad
-    last_write_checksum: sha1:5b7d31456c18c3d3e009135c2e71b6a5c4092d1f
-    pristine_git_object: b89faadec7e8d08165a58bdeb4c8e877267d20a7
+    last_write_checksum: sha1:b8b385142c12cf522e59a2d7d692f48b6224366f
+    pristine_git_object: 4d882c1f49fa15ea66cf8663192b6ef7543a204b
   src/main/java/com/apideck/unify/operations/WebhookWebhooksAdd.java:
     id: 458e3a6165f7
-    last_write_checksum: sha1:167502c0e05a952ac2e1cef4a8c6cd8e3b84f455
-    pristine_git_object: 8b12ee7a9508b1495a32075d58fda1cdafd283eb
+    last_write_checksum: sha1:e4a7962e4f6ee079d55fc1b4e6d6cedbda163c15
+    pristine_git_object: b55ab497f83e73d82172c3ffd84d24f9abe46689
   src/main/java/com/apideck/unify/operations/WebhookWebhooksAll.java:
     id: 56faf8e857da
-    last_write_checksum: sha1:73e96f48198285b04a5d3064f4bfc1f97e08e563
-    pristine_git_object: 9f9a7effd6bbf1fb1c4fd0084f7e86b31a39d298
+    last_write_checksum: sha1:2eae10f8c229c773f6a82d38ccaebcc1548d3186
+    pristine_git_object: d0d8d98f70eee35fb11ad07b3be49c25badc6b37
   src/main/java/com/apideck/unify/operations/WebhookWebhooksDelete.java:
     id: 64cadf363037
-    last_write_checksum: sha1:45dd9b204cf053a2cf6a907c0f4f723fcb2ead83
-    pristine_git_object: e0a9fb544ea4204651be02d7f63bda5963d7e458
+    last_write_checksum: sha1:c6d62715dac38601bf86d55073d138751d617b67
+    pristine_git_object: b9c0953387d81e4d625776a0d73b07d2673180e9
   src/main/java/com/apideck/unify/operations/WebhookWebhooksOne.java:
     id: 6af4efc779ca
-    last_write_checksum: sha1:590d1c4ed9ec7eb17bcf13959d3595e969472b9b
-    pristine_git_object: 57a98cef1a8326ab7e603246aacb569d9995312e
+    last_write_checksum: sha1:d21e231925d1be58df95f53bed2c82cd46ef4223
+    pristine_git_object: 78ad4c4e68e57e951398067bfcbc6ea08c0397c2
   src/main/java/com/apideck/unify/operations/WebhookWebhooksUpdate.java:
     id: 405a65aabec6
-    last_write_checksum: sha1:c0353542f5fc43afdde50095752cd9360f2caa07
-    pristine_git_object: 2453948bbddf431cfe9cffdb6556f08b52b76d3a
+    last_write_checksum: sha1:f4b28e0e1ae3d22e418f1707036c4b28b8c2a858
+    pristine_git_object: 7844dff2dc2ab38ca7305144f09118c87b396bad
   src/main/java/com/apideck/unify/utils/AsyncHook.java:
     id: 84d294d08166
     last_write_checksum: sha1:0ff6a221608f76d8dc2ef3d211479fb98ff77e31
@@ -20515,7 +20523,7 @@ examples:
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
           x-apideck-service-id: "salesforce"
       requestBody:
-        application/json: {"display_id": "123456", "bill_number": "10001", "supplier": {"id": "12345", "display_name": "Windsurf Shop", "address": {"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "line5": "Attention: Finance Dept", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}}, "company_id": "12345", "location_id": "12345", "department_id": "12345", "currency": "USD", "currency_rate": 0.69, "tax_inclusive": true, "bill_date": "2020-09-30", "due_date": "2020-10-30", "paid_date": "2020-10-30", "po_number": "90000117", "reference": "INV-2024-001", "line_items": [{"row_id": "12345", "code": "120-C", "line_number": 1, "description": "Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.", "type": "expense_account", "tax_amount": 27500, "total_amount": 27500, "quantity": 1, "unit_price": 27500.5, "unit_of_measure": "pc.", "discount_percentage": 0.01, "discount_amount": 19.99, "location_id": "12345", "department_id": "12345", "item": {"id": "12344", "code": "120-C", "name": "Model Y"}, "tax_rate": {"id": "123456", "rate": 10}, "ledger_account": {"id": "123456", "nominal_code": "N091", "code": "453"}, "tracking_categories": [{"id": "123456", "name": "New York"}], "row_version": "1-12345"}], "terms": "Net 30 days", "terms_id": "12345", "balance": 27500, "deposit": 0, "sub_total": 250, "total_tax": 25, "total": 27500, "tax_code": "1234", "notes": "Some notes about this bill.", "status": "draft", "ledger_account": {"id": "123456", "name": "Bank account", "nominal_code": "N091", "code": "453", "parent_id": "123456", "display_id": "123456"}, "payment_method": "cash", "channel": "email", "language": "EN", "accounting_by_row": false, "bank_account": {"bank_name": "Chase Bank", "account_number": "123465", "account_name": "Main Operating Account", "account_type": "credit_card", "iban": "GB33BUKB20201555555555", "bic": "CHASUS33", "routing_number": "021000021", "bsb_number": "062-001", "branch_identifier": "001", "bank_code": "BNH", "currency": "USD", "country": "US"}, "discount_percentage": 5.5, "template_id": "123456", "approved_by": "John Doe", "tax_method": "Due to supplier", "document_received": true, "source_document_url": "https://www.invoicesolution.com/bill/123456", "tracking_categories": [{"id": "123456", "name": "New York"}], "row_version": "1-12345", "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}], "accounting_period": "01-24", "attachments": [{"name": "sample.jpg", "mime_type": "image/jpeg", "is_compressed": false, "encoding": "base64", "content": "data:image/jpeg;base64,...", "notes": "A sample image"}]}
+        application/json: {"display_id": "123456", "bill_number": "10001", "supplier": {"id": "12345", "display_name": "Windsurf Shop", "address": {"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "line5": "Attention: Finance Dept", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}}, "company_id": "12345", "location_id": "12345", "department_id": "12345", "currency": "USD", "currency_rate": 0.69, "tax_inclusive": true, "bill_date": "2020-09-30", "due_date": "2020-10-30", "paid_date": "2020-10-30", "po_number": "90000117", "reference": "INV-2024-001", "line_items": [{"row_id": "12345", "code": "120-C", "line_number": 1, "description": "Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.", "type": "expense_account", "tax_amount": 27500, "total_amount": 27500, "quantity": 1, "unit_price": 27500.5, "unit_of_measure": "pc.", "discount_percentage": 0.01, "discount_amount": 19.99, "location_id": "12345", "department_id": "12345", "item": {"id": "12344", "code": "120-C", "name": "Model Y"}, "tax_rate": {"id": "123456", "rate": 10}, "ledger_account": {"id": "123456", "nominal_code": "N091", "code": "453"}, "tracking_categories": [{"id": "123456", "name": "New York"}], "row_version": "1-12345"}], "terms": "Net 30 days", "terms_id": "12345", "balance": 27500, "deposit": 0, "sub_total": 250, "total_tax": 25, "total": 27500, "tax_code": "1234", "notes": "Some notes about this bill.", "status": "draft", "ledger_account": {"id": "123456", "name": "Bank account", "nominal_code": "N091", "code": "453", "parent_id": "123456", "display_id": "123456"}, "payment_method": "cash", "channel": "email", "language": "EN", "accounting_by_row": false, "bank_account": {"bank_name": "Chase Bank", "account_number": "123465", "account_name": "Main Operating Account", "account_type": "credit_card", "iban": "GB33BUKB20201555555555", "bic": "CHASUS33", "routing_number": "021000021", "bsb_number": "062-001", "branch_identifier": "001", "bank_code": "BNH", "currency": "USD", "country": "US"}, "discount_percentage": 5.5, "template_id": "123456", "approved_by": "John Doe", "tax_method": "Due to supplier", "document_received": true, "source_document_url": "https://www.invoicesolution.com/bill/123456", "payment_allocations": [{"id": "123456", "allocated_amount": 1000, "date": "2020-09-30T07:43:32.000Z"}], "tracking_categories": [{"id": "123456", "name": "New York"}], "row_version": "1-12345", "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}], "accounting_period": "01-24", "attachments": [{"name": "sample.jpg", "mime_type": "image/jpeg", "is_compressed": false, "encoding": "base64", "content": "data:image/jpeg;base64,...", "notes": "A sample image"}]}
       responses:
         "201":
           application/json: {"status_code": 200, "status": "OK", "service": "xero", "resource": "bills", "operation": "add", "data": {"id": "12345"}}
@@ -20572,7 +20580,7 @@ examples:
           x-apideck-company-id: "12345"
       responses:
         "200":
-          application/json: {"status_code": 200, "status": "OK", "service": "xero", "resource": "bills", "operation": "one", "data": {"id": "12345", "downstream_id": "12345", "display_id": "123456", "bill_number": "10001", "supplier": {"id": "12345", "display_id": "SUPP00101", "display_name": "Windsurf Shop", "company_name": "The boring company", "address": {"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "line5": "Attention: Finance Dept", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}}, "company_id": "12345", "location_id": "12345", "department_id": "12345", "currency": "USD", "currency_rate": 0.69, "tax_inclusive": true, "bill_date": "2020-09-30", "due_date": "2020-10-30", "paid_date": "2020-10-30", "po_number": "90000117", "reference": "INV-2024-001", "line_items": [{"id": "12345", "row_id": "12345", "code": "120-C", "line_number": 1, "description": "Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.", "type": "expense_account", "tax_amount": 27500, "total_amount": 27500, "quantity": 1, "unit_price": 27500.5, "unit_of_measure": "pc.", "discount_percentage": 0.01, "discount_amount": 19.99, "location_id": "12345", "department_id": "12345", "item": {"id": "12344", "code": "120-C", "name": "Model Y"}, "tax_rate": {"id": "123456", "code": "N-T", "name": "GST on Purchases", "rate": 10}, "ledger_account": {"id": "123456", "name": "Bank account", "nominal_code": "N091", "code": "453"}, "tracking_categories": [{"id": "123456", "name": "New York"}], "row_version": "1-12345", "updated_by": "12345", "created_by": "12345", "created_at": "2020-09-30T07:43:32.000Z", "updated_at": "2020-09-30T07:43:32.000Z"}], "terms": "Net 30 days", "terms_id": "12345", "balance": 27500, "deposit": 0, "sub_total": 250, "total_tax": 25, "total": 27500, "tax_code": "1234", "notes": "Some notes about this bill.", "status": "draft", "ledger_account": {"id": "123456", "name": "Bank account", "nominal_code": "N091", "code": "453", "parent_id": "123456", "display_id": "123456"}, "payment_method": "cash", "channel": "email", "language": "EN", "accounting_by_row": false, "bank_account": {"bank_name": "Chase Bank", "account_number": "123465", "account_name": "Main Operating Account", "account_type": "credit_card", "iban": "GB33BUKB20201555555555", "bic": "CHASUS33", "routing_number": "021000021", "bsb_number": "062-001", "branch_identifier": "001", "bank_code": "BNH", "currency": "USD", "country": "US"}, "discount_percentage": 5.5, "template_id": "123456", "approved_by": "John Doe", "tax_method": "Due to supplier", "document_received": true, "source_document_url": "https://www.invoicesolution.com/bill/123456", "tracking_categories": [{"id": "123456", "name": "New York"}], "updated_by": "12345", "created_by": "12345", "updated_at": "2020-09-30T07:43:32.000Z", "created_at": "2020-09-30T07:43:32.000Z", "row_version": "1-12345", "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}], "accounting_period": "01-24", "attachments": [{"name": "sample.jpg", "mime_type": "image/jpeg", "is_compressed": false, "encoding": "base64", "content": "data:image/jpeg;base64,...", "notes": "A sample image"}]}}
+          application/json: {"status_code": 200, "status": "OK", "service": "xero", "resource": "bills", "operation": "one", "data": {"id": "12345", "downstream_id": "12345", "display_id": "123456", "bill_number": "10001", "supplier": {"id": "12345", "display_id": "SUPP00101", "display_name": "Windsurf Shop", "company_name": "The boring company", "address": {"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "line5": "Attention: Finance Dept", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}}, "company_id": "12345", "location_id": "12345", "department_id": "12345", "currency": "USD", "currency_rate": 0.69, "tax_inclusive": true, "bill_date": "2020-09-30", "due_date": "2020-10-30", "paid_date": "2020-10-30", "po_number": "90000117", "reference": "INV-2024-001", "line_items": [{"id": "12345", "row_id": "12345", "code": "120-C", "line_number": 1, "description": "Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.", "type": "expense_account", "tax_amount": 27500, "total_amount": 27500, "quantity": 1, "unit_price": 27500.5, "unit_of_measure": "pc.", "discount_percentage": 0.01, "discount_amount": 19.99, "location_id": "12345", "department_id": "12345", "item": {"id": "12344", "code": "120-C", "name": "Model Y"}, "tax_rate": {"id": "123456", "code": "N-T", "name": "GST on Purchases", "rate": 10}, "ledger_account": {"id": "123456", "name": "Bank account", "nominal_code": "N091", "code": "453"}, "tracking_categories": [{"id": "123456", "name": "New York"}], "row_version": "1-12345", "updated_by": "12345", "created_by": "12345", "created_at": "2020-09-30T07:43:32.000Z", "updated_at": "2020-09-30T07:43:32.000Z"}], "terms": "Net 30 days", "terms_id": "12345", "balance": 27500, "deposit": 0, "sub_total": 250, "total_tax": 25, "total": 27500, "tax_code": "1234", "notes": "Some notes about this bill.", "status": "draft", "ledger_account": {"id": "123456", "name": "Bank account", "nominal_code": "N091", "code": "453", "parent_id": "123456", "display_id": "123456"}, "payment_method": "cash", "channel": "email", "language": "EN", "accounting_by_row": false, "bank_account": {"bank_name": "Chase Bank", "account_number": "123465", "account_name": "Main Operating Account", "account_type": "credit_card", "iban": "GB33BUKB20201555555555", "bic": "CHASUS33", "routing_number": "021000021", "bsb_number": "062-001", "branch_identifier": "001", "bank_code": "BNH", "currency": "USD", "country": "US"}, "discount_percentage": 5.5, "template_id": "123456", "approved_by": "John Doe", "tax_method": "Due to supplier", "document_received": true, "source_document_url": "https://www.invoicesolution.com/bill/123456", "payment_allocations": [{"id": "123456", "allocated_amount": 1000, "date": "2020-09-30T07:43:32.000Z"}], "tracking_categories": [{"id": "123456", "name": "New York"}], "updated_by": "12345", "created_by": "12345", "updated_at": "2020-09-30T07:43:32.000Z", "created_at": "2020-09-30T07:43:32.000Z", "row_version": "1-12345", "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}], "accounting_period": "01-24", "attachments": [{"name": "sample.jpg", "mime_type": "image/jpeg", "is_compressed": false, "encoding": "base64", "content": "data:image/jpeg;base64,...", "notes": "A sample image"}]}}
         "400":
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror", "downstream_errors": [{"message": "Account code '100' has been archived or deleted", "detail": "Each line item must reference a valid account", "code": "VALIDATION_ERROR"}]}
         "401":
@@ -20624,7 +20632,7 @@ examples:
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
           x-apideck-service-id: "salesforce"
       requestBody:
-        application/json: {"display_id": "123456", "bill_number": "10001", "supplier": {"id": "12345", "display_name": "Windsurf Shop", "address": {"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "line5": "Attention: Finance Dept", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}}, "company_id": "12345", "location_id": "12345", "department_id": "12345", "currency": "USD", "currency_rate": 0.69, "tax_inclusive": true, "bill_date": "2020-09-30", "due_date": "2020-10-30", "paid_date": "2020-10-30", "po_number": "90000117", "reference": "INV-2024-001", "line_items": [{"row_id": "12345", "code": "120-C", "line_number": 1, "description": "Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.", "type": "expense_account", "tax_amount": 27500, "total_amount": 27500, "quantity": 1, "unit_price": 27500.5, "unit_of_measure": "pc.", "discount_percentage": 0.01, "discount_amount": 19.99, "location_id": "12345", "department_id": "12345", "item": {"id": "12344", "code": "120-C", "name": "Model Y"}, "tax_rate": {"id": "123456", "rate": 10}, "ledger_account": {"id": "123456", "nominal_code": "N091", "code": "453"}, "tracking_categories": [{"id": "123456", "name": "New York"}], "row_version": "1-12345"}], "terms": "Net 30 days", "terms_id": "12345", "balance": 27500, "deposit": 0, "sub_total": 250, "total_tax": 25, "total": 27500, "tax_code": "1234", "notes": "Some notes about this bill.", "status": "draft", "ledger_account": {"id": "123456", "name": "Bank account", "nominal_code": "N091", "code": "453", "parent_id": "123456", "display_id": "123456"}, "payment_method": "cash", "channel": "email", "language": "EN", "accounting_by_row": false, "bank_account": {"bank_name": "Chase Bank", "account_number": "123465", "account_name": "Main Operating Account", "account_type": "credit_card", "iban": "GB33BUKB20201555555555", "bic": "CHASUS33", "routing_number": "021000021", "bsb_number": "062-001", "branch_identifier": "001", "bank_code": "BNH", "currency": "USD", "country": "US"}, "discount_percentage": 5.5, "template_id": "123456", "approved_by": "John Doe", "tax_method": "Due to supplier", "document_received": true, "source_document_url": "https://www.invoicesolution.com/bill/123456", "tracking_categories": [{"id": "123456", "name": "New York"}], "row_version": "1-12345", "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}], "accounting_period": "01-24", "attachments": [{"name": "sample.jpg", "mime_type": "image/jpeg", "is_compressed": false, "encoding": "base64", "content": "data:image/jpeg;base64,...", "notes": "A sample image"}]}
+        application/json: {"display_id": "123456", "bill_number": "10001", "supplier": {"id": "12345", "display_name": "Windsurf Shop", "address": {"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "line5": "Attention: Finance Dept", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}}, "company_id": "12345", "location_id": "12345", "department_id": "12345", "currency": "USD", "currency_rate": 0.69, "tax_inclusive": true, "bill_date": "2020-09-30", "due_date": "2020-10-30", "paid_date": "2020-10-30", "po_number": "90000117", "reference": "INV-2024-001", "line_items": [{"row_id": "12345", "code": "120-C", "line_number": 1, "description": "Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.", "type": "expense_account", "tax_amount": 27500, "total_amount": 27500, "quantity": 1, "unit_price": 27500.5, "unit_of_measure": "pc.", "discount_percentage": 0.01, "discount_amount": 19.99, "location_id": "12345", "department_id": "12345", "item": {"id": "12344", "code": "120-C", "name": "Model Y"}, "tax_rate": {"id": "123456", "rate": 10}, "ledger_account": {"id": "123456", "nominal_code": "N091", "code": "453"}, "tracking_categories": [{"id": "123456", "name": "New York"}], "row_version": "1-12345"}], "terms": "Net 30 days", "terms_id": "12345", "balance": 27500, "deposit": 0, "sub_total": 250, "total_tax": 25, "total": 27500, "tax_code": "1234", "notes": "Some notes about this bill.", "status": "draft", "ledger_account": {"id": "123456", "name": "Bank account", "nominal_code": "N091", "code": "453", "parent_id": "123456", "display_id": "123456"}, "payment_method": "cash", "channel": "email", "language": "EN", "accounting_by_row": false, "bank_account": {"bank_name": "Chase Bank", "account_number": "123465", "account_name": "Main Operating Account", "account_type": "credit_card", "iban": "GB33BUKB20201555555555", "bic": "CHASUS33", "routing_number": "021000021", "bsb_number": "062-001", "branch_identifier": "001", "bank_code": "BNH", "currency": "USD", "country": "US"}, "discount_percentage": 5.5, "template_id": "123456", "approved_by": "John Doe", "tax_method": "Due to supplier", "document_received": true, "source_document_url": "https://www.invoicesolution.com/bill/123456", "payment_allocations": [{"id": "123456", "allocated_amount": 1000, "date": "2020-09-30T07:43:32.000Z"}], "tracking_categories": [{"id": "123456", "name": "New York"}], "row_version": "1-12345", "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}], "accounting_period": "01-24", "attachments": [{"name": "sample.jpg", "mime_type": "image/jpeg", "is_compressed": false, "encoding": "base64", "content": "data:image/jpeg;base64,...", "notes": "A sample image"}]}
       responses:
         "200":
           application/json: {"status_code": 200, "status": "OK", "service": "xero", "resource": "bills", "operation": "update", "data": {"id": "12345"}}
@@ -22351,7 +22359,7 @@ examples:
         query:
           raw: false
           limit: 20
-          filter: {"updated_since": "2020-09-30T07:43:32.000Z", "invoice_id": "123", "supplier_id": "123", "customer_id": "123abc", "type": "accounts_receivable"}
+          filter: {"updated_since": "2020-09-30T07:43:32.000Z", "invoice_id": "123", "bill_id": "123", "supplier_id": "123", "customer_id": "123abc", "type": "accounts_receivable"}
           sort: {"by": "updated_at", "direction": "desc"}
           pass_through: {"search": "San Francisco"}
           fields: "id,updated_at"
@@ -24700,7 +24708,7 @@ examples:
         query:
           raw: false
           limit: 20
-          filter: {"updated_since": "2020-09-30T07:43:32.000Z", "invoice_id": "123", "supplier_id": "123", "customer_id": "123abc", "type": "accounts_receivable"}
+          filter: {"updated_since": "2020-09-30T07:43:32.000Z", "invoice_id": "123", "bill_id": "123", "supplier_id": "123", "customer_id": "123abc", "type": "accounts_receivable"}
           sort: {"by": "updated_at", "direction": "desc"}
           pass_through: {"search": "San Francisco"}
           fields: "id,updated_at"
@@ -36497,6 +36505,7 @@ examples:
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: "## Java SDK Changes:\n* `apideck.accounting.bills.list()`:  `response.data[].paymentAllocations` **Added**\n* `apideck.accounting.bills.create()`: \n  *  `request.bill.paymentAllocations` **Added**\n* `apideck.accounting.bills.get()`:  `response.data.paymentAllocations` **Added**\n* `apideck.accounting.bills.update()`: \n  *  `request.bill.paymentAllocations` **Added**\n* `apideck.accounting.payments.list()`: \n  *  `request.filter` **Changed**\n* `apideck.accounting.billPayments.list()`: \n  *  `request.filter` **Changed**\n"
 generatedFiles:
   - .gitattributes
   - USAGE.md

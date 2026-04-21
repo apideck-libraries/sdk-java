@@ -301,6 +301,13 @@ public class Bill {
     private JsonNullable<String> sourceDocumentUrl;
 
     /**
+     * A list of linked payment allocations.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("payment_allocations")
+    private JsonNullable<? extends List<LinkedPaymentAllocations>> paymentAllocations;
+
+    /**
      * A list of linked tracking categories.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -417,6 +424,7 @@ public class Bill {
             @JsonProperty("tax_method") JsonNullable<String> taxMethod,
             @JsonProperty("document_received") JsonNullable<Boolean> documentReceived,
             @JsonProperty("source_document_url") JsonNullable<String> sourceDocumentUrl,
+            @JsonProperty("payment_allocations") JsonNullable<? extends List<LinkedPaymentAllocations>> paymentAllocations,
             @JsonProperty("tracking_categories") JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories,
             @JsonProperty("updated_by") JsonNullable<String> updatedBy,
             @JsonProperty("created_by") JsonNullable<String> createdBy,
@@ -468,6 +476,7 @@ public class Bill {
         Utils.checkNotNull(taxMethod, "taxMethod");
         Utils.checkNotNull(documentReceived, "documentReceived");
         Utils.checkNotNull(sourceDocumentUrl, "sourceDocumentUrl");
+        Utils.checkNotNull(paymentAllocations, "paymentAllocations");
         Utils.checkNotNull(trackingCategories, "trackingCategories");
         Utils.checkNotNull(updatedBy, "updatedBy");
         Utils.checkNotNull(createdBy, "createdBy");
@@ -519,6 +528,7 @@ public class Bill {
         this.taxMethod = taxMethod;
         this.documentReceived = documentReceived;
         this.sourceDocumentUrl = sourceDocumentUrl;
+        this.paymentAllocations = paymentAllocations;
         this.trackingCategories = trackingCategories;
         this.updatedBy = updatedBy;
         this.createdBy = createdBy;
@@ -548,8 +558,9 @@ public class Bill {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), Optional.empty());
+            Optional.empty());
     }
 
     /**
@@ -869,6 +880,15 @@ public class Bill {
     @JsonIgnore
     public JsonNullable<String> sourceDocumentUrl() {
         return sourceDocumentUrl;
+    }
+
+    /**
+     * A list of linked payment allocations.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<List<LinkedPaymentAllocations>> paymentAllocations() {
+        return (JsonNullable<List<LinkedPaymentAllocations>>) paymentAllocations;
     }
 
     /**
@@ -1673,6 +1693,24 @@ public class Bill {
     }
 
     /**
+     * A list of linked payment allocations.
+     */
+    public Bill withPaymentAllocations(List<LinkedPaymentAllocations> paymentAllocations) {
+        Utils.checkNotNull(paymentAllocations, "paymentAllocations");
+        this.paymentAllocations = JsonNullable.of(paymentAllocations);
+        return this;
+    }
+
+    /**
+     * A list of linked payment allocations.
+     */
+    public Bill withPaymentAllocations(JsonNullable<? extends List<LinkedPaymentAllocations>> paymentAllocations) {
+        Utils.checkNotNull(paymentAllocations, "paymentAllocations");
+        this.paymentAllocations = paymentAllocations;
+        return this;
+    }
+
+    /**
      * A list of linked tracking categories.
      */
     public Bill withTrackingCategories(List<LinkedTrackingCategory> trackingCategories) {
@@ -1915,6 +1953,7 @@ public class Bill {
             Utils.enhancedDeepEquals(this.taxMethod, other.taxMethod) &&
             Utils.enhancedDeepEquals(this.documentReceived, other.documentReceived) &&
             Utils.enhancedDeepEquals(this.sourceDocumentUrl, other.sourceDocumentUrl) &&
+            Utils.enhancedDeepEquals(this.paymentAllocations, other.paymentAllocations) &&
             Utils.enhancedDeepEquals(this.trackingCategories, other.trackingCategories) &&
             Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
             Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
@@ -1944,10 +1983,11 @@ public class Bill {
             language, accountingByRow, bankAccount,
             discountPercentage, templateId, approvedBy,
             amortizationType, taxMethod, documentReceived,
-            sourceDocumentUrl, trackingCategories, updatedBy,
-            createdBy, updatedAt, createdAt,
-            rowVersion, customFields, customMappings,
-            passThrough, accountingPeriod, attachments);
+            sourceDocumentUrl, paymentAllocations, trackingCategories,
+            updatedBy, createdBy, updatedAt,
+            createdAt, rowVersion, customFields,
+            customMappings, passThrough, accountingPeriod,
+            attachments);
     }
     
     @Override
@@ -1993,6 +2033,7 @@ public class Bill {
                 "taxMethod", taxMethod,
                 "documentReceived", documentReceived,
                 "sourceDocumentUrl", sourceDocumentUrl,
+                "paymentAllocations", paymentAllocations,
                 "trackingCategories", trackingCategories,
                 "updatedBy", updatedBy,
                 "createdBy", createdBy,
@@ -2088,6 +2129,8 @@ public class Bill {
         private JsonNullable<Boolean> documentReceived = JsonNullable.undefined();
 
         private JsonNullable<String> sourceDocumentUrl = JsonNullable.undefined();
+
+        private JsonNullable<? extends List<LinkedPaymentAllocations>> paymentAllocations = JsonNullable.undefined();
 
         private JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories = JsonNullable.undefined();
 
@@ -2861,6 +2904,25 @@ public class Bill {
 
 
         /**
+         * A list of linked payment allocations.
+         */
+        public Builder paymentAllocations(List<LinkedPaymentAllocations> paymentAllocations) {
+            Utils.checkNotNull(paymentAllocations, "paymentAllocations");
+            this.paymentAllocations = JsonNullable.of(paymentAllocations);
+            return this;
+        }
+
+        /**
+         * A list of linked payment allocations.
+         */
+        public Builder paymentAllocations(JsonNullable<? extends List<LinkedPaymentAllocations>> paymentAllocations) {
+            Utils.checkNotNull(paymentAllocations, "paymentAllocations");
+            this.paymentAllocations = paymentAllocations;
+            return this;
+        }
+
+
+        /**
          * A list of linked tracking categories.
          */
         public Builder trackingCategories(List<LinkedTrackingCategory> trackingCategories) {
@@ -3076,10 +3138,11 @@ public class Bill {
                 language, accountingByRow, bankAccount,
                 discountPercentage, templateId, approvedBy,
                 amortizationType, taxMethod, documentReceived,
-                sourceDocumentUrl, trackingCategories, updatedBy,
-                createdBy, updatedAt, createdAt,
-                rowVersion, customFields, customMappings,
-                passThrough, accountingPeriod, attachments);
+                sourceDocumentUrl, paymentAllocations, trackingCategories,
+                updatedBy, createdBy, updatedAt,
+                createdAt, rowVersion, customFields,
+                customMappings, passThrough, accountingPeriod,
+                attachments);
         }
 
     }

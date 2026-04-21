@@ -24,6 +24,10 @@ public class PaymentsFilter {
     private Optional<String> invoiceId;
 
 
+    @SpeakeasyMetadata("queryParam:name=bill_id")
+    private Optional<String> billId;
+
+
     @SpeakeasyMetadata("queryParam:name=supplier_id")
     private Optional<String> supplierId;
 
@@ -41,16 +45,19 @@ public class PaymentsFilter {
     public PaymentsFilter(
             Optional<OffsetDateTime> updatedSince,
             Optional<String> invoiceId,
+            Optional<String> billId,
             Optional<String> supplierId,
             Optional<String> customerId,
             Optional<? extends PaymentsFilterType> type) {
         Utils.checkNotNull(updatedSince, "updatedSince");
         Utils.checkNotNull(invoiceId, "invoiceId");
+        Utils.checkNotNull(billId, "billId");
         Utils.checkNotNull(supplierId, "supplierId");
         Utils.checkNotNull(customerId, "customerId");
         Utils.checkNotNull(type, "type");
         this.updatedSince = updatedSince;
         this.invoiceId = invoiceId;
+        this.billId = billId;
         this.supplierId = supplierId;
         this.customerId = customerId;
         this.type = type;
@@ -58,7 +65,7 @@ public class PaymentsFilter {
     
     public PaymentsFilter() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -69,6 +76,11 @@ public class PaymentsFilter {
     @JsonIgnore
     public Optional<String> invoiceId() {
         return invoiceId;
+    }
+
+    @JsonIgnore
+    public Optional<String> billId() {
+        return billId;
     }
 
     @JsonIgnore
@@ -118,6 +130,19 @@ public class PaymentsFilter {
     public PaymentsFilter withInvoiceId(Optional<String> invoiceId) {
         Utils.checkNotNull(invoiceId, "invoiceId");
         this.invoiceId = invoiceId;
+        return this;
+    }
+
+    public PaymentsFilter withBillId(String billId) {
+        Utils.checkNotNull(billId, "billId");
+        this.billId = Optional.ofNullable(billId);
+        return this;
+    }
+
+
+    public PaymentsFilter withBillId(Optional<String> billId) {
+        Utils.checkNotNull(billId, "billId");
+        this.billId = billId;
         return this;
     }
 
@@ -178,6 +203,7 @@ public class PaymentsFilter {
         return 
             Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince) &&
             Utils.enhancedDeepEquals(this.invoiceId, other.invoiceId) &&
+            Utils.enhancedDeepEquals(this.billId, other.billId) &&
             Utils.enhancedDeepEquals(this.supplierId, other.supplierId) &&
             Utils.enhancedDeepEquals(this.customerId, other.customerId) &&
             Utils.enhancedDeepEquals(this.type, other.type);
@@ -186,8 +212,8 @@ public class PaymentsFilter {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            updatedSince, invoiceId, supplierId,
-            customerId, type);
+            updatedSince, invoiceId, billId,
+            supplierId, customerId, type);
     }
     
     @Override
@@ -195,6 +221,7 @@ public class PaymentsFilter {
         return Utils.toString(PaymentsFilter.class,
                 "updatedSince", updatedSince,
                 "invoiceId", invoiceId,
+                "billId", billId,
                 "supplierId", supplierId,
                 "customerId", customerId,
                 "type", type);
@@ -206,6 +233,8 @@ public class PaymentsFilter {
         private Optional<OffsetDateTime> updatedSince = Optional.empty();
 
         private Optional<String> invoiceId = Optional.empty();
+
+        private Optional<String> billId = Optional.empty();
 
         private Optional<String> supplierId = Optional.empty();
 
@@ -240,6 +269,19 @@ public class PaymentsFilter {
         public Builder invoiceId(Optional<String> invoiceId) {
             Utils.checkNotNull(invoiceId, "invoiceId");
             this.invoiceId = invoiceId;
+            return this;
+        }
+
+
+        public Builder billId(String billId) {
+            Utils.checkNotNull(billId, "billId");
+            this.billId = Optional.ofNullable(billId);
+            return this;
+        }
+
+        public Builder billId(Optional<String> billId) {
+            Utils.checkNotNull(billId, "billId");
+            this.billId = billId;
             return this;
         }
 
@@ -291,8 +333,8 @@ public class PaymentsFilter {
         public PaymentsFilter build() {
 
             return new PaymentsFilter(
-                updatedSince, invoiceId, supplierId,
-                customerId, type);
+                updatedSince, invoiceId, billId,
+                supplierId, customerId, type);
         }
 
     }

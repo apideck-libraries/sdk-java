@@ -172,7 +172,7 @@ public class ConnectorConnectorDocsOne {
                         }
                         try {
                             HttpResponse<InputStream> httpRes = client.send(r);
-                            if (Utils.statusCodeMatches(httpRes.statusCode(), "401", "402", "404", "4XX", "5XX")) {
+                            if (Utils.statusCodeMatches(httpRes.statusCode(), "4XX", "5XX")) {
                                 return onError(httpRes, null);
                             }
                             return httpRes;
@@ -288,7 +288,7 @@ public class ConnectorConnectorDocsOne {
                                 if (err != null) {
                                     return onError(null, err);
                                 }
-                                if (Utils.statusCodeMatches(resp.statusCode(), "401", "402", "404", "4XX", "5XX")) {
+                                if (Utils.statusCodeMatches(resp.statusCode(), "4XX", "5XX")) {
                                     return onError(resp, null);
                                 }
                                 return CompletableFuture.completedFuture(resp);

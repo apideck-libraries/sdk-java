@@ -28,6 +28,7 @@ public class RebillStatus {
     public static final RebillStatus PENDING = new RebillStatus("pending");
     public static final RebillStatus BILLED = new RebillStatus("billed");
     public static final RebillStatus VOIDED = new RebillStatus("voided");
+    public static final RebillStatus OTHER = new RebillStatus("other");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -104,6 +105,7 @@ public class RebillStatus {
         map.put("pending", PENDING);
         map.put("billed", BILLED);
         map.put("voided", VOIDED);
+        map.put("other", OTHER);
         return map;
     }
 
@@ -112,6 +114,7 @@ public class RebillStatus {
         map.put("pending", RebillStatusEnum.PENDING);
         map.put("billed", RebillStatusEnum.BILLED);
         map.put("voided", RebillStatusEnum.VOIDED);
+        map.put("other", RebillStatusEnum.OTHER);
         return map;
     }
     
@@ -120,7 +123,8 @@ public class RebillStatus {
 
         PENDING("pending"),
         BILLED("billed"),
-        VOIDED("voided"),;
+        VOIDED("voided"),
+        OTHER("other"),;
 
         private final String value;
 

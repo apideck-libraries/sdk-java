@@ -21,3 +21,4 @@ RebillStatus custom = RebillStatus.of("custom_value");
 | `PENDING` | pending   |
 | `BILLED`  | billed    |
 | `VOIDED`  | voided    |
+| `OTHER`   | other     |

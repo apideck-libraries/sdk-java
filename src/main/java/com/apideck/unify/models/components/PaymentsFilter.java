@@ -41,6 +41,12 @@ public class PaymentsFilter {
     @SpeakeasyMetadata("queryParam:name=type")
     private Optional<? extends PaymentsFilterType> type;
 
+    /**
+     * Filter by payment status
+     */
+    @SpeakeasyMetadata("queryParam:name=status")
+    private Optional<? extends PaymentsFilterPaymentStatus> status;
+
     @JsonCreator
     public PaymentsFilter(
             Optional<OffsetDateTime> updatedSince,
@@ -48,24 +54,28 @@ public class PaymentsFilter {
             Optional<String> billId,
             Optional<String> supplierId,
             Optional<String> customerId,
-            Optional<? extends PaymentsFilterType> type) {
+            Optional<? extends PaymentsFilterType> type,
+            Optional<? extends PaymentsFilterPaymentStatus> status) {
         Utils.checkNotNull(updatedSince, "updatedSince");
         Utils.checkNotNull(invoiceId, "invoiceId");
         Utils.checkNotNull(billId, "billId");
         Utils.checkNotNull(supplierId, "supplierId");
         Utils.checkNotNull(customerId, "customerId");
         Utils.checkNotNull(type, "type");
+        Utils.checkNotNull(status, "status");
         this.updatedSince = updatedSince;
         this.invoiceId = invoiceId;
         this.billId = billId;
         this.supplierId = supplierId;
         this.customerId = customerId;
         this.type = type;
+        this.status = status;
     }
     
     public PaymentsFilter() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     @JsonIgnore
@@ -100,6 +110,15 @@ public class PaymentsFilter {
     @JsonIgnore
     public Optional<PaymentsFilterType> type() {
         return (Optional<PaymentsFilterType>) type;
+    }
+
+    /**
+     * Filter by payment status
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<PaymentsFilterPaymentStatus> status() {
+        return (Optional<PaymentsFilterPaymentStatus>) status;
     }
 
     public static Builder builder() {
@@ -191,6 +210,25 @@ public class PaymentsFilter {
         return this;
     }
 
+    /**
+     * Filter by payment status
+     */
+    public PaymentsFilter withStatus(PaymentsFilterPaymentStatus status) {
+        Utils.checkNotNull(status, "status");
+        this.status = Optional.ofNullable(status);
+        return this;
+    }
+
+
+    /**
+     * Filter by payment status
+     */
+    public PaymentsFilter withStatus(Optional<? extends PaymentsFilterPaymentStatus> status) {
+        Utils.checkNotNull(status, "status");
+        this.status = status;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -206,14 +244,16 @@ public class PaymentsFilter {
             Utils.enhancedDeepEquals(this.billId, other.billId) &&
             Utils.enhancedDeepEquals(this.supplierId, other.supplierId) &&
             Utils.enhancedDeepEquals(this.customerId, other.customerId) &&
-            Utils.enhancedDeepEquals(this.type, other.type);
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.status, other.status);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             updatedSince, invoiceId, billId,
-            supplierId, customerId, type);
+            supplierId, customerId, type,
+            status);
     }
     
     @Override
@@ -224,7 +264,8 @@ public class PaymentsFilter {
                 "billId", billId,
                 "supplierId", supplierId,
                 "customerId", customerId,
-                "type", type);
+                "type", type,
+                "status", status);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -241,6 +282,8 @@ public class PaymentsFilter {
         private Optional<String> customerId = Optional.empty();
 
         private Optional<? extends PaymentsFilterType> type = Optional.empty();
+
+        private Optional<? extends PaymentsFilterPaymentStatus> status = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -330,11 +373,31 @@ public class PaymentsFilter {
             return this;
         }
 
+
+        /**
+         * Filter by payment status
+         */
+        public Builder status(PaymentsFilterPaymentStatus status) {
+            Utils.checkNotNull(status, "status");
+            this.status = Optional.ofNullable(status);
+            return this;
+        }
+
+        /**
+         * Filter by payment status
+         */
+        public Builder status(Optional<? extends PaymentsFilterPaymentStatus> status) {
+            Utils.checkNotNull(status, "status");
+            this.status = status;
+            return this;
+        }
+
         public PaymentsFilter build() {
 
             return new PaymentsFilter(
                 updatedSince, invoiceId, billId,
-                supplierId, customerId, type);
+                supplierId, customerId, type,
+                status);
         }
 
     }

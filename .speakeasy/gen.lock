@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 38254260-287a-40b6-9ac5-c2fcb654c9cc
 management:
-  docChecksum: 2b91077d3422f4b5c6cdfdac2d535068
-  docVersion: 10.24.24
+  docChecksum: bc0e5769ed741d22b3d967c30ad9e5f3
+  docVersion: 10.24.27
   speakeasyVersion: 1.761.9
   generationVersion: 2.881.4
-  releaseVersion: 0.31.8
-  configChecksum: eaee2e64c02fc02cf3f1295e79bac028
+  releaseVersion: 0.31.9
+  configChecksum: 53dc237c1b66b760aa1c350182cba3a7
   repoURL: https://github.com/apideck-libraries/sdk-java.git
   installationURL: https://github.com/apideck-libraries/sdk-java
   published: true
 persistentEdits:
-  generation_id: f1ad82e8-95d3-4db4-ae0c-a6d8675e7083
-  pristine_commit_hash: cc191ed1e44e7bb19c060d98328bbd62d8b17383
-  pristine_tree_hash: 1b60436cd4e7cc9da66906fb28b09f17b8d627a1
+  generation_id: 850fbb31-5f07-48dd-82d8-dac2b0323130
+  pristine_commit_hash: 60024f4aeb5541faaeac07833400e4fdec52fbe6
+  pristine_tree_hash: e24dc09fb53fbe3272162e921764d4edf12f45fd
 features:
   java:
     acceptHeaders: 2.81.2
@@ -2957,8 +2957,12 @@ trackedFiles:
     pristine_git_object: 3c444a0ccb665ac600cfe6d05c336c12aa6156a2
   docs/models/components/PaymentsFilter.md:
     id: f6689fee2b35
-    last_write_checksum: sha1:5048ec70e96e6af5a61faafe2950fd7e80fedc05
-    pristine_git_object: 14a6cc1653c10eba7df0d2379321062128da9090
+    last_write_checksum: sha1:ecac8e0337554acf3e71c5b878cf4c79bb4848a3
+    pristine_git_object: 04c152917c17d53aeb165aa50df68841da8478da
+  docs/models/components/PaymentsFilterPaymentStatus.md:
+    id: 47963fa493d7
+    last_write_checksum: sha1:4769891d33dc30b95ef762c7fb6c12d1fe9c9df5
+    pristine_git_object: c4c0c29210c891c79bd9ddabd4473c996b0ccc9b
   docs/models/components/PaymentsFilterType.md:
     id: fd73ce9455c3
     last_write_checksum: sha1:6fcd2717de431e4b3a2609afcf8cc9fa4dbf6543
@@ -3153,8 +3157,8 @@ trackedFiles:
     pristine_git_object: 77ab496b35060411d8d96a122d7d4ce47df71431
   docs/models/components/RebillStatus.md:
     id: 5e382ca5fd82
-    last_write_checksum: sha1:ea33a85c771e0b544ff60500eec6409cec8c9b31
-    pristine_git_object: 6fe11e3a4faaad4adb9daedf8339cc7db0bbae30
+    last_write_checksum: sha1:f3c240b7b3957fc1969bc00947b9737994e48ae9
+    pristine_git_object: f0723c1e4e1f5daeaf0766a9796739764ba2ea62
   docs/models/components/Rebilling.md:
     id: 577c2ed79686
     last_write_checksum: sha1:d461e8d2f5b560ac51616a977ef8888134ba55e4
@@ -4129,8 +4133,8 @@ trackedFiles:
     pristine_git_object: b0f2fd0a5115f072b3ab64583aa143624d0c2cd6
   docs/models/operations/AccountingBillPaymentsAllRequest.md:
     id: 4e4cd2dd6e0f
-    last_write_checksum: sha1:a6f77d3049973be3b0d30ecfd5c4e30c825b5f85
-    pristine_git_object: 6c2aac2d98ab9f064e3d5df049319b15a1a063b5
+    last_write_checksum: sha1:77d59fae263e6b0c5c0acde1d76c6889b65575f7
+    pristine_git_object: 648bef663be17834e4c39494a92a78868e885df1
   docs/models/operations/AccountingBillPaymentsAllResponse.md:
     id: 6850c8e6f381
     last_write_checksum: sha1:d16e00ee62e8328908af3a321a3ff08b0c367d85
@@ -4721,8 +4725,8 @@ trackedFiles:
     pristine_git_object: 48987c0643f922adec590cf9332b6120c57cebc1
   docs/models/operations/AccountingPaymentsAllRequest.md:
     id: ac7045a11482
-    last_write_checksum: sha1:426cf02773f2df4e5c8fd2eddade4b1dd12db771
-    pristine_git_object: b8b6f8698bd8e1b0d405d67b44019a2513f711d0
+    last_write_checksum: sha1:56e30ecc888db59fc476488926109ccaa45e3a72
+    pristine_git_object: 3a86346223b82414c3a848859734f7466a42aa9e
   docs/models/operations/AccountingPaymentsAllResponse.md:
     id: 38fed743b109
     last_write_checksum: sha1:9ec90b215cc71bae3cc43e78fd17172d65510241
@@ -7013,8 +7017,8 @@ trackedFiles:
     pristine_git_object: c755c6aa377f358344e761e9cc3e7b67bc1fb479
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:15f82f22bba55fd5fe22183a57f137ec41c6da89
-    pristine_git_object: 68ba23d835b8258845890d6e674dc9f206e58944
+    last_write_checksum: sha1:6449f178783817e868a91f2c307be4dba670c084
+    pristine_git_object: a4f6d0de232c3487e8a6aef18356c8279ec7e58e
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -7833,8 +7837,8 @@ trackedFiles:
     pristine_git_object: 7296db7ebcdcff7ee348d1f993fc4aa2a7e6c145
   src/main/java/com/apideck/unify/SDKConfiguration.java:
     id: a2b330a87142
-    last_write_checksum: sha1:c557c06c733f3e0bcee22713fee6706583088ddc
-    pristine_git_object: 9c6e8f9aaf14662befbe79569130afbeb1650703
+    last_write_checksum: sha1:7a25552e1fc7cfa66f0635f700e11fecf887b9f7
+    pristine_git_object: fd3a4d33659b93db0764d3dc105b108ae0996f12
   src/main/java/com/apideck/unify/SecuritySource.java:
     id: e4566c6c806b
     last_write_checksum: sha1:101bf1a9f5cf4e8c37abb4540147276eebb2bab0
@@ -10805,8 +10809,12 @@ trackedFiles:
     pristine_git_object: 4f9c1044a6f44398c63667231eb852946d5816e9
   src/main/java/com/apideck/unify/models/components/PaymentsFilter.java:
     id: 8eaedee76441
-    last_write_checksum: sha1:0f96f0731e131e8c0b45c8f224b4d2031e6788a7
-    pristine_git_object: ed34996dd7d13f9d0221e5cd9c73f4b7f25589c9
+    last_write_checksum: sha1:01de023eb99f3a86d23c1ea1a47d6ac57c8f2e6e
+    pristine_git_object: 3a32d216e89de29ed90c78a1727f2450988e5de0
+  src/main/java/com/apideck/unify/models/components/PaymentsFilterPaymentStatus.java:
+    id: c6d5bcb6229c
+    last_write_checksum: sha1:76933d3ebb947c15dba2e6751291d92f8d7fb1f7
+    pristine_git_object: 775b6c0f772a357d9f5c6ae69cd014bd5b55bd45
   src/main/java/com/apideck/unify/models/components/PaymentsFilterType.java:
     id: d0433e9576db
     last_write_checksum: sha1:81500c71738b9eedddf96a9322313ad7b9574a22
@@ -11001,8 +11009,8 @@ trackedFiles:
     pristine_git_object: ba3c394424430a41f35fb0a21bb7a90c29f33310
   src/main/java/com/apideck/unify/models/components/RebillStatus.java:
     id: ebecea51f8c3
-    last_write_checksum: sha1:4d428a1bfc1add66402a7e9622c6447c4c86c15c
-    pristine_git_object: a04d8083a80b7c6f99b23c5de86b4f752a381b19
+    last_write_checksum: sha1:941f847ea09868248882472b5c8a61d150693adf
+    pristine_git_object: 99175d684d6ebdad5b2407e0c7fb3f3634d77df0
   src/main/java/com/apideck/unify/models/components/Rebilling.java:
     id: 4142b0a6b981
     last_write_checksum: sha1:8219e51c987ca0804b9d00ba056861e225d8d834
@@ -22359,7 +22367,7 @@ examples:
         query:
           raw: false
           limit: 20
-          filter: {"updated_since": "2020-09-30T07:43:32.000Z", "invoice_id": "123", "bill_id": "123", "supplier_id": "123", "customer_id": "123abc", "type": "accounts_receivable"}
+          filter: {"updated_since": "2020-09-30T07:43:32.000Z", "invoice_id": "123", "bill_id": "123", "supplier_id": "123", "customer_id": "123abc", "type": "accounts_receivable", "status": "authorised"}
           sort: {"by": "updated_at", "direction": "desc"}
           pass_through: {"search": "San Francisco"}
           fields: "id,updated_at"
@@ -24708,7 +24716,7 @@ examples:
         query:
           raw: false
           limit: 20
-          filter: {"updated_since": "2020-09-30T07:43:32.000Z", "invoice_id": "123", "bill_id": "123", "supplier_id": "123", "customer_id": "123abc", "type": "accounts_receivable"}
+          filter: {"updated_since": "2020-09-30T07:43:32.000Z", "invoice_id": "123", "bill_id": "123", "supplier_id": "123", "customer_id": "123abc", "type": "accounts_receivable", "status": "authorised"}
           sort: {"by": "updated_at", "direction": "desc"}
           pass_through: {"search": "San Francisco"}
           fields: "id,updated_at"
@@ -36505,7 +36513,7 @@ examples:
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Java SDK Changes:\n* `apideck.accounting.bills.list()`:  `response.data[].paymentAllocations` **Added**\n* `apideck.accounting.bills.create()`: \n  *  `request.bill.paymentAllocations` **Added**\n* `apideck.accounting.bills.get()`:  `response.data.paymentAllocations` **Added**\n* `apideck.accounting.bills.update()`: \n  *  `request.bill.paymentAllocations` **Added**\n* `apideck.accounting.payments.list()`: \n  *  `request.filter` **Changed**\n* `apideck.accounting.billPayments.list()`: \n  *  `request.filter` **Changed**\n"
+releaseNotes: "## Java SDK Changes:\n* `apideck.accounting.bills.list()`:  `response.data[].lineItems[].rebilling.rebillStatus.enum(other)` **Added**\n* `apideck.accounting.bills.create()`: \n  *  `request.bill.lineItems[].rebilling.rebillStatus.enum(other)` **Added**\n* `apideck.accounting.bills.get()`:  `response.data.lineItems[].rebilling.rebillStatus.enum(other)` **Added**\n* `apideck.accounting.bills.update()`: \n  *  `request.bill.lineItems[].rebilling.rebillStatus.enum(other)` **Added**\n* `apideck.accounting.payments.list()`: \n  *  `request.filter` **Changed**\n* `apideck.accounting.billPayments.list()`: \n  *  `request.filter` **Changed**\n* `apideck.accounting.expenses.list()`:  `response.data[].lineItems[].rebilling.rebillStatus.enum(other)` **Added**\n* `apideck.accounting.expenses.create()`: \n  *  `request.expense.lineItems[].rebilling.rebillStatus.enum(other)` **Added**\n* `apideck.accounting.expenses.get()`:  `response.data.lineItems[].rebilling.rebillStatus.enum(other)` **Added**\n* `apideck.accounting.expenses.update()`: \n  *  `request.expense.lineItems[].rebilling.rebillStatus.enum(other)` **Added**\n"
 generatedFiles:
   - .gitattributes
   - USAGE.md

@@ -20,3 +20,4 @@ InvoicesSortBy custom = InvoicesSortBy.of("custom_value");
 | ------------ | ------------ |
 | `CREATED_AT` | created_at   |
 | `UPDATED_AT` | updated_at   |
+| `ID`         | id           |

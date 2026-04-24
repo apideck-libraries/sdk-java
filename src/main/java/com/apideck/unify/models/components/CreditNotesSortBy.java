@@ -27,6 +27,7 @@ public class CreditNotesSortBy {
 
     public static final CreditNotesSortBy CREATED_AT = new CreditNotesSortBy("created_at");
     public static final CreditNotesSortBy UPDATED_AT = new CreditNotesSortBy("updated_at");
+    public static final CreditNotesSortBy ID = new CreditNotesSortBy("id");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -102,6 +103,7 @@ public class CreditNotesSortBy {
         Map<String, CreditNotesSortBy> map = new LinkedHashMap<>();
         map.put("created_at", CREATED_AT);
         map.put("updated_at", UPDATED_AT);
+        map.put("id", ID);
         return map;
     }
 
@@ -109,6 +111,7 @@ public class CreditNotesSortBy {
         Map<String, CreditNotesSortByEnum> map = new HashMap<>();
         map.put("created_at", CreditNotesSortByEnum.CREATED_AT);
         map.put("updated_at", CreditNotesSortByEnum.UPDATED_AT);
+        map.put("id", CreditNotesSortByEnum.ID);
         return map;
     }
     
@@ -116,7 +119,8 @@ public class CreditNotesSortBy {
     public enum CreditNotesSortByEnum {
 
         CREATED_AT("created_at"),
-        UPDATED_AT("updated_at"),;
+        UPDATED_AT("updated_at"),
+        ID("id"),;
 
         private final String value;
 

@@ -20,3 +20,4 @@ By custom = By.of("custom_value");
 | ------------ | ------------ |
 | `UPDATED_AT` | updated_at   |
 | `CREATED_AT` | created_at   |
+| `ID`         | id           |

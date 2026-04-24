@@ -15,6 +15,12 @@ import java.util.Optional;
 
 
 public class BillsFilter {
+    /**
+     * Return records with a row ID greater than or equal to the given value
+     */
+    @SpeakeasyMetadata("queryParam:name=id_since")
+    private Optional<String> idSince;
+
 
     @SpeakeasyMetadata("queryParam:name=updated_since")
     private Optional<OffsetDateTime> updatedSince;
@@ -27,16 +33,27 @@ public class BillsFilter {
 
     @JsonCreator
     public BillsFilter(
+            Optional<String> idSince,
             Optional<OffsetDateTime> updatedSince,
             Optional<? extends BillsFilterStatus> status) {
+        Utils.checkNotNull(idSince, "idSince");
         Utils.checkNotNull(updatedSince, "updatedSince");
         Utils.checkNotNull(status, "status");
+        this.idSince = idSince;
         this.updatedSince = updatedSince;
         this.status = status;
     }
     
     public BillsFilter() {
-        this(Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty());
+    }
+
+    /**
+     * Return records with a row ID greater than or equal to the given value
+     */
+    @JsonIgnore
+    public Optional<String> idSince() {
+        return idSince;
     }
 
     @JsonIgnore
@@ -57,6 +74,25 @@ public class BillsFilter {
         return new Builder();
     }
 
+
+    /**
+     * Return records with a row ID greater than or equal to the given value
+     */
+    public BillsFilter withIdSince(String idSince) {
+        Utils.checkNotNull(idSince, "idSince");
+        this.idSince = Optional.ofNullable(idSince);
+        return this;
+    }
+
+
+    /**
+     * Return records with a row ID greater than or equal to the given value
+     */
+    public BillsFilter withIdSince(Optional<String> idSince) {
+        Utils.checkNotNull(idSince, "idSince");
+        this.idSince = idSince;
+        return this;
+    }
 
     public BillsFilter withUpdatedSince(OffsetDateTime updatedSince) {
         Utils.checkNotNull(updatedSince, "updatedSince");
@@ -100,6 +136,7 @@ public class BillsFilter {
         }
         BillsFilter other = (BillsFilter) o;
         return 
+            Utils.enhancedDeepEquals(this.idSince, other.idSince) &&
             Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince) &&
             Utils.enhancedDeepEquals(this.status, other.status);
     }
@@ -107,12 +144,13 @@ public class BillsFilter {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            updatedSince, status);
+            idSince, updatedSince, status);
     }
     
     @Override
     public String toString() {
         return Utils.toString(BillsFilter.class,
+                "idSince", idSince,
                 "updatedSince", updatedSince,
                 "status", status);
     }
@@ -120,12 +158,33 @@ public class BillsFilter {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
+        private Optional<String> idSince = Optional.empty();
+
         private Optional<OffsetDateTime> updatedSince = Optional.empty();
 
         private Optional<? extends BillsFilterStatus> status = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
+        }
+
+
+        /**
+         * Return records with a row ID greater than or equal to the given value
+         */
+        public Builder idSince(String idSince) {
+            Utils.checkNotNull(idSince, "idSince");
+            this.idSince = Optional.ofNullable(idSince);
+            return this;
+        }
+
+        /**
+         * Return records with a row ID greater than or equal to the given value
+         */
+        public Builder idSince(Optional<String> idSince) {
+            Utils.checkNotNull(idSince, "idSince");
+            this.idSince = idSince;
+            return this;
         }
 
 
@@ -163,7 +222,7 @@ public class BillsFilter {
         public BillsFilter build() {
 
             return new BillsFilter(
-                updatedSince, status);
+                idSince, updatedSince, status);
         }
 
     }

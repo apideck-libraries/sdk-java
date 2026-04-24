@@ -14,19 +14,36 @@ import java.util.Optional;
 
 
 public class CreditNotesFilter {
+    /**
+     * Return records with a row ID greater than or equal to the given value
+     */
+    @SpeakeasyMetadata("queryParam:name=id_since")
+    private Optional<String> idSince;
+
 
     @SpeakeasyMetadata("queryParam:name=updated_since")
     private Optional<OffsetDateTime> updatedSince;
 
     @JsonCreator
     public CreditNotesFilter(
+            Optional<String> idSince,
             Optional<OffsetDateTime> updatedSince) {
+        Utils.checkNotNull(idSince, "idSince");
         Utils.checkNotNull(updatedSince, "updatedSince");
+        this.idSince = idSince;
         this.updatedSince = updatedSince;
     }
     
     public CreditNotesFilter() {
-        this(Optional.empty());
+        this(Optional.empty(), Optional.empty());
+    }
+
+    /**
+     * Return records with a row ID greater than or equal to the given value
+     */
+    @JsonIgnore
+    public Optional<String> idSince() {
+        return idSince;
     }
 
     @JsonIgnore
@@ -38,6 +55,25 @@ public class CreditNotesFilter {
         return new Builder();
     }
 
+
+    /**
+     * Return records with a row ID greater than or equal to the given value
+     */
+    public CreditNotesFilter withIdSince(String idSince) {
+        Utils.checkNotNull(idSince, "idSince");
+        this.idSince = Optional.ofNullable(idSince);
+        return this;
+    }
+
+
+    /**
+     * Return records with a row ID greater than or equal to the given value
+     */
+    public CreditNotesFilter withIdSince(Optional<String> idSince) {
+        Utils.checkNotNull(idSince, "idSince");
+        this.idSince = idSince;
+        return this;
+    }
 
     public CreditNotesFilter withUpdatedSince(OffsetDateTime updatedSince) {
         Utils.checkNotNull(updatedSince, "updatedSince");
@@ -62,28 +98,51 @@ public class CreditNotesFilter {
         }
         CreditNotesFilter other = (CreditNotesFilter) o;
         return 
+            Utils.enhancedDeepEquals(this.idSince, other.idSince) &&
             Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            updatedSince);
+            idSince, updatedSince);
     }
     
     @Override
     public String toString() {
         return Utils.toString(CreditNotesFilter.class,
+                "idSince", idSince,
                 "updatedSince", updatedSince);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
+        private Optional<String> idSince = Optional.empty();
+
         private Optional<OffsetDateTime> updatedSince = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
+        }
+
+
+        /**
+         * Return records with a row ID greater than or equal to the given value
+         */
+        public Builder idSince(String idSince) {
+            Utils.checkNotNull(idSince, "idSince");
+            this.idSince = Optional.ofNullable(idSince);
+            return this;
+        }
+
+        /**
+         * Return records with a row ID greater than or equal to the given value
+         */
+        public Builder idSince(Optional<String> idSince) {
+            Utils.checkNotNull(idSince, "idSince");
+            this.idSince = idSince;
+            return this;
         }
 
 
@@ -102,7 +161,7 @@ public class CreditNotesFilter {
         public CreditNotesFilter build() {
 
             return new CreditNotesFilter(
-                updatedSince);
+                idSince, updatedSince);
         }
 
     }

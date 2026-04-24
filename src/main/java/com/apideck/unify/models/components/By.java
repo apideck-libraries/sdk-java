@@ -27,6 +27,7 @@ public class By {
 
     public static final By UPDATED_AT = new By("updated_at");
     public static final By CREATED_AT = new By("created_at");
+    public static final By ID = new By("id");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -102,6 +103,7 @@ public class By {
         Map<String, By> map = new LinkedHashMap<>();
         map.put("updated_at", UPDATED_AT);
         map.put("created_at", CREATED_AT);
+        map.put("id", ID);
         return map;
     }
 
@@ -109,6 +111,7 @@ public class By {
         Map<String, ByEnum> map = new HashMap<>();
         map.put("updated_at", ByEnum.UPDATED_AT);
         map.put("created_at", ByEnum.CREATED_AT);
+        map.put("id", ByEnum.ID);
         return map;
     }
     
@@ -116,7 +119,8 @@ public class By {
     public enum ByEnum {
 
         UPDATED_AT("updated_at"),
-        CREATED_AT("created_at"),;
+        CREATED_AT("created_at"),
+        ID("id"),;
 
         private final String value;
 

@@ -27,6 +27,7 @@ public class InvoicesSortBy {
 
     public static final InvoicesSortBy CREATED_AT = new InvoicesSortBy("created_at");
     public static final InvoicesSortBy UPDATED_AT = new InvoicesSortBy("updated_at");
+    public static final InvoicesSortBy ID = new InvoicesSortBy("id");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -102,6 +103,7 @@ public class InvoicesSortBy {
         Map<String, InvoicesSortBy> map = new LinkedHashMap<>();
         map.put("created_at", CREATED_AT);
         map.put("updated_at", UPDATED_AT);
+        map.put("id", ID);
         return map;
     }
 
@@ -109,6 +111,7 @@ public class InvoicesSortBy {
         Map<String, InvoicesSortByEnum> map = new HashMap<>();
         map.put("created_at", InvoicesSortByEnum.CREATED_AT);
         map.put("updated_at", InvoicesSortByEnum.UPDATED_AT);
+        map.put("id", InvoicesSortByEnum.ID);
         return map;
     }
     
@@ -116,7 +119,8 @@ public class InvoicesSortBy {
     public enum InvoicesSortByEnum {
 
         CREATED_AT("created_at"),
-        UPDATED_AT("updated_at"),;
+        UPDATED_AT("updated_at"),
+        ID("id"),;
 
         private final String value;
 

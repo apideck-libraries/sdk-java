@@ -14,6 +14,12 @@ import java.util.Optional;
 
 
 public class InvoicesFilter {
+    /**
+     * Return records with a row ID greater than or equal to the given value
+     */
+    @SpeakeasyMetadata("queryParam:name=id_since")
+    private Optional<String> idSince;
+
 
     @SpeakeasyMetadata("queryParam:name=updated_since")
     private Optional<OffsetDateTime> updatedSince;
@@ -36,14 +42,17 @@ public class InvoicesFilter {
 
     @JsonCreator
     public InvoicesFilter(
+            Optional<String> idSince,
             Optional<OffsetDateTime> updatedSince,
             Optional<OffsetDateTime> createdSince,
             Optional<String> number,
             Optional<String> supplierId) {
+        Utils.checkNotNull(idSince, "idSince");
         Utils.checkNotNull(updatedSince, "updatedSince");
         Utils.checkNotNull(createdSince, "createdSince");
         Utils.checkNotNull(number, "number");
         Utils.checkNotNull(supplierId, "supplierId");
+        this.idSince = idSince;
         this.updatedSince = updatedSince;
         this.createdSince = createdSince;
         this.number = number;
@@ -52,7 +61,15 @@ public class InvoicesFilter {
     
     public InvoicesFilter() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+            Optional.empty(), Optional.empty());
+    }
+
+    /**
+     * Return records with a row ID greater than or equal to the given value
+     */
+    @JsonIgnore
+    public Optional<String> idSince() {
+        return idSince;
     }
 
     @JsonIgnore
@@ -85,6 +102,25 @@ public class InvoicesFilter {
         return new Builder();
     }
 
+
+    /**
+     * Return records with a row ID greater than or equal to the given value
+     */
+    public InvoicesFilter withIdSince(String idSince) {
+        Utils.checkNotNull(idSince, "idSince");
+        this.idSince = Optional.ofNullable(idSince);
+        return this;
+    }
+
+
+    /**
+     * Return records with a row ID greater than or equal to the given value
+     */
+    public InvoicesFilter withIdSince(Optional<String> idSince) {
+        Utils.checkNotNull(idSince, "idSince");
+        this.idSince = idSince;
+        return this;
+    }
 
     public InvoicesFilter withUpdatedSince(OffsetDateTime updatedSince) {
         Utils.checkNotNull(updatedSince, "updatedSince");
@@ -160,6 +196,7 @@ public class InvoicesFilter {
         }
         InvoicesFilter other = (InvoicesFilter) o;
         return 
+            Utils.enhancedDeepEquals(this.idSince, other.idSince) &&
             Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince) &&
             Utils.enhancedDeepEquals(this.createdSince, other.createdSince) &&
             Utils.enhancedDeepEquals(this.number, other.number) &&
@@ -169,13 +206,14 @@ public class InvoicesFilter {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            updatedSince, createdSince, number,
-            supplierId);
+            idSince, updatedSince, createdSince,
+            number, supplierId);
     }
     
     @Override
     public String toString() {
         return Utils.toString(InvoicesFilter.class,
+                "idSince", idSince,
                 "updatedSince", updatedSince,
                 "createdSince", createdSince,
                 "number", number,
@@ -184,6 +222,8 @@ public class InvoicesFilter {
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
+
+        private Optional<String> idSince = Optional.empty();
 
         private Optional<OffsetDateTime> updatedSince = Optional.empty();
 
@@ -195,6 +235,25 @@ public class InvoicesFilter {
 
         private Builder() {
           // force use of static builder() method
+        }
+
+
+        /**
+         * Return records with a row ID greater than or equal to the given value
+         */
+        public Builder idSince(String idSince) {
+            Utils.checkNotNull(idSince, "idSince");
+            this.idSince = Optional.ofNullable(idSince);
+            return this;
+        }
+
+        /**
+         * Return records with a row ID greater than or equal to the given value
+         */
+        public Builder idSince(Optional<String> idSince) {
+            Utils.checkNotNull(idSince, "idSince");
+            this.idSince = idSince;
+            return this;
         }
 
 
@@ -264,8 +323,8 @@ public class InvoicesFilter {
         public InvoicesFilter build() {
 
             return new InvoicesFilter(
-                updatedSince, createdSince, number,
-                supplierId);
+                idSince, updatedSince, createdSince,
+                number, supplierId);
         }
 
     }

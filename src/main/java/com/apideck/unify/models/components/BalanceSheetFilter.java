@@ -53,7 +53,7 @@ public class BalanceSheetFilter {
      * The accounting method used for the report: cash or accrual.
      */
     @SpeakeasyMetadata("queryParam:name=accounting_method")
-    private Optional<? extends AccountingMethod> accountingMethod;
+    private Optional<? extends BalanceSheetFilterAccountingMethod> accountingMethod;
 
     @JsonCreator
     public BalanceSheetFilter(
@@ -62,7 +62,7 @@ public class BalanceSheetFilter {
             Optional<Long> periodCount,
             Optional<? extends PeriodType> periodType,
             Optional<String> locationId,
-            Optional<? extends AccountingMethod> accountingMethod) {
+            Optional<? extends BalanceSheetFilterAccountingMethod> accountingMethod) {
         Utils.checkNotNull(startDate, "startDate");
         Utils.checkNotNull(endDate, "endDate");
         Utils.checkNotNull(periodCount, "periodCount");
@@ -131,8 +131,8 @@ public class BalanceSheetFilter {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<AccountingMethod> accountingMethod() {
-        return (Optional<AccountingMethod>) accountingMethod;
+    public Optional<BalanceSheetFilterAccountingMethod> accountingMethod() {
+        return (Optional<BalanceSheetFilterAccountingMethod>) accountingMethod;
     }
 
     public static Builder builder() {
@@ -244,7 +244,7 @@ public class BalanceSheetFilter {
     /**
      * The accounting method used for the report: cash or accrual.
      */
-    public BalanceSheetFilter withAccountingMethod(AccountingMethod accountingMethod) {
+    public BalanceSheetFilter withAccountingMethod(BalanceSheetFilterAccountingMethod accountingMethod) {
         Utils.checkNotNull(accountingMethod, "accountingMethod");
         this.accountingMethod = Optional.ofNullable(accountingMethod);
         return this;
@@ -254,7 +254,7 @@ public class BalanceSheetFilter {
     /**
      * The accounting method used for the report: cash or accrual.
      */
-    public BalanceSheetFilter withAccountingMethod(Optional<? extends AccountingMethod> accountingMethod) {
+    public BalanceSheetFilter withAccountingMethod(Optional<? extends BalanceSheetFilterAccountingMethod> accountingMethod) {
         Utils.checkNotNull(accountingMethod, "accountingMethod");
         this.accountingMethod = accountingMethod;
         return this;
@@ -310,7 +310,7 @@ public class BalanceSheetFilter {
 
         private Optional<String> locationId = Optional.empty();
 
-        private Optional<? extends AccountingMethod> accountingMethod = Optional.empty();
+        private Optional<? extends BalanceSheetFilterAccountingMethod> accountingMethod = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -421,7 +421,7 @@ public class BalanceSheetFilter {
         /**
          * The accounting method used for the report: cash or accrual.
          */
-        public Builder accountingMethod(AccountingMethod accountingMethod) {
+        public Builder accountingMethod(BalanceSheetFilterAccountingMethod accountingMethod) {
             Utils.checkNotNull(accountingMethod, "accountingMethod");
             this.accountingMethod = Optional.ofNullable(accountingMethod);
             return this;
@@ -430,7 +430,7 @@ public class BalanceSheetFilter {
         /**
          * The accounting method used for the report: cash or accrual.
          */
-        public Builder accountingMethod(Optional<? extends AccountingMethod> accountingMethod) {
+        public Builder accountingMethod(Optional<? extends BalanceSheetFilterAccountingMethod> accountingMethod) {
             Utils.checkNotNull(accountingMethod, "accountingMethod");
             this.accountingMethod = accountingMethod;
             return this;

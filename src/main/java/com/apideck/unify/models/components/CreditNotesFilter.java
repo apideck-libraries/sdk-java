@@ -24,18 +24,35 @@ public class CreditNotesFilter {
     @SpeakeasyMetadata("queryParam:name=updated_since")
     private Optional<OffsetDateTime> updatedSince;
 
+
+    @SpeakeasyMetadata("queryParam:name=created_since")
+    private Optional<OffsetDateTime> createdSince;
+
+    /**
+     * Credit note number to search for
+     */
+    @SpeakeasyMetadata("queryParam:name=number")
+    private Optional<String> number;
+
     @JsonCreator
     public CreditNotesFilter(
             Optional<String> idSince,
-            Optional<OffsetDateTime> updatedSince) {
+            Optional<OffsetDateTime> updatedSince,
+            Optional<OffsetDateTime> createdSince,
+            Optional<String> number) {
         Utils.checkNotNull(idSince, "idSince");
         Utils.checkNotNull(updatedSince, "updatedSince");
+        Utils.checkNotNull(createdSince, "createdSince");
+        Utils.checkNotNull(number, "number");
         this.idSince = idSince;
         this.updatedSince = updatedSince;
+        this.createdSince = createdSince;
+        this.number = number;
     }
     
     public CreditNotesFilter() {
-        this(Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -49,6 +66,19 @@ public class CreditNotesFilter {
     @JsonIgnore
     public Optional<OffsetDateTime> updatedSince() {
         return updatedSince;
+    }
+
+    @JsonIgnore
+    public Optional<OffsetDateTime> createdSince() {
+        return createdSince;
+    }
+
+    /**
+     * Credit note number to search for
+     */
+    @JsonIgnore
+    public Optional<String> number() {
+        return number;
     }
 
     public static Builder builder() {
@@ -88,6 +118,38 @@ public class CreditNotesFilter {
         return this;
     }
 
+    public CreditNotesFilter withCreatedSince(OffsetDateTime createdSince) {
+        Utils.checkNotNull(createdSince, "createdSince");
+        this.createdSince = Optional.ofNullable(createdSince);
+        return this;
+    }
+
+
+    public CreditNotesFilter withCreatedSince(Optional<OffsetDateTime> createdSince) {
+        Utils.checkNotNull(createdSince, "createdSince");
+        this.createdSince = createdSince;
+        return this;
+    }
+
+    /**
+     * Credit note number to search for
+     */
+    public CreditNotesFilter withNumber(String number) {
+        Utils.checkNotNull(number, "number");
+        this.number = Optional.ofNullable(number);
+        return this;
+    }
+
+
+    /**
+     * Credit note number to search for
+     */
+    public CreditNotesFilter withNumber(Optional<String> number) {
+        Utils.checkNotNull(number, "number");
+        this.number = number;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -99,20 +161,25 @@ public class CreditNotesFilter {
         CreditNotesFilter other = (CreditNotesFilter) o;
         return 
             Utils.enhancedDeepEquals(this.idSince, other.idSince) &&
-            Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince);
+            Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince) &&
+            Utils.enhancedDeepEquals(this.createdSince, other.createdSince) &&
+            Utils.enhancedDeepEquals(this.number, other.number);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            idSince, updatedSince);
+            idSince, updatedSince, createdSince,
+            number);
     }
     
     @Override
     public String toString() {
         return Utils.toString(CreditNotesFilter.class,
                 "idSince", idSince,
-                "updatedSince", updatedSince);
+                "updatedSince", updatedSince,
+                "createdSince", createdSince,
+                "number", number);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -121,6 +188,10 @@ public class CreditNotesFilter {
         private Optional<String> idSince = Optional.empty();
 
         private Optional<OffsetDateTime> updatedSince = Optional.empty();
+
+        private Optional<OffsetDateTime> createdSince = Optional.empty();
+
+        private Optional<String> number = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -158,10 +229,43 @@ public class CreditNotesFilter {
             return this;
         }
 
+
+        public Builder createdSince(OffsetDateTime createdSince) {
+            Utils.checkNotNull(createdSince, "createdSince");
+            this.createdSince = Optional.ofNullable(createdSince);
+            return this;
+        }
+
+        public Builder createdSince(Optional<OffsetDateTime> createdSince) {
+            Utils.checkNotNull(createdSince, "createdSince");
+            this.createdSince = createdSince;
+            return this;
+        }
+
+
+        /**
+         * Credit note number to search for
+         */
+        public Builder number(String number) {
+            Utils.checkNotNull(number, "number");
+            this.number = Optional.ofNullable(number);
+            return this;
+        }
+
+        /**
+         * Credit note number to search for
+         */
+        public Builder number(Optional<String> number) {
+            Utils.checkNotNull(number, "number");
+            this.number = number;
+            return this;
+        }
+
         public CreditNotesFilter build() {
 
             return new CreditNotesFilter(
-                idSince, updatedSince);
+                idSince, updatedSince, createdSince,
+                number);
         }
 
     }

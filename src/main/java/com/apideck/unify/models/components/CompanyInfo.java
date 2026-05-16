@@ -148,6 +148,13 @@ public class CompanyInfo {
     private Optional<? extends TrackingCategoriesMode> trackingCategoriesMode;
 
     /**
+     * The accounting basis used by the company for financial reports.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("accounting_method")
+    private JsonNullable<? extends AccountingMethod> accountingMethod;
+
+    /**
      * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
      * time an update is made to the object.
      */
@@ -204,6 +211,7 @@ public class CompanyInfo {
             @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings,
             @JsonProperty("tracking_categories_enabled") Optional<Boolean> trackingCategoriesEnabled,
             @JsonProperty("tracking_categories_mode") Optional<? extends TrackingCategoriesMode> trackingCategoriesMode,
+            @JsonProperty("accounting_method") JsonNullable<? extends AccountingMethod> accountingMethod,
             @JsonProperty("row_version") JsonNullable<String> rowVersion,
             @JsonProperty("updated_by") JsonNullable<String> updatedBy,
             @JsonProperty("created_by") JsonNullable<String> createdBy,
@@ -228,6 +236,7 @@ public class CompanyInfo {
         Utils.checkNotNull(customMappings, "customMappings");
         Utils.checkNotNull(trackingCategoriesEnabled, "trackingCategoriesEnabled");
         Utils.checkNotNull(trackingCategoriesMode, "trackingCategoriesMode");
+        Utils.checkNotNull(accountingMethod, "accountingMethod");
         Utils.checkNotNull(rowVersion, "rowVersion");
         Utils.checkNotNull(updatedBy, "updatedBy");
         Utils.checkNotNull(createdBy, "createdBy");
@@ -252,6 +261,7 @@ public class CompanyInfo {
         this.customMappings = customMappings;
         this.trackingCategoriesEnabled = trackingCategoriesEnabled;
         this.trackingCategoriesMode = trackingCategoriesMode;
+        this.accountingMethod = accountingMethod;
         this.rowVersion = rowVersion;
         this.updatedBy = updatedBy;
         this.createdBy = createdBy;
@@ -267,7 +277,8 @@ public class CompanyInfo {
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), JsonNullable.undefined(), Optional.empty(),
             Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -415,6 +426,15 @@ public class CompanyInfo {
     @JsonIgnore
     public Optional<TrackingCategoriesMode> trackingCategoriesMode() {
         return (Optional<TrackingCategoriesMode>) trackingCategoriesMode;
+    }
+
+    /**
+     * The accounting basis used by the company for financial reports.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<AccountingMethod> accountingMethod() {
+        return (JsonNullable<AccountingMethod>) accountingMethod;
     }
 
     /**
@@ -791,6 +811,24 @@ public class CompanyInfo {
     }
 
     /**
+     * The accounting basis used by the company for financial reports.
+     */
+    public CompanyInfo withAccountingMethod(AccountingMethod accountingMethod) {
+        Utils.checkNotNull(accountingMethod, "accountingMethod");
+        this.accountingMethod = JsonNullable.of(accountingMethod);
+        return this;
+    }
+
+    /**
+     * The accounting basis used by the company for financial reports.
+     */
+    public CompanyInfo withAccountingMethod(JsonNullable<? extends AccountingMethod> accountingMethod) {
+        Utils.checkNotNull(accountingMethod, "accountingMethod");
+        this.accountingMethod = accountingMethod;
+        return this;
+    }
+
+    /**
      * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
      * time an update is made to the object.
      */
@@ -911,6 +949,7 @@ public class CompanyInfo {
             Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
             Utils.enhancedDeepEquals(this.trackingCategoriesEnabled, other.trackingCategoriesEnabled) &&
             Utils.enhancedDeepEquals(this.trackingCategoriesMode, other.trackingCategoriesMode) &&
+            Utils.enhancedDeepEquals(this.accountingMethod, other.accountingMethod) &&
             Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion) &&
             Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
             Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
@@ -927,8 +966,9 @@ public class CompanyInfo {
             currency, language, fiscalYearStartMonth,
             companyStartDate, addresses, phoneNumbers,
             emails, customMappings, trackingCategoriesEnabled,
-            trackingCategoriesMode, rowVersion, updatedBy,
-            createdBy, updatedAt, createdAt);
+            trackingCategoriesMode, accountingMethod, rowVersion,
+            updatedBy, createdBy, updatedAt,
+            createdAt);
     }
     
     @Override
@@ -953,6 +993,7 @@ public class CompanyInfo {
                 "customMappings", customMappings,
                 "trackingCategoriesEnabled", trackingCategoriesEnabled,
                 "trackingCategoriesMode", trackingCategoriesMode,
+                "accountingMethod", accountingMethod,
                 "rowVersion", rowVersion,
                 "updatedBy", updatedBy,
                 "createdBy", createdBy,
@@ -1000,6 +1041,8 @@ public class CompanyInfo {
         private Optional<Boolean> trackingCategoriesEnabled = Optional.empty();
 
         private Optional<? extends TrackingCategoriesMode> trackingCategoriesMode = Optional.empty();
+
+        private JsonNullable<? extends AccountingMethod> accountingMethod = JsonNullable.undefined();
 
         private JsonNullable<String> rowVersion = JsonNullable.undefined();
 
@@ -1350,6 +1393,25 @@ public class CompanyInfo {
 
 
         /**
+         * The accounting basis used by the company for financial reports.
+         */
+        public Builder accountingMethod(AccountingMethod accountingMethod) {
+            Utils.checkNotNull(accountingMethod, "accountingMethod");
+            this.accountingMethod = JsonNullable.of(accountingMethod);
+            return this;
+        }
+
+        /**
+         * The accounting basis used by the company for financial reports.
+         */
+        public Builder accountingMethod(JsonNullable<? extends AccountingMethod> accountingMethod) {
+            Utils.checkNotNull(accountingMethod, "accountingMethod");
+            this.accountingMethod = accountingMethod;
+            return this;
+        }
+
+
+        /**
          * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each
          * time an update is made to the object.
          */
@@ -1454,8 +1516,9 @@ public class CompanyInfo {
                 currency, language, fiscalYearStartMonth,
                 companyStartDate, addresses, phoneNumbers,
                 emails, customMappings, trackingCategoriesEnabled,
-                trackingCategoriesMode, rowVersion, updatedBy,
-                createdBy, updatedAt, createdAt);
+                trackingCategoriesMode, accountingMethod, rowVersion,
+                updatedBy, createdBy, updatedAt,
+                createdAt);
         }
 
     }

@@ -19,40 +19,40 @@ import java.util.Optional;
  * Use {@code asEnum()} for switch expressions.
  */
 /**
- * AccountingMethod
+ * BalanceSheetFilterAccountingMethod
  * 
- * <p>The accounting basis used by the company for financial reports.
+ * <p>The accounting method used for the report: cash or accrual.
  */
-public class AccountingMethod {
+public class BalanceSheetFilterAccountingMethod {
 
-    public static final AccountingMethod CASH = new AccountingMethod("cash");
-    public static final AccountingMethod ACCRUAL = new AccountingMethod("accrual");
+    public static final BalanceSheetFilterAccountingMethod CASH = new BalanceSheetFilterAccountingMethod("cash");
+    public static final BalanceSheetFilterAccountingMethod ACCRUAL = new BalanceSheetFilterAccountingMethod("accrual");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
     // careful). Keep this field lower case to avoid clashing with
     // generated member names which will always be upper cased (Java
     // convention)
-    private static final Map<String, AccountingMethod> values = createValuesMap();
-    private static final Map<String, AccountingMethodEnum> enums = createEnumsMap();
+    private static final Map<String, BalanceSheetFilterAccountingMethod> values = createValuesMap();
+    private static final Map<String, BalanceSheetFilterAccountingMethodEnum> enums = createEnumsMap();
 
     private final String value;
 
-    private AccountingMethod(String value) {
+    private BalanceSheetFilterAccountingMethod(String value) {
         this.value = value;
     }
 
     /**
-     * Returns a AccountingMethod with the given value. For a specific value the 
+     * Returns a BalanceSheetFilterAccountingMethod with the given value. For a specific value the 
      * returned object will always be a singleton so reference equality 
      * is satisfied when the values are the same.
      * 
-     * @param value value to be wrapped as AccountingMethod
+     * @param value value to be wrapped as BalanceSheetFilterAccountingMethod
      */ 
     @JsonCreator
-    public static AccountingMethod of(String value) {
-        synchronized (AccountingMethod.class) {
-            return values.computeIfAbsent(value, v -> new AccountingMethod(v));
+    public static BalanceSheetFilterAccountingMethod of(String value) {
+        synchronized (BalanceSheetFilterAccountingMethod.class) {
+            return values.computeIfAbsent(value, v -> new BalanceSheetFilterAccountingMethod(v));
         }
     }
 
@@ -61,7 +61,7 @@ public class AccountingMethod {
         return value;
     }
 
-    public Optional<AccountingMethodEnum> asEnum() {
+    public Optional<BalanceSheetFilterAccountingMethodEnum> asEnum() {
         return Optional.ofNullable(enums.getOrDefault(value, null));
     }
 
@@ -82,45 +82,45 @@ public class AccountingMethod {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        AccountingMethod other = (AccountingMethod) obj;
+        BalanceSheetFilterAccountingMethod other = (BalanceSheetFilterAccountingMethod) obj;
         return Objects.equals(value, other.value);
     }
 
     @Override
     public String toString() {
-        return "AccountingMethod [value=" + value + "]";
+        return "BalanceSheetFilterAccountingMethod [value=" + value + "]";
     }
 
     // return an array just like an enum
-    public static AccountingMethod[] values() {
-        synchronized (AccountingMethod.class) {
-            return values.values().toArray(new AccountingMethod[] {});
+    public static BalanceSheetFilterAccountingMethod[] values() {
+        synchronized (BalanceSheetFilterAccountingMethod.class) {
+            return values.values().toArray(new BalanceSheetFilterAccountingMethod[] {});
         }
     }
 
-    private static final Map<String, AccountingMethod> createValuesMap() {
-        Map<String, AccountingMethod> map = new LinkedHashMap<>();
+    private static final Map<String, BalanceSheetFilterAccountingMethod> createValuesMap() {
+        Map<String, BalanceSheetFilterAccountingMethod> map = new LinkedHashMap<>();
         map.put("cash", CASH);
         map.put("accrual", ACCRUAL);
         return map;
     }
 
-    private static final Map<String, AccountingMethodEnum> createEnumsMap() {
-        Map<String, AccountingMethodEnum> map = new HashMap<>();
-        map.put("cash", AccountingMethodEnum.CASH);
-        map.put("accrual", AccountingMethodEnum.ACCRUAL);
+    private static final Map<String, BalanceSheetFilterAccountingMethodEnum> createEnumsMap() {
+        Map<String, BalanceSheetFilterAccountingMethodEnum> map = new HashMap<>();
+        map.put("cash", BalanceSheetFilterAccountingMethodEnum.CASH);
+        map.put("accrual", BalanceSheetFilterAccountingMethodEnum.ACCRUAL);
         return map;
     }
     
     
-    public enum AccountingMethodEnum {
+    public enum BalanceSheetFilterAccountingMethodEnum {
 
         CASH("cash"),
         ACCRUAL("accrual"),;
 
         private final String value;
 
-        private AccountingMethodEnum(String value) {
+        private BalanceSheetFilterAccountingMethodEnum(String value) {
             this.value = value;
         }
 

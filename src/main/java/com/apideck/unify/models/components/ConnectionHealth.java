@@ -28,6 +28,7 @@ public class ConnectionHealth {
     public static final ConnectionHealth OK = new ConnectionHealth("ok");
     public static final ConnectionHealth PENDING_REFRESH = new ConnectionHealth("pending_refresh");
     public static final ConnectionHealth NEEDS_AUTH = new ConnectionHealth("needs_auth");
+    public static final ConnectionHealth PENDING_CONFIRMATION = new ConnectionHealth("pending_confirmation");
     public static final ConnectionHealth NEEDS_CONSENT = new ConnectionHealth("needs_consent");
     public static final ConnectionHealth REVOKED = new ConnectionHealth("revoked");
     public static final ConnectionHealth MISSING_SETTINGS = new ConnectionHealth("missing_settings");
@@ -107,6 +108,7 @@ public class ConnectionHealth {
         map.put("ok", OK);
         map.put("pending_refresh", PENDING_REFRESH);
         map.put("needs_auth", NEEDS_AUTH);
+        map.put("pending_confirmation", PENDING_CONFIRMATION);
         map.put("needs_consent", NEEDS_CONSENT);
         map.put("revoked", REVOKED);
         map.put("missing_settings", MISSING_SETTINGS);
@@ -118,6 +120,7 @@ public class ConnectionHealth {
         map.put("ok", ConnectionHealthEnum.OK);
         map.put("pending_refresh", ConnectionHealthEnum.PENDING_REFRESH);
         map.put("needs_auth", ConnectionHealthEnum.NEEDS_AUTH);
+        map.put("pending_confirmation", ConnectionHealthEnum.PENDING_CONFIRMATION);
         map.put("needs_consent", ConnectionHealthEnum.NEEDS_CONSENT);
         map.put("revoked", ConnectionHealthEnum.REVOKED);
         map.put("missing_settings", ConnectionHealthEnum.MISSING_SETTINGS);
@@ -130,6 +133,7 @@ public class ConnectionHealth {
         OK("ok"),
         PENDING_REFRESH("pending_refresh"),
         NEEDS_AUTH("needs_auth"),
+        PENDING_CONFIRMATION("pending_confirmation"),
         NEEDS_CONSENT("needs_consent"),
         REVOKED("revoked"),
         MISSING_SETTINGS("missing_settings"),;

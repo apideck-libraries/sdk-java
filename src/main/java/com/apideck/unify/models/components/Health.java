@@ -28,6 +28,7 @@ public class Health {
     public static final Health REVOKED = new Health("revoked");
     public static final Health MISSING_SETTINGS = new Health("missing_settings");
     public static final Health NEEDS_CONSENT = new Health("needs_consent");
+    public static final Health PENDING_CONFIRMATION = new Health("pending_confirmation");
     public static final Health NEEDS_AUTH = new Health("needs_auth");
     public static final Health PENDING_REFRESH = new Health("pending_refresh");
     public static final Health OK = new Health("ok");
@@ -107,6 +108,7 @@ public class Health {
         map.put("revoked", REVOKED);
         map.put("missing_settings", MISSING_SETTINGS);
         map.put("needs_consent", NEEDS_CONSENT);
+        map.put("pending_confirmation", PENDING_CONFIRMATION);
         map.put("needs_auth", NEEDS_AUTH);
         map.put("pending_refresh", PENDING_REFRESH);
         map.put("ok", OK);
@@ -118,6 +120,7 @@ public class Health {
         map.put("revoked", HealthEnum.REVOKED);
         map.put("missing_settings", HealthEnum.MISSING_SETTINGS);
         map.put("needs_consent", HealthEnum.NEEDS_CONSENT);
+        map.put("pending_confirmation", HealthEnum.PENDING_CONFIRMATION);
         map.put("needs_auth", HealthEnum.NEEDS_AUTH);
         map.put("pending_refresh", HealthEnum.PENDING_REFRESH);
         map.put("ok", HealthEnum.OK);
@@ -130,6 +133,7 @@ public class Health {
         REVOKED("revoked"),
         MISSING_SETTINGS("missing_settings"),
         NEEDS_CONSENT("needs_consent"),
+        PENDING_CONFIRMATION("pending_confirmation"),
         NEEDS_AUTH("needs_auth"),
         PENDING_REFRESH("pending_refresh"),
         OK("ok"),;

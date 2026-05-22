@@ -31,21 +31,31 @@ public class LedgerAccountsFilter {
     @SpeakeasyMetadata("queryParam:name=classification")
     private Optional<? extends Classification> classification;
 
+    /**
+     * Filter by account status.
+     */
+    @SpeakeasyMetadata("queryParam:name=status")
+    private Optional<? extends LedgerAccountsFilterStatus> status;
+
     @JsonCreator
     public LedgerAccountsFilter(
             Optional<String> name,
             Optional<OffsetDateTime> updatedSince,
-            Optional<? extends Classification> classification) {
+            Optional<? extends Classification> classification,
+            Optional<? extends LedgerAccountsFilterStatus> status) {
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(updatedSince, "updatedSince");
         Utils.checkNotNull(classification, "classification");
+        Utils.checkNotNull(status, "status");
         this.name = name;
         this.updatedSince = updatedSince;
         this.classification = classification;
+        this.status = status;
     }
     
     public LedgerAccountsFilter() {
-        this(Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -68,6 +78,15 @@ public class LedgerAccountsFilter {
     @JsonIgnore
     public Optional<Classification> classification() {
         return (Optional<Classification>) classification;
+    }
+
+    /**
+     * Filter by account status.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<LedgerAccountsFilterStatus> status() {
+        return (Optional<LedgerAccountsFilterStatus>) status;
     }
 
     public static Builder builder() {
@@ -126,6 +145,25 @@ public class LedgerAccountsFilter {
         return this;
     }
 
+    /**
+     * Filter by account status.
+     */
+    public LedgerAccountsFilter withStatus(LedgerAccountsFilterStatus status) {
+        Utils.checkNotNull(status, "status");
+        this.status = Optional.ofNullable(status);
+        return this;
+    }
+
+
+    /**
+     * Filter by account status.
+     */
+    public LedgerAccountsFilter withStatus(Optional<? extends LedgerAccountsFilterStatus> status) {
+        Utils.checkNotNull(status, "status");
+        this.status = status;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -138,13 +176,15 @@ public class LedgerAccountsFilter {
         return 
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince) &&
-            Utils.enhancedDeepEquals(this.classification, other.classification);
+            Utils.enhancedDeepEquals(this.classification, other.classification) &&
+            Utils.enhancedDeepEquals(this.status, other.status);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name, updatedSince, classification);
+            name, updatedSince, classification,
+            status);
     }
     
     @Override
@@ -152,7 +192,8 @@ public class LedgerAccountsFilter {
         return Utils.toString(LedgerAccountsFilter.class,
                 "name", name,
                 "updatedSince", updatedSince,
-                "classification", classification);
+                "classification", classification,
+                "status", status);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -163,6 +204,8 @@ public class LedgerAccountsFilter {
         private Optional<OffsetDateTime> updatedSince = Optional.empty();
 
         private Optional<? extends Classification> classification = Optional.empty();
+
+        private Optional<? extends LedgerAccountsFilterStatus> status = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -219,10 +262,30 @@ public class LedgerAccountsFilter {
             return this;
         }
 
+
+        /**
+         * Filter by account status.
+         */
+        public Builder status(LedgerAccountsFilterStatus status) {
+            Utils.checkNotNull(status, "status");
+            this.status = Optional.ofNullable(status);
+            return this;
+        }
+
+        /**
+         * Filter by account status.
+         */
+        public Builder status(Optional<? extends LedgerAccountsFilterStatus> status) {
+            Utils.checkNotNull(status, "status");
+            this.status = status;
+            return this;
+        }
+
         public LedgerAccountsFilter build() {
 
             return new LedgerAccountsFilter(
-                name, updatedSince, classification);
+                name, updatedSince, classification,
+                status);
         }
 
     }

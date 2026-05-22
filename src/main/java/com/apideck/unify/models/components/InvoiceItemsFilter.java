@@ -21,6 +21,12 @@ public class InvoiceItemsFilter {
     private Optional<OffsetDateTime> updatedSince;
 
     /**
+     * Comma-separated list of invoice item IDs to filter by (e.g. `12345,67890`).
+     */
+    @SpeakeasyMetadata("queryParam:name=ids")
+    private Optional<String> ids;
+
+    /**
      * Name of Invoice Items to search for
      */
     @SpeakeasyMetadata("queryParam:name=name")
@@ -41,27 +47,38 @@ public class InvoiceItemsFilter {
     @JsonCreator
     public InvoiceItemsFilter(
             Optional<OffsetDateTime> updatedSince,
+            Optional<String> ids,
             Optional<String> name,
             JsonNullable<? extends InvoiceItemType> type,
             JsonNullable<? extends TransactionType> transactionType) {
         Utils.checkNotNull(updatedSince, "updatedSince");
+        Utils.checkNotNull(ids, "ids");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(type, "type");
         Utils.checkNotNull(transactionType, "transactionType");
         this.updatedSince = updatedSince;
+        this.ids = ids;
         this.name = name;
         this.type = type;
         this.transactionType = transactionType;
     }
     
     public InvoiceItemsFilter() {
-        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     @JsonIgnore
     public Optional<OffsetDateTime> updatedSince() {
         return updatedSince;
+    }
+
+    /**
+     * Comma-separated list of invoice item IDs to filter by (e.g. `12345,67890`).
+     */
+    @JsonIgnore
+    public Optional<String> ids() {
+        return ids;
     }
 
     /**
@@ -105,6 +122,25 @@ public class InvoiceItemsFilter {
     public InvoiceItemsFilter withUpdatedSince(Optional<OffsetDateTime> updatedSince) {
         Utils.checkNotNull(updatedSince, "updatedSince");
         this.updatedSince = updatedSince;
+        return this;
+    }
+
+    /**
+     * Comma-separated list of invoice item IDs to filter by (e.g. `12345,67890`).
+     */
+    public InvoiceItemsFilter withIds(String ids) {
+        Utils.checkNotNull(ids, "ids");
+        this.ids = Optional.ofNullable(ids);
+        return this;
+    }
+
+
+    /**
+     * Comma-separated list of invoice item IDs to filter by (e.g. `12345,67890`).
+     */
+    public InvoiceItemsFilter withIds(Optional<String> ids) {
+        Utils.checkNotNull(ids, "ids");
+        this.ids = ids;
         return this;
     }
 
@@ -174,6 +210,7 @@ public class InvoiceItemsFilter {
         InvoiceItemsFilter other = (InvoiceItemsFilter) o;
         return 
             Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince) &&
+            Utils.enhancedDeepEquals(this.ids, other.ids) &&
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.type, other.type) &&
             Utils.enhancedDeepEquals(this.transactionType, other.transactionType);
@@ -182,14 +219,15 @@ public class InvoiceItemsFilter {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            updatedSince, name, type,
-            transactionType);
+            updatedSince, ids, name,
+            type, transactionType);
     }
     
     @Override
     public String toString() {
         return Utils.toString(InvoiceItemsFilter.class,
                 "updatedSince", updatedSince,
+                "ids", ids,
                 "name", name,
                 "type", type,
                 "transactionType", transactionType);
@@ -199,6 +237,8 @@ public class InvoiceItemsFilter {
     public final static class Builder {
 
         private Optional<OffsetDateTime> updatedSince = Optional.empty();
+
+        private Optional<String> ids = Optional.empty();
 
         private Optional<String> name = Optional.empty();
 
@@ -220,6 +260,25 @@ public class InvoiceItemsFilter {
         public Builder updatedSince(Optional<OffsetDateTime> updatedSince) {
             Utils.checkNotNull(updatedSince, "updatedSince");
             this.updatedSince = updatedSince;
+            return this;
+        }
+
+
+        /**
+         * Comma-separated list of invoice item IDs to filter by (e.g. `12345,67890`).
+         */
+        public Builder ids(String ids) {
+            Utils.checkNotNull(ids, "ids");
+            this.ids = Optional.ofNullable(ids);
+            return this;
+        }
+
+        /**
+         * Comma-separated list of invoice item IDs to filter by (e.g. `12345,67890`).
+         */
+        public Builder ids(Optional<String> ids) {
+            Utils.checkNotNull(ids, "ids");
+            this.ids = ids;
             return this;
         }
 
@@ -283,8 +342,8 @@ public class InvoiceItemsFilter {
         public InvoiceItemsFilter build() {
 
             return new InvoiceItemsFilter(
-                updatedSince, name, type,
-                transactionType);
+                updatedSince, ids, name,
+                type, transactionType);
         }
 
     }

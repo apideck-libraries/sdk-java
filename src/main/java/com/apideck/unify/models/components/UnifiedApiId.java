@@ -46,6 +46,7 @@ public class UnifiedApiId {
     public static final UnifiedApiId SCRIPT = new UnifiedApiId("script");
     public static final UnifiedApiId SMS = new UnifiedApiId("sms");
     public static final UnifiedApiId SPREADSHEET = new UnifiedApiId("spreadsheet");
+    public static final UnifiedApiId SUBSCRIPTION_ANALYTICS = new UnifiedApiId("subscription-analytics");
     public static final UnifiedApiId TEAM_MESSAGING = new UnifiedApiId("team-messaging");
     public static final UnifiedApiId ISSUE_TRACKING = new UnifiedApiId("issue-tracking");
     public static final UnifiedApiId TIME_REGISTRATION = new UnifiedApiId("time-registration");
@@ -146,6 +147,7 @@ public class UnifiedApiId {
         map.put("script", SCRIPT);
         map.put("sms", SMS);
         map.put("spreadsheet", SPREADSHEET);
+        map.put("subscription-analytics", SUBSCRIPTION_ANALYTICS);
         map.put("team-messaging", TEAM_MESSAGING);
         map.put("issue-tracking", ISSUE_TRACKING);
         map.put("time-registration", TIME_REGISTRATION);
@@ -178,6 +180,7 @@ public class UnifiedApiId {
         map.put("script", UnifiedApiIdEnum.SCRIPT);
         map.put("sms", UnifiedApiIdEnum.SMS);
         map.put("spreadsheet", UnifiedApiIdEnum.SPREADSHEET);
+        map.put("subscription-analytics", UnifiedApiIdEnum.SUBSCRIPTION_ANALYTICS);
         map.put("team-messaging", UnifiedApiIdEnum.TEAM_MESSAGING);
         map.put("issue-tracking", UnifiedApiIdEnum.ISSUE_TRACKING);
         map.put("time-registration", UnifiedApiIdEnum.TIME_REGISTRATION);
@@ -211,6 +214,7 @@ public class UnifiedApiId {
         SCRIPT("script"),
         SMS("sms"),
         SPREADSHEET("spreadsheet"),
+        SUBSCRIPTION_ANALYTICS("subscription-analytics"),
         TEAM_MESSAGING("team-messaging"),
         ISSUE_TRACKING("issue-tracking"),
         TIME_REGISTRATION("time-registration"),

@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 38254260-287a-40b6-9ac5-c2fcb654c9cc
 management:
-  docChecksum: 3a2a22e62d55b40b93852fc07bccd431
+  docChecksum: ac75faf888c213c540e41ec77c851c80
   docVersion: 10.24.34
-  speakeasyVersion: 1.764.0
-  generationVersion: 2.885.0
-  releaseVersion: 0.31.12
-  configChecksum: 8ffa1bcb876a0b72292c0a14690b17ec
+  speakeasyVersion: 1.764.1
+  generationVersion: 2.885.1
+  releaseVersion: 0.31.13
+  configChecksum: fecad967e2b05ffa1af30d11252c1815
   repoURL: https://github.com/apideck-libraries/sdk-java.git
   installationURL: https://github.com/apideck-libraries/sdk-java
   published: true
 persistentEdits:
-  generation_id: e19fb1c5-6abe-49e6-9b95-09424838e2ef
-  pristine_commit_hash: 0d9662ff923f24dd09243338f65c043f91bf3054
-  pristine_tree_hash: 601ffe760ef1b68f532021764ae80fab230fe43f
+  generation_id: d9caa2e4-40e5-4ce1-ba31-e95858a30dae
+  pristine_commit_hash: f5de54ed62d437d0d4fc0bf86422e6494ef944d2
+  pristine_tree_hash: b539093b1119969412015c89c5cddc53cc55f1d9
 features:
   java:
     acceptHeaders: 2.81.2
@@ -7025,8 +7025,8 @@ trackedFiles:
     pristine_git_object: c755c6aa377f358344e761e9cc3e7b67bc1fb479
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:77cb0c0c1488ebfe0d36673dbda77896fbc6cf24
-    pristine_git_object: 22f5c3d4476c59153a5862c713af2ee20d1a8c32
+    last_write_checksum: sha1:a84aa5097758d36a2066f80925928e0f20b86212
+    pristine_git_object: 83546020591f0ee14d52b44da9d49fcd3d830da5
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -7845,8 +7845,8 @@ trackedFiles:
     pristine_git_object: 7296db7ebcdcff7ee348d1f993fc4aa2a7e6c145
   src/main/java/com/apideck/unify/SDKConfiguration.java:
     id: a2b330a87142
-    last_write_checksum: sha1:f123b4bca99a876f0740ef74c9c478d55b37f0f4
-    pristine_git_object: 362876ae60a4726e445d09a507b98239e12972c0
+    last_write_checksum: sha1:61154f717e292c7ab150b8249df8a15a002795ce
+    pristine_git_object: 79e9a1922f27ee7b3ef625128ee59f39d39cd7e5
   src/main/java/com/apideck/unify/SecuritySource.java:
     id: e4566c6c806b
     last_write_checksum: sha1:101bf1a9f5cf4e8c37abb4540147276eebb2bab0
@@ -36529,7 +36529,6 @@ examples:
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Java SDK Changes:\n* `apideck.accounting.ledgerAccounts.list()`: \n  *  `request.filter` **Changed**\n* `apideck.accounting.invoiceItems.list()`: \n  *  `request.filter` **Changed**\n* `apideck.connector.connectors.list()`: \n  *  `request.filter` **Changed**\n  *  `response.data[].unifiedApis[].id.enum(subscriptionAnalytics)` **Added**\n* `apideck.connector.connectors.get()`:  `response.data.unifiedApis[].id.enum(subscriptionAnalytics)` **Added**\n* `apideck.connector.connectorResources.get()`:  `request.unifiedApi` **Changed**\n* `apideck.vault.sessions.create()`: \n  *  `request.session.settings.unifiedApis[].enum(subscriptionAnalytics)` **Added**\n* `apideck.webhook.webhooks.list()`:  `response.data[].unifiedApi.enum(subscriptionAnalytics)` **Added**\n* `apideck.webhook.webhooks.create()`: \n  *  `request.createWebhookRequest.unifiedApi.enum(subscriptionAnalytics)` **Added**\n  *  `response.data.unifiedApi.enum(subscriptionAnalytics)` **Added**\n* `apideck.webhook.webhooks.get()`:  `response.data.unifiedApi.enum(subscriptionAnalytics)` **Added**\n* `apideck.webhook.webhooks.update()`:  `response.data.unifiedApi.enum(subscriptionAnalytics)` **Added**\n* `apideck.webhook.webhooks.delete()`:  `response.data.unifiedApi.enum(subscriptionAnalytics)` **Added**\n"
 generatedFiles:
   - .gitattributes
   - USAGE.md

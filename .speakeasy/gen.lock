@@ -1,26 +1,26 @@
 lockVersion: 2.0.0
 id: 38254260-287a-40b6-9ac5-c2fcb654c9cc
 management:
-  docChecksum: ac75faf888c213c540e41ec77c851c80
-  docVersion: 10.24.34
-  speakeasyVersion: 1.764.1
-  generationVersion: 2.885.1
-  releaseVersion: 0.31.13
-  configChecksum: fecad967e2b05ffa1af30d11252c1815
+  docChecksum: 242344c9919b91251184a18671f58175
+  docVersion: 10.24.36
+  speakeasyVersion: 1.767.0
+  generationVersion: 2.888.0
+  releaseVersion: 0.31.14
+  configChecksum: f9224383090374254c7fd0b067fc838e
   repoURL: https://github.com/apideck-libraries/sdk-java.git
   installationURL: https://github.com/apideck-libraries/sdk-java
   published: true
 persistentEdits:
-  generation_id: d9caa2e4-40e5-4ce1-ba31-e95858a30dae
-  pristine_commit_hash: f5de54ed62d437d0d4fc0bf86422e6494ef944d2
-  pristine_tree_hash: b539093b1119969412015c89c5cddc53cc55f1d9
+  generation_id: f275422c-ddbc-4866-869d-508b5187f690
+  pristine_commit_hash: 2fba1afbab5195590450c665f65ebd116636416e
+  pristine_tree_hash: fef9909c66a946995c614b1ad9ad1ff833639ac2
 features:
   java:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
     additionalProperties: 0.0.1
     constsAndDefaults: 0.1.3
-    core: 3.55.25
+    core: 3.55.26
     deprecations: 2.81.2
     downloadStreams: 0.1.1
     errors: 1.0.2
@@ -1001,8 +1001,8 @@ trackedFiles:
     pristine_git_object: 9785aee3922b11ee244d4a6ab2a34ad3522474b0
   docs/models/components/CreateWebhookRequest.md:
     id: ad0334c2a766
-    last_write_checksum: sha1:96fe0c7e854768f07ca9b3ad35f3e89aeb86efde
-    pristine_git_object: 01fc321ac054e2868d3c7511c19d60c20885cab8
+    last_write_checksum: sha1:932c2ebd7f5a0ebc80f9ea9d02ad19b5b2bfb4ec
+    pristine_git_object: c5330baa17c3be5cb098590f0c71164ae915d5d2
   docs/models/components/CreateWebhookResponse.md:
     id: 59d03e0461bc
     last_write_checksum: sha1:d7d28aa5aa9df07e99586c2a72e6124129020b25
@@ -3785,8 +3785,8 @@ trackedFiles:
     pristine_git_object: 4895f44165991a2c490671f8301c7f9ed74573a3
   docs/models/components/UpdateWebhookRequest.md:
     id: 765581574c79
-    last_write_checksum: sha1:3be98378097c7c50817eaaf0fde606125cae1a4d
-    pristine_git_object: aacb249fd16365de8e04d8abd7e6cacefb30832c
+    last_write_checksum: sha1:888c790aad57f4191754532bf06ba256c060b9b9
+    pristine_git_object: 2207959fb9cbf6950d2c4c432b7e34516265f324
   docs/models/components/UpdateWebhookResponse.md:
     id: fddb2dec9aae
     last_write_checksum: sha1:4f53cd0c008fdf86123d56c4119fc55933c13009
@@ -3833,8 +3833,8 @@ trackedFiles:
     pristine_git_object: e14311e6aa30d532a1ffdfdaed597484a3367014
   docs/models/components/Webhook.md:
     id: 64d0538156ae
-    last_write_checksum: sha1:b7624394919df18e3c22b30486fb1f4560247632
-    pristine_git_object: 8c1966a9c5050e10c630ccd3498e4e1410afcc34
+    last_write_checksum: sha1:366e12e63c9e78c08b03c97b91e3afc9e0e21bed
+    pristine_git_object: 42243949f9be77d2dd7dc7c06d1dace2879186d2
   docs/models/components/WebhookEventType.md:
     id: b443ab58ee9b
     last_write_checksum: sha1:99f810e20314e9ded56215589a5070cf6d5734ab
@@ -7017,16 +7017,16 @@ trackedFiles:
     pristine_git_object: ac82b3e08e4dc5aed21b0214609967c4a71b160d
   docs/sdks/webhooks/README.md:
     id: e21b32d786a4
-    last_write_checksum: sha1:5854eeabb78859c4d00e6f11a29df5b2150a19c3
-    pristine_git_object: 7da5dd66a2bd9330893e96fccf594b1268ef7f18
+    last_write_checksum: sha1:eda3042c9bae37d99f667c25f58e338345ec308d
+    pristine_git_object: a1947e226a64d71ec4edc01f15126ddca0e1060a
   docs/utils/Blob.md:
     id: 3d9a7c4ad67a
     last_write_checksum: sha1:1f0bf9d59eecfc2cd1b2bd463baac7778cce98d6
     pristine_git_object: c755c6aa377f358344e761e9cc3e7b67bc1fb479
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:a84aa5097758d36a2066f80925928e0f20b86212
-    pristine_git_object: 83546020591f0ee14d52b44da9d49fcd3d830da5
+    last_write_checksum: sha1:186796da82161ee2deb105b99d7e4c7c8637731b
+    pristine_git_object: 994fa0afa2ea6f620f7178e32d44f1b4f4c7510c
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -7549,8 +7549,8 @@ trackedFiles:
     pristine_git_object: a940085e0519c6eb9bc80320eec3f187c8c42196
   src/main/java/com/apideck/unify/AsyncWebhooks.java:
     id: 769c7e59bd07
-    last_write_checksum: sha1:091c4c5f4938a42cca490df5c3f81373029b18fb
-    pristine_git_object: 2cec95a9bdc23c3eb2c43c5c5530bdd66ea0fd2a
+    last_write_checksum: sha1:088bde13b006b44208af5be90fb402007a7ea20b
+    pristine_git_object: 6662d507d163cc58b2b02aa9b1baf7035c91c2c4
   src/main/java/com/apideck/unify/Ats.java:
     id: f294d2605b14
     last_write_checksum: sha1:ea22b9824f4a9682821e751acdbf6eb76915c97a
@@ -7845,8 +7845,8 @@ trackedFiles:
     pristine_git_object: 7296db7ebcdcff7ee348d1f993fc4aa2a7e6c145
   src/main/java/com/apideck/unify/SDKConfiguration.java:
     id: a2b330a87142
-    last_write_checksum: sha1:61154f717e292c7ab150b8249df8a15a002795ce
-    pristine_git_object: 79e9a1922f27ee7b3ef625128ee59f39d39cd7e5
+    last_write_checksum: sha1:f74d347dad79b5dc96d65e95b4850dbc77640000
+    pristine_git_object: 63d8d2f2a8ff38004beed072c51a8143c5f4e0f9
   src/main/java/com/apideck/unify/SecuritySource.java:
     id: e4566c6c806b
     last_write_checksum: sha1:101bf1a9f5cf4e8c37abb4540147276eebb2bab0
@@ -7909,8 +7909,8 @@ trackedFiles:
     pristine_git_object: 60c968d08b47876295f6e44b68152b38264961bf
   src/main/java/com/apideck/unify/Webhooks.java:
     id: 0cc49fb8cabf
-    last_write_checksum: sha1:e65098a5dd0bf7f24c5dcd6656dfba1d13884b63
-    pristine_git_object: bc9d95e6ebe9dfdd6db9bc60947cd7643c9defd5
+    last_write_checksum: sha1:97be1b1efd71a4cbb615dc671bfde2cd1178ac3d
+    pristine_git_object: cf91f0b991658b8c326853dc8477a47f4e5ae97b
   src/main/java/com/apideck/unify/models/components/AccountStatus.java:
     id: a1f68e126525
     last_write_checksum: sha1:cbc0e32ae6ef88fb620b63fa587f59ceb2a380a3
@@ -8857,8 +8857,8 @@ trackedFiles:
     pristine_git_object: 08f16188887c0cb689d155ea89fa1789b2a7d526
   src/main/java/com/apideck/unify/models/components/CreateWebhookRequest.java:
     id: 4ae2466adf52
-    last_write_checksum: sha1:ecd09d070e472fc95033292aced8f21511673371
-    pristine_git_object: 4bce45fea987bc2d260e5b807f49767f414c36d9
+    last_write_checksum: sha1:20d00474244542a25e3a8065793640b6a0bbf8f1
+    pristine_git_object: 0128470830ea2f1167d679dfeee8baeb490d1c7e
   src/main/java/com/apideck/unify/models/components/CreateWebhookResponse.java:
     id: 244991d00bd7
     last_write_checksum: sha1:eb62675e10d970508fa8096b7ca0ded52b814337
@@ -11649,8 +11649,8 @@ trackedFiles:
     pristine_git_object: b1a805a9fa75fd5c8b4c96ac1657627fa6045f5a
   src/main/java/com/apideck/unify/models/components/UpdateWebhookRequest.java:
     id: 9fde6e612deb
-    last_write_checksum: sha1:8e2886a4219b181e0dcd092fb05ff8aa6371d3ae
-    pristine_git_object: 392a1e2d09fc8eac5d679beb27478332f990650d
+    last_write_checksum: sha1:10a579fd2576c08ccd6bc60b9c3d8341ea44e321
+    pristine_git_object: 8f5d94910452c69651e95091b78224c7c5dbbeb3
   src/main/java/com/apideck/unify/models/components/UpdateWebhookResponse.java:
     id: 3d42b8af20c2
     last_write_checksum: sha1:de5267b5733ab75bd6a3e0c4910f949ba29d71a8
@@ -11697,8 +11697,8 @@ trackedFiles:
     pristine_git_object: 9e8e9a4b115746ffd9b7f2beec6f5c6a23d60451
   src/main/java/com/apideck/unify/models/components/Webhook.java:
     id: 7d0136242b98
-    last_write_checksum: sha1:cf905254a672b6dbb6f1556e4f30e54144e7d928
-    pristine_git_object: ac5d20fbb15d3ccd51999bf345eef49c12a9ff76
+    last_write_checksum: sha1:598812873a212092056768c2eb4288c6bee76381
+    pristine_git_object: 2c3cf677cddbb8b85498dc214a2fc342dc6d3ca4
   src/main/java/com/apideck/unify/models/components/WebhookEventType.java:
     id: 52b34fc99481
     last_write_checksum: sha1:2ceb28f0de0f9f75a56535930547c21a321d9c1a

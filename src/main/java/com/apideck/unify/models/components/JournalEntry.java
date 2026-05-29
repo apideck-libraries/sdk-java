@@ -74,6 +74,11 @@ public class JournalEntry {
     @JsonProperty("company_id")
     private JsonNullable<String> companyId;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("subsidiary")
+    private JsonNullable<? extends LinkedSubsidiary> subsidiary;
+
     /**
      * Requires a minimum of 2 line items that sum to 0
      */
@@ -235,6 +240,7 @@ public class JournalEntry {
             @JsonProperty("currency_rate") JsonNullable<Double> currencyRate,
             @JsonProperty("currency") JsonNullable<? extends Currency> currency,
             @JsonProperty("company_id") JsonNullable<String> companyId,
+            @JsonProperty("subsidiary") JsonNullable<? extends LinkedSubsidiary> subsidiary,
             @JsonProperty("line_items") Optional<? extends List<JournalEntryLineItem>> lineItems,
             @JsonProperty("status") JsonNullable<? extends JournalEntryStatus> status,
             @JsonProperty("memo") JsonNullable<String> memo,
@@ -263,6 +269,7 @@ public class JournalEntry {
         Utils.checkNotNull(currencyRate, "currencyRate");
         Utils.checkNotNull(currency, "currency");
         Utils.checkNotNull(companyId, "companyId");
+        Utils.checkNotNull(subsidiary, "subsidiary");
         Utils.checkNotNull(lineItems, "lineItems");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(memo, "memo");
@@ -291,6 +298,7 @@ public class JournalEntry {
         this.currencyRate = currencyRate;
         this.currency = currency;
         this.companyId = companyId;
+        this.subsidiary = subsidiary;
         this.lineItems = lineItems;
         this.status = status;
         this.memo = memo;
@@ -317,14 +325,14 @@ public class JournalEntry {
     public JournalEntry() {
         this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty());
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -383,6 +391,12 @@ public class JournalEntry {
     @JsonIgnore
     public JsonNullable<String> companyId() {
         return companyId;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<LinkedSubsidiary> subsidiary() {
+        return (JsonNullable<LinkedSubsidiary>) subsidiary;
     }
 
     /**
@@ -694,6 +708,18 @@ public class JournalEntry {
     public JournalEntry withCompanyId(JsonNullable<String> companyId) {
         Utils.checkNotNull(companyId, "companyId");
         this.companyId = companyId;
+        return this;
+    }
+
+    public JournalEntry withSubsidiary(LinkedSubsidiary subsidiary) {
+        Utils.checkNotNull(subsidiary, "subsidiary");
+        this.subsidiary = JsonNullable.of(subsidiary);
+        return this;
+    }
+
+    public JournalEntry withSubsidiary(JsonNullable<? extends LinkedSubsidiary> subsidiary) {
+        Utils.checkNotNull(subsidiary, "subsidiary");
+        this.subsidiary = subsidiary;
         return this;
     }
 
@@ -1104,6 +1130,7 @@ public class JournalEntry {
             Utils.enhancedDeepEquals(this.currencyRate, other.currencyRate) &&
             Utils.enhancedDeepEquals(this.currency, other.currency) &&
             Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
+            Utils.enhancedDeepEquals(this.subsidiary, other.subsidiary) &&
             Utils.enhancedDeepEquals(this.lineItems, other.lineItems) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.memo, other.memo) &&
@@ -1132,14 +1159,14 @@ public class JournalEntry {
         return Utils.enhancedHash(
             id, downstreamId, displayId,
             title, currencyRate, currency,
-            companyId, lineItems, status,
-            memo, postedAt, journalSymbol,
-            taxType, taxCode, number,
-            trackingCategories, accountingPeriod, taxInclusive,
-            sourceType, sourceId, customMappings,
-            updatedBy, createdBy, updatedAt,
-            createdAt, rowVersion, customFields,
-            passThrough);
+            companyId, subsidiary, lineItems,
+            status, memo, postedAt,
+            journalSymbol, taxType, taxCode,
+            number, trackingCategories, accountingPeriod,
+            taxInclusive, sourceType, sourceId,
+            customMappings, updatedBy, createdBy,
+            updatedAt, createdAt, rowVersion,
+            customFields, passThrough);
     }
     
     @Override
@@ -1152,6 +1179,7 @@ public class JournalEntry {
                 "currencyRate", currencyRate,
                 "currency", currency,
                 "companyId", companyId,
+                "subsidiary", subsidiary,
                 "lineItems", lineItems,
                 "status", status,
                 "memo", memo,
@@ -1191,6 +1219,8 @@ public class JournalEntry {
         private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
 
         private JsonNullable<String> companyId = JsonNullable.undefined();
+
+        private JsonNullable<? extends LinkedSubsidiary> subsidiary = JsonNullable.undefined();
 
         private Optional<? extends List<JournalEntryLineItem>> lineItems = Optional.empty();
 
@@ -1371,6 +1401,19 @@ public class JournalEntry {
         public Builder companyId(JsonNullable<String> companyId) {
             Utils.checkNotNull(companyId, "companyId");
             this.companyId = companyId;
+            return this;
+        }
+
+
+        public Builder subsidiary(LinkedSubsidiary subsidiary) {
+            Utils.checkNotNull(subsidiary, "subsidiary");
+            this.subsidiary = JsonNullable.of(subsidiary);
+            return this;
+        }
+
+        public Builder subsidiary(JsonNullable<? extends LinkedSubsidiary> subsidiary) {
+            Utils.checkNotNull(subsidiary, "subsidiary");
+            this.subsidiary = subsidiary;
             return this;
         }
 
@@ -1786,14 +1829,14 @@ public class JournalEntry {
             return new JournalEntry(
                 id, downstreamId, displayId,
                 title, currencyRate, currency,
-                companyId, lineItems, status,
-                memo, postedAt, journalSymbol,
-                taxType, taxCode, number,
-                trackingCategories, accountingPeriod, taxInclusive,
-                sourceType, sourceId, customMappings,
-                updatedBy, createdBy, updatedAt,
-                createdAt, rowVersion, customFields,
-                passThrough);
+                companyId, subsidiary, lineItems,
+                status, memo, postedAt,
+                journalSymbol, taxType, taxCode,
+                number, trackingCategories, accountingPeriod,
+                taxInclusive, sourceType, sourceId,
+                customMappings, updatedBy, createdBy,
+                updatedAt, createdAt, rowVersion,
+                customFields, passThrough);
         }
 
     }

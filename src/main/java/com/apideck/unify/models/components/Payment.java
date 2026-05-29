@@ -143,6 +143,11 @@ public class Payment {
     @JsonProperty("company_id")
     private JsonNullable<String> companyId;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("subsidiary")
+    private JsonNullable<? extends LinkedSubsidiary> subsidiary;
+
     /**
      * Indicates if the transaction has been reconciled.
      */
@@ -271,6 +276,7 @@ public class Payment {
             @JsonProperty("customer") JsonNullable<? extends LinkedCustomer> customer,
             @JsonProperty("supplier") JsonNullable<? extends DeprecatedLinkedSupplier> supplier,
             @JsonProperty("company_id") JsonNullable<String> companyId,
+            @JsonProperty("subsidiary") JsonNullable<? extends LinkedSubsidiary> subsidiary,
             @JsonProperty("reconciled") JsonNullable<Boolean> reconciled,
             @JsonProperty("status") Optional<? extends PaymentStatus> status,
             @JsonProperty("type") Optional<? extends PaymentType> type,
@@ -303,6 +309,7 @@ public class Payment {
         Utils.checkNotNull(customer, "customer");
         Utils.checkNotNull(supplier, "supplier");
         Utils.checkNotNull(companyId, "companyId");
+        Utils.checkNotNull(subsidiary, "subsidiary");
         Utils.checkNotNull(reconciled, "reconciled");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(type, "type");
@@ -335,6 +342,7 @@ public class Payment {
         this.customer = customer;
         this.supplier = supplier;
         this.companyId = companyId;
+        this.subsidiary = subsidiary;
         this.reconciled = reconciled;
         this.status = status;
         this.type = type;
@@ -360,12 +368,12 @@ public class Payment {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty());
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -505,6 +513,12 @@ public class Payment {
     @JsonIgnore
     public JsonNullable<String> companyId() {
         return companyId;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<LinkedSubsidiary> subsidiary() {
+        return (JsonNullable<LinkedSubsidiary>) subsidiary;
     }
 
     /**
@@ -938,6 +952,18 @@ public class Payment {
         return this;
     }
 
+    public Payment withSubsidiary(LinkedSubsidiary subsidiary) {
+        Utils.checkNotNull(subsidiary, "subsidiary");
+        this.subsidiary = JsonNullable.of(subsidiary);
+        return this;
+    }
+
+    public Payment withSubsidiary(JsonNullable<? extends LinkedSubsidiary> subsidiary) {
+        Utils.checkNotNull(subsidiary, "subsidiary");
+        this.subsidiary = subsidiary;
+        return this;
+    }
+
     /**
      * Indicates if the transaction has been reconciled.
      */
@@ -1249,6 +1275,7 @@ public class Payment {
             Utils.enhancedDeepEquals(this.customer, other.customer) &&
             Utils.enhancedDeepEquals(this.supplier, other.supplier) &&
             Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
+            Utils.enhancedDeepEquals(this.subsidiary, other.subsidiary) &&
             Utils.enhancedDeepEquals(this.reconciled, other.reconciled) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.type, other.type) &&
@@ -1275,12 +1302,12 @@ public class Payment {
             paymentMethod, paymentMethodReference, paymentMethodId,
             accountsReceivableAccountType, accountsReceivableAccountId, account,
             transactionDate, customer, supplier,
-            companyId, reconciled, status,
-            type, allocations, note,
-            number, trackingCategories, customFields,
-            rowVersion, displayId, customMappings,
-            updatedBy, createdBy, createdAt,
-            updatedAt, passThrough);
+            companyId, subsidiary, reconciled,
+            status, type, allocations,
+            note, number, trackingCategories,
+            customFields, rowVersion, displayId,
+            customMappings, updatedBy, createdBy,
+            createdAt, updatedAt, passThrough);
     }
     
     @Override
@@ -1302,6 +1329,7 @@ public class Payment {
                 "customer", customer,
                 "supplier", supplier,
                 "companyId", companyId,
+                "subsidiary", subsidiary,
                 "reconciled", reconciled,
                 "status", status,
                 "type", type,
@@ -1357,6 +1385,8 @@ public class Payment {
         private JsonNullable<? extends DeprecatedLinkedSupplier> supplier = JsonNullable.undefined();
 
         private JsonNullable<String> companyId = JsonNullable.undefined();
+
+        private JsonNullable<? extends LinkedSubsidiary> subsidiary = JsonNullable.undefined();
 
         private JsonNullable<Boolean> reconciled = JsonNullable.undefined();
 
@@ -1704,6 +1734,19 @@ public class Payment {
         }
 
 
+        public Builder subsidiary(LinkedSubsidiary subsidiary) {
+            Utils.checkNotNull(subsidiary, "subsidiary");
+            this.subsidiary = JsonNullable.of(subsidiary);
+            return this;
+        }
+
+        public Builder subsidiary(JsonNullable<? extends LinkedSubsidiary> subsidiary) {
+            Utils.checkNotNull(subsidiary, "subsidiary");
+            this.subsidiary = subsidiary;
+            return this;
+        }
+
+
         /**
          * Indicates if the transaction has been reconciled.
          */
@@ -2007,12 +2050,12 @@ public class Payment {
                 paymentMethod, paymentMethodReference, paymentMethodId,
                 accountsReceivableAccountType, accountsReceivableAccountId, account,
                 transactionDate, customer, supplier,
-                companyId, reconciled, status,
-                type, allocations, note,
-                number, trackingCategories, customFields,
-                rowVersion, displayId, customMappings,
-                updatedBy, createdBy, createdAt,
-                updatedAt, passThrough);
+                companyId, subsidiary, reconciled,
+                status, type, allocations,
+                note, number, trackingCategories,
+                customFields, rowVersion, displayId,
+                customMappings, updatedBy, createdBy,
+                createdAt, updatedAt, passThrough);
         }
 
     }

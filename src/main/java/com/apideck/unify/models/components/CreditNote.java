@@ -50,6 +50,11 @@ public class CreditNote {
     @JsonProperty("company_id")
     private JsonNullable<String> companyId;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("subsidiary")
+    private JsonNullable<? extends LinkedSubsidiary> subsidiary;
+
     /**
      * The ID of the location
      */
@@ -277,6 +282,7 @@ public class CreditNote {
             @JsonProperty("number") JsonNullable<String> number,
             @JsonProperty("customer") JsonNullable<? extends LinkedCustomer> customer,
             @JsonProperty("company_id") JsonNullable<String> companyId,
+            @JsonProperty("subsidiary") JsonNullable<? extends LinkedSubsidiary> subsidiary,
             @JsonProperty("location_id") JsonNullable<String> locationId,
             @JsonProperty("department_id") JsonNullable<String> departmentId,
             @JsonProperty("currency") JsonNullable<? extends Currency> currency,
@@ -314,6 +320,7 @@ public class CreditNote {
         Utils.checkNotNull(number, "number");
         Utils.checkNotNull(customer, "customer");
         Utils.checkNotNull(companyId, "companyId");
+        Utils.checkNotNull(subsidiary, "subsidiary");
         Utils.checkNotNull(locationId, "locationId");
         Utils.checkNotNull(departmentId, "departmentId");
         Utils.checkNotNull(currency, "currency");
@@ -351,6 +358,7 @@ public class CreditNote {
         this.number = number;
         this.customer = customer;
         this.companyId = companyId;
+        this.subsidiary = subsidiary;
         this.locationId = locationId;
         this.departmentId = departmentId;
         this.currency = currency;
@@ -392,16 +400,16 @@ public class CreditNote {
         this(id, JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), totalAmount, JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), totalAmount,
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty());
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -435,6 +443,12 @@ public class CreditNote {
     @JsonIgnore
     public JsonNullable<String> companyId() {
         return companyId;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<LinkedSubsidiary> subsidiary() {
+        return (JsonNullable<LinkedSubsidiary>) subsidiary;
     }
 
     /**
@@ -763,6 +777,18 @@ public class CreditNote {
     public CreditNote withCompanyId(JsonNullable<String> companyId) {
         Utils.checkNotNull(companyId, "companyId");
         this.companyId = companyId;
+        return this;
+    }
+
+    public CreditNote withSubsidiary(LinkedSubsidiary subsidiary) {
+        Utils.checkNotNull(subsidiary, "subsidiary");
+        this.subsidiary = JsonNullable.of(subsidiary);
+        return this;
+    }
+
+    public CreditNote withSubsidiary(JsonNullable<? extends LinkedSubsidiary> subsidiary) {
+        Utils.checkNotNull(subsidiary, "subsidiary");
+        this.subsidiary = subsidiary;
         return this;
     }
 
@@ -1344,6 +1370,7 @@ public class CreditNote {
             Utils.enhancedDeepEquals(this.number, other.number) &&
             Utils.enhancedDeepEquals(this.customer, other.customer) &&
             Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
+            Utils.enhancedDeepEquals(this.subsidiary, other.subsidiary) &&
             Utils.enhancedDeepEquals(this.locationId, other.locationId) &&
             Utils.enhancedDeepEquals(this.departmentId, other.departmentId) &&
             Utils.enhancedDeepEquals(this.currency, other.currency) &&
@@ -1383,18 +1410,18 @@ public class CreditNote {
     public int hashCode() {
         return Utils.enhancedHash(
             id, number, customer,
-            companyId, locationId, departmentId,
-            currency, currencyRate, taxInclusive,
-            subTotal, totalAmount, totalTax,
-            taxCode, balance, remainingCredit,
-            status, reference, dateIssued,
-            datePaid, type, account,
-            lineItems, allocations, note,
-            terms, termsId, billingAddress,
-            shippingAddress, trackingCategories, customMappings,
-            customFields, rowVersion, updatedBy,
-            createdBy, updatedAt, createdAt,
-            passThrough);
+            companyId, subsidiary, locationId,
+            departmentId, currency, currencyRate,
+            taxInclusive, subTotal, totalAmount,
+            totalTax, taxCode, balance,
+            remainingCredit, status, reference,
+            dateIssued, datePaid, type,
+            account, lineItems, allocations,
+            note, terms, termsId,
+            billingAddress, shippingAddress, trackingCategories,
+            customMappings, customFields, rowVersion,
+            updatedBy, createdBy, updatedAt,
+            createdAt, passThrough);
     }
     
     @Override
@@ -1404,6 +1431,7 @@ public class CreditNote {
                 "number", number,
                 "customer", customer,
                 "companyId", companyId,
+                "subsidiary", subsidiary,
                 "locationId", locationId,
                 "departmentId", departmentId,
                 "currency", currency,
@@ -1449,6 +1477,8 @@ public class CreditNote {
         private JsonNullable<? extends LinkedCustomer> customer = JsonNullable.undefined();
 
         private JsonNullable<String> companyId = JsonNullable.undefined();
+
+        private JsonNullable<? extends LinkedSubsidiary> subsidiary = JsonNullable.undefined();
 
         private JsonNullable<String> locationId = JsonNullable.undefined();
 
@@ -1584,6 +1614,19 @@ public class CreditNote {
         public Builder companyId(JsonNullable<String> companyId) {
             Utils.checkNotNull(companyId, "companyId");
             this.companyId = companyId;
+            return this;
+        }
+
+
+        public Builder subsidiary(LinkedSubsidiary subsidiary) {
+            Utils.checkNotNull(subsidiary, "subsidiary");
+            this.subsidiary = JsonNullable.of(subsidiary);
+            return this;
+        }
+
+        public Builder subsidiary(JsonNullable<? extends LinkedSubsidiary> subsidiary) {
+            Utils.checkNotNull(subsidiary, "subsidiary");
+            this.subsidiary = subsidiary;
             return this;
         }
 
@@ -2179,18 +2222,18 @@ public class CreditNote {
 
             return new CreditNote(
                 id, number, customer,
-                companyId, locationId, departmentId,
-                currency, currencyRate, taxInclusive,
-                subTotal, totalAmount, totalTax,
-                taxCode, balance, remainingCredit,
-                status, reference, dateIssued,
-                datePaid, type, account,
-                lineItems, allocations, note,
-                terms, termsId, billingAddress,
-                shippingAddress, trackingCategories, customMappings,
-                customFields, rowVersion, updatedBy,
-                createdBy, updatedAt, createdAt,
-                passThrough);
+                companyId, subsidiary, locationId,
+                departmentId, currency, currencyRate,
+                taxInclusive, subTotal, totalAmount,
+                totalTax, taxCode, balance,
+                remainingCredit, status, reference,
+                dateIssued, datePaid, type,
+                account, lineItems, allocations,
+                note, terms, termsId,
+                billingAddress, shippingAddress, trackingCategories,
+                customMappings, customFields, rowVersion,
+                updatedBy, createdBy, updatedAt,
+                createdAt, passThrough);
         }
 
     }

@@ -49,6 +49,11 @@ public class BillInput {
     @JsonProperty("company_id")
     private JsonNullable<String> companyId;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("subsidiary")
+    private JsonNullable<? extends LinkedSubsidiaryInput> subsidiary;
+
     /**
      * The ID of the location
      */
@@ -336,6 +341,7 @@ public class BillInput {
             @JsonProperty("bill_number") JsonNullable<String> billNumber,
             @JsonProperty("supplier") JsonNullable<? extends LinkedSupplierInput> supplier,
             @JsonProperty("company_id") JsonNullable<String> companyId,
+            @JsonProperty("subsidiary") JsonNullable<? extends LinkedSubsidiaryInput> subsidiary,
             @JsonProperty("location_id") JsonNullable<String> locationId,
             @JsonProperty("department_id") JsonNullable<String> departmentId,
             @JsonProperty("currency") JsonNullable<? extends Currency> currency,
@@ -381,6 +387,7 @@ public class BillInput {
         Utils.checkNotNull(billNumber, "billNumber");
         Utils.checkNotNull(supplier, "supplier");
         Utils.checkNotNull(companyId, "companyId");
+        Utils.checkNotNull(subsidiary, "subsidiary");
         Utils.checkNotNull(locationId, "locationId");
         Utils.checkNotNull(departmentId, "departmentId");
         Utils.checkNotNull(currency, "currency");
@@ -426,6 +433,7 @@ public class BillInput {
         this.billNumber = billNumber;
         this.supplier = supplier;
         this.companyId = companyId;
+        this.subsidiary = subsidiary;
         this.locationId = locationId;
         this.departmentId = departmentId;
         this.currency = currency;
@@ -474,17 +482,18 @@ public class BillInput {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), Optional.empty());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -518,6 +527,12 @@ public class BillInput {
     @JsonIgnore
     public JsonNullable<String> companyId() {
         return companyId;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<LinkedSubsidiaryInput> subsidiary() {
+        return (JsonNullable<LinkedSubsidiaryInput>) subsidiary;
     }
 
     /**
@@ -921,6 +936,18 @@ public class BillInput {
     public BillInput withCompanyId(JsonNullable<String> companyId) {
         Utils.checkNotNull(companyId, "companyId");
         this.companyId = companyId;
+        return this;
+    }
+
+    public BillInput withSubsidiary(LinkedSubsidiaryInput subsidiary) {
+        Utils.checkNotNull(subsidiary, "subsidiary");
+        this.subsidiary = JsonNullable.of(subsidiary);
+        return this;
+    }
+
+    public BillInput withSubsidiary(JsonNullable<? extends LinkedSubsidiaryInput> subsidiary) {
+        Utils.checkNotNull(subsidiary, "subsidiary");
+        this.subsidiary = subsidiary;
         return this;
     }
 
@@ -1657,6 +1684,7 @@ public class BillInput {
             Utils.enhancedDeepEquals(this.billNumber, other.billNumber) &&
             Utils.enhancedDeepEquals(this.supplier, other.supplier) &&
             Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
+            Utils.enhancedDeepEquals(this.subsidiary, other.subsidiary) &&
             Utils.enhancedDeepEquals(this.locationId, other.locationId) &&
             Utils.enhancedDeepEquals(this.departmentId, other.departmentId) &&
             Utils.enhancedDeepEquals(this.currency, other.currency) &&
@@ -1704,20 +1732,21 @@ public class BillInput {
     public int hashCode() {
         return Utils.enhancedHash(
             displayId, billNumber, supplier,
-            companyId, locationId, departmentId,
-            currency, currencyRate, taxInclusive,
-            billDate, dueDate, paidDate,
-            poNumber, reference, lineItems,
-            terms, termsId, balance,
-            deposit, subTotal, totalTax,
-            total, taxCode, notes,
-            status, ledgerAccount, paymentMethod,
-            channel, language, accountingByRow,
-            bankAccount, discountPercentage, templateId,
-            approvedBy, amortizationType, taxMethod,
-            documentReceived, sourceDocumentUrl, paymentAllocations,
-            trackingCategories, rowVersion, customFields,
-            passThrough, accountingPeriod, attachments);
+            companyId, subsidiary, locationId,
+            departmentId, currency, currencyRate,
+            taxInclusive, billDate, dueDate,
+            paidDate, poNumber, reference,
+            lineItems, terms, termsId,
+            balance, deposit, subTotal,
+            totalTax, total, taxCode,
+            notes, status, ledgerAccount,
+            paymentMethod, channel, language,
+            accountingByRow, bankAccount, discountPercentage,
+            templateId, approvedBy, amortizationType,
+            taxMethod, documentReceived, sourceDocumentUrl,
+            paymentAllocations, trackingCategories, rowVersion,
+            customFields, passThrough, accountingPeriod,
+            attachments);
     }
     
     @Override
@@ -1727,6 +1756,7 @@ public class BillInput {
                 "billNumber", billNumber,
                 "supplier", supplier,
                 "companyId", companyId,
+                "subsidiary", subsidiary,
                 "locationId", locationId,
                 "departmentId", departmentId,
                 "currency", currency,
@@ -1780,6 +1810,8 @@ public class BillInput {
         private JsonNullable<? extends LinkedSupplierInput> supplier = JsonNullable.undefined();
 
         private JsonNullable<String> companyId = JsonNullable.undefined();
+
+        private JsonNullable<? extends LinkedSubsidiaryInput> subsidiary = JsonNullable.undefined();
 
         private JsonNullable<String> locationId = JsonNullable.undefined();
 
@@ -1940,6 +1972,19 @@ public class BillInput {
         public Builder companyId(JsonNullable<String> companyId) {
             Utils.checkNotNull(companyId, "companyId");
             this.companyId = companyId;
+            return this;
+        }
+
+
+        public Builder subsidiary(LinkedSubsidiaryInput subsidiary) {
+            Utils.checkNotNull(subsidiary, "subsidiary");
+            this.subsidiary = JsonNullable.of(subsidiary);
+            return this;
+        }
+
+        public Builder subsidiary(JsonNullable<? extends LinkedSubsidiaryInput> subsidiary) {
+            Utils.checkNotNull(subsidiary, "subsidiary");
+            this.subsidiary = subsidiary;
             return this;
         }
 
@@ -2702,20 +2747,21 @@ public class BillInput {
 
             return new BillInput(
                 displayId, billNumber, supplier,
-                companyId, locationId, departmentId,
-                currency, currencyRate, taxInclusive,
-                billDate, dueDate, paidDate,
-                poNumber, reference, lineItems,
-                terms, termsId, balance,
-                deposit, subTotal, totalTax,
-                total, taxCode, notes,
-                status, ledgerAccount, paymentMethod,
-                channel, language, accountingByRow,
-                bankAccount, discountPercentage, templateId,
-                approvedBy, amortizationType, taxMethod,
-                documentReceived, sourceDocumentUrl, paymentAllocations,
-                trackingCategories, rowVersion, customFields,
-                passThrough, accountingPeriod, attachments);
+                companyId, subsidiary, locationId,
+                departmentId, currency, currencyRate,
+                taxInclusive, billDate, dueDate,
+                paidDate, poNumber, reference,
+                lineItems, terms, termsId,
+                balance, deposit, subTotal,
+                totalTax, total, taxCode,
+                notes, status, ledgerAccount,
+                paymentMethod, channel, language,
+                accountingByRow, bankAccount, discountPercentage,
+                templateId, approvedBy, amortizationType,
+                taxMethod, documentReceived, sourceDocumentUrl,
+                paymentAllocations, trackingCategories, rowVersion,
+                customFields, passThrough, accountingPeriod,
+                attachments);
         }
 
     }

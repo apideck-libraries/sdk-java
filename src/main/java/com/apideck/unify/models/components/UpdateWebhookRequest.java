@@ -33,7 +33,8 @@ public class UpdateWebhookRequest {
     private Optional<? extends Status> status;
 
     /**
-     * The delivery url of the webhook endpoint.
+     * The delivery url of the webhook endpoint. The endpoint must respond within 60 seconds or the
+     * delivery is recorded as failed.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("delivery_url")
@@ -85,7 +86,8 @@ public class UpdateWebhookRequest {
     }
 
     /**
-     * The delivery url of the webhook endpoint.
+     * The delivery url of the webhook endpoint. The endpoint must respond within 60 seconds or the
+     * delivery is recorded as failed.
      */
     @JsonIgnore
     public Optional<String> deliveryUrl() {
@@ -144,7 +146,8 @@ public class UpdateWebhookRequest {
     }
 
     /**
-     * The delivery url of the webhook endpoint.
+     * The delivery url of the webhook endpoint. The endpoint must respond within 60 seconds or the
+     * delivery is recorded as failed.
      */
     public UpdateWebhookRequest withDeliveryUrl(String deliveryUrl) {
         Utils.checkNotNull(deliveryUrl, "deliveryUrl");
@@ -154,7 +157,8 @@ public class UpdateWebhookRequest {
 
 
     /**
-     * The delivery url of the webhook endpoint.
+     * The delivery url of the webhook endpoint. The endpoint must respond within 60 seconds or the
+     * delivery is recorded as failed.
      */
     public UpdateWebhookRequest withDeliveryUrl(Optional<String> deliveryUrl) {
         Utils.checkNotNull(deliveryUrl, "deliveryUrl");
@@ -268,7 +272,8 @@ public class UpdateWebhookRequest {
 
 
         /**
-         * The delivery url of the webhook endpoint.
+         * The delivery url of the webhook endpoint. The endpoint must respond within 60 seconds or the
+         * delivery is recorded as failed.
          */
         public Builder deliveryUrl(String deliveryUrl) {
             Utils.checkNotNull(deliveryUrl, "deliveryUrl");
@@ -277,7 +282,8 @@ public class UpdateWebhookRequest {
         }
 
         /**
-         * The delivery url of the webhook endpoint.
+         * The delivery url of the webhook endpoint. The endpoint must respond within 60 seconds or the
+         * delivery is recorded as failed.
          */
         public Builder deliveryUrl(Optional<String> deliveryUrl) {
             Utils.checkNotNull(deliveryUrl, "deliveryUrl");

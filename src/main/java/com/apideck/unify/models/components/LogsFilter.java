@@ -3,22 +3,65 @@
  */
 package com.apideck.unify.models.components;
 
+import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.core.type.TypeReference;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.time.OffsetDateTime;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class LogsFilter {
-
+    /**
+     * Filter by connector ID. Known limitation: this field is not currently applied at the log query
+     * resolver — connector filtering is performed via the service identifier internally (see GH-10099).
+     */
     @SpeakeasyMetadata("queryParam:name=connector_id")
     private JsonNullable<String> connectorId;
+
+    /**
+     * Filter by request path. Match behavior is controlled by path_match_mode (defaults to CONTAINS).
+     */
+    @SpeakeasyMetadata("queryParam:name=path")
+    private JsonNullable<String> path;
+
+    /**
+     * How the path filter is matched. CONTAINS matches the path anywhere; STARTS_WITH / ENDS_WITH anchor
+     * the match; EXACT requires the whole path to match. Only applied when path is set.
+     */
+    @SpeakeasyMetadata("queryParam:name=path_match_mode")
+    private JsonNullable<? extends PathMatchMode> pathMatchMode;
+
+    /**
+     * Filter by a single HTTP method.
+     */
+    @SpeakeasyMetadata("queryParam:name=http_method")
+    private JsonNullable<String> httpMethod;
+
+    /**
+     * Filter by multiple HTTP methods.
+     */
+    @SpeakeasyMetadata("queryParam:name=http_methods")
+    private JsonNullable<? extends List<String>> httpMethods;
+
+    /**
+     * Filter logs at or after this ISO 8601 date-time (inclusive).
+     */
+    @SpeakeasyMetadata("queryParam:name=start_date")
+    private JsonNullable<OffsetDateTime> startDate;
+
+    /**
+     * Filter logs at or before this ISO 8601 date-time (inclusive). Must be on or after start_date.
+     */
+    @SpeakeasyMetadata("queryParam:name=end_date")
+    private JsonNullable<OffsetDateTime> endDate;
 
     /**
      * Filter by a single HTTP status code. For backward compatibility - use status_codes for multiple
@@ -41,14 +84,32 @@ public class LogsFilter {
     @JsonCreator
     public LogsFilter(
             JsonNullable<String> connectorId,
+            JsonNullable<String> path,
+            JsonNullable<? extends PathMatchMode> pathMatchMode,
+            JsonNullable<String> httpMethod,
+            JsonNullable<? extends List<String>> httpMethods,
+            JsonNullable<OffsetDateTime> startDate,
+            JsonNullable<OffsetDateTime> endDate,
             JsonNullable<Double> statusCode,
             JsonNullable<? extends List<Double>> statusCodes,
             JsonNullable<String> excludeUnifiedApis) {
         Utils.checkNotNull(connectorId, "connectorId");
+        Utils.checkNotNull(path, "path");
+        Utils.checkNotNull(pathMatchMode, "pathMatchMode");
+        Utils.checkNotNull(httpMethod, "httpMethod");
+        Utils.checkNotNull(httpMethods, "httpMethods");
+        Utils.checkNotNull(startDate, "startDate");
+        Utils.checkNotNull(endDate, "endDate");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(statusCodes, "statusCodes");
         Utils.checkNotNull(excludeUnifiedApis, "excludeUnifiedApis");
         this.connectorId = connectorId;
+        this.path = path;
+        this.pathMatchMode = pathMatchMode;
+        this.httpMethod = httpMethod;
+        this.httpMethods = httpMethods;
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.statusCode = statusCode;
         this.statusCodes = statusCodes;
         this.excludeUnifiedApis = excludeUnifiedApis;
@@ -56,12 +117,69 @@ public class LogsFilter {
     
     public LogsFilter() {
         this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined());
     }
 
+    /**
+     * Filter by connector ID. Known limitation: this field is not currently applied at the log query
+     * resolver — connector filtering is performed via the service identifier internally (see GH-10099).
+     */
     @JsonIgnore
     public JsonNullable<String> connectorId() {
         return connectorId;
+    }
+
+    /**
+     * Filter by request path. Match behavior is controlled by path_match_mode (defaults to CONTAINS).
+     */
+    @JsonIgnore
+    public JsonNullable<String> path() {
+        return path;
+    }
+
+    /**
+     * How the path filter is matched. CONTAINS matches the path anywhere; STARTS_WITH / ENDS_WITH anchor
+     * the match; EXACT requires the whole path to match. Only applied when path is set.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<PathMatchMode> pathMatchMode() {
+        return (JsonNullable<PathMatchMode>) pathMatchMode;
+    }
+
+    /**
+     * Filter by a single HTTP method.
+     */
+    @JsonIgnore
+    public JsonNullable<String> httpMethod() {
+        return httpMethod;
+    }
+
+    /**
+     * Filter by multiple HTTP methods.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<List<String>> httpMethods() {
+        return (JsonNullable<List<String>>) httpMethods;
+    }
+
+    /**
+     * Filter logs at or after this ISO 8601 date-time (inclusive).
+     */
+    @JsonIgnore
+    public JsonNullable<OffsetDateTime> startDate() {
+        return startDate;
+    }
+
+    /**
+     * Filter logs at or before this ISO 8601 date-time (inclusive). Must be on or after start_date.
+     */
+    @JsonIgnore
+    public JsonNullable<OffsetDateTime> endDate() {
+        return endDate;
     }
 
     /**
@@ -93,15 +211,133 @@ public class LogsFilter {
     }
 
 
+    /**
+     * Filter by connector ID. Known limitation: this field is not currently applied at the log query
+     * resolver — connector filtering is performed via the service identifier internally (see GH-10099).
+     */
     public LogsFilter withConnectorId(String connectorId) {
         Utils.checkNotNull(connectorId, "connectorId");
         this.connectorId = JsonNullable.of(connectorId);
         return this;
     }
 
+    /**
+     * Filter by connector ID. Known limitation: this field is not currently applied at the log query
+     * resolver — connector filtering is performed via the service identifier internally (see GH-10099).
+     */
     public LogsFilter withConnectorId(JsonNullable<String> connectorId) {
         Utils.checkNotNull(connectorId, "connectorId");
         this.connectorId = connectorId;
+        return this;
+    }
+
+    /**
+     * Filter by request path. Match behavior is controlled by path_match_mode (defaults to CONTAINS).
+     */
+    public LogsFilter withPath(String path) {
+        Utils.checkNotNull(path, "path");
+        this.path = JsonNullable.of(path);
+        return this;
+    }
+
+    /**
+     * Filter by request path. Match behavior is controlled by path_match_mode (defaults to CONTAINS).
+     */
+    public LogsFilter withPath(JsonNullable<String> path) {
+        Utils.checkNotNull(path, "path");
+        this.path = path;
+        return this;
+    }
+
+    /**
+     * How the path filter is matched. CONTAINS matches the path anywhere; STARTS_WITH / ENDS_WITH anchor
+     * the match; EXACT requires the whole path to match. Only applied when path is set.
+     */
+    public LogsFilter withPathMatchMode(PathMatchMode pathMatchMode) {
+        Utils.checkNotNull(pathMatchMode, "pathMatchMode");
+        this.pathMatchMode = JsonNullable.of(pathMatchMode);
+        return this;
+    }
+
+    /**
+     * How the path filter is matched. CONTAINS matches the path anywhere; STARTS_WITH / ENDS_WITH anchor
+     * the match; EXACT requires the whole path to match. Only applied when path is set.
+     */
+    public LogsFilter withPathMatchMode(JsonNullable<? extends PathMatchMode> pathMatchMode) {
+        Utils.checkNotNull(pathMatchMode, "pathMatchMode");
+        this.pathMatchMode = pathMatchMode;
+        return this;
+    }
+
+    /**
+     * Filter by a single HTTP method.
+     */
+    public LogsFilter withHttpMethod(String httpMethod) {
+        Utils.checkNotNull(httpMethod, "httpMethod");
+        this.httpMethod = JsonNullable.of(httpMethod);
+        return this;
+    }
+
+    /**
+     * Filter by a single HTTP method.
+     */
+    public LogsFilter withHttpMethod(JsonNullable<String> httpMethod) {
+        Utils.checkNotNull(httpMethod, "httpMethod");
+        this.httpMethod = httpMethod;
+        return this;
+    }
+
+    /**
+     * Filter by multiple HTTP methods.
+     */
+    public LogsFilter withHttpMethods(List<String> httpMethods) {
+        Utils.checkNotNull(httpMethods, "httpMethods");
+        this.httpMethods = JsonNullable.of(httpMethods);
+        return this;
+    }
+
+    /**
+     * Filter by multiple HTTP methods.
+     */
+    public LogsFilter withHttpMethods(JsonNullable<? extends List<String>> httpMethods) {
+        Utils.checkNotNull(httpMethods, "httpMethods");
+        this.httpMethods = httpMethods;
+        return this;
+    }
+
+    /**
+     * Filter logs at or after this ISO 8601 date-time (inclusive).
+     */
+    public LogsFilter withStartDate(OffsetDateTime startDate) {
+        Utils.checkNotNull(startDate, "startDate");
+        this.startDate = JsonNullable.of(startDate);
+        return this;
+    }
+
+    /**
+     * Filter logs at or after this ISO 8601 date-time (inclusive).
+     */
+    public LogsFilter withStartDate(JsonNullable<OffsetDateTime> startDate) {
+        Utils.checkNotNull(startDate, "startDate");
+        this.startDate = startDate;
+        return this;
+    }
+
+    /**
+     * Filter logs at or before this ISO 8601 date-time (inclusive). Must be on or after start_date.
+     */
+    public LogsFilter withEndDate(OffsetDateTime endDate) {
+        Utils.checkNotNull(endDate, "endDate");
+        this.endDate = JsonNullable.of(endDate);
+        return this;
+    }
+
+    /**
+     * Filter logs at or before this ISO 8601 date-time (inclusive). Must be on or after start_date.
+     */
+    public LogsFilter withEndDate(JsonNullable<OffsetDateTime> endDate) {
+        Utils.checkNotNull(endDate, "endDate");
+        this.endDate = endDate;
         return this;
     }
 
@@ -168,6 +404,12 @@ public class LogsFilter {
         LogsFilter other = (LogsFilter) o;
         return 
             Utils.enhancedDeepEquals(this.connectorId, other.connectorId) &&
+            Utils.enhancedDeepEquals(this.path, other.path) &&
+            Utils.enhancedDeepEquals(this.pathMatchMode, other.pathMatchMode) &&
+            Utils.enhancedDeepEquals(this.httpMethod, other.httpMethod) &&
+            Utils.enhancedDeepEquals(this.httpMethods, other.httpMethods) &&
+            Utils.enhancedDeepEquals(this.startDate, other.startDate) &&
+            Utils.enhancedDeepEquals(this.endDate, other.endDate) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.statusCodes, other.statusCodes) &&
             Utils.enhancedDeepEquals(this.excludeUnifiedApis, other.excludeUnifiedApis);
@@ -176,7 +418,9 @@ public class LogsFilter {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            connectorId, statusCode, statusCodes,
+            connectorId, path, pathMatchMode,
+            httpMethod, httpMethods, startDate,
+            endDate, statusCode, statusCodes,
             excludeUnifiedApis);
     }
     
@@ -184,6 +428,12 @@ public class LogsFilter {
     public String toString() {
         return Utils.toString(LogsFilter.class,
                 "connectorId", connectorId,
+                "path", path,
+                "pathMatchMode", pathMatchMode,
+                "httpMethod", httpMethod,
+                "httpMethods", httpMethods,
+                "startDate", startDate,
+                "endDate", endDate,
                 "statusCode", statusCode,
                 "statusCodes", statusCodes,
                 "excludeUnifiedApis", excludeUnifiedApis);
@@ -193,6 +443,18 @@ public class LogsFilter {
     public final static class Builder {
 
         private JsonNullable<String> connectorId = JsonNullable.undefined();
+
+        private JsonNullable<String> path = JsonNullable.undefined();
+
+        private JsonNullable<? extends PathMatchMode> pathMatchMode;
+
+        private JsonNullable<String> httpMethod = JsonNullable.undefined();
+
+        private JsonNullable<? extends List<String>> httpMethods = JsonNullable.undefined();
+
+        private JsonNullable<OffsetDateTime> startDate = JsonNullable.undefined();
+
+        private JsonNullable<OffsetDateTime> endDate = JsonNullable.undefined();
 
         private JsonNullable<Double> statusCode = JsonNullable.undefined();
 
@@ -205,15 +467,139 @@ public class LogsFilter {
         }
 
 
+        /**
+         * Filter by connector ID. Known limitation: this field is not currently applied at the log query
+         * resolver — connector filtering is performed via the service identifier internally (see GH-10099).
+         */
         public Builder connectorId(String connectorId) {
             Utils.checkNotNull(connectorId, "connectorId");
             this.connectorId = JsonNullable.of(connectorId);
             return this;
         }
 
+        /**
+         * Filter by connector ID. Known limitation: this field is not currently applied at the log query
+         * resolver — connector filtering is performed via the service identifier internally (see GH-10099).
+         */
         public Builder connectorId(JsonNullable<String> connectorId) {
             Utils.checkNotNull(connectorId, "connectorId");
             this.connectorId = connectorId;
+            return this;
+        }
+
+
+        /**
+         * Filter by request path. Match behavior is controlled by path_match_mode (defaults to CONTAINS).
+         */
+        public Builder path(String path) {
+            Utils.checkNotNull(path, "path");
+            this.path = JsonNullable.of(path);
+            return this;
+        }
+
+        /**
+         * Filter by request path. Match behavior is controlled by path_match_mode (defaults to CONTAINS).
+         */
+        public Builder path(JsonNullable<String> path) {
+            Utils.checkNotNull(path, "path");
+            this.path = path;
+            return this;
+        }
+
+
+        /**
+         * How the path filter is matched. CONTAINS matches the path anywhere; STARTS_WITH / ENDS_WITH anchor
+         * the match; EXACT requires the whole path to match. Only applied when path is set.
+         */
+        public Builder pathMatchMode(PathMatchMode pathMatchMode) {
+            Utils.checkNotNull(pathMatchMode, "pathMatchMode");
+            this.pathMatchMode = JsonNullable.of(pathMatchMode);
+            return this;
+        }
+
+        /**
+         * How the path filter is matched. CONTAINS matches the path anywhere; STARTS_WITH / ENDS_WITH anchor
+         * the match; EXACT requires the whole path to match. Only applied when path is set.
+         */
+        public Builder pathMatchMode(JsonNullable<? extends PathMatchMode> pathMatchMode) {
+            Utils.checkNotNull(pathMatchMode, "pathMatchMode");
+            this.pathMatchMode = pathMatchMode;
+            return this;
+        }
+
+
+        /**
+         * Filter by a single HTTP method.
+         */
+        public Builder httpMethod(String httpMethod) {
+            Utils.checkNotNull(httpMethod, "httpMethod");
+            this.httpMethod = JsonNullable.of(httpMethod);
+            return this;
+        }
+
+        /**
+         * Filter by a single HTTP method.
+         */
+        public Builder httpMethod(JsonNullable<String> httpMethod) {
+            Utils.checkNotNull(httpMethod, "httpMethod");
+            this.httpMethod = httpMethod;
+            return this;
+        }
+
+
+        /**
+         * Filter by multiple HTTP methods.
+         */
+        public Builder httpMethods(List<String> httpMethods) {
+            Utils.checkNotNull(httpMethods, "httpMethods");
+            this.httpMethods = JsonNullable.of(httpMethods);
+            return this;
+        }
+
+        /**
+         * Filter by multiple HTTP methods.
+         */
+        public Builder httpMethods(JsonNullable<? extends List<String>> httpMethods) {
+            Utils.checkNotNull(httpMethods, "httpMethods");
+            this.httpMethods = httpMethods;
+            return this;
+        }
+
+
+        /**
+         * Filter logs at or after this ISO 8601 date-time (inclusive).
+         */
+        public Builder startDate(OffsetDateTime startDate) {
+            Utils.checkNotNull(startDate, "startDate");
+            this.startDate = JsonNullable.of(startDate);
+            return this;
+        }
+
+        /**
+         * Filter logs at or after this ISO 8601 date-time (inclusive).
+         */
+        public Builder startDate(JsonNullable<OffsetDateTime> startDate) {
+            Utils.checkNotNull(startDate, "startDate");
+            this.startDate = startDate;
+            return this;
+        }
+
+
+        /**
+         * Filter logs at or before this ISO 8601 date-time (inclusive). Must be on or after start_date.
+         */
+        public Builder endDate(OffsetDateTime endDate) {
+            Utils.checkNotNull(endDate, "endDate");
+            this.endDate = JsonNullable.of(endDate);
+            return this;
+        }
+
+        /**
+         * Filter logs at or before this ISO 8601 date-time (inclusive). Must be on or after start_date.
+         */
+        public Builder endDate(JsonNullable<OffsetDateTime> endDate) {
+            Utils.checkNotNull(endDate, "endDate");
+            this.endDate = endDate;
             return this;
         }
 
@@ -273,11 +659,22 @@ public class LogsFilter {
         }
 
         public LogsFilter build() {
+            if (pathMatchMode == null) {
+                pathMatchMode = _SINGLETON_VALUE_PathMatchMode.value();
+            }
 
             return new LogsFilter(
-                connectorId, statusCode, statusCodes,
+                connectorId, path, pathMatchMode,
+                httpMethod, httpMethods, startDate,
+                endDate, statusCode, statusCodes,
                 excludeUnifiedApis);
         }
 
+
+        private static final LazySingletonValue<JsonNullable<? extends PathMatchMode>> _SINGLETON_VALUE_PathMatchMode =
+                new LazySingletonValue<>(
+                        "path_match_mode",
+                        "\"CONTAINS\"",
+                        new TypeReference<JsonNullable<? extends PathMatchMode>>() {});
     }
 }

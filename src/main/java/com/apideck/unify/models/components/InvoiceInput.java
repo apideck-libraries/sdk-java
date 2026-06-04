@@ -57,6 +57,11 @@ public class InvoiceInput {
     @JsonProperty("company_id")
     private JsonNullable<String> companyId;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("subsidiary")
+    private JsonNullable<? extends LinkedSubsidiaryInput> subsidiary;
+
     /**
      * The ID of the location
      */
@@ -334,6 +339,7 @@ public class InvoiceInput {
             @JsonProperty("number") JsonNullable<String> number,
             @JsonProperty("customer") JsonNullable<? extends LinkedCustomerInput> customer,
             @JsonProperty("company_id") JsonNullable<String> companyId,
+            @JsonProperty("subsidiary") JsonNullable<? extends LinkedSubsidiaryInput> subsidiary,
             @JsonProperty("location_id") JsonNullable<String> locationId,
             @JsonProperty("department_id") JsonNullable<String> departmentId,
             @JsonProperty("invoice_date") JsonNullable<LocalDate> invoiceDate,
@@ -378,6 +384,7 @@ public class InvoiceInput {
         Utils.checkNotNull(number, "number");
         Utils.checkNotNull(customer, "customer");
         Utils.checkNotNull(companyId, "companyId");
+        Utils.checkNotNull(subsidiary, "subsidiary");
         Utils.checkNotNull(locationId, "locationId");
         Utils.checkNotNull(departmentId, "departmentId");
         Utils.checkNotNull(invoiceDate, "invoiceDate");
@@ -422,6 +429,7 @@ public class InvoiceInput {
         this.number = number;
         this.customer = customer;
         this.companyId = companyId;
+        this.subsidiary = subsidiary;
         this.locationId = locationId;
         this.departmentId = departmentId;
         this.invoiceDate = invoiceDate;
@@ -468,17 +476,17 @@ public class InvoiceInput {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined(), Optional.empty());
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -521,6 +529,12 @@ public class InvoiceInput {
     @JsonIgnore
     public JsonNullable<String> companyId() {
         return companyId;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<LinkedSubsidiaryInput> subsidiary() {
+        return (JsonNullable<LinkedSubsidiaryInput>) subsidiary;
     }
 
     /**
@@ -930,6 +944,18 @@ public class InvoiceInput {
     public InvoiceInput withCompanyId(JsonNullable<String> companyId) {
         Utils.checkNotNull(companyId, "companyId");
         this.companyId = companyId;
+        return this;
+    }
+
+    public InvoiceInput withSubsidiary(LinkedSubsidiaryInput subsidiary) {
+        Utils.checkNotNull(subsidiary, "subsidiary");
+        this.subsidiary = JsonNullable.of(subsidiary);
+        return this;
+    }
+
+    public InvoiceInput withSubsidiary(JsonNullable<? extends LinkedSubsidiaryInput> subsidiary) {
+        Utils.checkNotNull(subsidiary, "subsidiary");
+        this.subsidiary = subsidiary;
         return this;
     }
 
@@ -1639,6 +1665,7 @@ public class InvoiceInput {
             Utils.enhancedDeepEquals(this.number, other.number) &&
             Utils.enhancedDeepEquals(this.customer, other.customer) &&
             Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
+            Utils.enhancedDeepEquals(this.subsidiary, other.subsidiary) &&
             Utils.enhancedDeepEquals(this.locationId, other.locationId) &&
             Utils.enhancedDeepEquals(this.departmentId, other.departmentId) &&
             Utils.enhancedDeepEquals(this.invoiceDate, other.invoiceDate) &&
@@ -1684,20 +1711,20 @@ public class InvoiceInput {
     public int hashCode() {
         return Utils.enhancedHash(
             displayId, type, number,
-            customer, companyId, locationId,
-            departmentId, invoiceDate, dueDate,
-            terms, termsId, poNumber,
-            reference, status, invoiceSent,
-            currency, currencyRate, taxInclusive,
-            subTotal, totalTax, taxCode,
-            discountPercentage, discountAmount, total,
-            balance, deposit, customerMemo,
-            trackingCategory, trackingCategories, lineItems,
-            billingAddress, shippingAddress, templateId,
-            sourceDocumentUrl, paymentAllocations, paymentMethod,
-            channel, language, accountingByRow,
-            bankAccount, ledgerAccount, customFields,
-            rowVersion, passThrough);
+            customer, companyId, subsidiary,
+            locationId, departmentId, invoiceDate,
+            dueDate, terms, termsId,
+            poNumber, reference, status,
+            invoiceSent, currency, currencyRate,
+            taxInclusive, subTotal, totalTax,
+            taxCode, discountPercentage, discountAmount,
+            total, balance, deposit,
+            customerMemo, trackingCategory, trackingCategories,
+            lineItems, billingAddress, shippingAddress,
+            templateId, sourceDocumentUrl, paymentAllocations,
+            paymentMethod, channel, language,
+            accountingByRow, bankAccount, ledgerAccount,
+            customFields, rowVersion, passThrough);
     }
     
     @Override
@@ -1708,6 +1735,7 @@ public class InvoiceInput {
                 "number", number,
                 "customer", customer,
                 "companyId", companyId,
+                "subsidiary", subsidiary,
                 "locationId", locationId,
                 "departmentId", departmentId,
                 "invoiceDate", invoiceDate,
@@ -1761,6 +1789,8 @@ public class InvoiceInput {
         private JsonNullable<? extends LinkedCustomerInput> customer = JsonNullable.undefined();
 
         private JsonNullable<String> companyId = JsonNullable.undefined();
+
+        private JsonNullable<? extends LinkedSubsidiaryInput> subsidiary = JsonNullable.undefined();
 
         private JsonNullable<String> locationId = JsonNullable.undefined();
 
@@ -1937,6 +1967,19 @@ public class InvoiceInput {
         public Builder companyId(JsonNullable<String> companyId) {
             Utils.checkNotNull(companyId, "companyId");
             this.companyId = companyId;
+            return this;
+        }
+
+
+        public Builder subsidiary(LinkedSubsidiaryInput subsidiary) {
+            Utils.checkNotNull(subsidiary, "subsidiary");
+            this.subsidiary = JsonNullable.of(subsidiary);
+            return this;
+        }
+
+        public Builder subsidiary(JsonNullable<? extends LinkedSubsidiaryInput> subsidiary) {
+            Utils.checkNotNull(subsidiary, "subsidiary");
+            this.subsidiary = subsidiary;
             return this;
         }
 
@@ -2667,20 +2710,20 @@ public class InvoiceInput {
 
             return new InvoiceInput(
                 displayId, type, number,
-                customer, companyId, locationId,
-                departmentId, invoiceDate, dueDate,
-                terms, termsId, poNumber,
-                reference, status, invoiceSent,
-                currency, currencyRate, taxInclusive,
-                subTotal, totalTax, taxCode,
-                discountPercentage, discountAmount, total,
-                balance, deposit, customerMemo,
-                trackingCategory, trackingCategories, lineItems,
-                billingAddress, shippingAddress, templateId,
-                sourceDocumentUrl, paymentAllocations, paymentMethod,
-                channel, language, accountingByRow,
-                bankAccount, ledgerAccount, customFields,
-                rowVersion, passThrough);
+                customer, companyId, subsidiary,
+                locationId, departmentId, invoiceDate,
+                dueDate, terms, termsId,
+                poNumber, reference, status,
+                invoiceSent, currency, currencyRate,
+                taxInclusive, subTotal, totalTax,
+                taxCode, discountPercentage, discountAmount,
+                total, balance, deposit,
+                customerMemo, trackingCategory, trackingCategories,
+                lineItems, billingAddress, shippingAddress,
+                templateId, sourceDocumentUrl, paymentAllocations,
+                paymentMethod, channel, language,
+                accountingByRow, bankAccount, ledgerAccount,
+                customFields, rowVersion, passThrough);
         }
 
     }

@@ -54,7 +54,8 @@ public class Webhook {
     private Optional<? extends DisabledReason> disabledReason;
 
     /**
-     * The delivery url of the webhook endpoint.
+     * The delivery url of the webhook endpoint. The endpoint must respond within 60 seconds or the
+     * delivery is recorded as failed.
      */
     @JsonProperty("delivery_url")
     private String deliveryUrl;
@@ -173,7 +174,8 @@ public class Webhook {
     }
 
     /**
-     * The delivery url of the webhook endpoint.
+     * The delivery url of the webhook endpoint. The endpoint must respond within 60 seconds or the
+     * delivery is recorded as failed.
      */
     @JsonIgnore
     public String deliveryUrl() {
@@ -292,7 +294,8 @@ public class Webhook {
     }
 
     /**
-     * The delivery url of the webhook endpoint.
+     * The delivery url of the webhook endpoint. The endpoint must respond within 60 seconds or the
+     * delivery is recorded as failed.
      */
     public Webhook withDeliveryUrl(String deliveryUrl) {
         Utils.checkNotNull(deliveryUrl, "deliveryUrl");
@@ -506,7 +509,8 @@ public class Webhook {
 
 
         /**
-         * The delivery url of the webhook endpoint.
+         * The delivery url of the webhook endpoint. The endpoint must respond within 60 seconds or the
+         * delivery is recorded as failed.
          */
         public Builder deliveryUrl(String deliveryUrl) {
             Utils.checkNotNull(deliveryUrl, "deliveryUrl");

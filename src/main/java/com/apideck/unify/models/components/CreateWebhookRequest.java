@@ -36,7 +36,8 @@ public class CreateWebhookRequest {
     private Status status;
 
     /**
-     * The delivery url of the webhook endpoint.
+     * The delivery url of the webhook endpoint. The endpoint must respond within 60 seconds or the
+     * delivery is recorded as failed.
      */
     @JsonProperty("delivery_url")
     private String deliveryUrl;
@@ -100,7 +101,8 @@ public class CreateWebhookRequest {
     }
 
     /**
-     * The delivery url of the webhook endpoint.
+     * The delivery url of the webhook endpoint. The endpoint must respond within 60 seconds or the
+     * delivery is recorded as failed.
      */
     @JsonIgnore
     public String deliveryUrl() {
@@ -157,7 +159,8 @@ public class CreateWebhookRequest {
     }
 
     /**
-     * The delivery url of the webhook endpoint.
+     * The delivery url of the webhook endpoint. The endpoint must respond within 60 seconds or the
+     * delivery is recorded as failed.
      */
     public CreateWebhookRequest withDeliveryUrl(String deliveryUrl) {
         Utils.checkNotNull(deliveryUrl, "deliveryUrl");
@@ -266,7 +269,8 @@ public class CreateWebhookRequest {
 
 
         /**
-         * The delivery url of the webhook endpoint.
+         * The delivery url of the webhook endpoint. The endpoint must respond within 60 seconds or the
+         * delivery is recorded as failed.
          */
         public Builder deliveryUrl(String deliveryUrl) {
             Utils.checkNotNull(deliveryUrl, "deliveryUrl");

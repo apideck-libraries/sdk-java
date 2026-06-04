@@ -112,6 +112,11 @@ public class BillPayment {
     @JsonProperty("company_id")
     private JsonNullable<String> companyId;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("subsidiary")
+    private JsonNullable<? extends LinkedSubsidiary> subsidiary;
+
     /**
      * Indicates if the transaction has been reconciled.
      */
@@ -237,6 +242,7 @@ public class BillPayment {
             @JsonProperty("transaction_date") Optional<OffsetDateTime> transactionDate,
             @JsonProperty("supplier") JsonNullable<? extends LinkedSupplier> supplier,
             @JsonProperty("company_id") JsonNullable<String> companyId,
+            @JsonProperty("subsidiary") JsonNullable<? extends LinkedSubsidiary> subsidiary,
             @JsonProperty("reconciled") JsonNullable<Boolean> reconciled,
             @JsonProperty("status") Optional<? extends PaymentStatus> status,
             @JsonProperty("type") Optional<? extends BillPaymentType> type,
@@ -266,6 +272,7 @@ public class BillPayment {
         Utils.checkNotNull(transactionDate, "transactionDate");
         Utils.checkNotNull(supplier, "supplier");
         Utils.checkNotNull(companyId, "companyId");
+        Utils.checkNotNull(subsidiary, "subsidiary");
         Utils.checkNotNull(reconciled, "reconciled");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(type, "type");
@@ -295,6 +302,7 @@ public class BillPayment {
         this.transactionDate = transactionDate;
         this.supplier = supplier;
         this.companyId = companyId;
+        this.subsidiary = subsidiary;
         this.reconciled = reconciled;
         this.status = status;
         this.type = type;
@@ -319,12 +327,12 @@ public class BillPayment {
             JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty());
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -430,6 +438,12 @@ public class BillPayment {
     @JsonIgnore
     public JsonNullable<String> companyId() {
         return companyId;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<LinkedSubsidiary> subsidiary() {
+        return (JsonNullable<LinkedSubsidiary>) subsidiary;
     }
 
     /**
@@ -791,6 +805,18 @@ public class BillPayment {
         return this;
     }
 
+    public BillPayment withSubsidiary(LinkedSubsidiary subsidiary) {
+        Utils.checkNotNull(subsidiary, "subsidiary");
+        this.subsidiary = JsonNullable.of(subsidiary);
+        return this;
+    }
+
+    public BillPayment withSubsidiary(JsonNullable<? extends LinkedSubsidiary> subsidiary) {
+        Utils.checkNotNull(subsidiary, "subsidiary");
+        this.subsidiary = subsidiary;
+        return this;
+    }
+
     /**
      * Indicates if the transaction has been reconciled.
      */
@@ -1099,6 +1125,7 @@ public class BillPayment {
             Utils.enhancedDeepEquals(this.transactionDate, other.transactionDate) &&
             Utils.enhancedDeepEquals(this.supplier, other.supplier) &&
             Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
+            Utils.enhancedDeepEquals(this.subsidiary, other.subsidiary) &&
             Utils.enhancedDeepEquals(this.reconciled, other.reconciled) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.type, other.type) &&
@@ -1124,12 +1151,12 @@ public class BillPayment {
             currencyRate, totalAmount, reference,
             paymentMethod, paymentMethodReference, paymentMethodId,
             account, transactionDate, supplier,
-            companyId, reconciled, status,
-            type, allocations, note,
-            number, trackingCategories, customFields,
-            rowVersion, displayId, customMappings,
-            updatedBy, createdBy, createdAt,
-            updatedAt, passThrough);
+            companyId, subsidiary, reconciled,
+            status, type, allocations,
+            note, number, trackingCategories,
+            customFields, rowVersion, displayId,
+            customMappings, updatedBy, createdBy,
+            createdAt, updatedAt, passThrough);
     }
     
     @Override
@@ -1148,6 +1175,7 @@ public class BillPayment {
                 "transactionDate", transactionDate,
                 "supplier", supplier,
                 "companyId", companyId,
+                "subsidiary", subsidiary,
                 "reconciled", reconciled,
                 "status", status,
                 "type", type,
@@ -1194,6 +1222,8 @@ public class BillPayment {
         private JsonNullable<? extends LinkedSupplier> supplier = JsonNullable.undefined();
 
         private JsonNullable<String> companyId = JsonNullable.undefined();
+
+        private JsonNullable<? extends LinkedSubsidiary> subsidiary = JsonNullable.undefined();
 
         private JsonNullable<Boolean> reconciled = JsonNullable.undefined();
 
@@ -1462,6 +1492,19 @@ public class BillPayment {
         public Builder companyId(JsonNullable<String> companyId) {
             Utils.checkNotNull(companyId, "companyId");
             this.companyId = companyId;
+            return this;
+        }
+
+
+        public Builder subsidiary(LinkedSubsidiary subsidiary) {
+            Utils.checkNotNull(subsidiary, "subsidiary");
+            this.subsidiary = JsonNullable.of(subsidiary);
+            return this;
+        }
+
+        public Builder subsidiary(JsonNullable<? extends LinkedSubsidiary> subsidiary) {
+            Utils.checkNotNull(subsidiary, "subsidiary");
+            this.subsidiary = subsidiary;
             return this;
         }
 
@@ -1768,12 +1811,12 @@ public class BillPayment {
                 currencyRate, totalAmount, reference,
                 paymentMethod, paymentMethodReference, paymentMethodId,
                 account, transactionDate, supplier,
-                companyId, reconciled, status,
-                type, allocations, note,
-                number, trackingCategories, customFields,
-                rowVersion, displayId, customMappings,
-                updatedBy, createdBy, createdAt,
-                updatedAt, passThrough);
+                companyId, subsidiary, reconciled,
+                status, type, allocations,
+                note, number, trackingCategories,
+                customFields, rowVersion, displayId,
+                customMappings, updatedBy, createdBy,
+                createdAt, updatedAt, passThrough);
         }
 
     }

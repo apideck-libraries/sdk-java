@@ -97,6 +97,11 @@ public class BillPaymentInput {
     @JsonProperty("company_id")
     private JsonNullable<String> companyId;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("subsidiary")
+    private JsonNullable<? extends LinkedSubsidiaryInput> subsidiary;
+
     /**
      * Indicates if the transaction has been reconciled.
      */
@@ -185,6 +190,7 @@ public class BillPaymentInput {
             @JsonProperty("transaction_date") Optional<OffsetDateTime> transactionDate,
             @JsonProperty("supplier") JsonNullable<? extends LinkedSupplierInput> supplier,
             @JsonProperty("company_id") JsonNullable<String> companyId,
+            @JsonProperty("subsidiary") JsonNullable<? extends LinkedSubsidiaryInput> subsidiary,
             @JsonProperty("reconciled") JsonNullable<Boolean> reconciled,
             @JsonProperty("status") Optional<? extends PaymentStatus> status,
             @JsonProperty("type") Optional<? extends BillPaymentType> type,
@@ -207,6 +213,7 @@ public class BillPaymentInput {
         Utils.checkNotNull(transactionDate, "transactionDate");
         Utils.checkNotNull(supplier, "supplier");
         Utils.checkNotNull(companyId, "companyId");
+        Utils.checkNotNull(subsidiary, "subsidiary");
         Utils.checkNotNull(reconciled, "reconciled");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(type, "type");
@@ -229,6 +236,7 @@ public class BillPaymentInput {
         this.transactionDate = transactionDate;
         this.supplier = supplier;
         this.companyId = companyId;
+        this.subsidiary = subsidiary;
         this.reconciled = reconciled;
         this.status = status;
         this.type = type;
@@ -247,10 +255,10 @@ public class BillPaymentInput {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
             Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty());
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -340,6 +348,12 @@ public class BillPaymentInput {
     @JsonIgnore
     public JsonNullable<String> companyId() {
         return companyId;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<LinkedSubsidiaryInput> subsidiary() {
+        return (JsonNullable<LinkedSubsidiaryInput>) subsidiary;
     }
 
     /**
@@ -633,6 +647,18 @@ public class BillPaymentInput {
         return this;
     }
 
+    public BillPaymentInput withSubsidiary(LinkedSubsidiaryInput subsidiary) {
+        Utils.checkNotNull(subsidiary, "subsidiary");
+        this.subsidiary = JsonNullable.of(subsidiary);
+        return this;
+    }
+
+    public BillPaymentInput withSubsidiary(JsonNullable<? extends LinkedSubsidiaryInput> subsidiary) {
+        Utils.checkNotNull(subsidiary, "subsidiary");
+        this.subsidiary = subsidiary;
+        return this;
+    }
+
     /**
      * Indicates if the transaction has been reconciled.
      */
@@ -849,6 +875,7 @@ public class BillPaymentInput {
             Utils.enhancedDeepEquals(this.transactionDate, other.transactionDate) &&
             Utils.enhancedDeepEquals(this.supplier, other.supplier) &&
             Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
+            Utils.enhancedDeepEquals(this.subsidiary, other.subsidiary) &&
             Utils.enhancedDeepEquals(this.reconciled, other.reconciled) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.type, other.type) &&
@@ -868,11 +895,11 @@ public class BillPaymentInput {
             currency, currencyRate, totalAmount,
             reference, paymentMethod, paymentMethodReference,
             paymentMethodId, account, transactionDate,
-            supplier, companyId, reconciled,
-            status, type, allocations,
-            note, number, trackingCategories,
-            customFields, rowVersion, displayId,
-            passThrough);
+            supplier, companyId, subsidiary,
+            reconciled, status, type,
+            allocations, note, number,
+            trackingCategories, customFields, rowVersion,
+            displayId, passThrough);
     }
     
     @Override
@@ -889,6 +916,7 @@ public class BillPaymentInput {
                 "transactionDate", transactionDate,
                 "supplier", supplier,
                 "companyId", companyId,
+                "subsidiary", subsidiary,
                 "reconciled", reconciled,
                 "status", status,
                 "type", type,
@@ -926,6 +954,8 @@ public class BillPaymentInput {
         private JsonNullable<? extends LinkedSupplierInput> supplier = JsonNullable.undefined();
 
         private JsonNullable<String> companyId = JsonNullable.undefined();
+
+        private JsonNullable<? extends LinkedSubsidiaryInput> subsidiary = JsonNullable.undefined();
 
         private JsonNullable<Boolean> reconciled = JsonNullable.undefined();
 
@@ -1159,6 +1189,19 @@ public class BillPaymentInput {
         }
 
 
+        public Builder subsidiary(LinkedSubsidiaryInput subsidiary) {
+            Utils.checkNotNull(subsidiary, "subsidiary");
+            this.subsidiary = JsonNullable.of(subsidiary);
+            return this;
+        }
+
+        public Builder subsidiary(JsonNullable<? extends LinkedSubsidiaryInput> subsidiary) {
+            Utils.checkNotNull(subsidiary, "subsidiary");
+            this.subsidiary = subsidiary;
+            return this;
+        }
+
+
         /**
          * Indicates if the transaction has been reconciled.
          */
@@ -1365,11 +1408,11 @@ public class BillPaymentInput {
                 currency, currencyRate, totalAmount,
                 reference, paymentMethod, paymentMethodReference,
                 paymentMethodId, account, transactionDate,
-                supplier, companyId, reconciled,
-                status, type, allocations,
-                note, number, trackingCategories,
-                customFields, rowVersion, displayId,
-                passThrough);
+                supplier, companyId, subsidiary,
+                reconciled, status, type,
+                allocations, note, number,
+                trackingCategories, customFields, rowVersion,
+                displayId, passThrough);
         }
 
     }

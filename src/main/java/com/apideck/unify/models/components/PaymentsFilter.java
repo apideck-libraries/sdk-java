@@ -47,6 +47,13 @@ public class PaymentsFilter {
     @SpeakeasyMetadata("queryParam:name=status")
     private Optional<? extends PaymentsFilterPaymentStatus> status;
 
+    /**
+     * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that
+     * support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+     */
+    @SpeakeasyMetadata("queryParam:name=subsidiary_id")
+    private Optional<String> subsidiaryId;
+
     @JsonCreator
     public PaymentsFilter(
             Optional<OffsetDateTime> updatedSince,
@@ -55,7 +62,8 @@ public class PaymentsFilter {
             Optional<String> supplierId,
             Optional<String> customerId,
             Optional<? extends PaymentsFilterType> type,
-            Optional<? extends PaymentsFilterPaymentStatus> status) {
+            Optional<? extends PaymentsFilterPaymentStatus> status,
+            Optional<String> subsidiaryId) {
         Utils.checkNotNull(updatedSince, "updatedSince");
         Utils.checkNotNull(invoiceId, "invoiceId");
         Utils.checkNotNull(billId, "billId");
@@ -63,6 +71,7 @@ public class PaymentsFilter {
         Utils.checkNotNull(customerId, "customerId");
         Utils.checkNotNull(type, "type");
         Utils.checkNotNull(status, "status");
+        Utils.checkNotNull(subsidiaryId, "subsidiaryId");
         this.updatedSince = updatedSince;
         this.invoiceId = invoiceId;
         this.billId = billId;
@@ -70,12 +79,13 @@ public class PaymentsFilter {
         this.customerId = customerId;
         this.type = type;
         this.status = status;
+        this.subsidiaryId = subsidiaryId;
     }
     
     public PaymentsFilter() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+            Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -119,6 +129,15 @@ public class PaymentsFilter {
     @JsonIgnore
     public Optional<PaymentsFilterPaymentStatus> status() {
         return (Optional<PaymentsFilterPaymentStatus>) status;
+    }
+
+    /**
+     * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that
+     * support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+     */
+    @JsonIgnore
+    public Optional<String> subsidiaryId() {
+        return subsidiaryId;
     }
 
     public static Builder builder() {
@@ -229,6 +248,27 @@ public class PaymentsFilter {
         return this;
     }
 
+    /**
+     * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that
+     * support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+     */
+    public PaymentsFilter withSubsidiaryId(String subsidiaryId) {
+        Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+        this.subsidiaryId = Optional.ofNullable(subsidiaryId);
+        return this;
+    }
+
+
+    /**
+     * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that
+     * support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+     */
+    public PaymentsFilter withSubsidiaryId(Optional<String> subsidiaryId) {
+        Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+        this.subsidiaryId = subsidiaryId;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -245,7 +285,8 @@ public class PaymentsFilter {
             Utils.enhancedDeepEquals(this.supplierId, other.supplierId) &&
             Utils.enhancedDeepEquals(this.customerId, other.customerId) &&
             Utils.enhancedDeepEquals(this.type, other.type) &&
-            Utils.enhancedDeepEquals(this.status, other.status);
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.subsidiaryId, other.subsidiaryId);
     }
     
     @Override
@@ -253,7 +294,7 @@ public class PaymentsFilter {
         return Utils.enhancedHash(
             updatedSince, invoiceId, billId,
             supplierId, customerId, type,
-            status);
+            status, subsidiaryId);
     }
     
     @Override
@@ -265,7 +306,8 @@ public class PaymentsFilter {
                 "supplierId", supplierId,
                 "customerId", customerId,
                 "type", type,
-                "status", status);
+                "status", status,
+                "subsidiaryId", subsidiaryId);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -284,6 +326,8 @@ public class PaymentsFilter {
         private Optional<? extends PaymentsFilterType> type = Optional.empty();
 
         private Optional<? extends PaymentsFilterPaymentStatus> status = Optional.empty();
+
+        private Optional<String> subsidiaryId = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -392,12 +436,33 @@ public class PaymentsFilter {
             return this;
         }
 
+
+        /**
+         * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that
+         * support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+         */
+        public Builder subsidiaryId(String subsidiaryId) {
+            Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+            this.subsidiaryId = Optional.ofNullable(subsidiaryId);
+            return this;
+        }
+
+        /**
+         * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that
+         * support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+         */
+        public Builder subsidiaryId(Optional<String> subsidiaryId) {
+            Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+            this.subsidiaryId = subsidiaryId;
+            return this;
+        }
+
         public PaymentsFilter build() {
 
             return new PaymentsFilter(
                 updatedSince, invoiceId, billId,
                 supplierId, customerId, type,
-                status);
+                status, subsidiaryId);
         }
 
     }

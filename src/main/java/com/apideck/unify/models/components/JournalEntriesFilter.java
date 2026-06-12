@@ -23,18 +23,43 @@ public class JournalEntriesFilter {
     @SpeakeasyMetadata("queryParam:name=status")
     private Optional<? extends JournalEntriesFilterStatus> status;
 
+    /**
+     * Connector-specific scope hint that controls which downstream source backs the read. On Xero,
+     * `manual` reads from `ManualJournals` (free in every tier), while `system` reads from `Journals` (the
+     * full general ledger view including manual journal postings, paid post 2026-03-02). Omitting the
+     * filter is equivalent to `system` and preserves the legacy default.
+     * 
+     * <p>Only honored on connectors where the distinction is exposed; ignored elsewhere.
+     */
+    @SpeakeasyMetadata("queryParam:name=scope")
+    private Optional<? extends JournalEntriesFilterScope> scope;
+
+    /**
+     * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that
+     * support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+     */
+    @SpeakeasyMetadata("queryParam:name=subsidiary_id")
+    private Optional<String> subsidiaryId;
+
     @JsonCreator
     public JournalEntriesFilter(
             Optional<OffsetDateTime> updatedSince,
-            Optional<? extends JournalEntriesFilterStatus> status) {
+            Optional<? extends JournalEntriesFilterStatus> status,
+            Optional<? extends JournalEntriesFilterScope> scope,
+            Optional<String> subsidiaryId) {
         Utils.checkNotNull(updatedSince, "updatedSince");
         Utils.checkNotNull(status, "status");
+        Utils.checkNotNull(scope, "scope");
+        Utils.checkNotNull(subsidiaryId, "subsidiaryId");
         this.updatedSince = updatedSince;
         this.status = status;
+        this.scope = scope;
+        this.subsidiaryId = subsidiaryId;
     }
     
     public JournalEntriesFilter() {
-        this(Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     @JsonIgnore
@@ -46,6 +71,29 @@ public class JournalEntriesFilter {
     @JsonIgnore
     public Optional<JournalEntriesFilterStatus> status() {
         return (Optional<JournalEntriesFilterStatus>) status;
+    }
+
+    /**
+     * Connector-specific scope hint that controls which downstream source backs the read. On Xero,
+     * `manual` reads from `ManualJournals` (free in every tier), while `system` reads from `Journals` (the
+     * full general ledger view including manual journal postings, paid post 2026-03-02). Omitting the
+     * filter is equivalent to `system` and preserves the legacy default.
+     * 
+     * <p>Only honored on connectors where the distinction is exposed; ignored elsewhere.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<JournalEntriesFilterScope> scope() {
+        return (Optional<JournalEntriesFilterScope>) scope;
+    }
+
+    /**
+     * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that
+     * support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+     */
+    @JsonIgnore
+    public Optional<String> subsidiaryId() {
+        return subsidiaryId;
     }
 
     public static Builder builder() {
@@ -79,6 +127,56 @@ public class JournalEntriesFilter {
         return this;
     }
 
+    /**
+     * Connector-specific scope hint that controls which downstream source backs the read. On Xero,
+     * `manual` reads from `ManualJournals` (free in every tier), while `system` reads from `Journals` (the
+     * full general ledger view including manual journal postings, paid post 2026-03-02). Omitting the
+     * filter is equivalent to `system` and preserves the legacy default.
+     * 
+     * <p>Only honored on connectors where the distinction is exposed; ignored elsewhere.
+     */
+    public JournalEntriesFilter withScope(JournalEntriesFilterScope scope) {
+        Utils.checkNotNull(scope, "scope");
+        this.scope = Optional.ofNullable(scope);
+        return this;
+    }
+
+
+    /**
+     * Connector-specific scope hint that controls which downstream source backs the read. On Xero,
+     * `manual` reads from `ManualJournals` (free in every tier), while `system` reads from `Journals` (the
+     * full general ledger view including manual journal postings, paid post 2026-03-02). Omitting the
+     * filter is equivalent to `system` and preserves the legacy default.
+     * 
+     * <p>Only honored on connectors where the distinction is exposed; ignored elsewhere.
+     */
+    public JournalEntriesFilter withScope(Optional<? extends JournalEntriesFilterScope> scope) {
+        Utils.checkNotNull(scope, "scope");
+        this.scope = scope;
+        return this;
+    }
+
+    /**
+     * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that
+     * support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+     */
+    public JournalEntriesFilter withSubsidiaryId(String subsidiaryId) {
+        Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+        this.subsidiaryId = Optional.ofNullable(subsidiaryId);
+        return this;
+    }
+
+
+    /**
+     * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that
+     * support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+     */
+    public JournalEntriesFilter withSubsidiaryId(Optional<String> subsidiaryId) {
+        Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+        this.subsidiaryId = subsidiaryId;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -90,20 +188,25 @@ public class JournalEntriesFilter {
         JournalEntriesFilter other = (JournalEntriesFilter) o;
         return 
             Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince) &&
-            Utils.enhancedDeepEquals(this.status, other.status);
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.scope, other.scope) &&
+            Utils.enhancedDeepEquals(this.subsidiaryId, other.subsidiaryId);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            updatedSince, status);
+            updatedSince, status, scope,
+            subsidiaryId);
     }
     
     @Override
     public String toString() {
         return Utils.toString(JournalEntriesFilter.class,
                 "updatedSince", updatedSince,
-                "status", status);
+                "status", status,
+                "scope", scope,
+                "subsidiaryId", subsidiaryId);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -112,6 +215,10 @@ public class JournalEntriesFilter {
         private Optional<OffsetDateTime> updatedSince = Optional.empty();
 
         private Optional<? extends JournalEntriesFilterStatus> status = Optional.empty();
+
+        private Optional<? extends JournalEntriesFilterScope> scope = Optional.empty();
+
+        private Optional<String> subsidiaryId = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -143,10 +250,61 @@ public class JournalEntriesFilter {
             return this;
         }
 
+
+        /**
+         * Connector-specific scope hint that controls which downstream source backs the read. On Xero,
+         * `manual` reads from `ManualJournals` (free in every tier), while `system` reads from `Journals` (the
+         * full general ledger view including manual journal postings, paid post 2026-03-02). Omitting the
+         * filter is equivalent to `system` and preserves the legacy default.
+         * 
+         * <p>Only honored on connectors where the distinction is exposed; ignored elsewhere.
+         */
+        public Builder scope(JournalEntriesFilterScope scope) {
+            Utils.checkNotNull(scope, "scope");
+            this.scope = Optional.ofNullable(scope);
+            return this;
+        }
+
+        /**
+         * Connector-specific scope hint that controls which downstream source backs the read. On Xero,
+         * `manual` reads from `ManualJournals` (free in every tier), while `system` reads from `Journals` (the
+         * full general ledger view including manual journal postings, paid post 2026-03-02). Omitting the
+         * filter is equivalent to `system` and preserves the legacy default.
+         * 
+         * <p>Only honored on connectors where the distinction is exposed; ignored elsewhere.
+         */
+        public Builder scope(Optional<? extends JournalEntriesFilterScope> scope) {
+            Utils.checkNotNull(scope, "scope");
+            this.scope = scope;
+            return this;
+        }
+
+
+        /**
+         * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that
+         * support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+         */
+        public Builder subsidiaryId(String subsidiaryId) {
+            Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+            this.subsidiaryId = Optional.ofNullable(subsidiaryId);
+            return this;
+        }
+
+        /**
+         * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that
+         * support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+         */
+        public Builder subsidiaryId(Optional<String> subsidiaryId) {
+            Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+            this.subsidiaryId = subsidiaryId;
+            return this;
+        }
+
         public JournalEntriesFilter build() {
 
             return new JournalEntriesFilter(
-                updatedSince, status);
+                updatedSince, status, scope,
+                subsidiaryId);
         }
 
     }

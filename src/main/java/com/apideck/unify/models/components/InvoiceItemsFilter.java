@@ -44,28 +44,38 @@ public class InvoiceItemsFilter {
     @SpeakeasyMetadata("queryParam:name=transaction_type")
     private JsonNullable<? extends TransactionType> transactionType;
 
+    /**
+     * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that
+     * support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+     */
+    @SpeakeasyMetadata("queryParam:name=subsidiary_id")
+    private Optional<String> subsidiaryId;
+
     @JsonCreator
     public InvoiceItemsFilter(
             Optional<OffsetDateTime> updatedSince,
             Optional<String> ids,
             Optional<String> name,
             JsonNullable<? extends InvoiceItemType> type,
-            JsonNullable<? extends TransactionType> transactionType) {
+            JsonNullable<? extends TransactionType> transactionType,
+            Optional<String> subsidiaryId) {
         Utils.checkNotNull(updatedSince, "updatedSince");
         Utils.checkNotNull(ids, "ids");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(type, "type");
         Utils.checkNotNull(transactionType, "transactionType");
+        Utils.checkNotNull(subsidiaryId, "subsidiaryId");
         this.updatedSince = updatedSince;
         this.ids = ids;
         this.name = name;
         this.type = type;
         this.transactionType = transactionType;
+        this.subsidiaryId = subsidiaryId;
     }
     
     public InvoiceItemsFilter() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
 
     @JsonIgnore
@@ -105,6 +115,15 @@ public class InvoiceItemsFilter {
     @JsonIgnore
     public JsonNullable<TransactionType> transactionType() {
         return (JsonNullable<TransactionType>) transactionType;
+    }
+
+    /**
+     * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that
+     * support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+     */
+    @JsonIgnore
+    public Optional<String> subsidiaryId() {
+        return subsidiaryId;
     }
 
     public static Builder builder() {
@@ -199,6 +218,27 @@ public class InvoiceItemsFilter {
         return this;
     }
 
+    /**
+     * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that
+     * support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+     */
+    public InvoiceItemsFilter withSubsidiaryId(String subsidiaryId) {
+        Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+        this.subsidiaryId = Optional.ofNullable(subsidiaryId);
+        return this;
+    }
+
+
+    /**
+     * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that
+     * support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+     */
+    public InvoiceItemsFilter withSubsidiaryId(Optional<String> subsidiaryId) {
+        Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+        this.subsidiaryId = subsidiaryId;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -213,14 +253,15 @@ public class InvoiceItemsFilter {
             Utils.enhancedDeepEquals(this.ids, other.ids) &&
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.type, other.type) &&
-            Utils.enhancedDeepEquals(this.transactionType, other.transactionType);
+            Utils.enhancedDeepEquals(this.transactionType, other.transactionType) &&
+            Utils.enhancedDeepEquals(this.subsidiaryId, other.subsidiaryId);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             updatedSince, ids, name,
-            type, transactionType);
+            type, transactionType, subsidiaryId);
     }
     
     @Override
@@ -230,7 +271,8 @@ public class InvoiceItemsFilter {
                 "ids", ids,
                 "name", name,
                 "type", type,
-                "transactionType", transactionType);
+                "transactionType", transactionType,
+                "subsidiaryId", subsidiaryId);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -245,6 +287,8 @@ public class InvoiceItemsFilter {
         private JsonNullable<? extends InvoiceItemType> type = JsonNullable.undefined();
 
         private JsonNullable<? extends TransactionType> transactionType = JsonNullable.undefined();
+
+        private Optional<String> subsidiaryId = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -339,11 +383,32 @@ public class InvoiceItemsFilter {
             return this;
         }
 
+
+        /**
+         * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that
+         * support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+         */
+        public Builder subsidiaryId(String subsidiaryId) {
+            Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+            this.subsidiaryId = Optional.ofNullable(subsidiaryId);
+            return this;
+        }
+
+        /**
+         * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that
+         * support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+         */
+        public Builder subsidiaryId(Optional<String> subsidiaryId) {
+            Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+            this.subsidiaryId = subsidiaryId;
+            return this;
+        }
+
         public InvoiceItemsFilter build() {
 
             return new InvoiceItemsFilter(
                 updatedSince, ids, name,
-                type, transactionType);
+                type, transactionType, subsidiaryId);
         }
 
     }

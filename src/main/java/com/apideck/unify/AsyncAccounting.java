@@ -24,6 +24,7 @@ public class AsyncAccounting {
     private final AsyncBalanceSheet balanceSheet;
     private final AsyncProfitAndLoss profitAndLoss;
     private final AsyncJournalEntries journalEntries;
+    private final AsyncGeneralLedgerTransactions generalLedgerTransactions;
     private final AsyncPurchaseOrders purchaseOrders;
     private final AsyncSubsidiaries subsidiaries;
     private final AsyncLocations locations;
@@ -62,6 +63,7 @@ public class AsyncAccounting {
         this.balanceSheet = new AsyncBalanceSheet(syncSDK.balanceSheet(), this.sdkConfiguration);
         this.profitAndLoss = new AsyncProfitAndLoss(syncSDK.profitAndLoss(), this.sdkConfiguration);
         this.journalEntries = new AsyncJournalEntries(syncSDK.journalEntries(), this.sdkConfiguration);
+        this.generalLedgerTransactions = new AsyncGeneralLedgerTransactions(syncSDK.generalLedgerTransactions(), this.sdkConfiguration);
         this.purchaseOrders = new AsyncPurchaseOrders(syncSDK.purchaseOrders(), this.sdkConfiguration);
         this.subsidiaries = new AsyncSubsidiaries(syncSDK.subsidiaries(), this.sdkConfiguration);
         this.locations = new AsyncLocations(syncSDK.locations(), this.sdkConfiguration);
@@ -142,6 +144,10 @@ public class AsyncAccounting {
 
     public final AsyncJournalEntries journalEntries() {
         return journalEntries;
+    }
+
+    public final AsyncGeneralLedgerTransactions generalLedgerTransactions() {
+        return generalLedgerTransactions;
     }
 
     public final AsyncPurchaseOrders purchaseOrders() {

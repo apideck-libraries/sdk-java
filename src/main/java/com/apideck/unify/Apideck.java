@@ -297,7 +297,7 @@ public class Apideck {
         return new Builder();
     }
 
-    public Apideck(SDKConfiguration sdkConfiguration) {
+    private Apideck(SDKConfiguration sdkConfiguration) {
         sdkConfiguration.initialize();
         this.accounting = new Accounting(sdkConfiguration);
         this.ats = new Ats(sdkConfiguration);

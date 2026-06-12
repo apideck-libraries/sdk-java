@@ -21,10 +21,12 @@ List Quotes
 package hello.world;
 
 import com.apideck.unify.Apideck;
+import com.apideck.unify.models.components.QuotesFilter;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingQuotesAllRequest;
 import com.apideck.unify.models.operations.AccountingQuotesAllResponse;
 import java.lang.Exception;
+import java.time.OffsetDateTime;
 
 public class Application {
 
@@ -39,6 +41,11 @@ public class Application {
         AccountingQuotesAllRequest req = AccountingQuotesAllRequest.builder()
                 .serviceId("salesforce")
                 .companyId("12345")
+                .filter(QuotesFilter.builder()
+                    .updatedSince(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
+                    .createdSince(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
+                    .number("OIT00546")
+                    .build())
                 .build();
 
 

@@ -34,25 +34,35 @@ public class CreditNotesFilter {
     @SpeakeasyMetadata("queryParam:name=number")
     private Optional<String> number;
 
+    /**
+     * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that
+     * support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+     */
+    @SpeakeasyMetadata("queryParam:name=subsidiary_id")
+    private Optional<String> subsidiaryId;
+
     @JsonCreator
     public CreditNotesFilter(
             Optional<String> idSince,
             Optional<OffsetDateTime> updatedSince,
             Optional<OffsetDateTime> createdSince,
-            Optional<String> number) {
+            Optional<String> number,
+            Optional<String> subsidiaryId) {
         Utils.checkNotNull(idSince, "idSince");
         Utils.checkNotNull(updatedSince, "updatedSince");
         Utils.checkNotNull(createdSince, "createdSince");
         Utils.checkNotNull(number, "number");
+        Utils.checkNotNull(subsidiaryId, "subsidiaryId");
         this.idSince = idSince;
         this.updatedSince = updatedSince;
         this.createdSince = createdSince;
         this.number = number;
+        this.subsidiaryId = subsidiaryId;
     }
     
     public CreditNotesFilter() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -79,6 +89,15 @@ public class CreditNotesFilter {
     @JsonIgnore
     public Optional<String> number() {
         return number;
+    }
+
+    /**
+     * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that
+     * support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+     */
+    @JsonIgnore
+    public Optional<String> subsidiaryId() {
+        return subsidiaryId;
     }
 
     public static Builder builder() {
@@ -150,6 +169,27 @@ public class CreditNotesFilter {
         return this;
     }
 
+    /**
+     * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that
+     * support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+     */
+    public CreditNotesFilter withSubsidiaryId(String subsidiaryId) {
+        Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+        this.subsidiaryId = Optional.ofNullable(subsidiaryId);
+        return this;
+    }
+
+
+    /**
+     * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that
+     * support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+     */
+    public CreditNotesFilter withSubsidiaryId(Optional<String> subsidiaryId) {
+        Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+        this.subsidiaryId = subsidiaryId;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -163,14 +203,15 @@ public class CreditNotesFilter {
             Utils.enhancedDeepEquals(this.idSince, other.idSince) &&
             Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince) &&
             Utils.enhancedDeepEquals(this.createdSince, other.createdSince) &&
-            Utils.enhancedDeepEquals(this.number, other.number);
+            Utils.enhancedDeepEquals(this.number, other.number) &&
+            Utils.enhancedDeepEquals(this.subsidiaryId, other.subsidiaryId);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             idSince, updatedSince, createdSince,
-            number);
+            number, subsidiaryId);
     }
     
     @Override
@@ -179,7 +220,8 @@ public class CreditNotesFilter {
                 "idSince", idSince,
                 "updatedSince", updatedSince,
                 "createdSince", createdSince,
-                "number", number);
+                "number", number,
+                "subsidiaryId", subsidiaryId);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -192,6 +234,8 @@ public class CreditNotesFilter {
         private Optional<OffsetDateTime> createdSince = Optional.empty();
 
         private Optional<String> number = Optional.empty();
+
+        private Optional<String> subsidiaryId = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -261,11 +305,32 @@ public class CreditNotesFilter {
             return this;
         }
 
+
+        /**
+         * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that
+         * support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+         */
+        public Builder subsidiaryId(String subsidiaryId) {
+            Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+            this.subsidiaryId = Optional.ofNullable(subsidiaryId);
+            return this;
+        }
+
+        /**
+         * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that
+         * support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+         */
+        public Builder subsidiaryId(Optional<String> subsidiaryId) {
+            Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+            this.subsidiaryId = subsidiaryId;
+            return this;
+        }
+
         public CreditNotesFilter build() {
 
             return new CreditNotesFilter(
                 idSince, updatedSince, createdSince,
-                number);
+                number, subsidiaryId);
         }
 
     }

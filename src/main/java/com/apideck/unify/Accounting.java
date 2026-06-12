@@ -25,6 +25,7 @@ public class Accounting {
     private final BalanceSheet balanceSheet;
     private final ProfitAndLoss profitAndLoss;
     private final JournalEntries journalEntries;
+    private final GeneralLedgerTransactions generalLedgerTransactions;
     private final PurchaseOrders purchaseOrders;
     private final Subsidiaries subsidiaries;
     private final Locations locations;
@@ -62,6 +63,7 @@ public class Accounting {
         this.balanceSheet = new BalanceSheet(this.sdkConfiguration);
         this.profitAndLoss = new ProfitAndLoss(this.sdkConfiguration);
         this.journalEntries = new JournalEntries(this.sdkConfiguration);
+        this.generalLedgerTransactions = new GeneralLedgerTransactions(this.sdkConfiguration);
         this.purchaseOrders = new PurchaseOrders(this.sdkConfiguration);
         this.subsidiaries = new Subsidiaries(this.sdkConfiguration);
         this.locations = new Locations(this.sdkConfiguration);
@@ -142,6 +144,10 @@ public class Accounting {
 
     public final JournalEntries journalEntries() {
         return journalEntries;
+    }
+
+    public final GeneralLedgerTransactions generalLedgerTransactions() {
+        return generalLedgerTransactions;
     }
 
     public final PurchaseOrders purchaseOrders() {

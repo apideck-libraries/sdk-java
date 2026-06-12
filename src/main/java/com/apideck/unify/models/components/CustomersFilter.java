@@ -62,6 +62,13 @@ public class CustomersFilter {
     @SpeakeasyMetadata("queryParam:name=supplier_id")
     private Optional<String> supplierId;
 
+    /**
+     * Filter by the subsidiary (legal entity) the customer's primary subsidiary belongs to. Only honored
+     * on connectors that support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+     */
+    @SpeakeasyMetadata("queryParam:name=subsidiary_id")
+    private Optional<String> subsidiaryId;
+
     @JsonCreator
     public CustomersFilter(
             Optional<String> companyName,
@@ -71,7 +78,8 @@ public class CustomersFilter {
             Optional<String> email,
             JsonNullable<? extends CustomersFilterStatus> status,
             Optional<OffsetDateTime> updatedSince,
-            Optional<String> supplierId) {
+            Optional<String> supplierId,
+            Optional<String> subsidiaryId) {
         Utils.checkNotNull(companyName, "companyName");
         Utils.checkNotNull(displayName, "displayName");
         Utils.checkNotNull(firstName, "firstName");
@@ -80,6 +88,7 @@ public class CustomersFilter {
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(updatedSince, "updatedSince");
         Utils.checkNotNull(supplierId, "supplierId");
+        Utils.checkNotNull(subsidiaryId, "subsidiaryId");
         this.companyName = companyName;
         this.displayName = displayName;
         this.firstName = firstName;
@@ -88,12 +97,13 @@ public class CustomersFilter {
         this.status = status;
         this.updatedSince = updatedSince;
         this.supplierId = supplierId;
+        this.subsidiaryId = subsidiaryId;
     }
     
     public CustomersFilter() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -156,6 +166,15 @@ public class CustomersFilter {
     @JsonIgnore
     public Optional<String> supplierId() {
         return supplierId;
+    }
+
+    /**
+     * Filter by the subsidiary (legal entity) the customer's primary subsidiary belongs to. Only honored
+     * on connectors that support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+     */
+    @JsonIgnore
+    public Optional<String> subsidiaryId() {
+        return subsidiaryId;
     }
 
     public static Builder builder() {
@@ -308,6 +327,27 @@ public class CustomersFilter {
         return this;
     }
 
+    /**
+     * Filter by the subsidiary (legal entity) the customer's primary subsidiary belongs to. Only honored
+     * on connectors that support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+     */
+    public CustomersFilter withSubsidiaryId(String subsidiaryId) {
+        Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+        this.subsidiaryId = Optional.ofNullable(subsidiaryId);
+        return this;
+    }
+
+
+    /**
+     * Filter by the subsidiary (legal entity) the customer's primary subsidiary belongs to. Only honored
+     * on connectors that support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+     */
+    public CustomersFilter withSubsidiaryId(Optional<String> subsidiaryId) {
+        Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+        this.subsidiaryId = subsidiaryId;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -325,7 +365,8 @@ public class CustomersFilter {
             Utils.enhancedDeepEquals(this.email, other.email) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince) &&
-            Utils.enhancedDeepEquals(this.supplierId, other.supplierId);
+            Utils.enhancedDeepEquals(this.supplierId, other.supplierId) &&
+            Utils.enhancedDeepEquals(this.subsidiaryId, other.subsidiaryId);
     }
     
     @Override
@@ -333,7 +374,7 @@ public class CustomersFilter {
         return Utils.enhancedHash(
             companyName, displayName, firstName,
             lastName, email, status,
-            updatedSince, supplierId);
+            updatedSince, supplierId, subsidiaryId);
     }
     
     @Override
@@ -346,7 +387,8 @@ public class CustomersFilter {
                 "email", email,
                 "status", status,
                 "updatedSince", updatedSince,
-                "supplierId", supplierId);
+                "supplierId", supplierId,
+                "subsidiaryId", subsidiaryId);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -367,6 +409,8 @@ public class CustomersFilter {
         private Optional<OffsetDateTime> updatedSince = Optional.empty();
 
         private Optional<String> supplierId = Optional.empty();
+
+        private Optional<String> subsidiaryId = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -518,12 +562,33 @@ public class CustomersFilter {
             return this;
         }
 
+
+        /**
+         * Filter by the subsidiary (legal entity) the customer's primary subsidiary belongs to. Only honored
+         * on connectors that support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+         */
+        public Builder subsidiaryId(String subsidiaryId) {
+            Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+            this.subsidiaryId = Optional.ofNullable(subsidiaryId);
+            return this;
+        }
+
+        /**
+         * Filter by the subsidiary (legal entity) the customer's primary subsidiary belongs to. Only honored
+         * on connectors that support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+         */
+        public Builder subsidiaryId(Optional<String> subsidiaryId) {
+            Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+            this.subsidiaryId = subsidiaryId;
+            return this;
+        }
+
         public CustomersFilter build() {
 
             return new CustomersFilter(
                 companyName, displayName, firstName,
                 lastName, email, status,
-                updatedSince, supplierId);
+                updatedSince, supplierId, subsidiaryId);
         }
 
     }

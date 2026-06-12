@@ -34,6 +34,13 @@ public class UserInput {
     private JsonNullable<String> username;
 
     /**
+     * The name of the resource.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("name")
+    private JsonNullable<String> name;
+
+    /**
      * The first name of the person.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -148,6 +155,7 @@ public class UserInput {
     public UserInput(
             @JsonProperty("parent_id") JsonNullable<String> parentId,
             @JsonProperty("username") JsonNullable<String> username,
+            @JsonProperty("name") JsonNullable<String> name,
             @JsonProperty("first_name") JsonNullable<String> firstName,
             @JsonProperty("last_name") JsonNullable<String> lastName,
             @JsonProperty("title") JsonNullable<String> title,
@@ -166,6 +174,7 @@ public class UserInput {
             @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
         Utils.checkNotNull(parentId, "parentId");
         Utils.checkNotNull(username, "username");
+        Utils.checkNotNull(name, "name");
         Utils.checkNotNull(firstName, "firstName");
         Utils.checkNotNull(lastName, "lastName");
         Utils.checkNotNull(title, "title");
@@ -184,6 +193,7 @@ public class UserInput {
         Utils.checkNotNull(passThrough, "passThrough");
         this.parentId = parentId;
         this.username = username;
+        this.name = name;
         this.firstName = firstName;
         this.lastName = lastName;
         this.title = title;
@@ -208,8 +218,9 @@ public class UserInput {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), emails, Optional.empty());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), emails,
+            Optional.empty());
     }
 
     /**
@@ -226,6 +237,14 @@ public class UserInput {
     @JsonIgnore
     public JsonNullable<String> username() {
         return username;
+    }
+
+    /**
+     * The name of the resource.
+     */
+    @JsonIgnore
+    public JsonNullable<String> name() {
+        return name;
     }
 
     /**
@@ -394,6 +413,24 @@ public class UserInput {
     public UserInput withUsername(JsonNullable<String> username) {
         Utils.checkNotNull(username, "username");
         this.username = username;
+        return this;
+    }
+
+    /**
+     * The name of the resource.
+     */
+    public UserInput withName(String name) {
+        Utils.checkNotNull(name, "name");
+        this.name = JsonNullable.of(name);
+        return this;
+    }
+
+    /**
+     * The name of the resource.
+     */
+    public UserInput withName(JsonNullable<String> name) {
+        Utils.checkNotNull(name, "name");
+        this.name = name;
         return this;
     }
 
@@ -688,6 +725,7 @@ public class UserInput {
         return 
             Utils.enhancedDeepEquals(this.parentId, other.parentId) &&
             Utils.enhancedDeepEquals(this.username, other.username) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.firstName, other.firstName) &&
             Utils.enhancedDeepEquals(this.lastName, other.lastName) &&
             Utils.enhancedDeepEquals(this.title, other.title) &&
@@ -709,12 +747,13 @@ public class UserInput {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            parentId, username, firstName,
-            lastName, title, division,
-            department, companyName, employeeNumber,
-            description, image, language,
-            status, password, addresses,
-            phoneNumbers, emails, passThrough);
+            parentId, username, name,
+            firstName, lastName, title,
+            division, department, companyName,
+            employeeNumber, description, image,
+            language, status, password,
+            addresses, phoneNumbers, emails,
+            passThrough);
     }
     
     @Override
@@ -722,6 +761,7 @@ public class UserInput {
         return Utils.toString(UserInput.class,
                 "parentId", parentId,
                 "username", username,
+                "name", name,
                 "firstName", firstName,
                 "lastName", lastName,
                 "title", title,
@@ -746,6 +786,8 @@ public class UserInput {
         private JsonNullable<String> parentId = JsonNullable.undefined();
 
         private JsonNullable<String> username = JsonNullable.undefined();
+
+        private JsonNullable<String> name = JsonNullable.undefined();
 
         private JsonNullable<String> firstName = JsonNullable.undefined();
 
@@ -819,6 +861,25 @@ public class UserInput {
         public Builder username(JsonNullable<String> username) {
             Utils.checkNotNull(username, "username");
             this.username = username;
+            return this;
+        }
+
+
+        /**
+         * The name of the resource.
+         */
+        public Builder name(String name) {
+            Utils.checkNotNull(name, "name");
+            this.name = JsonNullable.of(name);
+            return this;
+        }
+
+        /**
+         * The name of the resource.
+         */
+        public Builder name(JsonNullable<String> name) {
+            Utils.checkNotNull(name, "name");
+            this.name = name;
             return this;
         }
 
@@ -1117,12 +1178,13 @@ public class UserInput {
         public UserInput build() {
 
             return new UserInput(
-                parentId, username, firstName,
-                lastName, title, division,
-                department, companyName, employeeNumber,
-                description, image, language,
-                status, password, addresses,
-                phoneNumbers, emails, passThrough);
+                parentId, username, name,
+                firstName, lastName, title,
+                division, department, companyName,
+                employeeNumber, description, image,
+                language, status, password,
+                addresses, phoneNumbers, emails,
+                passThrough);
         }
 
     }

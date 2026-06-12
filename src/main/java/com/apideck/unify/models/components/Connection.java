@@ -268,6 +268,15 @@ public class Connection {
     @JsonProperty("last_refresh_failed_at")
     private Optional<Double> lastRefreshFailedAt;
 
+    /**
+     * Unix timestamp in milliseconds of the last downstream unreachable error (502/504 network class). A
+     * value of 0 indicates no active error. Connection remains callable while this is set; health surfaces
+     * as 'degraded'.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("last_downstream_error_at")
+    private Optional<Double> lastDownstreamErrorAt;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("created_at")
@@ -316,6 +325,7 @@ public class Connection {
             @JsonProperty("health") Optional<? extends Health> health,
             @JsonProperty("credentials_expire_at") Optional<Double> credentialsExpireAt,
             @JsonProperty("last_refresh_failed_at") Optional<Double> lastRefreshFailedAt,
+            @JsonProperty("last_downstream_error_at") Optional<Double> lastDownstreamErrorAt,
             @JsonProperty("created_at") Optional<Double> createdAt,
             @JsonProperty("updated_at") JsonNullable<Double> updatedAt) {
         Utils.checkNotNull(id, "id");
@@ -354,6 +364,7 @@ public class Connection {
         Utils.checkNotNull(health, "health");
         Utils.checkNotNull(credentialsExpireAt, "credentialsExpireAt");
         Utils.checkNotNull(lastRefreshFailedAt, "lastRefreshFailedAt");
+        Utils.checkNotNull(lastDownstreamErrorAt, "lastDownstreamErrorAt");
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(updatedAt, "updatedAt");
         this.id = id;
@@ -392,6 +403,7 @@ public class Connection {
         this.health = health;
         this.credentialsExpireAt = credentialsExpireAt;
         this.lastRefreshFailedAt = lastRefreshFailedAt;
+        this.lastDownstreamErrorAt = lastDownstreamErrorAt;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
@@ -409,7 +421,7 @@ public class Connection {
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined());
+            Optional.empty(), Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -702,6 +714,16 @@ public class Connection {
     @JsonIgnore
     public Optional<Double> lastRefreshFailedAt() {
         return lastRefreshFailedAt;
+    }
+
+    /**
+     * Unix timestamp in milliseconds of the last downstream unreachable error (502/504 network class). A
+     * value of 0 indicates no active error. Connection remains callable while this is set; health surfaces
+     * as 'degraded'.
+     */
+    @JsonIgnore
+    public Optional<Double> lastDownstreamErrorAt() {
+        return lastDownstreamErrorAt;
     }
 
     @JsonIgnore
@@ -1367,6 +1389,29 @@ public class Connection {
         return this;
     }
 
+    /**
+     * Unix timestamp in milliseconds of the last downstream unreachable error (502/504 network class). A
+     * value of 0 indicates no active error. Connection remains callable while this is set; health surfaces
+     * as 'degraded'.
+     */
+    public Connection withLastDownstreamErrorAt(double lastDownstreamErrorAt) {
+        Utils.checkNotNull(lastDownstreamErrorAt, "lastDownstreamErrorAt");
+        this.lastDownstreamErrorAt = Optional.ofNullable(lastDownstreamErrorAt);
+        return this;
+    }
+
+
+    /**
+     * Unix timestamp in milliseconds of the last downstream unreachable error (502/504 network class). A
+     * value of 0 indicates no active error. Connection remains callable while this is set; health surfaces
+     * as 'degraded'.
+     */
+    public Connection withLastDownstreamErrorAt(Optional<Double> lastDownstreamErrorAt) {
+        Utils.checkNotNull(lastDownstreamErrorAt, "lastDownstreamErrorAt");
+        this.lastDownstreamErrorAt = lastDownstreamErrorAt;
+        return this;
+    }
+
     public Connection withCreatedAt(double createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = Optional.ofNullable(createdAt);
@@ -1438,6 +1483,7 @@ public class Connection {
             Utils.enhancedDeepEquals(this.health, other.health) &&
             Utils.enhancedDeepEquals(this.credentialsExpireAt, other.credentialsExpireAt) &&
             Utils.enhancedDeepEquals(this.lastRefreshFailedAt, other.lastRefreshFailedAt) &&
+            Utils.enhancedDeepEquals(this.lastDownstreamErrorAt, other.lastDownstreamErrorAt) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
             Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt);
     }
@@ -1457,7 +1503,7 @@ public class Connection {
             hasGuide, customMappings, consentState,
             consents, latestConsent, applicationDataScopes,
             health, credentialsExpireAt, lastRefreshFailedAt,
-            createdAt, updatedAt);
+            lastDownstreamErrorAt, createdAt, updatedAt);
     }
     
     @Override
@@ -1499,6 +1545,7 @@ public class Connection {
                 "health", health,
                 "credentialsExpireAt", credentialsExpireAt,
                 "lastRefreshFailedAt", lastRefreshFailedAt,
+                "lastDownstreamErrorAt", lastDownstreamErrorAt,
                 "createdAt", createdAt,
                 "updatedAt", updatedAt);
     }
@@ -1577,6 +1624,8 @@ public class Connection {
         private Optional<Double> credentialsExpireAt = Optional.empty();
 
         private Optional<Double> lastRefreshFailedAt = Optional.empty();
+
+        private Optional<Double> lastDownstreamErrorAt = Optional.empty();
 
         private Optional<Double> createdAt = Optional.empty();
 
@@ -2239,6 +2288,29 @@ public class Connection {
         }
 
 
+        /**
+         * Unix timestamp in milliseconds of the last downstream unreachable error (502/504 network class). A
+         * value of 0 indicates no active error. Connection remains callable while this is set; health surfaces
+         * as 'degraded'.
+         */
+        public Builder lastDownstreamErrorAt(double lastDownstreamErrorAt) {
+            Utils.checkNotNull(lastDownstreamErrorAt, "lastDownstreamErrorAt");
+            this.lastDownstreamErrorAt = Optional.ofNullable(lastDownstreamErrorAt);
+            return this;
+        }
+
+        /**
+         * Unix timestamp in milliseconds of the last downstream unreachable error (502/504 network class). A
+         * value of 0 indicates no active error. Connection remains callable while this is set; health surfaces
+         * as 'degraded'.
+         */
+        public Builder lastDownstreamErrorAt(Optional<Double> lastDownstreamErrorAt) {
+            Utils.checkNotNull(lastDownstreamErrorAt, "lastDownstreamErrorAt");
+            this.lastDownstreamErrorAt = lastDownstreamErrorAt;
+            return this;
+        }
+
+
         public Builder createdAt(double createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = Optional.ofNullable(createdAt);
@@ -2279,7 +2351,7 @@ public class Connection {
                 hasGuide, customMappings, consentState,
                 consents, latestConsent, applicationDataScopes,
                 health, credentialsExpireAt, lastRefreshFailedAt,
-                createdAt, updatedAt);
+                lastDownstreamErrorAt, createdAt, updatedAt);
         }
 
     }

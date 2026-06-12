@@ -29,21 +29,32 @@ public class ExpenseReportsFilter {
     @SpeakeasyMetadata("queryParam:name=employee_id")
     private Optional<String> employeeId;
 
+    /**
+     * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that
+     * support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+     */
+    @SpeakeasyMetadata("queryParam:name=subsidiary_id")
+    private Optional<String> subsidiaryId;
+
     @JsonCreator
     public ExpenseReportsFilter(
             Optional<OffsetDateTime> updatedSince,
             Optional<? extends ExpenseReportsFilterStatus> status,
-            Optional<String> employeeId) {
+            Optional<String> employeeId,
+            Optional<String> subsidiaryId) {
         Utils.checkNotNull(updatedSince, "updatedSince");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(employeeId, "employeeId");
+        Utils.checkNotNull(subsidiaryId, "subsidiaryId");
         this.updatedSince = updatedSince;
         this.status = status;
         this.employeeId = employeeId;
+        this.subsidiaryId = subsidiaryId;
     }
     
     public ExpenseReportsFilter() {
-        this(Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     @JsonIgnore
@@ -63,6 +74,15 @@ public class ExpenseReportsFilter {
     @JsonIgnore
     public Optional<String> employeeId() {
         return employeeId;
+    }
+
+    /**
+     * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that
+     * support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+     */
+    @JsonIgnore
+    public Optional<String> subsidiaryId() {
+        return subsidiaryId;
     }
 
     public static Builder builder() {
@@ -115,6 +135,27 @@ public class ExpenseReportsFilter {
         return this;
     }
 
+    /**
+     * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that
+     * support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+     */
+    public ExpenseReportsFilter withSubsidiaryId(String subsidiaryId) {
+        Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+        this.subsidiaryId = Optional.ofNullable(subsidiaryId);
+        return this;
+    }
+
+
+    /**
+     * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that
+     * support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+     */
+    public ExpenseReportsFilter withSubsidiaryId(Optional<String> subsidiaryId) {
+        Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+        this.subsidiaryId = subsidiaryId;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -127,13 +168,15 @@ public class ExpenseReportsFilter {
         return 
             Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
-            Utils.enhancedDeepEquals(this.employeeId, other.employeeId);
+            Utils.enhancedDeepEquals(this.employeeId, other.employeeId) &&
+            Utils.enhancedDeepEquals(this.subsidiaryId, other.subsidiaryId);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            updatedSince, status, employeeId);
+            updatedSince, status, employeeId,
+            subsidiaryId);
     }
     
     @Override
@@ -141,7 +184,8 @@ public class ExpenseReportsFilter {
         return Utils.toString(ExpenseReportsFilter.class,
                 "updatedSince", updatedSince,
                 "status", status,
-                "employeeId", employeeId);
+                "employeeId", employeeId,
+                "subsidiaryId", subsidiaryId);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -152,6 +196,8 @@ public class ExpenseReportsFilter {
         private Optional<? extends ExpenseReportsFilterStatus> status = Optional.empty();
 
         private Optional<String> employeeId = Optional.empty();
+
+        private Optional<String> subsidiaryId = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -202,10 +248,32 @@ public class ExpenseReportsFilter {
             return this;
         }
 
+
+        /**
+         * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that
+         * support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+         */
+        public Builder subsidiaryId(String subsidiaryId) {
+            Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+            this.subsidiaryId = Optional.ofNullable(subsidiaryId);
+            return this;
+        }
+
+        /**
+         * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that
+         * support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+         */
+        public Builder subsidiaryId(Optional<String> subsidiaryId) {
+            Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+            this.subsidiaryId = subsidiaryId;
+            return this;
+        }
+
         public ExpenseReportsFilter build() {
 
             return new ExpenseReportsFilter(
-                updatedSince, status, employeeId);
+                updatedSince, status, employeeId,
+                subsidiaryId);
         }
 
     }

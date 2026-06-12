@@ -43,6 +43,13 @@ public class User {
     private JsonNullable<String> username;
 
     /**
+     * The name of the resource.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("name")
+    private JsonNullable<String> name;
+
+    /**
      * The first name of the person.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -172,6 +179,7 @@ public class User {
             @JsonProperty("id") Optional<String> id,
             @JsonProperty("parent_id") JsonNullable<String> parentId,
             @JsonProperty("username") JsonNullable<String> username,
+            @JsonProperty("name") JsonNullable<String> name,
             @JsonProperty("first_name") JsonNullable<String> firstName,
             @JsonProperty("last_name") JsonNullable<String> lastName,
             @JsonProperty("title") JsonNullable<String> title,
@@ -193,6 +201,7 @@ public class User {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(parentId, "parentId");
         Utils.checkNotNull(username, "username");
+        Utils.checkNotNull(name, "name");
         Utils.checkNotNull(firstName, "firstName");
         Utils.checkNotNull(lastName, "lastName");
         Utils.checkNotNull(title, "title");
@@ -214,6 +223,7 @@ public class User {
         this.id = id;
         this.parentId = parentId;
         this.username = username;
+        this.name = name;
         this.firstName = firstName;
         this.lastName = lastName;
         this.title = title;
@@ -240,9 +250,10 @@ public class User {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), emails, JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), emails,
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -267,6 +278,14 @@ public class User {
     @JsonIgnore
     public JsonNullable<String> username() {
         return username;
+    }
+
+    /**
+     * The name of the resource.
+     */
+    @JsonIgnore
+    public JsonNullable<String> name() {
+        return name;
     }
 
     /**
@@ -471,6 +490,24 @@ public class User {
     public User withUsername(JsonNullable<String> username) {
         Utils.checkNotNull(username, "username");
         this.username = username;
+        return this;
+    }
+
+    /**
+     * The name of the resource.
+     */
+    public User withName(String name) {
+        Utils.checkNotNull(name, "name");
+        this.name = JsonNullable.of(name);
+        return this;
+    }
+
+    /**
+     * The name of the resource.
+     */
+    public User withName(JsonNullable<String> name) {
+        Utils.checkNotNull(name, "name");
+        this.name = name;
         return this;
     }
 
@@ -802,6 +839,7 @@ public class User {
             Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.parentId, other.parentId) &&
             Utils.enhancedDeepEquals(this.username, other.username) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.firstName, other.firstName) &&
             Utils.enhancedDeepEquals(this.lastName, other.lastName) &&
             Utils.enhancedDeepEquals(this.title, other.title) &&
@@ -826,12 +864,13 @@ public class User {
     public int hashCode() {
         return Utils.enhancedHash(
             id, parentId, username,
-            firstName, lastName, title,
-            division, department, companyName,
-            employeeNumber, description, image,
-            language, status, addresses,
-            phoneNumbers, emails, customMappings,
-            updatedAt, createdAt, passThrough);
+            name, firstName, lastName,
+            title, division, department,
+            companyName, employeeNumber, description,
+            image, language, status,
+            addresses, phoneNumbers, emails,
+            customMappings, updatedAt, createdAt,
+            passThrough);
     }
     
     @Override
@@ -840,6 +879,7 @@ public class User {
                 "id", id,
                 "parentId", parentId,
                 "username", username,
+                "name", name,
                 "firstName", firstName,
                 "lastName", lastName,
                 "title", title,
@@ -868,6 +908,8 @@ public class User {
         private JsonNullable<String> parentId = JsonNullable.undefined();
 
         private JsonNullable<String> username = JsonNullable.undefined();
+
+        private JsonNullable<String> name = JsonNullable.undefined();
 
         private JsonNullable<String> firstName = JsonNullable.undefined();
 
@@ -964,6 +1006,25 @@ public class User {
         public Builder username(JsonNullable<String> username) {
             Utils.checkNotNull(username, "username");
             this.username = username;
+            return this;
+        }
+
+
+        /**
+         * The name of the resource.
+         */
+        public Builder name(String name) {
+            Utils.checkNotNull(name, "name");
+            this.name = JsonNullable.of(name);
+            return this;
+        }
+
+        /**
+         * The name of the resource.
+         */
+        public Builder name(JsonNullable<String> name) {
+            Utils.checkNotNull(name, "name");
+            this.name = name;
             return this;
         }
 
@@ -1301,12 +1362,13 @@ public class User {
 
             return new User(
                 id, parentId, username,
-                firstName, lastName, title,
-                division, department, companyName,
-                employeeNumber, description, image,
-                language, status, addresses,
-                phoneNumbers, emails, customMappings,
-                updatedAt, createdAt, passThrough);
+                name, firstName, lastName,
+                title, division, department,
+                companyName, employeeNumber, description,
+                image, language, status,
+                addresses, phoneNumbers, emails,
+                customMappings, updatedAt, createdAt,
+                passThrough);
         }
 
     }

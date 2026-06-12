@@ -3,6 +3,7 @@
  */
 package com.apideck.unify.models.operations;
 
+import com.apideck.unify.models.components.QuotesFilter;
 import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
@@ -13,6 +14,7 @@ import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -63,6 +65,12 @@ public class AccountingQuotesAllRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=limit")
     private Optional<Long> limit;
 
+    /**
+     * Apply filters
+     */
+    @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=filter")
+    private Optional<? extends QuotesFilter> filter;
+
     @JsonCreator
     public AccountingQuotesAllRequest(
             Optional<Boolean> raw,
@@ -71,7 +79,8 @@ public class AccountingQuotesAllRequest {
             Optional<String> serviceId,
             Optional<String> companyId,
             JsonNullable<String> cursor,
-            Optional<Long> limit) {
+            Optional<Long> limit,
+            Optional<? extends QuotesFilter> filter) {
         Utils.checkNotNull(raw, "raw");
         Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
@@ -79,6 +88,7 @@ public class AccountingQuotesAllRequest {
         Utils.checkNotNull(companyId, "companyId");
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(limit, "limit");
+        Utils.checkNotNull(filter, "filter");
         this.raw = raw;
         this.consumerId = consumerId;
         this.appId = appId;
@@ -86,12 +96,13 @@ public class AccountingQuotesAllRequest {
         this.companyId = companyId;
         this.cursor = cursor;
         this.limit = limit;
+        this.filter = filter;
     }
     
     public AccountingQuotesAllRequest() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty());
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -151,6 +162,15 @@ public class AccountingQuotesAllRequest {
     @JsonIgnore
     public Optional<Long> limit() {
         return limit;
+    }
+
+    /**
+     * Apply filters
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<QuotesFilter> filter() {
+        return (Optional<QuotesFilter>) filter;
     }
 
     public static Builder builder() {
@@ -296,6 +316,25 @@ public class AccountingQuotesAllRequest {
         return this;
     }
 
+    /**
+     * Apply filters
+     */
+    public AccountingQuotesAllRequest withFilter(QuotesFilter filter) {
+        Utils.checkNotNull(filter, "filter");
+        this.filter = Optional.ofNullable(filter);
+        return this;
+    }
+
+
+    /**
+     * Apply filters
+     */
+    public AccountingQuotesAllRequest withFilter(Optional<? extends QuotesFilter> filter) {
+        Utils.checkNotNull(filter, "filter");
+        this.filter = filter;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -312,7 +351,8 @@ public class AccountingQuotesAllRequest {
             Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
             Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
             Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
-            Utils.enhancedDeepEquals(this.limit, other.limit);
+            Utils.enhancedDeepEquals(this.limit, other.limit) &&
+            Utils.enhancedDeepEquals(this.filter, other.filter);
     }
     
     @Override
@@ -320,7 +360,7 @@ public class AccountingQuotesAllRequest {
         return Utils.enhancedHash(
             raw, consumerId, appId,
             serviceId, companyId, cursor,
-            limit);
+            limit, filter);
     }
     
     @Override
@@ -332,7 +372,8 @@ public class AccountingQuotesAllRequest {
                 "serviceId", serviceId,
                 "companyId", companyId,
                 "cursor", cursor,
-                "limit", limit);
+                "limit", limit,
+                "filter", filter);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -351,6 +392,8 @@ public class AccountingQuotesAllRequest {
         private JsonNullable<String> cursor = JsonNullable.undefined();
 
         private Optional<Long> limit;
+
+        private Optional<? extends QuotesFilter> filter = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -495,6 +538,25 @@ public class AccountingQuotesAllRequest {
             return this;
         }
 
+
+        /**
+         * Apply filters
+         */
+        public Builder filter(QuotesFilter filter) {
+            Utils.checkNotNull(filter, "filter");
+            this.filter = Optional.ofNullable(filter);
+            return this;
+        }
+
+        /**
+         * Apply filters
+         */
+        public Builder filter(Optional<? extends QuotesFilter> filter) {
+            Utils.checkNotNull(filter, "filter");
+            this.filter = filter;
+            return this;
+        }
+
         public AccountingQuotesAllRequest build() {
             if (raw == null) {
                 raw = _SINGLETON_VALUE_Raw.value();
@@ -506,7 +568,7 @@ public class AccountingQuotesAllRequest {
             return new AccountingQuotesAllRequest(
                 raw, consumerId, appId,
                 serviceId, companyId, cursor,
-                limit);
+                limit, filter);
         }
 
 

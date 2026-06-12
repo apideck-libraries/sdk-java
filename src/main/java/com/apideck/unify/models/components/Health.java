@@ -32,6 +32,7 @@ public class Health {
     public static final Health NEEDS_AUTH = new Health("needs_auth");
     public static final Health PENDING_REFRESH = new Health("pending_refresh");
     public static final Health OK = new Health("ok");
+    public static final Health DEGRADED = new Health("degraded");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -112,6 +113,7 @@ public class Health {
         map.put("needs_auth", NEEDS_AUTH);
         map.put("pending_refresh", PENDING_REFRESH);
         map.put("ok", OK);
+        map.put("degraded", DEGRADED);
         return map;
     }
 
@@ -124,6 +126,7 @@ public class Health {
         map.put("needs_auth", HealthEnum.NEEDS_AUTH);
         map.put("pending_refresh", HealthEnum.PENDING_REFRESH);
         map.put("ok", HealthEnum.OK);
+        map.put("degraded", HealthEnum.DEGRADED);
         return map;
     }
     
@@ -136,7 +139,8 @@ public class Health {
         PENDING_CONFIRMATION("pending_confirmation"),
         NEEDS_AUTH("needs_auth"),
         PENDING_REFRESH("pending_refresh"),
-        OK("ok"),;
+        OK("ok"),
+        DEGRADED("degraded"),;
 
         private final String value;
 

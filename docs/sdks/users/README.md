@@ -21,6 +21,7 @@ List users
 package hello.world;
 
 import com.apideck.unify.Apideck;
+import com.apideck.unify.models.components.UsersFilter;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.CrmUsersAllRequest;
 import com.apideck.unify.models.operations.CrmUsersAllResponse;
@@ -39,6 +40,9 @@ public class Application {
 
         CrmUsersAllRequest req = CrmUsersAllRequest.builder()
                 .serviceId("salesforce")
+                .filter(UsersFilter.builder()
+                    .email("elon@apideck.com")
+                    .build())
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
                 .fields("id,updated_at")

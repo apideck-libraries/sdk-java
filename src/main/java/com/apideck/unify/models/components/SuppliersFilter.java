@@ -48,6 +48,13 @@ public class SuppliersFilter {
     @SpeakeasyMetadata("queryParam:name=updated_since")
     private Optional<OffsetDateTime> updatedSince;
 
+    /**
+     * Filter by the subsidiary (legal entity) the supplier's primary subsidiary belongs to. Only honored
+     * on connectors that support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+     */
+    @SpeakeasyMetadata("queryParam:name=subsidiary_id")
+    private Optional<String> subsidiaryId;
+
     @JsonCreator
     public SuppliersFilter(
             Optional<String> companyName,
@@ -55,24 +62,28 @@ public class SuppliersFilter {
             Optional<String> firstName,
             Optional<String> lastName,
             Optional<String> email,
-            Optional<OffsetDateTime> updatedSince) {
+            Optional<OffsetDateTime> updatedSince,
+            Optional<String> subsidiaryId) {
         Utils.checkNotNull(companyName, "companyName");
         Utils.checkNotNull(displayName, "displayName");
         Utils.checkNotNull(firstName, "firstName");
         Utils.checkNotNull(lastName, "lastName");
         Utils.checkNotNull(email, "email");
         Utils.checkNotNull(updatedSince, "updatedSince");
+        Utils.checkNotNull(subsidiaryId, "subsidiaryId");
         this.companyName = companyName;
         this.displayName = displayName;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.updatedSince = updatedSince;
+        this.subsidiaryId = subsidiaryId;
     }
     
     public SuppliersFilter() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -118,6 +129,15 @@ public class SuppliersFilter {
     @JsonIgnore
     public Optional<OffsetDateTime> updatedSince() {
         return updatedSince;
+    }
+
+    /**
+     * Filter by the subsidiary (legal entity) the supplier's primary subsidiary belongs to. Only honored
+     * on connectors that support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+     */
+    @JsonIgnore
+    public Optional<String> subsidiaryId() {
+        return subsidiaryId;
     }
 
     public static Builder builder() {
@@ -233,6 +253,27 @@ public class SuppliersFilter {
         return this;
     }
 
+    /**
+     * Filter by the subsidiary (legal entity) the supplier's primary subsidiary belongs to. Only honored
+     * on connectors that support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+     */
+    public SuppliersFilter withSubsidiaryId(String subsidiaryId) {
+        Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+        this.subsidiaryId = Optional.ofNullable(subsidiaryId);
+        return this;
+    }
+
+
+    /**
+     * Filter by the subsidiary (legal entity) the supplier's primary subsidiary belongs to. Only honored
+     * on connectors that support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+     */
+    public SuppliersFilter withSubsidiaryId(Optional<String> subsidiaryId) {
+        Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+        this.subsidiaryId = subsidiaryId;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -248,14 +289,16 @@ public class SuppliersFilter {
             Utils.enhancedDeepEquals(this.firstName, other.firstName) &&
             Utils.enhancedDeepEquals(this.lastName, other.lastName) &&
             Utils.enhancedDeepEquals(this.email, other.email) &&
-            Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince);
+            Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince) &&
+            Utils.enhancedDeepEquals(this.subsidiaryId, other.subsidiaryId);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             companyName, displayName, firstName,
-            lastName, email, updatedSince);
+            lastName, email, updatedSince,
+            subsidiaryId);
     }
     
     @Override
@@ -266,7 +309,8 @@ public class SuppliersFilter {
                 "firstName", firstName,
                 "lastName", lastName,
                 "email", email,
-                "updatedSince", updatedSince);
+                "updatedSince", updatedSince,
+                "subsidiaryId", subsidiaryId);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -283,6 +327,8 @@ public class SuppliersFilter {
         private Optional<String> email = Optional.empty();
 
         private Optional<OffsetDateTime> updatedSince = Optional.empty();
+
+        private Optional<String> subsidiaryId = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -396,11 +442,33 @@ public class SuppliersFilter {
             return this;
         }
 
+
+        /**
+         * Filter by the subsidiary (legal entity) the supplier's primary subsidiary belongs to. Only honored
+         * on connectors that support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+         */
+        public Builder subsidiaryId(String subsidiaryId) {
+            Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+            this.subsidiaryId = Optional.ofNullable(subsidiaryId);
+            return this;
+        }
+
+        /**
+         * Filter by the subsidiary (legal entity) the supplier's primary subsidiary belongs to. Only honored
+         * on connectors that support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+         */
+        public Builder subsidiaryId(Optional<String> subsidiaryId) {
+            Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+            this.subsidiaryId = subsidiaryId;
+            return this;
+        }
+
         public SuppliersFilter build() {
 
             return new SuppliersFilter(
                 companyName, displayName, firstName,
-                lastName, email, updatedSince);
+                lastName, email, updatedSince,
+                subsidiaryId);
         }
 
     }

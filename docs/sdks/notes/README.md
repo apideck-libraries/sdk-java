@@ -21,6 +21,7 @@ List notes
 package hello.world;
 
 import com.apideck.unify.Apideck;
+import com.apideck.unify.models.components.NotesFilter;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.CrmNotesAllRequest;
 import com.apideck.unify.models.operations.CrmNotesAllResponse;
@@ -39,6 +40,9 @@ public class Application {
 
         CrmNotesAllRequest req = CrmNotesAllRequest.builder()
                 .serviceId("salesforce")
+                .filter(NotesFilter.builder()
+                    .title("Follow up call")
+                    .build())
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
                 .fields("id,updated_at")

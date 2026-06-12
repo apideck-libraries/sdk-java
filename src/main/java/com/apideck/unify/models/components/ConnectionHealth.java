@@ -32,6 +32,7 @@ public class ConnectionHealth {
     public static final ConnectionHealth NEEDS_CONSENT = new ConnectionHealth("needs_consent");
     public static final ConnectionHealth REVOKED = new ConnectionHealth("revoked");
     public static final ConnectionHealth MISSING_SETTINGS = new ConnectionHealth("missing_settings");
+    public static final ConnectionHealth DEGRADED = new ConnectionHealth("degraded");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -112,6 +113,7 @@ public class ConnectionHealth {
         map.put("needs_consent", NEEDS_CONSENT);
         map.put("revoked", REVOKED);
         map.put("missing_settings", MISSING_SETTINGS);
+        map.put("degraded", DEGRADED);
         return map;
     }
 
@@ -124,6 +126,7 @@ public class ConnectionHealth {
         map.put("needs_consent", ConnectionHealthEnum.NEEDS_CONSENT);
         map.put("revoked", ConnectionHealthEnum.REVOKED);
         map.put("missing_settings", ConnectionHealthEnum.MISSING_SETTINGS);
+        map.put("degraded", ConnectionHealthEnum.DEGRADED);
         return map;
     }
     
@@ -136,7 +139,8 @@ public class ConnectionHealth {
         PENDING_CONFIRMATION("pending_confirmation"),
         NEEDS_CONSENT("needs_consent"),
         REVOKED("revoked"),
-        MISSING_SETTINGS("missing_settings"),;
+        MISSING_SETTINGS("missing_settings"),
+        DEGRADED("degraded"),;
 
         private final String value;
 

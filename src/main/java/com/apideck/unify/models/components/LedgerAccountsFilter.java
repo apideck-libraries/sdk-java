@@ -37,25 +37,35 @@ public class LedgerAccountsFilter {
     @SpeakeasyMetadata("queryParam:name=status")
     private Optional<? extends LedgerAccountsFilterStatus> status;
 
+    /**
+     * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that
+     * support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+     */
+    @SpeakeasyMetadata("queryParam:name=subsidiary_id")
+    private Optional<String> subsidiaryId;
+
     @JsonCreator
     public LedgerAccountsFilter(
             Optional<String> name,
             Optional<OffsetDateTime> updatedSince,
             Optional<? extends Classification> classification,
-            Optional<? extends LedgerAccountsFilterStatus> status) {
+            Optional<? extends LedgerAccountsFilterStatus> status,
+            Optional<String> subsidiaryId) {
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(updatedSince, "updatedSince");
         Utils.checkNotNull(classification, "classification");
         Utils.checkNotNull(status, "status");
+        Utils.checkNotNull(subsidiaryId, "subsidiaryId");
         this.name = name;
         this.updatedSince = updatedSince;
         this.classification = classification;
         this.status = status;
+        this.subsidiaryId = subsidiaryId;
     }
     
     public LedgerAccountsFilter() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -87,6 +97,15 @@ public class LedgerAccountsFilter {
     @JsonIgnore
     public Optional<LedgerAccountsFilterStatus> status() {
         return (Optional<LedgerAccountsFilterStatus>) status;
+    }
+
+    /**
+     * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that
+     * support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+     */
+    @JsonIgnore
+    public Optional<String> subsidiaryId() {
+        return subsidiaryId;
     }
 
     public static Builder builder() {
@@ -164,6 +183,27 @@ public class LedgerAccountsFilter {
         return this;
     }
 
+    /**
+     * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that
+     * support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+     */
+    public LedgerAccountsFilter withSubsidiaryId(String subsidiaryId) {
+        Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+        this.subsidiaryId = Optional.ofNullable(subsidiaryId);
+        return this;
+    }
+
+
+    /**
+     * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that
+     * support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+     */
+    public LedgerAccountsFilter withSubsidiaryId(Optional<String> subsidiaryId) {
+        Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+        this.subsidiaryId = subsidiaryId;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -177,14 +217,15 @@ public class LedgerAccountsFilter {
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince) &&
             Utils.enhancedDeepEquals(this.classification, other.classification) &&
-            Utils.enhancedDeepEquals(this.status, other.status);
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.subsidiaryId, other.subsidiaryId);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             name, updatedSince, classification,
-            status);
+            status, subsidiaryId);
     }
     
     @Override
@@ -193,7 +234,8 @@ public class LedgerAccountsFilter {
                 "name", name,
                 "updatedSince", updatedSince,
                 "classification", classification,
-                "status", status);
+                "status", status,
+                "subsidiaryId", subsidiaryId);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -206,6 +248,8 @@ public class LedgerAccountsFilter {
         private Optional<? extends Classification> classification = Optional.empty();
 
         private Optional<? extends LedgerAccountsFilterStatus> status = Optional.empty();
+
+        private Optional<String> subsidiaryId = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -281,11 +325,32 @@ public class LedgerAccountsFilter {
             return this;
         }
 
+
+        /**
+         * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that
+         * support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+         */
+        public Builder subsidiaryId(String subsidiaryId) {
+            Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+            this.subsidiaryId = Optional.ofNullable(subsidiaryId);
+            return this;
+        }
+
+        /**
+         * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that
+         * support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+         */
+        public Builder subsidiaryId(Optional<String> subsidiaryId) {
+            Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+            this.subsidiaryId = subsidiaryId;
+            return this;
+        }
+
         public LedgerAccountsFilter build() {
 
             return new LedgerAccountsFilter(
                 name, updatedSince, classification,
-                status);
+                status, subsidiaryId);
         }
 
     }

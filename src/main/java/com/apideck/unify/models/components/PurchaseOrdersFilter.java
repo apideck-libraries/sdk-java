@@ -22,18 +22,28 @@ public class PurchaseOrdersFilter {
     @SpeakeasyMetadata("queryParam:name=supplier_id")
     private Optional<String> supplierId;
 
+    /**
+     * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that
+     * support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+     */
+    @SpeakeasyMetadata("queryParam:name=subsidiary_id")
+    private Optional<String> subsidiaryId;
+
     @JsonCreator
     public PurchaseOrdersFilter(
             Optional<OffsetDateTime> updatedSince,
-            Optional<String> supplierId) {
+            Optional<String> supplierId,
+            Optional<String> subsidiaryId) {
         Utils.checkNotNull(updatedSince, "updatedSince");
         Utils.checkNotNull(supplierId, "supplierId");
+        Utils.checkNotNull(subsidiaryId, "subsidiaryId");
         this.updatedSince = updatedSince;
         this.supplierId = supplierId;
+        this.subsidiaryId = subsidiaryId;
     }
     
     public PurchaseOrdersFilter() {
-        this(Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -44,6 +54,15 @@ public class PurchaseOrdersFilter {
     @JsonIgnore
     public Optional<String> supplierId() {
         return supplierId;
+    }
+
+    /**
+     * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that
+     * support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+     */
+    @JsonIgnore
+    public Optional<String> subsidiaryId() {
+        return subsidiaryId;
     }
 
     public static Builder builder() {
@@ -77,6 +96,27 @@ public class PurchaseOrdersFilter {
         return this;
     }
 
+    /**
+     * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that
+     * support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+     */
+    public PurchaseOrdersFilter withSubsidiaryId(String subsidiaryId) {
+        Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+        this.subsidiaryId = Optional.ofNullable(subsidiaryId);
+        return this;
+    }
+
+
+    /**
+     * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that
+     * support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+     */
+    public PurchaseOrdersFilter withSubsidiaryId(Optional<String> subsidiaryId) {
+        Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+        this.subsidiaryId = subsidiaryId;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -88,20 +128,22 @@ public class PurchaseOrdersFilter {
         PurchaseOrdersFilter other = (PurchaseOrdersFilter) o;
         return 
             Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince) &&
-            Utils.enhancedDeepEquals(this.supplierId, other.supplierId);
+            Utils.enhancedDeepEquals(this.supplierId, other.supplierId) &&
+            Utils.enhancedDeepEquals(this.subsidiaryId, other.subsidiaryId);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            updatedSince, supplierId);
+            updatedSince, supplierId, subsidiaryId);
     }
     
     @Override
     public String toString() {
         return Utils.toString(PurchaseOrdersFilter.class,
                 "updatedSince", updatedSince,
-                "supplierId", supplierId);
+                "supplierId", supplierId,
+                "subsidiaryId", subsidiaryId);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -110,6 +152,8 @@ public class PurchaseOrdersFilter {
         private Optional<OffsetDateTime> updatedSince = Optional.empty();
 
         private Optional<String> supplierId = Optional.empty();
+
+        private Optional<String> subsidiaryId = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -141,10 +185,31 @@ public class PurchaseOrdersFilter {
             return this;
         }
 
+
+        /**
+         * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that
+         * support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+         */
+        public Builder subsidiaryId(String subsidiaryId) {
+            Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+            this.subsidiaryId = Optional.ofNullable(subsidiaryId);
+            return this;
+        }
+
+        /**
+         * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that
+         * support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+         */
+        public Builder subsidiaryId(Optional<String> subsidiaryId) {
+            Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+            this.subsidiaryId = subsidiaryId;
+            return this;
+        }
+
         public PurchaseOrdersFilter build() {
 
             return new PurchaseOrdersFilter(
-                updatedSince, supplierId);
+                updatedSince, supplierId, subsidiaryId);
         }
 
     }

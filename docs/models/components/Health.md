@@ -25,3 +25,4 @@ Health custom = Health.of("custom_value");
 | `NEEDS_AUTH`           | needs_auth             |
 | `PENDING_REFRESH`      | pending_refresh        |
 | `OK`                   | ok                     |
+| `DEGRADED`             | degraded               |

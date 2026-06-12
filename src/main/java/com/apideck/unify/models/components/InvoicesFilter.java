@@ -40,28 +40,38 @@ public class InvoicesFilter {
     @SpeakeasyMetadata("queryParam:name=supplier_id")
     private Optional<String> supplierId;
 
+    /**
+     * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that
+     * support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+     */
+    @SpeakeasyMetadata("queryParam:name=subsidiary_id")
+    private Optional<String> subsidiaryId;
+
     @JsonCreator
     public InvoicesFilter(
             Optional<String> idSince,
             Optional<OffsetDateTime> updatedSince,
             Optional<OffsetDateTime> createdSince,
             Optional<String> number,
-            Optional<String> supplierId) {
+            Optional<String> supplierId,
+            Optional<String> subsidiaryId) {
         Utils.checkNotNull(idSince, "idSince");
         Utils.checkNotNull(updatedSince, "updatedSince");
         Utils.checkNotNull(createdSince, "createdSince");
         Utils.checkNotNull(number, "number");
         Utils.checkNotNull(supplierId, "supplierId");
+        Utils.checkNotNull(subsidiaryId, "subsidiaryId");
         this.idSince = idSince;
         this.updatedSince = updatedSince;
         this.createdSince = createdSince;
         this.number = number;
         this.supplierId = supplierId;
+        this.subsidiaryId = subsidiaryId;
     }
     
     public InvoicesFilter() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -96,6 +106,15 @@ public class InvoicesFilter {
     @JsonIgnore
     public Optional<String> supplierId() {
         return supplierId;
+    }
+
+    /**
+     * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that
+     * support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+     */
+    @JsonIgnore
+    public Optional<String> subsidiaryId() {
+        return subsidiaryId;
     }
 
     public static Builder builder() {
@@ -186,6 +205,27 @@ public class InvoicesFilter {
         return this;
     }
 
+    /**
+     * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that
+     * support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+     */
+    public InvoicesFilter withSubsidiaryId(String subsidiaryId) {
+        Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+        this.subsidiaryId = Optional.ofNullable(subsidiaryId);
+        return this;
+    }
+
+
+    /**
+     * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that
+     * support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+     */
+    public InvoicesFilter withSubsidiaryId(Optional<String> subsidiaryId) {
+        Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+        this.subsidiaryId = subsidiaryId;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -200,14 +240,15 @@ public class InvoicesFilter {
             Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince) &&
             Utils.enhancedDeepEquals(this.createdSince, other.createdSince) &&
             Utils.enhancedDeepEquals(this.number, other.number) &&
-            Utils.enhancedDeepEquals(this.supplierId, other.supplierId);
+            Utils.enhancedDeepEquals(this.supplierId, other.supplierId) &&
+            Utils.enhancedDeepEquals(this.subsidiaryId, other.subsidiaryId);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             idSince, updatedSince, createdSince,
-            number, supplierId);
+            number, supplierId, subsidiaryId);
     }
     
     @Override
@@ -217,7 +258,8 @@ public class InvoicesFilter {
                 "updatedSince", updatedSince,
                 "createdSince", createdSince,
                 "number", number,
-                "supplierId", supplierId);
+                "supplierId", supplierId,
+                "subsidiaryId", subsidiaryId);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -232,6 +274,8 @@ public class InvoicesFilter {
         private Optional<String> number = Optional.empty();
 
         private Optional<String> supplierId = Optional.empty();
+
+        private Optional<String> subsidiaryId = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -320,11 +364,32 @@ public class InvoicesFilter {
             return this;
         }
 
+
+        /**
+         * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that
+         * support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+         */
+        public Builder subsidiaryId(String subsidiaryId) {
+            Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+            this.subsidiaryId = Optional.ofNullable(subsidiaryId);
+            return this;
+        }
+
+        /**
+         * Filter by the subsidiary (legal entity) the record belongs to. Only honored on connectors that
+         * support multi-entity scoping (e.g. NetSuite OneWorld); ignored elsewhere.
+         */
+        public Builder subsidiaryId(Optional<String> subsidiaryId) {
+            Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+            this.subsidiaryId = subsidiaryId;
+            return this;
+        }
+
         public InvoicesFilter build() {
 
             return new InvoicesFilter(
                 idSince, updatedSince, createdSince,
-                number, supplierId);
+                number, supplierId, subsidiaryId);
         }
 
     }

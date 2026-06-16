@@ -23,6 +23,7 @@ public class AttachmentReferenceType {
     public static final AttachmentReferenceType INVOICE = new AttachmentReferenceType("invoice");
     public static final AttachmentReferenceType BILL = new AttachmentReferenceType("bill");
     public static final AttachmentReferenceType EXPENSE = new AttachmentReferenceType("expense");
+    public static final AttachmentReferenceType EXPENSE_REPORT = new AttachmentReferenceType("expense-report");
     public static final AttachmentReferenceType QUOTE = new AttachmentReferenceType("quote");
 
     // This map will grow whenever a Color gets created with a new
@@ -100,6 +101,7 @@ public class AttachmentReferenceType {
         map.put("invoice", INVOICE);
         map.put("bill", BILL);
         map.put("expense", EXPENSE);
+        map.put("expense-report", EXPENSE_REPORT);
         map.put("quote", QUOTE);
         return map;
     }
@@ -109,6 +111,7 @@ public class AttachmentReferenceType {
         map.put("invoice", AttachmentReferenceTypeEnum.INVOICE);
         map.put("bill", AttachmentReferenceTypeEnum.BILL);
         map.put("expense", AttachmentReferenceTypeEnum.EXPENSE);
+        map.put("expense-report", AttachmentReferenceTypeEnum.EXPENSE_REPORT);
         map.put("quote", AttachmentReferenceTypeEnum.QUOTE);
         return map;
     }
@@ -119,6 +122,7 @@ public class AttachmentReferenceType {
         INVOICE("invoice"),
         BILL("bill"),
         EXPENSE("expense"),
+        EXPENSE_REPORT("expense-report"),
         QUOTE("quote"),;
 
         private final String value;

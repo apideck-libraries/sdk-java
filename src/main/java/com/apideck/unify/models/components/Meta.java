@@ -35,18 +35,28 @@ public class Meta {
     @JsonProperty("cursors")
     private Optional<? extends Cursors> cursors;
 
+    /**
+     * Number of records available in total for this resource
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("total_count")
+    private Optional<Long> totalCount;
+
     @JsonCreator
     public Meta(
             @JsonProperty("items_on_page") Optional<Long> itemsOnPage,
-            @JsonProperty("cursors") Optional<? extends Cursors> cursors) {
+            @JsonProperty("cursors") Optional<? extends Cursors> cursors,
+            @JsonProperty("total_count") Optional<Long> totalCount) {
         Utils.checkNotNull(itemsOnPage, "itemsOnPage");
         Utils.checkNotNull(cursors, "cursors");
+        Utils.checkNotNull(totalCount, "totalCount");
         this.itemsOnPage = itemsOnPage;
         this.cursors = cursors;
+        this.totalCount = totalCount;
     }
     
     public Meta() {
-        this(Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -64,6 +74,14 @@ public class Meta {
     @JsonIgnore
     public Optional<Cursors> cursors() {
         return (Optional<Cursors>) cursors;
+    }
+
+    /**
+     * Number of records available in total for this resource
+     */
+    @JsonIgnore
+    public Optional<Long> totalCount() {
+        return totalCount;
     }
 
     public static Builder builder() {
@@ -109,6 +127,25 @@ public class Meta {
         return this;
     }
 
+    /**
+     * Number of records available in total for this resource
+     */
+    public Meta withTotalCount(long totalCount) {
+        Utils.checkNotNull(totalCount, "totalCount");
+        this.totalCount = Optional.ofNullable(totalCount);
+        return this;
+    }
+
+
+    /**
+     * Number of records available in total for this resource
+     */
+    public Meta withTotalCount(Optional<Long> totalCount) {
+        Utils.checkNotNull(totalCount, "totalCount");
+        this.totalCount = totalCount;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -120,20 +157,22 @@ public class Meta {
         Meta other = (Meta) o;
         return 
             Utils.enhancedDeepEquals(this.itemsOnPage, other.itemsOnPage) &&
-            Utils.enhancedDeepEquals(this.cursors, other.cursors);
+            Utils.enhancedDeepEquals(this.cursors, other.cursors) &&
+            Utils.enhancedDeepEquals(this.totalCount, other.totalCount);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            itemsOnPage, cursors);
+            itemsOnPage, cursors, totalCount);
     }
     
     @Override
     public String toString() {
         return Utils.toString(Meta.class,
                 "itemsOnPage", itemsOnPage,
-                "cursors", cursors);
+                "cursors", cursors,
+                "totalCount", totalCount);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -142,6 +181,8 @@ public class Meta {
         private Optional<Long> itemsOnPage = Optional.empty();
 
         private Optional<? extends Cursors> cursors = Optional.empty();
+
+        private Optional<Long> totalCount = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -185,10 +226,29 @@ public class Meta {
             return this;
         }
 
+
+        /**
+         * Number of records available in total for this resource
+         */
+        public Builder totalCount(long totalCount) {
+            Utils.checkNotNull(totalCount, "totalCount");
+            this.totalCount = Optional.ofNullable(totalCount);
+            return this;
+        }
+
+        /**
+         * Number of records available in total for this resource
+         */
+        public Builder totalCount(Optional<Long> totalCount) {
+            Utils.checkNotNull(totalCount, "totalCount");
+            this.totalCount = totalCount;
+            return this;
+        }
+
         public Meta build() {
 
             return new Meta(
-                itemsOnPage, cursors);
+                itemsOnPage, cursors, totalCount);
         }
 
     }

@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.lang.Boolean;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
@@ -95,6 +96,13 @@ public class EcommerceOrder {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("refunded_amount")
     private JsonNullable<String> refundedAmount;
+
+    /**
+     * Indicates whether the order's monetary amounts are inclusive of tax.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("tax_inclusive")
+    private JsonNullable<Boolean> taxInclusive;
 
     /**
      * Current status of the order.
@@ -201,6 +209,7 @@ public class EcommerceOrder {
             @JsonProperty("total_tax") JsonNullable<String> totalTax,
             @JsonProperty("total_amount") JsonNullable<String> totalAmount,
             @JsonProperty("refunded_amount") JsonNullable<String> refundedAmount,
+            @JsonProperty("tax_inclusive") JsonNullable<Boolean> taxInclusive,
             @JsonProperty("status") JsonNullable<? extends EcommerceOrderStatus> status,
             @JsonProperty("payment_status") JsonNullable<? extends EcommerceOrderPaymentStatus> paymentStatus,
             @JsonProperty("fulfillment_status") JsonNullable<? extends FulfillmentStatus> fulfillmentStatus,
@@ -226,6 +235,7 @@ public class EcommerceOrder {
         Utils.checkNotNull(totalTax, "totalTax");
         Utils.checkNotNull(totalAmount, "totalAmount");
         Utils.checkNotNull(refundedAmount, "refundedAmount");
+        Utils.checkNotNull(taxInclusive, "taxInclusive");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(paymentStatus, "paymentStatus");
         Utils.checkNotNull(fulfillmentStatus, "fulfillmentStatus");
@@ -251,6 +261,7 @@ public class EcommerceOrder {
         this.totalTax = totalTax;
         this.totalAmount = totalAmount;
         this.refundedAmount = refundedAmount;
+        this.taxInclusive = taxInclusive;
         this.status = status;
         this.paymentStatus = paymentStatus;
         this.fulfillmentStatus = fulfillmentStatus;
@@ -274,10 +285,10 @@ public class EcommerceOrder {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined());
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -366,6 +377,14 @@ public class EcommerceOrder {
     @JsonIgnore
     public JsonNullable<String> refundedAmount() {
         return refundedAmount;
+    }
+
+    /**
+     * Indicates whether the order's monetary amounts are inclusive of tax.
+     */
+    @JsonIgnore
+    public JsonNullable<Boolean> taxInclusive() {
+        return taxInclusive;
     }
 
     /**
@@ -673,6 +692,24 @@ public class EcommerceOrder {
     }
 
     /**
+     * Indicates whether the order's monetary amounts are inclusive of tax.
+     */
+    public EcommerceOrder withTaxInclusive(boolean taxInclusive) {
+        Utils.checkNotNull(taxInclusive, "taxInclusive");
+        this.taxInclusive = JsonNullable.of(taxInclusive);
+        return this;
+    }
+
+    /**
+     * Indicates whether the order's monetary amounts are inclusive of tax.
+     */
+    public EcommerceOrder withTaxInclusive(JsonNullable<Boolean> taxInclusive) {
+        Utils.checkNotNull(taxInclusive, "taxInclusive");
+        this.taxInclusive = taxInclusive;
+        return this;
+    }
+
+    /**
      * Current status of the order.
      */
     public EcommerceOrder withStatus(EcommerceOrderStatus status) {
@@ -933,6 +970,7 @@ public class EcommerceOrder {
             Utils.enhancedDeepEquals(this.totalTax, other.totalTax) &&
             Utils.enhancedDeepEquals(this.totalAmount, other.totalAmount) &&
             Utils.enhancedDeepEquals(this.refundedAmount, other.refundedAmount) &&
+            Utils.enhancedDeepEquals(this.taxInclusive, other.taxInclusive) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.paymentStatus, other.paymentStatus) &&
             Utils.enhancedDeepEquals(this.fulfillmentStatus, other.fulfillmentStatus) &&
@@ -955,12 +993,12 @@ public class EcommerceOrder {
             id, orderNumber, currency,
             discounts, subTotal, shippingCost,
             couponDiscount, totalDiscount, totalTax,
-            totalAmount, refundedAmount, status,
-            paymentStatus, fulfillmentStatus, paymentMethod,
-            customer, billingAddress, shippingAddress,
-            tracking, lineItems, note,
-            refunds, customMappings, createdAt,
-            updatedAt);
+            totalAmount, refundedAmount, taxInclusive,
+            status, paymentStatus, fulfillmentStatus,
+            paymentMethod, customer, billingAddress,
+            shippingAddress, tracking, lineItems,
+            note, refunds, customMappings,
+            createdAt, updatedAt);
     }
     
     @Override
@@ -977,6 +1015,7 @@ public class EcommerceOrder {
                 "totalTax", totalTax,
                 "totalAmount", totalAmount,
                 "refundedAmount", refundedAmount,
+                "taxInclusive", taxInclusive,
                 "status", status,
                 "paymentStatus", paymentStatus,
                 "fulfillmentStatus", fulfillmentStatus,
@@ -1017,6 +1056,8 @@ public class EcommerceOrder {
         private JsonNullable<String> totalAmount = JsonNullable.undefined();
 
         private JsonNullable<String> refundedAmount = JsonNullable.undefined();
+
+        private JsonNullable<Boolean> taxInclusive = JsonNullable.undefined();
 
         private JsonNullable<? extends EcommerceOrderStatus> status = JsonNullable.undefined();
 
@@ -1243,6 +1284,25 @@ public class EcommerceOrder {
         public Builder refundedAmount(JsonNullable<String> refundedAmount) {
             Utils.checkNotNull(refundedAmount, "refundedAmount");
             this.refundedAmount = refundedAmount;
+            return this;
+        }
+
+
+        /**
+         * Indicates whether the order's monetary amounts are inclusive of tax.
+         */
+        public Builder taxInclusive(boolean taxInclusive) {
+            Utils.checkNotNull(taxInclusive, "taxInclusive");
+            this.taxInclusive = JsonNullable.of(taxInclusive);
+            return this;
+        }
+
+        /**
+         * Indicates whether the order's monetary amounts are inclusive of tax.
+         */
+        public Builder taxInclusive(JsonNullable<Boolean> taxInclusive) {
+            Utils.checkNotNull(taxInclusive, "taxInclusive");
+            this.taxInclusive = taxInclusive;
             return this;
         }
 
@@ -1500,12 +1560,12 @@ public class EcommerceOrder {
                 id, orderNumber, currency,
                 discounts, subTotal, shippingCost,
                 couponDiscount, totalDiscount, totalTax,
-                totalAmount, refundedAmount, status,
-                paymentStatus, fulfillmentStatus, paymentMethod,
-                customer, billingAddress, shippingAddress,
-                tracking, lineItems, note,
-                refunds, customMappings, createdAt,
-                updatedAt);
+                totalAmount, refundedAmount, taxInclusive,
+                status, paymentStatus, fulfillmentStatus,
+                paymentMethod, customer, billingAddress,
+                shippingAddress, tracking, lineItems,
+                note, refunds, customMappings,
+                createdAt, updatedAt);
         }
 
     }

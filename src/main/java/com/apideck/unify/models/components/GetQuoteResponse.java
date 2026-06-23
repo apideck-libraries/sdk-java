@@ -6,10 +6,14 @@ package com.apideck.unify.models.components;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Optional;
 
 /**
  * GetQuoteResponse
@@ -51,6 +55,13 @@ public class GetQuoteResponse {
     @JsonProperty("data")
     private Quote data;
 
+    /**
+     * Response metadata
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("meta")
+    private Optional<? extends Meta> meta;
+
     @JsonCreator
     public GetQuoteResponse(
             @JsonProperty("status_code") long statusCode,
@@ -58,19 +69,34 @@ public class GetQuoteResponse {
             @JsonProperty("service") String service,
             @JsonProperty("resource") String resource,
             @JsonProperty("operation") String operation,
-            @JsonProperty("data") Quote data) {
+            @JsonProperty("data") Quote data,
+            @JsonProperty("meta") Optional<? extends Meta> meta) {
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(service, "service");
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(operation, "operation");
         Utils.checkNotNull(data, "data");
+        Utils.checkNotNull(meta, "meta");
         this.statusCode = statusCode;
         this.status = status;
         this.service = service;
         this.resource = resource;
         this.operation = operation;
         this.data = data;
+        this.meta = meta;
+    }
+    
+    public GetQuoteResponse(
+            long statusCode,
+            String status,
+            String service,
+            String resource,
+            String operation,
+            Quote data) {
+        this(statusCode, status, service,
+            resource, operation, data,
+            Optional.empty());
     }
 
     /**
@@ -116,6 +142,15 @@ public class GetQuoteResponse {
     @JsonIgnore
     public Quote data() {
         return data;
+    }
+
+    /**
+     * Response metadata
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Meta> meta() {
+        return (Optional<Meta>) meta;
     }
 
     public static Builder builder() {
@@ -174,6 +209,25 @@ public class GetQuoteResponse {
         return this;
     }
 
+    /**
+     * Response metadata
+     */
+    public GetQuoteResponse withMeta(Meta meta) {
+        Utils.checkNotNull(meta, "meta");
+        this.meta = Optional.ofNullable(meta);
+        return this;
+    }
+
+
+    /**
+     * Response metadata
+     */
+    public GetQuoteResponse withMeta(Optional<? extends Meta> meta) {
+        Utils.checkNotNull(meta, "meta");
+        this.meta = meta;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -189,14 +243,16 @@ public class GetQuoteResponse {
             Utils.enhancedDeepEquals(this.service, other.service) &&
             Utils.enhancedDeepEquals(this.resource, other.resource) &&
             Utils.enhancedDeepEquals(this.operation, other.operation) &&
-            Utils.enhancedDeepEquals(this.data, other.data);
+            Utils.enhancedDeepEquals(this.data, other.data) &&
+            Utils.enhancedDeepEquals(this.meta, other.meta);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             statusCode, status, service,
-            resource, operation, data);
+            resource, operation, data,
+            meta);
     }
     
     @Override
@@ -207,7 +263,8 @@ public class GetQuoteResponse {
                 "service", service,
                 "resource", resource,
                 "operation", operation,
-                "data", data);
+                "data", data,
+                "meta", meta);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -224,6 +281,8 @@ public class GetQuoteResponse {
         private String operation;
 
         private Quote data;
+
+        private Optional<? extends Meta> meta = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -286,11 +345,31 @@ public class GetQuoteResponse {
             return this;
         }
 
+
+        /**
+         * Response metadata
+         */
+        public Builder meta(Meta meta) {
+            Utils.checkNotNull(meta, "meta");
+            this.meta = Optional.ofNullable(meta);
+            return this;
+        }
+
+        /**
+         * Response metadata
+         */
+        public Builder meta(Optional<? extends Meta> meta) {
+            Utils.checkNotNull(meta, "meta");
+            this.meta = meta;
+            return this;
+        }
+
         public GetQuoteResponse build() {
 
             return new GetQuoteResponse(
                 statusCode, status, service,
-                resource, operation, data);
+                resource, operation, data,
+                meta);
         }
 
     }

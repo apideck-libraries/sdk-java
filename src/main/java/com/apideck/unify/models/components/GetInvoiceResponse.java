@@ -15,6 +15,7 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -58,6 +59,13 @@ public class GetInvoiceResponse {
     private Invoice data;
 
     /**
+     * Response metadata
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("meta")
+    private Optional<? extends Meta> meta;
+
+    /**
      * Raw response from the integration when raw=true query param is provided
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -72,6 +80,7 @@ public class GetInvoiceResponse {
             @JsonProperty("resource") String resource,
             @JsonProperty("operation") String operation,
             @JsonProperty("data") Invoice data,
+            @JsonProperty("meta") Optional<? extends Meta> meta,
             @JsonProperty("_raw") JsonNullable<? extends Map<String, Object>> raw) {
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(status, "status");
@@ -79,6 +88,7 @@ public class GetInvoiceResponse {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(operation, "operation");
         Utils.checkNotNull(data, "data");
+        Utils.checkNotNull(meta, "meta");
         Utils.checkNotNull(raw, "raw");
         this.statusCode = statusCode;
         this.status = status;
@@ -86,6 +96,7 @@ public class GetInvoiceResponse {
         this.resource = resource;
         this.operation = operation;
         this.data = data;
+        this.meta = meta;
         this.raw = raw;
     }
     
@@ -98,7 +109,7 @@ public class GetInvoiceResponse {
             Invoice data) {
         this(statusCode, status, service,
             resource, operation, data,
-            JsonNullable.undefined());
+            Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -144,6 +155,15 @@ public class GetInvoiceResponse {
     @JsonIgnore
     public Invoice data() {
         return data;
+    }
+
+    /**
+     * Response metadata
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Meta> meta() {
+        return (Optional<Meta>) meta;
     }
 
     /**
@@ -212,6 +232,25 @@ public class GetInvoiceResponse {
     }
 
     /**
+     * Response metadata
+     */
+    public GetInvoiceResponse withMeta(Meta meta) {
+        Utils.checkNotNull(meta, "meta");
+        this.meta = Optional.ofNullable(meta);
+        return this;
+    }
+
+
+    /**
+     * Response metadata
+     */
+    public GetInvoiceResponse withMeta(Optional<? extends Meta> meta) {
+        Utils.checkNotNull(meta, "meta");
+        this.meta = meta;
+        return this;
+    }
+
+    /**
      * Raw response from the integration when raw=true query param is provided
      */
     public GetInvoiceResponse withRaw(Map<String, Object> raw) {
@@ -245,6 +284,7 @@ public class GetInvoiceResponse {
             Utils.enhancedDeepEquals(this.resource, other.resource) &&
             Utils.enhancedDeepEquals(this.operation, other.operation) &&
             Utils.enhancedDeepEquals(this.data, other.data) &&
+            Utils.enhancedDeepEquals(this.meta, other.meta) &&
             Utils.enhancedDeepEquals(this.raw, other.raw);
     }
     
@@ -253,7 +293,7 @@ public class GetInvoiceResponse {
         return Utils.enhancedHash(
             statusCode, status, service,
             resource, operation, data,
-            raw);
+            meta, raw);
     }
     
     @Override
@@ -265,6 +305,7 @@ public class GetInvoiceResponse {
                 "resource", resource,
                 "operation", operation,
                 "data", data,
+                "meta", meta,
                 "raw", raw);
     }
 
@@ -282,6 +323,8 @@ public class GetInvoiceResponse {
         private String operation;
 
         private Invoice data;
+
+        private Optional<? extends Meta> meta = Optional.empty();
 
         private JsonNullable<? extends Map<String, Object>> raw = JsonNullable.undefined();
 
@@ -348,6 +391,25 @@ public class GetInvoiceResponse {
 
 
         /**
+         * Response metadata
+         */
+        public Builder meta(Meta meta) {
+            Utils.checkNotNull(meta, "meta");
+            this.meta = Optional.ofNullable(meta);
+            return this;
+        }
+
+        /**
+         * Response metadata
+         */
+        public Builder meta(Optional<? extends Meta> meta) {
+            Utils.checkNotNull(meta, "meta");
+            this.meta = meta;
+            return this;
+        }
+
+
+        /**
          * Raw response from the integration when raw=true query param is provided
          */
         public Builder raw(Map<String, Object> raw) {
@@ -370,7 +432,7 @@ public class GetInvoiceResponse {
             return new GetInvoiceResponse(
                 statusCode, status, service,
                 resource, operation, data,
-                raw);
+                meta, raw);
         }
 
     }

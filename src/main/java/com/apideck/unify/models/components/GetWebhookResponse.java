@@ -15,6 +15,7 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -40,6 +41,13 @@ public class GetWebhookResponse {
     private Webhook data;
 
     /**
+     * Response metadata
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("meta")
+    private Optional<? extends Meta> meta;
+
+    /**
      * Raw response from the integration when raw=true query param is provided
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -51,14 +59,17 @@ public class GetWebhookResponse {
             @JsonProperty("status_code") long statusCode,
             @JsonProperty("status") String status,
             @JsonProperty("data") Webhook data,
+            @JsonProperty("meta") Optional<? extends Meta> meta,
             @JsonProperty("_raw") JsonNullable<? extends Map<String, Object>> raw) {
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(data, "data");
+        Utils.checkNotNull(meta, "meta");
         Utils.checkNotNull(raw, "raw");
         this.statusCode = statusCode;
         this.status = status;
         this.data = data;
+        this.meta = meta;
         this.raw = raw;
     }
     
@@ -67,7 +78,7 @@ public class GetWebhookResponse {
             String status,
             Webhook data) {
         this(statusCode, status, data,
-            JsonNullable.undefined());
+            Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -89,6 +100,15 @@ public class GetWebhookResponse {
     @JsonIgnore
     public Webhook data() {
         return data;
+    }
+
+    /**
+     * Response metadata
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Meta> meta() {
+        return (Optional<Meta>) meta;
     }
 
     /**
@@ -130,6 +150,25 @@ public class GetWebhookResponse {
     }
 
     /**
+     * Response metadata
+     */
+    public GetWebhookResponse withMeta(Meta meta) {
+        Utils.checkNotNull(meta, "meta");
+        this.meta = Optional.ofNullable(meta);
+        return this;
+    }
+
+
+    /**
+     * Response metadata
+     */
+    public GetWebhookResponse withMeta(Optional<? extends Meta> meta) {
+        Utils.checkNotNull(meta, "meta");
+        this.meta = meta;
+        return this;
+    }
+
+    /**
      * Raw response from the integration when raw=true query param is provided
      */
     public GetWebhookResponse withRaw(Map<String, Object> raw) {
@@ -160,6 +199,7 @@ public class GetWebhookResponse {
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.data, other.data) &&
+            Utils.enhancedDeepEquals(this.meta, other.meta) &&
             Utils.enhancedDeepEquals(this.raw, other.raw);
     }
     
@@ -167,7 +207,7 @@ public class GetWebhookResponse {
     public int hashCode() {
         return Utils.enhancedHash(
             statusCode, status, data,
-            raw);
+            meta, raw);
     }
     
     @Override
@@ -176,6 +216,7 @@ public class GetWebhookResponse {
                 "statusCode", statusCode,
                 "status", status,
                 "data", data,
+                "meta", meta,
                 "raw", raw);
     }
 
@@ -187,6 +228,8 @@ public class GetWebhookResponse {
         private String status;
 
         private Webhook data;
+
+        private Optional<? extends Meta> meta = Optional.empty();
 
         private JsonNullable<? extends Map<String, Object>> raw = JsonNullable.undefined();
 
@@ -223,6 +266,25 @@ public class GetWebhookResponse {
 
 
         /**
+         * Response metadata
+         */
+        public Builder meta(Meta meta) {
+            Utils.checkNotNull(meta, "meta");
+            this.meta = Optional.ofNullable(meta);
+            return this;
+        }
+
+        /**
+         * Response metadata
+         */
+        public Builder meta(Optional<? extends Meta> meta) {
+            Utils.checkNotNull(meta, "meta");
+            this.meta = meta;
+            return this;
+        }
+
+
+        /**
          * Raw response from the integration when raw=true query param is provided
          */
         public Builder raw(Map<String, Object> raw) {
@@ -244,7 +306,7 @@ public class GetWebhookResponse {
 
             return new GetWebhookResponse(
                 statusCode, status, data,
-                raw);
+                meta, raw);
         }
 
     }

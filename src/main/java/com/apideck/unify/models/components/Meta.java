@@ -13,7 +13,9 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.List;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * Meta
@@ -42,21 +44,33 @@ public class Meta {
     @JsonProperty("total_count")
     private Optional<Long> totalCount;
 
+    /**
+     * Non-fatal warnings emitted when optional workflow steps failed. Present only when at least one step
+     * degraded; the response status remains 200.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("warnings")
+    private JsonNullable<? extends List<Warnings>> warnings;
+
     @JsonCreator
     public Meta(
             @JsonProperty("items_on_page") Optional<Long> itemsOnPage,
             @JsonProperty("cursors") Optional<? extends Cursors> cursors,
-            @JsonProperty("total_count") Optional<Long> totalCount) {
+            @JsonProperty("total_count") Optional<Long> totalCount,
+            @JsonProperty("warnings") JsonNullable<? extends List<Warnings>> warnings) {
         Utils.checkNotNull(itemsOnPage, "itemsOnPage");
         Utils.checkNotNull(cursors, "cursors");
         Utils.checkNotNull(totalCount, "totalCount");
+        Utils.checkNotNull(warnings, "warnings");
         this.itemsOnPage = itemsOnPage;
         this.cursors = cursors;
         this.totalCount = totalCount;
+        this.warnings = warnings;
     }
     
     public Meta() {
-        this(Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -82,6 +96,16 @@ public class Meta {
     @JsonIgnore
     public Optional<Long> totalCount() {
         return totalCount;
+    }
+
+    /**
+     * Non-fatal warnings emitted when optional workflow steps failed. Present only when at least one step
+     * degraded; the response status remains 200.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<List<Warnings>> warnings() {
+        return (JsonNullable<List<Warnings>>) warnings;
     }
 
     public static Builder builder() {
@@ -146,6 +170,26 @@ public class Meta {
         return this;
     }
 
+    /**
+     * Non-fatal warnings emitted when optional workflow steps failed. Present only when at least one step
+     * degraded; the response status remains 200.
+     */
+    public Meta withWarnings(List<Warnings> warnings) {
+        Utils.checkNotNull(warnings, "warnings");
+        this.warnings = JsonNullable.of(warnings);
+        return this;
+    }
+
+    /**
+     * Non-fatal warnings emitted when optional workflow steps failed. Present only when at least one step
+     * degraded; the response status remains 200.
+     */
+    public Meta withWarnings(JsonNullable<? extends List<Warnings>> warnings) {
+        Utils.checkNotNull(warnings, "warnings");
+        this.warnings = warnings;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -158,13 +202,15 @@ public class Meta {
         return 
             Utils.enhancedDeepEquals(this.itemsOnPage, other.itemsOnPage) &&
             Utils.enhancedDeepEquals(this.cursors, other.cursors) &&
-            Utils.enhancedDeepEquals(this.totalCount, other.totalCount);
+            Utils.enhancedDeepEquals(this.totalCount, other.totalCount) &&
+            Utils.enhancedDeepEquals(this.warnings, other.warnings);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            itemsOnPage, cursors, totalCount);
+            itemsOnPage, cursors, totalCount,
+            warnings);
     }
     
     @Override
@@ -172,7 +218,8 @@ public class Meta {
         return Utils.toString(Meta.class,
                 "itemsOnPage", itemsOnPage,
                 "cursors", cursors,
-                "totalCount", totalCount);
+                "totalCount", totalCount,
+                "warnings", warnings);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -183,6 +230,8 @@ public class Meta {
         private Optional<? extends Cursors> cursors = Optional.empty();
 
         private Optional<Long> totalCount = Optional.empty();
+
+        private JsonNullable<? extends List<Warnings>> warnings = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -245,10 +294,32 @@ public class Meta {
             return this;
         }
 
+
+        /**
+         * Non-fatal warnings emitted when optional workflow steps failed. Present only when at least one step
+         * degraded; the response status remains 200.
+         */
+        public Builder warnings(List<Warnings> warnings) {
+            Utils.checkNotNull(warnings, "warnings");
+            this.warnings = JsonNullable.of(warnings);
+            return this;
+        }
+
+        /**
+         * Non-fatal warnings emitted when optional workflow steps failed. Present only when at least one step
+         * degraded; the response status remains 200.
+         */
+        public Builder warnings(JsonNullable<? extends List<Warnings>> warnings) {
+            Utils.checkNotNull(warnings, "warnings");
+            this.warnings = warnings;
+            return this;
+        }
+
         public Meta build() {
 
             return new Meta(
-                itemsOnPage, cursors, totalCount);
+                itemsOnPage, cursors, totalCount,
+                warnings);
         }
 
     }

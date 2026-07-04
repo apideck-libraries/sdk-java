@@ -151,6 +151,9 @@ public class WebhookEventType {
     public static final WebhookEventType ACCOUNTING_PROJECT_CREATED = new WebhookEventType("accounting.project.created");
     public static final WebhookEventType ACCOUNTING_PROJECT_UPDATED = new WebhookEventType("accounting.project.updated");
     public static final WebhookEventType ACCOUNTING_PROJECT_DELETED = new WebhookEventType("accounting.project.deleted");
+    public static final WebhookEventType ACCOUNTING_TRACKING_CATEGORY_CREATED = new WebhookEventType("accounting.tracking_category.created");
+    public static final WebhookEventType ACCOUNTING_TRACKING_CATEGORY_UPDATED = new WebhookEventType("accounting.tracking_category.updated");
+    public static final WebhookEventType ACCOUNTING_TRACKING_CATEGORY_DELETED = new WebhookEventType("accounting.tracking_category.deleted");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -355,6 +358,9 @@ public class WebhookEventType {
         map.put("accounting.project.created", ACCOUNTING_PROJECT_CREATED);
         map.put("accounting.project.updated", ACCOUNTING_PROJECT_UPDATED);
         map.put("accounting.project.deleted", ACCOUNTING_PROJECT_DELETED);
+        map.put("accounting.tracking_category.created", ACCOUNTING_TRACKING_CATEGORY_CREATED);
+        map.put("accounting.tracking_category.updated", ACCOUNTING_TRACKING_CATEGORY_UPDATED);
+        map.put("accounting.tracking_category.deleted", ACCOUNTING_TRACKING_CATEGORY_DELETED);
         return map;
     }
 
@@ -491,6 +497,9 @@ public class WebhookEventType {
         map.put("accounting.project.created", WebhookEventTypeEnum.ACCOUNTING_PROJECT_CREATED);
         map.put("accounting.project.updated", WebhookEventTypeEnum.ACCOUNTING_PROJECT_UPDATED);
         map.put("accounting.project.deleted", WebhookEventTypeEnum.ACCOUNTING_PROJECT_DELETED);
+        map.put("accounting.tracking_category.created", WebhookEventTypeEnum.ACCOUNTING_TRACKING_CATEGORY_CREATED);
+        map.put("accounting.tracking_category.updated", WebhookEventTypeEnum.ACCOUNTING_TRACKING_CATEGORY_UPDATED);
+        map.put("accounting.tracking_category.deleted", WebhookEventTypeEnum.ACCOUNTING_TRACKING_CATEGORY_DELETED);
         return map;
     }
     
@@ -627,7 +636,10 @@ public class WebhookEventType {
         ACCOUNTING_QUOTE_DELETED("accounting.quote.deleted"),
         ACCOUNTING_PROJECT_CREATED("accounting.project.created"),
         ACCOUNTING_PROJECT_UPDATED("accounting.project.updated"),
-        ACCOUNTING_PROJECT_DELETED("accounting.project.deleted"),;
+        ACCOUNTING_PROJECT_DELETED("accounting.project.deleted"),
+        ACCOUNTING_TRACKING_CATEGORY_CREATED("accounting.tracking_category.created"),
+        ACCOUNTING_TRACKING_CATEGORY_UPDATED("accounting.tracking_category.updated"),
+        ACCOUNTING_TRACKING_CATEGORY_DELETED("accounting.tracking_category.deleted"),;
 
         private final String value;
 

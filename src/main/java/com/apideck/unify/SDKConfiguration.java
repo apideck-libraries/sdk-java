@@ -20,9 +20,9 @@ import java.util.concurrent.ScheduledExecutorService;
 public class SDKConfiguration {
 
     private static final String LANGUAGE = "java";
-    public static final String OPENAPI_DOC_VERSION = "10.24.46";
-    public static final String SDK_VERSION = "0.31.25";
-    public static final String GEN_VERSION = "2.914.0";
+    public static final String OPENAPI_DOC_VERSION = "10.24.47";
+    public static final String SDK_VERSION = "0.31.26";
+    public static final String GEN_VERSION = "2.915.1";
     private static final String BASE_PACKAGE = "com.apideck.unify";
     public static final String USER_AGENT = 
             String.format("speakeasy-sdk/%s %s %s %s %s",

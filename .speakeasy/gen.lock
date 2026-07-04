@@ -1,26 +1,26 @@
 lockVersion: 2.0.0
 id: 38254260-287a-40b6-9ac5-c2fcb654c9cc
 management:
-  docChecksum: 0255bcee6b7b46efd5ff4bb8fc8b8514
-  docVersion: 10.24.46
-  speakeasyVersion: 1.787.0
-  generationVersion: 2.914.0
-  releaseVersion: 0.31.25
-  configChecksum: 141d372a1474df03410b736141b7b529
+  docChecksum: 050df171336a3f72c7d9fa293aee56ef
+  docVersion: 10.24.47
+  speakeasyVersion: 1.788.1
+  generationVersion: 2.915.1
+  releaseVersion: 0.31.26
+  configChecksum: d10d3305125102fddec650fb97e57985
   repoURL: https://github.com/apideck-libraries/sdk-java.git
   installationURL: https://github.com/apideck-libraries/sdk-java
   published: true
 persistentEdits:
-  generation_id: 3bfd967e-4f4d-45af-a9bf-f3f48210b87a
-  pristine_commit_hash: a27d80640584bde21c1bb49af6fa7f8352452d41
-  pristine_tree_hash: 94fbd192b9bf9931314d559ca0e8f592e0d8a99f
+  generation_id: f1b97cb2-9468-4430-b21d-31b2a0a4a268
+  pristine_commit_hash: b2fd000350db5650d88c3613e02852743ee78ac1
+  pristine_tree_hash: 98d03037fabcc5156c596f2f25a122db40c5f198
 features:
   java:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
     additionalProperties: 0.0.1
     constsAndDefaults: 0.1.3
-    core: 3.55.29
+    core: 3.55.30
     deprecations: 2.81.2
     downloadStreams: 0.1.1
     errors: 1.0.2
@@ -2665,12 +2665,12 @@ trackedFiles:
     pristine_git_object: 1fe4e9f6fdf013160b7f7eb034d86bb02db0221c
   docs/models/components/LedgerAccountsFilter.md:
     id: c25ac8341035
-    last_write_checksum: sha1:5db673b8638bd41f4a1a4d74df6a0e8fe012cf8f
-    pristine_git_object: 4ea0dd53b6dbd5f42fe31ef22d4c0f460260e797
+    last_write_checksum: sha1:e9395d00cd93bd583d40c5147d59cd1e95982286
+    pristine_git_object: f763e56c2bb954690d87bdfd20ddd22625d66f01
   docs/models/components/LedgerAccountsFilterStatus.md:
     id: 6f87c416dd8b
-    last_write_checksum: sha1:cc3cf22be995eee68f865635916acb563485c7a7
-    pristine_git_object: 47e2f88b265e296d8760e7cf1ccb584f9074c608
+    last_write_checksum: sha1:5c3c3296f44606c434fa566743d764e84e8e01d9
+    pristine_git_object: e092a14da0ef6eacd20dcd6719d598b0d00a2a1c
   docs/models/components/LedgerAccountsSort.md:
     id: 3b25f86c58ac
     last_write_checksum: sha1:118d70193e27ee5a1a2463e804ec0004cacfd6ac
@@ -3901,8 +3901,8 @@ trackedFiles:
     pristine_git_object: 42243949f9be77d2dd7dc7c06d1dace2879186d2
   docs/models/components/WebhookEventType.md:
     id: b443ab58ee9b
-    last_write_checksum: sha1:ca2fc5d06f31eaa65b7fc566cbf6db7e1b599928
-    pristine_git_object: d8d3d4de195ba41f0a7722da214cd0f2eea85f52
+    last_write_checksum: sha1:236deb27c010e82b26b3ece220c324637865087a
+    pristine_git_object: 26d0971673593462be75dbd9d0e01681ebf9ec88
   docs/models/components/WebhookSubscription.md:
     id: 1307d98a814a
     last_write_checksum: sha1:0619ab465e2edf6adf1be4927cb39a85c684689e
@@ -7109,8 +7109,8 @@ trackedFiles:
     pristine_git_object: c755c6aa377f358344e761e9cc3e7b67bc1fb479
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:63d8dd2bc5fb863c7be6f141ca0f349a4d6b859f
-    pristine_git_object: ba96a5440e32725b5a257c7fd10098b4d6f8bab6
+    last_write_checksum: sha1:040432549b9bfd2739876a99692542cc5d1bb99b
+    pristine_git_object: b69723a6a77da700baf87c00206070935a0669cc
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -7909,8 +7909,8 @@ trackedFiles:
     pristine_git_object: 7296db7ebcdcff7ee348d1f993fc4aa2a7e6c145
   src/main/java/com/apideck/unify/SDKConfiguration.java:
     id: a2b330a87142
-    last_write_checksum: sha1:a154bc00580c8db808cb36d840c1e0ba8990d776
-    pristine_git_object: 6daa68e8016d327d2ed9db727f6dae3758990742
+    last_write_checksum: sha1:03500e13506409a24203711537bc7a0be157167d
+    pristine_git_object: fa84d310dce1ba1fa3545c9737331e2dd5178a25
   src/main/java/com/apideck/unify/SecuritySource.java:
     id: e4566c6c806b
     last_write_checksum: sha1:101bf1a9f5cf4e8c37abb4540147276eebb2bab0
@@ -10589,12 +10589,12 @@ trackedFiles:
     pristine_git_object: dc57c534adaf980896e7b388d7cc4ed41a0b0ed4
   src/main/java/com/apideck/unify/models/components/LedgerAccountsFilter.java:
     id: 359a820a76cf
-    last_write_checksum: sha1:5ac598c49f1994264301e79b700bc7c8fee0a97a
-    pristine_git_object: c3dc471581ab83e682e7610575e2b87dca38112d
+    last_write_checksum: sha1:cb669fba56b55e037a9457b41cb4ea4d1954c69d
+    pristine_git_object: 684cb395c1ca1f0f6c4150436f452d3d7e9d04f6
   src/main/java/com/apideck/unify/models/components/LedgerAccountsFilterStatus.java:
     id: 7280dc56b724
-    last_write_checksum: sha1:02c755546c5306dfc5e7e665530ee3f74b65824c
-    pristine_git_object: 200b2179a5ab4c84ad5551e111379becb9470294
+    last_write_checksum: sha1:2efc31945368f49899030e01bf0c72176b5d2522
+    pristine_git_object: a71999a0e4a34ff3e2876130d7786e5450bb65fd
   src/main/java/com/apideck/unify/models/components/LedgerAccountsSort.java:
     id: 9ca1e3695dfb
     last_write_checksum: sha1:66e6bd3ee852428189db2c851c27f1012bb471d8
@@ -11829,8 +11829,8 @@ trackedFiles:
     pristine_git_object: 2c3cf677cddbb8b85498dc214a2fc342dc6d3ca4
   src/main/java/com/apideck/unify/models/components/WebhookEventType.java:
     id: 52b34fc99481
-    last_write_checksum: sha1:80c68a6006dd5fedd9d9d79937c89bc988ce92eb
-    pristine_git_object: 1ae898dfdc35410cce7398f5939bed11631b759d
+    last_write_checksum: sha1:de57c97892cc874ed9affc20b34bffbae3ae489c
+    pristine_git_object: b76d02c3327ef8096f6a7a090d8ee52b1833021b
   src/main/java/com/apideck/unify/models/components/WebhookSubscription.java:
     id: 2d8529e830c7
     last_write_checksum: sha1:ab40b4b0cda4d3f01e762a0f4b6d377d9afa9fce
@@ -36766,6 +36766,7 @@ examples:
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: "## Java SDK Changes:\n* `apideck.webhook.webhooks.list()`:  `response.data[].events[]` **Changed**\n* `apideck.webhook.webhooks.create()`: \n  *  `request.createWebhookRequest.events[]` **Changed**\n  *  `response.data.events[]` **Changed**\n* `apideck.webhook.webhooks.get()`:  `response.data.events[]` **Changed**\n* `apideck.webhook.webhooks.update()`: \n  *  `request.updateWebhookRequest.events[]` **Changed**\n  *  `response.data.events[]` **Changed**\n* `apideck.webhook.webhooks.delete()`:  `response.data.events[]` **Changed**\n"
 generatedFiles:
   - .gitattributes
   - USAGE.md

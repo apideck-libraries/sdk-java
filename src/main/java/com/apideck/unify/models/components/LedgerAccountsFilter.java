@@ -32,7 +32,11 @@ public class LedgerAccountsFilter {
     private Optional<? extends Classification> classification;
 
     /**
-     * Filter by account status.
+     * Filter by account status. Supported only on a subset of connectors (e.g. NetSuite); connectors that
+     * do not support it reject `filter[status]` with a `400 UnsupportedFiltersError` — read the account's
+     * `status` field in the response and filter client-side instead.
+     * 
+     * <p>See the error's `supported_filters` or the connector's supported filters.
      */
     @SpeakeasyMetadata("queryParam:name=status")
     private Optional<? extends LedgerAccountsFilterStatus> status;
@@ -91,7 +95,11 @@ public class LedgerAccountsFilter {
     }
 
     /**
-     * Filter by account status.
+     * Filter by account status. Supported only on a subset of connectors (e.g. NetSuite); connectors that
+     * do not support it reject `filter[status]` with a `400 UnsupportedFiltersError` — read the account's
+     * `status` field in the response and filter client-side instead.
+     * 
+     * <p>See the error's `supported_filters` or the connector's supported filters.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -165,7 +173,11 @@ public class LedgerAccountsFilter {
     }
 
     /**
-     * Filter by account status.
+     * Filter by account status. Supported only on a subset of connectors (e.g. NetSuite); connectors that
+     * do not support it reject `filter[status]` with a `400 UnsupportedFiltersError` — read the account's
+     * `status` field in the response and filter client-side instead.
+     * 
+     * <p>See the error's `supported_filters` or the connector's supported filters.
      */
     public LedgerAccountsFilter withStatus(LedgerAccountsFilterStatus status) {
         Utils.checkNotNull(status, "status");
@@ -175,7 +187,11 @@ public class LedgerAccountsFilter {
 
 
     /**
-     * Filter by account status.
+     * Filter by account status. Supported only on a subset of connectors (e.g. NetSuite); connectors that
+     * do not support it reject `filter[status]` with a `400 UnsupportedFiltersError` — read the account's
+     * `status` field in the response and filter client-side instead.
+     * 
+     * <p>See the error's `supported_filters` or the connector's supported filters.
      */
     public LedgerAccountsFilter withStatus(Optional<? extends LedgerAccountsFilterStatus> status) {
         Utils.checkNotNull(status, "status");
@@ -308,7 +324,11 @@ public class LedgerAccountsFilter {
 
 
         /**
-         * Filter by account status.
+         * Filter by account status. Supported only on a subset of connectors (e.g. NetSuite); connectors that
+         * do not support it reject `filter[status]` with a `400 UnsupportedFiltersError` — read the account's
+         * `status` field in the response and filter client-side instead.
+         * 
+         * <p>See the error's `supported_filters` or the connector's supported filters.
          */
         public Builder status(LedgerAccountsFilterStatus status) {
             Utils.checkNotNull(status, "status");
@@ -317,7 +337,11 @@ public class LedgerAccountsFilter {
         }
 
         /**
-         * Filter by account status.
+         * Filter by account status. Supported only on a subset of connectors (e.g. NetSuite); connectors that
+         * do not support it reject `filter[status]` with a `400 UnsupportedFiltersError` — read the account's
+         * `status` field in the response and filter client-side instead.
+         * 
+         * <p>See the error's `supported_filters` or the connector's supported filters.
          */
         public Builder status(Optional<? extends LedgerAccountsFilterStatus> status) {
             Utils.checkNotNull(status, "status");

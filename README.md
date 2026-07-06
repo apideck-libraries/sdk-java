@@ -51,7 +51,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.apideck:unify:0.31.26'
+implementation 'com.apideck:unify:0.31.27'
 ```
 
 Maven:
@@ -59,7 +59,7 @@ Maven:
 <dependency>
     <groupId>com.apideck</groupId>
     <artifactId>unify</artifactId>
-    <version>0.31.26</version>
+    <version>0.31.27</version>
 </dependency>
 ```
 

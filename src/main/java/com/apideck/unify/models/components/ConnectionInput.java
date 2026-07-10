@@ -41,7 +41,7 @@ public class ConnectionInput {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
-    private JsonNullable<? extends Map<String, Object>> metadata;
+    private JsonNullable<? extends ConnectionMetadataInput> metadata;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -76,7 +76,7 @@ public class ConnectionInput {
     public ConnectionInput(
             @JsonProperty("enabled") Optional<Boolean> enabled,
             @JsonProperty("settings") JsonNullable<? extends Map<String, Object>> settings,
-            @JsonProperty("metadata") JsonNullable<? extends Map<String, Object>> metadata,
+            @JsonProperty("metadata") JsonNullable<? extends ConnectionMetadataInput> metadata,
             @JsonProperty("configuration") Optional<? extends List<ConnectionConfiguration>> configuration,
             @JsonProperty("custom_mappings") Optional<? extends List<CustomMappingInput>> customMappings,
             @JsonProperty("consent_state") Optional<? extends ConsentState> consentState,
@@ -129,8 +129,8 @@ public class ConnectionInput {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<Map<String, Object>> metadata() {
-        return (JsonNullable<Map<String, Object>>) metadata;
+    public JsonNullable<ConnectionMetadataInput> metadata() {
+        return (JsonNullable<ConnectionMetadataInput>) metadata;
     }
 
     @SuppressWarnings("unchecked")
@@ -216,7 +216,7 @@ public class ConnectionInput {
     /**
      * Attach your own consumer specific metadata
      */
-    public ConnectionInput withMetadata(Map<String, Object> metadata) {
+    public ConnectionInput withMetadata(ConnectionMetadataInput metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = JsonNullable.of(metadata);
         return this;
@@ -225,7 +225,7 @@ public class ConnectionInput {
     /**
      * Attach your own consumer specific metadata
      */
-    public ConnectionInput withMetadata(JsonNullable<? extends Map<String, Object>> metadata) {
+    public ConnectionInput withMetadata(JsonNullable<? extends ConnectionMetadataInput> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
@@ -356,7 +356,7 @@ public class ConnectionInput {
 
         private JsonNullable<? extends Map<String, Object>> settings = JsonNullable.undefined();
 
-        private JsonNullable<? extends Map<String, Object>> metadata = JsonNullable.undefined();
+        private JsonNullable<? extends ConnectionMetadataInput> metadata = JsonNullable.undefined();
 
         private Optional<? extends List<ConnectionConfiguration>> configuration = Optional.empty();
 
@@ -416,7 +416,7 @@ public class ConnectionInput {
         /**
          * Attach your own consumer specific metadata
          */
-        public Builder metadata(Map<String, Object> metadata) {
+        public Builder metadata(ConnectionMetadataInput metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = JsonNullable.of(metadata);
             return this;
@@ -425,7 +425,7 @@ public class ConnectionInput {
         /**
          * Attach your own consumer specific metadata
          */
-        public Builder metadata(JsonNullable<? extends Map<String, Object>> metadata) {
+        public Builder metadata(JsonNullable<? extends ConnectionMetadataInput> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
             return this;

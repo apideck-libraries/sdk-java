@@ -12,9 +12,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import java.lang.Boolean;
 import java.lang.Long;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -85,6 +87,13 @@ public class AccountingCategoriesAllRequest {
     @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=filter")
     private Optional<? extends CategoriesFilter> filter;
 
+    /**
+     * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie:
+     * ?pass_through[search]=leads becomes ?search=leads
+     */
+    @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=pass_through")
+    private Optional<? extends Map<String, Object>> passThrough;
+
     @JsonCreator
     public AccountingCategoriesAllRequest(
             Optional<Boolean> raw,
@@ -95,7 +104,8 @@ public class AccountingCategoriesAllRequest {
             JsonNullable<String> cursor,
             Optional<Long> limit,
             JsonNullable<String> fields,
-            Optional<? extends CategoriesFilter> filter) {
+            Optional<? extends CategoriesFilter> filter,
+            Optional<? extends Map<String, Object>> passThrough) {
         Utils.checkNotNull(raw, "raw");
         Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
@@ -105,6 +115,7 @@ public class AccountingCategoriesAllRequest {
         Utils.checkNotNull(limit, "limit");
         Utils.checkNotNull(fields, "fields");
         Utils.checkNotNull(filter, "filter");
+        Utils.checkNotNull(passThrough, "passThrough");
         this.raw = raw;
         this.consumerId = consumerId;
         this.appId = appId;
@@ -114,12 +125,14 @@ public class AccountingCategoriesAllRequest {
         this.limit = limit;
         this.fields = fields;
         this.filter = filter;
+        this.passThrough = passThrough;
     }
     
     public AccountingCategoriesAllRequest() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), Optional.empty());
+            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -204,6 +217,16 @@ public class AccountingCategoriesAllRequest {
     @JsonIgnore
     public Optional<CategoriesFilter> filter() {
         return (Optional<CategoriesFilter>) filter;
+    }
+
+    /**
+     * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie:
+     * ?pass_through[search]=leads becomes ?search=leads
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Map<String, Object>> passThrough() {
+        return (Optional<Map<String, Object>>) passThrough;
     }
 
     public static Builder builder() {
@@ -402,6 +425,27 @@ public class AccountingCategoriesAllRequest {
         return this;
     }
 
+    /**
+     * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie:
+     * ?pass_through[search]=leads becomes ?search=leads
+     */
+    public AccountingCategoriesAllRequest withPassThrough(Map<String, Object> passThrough) {
+        Utils.checkNotNull(passThrough, "passThrough");
+        this.passThrough = Optional.ofNullable(passThrough);
+        return this;
+    }
+
+
+    /**
+     * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie:
+     * ?pass_through[search]=leads becomes ?search=leads
+     */
+    public AccountingCategoriesAllRequest withPassThrough(Optional<? extends Map<String, Object>> passThrough) {
+        Utils.checkNotNull(passThrough, "passThrough");
+        this.passThrough = passThrough;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -420,7 +464,8 @@ public class AccountingCategoriesAllRequest {
             Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
             Utils.enhancedDeepEquals(this.limit, other.limit) &&
             Utils.enhancedDeepEquals(this.fields, other.fields) &&
-            Utils.enhancedDeepEquals(this.filter, other.filter);
+            Utils.enhancedDeepEquals(this.filter, other.filter) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
@@ -428,7 +473,8 @@ public class AccountingCategoriesAllRequest {
         return Utils.enhancedHash(
             raw, consumerId, appId,
             serviceId, companyId, cursor,
-            limit, fields, filter);
+            limit, fields, filter,
+            passThrough);
     }
     
     @Override
@@ -442,7 +488,8 @@ public class AccountingCategoriesAllRequest {
                 "cursor", cursor,
                 "limit", limit,
                 "fields", fields,
-                "filter", filter);
+                "filter", filter,
+                "passThrough", passThrough);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -465,6 +512,8 @@ public class AccountingCategoriesAllRequest {
         private JsonNullable<String> fields = JsonNullable.undefined();
 
         private Optional<? extends CategoriesFilter> filter = Optional.empty();
+
+        private Optional<? extends Map<String, Object>> passThrough = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -663,6 +712,27 @@ public class AccountingCategoriesAllRequest {
             return this;
         }
 
+
+        /**
+         * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie:
+         * ?pass_through[search]=leads becomes ?search=leads
+         */
+        public Builder passThrough(Map<String, Object> passThrough) {
+            Utils.checkNotNull(passThrough, "passThrough");
+            this.passThrough = Optional.ofNullable(passThrough);
+            return this;
+        }
+
+        /**
+         * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie:
+         * ?pass_through[search]=leads becomes ?search=leads
+         */
+        public Builder passThrough(Optional<? extends Map<String, Object>> passThrough) {
+            Utils.checkNotNull(passThrough, "passThrough");
+            this.passThrough = passThrough;
+            return this;
+        }
+
         public AccountingCategoriesAllRequest build() {
             if (raw == null) {
                 raw = _SINGLETON_VALUE_Raw.value();
@@ -674,7 +744,8 @@ public class AccountingCategoriesAllRequest {
             return new AccountingCategoriesAllRequest(
                 raw, consumerId, appId,
                 serviceId, companyId, cursor,
-                limit, fields, filter);
+                limit, fields, filter,
+                passThrough);
         }
 
 

@@ -89,7 +89,7 @@ public class ConsumerConnection {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
-    private JsonNullable<? extends Map<String, Object>> metadata;
+    private JsonNullable<? extends Metadata> metadata;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -145,7 +145,7 @@ public class ConsumerConnection {
             @JsonProperty("auth_type") Optional<? extends AuthType> authType,
             @JsonProperty("enabled") Optional<Boolean> enabled,
             @JsonProperty("settings") JsonNullable<? extends Map<String, Object>> settings,
-            @JsonProperty("metadata") JsonNullable<? extends Map<String, Object>> metadata,
+            @JsonProperty("metadata") JsonNullable<? extends Metadata> metadata,
             @JsonProperty("created_at") Optional<String> createdAt,
             @JsonProperty("updated_at") JsonNullable<String> updatedAt,
             @JsonProperty("state") Optional<? extends ConnectionState> state,
@@ -275,8 +275,8 @@ public class ConsumerConnection {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<Map<String, Object>> metadata() {
-        return (JsonNullable<Map<String, Object>>) metadata;
+    public JsonNullable<Metadata> metadata() {
+        return (JsonNullable<Metadata>) metadata;
     }
 
     @JsonIgnore
@@ -500,7 +500,7 @@ public class ConsumerConnection {
     /**
      * Attach your own consumer specific metadata
      */
-    public ConsumerConnection withMetadata(Map<String, Object> metadata) {
+    public ConsumerConnection withMetadata(Metadata metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = JsonNullable.of(metadata);
         return this;
@@ -509,7 +509,7 @@ public class ConsumerConnection {
     /**
      * Attach your own consumer specific metadata
      */
-    public ConsumerConnection withMetadata(JsonNullable<? extends Map<String, Object>> metadata) {
+    public ConsumerConnection withMetadata(JsonNullable<? extends Metadata> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
@@ -712,7 +712,7 @@ public class ConsumerConnection {
 
         private JsonNullable<? extends Map<String, Object>> settings = JsonNullable.undefined();
 
-        private JsonNullable<? extends Map<String, Object>> metadata = JsonNullable.undefined();
+        private JsonNullable<? extends Metadata> metadata = JsonNullable.undefined();
 
         private Optional<String> createdAt = Optional.empty();
 
@@ -902,7 +902,7 @@ public class ConsumerConnection {
         /**
          * Attach your own consumer specific metadata
          */
-        public Builder metadata(Map<String, Object> metadata) {
+        public Builder metadata(Metadata metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = JsonNullable.of(metadata);
             return this;
@@ -911,7 +911,7 @@ public class ConsumerConnection {
         /**
          * Attach your own consumer specific metadata
          */
-        public Builder metadata(JsonNullable<? extends Map<String, Object>> metadata) {
+        public Builder metadata(JsonNullable<? extends Metadata> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
             return this;

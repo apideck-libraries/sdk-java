@@ -27,6 +27,7 @@ import com.apideck.unify.models.operations.AccountingExpensesAllRequest;
 import com.apideck.unify.models.operations.AccountingExpensesAllResponse;
 import java.lang.Exception;
 import java.time.OffsetDateTime;
+import java.util.Map;
 
 public class Application {
 
@@ -46,6 +47,8 @@ public class Application {
                     .status(ExpensesFilterStatus.DRAFT)
                     .type(ExpensesFilterType.EXPENSE)
                     .build())
+                .passThrough(Map.ofEntries(
+                    Map.entry("search", "San Francisco")))
                 .build();
 
 

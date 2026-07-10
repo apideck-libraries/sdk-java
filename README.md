@@ -51,7 +51,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.apideck:unify:0.31.26'
+implementation 'com.apideck:unify:0.32.0'
 ```
 
 Maven:
@@ -59,7 +59,7 @@ Maven:
 <dependency>
     <groupId>com.apideck</groupId>
     <artifactId>unify</artifactId>
-    <version>0.31.26</version>
+    <version>0.32.0</version>
 </dependency>
 ```
 
@@ -548,6 +548,11 @@ For full model-specific examples (including Java 11/16/21 variants), see each un
 * [get](docs/sdks/leads/README.md#get) - Get lead
 * [update](docs/sdks/leads/README.md#update) - Update lead
 * [delete](docs/sdks/leads/README.md#delete) - Delete lead
+
+### [Crm.Lists](docs/sdks/lists/README.md)
+
+* [list](docs/sdks/lists/README.md#list) - List lists
+* [get](docs/sdks/lists/README.md#get) - Get list
 
 ### [Crm.Notes](docs/sdks/notes/README.md)
 
@@ -1190,7 +1195,7 @@ public class Application {
 many more subclasses in the JDK platform).
 
 **Inherit from [`ApideckError`](./src/main/java/models/errors/ApideckError.java)**:
-* [`com.apideck.unify.models.errors.Unauthorized`](./src/main/java/models/errors/com.apideck.unify.models.errors.Unauthorized.java): Unauthorized. Status code `401`. Applicable to 6 of 336 methods.*
+* [`com.apideck.unify.models.errors.Unauthorized`](./src/main/java/models/errors/com.apideck.unify.models.errors.Unauthorized.java): Unauthorized. Status code `401`. Applicable to 6 of 338 methods.*
 
 
 </details>

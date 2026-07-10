@@ -26,6 +26,7 @@ import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingAttachmentsAllRequest;
 import com.apideck.unify.models.operations.AccountingAttachmentsAllResponse;
 import java.lang.Exception;
+import java.util.Map;
 
 public class Application {
 
@@ -43,6 +44,8 @@ public class Application {
                 .serviceId("salesforce")
                 .companyId("12345")
                 .fields("id,updated_at")
+                .passThrough(Map.ofEntries(
+                    Map.entry("search", "San Francisco")))
                 .build();
 
 

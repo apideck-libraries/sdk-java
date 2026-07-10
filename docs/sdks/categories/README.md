@@ -24,6 +24,7 @@ import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingCategoriesAllRequest;
 import com.apideck.unify.models.operations.AccountingCategoriesAllResponse;
 import java.lang.Exception;
+import java.util.Map;
 
 public class Application {
 
@@ -42,6 +43,8 @@ public class Application {
                 .filter(CategoriesFilter.builder()
                     .type(CategoriesFilterType.EXPENSE)
                     .build())
+                .passThrough(Map.ofEntries(
+                    Map.entry("search", "San Francisco")))
                 .build();
 
 

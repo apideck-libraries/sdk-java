@@ -27,6 +27,7 @@ import com.apideck.unify.models.operations.AccountingQuotesAllRequest;
 import com.apideck.unify.models.operations.AccountingQuotesAllResponse;
 import java.lang.Exception;
 import java.time.OffsetDateTime;
+import java.util.Map;
 
 public class Application {
 
@@ -46,6 +47,8 @@ public class Application {
                     .createdSince(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
                     .number("OIT00546")
                     .build())
+                .passThrough(Map.ofEntries(
+                    Map.entry("search", "San Francisco")))
                 .build();
 
 

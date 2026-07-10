@@ -154,7 +154,7 @@ public class Connection {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
-    private JsonNullable<? extends Map<String, Object>> metadata;
+    private JsonNullable<? extends ConnectionMetadata> metadata;
 
     /**
      * The settings that are wanted to create a connection.
@@ -306,7 +306,7 @@ public class Connection {
             @JsonProperty("authorize_url") JsonNullable<String> authorizeUrl,
             @JsonProperty("revoke_url") JsonNullable<String> revokeUrl,
             @JsonProperty("settings") JsonNullable<? extends Map<String, Object>> settings,
-            @JsonProperty("metadata") JsonNullable<? extends Map<String, Object>> metadata,
+            @JsonProperty("metadata") JsonNullable<? extends ConnectionMetadata> metadata,
             @JsonProperty("form_fields") Optional<? extends List<FormField>> formFields,
             @JsonProperty("configuration") Optional<? extends List<Configuration>> configuration,
             @JsonProperty("configurable_resources") Optional<? extends List<String>> configurableResources,
@@ -578,8 +578,8 @@ public class Connection {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<Map<String, Object>> metadata() {
-        return (JsonNullable<Map<String, Object>>) metadata;
+    public JsonNullable<ConnectionMetadata> metadata() {
+        return (JsonNullable<ConnectionMetadata>) metadata;
     }
 
     /**
@@ -1078,7 +1078,7 @@ public class Connection {
     /**
      * Attach your own consumer specific metadata
      */
-    public Connection withMetadata(Map<String, Object> metadata) {
+    public Connection withMetadata(ConnectionMetadata metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = JsonNullable.of(metadata);
         return this;
@@ -1087,7 +1087,7 @@ public class Connection {
     /**
      * Attach your own consumer specific metadata
      */
-    public Connection withMetadata(JsonNullable<? extends Map<String, Object>> metadata) {
+    public Connection withMetadata(JsonNullable<? extends ConnectionMetadata> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
@@ -1587,7 +1587,7 @@ public class Connection {
 
         private JsonNullable<? extends Map<String, Object>> settings = JsonNullable.undefined();
 
-        private JsonNullable<? extends Map<String, Object>> metadata = JsonNullable.undefined();
+        private JsonNullable<? extends ConnectionMetadata> metadata = JsonNullable.undefined();
 
         private Optional<? extends List<FormField>> formFields = Optional.empty();
 
@@ -1976,7 +1976,7 @@ public class Connection {
         /**
          * Attach your own consumer specific metadata
          */
-        public Builder metadata(Map<String, Object> metadata) {
+        public Builder metadata(ConnectionMetadata metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = JsonNullable.of(metadata);
             return this;
@@ -1985,7 +1985,7 @@ public class Connection {
         /**
          * Attach your own consumer specific metadata
          */
-        public Builder metadata(JsonNullable<? extends Map<String, Object>> metadata) {
+        public Builder metadata(JsonNullable<? extends ConnectionMetadata> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
             return this;

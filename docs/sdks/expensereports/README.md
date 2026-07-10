@@ -28,6 +28,7 @@ import com.apideck.unify.models.operations.AccountingExpenseReportsAllRequest;
 import com.apideck.unify.models.operations.AccountingExpenseReportsAllResponse;
 import java.lang.Exception;
 import java.time.OffsetDateTime;
+import java.util.Map;
 
 public class Application {
 
@@ -46,6 +47,8 @@ public class Application {
                     .updatedSince(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
                     .status(ExpenseReportsFilterStatus.SUBMITTED)
                     .build())
+                .passThrough(Map.ofEntries(
+                    Map.entry("search", "San Francisco")))
                 .build();
 
 

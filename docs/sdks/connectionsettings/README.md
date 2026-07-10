@@ -110,11 +110,13 @@ public class Application {
                     .settings(Map.ofEntries(
                         Map.entry("instance_url", "https://eu28.salesforce.com"),
                         Map.entry("api_key", "12345xxxxxx")))
-                    .metadata(Map.ofEntries(
-                        Map.entry("account", Map.ofEntries(
-                            Map.entry("name", "My Company"),
-                            Map.entry("id", "c01458a5-7276-41ce-bc19-639906b0450a"))),
-                        Map.entry("plan", "enterprise")))
+                    .metadata(ConnectionMetadataInput.builder()
+                        .additionalProperties(Map.ofEntries(
+                            Map.entry("account", Map.ofEntries(
+                                Map.entry("name", "My Company"),
+                                Map.entry("id", "c01458a5-7276-41ce-bc19-639906b0450a"))),
+                            Map.entry("plan", "enterprise")))
+                        .build())
                     .configuration(List.of(
                         ConnectionConfiguration.builder()
                             .resource("leads")

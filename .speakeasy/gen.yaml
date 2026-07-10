@@ -29,7 +29,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 java:
-  version: 0.31.26
+  version: 0.32.0
   additionalDependencies: []
   additionalPlugins: []
   artifactID: unify

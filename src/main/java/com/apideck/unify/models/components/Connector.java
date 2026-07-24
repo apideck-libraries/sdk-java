@@ -211,6 +211,15 @@ public class Connector {
     @JsonProperty("docs")
     private Optional<? extends List<ConnectorDoc>> docs;
 
+    /**
+     * Editorial overview metadata for the connector, used to render the connector's Overview documentation
+     * (implementation difficulty, partnership requirements, sandbox availability, and other at-a-glance
+     * facts).
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("overview")
+    private Optional<? extends ConnectorOverview> overview;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tls_support")
@@ -245,6 +254,7 @@ public class Connector {
             @JsonProperty("webhook_support") Optional<? extends WebhookSupport> webhookSupport,
             @JsonProperty("schema_support") Optional<? extends SchemaSupport> schemaSupport,
             @JsonProperty("docs") Optional<? extends List<ConnectorDoc>> docs,
+            @JsonProperty("overview") Optional<? extends ConnectorOverview> overview,
             @JsonProperty("tls_support") Optional<? extends TlsSupport> tlsSupport) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(name, "name");
@@ -273,6 +283,7 @@ public class Connector {
         Utils.checkNotNull(webhookSupport, "webhookSupport");
         Utils.checkNotNull(schemaSupport, "schemaSupport");
         Utils.checkNotNull(docs, "docs");
+        Utils.checkNotNull(overview, "overview");
         Utils.checkNotNull(tlsSupport, "tlsSupport");
         this.id = id;
         this.name = name;
@@ -301,6 +312,7 @@ public class Connector {
         this.webhookSupport = webhookSupport;
         this.schemaSupport = schemaSupport;
         this.docs = docs;
+        this.overview = overview;
         this.tlsSupport = tlsSupport;
     }
     
@@ -314,7 +326,7 @@ public class Connector {
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -545,6 +557,17 @@ public class Connector {
     @JsonIgnore
     public Optional<List<ConnectorDoc>> docs() {
         return (Optional<List<ConnectorDoc>>) docs;
+    }
+
+    /**
+     * Editorial overview metadata for the connector, used to render the connector's Overview documentation
+     * (implementation difficulty, partnership requirements, sandbox availability, and other at-a-glance
+     * facts).
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<ConnectorOverview> overview() {
+        return (Optional<ConnectorOverview>) overview;
     }
 
     @SuppressWarnings("unchecked")
@@ -1072,6 +1095,29 @@ public class Connector {
         return this;
     }
 
+    /**
+     * Editorial overview metadata for the connector, used to render the connector's Overview documentation
+     * (implementation difficulty, partnership requirements, sandbox availability, and other at-a-glance
+     * facts).
+     */
+    public Connector withOverview(ConnectorOverview overview) {
+        Utils.checkNotNull(overview, "overview");
+        this.overview = Optional.ofNullable(overview);
+        return this;
+    }
+
+
+    /**
+     * Editorial overview metadata for the connector, used to render the connector's Overview documentation
+     * (implementation difficulty, partnership requirements, sandbox availability, and other at-a-glance
+     * facts).
+     */
+    public Connector withOverview(Optional<? extends ConnectorOverview> overview) {
+        Utils.checkNotNull(overview, "overview");
+        this.overview = overview;
+        return this;
+    }
+
     public Connector withTlsSupport(TlsSupport tlsSupport) {
         Utils.checkNotNull(tlsSupport, "tlsSupport");
         this.tlsSupport = Optional.ofNullable(tlsSupport);
@@ -1122,6 +1168,7 @@ public class Connector {
             Utils.enhancedDeepEquals(this.webhookSupport, other.webhookSupport) &&
             Utils.enhancedDeepEquals(this.schemaSupport, other.schemaSupport) &&
             Utils.enhancedDeepEquals(this.docs, other.docs) &&
+            Utils.enhancedDeepEquals(this.overview, other.overview) &&
             Utils.enhancedDeepEquals(this.tlsSupport, other.tlsSupport);
     }
     
@@ -1137,7 +1184,7 @@ public class Connector {
             settings, serviceId, unifiedApis,
             supportedResources, configurableResources, supportedEvents,
             webhookSupport, schemaSupport, docs,
-            tlsSupport);
+            overview, tlsSupport);
     }
     
     @Override
@@ -1170,6 +1217,7 @@ public class Connector {
                 "webhookSupport", webhookSupport,
                 "schemaSupport", schemaSupport,
                 "docs", docs,
+                "overview", overview,
                 "tlsSupport", tlsSupport);
     }
 
@@ -1229,6 +1277,8 @@ public class Connector {
         private Optional<? extends SchemaSupport> schemaSupport = Optional.empty();
 
         private Optional<? extends List<ConnectorDoc>> docs = Optional.empty();
+
+        private Optional<? extends ConnectorOverview> overview = Optional.empty();
 
         private Optional<? extends TlsSupport> tlsSupport = Optional.empty();
 
@@ -1752,6 +1802,29 @@ public class Connector {
         }
 
 
+        /**
+         * Editorial overview metadata for the connector, used to render the connector's Overview documentation
+         * (implementation difficulty, partnership requirements, sandbox availability, and other at-a-glance
+         * facts).
+         */
+        public Builder overview(ConnectorOverview overview) {
+            Utils.checkNotNull(overview, "overview");
+            this.overview = Optional.ofNullable(overview);
+            return this;
+        }
+
+        /**
+         * Editorial overview metadata for the connector, used to render the connector's Overview documentation
+         * (implementation difficulty, partnership requirements, sandbox availability, and other at-a-glance
+         * facts).
+         */
+        public Builder overview(Optional<? extends ConnectorOverview> overview) {
+            Utils.checkNotNull(overview, "overview");
+            this.overview = overview;
+            return this;
+        }
+
+
         public Builder tlsSupport(TlsSupport tlsSupport) {
             Utils.checkNotNull(tlsSupport, "tlsSupport");
             this.tlsSupport = Optional.ofNullable(tlsSupport);
@@ -1776,7 +1849,7 @@ public class Connector {
                 settings, serviceId, unifiedApis,
                 supportedResources, configurableResources, supportedEvents,
                 webhookSupport, schemaSupport, docs,
-                tlsSupport);
+                overview, tlsSupport);
         }
 
     }

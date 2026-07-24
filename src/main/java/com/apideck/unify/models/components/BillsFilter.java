@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
@@ -24,6 +25,18 @@ public class BillsFilter {
 
     @SpeakeasyMetadata("queryParam:name=updated_since")
     private Optional<OffsetDateTime> updatedSince;
+
+    /**
+     * Return bills with a document date (`bill_date`) on or after the given date (YYYY-MM-DD).
+     */
+    @SpeakeasyMetadata("queryParam:name=billed_since")
+    private Optional<LocalDate> billedSince;
+
+    /**
+     * Return bills with a due date (`due_date`) on or after the given date (YYYY-MM-DD).
+     */
+    @SpeakeasyMetadata("queryParam:name=due_since")
+    private Optional<LocalDate> dueSince;
 
     /**
      * Filter by bill status
@@ -42,21 +55,27 @@ public class BillsFilter {
     public BillsFilter(
             Optional<String> idSince,
             Optional<OffsetDateTime> updatedSince,
+            Optional<LocalDate> billedSince,
+            Optional<LocalDate> dueSince,
             Optional<? extends BillsFilterStatus> status,
             Optional<String> subsidiaryId) {
         Utils.checkNotNull(idSince, "idSince");
         Utils.checkNotNull(updatedSince, "updatedSince");
+        Utils.checkNotNull(billedSince, "billedSince");
+        Utils.checkNotNull(dueSince, "dueSince");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(subsidiaryId, "subsidiaryId");
         this.idSince = idSince;
         this.updatedSince = updatedSince;
+        this.billedSince = billedSince;
+        this.dueSince = dueSince;
         this.status = status;
         this.subsidiaryId = subsidiaryId;
     }
     
     public BillsFilter() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -70,6 +89,22 @@ public class BillsFilter {
     @JsonIgnore
     public Optional<OffsetDateTime> updatedSince() {
         return updatedSince;
+    }
+
+    /**
+     * Return bills with a document date (`bill_date`) on or after the given date (YYYY-MM-DD).
+     */
+    @JsonIgnore
+    public Optional<LocalDate> billedSince() {
+        return billedSince;
+    }
+
+    /**
+     * Return bills with a due date (`due_date`) on or after the given date (YYYY-MM-DD).
+     */
+    @JsonIgnore
+    public Optional<LocalDate> dueSince() {
+        return dueSince;
     }
 
     /**
@@ -128,6 +163,44 @@ public class BillsFilter {
     }
 
     /**
+     * Return bills with a document date (`bill_date`) on or after the given date (YYYY-MM-DD).
+     */
+    public BillsFilter withBilledSince(LocalDate billedSince) {
+        Utils.checkNotNull(billedSince, "billedSince");
+        this.billedSince = Optional.ofNullable(billedSince);
+        return this;
+    }
+
+
+    /**
+     * Return bills with a document date (`bill_date`) on or after the given date (YYYY-MM-DD).
+     */
+    public BillsFilter withBilledSince(Optional<LocalDate> billedSince) {
+        Utils.checkNotNull(billedSince, "billedSince");
+        this.billedSince = billedSince;
+        return this;
+    }
+
+    /**
+     * Return bills with a due date (`due_date`) on or after the given date (YYYY-MM-DD).
+     */
+    public BillsFilter withDueSince(LocalDate dueSince) {
+        Utils.checkNotNull(dueSince, "dueSince");
+        this.dueSince = Optional.ofNullable(dueSince);
+        return this;
+    }
+
+
+    /**
+     * Return bills with a due date (`due_date`) on or after the given date (YYYY-MM-DD).
+     */
+    public BillsFilter withDueSince(Optional<LocalDate> dueSince) {
+        Utils.checkNotNull(dueSince, "dueSince");
+        this.dueSince = dueSince;
+        return this;
+    }
+
+    /**
      * Filter by bill status
      */
     public BillsFilter withStatus(BillsFilterStatus status) {
@@ -179,6 +252,8 @@ public class BillsFilter {
         return 
             Utils.enhancedDeepEquals(this.idSince, other.idSince) &&
             Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince) &&
+            Utils.enhancedDeepEquals(this.billedSince, other.billedSince) &&
+            Utils.enhancedDeepEquals(this.dueSince, other.dueSince) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.subsidiaryId, other.subsidiaryId);
     }
@@ -186,8 +261,8 @@ public class BillsFilter {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            idSince, updatedSince, status,
-            subsidiaryId);
+            idSince, updatedSince, billedSince,
+            dueSince, status, subsidiaryId);
     }
     
     @Override
@@ -195,6 +270,8 @@ public class BillsFilter {
         return Utils.toString(BillsFilter.class,
                 "idSince", idSince,
                 "updatedSince", updatedSince,
+                "billedSince", billedSince,
+                "dueSince", dueSince,
                 "status", status,
                 "subsidiaryId", subsidiaryId);
     }
@@ -205,6 +282,10 @@ public class BillsFilter {
         private Optional<String> idSince = Optional.empty();
 
         private Optional<OffsetDateTime> updatedSince = Optional.empty();
+
+        private Optional<LocalDate> billedSince = Optional.empty();
+
+        private Optional<LocalDate> dueSince = Optional.empty();
 
         private Optional<? extends BillsFilterStatus> status = Optional.empty();
 
@@ -243,6 +324,44 @@ public class BillsFilter {
         public Builder updatedSince(Optional<OffsetDateTime> updatedSince) {
             Utils.checkNotNull(updatedSince, "updatedSince");
             this.updatedSince = updatedSince;
+            return this;
+        }
+
+
+        /**
+         * Return bills with a document date (`bill_date`) on or after the given date (YYYY-MM-DD).
+         */
+        public Builder billedSince(LocalDate billedSince) {
+            Utils.checkNotNull(billedSince, "billedSince");
+            this.billedSince = Optional.ofNullable(billedSince);
+            return this;
+        }
+
+        /**
+         * Return bills with a document date (`bill_date`) on or after the given date (YYYY-MM-DD).
+         */
+        public Builder billedSince(Optional<LocalDate> billedSince) {
+            Utils.checkNotNull(billedSince, "billedSince");
+            this.billedSince = billedSince;
+            return this;
+        }
+
+
+        /**
+         * Return bills with a due date (`due_date`) on or after the given date (YYYY-MM-DD).
+         */
+        public Builder dueSince(LocalDate dueSince) {
+            Utils.checkNotNull(dueSince, "dueSince");
+            this.dueSince = Optional.ofNullable(dueSince);
+            return this;
+        }
+
+        /**
+         * Return bills with a due date (`due_date`) on or after the given date (YYYY-MM-DD).
+         */
+        public Builder dueSince(Optional<LocalDate> dueSince) {
+            Utils.checkNotNull(dueSince, "dueSince");
+            this.dueSince = dueSince;
             return this;
         }
 
@@ -289,8 +408,8 @@ public class BillsFilter {
         public BillsFilter build() {
 
             return new BillsFilter(
-                idSince, updatedSince, status,
-                subsidiaryId);
+                idSince, updatedSince, billedSince,
+                dueSince, status, subsidiaryId);
         }
 
     }

@@ -123,6 +123,9 @@ public class WebhookEventType {
     public static final WebhookEventType HRIS_COMPANY_CREATED = new WebhookEventType("hris.company.created");
     public static final WebhookEventType HRIS_COMPANY_UPDATED = new WebhookEventType("hris.company.updated");
     public static final WebhookEventType HRIS_COMPANY_DELETED = new WebhookEventType("hris.company.deleted");
+    public static final WebhookEventType HRIS_TIME_OFF_REQUEST_CREATED = new WebhookEventType("hris.time-off-request.created");
+    public static final WebhookEventType HRIS_TIME_OFF_REQUEST_UPDATED = new WebhookEventType("hris.time-off-request.updated");
+    public static final WebhookEventType HRIS_TIME_OFF_REQUEST_DELETED = new WebhookEventType("hris.time-off-request.deleted");
     public static final WebhookEventType FILE_STORAGE_FILE_CREATED = new WebhookEventType("file-storage.file.created");
     public static final WebhookEventType FILE_STORAGE_FILE_UPDATED = new WebhookEventType("file-storage.file.updated");
     public static final WebhookEventType FILE_STORAGE_FILE_DELETED = new WebhookEventType("file-storage.file.deleted");
@@ -330,6 +333,9 @@ public class WebhookEventType {
         map.put("hris.company.created", HRIS_COMPANY_CREATED);
         map.put("hris.company.updated", HRIS_COMPANY_UPDATED);
         map.put("hris.company.deleted", HRIS_COMPANY_DELETED);
+        map.put("hris.time-off-request.created", HRIS_TIME_OFF_REQUEST_CREATED);
+        map.put("hris.time-off-request.updated", HRIS_TIME_OFF_REQUEST_UPDATED);
+        map.put("hris.time-off-request.deleted", HRIS_TIME_OFF_REQUEST_DELETED);
         map.put("file-storage.file.created", FILE_STORAGE_FILE_CREATED);
         map.put("file-storage.file.updated", FILE_STORAGE_FILE_UPDATED);
         map.put("file-storage.file.deleted", FILE_STORAGE_FILE_DELETED);
@@ -469,6 +475,9 @@ public class WebhookEventType {
         map.put("hris.company.created", WebhookEventTypeEnum.HRIS_COMPANY_CREATED);
         map.put("hris.company.updated", WebhookEventTypeEnum.HRIS_COMPANY_UPDATED);
         map.put("hris.company.deleted", WebhookEventTypeEnum.HRIS_COMPANY_DELETED);
+        map.put("hris.time-off-request.created", WebhookEventTypeEnum.HRIS_TIME_OFF_REQUEST_CREATED);
+        map.put("hris.time-off-request.updated", WebhookEventTypeEnum.HRIS_TIME_OFF_REQUEST_UPDATED);
+        map.put("hris.time-off-request.deleted", WebhookEventTypeEnum.HRIS_TIME_OFF_REQUEST_DELETED);
         map.put("file-storage.file.created", WebhookEventTypeEnum.FILE_STORAGE_FILE_CREATED);
         map.put("file-storage.file.updated", WebhookEventTypeEnum.FILE_STORAGE_FILE_UPDATED);
         map.put("file-storage.file.deleted", WebhookEventTypeEnum.FILE_STORAGE_FILE_DELETED);
@@ -609,6 +618,9 @@ public class WebhookEventType {
         HRIS_COMPANY_CREATED("hris.company.created"),
         HRIS_COMPANY_UPDATED("hris.company.updated"),
         HRIS_COMPANY_DELETED("hris.company.deleted"),
+        HRIS_TIME_OFF_REQUEST_CREATED("hris.time-off-request.created"),
+        HRIS_TIME_OFF_REQUEST_UPDATED("hris.time-off-request.updated"),
+        HRIS_TIME_OFF_REQUEST_DELETED("hris.time-off-request.deleted"),
         FILE_STORAGE_FILE_CREATED("file-storage.file.created"),
         FILE_STORAGE_FILE_UPDATED("file-storage.file.updated"),
         FILE_STORAGE_FILE_DELETED("file-storage.file.deleted"),

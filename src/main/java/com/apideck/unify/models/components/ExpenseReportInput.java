@@ -155,6 +155,13 @@ public class ExpenseReportInput {
     @JsonProperty("line_items")
     private List<ExpenseReportLineItemInput> lineItems;
 
+    /**
+     * Optional reference identifier for the transaction.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("reference")
+    private JsonNullable<String> reference;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("subsidiary")
@@ -224,6 +231,7 @@ public class ExpenseReportInput {
             @JsonProperty("account") JsonNullable<? extends LinkedLedgerAccount> account,
             @JsonProperty("accounting_period") JsonNullable<? extends AccountingPeriod> accountingPeriod,
             @JsonProperty("line_items") List<ExpenseReportLineItemInput> lineItems,
+            @JsonProperty("reference") JsonNullable<String> reference,
             @JsonProperty("subsidiary") JsonNullable<? extends LinkedSubsidiaryInput> subsidiary,
             @JsonProperty("tracking_categories") JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories,
             @JsonProperty("tax_inclusive") JsonNullable<Boolean> taxInclusive,
@@ -251,6 +259,7 @@ public class ExpenseReportInput {
         Utils.checkNotNull(account, "account");
         Utils.checkNotNull(accountingPeriod, "accountingPeriod");
         Utils.checkNotNull(lineItems, "lineItems");
+        Utils.checkNotNull(reference, "reference");
         Utils.checkNotNull(subsidiary, "subsidiary");
         Utils.checkNotNull(trackingCategories, "trackingCategories");
         Utils.checkNotNull(taxInclusive, "taxInclusive");
@@ -278,6 +287,7 @@ public class ExpenseReportInput {
         this.account = account;
         this.accountingPeriod = accountingPeriod;
         this.lineItems = lineItems;
+        this.reference = reference;
         this.subsidiary = subsidiary;
         this.trackingCategories = trackingCategories;
         this.taxInclusive = taxInclusive;
@@ -298,7 +308,8 @@ public class ExpenseReportInput {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), lineItems, JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), Optional.empty());
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -457,6 +468,14 @@ public class ExpenseReportInput {
     @JsonIgnore
     public List<ExpenseReportLineItemInput> lineItems() {
         return lineItems;
+    }
+
+    /**
+     * Optional reference identifier for the transaction.
+     */
+    @JsonIgnore
+    public JsonNullable<String> reference() {
+        return reference;
     }
 
     @SuppressWarnings("unchecked")
@@ -848,6 +867,24 @@ public class ExpenseReportInput {
         return this;
     }
 
+    /**
+     * Optional reference identifier for the transaction.
+     */
+    public ExpenseReportInput withReference(String reference) {
+        Utils.checkNotNull(reference, "reference");
+        this.reference = JsonNullable.of(reference);
+        return this;
+    }
+
+    /**
+     * Optional reference identifier for the transaction.
+     */
+    public ExpenseReportInput withReference(JsonNullable<String> reference) {
+        Utils.checkNotNull(reference, "reference");
+        this.reference = reference;
+        return this;
+    }
+
     public ExpenseReportInput withSubsidiary(LinkedSubsidiaryInput subsidiary) {
         Utils.checkNotNull(subsidiary, "subsidiary");
         this.subsidiary = JsonNullable.of(subsidiary);
@@ -998,6 +1035,7 @@ public class ExpenseReportInput {
             Utils.enhancedDeepEquals(this.account, other.account) &&
             Utils.enhancedDeepEquals(this.accountingPeriod, other.accountingPeriod) &&
             Utils.enhancedDeepEquals(this.lineItems, other.lineItems) &&
+            Utils.enhancedDeepEquals(this.reference, other.reference) &&
             Utils.enhancedDeepEquals(this.subsidiary, other.subsidiary) &&
             Utils.enhancedDeepEquals(this.trackingCategories, other.trackingCategories) &&
             Utils.enhancedDeepEquals(this.taxInclusive, other.taxInclusive) &&
@@ -1016,9 +1054,10 @@ public class ExpenseReportInput {
             currencyRate, subTotal, totalTax,
             totalAmount, reimbursableAmount, memo,
             department, location, account,
-            accountingPeriod, lineItems, subsidiary,
-            trackingCategories, taxInclusive, approvedBy,
-            customFields, rowVersion, passThrough);
+            accountingPeriod, lineItems, reference,
+            subsidiary, trackingCategories, taxInclusive,
+            approvedBy, customFields, rowVersion,
+            passThrough);
     }
     
     @Override
@@ -1044,6 +1083,7 @@ public class ExpenseReportInput {
                 "account", account,
                 "accountingPeriod", accountingPeriod,
                 "lineItems", lineItems,
+                "reference", reference,
                 "subsidiary", subsidiary,
                 "trackingCategories", trackingCategories,
                 "taxInclusive", taxInclusive,
@@ -1095,6 +1135,8 @@ public class ExpenseReportInput {
         private JsonNullable<? extends AccountingPeriod> accountingPeriod = JsonNullable.undefined();
 
         private List<ExpenseReportLineItemInput> lineItems;
+
+        private JsonNullable<String> reference = JsonNullable.undefined();
 
         private JsonNullable<? extends LinkedSubsidiaryInput> subsidiary = JsonNullable.undefined();
 
@@ -1461,6 +1503,25 @@ public class ExpenseReportInput {
         }
 
 
+        /**
+         * Optional reference identifier for the transaction.
+         */
+        public Builder reference(String reference) {
+            Utils.checkNotNull(reference, "reference");
+            this.reference = JsonNullable.of(reference);
+            return this;
+        }
+
+        /**
+         * Optional reference identifier for the transaction.
+         */
+        public Builder reference(JsonNullable<String> reference) {
+            Utils.checkNotNull(reference, "reference");
+            this.reference = reference;
+            return this;
+        }
+
+
         public Builder subsidiary(LinkedSubsidiaryInput subsidiary) {
             Utils.checkNotNull(subsidiary, "subsidiary");
             this.subsidiary = JsonNullable.of(subsidiary);
@@ -1594,9 +1655,10 @@ public class ExpenseReportInput {
                 currencyRate, subTotal, totalTax,
                 totalAmount, reimbursableAmount, memo,
                 department, location, account,
-                accountingPeriod, lineItems, subsidiary,
-                trackingCategories, taxInclusive, approvedBy,
-                customFields, rowVersion, passThrough);
+                accountingPeriod, lineItems, reference,
+                subsidiary, trackingCategories, taxInclusive,
+                approvedBy, customFields, rowVersion,
+                passThrough);
         }
 
     }

@@ -29,7 +29,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 java:
-  version: 0.32.0
+  version: 0.33.0
   additionalDependencies: []
   additionalPlugins: []
   artifactID: unify
@@ -51,8 +51,10 @@ java:
   generateOptionalUnionAccessors: false
   generateSpringBootStarter: true
   generateUnionDocs: false
+  getterStyle: presence-aware
   githubURL: github.com/apideck-libraries/sdk-java
   groupID: com.apideck
+  httpClient: jdk
   imports:
     option: openapi
     paths:

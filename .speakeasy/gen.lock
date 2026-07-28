@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 38254260-287a-40b6-9ac5-c2fcb654c9cc
 management:
-  docChecksum: 0bb72903b2014147d0580d5dc1adfbf5
-  docVersion: 10.28.1
+  docChecksum: 24c7bf58cfc041a04e545f9a809e4caa
+  docVersion: 10.28.2
   speakeasyVersion: 1.791.0
   generationVersion: 2.924.0
-  releaseVersion: 0.33.0
-  configChecksum: 097831ee6ddb86ec4199a4d8c1420c61
+  releaseVersion: 0.33.1
+  configChecksum: c2daa2f4312a2910c330b2909c04207e
   repoURL: https://github.com/apideck-libraries/sdk-java.git
   installationURL: https://github.com/apideck-libraries/sdk-java
   published: true
 persistentEdits:
-  generation_id: 1e3464ae-ee81-4442-b7f5-dd155f4ca75c
-  pristine_commit_hash: c31490170d31559fbd5c6614ee3501f96ae17399
-  pristine_tree_hash: 2a46e09bfba4fe1688d6ddb962c461d1783a4bb1
+  generation_id: b46a3373-8f37-4808-925c-88b02e2743af
+  pristine_commit_hash: 217bfe2de3b505e590877cdb7c13fb96a1c869bf
+  pristine_tree_hash: 6b14f5c5aa5940cee5906a7fce954c34c6a60435
 features:
   java:
     acceptHeaders: 2.81.2
@@ -7185,8 +7185,8 @@ trackedFiles:
     pristine_git_object: c755c6aa377f358344e761e9cc3e7b67bc1fb479
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:a82f17395844d85a3c4c8ffb36a5e3b94e3d3d1b
-    pristine_git_object: 2b368b12a70c85a9d8e1611dc1c7010dadba2bca
+    last_write_checksum: sha1:46ec02ff43e2021d0d09088c62c965ec2a04b7c3
+    pristine_git_object: 31cecc8a8e39085b7e202ee63cecb8ad062f6b98
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -7993,8 +7993,8 @@ trackedFiles:
     pristine_git_object: 7296db7ebcdcff7ee348d1f993fc4aa2a7e6c145
   src/main/java/com/apideck/unify/SDKConfiguration.java:
     id: a2b330a87142
-    last_write_checksum: sha1:e2ea6efd3bc616b80675fb771d51a5f5aad1ecd1
-    pristine_git_object: cf135f1da0ee1ad6b2f9927734e9f7a1a1477028
+    last_write_checksum: sha1:a6c6c5ccf310f4c060742a68729ddeddebf4a117
+    pristine_git_object: 43013e0e5a8b612cc25aab395f55431bc25a3486
   src/main/java/com/apideck/unify/SecuritySource.java:
     id: e4566c6c806b
     last_write_checksum: sha1:101bf1a9f5cf4e8c37abb4540147276eebb2bab0
@@ -37019,7 +37019,6 @@ examples:
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Java SDK Changes:\n* `apideck.accounting.bills.list()`: \n  *  `request.filter` **Changed**\n* `apideck.accounting.expenseReports.list()`:  `response.data[].reference` **Added**\n* `apideck.accounting.expenseReports.create()`: \n  *  `request.expenseReport.reference` **Added**\n* `apideck.accounting.expenseReports.get()`:  `response.data.reference` **Added**\n* `apideck.accounting.expenseReports.update()`: \n  *  `request.expenseReport.reference` **Added**\n* `apideck.connector.connectors.list()`:  `response.data[].overview` **Added**\n* `apideck.connector.connectors.get()`:  `response.data.overview` **Added**\n* `apideck.webhook.webhooks.list()`:  `response.data[].events[]` **Changed**\n* `apideck.webhook.webhooks.create()`: \n  *  `request.createWebhookRequest.events[]` **Changed**\n  *  `response.data.events[]` **Changed**\n* `apideck.webhook.webhooks.get()`:  `response.data.events[]` **Changed**\n* `apideck.webhook.webhooks.update()`: \n  *  `request.updateWebhookRequest.events[]` **Changed**\n  *  `response.data.events[]` **Changed**\n* `apideck.webhook.webhooks.delete()`:  `response.data.events[]` **Changed**\n"
 generatedFiles:
   - .gitattributes
   - USAGE.md

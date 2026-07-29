@@ -21,7 +21,7 @@ public class SDKConfiguration {
 
     private static final String LANGUAGE = "java";
     public static final String OPENAPI_DOC_VERSION = "10.28.2";
-    public static final String SDK_VERSION = "0.33.1";
+    public static final String SDK_VERSION = "0.33.2";
     public static final String GEN_VERSION = "2.924.0";
     private static final String BASE_PACKAGE = "com.apideck.unify";
     public static final String USER_AGENT = 

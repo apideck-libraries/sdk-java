@@ -47,6 +47,12 @@ public class InvoicesFilter {
     @SpeakeasyMetadata("queryParam:name=subsidiary_id")
     private Optional<String> subsidiaryId;
 
+    /**
+     * Filter by customer id
+     */
+    @SpeakeasyMetadata("queryParam:name=customer_id")
+    private Optional<String> customerId;
+
     @JsonCreator
     public InvoicesFilter(
             Optional<String> idSince,
@@ -54,24 +60,28 @@ public class InvoicesFilter {
             Optional<OffsetDateTime> createdSince,
             Optional<String> number,
             Optional<String> supplierId,
-            Optional<String> subsidiaryId) {
+            Optional<String> subsidiaryId,
+            Optional<String> customerId) {
         Utils.checkNotNull(idSince, "idSince");
         Utils.checkNotNull(updatedSince, "updatedSince");
         Utils.checkNotNull(createdSince, "createdSince");
         Utils.checkNotNull(number, "number");
         Utils.checkNotNull(supplierId, "supplierId");
         Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+        Utils.checkNotNull(customerId, "customerId");
         this.idSince = idSince;
         this.updatedSince = updatedSince;
         this.createdSince = createdSince;
         this.number = number;
         this.supplierId = supplierId;
         this.subsidiaryId = subsidiaryId;
+        this.customerId = customerId;
     }
     
     public InvoicesFilter() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -115,6 +125,14 @@ public class InvoicesFilter {
     @JsonIgnore
     public Optional<String> subsidiaryId() {
         return subsidiaryId;
+    }
+
+    /**
+     * Filter by customer id
+     */
+    @JsonIgnore
+    public Optional<String> customerId() {
+        return customerId;
     }
 
     public static Builder builder() {
@@ -226,6 +244,25 @@ public class InvoicesFilter {
         return this;
     }
 
+    /**
+     * Filter by customer id
+     */
+    public InvoicesFilter withCustomerId(String customerId) {
+        Utils.checkNotNull(customerId, "customerId");
+        this.customerId = Optional.ofNullable(customerId);
+        return this;
+    }
+
+
+    /**
+     * Filter by customer id
+     */
+    public InvoicesFilter withCustomerId(Optional<String> customerId) {
+        Utils.checkNotNull(customerId, "customerId");
+        this.customerId = customerId;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -241,14 +278,16 @@ public class InvoicesFilter {
             Utils.enhancedDeepEquals(this.createdSince, other.createdSince) &&
             Utils.enhancedDeepEquals(this.number, other.number) &&
             Utils.enhancedDeepEquals(this.supplierId, other.supplierId) &&
-            Utils.enhancedDeepEquals(this.subsidiaryId, other.subsidiaryId);
+            Utils.enhancedDeepEquals(this.subsidiaryId, other.subsidiaryId) &&
+            Utils.enhancedDeepEquals(this.customerId, other.customerId);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             idSince, updatedSince, createdSince,
-            number, supplierId, subsidiaryId);
+            number, supplierId, subsidiaryId,
+            customerId);
     }
     
     @Override
@@ -259,7 +298,8 @@ public class InvoicesFilter {
                 "createdSince", createdSince,
                 "number", number,
                 "supplierId", supplierId,
-                "subsidiaryId", subsidiaryId);
+                "subsidiaryId", subsidiaryId,
+                "customerId", customerId);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -276,6 +316,8 @@ public class InvoicesFilter {
         private Optional<String> supplierId = Optional.empty();
 
         private Optional<String> subsidiaryId = Optional.empty();
+
+        private Optional<String> customerId = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -385,11 +427,31 @@ public class InvoicesFilter {
             return this;
         }
 
+
+        /**
+         * Filter by customer id
+         */
+        public Builder customerId(String customerId) {
+            Utils.checkNotNull(customerId, "customerId");
+            this.customerId = Optional.ofNullable(customerId);
+            return this;
+        }
+
+        /**
+         * Filter by customer id
+         */
+        public Builder customerId(Optional<String> customerId) {
+            Utils.checkNotNull(customerId, "customerId");
+            this.customerId = customerId;
+            return this;
+        }
+
         public InvoicesFilter build() {
 
             return new InvoicesFilter(
                 idSince, updatedSince, createdSince,
-                number, supplierId, subsidiaryId);
+                number, supplierId, subsidiaryId,
+                customerId);
         }
 
     }

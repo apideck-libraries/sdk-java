@@ -41,28 +41,37 @@ public class CreditNotesFilter {
     @SpeakeasyMetadata("queryParam:name=subsidiary_id")
     private Optional<String> subsidiaryId;
 
+    /**
+     * Filter by customer id
+     */
+    @SpeakeasyMetadata("queryParam:name=customer_id")
+    private Optional<String> customerId;
+
     @JsonCreator
     public CreditNotesFilter(
             Optional<String> idSince,
             Optional<OffsetDateTime> updatedSince,
             Optional<OffsetDateTime> createdSince,
             Optional<String> number,
-            Optional<String> subsidiaryId) {
+            Optional<String> subsidiaryId,
+            Optional<String> customerId) {
         Utils.checkNotNull(idSince, "idSince");
         Utils.checkNotNull(updatedSince, "updatedSince");
         Utils.checkNotNull(createdSince, "createdSince");
         Utils.checkNotNull(number, "number");
         Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+        Utils.checkNotNull(customerId, "customerId");
         this.idSince = idSince;
         this.updatedSince = updatedSince;
         this.createdSince = createdSince;
         this.number = number;
         this.subsidiaryId = subsidiaryId;
+        this.customerId = customerId;
     }
     
     public CreditNotesFilter() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -98,6 +107,14 @@ public class CreditNotesFilter {
     @JsonIgnore
     public Optional<String> subsidiaryId() {
         return subsidiaryId;
+    }
+
+    /**
+     * Filter by customer id
+     */
+    @JsonIgnore
+    public Optional<String> customerId() {
+        return customerId;
     }
 
     public static Builder builder() {
@@ -190,6 +207,25 @@ public class CreditNotesFilter {
         return this;
     }
 
+    /**
+     * Filter by customer id
+     */
+    public CreditNotesFilter withCustomerId(String customerId) {
+        Utils.checkNotNull(customerId, "customerId");
+        this.customerId = Optional.ofNullable(customerId);
+        return this;
+    }
+
+
+    /**
+     * Filter by customer id
+     */
+    public CreditNotesFilter withCustomerId(Optional<String> customerId) {
+        Utils.checkNotNull(customerId, "customerId");
+        this.customerId = customerId;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -204,14 +240,15 @@ public class CreditNotesFilter {
             Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince) &&
             Utils.enhancedDeepEquals(this.createdSince, other.createdSince) &&
             Utils.enhancedDeepEquals(this.number, other.number) &&
-            Utils.enhancedDeepEquals(this.subsidiaryId, other.subsidiaryId);
+            Utils.enhancedDeepEquals(this.subsidiaryId, other.subsidiaryId) &&
+            Utils.enhancedDeepEquals(this.customerId, other.customerId);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             idSince, updatedSince, createdSince,
-            number, subsidiaryId);
+            number, subsidiaryId, customerId);
     }
     
     @Override
@@ -221,7 +258,8 @@ public class CreditNotesFilter {
                 "updatedSince", updatedSince,
                 "createdSince", createdSince,
                 "number", number,
-                "subsidiaryId", subsidiaryId);
+                "subsidiaryId", subsidiaryId,
+                "customerId", customerId);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -236,6 +274,8 @@ public class CreditNotesFilter {
         private Optional<String> number = Optional.empty();
 
         private Optional<String> subsidiaryId = Optional.empty();
+
+        private Optional<String> customerId = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -326,11 +366,30 @@ public class CreditNotesFilter {
             return this;
         }
 
+
+        /**
+         * Filter by customer id
+         */
+        public Builder customerId(String customerId) {
+            Utils.checkNotNull(customerId, "customerId");
+            this.customerId = Optional.ofNullable(customerId);
+            return this;
+        }
+
+        /**
+         * Filter by customer id
+         */
+        public Builder customerId(Optional<String> customerId) {
+            Utils.checkNotNull(customerId, "customerId");
+            this.customerId = customerId;
+            return this;
+        }
+
         public CreditNotesFilter build() {
 
             return new CreditNotesFilter(
                 idSince, updatedSince, createdSince,
-                number, subsidiaryId);
+                number, subsidiaryId, customerId);
         }
 
     }

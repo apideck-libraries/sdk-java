@@ -46,6 +46,7 @@ public class Application {
                     .updatedSince(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
                     .createdSince(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
                     .number("OIT00546")
+                    .customerId("123abc")
                     .build())
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))

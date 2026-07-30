@@ -28,21 +28,31 @@ public class QuotesFilter {
     @SpeakeasyMetadata("queryParam:name=number")
     private Optional<String> number;
 
+    /**
+     * Filter by customer id
+     */
+    @SpeakeasyMetadata("queryParam:name=customer_id")
+    private Optional<String> customerId;
+
     @JsonCreator
     public QuotesFilter(
             Optional<OffsetDateTime> updatedSince,
             Optional<OffsetDateTime> createdSince,
-            Optional<String> number) {
+            Optional<String> number,
+            Optional<String> customerId) {
         Utils.checkNotNull(updatedSince, "updatedSince");
         Utils.checkNotNull(createdSince, "createdSince");
         Utils.checkNotNull(number, "number");
+        Utils.checkNotNull(customerId, "customerId");
         this.updatedSince = updatedSince;
         this.createdSince = createdSince;
         this.number = number;
+        this.customerId = customerId;
     }
     
     public QuotesFilter() {
-        this(Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     @JsonIgnore
@@ -61,6 +71,14 @@ public class QuotesFilter {
     @JsonIgnore
     public Optional<String> number() {
         return number;
+    }
+
+    /**
+     * Filter by customer id
+     */
+    @JsonIgnore
+    public Optional<String> customerId() {
+        return customerId;
     }
 
     public static Builder builder() {
@@ -113,6 +131,25 @@ public class QuotesFilter {
         return this;
     }
 
+    /**
+     * Filter by customer id
+     */
+    public QuotesFilter withCustomerId(String customerId) {
+        Utils.checkNotNull(customerId, "customerId");
+        this.customerId = Optional.ofNullable(customerId);
+        return this;
+    }
+
+
+    /**
+     * Filter by customer id
+     */
+    public QuotesFilter withCustomerId(Optional<String> customerId) {
+        Utils.checkNotNull(customerId, "customerId");
+        this.customerId = customerId;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -125,13 +162,15 @@ public class QuotesFilter {
         return 
             Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince) &&
             Utils.enhancedDeepEquals(this.createdSince, other.createdSince) &&
-            Utils.enhancedDeepEquals(this.number, other.number);
+            Utils.enhancedDeepEquals(this.number, other.number) &&
+            Utils.enhancedDeepEquals(this.customerId, other.customerId);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            updatedSince, createdSince, number);
+            updatedSince, createdSince, number,
+            customerId);
     }
     
     @Override
@@ -139,7 +178,8 @@ public class QuotesFilter {
         return Utils.toString(QuotesFilter.class,
                 "updatedSince", updatedSince,
                 "createdSince", createdSince,
-                "number", number);
+                "number", number,
+                "customerId", customerId);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -150,6 +190,8 @@ public class QuotesFilter {
         private Optional<OffsetDateTime> createdSince = Optional.empty();
 
         private Optional<String> number = Optional.empty();
+
+        private Optional<String> customerId = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -200,10 +242,30 @@ public class QuotesFilter {
             return this;
         }
 
+
+        /**
+         * Filter by customer id
+         */
+        public Builder customerId(String customerId) {
+            Utils.checkNotNull(customerId, "customerId");
+            this.customerId = Optional.ofNullable(customerId);
+            return this;
+        }
+
+        /**
+         * Filter by customer id
+         */
+        public Builder customerId(Optional<String> customerId) {
+            Utils.checkNotNull(customerId, "customerId");
+            this.customerId = customerId;
+            return this;
+        }
+
         public QuotesFilter build() {
 
             return new QuotesFilter(
-                updatedSince, createdSince, number);
+                updatedSince, createdSince, number,
+                customerId);
         }
 
     }

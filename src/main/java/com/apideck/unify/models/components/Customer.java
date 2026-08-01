@@ -63,6 +63,11 @@ public class Customer {
     @JsonProperty("company_id")
     private JsonNullable<String> companyId;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("subsidiary")
+    private JsonNullable<? extends LinkedSubsidiary> subsidiary;
+
     /**
      * The category/type of the customer
      */
@@ -285,6 +290,7 @@ public class Customer {
             @JsonProperty("display_name") JsonNullable<String> displayName,
             @JsonProperty("company_name") JsonNullable<String> companyName,
             @JsonProperty("company_id") JsonNullable<String> companyId,
+            @JsonProperty("subsidiary") JsonNullable<? extends LinkedSubsidiary> subsidiary,
             @JsonProperty("customer_category") JsonNullable<String> customerCategory,
             @JsonProperty("title") JsonNullable<String> title,
             @JsonProperty("first_name") JsonNullable<String> firstName,
@@ -324,6 +330,7 @@ public class Customer {
         Utils.checkNotNull(displayName, "displayName");
         Utils.checkNotNull(companyName, "companyName");
         Utils.checkNotNull(companyId, "companyId");
+        Utils.checkNotNull(subsidiary, "subsidiary");
         Utils.checkNotNull(customerCategory, "customerCategory");
         Utils.checkNotNull(title, "title");
         Utils.checkNotNull(firstName, "firstName");
@@ -363,6 +370,7 @@ public class Customer {
         this.displayName = displayName;
         this.companyName = companyName;
         this.companyId = companyId;
+        this.subsidiary = subsidiary;
         this.customerCategory = customerCategory;
         this.title = title;
         this.firstName = firstName;
@@ -404,15 +412,16 @@ public class Customer {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+            Optional.empty());
     }
 
     /**
@@ -461,6 +470,12 @@ public class Customer {
     @JsonIgnore
     public JsonNullable<String> companyId() {
         return companyId;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<LinkedSubsidiary> subsidiary() {
+        return (JsonNullable<LinkedSubsidiary>) subsidiary;
     }
 
     /**
@@ -814,6 +829,18 @@ public class Customer {
     public Customer withCompanyId(JsonNullable<String> companyId) {
         Utils.checkNotNull(companyId, "companyId");
         this.companyId = companyId;
+        return this;
+    }
+
+    public Customer withSubsidiary(LinkedSubsidiary subsidiary) {
+        Utils.checkNotNull(subsidiary, "subsidiary");
+        this.subsidiary = JsonNullable.of(subsidiary);
+        return this;
+    }
+
+    public Customer withSubsidiary(JsonNullable<? extends LinkedSubsidiary> subsidiary) {
+        Utils.checkNotNull(subsidiary, "subsidiary");
+        this.subsidiary = subsidiary;
         return this;
     }
 
@@ -1381,6 +1408,7 @@ public class Customer {
             Utils.enhancedDeepEquals(this.displayName, other.displayName) &&
             Utils.enhancedDeepEquals(this.companyName, other.companyName) &&
             Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
+            Utils.enhancedDeepEquals(this.subsidiary, other.subsidiary) &&
             Utils.enhancedDeepEquals(this.customerCategory, other.customerCategory) &&
             Utils.enhancedDeepEquals(this.title, other.title) &&
             Utils.enhancedDeepEquals(this.firstName, other.firstName) &&
@@ -1421,17 +1449,18 @@ public class Customer {
         return Utils.enhancedHash(
             id, downstreamId, displayId,
             displayName, companyName, companyId,
-            customerCategory, title, firstName,
-            middleName, lastName, suffix,
-            individual, project, addresses,
-            phoneNumbers, emails, websites,
-            bankAccounts, notes, taxRate,
-            taxNumber, taxable, currency,
-            account, parent, status,
-            paymentMethod, terms, termsId,
-            channel, customFields, customMappings,
-            updatedBy, createdBy, updatedAt,
-            createdAt, rowVersion, passThrough);
+            subsidiary, customerCategory, title,
+            firstName, middleName, lastName,
+            suffix, individual, project,
+            addresses, phoneNumbers, emails,
+            websites, bankAccounts, notes,
+            taxRate, taxNumber, taxable,
+            currency, account, parent,
+            status, paymentMethod, terms,
+            termsId, channel, customFields,
+            customMappings, updatedBy, createdBy,
+            updatedAt, createdAt, rowVersion,
+            passThrough);
     }
     
     @Override
@@ -1443,6 +1472,7 @@ public class Customer {
                 "displayName", displayName,
                 "companyName", companyName,
                 "companyId", companyId,
+                "subsidiary", subsidiary,
                 "customerCategory", customerCategory,
                 "title", title,
                 "firstName", firstName,
@@ -1492,6 +1522,8 @@ public class Customer {
         private JsonNullable<String> companyName = JsonNullable.undefined();
 
         private JsonNullable<String> companyId = JsonNullable.undefined();
+
+        private JsonNullable<? extends LinkedSubsidiary> subsidiary = JsonNullable.undefined();
 
         private JsonNullable<String> customerCategory = JsonNullable.undefined();
 
@@ -1665,6 +1697,19 @@ public class Customer {
         public Builder companyId(JsonNullable<String> companyId) {
             Utils.checkNotNull(companyId, "companyId");
             this.companyId = companyId;
+            return this;
+        }
+
+
+        public Builder subsidiary(LinkedSubsidiary subsidiary) {
+            Utils.checkNotNull(subsidiary, "subsidiary");
+            this.subsidiary = JsonNullable.of(subsidiary);
+            return this;
+        }
+
+        public Builder subsidiary(JsonNullable<? extends LinkedSubsidiary> subsidiary) {
+            Utils.checkNotNull(subsidiary, "subsidiary");
+            this.subsidiary = subsidiary;
             return this;
         }
 
@@ -2246,17 +2291,18 @@ public class Customer {
             return new Customer(
                 id, downstreamId, displayId,
                 displayName, companyName, companyId,
-                customerCategory, title, firstName,
-                middleName, lastName, suffix,
-                individual, project, addresses,
-                phoneNumbers, emails, websites,
-                bankAccounts, notes, taxRate,
-                taxNumber, taxable, currency,
-                account, parent, status,
-                paymentMethod, terms, termsId,
-                channel, customFields, customMappings,
-                updatedBy, createdBy, updatedAt,
-                createdAt, rowVersion, passThrough);
+                subsidiary, customerCategory, title,
+                firstName, middleName, lastName,
+                suffix, individual, project,
+                addresses, phoneNumbers, emails,
+                websites, bankAccounts, notes,
+                taxRate, taxNumber, taxable,
+                currency, account, parent,
+                status, paymentMethod, terms,
+                termsId, channel, customFields,
+                customMappings, updatedBy, createdBy,
+                updatedAt, createdAt, rowVersion,
+                passThrough);
         }
 
     }

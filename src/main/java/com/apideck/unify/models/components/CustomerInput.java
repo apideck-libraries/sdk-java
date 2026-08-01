@@ -47,6 +47,11 @@ public class CustomerInput {
     @JsonProperty("company_id")
     private JsonNullable<String> companyId;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("subsidiary")
+    private JsonNullable<? extends LinkedSubsidiaryInput> subsidiary;
+
     /**
      * The category/type of the customer
      */
@@ -232,6 +237,7 @@ public class CustomerInput {
             @JsonProperty("display_name") JsonNullable<String> displayName,
             @JsonProperty("company_name") JsonNullable<String> companyName,
             @JsonProperty("company_id") JsonNullable<String> companyId,
+            @JsonProperty("subsidiary") JsonNullable<? extends LinkedSubsidiaryInput> subsidiary,
             @JsonProperty("customer_category") JsonNullable<String> customerCategory,
             @JsonProperty("title") JsonNullable<String> title,
             @JsonProperty("first_name") JsonNullable<String> firstName,
@@ -264,6 +270,7 @@ public class CustomerInput {
         Utils.checkNotNull(displayName, "displayName");
         Utils.checkNotNull(companyName, "companyName");
         Utils.checkNotNull(companyId, "companyId");
+        Utils.checkNotNull(subsidiary, "subsidiary");
         Utils.checkNotNull(customerCategory, "customerCategory");
         Utils.checkNotNull(title, "title");
         Utils.checkNotNull(firstName, "firstName");
@@ -296,6 +303,7 @@ public class CustomerInput {
         this.displayName = displayName;
         this.companyName = companyName;
         this.companyId = companyId;
+        this.subsidiary = subsidiary;
         this.customerCategory = customerCategory;
         this.title = title;
         this.firstName = firstName;
@@ -331,13 +339,13 @@ public class CustomerInput {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined(), Optional.empty());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -370,6 +378,12 @@ public class CustomerInput {
     @JsonIgnore
     public JsonNullable<String> companyId() {
         return companyId;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<LinkedSubsidiaryInput> subsidiary() {
+        return (JsonNullable<LinkedSubsidiaryInput>) subsidiary;
     }
 
     /**
@@ -655,6 +669,18 @@ public class CustomerInput {
     public CustomerInput withCompanyId(JsonNullable<String> companyId) {
         Utils.checkNotNull(companyId, "companyId");
         this.companyId = companyId;
+        return this;
+    }
+
+    public CustomerInput withSubsidiary(LinkedSubsidiaryInput subsidiary) {
+        Utils.checkNotNull(subsidiary, "subsidiary");
+        this.subsidiary = JsonNullable.of(subsidiary);
+        return this;
+    }
+
+    public CustomerInput withSubsidiary(JsonNullable<? extends LinkedSubsidiaryInput> subsidiary) {
+        Utils.checkNotNull(subsidiary, "subsidiary");
+        this.subsidiary = subsidiary;
         return this;
     }
 
@@ -1130,6 +1156,7 @@ public class CustomerInput {
             Utils.enhancedDeepEquals(this.displayName, other.displayName) &&
             Utils.enhancedDeepEquals(this.companyName, other.companyName) &&
             Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
+            Utils.enhancedDeepEquals(this.subsidiary, other.subsidiary) &&
             Utils.enhancedDeepEquals(this.customerCategory, other.customerCategory) &&
             Utils.enhancedDeepEquals(this.title, other.title) &&
             Utils.enhancedDeepEquals(this.firstName, other.firstName) &&
@@ -1164,16 +1191,16 @@ public class CustomerInput {
     public int hashCode() {
         return Utils.enhancedHash(
             displayId, displayName, companyName,
-            companyId, customerCategory, title,
-            firstName, middleName, lastName,
-            suffix, individual, project,
-            addresses, phoneNumbers, emails,
-            websites, bankAccounts, notes,
-            taxRate, taxNumber, taxable,
-            currency, account, parent,
-            status, paymentMethod, terms,
-            termsId, channel, customFields,
-            rowVersion, passThrough);
+            companyId, subsidiary, customerCategory,
+            title, firstName, middleName,
+            lastName, suffix, individual,
+            project, addresses, phoneNumbers,
+            emails, websites, bankAccounts,
+            notes, taxRate, taxNumber,
+            taxable, currency, account,
+            parent, status, paymentMethod,
+            terms, termsId, channel,
+            customFields, rowVersion, passThrough);
     }
     
     @Override
@@ -1183,6 +1210,7 @@ public class CustomerInput {
                 "displayName", displayName,
                 "companyName", companyName,
                 "companyId", companyId,
+                "subsidiary", subsidiary,
                 "customerCategory", customerCategory,
                 "title", title,
                 "firstName", firstName,
@@ -1223,6 +1251,8 @@ public class CustomerInput {
         private JsonNullable<String> companyName = JsonNullable.undefined();
 
         private JsonNullable<String> companyId = JsonNullable.undefined();
+
+        private JsonNullable<? extends LinkedSubsidiaryInput> subsidiary = JsonNullable.undefined();
 
         private JsonNullable<String> customerCategory = JsonNullable.undefined();
 
@@ -1357,6 +1387,19 @@ public class CustomerInput {
         public Builder companyId(JsonNullable<String> companyId) {
             Utils.checkNotNull(companyId, "companyId");
             this.companyId = companyId;
+            return this;
+        }
+
+
+        public Builder subsidiary(LinkedSubsidiaryInput subsidiary) {
+            Utils.checkNotNull(subsidiary, "subsidiary");
+            this.subsidiary = JsonNullable.of(subsidiary);
+            return this;
+        }
+
+        public Builder subsidiary(JsonNullable<? extends LinkedSubsidiaryInput> subsidiary) {
+            Utils.checkNotNull(subsidiary, "subsidiary");
+            this.subsidiary = subsidiary;
             return this;
         }
 
@@ -1842,16 +1885,16 @@ public class CustomerInput {
 
             return new CustomerInput(
                 displayId, displayName, companyName,
-                companyId, customerCategory, title,
-                firstName, middleName, lastName,
-                suffix, individual, project,
-                addresses, phoneNumbers, emails,
-                websites, bankAccounts, notes,
-                taxRate, taxNumber, taxable,
-                currency, account, parent,
-                status, paymentMethod, terms,
-                termsId, channel, customFields,
-                rowVersion, passThrough);
+                companyId, subsidiary, customerCategory,
+                title, firstName, middleName,
+                lastName, suffix, individual,
+                project, addresses, phoneNumbers,
+                emails, websites, bankAccounts,
+                notes, taxRate, taxNumber,
+                taxable, currency, account,
+                parent, status, paymentMethod,
+                terms, termsId, channel,
+                customFields, rowVersion, passThrough);
         }
 
     }

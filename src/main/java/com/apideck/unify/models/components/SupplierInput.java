@@ -47,6 +47,11 @@ public class SupplierInput {
     @JsonProperty("company_id")
     private JsonNullable<String> companyId;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("subsidiary")
+    private JsonNullable<? extends LinkedSubsidiaryInput> subsidiary;
+
     /**
      * The category/type of the supplier
      */
@@ -256,6 +261,7 @@ public class SupplierInput {
             @JsonProperty("display_name") JsonNullable<String> displayName,
             @JsonProperty("company_name") JsonNullable<String> companyName,
             @JsonProperty("company_id") JsonNullable<String> companyId,
+            @JsonProperty("subsidiary") JsonNullable<? extends LinkedSubsidiaryInput> subsidiary,
             @JsonProperty("supplier_category") JsonNullable<String> supplierCategory,
             @JsonProperty("title") JsonNullable<String> title,
             @JsonProperty("first_name") JsonNullable<String> firstName,
@@ -292,6 +298,7 @@ public class SupplierInput {
         Utils.checkNotNull(displayName, "displayName");
         Utils.checkNotNull(companyName, "companyName");
         Utils.checkNotNull(companyId, "companyId");
+        Utils.checkNotNull(subsidiary, "subsidiary");
         Utils.checkNotNull(supplierCategory, "supplierCategory");
         Utils.checkNotNull(title, "title");
         Utils.checkNotNull(firstName, "firstName");
@@ -328,6 +335,7 @@ public class SupplierInput {
         this.displayName = displayName;
         this.companyName = companyName;
         this.companyId = companyId;
+        this.subsidiary = subsidiary;
         this.supplierCategory = supplierCategory;
         this.title = title;
         this.firstName = firstName;
@@ -366,15 +374,16 @@ public class SupplierInput {
         this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), Optional.empty());
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -407,6 +416,12 @@ public class SupplierInput {
     @JsonIgnore
     public JsonNullable<String> companyId() {
         return companyId;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<LinkedSubsidiaryInput> subsidiary() {
+        return (JsonNullable<LinkedSubsidiaryInput>) subsidiary;
     }
 
     /**
@@ -719,6 +734,18 @@ public class SupplierInput {
     public SupplierInput withCompanyId(JsonNullable<String> companyId) {
         Utils.checkNotNull(companyId, "companyId");
         this.companyId = companyId;
+        return this;
+    }
+
+    public SupplierInput withSubsidiary(LinkedSubsidiaryInput subsidiary) {
+        Utils.checkNotNull(subsidiary, "subsidiary");
+        this.subsidiary = JsonNullable.of(subsidiary);
+        return this;
+    }
+
+    public SupplierInput withSubsidiary(JsonNullable<? extends LinkedSubsidiaryInput> subsidiary) {
+        Utils.checkNotNull(subsidiary, "subsidiary");
+        this.subsidiary = subsidiary;
         return this;
     }
 
@@ -1258,6 +1285,7 @@ public class SupplierInput {
             Utils.enhancedDeepEquals(this.displayName, other.displayName) &&
             Utils.enhancedDeepEquals(this.companyName, other.companyName) &&
             Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
+            Utils.enhancedDeepEquals(this.subsidiary, other.subsidiary) &&
             Utils.enhancedDeepEquals(this.supplierCategory, other.supplierCategory) &&
             Utils.enhancedDeepEquals(this.title, other.title) &&
             Utils.enhancedDeepEquals(this.firstName, other.firstName) &&
@@ -1296,17 +1324,18 @@ public class SupplierInput {
     public int hashCode() {
         return Utils.enhancedHash(
             displayId, displayName, companyName,
-            companyId, supplierCategory, title,
-            firstName, middleName, lastName,
-            suffix, individual, addresses,
-            phoneNumbers, emails, websites,
-            bankAccounts, notes, taxRate,
-            taxNumber, taxable, currency,
-            account, status, paymentMethod,
-            terms, termsId, channel,
-            issuedMethod, issuedEmail, customFields,
-            taxDetails, taxStatusDetails, rowVersion,
-            passThrough, subsidiaryId, integrationSystemId);
+            companyId, subsidiary, supplierCategory,
+            title, firstName, middleName,
+            lastName, suffix, individual,
+            addresses, phoneNumbers, emails,
+            websites, bankAccounts, notes,
+            taxRate, taxNumber, taxable,
+            currency, account, status,
+            paymentMethod, terms, termsId,
+            channel, issuedMethod, issuedEmail,
+            customFields, taxDetails, taxStatusDetails,
+            rowVersion, passThrough, subsidiaryId,
+            integrationSystemId);
     }
     
     @Override
@@ -1316,6 +1345,7 @@ public class SupplierInput {
                 "displayName", displayName,
                 "companyName", companyName,
                 "companyId", companyId,
+                "subsidiary", subsidiary,
                 "supplierCategory", supplierCategory,
                 "title", title,
                 "firstName", firstName,
@@ -1360,6 +1390,8 @@ public class SupplierInput {
         private JsonNullable<String> companyName = JsonNullable.undefined();
 
         private JsonNullable<String> companyId = JsonNullable.undefined();
+
+        private JsonNullable<? extends LinkedSubsidiaryInput> subsidiary = JsonNullable.undefined();
 
         private JsonNullable<String> supplierCategory = JsonNullable.undefined();
 
@@ -1502,6 +1534,19 @@ public class SupplierInput {
         public Builder companyId(JsonNullable<String> companyId) {
             Utils.checkNotNull(companyId, "companyId");
             this.companyId = companyId;
+            return this;
+        }
+
+
+        public Builder subsidiary(LinkedSubsidiaryInput subsidiary) {
+            Utils.checkNotNull(subsidiary, "subsidiary");
+            this.subsidiary = JsonNullable.of(subsidiary);
+            return this;
+        }
+
+        public Builder subsidiary(JsonNullable<? extends LinkedSubsidiaryInput> subsidiary) {
+            Utils.checkNotNull(subsidiary, "subsidiary");
+            this.subsidiary = subsidiary;
             return this;
         }
 
@@ -2051,17 +2096,18 @@ public class SupplierInput {
 
             return new SupplierInput(
                 displayId, displayName, companyName,
-                companyId, supplierCategory, title,
-                firstName, middleName, lastName,
-                suffix, individual, addresses,
-                phoneNumbers, emails, websites,
-                bankAccounts, notes, taxRate,
-                taxNumber, taxable, currency,
-                account, status, paymentMethod,
-                terms, termsId, channel,
-                issuedMethod, issuedEmail, customFields,
-                taxDetails, taxStatusDetails, rowVersion,
-                passThrough, subsidiaryId, integrationSystemId);
+                companyId, subsidiary, supplierCategory,
+                title, firstName, middleName,
+                lastName, suffix, individual,
+                addresses, phoneNumbers, emails,
+                websites, bankAccounts, notes,
+                taxRate, taxNumber, taxable,
+                currency, account, status,
+                paymentMethod, terms, termsId,
+                channel, issuedMethod, issuedEmail,
+                customFields, taxDetails, taxStatusDetails,
+                rowVersion, passThrough, subsidiaryId,
+                integrationSystemId);
         }
 
     }

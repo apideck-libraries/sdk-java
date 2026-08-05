@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 38254260-287a-40b6-9ac5-c2fcb654c9cc
 management:
-  docChecksum: 95b2dae475577f0ef5a4dcdd721dfd87
-  docVersion: 10.29.1
-  speakeasyVersion: 1.791.1
+  docChecksum: 43b03ba7a55d1dfed115dfc868b63feb
+  docVersion: 10.30.0
+  speakeasyVersion: 1.791.3
   generationVersion: 2.926.2
-  releaseVersion: 0.34.2
-  configChecksum: 948f0029a549c170b6f28b270cbe3e68
+  releaseVersion: 0.35.0
+  configChecksum: f31d46dada6699b4f94786315fbf2691
   repoURL: https://github.com/apideck-libraries/sdk-java.git
   installationURL: https://github.com/apideck-libraries/sdk-java
   published: true
 persistentEdits:
-  generation_id: c779db68-467a-48f2-9d9c-b94dcc0da169
-  pristine_commit_hash: b328842e35feee86ec9fe1af1ce964d8d26b759c
-  pristine_tree_hash: 2aea97723c405762e5c0587ba0c6363db623c71a
+  generation_id: f9b0d87b-f5a3-49fd-a87e-5e0058676b5c
+  pristine_commit_hash: a483459a8bad38df88a7d670452d786f4f908ecf
+  pristine_tree_hash: 49f1855c28efc54724c3e030507965cef200bacd
 features:
   java:
     acceptHeaders: 2.81.2
@@ -7185,8 +7185,8 @@ trackedFiles:
     pristine_git_object: c755c6aa377f358344e761e9cc3e7b67bc1fb479
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:796632341635b5228a775c6051a32f483c9c9464
-    pristine_git_object: beed810ec7cf02b033c39a57c4cc6b747302d13c
+    last_write_checksum: sha1:37ac15ac7f9db619193e0263e8f308e2635e105f
+    pristine_git_object: 52ad00c56b66f7824f69b33265035e25492fdc85
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -7993,8 +7993,8 @@ trackedFiles:
     pristine_git_object: 7296db7ebcdcff7ee348d1f993fc4aa2a7e6c145
   src/main/java/com/apideck/unify/SDKConfiguration.java:
     id: a2b330a87142
-    last_write_checksum: sha1:8703836af0bc3dc9ee29982bb780ce17499374c4
-    pristine_git_object: 1dd2b4d35100ae34d76aa212b4ef78ab6f9da5cf
+    last_write_checksum: sha1:3db6c37e8cbaa21635a7c2d93048dde922ff0efb
+    pristine_git_object: f15f9ab4ab8e3fe3056b92dec49653d8fe010f19
   src/main/java/com/apideck/unify/SecuritySource.java:
     id: e4566c6c806b
     last_write_checksum: sha1:101bf1a9f5cf4e8c37abb4540147276eebb2bab0

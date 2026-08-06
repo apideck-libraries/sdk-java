@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 38254260-287a-40b6-9ac5-c2fcb654c9cc
 management:
-  docChecksum: 43b03ba7a55d1dfed115dfc868b63feb
-  docVersion: 10.30.0
-  speakeasyVersion: 1.791.3
-  generationVersion: 2.926.2
-  releaseVersion: 0.35.0
-  configChecksum: f31d46dada6699b4f94786315fbf2691
+  docChecksum: eedf22cc8734bca9750554db67309feb
+  docVersion: 10.31.0
+  speakeasyVersion: 1.791.4
+  generationVersion: 2.926.8
+  releaseVersion: 0.36.0
+  configChecksum: 066ab1d0283e60d8c6c3ee4f560e0c72
   repoURL: https://github.com/apideck-libraries/sdk-java.git
   installationURL: https://github.com/apideck-libraries/sdk-java
   published: true
 persistentEdits:
-  generation_id: f9b0d87b-f5a3-49fd-a87e-5e0058676b5c
-  pristine_commit_hash: a483459a8bad38df88a7d670452d786f4f908ecf
-  pristine_tree_hash: 49f1855c28efc54724c3e030507965cef200bacd
+  generation_id: f20245b8-deb8-4090-ba2d-f749725f7492
+  pristine_commit_hash: b5c460c32b926e336fac3bf24485f33f14bef3d4
+  pristine_tree_hash: 92d076f3e7b429363ffc5be2e39c5860dda9afb9
 features:
   java:
     acceptHeaders: 2.81.2
@@ -627,6 +627,10 @@ trackedFiles:
     id: ca33d7bf1c14
     last_write_checksum: sha1:062e90eac328c11ec0e4c7cbd45c6d851cd695c3
     pristine_git_object: 428f7aa97ff96340bca014f8e68a5d1317344151
+  docs/models/components/ConnectionMigrateData.md:
+    id: f0a6f3a3fa2f
+    last_write_checksum: sha1:a05c6028c7103d4160af86cea737b2ff0180d8e6
+    pristine_git_object: 166c9c374c704954d276dbca6e02340cd70130b2
   docs/models/components/ConnectionState.md:
     id: 3f25902602a1
     last_write_checksum: sha1:1b8d28fdd1a48b8669d176cce47b8ba6784abc88
@@ -641,8 +645,8 @@ trackedFiles:
     pristine_git_object: 5d9b0e888fecc9a2a6152c05b637e7496aefd506
   docs/models/components/Connector.md:
     id: a4414626cb03
-    last_write_checksum: sha1:348b8fc39adf024ca69e473aafd8c50e57154441
-    pristine_git_object: 9fdbf997d30c102c3982fa05fad51c0828747651
+    last_write_checksum: sha1:e6c2d51321f0363f049e559edab66167e28809f5
+    pristine_git_object: 546aec2b9c76e117a7de73f8e283bfe9476d06e2
   docs/models/components/ConnectorAuthType.md:
     id: bcd7cd83696c
     last_write_checksum: sha1:fcb115ab4cbf3a163cb3a362ddc18f1b579e070f
@@ -2275,6 +2279,10 @@ trackedFiles:
     id: 93b5022cff5d
     last_write_checksum: sha1:31c0225e60de6c74fe5ad63fa798a361d8ff1c3c
     pristine_git_object: c26f663e4c812a6b5025e210fbbb73df630740b7
+  docs/models/components/GetListMembersResponse.md:
+    id: 067148b051f6
+    last_write_checksum: sha1:0188f194be7d70a60001def53411a0a2751ad07a
+    pristine_git_object: 983198ec0631e33dd7ccec777bf8127f2da9f2c9
   docs/models/components/GetListResponse.md:
     id: 761ae690426d
     last_write_checksum: sha1:3391ec2cface9bdfd377dc025e493fc5704ad4ea
@@ -2851,6 +2859,10 @@ trackedFiles:
     id: 8987de5a9010
     last_write_checksum: sha1:c7a5e52b1906fc663a71a61d1226a72c648ba4c0
     pristine_git_object: 24cbe52588bb410a11290d887c874deb2d778c6c
+  docs/models/components/ListMember.md:
+    id: 401ea851f071
+    last_write_checksum: sha1:98c81a15a98ddb9fb7c7fa1bf9d59ad4e6fa89ae
+    pristine_git_object: 28bf317b44f68f6a0a0f59c60d68ecbeb5ace029
   docs/models/components/ListType.md:
     id: d6aad088dbd4
     last_write_checksum: sha1:2722e1eaaded74204b9b26a9081c0209006443c6
@@ -3957,8 +3969,8 @@ trackedFiles:
     pristine_git_object: 42243949f9be77d2dd7dc7c06d1dace2879186d2
   docs/models/components/WebhookEventType.md:
     id: b443ab58ee9b
-    last_write_checksum: sha1:4940427cfe34f4154efbb1582b8f988a8d66ac36
-    pristine_git_object: e70823f15c8bf4ddee0b511b76a585f1bf17c13a
+    last_write_checksum: sha1:080282684cdde2c3f60b1b381eae484d3648bc56
+    pristine_git_object: 55b3f4be5b9ce72d8b25bdd16c86461cd8509d4b
   docs/models/components/WebhookSubscription.md:
     id: 1307d98a814a
     last_write_checksum: sha1:0619ab465e2edf6adf1be4927cb39a85c684689e
@@ -3991,6 +4003,14 @@ trackedFiles:
     id: 3badb3662916
     last_write_checksum: sha1:5a348e5b1a0c6f7e11155ee13e070ead85a1ded4
     pristine_git_object: c48aef3101abc52c7c444d40626d5e3ba2371620
+  docs/models/errors/ConflictResponse.md:
+    id: 310e80981459
+    last_write_checksum: sha1:65c2ecfb5d7d3bfb76a608e61299affd74a636bd
+    pristine_git_object: b90eec37e96b56e53e45c85f85e89552efef9dca
+  docs/models/errors/ConflictResponseDetail.md:
+    id: 68c442fcdf95
+    last_write_checksum: sha1:49f13ce11a480b6e177fb0119ded0a9abc2481c7
+    pristine_git_object: 29d13021f7cfe4d44695141e4ddc16095b543ec7
   docs/models/errors/Debug.md:
     id: 9a3c558efb36
     last_write_checksum: sha1:6b1f6ba0988d77236fff9ed5ac80effe14cc8e2c
@@ -5651,6 +5671,14 @@ trackedFiles:
     id: 3e357f793bd4
     last_write_checksum: sha1:c5e8f28414324e338ccdadd7fb1c5064d4e2f64b
     pristine_git_object: 83653fb1192dfc4f781ee4250fafb108445c7d8b
+  docs/models/operations/CrmListMembersAllRequest.md:
+    id: 4a1d87141534
+    last_write_checksum: sha1:b33cc738b9647fd41754a9d9fd7ff939524497cb
+    pristine_git_object: 0cb73577a46dcabee8479195d99dae823d8b1926
+  docs/models/operations/CrmListMembersAllResponse.md:
+    id: 42194a43d753
+    last_write_checksum: sha1:b2d1aa80edcd86211c81513e02a5929f87603170
+    pristine_git_object: f60836d10497b08256796d0b976d4e3c9b389a79
   docs/models/operations/CrmListsAllRequest.md:
     id: ffafabfb415f
     last_write_checksum: sha1:82b13aaf17c909ece2d62cf3c749eabf2f34fec3
@@ -6639,6 +6667,14 @@ trackedFiles:
     id: 0ac05cfbd34e
     last_write_checksum: sha1:72b81b29ac4c48cacd93ec4336f68d6e0ea73b98
     pristine_git_object: 11ac8cba5a39a952dda81afa2eac89b6d6b0cec6
+  docs/models/operations/VaultConnectionsMigrateRequest.md:
+    id: c642946545ba
+    last_write_checksum: sha1:dfd7136b64ee29242b079473ea3f067bba0a3f24
+    pristine_git_object: e9b2ba5763da3464b610c299a33a80a02816258b
+  docs/models/operations/VaultConnectionsMigrateResponse.md:
+    id: aa704cb9f20d
+    last_write_checksum: sha1:dd74229843ab9cee8604762f4a421a723634eb29
+    pristine_git_object: 8b2d24b3888797444c4205285a98d48181495187
   docs/models/operations/VaultConnectionsOneRequest.md:
     id: 67d8f01a89c5
     last_write_checksum: sha1:ed562f4263db4d5ff7deec27bf8dec4765df42ce
@@ -6933,8 +6969,8 @@ trackedFiles:
     pristine_git_object: 1057d4ecf98b512cac73713dd6985f6a0595f6de
   docs/sdks/connections/README.md:
     id: 3ef8931411ea
-    last_write_checksum: sha1:835c557de24f0c8558a5df40280a6ea4299f219c
-    pristine_git_object: 45c09e45271d0e148b9a54438fa9d2d645190805
+    last_write_checksum: sha1:fd0b9936627e228f8ebaf93eabeb6058092b8e82
+    pristine_git_object: 5d3a19b502d12554c0191dca37e4026cfbcc2073
   docs/sdks/connectionsettings/README.md:
     id: 644e68edbec9
     last_write_checksum: sha1:1df8fce7d8de797d267923da732b37d750a8084a
@@ -7063,6 +7099,10 @@ trackedFiles:
     id: 5169c83ca089
     last_write_checksum: sha1:1fd282b0fcf3108255eaef46a340ce016098f4cb
     pristine_git_object: 0538a900e095a85b3f0bbbbe0d73014d04306bdf
+  docs/sdks/listmembers/README.md:
+    id: 25721cb6a379
+    last_write_checksum: sha1:40497ce6f0d56379a167439520a03c5730f6fb25
+    pristine_git_object: a78dba8130a56728a586baf69e14af382eeddf4f
   docs/sdks/lists/README.md:
     id: 2bf91000d730
     last_write_checksum: sha1:982136f17c79d97e272a81129ec30d941ad55da4
@@ -7185,8 +7225,8 @@ trackedFiles:
     pristine_git_object: c755c6aa377f358344e761e9cc3e7b67bc1fb479
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:37ac15ac7f9db619193e0263e8f308e2635e105f
-    pristine_git_object: 52ad00c56b66f7824f69b33265035e25492fdc85
+    last_write_checksum: sha1:1fefe51d3c28a1eadd67b70724ef60140728761f
+    pristine_git_object: 3a715d05085b0a397f305dbedbe75d8e7588b5ed
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -7413,8 +7453,8 @@ trackedFiles:
     pristine_git_object: c98fdb4b2f519622c6a9aa84f89c647c92f852a8
   src/main/java/com/apideck/unify/AsyncConnections.java:
     id: bc4766f0ecb5
-    last_write_checksum: sha1:cd6aee7749a227dd3e2804d799d7da143ed723db
-    pristine_git_object: c1544035e008806224534ae675e7f9040b885156
+    last_write_checksum: sha1:6b6cccab1632732de4d7c074bf3a7c0670b2976b
+    pristine_git_object: 814edb36ca08acc703c48c2715e7af0bf85bc278
   src/main/java/com/apideck/unify/AsyncConnector.java:
     id: d49cb156989d
     last_write_checksum: sha1:de61fa8bf65e9539a83ddc454f3fdd0ab96daf3d
@@ -7453,8 +7493,8 @@ trackedFiles:
     pristine_git_object: 66540037c5b7a17728a2ae659f22fc1acf6f514d
   src/main/java/com/apideck/unify/AsyncCrm.java:
     id: a28caad80112
-    last_write_checksum: sha1:f3572394cd192ec623a11ace72cabfc6a4380ca8
-    pristine_git_object: 34e560962225e5f8aabe149974d45f786dd1dab8
+    last_write_checksum: sha1:f32703dd2fed8fabc2621be1b9b3e753b794106b
+    pristine_git_object: bf3c1dba3ff55becf9fb287c8b8c646d2f33e558
   src/main/java/com/apideck/unify/AsyncCustomFields.java:
     id: 69d77e8b25c1
     last_write_checksum: sha1:98a7f9d49fb01e2dd49327b676554e19ac4ed6d4
@@ -7563,6 +7603,10 @@ trackedFiles:
     id: 79f16f640c10
     last_write_checksum: sha1:b4e598090845f24cbcf2bd0fe6004973cf76a6e3
     pristine_git_object: 0effeda73ff51990613c995547feac98d12eab1a
+  src/main/java/com/apideck/unify/AsyncListMembers.java:
+    id: c21cd76af227
+    last_write_checksum: sha1:e2720293797a857a2245430e2bc4373c989cd392
+    pristine_git_object: 2a3590b0a16e40805e16588c60a4d59e1821c533
   src/main/java/com/apideck/unify/AsyncLists.java:
     id: 65ecb2bb088d
     last_write_checksum: sha1:158827710ec2ea451dc76000a7788130424c2fc4
@@ -7773,8 +7817,8 @@ trackedFiles:
     pristine_git_object: f8e47f67acd3e23c525997e51758df8ca4c008f5
   src/main/java/com/apideck/unify/Connections.java:
     id: dae5fcb05e3e
-    last_write_checksum: sha1:b121e2ae123f11e0dc053e0a5f5362db5182362f
-    pristine_git_object: 1b218d6e41db58dae13062d1f5e8a30a46fb13a1
+    last_write_checksum: sha1:84633eb6f0e8c643fd902bbc370b8deb6aa23aaf
+    pristine_git_object: 492b72e4265f0eb608c57e5baa4598e54b6bfbce
   src/main/java/com/apideck/unify/Connector.java:
     id: 25c09ed1dbec
     last_write_checksum: sha1:1411a90185caae4841bfaa8980df05d4348a750e
@@ -7813,8 +7857,8 @@ trackedFiles:
     pristine_git_object: 1ecb42c20467643a819d560d0da0fce6049c7606
   src/main/java/com/apideck/unify/Crm.java:
     id: 33fc9a1fa052
-    last_write_checksum: sha1:a30341438003adce6e08b97bc71edcc49db7d14a
-    pristine_git_object: 94cf3b000938c1bea534d1f248357ee07b85a0b5
+    last_write_checksum: sha1:fc0a45499f4e2e7c7bd92082940a292c47af3574
+    pristine_git_object: 33fbc81d082a8ee1b9253c379de57d71edaf0af8
   src/main/java/com/apideck/unify/CustomFields.java:
     id: ea0ddfd13581
     last_write_checksum: sha1:3e1668830e09bdc5b395879446b8f6ad01809933
@@ -7923,6 +7967,10 @@ trackedFiles:
     id: 00d0662dfaf1
     last_write_checksum: sha1:2bfaedbbe0b7348595836364752bbf22a09f2706
     pristine_git_object: 2643381397706292692d7ea19bd6212c816e3327
+  src/main/java/com/apideck/unify/ListMembers.java:
+    id: 22884dc8e2d9
+    last_write_checksum: sha1:33ca1f6db8775bcbb9536fd6ce85539c4d014004
+    pristine_git_object: 98d7f48d353bab048a76176dcff87849828404ba
   src/main/java/com/apideck/unify/Lists.java:
     id: eda99351a855
     last_write_checksum: sha1:379305b4a1c54d7cf445f5e36a8e241d184ea15e
@@ -7993,8 +8041,8 @@ trackedFiles:
     pristine_git_object: 7296db7ebcdcff7ee348d1f993fc4aa2a7e6c145
   src/main/java/com/apideck/unify/SDKConfiguration.java:
     id: a2b330a87142
-    last_write_checksum: sha1:3db6c37e8cbaa21635a7c2d93048dde922ff0efb
-    pristine_git_object: f15f9ab4ab8e3fe3056b92dec49653d8fe010f19
+    last_write_checksum: sha1:378f8e201ba3928a21aa5750cd14a013ecb7f17b
+    pristine_git_object: d1764c99b5d7348cc46e6f2a015172369299c297
   src/main/java/com/apideck/unify/SecuritySource.java:
     id: e4566c6c806b
     last_write_checksum: sha1:101bf1a9f5cf4e8c37abb4540147276eebb2bab0
@@ -8631,6 +8679,10 @@ trackedFiles:
     id: fafa029c3ff2
     last_write_checksum: sha1:4e1c6516d2dd55420cac4906ea27e078e6fc2196
     pristine_git_object: e61e094add6d74450f8548008f8f37464ce1c4ff
+  src/main/java/com/apideck/unify/models/components/ConnectionMigrateData.java:
+    id: a5f692033a81
+    last_write_checksum: sha1:28f6874d2f7a964b279b20d1d826e3bb04fd68c9
+    pristine_git_object: ad1228026bbed9bc27fe7cbc5d3df8d08964b348
   src/main/java/com/apideck/unify/models/components/ConnectionState.java:
     id: 51b66fe09b7c
     last_write_checksum: sha1:2daf6c1d67bd4ec9c0d846624d2d63ae8f5ae904
@@ -8645,8 +8697,8 @@ trackedFiles:
     pristine_git_object: 19821b2e3fcd273bb51e9249b1c41e7a096c8f07
   src/main/java/com/apideck/unify/models/components/Connector.java:
     id: 1a18a9046016
-    last_write_checksum: sha1:a6bfa2a79eaca81411b037809ecaa035fa0cbd3c
-    pristine_git_object: 17d6258e7d0b1880790e4bf8ca79c8aedebcc4b3
+    last_write_checksum: sha1:c27fe5198ce03c3636cbe1c02dc656da064fec9d
+    pristine_git_object: 5930a6469d4b3953258d9e13986048a7a6a225a6
   src/main/java/com/apideck/unify/models/components/ConnectorAuthType.java:
     id: 9d259a47371b
     last_write_checksum: sha1:7b9f7820e3c90331e479030fb34ebb039a3e7467
@@ -10283,6 +10335,10 @@ trackedFiles:
     id: 05a4f4ef1140
     last_write_checksum: sha1:8a903cc099924491c91e4521b8a2bc9d06689060
     pristine_git_object: d43b242f740734ca131644ba56834115066d7bfe
+  src/main/java/com/apideck/unify/models/components/GetListMembersResponse.java:
+    id: 4d4252b181ac
+    last_write_checksum: sha1:890cb005a6bdcea7c2547cfa09b261411c496998
+    pristine_git_object: cb7d9c7b594465181a229f82b054d41e33032b37
   src/main/java/com/apideck/unify/models/components/GetListResponse.java:
     id: 8e801071b603
     last_write_checksum: sha1:28bacf36922fee92a5449d6a100a60f8b1565192
@@ -10859,6 +10915,10 @@ trackedFiles:
     id: a03069ed00c1
     last_write_checksum: sha1:4b53846b2d8b8082353a039aeeca2bb5ead58e5f
     pristine_git_object: 4dcf256807debe5381e3acbd80e00cd5dc844230
+  src/main/java/com/apideck/unify/models/components/ListMember.java:
+    id: 859ba07d9bb0
+    last_write_checksum: sha1:bcc2dd014f13fd252ce424bb54116ec164b8d168
+    pristine_git_object: b96a1cb8a0e626b681a9cf91496049e4487d6773
   src/main/java/com/apideck/unify/models/components/ListType.java:
     id: 03294266a435
     last_write_checksum: sha1:6b110a7cbc9670c6ae4b98860717cb354ad65463
@@ -11969,8 +12029,8 @@ trackedFiles:
     pristine_git_object: 2c3cf677cddbb8b85498dc214a2fc342dc6d3ca4
   src/main/java/com/apideck/unify/models/components/WebhookEventType.java:
     id: 52b34fc99481
-    last_write_checksum: sha1:ac5754d46c65a4f3eb5b56b9c5d9ecbf63217397
-    pristine_git_object: 6b2cb62a4594bfcc0a4bf8499cf3d0011acb7c26
+    last_write_checksum: sha1:56d19011c0ed81d6907765806121569eefa1946f
+    pristine_git_object: 525bd663f27e4ce6a8181809c6390359f6a1da47
   src/main/java/com/apideck/unify/models/components/WebhookSubscription.java:
     id: 2d8529e830c7
     last_write_checksum: sha1:ab40b4b0cda4d3f01e762a0f4b6d377d9afa9fce
@@ -12019,6 +12079,14 @@ trackedFiles:
     id: 7f6853e4f4ca
     last_write_checksum: sha1:d0d3f3eee219de7e9a7d5cc95916ac8adf8c3348
     pristine_git_object: 77a05f5a380e51a68596f5bc50c6447f4c3ad370
+  src/main/java/com/apideck/unify/models/errors/ConflictResponse.java:
+    id: d064d3330c2d
+    last_write_checksum: sha1:e179601065414f7c9b73bfce7ebc8b6f9662d2af
+    pristine_git_object: 4a4fd24d86537c245bddf7ee39fbaf6f62bb8f2d
+  src/main/java/com/apideck/unify/models/errors/ConflictResponseDetail.java:
+    id: 47d52de4f1b6
+    last_write_checksum: sha1:db44f580ecdcf632a5db1b5564d29f8876785bc2
+    pristine_git_object: 7603deaa285ba70bf538fedb0ebbb5f98619e17a
   src/main/java/com/apideck/unify/models/errors/Debug.java:
     id: b3f6ee8d5ce9
     last_write_checksum: sha1:daddf848ad4e813eb369f65d801f25f6b70a67df
@@ -12887,6 +12955,10 @@ trackedFiles:
     id: 4190c9591904
     last_write_checksum: sha1:095417a160e23bfe37226b86b243fb1222416b5c
     pristine_git_object: c88c1d4b54b3ad6e4f2b3adf6fd8101506d99d4c
+  src/main/java/com/apideck/unify/models/operations//async/CrmListMembersAllRequestBuilder.java:
+    id: e22e076d611a
+    last_write_checksum: sha1:3d187bd6a18e54835cc11d17b8f74c602f6fffb9
+    pristine_git_object: 3c19797f2333952c7166390c2e59edf11f0c4189
   src/main/java/com/apideck/unify/models/operations//async/CrmListsAllRequestBuilder.java:
     id: 123813fa91d4
     last_write_checksum: sha1:1a04b0609f136d7f4f5380c31a131661eb9e1a26
@@ -13367,6 +13439,10 @@ trackedFiles:
     id: 3c34d23a4873
     last_write_checksum: sha1:24c46e0ede40441b0d6d68ed999d898313cea448
     pristine_git_object: 77e0986281b26983d62f390e8ad416fe8dd7113f
+  src/main/java/com/apideck/unify/models/operations//async/VaultConnectionsMigrateRequestBuilder.java:
+    id: e8959ab31826
+    last_write_checksum: sha1:1b77fb0407eb7763bea19fba8a90b32b33b0f12b
+    pristine_git_object: d30361a2ddc915ffbb4b67b73f37d08a0e5bc28f
   src/main/java/com/apideck/unify/models/operations//async/VaultConnectionsOneRequestBuilder.java:
     id: 5a48f767ca63
     last_write_checksum: sha1:e3185c9642f95bd036af618308b84e9e80b6f3a3
@@ -15823,6 +15899,18 @@ trackedFiles:
     id: d956823c6671
     last_write_checksum: sha1:7d2d58408d5ad8448fbbbe835afdfd1d2f5d238f
     pristine_git_object: 8c52276d046a4e96dc6bff43b6aa7b369602579e
+  src/main/java/com/apideck/unify/models/operations/CrmListMembersAllRequest.java:
+    id: 9609dd3df106
+    last_write_checksum: sha1:dc73182b521513291b4f524f4c308f3c8430f42b
+    pristine_git_object: 7fc2fb08813caae3bc85f53aedfad94dc165b893
+  src/main/java/com/apideck/unify/models/operations/CrmListMembersAllRequestBuilder.java:
+    id: 608c0a706a7f
+    last_write_checksum: sha1:c6d08a1a78be98f15fff4c686b435b4cbd400d05
+    pristine_git_object: 9e5c38c2b952d4365010edce04720246b2e80f21
+  src/main/java/com/apideck/unify/models/operations/CrmListMembersAllResponse.java:
+    id: 86492de1fe21
+    last_write_checksum: sha1:4d5dc5b46f961032ad0fa54e47ccbe599936ffa8
+    pristine_git_object: b4e3b5859fad5e659b63db231f760d0599eb4e4a
   src/main/java/com/apideck/unify/models/operations/CrmListsAllRequest.java:
     id: fd85bccb4841
     last_write_checksum: sha1:4f8204489bfcb35b0263e4bd87852dcc70c15696
@@ -17291,6 +17379,18 @@ trackedFiles:
     id: a37ec2823c21
     last_write_checksum: sha1:6fee6ef2fc9af161ba56b2d52b2938131284b65a
     pristine_git_object: 7227a6ca29716bbc209c48c9b4a43d8b08f295ab
+  src/main/java/com/apideck/unify/models/operations/VaultConnectionsMigrateRequest.java:
+    id: 174750dcadea
+    last_write_checksum: sha1:6a5b28a3f1027914fea681bf40d3c6228a00d556
+    pristine_git_object: 2ecae36511e3c50522b633ebf938355d173504e7
+  src/main/java/com/apideck/unify/models/operations/VaultConnectionsMigrateRequestBuilder.java:
+    id: d20000aa7239
+    last_write_checksum: sha1:c70ff24fead305ee6e373f5e5d7f2931c22e5832
+    pristine_git_object: fbd43780bad7e3c2ce706dff94a92984c95513db
+  src/main/java/com/apideck/unify/models/operations/VaultConnectionsMigrateResponse.java:
+    id: 52dbdedeab9a
+    last_write_checksum: sha1:4171836f58917ca60d6f38e5257ad3881476f0f8
+    pristine_git_object: c0c71ee2767919bf6cc4f7a123f6fcef3d9b00b4
   src/main/java/com/apideck/unify/models/operations/VaultConnectionsOneRequest.java:
     id: 4612f6e665e3
     last_write_checksum: sha1:f133e81812791ed34da6850a076495a1dc50a170
@@ -18331,6 +18431,10 @@ trackedFiles:
     id: 8b709428c351
     last_write_checksum: sha1:a6e881b7955437cedbb6c568fe3ad95a708cf6ce
     pristine_git_object: f7c8d419790c0a3837562498cd860c5680c69aa2
+  src/main/java/com/apideck/unify/models/operations/async/CrmListMembersAllResponse.java:
+    id: a13053310850
+    last_write_checksum: sha1:cdb88d7a5df38e0cf78257451542e8ac9a65dd96
+    pristine_git_object: f5ebfa50713c7d38b9462728ce6ada09c454baf3
   src/main/java/com/apideck/unify/models/operations/async/CrmListsAllResponse.java:
     id: cb99efbaa1c2
     last_write_checksum: sha1:713ec2fa4d60e40ec4dae711d58ed7f1cbca2231
@@ -18811,6 +18915,10 @@ trackedFiles:
     id: 5fc8afc00968
     last_write_checksum: sha1:b836b95f3057fbcd7c3ba2673dbf00e0a1aa4869
     pristine_git_object: b5e869f8afdf6259ea9700a616f1f5ce289ff578
+  src/main/java/com/apideck/unify/models/operations/async/VaultConnectionsMigrateResponse.java:
+    id: 855558add2d2
+    last_write_checksum: sha1:258f6930fd933bc855cc7608c1a2a2f7b8c44642
+    pristine_git_object: 4545bfd4a98553a37d7ffed72ed1a908e89eeb14
   src/main/java/com/apideck/unify/models/operations/async/VaultConnectionsOneResponse.java:
     id: "189377553292"
     last_write_checksum: sha1:8c74ece60ebcae00f774a1e2062082128060697c
@@ -19683,6 +19791,10 @@ trackedFiles:
     id: 36d452f1f9d8
     last_write_checksum: sha1:99f4dc5440bade6463fd3b14fd2f3769bf61c6af
     pristine_git_object: a102e0ed5b9a64a8210d95d7b175eea2aff0d2f4
+  src/main/java/com/apideck/unify/operations/CrmListMembersAll.java:
+    id: 16ea12ca16be
+    last_write_checksum: sha1:d3265c093209cb645538473f7e2376845f19ec87
+    pristine_git_object: 5827a6c5a1cedf180fd72a0ba00fe9874e1e1b9b
   src/main/java/com/apideck/unify/operations/CrmListsAll.java:
     id: 672f4a827081
     last_write_checksum: sha1:86b2517c591c039181b64bb84f68e2bb4e7315a8
@@ -20167,6 +20279,10 @@ trackedFiles:
     id: 10aad02d46c3
     last_write_checksum: sha1:e6a070f6c7c49513784bb9186f1bca754d8f001d
     pristine_git_object: 121e9d871d21736ea0f407651d62fe8e93a723a9
+  src/main/java/com/apideck/unify/operations/VaultConnectionsMigrate.java:
+    id: 700363300cf6
+    last_write_checksum: sha1:a9758b5084c60969984df69fb188098cb1b2e7fa
+    pristine_git_object: 6420e09b5c79d8e25c4c19cc28233f213ee98671
   src/main/java/com/apideck/unify/operations/VaultConnectionsOne.java:
     id: 6c9674c79576
     last_write_checksum: sha1:c7a0cbc69df7937de259cf70fdff3fb5bc128825
@@ -37017,8 +37133,66 @@ examples:
           application/json: {"status_code": 422, "error": "Unprocessable Entity", "type_name": "InvalidStateError", "message": "Invalid State", "detail": "Unprocessable request, please verify your request headers and body.", "ref": "https://developers.apideck.com/errors#invalidstateerror"}
         default:
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+  crm.listMembersAll:
+    speakeasy-default-crm-list-members-all:
+      parameters:
+        path:
+          id: "<id>"
+        query:
+          raw: false
+          limit: 20
+          pass_through: {"search": "San Francisco"}
+          fields: "id,updated_at"
+        header:
+          x-apideck-consumer-id: "test-consumer"
+          x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+          x-apideck-service-id: "salesforce"
+      responses:
+        "200":
+          application/json: {"status_code": 200, "status": "OK", "service": "hubspot", "resource": "list-members", "operation": "all", "data": [{"id": "12345", "object_type": "contacts"}], "meta": {"items_on_page": 50, "cursors": {"previous": "em9oby1jcm06OnBhZ2U6OjE=", "current": "em9oby1jcm06OnBhZ2U6OjI=", "next": "em9oby1jcm06OnBhZ2U6OjM="}, "total_count": 1, "warnings": [{"type": "downstream_request_failed", "status_code": 429, "operation": "getManager"}]}, "links": {"previous": "https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D", "current": "https://unify.apideck.com/crm/companies", "next": "https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM"}}
+        "400":
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror", "downstream_errors": [{"message": "Account code '100' has been archived or deleted", "detail": "Each line item must reference a valid account", "code": "VALIDATION_ERROR"}]}
+        "401":
+          application/json: {"status_code": 401, "error": "Unauthorized", "type_name": "UnauthorizedError", "message": "Unauthorized Request", "detail": "Missing authentication", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+        "402":
+          application/json: {"status_code": 402, "error": "Payment Required", "type_name": "RequestLimitError", "message": "Request Limit Reached", "detail": "You have reached your limit of 2000", "ref": "https://developers.apideck.com/errors#requestlimiterror"}
+        "404":
+          application/json: {"status_code": 404, "error": "Not Found", "type_name": "EntityNotFoundError", "message": "Unknown Widget", "detail": "Could not find widget with id: '123'", "ref": "https://developers.apideck.com/errors#entitynotfounderror"}
+        "422":
+          application/json: {"status_code": 422, "error": "Unprocessable Entity", "type_name": "InvalidStateError", "message": "Invalid State", "detail": "Unprocessable request, please verify your request headers and body.", "ref": "https://developers.apideck.com/errors#invalidstateerror"}
+        default:
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+  vault.connectionsMigrate:
+    speakeasy-default-vault-connections-migrate:
+      parameters:
+        path:
+          service_id: "pipedrive"
+          unified_api: "crm"
+        header:
+          x-apideck-consumer-id: "test-consumer"
+          x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+      requestBody:
+        application/json: {"target_service_id": "intuit-enterprise-suite"}
+      responses:
+        "200":
+          application/json: {"status_code": 201, "status": "OK", "data": {"id": "crm+salesforce", "service_id": "salesforce", "name": "Salesforce", "tag_line": "CRM software solutions and enterprise cloud computing from Salesforce, the leader in customer relationship management (CRM) and PaaS. Free 30 day trial.", "unified_api": "crm", "state": "authorized", "integration_state": "configured", "auth_type": "oauth2", "oauth_grant_type": "authorization_code", "enabled": true, "website": "https://www.salesforce.com", "icon": "https://res.cloudinary.com/apideck/image/upload/v1529456047/catalog/salesforce/icon128x128.png", "logo": "https://c1.sfdcstatic.com/content/dam/web/en_us/www/images/home/logo-salesforce-m.svg", "authorize_url": "https://unify.apideck.com/vault/authorize/salesforce/<application-id>?state=<state>", "revoke_url": "https://unify.apideck.com/vault/revoke/salesforce/<application-id>?state=<state>", "settings": {"instance_url": "https://eu28.salesforce.com", "api_key": "12345xxxxxx"}, "metadata": {"account": {"name": "My Company", "id": "c01458a5-7276-41ce-bc19-639906b0450a"}, "plan": "enterprise"}, "form_fields": [{"id": "instance_url", "label": "Instance url", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": false}, {"id": "api_key", "label": "API Key", "placeholder": "", "type": "text", "required": true, "custom_field": false, "allow_custom_values": false, "disabled": false, "sensitive": true}], "configuration": [{"resource": "leads", "defaults": [{"target": "custom_fields", "id": "ProductInterest", "options": [{"label": "General Channel", "options": [{"label": "General Channel", "value": "general", "option_type": "simple"}], "option_type": "group"}], "value": "GC5000 series"}]}], "configurable_resources": ["opportunities", "companies", "contacts", "leads"], "resource_schema_support": ["leads"], "resource_settings_support": ["leads"], "settings_required_for_authorization": ["client_id", "client_secret"], "subscriptions": [{"downstream_id": "5f5f5f5f5f5f5f5f5f5f5f5f", "unify_event_types": ["crm.contact.created"], "downstream_event_types": ["contacts.CREATED"], "execute_url": "https://unify.apideck.com/webhook/w/{lookupIdToken}/{serviceId}?e={downstreamEventType}", "created_at": "2020-10-01T12:00:00.000Z"}], "has_guide": true, "custom_mappings": [{"id": "hris+employees+first_aid_training", "label": "First Aid Training", "description": "First Aid Training completed after 2019-01-01", "value": "$.root.training.first_aid", "key": "first_aid_training", "required": false, "custom_field": true, "consumer_id": "test_user_id", "example": "Some value"}], "consent_state": "granted", "consents": [{"id": "con_1234567890", "created_at": "2025-04-15T14:30:00Z", "granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}], "latest_consent": {"id": "con_1234567890", "created_at": "2025-04-15T14:30:00Z", "granted": true, "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "application_data_scopes": {"enabled": true, "updated_at": "2025-04-15T14:30:00Z", "resources": {"hris.employees": {"id": {"read": true, "write": false}, "first_name": {"read": true, "write": true}, "last_name": {"read": true, "write": true}, "email": {"read": true, "write": true}, "addresses[].street": {"read": true, "write": false}, "addresses[].city": {"read": true, "write": false}, "employment.job_title": {"read": true, "write": true}, "custom_fields[].employee_number": {"read": true, "write": false}}, "hris.departments": {"id": {"read": true, "write": false}, "name": {"read": true, "write": true}, "code": {"read": true, "write": false}}}}, "health": "ok", "credentials_expire_at": 1730172800000, "last_refresh_failed_at": 1730000000000, "last_downstream_error_at": 1730000000000, "created_at": 1615563533390, "updated_at": 1616662325753}}
+        "400":
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror", "downstream_errors": [{"message": "Account code '100' has been archived or deleted", "detail": "Each line item must reference a valid account", "code": "VALIDATION_ERROR"}]}
+        "401":
+          application/json: {"status_code": 401, "error": "Unauthorized", "type_name": "UnauthorizedError", "message": "Unauthorized Request", "detail": "Missing authentication", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+        "402":
+          application/json: {"status_code": 402, "error": "Payment Required", "type_name": "RequestLimitError", "message": "Request Limit Reached", "detail": "You have reached your limit of 2000", "ref": "https://developers.apideck.com/errors#requestlimiterror"}
+        "404":
+          application/json: {"status_code": 404, "error": "Not Found", "type_name": "EntityNotFoundError", "message": "Unknown Widget", "detail": "Could not find widget with id: '123'", "ref": "https://developers.apideck.com/errors#entitynotfounderror"}
+        "409":
+          application/json: {"status_code": 409, "error": "Conflict", "type_name": "ConflictError", "message": "Conflict", "detail": "A connection already exists for the target connector", "ref": "https://developers.apideck.com/errors#conflicterror"}
+        "422":
+          application/json: {"status_code": 422, "error": "Unprocessable Entity", "type_name": "InvalidStateError", "message": "Invalid State", "detail": "Unprocessable request, please verify your request headers and body.", "ref": "https://developers.apideck.com/errors#invalidstateerror"}
+        default:
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: "## Java SDK Changes:\n* `apideck.crm.listMembers.list()`: **Added**\n* `apideck.vault.connections.migrate()`: **Added**\n* `apideck.connector.connectors.list()`:  `response.data[].migrationTargets` **Added**\n* `apideck.connector.connectors.get()`:  `response.data.migrationTargets` **Added**\n* `apideck.webhook.webhooks.list()`:  `response.data[].events[].enum(vault.connection.migrated)` **Added**\n* `apideck.webhook.webhooks.create()`: \n  *  `request.createWebhookRequest.events[].enum(vault.connection.migrated)` **Added**\n  *  `response.data.events[].enum(vault.connection.migrated)` **Added**\n* `apideck.webhook.webhooks.get()`:  `response.data.events[].enum(vault.connection.migrated)` **Added**\n* `apideck.webhook.webhooks.update()`: \n  *  `request.updateWebhookRequest.events[].enum(vault.connection.migrated)` **Added**\n  *  `response.data.events[].enum(vault.connection.migrated)` **Added**\n* `apideck.webhook.webhooks.delete()`:  `response.data.events[].enum(vault.connection.migrated)` **Added**\n"
 generatedFiles:
   - .gitattributes
   - USAGE.md

@@ -51,7 +51,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.apideck:unify:0.35.0'
+implementation 'com.apideck:unify:0.36.0'
 ```
 
 Maven:
@@ -59,7 +59,7 @@ Maven:
 <dependency>
     <groupId>com.apideck</groupId>
     <artifactId>unify</artifactId>
-    <version>0.35.0</version>
+    <version>0.36.0</version>
 </dependency>
 ```
 
@@ -549,6 +549,10 @@ For full model-specific examples (including Java 11/16/21 variants), see each un
 * [update](docs/sdks/leads/README.md#update) - Update lead
 * [delete](docs/sdks/leads/README.md#delete) - Delete lead
 
+### [Crm.ListMembers](docs/sdks/listmembers/README.md)
+
+* [list](docs/sdks/listmembers/README.md#list) - List list members
+
 ### [Crm.Lists](docs/sdks/lists/README.md)
 
 * [list](docs/sdks/lists/README.md#list) - List lists
@@ -767,6 +771,7 @@ For full model-specific examples (including Java 11/16/21 variants), see each un
 * [update](docs/sdks/connections/README.md#update) - Update connection
 * [delete](docs/sdks/connections/README.md#delete) - Deletes a connection
 * [imports](docs/sdks/connections/README.md#imports) - Import connection
+* [migrate](docs/sdks/connections/README.md#migrate) - Migrate connection
 * [token](docs/sdks/connections/README.md#token) - Authorize Access Token
 
 ### [Vault.ConnectionSettings](docs/sdks/connectionsettings/README.md)
@@ -1185,7 +1190,7 @@ public class Application {
   * [`com.apideck.unify.models.errors.BadRequestResponse`](./src/main/java/models/errors/com.apideck.unify.models.errors.BadRequestResponse.java): Bad Request. Status code `400`. *
   * [`com.apideck.unify.models.errors.UnprocessableResponse`](./src/main/java/models/errors/com.apideck.unify.models.errors.UnprocessableResponse.java): Unprocessable. Status code `422`. *
 
-<details><summary>Less common errors (7)</summary>
+<details><summary>Less common errors (8)</summary>
 
 <br />
 
@@ -1195,7 +1200,8 @@ public class Application {
 many more subclasses in the JDK platform).
 
 **Inherit from [`ApideckError`](./src/main/java/models/errors/ApideckError.java)**:
-* [`com.apideck.unify.models.errors.Unauthorized`](./src/main/java/models/errors/com.apideck.unify.models.errors.Unauthorized.java): Unauthorized. Status code `401`. Applicable to 6 of 338 methods.*
+* [`com.apideck.unify.models.errors.Unauthorized`](./src/main/java/models/errors/com.apideck.unify.models.errors.Unauthorized.java): Unauthorized. Status code `401`. Applicable to 6 of 340 methods.*
+* [`com.apideck.unify.models.errors.ConflictResponse`](./src/main/java/models/errors/com.apideck.unify.models.errors.ConflictResponse.java): Conflict — a connection already exists for the target connector. Status code `409`. Applicable to 1 of 340 methods.*
 
 
 </details>

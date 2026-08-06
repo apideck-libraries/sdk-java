@@ -16,6 +16,7 @@ public class Crm {
     private final Leads leads;
     private final Pipelines pipelines;
     private final Lists lists;
+    private final ListMembers listMembers;
     private final Notes notes;
     private final Users users;
     private final Activities activities;
@@ -30,6 +31,7 @@ public class Crm {
         this.leads = new Leads(this.sdkConfiguration);
         this.pipelines = new Pipelines(this.sdkConfiguration);
         this.lists = new Lists(this.sdkConfiguration);
+        this.listMembers = new ListMembers(this.sdkConfiguration);
         this.notes = new Notes(this.sdkConfiguration);
         this.users = new Users(this.sdkConfiguration);
         this.activities = new Activities(this.sdkConfiguration);
@@ -60,6 +62,10 @@ public class Crm {
 
     public final Lists lists() {
         return lists;
+    }
+
+    public final ListMembers listMembers() {
+        return listMembers;
     }
 
     public final Notes notes() {

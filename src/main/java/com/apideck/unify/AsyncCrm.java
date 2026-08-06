@@ -15,6 +15,7 @@ public class AsyncCrm {
     private final AsyncLeads leads;
     private final AsyncPipelines pipelines;
     private final AsyncLists lists;
+    private final AsyncListMembers listMembers;
     private final AsyncNotes notes;
     private final AsyncUsers users;
     private final AsyncActivities activities;
@@ -30,6 +31,7 @@ public class AsyncCrm {
         this.leads = new AsyncLeads(syncSDK.leads(), this.sdkConfiguration);
         this.pipelines = new AsyncPipelines(syncSDK.pipelines(), this.sdkConfiguration);
         this.lists = new AsyncLists(syncSDK.lists(), this.sdkConfiguration);
+        this.listMembers = new AsyncListMembers(syncSDK.listMembers(), this.sdkConfiguration);
         this.notes = new AsyncNotes(syncSDK.notes(), this.sdkConfiguration);
         this.users = new AsyncUsers(syncSDK.users(), this.sdkConfiguration);
         this.activities = new AsyncActivities(syncSDK.activities(), this.sdkConfiguration);
@@ -60,6 +62,10 @@ public class AsyncCrm {
 
     public final AsyncLists lists() {
         return lists;
+    }
+
+    public final AsyncListMembers listMembers() {
+        return listMembers;
     }
 
     public final AsyncNotes notes() {

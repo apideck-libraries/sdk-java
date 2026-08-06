@@ -9,6 +9,7 @@
 * [update](#update) - Update connection
 * [delete](#delete) - Deletes a connection
 * [imports](#imports) - Import connection
+* [migrate](#migrate) - Migrate connection
 * [token](#token) - Authorize Access Token
 
 ## list
@@ -428,6 +429,85 @@ public class Application {
 | models/errors/UnauthorizedResponse    | 401                                   | application/json                      |
 | models/errors/PaymentRequiredResponse | 402                                   | application/json                      |
 | models/errors/NotFoundResponse        | 404                                   | application/json                      |
+| models/errors/UnprocessableResponse   | 422                                   | application/json                      |
+| models/errors/APIException            | 4XX, 5XX                              | \*/\*                                 |
+
+## migrate
+
+Migrate the connection to the target connector, keeping its credentials and connection state
+(settings, metadata, configuration, subscriptions, consents). The source connection record is
+removed WITHOUT revoking or disconnecting the downstream token.
+
+Available migration targets are declared per connector — refer to the connector's
+documentation page or the Connector API's `migration_targets` field.
+
+Migrated tokens carry the source connector's OAuth scopes, so operations exclusive to the
+target connector may require re-authorization.
+
+Retries are idempotent: a partially-completed migration resumes where it left off.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="vault.connectionsMigrate" method="post" path="/vault/connections/{unified_api}/{service_id}/migrate" -->
+```java
+package hello.world;
+
+import com.apideck.unify.Apideck;
+import com.apideck.unify.models.components.ConnectionMigrateData;
+import com.apideck.unify.models.errors.*;
+import com.apideck.unify.models.operations.VaultConnectionsMigrateRequest;
+import com.apideck.unify.models.operations.VaultConnectionsMigrateResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws Exception {
+
+        Apideck sdk = Apideck.builder()
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+            .build();
+
+        VaultConnectionsMigrateRequest req = VaultConnectionsMigrateRequest.builder()
+                .serviceId("pipedrive")
+                .unifiedApi("crm")
+                .connectionMigrateData(ConnectionMigrateData.builder()
+                    .targetServiceId("intuit-enterprise-suite")
+                    .build())
+                .build();
+
+        VaultConnectionsMigrateResponse res = sdk.vault().connections().migrate()
+                .request(req)
+                .call();
+
+        if (res.createConnectionResponse().isPresent()) {
+            System.out.println(res.createConnectionResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                   | Type                                                                                        | Required                                                                                    | Description                                                                                 |
+| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `request`                                                                                   | [VaultConnectionsMigrateRequest](../../models/operations/VaultConnectionsMigrateRequest.md) | :heavy_check_mark:                                                                          | The request object to use for the request.                                                  |
+
+### Response
+
+**[VaultConnectionsMigrateResponse](../../models/operations/VaultConnectionsMigrateResponse.md)**
+
+### Errors
+
+| Error Type                            | Status Code                           | Content Type                          |
+| ------------------------------------- | ------------------------------------- | ------------------------------------- |
+| models/errors/BadRequestResponse      | 400                                   | application/json                      |
+| models/errors/UnauthorizedResponse    | 401                                   | application/json                      |
+| models/errors/PaymentRequiredResponse | 402                                   | application/json                      |
+| models/errors/NotFoundResponse        | 404                                   | application/json                      |
+| models/errors/ConflictResponse        | 409                                   | application/json                      |
 | models/errors/UnprocessableResponse   | 422                                   | application/json                      |
 | models/errors/APIException            | 4XX, 5XX                              | \*/\*                                 |
 

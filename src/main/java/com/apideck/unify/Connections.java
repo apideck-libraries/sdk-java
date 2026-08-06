@@ -14,6 +14,9 @@ import com.apideck.unify.models.operations.VaultConnectionsDeleteResponse;
 import com.apideck.unify.models.operations.VaultConnectionsImportRequest;
 import com.apideck.unify.models.operations.VaultConnectionsImportRequestBuilder;
 import com.apideck.unify.models.operations.VaultConnectionsImportResponse;
+import com.apideck.unify.models.operations.VaultConnectionsMigrateRequest;
+import com.apideck.unify.models.operations.VaultConnectionsMigrateRequestBuilder;
+import com.apideck.unify.models.operations.VaultConnectionsMigrateResponse;
 import com.apideck.unify.models.operations.VaultConnectionsOneRequest;
 import com.apideck.unify.models.operations.VaultConnectionsOneRequestBuilder;
 import com.apideck.unify.models.operations.VaultConnectionsOneResponse;
@@ -26,6 +29,7 @@ import com.apideck.unify.models.operations.VaultConnectionsUpdateResponse;
 import com.apideck.unify.operations.VaultConnectionsAll;
 import com.apideck.unify.operations.VaultConnectionsDelete;
 import com.apideck.unify.operations.VaultConnectionsImport;
+import com.apideck.unify.operations.VaultConnectionsMigrate;
 import com.apideck.unify.operations.VaultConnectionsOne;
 import com.apideck.unify.operations.VaultConnectionsToken;
 import com.apideck.unify.operations.VaultConnectionsUpdate;
@@ -307,6 +311,76 @@ public class Connections {
     public VaultConnectionsImportResponse imports(VaultConnectionsImportRequest request, Optional<Options> options) {
         RequestOperation<VaultConnectionsImportRequest, VaultConnectionsImportResponse> operation
               = new VaultConnectionsImport.Sync(sdkConfiguration, options, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Migrate connection
+     * 
+     * <p>Migrate the connection to the target connector, keeping its credentials and connection state
+     * (settings, metadata, configuration, subscriptions, consents). The source connection record is
+     * removed WITHOUT revoking or disconnecting the downstream token.
+     * 
+     * <p>Available migration targets are declared per connector — refer to the connector's
+     * documentation page or the Connector API's `migration_targets` field.
+     * 
+     * <p>Migrated tokens carry the source connector's OAuth scopes, so operations exclusive to the
+     * target connector may require re-authorization.
+     * 
+     * <p>Retries are idempotent: a partially-completed migration resumes where it left off.
+     * 
+     * @return The call builder
+     */
+    public VaultConnectionsMigrateRequestBuilder migrate() {
+        return new VaultConnectionsMigrateRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Migrate connection
+     * 
+     * <p>Migrate the connection to the target connector, keeping its credentials and connection state
+     * (settings, metadata, configuration, subscriptions, consents). The source connection record is
+     * removed WITHOUT revoking or disconnecting the downstream token.
+     * 
+     * <p>Available migration targets are declared per connector — refer to the connector's
+     * documentation page or the Connector API's `migration_targets` field.
+     * 
+     * <p>Migrated tokens carry the source connector's OAuth scopes, so operations exclusive to the
+     * target connector may require re-authorization.
+     * 
+     * <p>Retries are idempotent: a partially-completed migration resumes where it left off.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public VaultConnectionsMigrateResponse migrate(VaultConnectionsMigrateRequest request) {
+        return migrate(request, Optional.empty());
+    }
+
+    /**
+     * Migrate connection
+     * 
+     * <p>Migrate the connection to the target connector, keeping its credentials and connection state
+     * (settings, metadata, configuration, subscriptions, consents). The source connection record is
+     * removed WITHOUT revoking or disconnecting the downstream token.
+     * 
+     * <p>Available migration targets are declared per connector — refer to the connector's
+     * documentation page or the Connector API's `migration_targets` field.
+     * 
+     * <p>Migrated tokens carry the source connector's OAuth scopes, so operations exclusive to the
+     * target connector may require re-authorization.
+     * 
+     * <p>Retries are idempotent: a partially-completed migration resumes where it left off.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public VaultConnectionsMigrateResponse migrate(VaultConnectionsMigrateRequest request, Optional<Options> options) {
+        RequestOperation<VaultConnectionsMigrateRequest, VaultConnectionsMigrateResponse> operation
+              = new VaultConnectionsMigrate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

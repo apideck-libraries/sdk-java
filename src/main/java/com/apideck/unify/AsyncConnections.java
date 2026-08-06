@@ -8,6 +8,7 @@ import static com.apideck.unify.operations.Operations.AsyncRequestOperation;
 import com.apideck.unify.models.operations.VaultConnectionsAllRequest;
 import com.apideck.unify.models.operations.VaultConnectionsDeleteRequest;
 import com.apideck.unify.models.operations.VaultConnectionsImportRequest;
+import com.apideck.unify.models.operations.VaultConnectionsMigrateRequest;
 import com.apideck.unify.models.operations.VaultConnectionsOneRequest;
 import com.apideck.unify.models.operations.VaultConnectionsTokenRequest;
 import com.apideck.unify.models.operations.VaultConnectionsUpdateRequest;
@@ -17,6 +18,8 @@ import com.apideck.unify.models.operations.async.VaultConnectionsDeleteRequestBu
 import com.apideck.unify.models.operations.async.VaultConnectionsDeleteResponse;
 import com.apideck.unify.models.operations.async.VaultConnectionsImportRequestBuilder;
 import com.apideck.unify.models.operations.async.VaultConnectionsImportResponse;
+import com.apideck.unify.models.operations.async.VaultConnectionsMigrateRequestBuilder;
+import com.apideck.unify.models.operations.async.VaultConnectionsMigrateResponse;
 import com.apideck.unify.models.operations.async.VaultConnectionsOneRequestBuilder;
 import com.apideck.unify.models.operations.async.VaultConnectionsOneResponse;
 import com.apideck.unify.models.operations.async.VaultConnectionsTokenRequestBuilder;
@@ -26,6 +29,7 @@ import com.apideck.unify.models.operations.async.VaultConnectionsUpdateResponse;
 import com.apideck.unify.operations.VaultConnectionsAll;
 import com.apideck.unify.operations.VaultConnectionsDelete;
 import com.apideck.unify.operations.VaultConnectionsImport;
+import com.apideck.unify.operations.VaultConnectionsMigrate;
 import com.apideck.unify.operations.VaultConnectionsOne;
 import com.apideck.unify.operations.VaultConnectionsToken;
 import com.apideck.unify.operations.VaultConnectionsUpdate;
@@ -318,6 +322,78 @@ public class AsyncConnections {
     public CompletableFuture<VaultConnectionsImportResponse> imports(VaultConnectionsImportRequest request, Optional<Options> options) {
         AsyncRequestOperation<VaultConnectionsImportRequest, VaultConnectionsImportResponse> operation
               = new VaultConnectionsImport.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * Migrate connection
+     * 
+     * <p>Migrate the connection to the target connector, keeping its credentials and connection state
+     * (settings, metadata, configuration, subscriptions, consents). The source connection record is
+     * removed WITHOUT revoking or disconnecting the downstream token.
+     * 
+     * <p>Available migration targets are declared per connector — refer to the connector's
+     * documentation page or the Connector API's `migration_targets` field.
+     * 
+     * <p>Migrated tokens carry the source connector's OAuth scopes, so operations exclusive to the
+     * target connector may require re-authorization.
+     * 
+     * <p>Retries are idempotent: a partially-completed migration resumes where it left off.
+     * 
+     * @return The async call builder
+     */
+    public VaultConnectionsMigrateRequestBuilder migrate() {
+        return new VaultConnectionsMigrateRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Migrate connection
+     * 
+     * <p>Migrate the connection to the target connector, keeping its credentials and connection state
+     * (settings, metadata, configuration, subscriptions, consents). The source connection record is
+     * removed WITHOUT revoking or disconnecting the downstream token.
+     * 
+     * <p>Available migration targets are declared per connector — refer to the connector's
+     * documentation page or the Connector API's `migration_targets` field.
+     * 
+     * <p>Migrated tokens carry the source connector's OAuth scopes, so operations exclusive to the
+     * target connector may require re-authorization.
+     * 
+     * <p>Retries are idempotent: a partially-completed migration resumes where it left off.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return {@code CompletableFuture<VaultConnectionsMigrateResponse>} - The async response
+     */
+    public CompletableFuture<VaultConnectionsMigrateResponse> migrate(VaultConnectionsMigrateRequest request) {
+        return migrate(request, Optional.empty());
+    }
+
+    /**
+     * Migrate connection
+     * 
+     * <p>Migrate the connection to the target connector, keeping its credentials and connection state
+     * (settings, metadata, configuration, subscriptions, consents). The source connection record is
+     * removed WITHOUT revoking or disconnecting the downstream token.
+     * 
+     * <p>Available migration targets are declared per connector — refer to the connector's
+     * documentation page or the Connector API's `migration_targets` field.
+     * 
+     * <p>Migrated tokens carry the source connector's OAuth scopes, so operations exclusive to the
+     * target connector may require re-authorization.
+     * 
+     * <p>Retries are idempotent: a partially-completed migration resumes where it left off.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return {@code CompletableFuture<VaultConnectionsMigrateResponse>} - The async response
+     */
+    public CompletableFuture<VaultConnectionsMigrateResponse> migrate(VaultConnectionsMigrateRequest request, Optional<Options> options) {
+        AsyncRequestOperation<VaultConnectionsMigrateRequest, VaultConnectionsMigrateResponse> operation
+              = new VaultConnectionsMigrate.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);
         return operation.doRequest(request)

@@ -90,6 +90,14 @@ public class Connector {
     private Optional<Boolean> freeTrialAvailable;
 
     /**
+     * Service ids of connectors this connector's connections can be migrated to via the Vault
+     * connectionsMigrate operation.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("migration_targets")
+    private Optional<? extends List<String>> migrationTargets;
+
+    /**
      * Type of authorization used by the connector
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -237,6 +245,7 @@ public class Connector {
             @JsonProperty("signup_url") Optional<String> signupUrl,
             @JsonProperty("partner_signup_url") Optional<String> partnerSignupUrl,
             @JsonProperty("free_trial_available") Optional<Boolean> freeTrialAvailable,
+            @JsonProperty("migration_targets") Optional<? extends List<String>> migrationTargets,
             @JsonProperty("auth_type") Optional<? extends ConnectorAuthType> authType,
             @JsonProperty("auth_only") Optional<Boolean> authOnly,
             @JsonProperty("blind_mapped") Optional<Boolean> blindMapped,
@@ -266,6 +275,7 @@ public class Connector {
         Utils.checkNotNull(signupUrl, "signupUrl");
         Utils.checkNotNull(partnerSignupUrl, "partnerSignupUrl");
         Utils.checkNotNull(freeTrialAvailable, "freeTrialAvailable");
+        Utils.checkNotNull(migrationTargets, "migrationTargets");
         Utils.checkNotNull(authType, "authType");
         Utils.checkNotNull(authOnly, "authOnly");
         Utils.checkNotNull(blindMapped, "blindMapped");
@@ -295,6 +305,7 @@ public class Connector {
         this.signupUrl = signupUrl;
         this.partnerSignupUrl = partnerSignupUrl;
         this.freeTrialAvailable = freeTrialAvailable;
+        this.migrationTargets = migrationTargets;
         this.authType = authType;
         this.authOnly = authOnly;
         this.blindMapped = blindMapped;
@@ -326,7 +337,7 @@ public class Connector {
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -408,6 +419,16 @@ public class Connector {
     @JsonIgnore
     public Optional<Boolean> freeTrialAvailable() {
         return freeTrialAvailable;
+    }
+
+    /**
+     * Service ids of connectors this connector's connections can be migrated to via the Vault
+     * connectionsMigrate operation.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<String>> migrationTargets() {
+        return (Optional<List<String>>) migrationTargets;
     }
 
     /**
@@ -767,6 +788,27 @@ public class Connector {
     public Connector withFreeTrialAvailable(Optional<Boolean> freeTrialAvailable) {
         Utils.checkNotNull(freeTrialAvailable, "freeTrialAvailable");
         this.freeTrialAvailable = freeTrialAvailable;
+        return this;
+    }
+
+    /**
+     * Service ids of connectors this connector's connections can be migrated to via the Vault
+     * connectionsMigrate operation.
+     */
+    public Connector withMigrationTargets(List<String> migrationTargets) {
+        Utils.checkNotNull(migrationTargets, "migrationTargets");
+        this.migrationTargets = Optional.ofNullable(migrationTargets);
+        return this;
+    }
+
+
+    /**
+     * Service ids of connectors this connector's connections can be migrated to via the Vault
+     * connectionsMigrate operation.
+     */
+    public Connector withMigrationTargets(Optional<? extends List<String>> migrationTargets) {
+        Utils.checkNotNull(migrationTargets, "migrationTargets");
+        this.migrationTargets = migrationTargets;
         return this;
     }
 
@@ -1151,6 +1193,7 @@ public class Connector {
             Utils.enhancedDeepEquals(this.signupUrl, other.signupUrl) &&
             Utils.enhancedDeepEquals(this.partnerSignupUrl, other.partnerSignupUrl) &&
             Utils.enhancedDeepEquals(this.freeTrialAvailable, other.freeTrialAvailable) &&
+            Utils.enhancedDeepEquals(this.migrationTargets, other.migrationTargets) &&
             Utils.enhancedDeepEquals(this.authType, other.authType) &&
             Utils.enhancedDeepEquals(this.authOnly, other.authOnly) &&
             Utils.enhancedDeepEquals(this.blindMapped, other.blindMapped) &&
@@ -1178,13 +1221,13 @@ public class Connector {
             id, name, status,
             description, iconUrl, logoUrl,
             websiteUrl, signupUrl, partnerSignupUrl,
-            freeTrialAvailable, authType, authOnly,
-            blindMapped, oauthGrantType, oauthCredentialsSource,
-            oauthScopes, customScopes, hasSandboxCredentials,
-            settings, serviceId, unifiedApis,
-            supportedResources, configurableResources, supportedEvents,
-            webhookSupport, schemaSupport, docs,
-            overview, tlsSupport);
+            freeTrialAvailable, migrationTargets, authType,
+            authOnly, blindMapped, oauthGrantType,
+            oauthCredentialsSource, oauthScopes, customScopes,
+            hasSandboxCredentials, settings, serviceId,
+            unifiedApis, supportedResources, configurableResources,
+            supportedEvents, webhookSupport, schemaSupport,
+            docs, overview, tlsSupport);
     }
     
     @Override
@@ -1200,6 +1243,7 @@ public class Connector {
                 "signupUrl", signupUrl,
                 "partnerSignupUrl", partnerSignupUrl,
                 "freeTrialAvailable", freeTrialAvailable,
+                "migrationTargets", migrationTargets,
                 "authType", authType,
                 "authOnly", authOnly,
                 "blindMapped", blindMapped,
@@ -1243,6 +1287,8 @@ public class Connector {
         private Optional<String> partnerSignupUrl = Optional.empty();
 
         private Optional<Boolean> freeTrialAvailable = Optional.empty();
+
+        private Optional<? extends List<String>> migrationTargets = Optional.empty();
 
         private Optional<? extends ConnectorAuthType> authType = Optional.empty();
 
@@ -1473,6 +1519,27 @@ public class Connector {
         public Builder freeTrialAvailable(Optional<Boolean> freeTrialAvailable) {
             Utils.checkNotNull(freeTrialAvailable, "freeTrialAvailable");
             this.freeTrialAvailable = freeTrialAvailable;
+            return this;
+        }
+
+
+        /**
+         * Service ids of connectors this connector's connections can be migrated to via the Vault
+         * connectionsMigrate operation.
+         */
+        public Builder migrationTargets(List<String> migrationTargets) {
+            Utils.checkNotNull(migrationTargets, "migrationTargets");
+            this.migrationTargets = Optional.ofNullable(migrationTargets);
+            return this;
+        }
+
+        /**
+         * Service ids of connectors this connector's connections can be migrated to via the Vault
+         * connectionsMigrate operation.
+         */
+        public Builder migrationTargets(Optional<? extends List<String>> migrationTargets) {
+            Utils.checkNotNull(migrationTargets, "migrationTargets");
+            this.migrationTargets = migrationTargets;
             return this;
         }
 
@@ -1843,13 +1910,13 @@ public class Connector {
                 id, name, status,
                 description, iconUrl, logoUrl,
                 websiteUrl, signupUrl, partnerSignupUrl,
-                freeTrialAvailable, authType, authOnly,
-                blindMapped, oauthGrantType, oauthCredentialsSource,
-                oauthScopes, customScopes, hasSandboxCredentials,
-                settings, serviceId, unifiedApis,
-                supportedResources, configurableResources, supportedEvents,
-                webhookSupport, schemaSupport, docs,
-                overview, tlsSupport);
+                freeTrialAvailable, migrationTargets, authType,
+                authOnly, blindMapped, oauthGrantType,
+                oauthCredentialsSource, oauthScopes, customScopes,
+                hasSandboxCredentials, settings, serviceId,
+                unifiedApis, supportedResources, configurableResources,
+                supportedEvents, webhookSupport, schemaSupport,
+                docs, overview, tlsSupport);
         }
 
     }

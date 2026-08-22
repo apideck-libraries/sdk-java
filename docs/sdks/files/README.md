@@ -403,6 +403,7 @@ public class Application {
                 .id("<id>")
                 .serviceId("salesforce")
                 .fields("id,updated_at")
+                .followRedirects(false)
                 .build();
 
         FileStorageFilesDownloadResponse res = sdk.fileStorage().files().download()

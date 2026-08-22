@@ -26,6 +26,7 @@ public class Accounting {
     private final ProfitAndLoss profitAndLoss;
     private final JournalEntries journalEntries;
     private final GeneralLedgerTransactions generalLedgerTransactions;
+    private final SalesReceipts salesReceipts;
     private final PurchaseOrders purchaseOrders;
     private final Subsidiaries subsidiaries;
     private final Locations locations;
@@ -44,6 +45,7 @@ public class Accounting {
     private final Projects projects;
     private final Employees employees;
     private final ExpenseCategories expenseCategories;
+    private final PaymentMethods paymentMethods;
     private final ExpenseReports expenseReports;
 
     Accounting(SDKConfiguration sdkConfiguration) {
@@ -64,6 +66,7 @@ public class Accounting {
         this.profitAndLoss = new ProfitAndLoss(this.sdkConfiguration);
         this.journalEntries = new JournalEntries(this.sdkConfiguration);
         this.generalLedgerTransactions = new GeneralLedgerTransactions(this.sdkConfiguration);
+        this.salesReceipts = new SalesReceipts(this.sdkConfiguration);
         this.purchaseOrders = new PurchaseOrders(this.sdkConfiguration);
         this.subsidiaries = new Subsidiaries(this.sdkConfiguration);
         this.locations = new Locations(this.sdkConfiguration);
@@ -82,6 +85,7 @@ public class Accounting {
         this.projects = new Projects(this.sdkConfiguration);
         this.employees = new Employees(this.sdkConfiguration);
         this.expenseCategories = new ExpenseCategories(this.sdkConfiguration);
+        this.paymentMethods = new PaymentMethods(this.sdkConfiguration);
         this.expenseReports = new ExpenseReports(this.sdkConfiguration);
         this.asyncSDK = new AsyncAccounting(this, sdkConfiguration);
     }
@@ -148,6 +152,10 @@ public class Accounting {
 
     public final GeneralLedgerTransactions generalLedgerTransactions() {
         return generalLedgerTransactions;
+    }
+
+    public final SalesReceipts salesReceipts() {
+        return salesReceipts;
     }
 
     public final PurchaseOrders purchaseOrders() {
@@ -220,6 +228,10 @@ public class Accounting {
 
     public final ExpenseCategories expenseCategories() {
         return expenseCategories;
+    }
+
+    public final PaymentMethods paymentMethods() {
+        return paymentMethods;
     }
 
     public final ExpenseReports expenseReports() {

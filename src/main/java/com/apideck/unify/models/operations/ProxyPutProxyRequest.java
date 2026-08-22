@@ -9,6 +9,7 @@ import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
+import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
@@ -61,6 +62,17 @@ public class ProxyPutProxyRequest {
     private Optional<Long> timeout;
 
     /**
+     * Set to `false` to opt out of the redirect to the presigned download URL. Instead of a `30x`
+     * response, you receive a `200` JSON body `{ url, expires_at }` containing the URL and its expiry,
+     * which you can fetch explicitly. Use this if your client automatically forwards the `Authorization`
+     * header onto redirects, since the downstream storage provider will reject that request.
+     * 
+     * <p>Any value other than `false` (or omitting the header) preserves the default redirect behavior.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-follow-redirects")
+    private Optional<Boolean> followRedirects;
+
+    /**
      * Depending on the verb/method of the request this will contain the request body you want to
      * POST/PATCH/PUT.
      */
@@ -76,6 +88,7 @@ public class ProxyPutProxyRequest {
             String downstreamUrl,
             Optional<String> downstreamAuthorization,
             Optional<Long> timeout,
+            Optional<Boolean> followRedirects,
             Optional<byte[]> requestBody) {
         Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
@@ -84,6 +97,7 @@ public class ProxyPutProxyRequest {
         Utils.checkNotNull(downstreamUrl, "downstreamUrl");
         Utils.checkNotNull(downstreamAuthorization, "downstreamAuthorization");
         Utils.checkNotNull(timeout, "timeout");
+        Utils.checkNotNull(followRedirects, "followRedirects");
         Utils.checkNotNull(requestBody, "requestBody");
         this.consumerId = consumerId;
         this.appId = appId;
@@ -92,6 +106,7 @@ public class ProxyPutProxyRequest {
         this.downstreamUrl = downstreamUrl;
         this.downstreamAuthorization = downstreamAuthorization;
         this.timeout = timeout;
+        this.followRedirects = followRedirects;
         this.requestBody = requestBody;
     }
     
@@ -100,7 +115,7 @@ public class ProxyPutProxyRequest {
             String downstreamUrl) {
         this(Optional.empty(), Optional.empty(), serviceId,
             Optional.empty(), downstreamUrl, Optional.empty(),
-            Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -159,6 +174,19 @@ public class ProxyPutProxyRequest {
     @JsonIgnore
     public Optional<Long> timeout() {
         return timeout;
+    }
+
+    /**
+     * Set to `false` to opt out of the redirect to the presigned download URL. Instead of a `30x`
+     * response, you receive a `200` JSON body `{ url, expires_at }` containing the URL and its expiry,
+     * which you can fetch explicitly. Use this if your client automatically forwards the `Authorization`
+     * header onto redirects, since the downstream storage provider will reject that request.
+     * 
+     * <p>Any value other than `false` (or omitting the header) preserves the default redirect behavior.
+     */
+    @JsonIgnore
+    public Optional<Boolean> followRedirects() {
+        return followRedirects;
     }
 
     /**
@@ -292,6 +320,35 @@ public class ProxyPutProxyRequest {
     }
 
     /**
+     * Set to `false` to opt out of the redirect to the presigned download URL. Instead of a `30x`
+     * response, you receive a `200` JSON body `{ url, expires_at }` containing the URL and its expiry,
+     * which you can fetch explicitly. Use this if your client automatically forwards the `Authorization`
+     * header onto redirects, since the downstream storage provider will reject that request.
+     * 
+     * <p>Any value other than `false` (or omitting the header) preserves the default redirect behavior.
+     */
+    public ProxyPutProxyRequest withFollowRedirects(boolean followRedirects) {
+        Utils.checkNotNull(followRedirects, "followRedirects");
+        this.followRedirects = Optional.ofNullable(followRedirects);
+        return this;
+    }
+
+
+    /**
+     * Set to `false` to opt out of the redirect to the presigned download URL. Instead of a `30x`
+     * response, you receive a `200` JSON body `{ url, expires_at }` containing the URL and its expiry,
+     * which you can fetch explicitly. Use this if your client automatically forwards the `Authorization`
+     * header onto redirects, since the downstream storage provider will reject that request.
+     * 
+     * <p>Any value other than `false` (or omitting the header) preserves the default redirect behavior.
+     */
+    public ProxyPutProxyRequest withFollowRedirects(Optional<Boolean> followRedirects) {
+        Utils.checkNotNull(followRedirects, "followRedirects");
+        this.followRedirects = followRedirects;
+        return this;
+    }
+
+    /**
      * Depending on the verb/method of the request this will contain the request body you want to
      * POST/PATCH/PUT.
      */
@@ -329,6 +386,7 @@ public class ProxyPutProxyRequest {
             Utils.enhancedDeepEquals(this.downstreamUrl, other.downstreamUrl) &&
             Utils.enhancedDeepEquals(this.downstreamAuthorization, other.downstreamAuthorization) &&
             Utils.enhancedDeepEquals(this.timeout, other.timeout) &&
+            Utils.enhancedDeepEquals(this.followRedirects, other.followRedirects) &&
             Utils.enhancedDeepEquals(this.requestBody, other.requestBody);
     }
     
@@ -337,7 +395,7 @@ public class ProxyPutProxyRequest {
         return Utils.enhancedHash(
             consumerId, appId, serviceId,
             unifiedApi, downstreamUrl, downstreamAuthorization,
-            timeout, requestBody);
+            timeout, followRedirects, requestBody);
     }
     
     @Override
@@ -350,6 +408,7 @@ public class ProxyPutProxyRequest {
                 "downstreamUrl", downstreamUrl,
                 "downstreamAuthorization", downstreamAuthorization,
                 "timeout", timeout,
+                "followRedirects", followRedirects,
                 "requestBody", requestBody);
     }
 
@@ -369,6 +428,8 @@ public class ProxyPutProxyRequest {
         private Optional<String> downstreamAuthorization = Optional.empty();
 
         private Optional<Long> timeout;
+
+        private Optional<Boolean> followRedirects;
 
         private Optional<byte[]> requestBody = Optional.empty();
 
@@ -496,6 +557,35 @@ public class ProxyPutProxyRequest {
 
 
         /**
+         * Set to `false` to opt out of the redirect to the presigned download URL. Instead of a `30x`
+         * response, you receive a `200` JSON body `{ url, expires_at }` containing the URL and its expiry,
+         * which you can fetch explicitly. Use this if your client automatically forwards the `Authorization`
+         * header onto redirects, since the downstream storage provider will reject that request.
+         * 
+         * <p>Any value other than `false` (or omitting the header) preserves the default redirect behavior.
+         */
+        public Builder followRedirects(boolean followRedirects) {
+            Utils.checkNotNull(followRedirects, "followRedirects");
+            this.followRedirects = Optional.ofNullable(followRedirects);
+            return this;
+        }
+
+        /**
+         * Set to `false` to opt out of the redirect to the presigned download URL. Instead of a `30x`
+         * response, you receive a `200` JSON body `{ url, expires_at }` containing the URL and its expiry,
+         * which you can fetch explicitly. Use this if your client automatically forwards the `Authorization`
+         * header onto redirects, since the downstream storage provider will reject that request.
+         * 
+         * <p>Any value other than `false` (or omitting the header) preserves the default redirect behavior.
+         */
+        public Builder followRedirects(Optional<Boolean> followRedirects) {
+            Utils.checkNotNull(followRedirects, "followRedirects");
+            this.followRedirects = followRedirects;
+            return this;
+        }
+
+
+        /**
          * Depending on the verb/method of the request this will contain the request body you want to
          * POST/PATCH/PUT.
          */
@@ -519,11 +609,14 @@ public class ProxyPutProxyRequest {
             if (timeout == null) {
                 timeout = _SINGLETON_VALUE_Timeout.value();
             }
+            if (followRedirects == null) {
+                followRedirects = _SINGLETON_VALUE_FollowRedirects.value();
+            }
 
             return new ProxyPutProxyRequest(
                 consumerId, appId, serviceId,
                 unifiedApi, downstreamUrl, downstreamAuthorization,
-                timeout, requestBody);
+                timeout, followRedirects, requestBody);
         }
 
 
@@ -532,5 +625,11 @@ public class ProxyPutProxyRequest {
                         "timeout",
                         "28000",
                         new TypeReference<Optional<Long>>() {});
+
+        private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_FollowRedirects =
+                new LazySingletonValue<>(
+                        "followRedirects",
+                        "true",
+                        new TypeReference<Optional<Boolean>>() {});
     }
 }

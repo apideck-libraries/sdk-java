@@ -34,7 +34,10 @@ public class AccountingAttachmentsDownloadResponse implements AsyncResponse {
     private HttpResponse<Blob> rawResponse;
 
     /**
-     * Attachment Download
+     * Attachment Download. When the request includes `x-apideck-follow-redirects: false` and the download
+     * would otherwise redirect to a presigned URL, the response body is instead an `application/json`
+     * object `{ url, expires_at }` — fetch `url` explicitly (without the Authorization header) to retrieve
+     * the attachment.
      */
     private Optional<? extends Blob> getAttachmentDownloadResponse;
 
@@ -95,7 +98,10 @@ public class AccountingAttachmentsDownloadResponse implements AsyncResponse {
     }
 
     /**
-     * Attachment Download
+     * Attachment Download. When the request includes `x-apideck-follow-redirects: false` and the download
+     * would otherwise redirect to a presigned URL, the response body is instead an `application/json`
+     * object `{ url, expires_at }` — fetch `url` explicitly (without the Authorization header) to retrieve
+     * the attachment.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -145,7 +151,10 @@ public class AccountingAttachmentsDownloadResponse implements AsyncResponse {
     }
 
     /**
-     * Attachment Download
+     * Attachment Download. When the request includes `x-apideck-follow-redirects: false` and the download
+     * would otherwise redirect to a presigned URL, the response body is instead an `application/json`
+     * object `{ url, expires_at }` — fetch `url` explicitly (without the Authorization header) to retrieve
+     * the attachment.
      */
     public AccountingAttachmentsDownloadResponse withGetAttachmentDownloadResponse(Blob getAttachmentDownloadResponse) {
         Utils.checkNotNull(getAttachmentDownloadResponse, "getAttachmentDownloadResponse");
@@ -155,7 +164,10 @@ public class AccountingAttachmentsDownloadResponse implements AsyncResponse {
 
 
     /**
-     * Attachment Download
+     * Attachment Download. When the request includes `x-apideck-follow-redirects: false` and the download
+     * would otherwise redirect to a presigned URL, the response body is instead an `application/json`
+     * object `{ url, expires_at }` — fetch `url` explicitly (without the Authorization header) to retrieve
+     * the attachment.
      */
     public AccountingAttachmentsDownloadResponse withGetAttachmentDownloadResponse(Optional<? extends Blob> getAttachmentDownloadResponse) {
         Utils.checkNotNull(getAttachmentDownloadResponse, "getAttachmentDownloadResponse");
@@ -265,7 +277,10 @@ public class AccountingAttachmentsDownloadResponse implements AsyncResponse {
 
 
         /**
-         * Attachment Download
+         * Attachment Download. When the request includes `x-apideck-follow-redirects: false` and the download
+         * would otherwise redirect to a presigned URL, the response body is instead an `application/json`
+         * object `{ url, expires_at }` — fetch `url` explicitly (without the Authorization header) to retrieve
+         * the attachment.
          */
         public Builder getAttachmentDownloadResponse(Blob getAttachmentDownloadResponse) {
             Utils.checkNotNull(getAttachmentDownloadResponse, "getAttachmentDownloadResponse");
@@ -274,7 +289,10 @@ public class AccountingAttachmentsDownloadResponse implements AsyncResponse {
         }
 
         /**
-         * Attachment Download
+         * Attachment Download. When the request includes `x-apideck-follow-redirects: false` and the download
+         * would otherwise redirect to a presigned URL, the response body is instead an `application/json`
+         * object `{ url, expires_at }` — fetch `url` explicitly (without the Authorization header) to retrieve
+         * the attachment.
          */
         public Builder getAttachmentDownloadResponse(Optional<? extends Blob> getAttachmentDownloadResponse) {
             Utils.checkNotNull(getAttachmentDownloadResponse, "getAttachmentDownloadResponse");

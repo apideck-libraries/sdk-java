@@ -32,6 +32,14 @@ public class CustomField2 {
     private Optional<String> name;
 
     /**
+     * Display name of the record a reference-type custom field points at. `value` carries that record's
+     * id; this carries its human-readable name, so a consumer does not need a second lookup to render it.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("ref_name")
+    private JsonNullable<String> refName;
+
+    /**
      * More information about the custom field
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -47,21 +55,24 @@ public class CustomField2 {
     public CustomField2(
             @JsonProperty("id") JsonNullable<String> id,
             @JsonProperty("name") Optional<String> name,
+            @JsonProperty("ref_name") JsonNullable<String> refName,
             @JsonProperty("description") JsonNullable<String> description,
             @JsonProperty("value") JsonNullable<? extends CustomFieldValue> value) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(name, "name");
+        Utils.checkNotNull(refName, "refName");
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(value, "value");
         this.id = id;
         this.name = name;
+        this.refName = refName;
         this.description = description;
         this.value = value;
     }
     
     public CustomField2() {
         this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -78,6 +89,15 @@ public class CustomField2 {
     @JsonIgnore
     public Optional<String> name() {
         return name;
+    }
+
+    /**
+     * Display name of the record a reference-type custom field points at. `value` carries that record's
+     * id; this carries its human-readable name, so a consumer does not need a second lookup to render it.
+     */
+    @JsonIgnore
+    public JsonNullable<String> refName() {
+        return refName;
     }
 
     /**
@@ -137,6 +157,26 @@ public class CustomField2 {
     }
 
     /**
+     * Display name of the record a reference-type custom field points at. `value` carries that record's
+     * id; this carries its human-readable name, so a consumer does not need a second lookup to render it.
+     */
+    public CustomField2 withRefName(String refName) {
+        Utils.checkNotNull(refName, "refName");
+        this.refName = JsonNullable.of(refName);
+        return this;
+    }
+
+    /**
+     * Display name of the record a reference-type custom field points at. `value` carries that record's
+     * id; this carries its human-readable name, so a consumer does not need a second lookup to render it.
+     */
+    public CustomField2 withRefName(JsonNullable<String> refName) {
+        Utils.checkNotNull(refName, "refName");
+        this.refName = refName;
+        return this;
+    }
+
+    /**
      * More information about the custom field
      */
     public CustomField2 withDescription(String description) {
@@ -178,6 +218,7 @@ public class CustomField2 {
         return 
             Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.refName, other.refName) &&
             Utils.enhancedDeepEquals(this.description, other.description) &&
             Utils.enhancedDeepEquals(this.value, other.value);
     }
@@ -185,8 +226,8 @@ public class CustomField2 {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, name, description,
-            value);
+            id, name, refName,
+            description, value);
     }
     
     @Override
@@ -194,6 +235,7 @@ public class CustomField2 {
         return Utils.toString(CustomField2.class,
                 "id", id,
                 "name", name,
+                "refName", refName,
                 "description", description,
                 "value", value);
     }
@@ -204,6 +246,8 @@ public class CustomField2 {
         private JsonNullable<String> id = JsonNullable.undefined();
 
         private Optional<String> name = Optional.empty();
+
+        private JsonNullable<String> refName = JsonNullable.undefined();
 
         private JsonNullable<String> description = JsonNullable.undefined();
 
@@ -253,6 +297,27 @@ public class CustomField2 {
 
 
         /**
+         * Display name of the record a reference-type custom field points at. `value` carries that record's
+         * id; this carries its human-readable name, so a consumer does not need a second lookup to render it.
+         */
+        public Builder refName(String refName) {
+            Utils.checkNotNull(refName, "refName");
+            this.refName = JsonNullable.of(refName);
+            return this;
+        }
+
+        /**
+         * Display name of the record a reference-type custom field points at. `value` carries that record's
+         * id; this carries its human-readable name, so a consumer does not need a second lookup to render it.
+         */
+        public Builder refName(JsonNullable<String> refName) {
+            Utils.checkNotNull(refName, "refName");
+            this.refName = refName;
+            return this;
+        }
+
+
+        /**
          * More information about the custom field
          */
         public Builder description(String description) {
@@ -286,8 +351,8 @@ public class CustomField2 {
         public CustomField2 build() {
 
             return new CustomField2(
-                id, name, description,
-                value);
+                id, name, refName,
+                description, value);
         }
 
     }

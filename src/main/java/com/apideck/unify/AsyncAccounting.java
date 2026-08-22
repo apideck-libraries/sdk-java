@@ -25,6 +25,7 @@ public class AsyncAccounting {
     private final AsyncProfitAndLoss profitAndLoss;
     private final AsyncJournalEntries journalEntries;
     private final AsyncGeneralLedgerTransactions generalLedgerTransactions;
+    private final AsyncSalesReceipts salesReceipts;
     private final AsyncPurchaseOrders purchaseOrders;
     private final AsyncSubsidiaries subsidiaries;
     private final AsyncLocations locations;
@@ -43,6 +44,7 @@ public class AsyncAccounting {
     private final AsyncProjects projects;
     private final AsyncEmployees employees;
     private final AsyncExpenseCategories expenseCategories;
+    private final AsyncPaymentMethods paymentMethods;
     private final AsyncExpenseReports expenseReports;
     private final Accounting syncSDK;
 
@@ -64,6 +66,7 @@ public class AsyncAccounting {
         this.profitAndLoss = new AsyncProfitAndLoss(syncSDK.profitAndLoss(), this.sdkConfiguration);
         this.journalEntries = new AsyncJournalEntries(syncSDK.journalEntries(), this.sdkConfiguration);
         this.generalLedgerTransactions = new AsyncGeneralLedgerTransactions(syncSDK.generalLedgerTransactions(), this.sdkConfiguration);
+        this.salesReceipts = new AsyncSalesReceipts(syncSDK.salesReceipts(), this.sdkConfiguration);
         this.purchaseOrders = new AsyncPurchaseOrders(syncSDK.purchaseOrders(), this.sdkConfiguration);
         this.subsidiaries = new AsyncSubsidiaries(syncSDK.subsidiaries(), this.sdkConfiguration);
         this.locations = new AsyncLocations(syncSDK.locations(), this.sdkConfiguration);
@@ -82,6 +85,7 @@ public class AsyncAccounting {
         this.projects = new AsyncProjects(syncSDK.projects(), this.sdkConfiguration);
         this.employees = new AsyncEmployees(syncSDK.employees(), this.sdkConfiguration);
         this.expenseCategories = new AsyncExpenseCategories(syncSDK.expenseCategories(), this.sdkConfiguration);
+        this.paymentMethods = new AsyncPaymentMethods(syncSDK.paymentMethods(), this.sdkConfiguration);
         this.expenseReports = new AsyncExpenseReports(syncSDK.expenseReports(), this.sdkConfiguration);
         this.syncSDK = syncSDK;
     }
@@ -148,6 +152,10 @@ public class AsyncAccounting {
 
     public final AsyncGeneralLedgerTransactions generalLedgerTransactions() {
         return generalLedgerTransactions;
+    }
+
+    public final AsyncSalesReceipts salesReceipts() {
+        return salesReceipts;
     }
 
     public final AsyncPurchaseOrders purchaseOrders() {
@@ -220,6 +228,10 @@ public class AsyncAccounting {
 
     public final AsyncExpenseCategories expenseCategories() {
         return expenseCategories;
+    }
+
+    public final AsyncPaymentMethods paymentMethods() {
+        return paymentMethods;
     }
 
     public final AsyncExpenseReports expenseReports() {

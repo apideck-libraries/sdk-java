@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
@@ -18,6 +19,20 @@ public class JournalEntriesFilter {
 
     @SpeakeasyMetadata("queryParam:name=updated_since")
     private Optional<OffsetDateTime> updatedSince;
+
+    /**
+     * Return journal entries posted on or after this date (posting date, inclusive). Connectors without
+     * date-range support reject this filter with UnsupportedFiltersError.
+     */
+    @SpeakeasyMetadata("queryParam:name=start_date")
+    private Optional<LocalDate> startDate;
+
+    /**
+     * Return journal entries posted on or before this date (posting date, inclusive). Connectors without
+     * date-range support reject this filter with UnsupportedFiltersError.
+     */
+    @SpeakeasyMetadata("queryParam:name=end_date")
+    private Optional<LocalDate> endDate;
 
 
     @SpeakeasyMetadata("queryParam:name=status")
@@ -44,14 +59,20 @@ public class JournalEntriesFilter {
     @JsonCreator
     public JournalEntriesFilter(
             Optional<OffsetDateTime> updatedSince,
+            Optional<LocalDate> startDate,
+            Optional<LocalDate> endDate,
             Optional<? extends JournalEntriesFilterStatus> status,
             Optional<? extends JournalEntriesFilterScope> scope,
             Optional<String> subsidiaryId) {
         Utils.checkNotNull(updatedSince, "updatedSince");
+        Utils.checkNotNull(startDate, "startDate");
+        Utils.checkNotNull(endDate, "endDate");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(scope, "scope");
         Utils.checkNotNull(subsidiaryId, "subsidiaryId");
         this.updatedSince = updatedSince;
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.status = status;
         this.scope = scope;
         this.subsidiaryId = subsidiaryId;
@@ -59,12 +80,30 @@ public class JournalEntriesFilter {
     
     public JournalEntriesFilter() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
     public Optional<OffsetDateTime> updatedSince() {
         return updatedSince;
+    }
+
+    /**
+     * Return journal entries posted on or after this date (posting date, inclusive). Connectors without
+     * date-range support reject this filter with UnsupportedFiltersError.
+     */
+    @JsonIgnore
+    public Optional<LocalDate> startDate() {
+        return startDate;
+    }
+
+    /**
+     * Return journal entries posted on or before this date (posting date, inclusive). Connectors without
+     * date-range support reject this filter with UnsupportedFiltersError.
+     */
+    @JsonIgnore
+    public Optional<LocalDate> endDate() {
+        return endDate;
     }
 
     @SuppressWarnings("unchecked")
@@ -111,6 +150,48 @@ public class JournalEntriesFilter {
     public JournalEntriesFilter withUpdatedSince(Optional<OffsetDateTime> updatedSince) {
         Utils.checkNotNull(updatedSince, "updatedSince");
         this.updatedSince = updatedSince;
+        return this;
+    }
+
+    /**
+     * Return journal entries posted on or after this date (posting date, inclusive). Connectors without
+     * date-range support reject this filter with UnsupportedFiltersError.
+     */
+    public JournalEntriesFilter withStartDate(LocalDate startDate) {
+        Utils.checkNotNull(startDate, "startDate");
+        this.startDate = Optional.ofNullable(startDate);
+        return this;
+    }
+
+
+    /**
+     * Return journal entries posted on or after this date (posting date, inclusive). Connectors without
+     * date-range support reject this filter with UnsupportedFiltersError.
+     */
+    public JournalEntriesFilter withStartDate(Optional<LocalDate> startDate) {
+        Utils.checkNotNull(startDate, "startDate");
+        this.startDate = startDate;
+        return this;
+    }
+
+    /**
+     * Return journal entries posted on or before this date (posting date, inclusive). Connectors without
+     * date-range support reject this filter with UnsupportedFiltersError.
+     */
+    public JournalEntriesFilter withEndDate(LocalDate endDate) {
+        Utils.checkNotNull(endDate, "endDate");
+        this.endDate = Optional.ofNullable(endDate);
+        return this;
+    }
+
+
+    /**
+     * Return journal entries posted on or before this date (posting date, inclusive). Connectors without
+     * date-range support reject this filter with UnsupportedFiltersError.
+     */
+    public JournalEntriesFilter withEndDate(Optional<LocalDate> endDate) {
+        Utils.checkNotNull(endDate, "endDate");
+        this.endDate = endDate;
         return this;
     }
 
@@ -188,6 +269,8 @@ public class JournalEntriesFilter {
         JournalEntriesFilter other = (JournalEntriesFilter) o;
         return 
             Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince) &&
+            Utils.enhancedDeepEquals(this.startDate, other.startDate) &&
+            Utils.enhancedDeepEquals(this.endDate, other.endDate) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.scope, other.scope) &&
             Utils.enhancedDeepEquals(this.subsidiaryId, other.subsidiaryId);
@@ -196,14 +279,16 @@ public class JournalEntriesFilter {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            updatedSince, status, scope,
-            subsidiaryId);
+            updatedSince, startDate, endDate,
+            status, scope, subsidiaryId);
     }
     
     @Override
     public String toString() {
         return Utils.toString(JournalEntriesFilter.class,
                 "updatedSince", updatedSince,
+                "startDate", startDate,
+                "endDate", endDate,
                 "status", status,
                 "scope", scope,
                 "subsidiaryId", subsidiaryId);
@@ -213,6 +298,10 @@ public class JournalEntriesFilter {
     public final static class Builder {
 
         private Optional<OffsetDateTime> updatedSince = Optional.empty();
+
+        private Optional<LocalDate> startDate = Optional.empty();
+
+        private Optional<LocalDate> endDate = Optional.empty();
 
         private Optional<? extends JournalEntriesFilterStatus> status = Optional.empty();
 
@@ -234,6 +323,48 @@ public class JournalEntriesFilter {
         public Builder updatedSince(Optional<OffsetDateTime> updatedSince) {
             Utils.checkNotNull(updatedSince, "updatedSince");
             this.updatedSince = updatedSince;
+            return this;
+        }
+
+
+        /**
+         * Return journal entries posted on or after this date (posting date, inclusive). Connectors without
+         * date-range support reject this filter with UnsupportedFiltersError.
+         */
+        public Builder startDate(LocalDate startDate) {
+            Utils.checkNotNull(startDate, "startDate");
+            this.startDate = Optional.ofNullable(startDate);
+            return this;
+        }
+
+        /**
+         * Return journal entries posted on or after this date (posting date, inclusive). Connectors without
+         * date-range support reject this filter with UnsupportedFiltersError.
+         */
+        public Builder startDate(Optional<LocalDate> startDate) {
+            Utils.checkNotNull(startDate, "startDate");
+            this.startDate = startDate;
+            return this;
+        }
+
+
+        /**
+         * Return journal entries posted on or before this date (posting date, inclusive). Connectors without
+         * date-range support reject this filter with UnsupportedFiltersError.
+         */
+        public Builder endDate(LocalDate endDate) {
+            Utils.checkNotNull(endDate, "endDate");
+            this.endDate = Optional.ofNullable(endDate);
+            return this;
+        }
+
+        /**
+         * Return journal entries posted on or before this date (posting date, inclusive). Connectors without
+         * date-range support reject this filter with UnsupportedFiltersError.
+         */
+        public Builder endDate(Optional<LocalDate> endDate) {
+            Utils.checkNotNull(endDate, "endDate");
+            this.endDate = endDate;
             return this;
         }
 
@@ -303,8 +434,8 @@ public class JournalEntriesFilter {
         public JournalEntriesFilter build() {
 
             return new JournalEntriesFilter(
-                updatedSince, status, scope,
-                subsidiaryId);
+                updatedSince, startDate, endDate,
+                status, scope, subsidiaryId);
         }
 
     }

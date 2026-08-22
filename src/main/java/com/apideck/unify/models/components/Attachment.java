@@ -68,6 +68,13 @@ public class Attachment {
     private JsonNullable<String> description;
 
     /**
+     * The URL to download or preview the file
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("file_url")
+    private JsonNullable<String> fileUrl;
+
+    /**
      * The folder id where this attachment belong to
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -119,6 +126,7 @@ public class Attachment {
             @JsonProperty("size") JsonNullable<Long> size,
             @JsonProperty("reference") Optional<? extends AttachmentReference> reference,
             @JsonProperty("description") JsonNullable<String> description,
+            @JsonProperty("file_url") JsonNullable<String> fileUrl,
             @JsonProperty("parent_folder_id") JsonNullable<String> parentFolderId,
             @JsonProperty("updated_by") JsonNullable<String> updatedBy,
             @JsonProperty("created_by") JsonNullable<String> createdBy,
@@ -132,6 +140,7 @@ public class Attachment {
         Utils.checkNotNull(size, "size");
         Utils.checkNotNull(reference, "reference");
         Utils.checkNotNull(description, "description");
+        Utils.checkNotNull(fileUrl, "fileUrl");
         Utils.checkNotNull(parentFolderId, "parentFolderId");
         Utils.checkNotNull(updatedBy, "updatedBy");
         Utils.checkNotNull(createdBy, "createdBy");
@@ -145,6 +154,7 @@ public class Attachment {
         this.size = size;
         this.reference = reference;
         this.description = description;
+        this.fileUrl = fileUrl;
         this.parentFolderId = parentFolderId;
         this.updatedBy = updatedBy;
         this.createdBy = createdBy;
@@ -158,7 +168,7 @@ public class Attachment {
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty());
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -213,6 +223,14 @@ public class Attachment {
     @JsonIgnore
     public JsonNullable<String> description() {
         return description;
+    }
+
+    /**
+     * The URL to download or preview the file
+     */
+    @JsonIgnore
+    public JsonNullable<String> fileUrl() {
+        return fileUrl;
     }
 
     /**
@@ -393,6 +411,24 @@ public class Attachment {
     }
 
     /**
+     * The URL to download or preview the file
+     */
+    public Attachment withFileUrl(String fileUrl) {
+        Utils.checkNotNull(fileUrl, "fileUrl");
+        this.fileUrl = JsonNullable.of(fileUrl);
+        return this;
+    }
+
+    /**
+     * The URL to download or preview the file
+     */
+    public Attachment withFileUrl(JsonNullable<String> fileUrl) {
+        Utils.checkNotNull(fileUrl, "fileUrl");
+        this.fileUrl = fileUrl;
+        return this;
+    }
+
+    /**
      * The folder id where this attachment belong to
      */
     public Attachment withParentFolderId(String parentFolderId) {
@@ -520,6 +556,7 @@ public class Attachment {
             Utils.enhancedDeepEquals(this.size, other.size) &&
             Utils.enhancedDeepEquals(this.reference, other.reference) &&
             Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.fileUrl, other.fileUrl) &&
             Utils.enhancedDeepEquals(this.parentFolderId, other.parentFolderId) &&
             Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
             Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
@@ -533,9 +570,9 @@ public class Attachment {
         return Utils.enhancedHash(
             id, displayId, name,
             mimeType, size, reference,
-            description, parentFolderId, updatedBy,
-            createdBy, updatedAt, createdAt,
-            passThrough);
+            description, fileUrl, parentFolderId,
+            updatedBy, createdBy, updatedAt,
+            createdAt, passThrough);
     }
     
     @Override
@@ -548,6 +585,7 @@ public class Attachment {
                 "size", size,
                 "reference", reference,
                 "description", description,
+                "fileUrl", fileUrl,
                 "parentFolderId", parentFolderId,
                 "updatedBy", updatedBy,
                 "createdBy", createdBy,
@@ -572,6 +610,8 @@ public class Attachment {
         private Optional<? extends AttachmentReference> reference = Optional.empty();
 
         private JsonNullable<String> description = JsonNullable.undefined();
+
+        private JsonNullable<String> fileUrl = JsonNullable.undefined();
 
         private JsonNullable<String> parentFolderId = JsonNullable.undefined();
 
@@ -718,6 +758,25 @@ public class Attachment {
 
 
         /**
+         * The URL to download or preview the file
+         */
+        public Builder fileUrl(String fileUrl) {
+            Utils.checkNotNull(fileUrl, "fileUrl");
+            this.fileUrl = JsonNullable.of(fileUrl);
+            return this;
+        }
+
+        /**
+         * The URL to download or preview the file
+         */
+        public Builder fileUrl(JsonNullable<String> fileUrl) {
+            Utils.checkNotNull(fileUrl, "fileUrl");
+            this.fileUrl = fileUrl;
+            return this;
+        }
+
+
+        /**
          * The folder id where this attachment belong to
          */
         public Builder parentFolderId(String parentFolderId) {
@@ -837,9 +896,9 @@ public class Attachment {
             return new Attachment(
                 id, displayId, name,
                 mimeType, size, reference,
-                description, parentFolderId, updatedBy,
-                createdBy, updatedAt, createdAt,
-                passThrough);
+                description, fileUrl, parentFolderId,
+                updatedBy, createdBy, updatedAt,
+                createdAt, passThrough);
         }
 
     }

@@ -110,10 +110,12 @@ public class Refund {
 
     /**
      * Type of refund. `refund_receipt` for itemized refunds with product/service lines and payment (QBO
-     * RefundReceipt, NetSuite CashRefund). `cash_refund` for cash-out refunds with GL distribution or
-     * allocations (Sage Intacct).
+     * RefundReceipt; also NetSuite's apply-list-based CustomerRefund). `cash_refund` for cash-out refunds
+     * with GL distribution or allocations (Sage Intacct).
      * 
-     * <p>`credit_note_refund` for refunds applied against a credit note (Zoho Books).
+     * <p>`credit_note_refund` for refunds applied against a credit note (Zoho Books). `sale_refund` for
+     * itemized refunds tied to a cash sale or return authorization, without an apply-list (NetSuite
+     * CashRefund) — NetSuite's apply-list-based CustomerRefund reports as `refund_receipt` instead.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
@@ -146,7 +148,7 @@ public class Refund {
     private JsonNullable<? extends LinkedLedgerAccount> account;
 
     /**
-     * Line items for itemized refunds (type: refund_receipt). Used when the refund includes
+     * Line items for itemized refunds (type: refund_receipt or sale_refund). Used when the refund includes
      * product/service details with quantities and pricing. Supported by QBO RefundReceipt and NetSuite
      * CashRefund.
      */
@@ -526,10 +528,12 @@ public class Refund {
 
     /**
      * Type of refund. `refund_receipt` for itemized refunds with product/service lines and payment (QBO
-     * RefundReceipt, NetSuite CashRefund). `cash_refund` for cash-out refunds with GL distribution or
-     * allocations (Sage Intacct).
+     * RefundReceipt; also NetSuite's apply-list-based CustomerRefund). `cash_refund` for cash-out refunds
+     * with GL distribution or allocations (Sage Intacct).
      * 
-     * <p>`credit_note_refund` for refunds applied against a credit note (Zoho Books).
+     * <p>`credit_note_refund` for refunds applied against a credit note (Zoho Books). `sale_refund` for
+     * itemized refunds tied to a cash sale or return authorization, without an apply-list (NetSuite
+     * CashRefund) — NetSuite's apply-list-based CustomerRefund reports as `refund_receipt` instead.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -568,7 +572,7 @@ public class Refund {
     }
 
     /**
-     * Line items for itemized refunds (type: refund_receipt). Used when the refund includes
+     * Line items for itemized refunds (type: refund_receipt or sale_refund). Used when the refund includes
      * product/service details with quantities and pricing. Supported by QBO RefundReceipt and NetSuite
      * CashRefund.
      */
@@ -956,10 +960,12 @@ public class Refund {
 
     /**
      * Type of refund. `refund_receipt` for itemized refunds with product/service lines and payment (QBO
-     * RefundReceipt, NetSuite CashRefund). `cash_refund` for cash-out refunds with GL distribution or
-     * allocations (Sage Intacct).
+     * RefundReceipt; also NetSuite's apply-list-based CustomerRefund). `cash_refund` for cash-out refunds
+     * with GL distribution or allocations (Sage Intacct).
      * 
-     * <p>`credit_note_refund` for refunds applied against a credit note (Zoho Books).
+     * <p>`credit_note_refund` for refunds applied against a credit note (Zoho Books). `sale_refund` for
+     * itemized refunds tied to a cash sale or return authorization, without an apply-list (NetSuite
+     * CashRefund) — NetSuite's apply-list-based CustomerRefund reports as `refund_receipt` instead.
      */
     public Refund withType(RefundType type) {
         Utils.checkNotNull(type, "type");
@@ -970,10 +976,12 @@ public class Refund {
 
     /**
      * Type of refund. `refund_receipt` for itemized refunds with product/service lines and payment (QBO
-     * RefundReceipt, NetSuite CashRefund). `cash_refund` for cash-out refunds with GL distribution or
-     * allocations (Sage Intacct).
+     * RefundReceipt; also NetSuite's apply-list-based CustomerRefund). `cash_refund` for cash-out refunds
+     * with GL distribution or allocations (Sage Intacct).
      * 
-     * <p>`credit_note_refund` for refunds applied against a credit note (Zoho Books).
+     * <p>`credit_note_refund` for refunds applied against a credit note (Zoho Books). `sale_refund` for
+     * itemized refunds tied to a cash sale or return authorization, without an apply-list (NetSuite
+     * CashRefund) — NetSuite's apply-list-based CustomerRefund reports as `refund_receipt` instead.
      */
     public Refund withType(Optional<? extends RefundType> type) {
         Utils.checkNotNull(type, "type");
@@ -1048,7 +1056,7 @@ public class Refund {
     }
 
     /**
-     * Line items for itemized refunds (type: refund_receipt). Used when the refund includes
+     * Line items for itemized refunds (type: refund_receipt or sale_refund). Used when the refund includes
      * product/service details with quantities and pricing. Supported by QBO RefundReceipt and NetSuite
      * CashRefund.
      */
@@ -1060,7 +1068,7 @@ public class Refund {
 
 
     /**
-     * Line items for itemized refunds (type: refund_receipt). Used when the refund includes
+     * Line items for itemized refunds (type: refund_receipt or sale_refund). Used when the refund includes
      * product/service details with quantities and pricing. Supported by QBO RefundReceipt and NetSuite
      * CashRefund.
      */
@@ -1833,10 +1841,12 @@ public class Refund {
 
         /**
          * Type of refund. `refund_receipt` for itemized refunds with product/service lines and payment (QBO
-         * RefundReceipt, NetSuite CashRefund). `cash_refund` for cash-out refunds with GL distribution or
-         * allocations (Sage Intacct).
+         * RefundReceipt; also NetSuite's apply-list-based CustomerRefund). `cash_refund` for cash-out refunds
+         * with GL distribution or allocations (Sage Intacct).
          * 
-         * <p>`credit_note_refund` for refunds applied against a credit note (Zoho Books).
+         * <p>`credit_note_refund` for refunds applied against a credit note (Zoho Books). `sale_refund` for
+         * itemized refunds tied to a cash sale or return authorization, without an apply-list (NetSuite
+         * CashRefund) — NetSuite's apply-list-based CustomerRefund reports as `refund_receipt` instead.
          */
         public Builder type(RefundType type) {
             Utils.checkNotNull(type, "type");
@@ -1846,10 +1856,12 @@ public class Refund {
 
         /**
          * Type of refund. `refund_receipt` for itemized refunds with product/service lines and payment (QBO
-         * RefundReceipt, NetSuite CashRefund). `cash_refund` for cash-out refunds with GL distribution or
-         * allocations (Sage Intacct).
+         * RefundReceipt; also NetSuite's apply-list-based CustomerRefund). `cash_refund` for cash-out refunds
+         * with GL distribution or allocations (Sage Intacct).
          * 
-         * <p>`credit_note_refund` for refunds applied against a credit note (Zoho Books).
+         * <p>`credit_note_refund` for refunds applied against a credit note (Zoho Books). `sale_refund` for
+         * itemized refunds tied to a cash sale or return authorization, without an apply-list (NetSuite
+         * CashRefund) — NetSuite's apply-list-based CustomerRefund reports as `refund_receipt` instead.
          */
         public Builder type(Optional<? extends RefundType> type) {
             Utils.checkNotNull(type, "type");
@@ -1929,7 +1941,7 @@ public class Refund {
 
 
         /**
-         * Line items for itemized refunds (type: refund_receipt). Used when the refund includes
+         * Line items for itemized refunds (type: refund_receipt or sale_refund). Used when the refund includes
          * product/service details with quantities and pricing. Supported by QBO RefundReceipt and NetSuite
          * CashRefund.
          */
@@ -1940,7 +1952,7 @@ public class Refund {
         }
 
         /**
-         * Line items for itemized refunds (type: refund_receipt). Used when the refund includes
+         * Line items for itemized refunds (type: refund_receipt or sale_refund). Used when the refund includes
          * product/service details with quantities and pricing. Supported by QBO RefundReceipt and NetSuite
          * CashRefund.
          */

@@ -9,6 +9,7 @@ import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
+import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
@@ -60,6 +61,17 @@ public class ProxyDeleteProxyRequest {
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-timeout")
     private Optional<Long> timeout;
 
+    /**
+     * Set to `false` to opt out of the redirect to the presigned download URL. Instead of a `30x`
+     * response, you receive a `200` JSON body `{ url, expires_at }` containing the URL and its expiry,
+     * which you can fetch explicitly. Use this if your client automatically forwards the `Authorization`
+     * header onto redirects, since the downstream storage provider will reject that request.
+     * 
+     * <p>Any value other than `false` (or omitting the header) preserves the default redirect behavior.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-follow-redirects")
+    private Optional<Boolean> followRedirects;
+
     @JsonCreator
     public ProxyDeleteProxyRequest(
             Optional<String> consumerId,
@@ -68,7 +80,8 @@ public class ProxyDeleteProxyRequest {
             Optional<String> unifiedApi,
             String downstreamUrl,
             Optional<String> downstreamAuthorization,
-            Optional<Long> timeout) {
+            Optional<Long> timeout,
+            Optional<Boolean> followRedirects) {
         Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(serviceId, "serviceId");
@@ -76,6 +89,7 @@ public class ProxyDeleteProxyRequest {
         Utils.checkNotNull(downstreamUrl, "downstreamUrl");
         Utils.checkNotNull(downstreamAuthorization, "downstreamAuthorization");
         Utils.checkNotNull(timeout, "timeout");
+        Utils.checkNotNull(followRedirects, "followRedirects");
         this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
@@ -83,6 +97,7 @@ public class ProxyDeleteProxyRequest {
         this.downstreamUrl = downstreamUrl;
         this.downstreamAuthorization = downstreamAuthorization;
         this.timeout = timeout;
+        this.followRedirects = followRedirects;
     }
     
     public ProxyDeleteProxyRequest(
@@ -90,7 +105,7 @@ public class ProxyDeleteProxyRequest {
             String downstreamUrl) {
         this(Optional.empty(), Optional.empty(), serviceId,
             Optional.empty(), downstreamUrl, Optional.empty(),
-            Optional.empty());
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -149,6 +164,19 @@ public class ProxyDeleteProxyRequest {
     @JsonIgnore
     public Optional<Long> timeout() {
         return timeout;
+    }
+
+    /**
+     * Set to `false` to opt out of the redirect to the presigned download URL. Instead of a `30x`
+     * response, you receive a `200` JSON body `{ url, expires_at }` containing the URL and its expiry,
+     * which you can fetch explicitly. Use this if your client automatically forwards the `Authorization`
+     * header onto redirects, since the downstream storage provider will reject that request.
+     * 
+     * <p>Any value other than `false` (or omitting the header) preserves the default redirect behavior.
+     */
+    @JsonIgnore
+    public Optional<Boolean> followRedirects() {
+        return followRedirects;
     }
 
     public static Builder builder() {
@@ -272,6 +300,35 @@ public class ProxyDeleteProxyRequest {
         return this;
     }
 
+    /**
+     * Set to `false` to opt out of the redirect to the presigned download URL. Instead of a `30x`
+     * response, you receive a `200` JSON body `{ url, expires_at }` containing the URL and its expiry,
+     * which you can fetch explicitly. Use this if your client automatically forwards the `Authorization`
+     * header onto redirects, since the downstream storage provider will reject that request.
+     * 
+     * <p>Any value other than `false` (or omitting the header) preserves the default redirect behavior.
+     */
+    public ProxyDeleteProxyRequest withFollowRedirects(boolean followRedirects) {
+        Utils.checkNotNull(followRedirects, "followRedirects");
+        this.followRedirects = Optional.ofNullable(followRedirects);
+        return this;
+    }
+
+
+    /**
+     * Set to `false` to opt out of the redirect to the presigned download URL. Instead of a `30x`
+     * response, you receive a `200` JSON body `{ url, expires_at }` containing the URL and its expiry,
+     * which you can fetch explicitly. Use this if your client automatically forwards the `Authorization`
+     * header onto redirects, since the downstream storage provider will reject that request.
+     * 
+     * <p>Any value other than `false` (or omitting the header) preserves the default redirect behavior.
+     */
+    public ProxyDeleteProxyRequest withFollowRedirects(Optional<Boolean> followRedirects) {
+        Utils.checkNotNull(followRedirects, "followRedirects");
+        this.followRedirects = followRedirects;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -288,7 +345,8 @@ public class ProxyDeleteProxyRequest {
             Utils.enhancedDeepEquals(this.unifiedApi, other.unifiedApi) &&
             Utils.enhancedDeepEquals(this.downstreamUrl, other.downstreamUrl) &&
             Utils.enhancedDeepEquals(this.downstreamAuthorization, other.downstreamAuthorization) &&
-            Utils.enhancedDeepEquals(this.timeout, other.timeout);
+            Utils.enhancedDeepEquals(this.timeout, other.timeout) &&
+            Utils.enhancedDeepEquals(this.followRedirects, other.followRedirects);
     }
     
     @Override
@@ -296,7 +354,7 @@ public class ProxyDeleteProxyRequest {
         return Utils.enhancedHash(
             consumerId, appId, serviceId,
             unifiedApi, downstreamUrl, downstreamAuthorization,
-            timeout);
+            timeout, followRedirects);
     }
     
     @Override
@@ -308,7 +366,8 @@ public class ProxyDeleteProxyRequest {
                 "unifiedApi", unifiedApi,
                 "downstreamUrl", downstreamUrl,
                 "downstreamAuthorization", downstreamAuthorization,
-                "timeout", timeout);
+                "timeout", timeout,
+                "followRedirects", followRedirects);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -327,6 +386,8 @@ public class ProxyDeleteProxyRequest {
         private Optional<String> downstreamAuthorization = Optional.empty();
 
         private Optional<Long> timeout;
+
+        private Optional<Boolean> followRedirects;
 
         private Builder() {
           // force use of static builder() method
@@ -450,15 +511,47 @@ public class ProxyDeleteProxyRequest {
             return this;
         }
 
+
+        /**
+         * Set to `false` to opt out of the redirect to the presigned download URL. Instead of a `30x`
+         * response, you receive a `200` JSON body `{ url, expires_at }` containing the URL and its expiry,
+         * which you can fetch explicitly. Use this if your client automatically forwards the `Authorization`
+         * header onto redirects, since the downstream storage provider will reject that request.
+         * 
+         * <p>Any value other than `false` (or omitting the header) preserves the default redirect behavior.
+         */
+        public Builder followRedirects(boolean followRedirects) {
+            Utils.checkNotNull(followRedirects, "followRedirects");
+            this.followRedirects = Optional.ofNullable(followRedirects);
+            return this;
+        }
+
+        /**
+         * Set to `false` to opt out of the redirect to the presigned download URL. Instead of a `30x`
+         * response, you receive a `200` JSON body `{ url, expires_at }` containing the URL and its expiry,
+         * which you can fetch explicitly. Use this if your client automatically forwards the `Authorization`
+         * header onto redirects, since the downstream storage provider will reject that request.
+         * 
+         * <p>Any value other than `false` (or omitting the header) preserves the default redirect behavior.
+         */
+        public Builder followRedirects(Optional<Boolean> followRedirects) {
+            Utils.checkNotNull(followRedirects, "followRedirects");
+            this.followRedirects = followRedirects;
+            return this;
+        }
+
         public ProxyDeleteProxyRequest build() {
             if (timeout == null) {
                 timeout = _SINGLETON_VALUE_Timeout.value();
+            }
+            if (followRedirects == null) {
+                followRedirects = _SINGLETON_VALUE_FollowRedirects.value();
             }
 
             return new ProxyDeleteProxyRequest(
                 consumerId, appId, serviceId,
                 unifiedApi, downstreamUrl, downstreamAuthorization,
-                timeout);
+                timeout, followRedirects);
         }
 
 
@@ -467,5 +560,11 @@ public class ProxyDeleteProxyRequest {
                         "timeout",
                         "28000",
                         new TypeReference<Optional<Long>>() {});
+
+        private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_FollowRedirects =
+                new LazySingletonValue<>(
+                        "followRedirects",
+                        "true",
+                        new TypeReference<Optional<Boolean>>() {});
     }
 }

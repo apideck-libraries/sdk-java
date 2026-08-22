@@ -22,16 +22,19 @@ import java.util.Optional;
  * RefundType
  * 
  * <p>Type of refund. `refund_receipt` for itemized refunds with product/service lines and payment (QBO
- * RefundReceipt, NetSuite CashRefund). `cash_refund` for cash-out refunds with GL distribution or
- * allocations (Sage Intacct).
+ * RefundReceipt; also NetSuite's apply-list-based CustomerRefund). `cash_refund` for cash-out refunds
+ * with GL distribution or allocations (Sage Intacct).
  * 
- * <p>`credit_note_refund` for refunds applied against a credit note (Zoho Books).
+ * <p>`credit_note_refund` for refunds applied against a credit note (Zoho Books). `sale_refund` for
+ * itemized refunds tied to a cash sale or return authorization, without an apply-list (NetSuite
+ * CashRefund) — NetSuite's apply-list-based CustomerRefund reports as `refund_receipt` instead.
  */
 public class RefundType {
 
     public static final RefundType REFUND_RECEIPT = new RefundType("refund_receipt");
     public static final RefundType CASH_REFUND = new RefundType("cash_refund");
     public static final RefundType CREDIT_NOTE_REFUND = new RefundType("credit_note_refund");
+    public static final RefundType SALE_REFUND = new RefundType("sale_refund");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -108,6 +111,7 @@ public class RefundType {
         map.put("refund_receipt", REFUND_RECEIPT);
         map.put("cash_refund", CASH_REFUND);
         map.put("credit_note_refund", CREDIT_NOTE_REFUND);
+        map.put("sale_refund", SALE_REFUND);
         return map;
     }
 
@@ -116,6 +120,7 @@ public class RefundType {
         map.put("refund_receipt", RefundTypeEnum.REFUND_RECEIPT);
         map.put("cash_refund", RefundTypeEnum.CASH_REFUND);
         map.put("credit_note_refund", RefundTypeEnum.CREDIT_NOTE_REFUND);
+        map.put("sale_refund", RefundTypeEnum.SALE_REFUND);
         return map;
     }
     
@@ -124,7 +129,8 @@ public class RefundType {
 
         REFUND_RECEIPT("refund_receipt"),
         CASH_REFUND("cash_refund"),
-        CREDIT_NOTE_REFUND("credit_note_refund"),;
+        CREDIT_NOTE_REFUND("credit_note_refund"),
+        SALE_REFUND("sale_refund"),;
 
         private final String value;
 

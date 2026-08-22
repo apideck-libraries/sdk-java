@@ -3,10 +3,13 @@
  */
 package com.apideck.unify.models.operations;
 
+import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.core.type.TypeReference;
+import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
@@ -53,29 +56,43 @@ public class FileStorageFilesDownloadRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=fields")
     private JsonNullable<String> fields;
 
+    /**
+     * Set to `false` to opt out of the redirect to the presigned download URL. Instead of a `30x`
+     * response, you receive a `200` JSON body `{ url, expires_at }` containing the URL and its expiry,
+     * which you can fetch explicitly. Use this if your client automatically forwards the `Authorization`
+     * header onto redirects, since the downstream storage provider will reject that request.
+     * 
+     * <p>Any value other than `false` (or omitting the header) preserves the default redirect behavior.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-follow-redirects")
+    private Optional<Boolean> followRedirects;
+
     @JsonCreator
     public FileStorageFilesDownloadRequest(
             String id,
             Optional<String> consumerId,
             Optional<String> appId,
             Optional<String> serviceId,
-            JsonNullable<String> fields) {
+            JsonNullable<String> fields,
+            Optional<Boolean> followRedirects) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(serviceId, "serviceId");
         Utils.checkNotNull(fields, "fields");
+        Utils.checkNotNull(followRedirects, "followRedirects");
         this.id = id;
         this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
         this.fields = fields;
+        this.followRedirects = followRedirects;
     }
     
     public FileStorageFilesDownloadRequest(
             String id) {
         this(id, Optional.empty(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined());
+            Optional.empty(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -125,6 +142,19 @@ public class FileStorageFilesDownloadRequest {
     @JsonIgnore
     public JsonNullable<String> fields() {
         return fields;
+    }
+
+    /**
+     * Set to `false` to opt out of the redirect to the presigned download URL. Instead of a `30x`
+     * response, you receive a `200` JSON body `{ url, expires_at }` containing the URL and its expiry,
+     * which you can fetch explicitly. Use this if your client automatically forwards the `Authorization`
+     * header onto redirects, since the downstream storage provider will reject that request.
+     * 
+     * <p>Any value other than `false` (or omitting the header) preserves the default redirect behavior.
+     */
+    @JsonIgnore
+    public Optional<Boolean> followRedirects() {
+        return followRedirects;
     }
 
     public static Builder builder() {
@@ -234,6 +264,35 @@ public class FileStorageFilesDownloadRequest {
         return this;
     }
 
+    /**
+     * Set to `false` to opt out of the redirect to the presigned download URL. Instead of a `30x`
+     * response, you receive a `200` JSON body `{ url, expires_at }` containing the URL and its expiry,
+     * which you can fetch explicitly. Use this if your client automatically forwards the `Authorization`
+     * header onto redirects, since the downstream storage provider will reject that request.
+     * 
+     * <p>Any value other than `false` (or omitting the header) preserves the default redirect behavior.
+     */
+    public FileStorageFilesDownloadRequest withFollowRedirects(boolean followRedirects) {
+        Utils.checkNotNull(followRedirects, "followRedirects");
+        this.followRedirects = Optional.ofNullable(followRedirects);
+        return this;
+    }
+
+
+    /**
+     * Set to `false` to opt out of the redirect to the presigned download URL. Instead of a `30x`
+     * response, you receive a `200` JSON body `{ url, expires_at }` containing the URL and its expiry,
+     * which you can fetch explicitly. Use this if your client automatically forwards the `Authorization`
+     * header onto redirects, since the downstream storage provider will reject that request.
+     * 
+     * <p>Any value other than `false` (or omitting the header) preserves the default redirect behavior.
+     */
+    public FileStorageFilesDownloadRequest withFollowRedirects(Optional<Boolean> followRedirects) {
+        Utils.checkNotNull(followRedirects, "followRedirects");
+        this.followRedirects = followRedirects;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -248,14 +307,15 @@ public class FileStorageFilesDownloadRequest {
             Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
             Utils.enhancedDeepEquals(this.appId, other.appId) &&
             Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
-            Utils.enhancedDeepEquals(this.fields, other.fields);
+            Utils.enhancedDeepEquals(this.fields, other.fields) &&
+            Utils.enhancedDeepEquals(this.followRedirects, other.followRedirects);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             id, consumerId, appId,
-            serviceId, fields);
+            serviceId, fields, followRedirects);
     }
     
     @Override
@@ -265,7 +325,8 @@ public class FileStorageFilesDownloadRequest {
                 "consumerId", consumerId,
                 "appId", appId,
                 "serviceId", serviceId,
-                "fields", fields);
+                "fields", fields,
+                "followRedirects", followRedirects);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -280,6 +341,8 @@ public class FileStorageFilesDownloadRequest {
         private Optional<String> serviceId = Optional.empty();
 
         private JsonNullable<String> fields = JsonNullable.undefined();
+
+        private Optional<Boolean> followRedirects;
 
         private Builder() {
           // force use of static builder() method
@@ -389,12 +452,50 @@ public class FileStorageFilesDownloadRequest {
             return this;
         }
 
+
+        /**
+         * Set to `false` to opt out of the redirect to the presigned download URL. Instead of a `30x`
+         * response, you receive a `200` JSON body `{ url, expires_at }` containing the URL and its expiry,
+         * which you can fetch explicitly. Use this if your client automatically forwards the `Authorization`
+         * header onto redirects, since the downstream storage provider will reject that request.
+         * 
+         * <p>Any value other than `false` (or omitting the header) preserves the default redirect behavior.
+         */
+        public Builder followRedirects(boolean followRedirects) {
+            Utils.checkNotNull(followRedirects, "followRedirects");
+            this.followRedirects = Optional.ofNullable(followRedirects);
+            return this;
+        }
+
+        /**
+         * Set to `false` to opt out of the redirect to the presigned download URL. Instead of a `30x`
+         * response, you receive a `200` JSON body `{ url, expires_at }` containing the URL and its expiry,
+         * which you can fetch explicitly. Use this if your client automatically forwards the `Authorization`
+         * header onto redirects, since the downstream storage provider will reject that request.
+         * 
+         * <p>Any value other than `false` (or omitting the header) preserves the default redirect behavior.
+         */
+        public Builder followRedirects(Optional<Boolean> followRedirects) {
+            Utils.checkNotNull(followRedirects, "followRedirects");
+            this.followRedirects = followRedirects;
+            return this;
+        }
+
         public FileStorageFilesDownloadRequest build() {
+            if (followRedirects == null) {
+                followRedirects = _SINGLETON_VALUE_FollowRedirects.value();
+            }
 
             return new FileStorageFilesDownloadRequest(
                 id, consumerId, appId,
-                serviceId, fields);
+                serviceId, fields, followRedirects);
         }
 
+
+        private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_FollowRedirects =
+                new LazySingletonValue<>(
+                        "followRedirects",
+                        "true",
+                        new TypeReference<Optional<Boolean>>() {});
     }
 }

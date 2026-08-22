@@ -51,7 +51,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.apideck:unify:0.37.0'
+implementation 'com.apideck:unify:0.38.0'
 ```
 
 Maven:
@@ -59,7 +59,7 @@ Maven:
 <dependency>
     <groupId>com.apideck</groupId>
     <artifactId>unify</artifactId>
-    <version>0.37.0</version>
+    <version>0.38.0</version>
 </dependency>
 ```
 
@@ -375,6 +375,14 @@ For full model-specific examples (including Java 11/16/21 variants), see each un
 * [update](docs/sdks/locations/README.md#update) - Update Location
 * [delete](docs/sdks/locations/README.md#delete) - Delete Location
 
+### [Accounting.PaymentMethods](docs/sdks/paymentmethods/README.md)
+
+* [list](docs/sdks/paymentmethods/README.md#list) - List Payment Methods
+* [create](docs/sdks/paymentmethods/README.md#create) - Create Payment Method
+* [get](docs/sdks/paymentmethods/README.md#get) - Get Payment Method
+* [update](docs/sdks/paymentmethods/README.md#update) - Update Payment Method
+* [delete](docs/sdks/paymentmethods/README.md#delete) - Delete Payment Method
+
 ### [Accounting.Payments](docs/sdks/payments/README.md)
 
 * [list](docs/sdks/payments/README.md#list) - List Payments
@@ -418,6 +426,14 @@ For full model-specific examples (including Java 11/16/21 variants), see each un
 * [get](docs/sdks/refunds/README.md#get) - Get Refund
 * [update](docs/sdks/refunds/README.md#update) - Update Refund
 * [delete](docs/sdks/refunds/README.md#delete) - Delete Refund
+
+### [Accounting.SalesReceipts](docs/sdks/salesreceipts/README.md)
+
+* [list](docs/sdks/salesreceipts/README.md#list) - List Sales Receipts
+* [create](docs/sdks/salesreceipts/README.md#create) - Create Sales Receipt
+* [get](docs/sdks/salesreceipts/README.md#get) - Get Sales Receipt
+* [update](docs/sdks/salesreceipts/README.md#update) - Update Sales Receipt
+* [delete](docs/sdks/salesreceipts/README.md#delete) - Delete Sales Receipt
 
 ### [Accounting.Subsidiaries](docs/sdks/subsidiaries/README.md)
 
@@ -1200,8 +1216,8 @@ public class Application {
 many more subclasses in the JDK platform).
 
 **Inherit from [`ApideckError`](./src/main/java/models/errors/ApideckError.java)**:
-* [`com.apideck.unify.models.errors.Unauthorized`](./src/main/java/models/errors/com.apideck.unify.models.errors.Unauthorized.java): Unauthorized. Status code `401`. Applicable to 6 of 340 methods.*
-* [`com.apideck.unify.models.errors.ConflictResponse`](./src/main/java/models/errors/com.apideck.unify.models.errors.ConflictResponse.java): Conflict — a connection already exists for the target connector. Status code `409`. Applicable to 1 of 340 methods.*
+* [`com.apideck.unify.models.errors.Unauthorized`](./src/main/java/models/errors/com.apideck.unify.models.errors.Unauthorized.java): Unauthorized. Status code `401`. Applicable to 6 of 350 methods.*
+* [`com.apideck.unify.models.errors.ConflictResponse`](./src/main/java/models/errors/com.apideck.unify.models.errors.ConflictResponse.java): Conflict — a connection already exists for the target connector. Status code `409`. Applicable to 1 of 350 methods.*
 
 
 </details>

@@ -15,6 +15,7 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class Transactions {
@@ -70,6 +71,15 @@ public class Transactions {
     @JsonProperty("transaction_type")
     private Optional<? extends BankFeedStatementTransactionType> transactionType;
 
+    /**
+     * The ISO 18245 merchant category code (MCC) classifying the merchant for this transaction, expected
+     * as a four-digit code such as `5812`. The format is not enforced by the API, matching the other bank
+     * identifier fields.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("merchant_category_code")
+    private JsonNullable<String> merchantCategoryCode;
+
     @JsonCreator
     public Transactions(
             @JsonProperty("posted_date") OffsetDateTime postedDate,
@@ -79,7 +89,8 @@ public class Transactions {
             @JsonProperty("source_transaction_id") String sourceTransactionId,
             @JsonProperty("counterparty") Optional<String> counterparty,
             @JsonProperty("reference") Optional<String> reference,
-            @JsonProperty("transaction_type") Optional<? extends BankFeedStatementTransactionType> transactionType) {
+            @JsonProperty("transaction_type") Optional<? extends BankFeedStatementTransactionType> transactionType,
+            @JsonProperty("merchant_category_code") JsonNullable<String> merchantCategoryCode) {
         Utils.checkNotNull(postedDate, "postedDate");
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(amount, "amount");
@@ -88,6 +99,7 @@ public class Transactions {
         Utils.checkNotNull(counterparty, "counterparty");
         Utils.checkNotNull(reference, "reference");
         Utils.checkNotNull(transactionType, "transactionType");
+        Utils.checkNotNull(merchantCategoryCode, "merchantCategoryCode");
         this.postedDate = postedDate;
         this.description = description;
         this.amount = amount;
@@ -96,6 +108,7 @@ public class Transactions {
         this.counterparty = counterparty;
         this.reference = reference;
         this.transactionType = transactionType;
+        this.merchantCategoryCode = merchantCategoryCode;
     }
     
     public Transactions(
@@ -105,7 +118,7 @@ public class Transactions {
             String sourceTransactionId) {
         this(postedDate, Optional.empty(), amount,
             creditOrDebit, sourceTransactionId, Optional.empty(),
-            Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -171,6 +184,16 @@ public class Transactions {
     @JsonIgnore
     public Optional<BankFeedStatementTransactionType> transactionType() {
         return (Optional<BankFeedStatementTransactionType>) transactionType;
+    }
+
+    /**
+     * The ISO 18245 merchant category code (MCC) classifying the merchant for this transaction, expected
+     * as a four-digit code such as `5812`. The format is not enforced by the API, matching the other bank
+     * identifier fields.
+     */
+    @JsonIgnore
+    public JsonNullable<String> merchantCategoryCode() {
+        return merchantCategoryCode;
     }
 
     public static Builder builder() {
@@ -290,6 +313,28 @@ public class Transactions {
         return this;
     }
 
+    /**
+     * The ISO 18245 merchant category code (MCC) classifying the merchant for this transaction, expected
+     * as a four-digit code such as `5812`. The format is not enforced by the API, matching the other bank
+     * identifier fields.
+     */
+    public Transactions withMerchantCategoryCode(String merchantCategoryCode) {
+        Utils.checkNotNull(merchantCategoryCode, "merchantCategoryCode");
+        this.merchantCategoryCode = JsonNullable.of(merchantCategoryCode);
+        return this;
+    }
+
+    /**
+     * The ISO 18245 merchant category code (MCC) classifying the merchant for this transaction, expected
+     * as a four-digit code such as `5812`. The format is not enforced by the API, matching the other bank
+     * identifier fields.
+     */
+    public Transactions withMerchantCategoryCode(JsonNullable<String> merchantCategoryCode) {
+        Utils.checkNotNull(merchantCategoryCode, "merchantCategoryCode");
+        this.merchantCategoryCode = merchantCategoryCode;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -307,7 +352,8 @@ public class Transactions {
             Utils.enhancedDeepEquals(this.sourceTransactionId, other.sourceTransactionId) &&
             Utils.enhancedDeepEquals(this.counterparty, other.counterparty) &&
             Utils.enhancedDeepEquals(this.reference, other.reference) &&
-            Utils.enhancedDeepEquals(this.transactionType, other.transactionType);
+            Utils.enhancedDeepEquals(this.transactionType, other.transactionType) &&
+            Utils.enhancedDeepEquals(this.merchantCategoryCode, other.merchantCategoryCode);
     }
     
     @Override
@@ -315,7 +361,7 @@ public class Transactions {
         return Utils.enhancedHash(
             postedDate, description, amount,
             creditOrDebit, sourceTransactionId, counterparty,
-            reference, transactionType);
+            reference, transactionType, merchantCategoryCode);
     }
     
     @Override
@@ -328,7 +374,8 @@ public class Transactions {
                 "sourceTransactionId", sourceTransactionId,
                 "counterparty", counterparty,
                 "reference", reference,
-                "transactionType", transactionType);
+                "transactionType", transactionType,
+                "merchantCategoryCode", merchantCategoryCode);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -349,6 +396,8 @@ public class Transactions {
         private Optional<String> reference = Optional.empty();
 
         private Optional<? extends BankFeedStatementTransactionType> transactionType = Optional.empty();
+
+        private JsonNullable<String> merchantCategoryCode = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -470,12 +519,35 @@ public class Transactions {
             return this;
         }
 
+
+        /**
+         * The ISO 18245 merchant category code (MCC) classifying the merchant for this transaction, expected
+         * as a four-digit code such as `5812`. The format is not enforced by the API, matching the other bank
+         * identifier fields.
+         */
+        public Builder merchantCategoryCode(String merchantCategoryCode) {
+            Utils.checkNotNull(merchantCategoryCode, "merchantCategoryCode");
+            this.merchantCategoryCode = JsonNullable.of(merchantCategoryCode);
+            return this;
+        }
+
+        /**
+         * The ISO 18245 merchant category code (MCC) classifying the merchant for this transaction, expected
+         * as a four-digit code such as `5812`. The format is not enforced by the API, matching the other bank
+         * identifier fields.
+         */
+        public Builder merchantCategoryCode(JsonNullable<String> merchantCategoryCode) {
+            Utils.checkNotNull(merchantCategoryCode, "merchantCategoryCode");
+            this.merchantCategoryCode = merchantCategoryCode;
+            return this;
+        }
+
         public Transactions build() {
 
             return new Transactions(
                 postedDate, description, amount,
                 creditOrDebit, sourceTransactionId, counterparty,
-                reference, transactionType);
+                reference, transactionType, merchantCategoryCode);
         }
 
     }

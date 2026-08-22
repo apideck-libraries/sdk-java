@@ -36,32 +36,50 @@ public class ProxyPatchProxyResponse implements AsyncResponse {
     private HttpResponse<Blob> rawResponse;
 
     /**
-     * Ok
+     * Ok. When the request includes `x-apideck-follow-redirects: false` and the downstream response would
+     * otherwise redirect to a presigned URL (oversized responses), the body is instead an
+     * `application/json` object `{ url, expires_at }` — fetch `url` explicitly (without the Authorization
+     * header) to retrieve the payload.
      */
     private Optional<? extends Map<String, Object>> responseJson;
 
     /**
-     * Ok
+     * Ok. When the request includes `x-apideck-follow-redirects: false` and the downstream response would
+     * otherwise redirect to a presigned URL (oversized responses), the body is instead an
+     * `application/json` object `{ url, expires_at }` — fetch `url` explicitly (without the Authorization
+     * header) to retrieve the payload.
      */
     private Optional<? extends Blob> responseBinary;
 
     /**
-     * Ok
+     * Ok. When the request includes `x-apideck-follow-redirects: false` and the downstream response would
+     * otherwise redirect to a presigned URL (oversized responses), the body is instead an
+     * `application/json` object `{ url, expires_at }` — fetch `url` explicitly (without the Authorization
+     * header) to retrieve the payload.
      */
     private Optional<? extends Blob> responsePdf;
 
     /**
-     * Ok
+     * Ok. When the request includes `x-apideck-follow-redirects: false` and the downstream response would
+     * otherwise redirect to a presigned URL (oversized responses), the body is instead an
+     * `application/json` object `{ url, expires_at }` — fetch `url` explicitly (without the Authorization
+     * header) to retrieve the payload.
      */
     private Optional<String> responseXml;
 
     /**
-     * Ok
+     * Ok. When the request includes `x-apideck-follow-redirects: false` and the downstream response would
+     * otherwise redirect to a presigned URL (oversized responses), the body is instead an
+     * `application/json` object `{ url, expires_at }` — fetch `url` explicitly (without the Authorization
+     * header) to retrieve the payload.
      */
     private Optional<String> responseCsv;
 
     /**
-     * Ok
+     * Ok. When the request includes `x-apideck-follow-redirects: false` and the downstream response would
+     * otherwise redirect to a presigned URL (oversized responses), the body is instead an
+     * `application/json` object `{ url, expires_at }` — fetch `url` explicitly (without the Authorization
+     * header) to retrieve the payload.
      */
     private Optional<String> responseText;
 
@@ -172,7 +190,10 @@ public class ProxyPatchProxyResponse implements AsyncResponse {
     }
 
     /**
-     * Ok
+     * Ok. When the request includes `x-apideck-follow-redirects: false` and the downstream response would
+     * otherwise redirect to a presigned URL (oversized responses), the body is instead an
+     * `application/json` object `{ url, expires_at }` — fetch `url` explicitly (without the Authorization
+     * header) to retrieve the payload.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -181,7 +202,10 @@ public class ProxyPatchProxyResponse implements AsyncResponse {
     }
 
     /**
-     * Ok
+     * Ok. When the request includes `x-apideck-follow-redirects: false` and the downstream response would
+     * otherwise redirect to a presigned URL (oversized responses), the body is instead an
+     * `application/json` object `{ url, expires_at }` — fetch `url` explicitly (without the Authorization
+     * header) to retrieve the payload.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -190,7 +214,10 @@ public class ProxyPatchProxyResponse implements AsyncResponse {
     }
 
     /**
-     * Ok
+     * Ok. When the request includes `x-apideck-follow-redirects: false` and the downstream response would
+     * otherwise redirect to a presigned URL (oversized responses), the body is instead an
+     * `application/json` object `{ url, expires_at }` — fetch `url` explicitly (without the Authorization
+     * header) to retrieve the payload.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -199,7 +226,10 @@ public class ProxyPatchProxyResponse implements AsyncResponse {
     }
 
     /**
-     * Ok
+     * Ok. When the request includes `x-apideck-follow-redirects: false` and the downstream response would
+     * otherwise redirect to a presigned URL (oversized responses), the body is instead an
+     * `application/json` object `{ url, expires_at }` — fetch `url` explicitly (without the Authorization
+     * header) to retrieve the payload.
      */
     @JsonIgnore
     public Optional<String> responseXml() {
@@ -207,7 +237,10 @@ public class ProxyPatchProxyResponse implements AsyncResponse {
     }
 
     /**
-     * Ok
+     * Ok. When the request includes `x-apideck-follow-redirects: false` and the downstream response would
+     * otherwise redirect to a presigned URL (oversized responses), the body is instead an
+     * `application/json` object `{ url, expires_at }` — fetch `url` explicitly (without the Authorization
+     * header) to retrieve the payload.
      */
     @JsonIgnore
     public Optional<String> responseCsv() {
@@ -215,7 +248,10 @@ public class ProxyPatchProxyResponse implements AsyncResponse {
     }
 
     /**
-     * Ok
+     * Ok. When the request includes `x-apideck-follow-redirects: false` and the downstream response would
+     * otherwise redirect to a presigned URL (oversized responses), the body is instead an
+     * `application/json` object `{ url, expires_at }` — fetch `url` explicitly (without the Authorization
+     * header) to retrieve the payload.
      */
     @JsonIgnore
     public Optional<String> responseText() {
@@ -293,7 +329,10 @@ public class ProxyPatchProxyResponse implements AsyncResponse {
     }
 
     /**
-     * Ok
+     * Ok. When the request includes `x-apideck-follow-redirects: false` and the downstream response would
+     * otherwise redirect to a presigned URL (oversized responses), the body is instead an
+     * `application/json` object `{ url, expires_at }` — fetch `url` explicitly (without the Authorization
+     * header) to retrieve the payload.
      */
     public ProxyPatchProxyResponse withResponseJson(Map<String, Object> responseJson) {
         Utils.checkNotNull(responseJson, "responseJson");
@@ -303,7 +342,10 @@ public class ProxyPatchProxyResponse implements AsyncResponse {
 
 
     /**
-     * Ok
+     * Ok. When the request includes `x-apideck-follow-redirects: false` and the downstream response would
+     * otherwise redirect to a presigned URL (oversized responses), the body is instead an
+     * `application/json` object `{ url, expires_at }` — fetch `url` explicitly (without the Authorization
+     * header) to retrieve the payload.
      */
     public ProxyPatchProxyResponse withResponseJson(Optional<? extends Map<String, Object>> responseJson) {
         Utils.checkNotNull(responseJson, "responseJson");
@@ -312,7 +354,10 @@ public class ProxyPatchProxyResponse implements AsyncResponse {
     }
 
     /**
-     * Ok
+     * Ok. When the request includes `x-apideck-follow-redirects: false` and the downstream response would
+     * otherwise redirect to a presigned URL (oversized responses), the body is instead an
+     * `application/json` object `{ url, expires_at }` — fetch `url` explicitly (without the Authorization
+     * header) to retrieve the payload.
      */
     public ProxyPatchProxyResponse withResponseBinary(Blob responseBinary) {
         Utils.checkNotNull(responseBinary, "responseBinary");
@@ -322,7 +367,10 @@ public class ProxyPatchProxyResponse implements AsyncResponse {
 
 
     /**
-     * Ok
+     * Ok. When the request includes `x-apideck-follow-redirects: false` and the downstream response would
+     * otherwise redirect to a presigned URL (oversized responses), the body is instead an
+     * `application/json` object `{ url, expires_at }` — fetch `url` explicitly (without the Authorization
+     * header) to retrieve the payload.
      */
     public ProxyPatchProxyResponse withResponseBinary(Optional<? extends Blob> responseBinary) {
         Utils.checkNotNull(responseBinary, "responseBinary");
@@ -331,7 +379,10 @@ public class ProxyPatchProxyResponse implements AsyncResponse {
     }
 
     /**
-     * Ok
+     * Ok. When the request includes `x-apideck-follow-redirects: false` and the downstream response would
+     * otherwise redirect to a presigned URL (oversized responses), the body is instead an
+     * `application/json` object `{ url, expires_at }` — fetch `url` explicitly (without the Authorization
+     * header) to retrieve the payload.
      */
     public ProxyPatchProxyResponse withResponsePdf(Blob responsePdf) {
         Utils.checkNotNull(responsePdf, "responsePdf");
@@ -341,7 +392,10 @@ public class ProxyPatchProxyResponse implements AsyncResponse {
 
 
     /**
-     * Ok
+     * Ok. When the request includes `x-apideck-follow-redirects: false` and the downstream response would
+     * otherwise redirect to a presigned URL (oversized responses), the body is instead an
+     * `application/json` object `{ url, expires_at }` — fetch `url` explicitly (without the Authorization
+     * header) to retrieve the payload.
      */
     public ProxyPatchProxyResponse withResponsePdf(Optional<? extends Blob> responsePdf) {
         Utils.checkNotNull(responsePdf, "responsePdf");
@@ -350,7 +404,10 @@ public class ProxyPatchProxyResponse implements AsyncResponse {
     }
 
     /**
-     * Ok
+     * Ok. When the request includes `x-apideck-follow-redirects: false` and the downstream response would
+     * otherwise redirect to a presigned URL (oversized responses), the body is instead an
+     * `application/json` object `{ url, expires_at }` — fetch `url` explicitly (without the Authorization
+     * header) to retrieve the payload.
      */
     public ProxyPatchProxyResponse withResponseXml(String responseXml) {
         Utils.checkNotNull(responseXml, "responseXml");
@@ -360,7 +417,10 @@ public class ProxyPatchProxyResponse implements AsyncResponse {
 
 
     /**
-     * Ok
+     * Ok. When the request includes `x-apideck-follow-redirects: false` and the downstream response would
+     * otherwise redirect to a presigned URL (oversized responses), the body is instead an
+     * `application/json` object `{ url, expires_at }` — fetch `url` explicitly (without the Authorization
+     * header) to retrieve the payload.
      */
     public ProxyPatchProxyResponse withResponseXml(Optional<String> responseXml) {
         Utils.checkNotNull(responseXml, "responseXml");
@@ -369,7 +429,10 @@ public class ProxyPatchProxyResponse implements AsyncResponse {
     }
 
     /**
-     * Ok
+     * Ok. When the request includes `x-apideck-follow-redirects: false` and the downstream response would
+     * otherwise redirect to a presigned URL (oversized responses), the body is instead an
+     * `application/json` object `{ url, expires_at }` — fetch `url` explicitly (without the Authorization
+     * header) to retrieve the payload.
      */
     public ProxyPatchProxyResponse withResponseCsv(String responseCsv) {
         Utils.checkNotNull(responseCsv, "responseCsv");
@@ -379,7 +442,10 @@ public class ProxyPatchProxyResponse implements AsyncResponse {
 
 
     /**
-     * Ok
+     * Ok. When the request includes `x-apideck-follow-redirects: false` and the downstream response would
+     * otherwise redirect to a presigned URL (oversized responses), the body is instead an
+     * `application/json` object `{ url, expires_at }` — fetch `url` explicitly (without the Authorization
+     * header) to retrieve the payload.
      */
     public ProxyPatchProxyResponse withResponseCsv(Optional<String> responseCsv) {
         Utils.checkNotNull(responseCsv, "responseCsv");
@@ -388,7 +454,10 @@ public class ProxyPatchProxyResponse implements AsyncResponse {
     }
 
     /**
-     * Ok
+     * Ok. When the request includes `x-apideck-follow-redirects: false` and the downstream response would
+     * otherwise redirect to a presigned URL (oversized responses), the body is instead an
+     * `application/json` object `{ url, expires_at }` — fetch `url` explicitly (without the Authorization
+     * header) to retrieve the payload.
      */
     public ProxyPatchProxyResponse withResponseText(String responseText) {
         Utils.checkNotNull(responseText, "responseText");
@@ -398,7 +467,10 @@ public class ProxyPatchProxyResponse implements AsyncResponse {
 
 
     /**
-     * Ok
+     * Ok. When the request includes `x-apideck-follow-redirects: false` and the downstream response would
+     * otherwise redirect to a presigned URL (oversized responses), the body is instead an
+     * `application/json` object `{ url, expires_at }` — fetch `url` explicitly (without the Authorization
+     * header) to retrieve the payload.
      */
     public ProxyPatchProxyResponse withResponseText(Optional<String> responseText) {
         Utils.checkNotNull(responseText, "responseText");
@@ -610,7 +682,10 @@ public class ProxyPatchProxyResponse implements AsyncResponse {
 
 
         /**
-         * Ok
+         * Ok. When the request includes `x-apideck-follow-redirects: false` and the downstream response would
+         * otherwise redirect to a presigned URL (oversized responses), the body is instead an
+         * `application/json` object `{ url, expires_at }` — fetch `url` explicitly (without the Authorization
+         * header) to retrieve the payload.
          */
         public Builder responseJson(Map<String, Object> responseJson) {
             Utils.checkNotNull(responseJson, "responseJson");
@@ -619,7 +694,10 @@ public class ProxyPatchProxyResponse implements AsyncResponse {
         }
 
         /**
-         * Ok
+         * Ok. When the request includes `x-apideck-follow-redirects: false` and the downstream response would
+         * otherwise redirect to a presigned URL (oversized responses), the body is instead an
+         * `application/json` object `{ url, expires_at }` — fetch `url` explicitly (without the Authorization
+         * header) to retrieve the payload.
          */
         public Builder responseJson(Optional<? extends Map<String, Object>> responseJson) {
             Utils.checkNotNull(responseJson, "responseJson");
@@ -629,7 +707,10 @@ public class ProxyPatchProxyResponse implements AsyncResponse {
 
 
         /**
-         * Ok
+         * Ok. When the request includes `x-apideck-follow-redirects: false` and the downstream response would
+         * otherwise redirect to a presigned URL (oversized responses), the body is instead an
+         * `application/json` object `{ url, expires_at }` — fetch `url` explicitly (without the Authorization
+         * header) to retrieve the payload.
          */
         public Builder responseBinary(Blob responseBinary) {
             Utils.checkNotNull(responseBinary, "responseBinary");
@@ -638,7 +719,10 @@ public class ProxyPatchProxyResponse implements AsyncResponse {
         }
 
         /**
-         * Ok
+         * Ok. When the request includes `x-apideck-follow-redirects: false` and the downstream response would
+         * otherwise redirect to a presigned URL (oversized responses), the body is instead an
+         * `application/json` object `{ url, expires_at }` — fetch `url` explicitly (without the Authorization
+         * header) to retrieve the payload.
          */
         public Builder responseBinary(Optional<? extends Blob> responseBinary) {
             Utils.checkNotNull(responseBinary, "responseBinary");
@@ -648,7 +732,10 @@ public class ProxyPatchProxyResponse implements AsyncResponse {
 
 
         /**
-         * Ok
+         * Ok. When the request includes `x-apideck-follow-redirects: false` and the downstream response would
+         * otherwise redirect to a presigned URL (oversized responses), the body is instead an
+         * `application/json` object `{ url, expires_at }` — fetch `url` explicitly (without the Authorization
+         * header) to retrieve the payload.
          */
         public Builder responsePdf(Blob responsePdf) {
             Utils.checkNotNull(responsePdf, "responsePdf");
@@ -657,7 +744,10 @@ public class ProxyPatchProxyResponse implements AsyncResponse {
         }
 
         /**
-         * Ok
+         * Ok. When the request includes `x-apideck-follow-redirects: false` and the downstream response would
+         * otherwise redirect to a presigned URL (oversized responses), the body is instead an
+         * `application/json` object `{ url, expires_at }` — fetch `url` explicitly (without the Authorization
+         * header) to retrieve the payload.
          */
         public Builder responsePdf(Optional<? extends Blob> responsePdf) {
             Utils.checkNotNull(responsePdf, "responsePdf");
@@ -667,7 +757,10 @@ public class ProxyPatchProxyResponse implements AsyncResponse {
 
 
         /**
-         * Ok
+         * Ok. When the request includes `x-apideck-follow-redirects: false` and the downstream response would
+         * otherwise redirect to a presigned URL (oversized responses), the body is instead an
+         * `application/json` object `{ url, expires_at }` — fetch `url` explicitly (without the Authorization
+         * header) to retrieve the payload.
          */
         public Builder responseXml(String responseXml) {
             Utils.checkNotNull(responseXml, "responseXml");
@@ -676,7 +769,10 @@ public class ProxyPatchProxyResponse implements AsyncResponse {
         }
 
         /**
-         * Ok
+         * Ok. When the request includes `x-apideck-follow-redirects: false` and the downstream response would
+         * otherwise redirect to a presigned URL (oversized responses), the body is instead an
+         * `application/json` object `{ url, expires_at }` — fetch `url` explicitly (without the Authorization
+         * header) to retrieve the payload.
          */
         public Builder responseXml(Optional<String> responseXml) {
             Utils.checkNotNull(responseXml, "responseXml");
@@ -686,7 +782,10 @@ public class ProxyPatchProxyResponse implements AsyncResponse {
 
 
         /**
-         * Ok
+         * Ok. When the request includes `x-apideck-follow-redirects: false` and the downstream response would
+         * otherwise redirect to a presigned URL (oversized responses), the body is instead an
+         * `application/json` object `{ url, expires_at }` — fetch `url` explicitly (without the Authorization
+         * header) to retrieve the payload.
          */
         public Builder responseCsv(String responseCsv) {
             Utils.checkNotNull(responseCsv, "responseCsv");
@@ -695,7 +794,10 @@ public class ProxyPatchProxyResponse implements AsyncResponse {
         }
 
         /**
-         * Ok
+         * Ok. When the request includes `x-apideck-follow-redirects: false` and the downstream response would
+         * otherwise redirect to a presigned URL (oversized responses), the body is instead an
+         * `application/json` object `{ url, expires_at }` — fetch `url` explicitly (without the Authorization
+         * header) to retrieve the payload.
          */
         public Builder responseCsv(Optional<String> responseCsv) {
             Utils.checkNotNull(responseCsv, "responseCsv");
@@ -705,7 +807,10 @@ public class ProxyPatchProxyResponse implements AsyncResponse {
 
 
         /**
-         * Ok
+         * Ok. When the request includes `x-apideck-follow-redirects: false` and the downstream response would
+         * otherwise redirect to a presigned URL (oversized responses), the body is instead an
+         * `application/json` object `{ url, expires_at }` — fetch `url` explicitly (without the Authorization
+         * header) to retrieve the payload.
          */
         public Builder responseText(String responseText) {
             Utils.checkNotNull(responseText, "responseText");
@@ -714,7 +819,10 @@ public class ProxyPatchProxyResponse implements AsyncResponse {
         }
 
         /**
-         * Ok
+         * Ok. When the request includes `x-apideck-follow-redirects: false` and the downstream response would
+         * otherwise redirect to a presigned URL (oversized responses), the body is instead an
+         * `application/json` object `{ url, expires_at }` — fetch `url` explicitly (without the Authorization
+         * header) to retrieve the payload.
          */
         public Builder responseText(Optional<String> responseText) {
             Utils.checkNotNull(responseText, "responseText");

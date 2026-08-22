@@ -34,7 +34,9 @@ public class FileStorageFilesDownloadResponse implements Response {
     private HttpResponse<InputStream> rawResponse;
 
     /**
-     * File Download
+     * File Download. When the request includes `x-apideck-follow-redirects: false` and the download would
+     * otherwise redirect to a presigned URL, the response body is instead an `application/json` object `{
+     * url, expires_at }` — fetch `url` explicitly (without the Authorization header) to retrieve the file.
      */
     private Optional<? extends InputStream> getFileDownloadResponse;
 
@@ -95,7 +97,9 @@ public class FileStorageFilesDownloadResponse implements Response {
     }
 
     /**
-     * File Download
+     * File Download. When the request includes `x-apideck-follow-redirects: false` and the download would
+     * otherwise redirect to a presigned URL, the response body is instead an `application/json` object `{
+     * url, expires_at }` — fetch `url` explicitly (without the Authorization header) to retrieve the file.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -145,7 +149,9 @@ public class FileStorageFilesDownloadResponse implements Response {
     }
 
     /**
-     * File Download
+     * File Download. When the request includes `x-apideck-follow-redirects: false` and the download would
+     * otherwise redirect to a presigned URL, the response body is instead an `application/json` object `{
+     * url, expires_at }` — fetch `url` explicitly (without the Authorization header) to retrieve the file.
      */
     public FileStorageFilesDownloadResponse withGetFileDownloadResponse(InputStream getFileDownloadResponse) {
         Utils.checkNotNull(getFileDownloadResponse, "getFileDownloadResponse");
@@ -155,7 +161,9 @@ public class FileStorageFilesDownloadResponse implements Response {
 
 
     /**
-     * File Download
+     * File Download. When the request includes `x-apideck-follow-redirects: false` and the download would
+     * otherwise redirect to a presigned URL, the response body is instead an `application/json` object `{
+     * url, expires_at }` — fetch `url` explicitly (without the Authorization header) to retrieve the file.
      */
     public FileStorageFilesDownloadResponse withGetFileDownloadResponse(Optional<? extends InputStream> getFileDownloadResponse) {
         Utils.checkNotNull(getFileDownloadResponse, "getFileDownloadResponse");
@@ -265,7 +273,9 @@ public class FileStorageFilesDownloadResponse implements Response {
 
 
         /**
-         * File Download
+         * File Download. When the request includes `x-apideck-follow-redirects: false` and the download would
+         * otherwise redirect to a presigned URL, the response body is instead an `application/json` object `{
+         * url, expires_at }` — fetch `url` explicitly (without the Authorization header) to retrieve the file.
          */
         public Builder getFileDownloadResponse(InputStream getFileDownloadResponse) {
             Utils.checkNotNull(getFileDownloadResponse, "getFileDownloadResponse");
@@ -274,7 +284,9 @@ public class FileStorageFilesDownloadResponse implements Response {
         }
 
         /**
-         * File Download
+         * File Download. When the request includes `x-apideck-follow-redirects: false` and the download would
+         * otherwise redirect to a presigned URL, the response body is instead an `application/json` object `{
+         * url, expires_at }` — fetch `url` explicitly (without the Authorization header) to retrieve the file.
          */
         public Builder getFileDownloadResponse(Optional<? extends InputStream> getFileDownloadResponse) {
             Utils.checkNotNull(getFileDownloadResponse, "getFileDownloadResponse");

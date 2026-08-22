@@ -4,10 +4,13 @@
 package com.apideck.unify.models.operations;
 
 import com.apideck.unify.models.components.AttachmentReferenceType;
+import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.core.type.TypeReference;
+import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
@@ -73,6 +76,17 @@ public class AccountingAttachmentsDownloadRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=fields")
     private JsonNullable<String> fields;
 
+    /**
+     * Set to `false` to opt out of the redirect to the presigned download URL. Instead of a `30x`
+     * response, you receive a `200` JSON body `{ url, expires_at }` containing the URL and its expiry,
+     * which you can fetch explicitly. Use this if your client automatically forwards the `Authorization`
+     * header onto redirects, since the downstream storage provider will reject that request.
+     * 
+     * <p>Any value other than `false` (or omitting the header) preserves the default redirect behavior.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-follow-redirects")
+    private Optional<Boolean> followRedirects;
+
     @JsonCreator
     public AccountingAttachmentsDownloadRequest(
             AttachmentReferenceType referenceType,
@@ -82,7 +96,8 @@ public class AccountingAttachmentsDownloadRequest {
             Optional<String> appId,
             Optional<String> serviceId,
             Optional<String> companyId,
-            JsonNullable<String> fields) {
+            JsonNullable<String> fields,
+            Optional<Boolean> followRedirects) {
         Utils.checkNotNull(referenceType, "referenceType");
         Utils.checkNotNull(referenceId, "referenceId");
         Utils.checkNotNull(id, "id");
@@ -91,6 +106,7 @@ public class AccountingAttachmentsDownloadRequest {
         Utils.checkNotNull(serviceId, "serviceId");
         Utils.checkNotNull(companyId, "companyId");
         Utils.checkNotNull(fields, "fields");
+        Utils.checkNotNull(followRedirects, "followRedirects");
         this.referenceType = referenceType;
         this.referenceId = referenceId;
         this.id = id;
@@ -99,6 +115,7 @@ public class AccountingAttachmentsDownloadRequest {
         this.serviceId = serviceId;
         this.companyId = companyId;
         this.fields = fields;
+        this.followRedirects = followRedirects;
     }
     
     public AccountingAttachmentsDownloadRequest(
@@ -107,7 +124,7 @@ public class AccountingAttachmentsDownloadRequest {
             String id) {
         this(referenceType, referenceId, id,
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined());
+            Optional.empty(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -182,6 +199,19 @@ public class AccountingAttachmentsDownloadRequest {
     @JsonIgnore
     public JsonNullable<String> fields() {
         return fields;
+    }
+
+    /**
+     * Set to `false` to opt out of the redirect to the presigned download URL. Instead of a `30x`
+     * response, you receive a `200` JSON body `{ url, expires_at }` containing the URL and its expiry,
+     * which you can fetch explicitly. Use this if your client automatically forwards the `Authorization`
+     * header onto redirects, since the downstream storage provider will reject that request.
+     * 
+     * <p>Any value other than `false` (or omitting the header) preserves the default redirect behavior.
+     */
+    @JsonIgnore
+    public Optional<Boolean> followRedirects() {
+        return followRedirects;
     }
 
     public static Builder builder() {
@@ -330,6 +360,35 @@ public class AccountingAttachmentsDownloadRequest {
         return this;
     }
 
+    /**
+     * Set to `false` to opt out of the redirect to the presigned download URL. Instead of a `30x`
+     * response, you receive a `200` JSON body `{ url, expires_at }` containing the URL and its expiry,
+     * which you can fetch explicitly. Use this if your client automatically forwards the `Authorization`
+     * header onto redirects, since the downstream storage provider will reject that request.
+     * 
+     * <p>Any value other than `false` (or omitting the header) preserves the default redirect behavior.
+     */
+    public AccountingAttachmentsDownloadRequest withFollowRedirects(boolean followRedirects) {
+        Utils.checkNotNull(followRedirects, "followRedirects");
+        this.followRedirects = Optional.ofNullable(followRedirects);
+        return this;
+    }
+
+
+    /**
+     * Set to `false` to opt out of the redirect to the presigned download URL. Instead of a `30x`
+     * response, you receive a `200` JSON body `{ url, expires_at }` containing the URL and its expiry,
+     * which you can fetch explicitly. Use this if your client automatically forwards the `Authorization`
+     * header onto redirects, since the downstream storage provider will reject that request.
+     * 
+     * <p>Any value other than `false` (or omitting the header) preserves the default redirect behavior.
+     */
+    public AccountingAttachmentsDownloadRequest withFollowRedirects(Optional<Boolean> followRedirects) {
+        Utils.checkNotNull(followRedirects, "followRedirects");
+        this.followRedirects = followRedirects;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -347,7 +406,8 @@ public class AccountingAttachmentsDownloadRequest {
             Utils.enhancedDeepEquals(this.appId, other.appId) &&
             Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
             Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
-            Utils.enhancedDeepEquals(this.fields, other.fields);
+            Utils.enhancedDeepEquals(this.fields, other.fields) &&
+            Utils.enhancedDeepEquals(this.followRedirects, other.followRedirects);
     }
     
     @Override
@@ -355,7 +415,7 @@ public class AccountingAttachmentsDownloadRequest {
         return Utils.enhancedHash(
             referenceType, referenceId, id,
             consumerId, appId, serviceId,
-            companyId, fields);
+            companyId, fields, followRedirects);
     }
     
     @Override
@@ -368,7 +428,8 @@ public class AccountingAttachmentsDownloadRequest {
                 "appId", appId,
                 "serviceId", serviceId,
                 "companyId", companyId,
-                "fields", fields);
+                "fields", fields,
+                "followRedirects", followRedirects);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -389,6 +450,8 @@ public class AccountingAttachmentsDownloadRequest {
         private Optional<String> companyId = Optional.empty();
 
         private JsonNullable<String> fields = JsonNullable.undefined();
+
+        private Optional<Boolean> followRedirects;
 
         private Builder() {
           // force use of static builder() method
@@ -539,13 +602,51 @@ public class AccountingAttachmentsDownloadRequest {
             return this;
         }
 
+
+        /**
+         * Set to `false` to opt out of the redirect to the presigned download URL. Instead of a `30x`
+         * response, you receive a `200` JSON body `{ url, expires_at }` containing the URL and its expiry,
+         * which you can fetch explicitly. Use this if your client automatically forwards the `Authorization`
+         * header onto redirects, since the downstream storage provider will reject that request.
+         * 
+         * <p>Any value other than `false` (or omitting the header) preserves the default redirect behavior.
+         */
+        public Builder followRedirects(boolean followRedirects) {
+            Utils.checkNotNull(followRedirects, "followRedirects");
+            this.followRedirects = Optional.ofNullable(followRedirects);
+            return this;
+        }
+
+        /**
+         * Set to `false` to opt out of the redirect to the presigned download URL. Instead of a `30x`
+         * response, you receive a `200` JSON body `{ url, expires_at }` containing the URL and its expiry,
+         * which you can fetch explicitly. Use this if your client automatically forwards the `Authorization`
+         * header onto redirects, since the downstream storage provider will reject that request.
+         * 
+         * <p>Any value other than `false` (or omitting the header) preserves the default redirect behavior.
+         */
+        public Builder followRedirects(Optional<Boolean> followRedirects) {
+            Utils.checkNotNull(followRedirects, "followRedirects");
+            this.followRedirects = followRedirects;
+            return this;
+        }
+
         public AccountingAttachmentsDownloadRequest build() {
+            if (followRedirects == null) {
+                followRedirects = _SINGLETON_VALUE_FollowRedirects.value();
+            }
 
             return new AccountingAttachmentsDownloadRequest(
                 referenceType, referenceId, id,
                 consumerId, appId, serviceId,
-                companyId, fields);
+                companyId, fields, followRedirects);
         }
 
+
+        private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_FollowRedirects =
+                new LazySingletonValue<>(
+                        "followRedirects",
+                        "true",
+                        new TypeReference<Optional<Boolean>>() {});
     }
 }

@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -33,6 +34,20 @@ public class BankFeedAccountInput {
     private Optional<String> sourceAccountId;
 
     /**
+     * Bank routing number (US)
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("source_routing_number")
+    private JsonNullable<String> sourceRoutingNumber;
+
+    /**
+     * The bank account number
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("source_account_number")
+    private JsonNullable<String> sourceAccountNumber;
+
+    /**
      * The target account's unique identifier in the accounting connector.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -52,6 +67,20 @@ public class BankFeedAccountInput {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("target_account_number")
     private Optional<String> targetAccountNumber;
+
+    /**
+     * The current balance of the source bank account.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("balance")
+    private JsonNullable<Double> balance;
+
+    /**
+     * The available balance of the source bank account (considering pending transactions and overdraft).
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("available_balance")
+    private JsonNullable<Double> availableBalance;
 
     /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO
@@ -84,27 +113,39 @@ public class BankFeedAccountInput {
     public BankFeedAccountInput(
             @JsonProperty("bank_account_type") Optional<? extends BankAccountType> bankAccountType,
             @JsonProperty("source_account_id") Optional<String> sourceAccountId,
+            @JsonProperty("source_routing_number") JsonNullable<String> sourceRoutingNumber,
+            @JsonProperty("source_account_number") JsonNullable<String> sourceAccountNumber,
             @JsonProperty("target_account_id") Optional<String> targetAccountId,
             @JsonProperty("target_account_name") Optional<String> targetAccountName,
             @JsonProperty("target_account_number") Optional<String> targetAccountNumber,
+            @JsonProperty("balance") JsonNullable<Double> balance,
+            @JsonProperty("available_balance") JsonNullable<Double> availableBalance,
             @JsonProperty("currency") JsonNullable<? extends Currency> currency,
             @JsonProperty("feed_status") Optional<? extends FeedStatus> feedStatus,
             @JsonProperty("country") JsonNullable<String> country,
             @JsonProperty("custom_fields") Optional<? extends List<CustomField>> customFields) {
         Utils.checkNotNull(bankAccountType, "bankAccountType");
         Utils.checkNotNull(sourceAccountId, "sourceAccountId");
+        Utils.checkNotNull(sourceRoutingNumber, "sourceRoutingNumber");
+        Utils.checkNotNull(sourceAccountNumber, "sourceAccountNumber");
         Utils.checkNotNull(targetAccountId, "targetAccountId");
         Utils.checkNotNull(targetAccountName, "targetAccountName");
         Utils.checkNotNull(targetAccountNumber, "targetAccountNumber");
+        Utils.checkNotNull(balance, "balance");
+        Utils.checkNotNull(availableBalance, "availableBalance");
         Utils.checkNotNull(currency, "currency");
         Utils.checkNotNull(feedStatus, "feedStatus");
         Utils.checkNotNull(country, "country");
         Utils.checkNotNull(customFields, "customFields");
         this.bankAccountType = bankAccountType;
         this.sourceAccountId = sourceAccountId;
+        this.sourceRoutingNumber = sourceRoutingNumber;
+        this.sourceAccountNumber = sourceAccountNumber;
         this.targetAccountId = targetAccountId;
         this.targetAccountName = targetAccountName;
         this.targetAccountNumber = targetAccountNumber;
+        this.balance = balance;
+        this.availableBalance = availableBalance;
         this.currency = currency;
         this.feedStatus = feedStatus;
         this.country = country;
@@ -112,9 +153,11 @@ public class BankFeedAccountInput {
     }
     
     public BankFeedAccountInput() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -132,6 +175,22 @@ public class BankFeedAccountInput {
     @JsonIgnore
     public Optional<String> sourceAccountId() {
         return sourceAccountId;
+    }
+
+    /**
+     * Bank routing number (US)
+     */
+    @JsonIgnore
+    public JsonNullable<String> sourceRoutingNumber() {
+        return sourceRoutingNumber;
+    }
+
+    /**
+     * The bank account number
+     */
+    @JsonIgnore
+    public JsonNullable<String> sourceAccountNumber() {
+        return sourceAccountNumber;
     }
 
     /**
@@ -156,6 +215,22 @@ public class BankFeedAccountInput {
     @JsonIgnore
     public Optional<String> targetAccountNumber() {
         return targetAccountNumber;
+    }
+
+    /**
+     * The current balance of the source bank account.
+     */
+    @JsonIgnore
+    public JsonNullable<Double> balance() {
+        return balance;
+    }
+
+    /**
+     * The available balance of the source bank account (considering pending transactions and overdraft).
+     */
+    @JsonIgnore
+    public JsonNullable<Double> availableBalance() {
+        return availableBalance;
     }
 
     /**
@@ -235,6 +310,42 @@ public class BankFeedAccountInput {
     }
 
     /**
+     * Bank routing number (US)
+     */
+    public BankFeedAccountInput withSourceRoutingNumber(String sourceRoutingNumber) {
+        Utils.checkNotNull(sourceRoutingNumber, "sourceRoutingNumber");
+        this.sourceRoutingNumber = JsonNullable.of(sourceRoutingNumber);
+        return this;
+    }
+
+    /**
+     * Bank routing number (US)
+     */
+    public BankFeedAccountInput withSourceRoutingNumber(JsonNullable<String> sourceRoutingNumber) {
+        Utils.checkNotNull(sourceRoutingNumber, "sourceRoutingNumber");
+        this.sourceRoutingNumber = sourceRoutingNumber;
+        return this;
+    }
+
+    /**
+     * The bank account number
+     */
+    public BankFeedAccountInput withSourceAccountNumber(String sourceAccountNumber) {
+        Utils.checkNotNull(sourceAccountNumber, "sourceAccountNumber");
+        this.sourceAccountNumber = JsonNullable.of(sourceAccountNumber);
+        return this;
+    }
+
+    /**
+     * The bank account number
+     */
+    public BankFeedAccountInput withSourceAccountNumber(JsonNullable<String> sourceAccountNumber) {
+        Utils.checkNotNull(sourceAccountNumber, "sourceAccountNumber");
+        this.sourceAccountNumber = sourceAccountNumber;
+        return this;
+    }
+
+    /**
      * The target account's unique identifier in the accounting connector.
      */
     public BankFeedAccountInput withTargetAccountId(String targetAccountId) {
@@ -288,6 +399,42 @@ public class BankFeedAccountInput {
     public BankFeedAccountInput withTargetAccountNumber(Optional<String> targetAccountNumber) {
         Utils.checkNotNull(targetAccountNumber, "targetAccountNumber");
         this.targetAccountNumber = targetAccountNumber;
+        return this;
+    }
+
+    /**
+     * The current balance of the source bank account.
+     */
+    public BankFeedAccountInput withBalance(double balance) {
+        Utils.checkNotNull(balance, "balance");
+        this.balance = JsonNullable.of(balance);
+        return this;
+    }
+
+    /**
+     * The current balance of the source bank account.
+     */
+    public BankFeedAccountInput withBalance(JsonNullable<Double> balance) {
+        Utils.checkNotNull(balance, "balance");
+        this.balance = balance;
+        return this;
+    }
+
+    /**
+     * The available balance of the source bank account (considering pending transactions and overdraft).
+     */
+    public BankFeedAccountInput withAvailableBalance(double availableBalance) {
+        Utils.checkNotNull(availableBalance, "availableBalance");
+        this.availableBalance = JsonNullable.of(availableBalance);
+        return this;
+    }
+
+    /**
+     * The available balance of the source bank account (considering pending transactions and overdraft).
+     */
+    public BankFeedAccountInput withAvailableBalance(JsonNullable<Double> availableBalance) {
+        Utils.checkNotNull(availableBalance, "availableBalance");
+        this.availableBalance = availableBalance;
         return this;
     }
 
@@ -373,9 +520,13 @@ public class BankFeedAccountInput {
         return 
             Utils.enhancedDeepEquals(this.bankAccountType, other.bankAccountType) &&
             Utils.enhancedDeepEquals(this.sourceAccountId, other.sourceAccountId) &&
+            Utils.enhancedDeepEquals(this.sourceRoutingNumber, other.sourceRoutingNumber) &&
+            Utils.enhancedDeepEquals(this.sourceAccountNumber, other.sourceAccountNumber) &&
             Utils.enhancedDeepEquals(this.targetAccountId, other.targetAccountId) &&
             Utils.enhancedDeepEquals(this.targetAccountName, other.targetAccountName) &&
             Utils.enhancedDeepEquals(this.targetAccountNumber, other.targetAccountNumber) &&
+            Utils.enhancedDeepEquals(this.balance, other.balance) &&
+            Utils.enhancedDeepEquals(this.availableBalance, other.availableBalance) &&
             Utils.enhancedDeepEquals(this.currency, other.currency) &&
             Utils.enhancedDeepEquals(this.feedStatus, other.feedStatus) &&
             Utils.enhancedDeepEquals(this.country, other.country) &&
@@ -385,9 +536,11 @@ public class BankFeedAccountInput {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            bankAccountType, sourceAccountId, targetAccountId,
-            targetAccountName, targetAccountNumber, currency,
-            feedStatus, country, customFields);
+            bankAccountType, sourceAccountId, sourceRoutingNumber,
+            sourceAccountNumber, targetAccountId, targetAccountName,
+            targetAccountNumber, balance, availableBalance,
+            currency, feedStatus, country,
+            customFields);
     }
     
     @Override
@@ -395,9 +548,13 @@ public class BankFeedAccountInput {
         return Utils.toString(BankFeedAccountInput.class,
                 "bankAccountType", bankAccountType,
                 "sourceAccountId", sourceAccountId,
+                "sourceRoutingNumber", sourceRoutingNumber,
+                "sourceAccountNumber", sourceAccountNumber,
                 "targetAccountId", targetAccountId,
                 "targetAccountName", targetAccountName,
                 "targetAccountNumber", targetAccountNumber,
+                "balance", balance,
+                "availableBalance", availableBalance,
                 "currency", currency,
                 "feedStatus", feedStatus,
                 "country", country,
@@ -411,11 +568,19 @@ public class BankFeedAccountInput {
 
         private Optional<String> sourceAccountId = Optional.empty();
 
+        private JsonNullable<String> sourceRoutingNumber = JsonNullable.undefined();
+
+        private JsonNullable<String> sourceAccountNumber = JsonNullable.undefined();
+
         private Optional<String> targetAccountId = Optional.empty();
 
         private Optional<String> targetAccountName = Optional.empty();
 
         private Optional<String> targetAccountNumber = Optional.empty();
+
+        private JsonNullable<Double> balance = JsonNullable.undefined();
+
+        private JsonNullable<Double> availableBalance = JsonNullable.undefined();
 
         private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
 
@@ -464,6 +629,44 @@ public class BankFeedAccountInput {
         public Builder sourceAccountId(Optional<String> sourceAccountId) {
             Utils.checkNotNull(sourceAccountId, "sourceAccountId");
             this.sourceAccountId = sourceAccountId;
+            return this;
+        }
+
+
+        /**
+         * Bank routing number (US)
+         */
+        public Builder sourceRoutingNumber(String sourceRoutingNumber) {
+            Utils.checkNotNull(sourceRoutingNumber, "sourceRoutingNumber");
+            this.sourceRoutingNumber = JsonNullable.of(sourceRoutingNumber);
+            return this;
+        }
+
+        /**
+         * Bank routing number (US)
+         */
+        public Builder sourceRoutingNumber(JsonNullable<String> sourceRoutingNumber) {
+            Utils.checkNotNull(sourceRoutingNumber, "sourceRoutingNumber");
+            this.sourceRoutingNumber = sourceRoutingNumber;
+            return this;
+        }
+
+
+        /**
+         * The bank account number
+         */
+        public Builder sourceAccountNumber(String sourceAccountNumber) {
+            Utils.checkNotNull(sourceAccountNumber, "sourceAccountNumber");
+            this.sourceAccountNumber = JsonNullable.of(sourceAccountNumber);
+            return this;
+        }
+
+        /**
+         * The bank account number
+         */
+        public Builder sourceAccountNumber(JsonNullable<String> sourceAccountNumber) {
+            Utils.checkNotNull(sourceAccountNumber, "sourceAccountNumber");
+            this.sourceAccountNumber = sourceAccountNumber;
             return this;
         }
 
@@ -521,6 +724,44 @@ public class BankFeedAccountInput {
         public Builder targetAccountNumber(Optional<String> targetAccountNumber) {
             Utils.checkNotNull(targetAccountNumber, "targetAccountNumber");
             this.targetAccountNumber = targetAccountNumber;
+            return this;
+        }
+
+
+        /**
+         * The current balance of the source bank account.
+         */
+        public Builder balance(double balance) {
+            Utils.checkNotNull(balance, "balance");
+            this.balance = JsonNullable.of(balance);
+            return this;
+        }
+
+        /**
+         * The current balance of the source bank account.
+         */
+        public Builder balance(JsonNullable<Double> balance) {
+            Utils.checkNotNull(balance, "balance");
+            this.balance = balance;
+            return this;
+        }
+
+
+        /**
+         * The available balance of the source bank account (considering pending transactions and overdraft).
+         */
+        public Builder availableBalance(double availableBalance) {
+            Utils.checkNotNull(availableBalance, "availableBalance");
+            this.availableBalance = JsonNullable.of(availableBalance);
+            return this;
+        }
+
+        /**
+         * The available balance of the source bank account (considering pending transactions and overdraft).
+         */
+        public Builder availableBalance(JsonNullable<Double> availableBalance) {
+            Utils.checkNotNull(availableBalance, "availableBalance");
+            this.availableBalance = availableBalance;
             return this;
         }
 
@@ -599,9 +840,11 @@ public class BankFeedAccountInput {
         public BankFeedAccountInput build() {
 
             return new BankFeedAccountInput(
-                bankAccountType, sourceAccountId, targetAccountId,
-                targetAccountName, targetAccountNumber, currency,
-                feedStatus, country, customFields);
+                bankAccountType, sourceAccountId, sourceRoutingNumber,
+                sourceAccountNumber, targetAccountId, targetAccountName,
+                targetAccountNumber, balance, availableBalance,
+                currency, feedStatus, country,
+                customFields);
         }
 
     }

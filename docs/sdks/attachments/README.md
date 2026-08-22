@@ -314,6 +314,7 @@ public class Application {
                 .serviceId("salesforce")
                 .companyId("12345")
                 .fields("id,updated_at")
+                .followRedirects(false)
                 .build();
 
         AccountingAttachmentsDownloadResponse res = sdk.accounting().attachments().download()

@@ -15,6 +15,14 @@ import java.util.Optional;
 
 public class InvoicesFilter {
     /**
+     * Comma-separated list of invoice IDs to filter by (e.g. `12345,67890`). On some connectors (e.g.
+     * 
+     * <p>DualEntry) the invoice ID is the invoice number.
+     */
+    @SpeakeasyMetadata("queryParam:name=ids")
+    private Optional<String> ids;
+
+    /**
      * Return records with a row ID greater than or equal to the given value
      */
     @SpeakeasyMetadata("queryParam:name=id_since")
@@ -55,6 +63,7 @@ public class InvoicesFilter {
 
     @JsonCreator
     public InvoicesFilter(
+            Optional<String> ids,
             Optional<String> idSince,
             Optional<OffsetDateTime> updatedSince,
             Optional<OffsetDateTime> createdSince,
@@ -62,6 +71,7 @@ public class InvoicesFilter {
             Optional<String> supplierId,
             Optional<String> subsidiaryId,
             Optional<String> customerId) {
+        Utils.checkNotNull(ids, "ids");
         Utils.checkNotNull(idSince, "idSince");
         Utils.checkNotNull(updatedSince, "updatedSince");
         Utils.checkNotNull(createdSince, "createdSince");
@@ -69,6 +79,7 @@ public class InvoicesFilter {
         Utils.checkNotNull(supplierId, "supplierId");
         Utils.checkNotNull(subsidiaryId, "subsidiaryId");
         Utils.checkNotNull(customerId, "customerId");
+        this.ids = ids;
         this.idSince = idSince;
         this.updatedSince = updatedSince;
         this.createdSince = createdSince;
@@ -81,7 +92,17 @@ public class InvoicesFilter {
     public InvoicesFilter() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+            Optional.empty(), Optional.empty());
+    }
+
+    /**
+     * Comma-separated list of invoice IDs to filter by (e.g. `12345,67890`). On some connectors (e.g.
+     * 
+     * <p>DualEntry) the invoice ID is the invoice number.
+     */
+    @JsonIgnore
+    public Optional<String> ids() {
+        return ids;
     }
 
     /**
@@ -139,6 +160,29 @@ public class InvoicesFilter {
         return new Builder();
     }
 
+
+    /**
+     * Comma-separated list of invoice IDs to filter by (e.g. `12345,67890`). On some connectors (e.g.
+     * 
+     * <p>DualEntry) the invoice ID is the invoice number.
+     */
+    public InvoicesFilter withIds(String ids) {
+        Utils.checkNotNull(ids, "ids");
+        this.ids = Optional.ofNullable(ids);
+        return this;
+    }
+
+
+    /**
+     * Comma-separated list of invoice IDs to filter by (e.g. `12345,67890`). On some connectors (e.g.
+     * 
+     * <p>DualEntry) the invoice ID is the invoice number.
+     */
+    public InvoicesFilter withIds(Optional<String> ids) {
+        Utils.checkNotNull(ids, "ids");
+        this.ids = ids;
+        return this;
+    }
 
     /**
      * Return records with a row ID greater than or equal to the given value
@@ -273,6 +317,7 @@ public class InvoicesFilter {
         }
         InvoicesFilter other = (InvoicesFilter) o;
         return 
+            Utils.enhancedDeepEquals(this.ids, other.ids) &&
             Utils.enhancedDeepEquals(this.idSince, other.idSince) &&
             Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince) &&
             Utils.enhancedDeepEquals(this.createdSince, other.createdSince) &&
@@ -285,14 +330,15 @@ public class InvoicesFilter {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            idSince, updatedSince, createdSince,
-            number, supplierId, subsidiaryId,
-            customerId);
+            ids, idSince, updatedSince,
+            createdSince, number, supplierId,
+            subsidiaryId, customerId);
     }
     
     @Override
     public String toString() {
         return Utils.toString(InvoicesFilter.class,
+                "ids", ids,
                 "idSince", idSince,
                 "updatedSince", updatedSince,
                 "createdSince", createdSince,
@@ -304,6 +350,8 @@ public class InvoicesFilter {
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
+
+        private Optional<String> ids = Optional.empty();
 
         private Optional<String> idSince = Optional.empty();
 
@@ -321,6 +369,29 @@ public class InvoicesFilter {
 
         private Builder() {
           // force use of static builder() method
+        }
+
+
+        /**
+         * Comma-separated list of invoice IDs to filter by (e.g. `12345,67890`). On some connectors (e.g.
+         * 
+         * <p>DualEntry) the invoice ID is the invoice number.
+         */
+        public Builder ids(String ids) {
+            Utils.checkNotNull(ids, "ids");
+            this.ids = Optional.ofNullable(ids);
+            return this;
+        }
+
+        /**
+         * Comma-separated list of invoice IDs to filter by (e.g. `12345,67890`). On some connectors (e.g.
+         * 
+         * <p>DualEntry) the invoice ID is the invoice number.
+         */
+        public Builder ids(Optional<String> ids) {
+            Utils.checkNotNull(ids, "ids");
+            this.ids = ids;
+            return this;
         }
 
 
@@ -449,9 +520,9 @@ public class InvoicesFilter {
         public InvoicesFilter build() {
 
             return new InvoicesFilter(
-                idSince, updatedSince, createdSince,
-                number, supplierId, subsidiaryId,
-                customerId);
+                ids, idSince, updatedSince,
+                createdSince, number, supplierId,
+                subsidiaryId, customerId);
         }
 
     }

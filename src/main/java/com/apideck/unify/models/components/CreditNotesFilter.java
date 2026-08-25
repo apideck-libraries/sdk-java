@@ -15,6 +15,14 @@ import java.util.Optional;
 
 public class CreditNotesFilter {
     /**
+     * Comma-separated list of credit note IDs to filter by (e.g. `12345,67890`). On some connectors (e.g.
+     * 
+     * <p>DualEntry) the credit note ID is the credit note number.
+     */
+    @SpeakeasyMetadata("queryParam:name=ids")
+    private Optional<String> ids;
+
+    /**
      * Return records with a row ID greater than or equal to the given value
      */
     @SpeakeasyMetadata("queryParam:name=id_since")
@@ -49,18 +57,21 @@ public class CreditNotesFilter {
 
     @JsonCreator
     public CreditNotesFilter(
+            Optional<String> ids,
             Optional<String> idSince,
             Optional<OffsetDateTime> updatedSince,
             Optional<OffsetDateTime> createdSince,
             Optional<String> number,
             Optional<String> subsidiaryId,
             Optional<String> customerId) {
+        Utils.checkNotNull(ids, "ids");
         Utils.checkNotNull(idSince, "idSince");
         Utils.checkNotNull(updatedSince, "updatedSince");
         Utils.checkNotNull(createdSince, "createdSince");
         Utils.checkNotNull(number, "number");
         Utils.checkNotNull(subsidiaryId, "subsidiaryId");
         Utils.checkNotNull(customerId, "customerId");
+        this.ids = ids;
         this.idSince = idSince;
         this.updatedSince = updatedSince;
         this.createdSince = createdSince;
@@ -71,7 +82,18 @@ public class CreditNotesFilter {
     
     public CreditNotesFilter() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
+    }
+
+    /**
+     * Comma-separated list of credit note IDs to filter by (e.g. `12345,67890`). On some connectors (e.g.
+     * 
+     * <p>DualEntry) the credit note ID is the credit note number.
+     */
+    @JsonIgnore
+    public Optional<String> ids() {
+        return ids;
     }
 
     /**
@@ -121,6 +143,29 @@ public class CreditNotesFilter {
         return new Builder();
     }
 
+
+    /**
+     * Comma-separated list of credit note IDs to filter by (e.g. `12345,67890`). On some connectors (e.g.
+     * 
+     * <p>DualEntry) the credit note ID is the credit note number.
+     */
+    public CreditNotesFilter withIds(String ids) {
+        Utils.checkNotNull(ids, "ids");
+        this.ids = Optional.ofNullable(ids);
+        return this;
+    }
+
+
+    /**
+     * Comma-separated list of credit note IDs to filter by (e.g. `12345,67890`). On some connectors (e.g.
+     * 
+     * <p>DualEntry) the credit note ID is the credit note number.
+     */
+    public CreditNotesFilter withIds(Optional<String> ids) {
+        Utils.checkNotNull(ids, "ids");
+        this.ids = ids;
+        return this;
+    }
 
     /**
      * Return records with a row ID greater than or equal to the given value
@@ -236,6 +281,7 @@ public class CreditNotesFilter {
         }
         CreditNotesFilter other = (CreditNotesFilter) o;
         return 
+            Utils.enhancedDeepEquals(this.ids, other.ids) &&
             Utils.enhancedDeepEquals(this.idSince, other.idSince) &&
             Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince) &&
             Utils.enhancedDeepEquals(this.createdSince, other.createdSince) &&
@@ -247,13 +293,15 @@ public class CreditNotesFilter {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            idSince, updatedSince, createdSince,
-            number, subsidiaryId, customerId);
+            ids, idSince, updatedSince,
+            createdSince, number, subsidiaryId,
+            customerId);
     }
     
     @Override
     public String toString() {
         return Utils.toString(CreditNotesFilter.class,
+                "ids", ids,
                 "idSince", idSince,
                 "updatedSince", updatedSince,
                 "createdSince", createdSince,
@@ -264,6 +312,8 @@ public class CreditNotesFilter {
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
+
+        private Optional<String> ids = Optional.empty();
 
         private Optional<String> idSince = Optional.empty();
 
@@ -279,6 +329,29 @@ public class CreditNotesFilter {
 
         private Builder() {
           // force use of static builder() method
+        }
+
+
+        /**
+         * Comma-separated list of credit note IDs to filter by (e.g. `12345,67890`). On some connectors (e.g.
+         * 
+         * <p>DualEntry) the credit note ID is the credit note number.
+         */
+        public Builder ids(String ids) {
+            Utils.checkNotNull(ids, "ids");
+            this.ids = Optional.ofNullable(ids);
+            return this;
+        }
+
+        /**
+         * Comma-separated list of credit note IDs to filter by (e.g. `12345,67890`). On some connectors (e.g.
+         * 
+         * <p>DualEntry) the credit note ID is the credit note number.
+         */
+        public Builder ids(Optional<String> ids) {
+            Utils.checkNotNull(ids, "ids");
+            this.ids = ids;
+            return this;
         }
 
 
@@ -388,8 +461,9 @@ public class CreditNotesFilter {
         public CreditNotesFilter build() {
 
             return new CreditNotesFilter(
-                idSince, updatedSince, createdSince,
-                number, subsidiaryId, customerId);
+                ids, idSince, updatedSince,
+                createdSince, number, subsidiaryId,
+                customerId);
         }
 
     }

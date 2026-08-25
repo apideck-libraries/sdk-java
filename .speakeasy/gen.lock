@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 38254260-287a-40b6-9ac5-c2fcb654c9cc
 management:
-  docChecksum: b0432f8b090f29832461c610ed2cab3a
-  docVersion: 10.44.0
-  speakeasyVersion: 1.795.1
+  docChecksum: 2191e79ea1a0f0541e9c494c483aa603
+  docVersion: 10.45.0
+  speakeasyVersion: 1.795.3
   generationVersion: 2.932.9
-  releaseVersion: 0.38.0
-  configChecksum: bb901aea205615f992b2ec41ea3c52d3
+  releaseVersion: 0.39.0
+  configChecksum: 6db02e340c1089d357e7dd58e65b5080
   repoURL: https://github.com/apideck-libraries/sdk-java.git
   installationURL: https://github.com/apideck-libraries/sdk-java
   published: true
 persistentEdits:
-  generation_id: afeaf0fe-c1ff-4168-8e7a-c9fea1c73937
-  pristine_commit_hash: 1f1e1a4936a3c0cd21ddafba2a26056fcd508059
-  pristine_tree_hash: e5a78ace464cd6e2aca7e34f22c4a5749b96c650
+  generation_id: d4d57963-de01-401f-af14-e6ab56f9fc01
+  pristine_commit_hash: e4cfc5361473ea90b5d04dce1a582e5f544baa33
+  pristine_tree_hash: 87ca1d6993adcc66a3d51cdeb6e416073219c265
 features:
   java:
     acceptHeaders: 2.81.2
@@ -1069,8 +1069,8 @@ trackedFiles:
     pristine_git_object: a9f3593df5ba401a8ff17eb6b3e2935e39f33612
   docs/models/components/CreditNotesFilter.md:
     id: 4dbf5ec9a97b
-    last_write_checksum: sha1:4a406c7625c103f7b50a7ffe6008d7279eeab9b7
-    pristine_git_object: 577564aa406655efb50377597f93607dadc83263
+    last_write_checksum: sha1:721c3edb14b49c6e0ddc3fe27e5b13c54e1cbeaa
+    pristine_git_object: 1d1a6d835a8d6b997b614681605eb890928adda5
   docs/models/components/CreditNotesSort.md:
     id: bbb7608ff153
     last_write_checksum: sha1:9ac6a78301d6e5f0e4d40503b28df75eeda83d6e
@@ -1177,8 +1177,8 @@ trackedFiles:
     pristine_git_object: f81410be8c625036a000af4565f151b9473febeb
   docs/models/components/CustomersFilter.md:
     id: ad1a772c69a5
-    last_write_checksum: sha1:2c3569ecc5f69b3f6462956374f8923788931524
-    pristine_git_object: c95fb72773d5fe42dd33b73009c90be706205392
+    last_write_checksum: sha1:aca998a216e1081fe49a0ed003f7aea893994453
+    pristine_git_object: e4f3780df47d382aa239f19ed91b4acc5e5d7d99
   docs/models/components/CustomersFilterStatus.md:
     id: 274a28eb0bcd
     last_write_checksum: sha1:e09518c6b1f4d5d520d3f64fb0ab7f6b4c39d839
@@ -2625,8 +2625,8 @@ trackedFiles:
     pristine_git_object: 691681c3cb1c4eedab93752a7e6fb7282903b8de
   docs/models/components/InvoicesFilter.md:
     id: 9a5510737424
-    last_write_checksum: sha1:c13e25f30df8996959805b418a1de038a2a8d4c1
-    pristine_git_object: 8627823752c16479c3484c13598cdf8e71216391
+    last_write_checksum: sha1:daa2061951cffa2cafaba494b05bd9f7fe0bcc00
+    pristine_git_object: 1a315a68c723ea7760baa5d8e93257a4c993a8fc
   docs/models/components/InvoicesSort.md:
     id: 99213cb70a7e
     last_write_checksum: sha1:5543d06208614edef5be7f8803dfac13f9432981
@@ -4469,8 +4469,8 @@ trackedFiles:
     pristine_git_object: 32a12282f74c00c97d91166eade3c07df14131fd
   docs/models/operations/AccountingCreditNotesAllRequest.md:
     id: 1f2fe6303826
-    last_write_checksum: sha1:71c4fc61a5ac6f9082b3da81c9be73e2076b7b7b
-    pristine_git_object: 35a3a0a78a50aacf62e68652df0920a71fb6beae
+    last_write_checksum: sha1:7b9a6ef9d65d51025cebc1e23b310ee7b82dee0c
+    pristine_git_object: 613a99238c1b1b4abdeb15ed6d73ddeb1cfa62fd
   docs/models/operations/AccountingCreditNotesAllResponse.md:
     id: d8688d0123d9
     last_write_checksum: sha1:9eda509b5d0c5a7cdebf119b8bd1b0d2ef298e89
@@ -4509,8 +4509,8 @@ trackedFiles:
     pristine_git_object: 24499821719a844ec1c162ffd7469a3a0e7df5e2
   docs/models/operations/AccountingCustomersAllRequest.md:
     id: 5b63a90e9a84
-    last_write_checksum: sha1:458210db4865ca51049459b35fcf94bb504c9759
-    pristine_git_object: 6c13b37a93e03cb226f2d0e780bba4e4211291da
+    last_write_checksum: sha1:cb02e3b032c048d6d3dabe39107ee30d5d18beca
+    pristine_git_object: 1260d94edf20be0cca6b9e1d4a09595012e3faf7
   docs/models/operations/AccountingCustomersAllResponse.md:
     id: abd0d1138974
     last_write_checksum: sha1:e7c9d101f290f7d478caa859bc3d462b9d8c30df
@@ -4805,8 +4805,8 @@ trackedFiles:
     pristine_git_object: e71eec9dbd189a87aa4734ac4bfa6f0a7e7bed69
   docs/models/operations/AccountingInvoicesAllRequest.md:
     id: 9754192b8875
-    last_write_checksum: sha1:a59db14ef0300b74da9b1181d5d5cc71a24dfb4e
-    pristine_git_object: 586066bb2440bd811f28ba814f7264568b21a365
+    last_write_checksum: sha1:849842525eed781a5d803b5e1fe6a2376e8eb0eb
+    pristine_git_object: f83af20b9c88617a452eb872c395ca0cf239889f
   docs/models/operations/AccountingInvoicesAllResponse.md:
     id: fc275ab7b358
     last_write_checksum: sha1:680692e4a2eed8ad7894c2136afe819caadeb33d
@@ -7389,8 +7389,8 @@ trackedFiles:
     pristine_git_object: c755c6aa377f358344e761e9cc3e7b67bc1fb479
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:3ec8c64b9b23d2f4552b82bcb1e8ac0461b601d2
-    pristine_git_object: 5f05a93d85e5524180e571b38db543b81830ad17
+    last_write_checksum: sha1:93cffc5f0e21b1d6795a56be1a9da75564869bd1
+    pristine_git_object: cd918d30ef461f26f71b737801ba9849c75cfc9d
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -8217,8 +8217,8 @@ trackedFiles:
     pristine_git_object: 7296db7ebcdcff7ee348d1f993fc4aa2a7e6c145
   src/main/java/com/apideck/unify/SDKConfiguration.java:
     id: a2b330a87142
-    last_write_checksum: sha1:34f0177f28063a9d89d9526cf121eb2fb575ce12
-    pristine_git_object: 75ba0a8cc6a606f9c948904232727f99869504ca
+    last_write_checksum: sha1:c78e28ee044328b3fbc3d51bd9dfa651c2a0e906
+    pristine_git_object: 25b90b68f268ea0c5470bf05398a518286c91832
   src/main/java/com/apideck/unify/SalesReceipts.java:
     id: 581d0613d982
     last_write_checksum: sha1:ff6b58483cf85dafd1f56ccfeafafbe76664342b
@@ -9301,8 +9301,8 @@ trackedFiles:
     pristine_git_object: e82ab4b3ef5268d86126b48a28d0df6be8d7d120
   src/main/java/com/apideck/unify/models/components/CreditNotesFilter.java:
     id: bb84f996125e
-    last_write_checksum: sha1:713c981296865b40ce11dca7dfed897889e1db98
-    pristine_git_object: 8f1550489eaf1bdd94015057821eb7f1f08e83bf
+    last_write_checksum: sha1:8219e3c9cbe247b8074823d6e968f0052133ca1d
+    pristine_git_object: 34ae1a36e80e5f5cf5fd11705f09b40da66f45f9
   src/main/java/com/apideck/unify/models/components/CreditNotesSort.java:
     id: 86c0e2c03e22
     last_write_checksum: sha1:0b1ed15679a2f2029af41ed1d780f6898fdd72ac
@@ -9409,8 +9409,8 @@ trackedFiles:
     pristine_git_object: 29873eeeab2f6a3d5d220c8f26067b50d3d6f38f
   src/main/java/com/apideck/unify/models/components/CustomersFilter.java:
     id: 0dd5dd630e57
-    last_write_checksum: sha1:19caf1b5ad55aecd0e6563855bc9b42d2a6b8214
-    pristine_git_object: e3f2ddadcf2393ea698d802af617cf6070a76d2e
+    last_write_checksum: sha1:1c086558fc21536dc4e823849fabd1fc9a3e3ebc
+    pristine_git_object: 781157137157da1130c8e148927e93d595fefda2
   src/main/java/com/apideck/unify/models/components/CustomersFilterStatus.java:
     id: ef56559f2897
     last_write_checksum: sha1:313426111ec1f6704dc074f333f485d3b0735b6c
@@ -10861,8 +10861,8 @@ trackedFiles:
     pristine_git_object: 4a6add39c3f37e9794bc2956948aace9874c0962
   src/main/java/com/apideck/unify/models/components/InvoicesFilter.java:
     id: 09bd0afebc81
-    last_write_checksum: sha1:b9b65fd5eee9ad1f712ec463cf56bf28c234e8dc
-    pristine_git_object: 9ff2f4da76ff417358de8de3a5de23ce5c68a46a
+    last_write_checksum: sha1:ae14188d48ffc14dbcd9899e0052655a7d20d35d
+    pristine_git_object: 957079e69f933da50d2095005a73f9de8831732e
   src/main/java/com/apideck/unify/models/components/InvoicesSort.java:
     id: 0705eaf4801d
     last_write_checksum: sha1:e6640057481cc8b22efbe29f1cf38b67c6671e21
@@ -21733,7 +21733,7 @@ examples:
         query:
           raw: false
           limit: 20
-          filter: {"id_since": "1", "updated_since": "2020-09-30T07:43:32.000Z", "created_since": "2020-09-30T07:43:32.000Z", "number": "OIT00546", "supplier_id": "123", "customer_id": "123abc"}
+          filter: {"ids": "12345,67890", "id_since": "1", "updated_since": "2020-09-30T07:43:32.000Z", "created_since": "2020-09-30T07:43:32.000Z", "number": "OIT00546", "supplier_id": "123", "customer_id": "123abc"}
           sort: {"by": "updated_at", "direction": "desc"}
           pass_through: {"search": "San Francisco"}
           fields: "id,updated_at"
@@ -22547,7 +22547,7 @@ examples:
         query:
           raw: false
           limit: 20
-          filter: {"id_since": "1", "updated_since": "2020-09-30T07:43:32.000Z", "created_since": "2020-09-30T07:43:32.000Z", "number": "OIT00546", "customer_id": "123abc"}
+          filter: {"ids": "12345,67890", "id_since": "1", "updated_since": "2020-09-30T07:43:32.000Z", "created_since": "2020-09-30T07:43:32.000Z", "number": "OIT00546", "customer_id": "123abc"}
           sort: {"by": "updated_at", "direction": "desc"}
           pass_through: {"search": "San Francisco"}
           fields: "id,updated_at"
@@ -22817,7 +22817,7 @@ examples:
         query:
           raw: false
           limit: 20
-          filter: {"company_name": "SpaceX", "display_name": "Elon Musk", "first_name": "Elon", "last_name": "Musk", "email": "elon@musk.com", "status": "active", "updated_since": "2020-09-30T07:43:32.000Z", "supplier_id": "123"}
+          filter: {"ids": "12345,67890", "company_name": "SpaceX", "display_name": "Elon Musk", "first_name": "Elon", "last_name": "Musk", "email": "elon@musk.com", "status": "active", "updated_since": "2020-09-30T07:43:32.000Z", "supplier_id": "123"}
           sort: {"by": "updated_at", "direction": "desc"}
           pass_through: {"search": "San Francisco"}
           fields: "id,updated_at"
@@ -37971,7 +37971,7 @@ examples:
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Java SDK Changes:\n* `apideck.accounting.salesReceipts.list()`: **Added**\n* `apideck.accounting.salesReceipts.create()`: **Added**\n* `apideck.accounting.salesReceipts.get()`: **Added**\n* `apideck.accounting.salesReceipts.update()`: **Added**\n* `apideck.accounting.salesReceipts.delete()`: **Added**\n* `apideck.accounting.paymentMethods.list()`: **Added**\n* `apideck.accounting.paymentMethods.create()`: **Added**\n* `apideck.accounting.paymentMethods.get()`: **Added**\n* `apideck.accounting.paymentMethods.update()`: **Added**\n* `apideck.accounting.paymentMethods.delete()`: **Added**\n* `apideck.accounting.taxRates.list()`:  `response.data[].customFields[]` **Changed**\n* `apideck.accounting.taxRates.create()`: \n  *  `request.taxRate.customFields[]` **Changed**\n* `apideck.accounting.taxRates.get()`:  `response.data.customFields[]` **Changed**\n* `apideck.accounting.taxRates.update()`: \n  *  `request.taxRate.customFields[]` **Changed**\n* `apideck.accounting.bills.list()`:  `response.data[].customFields[]` **Changed**\n* `apideck.accounting.bills.create()`: \n  *  `request.bill.customFields[]` **Changed**\n* `apideck.accounting.bills.get()`:  `response.data.customFields[]` **Changed**\n* `apideck.accounting.bills.update()`: \n  *  `request.bill.customFields[]` **Changed**\n* `apideck.accounting.invoices.list()`:  `response.data[].lineItems[].customFields[]` **Changed**\n* `apideck.accounting.invoices.create()`: \n  *  `request.invoice.lineItems[].customFields[]` **Changed**\n* `apideck.accounting.invoices.get()`:  `response.data.lineItems[].customFields[]` **Changed**\n* `apideck.accounting.invoices.update()`: \n  *  `request.invoice.lineItems[].customFields[]` **Changed**\n* `apideck.accounting.ledgerAccounts.list()`:  `response.data[].customFields[]` **Changed**\n* `apideck.accounting.ledgerAccounts.create()`: \n  *  `request.ledgerAccount.customFields[]` **Changed**\n* `apideck.accounting.ledgerAccounts.get()`:  `response.data.customFields[]` **Changed**\n* `apideck.accounting.ledgerAccounts.update()`: \n  *  `request.ledgerAccount.customFields[]` **Changed**\n* `apideck.accounting.creditNotes.list()`:  `response.data[].lineItems[].customFields[]` **Changed**\n* `apideck.accounting.creditNotes.create()`: \n  *  `request.creditNote.lineItems[].customFields[]` **Changed**\n* `apideck.accounting.creditNotes.get()`:  `response.data.lineItems[].customFields[]` **Changed**\n* `apideck.accounting.creditNotes.update()`: \n  *  `request.creditNote.lineItems[].customFields[]` **Changed**\n* `apideck.accounting.customers.list()`:  `response.data[].customFields[]` **Changed**\n* `apideck.accounting.customers.create()`: \n  *  `request.customer.customFields[]` **Changed**\n* `apideck.accounting.customers.get()`:  `response.data.customFields[]` **Changed**\n* `apideck.accounting.customers.update()`: \n  *  `request.customer.customFields[]` **Changed**\n* `apideck.accounting.suppliers.list()`:  `response.data[].customFields[]` **Changed**\n* `apideck.accounting.suppliers.create()`: \n  *  `request.supplier.customFields[]` **Changed**\n* `apideck.accounting.suppliers.get()`:  `response.data.customFields[]` **Changed**\n* `apideck.accounting.suppliers.update()`: \n  *  `request.supplier.customFields[]` **Changed**\n* `apideck.accounting.payments.list()`:  `response.data[].customFields[]` **Changed**\n* `apideck.accounting.payments.create()`: \n  *  `request.payment.customFields[]` **Changed**\n* `apideck.accounting.payments.get()`:  `response.data.customFields[]` **Changed**\n* `apideck.accounting.payments.update()`: \n  *  `request.payment.customFields[]` **Changed**\n* `apideck.accounting.refunds.list()`:  `response.data[]` **Changed**\n* `apideck.accounting.refunds.create()`: \n  *  `request.refund` **Changed**\n* `apideck.accounting.refunds.get()`:  `response.data` **Changed**\n* `apideck.accounting.refunds.update()`: \n  *  `request.refund` **Changed**\n* `apideck.accounting.companyInfo.get()`:  `response.data.defaultSalesTax.customFields[]` **Changed**\n* `apideck.accounting.journalEntries.list()`: \n  *  `request.filter` **Changed**\n  *  `response.data[].customFields[]` **Changed**\n* `apideck.accounting.journalEntries.create()`: \n  *  `request.journalEntry.customFields[]` **Changed**\n* `apideck.accounting.journalEntries.get()`:  `response.data.customFields[]` **Changed**\n* `apideck.accounting.journalEntries.update()`: \n  *  `request.journalEntry.customFields[]` **Changed**\n* `apideck.accounting.generalLedgerTransactions.list()`:  `response.data[].customFields[]` **Changed**\n* `apideck.accounting.generalLedgerTransactions.get()`:  `response.data.customFields[]` **Changed**\n* `apideck.accounting.purchaseOrders.list()`:  `response.data[].lineItems[].customFields[]` **Changed**\n* `apideck.accounting.purchaseOrders.create()`: \n  *  `request.purchaseOrder.lineItems[].customFields[]` **Changed**\n* `apideck.accounting.purchaseOrders.get()`:  `response.data.lineItems[].customFields[]` **Changed**\n* `apideck.accounting.purchaseOrders.update()`: \n  *  `request.purchaseOrder.lineItems[].customFields[]` **Changed**\n* `apideck.accounting.attachments.list()`:  `response.data[].fileUrl` **Added**\n* `apideck.accounting.attachments.get()`:  `response.data.fileUrl` **Added**\n* `apideck.accounting.attachments.download()`: \n  *  `request.followRedirects` **Added**\n* `apideck.accounting.bankAccounts.list()`:  `response.data[].customFields[]` **Changed**\n* `apideck.accounting.bankAccounts.create()`: \n  *  `request.accountingBankAccount.customFields[]` **Changed**\n* `apideck.accounting.bankAccounts.get()`:  `response.data.customFields[]` **Changed**\n* `apideck.accounting.bankAccounts.update()`: \n  *  `request.accountingBankAccount.customFields[]` **Changed**\n* `apideck.accounting.billPayments.list()`:  `response.data[].customFields[]` **Changed**\n* `apideck.accounting.billPayments.create()`: \n  *  `request.billPayment.customFields[]` **Changed**\n* `apideck.accounting.billPayments.get()`:  `response.data.customFields[]` **Changed**\n* `apideck.accounting.billPayments.update()`: \n  *  `request.billPayment.customFields[]` **Changed**\n* `apideck.accounting.expenses.list()`:  `response.data[].customFields[]` **Changed**\n* `apideck.accounting.expenses.create()`: \n  *  `request.expense.customFields[]` **Changed**\n* `apideck.accounting.expenses.get()`:  `response.data.customFields[]` **Changed**\n* `apideck.accounting.expenses.update()`: \n  *  `request.expense.customFields[]` **Changed**\n* `apideck.accounting.bankFeedAccounts.list()`:  `response.data[]` **Changed**\n* `apideck.accounting.bankFeedAccounts.create()`: \n  *  `request.bankFeedAccount` **Changed**\n* `apideck.accounting.bankFeedAccounts.get()`:  `response.data` **Changed**\n* `apideck.accounting.bankFeedAccounts.update()`: \n  *  `request.bankFeedAccount` **Changed**\n* `apideck.accounting.bankFeedStatements.list()`:  `response.data[].transactions[].merchantCategoryCode` **Added**\n* `apideck.accounting.bankFeedStatements.create()`: \n  *  `request.bankFeedStatement.transactions[].merchantCategoryCode` **Added**\n* `apideck.accounting.bankFeedStatements.get()`:  `response.data.transactions[].merchantCategoryCode` **Added**\n* `apideck.accounting.bankFeedStatements.update()`: \n  *  `request.bankFeedStatement.transactions[].merchantCategoryCode` **Added**\n* `apideck.accounting.quotes.list()`:  `response.data[].lineItems[].customFields[]` **Changed**\n* `apideck.accounting.quotes.create()`: \n  *  `request.quote.lineItems[].customFields[]` **Changed**\n* `apideck.accounting.quotes.get()`:  `response.data.lineItems[].customFields[]` **Changed**\n* `apideck.accounting.quotes.update()`: \n  *  `request.quote.lineItems[].customFields[]` **Changed**\n* `apideck.accounting.projects.list()`:  `response.data[].customFields[]` **Changed**\n* `apideck.accounting.projects.create()`: \n  *  `request.project.customFields[]` **Changed**\n* `apideck.accounting.projects.get()`:  `response.data.customFields[]` **Changed**\n* `apideck.accounting.projects.update()`: \n  *  `request.project.customFields[]` **Changed**\n* `apideck.accounting.employees.list()`:  `response.data[].customFields[]` **Changed**\n* `apideck.accounting.employees.create()`: \n  *  `request.accountingEmployee.customFields[]` **Changed**\n* `apideck.accounting.employees.get()`:  `response.data.customFields[]` **Changed**\n* `apideck.accounting.employees.update()`: \n  *  `request.accountingEmployee.customFields[]` **Changed**\n* `apideck.accounting.expenseReports.list()`:  `response.data[].customFields[]` **Changed**\n* `apideck.accounting.expenseReports.create()`: \n  *  `request.expenseReport.customFields[]` **Changed**\n* `apideck.accounting.expenseReports.get()`:  `response.data.customFields[]` **Changed**\n* `apideck.accounting.expenseReports.update()`: \n  *  `request.expenseReport.customFields[]` **Changed**\n* `apideck.ats.jobs.list()`:  `response.data[].customFields[]` **Changed**\n* `apideck.ats.jobs.create()`: \n  *  `request.job.customFields[]` **Changed**\n* `apideck.ats.jobs.get()`:  `response.data.customFields[]` **Changed**\n* `apideck.ats.jobs.update()`: \n  *  `request.job.customFields[]` **Changed**\n* `apideck.ats.applicants.list()`:  `response.data[].customFields[]` **Changed**\n* `apideck.ats.applicants.create()`: \n  *  `request.applicant.customFields[]` **Changed**\n* `apideck.ats.applicants.get()`:  `response.data.customFields[]` **Changed**\n* `apideck.ats.applicants.update()`: \n  *  `request.applicant.customFields[]` **Changed**\n* `apideck.crm.companies.list()`:  `response.data[].customFields[]` **Changed**\n* `apideck.crm.companies.create()`: \n  *  `request.company1.customFields[]` **Changed**\n* `apideck.crm.companies.get()`:  `response.data.customFields[]` **Changed**\n* `apideck.crm.companies.update()`: \n  *  `request.company1.customFields[]` **Changed**\n* `apideck.crm.contacts.list()`:  `response.data[].customFields[]` **Changed**\n* `apideck.crm.contacts.create()`: \n  *  `request.contact.customFields[]` **Changed**\n* `apideck.crm.contacts.get()`:  `response.data.customFields[]` **Changed**\n* `apideck.crm.contacts.update()`: \n  *  `request.contact.customFields[]` **Changed**\n* `apideck.crm.opportunities.list()`:  `response.data[].customFields[]` **Changed**\n* `apideck.crm.opportunities.create()`: \n  *  `request.opportunity.customFields[]` **Changed**\n* `apideck.crm.opportunities.get()`:  `response.data.customFields[]` **Changed**\n* `apideck.crm.opportunities.update()`: \n  *  `request.opportunity.customFields[]` **Changed**\n* `apideck.crm.leads.list()`:  `response.data[].customFields[]` **Changed**\n* `apideck.crm.leads.create()`: \n  *  `request.lead.customFields[]` **Changed**\n* `apideck.crm.leads.get()`:  `response.data.customFields[]` **Changed**\n* `apideck.crm.leads.update()`: \n  *  `request.lead.customFields[]` **Changed**\n* `apideck.crm.lists.list()`:  `response.data[].customFields[]` **Changed**\n* `apideck.crm.lists.get()`:  `response.data.customFields[]` **Changed**\n* `apideck.crm.activities.list()`:  `response.data[].customFields[]` **Changed**\n* `apideck.crm.activities.create()`: \n  *  `request.activity.customFields[]` **Changed**\n* `apideck.crm.activities.get()`:  `response.data.customFields[]` **Changed**\n* `apideck.crm.activities.update()`: \n  *  `request.activity.customFields[]` **Changed**\n* `apideck.fileStorage.files.download()`: \n  *  `request.followRedirects` **Added**\n* `apideck.hris.employees.list()`:  `response.data[].customFields[]` **Changed**\n* `apideck.hris.employees.create()`: \n  *  `request.employee.customFields[]` **Changed**\n* `apideck.hris.employees.get()`:  `response.data.customFields[]` **Changed**\n* `apideck.hris.employees.update()`: \n  *  `request.employee.customFields[]` **Changed**\n* `apideck.hris.employeeSchedules.list()`:  `response.data.employee.customFields[]` **Changed**\n* `apideck.proxy.get()`: \n  *  `request.followRedirects` **Added**\n* `apideck.proxy.options()`: \n  *  `request.followRedirects` **Added**\n* `apideck.proxy.post()`: \n  *  `request.followRedirects` **Added**\n* `apideck.proxy.put()`: \n  *  `request.followRedirects` **Added**\n* `apideck.proxy.patch()`: \n  *  `request.followRedirects` **Added**\n* `apideck.proxy.delete()`: \n  *  `request.followRedirects` **Added**\n"
+releaseNotes: "## Java SDK Changes:\n* `apideck.accounting.invoices.list()`: \n  *  `request.filter` **Changed**\n* `apideck.accounting.creditNotes.list()`: \n  *  `request.filter` **Changed**\n* `apideck.accounting.customers.list()`: \n  *  `request.filter` **Changed**\n"
 generatedFiles:
   - .gitattributes
   - USAGE.md

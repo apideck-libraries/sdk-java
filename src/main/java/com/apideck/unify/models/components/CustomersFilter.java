@@ -17,6 +17,12 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CustomersFilter {
     /**
+     * Comma-separated list of customer IDs to filter by (e.g. `12345,67890`).
+     */
+    @SpeakeasyMetadata("queryParam:name=ids")
+    private Optional<String> ids;
+
+    /**
      * Company Name of customer to search for
      */
     @SpeakeasyMetadata("queryParam:name=company_name")
@@ -71,6 +77,7 @@ public class CustomersFilter {
 
     @JsonCreator
     public CustomersFilter(
+            Optional<String> ids,
             Optional<String> companyName,
             Optional<String> displayName,
             Optional<String> firstName,
@@ -80,6 +87,7 @@ public class CustomersFilter {
             Optional<OffsetDateTime> updatedSince,
             Optional<String> supplierId,
             Optional<String> subsidiaryId) {
+        Utils.checkNotNull(ids, "ids");
         Utils.checkNotNull(companyName, "companyName");
         Utils.checkNotNull(displayName, "displayName");
         Utils.checkNotNull(firstName, "firstName");
@@ -89,6 +97,7 @@ public class CustomersFilter {
         Utils.checkNotNull(updatedSince, "updatedSince");
         Utils.checkNotNull(supplierId, "supplierId");
         Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+        this.ids = ids;
         this.companyName = companyName;
         this.displayName = displayName;
         this.firstName = firstName;
@@ -102,8 +111,17 @@ public class CustomersFilter {
     
     public CustomersFilter() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            Optional.empty());
+    }
+
+    /**
+     * Comma-separated list of customer IDs to filter by (e.g. `12345,67890`).
+     */
+    @JsonIgnore
+    public Optional<String> ids() {
+        return ids;
     }
 
     /**
@@ -181,6 +199,25 @@ public class CustomersFilter {
         return new Builder();
     }
 
+
+    /**
+     * Comma-separated list of customer IDs to filter by (e.g. `12345,67890`).
+     */
+    public CustomersFilter withIds(String ids) {
+        Utils.checkNotNull(ids, "ids");
+        this.ids = Optional.ofNullable(ids);
+        return this;
+    }
+
+
+    /**
+     * Comma-separated list of customer IDs to filter by (e.g. `12345,67890`).
+     */
+    public CustomersFilter withIds(Optional<String> ids) {
+        Utils.checkNotNull(ids, "ids");
+        this.ids = ids;
+        return this;
+    }
 
     /**
      * Company Name of customer to search for
@@ -358,6 +395,7 @@ public class CustomersFilter {
         }
         CustomersFilter other = (CustomersFilter) o;
         return 
+            Utils.enhancedDeepEquals(this.ids, other.ids) &&
             Utils.enhancedDeepEquals(this.companyName, other.companyName) &&
             Utils.enhancedDeepEquals(this.displayName, other.displayName) &&
             Utils.enhancedDeepEquals(this.firstName, other.firstName) &&
@@ -372,14 +410,16 @@ public class CustomersFilter {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            companyName, displayName, firstName,
-            lastName, email, status,
-            updatedSince, supplierId, subsidiaryId);
+            ids, companyName, displayName,
+            firstName, lastName, email,
+            status, updatedSince, supplierId,
+            subsidiaryId);
     }
     
     @Override
     public String toString() {
         return Utils.toString(CustomersFilter.class,
+                "ids", ids,
                 "companyName", companyName,
                 "displayName", displayName,
                 "firstName", firstName,
@@ -393,6 +433,8 @@ public class CustomersFilter {
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
+
+        private Optional<String> ids = Optional.empty();
 
         private Optional<String> companyName = Optional.empty();
 
@@ -414,6 +456,25 @@ public class CustomersFilter {
 
         private Builder() {
           // force use of static builder() method
+        }
+
+
+        /**
+         * Comma-separated list of customer IDs to filter by (e.g. `12345,67890`).
+         */
+        public Builder ids(String ids) {
+            Utils.checkNotNull(ids, "ids");
+            this.ids = Optional.ofNullable(ids);
+            return this;
+        }
+
+        /**
+         * Comma-separated list of customer IDs to filter by (e.g. `12345,67890`).
+         */
+        public Builder ids(Optional<String> ids) {
+            Utils.checkNotNull(ids, "ids");
+            this.ids = ids;
+            return this;
         }
 
 
@@ -586,9 +647,10 @@ public class CustomersFilter {
         public CustomersFilter build() {
 
             return new CustomersFilter(
-                companyName, displayName, firstName,
-                lastName, email, status,
-                updatedSince, supplierId, subsidiaryId);
+                ids, companyName, displayName,
+                firstName, lastName, email,
+                status, updatedSince, supplierId,
+                subsidiaryId);
         }
 
     }

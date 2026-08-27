@@ -1,26 +1,26 @@
 lockVersion: 2.0.0
 id: 38254260-287a-40b6-9ac5-c2fcb654c9cc
 management:
-  docChecksum: 031b70d18f3cd86477200b3d51d3369c
+  docChecksum: 46d632f3613c82f908742397d2bb1d28
   docVersion: 10.45.0
-  speakeasyVersion: 1.795.3
-  generationVersion: 2.932.9
-  releaseVersion: 0.39.1
-  configChecksum: 16181a5995721f32f93b1858fc6f12eb
+  speakeasyVersion: 1.796.0
+  generationVersion: 2.932.15
+  releaseVersion: 0.39.2
+  configChecksum: 803ecc0a4cb995902b5f3e10686ed82a
   repoURL: https://github.com/apideck-libraries/sdk-java.git
   installationURL: https://github.com/apideck-libraries/sdk-java
   published: true
 persistentEdits:
-  generation_id: c33acaa3-eba3-4653-8c4c-dd898dba89fc
-  pristine_commit_hash: 1cf3edd26fa7dca2f1a5806060dd17b28184b347
-  pristine_tree_hash: 918523a9f4b907d10549e34eefa0a5d96025eb1a
+  generation_id: 8b13914b-168a-4184-bc25-a84e1d8c760a
+  pristine_commit_hash: af5721cd6c43c860d2918db66edb4052763fde53
+  pristine_tree_hash: 72d23a5e706cd04c1ead614755f253f3ce2a6fc7
 features:
   java:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
     additionalProperties: 0.0.2
     constsAndDefaults: 0.1.3
-    core: 3.57.0
+    core: 3.57.2
     deprecations: 2.81.2
     downloadStreams: 0.1.1
     errors: 1.0.2
@@ -7357,8 +7357,8 @@ trackedFiles:
     pristine_git_object: bfdddad278143c4ca1a7f67c187aabef0ee3ce3e
   docs/sdks/taxrates/README.md:
     id: 6358000da833
-    last_write_checksum: sha1:a1b05a0e6ac1cacb661297d2bdcd7206e1bec6f0
-    pristine_git_object: a1c3ab54315230e66b72ab5e70b8ffef8d46af39
+    last_write_checksum: sha1:12c62d223f648aaf2b94312a326efe6027ed620a
+    pristine_git_object: 8e6e5304237ba6c5d0654939743b9f892c820b74
   docs/sdks/timeoffrequests/README.md:
     id: e94091d49fcb
     last_write_checksum: sha1:5746b30bdab7b425c698625acdeccc389ef1e37e
@@ -7389,8 +7389,8 @@ trackedFiles:
     pristine_git_object: c755c6aa377f358344e761e9cc3e7b67bc1fb479
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:81c752091798925c2d443ae45ed0e06ee99d9c9e
-    pristine_git_object: 05af0b51156994c81651e4a4a6df405d1e394388
+    last_write_checksum: sha1:d83c2689a38d8dc98f456e41a8c8053cb709881a
+    pristine_git_object: 2420f69e0d64bad120b454cf2cd5cf0cfdac0aa0
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -7873,8 +7873,8 @@ trackedFiles:
     pristine_git_object: cbbe02a60c33019d90c9faacc4eab3634440bc6c
   src/main/java/com/apideck/unify/AsyncTaxRates.java:
     id: 9b2b9dbf9e0a
-    last_write_checksum: sha1:58de6c526e14d6d8fb0fb729d7edcb3dbf8ce498
-    pristine_git_object: 06e2df5b8b1079b76c907f71b4fdbc2860f0aa95
+    last_write_checksum: sha1:3406b10d299babd816b6e74cbfacf398ecb842ba
+    pristine_git_object: 64fd8a4188222261caea9c575a10196e3a4580c2
   src/main/java/com/apideck/unify/AsyncTimeOffRequests.java:
     id: 56439811a6c8
     last_write_checksum: sha1:b21b470ff2e9b4749ed70731f465d3a7419ebdc2
@@ -8217,8 +8217,8 @@ trackedFiles:
     pristine_git_object: 7296db7ebcdcff7ee348d1f993fc4aa2a7e6c145
   src/main/java/com/apideck/unify/SDKConfiguration.java:
     id: a2b330a87142
-    last_write_checksum: sha1:61f48a0b604af6ab95b2c6a6951dfa2402db0f4d
-    pristine_git_object: c95fbd58e4d7f7f6bb105d1da1210acabac9bd77
+    last_write_checksum: sha1:a1a779f7a070ccf677044f975f72b156718793de
+    pristine_git_object: bfb53dc0a30e06f92e24abe45ae9515188ad3993
   src/main/java/com/apideck/unify/SalesReceipts.java:
     id: 581d0613d982
     last_write_checksum: sha1:ff6b58483cf85dafd1f56ccfeafafbe76664342b
@@ -8253,8 +8253,8 @@ trackedFiles:
     pristine_git_object: 077e81b67b71b43ff5679ed98e7ea115f350b259
   src/main/java/com/apideck/unify/TaxRates.java:
     id: 0ba3748d26f6
-    last_write_checksum: sha1:c7eed73f841df29b85be31110a6a20442dacddf3
-    pristine_git_object: abcb6e754f6c521d24854858cb5fb575161629b7
+    last_write_checksum: sha1:023e532c7118e1a5d6683b905a2b044b11f35406
+    pristine_git_object: d9fffbce6404d9a0d7c6d677a27c3cc8eb8a4558
   src/main/java/com/apideck/unify/TimeOffRequests.java:
     id: 9ccbf266f18d
     last_write_checksum: sha1:ffeb16bb8d3a9eec01f7c2d53b01dd8e7485eaae

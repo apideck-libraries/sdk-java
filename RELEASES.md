@@ -1139,3 +1139,13 @@ Based on:
 - [java v0.39.2] .
 ### Releases
 - [Maven Central v0.39.2] https://central.sonatype.com/artifact/com.apideck/unify/0.39.2 - .
+
+## 2026-08-28 12:01:41
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.796.1 (2.933.0) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v0.39.3] .
+### Releases
+- [Maven Central v0.39.3] https://central.sonatype.com/artifact/com.apideck/unify/0.39.3 - .

@@ -83,6 +83,15 @@ public class FormField {
     private JsonNullable<Boolean> disabled;
 
     /**
+     * Indicates if the options for a form field failed to be fetched from the downstream service. Only
+     * applicable to fields with dynamic options. When true, a retry mechanism should be provided to the
+     * user.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("options_fetch_error")
+    private JsonNullable<Boolean> optionsFetchError;
+
+    /**
      * Indicates if the form field is not displayed but the value that is being stored on the connection.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -134,6 +143,7 @@ public class FormField {
             @JsonProperty("custom_field") Optional<Boolean> customField,
             @JsonProperty("allow_custom_values") Optional<Boolean> allowCustomValues,
             @JsonProperty("disabled") JsonNullable<Boolean> disabled,
+            @JsonProperty("options_fetch_error") JsonNullable<Boolean> optionsFetchError,
             @JsonProperty("hidden") JsonNullable<Boolean> hidden,
             @JsonProperty("deprecated") JsonNullable<Boolean> deprecated,
             @JsonProperty("sensitive") JsonNullable<Boolean> sensitive,
@@ -149,6 +159,7 @@ public class FormField {
         Utils.checkNotNull(customField, "customField");
         Utils.checkNotNull(allowCustomValues, "allowCustomValues");
         Utils.checkNotNull(disabled, "disabled");
+        Utils.checkNotNull(optionsFetchError, "optionsFetchError");
         Utils.checkNotNull(hidden, "hidden");
         Utils.checkNotNull(deprecated, "deprecated");
         Utils.checkNotNull(sensitive, "sensitive");
@@ -164,6 +175,7 @@ public class FormField {
         this.customField = customField;
         this.allowCustomValues = allowCustomValues;
         this.disabled = disabled;
+        this.optionsFetchError = optionsFetchError;
         this.hidden = hidden;
         this.deprecated = deprecated;
         this.sensitive = sensitive;
@@ -177,7 +189,8 @@ public class FormField {
             JsonNullable.undefined(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -247,6 +260,16 @@ public class FormField {
     @JsonIgnore
     public JsonNullable<Boolean> disabled() {
         return disabled;
+    }
+
+    /**
+     * Indicates if the options for a form field failed to be fetched from the downstream service. Only
+     * applicable to fields with dynamic options. When true, a retry mechanism should be provided to the
+     * user.
+     */
+    @JsonIgnore
+    public JsonNullable<Boolean> optionsFetchError() {
+        return optionsFetchError;
     }
 
     /**
@@ -462,6 +485,28 @@ public class FormField {
     }
 
     /**
+     * Indicates if the options for a form field failed to be fetched from the downstream service. Only
+     * applicable to fields with dynamic options. When true, a retry mechanism should be provided to the
+     * user.
+     */
+    public FormField withOptionsFetchError(boolean optionsFetchError) {
+        Utils.checkNotNull(optionsFetchError, "optionsFetchError");
+        this.optionsFetchError = JsonNullable.of(optionsFetchError);
+        return this;
+    }
+
+    /**
+     * Indicates if the options for a form field failed to be fetched from the downstream service. Only
+     * applicable to fields with dynamic options. When true, a retry mechanism should be provided to the
+     * user.
+     */
+    public FormField withOptionsFetchError(JsonNullable<Boolean> optionsFetchError) {
+        Utils.checkNotNull(optionsFetchError, "optionsFetchError");
+        this.optionsFetchError = optionsFetchError;
+        return this;
+    }
+
+    /**
      * Indicates if the form field is not displayed but the value that is being stored on the connection.
      */
     public FormField withHidden(boolean hidden) {
@@ -585,6 +630,7 @@ public class FormField {
             Utils.enhancedDeepEquals(this.customField, other.customField) &&
             Utils.enhancedDeepEquals(this.allowCustomValues, other.allowCustomValues) &&
             Utils.enhancedDeepEquals(this.disabled, other.disabled) &&
+            Utils.enhancedDeepEquals(this.optionsFetchError, other.optionsFetchError) &&
             Utils.enhancedDeepEquals(this.hidden, other.hidden) &&
             Utils.enhancedDeepEquals(this.deprecated, other.deprecated) &&
             Utils.enhancedDeepEquals(this.sensitive, other.sensitive) &&
@@ -599,8 +645,9 @@ public class FormField {
             id, label, placeholder,
             description, type, required,
             customField, allowCustomValues, disabled,
-            hidden, deprecated, sensitive,
-            prefix, suffix, options);
+            optionsFetchError, hidden, deprecated,
+            sensitive, prefix, suffix,
+            options);
     }
     
     @Override
@@ -615,6 +662,7 @@ public class FormField {
                 "customField", customField,
                 "allowCustomValues", allowCustomValues,
                 "disabled", disabled,
+                "optionsFetchError", optionsFetchError,
                 "hidden", hidden,
                 "deprecated", deprecated,
                 "sensitive", sensitive,
@@ -643,6 +691,8 @@ public class FormField {
         private Optional<Boolean> allowCustomValues;
 
         private JsonNullable<Boolean> disabled = JsonNullable.undefined();
+
+        private JsonNullable<Boolean> optionsFetchError = JsonNullable.undefined();
 
         private JsonNullable<Boolean> hidden = JsonNullable.undefined();
 
@@ -825,6 +875,29 @@ public class FormField {
 
 
         /**
+         * Indicates if the options for a form field failed to be fetched from the downstream service. Only
+         * applicable to fields with dynamic options. When true, a retry mechanism should be provided to the
+         * user.
+         */
+        public Builder optionsFetchError(boolean optionsFetchError) {
+            Utils.checkNotNull(optionsFetchError, "optionsFetchError");
+            this.optionsFetchError = JsonNullable.of(optionsFetchError);
+            return this;
+        }
+
+        /**
+         * Indicates if the options for a form field failed to be fetched from the downstream service. Only
+         * applicable to fields with dynamic options. When true, a retry mechanism should be provided to the
+         * user.
+         */
+        public Builder optionsFetchError(JsonNullable<Boolean> optionsFetchError) {
+            Utils.checkNotNull(optionsFetchError, "optionsFetchError");
+            this.optionsFetchError = optionsFetchError;
+            return this;
+        }
+
+
+        /**
          * Indicates if the form field is not displayed but the value that is being stored on the connection.
          */
         public Builder hidden(boolean hidden) {
@@ -942,8 +1015,9 @@ public class FormField {
                 id, label, placeholder,
                 description, type, required,
                 customField, allowCustomValues, disabled,
-                hidden, deprecated, sensitive,
-                prefix, suffix, options);
+                optionsFetchError, hidden, deprecated,
+                sensitive, prefix, suffix,
+                options);
         }
 
 

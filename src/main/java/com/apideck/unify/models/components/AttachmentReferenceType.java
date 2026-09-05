@@ -22,6 +22,7 @@ public class AttachmentReferenceType {
 
     public static final AttachmentReferenceType INVOICE = new AttachmentReferenceType("invoice");
     public static final AttachmentReferenceType BILL = new AttachmentReferenceType("bill");
+    public static final AttachmentReferenceType BILL_CREDIT_NOTE = new AttachmentReferenceType("bill-credit-note");
     public static final AttachmentReferenceType EXPENSE = new AttachmentReferenceType("expense");
     public static final AttachmentReferenceType EXPENSE_REPORT = new AttachmentReferenceType("expense-report");
     public static final AttachmentReferenceType QUOTE = new AttachmentReferenceType("quote");
@@ -100,6 +101,7 @@ public class AttachmentReferenceType {
         Map<String, AttachmentReferenceType> map = new LinkedHashMap<>();
         map.put("invoice", INVOICE);
         map.put("bill", BILL);
+        map.put("bill-credit-note", BILL_CREDIT_NOTE);
         map.put("expense", EXPENSE);
         map.put("expense-report", EXPENSE_REPORT);
         map.put("quote", QUOTE);
@@ -110,6 +112,7 @@ public class AttachmentReferenceType {
         Map<String, AttachmentReferenceTypeEnum> map = new HashMap<>();
         map.put("invoice", AttachmentReferenceTypeEnum.INVOICE);
         map.put("bill", AttachmentReferenceTypeEnum.BILL);
+        map.put("bill-credit-note", AttachmentReferenceTypeEnum.BILL_CREDIT_NOTE);
         map.put("expense", AttachmentReferenceTypeEnum.EXPENSE);
         map.put("expense-report", AttachmentReferenceTypeEnum.EXPENSE_REPORT);
         map.put("quote", AttachmentReferenceTypeEnum.QUOTE);
@@ -121,6 +124,7 @@ public class AttachmentReferenceType {
 
         INVOICE("invoice"),
         BILL("bill"),
+        BILL_CREDIT_NOTE("bill-credit-note"),
         EXPENSE("expense"),
         EXPENSE_REPORT("expense-report"),
         QUOTE("quote"),;

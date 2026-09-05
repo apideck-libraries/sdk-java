@@ -16,6 +16,7 @@ public class Accounting {
     private final LedgerAccounts ledgerAccounts;
     private final InvoiceItems invoiceItems;
     private final CreditNotes creditNotes;
+    private final BillCreditNotes billCreditNotes;
     private final Customers customers;
     private final Suppliers suppliers;
     private final Payments payments;
@@ -56,6 +57,7 @@ public class Accounting {
         this.ledgerAccounts = new LedgerAccounts(this.sdkConfiguration);
         this.invoiceItems = new InvoiceItems(this.sdkConfiguration);
         this.creditNotes = new CreditNotes(this.sdkConfiguration);
+        this.billCreditNotes = new BillCreditNotes(this.sdkConfiguration);
         this.customers = new Customers(this.sdkConfiguration);
         this.suppliers = new Suppliers(this.sdkConfiguration);
         this.payments = new Payments(this.sdkConfiguration);
@@ -112,6 +114,10 @@ public class Accounting {
 
     public final CreditNotes creditNotes() {
         return creditNotes;
+    }
+
+    public final BillCreditNotes billCreditNotes() {
+        return billCreditNotes;
     }
 
     public final Customers customers() {

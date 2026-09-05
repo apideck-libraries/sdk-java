@@ -15,6 +15,7 @@ public class AsyncAccounting {
     private final AsyncLedgerAccounts ledgerAccounts;
     private final AsyncInvoiceItems invoiceItems;
     private final AsyncCreditNotes creditNotes;
+    private final AsyncBillCreditNotes billCreditNotes;
     private final AsyncCustomers customers;
     private final AsyncSuppliers suppliers;
     private final AsyncPayments payments;
@@ -56,6 +57,7 @@ public class AsyncAccounting {
         this.ledgerAccounts = new AsyncLedgerAccounts(syncSDK.ledgerAccounts(), this.sdkConfiguration);
         this.invoiceItems = new AsyncInvoiceItems(syncSDK.invoiceItems(), this.sdkConfiguration);
         this.creditNotes = new AsyncCreditNotes(syncSDK.creditNotes(), this.sdkConfiguration);
+        this.billCreditNotes = new AsyncBillCreditNotes(syncSDK.billCreditNotes(), this.sdkConfiguration);
         this.customers = new AsyncCustomers(syncSDK.customers(), this.sdkConfiguration);
         this.suppliers = new AsyncSuppliers(syncSDK.suppliers(), this.sdkConfiguration);
         this.payments = new AsyncPayments(syncSDK.payments(), this.sdkConfiguration);
@@ -112,6 +114,10 @@ public class AsyncAccounting {
 
     public final AsyncCreditNotes creditNotes() {
         return creditNotes;
+    }
+
+    public final AsyncBillCreditNotes billCreditNotes() {
+        return billCreditNotes;
     }
 
     public final AsyncCustomers customers() {

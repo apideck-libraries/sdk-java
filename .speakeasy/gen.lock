@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 38254260-287a-40b6-9ac5-c2fcb654c9cc
 management:
-  docChecksum: fc80e46a806c5cb656cdae08006e6847
-  docVersion: 10.45.0
-  speakeasyVersion: 1.796.2
-  generationVersion: 2.933.0
-  releaseVersion: 0.39.4
-  configChecksum: 2266523d144ba9e2c2dd9f0de4679a01
+  docChecksum: e35b72a11e731143150bf97a43525188
+  docVersion: 10.47.1
+  speakeasyVersion: 1.796.4
+  generationVersion: 2.935.1
+  releaseVersion: 0.40.0
+  configChecksum: 4545fb21d18d53cc4d9bc0a207fc7fe2
   repoURL: https://github.com/apideck-libraries/sdk-java.git
   installationURL: https://github.com/apideck-libraries/sdk-java
   published: true
 persistentEdits:
-  generation_id: d8bb35d8-e893-480a-9147-fdf8b790d12d
-  pristine_commit_hash: c8d21140d7484412fbc4d1e86eb82326b37ca13e
-  pristine_tree_hash: 63e50fe8509307898e3f75f6819697e87a07ce27
+  generation_id: bc052983-a518-4973-a0e0-a63aa5258549
+  pristine_commit_hash: 0410235e4cbae78a69f5a7d73726660a0dce742d
+  pristine_tree_hash: 8502bdd6750c9c8c1f7dafa8290999eee160b63b
 features:
   java:
     acceptHeaders: 2.81.2
@@ -37,7 +37,7 @@ features:
     nullables: 0.1.1
     openEnums: 0.2.0
     pagination: 1.0.4
-    retries: 0.1.3
+    retries: 0.1.4
     sdkHooks: 1.2.0
     typeOverrides: 2.81.1
     unions: 0.3.8
@@ -309,8 +309,8 @@ trackedFiles:
     pristine_git_object: eaa8041d22597972563bb281d114e767ec5e30f1
   docs/models/components/AttachmentReferenceType.md:
     id: 7c5efb852bdd
-    last_write_checksum: sha1:4a0259e8b73507b73d69fa41f1c1e2840fc504e6
-    pristine_git_object: ff4ec81313a5afb8243e5cf24f218aadd6245731
+    last_write_checksum: sha1:a754de1a4ca42340fd6b7084e2229abfd4b4fa3e
+    pristine_git_object: 71a91922847ac5833381bf732e474b19ed03f28e
   docs/models/components/Audience.md:
     id: 8b01ff74e438
     last_write_checksum: sha1:3a4a87898d6556127d4640298d06cedb2cf25179
@@ -435,6 +435,42 @@ trackedFiles:
     id: 12ac35b913cd
     last_write_checksum: sha1:f1f35ebf8d88442632375f0415ff78be19908f5e
     pristine_git_object: d16dfbeb3bc35f85587c8b0280b221924824d2ee
+  docs/models/components/BillCreditNote.md:
+    id: 7227d4752f54
+    last_write_checksum: sha1:aa6d9ac00ab19a9985f5dd94be742e261457b841
+    pristine_git_object: 00d5f6622e5df2a43e569c2d2d6c26a517b5e6d7
+  docs/models/components/BillCreditNoteInput.md:
+    id: 113c1463d724
+    last_write_checksum: sha1:fba429b5cbcbcc74746ee19a5ce10cd31ad2c7ee
+    pristine_git_object: c2b5088cda41feb6ed5e5273bde59d28afde9f26
+  docs/models/components/BillCreditNoteLineItem.md:
+    id: 6a9e271ed263
+    last_write_checksum: sha1:63126aa04b3a3d1977cac5c555df8f463c4cdee9
+    pristine_git_object: 96dea3c8f78b9f7143c3b144029b6c8a26b93f94
+  docs/models/components/BillCreditNoteLineItemInput.md:
+    id: 1db799afd221
+    last_write_checksum: sha1:677b848628ad84f5b8f63045a2c61ca1da016f56
+    pristine_git_object: 441444d127c0cf95452836dcd1c255903dc7c62a
+  docs/models/components/BillCreditNoteStatus.md:
+    id: 98720f4eb2d2
+    last_write_checksum: sha1:adcf927c0057434b2ca4f1e66f89ef03af9d52ed
+    pristine_git_object: afa209fde2b6aa419e955fdcc1bef7fa8ce2f559
+  docs/models/components/BillCreditNoteType.md:
+    id: 1a0919be5c31
+    last_write_checksum: sha1:9794f3525c151402acc0a788a81d9e40f81af020
+    pristine_git_object: c5c74c98579d30cdc34e9505b56dfcbb472d8a21
+  docs/models/components/BillCreditNotesFilter.md:
+    id: 1513c5ec2f3b
+    last_write_checksum: sha1:e22b6c97f9635675e6eb7d7ab1885230d9569ac5
+    pristine_git_object: bdc681ab2981a9ca9667cd1f68b9adbc9dd3ff4b
+  docs/models/components/BillCreditNotesSort.md:
+    id: 80060cbe27b6
+    last_write_checksum: sha1:123edfa5f48796fe1a59022999ed4a87624bee68
+    pristine_git_object: c3fefc476953eae68c86d127151e58843bba4cdf
+  docs/models/components/BillCreditNotesSortBy.md:
+    id: 6fefc6fa886a
+    last_write_checksum: sha1:c8f1ba7f358b36bed5024c8fcec169ea2a6b38e6
+    pristine_git_object: 41d9116d44e67c4d0c39709e655f55992f662a22
   docs/models/components/BillInput.md:
     id: 5f17a29a52c3
     last_write_checksum: sha1:576a4dadda35334dd44aac0e553bc2a5fa81f94e
@@ -823,6 +859,10 @@ trackedFiles:
     id: 0d901b8e089f
     last_write_checksum: sha1:93282c13287f7de5ba3f849f6a04f3bcd5d2fb32
     pristine_git_object: a234479b8cea2d4b4e6d5062db3cc5b04623b680
+  docs/models/components/CreateBillCreditNoteResponse.md:
+    id: 4b162d9354b6
+    last_write_checksum: sha1:fa8d589c7ce80515669bcad678b7478450c43f8a
+    pristine_git_object: 96f24c62e47538721e229bfc035ff39605c1a820
   docs/models/components/CreateBillPaymentResponse.md:
     id: 5afec9bd6a79
     last_write_checksum: sha1:22556e09cdf4c6e6165eb097a9eeeee6aeb31654
@@ -1053,20 +1093,20 @@ trackedFiles:
     pristine_git_object: 0ca7c392847c9c5a3dbd2f120cb13aa57412131c
   docs/models/components/CreditNote.md:
     id: fdbc707db3df
-    last_write_checksum: sha1:f708eced9dfeb1f1faa84a9234cf6d04f989bf8e
-    pristine_git_object: b8ec17cdacfdfd8c1b6a8c71924a9a4adc6ef8f2
+    last_write_checksum: sha1:9181aeefb0eed0348e5b2653f87197d574fa6745
+    pristine_git_object: bc20cf1fc0ab8818184c171f7b078a49e06feaa9
   docs/models/components/CreditNoteInput.md:
     id: 505e5d8fbb29
-    last_write_checksum: sha1:b55081d444800e180ac39be54aeb614dd9e293ee
-    pristine_git_object: 513cd18a665c28ef003b44ad8a85b77fe0569d8f
+    last_write_checksum: sha1:224d7cb4da2e4b76522283852c17a2da96d79561
+    pristine_git_object: d8cd328689f882a5e4084ec4498c93cdfeb0b978
   docs/models/components/CreditNoteStatus.md:
     id: e5caa312c594
     last_write_checksum: sha1:eb8ff413607e16508e97b96650d497a450ba8b7f
     pristine_git_object: 024ba623e7a9f876cfd8cf60e8cec055047bc9c2
   docs/models/components/CreditNoteType.md:
     id: c2f79149b72c
-    last_write_checksum: sha1:1af74f63a838100fa419fd943d30d276d236f98c
-    pristine_git_object: a9f3593df5ba401a8ff17eb6b3e2935e39f33612
+    last_write_checksum: sha1:a3ecc9060493cb15e1d65c32892ab2e41c3f23cd
+    pristine_git_object: 852a5b1529b60df48fac50d436afe7d147369ea4
   docs/models/components/CreditNotesFilter.md:
     id: 4dbf5ec9a97b
     last_write_checksum: sha1:721c3edb14b49c6e0ddc3fe27e5b13c54e1cbeaa
@@ -1263,6 +1303,10 @@ trackedFiles:
     id: 7afd5bbdbdce
     last_write_checksum: sha1:a67117e6c5f371ffe83cd1793a191ccd9e6d0622
     pristine_git_object: 0bf05f7da5d8cbbfcc5e5752756f7047ac7c45c9
+  docs/models/components/DeleteBillCreditNoteResponse.md:
+    id: 2294444f9770
+    last_write_checksum: sha1:aea79733944979ee44da5f8136b7f439ed2a3544
+    pristine_git_object: ff1be48c5670428e99146dd618d86ba9f6218c9b
   docs/models/components/DeleteBillPaymentResponse.md:
     id: c869a3e8483a
     last_write_checksum: sha1:ffbc2c127b60f117277953c7d29de2ab7181ee29
@@ -1837,8 +1881,8 @@ trackedFiles:
     pristine_git_object: 3de59f58954fba9a8efc08682cf843fba6cba58a
   docs/models/components/FormField.md:
     id: 0a1d7d77777c
-    last_write_checksum: sha1:8ce83b85c8efa9317dc3922fdd2cfafe1701999e
-    pristine_git_object: caf1f699c53f94a24d2b3f167f47d3858d59698b
+    last_write_checksum: sha1:8de732b99a92af78c17233c15a43a594ab2ed88c
+    pristine_git_object: 5ca5da5bbce70d90ee77848469689ab3283fa44e
   docs/models/components/FormFieldOption.md:
     id: 14938058f9d8
     last_write_checksum: sha1:bc3be49a4267cc6e8c3e4cc8a5c0f356a2f30282
@@ -2003,6 +2047,14 @@ trackedFiles:
     id: 7e025473b1d4
     last_write_checksum: sha1:3f382218b983a7f9e22ab7f27fc0b5c4409fa0fe
     pristine_git_object: b7444e2595402bfb4e96f60f908cfe1bba8b6381
+  docs/models/components/GetBillCreditNoteResponse.md:
+    id: c9023a0fe938
+    last_write_checksum: sha1:4b4a38da583f0ef9d98f7696143a2dc5b6b780a1
+    pristine_git_object: 321a85fab71200083a8fa8f5530adbfa705d43ac
+  docs/models/components/GetBillCreditNotesResponse.md:
+    id: 99ca542b5ddb
+    last_write_checksum: sha1:fb624d9be7b2e24c79149e05e47c4686ff4dc0ba
+    pristine_git_object: 9b84a70990f614537e83b21f11be7a2bd1dd5415
   docs/models/components/GetBillPaymentResponse.md:
     id: 5dd1fc98031f
     last_write_checksum: sha1:cedfa8d897c41b6c99b9275dc401a28e66b4e45f
@@ -3321,8 +3373,8 @@ trackedFiles:
     pristine_git_object: 77ab496b35060411d8d96a122d7d4ce47df71431
   docs/models/components/QuotesFilter.md:
     id: 79c087b62b72
-    last_write_checksum: sha1:1fd6405e509a8d858703583ada17a0c5065c6879
-    pristine_git_object: f3123c903be5af33f83e653b1e0f4f3022d311bc
+    last_write_checksum: sha1:7726bb4b8f10fdc32232683e16f146375749fd0e
+    pristine_git_object: 9ef2ddd8f5b7b06722ddfe1547f540333312b0f4
   docs/models/components/RebillStatus.md:
     id: 5e382ca5fd82
     last_write_checksum: sha1:f3c240b7b3957fc1969bc00947b9737994e48ae9
@@ -3349,8 +3401,8 @@ trackedFiles:
     pristine_git_object: 2a61dd345e54a942ec6cc8fde3f60d4a341ca001
   docs/models/components/RefundsFilter.md:
     id: 4768fbe80bcb
-    last_write_checksum: sha1:9d382386ed0350247363a7194530e8e12265677f
-    pristine_git_object: dc0c700b7bc2cfdd317fb4dc621e644dcc40fd2f
+    last_write_checksum: sha1:5f85237aa48aef410a4385a0d14d7da1bdd1b011
+    pristine_git_object: 4f20e2d31cde943c70e4ab19eeac12ab1c9cdb07
   docs/models/components/RefundsSort.md:
     id: 4b570fe66064
     last_write_checksum: sha1:af079eda5bf2ff03cfdd89ab767449b78996964b
@@ -3771,6 +3823,10 @@ trackedFiles:
     id: 4a5bd9307404
     last_write_checksum: sha1:9407306c23b7d142236def9734c17649c129d1d8
     pristine_git_object: 1bdc2594c29ead0cf6af3dd7cce8d8d33e9915fa
+  docs/models/components/UpdateBillCreditNoteResponse.md:
+    id: 1245a09fbf85
+    last_write_checksum: sha1:9ba59af63f663cdaa07d4d52da8d47aec0fe68d3
+    pristine_git_object: b5518e5b6dc3a096bfcaebeacc2d8e54f5f5b0af
   docs/models/components/UpdateBillPaymentResponse.md:
     id: 6299ffb06292
     last_write_checksum: sha1:4f71272055f3aa3cfeba4213e29f68f46aa907a2
@@ -4347,6 +4403,46 @@ trackedFiles:
     id: 3c9147a9e3b0
     last_write_checksum: sha1:33593117f2f18d1a1d578cc23db7ba6b799b75c2
     pristine_git_object: ae98991264dbd5d2137d9658a8d8aa2b61f42df5
+  docs/models/operations/AccountingBillCreditNotesAddRequest.md:
+    id: 1d8f4f2b6c89
+    last_write_checksum: sha1:5cb77a6131c283b9911ae50f856b8b161a84b247
+    pristine_git_object: 46504b57ba941cb364e363dcec8749ddba6aac98
+  docs/models/operations/AccountingBillCreditNotesAddResponse.md:
+    id: 16231b0e6316
+    last_write_checksum: sha1:852b4a182055f01c49971419318d096086d3a31a
+    pristine_git_object: d9d19f51fdd25efb9a4d116a8e1472e9e674558c
+  docs/models/operations/AccountingBillCreditNotesAllRequest.md:
+    id: a6e1d5eeb476
+    last_write_checksum: sha1:dbc6d9ddec031ace5b5bd42cd9d79a4f40bf214a
+    pristine_git_object: d56d5157e4887dffc485befeb2d1c7ad09b7ef6a
+  docs/models/operations/AccountingBillCreditNotesAllResponse.md:
+    id: 7e004f12adca
+    last_write_checksum: sha1:200d527bd7f1be54e2f1196bf262583bc19dd0af
+    pristine_git_object: f68df8e6fb833f22d503e1799bae3de816724bc0
+  docs/models/operations/AccountingBillCreditNotesDeleteRequest.md:
+    id: 2bdc4f71c256
+    last_write_checksum: sha1:c9ec77cc63514e3f623825d146fdfdfa5563b1da
+    pristine_git_object: c197805065bcf8ee3263e796034130b8b1a264f5
+  docs/models/operations/AccountingBillCreditNotesDeleteResponse.md:
+    id: 9b99eec19a4f
+    last_write_checksum: sha1:76afd674ba293c844b0445592d078b6ec437cd8b
+    pristine_git_object: 1b70c885d5c8550af9a5c16a16e2529e35fdb314
+  docs/models/operations/AccountingBillCreditNotesOneRequest.md:
+    id: a23e99fbe520
+    last_write_checksum: sha1:f1799010b34aeb4f0ffaaaa66ac9afaf463ae3ee
+    pristine_git_object: 4d8920578723fcd85d412fd4c6430295000fda28
+  docs/models/operations/AccountingBillCreditNotesOneResponse.md:
+    id: 9643ce0ae034
+    last_write_checksum: sha1:357ede60025c1465b9ea7197e0e9711c6071c143
+    pristine_git_object: c501d57f7bc5f5518e770db587569589e23fd56a
+  docs/models/operations/AccountingBillCreditNotesUpdateRequest.md:
+    id: 47733cc425a5
+    last_write_checksum: sha1:257fa0885131854409692aa064095a328866209b
+    pristine_git_object: f8891e0677ca6314f5c737487e7308e44aeb0d93
+  docs/models/operations/AccountingBillCreditNotesUpdateResponse.md:
+    id: 10c474080fdb
+    last_write_checksum: sha1:6124b03fd4a0d8c00137a6551ddc1ad2590d0e82
+    pristine_git_object: 81d20b7f8f8a285fc9ae3e1fe6c988422b2ed0f2
   docs/models/operations/AccountingBillPaymentsAddRequest.md:
     id: 5d1e81aa93b9
     last_write_checksum: sha1:d800f335918ebb955799e68579852359983fccf1
@@ -7071,6 +7167,10 @@ trackedFiles:
     id: 3397e2a06eb3
     last_write_checksum: sha1:e7efe7476fc0133f11a2e33e1a0d23d1d9a4725a
     pristine_git_object: 3bade97d77cc6207266cfb4d7f7eeaf6bc09882d
+  docs/sdks/billcreditnotes/README.md:
+    id: 9f712b3a2216
+    last_write_checksum: sha1:7649297757dc90acbcb905d916d7b5670bd77980
+    pristine_git_object: 6d6a720cbe7c09a200870d0f1d09363e142a4253
   docs/sdks/billpayments/README.md:
     id: 9436cf9c44bd
     last_write_checksum: sha1:1a52b143675ca4c1ff9007537df05894fa42ed36
@@ -7389,8 +7489,8 @@ trackedFiles:
     pristine_git_object: c755c6aa377f358344e761e9cc3e7b67bc1fb479
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:c9fcf78903757285622baada928e594c553e4701
-    pristine_git_object: 129292b596b0aca2671ae099d1a40f5126c3403b
+    last_write_checksum: sha1:6987e1c34124a40f64a5410ddb219f47cef4332a
+    pristine_git_object: f23362060fab04f3ba83701a6947c1c7b02a8ea5
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -7417,8 +7517,8 @@ trackedFiles:
     pristine_git_object: c0c8392a8bfa6afd4d6ea570f546fe04a1ef4a91
   src/main/java/com/apideck/unify/Accounting.java:
     id: a26e2542bb82
-    last_write_checksum: sha1:bfa168fd8b3d730e47807b77cc81f319cb12ae88
-    pristine_git_object: 31409e9ba377e75377faf0b4ac26ce52e0b6d95a
+    last_write_checksum: sha1:dbe30d50d16772c828709abc9232d801f535fa43
+    pristine_git_object: ad3af49eba81c47e632ae7cb1bd2dae57a5ef7a2
   src/main/java/com/apideck/unify/Activities.java:
     id: 6620d356ac86
     last_write_checksum: sha1:494b108c87669aeb2b0535c6a18c4f58c7b655cb
@@ -7477,8 +7577,8 @@ trackedFiles:
     pristine_git_object: db25bd77eff772cdb55e346375ad00e9bd73690c
   src/main/java/com/apideck/unify/AsyncAccounting.java:
     id: 8d268d98214f
-    last_write_checksum: sha1:bb9339d7e2bb05b6d1387be597cecb1f3648a080
-    pristine_git_object: c2641b32fbd6e1d31b3f0fbb63993839417aaaf1
+    last_write_checksum: sha1:5a3179d44549c81d3a215f802605190ff7f25670
+    pristine_git_object: e9e203701018865fbea28dad866d6e272ee67bb7
   src/main/java/com/apideck/unify/AsyncActivities.java:
     id: 6e509d02b899
     last_write_checksum: sha1:37dd284ae02b0f4d26a66a2f65d8c1b6c1b83a05
@@ -7559,6 +7659,10 @@ trackedFiles:
     id: 2d618ba08584
     last_write_checksum: sha1:c2555b977f8ddb7fc52cde03f2abea88cc15b674
     pristine_git_object: 0c886e3c34204b64330b73f3927bbbd068d0e175
+  src/main/java/com/apideck/unify/AsyncBillCreditNotes.java:
+    id: 93e6b78482a7
+    last_write_checksum: sha1:b0aacb4c573eb6fe528c19669f31cd9c4d7ecdbd
+    pristine_git_object: c55787f1a972f61e336c271ecf4a227a8d7d0fe9
   src/main/java/com/apideck/unify/AsyncBillPayments.java:
     id: abe7513b8f36
     last_write_checksum: sha1:bc07196bb5b02edf5ccd8027173d641a2a56f7f5
@@ -7931,6 +8035,10 @@ trackedFiles:
     id: d8b100768a63
     last_write_checksum: sha1:890f8c140b5bc29db0dd720f11fb28bccb712875
     pristine_git_object: 1ac2150d124d7ee5c43b7992103c994f7db323b3
+  src/main/java/com/apideck/unify/BillCreditNotes.java:
+    id: 200856e195ba
+    last_write_checksum: sha1:3ca59d18a82be53d0f0a320aad953ad985942228
+    pristine_git_object: d6a78961b4b766eb86d5c3f57097bbcc5a6686ed
   src/main/java/com/apideck/unify/BillPayments.java:
     id: edf2d58aa37b
     last_write_checksum: sha1:9458ed0087a6f61ba59da4442a16b94f34e14538
@@ -8217,8 +8325,8 @@ trackedFiles:
     pristine_git_object: 7296db7ebcdcff7ee348d1f993fc4aa2a7e6c145
   src/main/java/com/apideck/unify/SDKConfiguration.java:
     id: a2b330a87142
-    last_write_checksum: sha1:61dbe920d656e1484a17476ac384eb645d530df1
-    pristine_git_object: f7a9c9cca48c98cf753ee85a6589b4f609f2da9a
+    last_write_checksum: sha1:4f49166d333e7d7ddf6257a47e306136b8a1c495
+    pristine_git_object: 4b362daf4a14bc3258f00e5d31e2337863178e00
   src/main/java/com/apideck/unify/SalesReceipts.java:
     id: 581d0613d982
     last_write_checksum: sha1:ff6b58483cf85dafd1f56ccfeafafbe76664342b
@@ -8541,8 +8649,8 @@ trackedFiles:
     pristine_git_object: 9ad548aa292db4d46b95350bd4ab13d58a43469b
   src/main/java/com/apideck/unify/models/components/AttachmentReferenceType.java:
     id: 82966414e871
-    last_write_checksum: sha1:46a367189fc1c47dccf166a0236098ac4c787311
-    pristine_git_object: cb0c7ddfd61da1e3c7c2d876b3821dbe229504fd
+    last_write_checksum: sha1:1c357e8dc8694668ace08a54d74b897a0a737ca3
+    pristine_git_object: 2c94d34dd71cbdac315ad2090a4cadcca186d3bd
   src/main/java/com/apideck/unify/models/components/Audience.java:
     id: 80d3a7651620
     last_write_checksum: sha1:72abce38dc91d630df8c8d67472df79f3ba119c7
@@ -8667,6 +8775,42 @@ trackedFiles:
     id: b35327a61f59
     last_write_checksum: sha1:dbd5691dfc9be054dd8d794d319b0b322115086f
     pristine_git_object: f71d4d47a76127f13b6ac10fb54ec73dfce86f64
+  src/main/java/com/apideck/unify/models/components/BillCreditNote.java:
+    id: 6e7aee0e38ca
+    last_write_checksum: sha1:790b7c9fee0829f496422558ceb44002e16d257e
+    pristine_git_object: e0f5936ca33ea4434c45afd95cba0b298826d9ed
+  src/main/java/com/apideck/unify/models/components/BillCreditNoteInput.java:
+    id: b460b3cbfee0
+    last_write_checksum: sha1:d8ceb70cdce43d2d1462e9a20939f3b01c73e186
+    pristine_git_object: 2ef5f664fc75f389804a24a53bf3f0850c053fb7
+  src/main/java/com/apideck/unify/models/components/BillCreditNoteLineItem.java:
+    id: 80abd960edcd
+    last_write_checksum: sha1:252da084d01cdc81a051047e856e80334fc17096
+    pristine_git_object: 84c0dea5a9207296fb2cf4e9624787579c25bf03
+  src/main/java/com/apideck/unify/models/components/BillCreditNoteLineItemInput.java:
+    id: 4400d568e8a0
+    last_write_checksum: sha1:0df95b8da8f642bbe9eed45435f31c2b9b84fc0e
+    pristine_git_object: 5f4ffa59f8c05802b12c4e6bae68276ddd214898
+  src/main/java/com/apideck/unify/models/components/BillCreditNoteStatus.java:
+    id: 7a04e9f69fba
+    last_write_checksum: sha1:e592a8dd3ae40d25658930d0a7b3378fbfcd8ebe
+    pristine_git_object: d8449ccc0654b39cd64712693f03f79d69435f0f
+  src/main/java/com/apideck/unify/models/components/BillCreditNoteType.java:
+    id: 7d0cfd51e715
+    last_write_checksum: sha1:de447bbe229546db134e8889592bf11e8cab375e
+    pristine_git_object: ff2f2aaf583a764dfec08dae64b962b6c31abb40
+  src/main/java/com/apideck/unify/models/components/BillCreditNotesFilter.java:
+    id: 3a07bf51f5cd
+    last_write_checksum: sha1:6663fd9caaab3a0a3753266e7e5e1474ea272b63
+    pristine_git_object: 8d73302327c5e64812e13b58029596c13cc25d62
+  src/main/java/com/apideck/unify/models/components/BillCreditNotesSort.java:
+    id: 389addb536ce
+    last_write_checksum: sha1:db1cbc2b4c25031670a96ad7f633b60255afc8b0
+    pristine_git_object: 4f07bd990c0f6e22c2796c8839c82013546619b9
+  src/main/java/com/apideck/unify/models/components/BillCreditNotesSortBy.java:
+    id: e5fcc2fdf7d5
+    last_write_checksum: sha1:61594dfa5e32d61aa55ac8dc4d08f8e481cb289b
+    pristine_git_object: 31f991afbb9cf590ed4550c3845cec0a6fcf2d1c
   src/main/java/com/apideck/unify/models/components/BillInput.java:
     id: 142ca1cfb422
     last_write_checksum: sha1:a01068d3b44c75cb0803162136c73de0c98538b6
@@ -9055,6 +9199,10 @@ trackedFiles:
     id: 77beb50ef5d7
     last_write_checksum: sha1:cfdfa777f636d39c2377476bc86eb40d1190a1ab
     pristine_git_object: 15fefa5dd8befebccc35815de7cf9a705e81f571
+  src/main/java/com/apideck/unify/models/components/CreateBillCreditNoteResponse.java:
+    id: f225b1ab1f38
+    last_write_checksum: sha1:394b47d514b20bf99bd26abef7b7fda46ade9c85
+    pristine_git_object: 2167abc33232ac14e8b9d72f82fdf420151a5a74
   src/main/java/com/apideck/unify/models/components/CreateBillPaymentResponse.java:
     id: 51433a3b3fb9
     last_write_checksum: sha1:69b1b7c07b479c99d3311a0d84f411fff851849c
@@ -9285,20 +9433,20 @@ trackedFiles:
     pristine_git_object: 98c53d16b026c3e7d1cbd01e6f7436564ecff7cc
   src/main/java/com/apideck/unify/models/components/CreditNote.java:
     id: 79c8689c508a
-    last_write_checksum: sha1:b857730110eb8ce8643debd433255fd6ab561fc1
-    pristine_git_object: a7cc56bfa29be31f85edcfa379259ac378abd79a
+    last_write_checksum: sha1:c938bd2c78febc826f72c1e7ea798da8775448ba
+    pristine_git_object: 64521dfd8f053a87d034488033728dbc55afcf6b
   src/main/java/com/apideck/unify/models/components/CreditNoteInput.java:
     id: f60c94f5533e
-    last_write_checksum: sha1:3fa4712fe4f1812127cc4983c7b3ce8d5b1b9026
-    pristine_git_object: 414c6a175a78f2cf45edf56175c0855cb3d66800
+    last_write_checksum: sha1:baff484a9df9387d70f2c70754b736919bef4a59
+    pristine_git_object: 11a80b8ae2312fdf4e3ee98e3949bade53da14e7
   src/main/java/com/apideck/unify/models/components/CreditNoteStatus.java:
     id: 95811bf5d4bd
     last_write_checksum: sha1:bb3f544c9a421a7b2f38b097e6877bb9a4090fb9
     pristine_git_object: 32dabd871b46dcb614543405d53b6c02423257e8
   src/main/java/com/apideck/unify/models/components/CreditNoteType.java:
     id: c9d08e857604
-    last_write_checksum: sha1:fc67c87ba2d10eb340c1272d93f05b608ff7179e
-    pristine_git_object: e82ab4b3ef5268d86126b48a28d0df6be8d7d120
+    last_write_checksum: sha1:bc8f44c722fb5a34e6ebb39d02982ef7b0613c24
+    pristine_git_object: e47a548f632abd85ec9e48d6251ce78c9293d633
   src/main/java/com/apideck/unify/models/components/CreditNotesFilter.java:
     id: bb84f996125e
     last_write_checksum: sha1:8219e3c9cbe247b8074823d6e968f0052133ca1d
@@ -9495,6 +9643,10 @@ trackedFiles:
     id: cc9861509e9e
     last_write_checksum: sha1:3df902d26b50895e631458204504b87356f13e56
     pristine_git_object: 44b165aafa432c0ce2e477e112d1c832d9dfe59e
+  src/main/java/com/apideck/unify/models/components/DeleteBillCreditNoteResponse.java:
+    id: 9cc9b7353fb1
+    last_write_checksum: sha1:80cc9100ea00d0a5c85461f7a436790b6c17219e
+    pristine_git_object: dd4e9c572704fe19445a3ce447073808c2f63da7
   src/main/java/com/apideck/unify/models/components/DeleteBillPaymentResponse.java:
     id: 1d733c264882
     last_write_checksum: sha1:c5fd4ee3c262622964626dcf10300a10ca74f8cf
@@ -10069,8 +10221,8 @@ trackedFiles:
     pristine_git_object: de7cbc60868e7b2c3d676a50381d23570da54615
   src/main/java/com/apideck/unify/models/components/FormField.java:
     id: 8030bc57db6c
-    last_write_checksum: sha1:13affc3fdfe2146f40150e2591b474f08bd70b17
-    pristine_git_object: 42823ab49affed85bcdb8dba7762240488ed4d11
+    last_write_checksum: sha1:af1edf07b07d51f80c424554aa4b361925b9f7fe
+    pristine_git_object: dab437dac3aead46ded1d4eae49434414bc2120b
   src/main/java/com/apideck/unify/models/components/FormFieldOption.java:
     id: 47352d84b5fd
     last_write_checksum: sha1:ba405b2ed04818d5dc02dc4cc21fbeafd95c6a19
@@ -10239,6 +10391,14 @@ trackedFiles:
     id: 0b5dc5555493
     last_write_checksum: sha1:5ec29d95b4d66e76c38c2ccad7152dda7acac007
     pristine_git_object: 9fe1ed592aafd7b0d3c68512b8ca3b9c31460028
+  src/main/java/com/apideck/unify/models/components/GetBillCreditNoteResponse.java:
+    id: 4acc70e7f1c1
+    last_write_checksum: sha1:eae184600bdf6c44d390999ff5ab41386fb6e921
+    pristine_git_object: eefb03846e7e61e0e2883655bd8b20e50fc6e8b0
+  src/main/java/com/apideck/unify/models/components/GetBillCreditNotesResponse.java:
+    id: 5f606f05b62c
+    last_write_checksum: sha1:60507ff54b84ddca07a8da99e3c27085277ecd04
+    pristine_git_object: ab8c49ef6572e44d7204d990d0294d2fb2318155
   src/main/java/com/apideck/unify/models/components/GetBillPaymentResponse.java:
     id: aa7b7eff2d35
     last_write_checksum: sha1:28b2d5f7cdb97649b2738af099633b5dd2d5f317
@@ -11557,8 +11717,8 @@ trackedFiles:
     pristine_git_object: ba3c394424430a41f35fb0a21bb7a90c29f33310
   src/main/java/com/apideck/unify/models/components/QuotesFilter.java:
     id: 416129bac347
-    last_write_checksum: sha1:b9051d1441a7794ccb6f508fbd92d8022a8b82a4
-    pristine_git_object: a63cc25eb1475313f26d79dbbbcb99ff286d6b25
+    last_write_checksum: sha1:e660126508097ae0b0b5b5890e94275b3e7db4ab
+    pristine_git_object: 82cff1a758c91efc3f1bab5b32bd85a975404ed8
   src/main/java/com/apideck/unify/models/components/RebillStatus.java:
     id: ebecea51f8c3
     last_write_checksum: sha1:941f847ea09868248882472b5c8a61d150693adf
@@ -11585,8 +11745,8 @@ trackedFiles:
     pristine_git_object: 5278ba41f280c72ae16b79921c446c73ac63b4c0
   src/main/java/com/apideck/unify/models/components/RefundsFilter.java:
     id: 94a3dc02d11d
-    last_write_checksum: sha1:4a3b7513dbb4bb535a2c674487a0ebe8c9f4b838
-    pristine_git_object: 9615402a037bd14780b06a5cc4aa2b9edd08fd89
+    last_write_checksum: sha1:f8b031320dc9a7f8e83f8431ed678c3f10b19e47
+    pristine_git_object: 0efed2230fecb31acf655eca8cb12febb592ea58
   src/main/java/com/apideck/unify/models/components/RefundsSort.java:
     id: 3595600e77a9
     last_write_checksum: sha1:a080757a411fd2bfc22f0ee092ef8a555336d748
@@ -12011,6 +12171,10 @@ trackedFiles:
     id: ba73fd46efe0
     last_write_checksum: sha1:f10584435e8aaa9fa38ddc6e5289d6280b2b5f34
     pristine_git_object: d7e0e8fa88879e94cdd86b4ec32700d5b97041d0
+  src/main/java/com/apideck/unify/models/components/UpdateBillCreditNoteResponse.java:
+    id: da73e199ff43
+    last_write_checksum: sha1:049b30f0a5a4cb428d4de82825898daf502e0658
+    pristine_git_object: 2d9064922f5829b1a6b74e4458fa49beedd28a08
   src/main/java/com/apideck/unify/models/components/UpdateBillPaymentResponse.java:
     id: 5904695b589e
     last_write_checksum: sha1:c628dfac44b455da85ad4f5ea022ab8a2ac12468
@@ -12511,6 +12675,26 @@ trackedFiles:
     id: 082d8635b1b8
     last_write_checksum: sha1:53350abe26065208f6d218b2d5ac78695953e55f
     pristine_git_object: e87b5dd6642915d08ab1accb6f08a809d6534552
+  src/main/java/com/apideck/unify/models/operations//async/AccountingBillCreditNotesAddRequestBuilder.java:
+    id: c02523dea0a8
+    last_write_checksum: sha1:db2ef8f024dd73da15fa976250443929e662b7bd
+    pristine_git_object: e314d4c8645f27403e13f3e3aa8b1fdd196eaa86
+  src/main/java/com/apideck/unify/models/operations//async/AccountingBillCreditNotesAllRequestBuilder.java:
+    id: 64de66ac90b8
+    last_write_checksum: sha1:a3731315b97d17f51a6ad662e0d20009d2561732
+    pristine_git_object: 2efa16307bf76fc08b3d798355e08ffa0d7df60a
+  src/main/java/com/apideck/unify/models/operations//async/AccountingBillCreditNotesDeleteRequestBuilder.java:
+    id: 434ca5ff408d
+    last_write_checksum: sha1:36a93569f51c7539b7c281fb26347af5703e8e34
+    pristine_git_object: 598872edaef60389f05cd18a16eb0e8186beb518
+  src/main/java/com/apideck/unify/models/operations//async/AccountingBillCreditNotesOneRequestBuilder.java:
+    id: 846a89a92197
+    last_write_checksum: sha1:f29d4c0e616e86515f0c6cfb7be69ab53d359f1a
+    pristine_git_object: b9ae3d0d2b1a75bccfdb50fc964111241d243b23
+  src/main/java/com/apideck/unify/models/operations//async/AccountingBillCreditNotesUpdateRequestBuilder.java:
+    id: c79f9942bdab
+    last_write_checksum: sha1:101d3690a392666321f2b325188e10e5e744796e
+    pristine_git_object: dbb018b359a9b8707f70191e67d6c2c8537f3cfe
   src/main/java/com/apideck/unify/models/operations//async/AccountingBillPaymentsAddRequestBuilder.java:
     id: a506be94d73c
     last_write_checksum: sha1:caa91f16530ce470e487cf906664f2e31312757b
@@ -14095,6 +14279,66 @@ trackedFiles:
     id: b2c72af838e5
     last_write_checksum: sha1:ddf0c84cb4c7fd8871cdf96132c5a9a5ca608065
     pristine_git_object: 60b0f8e42bcf6202c00a1f20e98df6e8ac2a3a6d
+  src/main/java/com/apideck/unify/models/operations/AccountingBillCreditNotesAddRequest.java:
+    id: d22f20d5fa48
+    last_write_checksum: sha1:cde91e49a82c772a63a03d59f87144add261b90a
+    pristine_git_object: 1e8a8d842036c753a00ad7d039c5dcf4d4262611
+  src/main/java/com/apideck/unify/models/operations/AccountingBillCreditNotesAddRequestBuilder.java:
+    id: eeea90b4979a
+    last_write_checksum: sha1:b40613bbf775afd1d39030a2b032539fa19215ab
+    pristine_git_object: b4a614a2bf9dd74bcbffc2509734631c29ff17c8
+  src/main/java/com/apideck/unify/models/operations/AccountingBillCreditNotesAddResponse.java:
+    id: 4cd2584d5f68
+    last_write_checksum: sha1:786e06dee3f3420cb799a79046a97b33b77cfe93
+    pristine_git_object: 4b7ff3043ec728340137f445e7ac417f9e749fed
+  src/main/java/com/apideck/unify/models/operations/AccountingBillCreditNotesAllRequest.java:
+    id: 8de0df002fbc
+    last_write_checksum: sha1:bc850dfc562831b55d8c0dddddb0cb3bd4a983d6
+    pristine_git_object: e46883ffd449201129b7ecc80f6c2bdcb9106775
+  src/main/java/com/apideck/unify/models/operations/AccountingBillCreditNotesAllRequestBuilder.java:
+    id: 2a5fbbdbc4a3
+    last_write_checksum: sha1:cbea1270feb5105fed0c623977270cdef4098840
+    pristine_git_object: 1a8851db71b861948889e1ae703642f7d6163136
+  src/main/java/com/apideck/unify/models/operations/AccountingBillCreditNotesAllResponse.java:
+    id: bef0fffb3302
+    last_write_checksum: sha1:0ab7c751a26192fc5230aac357cce872a50d2bb9
+    pristine_git_object: e0778d95cdf830eb6c680dd3a0ae3ca18307b3ec
+  src/main/java/com/apideck/unify/models/operations/AccountingBillCreditNotesDeleteRequest.java:
+    id: 224a302cda2f
+    last_write_checksum: sha1:aa83777ca3f12e5bcbec62aa64fa98d208f5a3e8
+    pristine_git_object: 0d0ac5df8a8d7f38c92073b0a887bf06358adf94
+  src/main/java/com/apideck/unify/models/operations/AccountingBillCreditNotesDeleteRequestBuilder.java:
+    id: 6f2ef9ac56a6
+    last_write_checksum: sha1:42798fad208c5acca20b361739dcb0584c8322dc
+    pristine_git_object: d292d630742ec52b8f3026b54c232312cbb4eac4
+  src/main/java/com/apideck/unify/models/operations/AccountingBillCreditNotesDeleteResponse.java:
+    id: 1785f40cc2e6
+    last_write_checksum: sha1:b60f81c55752d030a2c57acd5302ade2df9f051f
+    pristine_git_object: 591ea36fdd93028b00f0a82d6de9f6b4ac563dd7
+  src/main/java/com/apideck/unify/models/operations/AccountingBillCreditNotesOneRequest.java:
+    id: f83707e06721
+    last_write_checksum: sha1:45b958ddb582c92b62d10897560d046a63c02015
+    pristine_git_object: fdbd51dcf684f5067bedcb85028201ef4c714cbc
+  src/main/java/com/apideck/unify/models/operations/AccountingBillCreditNotesOneRequestBuilder.java:
+    id: "372123062400"
+    last_write_checksum: sha1:305932aa6f4bb979641ade913c47399d1d8239a5
+    pristine_git_object: 97cd7618eecca642d85f2d4ce7accafd998bb3a1
+  src/main/java/com/apideck/unify/models/operations/AccountingBillCreditNotesOneResponse.java:
+    id: b92cb574eef2
+    last_write_checksum: sha1:b61d06ca97caca8f26b654585f2ab6146eec2536
+    pristine_git_object: 186ac869ae047449fb4774c10ef5883523917fad
+  src/main/java/com/apideck/unify/models/operations/AccountingBillCreditNotesUpdateRequest.java:
+    id: 5fbf02ad9f23
+    last_write_checksum: sha1:458c6799d1ad4d719ae9df3b8748b6db9691e4fe
+    pristine_git_object: 526a352216fb51bb82971abce635928bb39bbc4f
+  src/main/java/com/apideck/unify/models/operations/AccountingBillCreditNotesUpdateRequestBuilder.java:
+    id: cc08cec53b50
+    last_write_checksum: sha1:44c57c00ca1b75c87f0d9f78866d6b21b90f7f2c
+    pristine_git_object: f4b2dd0262b0dfd3e5d22530bdb2ab498a19e8a1
+  src/main/java/com/apideck/unify/models/operations/AccountingBillCreditNotesUpdateResponse.java:
+    id: 417fc1ec8fcf
+    last_write_checksum: sha1:6322dfce9c8671f6627d77ac8d9c2c4f5dd66eb2
+    pristine_git_object: efc30f205eb9a793a76fe8666b55de0556c4b2b9
   src/main/java/com/apideck/unify/models/operations/AccountingBillPaymentsAddRequest.java:
     id: 07170d290f71
     last_write_checksum: sha1:88d00934e1da8982b14fb5dea78b24924d45848a
@@ -18147,6 +18391,26 @@ trackedFiles:
     id: b08183cd3bec
     last_write_checksum: sha1:c09313eacac70380f9bc00086d8299c03fcf5aab
     pristine_git_object: d23dd1dda2d41a4b9db10950a41e4a792ff8fd8b
+  src/main/java/com/apideck/unify/models/operations/async/AccountingBillCreditNotesAddResponse.java:
+    id: 489cd3df403d
+    last_write_checksum: sha1:fe165036aadf31019c4807a989e1fbe87a73d099
+    pristine_git_object: 86051225b09f39cab7226af790f0e4ec9204b098
+  src/main/java/com/apideck/unify/models/operations/async/AccountingBillCreditNotesAllResponse.java:
+    id: 7cee3ba9a8aa
+    last_write_checksum: sha1:9d42a1c8fc38fcc38c933fd37fbe7635af953f3a
+    pristine_git_object: 5db4dba513d760bb2e5f675e083ce08f350e7f8a
+  src/main/java/com/apideck/unify/models/operations/async/AccountingBillCreditNotesDeleteResponse.java:
+    id: 956d69ad9bf3
+    last_write_checksum: sha1:15c686ec556c38ed2dfbe9f01c380f36754454d1
+    pristine_git_object: 30ec1513cdc4221cf01e80eb1b2ca54dae4b04f8
+  src/main/java/com/apideck/unify/models/operations/async/AccountingBillCreditNotesOneResponse.java:
+    id: eac09a1987be
+    last_write_checksum: sha1:0ae95a2cabb2cb120645e0c47e24c0261cffa976
+    pristine_git_object: a8756dd1efa87f5dcd702c71f65c0c734b07851b
+  src/main/java/com/apideck/unify/models/operations/async/AccountingBillCreditNotesUpdateResponse.java:
+    id: 7d22f149355e
+    last_write_checksum: sha1:9091e85787be14867b40c2720dc299bc887d951a
+    pristine_git_object: ad9208e77d6b19c5de3c6785c87ecb61b3ff91b8
   src/main/java/com/apideck/unify/models/operations/async/AccountingBillPaymentsAddResponse.java:
     id: 31971a112992
     last_write_checksum: sha1:3a7e931235165bbcff075bf9a792b0df08a4dc64
@@ -19547,6 +19811,26 @@ trackedFiles:
     id: a88bf10f3463
     last_write_checksum: sha1:70887086dc4dea3bcfbeee16b7922312e595ff0e
     pristine_git_object: 64b1dcf0f36ae375beb8c624e2a0f90d171e7fae
+  src/main/java/com/apideck/unify/operations/AccountingBillCreditNotesAdd.java:
+    id: 124521ffcbde
+    last_write_checksum: sha1:8cbd262e42d4f02d050dbb12214ec226d65218b6
+    pristine_git_object: a565d998cebacf5dbff0d8941837fd481e151cea
+  src/main/java/com/apideck/unify/operations/AccountingBillCreditNotesAll.java:
+    id: efb3218e8d11
+    last_write_checksum: sha1:c1fd001a9b3725ad8fe29ad70c9766c8df552910
+    pristine_git_object: e8cb5674783e401322392a4fbd57d01c8260e6e6
+  src/main/java/com/apideck/unify/operations/AccountingBillCreditNotesDelete.java:
+    id: 7a1e8de88c18
+    last_write_checksum: sha1:d31f1b1c203fce6747c2edd7fef0d4a3877bc17a
+    pristine_git_object: e94978dac40610e004d0513aa7d8bb082dce4b62
+  src/main/java/com/apideck/unify/operations/AccountingBillCreditNotesOne.java:
+    id: 723f759d413d
+    last_write_checksum: sha1:d89f70efbe3aec44ba01fc50137539f8b592ee96
+    pristine_git_object: d307c352f554819afd360a2064f0e408405b35b0
+  src/main/java/com/apideck/unify/operations/AccountingBillCreditNotesUpdate.java:
+    id: 5223702b57c5
+    last_write_checksum: sha1:445881fe5ea127bdeefaf6ce3b5b48b8242396c6
+    pristine_git_object: b46cd71bbf51be6653f0ac306c13a2d5706bd9a4
   src/main/java/com/apideck/unify/operations/AccountingBillPaymentsAdd.java:
     id: 6dcda37096d6
     last_write_checksum: sha1:333250a7b5080b4135de8b9a229d253bc1bf03c1
@@ -37969,8 +38253,148 @@ examples:
           application/json: {"status_code": 422, "error": "Unprocessable Entity", "type_name": "InvalidStateError", "message": "Invalid State", "detail": "Unprocessable request, please verify your request headers and body.", "ref": "https://developers.apideck.com/errors#invalidstateerror"}
         default:
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+  accounting.billCreditNotesAll:
+    speakeasy-default-accounting-bill-credit-notes-all:
+      parameters:
+        query:
+          raw: false
+          limit: 20
+          filter: {"ids": "12345,67890", "id_since": "1", "updated_since": "2020-09-30T07:43:32.000Z", "created_since": "2020-09-30T07:43:32.000Z", "number": "OIT00546", "supplier_id": "123abc"}
+          sort: {"by": "updated_at", "direction": "desc"}
+          pass_through: {"search": "San Francisco"}
+          fields: "id,updated_at"
+        header:
+          x-apideck-consumer-id: "test-consumer"
+          x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+          x-apideck-service-id: "salesforce"
+          x-apideck-company-id: "12345"
+      responses:
+        "200":
+          application/json: {"status_code": 200, "status": "OK", "service": "microsoft-dynamics-365-business-central", "resource": "bill-credit-notes", "operation": "all", "data": [{"id": "123456", "number": "OIT00546", "supplier": {"id": "12345", "display_id": "SUPP00101", "display_name": "Windsurf Shop", "company_name": "The boring company", "address": {"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "line5": "Attention: Finance Dept", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}}, "subsidiary": {"id": "12345", "display_id": "123456", "name": "Acme Inc."}, "location": {"id": "123456", "display_id": "123456", "name": "New York Office", "downstream_id": "12345"}, "department": {"id": "12345", "display_id": "123456", "name": "Acme Inc.", "downstream_id": "12345"}, "currency": "USD", "currency_rate": 0.69, "tax_inclusive": true, "sub_total": 27500, "total_amount": 49.99, "total_tax": 2500, "tax_code": "1234", "balance": 27500, "remaining_credit": 27500, "status": "authorised", "reference": "123456", "date_issued": "2021-05-01T12:00:00.000Z", "date_paid": "2021-05-01T12:00:00.000Z", "type": "accounts_payable_credit", "account": null, "line_items": [{"id": "12345", "row_id": "12345", "code": "120-C", "line_number": 1, "description": "Returned goods credit", "type": "expense_account", "tax_amount": 27.5, "total_amount": 27500, "quantity": 1, "unit_price": 27500.5, "unit_of_measure": "pc.", "discount_percentage": 0.01, "discount_amount": 19.99, "service_date": "2024-01-15", "location": null, "department": {"id": "12345", "display_id": "123456", "name": "Acme Inc.", "downstream_id": "12345"}, "item": {"id": "12344", "code": "120-C", "name": "Model Y"}, "tax_rate": {"id": "123456", "code": "N-T", "name": "GST on Purchases", "rate": 10}, "ledger_account": {"id": "123456", "name": "Bank account", "nominal_code": "N091", "code": "453", "parent_id": "123456", "display_id": "123456"}, "tracking_categories": [{"id": "123456", "code": "100", "name": "New York", "parent_id": "123456", "parent_name": "New York"}], "row_version": "1-12345", "updated_by": "12345", "created_by": "12345", "created_at": "2020-09-30T07:43:32.000Z", "updated_at": "2020-09-30T07:43:32.000Z"}], "allocations": [{"id": "123456", "code": "N091", "amount": 49.99, "allocation_id": "123456"}], "note": "Some notes about this bill credit note", "terms": "Some terms about this bill credit note", "tracking_categories": [{"id": "123456", "code": "100", "name": "New York", "parent_id": "123456", "parent_name": "New York"}], "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "ref_name": "Marketing", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "row_version": "1-12345", "updated_by": "12345", "created_by": "12345", "updated_at": "2020-09-30T07:43:32.000Z", "created_at": "2020-09-30T07:43:32.000Z", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}], "meta": {"items_on_page": 50, "cursors": {"previous": "em9oby1jcm06OnBhZ2U6OjE=", "current": "em9oby1jcm06OnBhZ2U6OjI=", "next": "em9oby1jcm06OnBhZ2U6OjM="}, "total_count": 1, "warnings": [{"type": "downstream_request_failed", "status_code": 429, "operation": "getManager"}]}, "links": {"previous": "https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D", "current": "https://unify.apideck.com/crm/companies", "next": "https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM"}}
+        "400":
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror", "downstream_errors": [{"message": "Account code '100' has been archived or deleted", "detail": "Each line item must reference a valid account", "code": "VALIDATION_ERROR"}]}
+        "401":
+          application/json: {"status_code": 401, "error": "Unauthorized", "type_name": "UnauthorizedError", "message": "Unauthorized Request", "detail": "Missing authentication", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+        "402":
+          application/json: {"status_code": 402, "error": "Payment Required", "type_name": "RequestLimitError", "message": "Request Limit Reached", "detail": "You have reached your limit of 2000", "ref": "https://developers.apideck.com/errors#requestlimiterror"}
+        "404":
+          application/json: {"status_code": 404, "error": "Not Found", "type_name": "EntityNotFoundError", "message": "Unknown Widget", "detail": "Could not find widget with id: '123'", "ref": "https://developers.apideck.com/errors#entitynotfounderror"}
+        "422":
+          application/json: {"status_code": 422, "error": "Unprocessable Entity", "type_name": "InvalidStateError", "message": "Invalid State", "detail": "Unprocessable request, please verify your request headers and body.", "ref": "https://developers.apideck.com/errors#invalidstateerror"}
+        default:
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+  accounting.billCreditNotesAdd:
+    speakeasy-default-accounting-bill-credit-notes-add:
+      parameters:
+        query:
+          raw: false
+        header:
+          x-apideck-consumer-id: "test-consumer"
+          x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+          x-apideck-service-id: "salesforce"
+          x-apideck-company-id: "12345"
+      requestBody:
+        application/json: {"number": "OIT00546", "supplier": {"id": "12345", "display_name": "Windsurf Shop", "address": {"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "line5": "Attention: Finance Dept", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}}, "subsidiary": {"display_id": "123456", "name": "Acme Inc."}, "location": {"id": "123456", "display_id": "123456", "name": "New York Office"}, "department": {"display_id": "123456", "name": "Acme Inc."}, "currency": "USD", "currency_rate": 0.69, "tax_inclusive": true, "sub_total": 27500, "total_amount": 49.99, "total_tax": 2500, "tax_code": "1234", "balance": 27500, "remaining_credit": 27500, "status": "authorised", "reference": "123456", "date_issued": "2021-05-01T12:00:00.000Z", "date_paid": "2021-05-01T12:00:00.000Z", "type": "accounts_payable_credit", "account": {"id": "123456", "name": "Bank account", "nominal_code": "N091", "code": "453", "parent_id": "123456", "display_id": "123456"}, "line_items": [{"row_id": "12345", "code": "120-C", "line_number": 1, "description": "Returned goods credit", "type": "expense_account", "tax_amount": 27.5, "total_amount": 27500, "quantity": 1, "unit_price": 27500.5, "unit_of_measure": "pc.", "discount_percentage": 0.01, "discount_amount": 19.99, "service_date": "2024-01-15", "location": {"id": "123456", "display_id": "123456", "name": "New York Office"}, "department": null, "item": {"id": "12344", "code": "120-C", "name": "Model Y"}, "tax_rate": {"id": "123456", "code": "N-T", "rate": 10}, "ledger_account": {"id": "123456", "name": "Bank account", "nominal_code": "N091", "code": "453", "parent_id": "123456", "display_id": "123456"}, "tracking_categories": [{"id": "123456", "code": "100", "name": "New York", "parent_id": "123456", "parent_name": "New York"}], "row_version": "1-12345"}], "allocations": [{"id": "123456", "amount": 49.99, "allocation_id": "123456"}], "note": "Some notes about this bill credit note", "terms": "Some terms about this bill credit note", "tracking_categories": [{"id": "123456", "code": "100", "name": "New York", "parent_id": "123456", "parent_name": "New York"}], "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "ref_name": "Marketing", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "row_version": "1-12345", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
+      responses:
+        "201":
+          application/json: {"status_code": 200, "status": "OK", "service": "microsoft-dynamics-365-business-central", "resource": "bill-credit-notes", "operation": "add", "data": {"id": "12345"}}
+        "400":
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror", "downstream_errors": [{"message": "Account code '100' has been archived or deleted", "detail": "Each line item must reference a valid account", "code": "VALIDATION_ERROR"}]}
+        "401":
+          application/json: {"status_code": 401, "error": "Unauthorized", "type_name": "UnauthorizedError", "message": "Unauthorized Request", "detail": "Missing authentication", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+        "402":
+          application/json: {"status_code": 402, "error": "Payment Required", "type_name": "RequestLimitError", "message": "Request Limit Reached", "detail": "You have reached your limit of 2000", "ref": "https://developers.apideck.com/errors#requestlimiterror"}
+        "404":
+          application/json: {"status_code": 404, "error": "Not Found", "type_name": "EntityNotFoundError", "message": "Unknown Widget", "detail": "Could not find widget with id: '123'", "ref": "https://developers.apideck.com/errors#entitynotfounderror"}
+        "422":
+          application/json: {"status_code": 422, "error": "Unprocessable Entity", "type_name": "InvalidStateError", "message": "Invalid State", "detail": "Unprocessable request, please verify your request headers and body.", "ref": "https://developers.apideck.com/errors#invalidstateerror"}
+        default:
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+  accounting.billCreditNotesOne:
+    speakeasy-default-accounting-bill-credit-notes-one:
+      parameters:
+        path:
+          id: "<id>"
+        query:
+          raw: false
+          fields: "id,updated_at"
+        header:
+          x-apideck-consumer-id: "test-consumer"
+          x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+          x-apideck-service-id: "salesforce"
+          x-apideck-company-id: "12345"
+      responses:
+        "200":
+          application/json: {"status_code": 200, "status": "OK", "service": "microsoft-dynamics-365-business-central", "resource": "bill-credit-notes", "operation": "one", "data": {"id": "123456", "number": "OIT00546", "supplier": {"id": "12345", "display_id": "SUPP00101", "display_name": "Windsurf Shop", "company_name": "The boring company", "address": {"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "line5": "Attention: Finance Dept", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}}, "subsidiary": {"id": "12345", "display_id": "123456", "name": "Acme Inc."}, "location": {"id": "123456", "display_id": "123456", "name": "New York Office", "downstream_id": "12345"}, "department": {"id": "12345", "display_id": "123456", "name": "Acme Inc.", "downstream_id": "12345"}, "currency": "USD", "currency_rate": 0.69, "tax_inclusive": true, "sub_total": 27500, "total_amount": 49.99, "total_tax": 2500, "tax_code": "1234", "balance": 27500, "remaining_credit": 27500, "status": "authorised", "reference": "123456", "date_issued": "2021-05-01T12:00:00.000Z", "date_paid": "2021-05-01T12:00:00.000Z", "type": "accounts_payable_credit", "account": {"id": "123456", "name": "Bank account", "nominal_code": "N091", "code": "453", "parent_id": "123456", "display_id": "123456"}, "line_items": [{"id": "12345", "row_id": "12345", "code": "120-C", "line_number": 1, "description": "Returned goods credit", "type": "expense_account", "tax_amount": 27.5, "total_amount": 27500, "quantity": 1, "unit_price": 27500.5, "unit_of_measure": "pc.", "discount_percentage": 0.01, "discount_amount": 19.99, "service_date": "2024-01-15", "location": {"id": "123456", "display_id": "123456", "name": "New York Office", "downstream_id": "12345"}, "department": {"id": "12345", "display_id": "123456", "name": "Acme Inc.", "downstream_id": "12345"}, "item": {"id": "12344", "code": "120-C", "name": "Model Y"}, "tax_rate": {"id": "123456", "code": "N-T", "name": "GST on Purchases", "rate": 10}, "ledger_account": {"id": "123456", "name": "Bank account", "nominal_code": "N091", "code": "453", "parent_id": "123456", "display_id": "123456"}, "tracking_categories": [{"id": "123456", "code": "100", "name": "New York", "parent_id": "123456", "parent_name": "New York"}], "row_version": "1-12345", "updated_by": "12345", "created_by": "12345", "created_at": "2020-09-30T07:43:32.000Z", "updated_at": "2020-09-30T07:43:32.000Z"}], "allocations": [{"id": "123456", "code": "N091", "amount": 49.99, "allocation_id": "123456"}], "note": "Some notes about this bill credit note", "terms": "Some terms about this bill credit note", "tracking_categories": [{"id": "123456", "code": "100", "name": "New York", "parent_id": "123456", "parent_name": "New York"}], "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "ref_name": "Marketing", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "row_version": "1-12345", "updated_by": "12345", "created_by": "12345", "updated_at": "2020-09-30T07:43:32.000Z", "created_at": "2020-09-30T07:43:32.000Z", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}, "meta": {"items_on_page": 50, "cursors": {"previous": "em9oby1jcm06OnBhZ2U6OjE=", "current": "em9oby1jcm06OnBhZ2U6OjI=", "next": "em9oby1jcm06OnBhZ2U6OjM="}, "total_count": 1, "warnings": null}}
+        "400":
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror", "downstream_errors": [{"message": "Account code '100' has been archived or deleted", "detail": "Each line item must reference a valid account", "code": "VALIDATION_ERROR"}]}
+        "401":
+          application/json: {"status_code": 401, "error": "Unauthorized", "type_name": "UnauthorizedError", "message": "Unauthorized Request", "detail": "Missing authentication", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+        "402":
+          application/json: {"status_code": 402, "error": "Payment Required", "type_name": "RequestLimitError", "message": "Request Limit Reached", "detail": "You have reached your limit of 2000", "ref": "https://developers.apideck.com/errors#requestlimiterror"}
+        "404":
+          application/json: {"status_code": 404, "error": "Not Found", "type_name": "EntityNotFoundError", "message": "Unknown Widget", "detail": "Could not find widget with id: '123'", "ref": "https://developers.apideck.com/errors#entitynotfounderror"}
+        "422":
+          application/json: {"status_code": 422, "error": "Unprocessable Entity", "type_name": "InvalidStateError", "message": "Invalid State", "detail": "Unprocessable request, please verify your request headers and body.", "ref": "https://developers.apideck.com/errors#invalidstateerror"}
+        default:
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+  accounting.billCreditNotesUpdate:
+    speakeasy-default-accounting-bill-credit-notes-update:
+      parameters:
+        path:
+          id: "<id>"
+        query:
+          raw: false
+        header:
+          x-apideck-consumer-id: "test-consumer"
+          x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+          x-apideck-service-id: "salesforce"
+      requestBody:
+        application/json: {"number": "OIT00546", "supplier": {"id": "12345", "display_name": "Windsurf Shop", "address": {"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "line5": "Attention: Finance Dept", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}}, "subsidiary": {"display_id": "123456", "name": "Acme Inc."}, "location": {"id": "123456", "display_id": "123456", "name": "New York Office"}, "department": {"display_id": "123456", "name": "Acme Inc."}, "currency": "USD", "currency_rate": 0.69, "tax_inclusive": true, "sub_total": 27500, "total_amount": 49.99, "total_tax": 2500, "tax_code": "1234", "balance": 27500, "remaining_credit": 27500, "status": "authorised", "reference": "123456", "date_issued": "2021-05-01T12:00:00.000Z", "date_paid": "2021-05-01T12:00:00.000Z", "type": "accounts_payable_credit", "account": {"id": "123456", "name": "Bank account", "nominal_code": "N091", "code": "453", "parent_id": "123456", "display_id": "123456"}, "line_items": [{"row_id": "12345", "code": "120-C", "line_number": 1, "description": "Returned goods credit", "type": "expense_account", "tax_amount": 27.5, "total_amount": 27500, "quantity": 1, "unit_price": 27500.5, "unit_of_measure": "pc.", "discount_percentage": 0.01, "discount_amount": 19.99, "service_date": "2024-01-15", "location": {"id": "123456", "display_id": "123456", "name": "New York Office"}, "department": {"display_id": "123456", "name": "Acme Inc."}, "item": {"id": "12344", "code": "120-C", "name": "Model Y"}, "tax_rate": {"id": "123456", "code": "N-T", "rate": 10}, "ledger_account": {"id": "123456", "name": "Bank account", "nominal_code": "N091", "code": "453", "parent_id": "123456", "display_id": "123456"}, "tracking_categories": [{"id": "123456", "code": "100", "name": "New York", "parent_id": "123456", "parent_name": "New York"}], "row_version": "1-12345"}], "allocations": [{"id": "123456", "amount": 49.99, "allocation_id": "123456"}], "note": "Some notes about this bill credit note", "terms": "Some terms about this bill credit note", "tracking_categories": [{"id": "123456", "code": "100", "name": "New York", "parent_id": "123456", "parent_name": "New York"}], "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "ref_name": "Marketing", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "row_version": "1-12345", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
+      responses:
+        "200":
+          application/json: {"status_code": 200, "status": "OK", "service": "microsoft-dynamics-365-business-central", "resource": "bill-credit-notes", "operation": "update", "data": {"id": "12345"}}
+        "400":
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror", "downstream_errors": [{"message": "Account code '100' has been archived or deleted", "detail": "Each line item must reference a valid account", "code": "VALIDATION_ERROR"}]}
+        "401":
+          application/json: {"status_code": 401, "error": "Unauthorized", "type_name": "UnauthorizedError", "message": "Unauthorized Request", "detail": "Missing authentication", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+        "402":
+          application/json: {"status_code": 402, "error": "Payment Required", "type_name": "RequestLimitError", "message": "Request Limit Reached", "detail": "You have reached your limit of 2000", "ref": "https://developers.apideck.com/errors#requestlimiterror"}
+        "404":
+          application/json: {"status_code": 404, "error": "Not Found", "type_name": "EntityNotFoundError", "message": "Unknown Widget", "detail": "Could not find widget with id: '123'", "ref": "https://developers.apideck.com/errors#entitynotfounderror"}
+        "422":
+          application/json: {"status_code": 422, "error": "Unprocessable Entity", "type_name": "InvalidStateError", "message": "Invalid State", "detail": "Unprocessable request, please verify your request headers and body.", "ref": "https://developers.apideck.com/errors#invalidstateerror"}
+        default:
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+  accounting.billCreditNotesDelete:
+    speakeasy-default-accounting-bill-credit-notes-delete:
+      parameters:
+        path:
+          id: "<id>"
+        query:
+          raw: false
+        header:
+          x-apideck-consumer-id: "test-consumer"
+          x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+          x-apideck-service-id: "salesforce"
+      responses:
+        "200":
+          application/json: {"status_code": 200, "status": "OK", "service": "microsoft-dynamics-365-business-central", "resource": "bill-credit-notes", "operation": "delete", "data": {"id": "12345"}}
+        "400":
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror", "downstream_errors": [{"message": "Account code '100' has been archived or deleted", "detail": "Each line item must reference a valid account", "code": "VALIDATION_ERROR"}]}
+        "401":
+          application/json: {"status_code": 401, "error": "Unauthorized", "type_name": "UnauthorizedError", "message": "Unauthorized Request", "detail": "Missing authentication", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+        "402":
+          application/json: {"status_code": 402, "error": "Payment Required", "type_name": "RequestLimitError", "message": "Request Limit Reached", "detail": "You have reached your limit of 2000", "ref": "https://developers.apideck.com/errors#requestlimiterror"}
+        "404":
+          application/json: {"status_code": 404, "error": "Not Found", "type_name": "EntityNotFoundError", "message": "Unknown Widget", "detail": "Could not find widget with id: '123'", "ref": "https://developers.apideck.com/errors#entitynotfounderror"}
+        "422":
+          application/json: {"status_code": 422, "error": "Unprocessable Entity", "type_name": "InvalidStateError", "message": "Invalid State", "detail": "Unprocessable request, please verify your request headers and body.", "ref": "https://developers.apideck.com/errors#invalidstateerror"}
+        default:
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: "## Java SDK Changes:\n* `apideck.accounting.billCreditNotes.list()`: **Added**\n* `apideck.accounting.billCreditNotes.create()`: **Added**\n* `apideck.accounting.billCreditNotes.get()`: **Added**\n* `apideck.accounting.billCreditNotes.update()`: **Added**\n* `apideck.accounting.billCreditNotes.delete()`: **Added**\n* `apideck.accounting.refunds.list()`: \n  *  `request.filter` **Changed**\n* `apideck.accounting.attachments.list()`: \n  *  `request.referenceType` **Changed**\n  *  `response.data[].reference.type.enum(billCreditNote)` **Added**\n* `apideck.accounting.attachments.upload()`: \n  *  `request.referenceType` **Changed**\n* `apideck.accounting.attachments.get()`: \n  *  `request.referenceType` **Changed**\n  *  `response.data.reference.type.enum(billCreditNote)` **Added**\n* `apideck.accounting.attachments.delete()`: \n  *  `request.referenceType` **Changed**\n* `apideck.accounting.attachments.download()`: \n  *  `request.referenceType` **Changed**\n* `apideck.accounting.quotes.list()`: \n  *  `request.filter` **Changed**\n* `apideck.vault.connections.list()`:  `response.data[].formFields[].optionsFetchError` **Added**\n* `apideck.vault.connections.get()`:  `response.data.formFields[].optionsFetchError` **Added**\n* `apideck.vault.connections.update()`:  `response.data.formFields[].optionsFetchError` **Added**\n* `apideck.vault.connections.imports()`:  `response.data.formFields[].optionsFetchError` **Added**\n* `apideck.vault.connections.migrate()`:  `response.data.formFields[].optionsFetchError` **Added**\n* `apideck.vault.connections.token()`:  `response.data.formFields[].optionsFetchError` **Added**\n* `apideck.vault.connectionSettings.list()`:  `response.data.formFields[].optionsFetchError` **Added**\n* `apideck.vault.connectionSettings.update()`:  `response.data.formFields[].optionsFetchError` **Added**\n"
 generatedFiles:
   - .gitattributes
   - USAGE.md

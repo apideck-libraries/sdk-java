@@ -27,6 +27,12 @@ public class OpportunitiesFilter {
     private Optional<String> status;
 
     /**
+     * Status ID to filter on
+     */
+    @SpeakeasyMetadata("queryParam:name=status_id")
+    private Optional<String> statusId;
+
+    /**
      * Monetary amount to filter on
      */
     @SpeakeasyMetadata("queryParam:name=monetary_amount")
@@ -60,6 +66,7 @@ public class OpportunitiesFilter {
     public OpportunitiesFilter(
             Optional<String> title,
             Optional<String> status,
+            Optional<String> statusId,
             Optional<Double> monetaryAmount,
             Optional<Double> winProbability,
             Optional<String> companyId,
@@ -67,6 +74,7 @@ public class OpportunitiesFilter {
             Optional<String> primaryContactId) {
         Utils.checkNotNull(title, "title");
         Utils.checkNotNull(status, "status");
+        Utils.checkNotNull(statusId, "statusId");
         Utils.checkNotNull(monetaryAmount, "monetaryAmount");
         Utils.checkNotNull(winProbability, "winProbability");
         Utils.checkNotNull(companyId, "companyId");
@@ -74,6 +82,7 @@ public class OpportunitiesFilter {
         Utils.checkNotNull(primaryContactId, "primaryContactId");
         this.title = title;
         this.status = status;
+        this.statusId = statusId;
         this.monetaryAmount = monetaryAmount;
         this.winProbability = winProbability;
         this.companyId = companyId;
@@ -84,7 +93,7 @@ public class OpportunitiesFilter {
     public OpportunitiesFilter() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -101,6 +110,14 @@ public class OpportunitiesFilter {
     @JsonIgnore
     public Optional<String> status() {
         return status;
+    }
+
+    /**
+     * Status ID to filter on
+     */
+    @JsonIgnore
+    public Optional<String> statusId() {
+        return statusId;
     }
 
     /**
@@ -183,6 +200,25 @@ public class OpportunitiesFilter {
     public OpportunitiesFilter withStatus(Optional<String> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
+        return this;
+    }
+
+    /**
+     * Status ID to filter on
+     */
+    public OpportunitiesFilter withStatusId(String statusId) {
+        Utils.checkNotNull(statusId, "statusId");
+        this.statusId = Optional.ofNullable(statusId);
+        return this;
+    }
+
+
+    /**
+     * Status ID to filter on
+     */
+    public OpportunitiesFilter withStatusId(Optional<String> statusId) {
+        Utils.checkNotNull(statusId, "statusId");
+        this.statusId = statusId;
         return this;
     }
 
@@ -293,6 +329,7 @@ public class OpportunitiesFilter {
         return 
             Utils.enhancedDeepEquals(this.title, other.title) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.statusId, other.statusId) &&
             Utils.enhancedDeepEquals(this.monetaryAmount, other.monetaryAmount) &&
             Utils.enhancedDeepEquals(this.winProbability, other.winProbability) &&
             Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
@@ -303,9 +340,9 @@ public class OpportunitiesFilter {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            title, status, monetaryAmount,
-            winProbability, companyId, ownerId,
-            primaryContactId);
+            title, status, statusId,
+            monetaryAmount, winProbability, companyId,
+            ownerId, primaryContactId);
     }
     
     @Override
@@ -313,6 +350,7 @@ public class OpportunitiesFilter {
         return Utils.toString(OpportunitiesFilter.class,
                 "title", title,
                 "status", status,
+                "statusId", statusId,
                 "monetaryAmount", monetaryAmount,
                 "winProbability", winProbability,
                 "companyId", companyId,
@@ -326,6 +364,8 @@ public class OpportunitiesFilter {
         private Optional<String> title = Optional.empty();
 
         private Optional<String> status = Optional.empty();
+
+        private Optional<String> statusId = Optional.empty();
 
         private Optional<Double> monetaryAmount = Optional.empty();
 
@@ -376,6 +416,25 @@ public class OpportunitiesFilter {
         public Builder status(Optional<String> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
+            return this;
+        }
+
+
+        /**
+         * Status ID to filter on
+         */
+        public Builder statusId(String statusId) {
+            Utils.checkNotNull(statusId, "statusId");
+            this.statusId = Optional.ofNullable(statusId);
+            return this;
+        }
+
+        /**
+         * Status ID to filter on
+         */
+        public Builder statusId(Optional<String> statusId) {
+            Utils.checkNotNull(statusId, "statusId");
+            this.statusId = statusId;
             return this;
         }
 
@@ -477,9 +536,9 @@ public class OpportunitiesFilter {
         public OpportunitiesFilter build() {
 
             return new OpportunitiesFilter(
-                title, status, monetaryAmount,
-                winProbability, companyId, ownerId,
-                primaryContactId);
+                title, status, statusId,
+                monetaryAmount, winProbability, companyId,
+                ownerId, primaryContactId);
         }
 
     }

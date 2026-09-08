@@ -153,7 +153,10 @@ public class CreditNoteInput {
     private JsonNullable<OffsetDateTime> datePaid;
 
     /**
-     * Type of payment
+     * Whether this credit note reduces an amount owed by a customer (accounts receivable) or owed to a
+     * supplier (accounts payable). `accounts_payable_credit` support is connector-specific — most
+     * connectors only expose the accounts-receivable side. Check the connector's gotchas for known
+     * deviations.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
@@ -503,7 +506,10 @@ public class CreditNoteInput {
     }
 
     /**
-     * Type of payment
+     * Whether this credit note reduces an amount owed by a customer (accounts receivable) or owed to a
+     * supplier (accounts payable). `accounts_payable_credit` support is connector-specific — most
+     * connectors only expose the accounts-receivable side. Check the connector's gotchas for known
+     * deviations.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -936,7 +942,10 @@ public class CreditNoteInput {
     }
 
     /**
-     * Type of payment
+     * Whether this credit note reduces an amount owed by a customer (accounts receivable) or owed to a
+     * supplier (accounts payable). `accounts_payable_credit` support is connector-specific — most
+     * connectors only expose the accounts-receivable side. Check the connector's gotchas for known
+     * deviations.
      */
     public CreditNoteInput withType(CreditNoteType type) {
         Utils.checkNotNull(type, "type");
@@ -946,7 +955,10 @@ public class CreditNoteInput {
 
 
     /**
-     * Type of payment
+     * Whether this credit note reduces an amount owed by a customer (accounts receivable) or owed to a
+     * supplier (accounts payable). `accounts_payable_credit` support is connector-specific — most
+     * connectors only expose the accounts-receivable side. Check the connector's gotchas for known
+     * deviations.
      */
     public CreditNoteInput withType(Optional<? extends CreditNoteType> type) {
         Utils.checkNotNull(type, "type");
@@ -1662,7 +1674,10 @@ public class CreditNoteInput {
 
 
         /**
-         * Type of payment
+         * Whether this credit note reduces an amount owed by a customer (accounts receivable) or owed to a
+         * supplier (accounts payable). `accounts_payable_credit` support is connector-specific — most
+         * connectors only expose the accounts-receivable side. Check the connector's gotchas for known
+         * deviations.
          */
         public Builder type(CreditNoteType type) {
             Utils.checkNotNull(type, "type");
@@ -1671,7 +1686,10 @@ public class CreditNoteInput {
         }
 
         /**
-         * Type of payment
+         * Whether this credit note reduces an amount owed by a customer (accounts receivable) or owed to a
+         * supplier (accounts payable). `accounts_payable_credit` support is connector-specific — most
+         * connectors only expose the accounts-receivable side. Check the connector's gotchas for known
+         * deviations.
          */
         public Builder type(Optional<? extends CreditNoteType> type) {
             Utils.checkNotNull(type, "type");

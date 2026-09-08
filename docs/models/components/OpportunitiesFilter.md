@@ -7,6 +7,7 @@
 | ------------------------------------- | ------------------------------------- | ------------------------------------- | ------------------------------------- | ------------------------------------- |
 | `title`                               | *Optional\<String>*                   | :heavy_minus_sign:                    | Title of the opportunity to filter on | Tesla deal                            |
 | `status`                              | *Optional\<String>*                   | :heavy_minus_sign:                    | Status to filter on                   | Completed                             |
+| `statusId`                            | *Optional\<String>*                   | :heavy_minus_sign:                    | Status ID to filter on                | 1234                                  |
 | `monetaryAmount`                      | *Optional\<Double>*                   | :heavy_minus_sign:                    | Monetary amount to filter on          | 75000                                 |
 | `winProbability`                      | *Optional\<Double>*                   | :heavy_minus_sign:                    | Win probability to filter on          | 50                                    |
 | `companyId`                           | *Optional\<String>*                   | :heavy_minus_sign:                    | Company ID to filter on               | 1234                                  |

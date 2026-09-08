@@ -49,6 +49,14 @@ public class EcommerceProduct {
     private JsonNullable<? extends ProductStatus> status;
 
     /**
+     * The tax applicability of the product: `taxable` (the product is taxed), `shipping` (only the
+     * shipping is taxed, the product itself is exempt) or `none` (neither is taxed).
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("tax_status")
+    private JsonNullable<? extends TaxStatus> taxStatus;
+
+    /**
      * The price of the product.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -143,6 +151,7 @@ public class EcommerceProduct {
             @JsonProperty("name") JsonNullable<String> name,
             @JsonProperty("description") JsonNullable<String> description,
             @JsonProperty("status") JsonNullable<? extends ProductStatus> status,
+            @JsonProperty("tax_status") JsonNullable<? extends TaxStatus> taxStatus,
             @JsonProperty("price") JsonNullable<String> price,
             @JsonProperty("sku") JsonNullable<String> sku,
             @JsonProperty("inventory_quantity") JsonNullable<String> inventoryQuantity,
@@ -160,6 +169,7 @@ public class EcommerceProduct {
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(status, "status");
+        Utils.checkNotNull(taxStatus, "taxStatus");
         Utils.checkNotNull(price, "price");
         Utils.checkNotNull(sku, "sku");
         Utils.checkNotNull(inventoryQuantity, "inventoryQuantity");
@@ -177,6 +187,7 @@ public class EcommerceProduct {
         this.name = name;
         this.description = description;
         this.status = status;
+        this.taxStatus = taxStatus;
         this.price = price;
         this.sku = sku;
         this.inventoryQuantity = inventoryQuantity;
@@ -197,9 +208,9 @@ public class EcommerceProduct {
         this(id, JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -233,6 +244,16 @@ public class EcommerceProduct {
     @JsonIgnore
     public JsonNullable<ProductStatus> status() {
         return (JsonNullable<ProductStatus>) status;
+    }
+
+    /**
+     * The tax applicability of the product: `taxable` (the product is taxed), `shipping` (only the
+     * shipping is taxed, the product itself is exempt) or `none` (neither is taxed).
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<TaxStatus> taxStatus() {
+        return (JsonNullable<TaxStatus>) taxStatus;
     }
 
     /**
@@ -407,6 +428,26 @@ public class EcommerceProduct {
     public EcommerceProduct withStatus(JsonNullable<? extends ProductStatus> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
+        return this;
+    }
+
+    /**
+     * The tax applicability of the product: `taxable` (the product is taxed), `shipping` (only the
+     * shipping is taxed, the product itself is exempt) or `none` (neither is taxed).
+     */
+    public EcommerceProduct withTaxStatus(TaxStatus taxStatus) {
+        Utils.checkNotNull(taxStatus, "taxStatus");
+        this.taxStatus = JsonNullable.of(taxStatus);
+        return this;
+    }
+
+    /**
+     * The tax applicability of the product: `taxable` (the product is taxed), `shipping` (only the
+     * shipping is taxed, the product itself is exempt) or `none` (neither is taxed).
+     */
+    public EcommerceProduct withTaxStatus(JsonNullable<? extends TaxStatus> taxStatus) {
+        Utils.checkNotNull(taxStatus, "taxStatus");
+        this.taxStatus = taxStatus;
         return this;
     }
 
@@ -656,6 +697,7 @@ public class EcommerceProduct {
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.description, other.description) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.taxStatus, other.taxStatus) &&
             Utils.enhancedDeepEquals(this.price, other.price) &&
             Utils.enhancedDeepEquals(this.sku, other.sku) &&
             Utils.enhancedDeepEquals(this.inventoryQuantity, other.inventoryQuantity) &&
@@ -675,11 +717,11 @@ public class EcommerceProduct {
     public int hashCode() {
         return Utils.enhancedHash(
             id, name, description,
-            status, price, sku,
-            inventoryQuantity, images, weight,
-            weightUnit, options, variants,
-            tags, categories, customMappings,
-            createdAt, updatedAt);
+            status, taxStatus, price,
+            sku, inventoryQuantity, images,
+            weight, weightUnit, options,
+            variants, tags, categories,
+            customMappings, createdAt, updatedAt);
     }
     
     @Override
@@ -689,6 +731,7 @@ public class EcommerceProduct {
                 "name", name,
                 "description", description,
                 "status", status,
+                "taxStatus", taxStatus,
                 "price", price,
                 "sku", sku,
                 "inventoryQuantity", inventoryQuantity,
@@ -714,6 +757,8 @@ public class EcommerceProduct {
         private JsonNullable<String> description = JsonNullable.undefined();
 
         private JsonNullable<? extends ProductStatus> status = JsonNullable.undefined();
+
+        private JsonNullable<? extends TaxStatus> taxStatus = JsonNullable.undefined();
 
         private JsonNullable<String> price = JsonNullable.undefined();
 
@@ -809,6 +854,27 @@ public class EcommerceProduct {
         public Builder status(JsonNullable<? extends ProductStatus> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
+            return this;
+        }
+
+
+        /**
+         * The tax applicability of the product: `taxable` (the product is taxed), `shipping` (only the
+         * shipping is taxed, the product itself is exempt) or `none` (neither is taxed).
+         */
+        public Builder taxStatus(TaxStatus taxStatus) {
+            Utils.checkNotNull(taxStatus, "taxStatus");
+            this.taxStatus = JsonNullable.of(taxStatus);
+            return this;
+        }
+
+        /**
+         * The tax applicability of the product: `taxable` (the product is taxed), `shipping` (only the
+         * shipping is taxed, the product itself is exempt) or `none` (neither is taxed).
+         */
+        public Builder taxStatus(JsonNullable<? extends TaxStatus> taxStatus) {
+            Utils.checkNotNull(taxStatus, "taxStatus");
+            this.taxStatus = taxStatus;
             return this;
         }
 
@@ -1057,11 +1123,11 @@ public class EcommerceProduct {
 
             return new EcommerceProduct(
                 id, name, description,
-                status, price, sku,
-                inventoryQuantity, images, weight,
-                weightUnit, options, variants,
-                tags, categories, customMappings,
-                createdAt, updatedAt);
+                status, taxStatus, price,
+                sku, inventoryQuantity, images,
+                weight, weightUnit, options,
+                variants, tags, categories,
+                customMappings, createdAt, updatedAt);
         }
 
     }

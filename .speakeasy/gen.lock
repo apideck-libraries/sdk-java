@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 38254260-287a-40b6-9ac5-c2fcb654c9cc
 management:
-  docChecksum: 421ff039c5764a88ac2a57281760a66e
-  docVersion: 10.52.0
+  docChecksum: 1d4a15dbdde2de60d8aa1b9b48e1b774
+  docVersion: 10.53.0
   speakeasyVersion: 1.796.4
   generationVersion: 2.935.1
-  releaseVersion: 0.40.0
-  configChecksum: 4545fb21d18d53cc4d9bc0a207fc7fe2
+  releaseVersion: 0.41.0
+  configChecksum: 0da1dbbd3803726ee25b843af0840162
   repoURL: https://github.com/apideck-libraries/sdk-java.git
   installationURL: https://github.com/apideck-libraries/sdk-java
   published: true
 persistentEdits:
-  generation_id: a025ae2a-da43-4879-8cdd-57fc0176accd
-  pristine_commit_hash: 278532d648e4336b3da939b7460fb4155e980ad3
-  pristine_tree_hash: df30fed22493bcc6d8346fd79734001faac13d57
+  generation_id: 40158ea4-3101-4b16-b180-1f1bde5576dc
+  pristine_commit_hash: 0baf210d7f9f51b5ca6bda69b17b8ad6e0d04dc2
+  pristine_tree_hash: 656f7858b4c553f89939f39691dfdc1c1a47aaf8
 features:
   java:
     acceptHeaders: 2.81.2
@@ -7493,8 +7493,8 @@ trackedFiles:
     pristine_git_object: c755c6aa377f358344e761e9cc3e7b67bc1fb479
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:6987e1c34124a40f64a5410ddb219f47cef4332a
-    pristine_git_object: f23362060fab04f3ba83701a6947c1c7b02a8ea5
+    last_write_checksum: sha1:3b63c760b047e90c4dea9df4007570c40e2b2c1b
+    pristine_git_object: 08d1fc3fb3c6012735119fef21f5575b1e1d048b
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -8329,8 +8329,8 @@ trackedFiles:
     pristine_git_object: 7296db7ebcdcff7ee348d1f993fc4aa2a7e6c145
   src/main/java/com/apideck/unify/SDKConfiguration.java:
     id: a2b330a87142
-    last_write_checksum: sha1:bc49becc9deb63bd9a1af48bcbb350ce4f6c98cf
-    pristine_git_object: 4320ae9990830528622f7f12c16b6e19e310d12f
+    last_write_checksum: sha1:86bc026cceca4d22ec399779ee1b9411e2a7b484
+    pristine_git_object: 6f55fc6daaedc57e0d8fd90198e799f4fc04b180
   src/main/java/com/apideck/unify/SalesReceipts.java:
     id: 581d0613d982
     last_write_checksum: sha1:ff6b58483cf85dafd1f56ccfeafafbe76664342b
@@ -38402,7 +38402,6 @@ examples:
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Java SDK Changes:\n* `apideck.accounting.billCreditNotes.list()`: **Added**\n* `apideck.accounting.billCreditNotes.create()`: **Added**\n* `apideck.accounting.billCreditNotes.get()`: **Added**\n* `apideck.accounting.billCreditNotes.update()`: **Added**\n* `apideck.accounting.billCreditNotes.delete()`: **Added**\n* `apideck.accounting.refunds.list()`: \n  *  `request.filter` **Changed**\n* `apideck.accounting.attachments.list()`: \n  *  `request.referenceType` **Changed**\n  *  `response.data[].reference.type.enum(billCreditNote)` **Added**\n* `apideck.accounting.attachments.upload()`: \n  *  `request.referenceType` **Changed**\n* `apideck.accounting.attachments.get()`: \n  *  `request.referenceType` **Changed**\n  *  `response.data.reference.type.enum(billCreditNote)` **Added**\n* `apideck.accounting.attachments.delete()`: \n  *  `request.referenceType` **Changed**\n* `apideck.accounting.attachments.download()`: \n  *  `request.referenceType` **Changed**\n* `apideck.accounting.quotes.list()`: \n  *  `request.filter` **Changed**\n* `apideck.crm.opportunities.list()`: \n  *  `request.filter` **Changed**\n* `apideck.ecommerce.products.list()`:  `response.data[].taxStatus` **Added**\n* `apideck.ecommerce.products.get()`:  `response.data.taxStatus` **Added**\n* `apideck.vault.connections.list()`:  `response.data[].formFields[].optionsFetchError` **Added**\n* `apideck.vault.connections.get()`:  `response.data.formFields[].optionsFetchError` **Added**\n* `apideck.vault.connections.update()`:  `response.data.formFields[].optionsFetchError` **Added**\n* `apideck.vault.connections.imports()`:  `response.data.formFields[].optionsFetchError` **Added**\n* `apideck.vault.connections.migrate()`:  `response.data.formFields[].optionsFetchError` **Added**\n* `apideck.vault.connections.token()`:  `response.data.formFields[].optionsFetchError` **Added**\n* `apideck.vault.connectionSettings.list()`:  `response.data.formFields[].optionsFetchError` **Added**\n* `apideck.vault.connectionSettings.update()`:  `response.data.formFields[].optionsFetchError` **Added**\n"
 generatedFiles:
   - .gitattributes
   - USAGE.md

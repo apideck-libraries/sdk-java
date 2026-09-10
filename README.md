@@ -51,7 +51,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.apideck:unify:0.41.0'
+implementation 'com.apideck:unify:0.41.1'
 ```
 
 Maven:
@@ -59,7 +59,7 @@ Maven:
 <dependency>
     <groupId>com.apideck</groupId>
     <artifactId>unify</artifactId>
-    <version>0.41.0</version>
+    <version>0.41.1</version>
 </dependency>
 ```
 
@@ -366,6 +366,14 @@ For full model-specific examples (including Java 11/16/21 variants), see each un
 * [get](docs/sdks/journalentries/README.md#get) - Get Journal Entry
 * [update](docs/sdks/journalentries/README.md#update) - Update Journal Entry
 * [delete](docs/sdks/journalentries/README.md#delete) - Delete Journal Entry
+
+### [Accounting.Journals](docs/sdks/journals/README.md)
+
+* [list](docs/sdks/journals/README.md#list) - List Journals
+* [create](docs/sdks/journals/README.md#create) - Create Journal
+* [get](docs/sdks/journals/README.md#get) - Get Journal
+* [update](docs/sdks/journals/README.md#update) - Update Journal
+* [delete](docs/sdks/journals/README.md#delete) - Delete Journal
 
 ### [Accounting.LedgerAccounts](docs/sdks/ledgeraccounts/README.md)
 
@@ -1224,8 +1232,8 @@ public class Application {
 many more subclasses in the JDK platform).
 
 **Inherit from [`ApideckError`](./src/main/java/models/errors/ApideckError.java)**:
-* [`com.apideck.unify.models.errors.Unauthorized`](./src/main/java/models/errors/com.apideck.unify.models.errors.Unauthorized.java): Unauthorized. Status code `401`. Applicable to 6 of 355 methods.*
-* [`com.apideck.unify.models.errors.ConflictResponse`](./src/main/java/models/errors/com.apideck.unify.models.errors.ConflictResponse.java): Conflict — a connection already exists for the target connector. Status code `409`. Applicable to 1 of 355 methods.*
+* [`com.apideck.unify.models.errors.Unauthorized`](./src/main/java/models/errors/com.apideck.unify.models.errors.Unauthorized.java): Unauthorized. Status code `401`. Applicable to 6 of 360 methods.*
+* [`com.apideck.unify.models.errors.ConflictResponse`](./src/main/java/models/errors/com.apideck.unify.models.errors.ConflictResponse.java): Conflict — a connection already exists for the target connector. Status code `409`. Applicable to 1 of 360 methods.*
 
 
 </details>

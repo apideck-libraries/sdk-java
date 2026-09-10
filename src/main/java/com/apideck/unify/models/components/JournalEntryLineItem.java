@@ -57,6 +57,14 @@ public class JournalEntryLineItem {
     private JsonNullable<Double> totalAmount;
 
     /**
+     * Amount for this line in the company's base currency. Used when the journal entry currency differs
+     * from the company's base currency.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("base_currency_amount")
+    private JsonNullable<Double> baseCurrencyAmount;
+
+    /**
      * Debit entries are considered positive, and credit entries are considered negative.
      */
     @JsonInclude(Include.ALWAYS)
@@ -152,6 +160,7 @@ public class JournalEntryLineItem {
             @JsonProperty("tax_amount") JsonNullable<Double> taxAmount,
             @JsonProperty("sub_total") JsonNullable<Double> subTotal,
             @JsonProperty("total_amount") JsonNullable<Double> totalAmount,
+            @JsonProperty("base_currency_amount") JsonNullable<Double> baseCurrencyAmount,
             @JsonProperty("type") Optional<? extends JournalEntryLineItemType> type,
             @JsonProperty("tax_rate") Optional<? extends LinkedTaxRate> taxRate,
             @JsonProperty("tax_type") JsonNullable<? extends TaxType> taxType,
@@ -170,6 +179,7 @@ public class JournalEntryLineItem {
         Utils.checkNotNull(taxAmount, "taxAmount");
         Utils.checkNotNull(subTotal, "subTotal");
         Utils.checkNotNull(totalAmount, "totalAmount");
+        Utils.checkNotNull(baseCurrencyAmount, "baseCurrencyAmount");
         Utils.checkNotNull(type, "type");
         Utils.checkNotNull(taxRate, "taxRate");
         Utils.checkNotNull(taxType, "taxType");
@@ -188,6 +198,7 @@ public class JournalEntryLineItem {
         this.taxAmount = taxAmount;
         this.subTotal = subTotal;
         this.totalAmount = totalAmount;
+        this.baseCurrencyAmount = baseCurrencyAmount;
         this.type = type;
         this.taxRate = taxRate;
         this.taxType = taxType;
@@ -205,11 +216,12 @@ public class JournalEntryLineItem {
     
     public JournalEntryLineItem() {
         this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -250,6 +262,15 @@ public class JournalEntryLineItem {
     @JsonIgnore
     public JsonNullable<Double> totalAmount() {
         return totalAmount;
+    }
+
+    /**
+     * Amount for this line in the company's base currency. Used when the journal entry currency differs
+     * from the company's base currency.
+     */
+    @JsonIgnore
+    public JsonNullable<Double> baseCurrencyAmount() {
+        return baseCurrencyAmount;
     }
 
     /**
@@ -455,6 +476,26 @@ public class JournalEntryLineItem {
     public JournalEntryLineItem withTotalAmount(JsonNullable<Double> totalAmount) {
         Utils.checkNotNull(totalAmount, "totalAmount");
         this.totalAmount = totalAmount;
+        return this;
+    }
+
+    /**
+     * Amount for this line in the company's base currency. Used when the journal entry currency differs
+     * from the company's base currency.
+     */
+    public JournalEntryLineItem withBaseCurrencyAmount(double baseCurrencyAmount) {
+        Utils.checkNotNull(baseCurrencyAmount, "baseCurrencyAmount");
+        this.baseCurrencyAmount = JsonNullable.of(baseCurrencyAmount);
+        return this;
+    }
+
+    /**
+     * Amount for this line in the company's base currency. Used when the journal entry currency differs
+     * from the company's base currency.
+     */
+    public JournalEntryLineItem withBaseCurrencyAmount(JsonNullable<Double> baseCurrencyAmount) {
+        Utils.checkNotNull(baseCurrencyAmount, "baseCurrencyAmount");
+        this.baseCurrencyAmount = baseCurrencyAmount;
         return this;
     }
 
@@ -703,6 +744,7 @@ public class JournalEntryLineItem {
             Utils.enhancedDeepEquals(this.taxAmount, other.taxAmount) &&
             Utils.enhancedDeepEquals(this.subTotal, other.subTotal) &&
             Utils.enhancedDeepEquals(this.totalAmount, other.totalAmount) &&
+            Utils.enhancedDeepEquals(this.baseCurrencyAmount, other.baseCurrencyAmount) &&
             Utils.enhancedDeepEquals(this.type, other.type) &&
             Utils.enhancedDeepEquals(this.taxRate, other.taxRate) &&
             Utils.enhancedDeepEquals(this.taxType, other.taxType) &&
@@ -722,11 +764,12 @@ public class JournalEntryLineItem {
     public int hashCode() {
         return Utils.enhancedHash(
             id, description, taxAmount,
-            subTotal, totalAmount, type,
-            taxRate, taxType, trackingCategory,
-            trackingCategories, ledgerAccount, customer,
-            supplier, employee, departmentId,
-            locationId, lineNumber, worktags);
+            subTotal, totalAmount, baseCurrencyAmount,
+            type, taxRate, taxType,
+            trackingCategory, trackingCategories, ledgerAccount,
+            customer, supplier, employee,
+            departmentId, locationId, lineNumber,
+            worktags);
     }
     
     @Override
@@ -737,6 +780,7 @@ public class JournalEntryLineItem {
                 "taxAmount", taxAmount,
                 "subTotal", subTotal,
                 "totalAmount", totalAmount,
+                "baseCurrencyAmount", baseCurrencyAmount,
                 "type", type,
                 "taxRate", taxRate,
                 "taxType", taxType,
@@ -764,6 +808,8 @@ public class JournalEntryLineItem {
         private JsonNullable<Double> subTotal = JsonNullable.undefined();
 
         private JsonNullable<Double> totalAmount = JsonNullable.undefined();
+
+        private JsonNullable<Double> baseCurrencyAmount = JsonNullable.undefined();
 
         private Optional<? extends JournalEntryLineItemType> type = Optional.empty();
 
@@ -888,6 +934,27 @@ public class JournalEntryLineItem {
         public Builder totalAmount(JsonNullable<Double> totalAmount) {
             Utils.checkNotNull(totalAmount, "totalAmount");
             this.totalAmount = totalAmount;
+            return this;
+        }
+
+
+        /**
+         * Amount for this line in the company's base currency. Used when the journal entry currency differs
+         * from the company's base currency.
+         */
+        public Builder baseCurrencyAmount(double baseCurrencyAmount) {
+            Utils.checkNotNull(baseCurrencyAmount, "baseCurrencyAmount");
+            this.baseCurrencyAmount = JsonNullable.of(baseCurrencyAmount);
+            return this;
+        }
+
+        /**
+         * Amount for this line in the company's base currency. Used when the journal entry currency differs
+         * from the company's base currency.
+         */
+        public Builder baseCurrencyAmount(JsonNullable<Double> baseCurrencyAmount) {
+            Utils.checkNotNull(baseCurrencyAmount, "baseCurrencyAmount");
+            this.baseCurrencyAmount = baseCurrencyAmount;
             return this;
         }
 
@@ -1134,11 +1201,12 @@ public class JournalEntryLineItem {
 
             return new JournalEntryLineItem(
                 id, description, taxAmount,
-                subTotal, totalAmount, type,
-                taxRate, taxType, trackingCategory,
-                trackingCategories, ledgerAccount, customer,
-                supplier, employee, departmentId,
-                locationId, lineNumber, worktags);
+                subTotal, totalAmount, baseCurrencyAmount,
+                type, taxRate, taxType,
+                trackingCategory, trackingCategories, ledgerAccount,
+                customer, supplier, employee,
+                departmentId, locationId, lineNumber,
+                worktags);
         }
 
     }

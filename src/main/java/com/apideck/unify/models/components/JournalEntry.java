@@ -109,7 +109,10 @@ public class JournalEntry {
     private Optional<OffsetDateTime> postedAt;
 
     /**
-     * Journal symbol of the entry. For example IND for indirect costs
+     * Journal symbol of the entry. For example IND for indirect costs. Where supported, list
+     * /accounting/journals to discover available journals and their posting rules.
+     * 
+     * <p>For Exact Online, supply the journal code, not its id.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("journal_symbol")
@@ -160,6 +163,14 @@ public class JournalEntry {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tax_inclusive")
     private JsonNullable<Boolean> taxInclusive;
+
+    /**
+     * Files attached to this journal entry. Use the attachments endpoints with
+     * reference_type=journal-entry and this entry's id where the connector supports it.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("attachments")
+    private Optional<? extends List<LinkedAttachment>> attachments;
 
     /**
      * The source type of the journal entry
@@ -252,6 +263,7 @@ public class JournalEntry {
             @JsonProperty("tracking_categories") JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories,
             @JsonProperty("accounting_period") JsonNullable<String> accountingPeriod,
             @JsonProperty("tax_inclusive") JsonNullable<Boolean> taxInclusive,
+            @JsonProperty("attachments") Optional<? extends List<LinkedAttachment>> attachments,
             @JsonProperty("source_type") JsonNullable<String> sourceType,
             @JsonProperty("source_id") JsonNullable<String> sourceId,
             @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings,
@@ -281,6 +293,7 @@ public class JournalEntry {
         Utils.checkNotNull(trackingCategories, "trackingCategories");
         Utils.checkNotNull(accountingPeriod, "accountingPeriod");
         Utils.checkNotNull(taxInclusive, "taxInclusive");
+        Utils.checkNotNull(attachments, "attachments");
         Utils.checkNotNull(sourceType, "sourceType");
         Utils.checkNotNull(sourceId, "sourceId");
         Utils.checkNotNull(customMappings, "customMappings");
@@ -310,6 +323,7 @@ public class JournalEntry {
         this.trackingCategories = trackingCategories;
         this.accountingPeriod = accountingPeriod;
         this.taxInclusive = taxInclusive;
+        this.attachments = attachments;
         this.sourceType = sourceType;
         this.sourceId = sourceId;
         this.customMappings = customMappings;
@@ -329,10 +343,10 @@ public class JournalEntry {
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty());
+            JsonNullable.undefined(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -435,7 +449,10 @@ public class JournalEntry {
     }
 
     /**
-     * Journal symbol of the entry. For example IND for indirect costs
+     * Journal symbol of the entry. For example IND for indirect costs. Where supported, list
+     * /accounting/journals to discover available journals and their posting rules.
+     * 
+     * <p>For Exact Online, supply the journal code, not its id.
      */
     @JsonIgnore
     public JsonNullable<String> journalSymbol() {
@@ -493,6 +510,16 @@ public class JournalEntry {
     @JsonIgnore
     public JsonNullable<Boolean> taxInclusive() {
         return taxInclusive;
+    }
+
+    /**
+     * Files attached to this journal entry. Use the attachments endpoints with
+     * reference_type=journal-entry and this entry's id where the connector supports it.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<LinkedAttachment>> attachments() {
+        return (Optional<List<LinkedAttachment>>) attachments;
     }
 
     /**
@@ -800,7 +827,10 @@ public class JournalEntry {
     }
 
     /**
-     * Journal symbol of the entry. For example IND for indirect costs
+     * Journal symbol of the entry. For example IND for indirect costs. Where supported, list
+     * /accounting/journals to discover available journals and their posting rules.
+     * 
+     * <p>For Exact Online, supply the journal code, not its id.
      */
     public JournalEntry withJournalSymbol(String journalSymbol) {
         Utils.checkNotNull(journalSymbol, "journalSymbol");
@@ -809,7 +839,10 @@ public class JournalEntry {
     }
 
     /**
-     * Journal symbol of the entry. For example IND for indirect costs
+     * Journal symbol of the entry. For example IND for indirect costs. Where supported, list
+     * /accounting/journals to discover available journals and their posting rules.
+     * 
+     * <p>For Exact Online, supply the journal code, not its id.
      */
     public JournalEntry withJournalSymbol(JsonNullable<String> journalSymbol) {
         Utils.checkNotNull(journalSymbol, "journalSymbol");
@@ -930,6 +963,27 @@ public class JournalEntry {
     public JournalEntry withTaxInclusive(JsonNullable<Boolean> taxInclusive) {
         Utils.checkNotNull(taxInclusive, "taxInclusive");
         this.taxInclusive = taxInclusive;
+        return this;
+    }
+
+    /**
+     * Files attached to this journal entry. Use the attachments endpoints with
+     * reference_type=journal-entry and this entry's id where the connector supports it.
+     */
+    public JournalEntry withAttachments(List<LinkedAttachment> attachments) {
+        Utils.checkNotNull(attachments, "attachments");
+        this.attachments = Optional.ofNullable(attachments);
+        return this;
+    }
+
+
+    /**
+     * Files attached to this journal entry. Use the attachments endpoints with
+     * reference_type=journal-entry and this entry's id where the connector supports it.
+     */
+    public JournalEntry withAttachments(Optional<? extends List<LinkedAttachment>> attachments) {
+        Utils.checkNotNull(attachments, "attachments");
+        this.attachments = attachments;
         return this;
     }
 
@@ -1142,6 +1196,7 @@ public class JournalEntry {
             Utils.enhancedDeepEquals(this.trackingCategories, other.trackingCategories) &&
             Utils.enhancedDeepEquals(this.accountingPeriod, other.accountingPeriod) &&
             Utils.enhancedDeepEquals(this.taxInclusive, other.taxInclusive) &&
+            Utils.enhancedDeepEquals(this.attachments, other.attachments) &&
             Utils.enhancedDeepEquals(this.sourceType, other.sourceType) &&
             Utils.enhancedDeepEquals(this.sourceId, other.sourceId) &&
             Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
@@ -1163,10 +1218,10 @@ public class JournalEntry {
             status, memo, postedAt,
             journalSymbol, taxType, taxCode,
             number, trackingCategories, accountingPeriod,
-            taxInclusive, sourceType, sourceId,
-            customMappings, updatedBy, createdBy,
-            updatedAt, createdAt, rowVersion,
-            customFields, passThrough);
+            taxInclusive, attachments, sourceType,
+            sourceId, customMappings, updatedBy,
+            createdBy, updatedAt, createdAt,
+            rowVersion, customFields, passThrough);
     }
     
     @Override
@@ -1191,6 +1246,7 @@ public class JournalEntry {
                 "trackingCategories", trackingCategories,
                 "accountingPeriod", accountingPeriod,
                 "taxInclusive", taxInclusive,
+                "attachments", attachments,
                 "sourceType", sourceType,
                 "sourceId", sourceId,
                 "customMappings", customMappings,
@@ -1244,6 +1300,8 @@ public class JournalEntry {
         private JsonNullable<String> accountingPeriod = JsonNullable.undefined();
 
         private JsonNullable<Boolean> taxInclusive = JsonNullable.undefined();
+
+        private Optional<? extends List<LinkedAttachment>> attachments = Optional.empty();
 
         private JsonNullable<String> sourceType = JsonNullable.undefined();
 
@@ -1497,7 +1555,10 @@ public class JournalEntry {
 
 
         /**
-         * Journal symbol of the entry. For example IND for indirect costs
+         * Journal symbol of the entry. For example IND for indirect costs. Where supported, list
+         * /accounting/journals to discover available journals and their posting rules.
+         * 
+         * <p>For Exact Online, supply the journal code, not its id.
          */
         public Builder journalSymbol(String journalSymbol) {
             Utils.checkNotNull(journalSymbol, "journalSymbol");
@@ -1506,7 +1567,10 @@ public class JournalEntry {
         }
 
         /**
-         * Journal symbol of the entry. For example IND for indirect costs
+         * Journal symbol of the entry. For example IND for indirect costs. Where supported, list
+         * /accounting/journals to discover available journals and their posting rules.
+         * 
+         * <p>For Exact Online, supply the journal code, not its id.
          */
         public Builder journalSymbol(JsonNullable<String> journalSymbol) {
             Utils.checkNotNull(journalSymbol, "journalSymbol");
@@ -1633,6 +1697,27 @@ public class JournalEntry {
         public Builder taxInclusive(JsonNullable<Boolean> taxInclusive) {
             Utils.checkNotNull(taxInclusive, "taxInclusive");
             this.taxInclusive = taxInclusive;
+            return this;
+        }
+
+
+        /**
+         * Files attached to this journal entry. Use the attachments endpoints with
+         * reference_type=journal-entry and this entry's id where the connector supports it.
+         */
+        public Builder attachments(List<LinkedAttachment> attachments) {
+            Utils.checkNotNull(attachments, "attachments");
+            this.attachments = Optional.ofNullable(attachments);
+            return this;
+        }
+
+        /**
+         * Files attached to this journal entry. Use the attachments endpoints with
+         * reference_type=journal-entry and this entry's id where the connector supports it.
+         */
+        public Builder attachments(Optional<? extends List<LinkedAttachment>> attachments) {
+            Utils.checkNotNull(attachments, "attachments");
+            this.attachments = attachments;
             return this;
         }
 
@@ -1833,10 +1918,10 @@ public class JournalEntry {
                 status, memo, postedAt,
                 journalSymbol, taxType, taxCode,
                 number, trackingCategories, accountingPeriod,
-                taxInclusive, sourceType, sourceId,
-                customMappings, updatedBy, createdBy,
-                updatedAt, createdAt, rowVersion,
-                customFields, passThrough);
+                taxInclusive, attachments, sourceType,
+                sourceId, customMappings, updatedBy,
+                createdBy, updatedAt, createdAt,
+                rowVersion, customFields, passThrough);
         }
 
     }

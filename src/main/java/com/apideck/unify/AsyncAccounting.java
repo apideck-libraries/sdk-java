@@ -33,6 +33,7 @@ public class AsyncAccounting {
     private final AsyncDepartments departments;
     private final AsyncAttachments attachments;
     private final AsyncBankAccounts bankAccounts;
+    private final AsyncJournals journals;
     private final AsyncTrackingCategories trackingCategories;
     private final AsyncBillPayments billPayments;
     private final AsyncExpenses expenses;
@@ -75,6 +76,7 @@ public class AsyncAccounting {
         this.departments = new AsyncDepartments(syncSDK.departments(), this.sdkConfiguration);
         this.attachments = new AsyncAttachments(syncSDK.attachments(), this.sdkConfiguration);
         this.bankAccounts = new AsyncBankAccounts(syncSDK.bankAccounts(), this.sdkConfiguration);
+        this.journals = new AsyncJournals(syncSDK.journals(), this.sdkConfiguration);
         this.trackingCategories = new AsyncTrackingCategories(syncSDK.trackingCategories(), this.sdkConfiguration);
         this.billPayments = new AsyncBillPayments(syncSDK.billPayments(), this.sdkConfiguration);
         this.expenses = new AsyncExpenses(syncSDK.expenses(), this.sdkConfiguration);
@@ -186,6 +188,10 @@ public class AsyncAccounting {
 
     public final AsyncBankAccounts bankAccounts() {
         return bankAccounts;
+    }
+
+    public final AsyncJournals journals() {
+        return journals;
     }
 
     public final AsyncTrackingCategories trackingCategories() {

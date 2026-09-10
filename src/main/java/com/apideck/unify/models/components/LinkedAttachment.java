@@ -31,7 +31,7 @@ public class LinkedAttachment {
     private JsonNullable<String> mimeType;
 
     /**
-     * Whether the file is c ompressed.
+     * Whether the file is compressed.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("is_compressed")
@@ -102,7 +102,7 @@ public class LinkedAttachment {
     }
 
     /**
-     * Whether the file is c ompressed.
+     * Whether the file is compressed.
      */
     @JsonIgnore
     public JsonNullable<Boolean> isCompressed() {
@@ -175,7 +175,7 @@ public class LinkedAttachment {
     }
 
     /**
-     * Whether the file is c ompressed.
+     * Whether the file is compressed.
      */
     public LinkedAttachment withIsCompressed(boolean isCompressed) {
         Utils.checkNotNull(isCompressed, "isCompressed");
@@ -184,7 +184,7 @@ public class LinkedAttachment {
     }
 
     /**
-     * Whether the file is c ompressed.
+     * Whether the file is compressed.
      */
     public LinkedAttachment withIsCompressed(JsonNullable<Boolean> isCompressed) {
         Utils.checkNotNull(isCompressed, "isCompressed");
@@ -341,7 +341,7 @@ public class LinkedAttachment {
 
 
         /**
-         * Whether the file is c ompressed.
+         * Whether the file is compressed.
          */
         public Builder isCompressed(boolean isCompressed) {
             Utils.checkNotNull(isCompressed, "isCompressed");
@@ -350,7 +350,7 @@ public class LinkedAttachment {
         }
 
         /**
-         * Whether the file is c ompressed.
+         * Whether the file is compressed.
          */
         public Builder isCompressed(JsonNullable<Boolean> isCompressed) {
             Utils.checkNotNull(isCompressed, "isCompressed");

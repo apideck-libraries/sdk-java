@@ -23,9 +23,11 @@ public class AttachmentReferenceType {
     public static final AttachmentReferenceType INVOICE = new AttachmentReferenceType("invoice");
     public static final AttachmentReferenceType BILL = new AttachmentReferenceType("bill");
     public static final AttachmentReferenceType BILL_CREDIT_NOTE = new AttachmentReferenceType("bill-credit-note");
+    public static final AttachmentReferenceType CREDIT_NOTE = new AttachmentReferenceType("credit-note");
     public static final AttachmentReferenceType EXPENSE = new AttachmentReferenceType("expense");
     public static final AttachmentReferenceType EXPENSE_REPORT = new AttachmentReferenceType("expense-report");
     public static final AttachmentReferenceType QUOTE = new AttachmentReferenceType("quote");
+    public static final AttachmentReferenceType JOURNAL_ENTRY = new AttachmentReferenceType("journal-entry");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -102,9 +104,11 @@ public class AttachmentReferenceType {
         map.put("invoice", INVOICE);
         map.put("bill", BILL);
         map.put("bill-credit-note", BILL_CREDIT_NOTE);
+        map.put("credit-note", CREDIT_NOTE);
         map.put("expense", EXPENSE);
         map.put("expense-report", EXPENSE_REPORT);
         map.put("quote", QUOTE);
+        map.put("journal-entry", JOURNAL_ENTRY);
         return map;
     }
 
@@ -113,9 +117,11 @@ public class AttachmentReferenceType {
         map.put("invoice", AttachmentReferenceTypeEnum.INVOICE);
         map.put("bill", AttachmentReferenceTypeEnum.BILL);
         map.put("bill-credit-note", AttachmentReferenceTypeEnum.BILL_CREDIT_NOTE);
+        map.put("credit-note", AttachmentReferenceTypeEnum.CREDIT_NOTE);
         map.put("expense", AttachmentReferenceTypeEnum.EXPENSE);
         map.put("expense-report", AttachmentReferenceTypeEnum.EXPENSE_REPORT);
         map.put("quote", AttachmentReferenceTypeEnum.QUOTE);
+        map.put("journal-entry", AttachmentReferenceTypeEnum.JOURNAL_ENTRY);
         return map;
     }
     
@@ -125,9 +131,11 @@ public class AttachmentReferenceType {
         INVOICE("invoice"),
         BILL("bill"),
         BILL_CREDIT_NOTE("bill-credit-note"),
+        CREDIT_NOTE("credit-note"),
         EXPENSE("expense"),
         EXPENSE_REPORT("expense-report"),
-        QUOTE("quote"),;
+        QUOTE("quote"),
+        JOURNAL_ENTRY("journal-entry"),;
 
         private final String value;
 

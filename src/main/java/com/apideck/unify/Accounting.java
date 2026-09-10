@@ -34,6 +34,7 @@ public class Accounting {
     private final Departments departments;
     private final Attachments attachments;
     private final BankAccounts bankAccounts;
+    private final Journals journals;
     private final TrackingCategories trackingCategories;
     private final BillPayments billPayments;
     private final Expenses expenses;
@@ -75,6 +76,7 @@ public class Accounting {
         this.departments = new Departments(this.sdkConfiguration);
         this.attachments = new Attachments(this.sdkConfiguration);
         this.bankAccounts = new BankAccounts(this.sdkConfiguration);
+        this.journals = new Journals(this.sdkConfiguration);
         this.trackingCategories = new TrackingCategories(this.sdkConfiguration);
         this.billPayments = new BillPayments(this.sdkConfiguration);
         this.expenses = new Expenses(this.sdkConfiguration);
@@ -186,6 +188,10 @@ public class Accounting {
 
     public final BankAccounts bankAccounts() {
         return bankAccounts;
+    }
+
+    public final Journals journals() {
+        return journals;
     }
 
     public final TrackingCategories trackingCategories() {

@@ -28,6 +28,7 @@ public class AsyncAccounting {
     private final AsyncGeneralLedgerTransactions generalLedgerTransactions;
     private final AsyncSalesReceipts salesReceipts;
     private final AsyncPurchaseOrders purchaseOrders;
+    private final AsyncGoodsReceipts goodsReceipts;
     private final AsyncSubsidiaries subsidiaries;
     private final AsyncLocations locations;
     private final AsyncDepartments departments;
@@ -71,6 +72,7 @@ public class AsyncAccounting {
         this.generalLedgerTransactions = new AsyncGeneralLedgerTransactions(syncSDK.generalLedgerTransactions(), this.sdkConfiguration);
         this.salesReceipts = new AsyncSalesReceipts(syncSDK.salesReceipts(), this.sdkConfiguration);
         this.purchaseOrders = new AsyncPurchaseOrders(syncSDK.purchaseOrders(), this.sdkConfiguration);
+        this.goodsReceipts = new AsyncGoodsReceipts(syncSDK.goodsReceipts(), this.sdkConfiguration);
         this.subsidiaries = new AsyncSubsidiaries(syncSDK.subsidiaries(), this.sdkConfiguration);
         this.locations = new AsyncLocations(syncSDK.locations(), this.sdkConfiguration);
         this.departments = new AsyncDepartments(syncSDK.departments(), this.sdkConfiguration);
@@ -168,6 +170,10 @@ public class AsyncAccounting {
 
     public final AsyncPurchaseOrders purchaseOrders() {
         return purchaseOrders;
+    }
+
+    public final AsyncGoodsReceipts goodsReceipts() {
+        return goodsReceipts;
     }
 
     public final AsyncSubsidiaries subsidiaries() {

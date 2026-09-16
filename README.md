@@ -51,7 +51,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.apideck:unify:0.41.2'
+implementation 'com.apideck:unify:0.42.0'
 ```
 
 Maven:
@@ -59,7 +59,7 @@ Maven:
 <dependency>
     <groupId>com.apideck</groupId>
     <artifactId>unify</artifactId>
-    <version>0.41.2</version>
+    <version>0.42.0</version>
 </dependency>
 ```
 
@@ -342,6 +342,11 @@ For full model-specific examples (including Java 11/16/21 variants), see each un
 
 * [list](docs/sdks/generalledgertransactions/README.md#list) - List General Ledger Transactions
 * [get](docs/sdks/generalledgertransactions/README.md#get) - Get General Ledger Transaction
+
+### [Accounting.GoodsReceipts](docs/sdks/goodsreceipts/README.md)
+
+* [list](docs/sdks/goodsreceipts/README.md#list) - List Goods Receipts
+* [get](docs/sdks/goodsreceipts/README.md#get) - Get Goods Receipt
 
 ### [Accounting.InvoiceItems](docs/sdks/invoiceitems/README.md)
 
@@ -1232,8 +1237,8 @@ public class Application {
 many more subclasses in the JDK platform).
 
 **Inherit from [`ApideckError`](./src/main/java/models/errors/ApideckError.java)**:
-* [`com.apideck.unify.models.errors.Unauthorized`](./src/main/java/models/errors/com.apideck.unify.models.errors.Unauthorized.java): Unauthorized. Status code `401`. Applicable to 6 of 360 methods.*
-* [`com.apideck.unify.models.errors.ConflictResponse`](./src/main/java/models/errors/com.apideck.unify.models.errors.ConflictResponse.java): Conflict — a connection already exists for the target connector. Status code `409`. Applicable to 1 of 360 methods.*
+* [`com.apideck.unify.models.errors.Unauthorized`](./src/main/java/models/errors/com.apideck.unify.models.errors.Unauthorized.java): Unauthorized. Status code `401`. Applicable to 6 of 362 methods.*
+* [`com.apideck.unify.models.errors.ConflictResponse`](./src/main/java/models/errors/com.apideck.unify.models.errors.ConflictResponse.java): Conflict — a connection already exists for the target connector. Status code `409`. Applicable to 1 of 362 methods.*
 
 
 </details>

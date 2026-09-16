@@ -143,6 +143,10 @@ public class WebhookEventType {
     public static final WebhookEventType ECOMMERCE_ORDER_CREATED = new WebhookEventType("ecommerce.order.created");
     public static final WebhookEventType ECOMMERCE_ORDER_UPDATED = new WebhookEventType("ecommerce.order.updated");
     public static final WebhookEventType ECOMMERCE_ORDER_DELETED = new WebhookEventType("ecommerce.order.deleted");
+    public static final WebhookEventType ECOMMERCE_ORDER_PAID = new WebhookEventType("ecommerce.order.paid");
+    public static final WebhookEventType ECOMMERCE_ORDER_SHIPPED = new WebhookEventType("ecommerce.order.shipped");
+    public static final WebhookEventType ECOMMERCE_ORDER_REFUNDED = new WebhookEventType("ecommerce.order.refunded");
+    public static final WebhookEventType ECOMMERCE_ORDER_DELIVERED = new WebhookEventType("ecommerce.order.delivered");
     public static final WebhookEventType ECOMMERCE_PRODUCT_CREATED = new WebhookEventType("ecommerce.product.created");
     public static final WebhookEventType ECOMMERCE_PRODUCT_UPDATED = new WebhookEventType("ecommerce.product.updated");
     public static final WebhookEventType ECOMMERCE_PRODUCT_DELETED = new WebhookEventType("ecommerce.product.deleted");
@@ -354,6 +358,10 @@ public class WebhookEventType {
         map.put("ecommerce.order.created", ECOMMERCE_ORDER_CREATED);
         map.put("ecommerce.order.updated", ECOMMERCE_ORDER_UPDATED);
         map.put("ecommerce.order.deleted", ECOMMERCE_ORDER_DELETED);
+        map.put("ecommerce.order.paid", ECOMMERCE_ORDER_PAID);
+        map.put("ecommerce.order.shipped", ECOMMERCE_ORDER_SHIPPED);
+        map.put("ecommerce.order.refunded", ECOMMERCE_ORDER_REFUNDED);
+        map.put("ecommerce.order.delivered", ECOMMERCE_ORDER_DELIVERED);
         map.put("ecommerce.product.created", ECOMMERCE_PRODUCT_CREATED);
         map.put("ecommerce.product.updated", ECOMMERCE_PRODUCT_UPDATED);
         map.put("ecommerce.product.deleted", ECOMMERCE_PRODUCT_DELETED);
@@ -497,6 +505,10 @@ public class WebhookEventType {
         map.put("ecommerce.order.created", WebhookEventTypeEnum.ECOMMERCE_ORDER_CREATED);
         map.put("ecommerce.order.updated", WebhookEventTypeEnum.ECOMMERCE_ORDER_UPDATED);
         map.put("ecommerce.order.deleted", WebhookEventTypeEnum.ECOMMERCE_ORDER_DELETED);
+        map.put("ecommerce.order.paid", WebhookEventTypeEnum.ECOMMERCE_ORDER_PAID);
+        map.put("ecommerce.order.shipped", WebhookEventTypeEnum.ECOMMERCE_ORDER_SHIPPED);
+        map.put("ecommerce.order.refunded", WebhookEventTypeEnum.ECOMMERCE_ORDER_REFUNDED);
+        map.put("ecommerce.order.delivered", WebhookEventTypeEnum.ECOMMERCE_ORDER_DELIVERED);
         map.put("ecommerce.product.created", WebhookEventTypeEnum.ECOMMERCE_PRODUCT_CREATED);
         map.put("ecommerce.product.updated", WebhookEventTypeEnum.ECOMMERCE_PRODUCT_UPDATED);
         map.put("ecommerce.product.deleted", WebhookEventTypeEnum.ECOMMERCE_PRODUCT_DELETED);
@@ -641,6 +653,10 @@ public class WebhookEventType {
         ECOMMERCE_ORDER_CREATED("ecommerce.order.created"),
         ECOMMERCE_ORDER_UPDATED("ecommerce.order.updated"),
         ECOMMERCE_ORDER_DELETED("ecommerce.order.deleted"),
+        ECOMMERCE_ORDER_PAID("ecommerce.order.paid"),
+        ECOMMERCE_ORDER_SHIPPED("ecommerce.order.shipped"),
+        ECOMMERCE_ORDER_REFUNDED("ecommerce.order.refunded"),
+        ECOMMERCE_ORDER_DELIVERED("ecommerce.order.delivered"),
         ECOMMERCE_PRODUCT_CREATED("ecommerce.product.created"),
         ECOMMERCE_PRODUCT_UPDATED("ecommerce.product.updated"),
         ECOMMERCE_PRODUCT_DELETED("ecommerce.product.deleted"),

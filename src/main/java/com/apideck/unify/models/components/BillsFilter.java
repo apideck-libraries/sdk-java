@@ -27,6 +27,22 @@ public class BillsFilter {
     private Optional<OffsetDateTime> updatedSince;
 
     /**
+     * Return bills whose `bill_number` equals the given value (exact match). Use this to verify whether a
+     * create that timed out (`outcome: uncertain`) was persisted before retrying. Bill numbers are not
+     * guaranteed unique on every connector, so more than one bill can be returned.
+     */
+    @SpeakeasyMetadata("queryParam:name=bill_number")
+    private Optional<String> billNumber;
+
+    /**
+     * Return bills whose `reference` equals the given value (exact match). Use this to look up a bill by
+     * the reference you supplied on create, for example after a create that timed out (`outcome:
+     * uncertain`).
+     */
+    @SpeakeasyMetadata("queryParam:name=reference")
+    private Optional<String> reference;
+
+    /**
      * Return bills with a document date (`bill_date`) on or after the given date (YYYY-MM-DD).
      */
     @SpeakeasyMetadata("queryParam:name=billed_since")
@@ -55,18 +71,24 @@ public class BillsFilter {
     public BillsFilter(
             Optional<String> idSince,
             Optional<OffsetDateTime> updatedSince,
+            Optional<String> billNumber,
+            Optional<String> reference,
             Optional<LocalDate> billedSince,
             Optional<LocalDate> dueSince,
             Optional<? extends BillsFilterStatus> status,
             Optional<String> subsidiaryId) {
         Utils.checkNotNull(idSince, "idSince");
         Utils.checkNotNull(updatedSince, "updatedSince");
+        Utils.checkNotNull(billNumber, "billNumber");
+        Utils.checkNotNull(reference, "reference");
         Utils.checkNotNull(billedSince, "billedSince");
         Utils.checkNotNull(dueSince, "dueSince");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(subsidiaryId, "subsidiaryId");
         this.idSince = idSince;
         this.updatedSince = updatedSince;
+        this.billNumber = billNumber;
+        this.reference = reference;
         this.billedSince = billedSince;
         this.dueSince = dueSince;
         this.status = status;
@@ -75,7 +97,8 @@ public class BillsFilter {
     
     public BillsFilter() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -89,6 +112,26 @@ public class BillsFilter {
     @JsonIgnore
     public Optional<OffsetDateTime> updatedSince() {
         return updatedSince;
+    }
+
+    /**
+     * Return bills whose `bill_number` equals the given value (exact match). Use this to verify whether a
+     * create that timed out (`outcome: uncertain`) was persisted before retrying. Bill numbers are not
+     * guaranteed unique on every connector, so more than one bill can be returned.
+     */
+    @JsonIgnore
+    public Optional<String> billNumber() {
+        return billNumber;
+    }
+
+    /**
+     * Return bills whose `reference` equals the given value (exact match). Use this to look up a bill by
+     * the reference you supplied on create, for example after a create that timed out (`outcome:
+     * uncertain`).
+     */
+    @JsonIgnore
+    public Optional<String> reference() {
+        return reference;
     }
 
     /**
@@ -159,6 +202,52 @@ public class BillsFilter {
     public BillsFilter withUpdatedSince(Optional<OffsetDateTime> updatedSince) {
         Utils.checkNotNull(updatedSince, "updatedSince");
         this.updatedSince = updatedSince;
+        return this;
+    }
+
+    /**
+     * Return bills whose `bill_number` equals the given value (exact match). Use this to verify whether a
+     * create that timed out (`outcome: uncertain`) was persisted before retrying. Bill numbers are not
+     * guaranteed unique on every connector, so more than one bill can be returned.
+     */
+    public BillsFilter withBillNumber(String billNumber) {
+        Utils.checkNotNull(billNumber, "billNumber");
+        this.billNumber = Optional.ofNullable(billNumber);
+        return this;
+    }
+
+
+    /**
+     * Return bills whose `bill_number` equals the given value (exact match). Use this to verify whether a
+     * create that timed out (`outcome: uncertain`) was persisted before retrying. Bill numbers are not
+     * guaranteed unique on every connector, so more than one bill can be returned.
+     */
+    public BillsFilter withBillNumber(Optional<String> billNumber) {
+        Utils.checkNotNull(billNumber, "billNumber");
+        this.billNumber = billNumber;
+        return this;
+    }
+
+    /**
+     * Return bills whose `reference` equals the given value (exact match). Use this to look up a bill by
+     * the reference you supplied on create, for example after a create that timed out (`outcome:
+     * uncertain`).
+     */
+    public BillsFilter withReference(String reference) {
+        Utils.checkNotNull(reference, "reference");
+        this.reference = Optional.ofNullable(reference);
+        return this;
+    }
+
+
+    /**
+     * Return bills whose `reference` equals the given value (exact match). Use this to look up a bill by
+     * the reference you supplied on create, for example after a create that timed out (`outcome:
+     * uncertain`).
+     */
+    public BillsFilter withReference(Optional<String> reference) {
+        Utils.checkNotNull(reference, "reference");
+        this.reference = reference;
         return this;
     }
 
@@ -252,6 +341,8 @@ public class BillsFilter {
         return 
             Utils.enhancedDeepEquals(this.idSince, other.idSince) &&
             Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince) &&
+            Utils.enhancedDeepEquals(this.billNumber, other.billNumber) &&
+            Utils.enhancedDeepEquals(this.reference, other.reference) &&
             Utils.enhancedDeepEquals(this.billedSince, other.billedSince) &&
             Utils.enhancedDeepEquals(this.dueSince, other.dueSince) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
@@ -261,8 +352,9 @@ public class BillsFilter {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            idSince, updatedSince, billedSince,
-            dueSince, status, subsidiaryId);
+            idSince, updatedSince, billNumber,
+            reference, billedSince, dueSince,
+            status, subsidiaryId);
     }
     
     @Override
@@ -270,6 +362,8 @@ public class BillsFilter {
         return Utils.toString(BillsFilter.class,
                 "idSince", idSince,
                 "updatedSince", updatedSince,
+                "billNumber", billNumber,
+                "reference", reference,
                 "billedSince", billedSince,
                 "dueSince", dueSince,
                 "status", status,
@@ -282,6 +376,10 @@ public class BillsFilter {
         private Optional<String> idSince = Optional.empty();
 
         private Optional<OffsetDateTime> updatedSince = Optional.empty();
+
+        private Optional<String> billNumber = Optional.empty();
+
+        private Optional<String> reference = Optional.empty();
 
         private Optional<LocalDate> billedSince = Optional.empty();
 
@@ -324,6 +422,52 @@ public class BillsFilter {
         public Builder updatedSince(Optional<OffsetDateTime> updatedSince) {
             Utils.checkNotNull(updatedSince, "updatedSince");
             this.updatedSince = updatedSince;
+            return this;
+        }
+
+
+        /**
+         * Return bills whose `bill_number` equals the given value (exact match). Use this to verify whether a
+         * create that timed out (`outcome: uncertain`) was persisted before retrying. Bill numbers are not
+         * guaranteed unique on every connector, so more than one bill can be returned.
+         */
+        public Builder billNumber(String billNumber) {
+            Utils.checkNotNull(billNumber, "billNumber");
+            this.billNumber = Optional.ofNullable(billNumber);
+            return this;
+        }
+
+        /**
+         * Return bills whose `bill_number` equals the given value (exact match). Use this to verify whether a
+         * create that timed out (`outcome: uncertain`) was persisted before retrying. Bill numbers are not
+         * guaranteed unique on every connector, so more than one bill can be returned.
+         */
+        public Builder billNumber(Optional<String> billNumber) {
+            Utils.checkNotNull(billNumber, "billNumber");
+            this.billNumber = billNumber;
+            return this;
+        }
+
+
+        /**
+         * Return bills whose `reference` equals the given value (exact match). Use this to look up a bill by
+         * the reference you supplied on create, for example after a create that timed out (`outcome:
+         * uncertain`).
+         */
+        public Builder reference(String reference) {
+            Utils.checkNotNull(reference, "reference");
+            this.reference = Optional.ofNullable(reference);
+            return this;
+        }
+
+        /**
+         * Return bills whose `reference` equals the given value (exact match). Use this to look up a bill by
+         * the reference you supplied on create, for example after a create that timed out (`outcome:
+         * uncertain`).
+         */
+        public Builder reference(Optional<String> reference) {
+            Utils.checkNotNull(reference, "reference");
+            this.reference = reference;
             return this;
         }
 
@@ -408,8 +552,9 @@ public class BillsFilter {
         public BillsFilter build() {
 
             return new BillsFilter(
-                idSince, updatedSince, billedSince,
-                dueSince, status, subsidiaryId);
+                idSince, updatedSince, billNumber,
+                reference, billedSince, dueSince,
+                status, subsidiaryId);
         }
 
     }

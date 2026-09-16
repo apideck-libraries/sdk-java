@@ -29,6 +29,7 @@ public class Accounting {
     private final GeneralLedgerTransactions generalLedgerTransactions;
     private final SalesReceipts salesReceipts;
     private final PurchaseOrders purchaseOrders;
+    private final GoodsReceipts goodsReceipts;
     private final Subsidiaries subsidiaries;
     private final Locations locations;
     private final Departments departments;
@@ -71,6 +72,7 @@ public class Accounting {
         this.generalLedgerTransactions = new GeneralLedgerTransactions(this.sdkConfiguration);
         this.salesReceipts = new SalesReceipts(this.sdkConfiguration);
         this.purchaseOrders = new PurchaseOrders(this.sdkConfiguration);
+        this.goodsReceipts = new GoodsReceipts(this.sdkConfiguration);
         this.subsidiaries = new Subsidiaries(this.sdkConfiguration);
         this.locations = new Locations(this.sdkConfiguration);
         this.departments = new Departments(this.sdkConfiguration);
@@ -168,6 +170,10 @@ public class Accounting {
 
     public final PurchaseOrders purchaseOrders() {
         return purchaseOrders;
+    }
+
+    public final GoodsReceipts goodsReceipts() {
+        return goodsReceipts;
     }
 
     public final Subsidiaries subsidiaries() {

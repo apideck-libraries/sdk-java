@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Boolean;
+import java.lang.Double;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
@@ -179,6 +180,14 @@ public class Customer {
     @JsonProperty("currency")
     private JsonNullable<? extends Currency> currency;
 
+    /**
+     * The customer's outstanding balance: the amount the customer currently owes, in the customer's
+     * currency. A positive value means the customer owes the business.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("balance")
+    private JsonNullable<Double> balance;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("account")
@@ -309,6 +318,7 @@ public class Customer {
             @JsonProperty("tax_number") JsonNullable<String> taxNumber,
             @JsonProperty("taxable") JsonNullable<Boolean> taxable,
             @JsonProperty("currency") JsonNullable<? extends Currency> currency,
+            @JsonProperty("balance") JsonNullable<Double> balance,
             @JsonProperty("account") JsonNullable<? extends LinkedLedgerAccount> account,
             @JsonProperty("parent") JsonNullable<? extends LinkedParentCustomer> parent,
             @JsonProperty("status") JsonNullable<? extends CustomerStatusStatus> status,
@@ -349,6 +359,7 @@ public class Customer {
         Utils.checkNotNull(taxNumber, "taxNumber");
         Utils.checkNotNull(taxable, "taxable");
         Utils.checkNotNull(currency, "currency");
+        Utils.checkNotNull(balance, "balance");
         Utils.checkNotNull(account, "account");
         Utils.checkNotNull(parent, "parent");
         Utils.checkNotNull(status, "status");
@@ -389,6 +400,7 @@ public class Customer {
         this.taxNumber = taxNumber;
         this.taxable = taxable;
         this.currency = currency;
+        this.balance = balance;
         this.account = account;
         this.parent = parent;
         this.status = status;
@@ -418,10 +430,10 @@ public class Customer {
             Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty());
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -604,6 +616,15 @@ public class Customer {
     @JsonIgnore
     public JsonNullable<Currency> currency() {
         return (JsonNullable<Currency>) currency;
+    }
+
+    /**
+     * The customer's outstanding balance: the amount the customer currently owes, in the customer's
+     * currency. A positive value means the customer owes the business.
+     */
+    @JsonIgnore
+    public JsonNullable<Double> balance() {
+        return balance;
     }
 
     @SuppressWarnings("unchecked")
@@ -1128,6 +1149,26 @@ public class Customer {
         return this;
     }
 
+    /**
+     * The customer's outstanding balance: the amount the customer currently owes, in the customer's
+     * currency. A positive value means the customer owes the business.
+     */
+    public Customer withBalance(double balance) {
+        Utils.checkNotNull(balance, "balance");
+        this.balance = JsonNullable.of(balance);
+        return this;
+    }
+
+    /**
+     * The customer's outstanding balance: the amount the customer currently owes, in the customer's
+     * currency. A positive value means the customer owes the business.
+     */
+    public Customer withBalance(JsonNullable<Double> balance) {
+        Utils.checkNotNull(balance, "balance");
+        this.balance = balance;
+        return this;
+    }
+
     public Customer withAccount(LinkedLedgerAccount account) {
         Utils.checkNotNull(account, "account");
         this.account = JsonNullable.of(account);
@@ -1427,6 +1468,7 @@ public class Customer {
             Utils.enhancedDeepEquals(this.taxNumber, other.taxNumber) &&
             Utils.enhancedDeepEquals(this.taxable, other.taxable) &&
             Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.balance, other.balance) &&
             Utils.enhancedDeepEquals(this.account, other.account) &&
             Utils.enhancedDeepEquals(this.parent, other.parent) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
@@ -1455,12 +1497,12 @@ public class Customer {
             addresses, phoneNumbers, emails,
             websites, bankAccounts, notes,
             taxRate, taxNumber, taxable,
-            currency, account, parent,
-            status, paymentMethod, terms,
-            termsId, channel, customFields,
-            customMappings, updatedBy, createdBy,
-            updatedAt, createdAt, rowVersion,
-            passThrough);
+            currency, balance, account,
+            parent, status, paymentMethod,
+            terms, termsId, channel,
+            customFields, customMappings, updatedBy,
+            createdBy, updatedAt, createdAt,
+            rowVersion, passThrough);
     }
     
     @Override
@@ -1491,6 +1533,7 @@ public class Customer {
                 "taxNumber", taxNumber,
                 "taxable", taxable,
                 "currency", currency,
+                "balance", balance,
                 "account", account,
                 "parent", parent,
                 "status", status,
@@ -1560,6 +1603,8 @@ public class Customer {
         private JsonNullable<Boolean> taxable = JsonNullable.undefined();
 
         private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
+
+        private JsonNullable<Double> balance = JsonNullable.undefined();
 
         private JsonNullable<? extends LinkedLedgerAccount> account = JsonNullable.undefined();
 
@@ -2010,6 +2055,27 @@ public class Customer {
         }
 
 
+        /**
+         * The customer's outstanding balance: the amount the customer currently owes, in the customer's
+         * currency. A positive value means the customer owes the business.
+         */
+        public Builder balance(double balance) {
+            Utils.checkNotNull(balance, "balance");
+            this.balance = JsonNullable.of(balance);
+            return this;
+        }
+
+        /**
+         * The customer's outstanding balance: the amount the customer currently owes, in the customer's
+         * currency. A positive value means the customer owes the business.
+         */
+        public Builder balance(JsonNullable<Double> balance) {
+            Utils.checkNotNull(balance, "balance");
+            this.balance = balance;
+            return this;
+        }
+
+
         public Builder account(LinkedLedgerAccount account) {
             Utils.checkNotNull(account, "account");
             this.account = JsonNullable.of(account);
@@ -2297,12 +2363,12 @@ public class Customer {
                 addresses, phoneNumbers, emails,
                 websites, bankAccounts, notes,
                 taxRate, taxNumber, taxable,
-                currency, account, parent,
-                status, paymentMethod, terms,
-                termsId, channel, customFields,
-                customMappings, updatedBy, createdBy,
-                updatedAt, createdAt, rowVersion,
-                passThrough);
+                currency, balance, account,
+                parent, status, paymentMethod,
+                terms, termsId, channel,
+                customFields, customMappings, updatedBy,
+                createdBy, updatedAt, createdAt,
+                rowVersion, passThrough);
         }
 
     }

@@ -172,6 +172,14 @@ public class InvoiceLineItem {
     private Optional<? extends LinkedInvoiceItem> item;
 
     /**
+     * If true, this line item is subject to tax. Read-only, and only populated by connectors that record
+     * taxability on the line itself.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("taxable")
+    private JsonNullable<Boolean> taxable;
+
+    /**
      * Tax applicable on
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -281,6 +289,7 @@ public class InvoiceLineItem {
             @JsonProperty("memo") JsonNullable<String> memo,
             @JsonProperty("prepaid") JsonNullable<Boolean> prepaid,
             @JsonProperty("item") Optional<? extends LinkedInvoiceItem> item,
+            @JsonProperty("taxable") JsonNullable<Boolean> taxable,
             @JsonProperty("tax_applicable_on") JsonNullable<String> taxApplicableOn,
             @JsonProperty("tax_recoverability") JsonNullable<String> taxRecoverability,
             @JsonProperty("tax_method") JsonNullable<String> taxMethod,
@@ -316,6 +325,7 @@ public class InvoiceLineItem {
         Utils.checkNotNull(memo, "memo");
         Utils.checkNotNull(prepaid, "prepaid");
         Utils.checkNotNull(item, "item");
+        Utils.checkNotNull(taxable, "taxable");
         Utils.checkNotNull(taxApplicableOn, "taxApplicableOn");
         Utils.checkNotNull(taxRecoverability, "taxRecoverability");
         Utils.checkNotNull(taxMethod, "taxMethod");
@@ -351,6 +361,7 @@ public class InvoiceLineItem {
         this.memo = memo;
         this.prepaid = prepaid;
         this.item = item;
+        this.taxable = taxable;
         this.taxApplicableOn = taxApplicableOn;
         this.taxRecoverability = taxRecoverability;
         this.taxMethod = taxMethod;
@@ -375,10 +386,10 @@ public class InvoiceLineItem {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined());
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -548,6 +559,15 @@ public class InvoiceLineItem {
     @JsonIgnore
     public Optional<LinkedInvoiceItem> item() {
         return (Optional<LinkedInvoiceItem>) item;
+    }
+
+    /**
+     * If true, this line item is subject to tax. Read-only, and only populated by connectors that record
+     * taxability on the line itself.
+     */
+    @JsonIgnore
+    public JsonNullable<Boolean> taxable() {
+        return taxable;
     }
 
     /**
@@ -1037,6 +1057,26 @@ public class InvoiceLineItem {
     }
 
     /**
+     * If true, this line item is subject to tax. Read-only, and only populated by connectors that record
+     * taxability on the line itself.
+     */
+    public InvoiceLineItem withTaxable(boolean taxable) {
+        Utils.checkNotNull(taxable, "taxable");
+        this.taxable = JsonNullable.of(taxable);
+        return this;
+    }
+
+    /**
+     * If true, this line item is subject to tax. Read-only, and only populated by connectors that record
+     * taxability on the line itself.
+     */
+    public InvoiceLineItem withTaxable(JsonNullable<Boolean> taxable) {
+        Utils.checkNotNull(taxable, "taxable");
+        this.taxable = taxable;
+        return this;
+    }
+
+    /**
      * Tax applicable on
      */
     public InvoiceLineItem withTaxApplicableOn(String taxApplicableOn) {
@@ -1289,6 +1329,7 @@ public class InvoiceLineItem {
             Utils.enhancedDeepEquals(this.memo, other.memo) &&
             Utils.enhancedDeepEquals(this.prepaid, other.prepaid) &&
             Utils.enhancedDeepEquals(this.item, other.item) &&
+            Utils.enhancedDeepEquals(this.taxable, other.taxable) &&
             Utils.enhancedDeepEquals(this.taxApplicableOn, other.taxApplicableOn) &&
             Utils.enhancedDeepEquals(this.taxRecoverability, other.taxRecoverability) &&
             Utils.enhancedDeepEquals(this.taxMethod, other.taxMethod) &&
@@ -1314,11 +1355,11 @@ public class InvoiceLineItem {
             discountAmount, serviceDate, categoryId,
             locationId, departmentId, subsidiaryId,
             shippingId, memo, prepaid,
-            item, taxApplicableOn, taxRecoverability,
-            taxMethod, worktags, taxRate,
-            trackingCategories, ledgerAccount, customFields,
-            rowVersion, updatedBy, createdBy,
-            createdAt, updatedAt);
+            item, taxable, taxApplicableOn,
+            taxRecoverability, taxMethod, worktags,
+            taxRate, trackingCategories, ledgerAccount,
+            customFields, rowVersion, updatedBy,
+            createdBy, createdAt, updatedAt);
     }
     
     @Override
@@ -1346,6 +1387,7 @@ public class InvoiceLineItem {
                 "memo", memo,
                 "prepaid", prepaid,
                 "item", item,
+                "taxable", taxable,
                 "taxApplicableOn", taxApplicableOn,
                 "taxRecoverability", taxRecoverability,
                 "taxMethod", taxMethod,
@@ -1407,6 +1449,8 @@ public class InvoiceLineItem {
         private JsonNullable<Boolean> prepaid = JsonNullable.undefined();
 
         private Optional<? extends LinkedInvoiceItem> item = Optional.empty();
+
+        private JsonNullable<Boolean> taxable = JsonNullable.undefined();
 
         private JsonNullable<String> taxApplicableOn = JsonNullable.undefined();
 
@@ -1840,6 +1884,27 @@ public class InvoiceLineItem {
 
 
         /**
+         * If true, this line item is subject to tax. Read-only, and only populated by connectors that record
+         * taxability on the line itself.
+         */
+        public Builder taxable(boolean taxable) {
+            Utils.checkNotNull(taxable, "taxable");
+            this.taxable = JsonNullable.of(taxable);
+            return this;
+        }
+
+        /**
+         * If true, this line item is subject to tax. Read-only, and only populated by connectors that record
+         * taxability on the line itself.
+         */
+        public Builder taxable(JsonNullable<Boolean> taxable) {
+            Utils.checkNotNull(taxable, "taxable");
+            this.taxable = taxable;
+            return this;
+        }
+
+
+        /**
          * Tax applicable on
          */
         public Builder taxApplicableOn(String taxApplicableOn) {
@@ -2079,11 +2144,11 @@ public class InvoiceLineItem {
                 discountAmount, serviceDate, categoryId,
                 locationId, departmentId, subsidiaryId,
                 shippingId, memo, prepaid,
-                item, taxApplicableOn, taxRecoverability,
-                taxMethod, worktags, taxRate,
-                trackingCategories, ledgerAccount, customFields,
-                rowVersion, updatedBy, createdBy,
-                createdAt, updatedAt);
+                item, taxable, taxApplicableOn,
+                taxRecoverability, taxMethod, worktags,
+                taxRate, trackingCategories, ledgerAccount,
+                customFields, rowVersion, updatedBy,
+                createdBy, createdAt, updatedAt);
         }
 
     }

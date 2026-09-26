@@ -15,6 +15,7 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -146,6 +147,25 @@ public class JournalEntryLineItemInput {
     @JsonProperty("worktags")
     private Optional<? extends List<LinkedWorktag>> worktags;
 
+    /**
+     * The financial date of this specific line, when it differs from the journal entry's own posted_at
+     * date - for example when booking a historical or backdated transaction. Not populated by every
+     * connector: some post the entry date at the header level only, in which case this line-level date is
+     * legitimately absent rather than wrong.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("date")
+    private JsonNullable<LocalDate> date;
+
+    /**
+     * A unique identifier for the source of this specific line, distinct from the journal entry's own
+     * source_id. Useful for reconciling an individual line back to an external system's own record when a
+     * single journal entry aggregates lines originating from more than one source.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("source_id")
+    private JsonNullable<String> sourceId;
+
     @JsonCreator
     public JournalEntryLineItemInput(
             @JsonProperty("description") JsonNullable<String> description,
@@ -165,7 +185,9 @@ public class JournalEntryLineItemInput {
             @JsonProperty("department_id") JsonNullable<String> departmentId,
             @JsonProperty("location_id") JsonNullable<String> locationId,
             @JsonProperty("line_number") JsonNullable<Long> lineNumber,
-            @JsonProperty("worktags") Optional<? extends List<LinkedWorktag>> worktags) {
+            @JsonProperty("worktags") Optional<? extends List<LinkedWorktag>> worktags,
+            @JsonProperty("date") JsonNullable<LocalDate> date,
+            @JsonProperty("source_id") JsonNullable<String> sourceId) {
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(taxAmount, "taxAmount");
         Utils.checkNotNull(subTotal, "subTotal");
@@ -184,6 +206,8 @@ public class JournalEntryLineItemInput {
         Utils.checkNotNull(locationId, "locationId");
         Utils.checkNotNull(lineNumber, "lineNumber");
         Utils.checkNotNull(worktags, "worktags");
+        Utils.checkNotNull(date, "date");
+        Utils.checkNotNull(sourceId, "sourceId");
         this.description = description;
         this.taxAmount = taxAmount;
         this.subTotal = subTotal;
@@ -202,6 +226,8 @@ public class JournalEntryLineItemInput {
         this.locationId = locationId;
         this.lineNumber = lineNumber;
         this.worktags = worktags;
+        this.date = date;
+        this.sourceId = sourceId;
     }
     
     public JournalEntryLineItemInput() {
@@ -210,7 +236,8 @@ public class JournalEntryLineItemInput {
             Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -362,6 +389,27 @@ public class JournalEntryLineItemInput {
     @JsonIgnore
     public Optional<List<LinkedWorktag>> worktags() {
         return (Optional<List<LinkedWorktag>>) worktags;
+    }
+
+    /**
+     * The financial date of this specific line, when it differs from the journal entry's own posted_at
+     * date - for example when booking a historical or backdated transaction. Not populated by every
+     * connector: some post the entry date at the header level only, in which case this line-level date is
+     * legitimately absent rather than wrong.
+     */
+    @JsonIgnore
+    public JsonNullable<LocalDate> date() {
+        return date;
+    }
+
+    /**
+     * A unique identifier for the source of this specific line, distinct from the journal entry's own
+     * source_id. Useful for reconciling an individual line back to an external system's own record when a
+     * single journal entry aggregates lines originating from more than one source.
+     */
+    @JsonIgnore
+    public JsonNullable<String> sourceId() {
+        return sourceId;
     }
 
     public static Builder builder() {
@@ -691,6 +739,52 @@ public class JournalEntryLineItemInput {
         return this;
     }
 
+    /**
+     * The financial date of this specific line, when it differs from the journal entry's own posted_at
+     * date - for example when booking a historical or backdated transaction. Not populated by every
+     * connector: some post the entry date at the header level only, in which case this line-level date is
+     * legitimately absent rather than wrong.
+     */
+    public JournalEntryLineItemInput withDate(LocalDate date) {
+        Utils.checkNotNull(date, "date");
+        this.date = JsonNullable.of(date);
+        return this;
+    }
+
+    /**
+     * The financial date of this specific line, when it differs from the journal entry's own posted_at
+     * date - for example when booking a historical or backdated transaction. Not populated by every
+     * connector: some post the entry date at the header level only, in which case this line-level date is
+     * legitimately absent rather than wrong.
+     */
+    public JournalEntryLineItemInput withDate(JsonNullable<LocalDate> date) {
+        Utils.checkNotNull(date, "date");
+        this.date = date;
+        return this;
+    }
+
+    /**
+     * A unique identifier for the source of this specific line, distinct from the journal entry's own
+     * source_id. Useful for reconciling an individual line back to an external system's own record when a
+     * single journal entry aggregates lines originating from more than one source.
+     */
+    public JournalEntryLineItemInput withSourceId(String sourceId) {
+        Utils.checkNotNull(sourceId, "sourceId");
+        this.sourceId = JsonNullable.of(sourceId);
+        return this;
+    }
+
+    /**
+     * A unique identifier for the source of this specific line, distinct from the journal entry's own
+     * source_id. Useful for reconciling an individual line back to an external system's own record when a
+     * single journal entry aggregates lines originating from more than one source.
+     */
+    public JournalEntryLineItemInput withSourceId(JsonNullable<String> sourceId) {
+        Utils.checkNotNull(sourceId, "sourceId");
+        this.sourceId = sourceId;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -718,7 +812,9 @@ public class JournalEntryLineItemInput {
             Utils.enhancedDeepEquals(this.departmentId, other.departmentId) &&
             Utils.enhancedDeepEquals(this.locationId, other.locationId) &&
             Utils.enhancedDeepEquals(this.lineNumber, other.lineNumber) &&
-            Utils.enhancedDeepEquals(this.worktags, other.worktags);
+            Utils.enhancedDeepEquals(this.worktags, other.worktags) &&
+            Utils.enhancedDeepEquals(this.date, other.date) &&
+            Utils.enhancedDeepEquals(this.sourceId, other.sourceId);
     }
     
     @Override
@@ -729,7 +825,8 @@ public class JournalEntryLineItemInput {
             taxRate, taxType, trackingCategory,
             trackingCategories, ledgerAccount, customer,
             supplier, employee, departmentId,
-            locationId, lineNumber, worktags);
+            locationId, lineNumber, worktags,
+            date, sourceId);
     }
     
     @Override
@@ -752,7 +849,9 @@ public class JournalEntryLineItemInput {
                 "departmentId", departmentId,
                 "locationId", locationId,
                 "lineNumber", lineNumber,
-                "worktags", worktags);
+                "worktags", worktags,
+                "date", date,
+                "sourceId", sourceId);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -794,6 +893,10 @@ public class JournalEntryLineItemInput {
         private JsonNullable<Long> lineNumber = JsonNullable.undefined();
 
         private Optional<? extends List<LinkedWorktag>> worktags = Optional.empty();
+
+        private JsonNullable<LocalDate> date = JsonNullable.undefined();
+
+        private JsonNullable<String> sourceId = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -1135,6 +1238,54 @@ public class JournalEntryLineItemInput {
             return this;
         }
 
+
+        /**
+         * The financial date of this specific line, when it differs from the journal entry's own posted_at
+         * date - for example when booking a historical or backdated transaction. Not populated by every
+         * connector: some post the entry date at the header level only, in which case this line-level date is
+         * legitimately absent rather than wrong.
+         */
+        public Builder date(LocalDate date) {
+            Utils.checkNotNull(date, "date");
+            this.date = JsonNullable.of(date);
+            return this;
+        }
+
+        /**
+         * The financial date of this specific line, when it differs from the journal entry's own posted_at
+         * date - for example when booking a historical or backdated transaction. Not populated by every
+         * connector: some post the entry date at the header level only, in which case this line-level date is
+         * legitimately absent rather than wrong.
+         */
+        public Builder date(JsonNullable<LocalDate> date) {
+            Utils.checkNotNull(date, "date");
+            this.date = date;
+            return this;
+        }
+
+
+        /**
+         * A unique identifier for the source of this specific line, distinct from the journal entry's own
+         * source_id. Useful for reconciling an individual line back to an external system's own record when a
+         * single journal entry aggregates lines originating from more than one source.
+         */
+        public Builder sourceId(String sourceId) {
+            Utils.checkNotNull(sourceId, "sourceId");
+            this.sourceId = JsonNullable.of(sourceId);
+            return this;
+        }
+
+        /**
+         * A unique identifier for the source of this specific line, distinct from the journal entry's own
+         * source_id. Useful for reconciling an individual line back to an external system's own record when a
+         * single journal entry aggregates lines originating from more than one source.
+         */
+        public Builder sourceId(JsonNullable<String> sourceId) {
+            Utils.checkNotNull(sourceId, "sourceId");
+            this.sourceId = sourceId;
+            return this;
+        }
+
         public JournalEntryLineItemInput build() {
 
             return new JournalEntryLineItemInput(
@@ -1143,7 +1294,8 @@ public class JournalEntryLineItemInput {
                 taxRate, taxType, trackingCategory,
                 trackingCategories, ledgerAccount, customer,
                 supplier, employee, departmentId,
-                locationId, lineNumber, worktags);
+                locationId, lineNumber, worktags,
+                date, sourceId);
         }
 
     }

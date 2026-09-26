@@ -6,7 +6,7 @@ package com.apideck.unify.models.operations;
 import static com.apideck.unify.operations.Operations.RequestOperation;
 
 import com.apideck.unify.SDKConfiguration;
-import com.apideck.unify.models.components.UnifiedApiId;
+import com.apideck.unify.models.components.UnifiedApi;
 import com.apideck.unify.operations.ConnectorConnectorResourcesOne;
 import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
@@ -20,7 +20,7 @@ public class ConnectorConnectorResourcesOneRequestBuilder {
     private Optional<String> appId = Optional.empty();
     private String id;
     private String resourceId;
-    private Optional<? extends UnifiedApiId> unifiedApi = Optional.empty();
+    private Optional<? extends UnifiedApi> unifiedApi = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -53,13 +53,13 @@ public class ConnectorConnectorResourcesOneRequestBuilder {
         return this;
     }
                 
-    public ConnectorConnectorResourcesOneRequestBuilder unifiedApi(UnifiedApiId unifiedApi) {
+    public ConnectorConnectorResourcesOneRequestBuilder unifiedApi(UnifiedApi unifiedApi) {
         Utils.checkNotNull(unifiedApi, "unifiedApi");
         this.unifiedApi = Optional.of(unifiedApi);
         return this;
     }
 
-    public ConnectorConnectorResourcesOneRequestBuilder unifiedApi(Optional<? extends UnifiedApiId> unifiedApi) {
+    public ConnectorConnectorResourcesOneRequestBuilder unifiedApi(Optional<? extends UnifiedApi> unifiedApi) {
         Utils.checkNotNull(unifiedApi, "unifiedApi");
         this.unifiedApi = unifiedApi;
         return this;

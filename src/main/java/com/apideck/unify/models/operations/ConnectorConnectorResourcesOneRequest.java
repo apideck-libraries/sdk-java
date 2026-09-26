@@ -3,7 +3,7 @@
  */
 package com.apideck.unify.models.operations;
 
-import com.apideck.unify.models.components.UnifiedApiId;
+import com.apideck.unify.models.components.UnifiedApi;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -38,14 +38,14 @@ public class ConnectorConnectorResourcesOneRequest {
      * APIs
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=unified_api")
-    private Optional<? extends UnifiedApiId> unifiedApi;
+    private Optional<? extends UnifiedApi> unifiedApi;
 
     @JsonCreator
     public ConnectorConnectorResourcesOneRequest(
             Optional<String> appId,
             String id,
             String resourceId,
-            Optional<? extends UnifiedApiId> unifiedApi) {
+            Optional<? extends UnifiedApi> unifiedApi) {
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(resourceId, "resourceId");
@@ -93,8 +93,8 @@ public class ConnectorConnectorResourcesOneRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<UnifiedApiId> unifiedApi() {
-        return (Optional<UnifiedApiId>) unifiedApi;
+    public Optional<UnifiedApi> unifiedApi() {
+        return (Optional<UnifiedApi>) unifiedApi;
     }
 
     public static Builder builder() {
@@ -143,7 +143,7 @@ public class ConnectorConnectorResourcesOneRequest {
      * Specify unified API for the connector resource. This is useful when a resource appears in multiple
      * APIs
      */
-    public ConnectorConnectorResourcesOneRequest withUnifiedApi(UnifiedApiId unifiedApi) {
+    public ConnectorConnectorResourcesOneRequest withUnifiedApi(UnifiedApi unifiedApi) {
         Utils.checkNotNull(unifiedApi, "unifiedApi");
         this.unifiedApi = Optional.ofNullable(unifiedApi);
         return this;
@@ -154,7 +154,7 @@ public class ConnectorConnectorResourcesOneRequest {
      * Specify unified API for the connector resource. This is useful when a resource appears in multiple
      * APIs
      */
-    public ConnectorConnectorResourcesOneRequest withUnifiedApi(Optional<? extends UnifiedApiId> unifiedApi) {
+    public ConnectorConnectorResourcesOneRequest withUnifiedApi(Optional<? extends UnifiedApi> unifiedApi) {
         Utils.checkNotNull(unifiedApi, "unifiedApi");
         this.unifiedApi = unifiedApi;
         return this;
@@ -201,7 +201,7 @@ public class ConnectorConnectorResourcesOneRequest {
 
         private String resourceId;
 
-        private Optional<? extends UnifiedApiId> unifiedApi = Optional.empty();
+        private Optional<? extends UnifiedApi> unifiedApi = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -251,7 +251,7 @@ public class ConnectorConnectorResourcesOneRequest {
          * Specify unified API for the connector resource. This is useful when a resource appears in multiple
          * APIs
          */
-        public Builder unifiedApi(UnifiedApiId unifiedApi) {
+        public Builder unifiedApi(UnifiedApi unifiedApi) {
             Utils.checkNotNull(unifiedApi, "unifiedApi");
             this.unifiedApi = Optional.ofNullable(unifiedApi);
             return this;
@@ -261,7 +261,7 @@ public class ConnectorConnectorResourcesOneRequest {
          * Specify unified API for the connector resource. This is useful when a resource appears in multiple
          * APIs
          */
-        public Builder unifiedApi(Optional<? extends UnifiedApiId> unifiedApi) {
+        public Builder unifiedApi(Optional<? extends UnifiedApi> unifiedApi) {
             Utils.checkNotNull(unifiedApi, "unifiedApi");
             this.unifiedApi = unifiedApi;
             return this;

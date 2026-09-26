@@ -21,6 +21,12 @@ public class JournalEntriesFilter {
     private Optional<OffsetDateTime> updatedSince;
 
     /**
+     * Journal entry number to search for
+     */
+    @SpeakeasyMetadata("queryParam:name=number")
+    private Optional<String> number;
+
+    /**
      * Return journal entries posted on or after this date (posting date, inclusive). Connectors without
      * date-range support reject this filter with UnsupportedFiltersError.
      */
@@ -59,18 +65,21 @@ public class JournalEntriesFilter {
     @JsonCreator
     public JournalEntriesFilter(
             Optional<OffsetDateTime> updatedSince,
+            Optional<String> number,
             Optional<LocalDate> startDate,
             Optional<LocalDate> endDate,
             Optional<? extends JournalEntriesFilterStatus> status,
             Optional<? extends JournalEntriesFilterScope> scope,
             Optional<String> subsidiaryId) {
         Utils.checkNotNull(updatedSince, "updatedSince");
+        Utils.checkNotNull(number, "number");
         Utils.checkNotNull(startDate, "startDate");
         Utils.checkNotNull(endDate, "endDate");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(scope, "scope");
         Utils.checkNotNull(subsidiaryId, "subsidiaryId");
         this.updatedSince = updatedSince;
+        this.number = number;
         this.startDate = startDate;
         this.endDate = endDate;
         this.status = status;
@@ -80,12 +89,21 @@ public class JournalEntriesFilter {
     
     public JournalEntriesFilter() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     @JsonIgnore
     public Optional<OffsetDateTime> updatedSince() {
         return updatedSince;
+    }
+
+    /**
+     * Journal entry number to search for
+     */
+    @JsonIgnore
+    public Optional<String> number() {
+        return number;
     }
 
     /**
@@ -150,6 +168,25 @@ public class JournalEntriesFilter {
     public JournalEntriesFilter withUpdatedSince(Optional<OffsetDateTime> updatedSince) {
         Utils.checkNotNull(updatedSince, "updatedSince");
         this.updatedSince = updatedSince;
+        return this;
+    }
+
+    /**
+     * Journal entry number to search for
+     */
+    public JournalEntriesFilter withNumber(String number) {
+        Utils.checkNotNull(number, "number");
+        this.number = Optional.ofNullable(number);
+        return this;
+    }
+
+
+    /**
+     * Journal entry number to search for
+     */
+    public JournalEntriesFilter withNumber(Optional<String> number) {
+        Utils.checkNotNull(number, "number");
+        this.number = number;
         return this;
     }
 
@@ -269,6 +306,7 @@ public class JournalEntriesFilter {
         JournalEntriesFilter other = (JournalEntriesFilter) o;
         return 
             Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince) &&
+            Utils.enhancedDeepEquals(this.number, other.number) &&
             Utils.enhancedDeepEquals(this.startDate, other.startDate) &&
             Utils.enhancedDeepEquals(this.endDate, other.endDate) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
@@ -279,14 +317,16 @@ public class JournalEntriesFilter {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            updatedSince, startDate, endDate,
-            status, scope, subsidiaryId);
+            updatedSince, number, startDate,
+            endDate, status, scope,
+            subsidiaryId);
     }
     
     @Override
     public String toString() {
         return Utils.toString(JournalEntriesFilter.class,
                 "updatedSince", updatedSince,
+                "number", number,
                 "startDate", startDate,
                 "endDate", endDate,
                 "status", status,
@@ -298,6 +338,8 @@ public class JournalEntriesFilter {
     public final static class Builder {
 
         private Optional<OffsetDateTime> updatedSince = Optional.empty();
+
+        private Optional<String> number = Optional.empty();
 
         private Optional<LocalDate> startDate = Optional.empty();
 
@@ -323,6 +365,25 @@ public class JournalEntriesFilter {
         public Builder updatedSince(Optional<OffsetDateTime> updatedSince) {
             Utils.checkNotNull(updatedSince, "updatedSince");
             this.updatedSince = updatedSince;
+            return this;
+        }
+
+
+        /**
+         * Journal entry number to search for
+         */
+        public Builder number(String number) {
+            Utils.checkNotNull(number, "number");
+            this.number = Optional.ofNullable(number);
+            return this;
+        }
+
+        /**
+         * Journal entry number to search for
+         */
+        public Builder number(Optional<String> number) {
+            Utils.checkNotNull(number, "number");
+            this.number = number;
             return this;
         }
 
@@ -434,8 +495,9 @@ public class JournalEntriesFilter {
         public JournalEntriesFilter build() {
 
             return new JournalEntriesFilter(
-                updatedSince, startDate, endDate,
-                status, scope, subsidiaryId);
+                updatedSince, number, startDate,
+                endDate, status, scope,
+                subsidiaryId);
         }
 
     }

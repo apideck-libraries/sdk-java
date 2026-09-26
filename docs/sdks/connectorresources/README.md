@@ -17,7 +17,7 @@ Get Connector Resource
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.UnifiedApiId;
+import com.apideck.unify.models.components.UnifiedApi;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.ConnectorConnectorResourcesOneResponse;
 import java.lang.Exception;
@@ -34,7 +34,7 @@ public class Application {
         ConnectorConnectorResourcesOneResponse res = sdk.connector().connectorResources().get()
                 .id("<id>")
                 .resourceId("<id>")
-                .unifiedApi(UnifiedApiId.CRM)
+                .unifiedApi(UnifiedApi.CRM)
                 .call();
 
         if (res.getConnectorResourceResponse().isPresent()) {
@@ -51,7 +51,7 @@ public class Application {
 | `appId`                                                                                                 | *Optional\<String>*                                                                                     | :heavy_minus_sign:                                                                                      | The ID of your Unify application                                                                        | dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX                                                                 |
 | `id`                                                                                                    | *String*                                                                                                | :heavy_check_mark:                                                                                      | ID of the record you are acting upon.                                                                   |                                                                                                         |
 | `resourceId`                                                                                            | *String*                                                                                                | :heavy_check_mark:                                                                                      | ID of the resource you are acting upon.                                                                 |                                                                                                         |
-| `unifiedApi`                                                                                            | [Optional\<UnifiedApiId>](../../models/components/UnifiedApiId.md)                                      | :heavy_minus_sign:                                                                                      | Specify unified API for the connector resource. This is useful when a resource appears in multiple APIs | crm                                                                                                     |
+| `unifiedApi`                                                                                            | [Optional\<UnifiedApi>](../../models/components/UnifiedApi.md)                                          | :heavy_minus_sign:                                                                                      | Specify unified API for the connector resource. This is useful when a resource appears in multiple APIs | crm                                                                                                     |
 
 ### Response
 

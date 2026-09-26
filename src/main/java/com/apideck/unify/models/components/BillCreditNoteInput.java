@@ -82,8 +82,9 @@ public class BillCreditNoteInput {
     /**
      * Amount of transaction
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("total_amount")
-    private double totalAmount;
+    private Optional<Double> totalAmount;
 
     /**
      * Total tax amount applied to this bill credit note.
@@ -216,7 +217,7 @@ public class BillCreditNoteInput {
             @JsonProperty("currency_rate") JsonNullable<Double> currencyRate,
             @JsonProperty("tax_inclusive") JsonNullable<Boolean> taxInclusive,
             @JsonProperty("sub_total") JsonNullable<Double> subTotal,
-            @JsonProperty("total_amount") double totalAmount,
+            @JsonProperty("total_amount") Optional<Double> totalAmount,
             @JsonProperty("total_tax") JsonNullable<Double> totalTax,
             @JsonProperty("tax_code") JsonNullable<String> taxCode,
             @JsonProperty("balance") JsonNullable<Double> balance,
@@ -293,12 +294,11 @@ public class BillCreditNoteInput {
         this.passThrough = passThrough;
     }
     
-    public BillCreditNoteInput(
-            double totalAmount) {
+    public BillCreditNoteInput() {
         this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            totalAmount, JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
             Optional.empty(), JsonNullable.undefined(), Optional.empty(),
@@ -380,7 +380,7 @@ public class BillCreditNoteInput {
      * Amount of transaction
      */
     @JsonIgnore
-    public double totalAmount() {
+    public Optional<Double> totalAmount() {
         return totalAmount;
     }
 
@@ -681,6 +681,16 @@ public class BillCreditNoteInput {
      * Amount of transaction
      */
     public BillCreditNoteInput withTotalAmount(double totalAmount) {
+        Utils.checkNotNull(totalAmount, "totalAmount");
+        this.totalAmount = Optional.ofNullable(totalAmount);
+        return this;
+    }
+
+
+    /**
+     * Amount of transaction
+     */
+    public BillCreditNoteInput withTotalAmount(Optional<Double> totalAmount) {
         Utils.checkNotNull(totalAmount, "totalAmount");
         this.totalAmount = totalAmount;
         return this;
@@ -1106,7 +1116,7 @@ public class BillCreditNoteInput {
 
         private JsonNullable<Double> subTotal = JsonNullable.undefined();
 
-        private Double totalAmount;
+        private Optional<Double> totalAmount = Optional.empty();
 
         private JsonNullable<Double> totalTax = JsonNullable.undefined();
 
@@ -1308,6 +1318,15 @@ public class BillCreditNoteInput {
          * Amount of transaction
          */
         public Builder totalAmount(double totalAmount) {
+            Utils.checkNotNull(totalAmount, "totalAmount");
+            this.totalAmount = Optional.ofNullable(totalAmount);
+            return this;
+        }
+
+        /**
+         * Amount of transaction
+         */
+        public Builder totalAmount(Optional<Double> totalAmount) {
             Utils.checkNotNull(totalAmount, "totalAmount");
             this.totalAmount = totalAmount;
             return this;

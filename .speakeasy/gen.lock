@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 38254260-287a-40b6-9ac5-c2fcb654c9cc
 management:
-  docChecksum: 29afb99a6174c2624d4dda46decc838d
-  docVersion: 10.58.2
-  speakeasyVersion: 1.798.0
-  generationVersion: 2.938.0
-  releaseVersion: 0.43.1
-  configChecksum: 24faf83ba369aa03161bbfbc07e7d33a
+  docChecksum: 61b3f54e4700bf484dd0556a99bb4d08
+  docVersion: 10.58.19
+  speakeasyVersion: 1.799.0
+  generationVersion: 2.941.0
+  releaseVersion: 0.43.2
+  configChecksum: bb2193d120e03696466d81adaed04093
   repoURL: https://github.com/apideck-libraries/sdk-java.git
   installationURL: https://github.com/apideck-libraries/sdk-java
   published: true
 persistentEdits:
-  generation_id: 0a4cb042-521d-4b27-909b-c7b656b1d9bc
-  pristine_commit_hash: 085acfbe85233909eb9df010cf819f02f30ed2e7
-  pristine_tree_hash: 8d4d067c39d18dd32c0572e3bc57e6ae1d38877a
+  generation_id: c5eeae7e-8413-4300-8b8a-6aab286f0189
+  pristine_commit_hash: d585dd564d48affa08ed64bf8d8b22a139d279e5
+  pristine_tree_hash: 4600911bd089b6779205b2590eee9c1a0f6e8fce
 features:
   java:
     acceptHeaders: 2.81.2
@@ -437,12 +437,12 @@ trackedFiles:
     pristine_git_object: d16dfbeb3bc35f85587c8b0280b221924824d2ee
   docs/models/components/BillCreditNote.md:
     id: 7227d4752f54
-    last_write_checksum: sha1:aa6d9ac00ab19a9985f5dd94be742e261457b841
-    pristine_git_object: 00d5f6622e5df2a43e569c2d2d6c26a517b5e6d7
+    last_write_checksum: sha1:b4d522c81fb0e464d4a53bd2d06e9bea6eb509bf
+    pristine_git_object: 80261fd7066566e028153fdaf17319df6da0736c
   docs/models/components/BillCreditNoteInput.md:
     id: 113c1463d724
-    last_write_checksum: sha1:fba429b5cbcbcc74746ee19a5ce10cd31ad2c7ee
-    pristine_git_object: c2b5088cda41feb6ed5e5273bde59d28afde9f26
+    last_write_checksum: sha1:595489582ca3de5916030d2c0544c17255290c64
+    pristine_git_object: 2f23bdac1d5c607938e9398ae914a7c349c3015b
   docs/models/components/BillCreditNoteLineItem.md:
     id: 6a9e271ed263
     last_write_checksum: sha1:63126aa04b3a3d1977cac5c555df8f463c4cdee9
@@ -621,8 +621,8 @@ trackedFiles:
     pristine_git_object: 30fc316a7f7cfaa7037e51574b265506e2b54de8
   docs/models/components/Company1Input.md:
     id: 82ea413c80f1
-    last_write_checksum: sha1:866a6c8c684455620524472d2b5e37c716b40afc
-    pristine_git_object: 30d76b563711f21093139c8bc5857a668a16bedd
+    last_write_checksum: sha1:22e810814b8d23e1546598e779aa6beed297dc6c
+    pristine_git_object: 20c2f6f6d738486c3843d077b8142a02d8c5908e
   docs/models/components/CompanyInfo.md:
     id: e11ad1ab52a7
     last_write_checksum: sha1:9481b3f8539f21247a9a82986d0131465f754291
@@ -1637,8 +1637,8 @@ trackedFiles:
     pristine_git_object: a45ce266299462c67e6f1e08d54eda9080ac54d0
   docs/models/components/EcommerceStore.md:
     id: 431525ef604f
-    last_write_checksum: sha1:68bddcd1518c8546d1a10c85a64ae3a29eeff627
-    pristine_git_object: 06d8c336a629094c4bf8a4d806234d89f6af4028
+    last_write_checksum: sha1:3e643d62210723e88a653e1864b33bb7740abbb7
+    pristine_git_object: 97c23cc3db5ddde6c7055db98111f80d33c57fa0
   docs/models/components/Email.md:
     id: 6b9fca5ac0bb
     last_write_checksum: sha1:609a88c2a582878ccc559848f16682bac7eb594b
@@ -2769,8 +2769,8 @@ trackedFiles:
     pristine_git_object: cfb37940fb97475b461ee09ea6122827ece9e00c
   docs/models/components/JournalEntriesFilter.md:
     id: ac030bcb1a98
-    last_write_checksum: sha1:4b66fe5e9d5ee3582aff514bcc2bc6861fe457f5
-    pristine_git_object: fec4464d4301871dae48bf1703114318e291a761
+    last_write_checksum: sha1:024b7a3f06e0307673f604aec11aea92e7c7e6cb
+    pristine_git_object: 096b06d1dc884406736b5aa56251e41d7ff860f5
   docs/models/components/JournalEntriesFilterScope.md:
     id: 8dd12b420382
     last_write_checksum: sha1:ef2d53eaf416783e4c1d0969301a29749e1c8722
@@ -2797,12 +2797,12 @@ trackedFiles:
     pristine_git_object: b36ebad246061f832900f9f5f60bff32ee48c6fb
   docs/models/components/JournalEntryLineItem.md:
     id: 2855c0434aa1
-    last_write_checksum: sha1:9c4c432257b39a4a5c063d608cd6efd60cd720a1
-    pristine_git_object: c2d18a9cd57823b8f3afc257af965661b9d05077
+    last_write_checksum: sha1:d2b605908505d81f63c93315b9218c5cfc8d4890
+    pristine_git_object: f075d6ad0622543f801876b546095ede19420edb
   docs/models/components/JournalEntryLineItemInput.md:
     id: c62d552fbc8e
-    last_write_checksum: sha1:baf9f6c04680d34ef3f6fbb03a32b878a6ab079f
-    pristine_git_object: a7dd1226694d9813f6e7e70ffc957bc28086c3e3
+    last_write_checksum: sha1:cad17c596cd2a342aa616324e5de4ef19af6ecca
+    pristine_git_object: 61d84a92ea0e98e6c377c9469608f799510a39d6
   docs/models/components/JournalEntryLineItemType.md:
     id: 0481fdd010c0
     last_write_checksum: sha1:87757892f694740a006668c2dd130df88356e2df
@@ -3037,8 +3037,12 @@ trackedFiles:
     pristine_git_object: affe70754088527a93fdc7a6f9006e4a5c02f190
   docs/models/components/Log.md:
     id: e6ba9167a5b8
-    last_write_checksum: sha1:e94ba0f41862d6d5a5d9b50cec91b4156be9d11b
-    pristine_git_object: ca9c0d3bb9118d72faad975f70248549efe399b3
+    last_write_checksum: sha1:15b6fac04c823ea9e59af2e6ef0c2ced4743b35d
+    pristine_git_object: 7dc172737a2b178010a49ec58a3ff4b1c912a4e9
+  docs/models/components/LogUnifiedApi.md:
+    id: 493928e2a731
+    last_write_checksum: sha1:5f44f83d2325922dcdeab010bfd5db6c2af29302
+    pristine_git_object: 3b8209b983e21177b197b6d57a417a096473dca7
   docs/models/components/LogsFilter.md:
     id: 9e79328f5083
     last_write_checksum: sha1:eb59736c23746f294bc7325b89979b465dd6c9f1
@@ -3825,8 +3829,8 @@ trackedFiles:
     pristine_git_object: b0d72eb05d38ee0484bf9f254d7d88dfc8be6fb5
   docs/models/components/UnifiedApi.md:
     id: 0d7ac185eacc
-    last_write_checksum: sha1:faae9ac533735439dc75454ee83d8dedb0595281
-    pristine_git_object: 99d871a7d433bcf0e2b0109a882ee60a9ac76a5a
+    last_write_checksum: sha1:bac92633dafeed3ec02d0ff806dac84e613d585c
+    pristine_git_object: 5c50ddc94bf5496eb466b7594fe16114a8c586fd
   docs/models/components/UnifiedApiId.md:
     id: 4f6688e984d5
     last_write_checksum: sha1:2094856aef6cf7b1455b1dd3f2d2bfed6b7d3c3b
@@ -5785,8 +5789,8 @@ trackedFiles:
     pristine_git_object: be3052c055e59ee8d2277125ca3ac6f54919ec35
   docs/models/operations/ConnectorConnectorResourcesOneRequest.md:
     id: ace0d3ba438f
-    last_write_checksum: sha1:c7fc8d972f8723eb87e1a429624a49dd933841de
-    pristine_git_object: 23637f7a0f8dbd2a629530bb1bff29ac7c9af604
+    last_write_checksum: sha1:771dbc905b5dc0813459319cbfa0a5a818ad8624
+    pristine_git_object: d300084f80b721ba02599571bddaa5a8bfb93e4c
   docs/models/operations/ConnectorConnectorResourcesOneResponse.md:
     id: 069f581f4f05
     last_write_checksum: sha1:8bb8e4692b365a905ce28dc847ecadef594b3df3
@@ -7293,8 +7297,8 @@ trackedFiles:
     pristine_git_object: 3bade97d77cc6207266cfb4d7f7eeaf6bc09882d
   docs/sdks/billcreditnotes/README.md:
     id: 9f712b3a2216
-    last_write_checksum: sha1:7649297757dc90acbcb905d916d7b5670bd77980
-    pristine_git_object: 6d6a720cbe7c09a200870d0f1d09363e142a4253
+    last_write_checksum: sha1:1c4a3a8ae9801f2cc679b93a0ad204056a8409ac
+    pristine_git_object: 9a0bfbca4985798ca50ce8efaad9dda923c71049
   docs/sdks/billpayments/README.md:
     id: 9436cf9c44bd
     last_write_checksum: sha1:1a52b143675ca4c1ff9007537df05894fa42ed36
@@ -7361,8 +7365,8 @@ trackedFiles:
     pristine_git_object: 95f8923ab133f348ded600fd0e05daaabe0bf0a0
   docs/sdks/connectorresources/README.md:
     id: 790185f5a34f
-    last_write_checksum: sha1:c2b9f7f6442663cf8839748232ecff02f8ae2b1b
-    pristine_git_object: a833ff369494b6cd65c9a758d8df4a760e1359fa
+    last_write_checksum: sha1:551cc3a89cebf722a9f58c06e636f48ea6bdfde0
+    pristine_git_object: 7e9886a4a4cef40d0dfb4d70b1118faa94acd1b8
   docs/sdks/connectors/README.md:
     id: 7633a87d946d
     last_write_checksum: sha1:1286d7410b3483a903bc5ed8b983815296af138c
@@ -7621,8 +7625,8 @@ trackedFiles:
     pristine_git_object: c755c6aa377f358344e761e9cc3e7b67bc1fb479
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:5bb54aaaea80fd8a7226579023d5270d66312d12
-    pristine_git_object: e44195a86b631df88046316d7fc196978f2d52be
+    last_write_checksum: sha1:442c0fd04b7f5b68bd94b3f4f9ce177deaad7f03
+    pristine_git_object: 0debfc0f2c787325846c5187c05475652a54ccb2
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -7865,8 +7869,8 @@ trackedFiles:
     pristine_git_object: fd48802f0f67d5c94b5525c7fbb1eb103ac0b9e4
   src/main/java/com/apideck/unify/AsyncConnectorResources.java:
     id: c3ececc02fbd
-    last_write_checksum: sha1:92464dabc528fb23527addf8bb32e3b98c5df3ac
-    pristine_git_object: 6b619de3116abf3a330620a79b4c97d94a205960
+    last_write_checksum: sha1:f2ef9efa82e9ca93c52ab027f03b9089f4733c72
+    pristine_git_object: 7e29e21d05ae1f4319717a09a7e0c9eb57025837
   src/main/java/com/apideck/unify/AsyncConnectors.java:
     id: 51a0b6cd528f
     last_write_checksum: sha1:b929ac4047b77a0c3d8f6236c048865a62ab7197
@@ -8249,8 +8253,8 @@ trackedFiles:
     pristine_git_object: 4831e32580285e471748904b37e8e9ceea727295
   src/main/java/com/apideck/unify/ConnectorResources.java:
     id: 698592e26493
-    last_write_checksum: sha1:e606521c8c9f1d7cb4dee7b28f89633cd9f7c4b5
-    pristine_git_object: 30dbc106007cc6e04851853f5a83c26187846308
+    last_write_checksum: sha1:dd16de29da419c0412a7538bfdba42a28c63f363
+    pristine_git_object: 3718002cd6347c181929ba35ea513d0066278ba1
   src/main/java/com/apideck/unify/Connectors.java:
     id: 22f58f334d86
     last_write_checksum: sha1:2127e960331509a61afd75ee6c89d9fbffc7f085
@@ -8473,8 +8477,8 @@ trackedFiles:
     pristine_git_object: 7296db7ebcdcff7ee348d1f993fc4aa2a7e6c145
   src/main/java/com/apideck/unify/SDKConfiguration.java:
     id: a2b330a87142
-    last_write_checksum: sha1:a799f56e332ad2020b88488c9abc36d3c82e03c2
-    pristine_git_object: bfd7a412345ef340592ff748023d812f9bded8d3
+    last_write_checksum: sha1:6dac54c6bd7dd264ffa942016d71f2b08cb7ab5b
+    pristine_git_object: c7b0954f53bc4bb6f2f054555d705fa2579cd7c5
   src/main/java/com/apideck/unify/SalesReceipts.java:
     id: 581d0613d982
     last_write_checksum: sha1:ff6b58483cf85dafd1f56ccfeafafbe76664342b
@@ -8925,12 +8929,12 @@ trackedFiles:
     pristine_git_object: f71d4d47a76127f13b6ac10fb54ec73dfce86f64
   src/main/java/com/apideck/unify/models/components/BillCreditNote.java:
     id: 6e7aee0e38ca
-    last_write_checksum: sha1:790b7c9fee0829f496422558ceb44002e16d257e
-    pristine_git_object: e0f5936ca33ea4434c45afd95cba0b298826d9ed
+    last_write_checksum: sha1:c1fc44a6d790336755ff210b4960ebb153137cf4
+    pristine_git_object: 7f2457cc73ab4ad0a43771e0bdbf8013cc867baf
   src/main/java/com/apideck/unify/models/components/BillCreditNoteInput.java:
     id: b460b3cbfee0
-    last_write_checksum: sha1:d8ceb70cdce43d2d1462e9a20939f3b01c73e186
-    pristine_git_object: 2ef5f664fc75f389804a24a53bf3f0850c053fb7
+    last_write_checksum: sha1:2029cbc6b7b5e6f75d3fd35936e4167f7d383eb0
+    pristine_git_object: f9d0a1767fcb451e9ab5d35756aca45a544b42db
   src/main/java/com/apideck/unify/models/components/BillCreditNoteLineItem.java:
     id: 80abd960edcd
     last_write_checksum: sha1:252da084d01cdc81a051047e856e80334fc17096
@@ -9109,8 +9113,8 @@ trackedFiles:
     pristine_git_object: 67b38d4028b09136bf75da7a93704c9b489e2c7f
   src/main/java/com/apideck/unify/models/components/Company1Input.java:
     id: e3dcfb217978
-    last_write_checksum: sha1:5576a1d26ed015b0d3f6e1e10fc1b833d4457be3
-    pristine_git_object: 62a908b92ac04d51ed9aff0af2782e6af8c178aa
+    last_write_checksum: sha1:3da478fbe49f9ee262eeae0daf43351d1fda14e6
+    pristine_git_object: 9b31775865d8478fc380ff48622cb676cc96c0f8
   src/main/java/com/apideck/unify/models/components/CompanyInfo.java:
     id: e43a75accc84
     last_write_checksum: sha1:06a37f774faa9248e36ed30c80ed41324d93a255
@@ -10125,8 +10129,8 @@ trackedFiles:
     pristine_git_object: 38fa76e457cdd0ed019f831476d448787ae479c2
   src/main/java/com/apideck/unify/models/components/EcommerceStore.java:
     id: 302f7946c861
-    last_write_checksum: sha1:c0cd02794f8717f38d5f8a8336e6a7eedece8acb
-    pristine_git_object: 7e9e78c2c3508b6dac38ee35dea19c8227d0feca
+    last_write_checksum: sha1:647e2d383670077a9cf0153cc06ecbc18bf00499
+    pristine_git_object: 2c6225d47d45f180f537d04adea8829c108a6bbf
   src/main/java/com/apideck/unify/models/components/Email.java:
     id: 6bbb3eb201da
     last_write_checksum: sha1:ea84b6b70c1894788b45bf3a6765851a01a96bcb
@@ -11261,8 +11265,8 @@ trackedFiles:
     pristine_git_object: 7fcb52778ad4348421bc38eec115dd4af4cddd43
   src/main/java/com/apideck/unify/models/components/JournalEntriesFilter.java:
     id: 18bcd69fae53
-    last_write_checksum: sha1:3ee24c9f06c13943c419d7d88f0d0f179a755efd
-    pristine_git_object: 6bcde0ff10ddb9dc056d79a398aae5f8a625e4e3
+    last_write_checksum: sha1:ac466227ccdd4c6cd4eaa4db20c91c641641b238
+    pristine_git_object: a11e9b88d9cce0eda9ab80c6fbcfb635679ed703
   src/main/java/com/apideck/unify/models/components/JournalEntriesFilterScope.java:
     id: 1f94f667c421
     last_write_checksum: sha1:8aaaa34a10bdc144b45e4693646b7bfcdb4149db
@@ -11289,12 +11293,12 @@ trackedFiles:
     pristine_git_object: be906abfa07d9e31f5e65831dc2baff89139442b
   src/main/java/com/apideck/unify/models/components/JournalEntryLineItem.java:
     id: f3d61638694f
-    last_write_checksum: sha1:f78289106d5269dac942da3d10546456fb731456
-    pristine_git_object: d0ca1ddcaac14468e1fc2363e29c1e7af9675ea7
+    last_write_checksum: sha1:93a362a8815ef083bb57434b155e863ff271291b
+    pristine_git_object: 5f86a0926502becc275af6c8fcc126d16e0cc8f8
   src/main/java/com/apideck/unify/models/components/JournalEntryLineItemInput.java:
     id: f2d0bec350a6
-    last_write_checksum: sha1:d2a1f9ede20c9a718668182d1a53a0597cb075e8
-    pristine_git_object: eca1b8722ffed2cac298a842ca141dbe8e23986a
+    last_write_checksum: sha1:cc7f76b8bd50778ad73399eeff89cdb706501765
+    pristine_git_object: 79c91a8b890b6e14047173a2df28f5e79c255826
   src/main/java/com/apideck/unify/models/components/JournalEntryLineItemType.java:
     id: 36c302acbadb
     last_write_checksum: sha1:1580155e64f6c58b9582c5b9af8289117a79090f
@@ -11529,8 +11533,12 @@ trackedFiles:
     pristine_git_object: af95a7c68a65e719fb2b42f390faf588d1cde5ad
   src/main/java/com/apideck/unify/models/components/Log.java:
     id: cca713f1bd75
-    last_write_checksum: sha1:cf26a11d06b1285458f2e147f1d06551a69fe53e
-    pristine_git_object: 15763fed937a8b4645c8fc1b4f8ad478fb3b6309
+    last_write_checksum: sha1:b9d2220390b03b2a1b5d68e6141b7d8a02e6078a
+    pristine_git_object: 01843a891efc98869b01e1d44dab0bba14c8fdc8
+  src/main/java/com/apideck/unify/models/components/LogUnifiedApi.java:
+    id: ed36b98f9590
+    last_write_checksum: sha1:ac12f80fedccefdb4a49677d035375553a1d9380
+    pristine_git_object: 4eaddacb835015792b114c73e32e245a20cf50ac
   src/main/java/com/apideck/unify/models/components/LogsFilter.java:
     id: a28e246ac702
     last_write_checksum: sha1:5e1dccebe8f5a5f9294f7793ffc8c52c819e8459
@@ -12317,8 +12325,8 @@ trackedFiles:
     pristine_git_object: fbbed1c2243b3f3ae665b349b32290154f243a4b
   src/main/java/com/apideck/unify/models/components/UnifiedApi.java:
     id: 48e1831c653b
-    last_write_checksum: sha1:45625737175aa64038a45f53dd7ffe305ee65565
-    pristine_git_object: b2910ebe97c3f586ea692aee147e19d63c50397a
+    last_write_checksum: sha1:f94722c2ee83a8731505743746f5c660d2c0980d
+    pristine_git_object: 08455dc5f61dcd2efe9fc48fb7394fbc3f437e74
   src/main/java/com/apideck/unify/models/components/UnifiedApiId.java:
     id: d36d6dcedd40
     last_write_checksum: sha1:0e19a234b5556195e2f9ea39db25a66706b19d75
@@ -15045,12 +15053,12 @@ trackedFiles:
     pristine_git_object: 6e22955478b4a21521d28318adb45fbe1d3f8c62
   src/main/java/com/apideck/unify/models/operations/ConnectorConnectorResourcesOneRequest.java:
     id: 8a47566bfce7
-    last_write_checksum: sha1:0ea550642c3e3f5b1f0a77a6f0b9f04e02b1bba2
-    pristine_git_object: a8de4e1281e9566cdb5c02b643eeb41a7e4c0d58
+    last_write_checksum: sha1:4a4fc4ddba17b8c5289c35dea05e6b40cb6188c4
+    pristine_git_object: 0cd78dffc0fffb4e1878983fd76fc6dc8c42f5af
   src/main/java/com/apideck/unify/models/operations/ConnectorConnectorResourcesOneRequestBuilder.java:
     id: e08500465b51
-    last_write_checksum: sha1:5febc94d9abeafea1af43e06f968b69cb82c4318
-    pristine_git_object: 9e36f708a426112e2eb1352e4d0a6911ef097438
+    last_write_checksum: sha1:b7c4ec2fe324f36fe08065a6f66893afe1ee1cdc
+    pristine_git_object: 2f485949171e646d8eccd45a80243d2c539eec4b
   src/main/java/com/apideck/unify/models/operations/ConnectorConnectorResourcesOneResponse.java:
     id: 24e2f999e7ec
     last_write_checksum: sha1:960b294f18c2ec44abf87c4c1996265fc42638d3
@@ -18677,8 +18685,8 @@ trackedFiles:
     pristine_git_object: bc569d57b37df9fdc40289bec86c052b954d2f7c
   src/main/java/com/apideck/unify/models/operations/async/ConnectorConnectorResourcesOneRequestBuilder.java:
     id: 33cb6e6a5b21
-    last_write_checksum: sha1:3453bb24e96753ae363ea5e7c7f4eac57eb77c74
-    pristine_git_object: a9b586b0f5c8fc57817a3c461d9ef5ba95564635
+    last_write_checksum: sha1:5b5073830f5c9cf41fc33b1592a12072f38e6e77
+    pristine_git_object: cdaf2bb5074a1a164def8ca2ea465c23227d824a
   src/main/java/com/apideck/unify/models/operations/async/ConnectorConnectorResourcesOneResponse.java:
     id: d063cd2e574c
     last_write_checksum: sha1:f29ffd2b36d277f9374a0d2bf205f022657058bc
@@ -28240,7 +28248,7 @@ examples:
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
           x-apideck-service-id: "salesforce"
       requestBody:
-        application/json: {"name": "SpaceX", "owner_id": "12345", "image": "https://www.spacex.com/static/images/share.jpg", "description": "Space Exploration Technologies Corp. is an American aerospace manufacturer, space transportation services and communications company headquartered in Hawthorne, California.", "vat_number": "BE0689615164", "currency": "USD", "status": "Open", "fax": "+12129876543", "annual_revenue": "+$35m", "number_of_employees": "500-1000", "industry": "Apparel", "ownership": "Public", "sales_tax_number": "12456EN", "payee_number": "78932EN", "abn_or_tfn": "46 115 614 695", "abn_branch": "123", "acn": "XXX XXX XXX", "first_name": "Elon", "last_name": "Musk", "bank_accounts": [{"bank_name": "Monzo", "account_number": "123465", "account_name": "SPACEX LLC", "account_type": "credit_card", "iban": "CH2989144532982975332", "bic": "AUDSCHGGXXX", "routing_number": "012345678", "bsb_number": "062-001", "branch_identifier": "001", "bank_code": "BNH", "currency": "USD"}], "websites": [{"id": "12345", "url": "http://example.com", "type": "primary"}], "addresses": [{"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}], "social_links": [{"id": "12345", "url": "https://www.twitter.com/apideck", "type": "twitter"}], "phone_numbers": [{"id": "12345", "country_code": "1", "area_code": "323", "number": "111-111-1111", "extension": "105", "type": "primary"}], "emails": [{"id": "123", "email": "elon@musk.com", "type": "primary"}], "row_type": {"id": "12345", "name": "Customer Account"}, "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "tags": ["New"], "read_only": false, "salutation": "Mr", "birthday": "2000-08-12", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
+        application/json: {"name": "SpaceX", "owner_id": "12345", "image": "https://www.spacex.com/static/images/share.jpg", "description": "Space Exploration Technologies Corp. is an American aerospace manufacturer, space transportation services and communications company headquartered in Hawthorne, California.", "vat_number": "BE0689615164", "currency": "USD", "status": "Open", "fax": "+12129876543", "annual_revenue": "+$35m", "number_of_employees": "500-1000", "industry": "Apparel", "ownership": "Public", "sales_tax_number": "12456EN", "payee_number": "78932EN", "abn_or_tfn": "46 115 614 695", "abn_branch": "123", "acn": "XXX XXX XXX", "first_name": "Elon", "last_name": "Musk", "parent_id": "22345", "bank_accounts": [{"bank_name": "Monzo", "account_number": "123465", "account_name": "SPACEX LLC", "account_type": "credit_card", "iban": "CH2989144532982975332", "bic": "AUDSCHGGXXX", "routing_number": "012345678", "bsb_number": "062-001", "branch_identifier": "001", "bank_code": "BNH", "currency": "USD"}], "websites": [{"id": "12345", "url": "http://example.com", "type": "primary"}], "addresses": [{"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}], "social_links": [{"id": "12345", "url": "https://www.twitter.com/apideck", "type": "twitter"}], "phone_numbers": [{"id": "12345", "country_code": "1", "area_code": "323", "number": "111-111-1111", "extension": "105", "type": "primary"}], "emails": [{"id": "123", "email": "elon@musk.com", "type": "primary"}], "row_type": {"id": "12345", "name": "Customer Account"}, "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "tags": ["New"], "read_only": false, "salutation": "Mr", "birthday": "2000-08-12", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
       responses:
         "201":
           application/json: {"status_code": 200, "status": "OK", "service": "zoho-crm", "resource": "companies", "operation": "add", "data": {"id": "12345"}}
@@ -28348,7 +28356,7 @@ examples:
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
           x-apideck-service-id: "salesforce"
       requestBody:
-        application/json: {"name": "SpaceX", "owner_id": "12345", "image": "https://www.spacex.com/static/images/share.jpg", "description": "Space Exploration Technologies Corp. is an American aerospace manufacturer, space transportation services and communications company headquartered in Hawthorne, California.", "vat_number": "BE0689615164", "currency": "USD", "status": "Open", "fax": "+12129876543", "annual_revenue": "+$35m", "number_of_employees": "500-1000", "industry": "Apparel", "ownership": "Public", "sales_tax_number": "12456EN", "payee_number": "78932EN", "abn_or_tfn": "46 115 614 695", "abn_branch": "123", "acn": "XXX XXX XXX", "first_name": "Elon", "last_name": "Musk", "bank_accounts": [{"bank_name": "Monzo", "account_number": "123465", "account_name": "SPACEX LLC", "account_type": "credit_card", "iban": "CH2989144532982975332", "bic": "AUDSCHGGXXX", "routing_number": "012345678", "bsb_number": "062-001", "branch_identifier": "001", "bank_code": "BNH", "currency": "USD"}], "websites": [{"id": "12345", "url": "http://example.com", "type": "primary"}], "addresses": [{"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}], "social_links": [{"id": "12345", "url": "https://www.twitter.com/apideck", "type": "twitter"}], "phone_numbers": [{"id": "12345", "country_code": "1", "area_code": "323", "number": "111-111-1111", "extension": "105", "type": "primary"}], "emails": [{"id": "123", "email": "elon@musk.com", "type": "primary"}], "row_type": {"id": "12345", "name": "Customer Account"}, "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": null}], "tags": ["New"], "read_only": false, "salutation": "Mr", "birthday": "2000-08-12", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
+        application/json: {"name": "SpaceX", "owner_id": "12345", "image": "https://www.spacex.com/static/images/share.jpg", "description": "Space Exploration Technologies Corp. is an American aerospace manufacturer, space transportation services and communications company headquartered in Hawthorne, California.", "vat_number": "BE0689615164", "currency": "USD", "status": "Open", "fax": "+12129876543", "annual_revenue": "+$35m", "number_of_employees": "500-1000", "industry": "Apparel", "ownership": "Public", "sales_tax_number": "12456EN", "payee_number": "78932EN", "abn_or_tfn": "46 115 614 695", "abn_branch": "123", "acn": "XXX XXX XXX", "first_name": "Elon", "last_name": "Musk", "parent_id": "22345", "bank_accounts": [{"bank_name": "Monzo", "account_number": "123465", "account_name": "SPACEX LLC", "account_type": "credit_card", "iban": "CH2989144532982975332", "bic": "AUDSCHGGXXX", "routing_number": "012345678", "bsb_number": "062-001", "branch_identifier": "001", "bank_code": "BNH", "currency": "USD"}], "websites": [{"id": "12345", "url": "http://example.com", "type": "primary"}], "addresses": [{"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}], "social_links": [{"id": "12345", "url": "https://www.twitter.com/apideck", "type": "twitter"}], "phone_numbers": [{"id": "12345", "country_code": "1", "area_code": "323", "number": "111-111-1111", "extension": "105", "type": "primary"}], "emails": [{"id": "123", "email": "elon@musk.com", "type": "primary"}], "row_type": {"id": "12345", "name": "Customer Account"}, "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": null}], "tags": ["New"], "read_only": false, "salutation": "Mr", "birthday": "2000-08-12", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
       responses:
         "200":
           application/json: {"status_code": 200, "status": "OK", "service": "zoho-crm", "resource": "companies", "operation": "update", "data": {"id": "12345"}}
@@ -30637,7 +30645,7 @@ examples:
           x-apideck-service-id: "salesforce"
       responses:
         "200":
-          application/json: {"status_code": 200, "status": "OK", "service": "shopify", "resource": "stores", "operation": "one", "data": {"id": "12345", "name": "My Store", "store_url": "https://mybrand.com/shop", "admin_url": "https://mybrand.com/admin", "created_at": "2020-09-30T07:43:32.000Z", "updated_at": "2020-09-30T07:43:32.000Z"}, "meta": {"items_on_page": 50, "cursors": {"previous": "em9oby1jcm06OnBhZ2U6OjE=", "current": "em9oby1jcm06OnBhZ2U6OjI=", "next": "em9oby1jcm06OnBhZ2U6OjM="}, "total_count": 1, "warnings": [{"type": "downstream_request_failed", "status_code": 429, "operation": "getManager"}]}}
+          application/json: {"status_code": 200, "status": "OK", "service": "shopify", "resource": "stores", "operation": "one", "data": {"id": "12345", "name": "My Store", "store_url": "https://mybrand.com/shop", "admin_url": "https://mybrand.com/admin", "addresses": [{"line1": "123 Main Street", "line2": "Apt 1", "company_name": "Acme Inc.", "city": "New York", "state": "NY", "postal_code": "10001", "country": "US"}], "created_at": "2020-09-30T07:43:32.000Z", "updated_at": "2020-09-30T07:43:32.000Z"}, "meta": {"items_on_page": 50, "cursors": {"previous": "em9oby1jcm06OnBhZ2U6OjE=", "current": "em9oby1jcm06OnBhZ2U6OjI=", "next": "em9oby1jcm06OnBhZ2U6OjM="}, "total_count": 1, "warnings": [{"type": "downstream_request_failed", "status_code": 429, "operation": "getManager"}]}}
         "400":
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror", "downstream_errors": [{"message": "Account code '100' has been archived or deleted", "detail": "Each line item must reference a valid account", "code": "VALIDATION_ERROR"}]}
         "401":
@@ -38975,6 +38983,7 @@ examples:
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: "## Java SDK Changes:\n* `apideck.accounting.billCreditNotes.list()`:  `response.data[]` **Changed**\n* `apideck.accounting.billCreditNotes.create()`: \n  *  `request.billCreditNote.totalAmount` **Changed**\n* `apideck.accounting.billCreditNotes.get()`:  `response.data` **Changed**\n* `apideck.accounting.billCreditNotes.update()`: \n  *  `request.billCreditNote.totalAmount` **Changed**\n* `apideck.accounting.journalEntries.list()`: \n  *  `request.filter` **Changed**\n  *  `response.data[].lineItems[]` **Changed**\n* `apideck.accounting.journalEntries.create()`: \n  *  `request.journalEntry.lineItems[]` **Changed**\n* `apideck.accounting.journalEntries.get()`:  `response.data.lineItems[]` **Changed**\n* `apideck.accounting.journalEntries.update()`: \n  *  `request.journalEntry.lineItems[]` **Changed**\n* `apideck.crm.companies.create()`: \n  *  `request.company1.parentId` **Added**\n* `apideck.crm.companies.update()`: \n  *  `request.company1.parentId` **Added**\n* `apideck.ecommerce.stores.get()`:  `response.data.addresses` **Added**\n"
 generatedFiles:
   - .gitattributes
   - USAGE.md

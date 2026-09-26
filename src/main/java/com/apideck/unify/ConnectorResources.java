@@ -5,7 +5,7 @@ package com.apideck.unify;
 
 import static com.apideck.unify.operations.Operations.RequestOperation;
 
-import com.apideck.unify.models.components.UnifiedApiId;
+import com.apideck.unify.models.components.UnifiedApi;
 import com.apideck.unify.models.operations.ConnectorConnectorResourcesOneRequest;
 import com.apideck.unify.models.operations.ConnectorConnectorResourcesOneRequestBuilder;
 import com.apideck.unify.models.operations.ConnectorConnectorResourcesOneResponse;
@@ -76,7 +76,7 @@ public class ConnectorResources {
      */
     public ConnectorConnectorResourcesOneResponse get(
             Optional<String> appId, String id,
-            String resourceId, Optional<? extends UnifiedApiId> unifiedApi,
+            String resourceId, Optional<? extends UnifiedApi> unifiedApi,
             Optional<Options> options) {
         ConnectorConnectorResourcesOneRequest request =
             ConnectorConnectorResourcesOneRequest

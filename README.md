@@ -51,7 +51,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.apideck:unify:0.43.1'
+implementation 'com.apideck:unify:0.44.0'
 ```
 
 Maven:
@@ -59,7 +59,7 @@ Maven:
 <dependency>
     <groupId>com.apideck</groupId>
     <artifactId>unify</artifactId>
-    <version>0.43.1</version>
+    <version>0.44.0</version>
 </dependency>
 ```
 
@@ -252,6 +252,7 @@ For full model-specific examples (including Java 11/16/21 variants), see each un
 * [get](docs/sdks/billcreditnotes/README.md#get) - Get Bill Credit Note
 * [update](docs/sdks/billcreditnotes/README.md#update) - Update Bill Credit Note
 * [delete](docs/sdks/billcreditnotes/README.md#delete) - Delete Bill Credit Note
+* [createBatch](docs/sdks/billcreditnotes/README.md#createbatch) - Create Bill Credit Notes in batch
 
 ### [Accounting.BillPayments](docs/sdks/billpayments/README.md)
 
@@ -260,6 +261,7 @@ For full model-specific examples (including Java 11/16/21 variants), see each un
 * [get](docs/sdks/billpayments/README.md#get) - Get Bill Payment
 * [update](docs/sdks/billpayments/README.md#update) - Update Bill Payment
 * [delete](docs/sdks/billpayments/README.md#delete) - Delete Bill Payment
+* [createBatch](docs/sdks/billpayments/README.md#createbatch) - Create Bill Payments in batch
 
 ### [Accounting.Bills](docs/sdks/bills/README.md)
 
@@ -268,6 +270,7 @@ For full model-specific examples (including Java 11/16/21 variants), see each un
 * [get](docs/sdks/bills/README.md#get) - Get Bill
 * [update](docs/sdks/bills/README.md#update) - Update Bill
 * [delete](docs/sdks/bills/README.md#delete) - Delete Bill
+* [createBatch](docs/sdks/bills/README.md#createbatch) - Create Bills in batch
 
 ### [Accounting.Categories](docs/sdks/categories/README.md)
 
@@ -289,6 +292,7 @@ For full model-specific examples (including Java 11/16/21 variants), see each un
 * [get](docs/sdks/creditnotes/README.md#get) - Get Credit Note
 * [update](docs/sdks/creditnotes/README.md#update) - Update Credit Note
 * [delete](docs/sdks/creditnotes/README.md#delete) - Delete Credit Note
+* [createBatch](docs/sdks/creditnotes/README.md#createbatch) - Create Credit Notes in batch
 
 ### [Accounting.Customers](docs/sdks/customers/README.md)
 
@@ -297,6 +301,7 @@ For full model-specific examples (including Java 11/16/21 variants), see each un
 * [get](docs/sdks/customers/README.md#get) - Get Customer
 * [update](docs/sdks/customers/README.md#update) - Update Customer
 * [delete](docs/sdks/customers/README.md#delete) - Delete Customer
+* [createBatch](docs/sdks/customers/README.md#createbatch) - Create Customers in batch
 
 ### [Accounting.Departments](docs/sdks/departments/README.md)
 
@@ -363,6 +368,7 @@ For full model-specific examples (including Java 11/16/21 variants), see each un
 * [get](docs/sdks/invoices/README.md#get) - Get Invoice
 * [update](docs/sdks/invoices/README.md#update) - Update Invoice
 * [delete](docs/sdks/invoices/README.md#delete) - Delete Invoice
+* [createBatch](docs/sdks/invoices/README.md#createbatch) - Create Invoices in batch
 
 ### [Accounting.JournalEntries](docs/sdks/journalentries/README.md)
 
@@ -371,6 +377,7 @@ For full model-specific examples (including Java 11/16/21 variants), see each un
 * [get](docs/sdks/journalentries/README.md#get) - Get Journal Entry
 * [update](docs/sdks/journalentries/README.md#update) - Update Journal Entry
 * [delete](docs/sdks/journalentries/README.md#delete) - Delete Journal Entry
+* [createBatch](docs/sdks/journalentries/README.md#createbatch) - Create Journal Entries in batch
 
 ### [Accounting.Journals](docs/sdks/journals/README.md)
 
@@ -387,6 +394,7 @@ For full model-specific examples (including Java 11/16/21 variants), see each un
 * [get](docs/sdks/ledgeraccounts/README.md#get) - Get Ledger Account
 * [update](docs/sdks/ledgeraccounts/README.md#update) - Update Ledger Account
 * [delete](docs/sdks/ledgeraccounts/README.md#delete) - Delete Ledger Account
+* [createBatch](docs/sdks/ledgeraccounts/README.md#createbatch) - Create Ledger Accounts in batch
 
 ### [Accounting.Locations](docs/sdks/locations/README.md)
 
@@ -411,6 +419,7 @@ For full model-specific examples (including Java 11/16/21 variants), see each un
 * [get](docs/sdks/payments/README.md#get) - Get Payment
 * [update](docs/sdks/payments/README.md#update) - Update Payment
 * [delete](docs/sdks/payments/README.md#delete) - Delete Payment
+* [createBatch](docs/sdks/payments/README.md#createbatch) - Create Payments in batch
 
 ### [Accounting.ProfitAndLoss](docs/sdks/profitandloss/README.md)
 
@@ -471,6 +480,7 @@ For full model-specific examples (including Java 11/16/21 variants), see each un
 * [get](docs/sdks/suppliers/README.md#get) - Get Supplier
 * [update](docs/sdks/suppliers/README.md#update) - Update Supplier
 * [delete](docs/sdks/suppliers/README.md#delete) - Delete Supplier
+* [createBatch](docs/sdks/suppliers/README.md#createbatch) - Create Suppliers in batch
 
 ### [Accounting.TaxRates](docs/sdks/taxrates/README.md)
 
@@ -487,6 +497,7 @@ For full model-specific examples (including Java 11/16/21 variants), see each un
 * [get](docs/sdks/trackingcategories/README.md#get) - Get Tracking Category
 * [update](docs/sdks/trackingcategories/README.md#update) - Update Tracking Category
 * [delete](docs/sdks/trackingcategories/README.md#delete) - Delete Tracking Category
+* [createBatch](docs/sdks/trackingcategories/README.md#createbatch) - Create Tracking Categories in batch
 
 ### [Ats.Applicants](docs/sdks/applicants/README.md)
 
@@ -1237,8 +1248,8 @@ public class Application {
 many more subclasses in the JDK platform).
 
 **Inherit from [`ApideckError`](./src/main/java/models/errors/ApideckError.java)**:
-* [`com.apideck.unify.models.errors.Unauthorized`](./src/main/java/models/errors/com.apideck.unify.models.errors.Unauthorized.java): Unauthorized. Status code `401`. Applicable to 6 of 362 methods.*
-* [`com.apideck.unify.models.errors.ConflictResponse`](./src/main/java/models/errors/com.apideck.unify.models.errors.ConflictResponse.java): Conflict — a connection already exists for the target connector. Status code `409`. Applicable to 1 of 362 methods.*
+* [`com.apideck.unify.models.errors.Unauthorized`](./src/main/java/models/errors/com.apideck.unify.models.errors.Unauthorized.java): Unauthorized. Status code `401`. Applicable to 6 of 373 methods.*
+* [`com.apideck.unify.models.errors.ConflictResponse`](./src/main/java/models/errors/com.apideck.unify.models.errors.ConflictResponse.java): Conflict — a connection already exists for the target connector. Status code `409`. Applicable to 1 of 373 methods.*
 
 
 </details>

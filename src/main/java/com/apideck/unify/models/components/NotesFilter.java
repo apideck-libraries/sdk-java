@@ -26,6 +26,24 @@ public class NotesFilter {
     @SpeakeasyMetadata("queryParam:name=owner_id")
     private Optional<String> ownerId;
 
+    /**
+     * Unique identifier of the contact to filter notes on
+     */
+    @SpeakeasyMetadata("queryParam:name=contact_id")
+    private Optional<String> contactId;
+
+    /**
+     * Unique identifier of the company to filter notes on
+     */
+    @SpeakeasyMetadata("queryParam:name=company_id")
+    private Optional<String> companyId;
+
+    /**
+     * Unique identifier of the opportunity to filter notes on
+     */
+    @SpeakeasyMetadata("queryParam:name=opportunity_id")
+    private Optional<String> opportunityId;
+
 
     @SpeakeasyMetadata("queryParam:name=updated_since")
     private Optional<OffsetDateTime> updatedSince;
@@ -38,20 +56,30 @@ public class NotesFilter {
     public NotesFilter(
             Optional<String> title,
             Optional<String> ownerId,
+            Optional<String> contactId,
+            Optional<String> companyId,
+            Optional<String> opportunityId,
             Optional<OffsetDateTime> updatedSince,
             Optional<OffsetDateTime> createdSince) {
         Utils.checkNotNull(title, "title");
         Utils.checkNotNull(ownerId, "ownerId");
+        Utils.checkNotNull(contactId, "contactId");
+        Utils.checkNotNull(companyId, "companyId");
+        Utils.checkNotNull(opportunityId, "opportunityId");
         Utils.checkNotNull(updatedSince, "updatedSince");
         Utils.checkNotNull(createdSince, "createdSince");
         this.title = title;
         this.ownerId = ownerId;
+        this.contactId = contactId;
+        this.companyId = companyId;
+        this.opportunityId = opportunityId;
         this.updatedSince = updatedSince;
         this.createdSince = createdSince;
     }
     
     public NotesFilter() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty());
     }
 
@@ -69,6 +97,30 @@ public class NotesFilter {
     @JsonIgnore
     public Optional<String> ownerId() {
         return ownerId;
+    }
+
+    /**
+     * Unique identifier of the contact to filter notes on
+     */
+    @JsonIgnore
+    public Optional<String> contactId() {
+        return contactId;
+    }
+
+    /**
+     * Unique identifier of the company to filter notes on
+     */
+    @JsonIgnore
+    public Optional<String> companyId() {
+        return companyId;
+    }
+
+    /**
+     * Unique identifier of the opportunity to filter notes on
+     */
+    @JsonIgnore
+    public Optional<String> opportunityId() {
+        return opportunityId;
     }
 
     @JsonIgnore
@@ -124,6 +176,63 @@ public class NotesFilter {
         return this;
     }
 
+    /**
+     * Unique identifier of the contact to filter notes on
+     */
+    public NotesFilter withContactId(String contactId) {
+        Utils.checkNotNull(contactId, "contactId");
+        this.contactId = Optional.ofNullable(contactId);
+        return this;
+    }
+
+
+    /**
+     * Unique identifier of the contact to filter notes on
+     */
+    public NotesFilter withContactId(Optional<String> contactId) {
+        Utils.checkNotNull(contactId, "contactId");
+        this.contactId = contactId;
+        return this;
+    }
+
+    /**
+     * Unique identifier of the company to filter notes on
+     */
+    public NotesFilter withCompanyId(String companyId) {
+        Utils.checkNotNull(companyId, "companyId");
+        this.companyId = Optional.ofNullable(companyId);
+        return this;
+    }
+
+
+    /**
+     * Unique identifier of the company to filter notes on
+     */
+    public NotesFilter withCompanyId(Optional<String> companyId) {
+        Utils.checkNotNull(companyId, "companyId");
+        this.companyId = companyId;
+        return this;
+    }
+
+    /**
+     * Unique identifier of the opportunity to filter notes on
+     */
+    public NotesFilter withOpportunityId(String opportunityId) {
+        Utils.checkNotNull(opportunityId, "opportunityId");
+        this.opportunityId = Optional.ofNullable(opportunityId);
+        return this;
+    }
+
+
+    /**
+     * Unique identifier of the opportunity to filter notes on
+     */
+    public NotesFilter withOpportunityId(Optional<String> opportunityId) {
+        Utils.checkNotNull(opportunityId, "opportunityId");
+        this.opportunityId = opportunityId;
+        return this;
+    }
+
     public NotesFilter withUpdatedSince(OffsetDateTime updatedSince) {
         Utils.checkNotNull(updatedSince, "updatedSince");
         this.updatedSince = Optional.ofNullable(updatedSince);
@@ -162,6 +271,9 @@ public class NotesFilter {
         return 
             Utils.enhancedDeepEquals(this.title, other.title) &&
             Utils.enhancedDeepEquals(this.ownerId, other.ownerId) &&
+            Utils.enhancedDeepEquals(this.contactId, other.contactId) &&
+            Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
+            Utils.enhancedDeepEquals(this.opportunityId, other.opportunityId) &&
             Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince) &&
             Utils.enhancedDeepEquals(this.createdSince, other.createdSince);
     }
@@ -169,7 +281,8 @@ public class NotesFilter {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            title, ownerId, updatedSince,
+            title, ownerId, contactId,
+            companyId, opportunityId, updatedSince,
             createdSince);
     }
     
@@ -178,6 +291,9 @@ public class NotesFilter {
         return Utils.toString(NotesFilter.class,
                 "title", title,
                 "ownerId", ownerId,
+                "contactId", contactId,
+                "companyId", companyId,
+                "opportunityId", opportunityId,
                 "updatedSince", updatedSince,
                 "createdSince", createdSince);
     }
@@ -188,6 +304,12 @@ public class NotesFilter {
         private Optional<String> title = Optional.empty();
 
         private Optional<String> ownerId = Optional.empty();
+
+        private Optional<String> contactId = Optional.empty();
+
+        private Optional<String> companyId = Optional.empty();
+
+        private Optional<String> opportunityId = Optional.empty();
 
         private Optional<OffsetDateTime> updatedSince = Optional.empty();
 
@@ -236,6 +358,63 @@ public class NotesFilter {
         }
 
 
+        /**
+         * Unique identifier of the contact to filter notes on
+         */
+        public Builder contactId(String contactId) {
+            Utils.checkNotNull(contactId, "contactId");
+            this.contactId = Optional.ofNullable(contactId);
+            return this;
+        }
+
+        /**
+         * Unique identifier of the contact to filter notes on
+         */
+        public Builder contactId(Optional<String> contactId) {
+            Utils.checkNotNull(contactId, "contactId");
+            this.contactId = contactId;
+            return this;
+        }
+
+
+        /**
+         * Unique identifier of the company to filter notes on
+         */
+        public Builder companyId(String companyId) {
+            Utils.checkNotNull(companyId, "companyId");
+            this.companyId = Optional.ofNullable(companyId);
+            return this;
+        }
+
+        /**
+         * Unique identifier of the company to filter notes on
+         */
+        public Builder companyId(Optional<String> companyId) {
+            Utils.checkNotNull(companyId, "companyId");
+            this.companyId = companyId;
+            return this;
+        }
+
+
+        /**
+         * Unique identifier of the opportunity to filter notes on
+         */
+        public Builder opportunityId(String opportunityId) {
+            Utils.checkNotNull(opportunityId, "opportunityId");
+            this.opportunityId = Optional.ofNullable(opportunityId);
+            return this;
+        }
+
+        /**
+         * Unique identifier of the opportunity to filter notes on
+         */
+        public Builder opportunityId(Optional<String> opportunityId) {
+            Utils.checkNotNull(opportunityId, "opportunityId");
+            this.opportunityId = opportunityId;
+            return this;
+        }
+
+
         public Builder updatedSince(OffsetDateTime updatedSince) {
             Utils.checkNotNull(updatedSince, "updatedSince");
             this.updatedSince = Optional.ofNullable(updatedSince);
@@ -264,7 +443,8 @@ public class NotesFilter {
         public NotesFilter build() {
 
             return new NotesFilter(
-                title, ownerId, updatedSince,
+                title, ownerId, contactId,
+                companyId, opportunityId, updatedSince,
                 createdSince);
         }
 

@@ -21,6 +21,7 @@ List Bank Feed Statements
 package hello.world;
 
 import com.apideck.unify.Apideck;
+import com.apideck.unify.models.components.BankFeedStatementsFilter;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingBankFeedStatementsAllRequest;
 import com.apideck.unify.models.operations.AccountingBankFeedStatementsAllResponse;
@@ -40,6 +41,9 @@ public class Application {
         AccountingBankFeedStatementsAllRequest req = AccountingBankFeedStatementsAllRequest.builder()
                 .serviceId("salesforce")
                 .companyId("12345")
+                .filter(BankFeedStatementsFilter.builder()
+                    .bankFeedAccountId("12345")
+                    .build())
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
                 .fields("id,updated_at")

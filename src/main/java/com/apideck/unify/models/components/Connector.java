@@ -207,6 +207,15 @@ public class Connector {
     private Optional<? extends WebhookSupport> webhookSupport;
 
     /**
+     * How this connector satisfies a batch write, per resource. Read this before calling a batch endpoint:
+     * support, execution mode and the per-request limit all vary by resource on the same connector, and
+     * the mode determines both latency and how many requests the call counts against your plan.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("batch_support")
+    private Optional<? extends BatchSupport> batchSupport;
+
+    /**
      * When a connector has schema_support, a call can be made to retrieve a json schema that describes a
      * downstream resource.
      */
@@ -261,6 +270,7 @@ public class Connector {
             @JsonProperty("configurable_resources") Optional<? extends List<String>> configurableResources,
             @JsonProperty("supported_events") Optional<? extends List<ConnectorEvent>> supportedEvents,
             @JsonProperty("webhook_support") Optional<? extends WebhookSupport> webhookSupport,
+            @JsonProperty("batch_support") Optional<? extends BatchSupport> batchSupport,
             @JsonProperty("schema_support") Optional<? extends SchemaSupport> schemaSupport,
             @JsonProperty("docs") Optional<? extends List<ConnectorDoc>> docs,
             @JsonProperty("overview") Optional<? extends ConnectorOverview> overview,
@@ -291,6 +301,7 @@ public class Connector {
         Utils.checkNotNull(configurableResources, "configurableResources");
         Utils.checkNotNull(supportedEvents, "supportedEvents");
         Utils.checkNotNull(webhookSupport, "webhookSupport");
+        Utils.checkNotNull(batchSupport, "batchSupport");
         Utils.checkNotNull(schemaSupport, "schemaSupport");
         Utils.checkNotNull(docs, "docs");
         Utils.checkNotNull(overview, "overview");
@@ -321,6 +332,7 @@ public class Connector {
         this.configurableResources = configurableResources;
         this.supportedEvents = supportedEvents;
         this.webhookSupport = webhookSupport;
+        this.batchSupport = batchSupport;
         this.schemaSupport = schemaSupport;
         this.docs = docs;
         this.overview = overview;
@@ -337,7 +349,8 @@ public class Connector {
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -562,6 +575,17 @@ public class Connector {
     @JsonIgnore
     public Optional<WebhookSupport> webhookSupport() {
         return (Optional<WebhookSupport>) webhookSupport;
+    }
+
+    /**
+     * How this connector satisfies a batch write, per resource. Read this before calling a batch endpoint:
+     * support, execution mode and the per-request limit all vary by resource on the same connector, and
+     * the mode determines both latency and how many requests the call counts against your plan.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<BatchSupport> batchSupport() {
+        return (Optional<BatchSupport>) batchSupport;
     }
 
     /**
@@ -1104,6 +1128,29 @@ public class Connector {
     }
 
     /**
+     * How this connector satisfies a batch write, per resource. Read this before calling a batch endpoint:
+     * support, execution mode and the per-request limit all vary by resource on the same connector, and
+     * the mode determines both latency and how many requests the call counts against your plan.
+     */
+    public Connector withBatchSupport(BatchSupport batchSupport) {
+        Utils.checkNotNull(batchSupport, "batchSupport");
+        this.batchSupport = Optional.ofNullable(batchSupport);
+        return this;
+    }
+
+
+    /**
+     * How this connector satisfies a batch write, per resource. Read this before calling a batch endpoint:
+     * support, execution mode and the per-request limit all vary by resource on the same connector, and
+     * the mode determines both latency and how many requests the call counts against your plan.
+     */
+    public Connector withBatchSupport(Optional<? extends BatchSupport> batchSupport) {
+        Utils.checkNotNull(batchSupport, "batchSupport");
+        this.batchSupport = batchSupport;
+        return this;
+    }
+
+    /**
      * When a connector has schema_support, a call can be made to retrieve a json schema that describes a
      * downstream resource.
      */
@@ -1209,6 +1256,7 @@ public class Connector {
             Utils.enhancedDeepEquals(this.configurableResources, other.configurableResources) &&
             Utils.enhancedDeepEquals(this.supportedEvents, other.supportedEvents) &&
             Utils.enhancedDeepEquals(this.webhookSupport, other.webhookSupport) &&
+            Utils.enhancedDeepEquals(this.batchSupport, other.batchSupport) &&
             Utils.enhancedDeepEquals(this.schemaSupport, other.schemaSupport) &&
             Utils.enhancedDeepEquals(this.docs, other.docs) &&
             Utils.enhancedDeepEquals(this.overview, other.overview) &&
@@ -1226,8 +1274,9 @@ public class Connector {
             oauthCredentialsSource, oauthScopes, customScopes,
             hasSandboxCredentials, settings, serviceId,
             unifiedApis, supportedResources, configurableResources,
-            supportedEvents, webhookSupport, schemaSupport,
-            docs, overview, tlsSupport);
+            supportedEvents, webhookSupport, batchSupport,
+            schemaSupport, docs, overview,
+            tlsSupport);
     }
     
     @Override
@@ -1259,6 +1308,7 @@ public class Connector {
                 "configurableResources", configurableResources,
                 "supportedEvents", supportedEvents,
                 "webhookSupport", webhookSupport,
+                "batchSupport", batchSupport,
                 "schemaSupport", schemaSupport,
                 "docs", docs,
                 "overview", overview,
@@ -1319,6 +1369,8 @@ public class Connector {
         private Optional<? extends List<ConnectorEvent>> supportedEvents = Optional.empty();
 
         private Optional<? extends WebhookSupport> webhookSupport = Optional.empty();
+
+        private Optional<? extends BatchSupport> batchSupport = Optional.empty();
 
         private Optional<? extends SchemaSupport> schemaSupport = Optional.empty();
 
@@ -1836,6 +1888,29 @@ public class Connector {
 
 
         /**
+         * How this connector satisfies a batch write, per resource. Read this before calling a batch endpoint:
+         * support, execution mode and the per-request limit all vary by resource on the same connector, and
+         * the mode determines both latency and how many requests the call counts against your plan.
+         */
+        public Builder batchSupport(BatchSupport batchSupport) {
+            Utils.checkNotNull(batchSupport, "batchSupport");
+            this.batchSupport = Optional.ofNullable(batchSupport);
+            return this;
+        }
+
+        /**
+         * How this connector satisfies a batch write, per resource. Read this before calling a batch endpoint:
+         * support, execution mode and the per-request limit all vary by resource on the same connector, and
+         * the mode determines both latency and how many requests the call counts against your plan.
+         */
+        public Builder batchSupport(Optional<? extends BatchSupport> batchSupport) {
+            Utils.checkNotNull(batchSupport, "batchSupport");
+            this.batchSupport = batchSupport;
+            return this;
+        }
+
+
+        /**
          * When a connector has schema_support, a call can be made to retrieve a json schema that describes a
          * downstream resource.
          */
@@ -1915,8 +1990,9 @@ public class Connector {
                 oauthCredentialsSource, oauthScopes, customScopes,
                 hasSandboxCredentials, settings, serviceId,
                 unifiedApis, supportedResources, configurableResources,
-                supportedEvents, webhookSupport, schemaSupport,
-                docs, overview, tlsSupport);
+                supportedEvents, webhookSupport, batchSupport,
+                schemaSupport, docs, overview,
+                tlsSupport);
         }
 
     }

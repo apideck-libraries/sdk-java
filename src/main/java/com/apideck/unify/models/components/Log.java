@@ -146,7 +146,7 @@ public class Log {
      * Which Unified Api request was made to.
      */
     @JsonProperty("unified_api")
-    private UnifiedApi unifiedApi;
+    private LogUnifiedApi unifiedApi;
 
     @JsonCreator
     public Log(
@@ -170,7 +170,7 @@ public class Log {
             @JsonProperty("status_code") long statusCode,
             @JsonProperty("success") boolean success,
             @JsonProperty("timestamp") String timestamp,
-            @JsonProperty("unified_api") UnifiedApi unifiedApi) {
+            @JsonProperty("unified_api") LogUnifiedApi unifiedApi) {
         Utils.checkNotNull(apiStyle, "apiStyle");
         Utils.checkNotNull(baseUrl, "baseUrl");
         Utils.checkNotNull(childRequest, "childRequest");
@@ -233,7 +233,7 @@ public class Log {
             long statusCode,
             boolean success,
             String timestamp,
-            UnifiedApi unifiedApi) {
+            LogUnifiedApi unifiedApi) {
         this(apiStyle, baseUrl, childRequest,
             consumerId, duration, JsonNullable.undefined(),
             execution, hasChildren, httpMethod,
@@ -407,7 +407,7 @@ public class Log {
      * Which Unified Api request was made to.
      */
     @JsonIgnore
-    public UnifiedApi unifiedApi() {
+    public LogUnifiedApi unifiedApi() {
         return unifiedApi;
     }
 
@@ -627,7 +627,7 @@ public class Log {
     /**
      * Which Unified Api request was made to.
      */
-    public Log withUnifiedApi(UnifiedApi unifiedApi) {
+    public Log withUnifiedApi(LogUnifiedApi unifiedApi) {
         Utils.checkNotNull(unifiedApi, "unifiedApi");
         this.unifiedApi = unifiedApi;
         return this;
@@ -747,7 +747,7 @@ public class Log {
 
         private String timestamp;
 
-        private UnifiedApi unifiedApi;
+        private LogUnifiedApi unifiedApi;
 
         private Builder() {
           // force use of static builder() method
@@ -984,7 +984,7 @@ public class Log {
         /**
          * Which Unified Api request was made to.
          */
-        public Builder unifiedApi(UnifiedApi unifiedApi) {
+        public Builder unifiedApi(LogUnifiedApi unifiedApi) {
             Utils.checkNotNull(unifiedApi, "unifiedApi");
             this.unifiedApi = unifiedApi;
             return this;

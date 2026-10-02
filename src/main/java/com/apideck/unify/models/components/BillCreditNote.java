@@ -26,8 +26,9 @@ public class BillCreditNote {
     /**
      * Unique identifier representing the entity
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private String id;
+    private Optional<String> id;
 
     /**
      * Bill credit note number.
@@ -90,8 +91,9 @@ public class BillCreditNote {
     /**
      * Amount of transaction
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("total_amount")
-    private double totalAmount;
+    private Optional<Double> totalAmount;
 
     /**
      * Total tax amount applied to this bill credit note.
@@ -250,7 +252,7 @@ public class BillCreditNote {
 
     @JsonCreator
     public BillCreditNote(
-            @JsonProperty("id") String id,
+            @JsonProperty("id") Optional<String> id,
             @JsonProperty("number") JsonNullable<String> number,
             @JsonProperty("supplier") JsonNullable<? extends LinkedSupplier> supplier,
             @JsonProperty("subsidiary") JsonNullable<? extends LinkedSubsidiary> subsidiary,
@@ -260,7 +262,7 @@ public class BillCreditNote {
             @JsonProperty("currency_rate") JsonNullable<Double> currencyRate,
             @JsonProperty("tax_inclusive") JsonNullable<Boolean> taxInclusive,
             @JsonProperty("sub_total") JsonNullable<Double> subTotal,
-            @JsonProperty("total_amount") double totalAmount,
+            @JsonProperty("total_amount") Optional<Double> totalAmount,
             @JsonProperty("total_tax") JsonNullable<Double> totalTax,
             @JsonProperty("tax_code") JsonNullable<String> taxCode,
             @JsonProperty("balance") JsonNullable<Double> balance,
@@ -354,13 +356,11 @@ public class BillCreditNote {
         this.passThrough = passThrough;
     }
     
-    public BillCreditNote(
-            String id,
-            double totalAmount) {
-        this(id, JsonNullable.undefined(), JsonNullable.undefined(),
+    public BillCreditNote() {
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), totalAmount, JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             Optional.empty(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
@@ -375,7 +375,7 @@ public class BillCreditNote {
      * Unique identifier representing the entity
      */
     @JsonIgnore
-    public String id() {
+    public Optional<String> id() {
         return id;
     }
 
@@ -452,7 +452,7 @@ public class BillCreditNote {
      * Amount of transaction
      */
     @JsonIgnore
-    public double totalAmount() {
+    public Optional<Double> totalAmount() {
         return totalAmount;
     }
 
@@ -649,6 +649,16 @@ public class BillCreditNote {
      */
     public BillCreditNote withId(String id) {
         Utils.checkNotNull(id, "id");
+        this.id = Optional.ofNullable(id);
+        return this;
+    }
+
+
+    /**
+     * Unique identifier representing the entity
+     */
+    public BillCreditNote withId(Optional<String> id) {
+        Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
@@ -803,6 +813,16 @@ public class BillCreditNote {
      * Amount of transaction
      */
     public BillCreditNote withTotalAmount(double totalAmount) {
+        Utils.checkNotNull(totalAmount, "totalAmount");
+        this.totalAmount = Optional.ofNullable(totalAmount);
+        return this;
+    }
+
+
+    /**
+     * Amount of transaction
+     */
+    public BillCreditNote withTotalAmount(Optional<Double> totalAmount) {
         Utils.checkNotNull(totalAmount, "totalAmount");
         this.totalAmount = totalAmount;
         return this;
@@ -1314,7 +1334,7 @@ public class BillCreditNote {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String id;
+        private Optional<String> id = Optional.empty();
 
         private JsonNullable<String> number = JsonNullable.undefined();
 
@@ -1334,7 +1354,7 @@ public class BillCreditNote {
 
         private JsonNullable<Double> subTotal = JsonNullable.undefined();
 
-        private Double totalAmount;
+        private Optional<Double> totalAmount = Optional.empty();
 
         private JsonNullable<Double> totalTax = JsonNullable.undefined();
 
@@ -1391,6 +1411,15 @@ public class BillCreditNote {
          * Unique identifier representing the entity
          */
         public Builder id(String id) {
+            Utils.checkNotNull(id, "id");
+            this.id = Optional.ofNullable(id);
+            return this;
+        }
+
+        /**
+         * Unique identifier representing the entity
+         */
+        public Builder id(Optional<String> id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
@@ -1556,6 +1585,15 @@ public class BillCreditNote {
          * Amount of transaction
          */
         public Builder totalAmount(double totalAmount) {
+            Utils.checkNotNull(totalAmount, "totalAmount");
+            this.totalAmount = Optional.ofNullable(totalAmount);
+            return this;
+        }
+
+        /**
+         * Amount of transaction
+         */
+        public Builder totalAmount(Optional<Double> totalAmount) {
             Utils.checkNotNull(totalAmount, "totalAmount");
             this.totalAmount = totalAmount;
             return this;

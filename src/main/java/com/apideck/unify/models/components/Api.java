@@ -86,7 +86,7 @@ public class Api {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resources")
-    private Optional<? extends List<Resources>> resources;
+    private Optional<? extends List<ApiResources>> resources;
 
     /**
      * List of event types this API supports.
@@ -106,7 +106,7 @@ public class Api {
             @JsonProperty("api_reference_url") Optional<String> apiReferenceUrl,
             @JsonProperty("postman_collection_id") JsonNullable<String> postmanCollectionId,
             @JsonProperty("categories") Optional<? extends List<String>> categories,
-            @JsonProperty("resources") Optional<? extends List<Resources>> resources,
+            @JsonProperty("resources") Optional<? extends List<ApiResources>> resources,
             @JsonProperty("events") Optional<? extends List<String>> events) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(type, "type");
@@ -219,8 +219,8 @@ public class Api {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<List<Resources>> resources() {
-        return (Optional<List<Resources>>) resources;
+    public Optional<List<ApiResources>> resources() {
+        return (Optional<List<ApiResources>>) resources;
     }
 
     /**
@@ -409,7 +409,7 @@ public class Api {
     /**
      * List of resources supported in this API.
      */
-    public Api withResources(List<Resources> resources) {
+    public Api withResources(List<ApiResources> resources) {
         Utils.checkNotNull(resources, "resources");
         this.resources = Optional.ofNullable(resources);
         return this;
@@ -419,7 +419,7 @@ public class Api {
     /**
      * List of resources supported in this API.
      */
-    public Api withResources(Optional<? extends List<Resources>> resources) {
+    public Api withResources(Optional<? extends List<ApiResources>> resources) {
         Utils.checkNotNull(resources, "resources");
         this.resources = resources;
         return this;
@@ -513,7 +513,7 @@ public class Api {
 
         private Optional<? extends List<String>> categories = Optional.empty();
 
-        private Optional<? extends List<Resources>> resources = Optional.empty();
+        private Optional<? extends List<ApiResources>> resources = Optional.empty();
 
         private Optional<? extends List<String>> events = Optional.empty();
 
@@ -696,7 +696,7 @@ public class Api {
         /**
          * List of resources supported in this API.
          */
-        public Builder resources(List<Resources> resources) {
+        public Builder resources(List<ApiResources> resources) {
             Utils.checkNotNull(resources, "resources");
             this.resources = Optional.ofNullable(resources);
             return this;
@@ -705,7 +705,7 @@ public class Api {
         /**
          * List of resources supported in this API.
          */
-        public Builder resources(Optional<? extends List<Resources>> resources) {
+        public Builder resources(Optional<? extends List<ApiResources>> resources) {
             Utils.checkNotNull(resources, "resources");
             this.resources = resources;
             return this;

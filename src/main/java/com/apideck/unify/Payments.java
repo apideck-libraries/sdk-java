@@ -11,6 +11,9 @@ import com.apideck.unify.models.operations.AccountingPaymentsAddResponse;
 import com.apideck.unify.models.operations.AccountingPaymentsAllRequest;
 import com.apideck.unify.models.operations.AccountingPaymentsAllRequestBuilder;
 import com.apideck.unify.models.operations.AccountingPaymentsAllResponse;
+import com.apideck.unify.models.operations.AccountingPaymentsBatchAddRequest;
+import com.apideck.unify.models.operations.AccountingPaymentsBatchAddRequestBuilder;
+import com.apideck.unify.models.operations.AccountingPaymentsBatchAddResponse;
 import com.apideck.unify.models.operations.AccountingPaymentsDeleteRequest;
 import com.apideck.unify.models.operations.AccountingPaymentsDeleteRequestBuilder;
 import com.apideck.unify.models.operations.AccountingPaymentsDeleteResponse;
@@ -22,6 +25,7 @@ import com.apideck.unify.models.operations.AccountingPaymentsUpdateRequestBuilde
 import com.apideck.unify.models.operations.AccountingPaymentsUpdateResponse;
 import com.apideck.unify.operations.AccountingPaymentsAdd;
 import com.apideck.unify.operations.AccountingPaymentsAll;
+import com.apideck.unify.operations.AccountingPaymentsBatchAdd;
 import com.apideck.unify.operations.AccountingPaymentsDelete;
 import com.apideck.unify.operations.AccountingPaymentsOne;
 import com.apideck.unify.operations.AccountingPaymentsUpdate;
@@ -246,6 +250,52 @@ public class Payments {
     public AccountingPaymentsDeleteResponse delete(AccountingPaymentsDeleteRequest request, Optional<Options> options) {
         RequestOperation<AccountingPaymentsDeleteRequest, AccountingPaymentsDeleteResponse> operation
               = new AccountingPaymentsDelete.Sync(sdkConfiguration, options, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Create Payments in batch
+     * 
+     * <p>Create multiple payments in a single request. Each item is processed independently, so some may be
+     * created while others fail; the response returns `200` with one result per item, in the order the
+     * items were sent. The maximum number of items accepted per request depends on the connector.
+     * 
+     * @return The call builder
+     */
+    public AccountingPaymentsBatchAddRequestBuilder createBatch() {
+        return new AccountingPaymentsBatchAddRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Create Payments in batch
+     * 
+     * <p>Create multiple payments in a single request. Each item is processed independently, so some may be
+     * created while others fail; the response returns `200` with one result per item, in the order the
+     * items were sent. The maximum number of items accepted per request depends on the connector.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public AccountingPaymentsBatchAddResponse createBatch(AccountingPaymentsBatchAddRequest request) {
+        return createBatch(request, Optional.empty());
+    }
+
+    /**
+     * Create Payments in batch
+     * 
+     * <p>Create multiple payments in a single request. Each item is processed independently, so some may be
+     * created while others fail; the response returns `200` with one result per item, in the order the
+     * items were sent. The maximum number of items accepted per request depends on the connector.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public AccountingPaymentsBatchAddResponse createBatch(AccountingPaymentsBatchAddRequest request, Optional<Options> options) {
+        RequestOperation<AccountingPaymentsBatchAddRequest, AccountingPaymentsBatchAddResponse> operation
+              = new AccountingPaymentsBatchAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

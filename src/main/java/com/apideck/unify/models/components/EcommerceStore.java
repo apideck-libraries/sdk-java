@@ -14,7 +14,9 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -47,6 +49,14 @@ public class EcommerceStore {
     private JsonNullable<String> adminUrl;
 
     /**
+     * Seller-side addresses exposed by the platform for this store. Currently holds the store's default
+     * shipping origin when the platform designates one. Empty when none is available.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("addresses")
+    private Optional<? extends List<EcommerceAddress>> addresses;
+
+    /**
      * When custom mappings are configured on the resource, the result is included here.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -73,6 +83,7 @@ public class EcommerceStore {
             @JsonProperty("name") JsonNullable<String> name,
             @JsonProperty("store_url") JsonNullable<String> storeUrl,
             @JsonProperty("admin_url") JsonNullable<String> adminUrl,
+            @JsonProperty("addresses") Optional<? extends List<EcommerceAddress>> addresses,
             @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings,
             @JsonProperty("created_at") JsonNullable<OffsetDateTime> createdAt,
             @JsonProperty("updated_at") JsonNullable<OffsetDateTime> updatedAt) {
@@ -80,6 +91,7 @@ public class EcommerceStore {
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(storeUrl, "storeUrl");
         Utils.checkNotNull(adminUrl, "adminUrl");
+        Utils.checkNotNull(addresses, "addresses");
         Utils.checkNotNull(customMappings, "customMappings");
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(updatedAt, "updatedAt");
@@ -87,6 +99,7 @@ public class EcommerceStore {
         this.name = name;
         this.storeUrl = storeUrl;
         this.adminUrl = adminUrl;
+        this.addresses = addresses;
         this.customMappings = customMappings;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
@@ -95,8 +108,8 @@ public class EcommerceStore {
     public EcommerceStore(
             String id) {
         this(id, JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined());
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -129,6 +142,16 @@ public class EcommerceStore {
     @JsonIgnore
     public JsonNullable<String> adminUrl() {
         return adminUrl;
+    }
+
+    /**
+     * Seller-side addresses exposed by the platform for this store. Currently holds the store's default
+     * shipping origin when the platform designates one. Empty when none is available.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<EcommerceAddress>> addresses() {
+        return (Optional<List<EcommerceAddress>>) addresses;
     }
 
     /**
@@ -225,6 +248,27 @@ public class EcommerceStore {
     }
 
     /**
+     * Seller-side addresses exposed by the platform for this store. Currently holds the store's default
+     * shipping origin when the platform designates one. Empty when none is available.
+     */
+    public EcommerceStore withAddresses(List<EcommerceAddress> addresses) {
+        Utils.checkNotNull(addresses, "addresses");
+        this.addresses = Optional.ofNullable(addresses);
+        return this;
+    }
+
+
+    /**
+     * Seller-side addresses exposed by the platform for this store. Currently holds the store's default
+     * shipping origin when the platform designates one. Empty when none is available.
+     */
+    public EcommerceStore withAddresses(Optional<? extends List<EcommerceAddress>> addresses) {
+        Utils.checkNotNull(addresses, "addresses");
+        this.addresses = addresses;
+        return this;
+    }
+
+    /**
      * When custom mappings are configured on the resource, the result is included here.
      */
     public EcommerceStore withCustomMappings(Map<String, Object> customMappings) {
@@ -292,6 +336,7 @@ public class EcommerceStore {
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.storeUrl, other.storeUrl) &&
             Utils.enhancedDeepEquals(this.adminUrl, other.adminUrl) &&
+            Utils.enhancedDeepEquals(this.addresses, other.addresses) &&
             Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
             Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt);
@@ -301,8 +346,8 @@ public class EcommerceStore {
     public int hashCode() {
         return Utils.enhancedHash(
             id, name, storeUrl,
-            adminUrl, customMappings, createdAt,
-            updatedAt);
+            adminUrl, addresses, customMappings,
+            createdAt, updatedAt);
     }
     
     @Override
@@ -312,6 +357,7 @@ public class EcommerceStore {
                 "name", name,
                 "storeUrl", storeUrl,
                 "adminUrl", adminUrl,
+                "addresses", addresses,
                 "customMappings", customMappings,
                 "createdAt", createdAt,
                 "updatedAt", updatedAt);
@@ -327,6 +373,8 @@ public class EcommerceStore {
         private JsonNullable<String> storeUrl = JsonNullable.undefined();
 
         private JsonNullable<String> adminUrl = JsonNullable.undefined();
+
+        private Optional<? extends List<EcommerceAddress>> addresses = Optional.empty();
 
         private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
 
@@ -407,6 +455,27 @@ public class EcommerceStore {
 
 
         /**
+         * Seller-side addresses exposed by the platform for this store. Currently holds the store's default
+         * shipping origin when the platform designates one. Empty when none is available.
+         */
+        public Builder addresses(List<EcommerceAddress> addresses) {
+            Utils.checkNotNull(addresses, "addresses");
+            this.addresses = Optional.ofNullable(addresses);
+            return this;
+        }
+
+        /**
+         * Seller-side addresses exposed by the platform for this store. Currently holds the store's default
+         * shipping origin when the platform designates one. Empty when none is available.
+         */
+        public Builder addresses(Optional<? extends List<EcommerceAddress>> addresses) {
+            Utils.checkNotNull(addresses, "addresses");
+            this.addresses = addresses;
+            return this;
+        }
+
+
+        /**
          * When custom mappings are configured on the resource, the result is included here.
          */
         public Builder customMappings(Map<String, Object> customMappings) {
@@ -466,8 +535,8 @@ public class EcommerceStore {
 
             return new EcommerceStore(
                 id, name, storeUrl,
-                adminUrl, customMappings, createdAt,
-                updatedAt);
+                adminUrl, addresses, customMappings,
+                createdAt, updatedAt);
         }
 
     }

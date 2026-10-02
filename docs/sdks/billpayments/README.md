@@ -9,6 +9,7 @@
 * [get](#get) - Get Bill Payment
 * [update](#update) - Update Bill Payment
 * [delete](#delete) - Delete Bill Payment
+* [createBatch](#createbatch) - Create Bill Payments in batch
 
 ## list
 
@@ -558,6 +559,174 @@ public class Application {
 ### Response
 
 **[AccountingBillPaymentsDeleteResponse](../../models/operations/AccountingBillPaymentsDeleteResponse.md)**
+
+### Errors
+
+| Error Type                            | Status Code                           | Content Type                          |
+| ------------------------------------- | ------------------------------------- | ------------------------------------- |
+| models/errors/BadRequestResponse      | 400                                   | application/json                      |
+| models/errors/UnauthorizedResponse    | 401                                   | application/json                      |
+| models/errors/PaymentRequiredResponse | 402                                   | application/json                      |
+| models/errors/NotFoundResponse        | 404                                   | application/json                      |
+| models/errors/UnprocessableResponse   | 422                                   | application/json                      |
+| models/errors/APIException            | 4XX, 5XX                              | \*/\*                                 |
+
+## createBatch
+
+Create multiple bill payments in a single request. Each item is processed independently, so some may be created while others fail; the response returns `200` with one result per item, in the order the items were sent. The maximum number of items accepted per request depends on the connector.
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="accounting.billPaymentsBatchAdd" method="post" path="/accounting/bill-payments/batch" -->
+```java
+package hello.world;
+
+import com.apideck.unify.Apideck;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
+import com.apideck.unify.models.operations.AccountingBillPaymentsBatchAddRequest;
+import com.apideck.unify.models.operations.AccountingBillPaymentsBatchAddResponse;
+import java.lang.Exception;
+import java.time.OffsetDateTime;
+import java.util.List;
+import java.util.Map;
+
+public class Application {
+
+    public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
+
+        Apideck sdk = Apideck.builder()
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+            .build();
+
+        AccountingBillPaymentsBatchAddRequest req = AccountingBillPaymentsBatchAddRequest.builder()
+                .batchBillPaymentsRequest(BatchBillPaymentsRequest.builder()
+                    .items(List.of(
+                        BatchBillPaymentsRequestItems.builder()
+                            .data(BillPaymentCreateInput.builder()
+                                .totalAmount(49.99)
+                                .transactionDate(OffsetDateTime.parse("2021-05-01T12:00:00.000Z"))
+                                .currency(Currency.USD)
+                                .currencyRate(0.69)
+                                .reference("123456")
+                                .paymentMethod("cash")
+                                .paymentMethodReference("123456")
+                                .paymentMethodId("12345")
+                                .account(LinkedLedgerAccount.builder()
+                                    .id("123456")
+                                    .name("Bank account")
+                                    .nominalCode("N091")
+                                    .code("453")
+                                    .parentId("123456")
+                                    .displayId("123456")
+                                    .build())
+                                .supplier(LinkedSupplierInput.builder()
+                                    .id("12345")
+                                    .displayName("Windsurf Shop")
+                                    .address(Address.builder()
+                                        .id("123")
+                                        .type(Type.PRIMARY)
+                                        .string("25 Spring Street, Blackburn, VIC 3130")
+                                        .name("HQ US")
+                                        .line1("Main street")
+                                        .line2("apt #")
+                                        .line3("Suite #")
+                                        .line4("delivery instructions")
+                                        .line5("Attention: Finance Dept")
+                                        .streetNumber("25")
+                                        .city("San Francisco")
+                                        .state("CA")
+                                        .postalCode("94104")
+                                        .country("US")
+                                        .latitude("40.759211")
+                                        .longitude("-73.984638")
+                                        .county("Santa Clara")
+                                        .contactName("Elon Musk")
+                                        .salutation("Mr")
+                                        .phoneNumber("111-111-1111")
+                                        .fax("122-111-1111")
+                                        .email("elon@musk.com")
+                                        .website("https://elonmusk.com")
+                                        .notes("Address notes or delivery instructions.")
+                                        .rowVersion("1-12345")
+                                        .build())
+                                    .build())
+                                .companyId("12345")
+                                .subsidiary(LinkedSubsidiaryInput.builder()
+                                    .displayId("123456")
+                                    .name("Acme Inc.")
+                                    .build())
+                                .reconciled(true)
+                                .status(PaymentStatus.AUTHORISED)
+                                .type(BillPaymentCreateInputBillPaymentType.ACCOUNTS_PAYABLE)
+                                .allocations(List.of(
+                                    BillPaymentCreateInputAllocations.builder()
+                                        .id("12345")
+                                        .type(BillPaymentCreateInputAllocationType.BILL)
+                                        .amount(49.99)
+                                        .allocationId("123456")
+                                        .build()))
+                                .note("Some notes about this transaction")
+                                .number("123456")
+                                .trackingCategories(List.of(
+                                    LinkedTrackingCategory.builder()
+                                        .id("123456")
+                                        .code("100")
+                                        .name("New York")
+                                        .parentId("123456")
+                                        .parentName("New York")
+                                        .build()))
+                                .customFields(List.of(
+                                    CustomField.of(CustomField1.builder()
+                                        .id("2389328923893298")
+                                        .name("employee_level")
+                                        .refName("Marketing")
+                                        .description("Employee Level")
+                                        .value(CustomField1Value.of("Uses Salesforce and Marketo"))
+                                        .build())))
+                                .rowVersion("1-12345")
+                                .displayId("123456")
+                                .passThrough(List.of(
+                                    PassThroughBody.builder()
+                                        .serviceId("<id>")
+                                        .extendPaths(List.of(
+                                            ExtendPaths.builder()
+                                                .path("$.nested.property")
+                                                .value(Map.ofEntries(
+                                                    Map.entry("TaxClassificationRef", Map.ofEntries(
+                                                        Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                                .build()))
+                                        .build()))
+                                .build())
+                            .ref("item-1")
+                            .build()))
+                    .build())
+                .serviceId("salesforce")
+                .companyId("12345")
+                .build();
+
+        AccountingBillPaymentsBatchAddResponse res = sdk.accounting().billPayments().createBatch()
+                .request(req)
+                .call();
+
+        if (res.batchBillPaymentsResponse().isPresent()) {
+            System.out.println(res.batchBillPaymentsResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                 | Type                                                                                                      | Required                                                                                                  | Description                                                                                               |
+| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| `request`                                                                                                 | [AccountingBillPaymentsBatchAddRequest](../../models/operations/AccountingBillPaymentsBatchAddRequest.md) | :heavy_check_mark:                                                                                        | The request object to use for the request.                                                                |
+
+### Response
+
+**[AccountingBillPaymentsBatchAddResponse](../../models/operations/AccountingBillPaymentsBatchAddResponse.md)**
 
 ### Errors
 

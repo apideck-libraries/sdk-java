@@ -11,6 +11,9 @@ import com.apideck.unify.models.operations.AccountingJournalEntriesAddResponse;
 import com.apideck.unify.models.operations.AccountingJournalEntriesAllRequest;
 import com.apideck.unify.models.operations.AccountingJournalEntriesAllRequestBuilder;
 import com.apideck.unify.models.operations.AccountingJournalEntriesAllResponse;
+import com.apideck.unify.models.operations.AccountingJournalEntriesBatchAddRequest;
+import com.apideck.unify.models.operations.AccountingJournalEntriesBatchAddRequestBuilder;
+import com.apideck.unify.models.operations.AccountingJournalEntriesBatchAddResponse;
 import com.apideck.unify.models.operations.AccountingJournalEntriesDeleteRequest;
 import com.apideck.unify.models.operations.AccountingJournalEntriesDeleteRequestBuilder;
 import com.apideck.unify.models.operations.AccountingJournalEntriesDeleteResponse;
@@ -22,6 +25,7 @@ import com.apideck.unify.models.operations.AccountingJournalEntriesUpdateRequest
 import com.apideck.unify.models.operations.AccountingJournalEntriesUpdateResponse;
 import com.apideck.unify.operations.AccountingJournalEntriesAdd;
 import com.apideck.unify.operations.AccountingJournalEntriesAll;
+import com.apideck.unify.operations.AccountingJournalEntriesBatchAdd;
 import com.apideck.unify.operations.AccountingJournalEntriesDelete;
 import com.apideck.unify.operations.AccountingJournalEntriesOne;
 import com.apideck.unify.operations.AccountingJournalEntriesUpdate;
@@ -246,6 +250,52 @@ public class JournalEntries {
     public AccountingJournalEntriesDeleteResponse delete(AccountingJournalEntriesDeleteRequest request, Optional<Options> options) {
         RequestOperation<AccountingJournalEntriesDeleteRequest, AccountingJournalEntriesDeleteResponse> operation
               = new AccountingJournalEntriesDelete.Sync(sdkConfiguration, options, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Create Journal Entries in batch
+     * 
+     * <p>Create multiple journal entries in a single request. Each item is processed independently, so some
+     * may be created while others fail; the response returns `200` with one result per item, in the order
+     * the items were sent. The maximum number of items accepted per request depends on the connector.
+     * 
+     * @return The call builder
+     */
+    public AccountingJournalEntriesBatchAddRequestBuilder createBatch() {
+        return new AccountingJournalEntriesBatchAddRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Create Journal Entries in batch
+     * 
+     * <p>Create multiple journal entries in a single request. Each item is processed independently, so some
+     * may be created while others fail; the response returns `200` with one result per item, in the order
+     * the items were sent. The maximum number of items accepted per request depends on the connector.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public AccountingJournalEntriesBatchAddResponse createBatch(AccountingJournalEntriesBatchAddRequest request) {
+        return createBatch(request, Optional.empty());
+    }
+
+    /**
+     * Create Journal Entries in batch
+     * 
+     * <p>Create multiple journal entries in a single request. Each item is processed independently, so some
+     * may be created while others fail; the response returns `200` with one result per item, in the order
+     * the items were sent. The maximum number of items accepted per request depends on the connector.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public AccountingJournalEntriesBatchAddResponse createBatch(AccountingJournalEntriesBatchAddRequest request, Optional<Options> options) {
+        RequestOperation<AccountingJournalEntriesBatchAddRequest, AccountingJournalEntriesBatchAddResponse> operation
+              = new AccountingJournalEntriesBatchAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

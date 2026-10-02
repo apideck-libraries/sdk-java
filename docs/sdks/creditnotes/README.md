@@ -9,6 +9,7 @@
 * [get](#get) - Get Credit Note
 * [update](#update) - Update Credit Note
 * [delete](#delete) - Delete Credit Note
+* [createBatch](#createbatch) - Create Credit Notes in batch
 
 ## list
 
@@ -693,6 +694,74 @@ public class Application {
 ### Response
 
 **[AccountingCreditNotesDeleteResponse](../../models/operations/AccountingCreditNotesDeleteResponse.md)**
+
+### Errors
+
+| Error Type                            | Status Code                           | Content Type                          |
+| ------------------------------------- | ------------------------------------- | ------------------------------------- |
+| models/errors/BadRequestResponse      | 400                                   | application/json                      |
+| models/errors/UnauthorizedResponse    | 401                                   | application/json                      |
+| models/errors/PaymentRequiredResponse | 402                                   | application/json                      |
+| models/errors/NotFoundResponse        | 404                                   | application/json                      |
+| models/errors/UnprocessableResponse   | 422                                   | application/json                      |
+| models/errors/APIException            | 4XX, 5XX                              | \*/\*                                 |
+
+## createBatch
+
+Create multiple credit notes in a single request. Each item is processed independently, so some may be created while others fail; the response returns `200` with one result per item, in the order the items were sent. The maximum number of items accepted per request depends on the connector.
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="accounting.creditNotesBatchAdd" method="post" path="/accounting/credit-notes/batch" -->
+```java
+package hello.world;
+
+import com.apideck.unify.Apideck;
+import com.apideck.unify.models.components.BatchCreditNotesRequest;
+import com.apideck.unify.models.errors.*;
+import com.apideck.unify.models.operations.AccountingCreditNotesBatchAddRequest;
+import com.apideck.unify.models.operations.AccountingCreditNotesBatchAddResponse;
+import java.lang.Exception;
+import java.util.List;
+
+public class Application {
+
+    public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
+
+        Apideck sdk = Apideck.builder()
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+            .build();
+
+        AccountingCreditNotesBatchAddRequest req = AccountingCreditNotesBatchAddRequest.builder()
+                .batchCreditNotesRequest(BatchCreditNotesRequest.builder()
+                    .items(List.of())
+                    .build())
+                .serviceId("salesforce")
+                .companyId("12345")
+                .build();
+
+        AccountingCreditNotesBatchAddResponse res = sdk.accounting().creditNotes().createBatch()
+                .request(req)
+                .call();
+
+        if (res.batchCreditNotesResponse().isPresent()) {
+            System.out.println(res.batchCreditNotesResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                               | Type                                                                                                    | Required                                                                                                | Description                                                                                             |
+| ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| `request`                                                                                               | [AccountingCreditNotesBatchAddRequest](../../models/operations/AccountingCreditNotesBatchAddRequest.md) | :heavy_check_mark:                                                                                      | The request object to use for the request.                                                              |
+
+### Response
+
+**[AccountingCreditNotesBatchAddResponse](../../models/operations/AccountingCreditNotesBatchAddResponse.md)**
 
 ### Errors
 

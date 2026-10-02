@@ -7,6 +7,7 @@ import static com.apideck.unify.operations.Operations.AsyncRequestOperation;
 
 import com.apideck.unify.models.operations.AccountingPaymentsAddRequest;
 import com.apideck.unify.models.operations.AccountingPaymentsAllRequest;
+import com.apideck.unify.models.operations.AccountingPaymentsBatchAddRequest;
 import com.apideck.unify.models.operations.AccountingPaymentsDeleteRequest;
 import com.apideck.unify.models.operations.AccountingPaymentsOneRequest;
 import com.apideck.unify.models.operations.AccountingPaymentsUpdateRequest;
@@ -14,6 +15,8 @@ import com.apideck.unify.models.operations.async.AccountingPaymentsAddRequestBui
 import com.apideck.unify.models.operations.async.AccountingPaymentsAddResponse;
 import com.apideck.unify.models.operations.async.AccountingPaymentsAllRequestBuilder;
 import com.apideck.unify.models.operations.async.AccountingPaymentsAllResponse;
+import com.apideck.unify.models.operations.async.AccountingPaymentsBatchAddRequestBuilder;
+import com.apideck.unify.models.operations.async.AccountingPaymentsBatchAddResponse;
 import com.apideck.unify.models.operations.async.AccountingPaymentsDeleteRequestBuilder;
 import com.apideck.unify.models.operations.async.AccountingPaymentsDeleteResponse;
 import com.apideck.unify.models.operations.async.AccountingPaymentsOneRequestBuilder;
@@ -22,6 +25,7 @@ import com.apideck.unify.models.operations.async.AccountingPaymentsUpdateRequest
 import com.apideck.unify.models.operations.async.AccountingPaymentsUpdateResponse;
 import com.apideck.unify.operations.AccountingPaymentsAdd;
 import com.apideck.unify.operations.AccountingPaymentsAll;
+import com.apideck.unify.operations.AccountingPaymentsBatchAdd;
 import com.apideck.unify.operations.AccountingPaymentsDelete;
 import com.apideck.unify.operations.AccountingPaymentsOne;
 import com.apideck.unify.operations.AccountingPaymentsUpdate;
@@ -254,6 +258,54 @@ public class AsyncPayments {
     public CompletableFuture<AccountingPaymentsDeleteResponse> delete(AccountingPaymentsDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingPaymentsDeleteRequest, AccountingPaymentsDeleteResponse> operation
               = new AccountingPaymentsDelete.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * Create Payments in batch
+     * 
+     * <p>Create multiple payments in a single request. Each item is processed independently, so some may be
+     * created while others fail; the response returns `200` with one result per item, in the order the
+     * items were sent. The maximum number of items accepted per request depends on the connector.
+     * 
+     * @return The async call builder
+     */
+    public AccountingPaymentsBatchAddRequestBuilder createBatch() {
+        return new AccountingPaymentsBatchAddRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Create Payments in batch
+     * 
+     * <p>Create multiple payments in a single request. Each item is processed independently, so some may be
+     * created while others fail; the response returns `200` with one result per item, in the order the
+     * items were sent. The maximum number of items accepted per request depends on the connector.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return {@code CompletableFuture<AccountingPaymentsBatchAddResponse>} - The async response
+     */
+    public CompletableFuture<AccountingPaymentsBatchAddResponse> createBatch(AccountingPaymentsBatchAddRequest request) {
+        return createBatch(request, Optional.empty());
+    }
+
+    /**
+     * Create Payments in batch
+     * 
+     * <p>Create multiple payments in a single request. Each item is processed independently, so some may be
+     * created while others fail; the response returns `200` with one result per item, in the order the
+     * items were sent. The maximum number of items accepted per request depends on the connector.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return {@code CompletableFuture<AccountingPaymentsBatchAddResponse>} - The async response
+     */
+    public CompletableFuture<AccountingPaymentsBatchAddResponse> createBatch(AccountingPaymentsBatchAddRequest request, Optional<Options> options) {
+        AsyncRequestOperation<AccountingPaymentsBatchAddRequest, AccountingPaymentsBatchAddResponse> operation
+              = new AccountingPaymentsBatchAdd.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);
         return operation.doRequest(request)

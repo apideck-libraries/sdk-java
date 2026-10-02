@@ -11,6 +11,9 @@ import com.apideck.unify.models.operations.AccountingSuppliersAddResponse;
 import com.apideck.unify.models.operations.AccountingSuppliersAllRequest;
 import com.apideck.unify.models.operations.AccountingSuppliersAllRequestBuilder;
 import com.apideck.unify.models.operations.AccountingSuppliersAllResponse;
+import com.apideck.unify.models.operations.AccountingSuppliersBatchAddRequest;
+import com.apideck.unify.models.operations.AccountingSuppliersBatchAddRequestBuilder;
+import com.apideck.unify.models.operations.AccountingSuppliersBatchAddResponse;
 import com.apideck.unify.models.operations.AccountingSuppliersDeleteRequest;
 import com.apideck.unify.models.operations.AccountingSuppliersDeleteRequestBuilder;
 import com.apideck.unify.models.operations.AccountingSuppliersDeleteResponse;
@@ -22,6 +25,7 @@ import com.apideck.unify.models.operations.AccountingSuppliersUpdateRequestBuild
 import com.apideck.unify.models.operations.AccountingSuppliersUpdateResponse;
 import com.apideck.unify.operations.AccountingSuppliersAdd;
 import com.apideck.unify.operations.AccountingSuppliersAll;
+import com.apideck.unify.operations.AccountingSuppliersBatchAdd;
 import com.apideck.unify.operations.AccountingSuppliersDelete;
 import com.apideck.unify.operations.AccountingSuppliersOne;
 import com.apideck.unify.operations.AccountingSuppliersUpdate;
@@ -246,6 +250,52 @@ public class Suppliers {
     public AccountingSuppliersDeleteResponse delete(AccountingSuppliersDeleteRequest request, Optional<Options> options) {
         RequestOperation<AccountingSuppliersDeleteRequest, AccountingSuppliersDeleteResponse> operation
               = new AccountingSuppliersDelete.Sync(sdkConfiguration, options, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Create Suppliers in batch
+     * 
+     * <p>Create multiple suppliers in a single request. Each item is processed independently, so some may be
+     * created while others fail; the response returns `200` with one result per item, in the order the
+     * items were sent. The maximum number of items accepted per request depends on the connector.
+     * 
+     * @return The call builder
+     */
+    public AccountingSuppliersBatchAddRequestBuilder createBatch() {
+        return new AccountingSuppliersBatchAddRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Create Suppliers in batch
+     * 
+     * <p>Create multiple suppliers in a single request. Each item is processed independently, so some may be
+     * created while others fail; the response returns `200` with one result per item, in the order the
+     * items were sent. The maximum number of items accepted per request depends on the connector.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public AccountingSuppliersBatchAddResponse createBatch(AccountingSuppliersBatchAddRequest request) {
+        return createBatch(request, Optional.empty());
+    }
+
+    /**
+     * Create Suppliers in batch
+     * 
+     * <p>Create multiple suppliers in a single request. Each item is processed independently, so some may be
+     * created while others fail; the response returns `200` with one result per item, in the order the
+     * items were sent. The maximum number of items accepted per request depends on the connector.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public AccountingSuppliersBatchAddResponse createBatch(AccountingSuppliersBatchAddRequest request, Optional<Options> options) {
+        RequestOperation<AccountingSuppliersBatchAddRequest, AccountingSuppliersBatchAddResponse> operation
+              = new AccountingSuppliersBatchAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

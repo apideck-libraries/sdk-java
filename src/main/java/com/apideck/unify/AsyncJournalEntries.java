@@ -7,6 +7,7 @@ import static com.apideck.unify.operations.Operations.AsyncRequestOperation;
 
 import com.apideck.unify.models.operations.AccountingJournalEntriesAddRequest;
 import com.apideck.unify.models.operations.AccountingJournalEntriesAllRequest;
+import com.apideck.unify.models.operations.AccountingJournalEntriesBatchAddRequest;
 import com.apideck.unify.models.operations.AccountingJournalEntriesDeleteRequest;
 import com.apideck.unify.models.operations.AccountingJournalEntriesOneRequest;
 import com.apideck.unify.models.operations.AccountingJournalEntriesUpdateRequest;
@@ -14,6 +15,8 @@ import com.apideck.unify.models.operations.async.AccountingJournalEntriesAddRequ
 import com.apideck.unify.models.operations.async.AccountingJournalEntriesAddResponse;
 import com.apideck.unify.models.operations.async.AccountingJournalEntriesAllRequestBuilder;
 import com.apideck.unify.models.operations.async.AccountingJournalEntriesAllResponse;
+import com.apideck.unify.models.operations.async.AccountingJournalEntriesBatchAddRequestBuilder;
+import com.apideck.unify.models.operations.async.AccountingJournalEntriesBatchAddResponse;
 import com.apideck.unify.models.operations.async.AccountingJournalEntriesDeleteRequestBuilder;
 import com.apideck.unify.models.operations.async.AccountingJournalEntriesDeleteResponse;
 import com.apideck.unify.models.operations.async.AccountingJournalEntriesOneRequestBuilder;
@@ -22,6 +25,7 @@ import com.apideck.unify.models.operations.async.AccountingJournalEntriesUpdateR
 import com.apideck.unify.models.operations.async.AccountingJournalEntriesUpdateResponse;
 import com.apideck.unify.operations.AccountingJournalEntriesAdd;
 import com.apideck.unify.operations.AccountingJournalEntriesAll;
+import com.apideck.unify.operations.AccountingJournalEntriesBatchAdd;
 import com.apideck.unify.operations.AccountingJournalEntriesDelete;
 import com.apideck.unify.operations.AccountingJournalEntriesOne;
 import com.apideck.unify.operations.AccountingJournalEntriesUpdate;
@@ -254,6 +258,54 @@ public class AsyncJournalEntries {
     public CompletableFuture<AccountingJournalEntriesDeleteResponse> delete(AccountingJournalEntriesDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingJournalEntriesDeleteRequest, AccountingJournalEntriesDeleteResponse> operation
               = new AccountingJournalEntriesDelete.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * Create Journal Entries in batch
+     * 
+     * <p>Create multiple journal entries in a single request. Each item is processed independently, so some
+     * may be created while others fail; the response returns `200` with one result per item, in the order
+     * the items were sent. The maximum number of items accepted per request depends on the connector.
+     * 
+     * @return The async call builder
+     */
+    public AccountingJournalEntriesBatchAddRequestBuilder createBatch() {
+        return new AccountingJournalEntriesBatchAddRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Create Journal Entries in batch
+     * 
+     * <p>Create multiple journal entries in a single request. Each item is processed independently, so some
+     * may be created while others fail; the response returns `200` with one result per item, in the order
+     * the items were sent. The maximum number of items accepted per request depends on the connector.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return {@code CompletableFuture<AccountingJournalEntriesBatchAddResponse>} - The async response
+     */
+    public CompletableFuture<AccountingJournalEntriesBatchAddResponse> createBatch(AccountingJournalEntriesBatchAddRequest request) {
+        return createBatch(request, Optional.empty());
+    }
+
+    /**
+     * Create Journal Entries in batch
+     * 
+     * <p>Create multiple journal entries in a single request. Each item is processed independently, so some
+     * may be created while others fail; the response returns `200` with one result per item, in the order
+     * the items were sent. The maximum number of items accepted per request depends on the connector.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return {@code CompletableFuture<AccountingJournalEntriesBatchAddResponse>} - The async response
+     */
+    public CompletableFuture<AccountingJournalEntriesBatchAddResponse> createBatch(AccountingJournalEntriesBatchAddRequest request, Optional<Options> options) {
+        AsyncRequestOperation<AccountingJournalEntriesBatchAddRequest, AccountingJournalEntriesBatchAddResponse> operation
+              = new AccountingJournalEntriesBatchAdd.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);
         return operation.doRequest(request)

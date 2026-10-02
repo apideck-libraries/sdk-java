@@ -9,6 +9,7 @@
 * [get](#get) - Get Ledger Account
 * [update](#update) - Update Ledger Account
 * [delete](#delete) - Delete Ledger Account
+* [createBatch](#createbatch) - Create Ledger Accounts in batch
 
 ## list
 
@@ -492,6 +493,143 @@ public class Application {
 ### Response
 
 **[AccountingLedgerAccountsDeleteResponse](../../models/operations/AccountingLedgerAccountsDeleteResponse.md)**
+
+### Errors
+
+| Error Type                            | Status Code                           | Content Type                          |
+| ------------------------------------- | ------------------------------------- | ------------------------------------- |
+| models/errors/BadRequestResponse      | 400                                   | application/json                      |
+| models/errors/UnauthorizedResponse    | 401                                   | application/json                      |
+| models/errors/PaymentRequiredResponse | 402                                   | application/json                      |
+| models/errors/NotFoundResponse        | 404                                   | application/json                      |
+| models/errors/UnprocessableResponse   | 422                                   | application/json                      |
+| models/errors/APIException            | 4XX, 5XX                              | \*/\*                                 |
+
+## createBatch
+
+Create multiple ledger accounts in a single request. Each item is processed independently, so some may be created while others fail; the response returns `200` with one result per item, in the order the items were sent. The maximum number of items accepted per request depends on the connector.
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="accounting.ledgerAccountsBatchAdd" method="post" path="/accounting/ledger-accounts/batch" -->
+```java
+package hello.world;
+
+import com.apideck.unify.Apideck;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
+import com.apideck.unify.models.operations.AccountingLedgerAccountsBatchAddRequest;
+import com.apideck.unify.models.operations.AccountingLedgerAccountsBatchAddResponse;
+import java.lang.Exception;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Map;
+
+public class Application {
+
+    public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
+
+        Apideck sdk = Apideck.builder()
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+            .build();
+
+        AccountingLedgerAccountsBatchAddRequest req = AccountingLedgerAccountsBatchAddRequest.builder()
+                .batchLedgerAccountsRequest(BatchLedgerAccountsRequest.builder()
+                    .items(List.of(
+                        BatchLedgerAccountsRequestItems.builder()
+                            .data(LedgerAccountCreateInput.builder()
+                                .displayId("1-12345")
+                                .code("453")
+                                .classification(LedgerAccountCreateInputClassification.ASSET)
+                                .type(LedgerAccountCreateInputType.BANK)
+                                .subType("CHECKING_ACCOUNT")
+                                .name("Bank account")
+                                .fullyQualifiedName("Asset.Bank.Checking_Account")
+                                .description("Main checking account")
+                                .openingBalance(75000d)
+                                .currentBalance(20000d)
+                                .currency(Currency.USD)
+                                .taxType("NONE")
+                                .taxRate(LinkedTaxRateInput.builder()
+                                    .id("123456")
+                                    .code("N-T")
+                                    .rate(10d)
+                                    .build())
+                                .level(1d)
+                                .active(true)
+                                .status(LedgerAccountCreateInputAccountStatus.ACTIVE)
+                                .header(true)
+                                .bankAccount(BankAccount.builder()
+                                    .bankName("Chase Bank")
+                                    .accountNumber("123465")
+                                    .accountName("Main Operating Account")
+                                    .accountType(AccountType.CREDIT_CARD)
+                                    .iban("GB33BUKB20201555555555")
+                                    .bic("CHASUS33")
+                                    .routingNumber("021000021")
+                                    .bsbNumber("062-001")
+                                    .branchIdentifier("001")
+                                    .bankCode("BNH")
+                                    .currency(Currency.USD)
+                                    .country("US")
+                                    .build())
+                                .parentAccount(LedgerAccountCreateInputParentAccount.builder()
+                                    .id("12345")
+                                    .name("Bank Accounts")
+                                    .displayId("1-1100")
+                                    .build())
+                                .subAccount(false)
+                                .lastReconciliationDate(LocalDate.parse("2020-09-30"))
+                                .customFields(List.of(
+                                    CustomField.of(CustomField1.builder()
+                                        .id("2389328923893298")
+                                        .name("employee_level")
+                                        .refName("Marketing")
+                                        .description("Employee Level")
+                                        .value(CustomField1Value.of("Uses Salesforce and Marketo"))
+                                        .build())))
+                                .rowVersion("1-12345")
+                                .passThrough(List.of(
+                                    PassThroughBody.builder()
+                                        .serviceId("<id>")
+                                        .extendPaths(List.of(
+                                            ExtendPaths.builder()
+                                                .path("$.nested.property")
+                                                .value(Map.ofEntries(
+                                                    Map.entry("TaxClassificationRef", Map.ofEntries(
+                                                        Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                                .build()))
+                                        .build()))
+                                .build())
+                            .ref("item-1")
+                            .build()))
+                    .build())
+                .serviceId("salesforce")
+                .companyId("12345")
+                .build();
+
+        AccountingLedgerAccountsBatchAddResponse res = sdk.accounting().ledgerAccounts().createBatch()
+                .request(req)
+                .call();
+
+        if (res.batchLedgerAccountsResponse().isPresent()) {
+            System.out.println(res.batchLedgerAccountsResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                     | Type                                                                                                          | Required                                                                                                      | Description                                                                                                   |
+| ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| `request`                                                                                                     | [AccountingLedgerAccountsBatchAddRequest](../../models/operations/AccountingLedgerAccountsBatchAddRequest.md) | :heavy_check_mark:                                                                                            | The request object to use for the request.                                                                    |
+
+### Response
+
+**[AccountingLedgerAccountsBatchAddResponse](../../models/operations/AccountingLedgerAccountsBatchAddResponse.md)**
 
 ### Errors
 

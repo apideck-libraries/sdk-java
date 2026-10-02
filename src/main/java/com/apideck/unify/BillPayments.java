@@ -11,6 +11,9 @@ import com.apideck.unify.models.operations.AccountingBillPaymentsAddResponse;
 import com.apideck.unify.models.operations.AccountingBillPaymentsAllRequest;
 import com.apideck.unify.models.operations.AccountingBillPaymentsAllRequestBuilder;
 import com.apideck.unify.models.operations.AccountingBillPaymentsAllResponse;
+import com.apideck.unify.models.operations.AccountingBillPaymentsBatchAddRequest;
+import com.apideck.unify.models.operations.AccountingBillPaymentsBatchAddRequestBuilder;
+import com.apideck.unify.models.operations.AccountingBillPaymentsBatchAddResponse;
 import com.apideck.unify.models.operations.AccountingBillPaymentsDeleteRequest;
 import com.apideck.unify.models.operations.AccountingBillPaymentsDeleteRequestBuilder;
 import com.apideck.unify.models.operations.AccountingBillPaymentsDeleteResponse;
@@ -22,6 +25,7 @@ import com.apideck.unify.models.operations.AccountingBillPaymentsUpdateRequestBu
 import com.apideck.unify.models.operations.AccountingBillPaymentsUpdateResponse;
 import com.apideck.unify.operations.AccountingBillPaymentsAdd;
 import com.apideck.unify.operations.AccountingBillPaymentsAll;
+import com.apideck.unify.operations.AccountingBillPaymentsBatchAdd;
 import com.apideck.unify.operations.AccountingBillPaymentsDelete;
 import com.apideck.unify.operations.AccountingBillPaymentsOne;
 import com.apideck.unify.operations.AccountingBillPaymentsUpdate;
@@ -246,6 +250,52 @@ public class BillPayments {
     public AccountingBillPaymentsDeleteResponse delete(AccountingBillPaymentsDeleteRequest request, Optional<Options> options) {
         RequestOperation<AccountingBillPaymentsDeleteRequest, AccountingBillPaymentsDeleteResponse> operation
               = new AccountingBillPaymentsDelete.Sync(sdkConfiguration, options, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Create Bill Payments in batch
+     * 
+     * <p>Create multiple bill payments in a single request. Each item is processed independently, so some may
+     * be created while others fail; the response returns `200` with one result per item, in the order the
+     * items were sent. The maximum number of items accepted per request depends on the connector.
+     * 
+     * @return The call builder
+     */
+    public AccountingBillPaymentsBatchAddRequestBuilder createBatch() {
+        return new AccountingBillPaymentsBatchAddRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Create Bill Payments in batch
+     * 
+     * <p>Create multiple bill payments in a single request. Each item is processed independently, so some may
+     * be created while others fail; the response returns `200` with one result per item, in the order the
+     * items were sent. The maximum number of items accepted per request depends on the connector.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public AccountingBillPaymentsBatchAddResponse createBatch(AccountingBillPaymentsBatchAddRequest request) {
+        return createBatch(request, Optional.empty());
+    }
+
+    /**
+     * Create Bill Payments in batch
+     * 
+     * <p>Create multiple bill payments in a single request. Each item is processed independently, so some may
+     * be created while others fail; the response returns `200` with one result per item, in the order the
+     * items were sent. The maximum number of items accepted per request depends on the connector.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public AccountingBillPaymentsBatchAddResponse createBatch(AccountingBillPaymentsBatchAddRequest request, Optional<Options> options) {
+        RequestOperation<AccountingBillPaymentsBatchAddRequest, AccountingBillPaymentsBatchAddResponse> operation
+              = new AccountingBillPaymentsBatchAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

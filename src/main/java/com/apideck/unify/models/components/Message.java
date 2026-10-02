@@ -128,7 +128,7 @@ public class Message {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
-    private Optional<? extends Error> error;
+    private Optional<? extends MessageError> error;
 
     /**
      * The ID of the Messaging Service used with the message. In case of Plivo this links to the Powerpack
@@ -198,7 +198,7 @@ public class Message {
             @JsonProperty("webhook_url") Optional<String> webhookUrl,
             @JsonProperty("reference") Optional<String> reference,
             @JsonProperty("price") Optional<? extends Price> price,
-            @JsonProperty("error") Optional<? extends Error> error,
+            @JsonProperty("error") Optional<? extends MessageError> error,
             @JsonProperty("messaging_service_id") Optional<String> messagingServiceId,
             @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings,
             @JsonProperty("updated_by") JsonNullable<String> updatedBy,
@@ -395,8 +395,8 @@ public class Message {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Error> error() {
-        return (Optional<Error>) error;
+    public Optional<MessageError> error() {
+        return (Optional<MessageError>) error;
     }
 
     /**
@@ -718,7 +718,7 @@ public class Message {
     /**
      * The error returned if your message status is failed or undelivered.
      */
-    public Message withError(Error error) {
+    public Message withError(MessageError error) {
         Utils.checkNotNull(error, "error");
         this.error = Optional.ofNullable(error);
         return this;
@@ -728,7 +728,7 @@ public class Message {
     /**
      * The error returned if your message status is failed or undelivered.
      */
-    public Message withError(Optional<? extends Error> error) {
+    public Message withError(Optional<? extends MessageError> error) {
         Utils.checkNotNull(error, "error");
         this.error = error;
         return this;
@@ -975,7 +975,7 @@ public class Message {
 
         private Optional<? extends Price> price = Optional.empty();
 
-        private Optional<? extends Error> error = Optional.empty();
+        private Optional<? extends MessageError> error = Optional.empty();
 
         private Optional<String> messagingServiceId = Optional.empty();
 
@@ -1253,7 +1253,7 @@ public class Message {
         /**
          * The error returned if your message status is failed or undelivered.
          */
-        public Builder error(Error error) {
+        public Builder error(MessageError error) {
             Utils.checkNotNull(error, "error");
             this.error = Optional.ofNullable(error);
             return this;
@@ -1262,7 +1262,7 @@ public class Message {
         /**
          * The error returned if your message status is failed or undelivered.
          */
-        public Builder error(Optional<? extends Error> error) {
+        public Builder error(Optional<? extends MessageError> error) {
             Utils.checkNotNull(error, "error");
             this.error = error;
             return this;

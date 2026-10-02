@@ -9,6 +9,7 @@
 * [get](#get) - Get Tracking Category
 * [update](#update) - Update Tracking Category
 * [delete](#delete) - Delete Tracking Category
+* [createBatch](#createbatch) - Create Tracking Categories in batch
 
 ## list
 
@@ -403,6 +404,74 @@ public class Application {
 ### Response
 
 **[AccountingTrackingCategoriesDeleteResponse](../../models/operations/AccountingTrackingCategoriesDeleteResponse.md)**
+
+### Errors
+
+| Error Type                            | Status Code                           | Content Type                          |
+| ------------------------------------- | ------------------------------------- | ------------------------------------- |
+| models/errors/BadRequestResponse      | 400                                   | application/json                      |
+| models/errors/UnauthorizedResponse    | 401                                   | application/json                      |
+| models/errors/PaymentRequiredResponse | 402                                   | application/json                      |
+| models/errors/NotFoundResponse        | 404                                   | application/json                      |
+| models/errors/UnprocessableResponse   | 422                                   | application/json                      |
+| models/errors/APIException            | 4XX, 5XX                              | \*/\*                                 |
+
+## createBatch
+
+Create multiple tracking categories in a single request. Each item is processed independently, so some may be created while others fail; the response returns `200` with one result per item, in the order the items were sent. The maximum number of items accepted per request depends on the connector.
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="accounting.trackingCategoriesBatchAdd" method="post" path="/accounting/tracking-categories/batch" -->
+```java
+package hello.world;
+
+import com.apideck.unify.Apideck;
+import com.apideck.unify.models.components.BatchTrackingCategoriesRequest;
+import com.apideck.unify.models.errors.*;
+import com.apideck.unify.models.operations.AccountingTrackingCategoriesBatchAddRequest;
+import com.apideck.unify.models.operations.AccountingTrackingCategoriesBatchAddResponse;
+import java.lang.Exception;
+import java.util.List;
+
+public class Application {
+
+    public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
+
+        Apideck sdk = Apideck.builder()
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+            .build();
+
+        AccountingTrackingCategoriesBatchAddRequest req = AccountingTrackingCategoriesBatchAddRequest.builder()
+                .batchTrackingCategoriesRequest(BatchTrackingCategoriesRequest.builder()
+                    .items(List.of())
+                    .build())
+                .serviceId("salesforce")
+                .companyId("12345")
+                .build();
+
+        AccountingTrackingCategoriesBatchAddResponse res = sdk.accounting().trackingCategories().createBatch()
+                .request(req)
+                .call();
+
+        if (res.batchTrackingCategoriesResponse().isPresent()) {
+            System.out.println(res.batchTrackingCategoriesResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                             | Type                                                                                                                  | Required                                                                                                              | Description                                                                                                           |
+| --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| `request`                                                                                                             | [AccountingTrackingCategoriesBatchAddRequest](../../models/operations/AccountingTrackingCategoriesBatchAddRequest.md) | :heavy_check_mark:                                                                                                    | The request object to use for the request.                                                                            |
+
+### Response
+
+**[AccountingTrackingCategoriesBatchAddResponse](../../models/operations/AccountingTrackingCategoriesBatchAddResponse.md)**
 
 ### Errors
 

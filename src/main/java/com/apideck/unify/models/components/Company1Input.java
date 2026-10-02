@@ -159,6 +159,13 @@ public class Company1Input {
     @JsonProperty("last_name")
     private JsonNullable<String> lastName;
 
+    /**
+     * Parent ID
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("parent_id")
+    private JsonNullable<String> parentId;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("bank_accounts")
@@ -254,6 +261,7 @@ public class Company1Input {
             @JsonProperty("acn") JsonNullable<String> acn,
             @JsonProperty("first_name") JsonNullable<String> firstName,
             @JsonProperty("last_name") JsonNullable<String> lastName,
+            @JsonProperty("parent_id") JsonNullable<String> parentId,
             @JsonProperty("bank_accounts") Optional<? extends List<BankAccount1>> bankAccounts,
             @JsonProperty("websites") Optional<? extends List<Website>> websites,
             @JsonProperty("addresses") Optional<? extends List<Address>> addresses,
@@ -286,6 +294,7 @@ public class Company1Input {
         Utils.checkNotNull(acn, "acn");
         Utils.checkNotNull(firstName, "firstName");
         Utils.checkNotNull(lastName, "lastName");
+        Utils.checkNotNull(parentId, "parentId");
         Utils.checkNotNull(bankAccounts, "bankAccounts");
         Utils.checkNotNull(websites, "websites");
         Utils.checkNotNull(addresses, "addresses");
@@ -318,6 +327,7 @@ public class Company1Input {
         this.acn = acn;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.parentId = parentId;
         this.bankAccounts = bankAccounts;
         this.websites = websites;
         this.addresses = addresses;
@@ -340,11 +350,11 @@ public class Company1Input {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty());
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -504,6 +514,14 @@ public class Company1Input {
     @JsonIgnore
     public JsonNullable<String> lastName() {
         return lastName;
+    }
+
+    /**
+     * Parent ID
+     */
+    @JsonIgnore
+    public JsonNullable<String> parentId() {
+        return parentId;
     }
 
     @SuppressWarnings("unchecked")
@@ -954,6 +972,24 @@ public class Company1Input {
         return this;
     }
 
+    /**
+     * Parent ID
+     */
+    public Company1Input withParentId(String parentId) {
+        Utils.checkNotNull(parentId, "parentId");
+        this.parentId = JsonNullable.of(parentId);
+        return this;
+    }
+
+    /**
+     * Parent ID
+     */
+    public Company1Input withParentId(JsonNullable<String> parentId) {
+        Utils.checkNotNull(parentId, "parentId");
+        this.parentId = parentId;
+        return this;
+    }
+
     public Company1Input withBankAccounts(List<BankAccount1> bankAccounts) {
         Utils.checkNotNull(bankAccounts, "bankAccounts");
         this.bankAccounts = Optional.ofNullable(bankAccounts);
@@ -1174,6 +1210,7 @@ public class Company1Input {
             Utils.enhancedDeepEquals(this.acn, other.acn) &&
             Utils.enhancedDeepEquals(this.firstName, other.firstName) &&
             Utils.enhancedDeepEquals(this.lastName, other.lastName) &&
+            Utils.enhancedDeepEquals(this.parentId, other.parentId) &&
             Utils.enhancedDeepEquals(this.bankAccounts, other.bankAccounts) &&
             Utils.enhancedDeepEquals(this.websites, other.websites) &&
             Utils.enhancedDeepEquals(this.addresses, other.addresses) &&
@@ -1198,11 +1235,11 @@ public class Company1Input {
             numberOfEmployees, industry, ownership,
             salesTaxNumber, payeeNumber, abnOrTfn,
             abnBranch, acn, firstName,
-            lastName, bankAccounts, websites,
-            addresses, socialLinks, phoneNumbers,
-            emails, rowType, customFields,
-            tags, readOnly, salutation,
-            birthday, passThrough);
+            lastName, parentId, bankAccounts,
+            websites, addresses, socialLinks,
+            phoneNumbers, emails, rowType,
+            customFields, tags, readOnly,
+            salutation, birthday, passThrough);
     }
     
     @Override
@@ -1227,6 +1264,7 @@ public class Company1Input {
                 "acn", acn,
                 "firstName", firstName,
                 "lastName", lastName,
+                "parentId", parentId,
                 "bankAccounts", bankAccounts,
                 "websites", websites,
                 "addresses", addresses,
@@ -1282,6 +1320,8 @@ public class Company1Input {
         private JsonNullable<String> firstName = JsonNullable.undefined();
 
         private JsonNullable<String> lastName = JsonNullable.undefined();
+
+        private JsonNullable<String> parentId = JsonNullable.undefined();
 
         private Optional<? extends List<BankAccount1>> bankAccounts = Optional.empty();
 
@@ -1687,6 +1727,25 @@ public class Company1Input {
         }
 
 
+        /**
+         * Parent ID
+         */
+        public Builder parentId(String parentId) {
+            Utils.checkNotNull(parentId, "parentId");
+            this.parentId = JsonNullable.of(parentId);
+            return this;
+        }
+
+        /**
+         * Parent ID
+         */
+        public Builder parentId(JsonNullable<String> parentId) {
+            Utils.checkNotNull(parentId, "parentId");
+            this.parentId = parentId;
+            return this;
+        }
+
+
         public Builder bankAccounts(List<BankAccount1> bankAccounts) {
             Utils.checkNotNull(bankAccounts, "bankAccounts");
             this.bankAccounts = Optional.ofNullable(bankAccounts);
@@ -1890,11 +1949,11 @@ public class Company1Input {
                 numberOfEmployees, industry, ownership,
                 salesTaxNumber, payeeNumber, abnOrTfn,
                 abnBranch, acn, firstName,
-                lastName, bankAccounts, websites,
-                addresses, socialLinks, phoneNumbers,
-                emails, rowType, customFields,
-                tags, readOnly, salutation,
-                birthday, passThrough);
+                lastName, parentId, bankAccounts,
+                websites, addresses, socialLinks,
+                phoneNumbers, emails, rowType,
+                customFields, tags, readOnly,
+                salutation, birthday, passThrough);
         }
 
     }

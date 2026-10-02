@@ -3,6 +3,7 @@
  */
 package com.apideck.unify.models.operations;
 
+import com.apideck.unify.models.components.BankFeedStatementsFilter;
 import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
@@ -67,6 +68,12 @@ public class AccountingBankFeedStatementsAllRequest {
     private Optional<Long> limit;
 
     /**
+     * Apply filters
+     */
+    @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=filter")
+    private Optional<? extends BankFeedStatementsFilter> filter;
+
+    /**
      * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie:
      * ?pass_through[search]=leads becomes ?search=leads
      */
@@ -96,6 +103,7 @@ public class AccountingBankFeedStatementsAllRequest {
             Optional<String> companyId,
             JsonNullable<String> cursor,
             Optional<Long> limit,
+            Optional<? extends BankFeedStatementsFilter> filter,
             Optional<? extends Map<String, Object>> passThrough,
             JsonNullable<String> fields) {
         Utils.checkNotNull(raw, "raw");
@@ -105,6 +113,7 @@ public class AccountingBankFeedStatementsAllRequest {
         Utils.checkNotNull(companyId, "companyId");
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(limit, "limit");
+        Utils.checkNotNull(filter, "filter");
         Utils.checkNotNull(passThrough, "passThrough");
         Utils.checkNotNull(fields, "fields");
         this.raw = raw;
@@ -114,6 +123,7 @@ public class AccountingBankFeedStatementsAllRequest {
         this.companyId = companyId;
         this.cursor = cursor;
         this.limit = limit;
+        this.filter = filter;
         this.passThrough = passThrough;
         this.fields = fields;
     }
@@ -121,7 +131,8 @@ public class AccountingBankFeedStatementsAllRequest {
     public AccountingBankFeedStatementsAllRequest() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -181,6 +192,15 @@ public class AccountingBankFeedStatementsAllRequest {
     @JsonIgnore
     public Optional<Long> limit() {
         return limit;
+    }
+
+    /**
+     * Apply filters
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<BankFeedStatementsFilter> filter() {
+        return (Optional<BankFeedStatementsFilter>) filter;
     }
 
     /**
@@ -353,6 +373,25 @@ public class AccountingBankFeedStatementsAllRequest {
     }
 
     /**
+     * Apply filters
+     */
+    public AccountingBankFeedStatementsAllRequest withFilter(BankFeedStatementsFilter filter) {
+        Utils.checkNotNull(filter, "filter");
+        this.filter = Optional.ofNullable(filter);
+        return this;
+    }
+
+
+    /**
+     * Apply filters
+     */
+    public AccountingBankFeedStatementsAllRequest withFilter(Optional<? extends BankFeedStatementsFilter> filter) {
+        Utils.checkNotNull(filter, "filter");
+        this.filter = filter;
+        return this;
+    }
+
+    /**
      * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie:
      * ?pass_through[search]=leads becomes ?search=leads
      */
@@ -424,6 +463,7 @@ public class AccountingBankFeedStatementsAllRequest {
             Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
             Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
             Utils.enhancedDeepEquals(this.limit, other.limit) &&
+            Utils.enhancedDeepEquals(this.filter, other.filter) &&
             Utils.enhancedDeepEquals(this.passThrough, other.passThrough) &&
             Utils.enhancedDeepEquals(this.fields, other.fields);
     }
@@ -433,7 +473,8 @@ public class AccountingBankFeedStatementsAllRequest {
         return Utils.enhancedHash(
             raw, consumerId, appId,
             serviceId, companyId, cursor,
-            limit, passThrough, fields);
+            limit, filter, passThrough,
+            fields);
     }
     
     @Override
@@ -446,6 +487,7 @@ public class AccountingBankFeedStatementsAllRequest {
                 "companyId", companyId,
                 "cursor", cursor,
                 "limit", limit,
+                "filter", filter,
                 "passThrough", passThrough,
                 "fields", fields);
     }
@@ -466,6 +508,8 @@ public class AccountingBankFeedStatementsAllRequest {
         private JsonNullable<String> cursor = JsonNullable.undefined();
 
         private Optional<Long> limit;
+
+        private Optional<? extends BankFeedStatementsFilter> filter = Optional.empty();
 
         private Optional<? extends Map<String, Object>> passThrough = Optional.empty();
 
@@ -616,6 +660,25 @@ public class AccountingBankFeedStatementsAllRequest {
 
 
         /**
+         * Apply filters
+         */
+        public Builder filter(BankFeedStatementsFilter filter) {
+            Utils.checkNotNull(filter, "filter");
+            this.filter = Optional.ofNullable(filter);
+            return this;
+        }
+
+        /**
+         * Apply filters
+         */
+        public Builder filter(Optional<? extends BankFeedStatementsFilter> filter) {
+            Utils.checkNotNull(filter, "filter");
+            this.filter = filter;
+            return this;
+        }
+
+
+        /**
          * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie:
          * ?pass_through[search]=leads becomes ?search=leads
          */
@@ -681,7 +744,8 @@ public class AccountingBankFeedStatementsAllRequest {
             return new AccountingBankFeedStatementsAllRequest(
                 raw, consumerId, appId,
                 serviceId, companyId, cursor,
-                limit, passThrough, fields);
+                limit, filter, passThrough,
+                fields);
         }
 
 

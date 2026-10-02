@@ -9,6 +9,7 @@
 * [get](#get) - Get Journal Entry
 * [update](#update) - Update Journal Entry
 * [delete](#delete) - Delete Journal Entry
+* [createBatch](#createbatch) - Create Journal Entries in batch
 
 ## list
 
@@ -629,6 +630,74 @@ public class Application {
 ### Response
 
 **[AccountingJournalEntriesDeleteResponse](../../models/operations/AccountingJournalEntriesDeleteResponse.md)**
+
+### Errors
+
+| Error Type                            | Status Code                           | Content Type                          |
+| ------------------------------------- | ------------------------------------- | ------------------------------------- |
+| models/errors/BadRequestResponse      | 400                                   | application/json                      |
+| models/errors/UnauthorizedResponse    | 401                                   | application/json                      |
+| models/errors/PaymentRequiredResponse | 402                                   | application/json                      |
+| models/errors/NotFoundResponse        | 404                                   | application/json                      |
+| models/errors/UnprocessableResponse   | 422                                   | application/json                      |
+| models/errors/APIException            | 4XX, 5XX                              | \*/\*                                 |
+
+## createBatch
+
+Create multiple journal entries in a single request. Each item is processed independently, so some may be created while others fail; the response returns `200` with one result per item, in the order the items were sent. The maximum number of items accepted per request depends on the connector.
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="accounting.journalEntriesBatchAdd" method="post" path="/accounting/journal-entries/batch" -->
+```java
+package hello.world;
+
+import com.apideck.unify.Apideck;
+import com.apideck.unify.models.components.BatchJournalEntriesRequest;
+import com.apideck.unify.models.errors.*;
+import com.apideck.unify.models.operations.AccountingJournalEntriesBatchAddRequest;
+import com.apideck.unify.models.operations.AccountingJournalEntriesBatchAddResponse;
+import java.lang.Exception;
+import java.util.List;
+
+public class Application {
+
+    public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
+
+        Apideck sdk = Apideck.builder()
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+            .build();
+
+        AccountingJournalEntriesBatchAddRequest req = AccountingJournalEntriesBatchAddRequest.builder()
+                .batchJournalEntriesRequest(BatchJournalEntriesRequest.builder()
+                    .items(List.of())
+                    .build())
+                .serviceId("salesforce")
+                .companyId("12345")
+                .build();
+
+        AccountingJournalEntriesBatchAddResponse res = sdk.accounting().journalEntries().createBatch()
+                .request(req)
+                .call();
+
+        if (res.batchJournalEntriesResponse().isPresent()) {
+            System.out.println(res.batchJournalEntriesResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                     | Type                                                                                                          | Required                                                                                                      | Description                                                                                                   |
+| ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| `request`                                                                                                     | [AccountingJournalEntriesBatchAddRequest](../../models/operations/AccountingJournalEntriesBatchAddRequest.md) | :heavy_check_mark:                                                                                            | The request object to use for the request.                                                                    |
+
+### Response
+
+**[AccountingJournalEntriesBatchAddResponse](../../models/operations/AccountingJournalEntriesBatchAddResponse.md)**
 
 ### Errors
 

@@ -9,6 +9,7 @@
 * [get](#get) - Get Bill
 * [update](#update) - Update Bill
 * [delete](#delete) - Delete Bill
+* [createBatch](#createbatch) - Create Bills in batch
 
 ## list
 
@@ -734,6 +735,74 @@ public class Application {
 ### Response
 
 **[AccountingBillsDeleteResponse](../../models/operations/AccountingBillsDeleteResponse.md)**
+
+### Errors
+
+| Error Type                            | Status Code                           | Content Type                          |
+| ------------------------------------- | ------------------------------------- | ------------------------------------- |
+| models/errors/BadRequestResponse      | 400                                   | application/json                      |
+| models/errors/UnauthorizedResponse    | 401                                   | application/json                      |
+| models/errors/PaymentRequiredResponse | 402                                   | application/json                      |
+| models/errors/NotFoundResponse        | 404                                   | application/json                      |
+| models/errors/UnprocessableResponse   | 422                                   | application/json                      |
+| models/errors/APIException            | 4XX, 5XX                              | \*/\*                                 |
+
+## createBatch
+
+Create multiple bills in a single request. Each item is processed independently, so some may be created while others fail; the response returns `200` with one result per item, in the order the items were sent. The maximum number of items accepted per request depends on the connector.
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="accounting.billsBatchAdd" method="post" path="/accounting/bills/batch" -->
+```java
+package hello.world;
+
+import com.apideck.unify.Apideck;
+import com.apideck.unify.models.components.BatchBillsRequest;
+import com.apideck.unify.models.errors.*;
+import com.apideck.unify.models.operations.AccountingBillsBatchAddRequest;
+import com.apideck.unify.models.operations.AccountingBillsBatchAddResponse;
+import java.lang.Exception;
+import java.util.List;
+
+public class Application {
+
+    public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
+
+        Apideck sdk = Apideck.builder()
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+            .build();
+
+        AccountingBillsBatchAddRequest req = AccountingBillsBatchAddRequest.builder()
+                .batchBillsRequest(BatchBillsRequest.builder()
+                    .items(List.of())
+                    .build())
+                .serviceId("salesforce")
+                .companyId("12345")
+                .build();
+
+        AccountingBillsBatchAddResponse res = sdk.accounting().bills().createBatch()
+                .request(req)
+                .call();
+
+        if (res.batchBillsResponse().isPresent()) {
+            System.out.println(res.batchBillsResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                   | Type                                                                                        | Required                                                                                    | Description                                                                                 |
+| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `request`                                                                                   | [AccountingBillsBatchAddRequest](../../models/operations/AccountingBillsBatchAddRequest.md) | :heavy_check_mark:                                                                          | The request object to use for the request.                                                  |
+
+### Response
+
+**[AccountingBillsBatchAddResponse](../../models/operations/AccountingBillsBatchAddResponse.md)**
 
 ### Errors
 

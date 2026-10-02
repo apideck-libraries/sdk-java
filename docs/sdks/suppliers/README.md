@@ -9,6 +9,7 @@
 * [get](#get) - Get Supplier
 * [update](#update) - Update Supplier
 * [delete](#delete) - Delete Supplier
+* [createBatch](#createbatch) - Create Suppliers in batch
 
 ## list
 
@@ -620,6 +621,217 @@ public class Application {
 ### Response
 
 **[AccountingSuppliersDeleteResponse](../../models/operations/AccountingSuppliersDeleteResponse.md)**
+
+### Errors
+
+| Error Type                            | Status Code                           | Content Type                          |
+| ------------------------------------- | ------------------------------------- | ------------------------------------- |
+| models/errors/BadRequestResponse      | 400                                   | application/json                      |
+| models/errors/UnauthorizedResponse    | 401                                   | application/json                      |
+| models/errors/PaymentRequiredResponse | 402                                   | application/json                      |
+| models/errors/NotFoundResponse        | 404                                   | application/json                      |
+| models/errors/UnprocessableResponse   | 422                                   | application/json                      |
+| models/errors/APIException            | 4XX, 5XX                              | \*/\*                                 |
+
+## createBatch
+
+Create multiple suppliers in a single request. Each item is processed independently, so some may be created while others fail; the response returns `200` with one result per item, in the order the items were sent. The maximum number of items accepted per request depends on the connector.
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="accounting.suppliersBatchAdd" method="post" path="/accounting/suppliers/batch" -->
+```java
+package hello.world;
+
+import com.apideck.unify.Apideck;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
+import com.apideck.unify.models.operations.AccountingSuppliersBatchAddRequest;
+import com.apideck.unify.models.operations.AccountingSuppliersBatchAddResponse;
+import java.lang.Exception;
+import java.util.List;
+import java.util.Map;
+
+public class Application {
+
+    public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
+
+        Apideck sdk = Apideck.builder()
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+            .build();
+
+        AccountingSuppliersBatchAddRequest req = AccountingSuppliersBatchAddRequest.builder()
+                .batchSuppliersRequest(BatchSuppliersRequest.builder()
+                    .items(List.of(
+                        BatchSuppliersRequestItems.builder()
+                            .data(SupplierCreateInput.builder()
+                                .displayId("EMP00101")
+                                .displayName("Windsurf Shop")
+                                .companyName("SpaceX")
+                                .companyId("12345")
+                                .subsidiary(LinkedSubsidiaryInput.builder()
+                                    .displayId("123456")
+                                    .name("Acme Inc.")
+                                    .build())
+                                .supplierCategory("Insurance")
+                                .title("CEO")
+                                .firstName("Elon")
+                                .middleName("D.")
+                                .lastName("Musk")
+                                .suffix("Jr.")
+                                .individual(true)
+                                .addresses(List.of(
+                                    Address.builder()
+                                        .id("123")
+                                        .type(Type.PRIMARY)
+                                        .string("25 Spring Street, Blackburn, VIC 3130")
+                                        .name("HQ US")
+                                        .line1("Main street")
+                                        .line2("apt #")
+                                        .line3("Suite #")
+                                        .line4("delivery instructions")
+                                        .line5("Attention: Finance Dept")
+                                        .streetNumber("25")
+                                        .city("San Francisco")
+                                        .state("CA")
+                                        .postalCode("94104")
+                                        .country("US")
+                                        .latitude("40.759211")
+                                        .longitude("-73.984638")
+                                        .county("Santa Clara")
+                                        .contactName("Elon Musk")
+                                        .salutation("Mr")
+                                        .phoneNumber("111-111-1111")
+                                        .fax("122-111-1111")
+                                        .email("elon@musk.com")
+                                        .website("https://elonmusk.com")
+                                        .notes("Address notes or delivery instructions.")
+                                        .rowVersion("1-12345")
+                                        .build()))
+                                .phoneNumbers(List.of(
+                                    PhoneNumber.builder()
+                                        .number("111-111-1111")
+                                        .id("12345")
+                                        .countryCode("1")
+                                        .areaCode("323")
+                                        .extension("105")
+                                        .type(PhoneNumberType.PRIMARY)
+                                        .build()))
+                                .emails(List.of(
+                                    Email.builder()
+                                        .email("elon@musk.com")
+                                        .id("123")
+                                        .type(EmailType.PRIMARY)
+                                        .build()))
+                                .websites(List.of(
+                                    Website.builder()
+                                        .url("http://example.com")
+                                        .id("12345")
+                                        .type(WebsiteType.PRIMARY)
+                                        .build()))
+                                .bankAccounts(List.of(
+                                    BankAccount.builder()
+                                        .bankName("Chase Bank")
+                                        .accountNumber("123465")
+                                        .accountName("Main Operating Account")
+                                        .accountType(AccountType.CREDIT_CARD)
+                                        .iban("GB33BUKB20201555555555")
+                                        .bic("CHASUS33")
+                                        .routingNumber("021000021")
+                                        .bsbNumber("062-001")
+                                        .branchIdentifier("001")
+                                        .bankCode("BNH")
+                                        .currency(Currency.USD)
+                                        .country("US")
+                                        .build()))
+                                .notes("Some notes about this supplier")
+                                .taxRate(LinkedTaxRateInput.builder()
+                                    .id("123456")
+                                    .code("N-T")
+                                    .rate(10d)
+                                    .build())
+                                .taxNumber("US123945459")
+                                .taxable(true)
+                                .currency(Currency.USD)
+                                .account(LinkedLedgerAccount.builder()
+                                    .id("123456")
+                                    .name("Bank account")
+                                    .nominalCode("N091")
+                                    .code("453")
+                                    .parentId("123456")
+                                    .displayId("123456")
+                                    .build())
+                                .status(SupplierCreateInputStatus.ACTIVE)
+                                .paymentMethod("cash")
+                                .terms("Net 30 days")
+                                .termsId("12345")
+                                .channel("email")
+                                .issuedMethod("Email")
+                                .issuedEmail("john.doe@example.com")
+                                .customFields(List.of(
+                                    CustomField.of(CustomField1.builder()
+                                        .id("2389328923893298")
+                                        .name("employee_level")
+                                        .refName("Marketing")
+                                        .description("Employee Level")
+                                        .value(CustomField1Value.of("Uses Salesforce and Marketo"))
+                                        .build())))
+                                .taxDetails(List.of(
+                                    LinkedTaxDetail.builder()
+                                        .type("GST on Purchases")
+                                        .number("123456")
+                                        .isTransactionTax(true)
+                                        .isPrimaryTax(true)
+                                        .build()))
+                                .taxStatusDetails(List.of(
+                                    LinkedTaxStatusDetail.builder()
+                                        .country("US")
+                                        .transactionTaxStatus("taxable")
+                                        .build()))
+                                .rowVersion("1-12345")
+                                .passThrough(List.of(
+                                    PassThroughBody.builder()
+                                        .serviceId("<id>")
+                                        .extendPaths(List.of(
+                                            ExtendPaths.builder()
+                                                .path("$.nested.property")
+                                                .value(Map.ofEntries(
+                                                    Map.entry("TaxClassificationRef", Map.ofEntries(
+                                                        Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                                .build()))
+                                        .build()))
+                                .subsidiaryId("12345")
+                                .integrationSystemId("12345")
+                                .build())
+                            .ref("item-1")
+                            .build()))
+                    .build())
+                .serviceId("salesforce")
+                .companyId("12345")
+                .build();
+
+        AccountingSuppliersBatchAddResponse res = sdk.accounting().suppliers().createBatch()
+                .request(req)
+                .call();
+
+        if (res.batchSuppliersResponse().isPresent()) {
+            System.out.println(res.batchSuppliersResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                           | Type                                                                                                | Required                                                                                            | Description                                                                                         |
+| --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `request`                                                                                           | [AccountingSuppliersBatchAddRequest](../../models/operations/AccountingSuppliersBatchAddRequest.md) | :heavy_check_mark:                                                                                  | The request object to use for the request.                                                          |
+
+### Response
+
+**[AccountingSuppliersBatchAddResponse](../../models/operations/AccountingSuppliersBatchAddResponse.md)**
 
 ### Errors
 

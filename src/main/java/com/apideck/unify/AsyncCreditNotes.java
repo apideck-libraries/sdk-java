@@ -7,6 +7,7 @@ import static com.apideck.unify.operations.Operations.AsyncRequestOperation;
 
 import com.apideck.unify.models.operations.AccountingCreditNotesAddRequest;
 import com.apideck.unify.models.operations.AccountingCreditNotesAllRequest;
+import com.apideck.unify.models.operations.AccountingCreditNotesBatchAddRequest;
 import com.apideck.unify.models.operations.AccountingCreditNotesDeleteRequest;
 import com.apideck.unify.models.operations.AccountingCreditNotesOneRequest;
 import com.apideck.unify.models.operations.AccountingCreditNotesUpdateRequest;
@@ -14,6 +15,8 @@ import com.apideck.unify.models.operations.async.AccountingCreditNotesAddRequest
 import com.apideck.unify.models.operations.async.AccountingCreditNotesAddResponse;
 import com.apideck.unify.models.operations.async.AccountingCreditNotesAllRequestBuilder;
 import com.apideck.unify.models.operations.async.AccountingCreditNotesAllResponse;
+import com.apideck.unify.models.operations.async.AccountingCreditNotesBatchAddRequestBuilder;
+import com.apideck.unify.models.operations.async.AccountingCreditNotesBatchAddResponse;
 import com.apideck.unify.models.operations.async.AccountingCreditNotesDeleteRequestBuilder;
 import com.apideck.unify.models.operations.async.AccountingCreditNotesDeleteResponse;
 import com.apideck.unify.models.operations.async.AccountingCreditNotesOneRequestBuilder;
@@ -22,6 +25,7 @@ import com.apideck.unify.models.operations.async.AccountingCreditNotesUpdateRequ
 import com.apideck.unify.models.operations.async.AccountingCreditNotesUpdateResponse;
 import com.apideck.unify.operations.AccountingCreditNotesAdd;
 import com.apideck.unify.operations.AccountingCreditNotesAll;
+import com.apideck.unify.operations.AccountingCreditNotesBatchAdd;
 import com.apideck.unify.operations.AccountingCreditNotesDelete;
 import com.apideck.unify.operations.AccountingCreditNotesOne;
 import com.apideck.unify.operations.AccountingCreditNotesUpdate;
@@ -254,6 +258,54 @@ public class AsyncCreditNotes {
     public CompletableFuture<AccountingCreditNotesDeleteResponse> delete(AccountingCreditNotesDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingCreditNotesDeleteRequest, AccountingCreditNotesDeleteResponse> operation
               = new AccountingCreditNotesDelete.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * Create Credit Notes in batch
+     * 
+     * <p>Create multiple credit notes in a single request. Each item is processed independently, so some may
+     * be created while others fail; the response returns `200` with one result per item, in the order the
+     * items were sent. The maximum number of items accepted per request depends on the connector.
+     * 
+     * @return The async call builder
+     */
+    public AccountingCreditNotesBatchAddRequestBuilder createBatch() {
+        return new AccountingCreditNotesBatchAddRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Create Credit Notes in batch
+     * 
+     * <p>Create multiple credit notes in a single request. Each item is processed independently, so some may
+     * be created while others fail; the response returns `200` with one result per item, in the order the
+     * items were sent. The maximum number of items accepted per request depends on the connector.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return {@code CompletableFuture<AccountingCreditNotesBatchAddResponse>} - The async response
+     */
+    public CompletableFuture<AccountingCreditNotesBatchAddResponse> createBatch(AccountingCreditNotesBatchAddRequest request) {
+        return createBatch(request, Optional.empty());
+    }
+
+    /**
+     * Create Credit Notes in batch
+     * 
+     * <p>Create multiple credit notes in a single request. Each item is processed independently, so some may
+     * be created while others fail; the response returns `200` with one result per item, in the order the
+     * items were sent. The maximum number of items accepted per request depends on the connector.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return {@code CompletableFuture<AccountingCreditNotesBatchAddResponse>} - The async response
+     */
+    public CompletableFuture<AccountingCreditNotesBatchAddResponse> createBatch(AccountingCreditNotesBatchAddRequest request, Optional<Options> options) {
+        AsyncRequestOperation<AccountingCreditNotesBatchAddRequest, AccountingCreditNotesBatchAddResponse> operation
+              = new AccountingCreditNotesBatchAdd.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);
         return operation.doRequest(request)

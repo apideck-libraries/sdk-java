@@ -11,6 +11,9 @@ import com.apideck.unify.models.operations.AccountingCustomersAddResponse;
 import com.apideck.unify.models.operations.AccountingCustomersAllRequest;
 import com.apideck.unify.models.operations.AccountingCustomersAllRequestBuilder;
 import com.apideck.unify.models.operations.AccountingCustomersAllResponse;
+import com.apideck.unify.models.operations.AccountingCustomersBatchAddRequest;
+import com.apideck.unify.models.operations.AccountingCustomersBatchAddRequestBuilder;
+import com.apideck.unify.models.operations.AccountingCustomersBatchAddResponse;
 import com.apideck.unify.models.operations.AccountingCustomersDeleteRequest;
 import com.apideck.unify.models.operations.AccountingCustomersDeleteRequestBuilder;
 import com.apideck.unify.models.operations.AccountingCustomersDeleteResponse;
@@ -22,6 +25,7 @@ import com.apideck.unify.models.operations.AccountingCustomersUpdateRequestBuild
 import com.apideck.unify.models.operations.AccountingCustomersUpdateResponse;
 import com.apideck.unify.operations.AccountingCustomersAdd;
 import com.apideck.unify.operations.AccountingCustomersAll;
+import com.apideck.unify.operations.AccountingCustomersBatchAdd;
 import com.apideck.unify.operations.AccountingCustomersDelete;
 import com.apideck.unify.operations.AccountingCustomersOne;
 import com.apideck.unify.operations.AccountingCustomersUpdate;
@@ -246,6 +250,52 @@ public class Customers {
     public AccountingCustomersDeleteResponse delete(AccountingCustomersDeleteRequest request, Optional<Options> options) {
         RequestOperation<AccountingCustomersDeleteRequest, AccountingCustomersDeleteResponse> operation
               = new AccountingCustomersDelete.Sync(sdkConfiguration, options, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Create Customers in batch
+     * 
+     * <p>Create multiple customers in a single request. Each item is processed independently, so some may be
+     * created while others fail; the response returns `200` with one result per item, in the order the
+     * items were sent. The maximum number of items accepted per request depends on the connector.
+     * 
+     * @return The call builder
+     */
+    public AccountingCustomersBatchAddRequestBuilder createBatch() {
+        return new AccountingCustomersBatchAddRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Create Customers in batch
+     * 
+     * <p>Create multiple customers in a single request. Each item is processed independently, so some may be
+     * created while others fail; the response returns `200` with one result per item, in the order the
+     * items were sent. The maximum number of items accepted per request depends on the connector.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public AccountingCustomersBatchAddResponse createBatch(AccountingCustomersBatchAddRequest request) {
+        return createBatch(request, Optional.empty());
+    }
+
+    /**
+     * Create Customers in batch
+     * 
+     * <p>Create multiple customers in a single request. Each item is processed independently, so some may be
+     * created while others fail; the response returns `200` with one result per item, in the order the
+     * items were sent. The maximum number of items accepted per request depends on the connector.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public AccountingCustomersBatchAddResponse createBatch(AccountingCustomersBatchAddRequest request, Optional<Options> options) {
+        RequestOperation<AccountingCustomersBatchAddRequest, AccountingCustomersBatchAddResponse> operation
+              = new AccountingCustomersBatchAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

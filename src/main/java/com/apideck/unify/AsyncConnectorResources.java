@@ -5,7 +5,7 @@ package com.apideck.unify;
 
 import static com.apideck.unify.operations.Operations.AsyncRequestOperation;
 
-import com.apideck.unify.models.components.UnifiedApiId;
+import com.apideck.unify.models.components.UnifiedApi;
 import com.apideck.unify.models.operations.ConnectorConnectorResourcesOneRequest;
 import com.apideck.unify.models.operations.async.ConnectorConnectorResourcesOneRequestBuilder;
 import com.apideck.unify.models.operations.async.ConnectorConnectorResourcesOneResponse;
@@ -77,7 +77,7 @@ public class AsyncConnectorResources {
      */
     public CompletableFuture<ConnectorConnectorResourcesOneResponse> get(
             Optional<String> appId, String id,
-            String resourceId, Optional<? extends UnifiedApiId> unifiedApi,
+            String resourceId, Optional<? extends UnifiedApi> unifiedApi,
             Optional<Options> options) {
         ConnectorConnectorResourcesOneRequest request =
             ConnectorConnectorResourcesOneRequest

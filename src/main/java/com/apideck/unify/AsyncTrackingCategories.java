@@ -7,6 +7,7 @@ import static com.apideck.unify.operations.Operations.AsyncRequestOperation;
 
 import com.apideck.unify.models.operations.AccountingTrackingCategoriesAddRequest;
 import com.apideck.unify.models.operations.AccountingTrackingCategoriesAllRequest;
+import com.apideck.unify.models.operations.AccountingTrackingCategoriesBatchAddRequest;
 import com.apideck.unify.models.operations.AccountingTrackingCategoriesDeleteRequest;
 import com.apideck.unify.models.operations.AccountingTrackingCategoriesOneRequest;
 import com.apideck.unify.models.operations.AccountingTrackingCategoriesUpdateRequest;
@@ -14,6 +15,8 @@ import com.apideck.unify.models.operations.async.AccountingTrackingCategoriesAdd
 import com.apideck.unify.models.operations.async.AccountingTrackingCategoriesAddResponse;
 import com.apideck.unify.models.operations.async.AccountingTrackingCategoriesAllRequestBuilder;
 import com.apideck.unify.models.operations.async.AccountingTrackingCategoriesAllResponse;
+import com.apideck.unify.models.operations.async.AccountingTrackingCategoriesBatchAddRequestBuilder;
+import com.apideck.unify.models.operations.async.AccountingTrackingCategoriesBatchAddResponse;
 import com.apideck.unify.models.operations.async.AccountingTrackingCategoriesDeleteRequestBuilder;
 import com.apideck.unify.models.operations.async.AccountingTrackingCategoriesDeleteResponse;
 import com.apideck.unify.models.operations.async.AccountingTrackingCategoriesOneRequestBuilder;
@@ -22,6 +25,7 @@ import com.apideck.unify.models.operations.async.AccountingTrackingCategoriesUpd
 import com.apideck.unify.models.operations.async.AccountingTrackingCategoriesUpdateResponse;
 import com.apideck.unify.operations.AccountingTrackingCategoriesAdd;
 import com.apideck.unify.operations.AccountingTrackingCategoriesAll;
+import com.apideck.unify.operations.AccountingTrackingCategoriesBatchAdd;
 import com.apideck.unify.operations.AccountingTrackingCategoriesDelete;
 import com.apideck.unify.operations.AccountingTrackingCategoriesOne;
 import com.apideck.unify.operations.AccountingTrackingCategoriesUpdate;
@@ -254,6 +258,57 @@ public class AsyncTrackingCategories {
     public CompletableFuture<AccountingTrackingCategoriesDeleteResponse> delete(AccountingTrackingCategoriesDeleteRequest request, Optional<Options> options) {
         AsyncRequestOperation<AccountingTrackingCategoriesDeleteRequest, AccountingTrackingCategoriesDeleteResponse> operation
               = new AccountingTrackingCategoriesDelete.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * Create Tracking Categories in batch
+     * 
+     * <p>Create multiple tracking categories in a single request. Each item is processed independently, so
+     * some may be created while others fail; the response returns `200` with one result per item, in the
+     * order the items were sent. The maximum number of items accepted per request depends on the
+     * connector.
+     * 
+     * @return The async call builder
+     */
+    public AccountingTrackingCategoriesBatchAddRequestBuilder createBatch() {
+        return new AccountingTrackingCategoriesBatchAddRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Create Tracking Categories in batch
+     * 
+     * <p>Create multiple tracking categories in a single request. Each item is processed independently, so
+     * some may be created while others fail; the response returns `200` with one result per item, in the
+     * order the items were sent. The maximum number of items accepted per request depends on the
+     * connector.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return {@code CompletableFuture<AccountingTrackingCategoriesBatchAddResponse>} - The async response
+     */
+    public CompletableFuture<AccountingTrackingCategoriesBatchAddResponse> createBatch(AccountingTrackingCategoriesBatchAddRequest request) {
+        return createBatch(request, Optional.empty());
+    }
+
+    /**
+     * Create Tracking Categories in batch
+     * 
+     * <p>Create multiple tracking categories in a single request. Each item is processed independently, so
+     * some may be created while others fail; the response returns `200` with one result per item, in the
+     * order the items were sent. The maximum number of items accepted per request depends on the
+     * connector.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return {@code CompletableFuture<AccountingTrackingCategoriesBatchAddResponse>} - The async response
+     */
+    public CompletableFuture<AccountingTrackingCategoriesBatchAddResponse> createBatch(AccountingTrackingCategoriesBatchAddRequest request, Optional<Options> options) {
+        AsyncRequestOperation<AccountingTrackingCategoriesBatchAddRequest, AccountingTrackingCategoriesBatchAddResponse> operation
+              = new AccountingTrackingCategoriesBatchAdd.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);
         return operation.doRequest(request)

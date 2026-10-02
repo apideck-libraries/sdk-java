@@ -11,6 +11,9 @@ import com.apideck.unify.models.operations.AccountingTrackingCategoriesAddRespon
 import com.apideck.unify.models.operations.AccountingTrackingCategoriesAllRequest;
 import com.apideck.unify.models.operations.AccountingTrackingCategoriesAllRequestBuilder;
 import com.apideck.unify.models.operations.AccountingTrackingCategoriesAllResponse;
+import com.apideck.unify.models.operations.AccountingTrackingCategoriesBatchAddRequest;
+import com.apideck.unify.models.operations.AccountingTrackingCategoriesBatchAddRequestBuilder;
+import com.apideck.unify.models.operations.AccountingTrackingCategoriesBatchAddResponse;
 import com.apideck.unify.models.operations.AccountingTrackingCategoriesDeleteRequest;
 import com.apideck.unify.models.operations.AccountingTrackingCategoriesDeleteRequestBuilder;
 import com.apideck.unify.models.operations.AccountingTrackingCategoriesDeleteResponse;
@@ -22,6 +25,7 @@ import com.apideck.unify.models.operations.AccountingTrackingCategoriesUpdateReq
 import com.apideck.unify.models.operations.AccountingTrackingCategoriesUpdateResponse;
 import com.apideck.unify.operations.AccountingTrackingCategoriesAdd;
 import com.apideck.unify.operations.AccountingTrackingCategoriesAll;
+import com.apideck.unify.operations.AccountingTrackingCategoriesBatchAdd;
 import com.apideck.unify.operations.AccountingTrackingCategoriesDelete;
 import com.apideck.unify.operations.AccountingTrackingCategoriesOne;
 import com.apideck.unify.operations.AccountingTrackingCategoriesUpdate;
@@ -246,6 +250,55 @@ public class TrackingCategories {
     public AccountingTrackingCategoriesDeleteResponse delete(AccountingTrackingCategoriesDeleteRequest request, Optional<Options> options) {
         RequestOperation<AccountingTrackingCategoriesDeleteRequest, AccountingTrackingCategoriesDeleteResponse> operation
               = new AccountingTrackingCategoriesDelete.Sync(sdkConfiguration, options, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Create Tracking Categories in batch
+     * 
+     * <p>Create multiple tracking categories in a single request. Each item is processed independently, so
+     * some may be created while others fail; the response returns `200` with one result per item, in the
+     * order the items were sent. The maximum number of items accepted per request depends on the
+     * connector.
+     * 
+     * @return The call builder
+     */
+    public AccountingTrackingCategoriesBatchAddRequestBuilder createBatch() {
+        return new AccountingTrackingCategoriesBatchAddRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Create Tracking Categories in batch
+     * 
+     * <p>Create multiple tracking categories in a single request. Each item is processed independently, so
+     * some may be created while others fail; the response returns `200` with one result per item, in the
+     * order the items were sent. The maximum number of items accepted per request depends on the
+     * connector.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public AccountingTrackingCategoriesBatchAddResponse createBatch(AccountingTrackingCategoriesBatchAddRequest request) {
+        return createBatch(request, Optional.empty());
+    }
+
+    /**
+     * Create Tracking Categories in batch
+     * 
+     * <p>Create multiple tracking categories in a single request. Each item is processed independently, so
+     * some may be created while others fail; the response returns `200` with one result per item, in the
+     * order the items were sent. The maximum number of items accepted per request depends on the
+     * connector.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public AccountingTrackingCategoriesBatchAddResponse createBatch(AccountingTrackingCategoriesBatchAddRequest request, Optional<Options> options) {
+        RequestOperation<AccountingTrackingCategoriesBatchAddRequest, AccountingTrackingCategoriesBatchAddResponse> operation
+              = new AccountingTrackingCategoriesBatchAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

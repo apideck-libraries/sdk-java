@@ -79,6 +79,14 @@ public class JournalInput {
     private JsonNullable<? extends LinkedFinancialAccountInput> defaultAccount;
 
     /**
+     * A flexible account reference that can represent a ledger account (GL account), a bank account, or an
+     * employee payable account, depending on the connector's requirements.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("clearing_account")
+    private JsonNullable<? extends LinkedFinancialAccountInput> clearingAccount;
+
+    /**
      * Whether the journal is blocked for posting.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -95,6 +103,7 @@ public class JournalInput {
             @JsonProperty("currency") JsonNullable<? extends Currency> currency,
             @JsonProperty("iban") JsonNullable<String> iban,
             @JsonProperty("default_account") JsonNullable<? extends LinkedFinancialAccountInput> defaultAccount,
+            @JsonProperty("clearing_account") JsonNullable<? extends LinkedFinancialAccountInput> clearingAccount,
             @JsonProperty("blocked") JsonNullable<Boolean> blocked) {
         Utils.checkNotNull(code, "code");
         Utils.checkNotNull(name, "name");
@@ -104,6 +113,7 @@ public class JournalInput {
         Utils.checkNotNull(currency, "currency");
         Utils.checkNotNull(iban, "iban");
         Utils.checkNotNull(defaultAccount, "defaultAccount");
+        Utils.checkNotNull(clearingAccount, "clearingAccount");
         Utils.checkNotNull(blocked, "blocked");
         this.code = code;
         this.name = name;
@@ -113,13 +123,15 @@ public class JournalInput {
         this.currency = currency;
         this.iban = iban;
         this.defaultAccount = defaultAccount;
+        this.clearingAccount = clearingAccount;
         this.blocked = blocked;
     }
     
     public JournalInput() {
         this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -192,6 +204,16 @@ public class JournalInput {
     @JsonIgnore
     public JsonNullable<LinkedFinancialAccountInput> defaultAccount() {
         return (JsonNullable<LinkedFinancialAccountInput>) defaultAccount;
+    }
+
+    /**
+     * A flexible account reference that can represent a ledger account (GL account), a bank account, or an
+     * employee payable account, depending on the connector's requirements.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<LinkedFinancialAccountInput> clearingAccount() {
+        return (JsonNullable<LinkedFinancialAccountInput>) clearingAccount;
     }
 
     /**
@@ -362,6 +384,26 @@ public class JournalInput {
     }
 
     /**
+     * A flexible account reference that can represent a ledger account (GL account), a bank account, or an
+     * employee payable account, depending on the connector's requirements.
+     */
+    public JournalInput withClearingAccount(LinkedFinancialAccountInput clearingAccount) {
+        Utils.checkNotNull(clearingAccount, "clearingAccount");
+        this.clearingAccount = JsonNullable.of(clearingAccount);
+        return this;
+    }
+
+    /**
+     * A flexible account reference that can represent a ledger account (GL account), a bank account, or an
+     * employee payable account, depending on the connector's requirements.
+     */
+    public JournalInput withClearingAccount(JsonNullable<? extends LinkedFinancialAccountInput> clearingAccount) {
+        Utils.checkNotNull(clearingAccount, "clearingAccount");
+        this.clearingAccount = clearingAccount;
+        return this;
+    }
+
+    /**
      * Whether the journal is blocked for posting.
      */
     public JournalInput withBlocked(boolean blocked) {
@@ -397,6 +439,7 @@ public class JournalInput {
             Utils.enhancedDeepEquals(this.currency, other.currency) &&
             Utils.enhancedDeepEquals(this.iban, other.iban) &&
             Utils.enhancedDeepEquals(this.defaultAccount, other.defaultAccount) &&
+            Utils.enhancedDeepEquals(this.clearingAccount, other.clearingAccount) &&
             Utils.enhancedDeepEquals(this.blocked, other.blocked);
     }
     
@@ -405,7 +448,8 @@ public class JournalInput {
         return Utils.enhancedHash(
             code, name, description,
             type, allowVat, currency,
-            iban, defaultAccount, blocked);
+            iban, defaultAccount, clearingAccount,
+            blocked);
     }
     
     @Override
@@ -419,6 +463,7 @@ public class JournalInput {
                 "currency", currency,
                 "iban", iban,
                 "defaultAccount", defaultAccount,
+                "clearingAccount", clearingAccount,
                 "blocked", blocked);
     }
 
@@ -440,6 +485,8 @@ public class JournalInput {
         private JsonNullable<String> iban = JsonNullable.undefined();
 
         private JsonNullable<? extends LinkedFinancialAccountInput> defaultAccount = JsonNullable.undefined();
+
+        private JsonNullable<? extends LinkedFinancialAccountInput> clearingAccount = JsonNullable.undefined();
 
         private JsonNullable<Boolean> blocked = JsonNullable.undefined();
 
@@ -611,6 +658,27 @@ public class JournalInput {
 
 
         /**
+         * A flexible account reference that can represent a ledger account (GL account), a bank account, or an
+         * employee payable account, depending on the connector's requirements.
+         */
+        public Builder clearingAccount(LinkedFinancialAccountInput clearingAccount) {
+            Utils.checkNotNull(clearingAccount, "clearingAccount");
+            this.clearingAccount = JsonNullable.of(clearingAccount);
+            return this;
+        }
+
+        /**
+         * A flexible account reference that can represent a ledger account (GL account), a bank account, or an
+         * employee payable account, depending on the connector's requirements.
+         */
+        public Builder clearingAccount(JsonNullable<? extends LinkedFinancialAccountInput> clearingAccount) {
+            Utils.checkNotNull(clearingAccount, "clearingAccount");
+            this.clearingAccount = clearingAccount;
+            return this;
+        }
+
+
+        /**
          * Whether the journal is blocked for posting.
          */
         public Builder blocked(boolean blocked) {
@@ -633,7 +701,8 @@ public class JournalInput {
             return new JournalInput(
                 code, name, description,
                 type, allowVat, currency,
-                iban, defaultAccount, blocked);
+                iban, defaultAccount, clearingAccount,
+                blocked);
         }
 
     }

@@ -11,6 +11,9 @@ import com.apideck.unify.models.operations.AccountingLedgerAccountsAddResponse;
 import com.apideck.unify.models.operations.AccountingLedgerAccountsAllRequest;
 import com.apideck.unify.models.operations.AccountingLedgerAccountsAllRequestBuilder;
 import com.apideck.unify.models.operations.AccountingLedgerAccountsAllResponse;
+import com.apideck.unify.models.operations.AccountingLedgerAccountsBatchAddRequest;
+import com.apideck.unify.models.operations.AccountingLedgerAccountsBatchAddRequestBuilder;
+import com.apideck.unify.models.operations.AccountingLedgerAccountsBatchAddResponse;
 import com.apideck.unify.models.operations.AccountingLedgerAccountsDeleteRequest;
 import com.apideck.unify.models.operations.AccountingLedgerAccountsDeleteRequestBuilder;
 import com.apideck.unify.models.operations.AccountingLedgerAccountsDeleteResponse;
@@ -22,6 +25,7 @@ import com.apideck.unify.models.operations.AccountingLedgerAccountsUpdateRequest
 import com.apideck.unify.models.operations.AccountingLedgerAccountsUpdateResponse;
 import com.apideck.unify.operations.AccountingLedgerAccountsAdd;
 import com.apideck.unify.operations.AccountingLedgerAccountsAll;
+import com.apideck.unify.operations.AccountingLedgerAccountsBatchAdd;
 import com.apideck.unify.operations.AccountingLedgerAccountsDelete;
 import com.apideck.unify.operations.AccountingLedgerAccountsOne;
 import com.apideck.unify.operations.AccountingLedgerAccountsUpdate;
@@ -246,6 +250,52 @@ public class LedgerAccounts {
     public AccountingLedgerAccountsDeleteResponse delete(AccountingLedgerAccountsDeleteRequest request, Optional<Options> options) {
         RequestOperation<AccountingLedgerAccountsDeleteRequest, AccountingLedgerAccountsDeleteResponse> operation
               = new AccountingLedgerAccountsDelete.Sync(sdkConfiguration, options, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Create Ledger Accounts in batch
+     * 
+     * <p>Create multiple ledger accounts in a single request. Each item is processed independently, so some
+     * may be created while others fail; the response returns `200` with one result per item, in the order
+     * the items were sent. The maximum number of items accepted per request depends on the connector.
+     * 
+     * @return The call builder
+     */
+    public AccountingLedgerAccountsBatchAddRequestBuilder createBatch() {
+        return new AccountingLedgerAccountsBatchAddRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Create Ledger Accounts in batch
+     * 
+     * <p>Create multiple ledger accounts in a single request. Each item is processed independently, so some
+     * may be created while others fail; the response returns `200` with one result per item, in the order
+     * the items were sent. The maximum number of items accepted per request depends on the connector.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public AccountingLedgerAccountsBatchAddResponse createBatch(AccountingLedgerAccountsBatchAddRequest request) {
+        return createBatch(request, Optional.empty());
+    }
+
+    /**
+     * Create Ledger Accounts in batch
+     * 
+     * <p>Create multiple ledger accounts in a single request. Each item is processed independently, so some
+     * may be created while others fail; the response returns `200` with one result per item, in the order
+     * the items were sent. The maximum number of items accepted per request depends on the connector.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public AccountingLedgerAccountsBatchAddResponse createBatch(AccountingLedgerAccountsBatchAddRequest request, Optional<Options> options) {
+        RequestOperation<AccountingLedgerAccountsBatchAddRequest, AccountingLedgerAccountsBatchAddResponse> operation
+              = new AccountingLedgerAccountsBatchAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

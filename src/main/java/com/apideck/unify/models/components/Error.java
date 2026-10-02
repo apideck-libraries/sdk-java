@@ -9,55 +9,141 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.Optional;
 
 /**
  * Error
  * 
- * <p>The error returned if your message status is failed or undelivered.
+ * <p>Why this item did not complete. Present when `status` is `failed`, meaning the record was not
+ * written, and when `status` is `uncertain`, meaning it is unknown whether it was. Also present, more
+ * rarely, alongside `created`/`updated`: the record WAS written and post-write processing failed, so
+ * the item reports the error beside its success status.
+ * 
+ * <p>Per-item failures are independent — one item's rejection says nothing about the others. The
+ * exception is a failure of the request itself, such as a timeout: where a connector writes the whole
+ * batch in one call, every item shares that outcome and carries the same error.
  */
 public class Error {
     /**
-     * The error_code provides more information about the failure. If the message was successful, this
-     * value is null
+     * HTTP status code
      */
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("code")
-    private Optional<String> code;
+    @JsonProperty("status_code")
+    private Optional<Double> statusCode;
 
+    /**
+     * Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("error")
+    private Optional<String> error;
 
+    /**
+     * The type of error returned
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("type_name")
+    private Optional<String> typeName;
+
+    /**
+     * A human-readable message providing more details about the error.
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("message")
     private Optional<String> message;
 
+    /**
+     * Contains parameter or domain specific information related to the error and why it occurred.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("detail")
+    private Optional<? extends BatchItemResultDetail> detail;
+
+    /**
+     * Link to documentation of error type
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("ref")
+    private Optional<String> ref;
+
     @JsonCreator
     public Error(
-            @JsonProperty("code") Optional<String> code,
-            @JsonProperty("message") Optional<String> message) {
-        Utils.checkNotNull(code, "code");
+            @JsonProperty("status_code") Optional<Double> statusCode,
+            @JsonProperty("error") Optional<String> error,
+            @JsonProperty("type_name") Optional<String> typeName,
+            @JsonProperty("message") Optional<String> message,
+            @JsonProperty("detail") Optional<? extends BatchItemResultDetail> detail,
+            @JsonProperty("ref") Optional<String> ref) {
+        Utils.checkNotNull(statusCode, "statusCode");
+        Utils.checkNotNull(error, "error");
+        Utils.checkNotNull(typeName, "typeName");
         Utils.checkNotNull(message, "message");
-        this.code = code;
+        Utils.checkNotNull(detail, "detail");
+        Utils.checkNotNull(ref, "ref");
+        this.statusCode = statusCode;
+        this.error = error;
+        this.typeName = typeName;
         this.message = message;
+        this.detail = detail;
+        this.ref = ref;
     }
     
     public Error() {
-        this(Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
-     * The error_code provides more information about the failure. If the message was successful, this
-     * value is null
+     * HTTP status code
      */
     @JsonIgnore
-    public Optional<String> code() {
-        return code;
+    public Optional<Double> statusCode() {
+        return statusCode;
     }
 
+    /**
+     * Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+     */
+    @JsonIgnore
+    public Optional<String> error() {
+        return error;
+    }
+
+    /**
+     * The type of error returned
+     */
+    @JsonIgnore
+    public Optional<String> typeName() {
+        return typeName;
+    }
+
+    /**
+     * A human-readable message providing more details about the error.
+     */
     @JsonIgnore
     public Optional<String> message() {
         return message;
+    }
+
+    /**
+     * Contains parameter or domain specific information related to the error and why it occurred.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<BatchItemResultDetail> detail() {
+        return (Optional<BatchItemResultDetail>) detail;
+    }
+
+    /**
+     * Link to documentation of error type
+     */
+    @JsonIgnore
+    public Optional<String> ref() {
+        return ref;
     }
 
     public static Builder builder() {
@@ -66,26 +152,65 @@ public class Error {
 
 
     /**
-     * The error_code provides more information about the failure. If the message was successful, this
-     * value is null
+     * HTTP status code
      */
-    public Error withCode(String code) {
-        Utils.checkNotNull(code, "code");
-        this.code = Optional.ofNullable(code);
+    public Error withStatusCode(double statusCode) {
+        Utils.checkNotNull(statusCode, "statusCode");
+        this.statusCode = Optional.ofNullable(statusCode);
         return this;
     }
 
 
     /**
-     * The error_code provides more information about the failure. If the message was successful, this
-     * value is null
+     * HTTP status code
      */
-    public Error withCode(Optional<String> code) {
-        Utils.checkNotNull(code, "code");
-        this.code = code;
+    public Error withStatusCode(Optional<Double> statusCode) {
+        Utils.checkNotNull(statusCode, "statusCode");
+        this.statusCode = statusCode;
         return this;
     }
 
+    /**
+     * Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+     */
+    public Error withError(String error) {
+        Utils.checkNotNull(error, "error");
+        this.error = Optional.ofNullable(error);
+        return this;
+    }
+
+
+    /**
+     * Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+     */
+    public Error withError(Optional<String> error) {
+        Utils.checkNotNull(error, "error");
+        this.error = error;
+        return this;
+    }
+
+    /**
+     * The type of error returned
+     */
+    public Error withTypeName(String typeName) {
+        Utils.checkNotNull(typeName, "typeName");
+        this.typeName = Optional.ofNullable(typeName);
+        return this;
+    }
+
+
+    /**
+     * The type of error returned
+     */
+    public Error withTypeName(Optional<String> typeName) {
+        Utils.checkNotNull(typeName, "typeName");
+        this.typeName = typeName;
+        return this;
+    }
+
+    /**
+     * A human-readable message providing more details about the error.
+     */
     public Error withMessage(String message) {
         Utils.checkNotNull(message, "message");
         this.message = Optional.ofNullable(message);
@@ -93,9 +218,50 @@ public class Error {
     }
 
 
+    /**
+     * A human-readable message providing more details about the error.
+     */
     public Error withMessage(Optional<String> message) {
         Utils.checkNotNull(message, "message");
         this.message = message;
+        return this;
+    }
+
+    /**
+     * Contains parameter or domain specific information related to the error and why it occurred.
+     */
+    public Error withDetail(BatchItemResultDetail detail) {
+        Utils.checkNotNull(detail, "detail");
+        this.detail = Optional.ofNullable(detail);
+        return this;
+    }
+
+
+    /**
+     * Contains parameter or domain specific information related to the error and why it occurred.
+     */
+    public Error withDetail(Optional<? extends BatchItemResultDetail> detail) {
+        Utils.checkNotNull(detail, "detail");
+        this.detail = detail;
+        return this;
+    }
+
+    /**
+     * Link to documentation of error type
+     */
+    public Error withRef(String ref) {
+        Utils.checkNotNull(ref, "ref");
+        this.ref = Optional.ofNullable(ref);
+        return this;
+    }
+
+
+    /**
+     * Link to documentation of error type
+     */
+    public Error withRef(Optional<String> ref) {
+        Utils.checkNotNull(ref, "ref");
+        this.ref = ref;
         return this;
     }
 
@@ -109,29 +275,46 @@ public class Error {
         }
         Error other = (Error) o;
         return 
-            Utils.enhancedDeepEquals(this.code, other.code) &&
-            Utils.enhancedDeepEquals(this.message, other.message);
+            Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
+            Utils.enhancedDeepEquals(this.error, other.error) &&
+            Utils.enhancedDeepEquals(this.typeName, other.typeName) &&
+            Utils.enhancedDeepEquals(this.message, other.message) &&
+            Utils.enhancedDeepEquals(this.detail, other.detail) &&
+            Utils.enhancedDeepEquals(this.ref, other.ref);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            code, message);
+            statusCode, error, typeName,
+            message, detail, ref);
     }
     
     @Override
     public String toString() {
         return Utils.toString(Error.class,
-                "code", code,
-                "message", message);
+                "statusCode", statusCode,
+                "error", error,
+                "typeName", typeName,
+                "message", message,
+                "detail", detail,
+                "ref", ref);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> code = Optional.empty();
+        private Optional<Double> statusCode = Optional.empty();
+
+        private Optional<String> error = Optional.empty();
+
+        private Optional<String> typeName = Optional.empty();
 
         private Optional<String> message = Optional.empty();
+
+        private Optional<? extends BatchItemResultDetail> detail = Optional.empty();
+
+        private Optional<String> ref = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -139,42 +322,123 @@ public class Error {
 
 
         /**
-         * The error_code provides more information about the failure. If the message was successful, this
-         * value is null
+         * HTTP status code
          */
-        public Builder code(String code) {
-            Utils.checkNotNull(code, "code");
-            this.code = Optional.ofNullable(code);
+        public Builder statusCode(double statusCode) {
+            Utils.checkNotNull(statusCode, "statusCode");
+            this.statusCode = Optional.ofNullable(statusCode);
             return this;
         }
 
         /**
-         * The error_code provides more information about the failure. If the message was successful, this
-         * value is null
+         * HTTP status code
          */
-        public Builder code(Optional<String> code) {
-            Utils.checkNotNull(code, "code");
-            this.code = code;
+        public Builder statusCode(Optional<Double> statusCode) {
+            Utils.checkNotNull(statusCode, "statusCode");
+            this.statusCode = statusCode;
             return this;
         }
 
 
+        /**
+         * Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+         */
+        public Builder error(String error) {
+            Utils.checkNotNull(error, "error");
+            this.error = Optional.ofNullable(error);
+            return this;
+        }
+
+        /**
+         * Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+         */
+        public Builder error(Optional<String> error) {
+            Utils.checkNotNull(error, "error");
+            this.error = error;
+            return this;
+        }
+
+
+        /**
+         * The type of error returned
+         */
+        public Builder typeName(String typeName) {
+            Utils.checkNotNull(typeName, "typeName");
+            this.typeName = Optional.ofNullable(typeName);
+            return this;
+        }
+
+        /**
+         * The type of error returned
+         */
+        public Builder typeName(Optional<String> typeName) {
+            Utils.checkNotNull(typeName, "typeName");
+            this.typeName = typeName;
+            return this;
+        }
+
+
+        /**
+         * A human-readable message providing more details about the error.
+         */
         public Builder message(String message) {
             Utils.checkNotNull(message, "message");
             this.message = Optional.ofNullable(message);
             return this;
         }
 
+        /**
+         * A human-readable message providing more details about the error.
+         */
         public Builder message(Optional<String> message) {
             Utils.checkNotNull(message, "message");
             this.message = message;
             return this;
         }
 
+
+        /**
+         * Contains parameter or domain specific information related to the error and why it occurred.
+         */
+        public Builder detail(BatchItemResultDetail detail) {
+            Utils.checkNotNull(detail, "detail");
+            this.detail = Optional.ofNullable(detail);
+            return this;
+        }
+
+        /**
+         * Contains parameter or domain specific information related to the error and why it occurred.
+         */
+        public Builder detail(Optional<? extends BatchItemResultDetail> detail) {
+            Utils.checkNotNull(detail, "detail");
+            this.detail = detail;
+            return this;
+        }
+
+
+        /**
+         * Link to documentation of error type
+         */
+        public Builder ref(String ref) {
+            Utils.checkNotNull(ref, "ref");
+            this.ref = Optional.ofNullable(ref);
+            return this;
+        }
+
+        /**
+         * Link to documentation of error type
+         */
+        public Builder ref(Optional<String> ref) {
+            Utils.checkNotNull(ref, "ref");
+            this.ref = ref;
+            return this;
+        }
+
         public Error build() {
 
             return new Error(
-                code, message);
+                statusCode, error, typeName,
+                message, detail, ref);
         }
 
     }

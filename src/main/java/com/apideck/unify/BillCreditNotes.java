@@ -11,6 +11,9 @@ import com.apideck.unify.models.operations.AccountingBillCreditNotesAddResponse;
 import com.apideck.unify.models.operations.AccountingBillCreditNotesAllRequest;
 import com.apideck.unify.models.operations.AccountingBillCreditNotesAllRequestBuilder;
 import com.apideck.unify.models.operations.AccountingBillCreditNotesAllResponse;
+import com.apideck.unify.models.operations.AccountingBillCreditNotesBatchAddRequest;
+import com.apideck.unify.models.operations.AccountingBillCreditNotesBatchAddRequestBuilder;
+import com.apideck.unify.models.operations.AccountingBillCreditNotesBatchAddResponse;
 import com.apideck.unify.models.operations.AccountingBillCreditNotesDeleteRequest;
 import com.apideck.unify.models.operations.AccountingBillCreditNotesDeleteRequestBuilder;
 import com.apideck.unify.models.operations.AccountingBillCreditNotesDeleteResponse;
@@ -22,6 +25,7 @@ import com.apideck.unify.models.operations.AccountingBillCreditNotesUpdateReques
 import com.apideck.unify.models.operations.AccountingBillCreditNotesUpdateResponse;
 import com.apideck.unify.operations.AccountingBillCreditNotesAdd;
 import com.apideck.unify.operations.AccountingBillCreditNotesAll;
+import com.apideck.unify.operations.AccountingBillCreditNotesBatchAdd;
 import com.apideck.unify.operations.AccountingBillCreditNotesDelete;
 import com.apideck.unify.operations.AccountingBillCreditNotesOne;
 import com.apideck.unify.operations.AccountingBillCreditNotesUpdate;
@@ -246,6 +250,52 @@ public class BillCreditNotes {
     public AccountingBillCreditNotesDeleteResponse delete(AccountingBillCreditNotesDeleteRequest request, Optional<Options> options) {
         RequestOperation<AccountingBillCreditNotesDeleteRequest, AccountingBillCreditNotesDeleteResponse> operation
               = new AccountingBillCreditNotesDelete.Sync(sdkConfiguration, options, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Create Bill Credit Notes in batch
+     * 
+     * <p>Create multiple bill credit notes in a single request. Each item is processed independently, so some
+     * may be created while others fail; the response returns `200` with one result per item, in the order
+     * the items were sent. The maximum number of items accepted per request depends on the connector.
+     * 
+     * @return The call builder
+     */
+    public AccountingBillCreditNotesBatchAddRequestBuilder createBatch() {
+        return new AccountingBillCreditNotesBatchAddRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Create Bill Credit Notes in batch
+     * 
+     * <p>Create multiple bill credit notes in a single request. Each item is processed independently, so some
+     * may be created while others fail; the response returns `200` with one result per item, in the order
+     * the items were sent. The maximum number of items accepted per request depends on the connector.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public AccountingBillCreditNotesBatchAddResponse createBatch(AccountingBillCreditNotesBatchAddRequest request) {
+        return createBatch(request, Optional.empty());
+    }
+
+    /**
+     * Create Bill Credit Notes in batch
+     * 
+     * <p>Create multiple bill credit notes in a single request. Each item is processed independently, so some
+     * may be created while others fail; the response returns `200` with one result per item, in the order
+     * the items were sent. The maximum number of items accepted per request depends on the connector.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public AccountingBillCreditNotesBatchAddResponse createBatch(AccountingBillCreditNotesBatchAddRequest request, Optional<Options> options) {
+        RequestOperation<AccountingBillCreditNotesBatchAddRequest, AccountingBillCreditNotesBatchAddResponse> operation
+              = new AccountingBillCreditNotesBatchAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -9,94 +9,69 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.lang.Boolean;
+import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Optional;
 
 
 public class Resources {
     /**
-     * ID of the resource, typically a lowercased version of its name.
+     * `none` means this resource refuses batch writes. `native` satisfies a batch in a single downstream
+     * call against the provider's own batch endpoint, so the request counts as one request against your
+     * plan. `loop` satisfies it as a bounded sequential fan-out, one downstream call per item — so a
+     * request of N records takes roughly N times as long and counts as N requests.
      */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("id")
-    private Optional<String> id;
+    @JsonProperty("mode")
+    private BatchSupportResourcesMode mode;
 
     /**
-     * Name of the resource (plural)
+     * The maximum number of items this resource accepts in one request. A request carrying more is
+     * rejected before any record is written. Resources on the same connector can differ: a resource that
+     * writes records one at a time is usually capped lower than one that writes them in a single call.
+     * 
+     * <p>Absent when the connector has not declared one, in which case the platform default applies.
      */
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("name")
-    private Optional<String> name;
-
-    /**
-     * Status of the resource. Resources with status live or beta are callable.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("status")
-    private Optional<? extends ResourceStatus> status;
-
-    /**
-     * Exclude from mapping coverage
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("excluded_from_coverage")
-    private Optional<Boolean> excludedFromCoverage;
+    @JsonProperty("max_items")
+    private Optional<Long> maxItems;
 
     @JsonCreator
     public Resources(
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("name") Optional<String> name,
-            @JsonProperty("status") Optional<? extends ResourceStatus> status,
-            @JsonProperty("excluded_from_coverage") Optional<Boolean> excludedFromCoverage) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(status, "status");
-        Utils.checkNotNull(excludedFromCoverage, "excludedFromCoverage");
-        this.id = id;
-        this.name = name;
-        this.status = status;
-        this.excludedFromCoverage = excludedFromCoverage;
+            @JsonProperty("mode") BatchSupportResourcesMode mode,
+            @JsonProperty("max_items") Optional<Long> maxItems) {
+        Utils.checkNotNull(mode, "mode");
+        Utils.checkNotNull(maxItems, "maxItems");
+        this.mode = mode;
+        this.maxItems = maxItems;
     }
     
-    public Resources() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+    public Resources(
+            BatchSupportResourcesMode mode) {
+        this(mode, Optional.empty());
     }
 
     /**
-     * ID of the resource, typically a lowercased version of its name.
+     * `none` means this resource refuses batch writes. `native` satisfies a batch in a single downstream
+     * call against the provider's own batch endpoint, so the request counts as one request against your
+     * plan. `loop` satisfies it as a bounded sequential fan-out, one downstream call per item — so a
+     * request of N records takes roughly N times as long and counts as N requests.
      */
     @JsonIgnore
-    public Optional<String> id() {
-        return id;
+    public BatchSupportResourcesMode mode() {
+        return mode;
     }
 
     /**
-     * Name of the resource (plural)
+     * The maximum number of items this resource accepts in one request. A request carrying more is
+     * rejected before any record is written. Resources on the same connector can differ: a resource that
+     * writes records one at a time is usually capped lower than one that writes them in a single call.
+     * 
+     * <p>Absent when the connector has not declared one, in which case the platform default applies.
      */
     @JsonIgnore
-    public Optional<String> name() {
-        return name;
-    }
-
-    /**
-     * Status of the resource. Resources with status live or beta are callable.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<ResourceStatus> status() {
-        return (Optional<ResourceStatus>) status;
-    }
-
-    /**
-     * Exclude from mapping coverage
-     */
-    @JsonIgnore
-    public Optional<Boolean> excludedFromCoverage() {
-        return excludedFromCoverage;
+    public Optional<Long> maxItems() {
+        return maxItems;
     }
 
     public static Builder builder() {
@@ -105,78 +80,41 @@ public class Resources {
 
 
     /**
-     * ID of the resource, typically a lowercased version of its name.
+     * `none` means this resource refuses batch writes. `native` satisfies a batch in a single downstream
+     * call against the provider's own batch endpoint, so the request counts as one request against your
+     * plan. `loop` satisfies it as a bounded sequential fan-out, one downstream call per item — so a
+     * request of N records takes roughly N times as long and counts as N requests.
      */
-    public Resources withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
+    public Resources withMode(BatchSupportResourcesMode mode) {
+        Utils.checkNotNull(mode, "mode");
+        this.mode = mode;
+        return this;
+    }
+
+    /**
+     * The maximum number of items this resource accepts in one request. A request carrying more is
+     * rejected before any record is written. Resources on the same connector can differ: a resource that
+     * writes records one at a time is usually capped lower than one that writes them in a single call.
+     * 
+     * <p>Absent when the connector has not declared one, in which case the platform default applies.
+     */
+    public Resources withMaxItems(long maxItems) {
+        Utils.checkNotNull(maxItems, "maxItems");
+        this.maxItems = Optional.ofNullable(maxItems);
         return this;
     }
 
 
     /**
-     * ID of the resource, typically a lowercased version of its name.
+     * The maximum number of items this resource accepts in one request. A request carrying more is
+     * rejected before any record is written. Resources on the same connector can differ: a resource that
+     * writes records one at a time is usually capped lower than one that writes them in a single call.
+     * 
+     * <p>Absent when the connector has not declared one, in which case the platform default applies.
      */
-    public Resources withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
-        return this;
-    }
-
-    /**
-     * Name of the resource (plural)
-     */
-    public Resources withName(String name) {
-        Utils.checkNotNull(name, "name");
-        this.name = Optional.ofNullable(name);
-        return this;
-    }
-
-
-    /**
-     * Name of the resource (plural)
-     */
-    public Resources withName(Optional<String> name) {
-        Utils.checkNotNull(name, "name");
-        this.name = name;
-        return this;
-    }
-
-    /**
-     * Status of the resource. Resources with status live or beta are callable.
-     */
-    public Resources withStatus(ResourceStatus status) {
-        Utils.checkNotNull(status, "status");
-        this.status = Optional.ofNullable(status);
-        return this;
-    }
-
-
-    /**
-     * Status of the resource. Resources with status live or beta are callable.
-     */
-    public Resources withStatus(Optional<? extends ResourceStatus> status) {
-        Utils.checkNotNull(status, "status");
-        this.status = status;
-        return this;
-    }
-
-    /**
-     * Exclude from mapping coverage
-     */
-    public Resources withExcludedFromCoverage(boolean excludedFromCoverage) {
-        Utils.checkNotNull(excludedFromCoverage, "excludedFromCoverage");
-        this.excludedFromCoverage = Optional.ofNullable(excludedFromCoverage);
-        return this;
-    }
-
-
-    /**
-     * Exclude from mapping coverage
-     */
-    public Resources withExcludedFromCoverage(Optional<Boolean> excludedFromCoverage) {
-        Utils.checkNotNull(excludedFromCoverage, "excludedFromCoverage");
-        this.excludedFromCoverage = excludedFromCoverage;
+    public Resources withMaxItems(Optional<Long> maxItems) {
+        Utils.checkNotNull(maxItems, "maxItems");
+        this.maxItems = maxItems;
         return this;
     }
 
@@ -190,38 +128,29 @@ public class Resources {
         }
         Resources other = (Resources) o;
         return 
-            Utils.enhancedDeepEquals(this.id, other.id) &&
-            Utils.enhancedDeepEquals(this.name, other.name) &&
-            Utils.enhancedDeepEquals(this.status, other.status) &&
-            Utils.enhancedDeepEquals(this.excludedFromCoverage, other.excludedFromCoverage);
+            Utils.enhancedDeepEquals(this.mode, other.mode) &&
+            Utils.enhancedDeepEquals(this.maxItems, other.maxItems);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, name, status,
-            excludedFromCoverage);
+            mode, maxItems);
     }
     
     @Override
     public String toString() {
         return Utils.toString(Resources.class,
-                "id", id,
-                "name", name,
-                "status", status,
-                "excludedFromCoverage", excludedFromCoverage);
+                "mode", mode,
+                "maxItems", maxItems);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private BatchSupportResourcesMode mode;
 
-        private Optional<String> name = Optional.empty();
-
-        private Optional<? extends ResourceStatus> status = Optional.empty();
-
-        private Optional<Boolean> excludedFromCoverage = Optional.empty();
+        private Optional<Long> maxItems = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -229,85 +158,48 @@ public class Resources {
 
 
         /**
-         * ID of the resource, typically a lowercased version of its name.
+         * `none` means this resource refuses batch writes. `native` satisfies a batch in a single downstream
+         * call against the provider's own batch endpoint, so the request counts as one request against your
+         * plan. `loop` satisfies it as a bounded sequential fan-out, one downstream call per item — so a
+         * request of N records takes roughly N times as long and counts as N requests.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * ID of the resource, typically a lowercased version of its name.
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
+        public Builder mode(BatchSupportResourcesMode mode) {
+            Utils.checkNotNull(mode, "mode");
+            this.mode = mode;
             return this;
         }
 
 
         /**
-         * Name of the resource (plural)
+         * The maximum number of items this resource accepts in one request. A request carrying more is
+         * rejected before any record is written. Resources on the same connector can differ: a resource that
+         * writes records one at a time is usually capped lower than one that writes them in a single call.
+         * 
+         * <p>Absent when the connector has not declared one, in which case the platform default applies.
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
-            this.name = Optional.ofNullable(name);
+        public Builder maxItems(long maxItems) {
+            Utils.checkNotNull(maxItems, "maxItems");
+            this.maxItems = Optional.ofNullable(maxItems);
             return this;
         }
 
         /**
-         * Name of the resource (plural)
+         * The maximum number of items this resource accepts in one request. A request carrying more is
+         * rejected before any record is written. Resources on the same connector can differ: a resource that
+         * writes records one at a time is usually capped lower than one that writes them in a single call.
+         * 
+         * <p>Absent when the connector has not declared one, in which case the platform default applies.
          */
-        public Builder name(Optional<String> name) {
-            Utils.checkNotNull(name, "name");
-            this.name = name;
-            return this;
-        }
-
-
-        /**
-         * Status of the resource. Resources with status live or beta are callable.
-         */
-        public Builder status(ResourceStatus status) {
-            Utils.checkNotNull(status, "status");
-            this.status = Optional.ofNullable(status);
-            return this;
-        }
-
-        /**
-         * Status of the resource. Resources with status live or beta are callable.
-         */
-        public Builder status(Optional<? extends ResourceStatus> status) {
-            Utils.checkNotNull(status, "status");
-            this.status = status;
-            return this;
-        }
-
-
-        /**
-         * Exclude from mapping coverage
-         */
-        public Builder excludedFromCoverage(boolean excludedFromCoverage) {
-            Utils.checkNotNull(excludedFromCoverage, "excludedFromCoverage");
-            this.excludedFromCoverage = Optional.ofNullable(excludedFromCoverage);
-            return this;
-        }
-
-        /**
-         * Exclude from mapping coverage
-         */
-        public Builder excludedFromCoverage(Optional<Boolean> excludedFromCoverage) {
-            Utils.checkNotNull(excludedFromCoverage, "excludedFromCoverage");
-            this.excludedFromCoverage = excludedFromCoverage;
+        public Builder maxItems(Optional<Long> maxItems) {
+            Utils.checkNotNull(maxItems, "maxItems");
+            this.maxItems = maxItems;
             return this;
         }
 
         public Resources build() {
 
             return new Resources(
-                id, name, status,
-                excludedFromCoverage);
+                mode, maxItems);
         }
 
     }

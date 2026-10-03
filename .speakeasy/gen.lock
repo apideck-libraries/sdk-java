@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 38254260-287a-40b6-9ac5-c2fcb654c9cc
 management:
-  docChecksum: 9f0816ef5847413f8eb7e51dab13e534
-  docVersion: 10.60.0
-  speakeasyVersion: 1.800.0
+  docChecksum: 365177867ecb949db1c628eba806046d
+  docVersion: 10.60.1
+  speakeasyVersion: 1.800.1
   generationVersion: 2.943.0
-  releaseVersion: 0.44.0
-  configChecksum: 5603c9dbaaa086e34636bea60805f2f5
+  releaseVersion: 0.44.1
+  configChecksum: 87e0bc48c089be4be089becc78b66ba9
   repoURL: https://github.com/apideck-libraries/sdk-java.git
   installationURL: https://github.com/apideck-libraries/sdk-java
   published: true
 persistentEdits:
-  generation_id: 59112b75-39f6-4b0b-873b-60f7bacfe8d6
-  pristine_commit_hash: 85c357ee13c4935c9d161e1931ff592b39ceb45b
-  pristine_tree_hash: bfc2f22e0b490f5beae164ecd4c8065bdd8d9568
+  generation_id: 334eee7a-6358-4ee3-9648-c17a11cb153f
+  pristine_commit_hash: f26f30cc7335dc78ce790c23fa22b23c10d2cf07
+  pristine_tree_hash: a1a284a09349dadda47f413ae82a2f653dde43cb
 features:
   java:
     acceptHeaders: 2.81.2
@@ -8021,8 +8021,8 @@ trackedFiles:
     pristine_git_object: c755c6aa377f358344e761e9cc3e7b67bc1fb479
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:610e783b364bf38facf767dcf76880feece94d99
-    pristine_git_object: b31c95b69a4b6f96f740ce65c5f53dc08aa2dbe1
+    last_write_checksum: sha1:2c932e6df206bf652abbce833162feba89f120d3
+    pristine_git_object: 39894d41cc4806dc6849af0fa30e90ca1bd26fd9
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -8873,8 +8873,8 @@ trackedFiles:
     pristine_git_object: 7296db7ebcdcff7ee348d1f993fc4aa2a7e6c145
   src/main/java/com/apideck/unify/SDKConfiguration.java:
     id: a2b330a87142
-    last_write_checksum: sha1:ed0421629ea1cf571425b626fc44aa0aa75406af
-    pristine_git_object: 9ae0c67c08e2a814550a84359273079c3605be75
+    last_write_checksum: sha1:376f17645f6b644c241aa08db8acc979b8baab15
+    pristine_git_object: 7e2e50e409ff55baa3286de1c4d6ef6cf5300896
   src/main/java/com/apideck/unify/SalesReceipts.java:
     id: 581d0613d982
     last_write_checksum: sha1:ff6b58483cf85dafd1f56ccfeafafbe76664342b
@@ -40249,7 +40249,6 @@ examples:
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Java SDK Changes:\n* `apideck.accounting.bills.createBatch()`: **Added**\n* `apideck.accounting.invoices.createBatch()`: **Added**\n* `apideck.accounting.ledgerAccounts.createBatch()`: **Added**\n* `apideck.accounting.creditNotes.createBatch()`: **Added**\n* `apideck.accounting.billCreditNotes.createBatch()`: **Added**\n* `apideck.accounting.customers.createBatch()`: **Added**\n* `apideck.accounting.suppliers.createBatch()`: **Added**\n* `apideck.accounting.payments.createBatch()`: **Added**\n* `apideck.accounting.journalEntries.createBatch()`: **Added**\n* `apideck.accounting.trackingCategories.createBatch()`: **Added**\n* `apideck.accounting.billPayments.createBatch()`: **Added**\n* `apideck.accounting.billCreditNotes.list()`:  `response.data[]` **Changed**\n* `apideck.accounting.billCreditNotes.create()`: \n  *  `request.billCreditNote.totalAmount` **Changed**\n* `apideck.accounting.billCreditNotes.get()`:  `response.data` **Changed**\n* `apideck.accounting.billCreditNotes.update()`: \n  *  `request.billCreditNote.totalAmount` **Changed**\n* `apideck.accounting.journalEntries.list()`: \n  *  `request.filter` **Changed**\n  *  `response.data[].lineItems[]` **Changed**\n* `apideck.accounting.journalEntries.create()`: \n  *  `request.journalEntry.lineItems[]` **Changed**\n* `apideck.accounting.journalEntries.get()`:  `response.data.lineItems[]` **Changed**\n* `apideck.accounting.journalEntries.update()`: \n  *  `request.journalEntry.lineItems[]` **Changed**\n* `apideck.accounting.journals.list()`:  `response.data[].clearingAccount` **Added**\n* `apideck.accounting.journals.create()`: \n  *  `request.journal.clearingAccount` **Added**\n* `apideck.accounting.journals.get()`:  `response.data.clearingAccount` **Added**\n* `apideck.accounting.journals.update()`: \n  *  `request.journal.clearingAccount` **Added**\n* `apideck.accounting.bankFeedStatements.list()`: \n  *  `request.filter` **Added**\n* `apideck.crm.companies.create()`: \n  *  `request.company1.parentId` **Added**\n* `apideck.crm.companies.update()`: \n  *  `request.company1.parentId` **Added**\n* `apideck.crm.notes.list()`: \n  *  `request.filter` **Changed**\n* `apideck.ecommerce.stores.get()`:  `response.data.addresses` **Added**\n* `apideck.connector.connectors.list()`:  `response.data[].batchSupport` **Added**\n* `apideck.connector.connectors.get()`:  `response.data.batchSupport` **Added**\n"
 generatedFiles:
   - .gitattributes
   - USAGE.md

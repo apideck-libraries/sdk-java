@@ -63,6 +63,13 @@ public class EcommerceCustomer {
     private JsonNullable<? extends CustomerStatus> status;
 
     /**
+     * Tax or VAT identification number of the customer
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("tax_number")
+    private JsonNullable<String> taxNumber;
+
+    /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO
      * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
@@ -125,6 +132,7 @@ public class EcommerceCustomer {
             @JsonProperty("last_name") JsonNullable<String> lastName,
             @JsonProperty("company_name") JsonNullable<String> companyName,
             @JsonProperty("status") JsonNullable<? extends CustomerStatus> status,
+            @JsonProperty("tax_number") JsonNullable<String> taxNumber,
             @JsonProperty("currency") JsonNullable<? extends Currency> currency,
             @JsonProperty("emails") JsonNullable<? extends List<Email>> emails,
             @JsonProperty("phone_numbers") JsonNullable<? extends List<PhoneNumber>> phoneNumbers,
@@ -139,6 +147,7 @@ public class EcommerceCustomer {
         Utils.checkNotNull(lastName, "lastName");
         Utils.checkNotNull(companyName, "companyName");
         Utils.checkNotNull(status, "status");
+        Utils.checkNotNull(taxNumber, "taxNumber");
         Utils.checkNotNull(currency, "currency");
         Utils.checkNotNull(emails, "emails");
         Utils.checkNotNull(phoneNumbers, "phoneNumbers");
@@ -153,6 +162,7 @@ public class EcommerceCustomer {
         this.lastName = lastName;
         this.companyName = companyName;
         this.status = status;
+        this.taxNumber = taxNumber;
         this.currency = currency;
         this.emails = emails;
         this.phoneNumbers = phoneNumbers;
@@ -168,8 +178,8 @@ public class EcommerceCustomer {
         this(id, JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -219,6 +229,14 @@ public class EcommerceCustomer {
     @JsonIgnore
     public JsonNullable<CustomerStatus> status() {
         return (JsonNullable<CustomerStatus>) status;
+    }
+
+    /**
+     * Tax or VAT identification number of the customer
+     */
+    @JsonIgnore
+    public JsonNullable<String> taxNumber() {
+        return taxNumber;
     }
 
     /**
@@ -394,6 +412,24 @@ public class EcommerceCustomer {
     }
 
     /**
+     * Tax or VAT identification number of the customer
+     */
+    public EcommerceCustomer withTaxNumber(String taxNumber) {
+        Utils.checkNotNull(taxNumber, "taxNumber");
+        this.taxNumber = JsonNullable.of(taxNumber);
+        return this;
+    }
+
+    /**
+     * Tax or VAT identification number of the customer
+     */
+    public EcommerceCustomer withTaxNumber(JsonNullable<String> taxNumber) {
+        Utils.checkNotNull(taxNumber, "taxNumber");
+        this.taxNumber = taxNumber;
+        return this;
+    }
+
+    /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO
      * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
@@ -551,6 +587,7 @@ public class EcommerceCustomer {
             Utils.enhancedDeepEquals(this.lastName, other.lastName) &&
             Utils.enhancedDeepEquals(this.companyName, other.companyName) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.taxNumber, other.taxNumber) &&
             Utils.enhancedDeepEquals(this.currency, other.currency) &&
             Utils.enhancedDeepEquals(this.emails, other.emails) &&
             Utils.enhancedDeepEquals(this.phoneNumbers, other.phoneNumbers) &&
@@ -566,9 +603,9 @@ public class EcommerceCustomer {
         return Utils.enhancedHash(
             id, name, firstName,
             lastName, companyName, status,
-            currency, emails, phoneNumbers,
-            addresses, orders, customMappings,
-            createdAt, updatedAt);
+            taxNumber, currency, emails,
+            phoneNumbers, addresses, orders,
+            customMappings, createdAt, updatedAt);
     }
     
     @Override
@@ -580,6 +617,7 @@ public class EcommerceCustomer {
                 "lastName", lastName,
                 "companyName", companyName,
                 "status", status,
+                "taxNumber", taxNumber,
                 "currency", currency,
                 "emails", emails,
                 "phoneNumbers", phoneNumbers,
@@ -604,6 +642,8 @@ public class EcommerceCustomer {
         private JsonNullable<String> companyName = JsonNullable.undefined();
 
         private JsonNullable<? extends CustomerStatus> status = JsonNullable.undefined();
+
+        private JsonNullable<String> taxNumber = JsonNullable.undefined();
 
         private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
 
@@ -727,6 +767,25 @@ public class EcommerceCustomer {
         public Builder status(JsonNullable<? extends CustomerStatus> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
+            return this;
+        }
+
+
+        /**
+         * Tax or VAT identification number of the customer
+         */
+        public Builder taxNumber(String taxNumber) {
+            Utils.checkNotNull(taxNumber, "taxNumber");
+            this.taxNumber = JsonNullable.of(taxNumber);
+            return this;
+        }
+
+        /**
+         * Tax or VAT identification number of the customer
+         */
+        public Builder taxNumber(JsonNullable<String> taxNumber) {
+            Utils.checkNotNull(taxNumber, "taxNumber");
+            this.taxNumber = taxNumber;
             return this;
         }
 
@@ -883,9 +942,9 @@ public class EcommerceCustomer {
             return new EcommerceCustomer(
                 id, name, firstName,
                 lastName, companyName, status,
-                currency, emails, phoneNumbers,
-                addresses, orders, customMappings,
-                createdAt, updatedAt);
+                taxNumber, currency, emails,
+                phoneNumbers, addresses, orders,
+                customMappings, createdAt, updatedAt);
         }
 
     }

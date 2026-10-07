@@ -71,6 +71,13 @@ public class Addresses {
     @JsonProperty("country")
     private JsonNullable<String> country;
 
+    /**
+     * Tax or VAT identification number registered on this address
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("tax_number")
+    private JsonNullable<String> taxNumber;
+
     @JsonCreator
     public Addresses(
             @JsonProperty("type") Optional<? extends EcommerceCustomerType> type,
@@ -80,7 +87,8 @@ public class Addresses {
             @JsonProperty("city") JsonNullable<String> city,
             @JsonProperty("state") JsonNullable<String> state,
             @JsonProperty("postal_code") JsonNullable<String> postalCode,
-            @JsonProperty("country") JsonNullable<String> country) {
+            @JsonProperty("country") JsonNullable<String> country,
+            @JsonProperty("tax_number") JsonNullable<String> taxNumber) {
         Utils.checkNotNull(type, "type");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(line1, "line1");
@@ -89,6 +97,7 @@ public class Addresses {
         Utils.checkNotNull(state, "state");
         Utils.checkNotNull(postalCode, "postalCode");
         Utils.checkNotNull(country, "country");
+        Utils.checkNotNull(taxNumber, "taxNumber");
         this.type = type;
         this.id = id;
         this.line1 = line1;
@@ -97,12 +106,13 @@ public class Addresses {
         this.state = state;
         this.postalCode = postalCode;
         this.country = country;
+        this.taxNumber = taxNumber;
     }
     
     public Addresses() {
         this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     @SuppressWarnings("unchecked")
@@ -165,6 +175,14 @@ public class Addresses {
     @JsonIgnore
     public JsonNullable<String> country() {
         return country;
+    }
+
+    /**
+     * Tax or VAT identification number registered on this address
+     */
+    @JsonIgnore
+    public JsonNullable<String> taxNumber() {
+        return taxNumber;
     }
 
     public static Builder builder() {
@@ -311,6 +329,24 @@ public class Addresses {
         return this;
     }
 
+    /**
+     * Tax or VAT identification number registered on this address
+     */
+    public Addresses withTaxNumber(String taxNumber) {
+        Utils.checkNotNull(taxNumber, "taxNumber");
+        this.taxNumber = JsonNullable.of(taxNumber);
+        return this;
+    }
+
+    /**
+     * Tax or VAT identification number registered on this address
+     */
+    public Addresses withTaxNumber(JsonNullable<String> taxNumber) {
+        Utils.checkNotNull(taxNumber, "taxNumber");
+        this.taxNumber = taxNumber;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -328,7 +364,8 @@ public class Addresses {
             Utils.enhancedDeepEquals(this.city, other.city) &&
             Utils.enhancedDeepEquals(this.state, other.state) &&
             Utils.enhancedDeepEquals(this.postalCode, other.postalCode) &&
-            Utils.enhancedDeepEquals(this.country, other.country);
+            Utils.enhancedDeepEquals(this.country, other.country) &&
+            Utils.enhancedDeepEquals(this.taxNumber, other.taxNumber);
     }
     
     @Override
@@ -336,7 +373,7 @@ public class Addresses {
         return Utils.enhancedHash(
             type, id, line1,
             line2, city, state,
-            postalCode, country);
+            postalCode, country, taxNumber);
     }
     
     @Override
@@ -349,7 +386,8 @@ public class Addresses {
                 "city", city,
                 "state", state,
                 "postalCode", postalCode,
-                "country", country);
+                "country", country,
+                "taxNumber", taxNumber);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -370,6 +408,8 @@ public class Addresses {
         private JsonNullable<String> postalCode = JsonNullable.undefined();
 
         private JsonNullable<String> country = JsonNullable.undefined();
+
+        private JsonNullable<String> taxNumber = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -521,12 +561,31 @@ public class Addresses {
             return this;
         }
 
+
+        /**
+         * Tax or VAT identification number registered on this address
+         */
+        public Builder taxNumber(String taxNumber) {
+            Utils.checkNotNull(taxNumber, "taxNumber");
+            this.taxNumber = JsonNullable.of(taxNumber);
+            return this;
+        }
+
+        /**
+         * Tax or VAT identification number registered on this address
+         */
+        public Builder taxNumber(JsonNullable<String> taxNumber) {
+            Utils.checkNotNull(taxNumber, "taxNumber");
+            this.taxNumber = taxNumber;
+            return this;
+        }
+
         public Addresses build() {
 
             return new Addresses(
                 type, id, line1,
                 line2, city, state,
-                postalCode, country);
+                postalCode, country, taxNumber);
         }
 
     }

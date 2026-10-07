@@ -113,6 +113,35 @@ public class BankFeedAccount {
     @JsonProperty("country")
     private JsonNullable<String> country;
 
+    /**
+     * The people or businesses that hold the source bank account. Optional; `plaid-exchange` requires at
+     * least one.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("account_holders")
+    private Optional<? extends List<BankFeedAccountHolder>> accountHolders;
+
+    /**
+     * Email addresses of the account holders. Optional; `plaid-exchange` requires at least one.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("emails")
+    private Optional<? extends List<Email>> emails;
+
+    /**
+     * Addresses of the account holders. Optional; `plaid-exchange` requires at least one.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("addresses")
+    private Optional<? extends List<Address>> addresses;
+
+    /**
+     * Phone numbers of the account holders. Optional; `plaid-exchange` requires at least one.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("phone_numbers")
+    private Optional<? extends List<PhoneNumber>> phoneNumbers;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_fields")
@@ -168,6 +197,10 @@ public class BankFeedAccount {
             @JsonProperty("currency") JsonNullable<? extends Currency> currency,
             @JsonProperty("feed_status") Optional<? extends FeedStatus> feedStatus,
             @JsonProperty("country") JsonNullable<String> country,
+            @JsonProperty("account_holders") Optional<? extends List<BankFeedAccountHolder>> accountHolders,
+            @JsonProperty("emails") Optional<? extends List<Email>> emails,
+            @JsonProperty("addresses") Optional<? extends List<Address>> addresses,
+            @JsonProperty("phone_numbers") Optional<? extends List<PhoneNumber>> phoneNumbers,
             @JsonProperty("custom_fields") Optional<? extends List<CustomField>> customFields,
             @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings,
             @JsonProperty("created_at") JsonNullable<OffsetDateTime> createdAt,
@@ -187,6 +220,10 @@ public class BankFeedAccount {
         Utils.checkNotNull(currency, "currency");
         Utils.checkNotNull(feedStatus, "feedStatus");
         Utils.checkNotNull(country, "country");
+        Utils.checkNotNull(accountHolders, "accountHolders");
+        Utils.checkNotNull(emails, "emails");
+        Utils.checkNotNull(addresses, "addresses");
+        Utils.checkNotNull(phoneNumbers, "phoneNumbers");
         Utils.checkNotNull(customFields, "customFields");
         Utils.checkNotNull(customMappings, "customMappings");
         Utils.checkNotNull(createdAt, "createdAt");
@@ -206,6 +243,10 @@ public class BankFeedAccount {
         this.currency = currency;
         this.feedStatus = feedStatus;
         this.country = country;
+        this.accountHolders = accountHolders;
+        this.emails = emails;
+        this.addresses = addresses;
+        this.phoneNumbers = phoneNumbers;
         this.customFields = customFields;
         this.customMappings = customMappings;
         this.createdAt = createdAt;
@@ -220,9 +261,10 @@ public class BankFeedAccount {
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             Optional.empty(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -331,6 +373,43 @@ public class BankFeedAccount {
     @JsonIgnore
     public JsonNullable<String> country() {
         return country;
+    }
+
+    /**
+     * The people or businesses that hold the source bank account. Optional; `plaid-exchange` requires at
+     * least one.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<BankFeedAccountHolder>> accountHolders() {
+        return (Optional<List<BankFeedAccountHolder>>) accountHolders;
+    }
+
+    /**
+     * Email addresses of the account holders. Optional; `plaid-exchange` requires at least one.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<Email>> emails() {
+        return (Optional<List<Email>>) emails;
+    }
+
+    /**
+     * Addresses of the account holders. Optional; `plaid-exchange` requires at least one.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<Address>> addresses() {
+        return (Optional<List<Address>>) addresses;
+    }
+
+    /**
+     * Phone numbers of the account holders. Optional; `plaid-exchange` requires at least one.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<PhoneNumber>> phoneNumbers() {
+        return (Optional<List<PhoneNumber>>) phoneNumbers;
     }
 
     @SuppressWarnings("unchecked")
@@ -618,6 +697,84 @@ public class BankFeedAccount {
         return this;
     }
 
+    /**
+     * The people or businesses that hold the source bank account. Optional; `plaid-exchange` requires at
+     * least one.
+     */
+    public BankFeedAccount withAccountHolders(List<BankFeedAccountHolder> accountHolders) {
+        Utils.checkNotNull(accountHolders, "accountHolders");
+        this.accountHolders = Optional.ofNullable(accountHolders);
+        return this;
+    }
+
+
+    /**
+     * The people or businesses that hold the source bank account. Optional; `plaid-exchange` requires at
+     * least one.
+     */
+    public BankFeedAccount withAccountHolders(Optional<? extends List<BankFeedAccountHolder>> accountHolders) {
+        Utils.checkNotNull(accountHolders, "accountHolders");
+        this.accountHolders = accountHolders;
+        return this;
+    }
+
+    /**
+     * Email addresses of the account holders. Optional; `plaid-exchange` requires at least one.
+     */
+    public BankFeedAccount withEmails(List<Email> emails) {
+        Utils.checkNotNull(emails, "emails");
+        this.emails = Optional.ofNullable(emails);
+        return this;
+    }
+
+
+    /**
+     * Email addresses of the account holders. Optional; `plaid-exchange` requires at least one.
+     */
+    public BankFeedAccount withEmails(Optional<? extends List<Email>> emails) {
+        Utils.checkNotNull(emails, "emails");
+        this.emails = emails;
+        return this;
+    }
+
+    /**
+     * Addresses of the account holders. Optional; `plaid-exchange` requires at least one.
+     */
+    public BankFeedAccount withAddresses(List<Address> addresses) {
+        Utils.checkNotNull(addresses, "addresses");
+        this.addresses = Optional.ofNullable(addresses);
+        return this;
+    }
+
+
+    /**
+     * Addresses of the account holders. Optional; `plaid-exchange` requires at least one.
+     */
+    public BankFeedAccount withAddresses(Optional<? extends List<Address>> addresses) {
+        Utils.checkNotNull(addresses, "addresses");
+        this.addresses = addresses;
+        return this;
+    }
+
+    /**
+     * Phone numbers of the account holders. Optional; `plaid-exchange` requires at least one.
+     */
+    public BankFeedAccount withPhoneNumbers(List<PhoneNumber> phoneNumbers) {
+        Utils.checkNotNull(phoneNumbers, "phoneNumbers");
+        this.phoneNumbers = Optional.ofNullable(phoneNumbers);
+        return this;
+    }
+
+
+    /**
+     * Phone numbers of the account holders. Optional; `plaid-exchange` requires at least one.
+     */
+    public BankFeedAccount withPhoneNumbers(Optional<? extends List<PhoneNumber>> phoneNumbers) {
+        Utils.checkNotNull(phoneNumbers, "phoneNumbers");
+        this.phoneNumbers = phoneNumbers;
+        return this;
+    }
+
     public BankFeedAccount withCustomFields(List<CustomField> customFields) {
         Utils.checkNotNull(customFields, "customFields");
         this.customFields = Optional.ofNullable(customFields);
@@ -744,6 +901,10 @@ public class BankFeedAccount {
             Utils.enhancedDeepEquals(this.currency, other.currency) &&
             Utils.enhancedDeepEquals(this.feedStatus, other.feedStatus) &&
             Utils.enhancedDeepEquals(this.country, other.country) &&
+            Utils.enhancedDeepEquals(this.accountHolders, other.accountHolders) &&
+            Utils.enhancedDeepEquals(this.emails, other.emails) &&
+            Utils.enhancedDeepEquals(this.addresses, other.addresses) &&
+            Utils.enhancedDeepEquals(this.phoneNumbers, other.phoneNumbers) &&
             Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
             Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
@@ -759,9 +920,10 @@ public class BankFeedAccount {
             sourceRoutingNumber, sourceAccountNumber, targetAccountId,
             targetAccountName, targetAccountNumber, balance,
             availableBalance, currency, feedStatus,
-            country, customFields, customMappings,
-            createdAt, updatedAt, updatedBy,
-            createdBy);
+            country, accountHolders, emails,
+            addresses, phoneNumbers, customFields,
+            customMappings, createdAt, updatedAt,
+            updatedBy, createdBy);
     }
     
     @Override
@@ -780,6 +942,10 @@ public class BankFeedAccount {
                 "currency", currency,
                 "feedStatus", feedStatus,
                 "country", country,
+                "accountHolders", accountHolders,
+                "emails", emails,
+                "addresses", addresses,
+                "phoneNumbers", phoneNumbers,
                 "customFields", customFields,
                 "customMappings", customMappings,
                 "createdAt", createdAt,
@@ -816,6 +982,14 @@ public class BankFeedAccount {
         private Optional<? extends FeedStatus> feedStatus = Optional.empty();
 
         private JsonNullable<String> country = JsonNullable.undefined();
+
+        private Optional<? extends List<BankFeedAccountHolder>> accountHolders = Optional.empty();
+
+        private Optional<? extends List<Email>> emails = Optional.empty();
+
+        private Optional<? extends List<Address>> addresses = Optional.empty();
+
+        private Optional<? extends List<PhoneNumber>> phoneNumbers = Optional.empty();
 
         private Optional<? extends List<CustomField>> customFields = Optional.empty();
 
@@ -1074,6 +1248,84 @@ public class BankFeedAccount {
         }
 
 
+        /**
+         * The people or businesses that hold the source bank account. Optional; `plaid-exchange` requires at
+         * least one.
+         */
+        public Builder accountHolders(List<BankFeedAccountHolder> accountHolders) {
+            Utils.checkNotNull(accountHolders, "accountHolders");
+            this.accountHolders = Optional.ofNullable(accountHolders);
+            return this;
+        }
+
+        /**
+         * The people or businesses that hold the source bank account. Optional; `plaid-exchange` requires at
+         * least one.
+         */
+        public Builder accountHolders(Optional<? extends List<BankFeedAccountHolder>> accountHolders) {
+            Utils.checkNotNull(accountHolders, "accountHolders");
+            this.accountHolders = accountHolders;
+            return this;
+        }
+
+
+        /**
+         * Email addresses of the account holders. Optional; `plaid-exchange` requires at least one.
+         */
+        public Builder emails(List<Email> emails) {
+            Utils.checkNotNull(emails, "emails");
+            this.emails = Optional.ofNullable(emails);
+            return this;
+        }
+
+        /**
+         * Email addresses of the account holders. Optional; `plaid-exchange` requires at least one.
+         */
+        public Builder emails(Optional<? extends List<Email>> emails) {
+            Utils.checkNotNull(emails, "emails");
+            this.emails = emails;
+            return this;
+        }
+
+
+        /**
+         * Addresses of the account holders. Optional; `plaid-exchange` requires at least one.
+         */
+        public Builder addresses(List<Address> addresses) {
+            Utils.checkNotNull(addresses, "addresses");
+            this.addresses = Optional.ofNullable(addresses);
+            return this;
+        }
+
+        /**
+         * Addresses of the account holders. Optional; `plaid-exchange` requires at least one.
+         */
+        public Builder addresses(Optional<? extends List<Address>> addresses) {
+            Utils.checkNotNull(addresses, "addresses");
+            this.addresses = addresses;
+            return this;
+        }
+
+
+        /**
+         * Phone numbers of the account holders. Optional; `plaid-exchange` requires at least one.
+         */
+        public Builder phoneNumbers(List<PhoneNumber> phoneNumbers) {
+            Utils.checkNotNull(phoneNumbers, "phoneNumbers");
+            this.phoneNumbers = Optional.ofNullable(phoneNumbers);
+            return this;
+        }
+
+        /**
+         * Phone numbers of the account holders. Optional; `plaid-exchange` requires at least one.
+         */
+        public Builder phoneNumbers(Optional<? extends List<PhoneNumber>> phoneNumbers) {
+            Utils.checkNotNull(phoneNumbers, "phoneNumbers");
+            this.phoneNumbers = phoneNumbers;
+            return this;
+        }
+
+
         public Builder customFields(List<CustomField> customFields) {
             Utils.checkNotNull(customFields, "customFields");
             this.customFields = Optional.ofNullable(customFields);
@@ -1188,9 +1440,10 @@ public class BankFeedAccount {
                 sourceRoutingNumber, sourceAccountNumber, targetAccountId,
                 targetAccountName, targetAccountNumber, balance,
                 availableBalance, currency, feedStatus,
-                country, customFields, customMappings,
-                createdAt, updatedAt, updatedBy,
-                createdBy);
+                country, accountHolders, emails,
+                addresses, phoneNumbers, customFields,
+                customMappings, createdAt, updatedAt,
+                updatedBy, createdBy);
         }
 
     }

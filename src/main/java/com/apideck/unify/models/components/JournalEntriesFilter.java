@@ -27,6 +27,14 @@ public class JournalEntriesFilter {
     private Optional<String> number;
 
     /**
+     * Return only journal entries whose source_id equals the given value (the caller-supplied reference,
+     * where the connector stores one). Connectors without support reject this filter with
+     * UnsupportedFiltersError.
+     */
+    @SpeakeasyMetadata("queryParam:name=source_id")
+    private Optional<String> sourceId;
+
+    /**
      * Return journal entries posted on or after this date (posting date, inclusive). Connectors without
      * date-range support reject this filter with UnsupportedFiltersError.
      */
@@ -66,6 +74,7 @@ public class JournalEntriesFilter {
     public JournalEntriesFilter(
             Optional<OffsetDateTime> updatedSince,
             Optional<String> number,
+            Optional<String> sourceId,
             Optional<LocalDate> startDate,
             Optional<LocalDate> endDate,
             Optional<? extends JournalEntriesFilterStatus> status,
@@ -73,6 +82,7 @@ public class JournalEntriesFilter {
             Optional<String> subsidiaryId) {
         Utils.checkNotNull(updatedSince, "updatedSince");
         Utils.checkNotNull(number, "number");
+        Utils.checkNotNull(sourceId, "sourceId");
         Utils.checkNotNull(startDate, "startDate");
         Utils.checkNotNull(endDate, "endDate");
         Utils.checkNotNull(status, "status");
@@ -80,6 +90,7 @@ public class JournalEntriesFilter {
         Utils.checkNotNull(subsidiaryId, "subsidiaryId");
         this.updatedSince = updatedSince;
         this.number = number;
+        this.sourceId = sourceId;
         this.startDate = startDate;
         this.endDate = endDate;
         this.status = status;
@@ -90,7 +101,7 @@ public class JournalEntriesFilter {
     public JournalEntriesFilter() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+            Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -104,6 +115,16 @@ public class JournalEntriesFilter {
     @JsonIgnore
     public Optional<String> number() {
         return number;
+    }
+
+    /**
+     * Return only journal entries whose source_id equals the given value (the caller-supplied reference,
+     * where the connector stores one). Connectors without support reject this filter with
+     * UnsupportedFiltersError.
+     */
+    @JsonIgnore
+    public Optional<String> sourceId() {
+        return sourceId;
     }
 
     /**
@@ -187,6 +208,29 @@ public class JournalEntriesFilter {
     public JournalEntriesFilter withNumber(Optional<String> number) {
         Utils.checkNotNull(number, "number");
         this.number = number;
+        return this;
+    }
+
+    /**
+     * Return only journal entries whose source_id equals the given value (the caller-supplied reference,
+     * where the connector stores one). Connectors without support reject this filter with
+     * UnsupportedFiltersError.
+     */
+    public JournalEntriesFilter withSourceId(String sourceId) {
+        Utils.checkNotNull(sourceId, "sourceId");
+        this.sourceId = Optional.ofNullable(sourceId);
+        return this;
+    }
+
+
+    /**
+     * Return only journal entries whose source_id equals the given value (the caller-supplied reference,
+     * where the connector stores one). Connectors without support reject this filter with
+     * UnsupportedFiltersError.
+     */
+    public JournalEntriesFilter withSourceId(Optional<String> sourceId) {
+        Utils.checkNotNull(sourceId, "sourceId");
+        this.sourceId = sourceId;
         return this;
     }
 
@@ -307,6 +351,7 @@ public class JournalEntriesFilter {
         return 
             Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince) &&
             Utils.enhancedDeepEquals(this.number, other.number) &&
+            Utils.enhancedDeepEquals(this.sourceId, other.sourceId) &&
             Utils.enhancedDeepEquals(this.startDate, other.startDate) &&
             Utils.enhancedDeepEquals(this.endDate, other.endDate) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
@@ -317,9 +362,9 @@ public class JournalEntriesFilter {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            updatedSince, number, startDate,
-            endDate, status, scope,
-            subsidiaryId);
+            updatedSince, number, sourceId,
+            startDate, endDate, status,
+            scope, subsidiaryId);
     }
     
     @Override
@@ -327,6 +372,7 @@ public class JournalEntriesFilter {
         return Utils.toString(JournalEntriesFilter.class,
                 "updatedSince", updatedSince,
                 "number", number,
+                "sourceId", sourceId,
                 "startDate", startDate,
                 "endDate", endDate,
                 "status", status,
@@ -340,6 +386,8 @@ public class JournalEntriesFilter {
         private Optional<OffsetDateTime> updatedSince = Optional.empty();
 
         private Optional<String> number = Optional.empty();
+
+        private Optional<String> sourceId = Optional.empty();
 
         private Optional<LocalDate> startDate = Optional.empty();
 
@@ -384,6 +432,29 @@ public class JournalEntriesFilter {
         public Builder number(Optional<String> number) {
             Utils.checkNotNull(number, "number");
             this.number = number;
+            return this;
+        }
+
+
+        /**
+         * Return only journal entries whose source_id equals the given value (the caller-supplied reference,
+         * where the connector stores one). Connectors without support reject this filter with
+         * UnsupportedFiltersError.
+         */
+        public Builder sourceId(String sourceId) {
+            Utils.checkNotNull(sourceId, "sourceId");
+            this.sourceId = Optional.ofNullable(sourceId);
+            return this;
+        }
+
+        /**
+         * Return only journal entries whose source_id equals the given value (the caller-supplied reference,
+         * where the connector stores one). Connectors without support reject this filter with
+         * UnsupportedFiltersError.
+         */
+        public Builder sourceId(Optional<String> sourceId) {
+            Utils.checkNotNull(sourceId, "sourceId");
+            this.sourceId = sourceId;
             return this;
         }
 
@@ -495,9 +566,9 @@ public class JournalEntriesFilter {
         public JournalEntriesFilter build() {
 
             return new JournalEntriesFilter(
-                updatedSince, number, startDate,
-                endDate, status, scope,
-                subsidiaryId);
+                updatedSince, number, sourceId,
+                startDate, endDate, status,
+                scope, subsidiaryId);
         }
 
     }

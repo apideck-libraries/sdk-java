@@ -49,6 +49,26 @@ public class AccountingJournalEntriesAddRequest {
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-company-id")
     private Optional<String> companyId;
 
+    /**
+     * A unique key you generate for one create, to make retrying it safe. If the request times out or
+     * fails with an uncertain outcome, resend it with the same key and the same body: the record is
+     * created at most once. Keys are 1-255 printable ASCII characters (a UUID is recommended) and are
+     * accepted bare or as a quoted string.
+     * 
+     * <p>A key is remembered for 24 hours from its first use, or for the connector's own deduplication window
+     * where that is shorter (Xero: 6 minutes); after that, the same key is treated as a new request, so
+     * retry within the window. Some connectors also replay an error to retries with the same key: if
+     * retries keep returning the same error, check whether the record exists before sending it again with
+     * a new key. Reusing a key with a different body returns 422, and retrying while the first attempt is
+     * still running returns 409.
+     * 
+     * <p>A key is bound to its first request even if that request was rejected, so after fixing a rejected
+     * body, send it with a new key. Connectors that cannot honour the key on this operation reject the
+     * request with 400 instead of creating the record unprotected.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=idempotency-key")
+    private Optional<String> idempotencyKey;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private JournalEntryInput journalEntry;
@@ -60,25 +80,29 @@ public class AccountingJournalEntriesAddRequest {
             Optional<String> appId,
             Optional<String> serviceId,
             Optional<String> companyId,
+            Optional<String> idempotencyKey,
             JournalEntryInput journalEntry) {
         Utils.checkNotNull(raw, "raw");
         Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(serviceId, "serviceId");
         Utils.checkNotNull(companyId, "companyId");
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         Utils.checkNotNull(journalEntry, "journalEntry");
         this.raw = raw;
         this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
         this.companyId = companyId;
+        this.idempotencyKey = idempotencyKey;
         this.journalEntry = journalEntry;
     }
     
     public AccountingJournalEntriesAddRequest(
             JournalEntryInput journalEntry) {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), journalEntry);
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            journalEntry);
     }
 
     /**
@@ -121,6 +145,28 @@ public class AccountingJournalEntriesAddRequest {
     @JsonIgnore
     public Optional<String> companyId() {
         return companyId;
+    }
+
+    /**
+     * A unique key you generate for one create, to make retrying it safe. If the request times out or
+     * fails with an uncertain outcome, resend it with the same key and the same body: the record is
+     * created at most once. Keys are 1-255 printable ASCII characters (a UUID is recommended) and are
+     * accepted bare or as a quoted string.
+     * 
+     * <p>A key is remembered for 24 hours from its first use, or for the connector's own deduplication window
+     * where that is shorter (Xero: 6 minutes); after that, the same key is treated as a new request, so
+     * retry within the window. Some connectors also replay an error to retries with the same key: if
+     * retries keep returning the same error, check whether the record exists before sending it again with
+     * a new key. Reusing a key with a different body returns 422, and retrying while the first attempt is
+     * still running returns 409.
+     * 
+     * <p>A key is bound to its first request even if that request was rejected, so after fixing a rejected
+     * body, send it with a new key. Connectors that cannot honour the key on this operation reject the
+     * request with 400 instead of creating the record unprotected.
+     */
+    @JsonIgnore
+    public Optional<String> idempotencyKey() {
+        return idempotencyKey;
     }
 
     @JsonIgnore
@@ -232,6 +278,53 @@ public class AccountingJournalEntriesAddRequest {
         return this;
     }
 
+    /**
+     * A unique key you generate for one create, to make retrying it safe. If the request times out or
+     * fails with an uncertain outcome, resend it with the same key and the same body: the record is
+     * created at most once. Keys are 1-255 printable ASCII characters (a UUID is recommended) and are
+     * accepted bare or as a quoted string.
+     * 
+     * <p>A key is remembered for 24 hours from its first use, or for the connector's own deduplication window
+     * where that is shorter (Xero: 6 minutes); after that, the same key is treated as a new request, so
+     * retry within the window. Some connectors also replay an error to retries with the same key: if
+     * retries keep returning the same error, check whether the record exists before sending it again with
+     * a new key. Reusing a key with a different body returns 422, and retrying while the first attempt is
+     * still running returns 409.
+     * 
+     * <p>A key is bound to its first request even if that request was rejected, so after fixing a rejected
+     * body, send it with a new key. Connectors that cannot honour the key on this operation reject the
+     * request with 400 instead of creating the record unprotected.
+     */
+    public AccountingJournalEntriesAddRequest withIdempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+        return this;
+    }
+
+
+    /**
+     * A unique key you generate for one create, to make retrying it safe. If the request times out or
+     * fails with an uncertain outcome, resend it with the same key and the same body: the record is
+     * created at most once. Keys are 1-255 printable ASCII characters (a UUID is recommended) and are
+     * accepted bare or as a quoted string.
+     * 
+     * <p>A key is remembered for 24 hours from its first use, or for the connector's own deduplication window
+     * where that is shorter (Xero: 6 minutes); after that, the same key is treated as a new request, so
+     * retry within the window. Some connectors also replay an error to retries with the same key: if
+     * retries keep returning the same error, check whether the record exists before sending it again with
+     * a new key. Reusing a key with a different body returns 422, and retrying while the first attempt is
+     * still running returns 409.
+     * 
+     * <p>A key is bound to its first request even if that request was rejected, so after fixing a rejected
+     * body, send it with a new key. Connectors that cannot honour the key on this operation reject the
+     * request with 400 instead of creating the record unprotected.
+     */
+    public AccountingJournalEntriesAddRequest withIdempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
+        return this;
+    }
+
     public AccountingJournalEntriesAddRequest withJournalEntry(JournalEntryInput journalEntry) {
         Utils.checkNotNull(journalEntry, "journalEntry");
         this.journalEntry = journalEntry;
@@ -253,6 +346,7 @@ public class AccountingJournalEntriesAddRequest {
             Utils.enhancedDeepEquals(this.appId, other.appId) &&
             Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
             Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
+            Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey) &&
             Utils.enhancedDeepEquals(this.journalEntry, other.journalEntry);
     }
     
@@ -260,7 +354,8 @@ public class AccountingJournalEntriesAddRequest {
     public int hashCode() {
         return Utils.enhancedHash(
             raw, consumerId, appId,
-            serviceId, companyId, journalEntry);
+            serviceId, companyId, idempotencyKey,
+            journalEntry);
     }
     
     @Override
@@ -271,6 +366,7 @@ public class AccountingJournalEntriesAddRequest {
                 "appId", appId,
                 "serviceId", serviceId,
                 "companyId", companyId,
+                "idempotencyKey", idempotencyKey,
                 "journalEntry", journalEntry);
     }
 
@@ -286,6 +382,8 @@ public class AccountingJournalEntriesAddRequest {
         private Optional<String> serviceId = Optional.empty();
 
         private Optional<String> companyId = Optional.empty();
+
+        private Optional<String> idempotencyKey = Optional.empty();
 
         private JournalEntryInput journalEntry;
 
@@ -393,6 +491,53 @@ public class AccountingJournalEntriesAddRequest {
         }
 
 
+        /**
+         * A unique key you generate for one create, to make retrying it safe. If the request times out or
+         * fails with an uncertain outcome, resend it with the same key and the same body: the record is
+         * created at most once. Keys are 1-255 printable ASCII characters (a UUID is recommended) and are
+         * accepted bare or as a quoted string.
+         * 
+         * <p>A key is remembered for 24 hours from its first use, or for the connector's own deduplication window
+         * where that is shorter (Xero: 6 minutes); after that, the same key is treated as a new request, so
+         * retry within the window. Some connectors also replay an error to retries with the same key: if
+         * retries keep returning the same error, check whether the record exists before sending it again with
+         * a new key. Reusing a key with a different body returns 422, and retrying while the first attempt is
+         * still running returns 409.
+         * 
+         * <p>A key is bound to its first request even if that request was rejected, so after fixing a rejected
+         * body, send it with a new key. Connectors that cannot honour the key on this operation reject the
+         * request with 400 instead of creating the record unprotected.
+         */
+        public Builder idempotencyKey(String idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+            return this;
+        }
+
+        /**
+         * A unique key you generate for one create, to make retrying it safe. If the request times out or
+         * fails with an uncertain outcome, resend it with the same key and the same body: the record is
+         * created at most once. Keys are 1-255 printable ASCII characters (a UUID is recommended) and are
+         * accepted bare or as a quoted string.
+         * 
+         * <p>A key is remembered for 24 hours from its first use, or for the connector's own deduplication window
+         * where that is shorter (Xero: 6 minutes); after that, the same key is treated as a new request, so
+         * retry within the window. Some connectors also replay an error to retries with the same key: if
+         * retries keep returning the same error, check whether the record exists before sending it again with
+         * a new key. Reusing a key with a different body returns 422, and retrying while the first attempt is
+         * still running returns 409.
+         * 
+         * <p>A key is bound to its first request even if that request was rejected, so after fixing a rejected
+         * body, send it with a new key. Connectors that cannot honour the key on this operation reject the
+         * request with 400 instead of creating the record unprotected.
+         */
+        public Builder idempotencyKey(Optional<String> idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = idempotencyKey;
+            return this;
+        }
+
+
         public Builder journalEntry(JournalEntryInput journalEntry) {
             Utils.checkNotNull(journalEntry, "journalEntry");
             this.journalEntry = journalEntry;
@@ -406,7 +551,8 @@ public class AccountingJournalEntriesAddRequest {
 
             return new AccountingJournalEntriesAddRequest(
                 raw, consumerId, appId,
-                serviceId, companyId, journalEntry);
+                serviceId, companyId, idempotencyKey,
+                journalEntry);
         }
 
 

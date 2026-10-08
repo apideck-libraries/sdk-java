@@ -45,6 +45,7 @@ public class AsyncAccounting {
     private final AsyncCategories categories;
     private final AsyncQuotes quotes;
     private final AsyncProjects projects;
+    private final AsyncSalesOrders salesOrders;
     private final AsyncEmployees employees;
     private final AsyncExpenseCategories expenseCategories;
     private final AsyncPaymentMethods paymentMethods;
@@ -89,6 +90,7 @@ public class AsyncAccounting {
         this.categories = new AsyncCategories(syncSDK.categories(), this.sdkConfiguration);
         this.quotes = new AsyncQuotes(syncSDK.quotes(), this.sdkConfiguration);
         this.projects = new AsyncProjects(syncSDK.projects(), this.sdkConfiguration);
+        this.salesOrders = new AsyncSalesOrders(syncSDK.salesOrders(), this.sdkConfiguration);
         this.employees = new AsyncEmployees(syncSDK.employees(), this.sdkConfiguration);
         this.expenseCategories = new AsyncExpenseCategories(syncSDK.expenseCategories(), this.sdkConfiguration);
         this.paymentMethods = new AsyncPaymentMethods(syncSDK.paymentMethods(), this.sdkConfiguration);
@@ -238,6 +240,10 @@ public class AsyncAccounting {
 
     public final AsyncProjects projects() {
         return projects;
+    }
+
+    public final AsyncSalesOrders salesOrders() {
+        return salesOrders;
     }
 
     public final AsyncEmployees employees() {

@@ -46,6 +46,7 @@ public class Accounting {
     private final Categories categories;
     private final Quotes quotes;
     private final Projects projects;
+    private final SalesOrders salesOrders;
     private final Employees employees;
     private final ExpenseCategories expenseCategories;
     private final PaymentMethods paymentMethods;
@@ -89,6 +90,7 @@ public class Accounting {
         this.categories = new Categories(this.sdkConfiguration);
         this.quotes = new Quotes(this.sdkConfiguration);
         this.projects = new Projects(this.sdkConfiguration);
+        this.salesOrders = new SalesOrders(this.sdkConfiguration);
         this.employees = new Employees(this.sdkConfiguration);
         this.expenseCategories = new ExpenseCategories(this.sdkConfiguration);
         this.paymentMethods = new PaymentMethods(this.sdkConfiguration);
@@ -238,6 +240,10 @@ public class Accounting {
 
     public final Projects projects() {
         return projects;
+    }
+
+    public final SalesOrders salesOrders() {
+        return salesOrders;
     }
 
     public final Employees employees() {

@@ -162,6 +162,12 @@ public class WebhookEventType {
     public static final WebhookEventType ACCOUNTING_TRACKING_CATEGORY_CREATED = new WebhookEventType("accounting.tracking_category.created");
     public static final WebhookEventType ACCOUNTING_TRACKING_CATEGORY_UPDATED = new WebhookEventType("accounting.tracking_category.updated");
     public static final WebhookEventType ACCOUNTING_TRACKING_CATEGORY_DELETED = new WebhookEventType("accounting.tracking_category.deleted");
+    public static final WebhookEventType ACCOUNTING_SALES_RECEIPT_CREATED = new WebhookEventType("accounting.sales_receipt.created");
+    public static final WebhookEventType ACCOUNTING_SALES_RECEIPT_UPDATED = new WebhookEventType("accounting.sales_receipt.updated");
+    public static final WebhookEventType ACCOUNTING_SALES_RECEIPT_DELETED = new WebhookEventType("accounting.sales_receipt.deleted");
+    public static final WebhookEventType ACCOUNTING_REFUND_CREATED = new WebhookEventType("accounting.refund.created");
+    public static final WebhookEventType ACCOUNTING_REFUND_UPDATED = new WebhookEventType("accounting.refund.updated");
+    public static final WebhookEventType ACCOUNTING_REFUND_DELETED = new WebhookEventType("accounting.refund.deleted");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -377,6 +383,12 @@ public class WebhookEventType {
         map.put("accounting.tracking_category.created", ACCOUNTING_TRACKING_CATEGORY_CREATED);
         map.put("accounting.tracking_category.updated", ACCOUNTING_TRACKING_CATEGORY_UPDATED);
         map.put("accounting.tracking_category.deleted", ACCOUNTING_TRACKING_CATEGORY_DELETED);
+        map.put("accounting.sales_receipt.created", ACCOUNTING_SALES_RECEIPT_CREATED);
+        map.put("accounting.sales_receipt.updated", ACCOUNTING_SALES_RECEIPT_UPDATED);
+        map.put("accounting.sales_receipt.deleted", ACCOUNTING_SALES_RECEIPT_DELETED);
+        map.put("accounting.refund.created", ACCOUNTING_REFUND_CREATED);
+        map.put("accounting.refund.updated", ACCOUNTING_REFUND_UPDATED);
+        map.put("accounting.refund.deleted", ACCOUNTING_REFUND_DELETED);
         return map;
     }
 
@@ -524,6 +536,12 @@ public class WebhookEventType {
         map.put("accounting.tracking_category.created", WebhookEventTypeEnum.ACCOUNTING_TRACKING_CATEGORY_CREATED);
         map.put("accounting.tracking_category.updated", WebhookEventTypeEnum.ACCOUNTING_TRACKING_CATEGORY_UPDATED);
         map.put("accounting.tracking_category.deleted", WebhookEventTypeEnum.ACCOUNTING_TRACKING_CATEGORY_DELETED);
+        map.put("accounting.sales_receipt.created", WebhookEventTypeEnum.ACCOUNTING_SALES_RECEIPT_CREATED);
+        map.put("accounting.sales_receipt.updated", WebhookEventTypeEnum.ACCOUNTING_SALES_RECEIPT_UPDATED);
+        map.put("accounting.sales_receipt.deleted", WebhookEventTypeEnum.ACCOUNTING_SALES_RECEIPT_DELETED);
+        map.put("accounting.refund.created", WebhookEventTypeEnum.ACCOUNTING_REFUND_CREATED);
+        map.put("accounting.refund.updated", WebhookEventTypeEnum.ACCOUNTING_REFUND_UPDATED);
+        map.put("accounting.refund.deleted", WebhookEventTypeEnum.ACCOUNTING_REFUND_DELETED);
         return map;
     }
     
@@ -671,7 +689,13 @@ public class WebhookEventType {
         ACCOUNTING_PROJECT_DELETED("accounting.project.deleted"),
         ACCOUNTING_TRACKING_CATEGORY_CREATED("accounting.tracking_category.created"),
         ACCOUNTING_TRACKING_CATEGORY_UPDATED("accounting.tracking_category.updated"),
-        ACCOUNTING_TRACKING_CATEGORY_DELETED("accounting.tracking_category.deleted"),;
+        ACCOUNTING_TRACKING_CATEGORY_DELETED("accounting.tracking_category.deleted"),
+        ACCOUNTING_SALES_RECEIPT_CREATED("accounting.sales_receipt.created"),
+        ACCOUNTING_SALES_RECEIPT_UPDATED("accounting.sales_receipt.updated"),
+        ACCOUNTING_SALES_RECEIPT_DELETED("accounting.sales_receipt.deleted"),
+        ACCOUNTING_REFUND_CREATED("accounting.refund.created"),
+        ACCOUNTING_REFUND_UPDATED("accounting.refund.updated"),
+        ACCOUNTING_REFUND_DELETED("accounting.refund.deleted"),;
 
         private final String value;
 

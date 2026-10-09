@@ -329,7 +329,7 @@ public class Application {
                     .accountingPeriod("01-24")
                     .build())
                 .serviceId("salesforce")
-                .idempotencyKey("8e03978e-40d5-43e8-bc93-6894a57f9324")
+                .idempotencyKey("your-unique-key-per-create")
                 .build();
 
         AccountingBillsAddResponse res = sdk.accounting().bills().create()

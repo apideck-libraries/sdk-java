@@ -324,7 +324,7 @@ public class Application {
                     .build())
                 .serviceId("salesforce")
                 .companyId("12345")
-                .idempotencyKey("8e03978e-40d5-43e8-bc93-6894a57f9324")
+                .idempotencyKey("your-unique-key-per-create")
                 .build();
 
         AccountingInvoicesAddResponse res = sdk.accounting().invoices().create()

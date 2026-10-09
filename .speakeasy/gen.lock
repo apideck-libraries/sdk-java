@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 38254260-287a-40b6-9ac5-c2fcb654c9cc
 management:
-  docChecksum: 274eaee0a90cc2d0fb03633e591f0a33
-  docVersion: 10.66.1
+  docChecksum: 09a920f418dc59a418753e18f61af402
+  docVersion: 10.66.3
   speakeasyVersion: 1.801.0
   generationVersion: 2.946.0
-  releaseVersion: 0.46.0
-  configChecksum: 3baae1ef4eb531a46f68f2719f2684ad
+  releaseVersion: 0.46.1
+  configChecksum: 4793c06824787476aa62ecfc452a90f9
   repoURL: https://github.com/apideck-libraries/sdk-java.git
   installationURL: https://github.com/apideck-libraries/sdk-java
   published: true
 persistentEdits:
-  generation_id: c8e95d31-6eb5-403d-9806-9dc2a413b1a5
-  pristine_commit_hash: 91ce40f213e933df970e7512e1cf1d860266b61a
-  pristine_tree_hash: c12cf4017cca9fb7e8f35eae3947b214902b896a
+  generation_id: 3fc965c0-9740-404f-95a5-28f6c69b10fb
+  pristine_commit_hash: 6714f0b9e5f8be89ec1014d2592dde65c8f16569
+  pristine_tree_hash: a0d81a30c66162c09040cea4364ffec1679e26e3
 features:
   java:
     acceptHeaders: 2.81.2
@@ -4929,8 +4929,8 @@ trackedFiles:
     pristine_git_object: 11d7fd72fe443da8a009cbe0b9c913264086f9bf
   docs/models/operations/AccountingBillsAddRequest.md:
     id: 1a6bba677873
-    last_write_checksum: sha1:e32dbadac9d612c73b0035a70e00930db2de1cb4
-    pristine_git_object: 95ff8e657f918b781ff46c460ae958036747ab5b
+    last_write_checksum: sha1:4848b1cada8f62b9e5dd083d5a1aaa470c953a77
+    pristine_git_object: dfd35b7ffffba25508e6b53f5888daa92fac4611
   docs/models/operations/AccountingBillsAddResponse.md:
     id: c8aa45f90369
     last_write_checksum: sha1:3e211411a36507b1d7713cbfd35a526cd6a09fb0
@@ -5377,8 +5377,8 @@ trackedFiles:
     pristine_git_object: b54fe7160cc6508634a75a07fe4290bfc8ab23f1
   docs/models/operations/AccountingInvoicesAddRequest.md:
     id: b83124619287
-    last_write_checksum: sha1:a480571252d6e65d9dce34f411aa3a7a34e928f9
-    pristine_git_object: 5d2ceac93ac923e3c5a313e65ed2b2fcb453201d
+    last_write_checksum: sha1:4b22decd1dd4517b1288fd877c5a192eb6b5002d
+    pristine_git_object: b24781daf201f3065a47a8e26d79d6c342bf4a1e
   docs/models/operations/AccountingInvoicesAddResponse.md:
     id: 20198d3a97c6
     last_write_checksum: sha1:7b92a732fe7cebcc4cfb6066d4de3147f95bdebe
@@ -5425,8 +5425,8 @@ trackedFiles:
     pristine_git_object: 3d04ecfdb91fe6b265cd173a0ca9f429484ebe7b
   docs/models/operations/AccountingJournalEntriesAddRequest.md:
     id: 2fb10e798003
-    last_write_checksum: sha1:93e5d337a309db277f471a312e24e1f2163ecce0
-    pristine_git_object: e382d3c7ee7952b69b8092ec330c5a43c871c720
+    last_write_checksum: sha1:688e6fea8d36d1a8bae8149d586bcff228e0af4a
+    pristine_git_object: cddfd277157aa08dd1e709fca3cb566c6fb3ff72
   docs/models/operations/AccountingJournalEntriesAddResponse.md:
     id: dea426367494
     last_write_checksum: sha1:35fea789b39878bc18b331cf228daf4f3e6f4032
@@ -7789,8 +7789,8 @@ trackedFiles:
     pristine_git_object: d5ff232be7de80c22958e46eb54306231cf18eb6
   docs/sdks/bills/README.md:
     id: 2a9c97966ab7
-    last_write_checksum: sha1:1a05b629d002f8b574777cf04b3fef6d140bb669
-    pristine_git_object: 8a3b893674c2adaa17b20e503df9bd71d5d8de0f
+    last_write_checksum: sha1:9c87bdcb563e240b4b1885c239bbbcc7c55f2ebc
+    pristine_git_object: a414730cb2fa9efdf1ef392c409e328927b7757c
   docs/sdks/categories/README.md:
     id: 2e253d7225b0
     last_write_checksum: sha1:efb25e991f959b8e394d6d3eedb3f270412a7e8b
@@ -7953,16 +7953,16 @@ trackedFiles:
     pristine_git_object: 98884820c3370fd63a95de0ea35ab69d6fd1fd1c
   docs/sdks/invoices/README.md:
     id: a3f76a06eded
-    last_write_checksum: sha1:ee8a8c00a1323458ca2e541d3f20021aebf38e76
-    pristine_git_object: f23148d691298b21f370f134243ee632c4dd128d
+    last_write_checksum: sha1:9af278c9c70e827b302a52c477010e95645d9e24
+    pristine_git_object: d954b4517a7eee50db4998961221e4abf7c1dee7
   docs/sdks/jobs/README.md:
     id: 7371cdc8b89a
     last_write_checksum: sha1:c1cd27ed6235a7eb942487d5faeadad2a796db3d
     pristine_git_object: b5b08370dafd34974d70a39eb3da5a3c85181bf8
   docs/sdks/journalentries/README.md:
     id: 7723a6f499f0
-    last_write_checksum: sha1:9e43134f6b1e51a8afbee28d4bb7ef244d1af312
-    pristine_git_object: bd17e58e3540039e971d247395b65fe30b244254
+    last_write_checksum: sha1:2b41a57a6fb64a86f2a1fcc0fba8b4a0a2cad1e3
+    pristine_git_object: 1ca9d6425ecd1447ee829fdc6a661550d18ac789
   docs/sdks/journals/README.md:
     id: 255f988e78fc
     last_write_checksum: sha1:e20ac290e9f30c727b6701f00d467f5fff92b9f5
@@ -8113,8 +8113,8 @@ trackedFiles:
     pristine_git_object: c755c6aa377f358344e761e9cc3e7b67bc1fb479
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:0b53c81f9746124042a92f95d71129d9e0e0dabf
-    pristine_git_object: aa4463d224f6be74dc05dcbb6f1ab214e3eae91a
+    last_write_checksum: sha1:1b0f2ac145d829fcb4da56bc34001abbecbd4000
+    pristine_git_object: 60c941fb23f2eba75e0040dbfce7ac90a98a4d33
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -8969,8 +8969,8 @@ trackedFiles:
     pristine_git_object: 7296db7ebcdcff7ee348d1f993fc4aa2a7e6c145
   src/main/java/com/apideck/unify/SDKConfiguration.java:
     id: a2b330a87142
-    last_write_checksum: sha1:2a5952f3657a0190c38fa4385d73f4ca27500435
-    pristine_git_object: 26bc7aaa26d9e1674aefd9109e5eac49ad7fda66
+    last_write_checksum: sha1:d52522405de7c774cdca4fb73a71f8f23993ba1c
+    pristine_git_object: abcdf523acda0f5937cb1a9ac85725831a4f639e
   src/main/java/com/apideck/unify/SalesOrders.java:
     id: 065b0fd99f1f
     last_write_checksum: sha1:263495ead26adefc6a55b3380563b052158968b0
@@ -40658,7 +40658,6 @@ examples:
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Java SDK Changes:\n* `apideck.accounting.salesOrders.list()`: **Added**\n* `apideck.accounting.salesOrders.create()`: **Added**\n* `apideck.accounting.salesOrders.get()`: **Added**\n* `apideck.accounting.salesOrders.update()`: **Added**\n* `apideck.accounting.salesOrders.delete()`: **Added**\n* `apideck.accounting.bills.create()`: \n  *  `request.idempotencyKey` **Added**\n* `apideck.accounting.invoices.create()`: \n  *  `request.idempotencyKey` **Added**\n* `apideck.accounting.journalEntries.create()`: \n  *  `request.idempotencyKey` **Added**\n* `apideck.webhook.webhooks.list()`:  `response.data[].events[]` **Changed**\n* `apideck.webhook.webhooks.create()`: \n  *  `request.createWebhookRequest.events[]` **Changed**\n  *  `response.data.events[]` **Changed**\n* `apideck.webhook.webhooks.get()`:  `response.data.events[]` **Changed**\n* `apideck.webhook.webhooks.update()`: \n  *  `request.updateWebhookRequest.events[]` **Changed**\n  *  `response.data.events[]` **Changed**\n* `apideck.webhook.webhooks.delete()`:  `response.data.events[]` **Changed**\n"
 generatedFiles:
   - .gitattributes
   - USAGE.md

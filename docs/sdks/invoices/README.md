@@ -720,6 +720,7 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .idempotencyKey("your-unique-key-per-create")
                 .build();
 
         AccountingInvoicesUpdateResponse res = sdk.accounting().invoices().update()

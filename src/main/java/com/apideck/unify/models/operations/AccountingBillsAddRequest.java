@@ -43,10 +43,10 @@ public class AccountingBillsAddRequest {
     private Optional<String> serviceId;
 
     /**
-     * A unique key you generate for one create, to make retrying it safe. If the request times out or
-     * fails with an uncertain outcome, resend it with the same key and the same body: the record is
-     * created at most once. Keys are 1-255 printable ASCII characters (a UUID is recommended) and are
-     * accepted bare or as a quoted string.
+     * A unique key you generate for one create or update, to make retrying it safe. If the request times
+     * out or fails with an uncertain outcome, resend it with the same key and the same body: the record is
+     * created, or the update applied, at most once. Keys are 1-255 printable ASCII characters (a UUID is
+     * recommended) and are accepted bare or as a quoted string.
      * 
      * <p>A key is remembered for 24 hours from its first use, or for the connector's own deduplication window
      * where that is shorter (Xero: 6 minutes); after that, the same key is treated as a new request, so
@@ -57,7 +57,7 @@ public class AccountingBillsAddRequest {
      * 
      * <p>A key is bound to its first request even if that request was rejected, so after fixing a rejected
      * body, send it with a new key. Connectors that cannot honour the key on this operation reject the
-     * request with 400 instead of creating the record unprotected.
+     * request with 400 instead of writing unprotected.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=idempotency-key")
     private Optional<String> idempotencyKey;
@@ -128,10 +128,10 @@ public class AccountingBillsAddRequest {
     }
 
     /**
-     * A unique key you generate for one create, to make retrying it safe. If the request times out or
-     * fails with an uncertain outcome, resend it with the same key and the same body: the record is
-     * created at most once. Keys are 1-255 printable ASCII characters (a UUID is recommended) and are
-     * accepted bare or as a quoted string.
+     * A unique key you generate for one create or update, to make retrying it safe. If the request times
+     * out or fails with an uncertain outcome, resend it with the same key and the same body: the record is
+     * created, or the update applied, at most once. Keys are 1-255 printable ASCII characters (a UUID is
+     * recommended) and are accepted bare or as a quoted string.
      * 
      * <p>A key is remembered for 24 hours from its first use, or for the connector's own deduplication window
      * where that is shorter (Xero: 6 minutes); after that, the same key is treated as a new request, so
@@ -142,7 +142,7 @@ public class AccountingBillsAddRequest {
      * 
      * <p>A key is bound to its first request even if that request was rejected, so after fixing a rejected
      * body, send it with a new key. Connectors that cannot honour the key on this operation reject the
-     * request with 400 instead of creating the record unprotected.
+     * request with 400 instead of writing unprotected.
      */
     @JsonIgnore
     public Optional<String> idempotencyKey() {
@@ -238,10 +238,10 @@ public class AccountingBillsAddRequest {
     }
 
     /**
-     * A unique key you generate for one create, to make retrying it safe. If the request times out or
-     * fails with an uncertain outcome, resend it with the same key and the same body: the record is
-     * created at most once. Keys are 1-255 printable ASCII characters (a UUID is recommended) and are
-     * accepted bare or as a quoted string.
+     * A unique key you generate for one create or update, to make retrying it safe. If the request times
+     * out or fails with an uncertain outcome, resend it with the same key and the same body: the record is
+     * created, or the update applied, at most once. Keys are 1-255 printable ASCII characters (a UUID is
+     * recommended) and are accepted bare or as a quoted string.
      * 
      * <p>A key is remembered for 24 hours from its first use, or for the connector's own deduplication window
      * where that is shorter (Xero: 6 minutes); after that, the same key is treated as a new request, so
@@ -252,7 +252,7 @@ public class AccountingBillsAddRequest {
      * 
      * <p>A key is bound to its first request even if that request was rejected, so after fixing a rejected
      * body, send it with a new key. Connectors that cannot honour the key on this operation reject the
-     * request with 400 instead of creating the record unprotected.
+     * request with 400 instead of writing unprotected.
      */
     public AccountingBillsAddRequest withIdempotencyKey(String idempotencyKey) {
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
@@ -262,10 +262,10 @@ public class AccountingBillsAddRequest {
 
 
     /**
-     * A unique key you generate for one create, to make retrying it safe. If the request times out or
-     * fails with an uncertain outcome, resend it with the same key and the same body: the record is
-     * created at most once. Keys are 1-255 printable ASCII characters (a UUID is recommended) and are
-     * accepted bare or as a quoted string.
+     * A unique key you generate for one create or update, to make retrying it safe. If the request times
+     * out or fails with an uncertain outcome, resend it with the same key and the same body: the record is
+     * created, or the update applied, at most once. Keys are 1-255 printable ASCII characters (a UUID is
+     * recommended) and are accepted bare or as a quoted string.
      * 
      * <p>A key is remembered for 24 hours from its first use, or for the connector's own deduplication window
      * where that is shorter (Xero: 6 minutes); after that, the same key is treated as a new request, so
@@ -276,7 +276,7 @@ public class AccountingBillsAddRequest {
      * 
      * <p>A key is bound to its first request even if that request was rejected, so after fixing a rejected
      * body, send it with a new key. Connectors that cannot honour the key on this operation reject the
-     * request with 400 instead of creating the record unprotected.
+     * request with 400 instead of writing unprotected.
      */
     public AccountingBillsAddRequest withIdempotencyKey(Optional<String> idempotencyKey) {
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
@@ -425,10 +425,10 @@ public class AccountingBillsAddRequest {
 
 
         /**
-         * A unique key you generate for one create, to make retrying it safe. If the request times out or
-         * fails with an uncertain outcome, resend it with the same key and the same body: the record is
-         * created at most once. Keys are 1-255 printable ASCII characters (a UUID is recommended) and are
-         * accepted bare or as a quoted string.
+         * A unique key you generate for one create or update, to make retrying it safe. If the request times
+         * out or fails with an uncertain outcome, resend it with the same key and the same body: the record is
+         * created, or the update applied, at most once. Keys are 1-255 printable ASCII characters (a UUID is
+         * recommended) and are accepted bare or as a quoted string.
          * 
          * <p>A key is remembered for 24 hours from its first use, or for the connector's own deduplication window
          * where that is shorter (Xero: 6 minutes); after that, the same key is treated as a new request, so
@@ -439,7 +439,7 @@ public class AccountingBillsAddRequest {
          * 
          * <p>A key is bound to its first request even if that request was rejected, so after fixing a rejected
          * body, send it with a new key. Connectors that cannot honour the key on this operation reject the
-         * request with 400 instead of creating the record unprotected.
+         * request with 400 instead of writing unprotected.
          */
         public Builder idempotencyKey(String idempotencyKey) {
             Utils.checkNotNull(idempotencyKey, "idempotencyKey");
@@ -448,10 +448,10 @@ public class AccountingBillsAddRequest {
         }
 
         /**
-         * A unique key you generate for one create, to make retrying it safe. If the request times out or
-         * fails with an uncertain outcome, resend it with the same key and the same body: the record is
-         * created at most once. Keys are 1-255 printable ASCII characters (a UUID is recommended) and are
-         * accepted bare or as a quoted string.
+         * A unique key you generate for one create or update, to make retrying it safe. If the request times
+         * out or fails with an uncertain outcome, resend it with the same key and the same body: the record is
+         * created, or the update applied, at most once. Keys are 1-255 printable ASCII characters (a UUID is
+         * recommended) and are accepted bare or as a quoted string.
          * 
          * <p>A key is remembered for 24 hours from its first use, or for the connector's own deduplication window
          * where that is shorter (Xero: 6 minutes); after that, the same key is treated as a new request, so
@@ -462,7 +462,7 @@ public class AccountingBillsAddRequest {
          * 
          * <p>A key is bound to its first request even if that request was rejected, so after fixing a rejected
          * body, send it with a new key. Connectors that cannot honour the key on this operation reject the
-         * request with 400 instead of creating the record unprotected.
+         * request with 400 instead of writing unprotected.
          */
         public Builder idempotencyKey(Optional<String> idempotencyKey) {
             Utils.checkNotNull(idempotencyKey, "idempotencyKey");

@@ -36,6 +36,8 @@ public class Accounting {
     private final Attachments attachments;
     private final BankAccounts bankAccounts;
     private final Journals journals;
+    private final FiscalPeriods fiscalPeriods;
+    private final TrialBalance trialBalance;
     private final TrackingCategories trackingCategories;
     private final BillPayments billPayments;
     private final Expenses expenses;
@@ -80,6 +82,8 @@ public class Accounting {
         this.attachments = new Attachments(this.sdkConfiguration);
         this.bankAccounts = new BankAccounts(this.sdkConfiguration);
         this.journals = new Journals(this.sdkConfiguration);
+        this.fiscalPeriods = new FiscalPeriods(this.sdkConfiguration);
+        this.trialBalance = new TrialBalance(this.sdkConfiguration);
         this.trackingCategories = new TrackingCategories(this.sdkConfiguration);
         this.billPayments = new BillPayments(this.sdkConfiguration);
         this.expenses = new Expenses(this.sdkConfiguration);
@@ -200,6 +204,14 @@ public class Accounting {
 
     public final Journals journals() {
         return journals;
+    }
+
+    public final FiscalPeriods fiscalPeriods() {
+        return fiscalPeriods;
+    }
+
+    public final TrialBalance trialBalance() {
+        return trialBalance;
     }
 
     public final TrackingCategories trackingCategories() {

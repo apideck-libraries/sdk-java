@@ -48,6 +48,26 @@ public class AccountingInvoicesUpdateRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=raw")
     private Optional<Boolean> raw;
 
+    /**
+     * A unique key you generate for one create or update, to make retrying it safe. If the request times
+     * out or fails with an uncertain outcome, resend it with the same key and the same body: the record is
+     * created, or the update applied, at most once. Keys are 1-255 printable ASCII characters (a UUID is
+     * recommended) and are accepted bare or as a quoted string.
+     * 
+     * <p>A key is remembered for 24 hours from its first use, or for the connector's own deduplication window
+     * where that is shorter (Xero: 6 minutes); after that, the same key is treated as a new request, so
+     * retry within the window. Some connectors also replay an error to retries with the same key: if
+     * retries keep returning the same error, check whether the record exists before sending it again with
+     * a new key. Reusing a key with a different body returns 422, and retrying while the first attempt is
+     * still running returns 409.
+     * 
+     * <p>A key is bound to its first request even if that request was rejected, so after fixing a rejected
+     * body, send it with a new key. Connectors that cannot honour the key on this operation reject the
+     * request with 400 instead of writing unprotected.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=idempotency-key")
+    private Optional<String> idempotencyKey;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private InvoiceInput invoice;
@@ -59,18 +79,21 @@ public class AccountingInvoicesUpdateRequest {
             Optional<String> appId,
             Optional<String> serviceId,
             Optional<Boolean> raw,
+            Optional<String> idempotencyKey,
             InvoiceInput invoice) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(serviceId, "serviceId");
         Utils.checkNotNull(raw, "raw");
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         Utils.checkNotNull(invoice, "invoice");
         this.id = id;
         this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
         this.raw = raw;
+        this.idempotencyKey = idempotencyKey;
         this.invoice = invoice;
     }
     
@@ -78,7 +101,8 @@ public class AccountingInvoicesUpdateRequest {
             String id,
             InvoiceInput invoice) {
         this(id, Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), invoice);
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            invoice);
     }
 
     /**
@@ -120,6 +144,28 @@ public class AccountingInvoicesUpdateRequest {
     @JsonIgnore
     public Optional<Boolean> raw() {
         return raw;
+    }
+
+    /**
+     * A unique key you generate for one create or update, to make retrying it safe. If the request times
+     * out or fails with an uncertain outcome, resend it with the same key and the same body: the record is
+     * created, or the update applied, at most once. Keys are 1-255 printable ASCII characters (a UUID is
+     * recommended) and are accepted bare or as a quoted string.
+     * 
+     * <p>A key is remembered for 24 hours from its first use, or for the connector's own deduplication window
+     * where that is shorter (Xero: 6 minutes); after that, the same key is treated as a new request, so
+     * retry within the window. Some connectors also replay an error to retries with the same key: if
+     * retries keep returning the same error, check whether the record exists before sending it again with
+     * a new key. Reusing a key with a different body returns 422, and retrying while the first attempt is
+     * still running returns 409.
+     * 
+     * <p>A key is bound to its first request even if that request was rejected, so after fixing a rejected
+     * body, send it with a new key. Connectors that cannot honour the key on this operation reject the
+     * request with 400 instead of writing unprotected.
+     */
+    @JsonIgnore
+    public Optional<String> idempotencyKey() {
+        return idempotencyKey;
     }
 
     @JsonIgnore
@@ -219,6 +265,53 @@ public class AccountingInvoicesUpdateRequest {
         return this;
     }
 
+    /**
+     * A unique key you generate for one create or update, to make retrying it safe. If the request times
+     * out or fails with an uncertain outcome, resend it with the same key and the same body: the record is
+     * created, or the update applied, at most once. Keys are 1-255 printable ASCII characters (a UUID is
+     * recommended) and are accepted bare or as a quoted string.
+     * 
+     * <p>A key is remembered for 24 hours from its first use, or for the connector's own deduplication window
+     * where that is shorter (Xero: 6 minutes); after that, the same key is treated as a new request, so
+     * retry within the window. Some connectors also replay an error to retries with the same key: if
+     * retries keep returning the same error, check whether the record exists before sending it again with
+     * a new key. Reusing a key with a different body returns 422, and retrying while the first attempt is
+     * still running returns 409.
+     * 
+     * <p>A key is bound to its first request even if that request was rejected, so after fixing a rejected
+     * body, send it with a new key. Connectors that cannot honour the key on this operation reject the
+     * request with 400 instead of writing unprotected.
+     */
+    public AccountingInvoicesUpdateRequest withIdempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+        return this;
+    }
+
+
+    /**
+     * A unique key you generate for one create or update, to make retrying it safe. If the request times
+     * out or fails with an uncertain outcome, resend it with the same key and the same body: the record is
+     * created, or the update applied, at most once. Keys are 1-255 printable ASCII characters (a UUID is
+     * recommended) and are accepted bare or as a quoted string.
+     * 
+     * <p>A key is remembered for 24 hours from its first use, or for the connector's own deduplication window
+     * where that is shorter (Xero: 6 minutes); after that, the same key is treated as a new request, so
+     * retry within the window. Some connectors also replay an error to retries with the same key: if
+     * retries keep returning the same error, check whether the record exists before sending it again with
+     * a new key. Reusing a key with a different body returns 422, and retrying while the first attempt is
+     * still running returns 409.
+     * 
+     * <p>A key is bound to its first request even if that request was rejected, so after fixing a rejected
+     * body, send it with a new key. Connectors that cannot honour the key on this operation reject the
+     * request with 400 instead of writing unprotected.
+     */
+    public AccountingInvoicesUpdateRequest withIdempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
+        return this;
+    }
+
     public AccountingInvoicesUpdateRequest withInvoice(InvoiceInput invoice) {
         Utils.checkNotNull(invoice, "invoice");
         this.invoice = invoice;
@@ -240,6 +333,7 @@ public class AccountingInvoicesUpdateRequest {
             Utils.enhancedDeepEquals(this.appId, other.appId) &&
             Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
             Utils.enhancedDeepEquals(this.raw, other.raw) &&
+            Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey) &&
             Utils.enhancedDeepEquals(this.invoice, other.invoice);
     }
     
@@ -247,7 +341,8 @@ public class AccountingInvoicesUpdateRequest {
     public int hashCode() {
         return Utils.enhancedHash(
             id, consumerId, appId,
-            serviceId, raw, invoice);
+            serviceId, raw, idempotencyKey,
+            invoice);
     }
     
     @Override
@@ -258,6 +353,7 @@ public class AccountingInvoicesUpdateRequest {
                 "appId", appId,
                 "serviceId", serviceId,
                 "raw", raw,
+                "idempotencyKey", idempotencyKey,
                 "invoice", invoice);
     }
 
@@ -273,6 +369,8 @@ public class AccountingInvoicesUpdateRequest {
         private Optional<String> serviceId = Optional.empty();
 
         private Optional<Boolean> raw;
+
+        private Optional<String> idempotencyKey = Optional.empty();
 
         private InvoiceInput invoice;
 
@@ -369,6 +467,53 @@ public class AccountingInvoicesUpdateRequest {
         }
 
 
+        /**
+         * A unique key you generate for one create or update, to make retrying it safe. If the request times
+         * out or fails with an uncertain outcome, resend it with the same key and the same body: the record is
+         * created, or the update applied, at most once. Keys are 1-255 printable ASCII characters (a UUID is
+         * recommended) and are accepted bare or as a quoted string.
+         * 
+         * <p>A key is remembered for 24 hours from its first use, or for the connector's own deduplication window
+         * where that is shorter (Xero: 6 minutes); after that, the same key is treated as a new request, so
+         * retry within the window. Some connectors also replay an error to retries with the same key: if
+         * retries keep returning the same error, check whether the record exists before sending it again with
+         * a new key. Reusing a key with a different body returns 422, and retrying while the first attempt is
+         * still running returns 409.
+         * 
+         * <p>A key is bound to its first request even if that request was rejected, so after fixing a rejected
+         * body, send it with a new key. Connectors that cannot honour the key on this operation reject the
+         * request with 400 instead of writing unprotected.
+         */
+        public Builder idempotencyKey(String idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+            return this;
+        }
+
+        /**
+         * A unique key you generate for one create or update, to make retrying it safe. If the request times
+         * out or fails with an uncertain outcome, resend it with the same key and the same body: the record is
+         * created, or the update applied, at most once. Keys are 1-255 printable ASCII characters (a UUID is
+         * recommended) and are accepted bare or as a quoted string.
+         * 
+         * <p>A key is remembered for 24 hours from its first use, or for the connector's own deduplication window
+         * where that is shorter (Xero: 6 minutes); after that, the same key is treated as a new request, so
+         * retry within the window. Some connectors also replay an error to retries with the same key: if
+         * retries keep returning the same error, check whether the record exists before sending it again with
+         * a new key. Reusing a key with a different body returns 422, and retrying while the first attempt is
+         * still running returns 409.
+         * 
+         * <p>A key is bound to its first request even if that request was rejected, so after fixing a rejected
+         * body, send it with a new key. Connectors that cannot honour the key on this operation reject the
+         * request with 400 instead of writing unprotected.
+         */
+        public Builder idempotencyKey(Optional<String> idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = idempotencyKey;
+            return this;
+        }
+
+
         public Builder invoice(InvoiceInput invoice) {
             Utils.checkNotNull(invoice, "invoice");
             this.invoice = invoice;
@@ -382,7 +527,8 @@ public class AccountingInvoicesUpdateRequest {
 
             return new AccountingInvoicesUpdateRequest(
                 id, consumerId, appId,
-                serviceId, raw, invoice);
+                serviceId, raw, idempotencyKey,
+                invoice);
         }
 
 

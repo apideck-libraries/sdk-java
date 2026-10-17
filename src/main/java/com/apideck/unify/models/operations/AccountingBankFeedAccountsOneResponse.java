@@ -15,6 +15,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 
@@ -44,31 +46,39 @@ public class AccountingBankFeedAccountsOneResponse implements Response {
      */
     private Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse;
 
+
+    private Map<String, List<String>> headers;
+
     @JsonCreator
     public AccountingBankFeedAccountsOneResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
             Optional<? extends GetBankFeedAccountResponse> getBankFeedAccountResponse,
-            Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse) {
+            Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse,
+            Map<String, List<String>> headers) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
         Utils.checkNotNull(getBankFeedAccountResponse, "getBankFeedAccountResponse");
         Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
+        headers = Utils.emptyMapIfNull(headers);
+        Utils.checkNotNull(headers, "headers");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
         this.getBankFeedAccountResponse = getBankFeedAccountResponse;
         this.unexpectedErrorResponse = unexpectedErrorResponse;
+        this.headers = headers;
     }
     
     public AccountingBankFeedAccountsOneResponse(
             String contentType,
             int statusCode,
-            HttpResponse<InputStream> rawResponse) {
+            HttpResponse<InputStream> rawResponse,
+            Map<String, List<String>> headers) {
         this(contentType, statusCode, rawResponse,
-            Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), headers);
     }
 
     /**
@@ -111,6 +121,11 @@ public class AccountingBankFeedAccountsOneResponse implements Response {
     @JsonIgnore
     public Optional<UnexpectedErrorResponse> unexpectedErrorResponse() {
         return (Optional<UnexpectedErrorResponse>) unexpectedErrorResponse;
+    }
+
+    @JsonIgnore
+    public Map<String, List<String>> headers() {
+        return headers;
     }
 
     public static Builder builder() {
@@ -183,6 +198,12 @@ public class AccountingBankFeedAccountsOneResponse implements Response {
         return this;
     }
 
+    public AccountingBankFeedAccountsOneResponse withHeaders(Map<String, List<String>> headers) {
+        Utils.checkNotNull(headers, "headers");
+        this.headers = headers;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -197,14 +218,15 @@ public class AccountingBankFeedAccountsOneResponse implements Response {
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
             Utils.enhancedDeepEquals(this.getBankFeedAccountResponse, other.getBankFeedAccountResponse) &&
-            Utils.enhancedDeepEquals(this.unexpectedErrorResponse, other.unexpectedErrorResponse);
+            Utils.enhancedDeepEquals(this.unexpectedErrorResponse, other.unexpectedErrorResponse) &&
+            Utils.enhancedDeepEquals(this.headers, other.headers);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            getBankFeedAccountResponse, unexpectedErrorResponse);
+            getBankFeedAccountResponse, unexpectedErrorResponse, headers);
     }
     
     @Override
@@ -214,7 +236,8 @@ public class AccountingBankFeedAccountsOneResponse implements Response {
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
                 "getBankFeedAccountResponse", getBankFeedAccountResponse,
-                "unexpectedErrorResponse", unexpectedErrorResponse);
+                "unexpectedErrorResponse", unexpectedErrorResponse,
+                "headers", headers);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -229,6 +252,8 @@ public class AccountingBankFeedAccountsOneResponse implements Response {
         private Optional<? extends GetBankFeedAccountResponse> getBankFeedAccountResponse = Optional.empty();
 
         private Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse = Optional.empty();
+
+        private Map<String, List<String>> headers;
 
         private Builder() {
           // force use of static builder() method
@@ -302,11 +327,18 @@ public class AccountingBankFeedAccountsOneResponse implements Response {
             return this;
         }
 
+
+        public Builder headers(Map<String, List<String>> headers) {
+            Utils.checkNotNull(headers, "headers");
+            this.headers = headers;
+            return this;
+        }
+
         public AccountingBankFeedAccountsOneResponse build() {
 
             return new AccountingBankFeedAccountsOneResponse(
                 contentType, statusCode, rawResponse,
-                getBankFeedAccountResponse, unexpectedErrorResponse);
+                getBankFeedAccountResponse, unexpectedErrorResponse, headers);
         }
 
     }

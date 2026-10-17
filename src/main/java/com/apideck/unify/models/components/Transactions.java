@@ -47,8 +47,9 @@ public class Transactions {
     /**
      * The ID of the source transaction.
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("source_transaction_id")
-    private String sourceTransactionId;
+    private Optional<String> sourceTransactionId;
 
     /**
      * The counterparty of the transaction.
@@ -86,7 +87,7 @@ public class Transactions {
             @JsonProperty("description") Optional<String> description,
             @JsonProperty("amount") double amount,
             @JsonProperty("credit_or_debit") CreditOrDebit creditOrDebit,
-            @JsonProperty("source_transaction_id") String sourceTransactionId,
+            @JsonProperty("source_transaction_id") Optional<String> sourceTransactionId,
             @JsonProperty("counterparty") Optional<String> counterparty,
             @JsonProperty("reference") Optional<String> reference,
             @JsonProperty("transaction_type") Optional<? extends BankFeedStatementTransactionType> transactionType,
@@ -114,10 +115,9 @@ public class Transactions {
     public Transactions(
             OffsetDateTime postedDate,
             double amount,
-            CreditOrDebit creditOrDebit,
-            String sourceTransactionId) {
+            CreditOrDebit creditOrDebit) {
         this(postedDate, Optional.empty(), amount,
-            creditOrDebit, sourceTransactionId, Optional.empty(),
+            creditOrDebit, Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), JsonNullable.undefined());
     }
 
@@ -157,7 +157,7 @@ public class Transactions {
      * The ID of the source transaction.
      */
     @JsonIgnore
-    public String sourceTransactionId() {
+    public Optional<String> sourceTransactionId() {
         return sourceTransactionId;
     }
 
@@ -251,6 +251,16 @@ public class Transactions {
      * The ID of the source transaction.
      */
     public Transactions withSourceTransactionId(String sourceTransactionId) {
+        Utils.checkNotNull(sourceTransactionId, "sourceTransactionId");
+        this.sourceTransactionId = Optional.ofNullable(sourceTransactionId);
+        return this;
+    }
+
+
+    /**
+     * The ID of the source transaction.
+     */
+    public Transactions withSourceTransactionId(Optional<String> sourceTransactionId) {
         Utils.checkNotNull(sourceTransactionId, "sourceTransactionId");
         this.sourceTransactionId = sourceTransactionId;
         return this;
@@ -389,7 +399,7 @@ public class Transactions {
 
         private CreditOrDebit creditOrDebit;
 
-        private String sourceTransactionId;
+        private Optional<String> sourceTransactionId = Optional.empty();
 
         private Optional<String> counterparty = Optional.empty();
 
@@ -457,6 +467,15 @@ public class Transactions {
          * The ID of the source transaction.
          */
         public Builder sourceTransactionId(String sourceTransactionId) {
+            Utils.checkNotNull(sourceTransactionId, "sourceTransactionId");
+            this.sourceTransactionId = Optional.ofNullable(sourceTransactionId);
+            return this;
+        }
+
+        /**
+         * The ID of the source transaction.
+         */
+        public Builder sourceTransactionId(Optional<String> sourceTransactionId) {
             Utils.checkNotNull(sourceTransactionId, "sourceTransactionId");
             this.sourceTransactionId = sourceTransactionId;
             return this;

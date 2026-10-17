@@ -240,6 +240,7 @@ public class AccountingAttachmentsUpload {
             AccountingAttachmentsUploadResponse res = resBuilder.build();
             
             if (Utils.statusCodeMatches(response.statusCode(), "201")) {
+                res.withHeaders(response.headers().map());
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
                     return res.withCreateAttachmentResponse(Utils.unmarshal(response, new TypeReference<CreateAttachmentResponse>() {}));
                 } else {
@@ -247,6 +248,7 @@ public class AccountingAttachmentsUpload {
                 }
             }
             if (Utils.statusCodeMatches(response.statusCode(), "400")) {
+                res.withHeaders(response.headers().map());
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
                     throw BadRequestResponse.from(response);
                 } else {
@@ -254,6 +256,7 @@ public class AccountingAttachmentsUpload {
                 }
             }
             if (Utils.statusCodeMatches(response.statusCode(), "401")) {
+                res.withHeaders(response.headers().map());
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
                     throw UnauthorizedResponse.from(response);
                 } else {
@@ -261,6 +264,7 @@ public class AccountingAttachmentsUpload {
                 }
             }
             if (Utils.statusCodeMatches(response.statusCode(), "402")) {
+                res.withHeaders(response.headers().map());
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
                     throw PaymentRequiredResponse.from(response);
                 } else {
@@ -268,6 +272,7 @@ public class AccountingAttachmentsUpload {
                 }
             }
             if (Utils.statusCodeMatches(response.statusCode(), "404")) {
+                res.withHeaders(response.headers().map());
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
                     throw NotFoundResponse.from(response);
                 } else {
@@ -275,6 +280,7 @@ public class AccountingAttachmentsUpload {
                 }
             }
             if (Utils.statusCodeMatches(response.statusCode(), "422")) {
+                res.withHeaders(response.headers().map());
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
                     throw UnprocessableResponse.from(response);
                 } else {
@@ -290,6 +296,7 @@ public class AccountingAttachmentsUpload {
                 throw APIException.from("API error occurred", response);
             }
             if (Utils.statusCodeMatches(response.statusCode(), "default")) {
+                res.withHeaders(response.headers().map());
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
                     return res.withUnexpectedErrorResponse(Utils.unmarshal(response, new TypeReference<UnexpectedErrorResponse>() {}));
                 } else {
@@ -364,6 +371,7 @@ public class AccountingAttachmentsUpload {
             com.apideck.unify.models.operations.async.AccountingAttachmentsUploadResponse res = resBuilder.build();
             
             if (Utils.statusCodeMatches(response.statusCode(), "201")) {
+                res.withHeaders(response.headers().map());
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
                     return Utils.unmarshalAsync(response, new TypeReference<CreateAttachmentResponse>() {})
                             .thenApply(res::withCreateAttachmentResponse);
@@ -372,6 +380,7 @@ public class AccountingAttachmentsUpload {
                 }
             }
             if (Utils.statusCodeMatches(response.statusCode(), "400")) {
+                res.withHeaders(response.headers().map());
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
                     return BadRequestResponse.fromAsync(response)
                             .thenCompose(CompletableFuture::failedFuture);
@@ -380,6 +389,7 @@ public class AccountingAttachmentsUpload {
                 }
             }
             if (Utils.statusCodeMatches(response.statusCode(), "401")) {
+                res.withHeaders(response.headers().map());
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
                     return UnauthorizedResponse.fromAsync(response)
                             .thenCompose(CompletableFuture::failedFuture);
@@ -388,6 +398,7 @@ public class AccountingAttachmentsUpload {
                 }
             }
             if (Utils.statusCodeMatches(response.statusCode(), "402")) {
+                res.withHeaders(response.headers().map());
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
                     return PaymentRequiredResponse.fromAsync(response)
                             .thenCompose(CompletableFuture::failedFuture);
@@ -396,6 +407,7 @@ public class AccountingAttachmentsUpload {
                 }
             }
             if (Utils.statusCodeMatches(response.statusCode(), "404")) {
+                res.withHeaders(response.headers().map());
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
                     return NotFoundResponse.fromAsync(response)
                             .thenCompose(CompletableFuture::failedFuture);
@@ -404,6 +416,7 @@ public class AccountingAttachmentsUpload {
                 }
             }
             if (Utils.statusCodeMatches(response.statusCode(), "422")) {
+                res.withHeaders(response.headers().map());
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
                     return UnprocessableResponse.fromAsync(response)
                             .thenCompose(CompletableFuture::failedFuture);
@@ -420,6 +433,7 @@ public class AccountingAttachmentsUpload {
                 return Utils.createAsyncApiError(response, "API error occurred");
             }
             if (Utils.statusCodeMatches(response.statusCode(), "default")) {
+                res.withHeaders(response.headers().map());
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
                     return Utils.unmarshalAsync(response, new TypeReference<UnexpectedErrorResponse>() {})
                             .thenApply(res::withUnexpectedErrorResponse);

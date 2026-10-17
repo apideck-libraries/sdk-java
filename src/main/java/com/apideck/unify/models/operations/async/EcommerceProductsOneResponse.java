@@ -15,6 +15,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 
@@ -44,31 +46,39 @@ public class EcommerceProductsOneResponse implements AsyncResponse {
      */
     private Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse;
 
+
+    private Map<String, List<String>> headers;
+
     @JsonCreator
     public EcommerceProductsOneResponse(
             String contentType,
             int statusCode,
             HttpResponse<Blob> rawResponse,
             Optional<? extends GetProductResponse> getProductResponse,
-            Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse) {
+            Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse,
+            Map<String, List<String>> headers) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
         Utils.checkNotNull(getProductResponse, "getProductResponse");
         Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
+        headers = Utils.emptyMapIfNull(headers);
+        Utils.checkNotNull(headers, "headers");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
         this.getProductResponse = getProductResponse;
         this.unexpectedErrorResponse = unexpectedErrorResponse;
+        this.headers = headers;
     }
     
     public EcommerceProductsOneResponse(
             String contentType,
             int statusCode,
-            HttpResponse<Blob> rawResponse) {
+            HttpResponse<Blob> rawResponse,
+            Map<String, List<String>> headers) {
         this(contentType, statusCode, rawResponse,
-            Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), headers);
     }
 
     /**
@@ -111,6 +121,11 @@ public class EcommerceProductsOneResponse implements AsyncResponse {
     @JsonIgnore
     public Optional<UnexpectedErrorResponse> unexpectedErrorResponse() {
         return (Optional<UnexpectedErrorResponse>) unexpectedErrorResponse;
+    }
+
+    @JsonIgnore
+    public Map<String, List<String>> headers() {
+        return headers;
     }
 
     public static Builder builder() {
@@ -183,6 +198,12 @@ public class EcommerceProductsOneResponse implements AsyncResponse {
         return this;
     }
 
+    public EcommerceProductsOneResponse withHeaders(Map<String, List<String>> headers) {
+        Utils.checkNotNull(headers, "headers");
+        this.headers = headers;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -197,14 +218,15 @@ public class EcommerceProductsOneResponse implements AsyncResponse {
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
             Utils.enhancedDeepEquals(this.getProductResponse, other.getProductResponse) &&
-            Utils.enhancedDeepEquals(this.unexpectedErrorResponse, other.unexpectedErrorResponse);
+            Utils.enhancedDeepEquals(this.unexpectedErrorResponse, other.unexpectedErrorResponse) &&
+            Utils.enhancedDeepEquals(this.headers, other.headers);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            getProductResponse, unexpectedErrorResponse);
+            getProductResponse, unexpectedErrorResponse, headers);
     }
     
     @Override
@@ -214,7 +236,8 @@ public class EcommerceProductsOneResponse implements AsyncResponse {
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
                 "getProductResponse", getProductResponse,
-                "unexpectedErrorResponse", unexpectedErrorResponse);
+                "unexpectedErrorResponse", unexpectedErrorResponse,
+                "headers", headers);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -229,6 +252,8 @@ public class EcommerceProductsOneResponse implements AsyncResponse {
         private Optional<? extends GetProductResponse> getProductResponse = Optional.empty();
 
         private Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse = Optional.empty();
+
+        private Map<String, List<String>> headers;
 
         private Builder() {
           // force use of static builder() method
@@ -302,11 +327,18 @@ public class EcommerceProductsOneResponse implements AsyncResponse {
             return this;
         }
 
+
+        public Builder headers(Map<String, List<String>> headers) {
+            Utils.checkNotNull(headers, "headers");
+            this.headers = headers;
+            return this;
+        }
+
         public EcommerceProductsOneResponse build() {
 
             return new EcommerceProductsOneResponse(
                 contentType, statusCode, rawResponse,
-                getProductResponse, unexpectedErrorResponse);
+                getProductResponse, unexpectedErrorResponse, headers);
         }
 
     }

@@ -49,11 +49,11 @@ public class AccountingBillsAddRequest {
      * recommended) and are accepted bare or as a quoted string.
      * 
      * <p>A key is remembered for 24 hours from its first use, or for the connector's own deduplication window
-     * where that is shorter (Xero: 6 minutes); after that, the same key is treated as a new request, so
-     * retry within the window. Some connectors also replay an error to retries with the same key: if
-     * retries keep returning the same error, check whether the record exists before sending it again with
-     * a new key. Reusing a key with a different body returns 422, and retrying while the first attempt is
-     * still running returns 409.
+     * where that is shorter (Xero: 6 minutes; Sage Intacct REST: 1 hour); after that, the same key is
+     * treated as a new request, so retry within the window. Some connectors also replay an error to
+     * retries with the same key: if retries keep returning the same error, check whether the record exists
+     * before sending it again with a new key. Reusing a key with a different body returns 422, and
+     * retrying while the first attempt is still running returns 409.
      * 
      * <p>A key is bound to its first request even if that request was rejected, so after fixing a rejected
      * body, send it with a new key. Connectors that cannot honour the key on this operation reject the
@@ -134,11 +134,11 @@ public class AccountingBillsAddRequest {
      * recommended) and are accepted bare or as a quoted string.
      * 
      * <p>A key is remembered for 24 hours from its first use, or for the connector's own deduplication window
-     * where that is shorter (Xero: 6 minutes); after that, the same key is treated as a new request, so
-     * retry within the window. Some connectors also replay an error to retries with the same key: if
-     * retries keep returning the same error, check whether the record exists before sending it again with
-     * a new key. Reusing a key with a different body returns 422, and retrying while the first attempt is
-     * still running returns 409.
+     * where that is shorter (Xero: 6 minutes; Sage Intacct REST: 1 hour); after that, the same key is
+     * treated as a new request, so retry within the window. Some connectors also replay an error to
+     * retries with the same key: if retries keep returning the same error, check whether the record exists
+     * before sending it again with a new key. Reusing a key with a different body returns 422, and
+     * retrying while the first attempt is still running returns 409.
      * 
      * <p>A key is bound to its first request even if that request was rejected, so after fixing a rejected
      * body, send it with a new key. Connectors that cannot honour the key on this operation reject the
@@ -244,11 +244,11 @@ public class AccountingBillsAddRequest {
      * recommended) and are accepted bare or as a quoted string.
      * 
      * <p>A key is remembered for 24 hours from its first use, or for the connector's own deduplication window
-     * where that is shorter (Xero: 6 minutes); after that, the same key is treated as a new request, so
-     * retry within the window. Some connectors also replay an error to retries with the same key: if
-     * retries keep returning the same error, check whether the record exists before sending it again with
-     * a new key. Reusing a key with a different body returns 422, and retrying while the first attempt is
-     * still running returns 409.
+     * where that is shorter (Xero: 6 minutes; Sage Intacct REST: 1 hour); after that, the same key is
+     * treated as a new request, so retry within the window. Some connectors also replay an error to
+     * retries with the same key: if retries keep returning the same error, check whether the record exists
+     * before sending it again with a new key. Reusing a key with a different body returns 422, and
+     * retrying while the first attempt is still running returns 409.
      * 
      * <p>A key is bound to its first request even if that request was rejected, so after fixing a rejected
      * body, send it with a new key. Connectors that cannot honour the key on this operation reject the
@@ -268,11 +268,11 @@ public class AccountingBillsAddRequest {
      * recommended) and are accepted bare or as a quoted string.
      * 
      * <p>A key is remembered for 24 hours from its first use, or for the connector's own deduplication window
-     * where that is shorter (Xero: 6 minutes); after that, the same key is treated as a new request, so
-     * retry within the window. Some connectors also replay an error to retries with the same key: if
-     * retries keep returning the same error, check whether the record exists before sending it again with
-     * a new key. Reusing a key with a different body returns 422, and retrying while the first attempt is
-     * still running returns 409.
+     * where that is shorter (Xero: 6 minutes; Sage Intacct REST: 1 hour); after that, the same key is
+     * treated as a new request, so retry within the window. Some connectors also replay an error to
+     * retries with the same key: if retries keep returning the same error, check whether the record exists
+     * before sending it again with a new key. Reusing a key with a different body returns 422, and
+     * retrying while the first attempt is still running returns 409.
      * 
      * <p>A key is bound to its first request even if that request was rejected, so after fixing a rejected
      * body, send it with a new key. Connectors that cannot honour the key on this operation reject the
@@ -431,11 +431,11 @@ public class AccountingBillsAddRequest {
          * recommended) and are accepted bare or as a quoted string.
          * 
          * <p>A key is remembered for 24 hours from its first use, or for the connector's own deduplication window
-         * where that is shorter (Xero: 6 minutes); after that, the same key is treated as a new request, so
-         * retry within the window. Some connectors also replay an error to retries with the same key: if
-         * retries keep returning the same error, check whether the record exists before sending it again with
-         * a new key. Reusing a key with a different body returns 422, and retrying while the first attempt is
-         * still running returns 409.
+         * where that is shorter (Xero: 6 minutes; Sage Intacct REST: 1 hour); after that, the same key is
+         * treated as a new request, so retry within the window. Some connectors also replay an error to
+         * retries with the same key: if retries keep returning the same error, check whether the record exists
+         * before sending it again with a new key. Reusing a key with a different body returns 422, and
+         * retrying while the first attempt is still running returns 409.
          * 
          * <p>A key is bound to its first request even if that request was rejected, so after fixing a rejected
          * body, send it with a new key. Connectors that cannot honour the key on this operation reject the
@@ -454,11 +454,11 @@ public class AccountingBillsAddRequest {
          * recommended) and are accepted bare or as a quoted string.
          * 
          * <p>A key is remembered for 24 hours from its first use, or for the connector's own deduplication window
-         * where that is shorter (Xero: 6 minutes); after that, the same key is treated as a new request, so
-         * retry within the window. Some connectors also replay an error to retries with the same key: if
-         * retries keep returning the same error, check whether the record exists before sending it again with
-         * a new key. Reusing a key with a different body returns 422, and retrying while the first attempt is
-         * still running returns 409.
+         * where that is shorter (Xero: 6 minutes; Sage Intacct REST: 1 hour); after that, the same key is
+         * treated as a new request, so retry within the window. Some connectors also replay an error to
+         * retries with the same key: if retries keep returning the same error, check whether the record exists
+         * before sending it again with a new key. Reusing a key with a different body returns 422, and
+         * retrying while the first attempt is still running returns 409.
          * 
          * <p>A key is bound to its first request even if that request was rejected, so after fixing a rejected
          * body, send it with a new key. Connectors that cannot honour the key on this operation reject the

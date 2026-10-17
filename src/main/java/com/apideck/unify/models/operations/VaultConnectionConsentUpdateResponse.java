@@ -15,6 +15,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 
@@ -44,31 +46,39 @@ public class VaultConnectionConsentUpdateResponse implements Response {
      */
     private Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse;
 
+
+    private Map<String, List<String>> headers;
+
     @JsonCreator
     public VaultConnectionConsentUpdateResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
             Optional<? extends UpdateConsentResponse> updateConsentResponse,
-            Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse) {
+            Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse,
+            Map<String, List<String>> headers) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
         Utils.checkNotNull(updateConsentResponse, "updateConsentResponse");
         Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
+        headers = Utils.emptyMapIfNull(headers);
+        Utils.checkNotNull(headers, "headers");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
         this.updateConsentResponse = updateConsentResponse;
         this.unexpectedErrorResponse = unexpectedErrorResponse;
+        this.headers = headers;
     }
     
     public VaultConnectionConsentUpdateResponse(
             String contentType,
             int statusCode,
-            HttpResponse<InputStream> rawResponse) {
+            HttpResponse<InputStream> rawResponse,
+            Map<String, List<String>> headers) {
         this(contentType, statusCode, rawResponse,
-            Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), headers);
     }
 
     /**
@@ -111,6 +121,11 @@ public class VaultConnectionConsentUpdateResponse implements Response {
     @JsonIgnore
     public Optional<UnexpectedErrorResponse> unexpectedErrorResponse() {
         return (Optional<UnexpectedErrorResponse>) unexpectedErrorResponse;
+    }
+
+    @JsonIgnore
+    public Map<String, List<String>> headers() {
+        return headers;
     }
 
     public static Builder builder() {
@@ -183,6 +198,12 @@ public class VaultConnectionConsentUpdateResponse implements Response {
         return this;
     }
 
+    public VaultConnectionConsentUpdateResponse withHeaders(Map<String, List<String>> headers) {
+        Utils.checkNotNull(headers, "headers");
+        this.headers = headers;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -197,14 +218,15 @@ public class VaultConnectionConsentUpdateResponse implements Response {
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
             Utils.enhancedDeepEquals(this.updateConsentResponse, other.updateConsentResponse) &&
-            Utils.enhancedDeepEquals(this.unexpectedErrorResponse, other.unexpectedErrorResponse);
+            Utils.enhancedDeepEquals(this.unexpectedErrorResponse, other.unexpectedErrorResponse) &&
+            Utils.enhancedDeepEquals(this.headers, other.headers);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            updateConsentResponse, unexpectedErrorResponse);
+            updateConsentResponse, unexpectedErrorResponse, headers);
     }
     
     @Override
@@ -214,7 +236,8 @@ public class VaultConnectionConsentUpdateResponse implements Response {
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
                 "updateConsentResponse", updateConsentResponse,
-                "unexpectedErrorResponse", unexpectedErrorResponse);
+                "unexpectedErrorResponse", unexpectedErrorResponse,
+                "headers", headers);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -229,6 +252,8 @@ public class VaultConnectionConsentUpdateResponse implements Response {
         private Optional<? extends UpdateConsentResponse> updateConsentResponse = Optional.empty();
 
         private Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse = Optional.empty();
+
+        private Map<String, List<String>> headers;
 
         private Builder() {
           // force use of static builder() method
@@ -302,11 +327,18 @@ public class VaultConnectionConsentUpdateResponse implements Response {
             return this;
         }
 
+
+        public Builder headers(Map<String, List<String>> headers) {
+            Utils.checkNotNull(headers, "headers");
+            this.headers = headers;
+            return this;
+        }
+
         public VaultConnectionConsentUpdateResponse build() {
 
             return new VaultConnectionConsentUpdateResponse(
                 contentType, statusCode, rawResponse,
-                updateConsentResponse, unexpectedErrorResponse);
+                updateConsentResponse, unexpectedErrorResponse, headers);
         }
 
     }

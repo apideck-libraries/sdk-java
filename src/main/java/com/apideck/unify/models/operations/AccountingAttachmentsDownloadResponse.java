@@ -14,6 +14,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 
@@ -46,31 +48,39 @@ public class AccountingAttachmentsDownloadResponse implements Response {
      */
     private Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse;
 
+
+    private Map<String, List<String>> headers;
+
     @JsonCreator
     public AccountingAttachmentsDownloadResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
             Optional<? extends InputStream> getAttachmentDownloadResponse,
-            Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse) {
+            Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse,
+            Map<String, List<String>> headers) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
         Utils.checkNotNull(getAttachmentDownloadResponse, "getAttachmentDownloadResponse");
         Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
+        headers = Utils.emptyMapIfNull(headers);
+        Utils.checkNotNull(headers, "headers");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
         this.getAttachmentDownloadResponse = getAttachmentDownloadResponse;
         this.unexpectedErrorResponse = unexpectedErrorResponse;
+        this.headers = headers;
     }
     
     public AccountingAttachmentsDownloadResponse(
             String contentType,
             int statusCode,
-            HttpResponse<InputStream> rawResponse) {
+            HttpResponse<InputStream> rawResponse,
+            Map<String, List<String>> headers) {
         this(contentType, statusCode, rawResponse,
-            Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), headers);
     }
 
     /**
@@ -116,6 +126,11 @@ public class AccountingAttachmentsDownloadResponse implements Response {
     @JsonIgnore
     public Optional<UnexpectedErrorResponse> unexpectedErrorResponse() {
         return (Optional<UnexpectedErrorResponse>) unexpectedErrorResponse;
+    }
+
+    @JsonIgnore
+    public Map<String, List<String>> headers() {
+        return headers;
     }
 
     public static Builder builder() {
@@ -194,6 +209,12 @@ public class AccountingAttachmentsDownloadResponse implements Response {
         return this;
     }
 
+    public AccountingAttachmentsDownloadResponse withHeaders(Map<String, List<String>> headers) {
+        Utils.checkNotNull(headers, "headers");
+        this.headers = headers;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -208,14 +229,15 @@ public class AccountingAttachmentsDownloadResponse implements Response {
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
             Utils.enhancedDeepEquals(this.getAttachmentDownloadResponse, other.getAttachmentDownloadResponse) &&
-            Utils.enhancedDeepEquals(this.unexpectedErrorResponse, other.unexpectedErrorResponse);
+            Utils.enhancedDeepEquals(this.unexpectedErrorResponse, other.unexpectedErrorResponse) &&
+            Utils.enhancedDeepEquals(this.headers, other.headers);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            getAttachmentDownloadResponse, unexpectedErrorResponse);
+            getAttachmentDownloadResponse, unexpectedErrorResponse, headers);
     }
     
     @Override
@@ -225,7 +247,8 @@ public class AccountingAttachmentsDownloadResponse implements Response {
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
                 "getAttachmentDownloadResponse", getAttachmentDownloadResponse,
-                "unexpectedErrorResponse", unexpectedErrorResponse);
+                "unexpectedErrorResponse", unexpectedErrorResponse,
+                "headers", headers);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -240,6 +263,8 @@ public class AccountingAttachmentsDownloadResponse implements Response {
         private Optional<? extends InputStream> getAttachmentDownloadResponse = Optional.empty();
 
         private Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse = Optional.empty();
+
+        private Map<String, List<String>> headers;
 
         private Builder() {
           // force use of static builder() method
@@ -319,11 +344,18 @@ public class AccountingAttachmentsDownloadResponse implements Response {
             return this;
         }
 
+
+        public Builder headers(Map<String, List<String>> headers) {
+            Utils.checkNotNull(headers, "headers");
+            this.headers = headers;
+            return this;
+        }
+
         public AccountingAttachmentsDownloadResponse build() {
 
             return new AccountingAttachmentsDownloadResponse(
                 contentType, statusCode, rawResponse,
-                getAttachmentDownloadResponse, unexpectedErrorResponse);
+                getAttachmentDownloadResponse, unexpectedErrorResponse, headers);
         }
 
     }

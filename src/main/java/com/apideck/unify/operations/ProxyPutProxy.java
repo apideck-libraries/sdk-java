@@ -220,6 +220,7 @@ public class ProxyPutProxy {
             ProxyPutProxyResponse res = resBuilder.build();
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
+                res.withHeaders(response.headers().map());
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
                     return res.withResponseJson(Utils.unmarshal(response, new TypeReference<Map<String, Object>>() {}));
                 } else if (Utils.contentTypeMatches(contentType, "application/octet-stream")) {
@@ -243,6 +244,7 @@ public class ProxyPutProxy {
                 }
             }
             if (Utils.statusCodeMatches(response.statusCode(), "401")) {
+                res.withHeaders(response.headers().map());
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
                     throw Unauthorized.from(response);
                 } else {
@@ -350,6 +352,7 @@ public class ProxyPutProxy {
             com.apideck.unify.models.operations.async.ProxyPutProxyResponse res = resBuilder.build();
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
+                res.withHeaders(response.headers().map());
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
                     return Utils.unmarshalAsync(response, new TypeReference<Map<String, Object>>() {})
                             .thenApply(res::withResponseJson);
@@ -392,6 +395,7 @@ public class ProxyPutProxy {
                 }
             }
             if (Utils.statusCodeMatches(response.statusCode(), "401")) {
+                res.withHeaders(response.headers().map());
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
                     return Unauthorized.fromAsync(response)
                             .thenCompose(CompletableFuture::failedFuture);

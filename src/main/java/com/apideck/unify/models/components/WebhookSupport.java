@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -43,6 +44,15 @@ public class WebhookSupport {
     private Optional<? extends ManagedVia> managedVia;
 
     /**
+     * Service IDs of connectors that receive events from this connector's webhook URL when the URL's own
+     * connector has no connection for the event. Connectors listed here must use the same webhook event
+     * mapping.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("shared_with")
+    private Optional<? extends List<String>> sharedWith;
+
+    /**
      * Virtual webhook config for the connector.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -54,20 +64,23 @@ public class WebhookSupport {
             @JsonProperty("mode") Optional<? extends Mode> mode,
             @JsonProperty("subscription_level") Optional<? extends SubscriptionLevel> subscriptionLevel,
             @JsonProperty("managed_via") Optional<? extends ManagedVia> managedVia,
+            @JsonProperty("shared_with") Optional<? extends List<String>> sharedWith,
             @JsonProperty("virtual_webhooks") Optional<? extends VirtualWebhooks> virtualWebhooks) {
         Utils.checkNotNull(mode, "mode");
         Utils.checkNotNull(subscriptionLevel, "subscriptionLevel");
         Utils.checkNotNull(managedVia, "managedVia");
+        Utils.checkNotNull(sharedWith, "sharedWith");
         Utils.checkNotNull(virtualWebhooks, "virtualWebhooks");
         this.mode = mode;
         this.subscriptionLevel = subscriptionLevel;
         this.managedVia = managedVia;
+        this.sharedWith = sharedWith;
         this.virtualWebhooks = virtualWebhooks;
     }
     
     public WebhookSupport() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -95,6 +108,17 @@ public class WebhookSupport {
     @JsonIgnore
     public Optional<ManagedVia> managedVia() {
         return (Optional<ManagedVia>) managedVia;
+    }
+
+    /**
+     * Service IDs of connectors that receive events from this connector's webhook URL when the URL's own
+     * connector has no connection for the event. Connectors listed here must use the same webhook event
+     * mapping.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<String>> sharedWith() {
+        return (Optional<List<String>>) sharedWith;
     }
 
     /**
@@ -169,6 +193,29 @@ public class WebhookSupport {
     }
 
     /**
+     * Service IDs of connectors that receive events from this connector's webhook URL when the URL's own
+     * connector has no connection for the event. Connectors listed here must use the same webhook event
+     * mapping.
+     */
+    public WebhookSupport withSharedWith(List<String> sharedWith) {
+        Utils.checkNotNull(sharedWith, "sharedWith");
+        this.sharedWith = Optional.ofNullable(sharedWith);
+        return this;
+    }
+
+
+    /**
+     * Service IDs of connectors that receive events from this connector's webhook URL when the URL's own
+     * connector has no connection for the event. Connectors listed here must use the same webhook event
+     * mapping.
+     */
+    public WebhookSupport withSharedWith(Optional<? extends List<String>> sharedWith) {
+        Utils.checkNotNull(sharedWith, "sharedWith");
+        this.sharedWith = sharedWith;
+        return this;
+    }
+
+    /**
      * Virtual webhook config for the connector.
      */
     public WebhookSupport withVirtualWebhooks(VirtualWebhooks virtualWebhooks) {
@@ -200,6 +247,7 @@ public class WebhookSupport {
             Utils.enhancedDeepEquals(this.mode, other.mode) &&
             Utils.enhancedDeepEquals(this.subscriptionLevel, other.subscriptionLevel) &&
             Utils.enhancedDeepEquals(this.managedVia, other.managedVia) &&
+            Utils.enhancedDeepEquals(this.sharedWith, other.sharedWith) &&
             Utils.enhancedDeepEquals(this.virtualWebhooks, other.virtualWebhooks);
     }
     
@@ -207,7 +255,7 @@ public class WebhookSupport {
     public int hashCode() {
         return Utils.enhancedHash(
             mode, subscriptionLevel, managedVia,
-            virtualWebhooks);
+            sharedWith, virtualWebhooks);
     }
     
     @Override
@@ -216,6 +264,7 @@ public class WebhookSupport {
                 "mode", mode,
                 "subscriptionLevel", subscriptionLevel,
                 "managedVia", managedVia,
+                "sharedWith", sharedWith,
                 "virtualWebhooks", virtualWebhooks);
     }
 
@@ -227,6 +276,8 @@ public class WebhookSupport {
         private Optional<? extends SubscriptionLevel> subscriptionLevel = Optional.empty();
 
         private Optional<? extends ManagedVia> managedVia = Optional.empty();
+
+        private Optional<? extends List<String>> sharedWith = Optional.empty();
 
         private Optional<? extends VirtualWebhooks> virtualWebhooks = Optional.empty();
 
@@ -293,6 +344,29 @@ public class WebhookSupport {
 
 
         /**
+         * Service IDs of connectors that receive events from this connector's webhook URL when the URL's own
+         * connector has no connection for the event. Connectors listed here must use the same webhook event
+         * mapping.
+         */
+        public Builder sharedWith(List<String> sharedWith) {
+            Utils.checkNotNull(sharedWith, "sharedWith");
+            this.sharedWith = Optional.ofNullable(sharedWith);
+            return this;
+        }
+
+        /**
+         * Service IDs of connectors that receive events from this connector's webhook URL when the URL's own
+         * connector has no connection for the event. Connectors listed here must use the same webhook event
+         * mapping.
+         */
+        public Builder sharedWith(Optional<? extends List<String>> sharedWith) {
+            Utils.checkNotNull(sharedWith, "sharedWith");
+            this.sharedWith = sharedWith;
+            return this;
+        }
+
+
+        /**
          * Virtual webhook config for the connector.
          */
         public Builder virtualWebhooks(VirtualWebhooks virtualWebhooks) {
@@ -314,7 +388,7 @@ public class WebhookSupport {
 
             return new WebhookSupport(
                 mode, subscriptionLevel, managedVia,
-                virtualWebhooks);
+                sharedWith, virtualWebhooks);
         }
 
     }

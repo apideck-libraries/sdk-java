@@ -219,6 +219,7 @@ public class WebhookWebhooksAdd {
             WebhookWebhooksAddResponse res = resBuilder.build();
             
             if (Utils.statusCodeMatches(response.statusCode(), "201")) {
+                res.withHeaders(response.headers().map());
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
                     return res.withCreateWebhookResponse(Utils.unmarshal(response, new TypeReference<CreateWebhookResponse>() {}));
                 } else {
@@ -226,6 +227,7 @@ public class WebhookWebhooksAdd {
                 }
             }
             if (Utils.statusCodeMatches(response.statusCode(), "400")) {
+                res.withHeaders(response.headers().map());
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
                     throw BadRequestResponse.from(response);
                 } else {
@@ -233,6 +235,7 @@ public class WebhookWebhooksAdd {
                 }
             }
             if (Utils.statusCodeMatches(response.statusCode(), "401")) {
+                res.withHeaders(response.headers().map());
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
                     throw UnauthorizedResponse.from(response);
                 } else {
@@ -240,6 +243,7 @@ public class WebhookWebhooksAdd {
                 }
             }
             if (Utils.statusCodeMatches(response.statusCode(), "402")) {
+                res.withHeaders(response.headers().map());
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
                     throw PaymentRequiredResponse.from(response);
                 } else {
@@ -247,6 +251,7 @@ public class WebhookWebhooksAdd {
                 }
             }
             if (Utils.statusCodeMatches(response.statusCode(), "404")) {
+                res.withHeaders(response.headers().map());
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
                     throw NotFoundResponse.from(response);
                 } else {
@@ -254,6 +259,7 @@ public class WebhookWebhooksAdd {
                 }
             }
             if (Utils.statusCodeMatches(response.statusCode(), "422")) {
+                res.withHeaders(response.headers().map());
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
                     throw UnprocessableResponse.from(response);
                 } else {
@@ -269,6 +275,7 @@ public class WebhookWebhooksAdd {
                 throw APIException.from("API error occurred", response);
             }
             if (Utils.statusCodeMatches(response.statusCode(), "default")) {
+                res.withHeaders(response.headers().map());
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
                     return res.withUnexpectedErrorResponse(Utils.unmarshal(response, new TypeReference<UnexpectedErrorResponse>() {}));
                 } else {
@@ -342,6 +349,7 @@ public class WebhookWebhooksAdd {
             com.apideck.unify.models.operations.async.WebhookWebhooksAddResponse res = resBuilder.build();
             
             if (Utils.statusCodeMatches(response.statusCode(), "201")) {
+                res.withHeaders(response.headers().map());
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
                     return Utils.unmarshalAsync(response, new TypeReference<CreateWebhookResponse>() {})
                             .thenApply(res::withCreateWebhookResponse);
@@ -350,6 +358,7 @@ public class WebhookWebhooksAdd {
                 }
             }
             if (Utils.statusCodeMatches(response.statusCode(), "400")) {
+                res.withHeaders(response.headers().map());
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
                     return BadRequestResponse.fromAsync(response)
                             .thenCompose(CompletableFuture::failedFuture);
@@ -358,6 +367,7 @@ public class WebhookWebhooksAdd {
                 }
             }
             if (Utils.statusCodeMatches(response.statusCode(), "401")) {
+                res.withHeaders(response.headers().map());
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
                     return UnauthorizedResponse.fromAsync(response)
                             .thenCompose(CompletableFuture::failedFuture);
@@ -366,6 +376,7 @@ public class WebhookWebhooksAdd {
                 }
             }
             if (Utils.statusCodeMatches(response.statusCode(), "402")) {
+                res.withHeaders(response.headers().map());
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
                     return PaymentRequiredResponse.fromAsync(response)
                             .thenCompose(CompletableFuture::failedFuture);
@@ -374,6 +385,7 @@ public class WebhookWebhooksAdd {
                 }
             }
             if (Utils.statusCodeMatches(response.statusCode(), "404")) {
+                res.withHeaders(response.headers().map());
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
                     return NotFoundResponse.fromAsync(response)
                             .thenCompose(CompletableFuture::failedFuture);
@@ -382,6 +394,7 @@ public class WebhookWebhooksAdd {
                 }
             }
             if (Utils.statusCodeMatches(response.statusCode(), "422")) {
+                res.withHeaders(response.headers().map());
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
                     return UnprocessableResponse.fromAsync(response)
                             .thenCompose(CompletableFuture::failedFuture);
@@ -398,6 +411,7 @@ public class WebhookWebhooksAdd {
                 return Utils.createAsyncApiError(response, "API error occurred");
             }
             if (Utils.statusCodeMatches(response.statusCode(), "default")) {
+                res.withHeaders(response.headers().map());
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
                     return Utils.unmarshalAsync(response, new TypeReference<UnexpectedErrorResponse>() {})
                             .thenApply(res::withUnexpectedErrorResponse);

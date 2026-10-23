@@ -107,6 +107,17 @@ public class BankFeedAccount {
     private Optional<? extends FeedStatus> feedStatus;
 
     /**
+     * Whether the data consumer may see this account. `revoked` hides it from the consumer without
+     * deleting it; `active` restores it. Unrelated to `feed_status`.
+     * 
+     * <p>Only connectors that list it support it; others ignore the field, so setting it there changes
+     * nothing.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("status")
+    private Optional<? extends BankFeedAccountStatus> status;
+
+    /**
      * Country code according to ISO 3166-1 alpha-2.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -196,6 +207,7 @@ public class BankFeedAccount {
             @JsonProperty("available_balance") JsonNullable<Double> availableBalance,
             @JsonProperty("currency") JsonNullable<? extends Currency> currency,
             @JsonProperty("feed_status") Optional<? extends FeedStatus> feedStatus,
+            @JsonProperty("status") Optional<? extends BankFeedAccountStatus> status,
             @JsonProperty("country") JsonNullable<String> country,
             @JsonProperty("account_holders") Optional<? extends List<BankFeedAccountHolder>> accountHolders,
             @JsonProperty("emails") Optional<? extends List<Email>> emails,
@@ -219,6 +231,7 @@ public class BankFeedAccount {
         Utils.checkNotNull(availableBalance, "availableBalance");
         Utils.checkNotNull(currency, "currency");
         Utils.checkNotNull(feedStatus, "feedStatus");
+        Utils.checkNotNull(status, "status");
         Utils.checkNotNull(country, "country");
         Utils.checkNotNull(accountHolders, "accountHolders");
         Utils.checkNotNull(emails, "emails");
@@ -242,6 +255,7 @@ public class BankFeedAccount {
         this.availableBalance = availableBalance;
         this.currency = currency;
         this.feedStatus = feedStatus;
+        this.status = status;
         this.country = country;
         this.accountHolders = accountHolders;
         this.emails = emails;
@@ -261,10 +275,10 @@ public class BankFeedAccount {
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             Optional.empty(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined());
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -365,6 +379,19 @@ public class BankFeedAccount {
     @JsonIgnore
     public Optional<FeedStatus> feedStatus() {
         return (Optional<FeedStatus>) feedStatus;
+    }
+
+    /**
+     * Whether the data consumer may see this account. `revoked` hides it from the consumer without
+     * deleting it; `active` restores it. Unrelated to `feed_status`.
+     * 
+     * <p>Only connectors that list it support it; others ignore the field, so setting it there changes
+     * nothing.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<BankFeedAccountStatus> status() {
+        return (Optional<BankFeedAccountStatus>) status;
     }
 
     /**
@@ -680,6 +707,33 @@ public class BankFeedAccount {
     }
 
     /**
+     * Whether the data consumer may see this account. `revoked` hides it from the consumer without
+     * deleting it; `active` restores it. Unrelated to `feed_status`.
+     * 
+     * <p>Only connectors that list it support it; others ignore the field, so setting it there changes
+     * nothing.
+     */
+    public BankFeedAccount withStatus(BankFeedAccountStatus status) {
+        Utils.checkNotNull(status, "status");
+        this.status = Optional.ofNullable(status);
+        return this;
+    }
+
+
+    /**
+     * Whether the data consumer may see this account. `revoked` hides it from the consumer without
+     * deleting it; `active` restores it. Unrelated to `feed_status`.
+     * 
+     * <p>Only connectors that list it support it; others ignore the field, so setting it there changes
+     * nothing.
+     */
+    public BankFeedAccount withStatus(Optional<? extends BankFeedAccountStatus> status) {
+        Utils.checkNotNull(status, "status");
+        this.status = status;
+        return this;
+    }
+
+    /**
      * Country code according to ISO 3166-1 alpha-2.
      */
     public BankFeedAccount withCountry(String country) {
@@ -900,6 +954,7 @@ public class BankFeedAccount {
             Utils.enhancedDeepEquals(this.availableBalance, other.availableBalance) &&
             Utils.enhancedDeepEquals(this.currency, other.currency) &&
             Utils.enhancedDeepEquals(this.feedStatus, other.feedStatus) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.country, other.country) &&
             Utils.enhancedDeepEquals(this.accountHolders, other.accountHolders) &&
             Utils.enhancedDeepEquals(this.emails, other.emails) &&
@@ -920,10 +975,10 @@ public class BankFeedAccount {
             sourceRoutingNumber, sourceAccountNumber, targetAccountId,
             targetAccountName, targetAccountNumber, balance,
             availableBalance, currency, feedStatus,
-            country, accountHolders, emails,
-            addresses, phoneNumbers, customFields,
-            customMappings, createdAt, updatedAt,
-            updatedBy, createdBy);
+            status, country, accountHolders,
+            emails, addresses, phoneNumbers,
+            customFields, customMappings, createdAt,
+            updatedAt, updatedBy, createdBy);
     }
     
     @Override
@@ -941,6 +996,7 @@ public class BankFeedAccount {
                 "availableBalance", availableBalance,
                 "currency", currency,
                 "feedStatus", feedStatus,
+                "status", status,
                 "country", country,
                 "accountHolders", accountHolders,
                 "emails", emails,
@@ -980,6 +1036,8 @@ public class BankFeedAccount {
         private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
 
         private Optional<? extends FeedStatus> feedStatus = Optional.empty();
+
+        private Optional<? extends BankFeedAccountStatus> status = Optional.empty();
 
         private JsonNullable<String> country = JsonNullable.undefined();
 
@@ -1230,6 +1288,33 @@ public class BankFeedAccount {
 
 
         /**
+         * Whether the data consumer may see this account. `revoked` hides it from the consumer without
+         * deleting it; `active` restores it. Unrelated to `feed_status`.
+         * 
+         * <p>Only connectors that list it support it; others ignore the field, so setting it there changes
+         * nothing.
+         */
+        public Builder status(BankFeedAccountStatus status) {
+            Utils.checkNotNull(status, "status");
+            this.status = Optional.ofNullable(status);
+            return this;
+        }
+
+        /**
+         * Whether the data consumer may see this account. `revoked` hides it from the consumer without
+         * deleting it; `active` restores it. Unrelated to `feed_status`.
+         * 
+         * <p>Only connectors that list it support it; others ignore the field, so setting it there changes
+         * nothing.
+         */
+        public Builder status(Optional<? extends BankFeedAccountStatus> status) {
+            Utils.checkNotNull(status, "status");
+            this.status = status;
+            return this;
+        }
+
+
+        /**
          * Country code according to ISO 3166-1 alpha-2.
          */
         public Builder country(String country) {
@@ -1440,10 +1525,10 @@ public class BankFeedAccount {
                 sourceRoutingNumber, sourceAccountNumber, targetAccountId,
                 targetAccountName, targetAccountNumber, balance,
                 availableBalance, currency, feedStatus,
-                country, accountHolders, emails,
-                addresses, phoneNumbers, customFields,
-                customMappings, createdAt, updatedAt,
-                updatedBy, createdBy);
+                status, country, accountHolders,
+                emails, addresses, phoneNumbers,
+                customFields, customMappings, createdAt,
+                updatedAt, updatedBy, createdBy);
         }
 
     }

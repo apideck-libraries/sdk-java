@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 38254260-287a-40b6-9ac5-c2fcb654c9cc
 management:
-  docChecksum: 8c3c4c93c21d2fc8a6f23d7263ccb2d2
-  docVersion: 10.69.9
-  speakeasyVersion: 1.803.0
+  docChecksum: 435cd1f2692ea7ff623fd33d357deb15
+  docVersion: 10.71.0
+  speakeasyVersion: 1.803.1
   generationVersion: 2.950.2
-  releaseVersion: 0.48.0
-  configChecksum: 239ef05c789e48131ebc6220331ea873
+  releaseVersion: 0.49.0
+  configChecksum: 7814a48cd41f3f810472534a2eca994d
   repoURL: https://github.com/apideck-libraries/sdk-java.git
   installationURL: https://github.com/apideck-libraries/sdk-java
   published: true
 persistentEdits:
-  generation_id: 0cd473aa-58f4-4bf4-956b-107c3e062b1e
-  pristine_commit_hash: c166b59cec41ab6c13f9e7c6440c69774311d2f1
-  pristine_tree_hash: 29ac27ec08eb098051ebfecfd6a12ebe8f8545b7
+  generation_id: cbfc7111-fe96-4461-9cc9-07ec5ed2c217
+  pristine_commit_hash: 35083e1f9e1002c3a5c3e9f7c5dca5aaeec4e67e
+  pristine_tree_hash: 783bee731932f2320aa8dbcf63f864f23a8131f2
 features:
   java:
     acceptHeaders: 2.81.2
@@ -417,16 +417,20 @@ trackedFiles:
     pristine_git_object: 4af388096a349170eaa71c88a332a333051ff88a
   docs/models/components/BankFeedAccount.md:
     id: ab3238e6c07b
-    last_write_checksum: sha1:ca232853e59799537fb5e40f53ecac8c34b3a51d
-    pristine_git_object: 976495d672051338673f3065fab56a99e71cb72a
+    last_write_checksum: sha1:3aac2f5777fccc24e79c17e976928033479394e5
+    pristine_git_object: 05fc4a0a7f0be391adc7db2eb7bb99898b69d86d
   docs/models/components/BankFeedAccountHolder.md:
     id: 60f937083d8f
     last_write_checksum: sha1:b8ee3ff78bad9a811ff25e7f8f31d1325b76eed1
     pristine_git_object: b76c36450a1658c49c94fecbc9a9be8b94156c06
   docs/models/components/BankFeedAccountInput.md:
     id: 57ed57179c1d
-    last_write_checksum: sha1:18288a38696232dc23d3b045f5b9e139e2d74a9a
-    pristine_git_object: 39dfe443fceaba2cafcc7d24c017be5d705e0d19
+    last_write_checksum: sha1:d690f46892a86b2fe7c5ac1d6df7d08b0075073a
+    pristine_git_object: 2a8880ec8a6f289202d630df6ebb2a274e45e1f8
+  docs/models/components/BankFeedAccountStatus.md:
+    id: 200df442897d
+    last_write_checksum: sha1:17131de74d184aeb3a8788795a148c7286b29994
+    pristine_git_object: 0ff9ab522a2810ed83e04a65b2553a9a173e712b
   docs/models/components/BankFeedStatement.md:
     id: 736298bc25ae
     last_write_checksum: sha1:3e7cae40d409986d09781e69a5da06e8eeb4bdff
@@ -941,8 +945,8 @@ trackedFiles:
     pristine_git_object: 6e45fdd0848f315af4c7bc4a220453874cfc6096
   docs/models/components/ConnectorSetting.md:
     id: 726da9156ae5
-    last_write_checksum: sha1:81d88776f1b29070debbdcbbbe9004ac43527326
-    pristine_git_object: 2c84021fd745106cce863916f021d7101cf0a4cd
+    last_write_checksum: sha1:6dc4e01a53bf7f8a5342f211f0a71363a7fc67c3
+    pristine_git_object: 2a656db0e93d68554053dd25a97e931fd2a18ff7
   docs/models/components/ConnectorSettingType.md:
     id: 24ae1201956a
     last_write_checksum: sha1:cb9b3c441c0bb072e527ea9e24ef5abaf0f9153c
@@ -1933,8 +1937,8 @@ trackedFiles:
     pristine_git_object: 038df1aa6851b60c9f0fa93c808f8fb38456ea34
   docs/models/components/EmployeesFilter.md:
     id: ce3df7f4eb50
-    last_write_checksum: sha1:0c6e9b8ac068aceae1f615cb257105392ebe6e43
-    pristine_git_object: 0f08209cc18ce12f513ec5536bc4820c66b2409b
+    last_write_checksum: sha1:e2f04ae451713535b9a97eaf28ee7f66a980436a
+    pristine_git_object: 9035cb2ca6f3d203045d06ba30a647e601e5604c
   docs/models/components/EmployeesFilterEmploymentStatus.md:
     id: 6aab5ea677dc
     last_write_checksum: sha1:2780fe441f6552021a825ac155585357e3fa5146
@@ -2145,8 +2149,8 @@ trackedFiles:
     pristine_git_object: 3de59f58954fba9a8efc08682cf843fba6cba58a
   docs/models/components/FormField.md:
     id: 0a1d7d77777c
-    last_write_checksum: sha1:8de732b99a92af78c17233c15a43a594ab2ed88c
-    pristine_git_object: 5ca5da5bbce70d90ee77848469689ab3283fa44e
+    last_write_checksum: sha1:b59f08b9912bd4b2df2d202bb20253ed93ae9fdd
+    pristine_git_object: baa94f41ca9c27b03b808dc538a9a802b87249e0
   docs/models/components/FormFieldOption.md:
     id: 14938058f9d8
     last_write_checksum: sha1:bc3be49a4267cc6e8c3e4cc8a5c0f356a2f30282
@@ -8189,8 +8193,8 @@ trackedFiles:
     pristine_git_object: c755c6aa377f358344e761e9cc3e7b67bc1fb479
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:3bb8f4a93923987886cee281022745a32a78f719
-    pristine_git_object: 8d19e91b89cc561ffcff5dc0e16d52d8404c6fd5
+    last_write_checksum: sha1:8a1139df1f78adf6987eded18b7fa9cbb4fc0fbc
+    pristine_git_object: b1c3d0d37f644e2b5f34af3b20215a1afa2524d5
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -9057,8 +9061,8 @@ trackedFiles:
     pristine_git_object: 7296db7ebcdcff7ee348d1f993fc4aa2a7e6c145
   src/main/java/com/apideck/unify/SDKConfiguration.java:
     id: a2b330a87142
-    last_write_checksum: sha1:f71616ac068f9d4293e67432e4f2519d7ab8d642
-    pristine_git_object: a3137a2bd54e932130755243335ba995f46ab6a1
+    last_write_checksum: sha1:bbcb24673ce49d4d0e0acb65e72f8b42a7ef7359
+    pristine_git_object: 46ba3d050e7504deef94fffef58cd60ada9e6e54
   src/main/java/com/apideck/unify/SalesOrders.java:
     id: 065b0fd99f1f
     last_write_checksum: sha1:263495ead26adefc6a55b3380563b052158968b0
@@ -9497,16 +9501,20 @@ trackedFiles:
     pristine_git_object: 20fdb1f5dbff5c0ae367bad5f82be0a5e84372bd
   src/main/java/com/apideck/unify/models/components/BankFeedAccount.java:
     id: 71e049c537f9
-    last_write_checksum: sha1:a10fd10d5e9969b59313122698d9dc1f4179c339
-    pristine_git_object: 579b5ec840c627cff8f7a7b722fd403c22fe3399
+    last_write_checksum: sha1:782b66f2e9128601a7c59c62cb5e02443d4adbca
+    pristine_git_object: 42caf552ad087ea5cb0e44d0a3ef2c50ca88c5a9
   src/main/java/com/apideck/unify/models/components/BankFeedAccountHolder.java:
     id: d32c8032cbae
     last_write_checksum: sha1:c042ba2653654d2ccbc84c4d49d55d0361f806d0
     pristine_git_object: 1f7d3c6bee72840d7128b6121311218f80fa4041
   src/main/java/com/apideck/unify/models/components/BankFeedAccountInput.java:
     id: bab330a6d6e7
-    last_write_checksum: sha1:70bce9c613eafb52d0610fe8b7cb3b79f7c85ddb
-    pristine_git_object: e22c28db09201fe81e41faa1afb6667b1fc69e28
+    last_write_checksum: sha1:1494f6b38bbc58d1f9f6a5451fe68ef2af5d4faf
+    pristine_git_object: 6a8d0edd9c85ac49c6ab198342f4ce8ecafe692a
+  src/main/java/com/apideck/unify/models/components/BankFeedAccountStatus.java:
+    id: d20945b57a0c
+    last_write_checksum: sha1:e6fd6f195172ba8f787db083a6f0758e15ff43fe
+    pristine_git_object: fb7064e011d7456332dfde8f04e96147dc1d2534
   src/main/java/com/apideck/unify/models/components/BankFeedStatement.java:
     id: 86cf3854bd8c
     last_write_checksum: sha1:fb5fcd8fe31f07559647fc357fbf1b70da037555
@@ -10021,8 +10029,8 @@ trackedFiles:
     pristine_git_object: ea3204740f75c464e900f52b0ef1fa74b42517e9
   src/main/java/com/apideck/unify/models/components/ConnectorSetting.java:
     id: dace95f2ef30
-    last_write_checksum: sha1:32f6d3a356482d99806f55dcfbe838abded08fc1
-    pristine_git_object: 377d8065196fbb0310f1dc61ba3ff1f10d9dbd7f
+    last_write_checksum: sha1:bc59d3ce0ac7465e1bb63e8a6917e92fc3dcc8e3
+    pristine_git_object: b28d28c9e69ae544fe8d07f1bb682b919897152b
   src/main/java/com/apideck/unify/models/components/ConnectorSettingType.java:
     id: d557305a1a88
     last_write_checksum: sha1:86b833621afd25e53299db88d07c8904b736d3d9
@@ -11013,8 +11021,8 @@ trackedFiles:
     pristine_git_object: fad01ba227e63977c28f3301c28b053ee76a71d6
   src/main/java/com/apideck/unify/models/components/EmployeesFilter.java:
     id: 02810106f303
-    last_write_checksum: sha1:ecf971c2990c6dda76080991385f1519326634cd
-    pristine_git_object: 31c87338d55b03b311b88fc962994c3c1c47867d
+    last_write_checksum: sha1:8ec105bd057b0aef1e1ddf33d7f097dc34f60d42
+    pristine_git_object: 01a4968f768fe38c19d542c045e9d0b21cb8b9a0
   src/main/java/com/apideck/unify/models/components/EmployeesFilterEmploymentStatus.java:
     id: 0f1e27b7d195
     last_write_checksum: sha1:2d5f57dab595cda675656a1519792929c0f14f23
@@ -11225,8 +11233,8 @@ trackedFiles:
     pristine_git_object: de7cbc60868e7b2c3d676a50381d23570da54615
   src/main/java/com/apideck/unify/models/components/FormField.java:
     id: 8030bc57db6c
-    last_write_checksum: sha1:af1edf07b07d51f80c424554aa4b361925b9f7fe
-    pristine_git_object: dab437dac3aead46ded1d4eae49434414bc2120b
+    last_write_checksum: sha1:c96888e8185c343be377df486ffbf19ade71f074
+    pristine_git_object: ad1b9b8f5e9f3f6c57b087514ad7c4fddff0631d
   src/main/java/com/apideck/unify/models/components/FormFieldOption.java:
     id: 47352d84b5fd
     last_write_checksum: sha1:ba405b2ed04818d5dc02dc4cc21fbeafd95c6a19
@@ -28533,7 +28541,7 @@ examples:
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
           x-apideck-service-id: "salesforce"
       requestBody:
-        application/json: {"bank_account_type": "bank", "source_account_id": "src_456", "source_routing_number": "021000021", "source_account_number": "123465", "target_account_id": "tgt_789", "target_account_name": "Main Company Checking", "target_account_number": "NL91ABNA0417164300", "balance": 25000, "available_balance": 24500, "currency": "USD", "feed_status": "pending", "country": "US", "account_holders": [{"type": "consumer", "relationship": "primary", "first_name": "Jane", "middle_name": "Quinn", "last_name": "Doe", "suffix": "Jr", "business_name": "Acme LLC"}], "emails": [{"id": "123", "email": "elon@musk.com", "type": "primary"}], "addresses": [{"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "line5": "Attention: Finance Dept", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}], "phone_numbers": [{"id": "12345", "country_code": "1", "area_code": "323", "number": "111-111-1111", "extension": "105", "type": "primary"}], "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}]}
+        application/json: {"bank_account_type": "bank", "source_account_id": "src_456", "source_routing_number": "021000021", "source_account_number": "123465", "target_account_id": "tgt_789", "target_account_name": "Main Company Checking", "target_account_number": "NL91ABNA0417164300", "balance": 25000, "available_balance": 24500, "currency": "USD", "feed_status": "pending", "status": "active", "country": "US", "account_holders": [{"type": "consumer", "relationship": "primary", "first_name": "Jane", "middle_name": "Quinn", "last_name": "Doe", "suffix": "Jr", "business_name": "Acme LLC"}], "emails": [{"id": "123", "email": "elon@musk.com", "type": "primary"}], "addresses": [{"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "line5": "Attention: Finance Dept", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}], "phone_numbers": [{"id": "12345", "country_code": "1", "area_code": "323", "number": "111-111-1111", "extension": "105", "type": "primary"}], "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}]}
       responses:
         "201":
           application/json: {"status_code": 200, "status": "OK", "service": "xero", "resource": "bills", "operation": "add", "data": {"id": "12345"}}
@@ -28590,7 +28598,7 @@ examples:
           x-apideck-company-id: "12345"
       responses:
         "200":
-          application/json: {"status_code": 200, "status": "OK", "service": "quickbooks", "resource": "bank-feed-accounts", "operation": "one", "data": {"id": "12345", "bank_account_type": "bank", "source_account_id": "src_456", "source_routing_number": "021000021", "source_account_number": "123465", "target_account_id": "tgt_789", "target_account_name": "Main Company Checking", "target_account_number": "NL91ABNA0417164300", "balance": 25000, "available_balance": 24500, "currency": "USD", "feed_status": "pending", "country": "US", "account_holders": [{"type": "consumer", "relationship": "primary", "first_name": "Jane", "middle_name": "Quinn", "last_name": "Doe", "suffix": "Jr", "business_name": "Acme LLC"}], "emails": [{"id": "123", "email": "elon@musk.com", "type": "primary"}], "addresses": [{"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "line5": "Attention: Finance Dept", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}], "phone_numbers": [{"id": "12345", "country_code": "1", "area_code": "323", "number": "111-111-1111", "extension": "105", "type": "primary"}], "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "created_at": "2020-09-30T07:43:32.000Z", "updated_at": "2020-09-30T07:43:32.000Z", "updated_by": "12345", "created_by": "12345"}, "meta": {"items_on_page": 50, "cursors": {"previous": "em9oby1jcm06OnBhZ2U6OjE=", "current": "em9oby1jcm06OnBhZ2U6OjI=", "next": "em9oby1jcm06OnBhZ2U6OjM="}, "total_count": 1, "warnings": [{"type": "downstream_request_failed", "status_code": 429, "operation": "getManager"}]}}
+          application/json: {"status_code": 200, "status": "OK", "service": "quickbooks", "resource": "bank-feed-accounts", "operation": "one", "data": {"id": "12345", "bank_account_type": "bank", "source_account_id": "src_456", "source_routing_number": "021000021", "source_account_number": "123465", "target_account_id": "tgt_789", "target_account_name": "Main Company Checking", "target_account_number": "NL91ABNA0417164300", "balance": 25000, "available_balance": 24500, "currency": "USD", "feed_status": "pending", "status": "active", "country": "US", "account_holders": [{"type": "consumer", "relationship": "primary", "first_name": "Jane", "middle_name": "Quinn", "last_name": "Doe", "suffix": "Jr", "business_name": "Acme LLC"}], "emails": [{"id": "123", "email": "elon@musk.com", "type": "primary"}], "addresses": [{"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "line5": "Attention: Finance Dept", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}], "phone_numbers": [{"id": "12345", "country_code": "1", "area_code": "323", "number": "111-111-1111", "extension": "105", "type": "primary"}], "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "created_at": "2020-09-30T07:43:32.000Z", "updated_at": "2020-09-30T07:43:32.000Z", "updated_by": "12345", "created_by": "12345"}, "meta": {"items_on_page": 50, "cursors": {"previous": "em9oby1jcm06OnBhZ2U6OjE=", "current": "em9oby1jcm06OnBhZ2U6OjI=", "next": "em9oby1jcm06OnBhZ2U6OjM="}, "total_count": 1, "warnings": [{"type": "downstream_request_failed", "status_code": 429, "operation": "getManager"}]}}
         "400":
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror", "downstream_errors": [{"message": "Account code '100' has been archived or deleted", "detail": "Each line item must reference a valid account", "code": "VALIDATION_ERROR"}]}
         "401":
@@ -28642,7 +28650,7 @@ examples:
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
           x-apideck-service-id: "salesforce"
       requestBody:
-        application/json: {"bank_account_type": "bank", "source_account_id": "src_456", "source_routing_number": "021000021", "source_account_number": "123465", "target_account_id": "tgt_789", "target_account_name": "Main Company Checking", "target_account_number": "NL91ABNA0417164300", "balance": 25000, "available_balance": 24500, "currency": "USD", "feed_status": "pending", "country": "US", "account_holders": [{"type": "consumer", "relationship": "primary", "first_name": "Jane", "middle_name": "Quinn", "last_name": "Doe", "suffix": "Jr", "business_name": "Acme LLC"}], "emails": [{"id": "123", "email": "elon@musk.com", "type": "primary"}], "addresses": [{"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "line5": "Attention: Finance Dept", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}], "phone_numbers": [{"id": "12345", "country_code": "1", "area_code": "323", "number": "111-111-1111", "extension": "105", "type": "primary"}], "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}]}
+        application/json: {"bank_account_type": "bank", "source_account_id": "src_456", "source_routing_number": "021000021", "source_account_number": "123465", "target_account_id": "tgt_789", "target_account_name": "Main Company Checking", "target_account_number": "NL91ABNA0417164300", "balance": 25000, "available_balance": 24500, "currency": "USD", "feed_status": "pending", "status": "active", "country": "US", "account_holders": [{"type": "consumer", "relationship": "primary", "first_name": "Jane", "middle_name": "Quinn", "last_name": "Doe", "suffix": "Jr", "business_name": "Acme LLC"}], "emails": [{"id": "123", "email": "elon@musk.com", "type": "primary"}], "addresses": [{"id": "123", "type": "primary", "string": "25 Spring Street, Blackburn, VIC 3130", "name": "HQ US", "line1": "Main street", "line2": "apt #", "line3": "Suite #", "line4": "delivery instructions", "line5": "Attention: Finance Dept", "street_number": "25", "city": "San Francisco", "state": "CA", "postal_code": "94104", "country": "US", "latitude": "40.759211", "longitude": "-73.984638", "county": "Santa Clara", "contact_name": "Elon Musk", "salutation": "Mr", "phone_number": "111-111-1111", "fax": "122-111-1111", "email": "elon@musk.com", "website": "https://elonmusk.com", "notes": "Address notes or delivery instructions.", "row_version": "1-12345"}], "phone_numbers": [{"id": "12345", "country_code": "1", "area_code": "323", "number": "111-111-1111", "extension": "105", "type": "primary"}], "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}]}
       responses:
         "200":
           application/json: {"status_code": 200, "status": "OK", "service": "quickbooks", "resource": "bank-feed-accounts", "operation": "update", "data": {"id": "12345"}}
@@ -40951,7 +40959,7 @@ examples:
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Java SDK Changes:\n* `apideck.accounting.creditNotes.create()`: \n  *  `request.idempotencyKey` **Added**\n* `apideck.accounting.bankFeedStatements.list()`:  `response.data[].transactions[].sourceTransactionId` **Changed**\n* `apideck.accounting.bankFeedStatements.create()`: \n  *  `request.bankFeedStatement.transactions[].sourceTransactionId` **Changed**\n* `apideck.accounting.bankFeedStatements.get()`:  `response.data.transactions[].sourceTransactionId` **Changed**\n* `apideck.accounting.bankFeedStatements.update()`: \n  *  `request.bankFeedStatement.transactions[].sourceTransactionId` **Changed**\n* `apideck.connector.connectors.list()`:  `response.data[].webhookSupport.sharedWith` **Added**\n* `apideck.connector.connectors.get()`:  `response.data.webhookSupport.sharedWith` **Added**\n"
+releaseNotes: "## Java SDK Changes:\n* `apideck.accounting.bankFeedAccounts.list()`:  `response.data[].status` **Added**\n* `apideck.accounting.bankFeedAccounts.create()`: \n  *  `request.bankFeedAccount.status` **Added**\n* `apideck.accounting.bankFeedAccounts.get()`:  `response.data.status` **Added**\n* `apideck.accounting.bankFeedAccounts.update()`: \n  *  `request.bankFeedAccount.status` **Added**\n* `apideck.hris.employees.list()`: \n  *  `request.filter` **Changed**\n* `apideck.connector.connectors.list()`:  `response.data[].settings[]` **Changed**\n* `apideck.connector.connectors.get()`:  `response.data.settings[]` **Changed**\n"
 generatedFiles:
   - .gitattributes
   - USAGE.md

@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -31,21 +32,67 @@ public class ConnectorSetting {
     @JsonProperty("type")
     private Optional<? extends ConnectorSettingType> type;
 
+    /**
+     * Whether a value is required for the connection to work. Required settings are always shown in Vault
+     * and cannot be hidden by an application.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("required")
+    private Optional<Boolean> required;
+
+    /**
+     * Whether a value is required before the connection can be authorized. These settings are always shown
+     * in Vault and cannot be hidden by an application.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("required_for_authorization")
+    private Optional<Boolean> requiredForAuthorization;
+
+    /**
+     * Whether the connector hides this setting from the Vault connection form for every application.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("hidden")
+    private Optional<Boolean> hidden;
+
+    /**
+     * Help text shown under the setting in the Vault connection form. May contain
+     * `${integrationSettings.&lt;key&gt;}` placeholders that are filled in from the application's
+     * integration settings when the Vault form is built.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("description")
+    private Optional<String> description;
+
     @JsonCreator
     public ConnectorSetting(
             @JsonProperty("id") Optional<String> id,
             @JsonProperty("label") Optional<String> label,
-            @JsonProperty("type") Optional<? extends ConnectorSettingType> type) {
+            @JsonProperty("type") Optional<? extends ConnectorSettingType> type,
+            @JsonProperty("required") Optional<Boolean> required,
+            @JsonProperty("required_for_authorization") Optional<Boolean> requiredForAuthorization,
+            @JsonProperty("hidden") Optional<Boolean> hidden,
+            @JsonProperty("description") Optional<String> description) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(label, "label");
         Utils.checkNotNull(type, "type");
+        Utils.checkNotNull(required, "required");
+        Utils.checkNotNull(requiredForAuthorization, "requiredForAuthorization");
+        Utils.checkNotNull(hidden, "hidden");
+        Utils.checkNotNull(description, "description");
         this.id = id;
         this.label = label;
         this.type = type;
+        this.required = required;
+        this.requiredForAuthorization = requiredForAuthorization;
+        this.hidden = hidden;
+        this.description = description;
     }
     
     public ConnectorSetting() {
-        this(Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     @JsonIgnore
@@ -62,6 +109,42 @@ public class ConnectorSetting {
     @JsonIgnore
     public Optional<ConnectorSettingType> type() {
         return (Optional<ConnectorSettingType>) type;
+    }
+
+    /**
+     * Whether a value is required for the connection to work. Required settings are always shown in Vault
+     * and cannot be hidden by an application.
+     */
+    @JsonIgnore
+    public Optional<Boolean> required() {
+        return required;
+    }
+
+    /**
+     * Whether a value is required before the connection can be authorized. These settings are always shown
+     * in Vault and cannot be hidden by an application.
+     */
+    @JsonIgnore
+    public Optional<Boolean> requiredForAuthorization() {
+        return requiredForAuthorization;
+    }
+
+    /**
+     * Whether the connector hides this setting from the Vault connection form for every application.
+     */
+    @JsonIgnore
+    public Optional<Boolean> hidden() {
+        return hidden;
+    }
+
+    /**
+     * Help text shown under the setting in the Vault connection form. May contain
+     * `${integrationSettings.&lt;key&gt;}` placeholders that are filled in from the application's
+     * integration settings when the Vault form is built.
+     */
+    @JsonIgnore
+    public Optional<String> description() {
+        return description;
     }
 
     public static Builder builder() {
@@ -108,6 +191,90 @@ public class ConnectorSetting {
         return this;
     }
 
+    /**
+     * Whether a value is required for the connection to work. Required settings are always shown in Vault
+     * and cannot be hidden by an application.
+     */
+    public ConnectorSetting withRequired(boolean required) {
+        Utils.checkNotNull(required, "required");
+        this.required = Optional.ofNullable(required);
+        return this;
+    }
+
+
+    /**
+     * Whether a value is required for the connection to work. Required settings are always shown in Vault
+     * and cannot be hidden by an application.
+     */
+    public ConnectorSetting withRequired(Optional<Boolean> required) {
+        Utils.checkNotNull(required, "required");
+        this.required = required;
+        return this;
+    }
+
+    /**
+     * Whether a value is required before the connection can be authorized. These settings are always shown
+     * in Vault and cannot be hidden by an application.
+     */
+    public ConnectorSetting withRequiredForAuthorization(boolean requiredForAuthorization) {
+        Utils.checkNotNull(requiredForAuthorization, "requiredForAuthorization");
+        this.requiredForAuthorization = Optional.ofNullable(requiredForAuthorization);
+        return this;
+    }
+
+
+    /**
+     * Whether a value is required before the connection can be authorized. These settings are always shown
+     * in Vault and cannot be hidden by an application.
+     */
+    public ConnectorSetting withRequiredForAuthorization(Optional<Boolean> requiredForAuthorization) {
+        Utils.checkNotNull(requiredForAuthorization, "requiredForAuthorization");
+        this.requiredForAuthorization = requiredForAuthorization;
+        return this;
+    }
+
+    /**
+     * Whether the connector hides this setting from the Vault connection form for every application.
+     */
+    public ConnectorSetting withHidden(boolean hidden) {
+        Utils.checkNotNull(hidden, "hidden");
+        this.hidden = Optional.ofNullable(hidden);
+        return this;
+    }
+
+
+    /**
+     * Whether the connector hides this setting from the Vault connection form for every application.
+     */
+    public ConnectorSetting withHidden(Optional<Boolean> hidden) {
+        Utils.checkNotNull(hidden, "hidden");
+        this.hidden = hidden;
+        return this;
+    }
+
+    /**
+     * Help text shown under the setting in the Vault connection form. May contain
+     * `${integrationSettings.&lt;key&gt;}` placeholders that are filled in from the application's
+     * integration settings when the Vault form is built.
+     */
+    public ConnectorSetting withDescription(String description) {
+        Utils.checkNotNull(description, "description");
+        this.description = Optional.ofNullable(description);
+        return this;
+    }
+
+
+    /**
+     * Help text shown under the setting in the Vault connection form. May contain
+     * `${integrationSettings.&lt;key&gt;}` placeholders that are filled in from the application's
+     * integration settings when the Vault form is built.
+     */
+    public ConnectorSetting withDescription(Optional<String> description) {
+        Utils.checkNotNull(description, "description");
+        this.description = description;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -120,13 +287,19 @@ public class ConnectorSetting {
         return 
             Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.label, other.label) &&
-            Utils.enhancedDeepEquals(this.type, other.type);
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.required, other.required) &&
+            Utils.enhancedDeepEquals(this.requiredForAuthorization, other.requiredForAuthorization) &&
+            Utils.enhancedDeepEquals(this.hidden, other.hidden) &&
+            Utils.enhancedDeepEquals(this.description, other.description);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, label, type);
+            id, label, type,
+            required, requiredForAuthorization, hidden,
+            description);
     }
     
     @Override
@@ -134,7 +307,11 @@ public class ConnectorSetting {
         return Utils.toString(ConnectorSetting.class,
                 "id", id,
                 "label", label,
-                "type", type);
+                "type", type,
+                "required", required,
+                "requiredForAuthorization", requiredForAuthorization,
+                "hidden", hidden,
+                "description", description);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -145,6 +322,14 @@ public class ConnectorSetting {
         private Optional<String> label = Optional.empty();
 
         private Optional<? extends ConnectorSettingType> type = Optional.empty();
+
+        private Optional<Boolean> required = Optional.empty();
+
+        private Optional<Boolean> requiredForAuthorization = Optional.empty();
+
+        private Optional<Boolean> hidden = Optional.empty();
+
+        private Optional<String> description = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -189,10 +374,96 @@ public class ConnectorSetting {
             return this;
         }
 
+
+        /**
+         * Whether a value is required for the connection to work. Required settings are always shown in Vault
+         * and cannot be hidden by an application.
+         */
+        public Builder required(boolean required) {
+            Utils.checkNotNull(required, "required");
+            this.required = Optional.ofNullable(required);
+            return this;
+        }
+
+        /**
+         * Whether a value is required for the connection to work. Required settings are always shown in Vault
+         * and cannot be hidden by an application.
+         */
+        public Builder required(Optional<Boolean> required) {
+            Utils.checkNotNull(required, "required");
+            this.required = required;
+            return this;
+        }
+
+
+        /**
+         * Whether a value is required before the connection can be authorized. These settings are always shown
+         * in Vault and cannot be hidden by an application.
+         */
+        public Builder requiredForAuthorization(boolean requiredForAuthorization) {
+            Utils.checkNotNull(requiredForAuthorization, "requiredForAuthorization");
+            this.requiredForAuthorization = Optional.ofNullable(requiredForAuthorization);
+            return this;
+        }
+
+        /**
+         * Whether a value is required before the connection can be authorized. These settings are always shown
+         * in Vault and cannot be hidden by an application.
+         */
+        public Builder requiredForAuthorization(Optional<Boolean> requiredForAuthorization) {
+            Utils.checkNotNull(requiredForAuthorization, "requiredForAuthorization");
+            this.requiredForAuthorization = requiredForAuthorization;
+            return this;
+        }
+
+
+        /**
+         * Whether the connector hides this setting from the Vault connection form for every application.
+         */
+        public Builder hidden(boolean hidden) {
+            Utils.checkNotNull(hidden, "hidden");
+            this.hidden = Optional.ofNullable(hidden);
+            return this;
+        }
+
+        /**
+         * Whether the connector hides this setting from the Vault connection form for every application.
+         */
+        public Builder hidden(Optional<Boolean> hidden) {
+            Utils.checkNotNull(hidden, "hidden");
+            this.hidden = hidden;
+            return this;
+        }
+
+
+        /**
+         * Help text shown under the setting in the Vault connection form. May contain
+         * `${integrationSettings.&lt;key&gt;}` placeholders that are filled in from the application's
+         * integration settings when the Vault form is built.
+         */
+        public Builder description(String description) {
+            Utils.checkNotNull(description, "description");
+            this.description = Optional.ofNullable(description);
+            return this;
+        }
+
+        /**
+         * Help text shown under the setting in the Vault connection form. May contain
+         * `${integrationSettings.&lt;key&gt;}` placeholders that are filled in from the application's
+         * integration settings when the Vault form is built.
+         */
+        public Builder description(Optional<String> description) {
+            Utils.checkNotNull(description, "description");
+            this.description = description;
+            return this;
+        }
+
         public ConnectorSetting build() {
 
             return new ConnectorSetting(
-                id, label, type);
+                id, label, type,
+                required, requiredForAuthorization, hidden,
+                description);
         }
 
     }

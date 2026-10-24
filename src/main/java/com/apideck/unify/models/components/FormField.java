@@ -92,7 +92,11 @@ public class FormField {
     private JsonNullable<Boolean> optionsFetchError;
 
     /**
-     * Indicates if the form field is not displayed but the value that is being stored on the connection.
+     * Indicates the form field is not displayed in Vault. A field is hidden when the connector hides it,
+     * or when the application hides it in the dashboard (Fields visible in Vault). An application can hide
+     * only optional fields that aren't required for authorization.
+     * 
+     * <p>A hidden field's value is still stored on the connection and can still be set through the API.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("hidden")
@@ -273,7 +277,11 @@ public class FormField {
     }
 
     /**
-     * Indicates if the form field is not displayed but the value that is being stored on the connection.
+     * Indicates the form field is not displayed in Vault. A field is hidden when the connector hides it,
+     * or when the application hides it in the dashboard (Fields visible in Vault). An application can hide
+     * only optional fields that aren't required for authorization.
+     * 
+     * <p>A hidden field's value is still stored on the connection and can still be set through the API.
      */
     @JsonIgnore
     public JsonNullable<Boolean> hidden() {
@@ -507,7 +515,11 @@ public class FormField {
     }
 
     /**
-     * Indicates if the form field is not displayed but the value that is being stored on the connection.
+     * Indicates the form field is not displayed in Vault. A field is hidden when the connector hides it,
+     * or when the application hides it in the dashboard (Fields visible in Vault). An application can hide
+     * only optional fields that aren't required for authorization.
+     * 
+     * <p>A hidden field's value is still stored on the connection and can still be set through the API.
      */
     public FormField withHidden(boolean hidden) {
         Utils.checkNotNull(hidden, "hidden");
@@ -516,7 +528,11 @@ public class FormField {
     }
 
     /**
-     * Indicates if the form field is not displayed but the value that is being stored on the connection.
+     * Indicates the form field is not displayed in Vault. A field is hidden when the connector hides it,
+     * or when the application hides it in the dashboard (Fields visible in Vault). An application can hide
+     * only optional fields that aren't required for authorization.
+     * 
+     * <p>A hidden field's value is still stored on the connection and can still be set through the API.
      */
     public FormField withHidden(JsonNullable<Boolean> hidden) {
         Utils.checkNotNull(hidden, "hidden");
@@ -898,7 +914,11 @@ public class FormField {
 
 
         /**
-         * Indicates if the form field is not displayed but the value that is being stored on the connection.
+         * Indicates the form field is not displayed in Vault. A field is hidden when the connector hides it,
+         * or when the application hides it in the dashboard (Fields visible in Vault). An application can hide
+         * only optional fields that aren't required for authorization.
+         * 
+         * <p>A hidden field's value is still stored on the connection and can still be set through the API.
          */
         public Builder hidden(boolean hidden) {
             Utils.checkNotNull(hidden, "hidden");
@@ -907,7 +927,11 @@ public class FormField {
         }
 
         /**
-         * Indicates if the form field is not displayed but the value that is being stored on the connection.
+         * Indicates the form field is not displayed in Vault. A field is hidden when the connector hides it,
+         * or when the application hides it in the dashboard (Fields visible in Vault). An application can hide
+         * only optional fields that aren't required for authorization.
+         * 
+         * <p>A hidden field's value is still stored on the connection and can still be set through the API.
          */
         public Builder hidden(JsonNullable<Boolean> hidden) {
             Utils.checkNotNull(hidden, "hidden");

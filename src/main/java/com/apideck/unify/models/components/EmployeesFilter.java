@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.time.LocalDate;
 import java.util.Optional;
 
 
@@ -80,6 +81,13 @@ public class EmployeesFilter {
     @SpeakeasyMetadata("queryParam:name=country")
     private Optional<String> country;
 
+    /**
+     * Return employees as of this date (YYYY-MM-DD). Set a future date to include future-dated hires. When
+     * omitted, employees are returned as of today.
+     */
+    @SpeakeasyMetadata("queryParam:name=as_of_date")
+    private Optional<LocalDate> asOfDate;
+
     @JsonCreator
     public EmployeesFilter(
             Optional<String> companyId,
@@ -92,7 +100,8 @@ public class EmployeesFilter {
             Optional<String> employeeNumber,
             Optional<String> departmentId,
             Optional<String> city,
-            Optional<String> country) {
+            Optional<String> country,
+            Optional<LocalDate> asOfDate) {
         Utils.checkNotNull(companyId, "companyId");
         Utils.checkNotNull(email, "email");
         Utils.checkNotNull(firstName, "firstName");
@@ -104,6 +113,7 @@ public class EmployeesFilter {
         Utils.checkNotNull(departmentId, "departmentId");
         Utils.checkNotNull(city, "city");
         Utils.checkNotNull(country, "country");
+        Utils.checkNotNull(asOfDate, "asOfDate");
         this.companyId = companyId;
         this.email = email;
         this.firstName = firstName;
@@ -115,13 +125,14 @@ public class EmployeesFilter {
         this.departmentId = departmentId;
         this.city = city;
         this.country = country;
+        this.asOfDate = asOfDate;
     }
     
     public EmployeesFilter() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -211,6 +222,15 @@ public class EmployeesFilter {
     @JsonIgnore
     public Optional<String> country() {
         return country;
+    }
+
+    /**
+     * Return employees as of this date (YYYY-MM-DD). Set a future date to include future-dated hires. When
+     * omitted, employees are returned as of today.
+     */
+    @JsonIgnore
+    public Optional<LocalDate> asOfDate() {
+        return asOfDate;
     }
 
     public static Builder builder() {
@@ -427,6 +447,27 @@ public class EmployeesFilter {
         return this;
     }
 
+    /**
+     * Return employees as of this date (YYYY-MM-DD). Set a future date to include future-dated hires. When
+     * omitted, employees are returned as of today.
+     */
+    public EmployeesFilter withAsOfDate(LocalDate asOfDate) {
+        Utils.checkNotNull(asOfDate, "asOfDate");
+        this.asOfDate = Optional.ofNullable(asOfDate);
+        return this;
+    }
+
+
+    /**
+     * Return employees as of this date (YYYY-MM-DD). Set a future date to include future-dated hires. When
+     * omitted, employees are returned as of today.
+     */
+    public EmployeesFilter withAsOfDate(Optional<LocalDate> asOfDate) {
+        Utils.checkNotNull(asOfDate, "asOfDate");
+        this.asOfDate = asOfDate;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -447,7 +488,8 @@ public class EmployeesFilter {
             Utils.enhancedDeepEquals(this.employeeNumber, other.employeeNumber) &&
             Utils.enhancedDeepEquals(this.departmentId, other.departmentId) &&
             Utils.enhancedDeepEquals(this.city, other.city) &&
-            Utils.enhancedDeepEquals(this.country, other.country);
+            Utils.enhancedDeepEquals(this.country, other.country) &&
+            Utils.enhancedDeepEquals(this.asOfDate, other.asOfDate);
     }
     
     @Override
@@ -456,7 +498,7 @@ public class EmployeesFilter {
             companyId, email, firstName,
             title, lastName, managerId,
             employmentStatus, employeeNumber, departmentId,
-            city, country);
+            city, country, asOfDate);
     }
     
     @Override
@@ -472,7 +514,8 @@ public class EmployeesFilter {
                 "employeeNumber", employeeNumber,
                 "departmentId", departmentId,
                 "city", city,
-                "country", country);
+                "country", country,
+                "asOfDate", asOfDate);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -499,6 +542,8 @@ public class EmployeesFilter {
         private Optional<String> city = Optional.empty();
 
         private Optional<String> country = Optional.empty();
+
+        private Optional<LocalDate> asOfDate = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -713,13 +758,34 @@ public class EmployeesFilter {
             return this;
         }
 
+
+        /**
+         * Return employees as of this date (YYYY-MM-DD). Set a future date to include future-dated hires. When
+         * omitted, employees are returned as of today.
+         */
+        public Builder asOfDate(LocalDate asOfDate) {
+            Utils.checkNotNull(asOfDate, "asOfDate");
+            this.asOfDate = Optional.ofNullable(asOfDate);
+            return this;
+        }
+
+        /**
+         * Return employees as of this date (YYYY-MM-DD). Set a future date to include future-dated hires. When
+         * omitted, employees are returned as of today.
+         */
+        public Builder asOfDate(Optional<LocalDate> asOfDate) {
+            Utils.checkNotNull(asOfDate, "asOfDate");
+            this.asOfDate = asOfDate;
+            return this;
+        }
+
         public EmployeesFilter build() {
 
             return new EmployeesFilter(
                 companyId, email, firstName,
                 title, lastName, managerId,
                 employmentStatus, employeeNumber, departmentId,
-                city, country);
+                city, country, asOfDate);
         }
 
     }

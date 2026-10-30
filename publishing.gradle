@@ -47,7 +47,7 @@ afterEvaluate {
                     description = config.description
                     url = 'https://github.com/apideck-libraries/sdk-java'
                     scm {
-                        url = 'github.com/apideck-libraries/sdk-java'
+                        url = 'https://github.com/apideck-libraries/sdk-java'
                         connection = 'scm:git:ssh://git@github.com/apideck-libraries/sdk-java.git'
                     }
                     licenses {

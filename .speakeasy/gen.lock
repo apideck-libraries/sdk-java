@@ -1,26 +1,26 @@
 lockVersion: 2.0.0
 id: 38254260-287a-40b6-9ac5-c2fcb654c9cc
 management:
-  docChecksum: 32b4050cbb522e4130b000b36c60f8df
-  docVersion: 10.73.0
-  speakeasyVersion: 1.803.2
-  generationVersion: 2.950.13
-  releaseVersion: 0.50.0
-  configChecksum: 820fe21834740cd5814b1f80ee446604
+  docChecksum: 95ffe62c1cf2aa31057cfabd23677f38
+  docVersion: 10.73.1
+  speakeasyVersion: 1.805.0
+  generationVersion: 2.954.8
+  releaseVersion: 0.50.1
+  configChecksum: b3b43c2ce99695082700f0aedbe63c50
   repoURL: https://github.com/apideck-libraries/sdk-java.git
   installationURL: https://github.com/apideck-libraries/sdk-java
   published: true
 persistentEdits:
-  generation_id: 3bc5c152-e94f-499c-ad37-c0d740ecdf29
-  pristine_commit_hash: dedc05d54ba86f3bc6afa0d7e27ea89b2330c033
-  pristine_tree_hash: 17a8a625474a8a86c6d6a185164d24c2b84e664a
+  generation_id: 9d577e98-d25b-4f1a-969b-4d8d96a04da2
+  pristine_commit_hash: 94860da62f6fc586218a045668c5574ffa774f74
+  pristine_tree_hash: 2f76d69e783fcd501d480f45c8bff35dbcb3bc0c
 features:
   java:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
     additionalProperties: 0.0.2
     constsAndDefaults: 0.1.3
-    core: 3.57.3
+    core: 3.57.5
     deprecations: 2.81.2
     downloadStreams: 0.1.1
     errors: 1.0.3
@@ -8193,8 +8193,8 @@ trackedFiles:
     pristine_git_object: c755c6aa377f358344e761e9cc3e7b67bc1fb479
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:9270fa00f7ad758720435adc597f46d60f2eae3e
-    pristine_git_object: 31216146f23f70bc1b7a0033bff82dd97271d07c
+    last_write_checksum: sha1:224c43f7a0c791d2ae0b0b5c64ba734a277388d0
+    pristine_git_object: a20b30522bb7261d7546bad877e54bac6d04a280
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -8213,8 +8213,8 @@ trackedFiles:
     pristine_git_object: 5eed7ee8452842305a18a4eb967442683808226a
   publishing.gradle:
     id: 0f10e722a87d
-    last_write_checksum: sha1:a76038811f8c044b34f215936451c6f7dec7f7cf
-    pristine_git_object: 5cd5e5944935b6db431bd442ed88f30a274ad2b5
+    last_write_checksum: sha1:c5d6ae108af0d02323071271e94758f16215b0c5
+    pristine_git_object: 5502634d7eed2a95a2a64914935663a0fd9e48ba
   settings.gradle:
     id: 05efc8b16577
     last_write_checksum: sha1:d6f44e35eb0a7320a85314029a7dff68151ab63a
@@ -9061,8 +9061,8 @@ trackedFiles:
     pristine_git_object: 7296db7ebcdcff7ee348d1f993fc4aa2a7e6c145
   src/main/java/com/apideck/unify/SDKConfiguration.java:
     id: a2b330a87142
-    last_write_checksum: sha1:6fee43d69fd7ad3fc9c2a15e371b469b51cb708c
-    pristine_git_object: 0d9b275eb72c44cf8743b7389d63e4cda3945130
+    last_write_checksum: sha1:8d8521d634d6517b5d34fd1c6ba73e4542aad7e0
+    pristine_git_object: b99800bc6f290371b86f52481d4ee779ee382608
   src/main/java/com/apideck/unify/SalesOrders.java:
     id: 065b0fd99f1f
     last_write_checksum: sha1:263495ead26adefc6a55b3380563b052158968b0

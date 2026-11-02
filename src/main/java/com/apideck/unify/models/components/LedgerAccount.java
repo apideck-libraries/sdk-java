@@ -113,6 +113,15 @@ public class LedgerAccount {
     private JsonNullable<Double> currentBalance;
 
     /**
+     * For an account that holds the cost of fixed assets, the fixed-asset register's figures for the
+     * assets recorded in it. Null for other accounts, including accumulated-depreciation accounts, and
+     * when the accounting system does not provide them.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("fixed_asset")
+    private JsonNullable<? extends FixedAsset> fixedAsset;
+
+    /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO
      * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
@@ -273,6 +282,7 @@ public class LedgerAccount {
             @JsonProperty("description") JsonNullable<String> description,
             @JsonProperty("opening_balance") JsonNullable<Double> openingBalance,
             @JsonProperty("current_balance") JsonNullable<Double> currentBalance,
+            @JsonProperty("fixed_asset") JsonNullable<? extends FixedAsset> fixedAsset,
             @JsonProperty("currency") JsonNullable<? extends Currency> currency,
             @JsonProperty("tax_type") JsonNullable<String> taxType,
             @JsonProperty("tax_rate") Optional<? extends LinkedTaxRate> taxRate,
@@ -307,6 +317,7 @@ public class LedgerAccount {
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(openingBalance, "openingBalance");
         Utils.checkNotNull(currentBalance, "currentBalance");
+        Utils.checkNotNull(fixedAsset, "fixedAsset");
         Utils.checkNotNull(currency, "currency");
         Utils.checkNotNull(taxType, "taxType");
         Utils.checkNotNull(taxRate, "taxRate");
@@ -341,6 +352,7 @@ public class LedgerAccount {
         this.description = description;
         this.openingBalance = openingBalance;
         this.currentBalance = currentBalance;
+        this.fixedAsset = fixedAsset;
         this.currency = currency;
         this.taxType = taxType;
         this.taxRate = taxRate;
@@ -370,14 +382,14 @@ public class LedgerAccount {
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
             Optional.empty(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty());
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -479,6 +491,17 @@ public class LedgerAccount {
     @JsonIgnore
     public JsonNullable<Double> currentBalance() {
         return currentBalance;
+    }
+
+    /**
+     * For an account that holds the cost of fixed assets, the fixed-asset register's figures for the
+     * assets recorded in it. Null for other accounts, including accumulated-depreciation accounts, and
+     * when the accounting system does not provide them.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<FixedAsset> fixedAsset() {
+        return (JsonNullable<FixedAsset>) fixedAsset;
     }
 
     /**
@@ -887,6 +910,28 @@ public class LedgerAccount {
     }
 
     /**
+     * For an account that holds the cost of fixed assets, the fixed-asset register's figures for the
+     * assets recorded in it. Null for other accounts, including accumulated-depreciation accounts, and
+     * when the accounting system does not provide them.
+     */
+    public LedgerAccount withFixedAsset(FixedAsset fixedAsset) {
+        Utils.checkNotNull(fixedAsset, "fixedAsset");
+        this.fixedAsset = JsonNullable.of(fixedAsset);
+        return this;
+    }
+
+    /**
+     * For an account that holds the cost of fixed assets, the fixed-asset register's figures for the
+     * assets recorded in it. Null for other accounts, including accumulated-depreciation accounts, and
+     * when the accounting system does not provide them.
+     */
+    public LedgerAccount withFixedAsset(JsonNullable<? extends FixedAsset> fixedAsset) {
+        Utils.checkNotNull(fixedAsset, "fixedAsset");
+        this.fixedAsset = fixedAsset;
+        return this;
+    }
+
+    /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO
      * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
@@ -1288,6 +1333,7 @@ public class LedgerAccount {
             Utils.enhancedDeepEquals(this.description, other.description) &&
             Utils.enhancedDeepEquals(this.openingBalance, other.openingBalance) &&
             Utils.enhancedDeepEquals(this.currentBalance, other.currentBalance) &&
+            Utils.enhancedDeepEquals(this.fixedAsset, other.fixedAsset) &&
             Utils.enhancedDeepEquals(this.currency, other.currency) &&
             Utils.enhancedDeepEquals(this.taxType, other.taxType) &&
             Utils.enhancedDeepEquals(this.taxRate, other.taxRate) &&
@@ -1319,14 +1365,14 @@ public class LedgerAccount {
             code, classification, type,
             subType, name, fullyQualifiedName,
             description, openingBalance, currentBalance,
-            currency, taxType, taxRate,
-            level, active, status,
-            header, bankAccount, categories,
-            parentAccount, subAccount, subAccounts,
-            lastReconciliationDate, subsidiaries, customMappings,
-            customFields, rowVersion, updatedBy,
-            createdBy, updatedAt, createdAt,
-            passThrough);
+            fixedAsset, currency, taxType,
+            taxRate, level, active,
+            status, header, bankAccount,
+            categories, parentAccount, subAccount,
+            subAccounts, lastReconciliationDate, subsidiaries,
+            customMappings, customFields, rowVersion,
+            updatedBy, createdBy, updatedAt,
+            createdAt, passThrough);
     }
     
     @Override
@@ -1344,6 +1390,7 @@ public class LedgerAccount {
                 "description", description,
                 "openingBalance", openingBalance,
                 "currentBalance", currentBalance,
+                "fixedAsset", fixedAsset,
                 "currency", currency,
                 "taxType", taxType,
                 "taxRate", taxRate,
@@ -1395,6 +1442,8 @@ public class LedgerAccount {
         private JsonNullable<Double> openingBalance = JsonNullable.undefined();
 
         private JsonNullable<Double> currentBalance = JsonNullable.undefined();
+
+        private JsonNullable<? extends FixedAsset> fixedAsset = JsonNullable.undefined();
 
         private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
 
@@ -1675,6 +1724,29 @@ public class LedgerAccount {
         public Builder currentBalance(JsonNullable<Double> currentBalance) {
             Utils.checkNotNull(currentBalance, "currentBalance");
             this.currentBalance = currentBalance;
+            return this;
+        }
+
+
+        /**
+         * For an account that holds the cost of fixed assets, the fixed-asset register's figures for the
+         * assets recorded in it. Null for other accounts, including accumulated-depreciation accounts, and
+         * when the accounting system does not provide them.
+         */
+        public Builder fixedAsset(FixedAsset fixedAsset) {
+            Utils.checkNotNull(fixedAsset, "fixedAsset");
+            this.fixedAsset = JsonNullable.of(fixedAsset);
+            return this;
+        }
+
+        /**
+         * For an account that holds the cost of fixed assets, the fixed-asset register's figures for the
+         * assets recorded in it. Null for other accounts, including accumulated-depreciation accounts, and
+         * when the accounting system does not provide them.
+         */
+        public Builder fixedAsset(JsonNullable<? extends FixedAsset> fixedAsset) {
+            Utils.checkNotNull(fixedAsset, "fixedAsset");
+            this.fixedAsset = fixedAsset;
             return this;
         }
 
@@ -2079,14 +2151,14 @@ public class LedgerAccount {
                 code, classification, type,
                 subType, name, fullyQualifiedName,
                 description, openingBalance, currentBalance,
-                currency, taxType, taxRate,
-                level, active, status,
-                header, bankAccount, categories,
-                parentAccount, subAccount, subAccounts,
-                lastReconciliationDate, subsidiaries, customMappings,
-                customFields, rowVersion, updatedBy,
-                createdBy, updatedAt, createdAt,
-                passThrough);
+                fixedAsset, currency, taxType,
+                taxRate, level, active,
+                status, header, bankAccount,
+                categories, parentAccount, subAccount,
+                subAccounts, lastReconciliationDate, subsidiaries,
+                customMappings, customFields, rowVersion,
+                updatedBy, createdBy, updatedAt,
+                createdAt, passThrough);
         }
 
     }

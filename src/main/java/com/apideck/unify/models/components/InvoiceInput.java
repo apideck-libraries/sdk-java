@@ -273,6 +273,13 @@ public class InvoiceInput {
     private JsonNullable<? extends List<PaymentAllocations>> paymentAllocations;
 
     /**
+     * A list of quotes linked to this record.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("quotes")
+    private JsonNullable<? extends List<LinkedQuotesInput>> quotes;
+
+    /**
      * Payment method used for the transaction, such as cash, credit card, bank transfer, or check
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -370,6 +377,7 @@ public class InvoiceInput {
             @JsonProperty("template_id") JsonNullable<String> templateId,
             @JsonProperty("source_document_url") JsonNullable<String> sourceDocumentUrl,
             @JsonProperty("payment_allocations") JsonNullable<? extends List<PaymentAllocations>> paymentAllocations,
+            @JsonProperty("quotes") JsonNullable<? extends List<LinkedQuotesInput>> quotes,
             @JsonProperty("payment_method") JsonNullable<String> paymentMethod,
             @JsonProperty("channel") JsonNullable<String> channel,
             @JsonProperty("language") JsonNullable<String> language,
@@ -415,6 +423,7 @@ public class InvoiceInput {
         Utils.checkNotNull(templateId, "templateId");
         Utils.checkNotNull(sourceDocumentUrl, "sourceDocumentUrl");
         Utils.checkNotNull(paymentAllocations, "paymentAllocations");
+        Utils.checkNotNull(quotes, "quotes");
         Utils.checkNotNull(paymentMethod, "paymentMethod");
         Utils.checkNotNull(channel, "channel");
         Utils.checkNotNull(language, "language");
@@ -460,6 +469,7 @@ public class InvoiceInput {
         this.templateId = templateId;
         this.sourceDocumentUrl = sourceDocumentUrl;
         this.paymentAllocations = paymentAllocations;
+        this.quotes = quotes;
         this.paymentMethod = paymentMethod;
         this.channel = channel;
         this.language = language;
@@ -485,8 +495,9 @@ public class InvoiceInput {
             Optional.empty(), Optional.empty(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), Optional.empty());
+            Optional.empty());
     }
 
     /**
@@ -780,6 +791,15 @@ public class InvoiceInput {
     @JsonIgnore
     public JsonNullable<List<PaymentAllocations>> paymentAllocations() {
         return (JsonNullable<List<PaymentAllocations>>) paymentAllocations;
+    }
+
+    /**
+     * A list of quotes linked to this record.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<List<LinkedQuotesInput>> quotes() {
+        return (JsonNullable<List<LinkedQuotesInput>>) quotes;
     }
 
     /**
@@ -1498,6 +1518,24 @@ public class InvoiceInput {
     }
 
     /**
+     * A list of quotes linked to this record.
+     */
+    public InvoiceInput withQuotes(List<LinkedQuotesInput> quotes) {
+        Utils.checkNotNull(quotes, "quotes");
+        this.quotes = JsonNullable.of(quotes);
+        return this;
+    }
+
+    /**
+     * A list of quotes linked to this record.
+     */
+    public InvoiceInput withQuotes(JsonNullable<? extends List<LinkedQuotesInput>> quotes) {
+        Utils.checkNotNull(quotes, "quotes");
+        this.quotes = quotes;
+        return this;
+    }
+
+    /**
      * Payment method used for the transaction, such as cash, credit card, bank transfer, or check
      */
     public InvoiceInput withPaymentMethod(String paymentMethod) {
@@ -1696,6 +1734,7 @@ public class InvoiceInput {
             Utils.enhancedDeepEquals(this.templateId, other.templateId) &&
             Utils.enhancedDeepEquals(this.sourceDocumentUrl, other.sourceDocumentUrl) &&
             Utils.enhancedDeepEquals(this.paymentAllocations, other.paymentAllocations) &&
+            Utils.enhancedDeepEquals(this.quotes, other.quotes) &&
             Utils.enhancedDeepEquals(this.paymentMethod, other.paymentMethod) &&
             Utils.enhancedDeepEquals(this.channel, other.channel) &&
             Utils.enhancedDeepEquals(this.language, other.language) &&
@@ -1722,9 +1761,10 @@ public class InvoiceInput {
             customerMemo, trackingCategory, trackingCategories,
             lineItems, billingAddress, shippingAddress,
             templateId, sourceDocumentUrl, paymentAllocations,
-            paymentMethod, channel, language,
-            accountingByRow, bankAccount, ledgerAccount,
-            customFields, rowVersion, passThrough);
+            quotes, paymentMethod, channel,
+            language, accountingByRow, bankAccount,
+            ledgerAccount, customFields, rowVersion,
+            passThrough);
     }
     
     @Override
@@ -1766,6 +1806,7 @@ public class InvoiceInput {
                 "templateId", templateId,
                 "sourceDocumentUrl", sourceDocumentUrl,
                 "paymentAllocations", paymentAllocations,
+                "quotes", quotes,
                 "paymentMethod", paymentMethod,
                 "channel", channel,
                 "language", language,
@@ -1852,6 +1893,8 @@ public class InvoiceInput {
         private JsonNullable<String> sourceDocumentUrl = JsonNullable.undefined();
 
         private JsonNullable<? extends List<PaymentAllocations>> paymentAllocations = JsonNullable.undefined();
+
+        private JsonNullable<? extends List<LinkedQuotesInput>> quotes = JsonNullable.undefined();
 
         private JsonNullable<String> paymentMethod = JsonNullable.undefined();
 
@@ -2549,6 +2592,25 @@ public class InvoiceInput {
 
 
         /**
+         * A list of quotes linked to this record.
+         */
+        public Builder quotes(List<LinkedQuotesInput> quotes) {
+            Utils.checkNotNull(quotes, "quotes");
+            this.quotes = JsonNullable.of(quotes);
+            return this;
+        }
+
+        /**
+         * A list of quotes linked to this record.
+         */
+        public Builder quotes(JsonNullable<? extends List<LinkedQuotesInput>> quotes) {
+            Utils.checkNotNull(quotes, "quotes");
+            this.quotes = quotes;
+            return this;
+        }
+
+
+        /**
          * Payment method used for the transaction, such as cash, credit card, bank transfer, or check
          */
         public Builder paymentMethod(String paymentMethod) {
@@ -2721,9 +2783,10 @@ public class InvoiceInput {
                 customerMemo, trackingCategory, trackingCategories,
                 lineItems, billingAddress, shippingAddress,
                 templateId, sourceDocumentUrl, paymentAllocations,
-                paymentMethod, channel, language,
-                accountingByRow, bankAccount, ledgerAccount,
-                customFields, rowVersion, passThrough);
+                quotes, paymentMethod, channel,
+                language, accountingByRow, bankAccount,
+                ledgerAccount, customFields, rowVersion,
+                passThrough);
         }
 
     }

@@ -3,7 +3,7 @@
  */
 package com.apideck.unify.models.operations;
 
-import com.apideck.unify.models.components.RefundInput;
+import com.apideck.unify.models.components.RefundUpdateInput;
 import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
@@ -50,7 +50,7 @@ public class AccountingRefundsUpdateRequest {
 
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private RefundInput refund;
+    private RefundUpdateInput refundUpdateInput;
 
     @JsonCreator
     public AccountingRefundsUpdateRequest(
@@ -59,26 +59,26 @@ public class AccountingRefundsUpdateRequest {
             Optional<String> appId,
             Optional<String> serviceId,
             Optional<Boolean> raw,
-            RefundInput refund) {
+            RefundUpdateInput refundUpdateInput) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(serviceId, "serviceId");
         Utils.checkNotNull(raw, "raw");
-        Utils.checkNotNull(refund, "refund");
+        Utils.checkNotNull(refundUpdateInput, "refundUpdateInput");
         this.id = id;
         this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
         this.raw = raw;
-        this.refund = refund;
+        this.refundUpdateInput = refundUpdateInput;
     }
     
     public AccountingRefundsUpdateRequest(
             String id,
-            RefundInput refund) {
+            RefundUpdateInput refundUpdateInput) {
         this(id, Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), refund);
+            Optional.empty(), Optional.empty(), refundUpdateInput);
     }
 
     /**
@@ -123,8 +123,8 @@ public class AccountingRefundsUpdateRequest {
     }
 
     @JsonIgnore
-    public RefundInput refund() {
-        return refund;
+    public RefundUpdateInput refundUpdateInput() {
+        return refundUpdateInput;
     }
 
     public static Builder builder() {
@@ -219,9 +219,9 @@ public class AccountingRefundsUpdateRequest {
         return this;
     }
 
-    public AccountingRefundsUpdateRequest withRefund(RefundInput refund) {
-        Utils.checkNotNull(refund, "refund");
-        this.refund = refund;
+    public AccountingRefundsUpdateRequest withRefundUpdateInput(RefundUpdateInput refundUpdateInput) {
+        Utils.checkNotNull(refundUpdateInput, "refundUpdateInput");
+        this.refundUpdateInput = refundUpdateInput;
         return this;
     }
 
@@ -240,14 +240,14 @@ public class AccountingRefundsUpdateRequest {
             Utils.enhancedDeepEquals(this.appId, other.appId) &&
             Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
             Utils.enhancedDeepEquals(this.raw, other.raw) &&
-            Utils.enhancedDeepEquals(this.refund, other.refund);
+            Utils.enhancedDeepEquals(this.refundUpdateInput, other.refundUpdateInput);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             id, consumerId, appId,
-            serviceId, raw, refund);
+            serviceId, raw, refundUpdateInput);
     }
     
     @Override
@@ -258,7 +258,7 @@ public class AccountingRefundsUpdateRequest {
                 "appId", appId,
                 "serviceId", serviceId,
                 "raw", raw,
-                "refund", refund);
+                "refundUpdateInput", refundUpdateInput);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -274,7 +274,7 @@ public class AccountingRefundsUpdateRequest {
 
         private Optional<Boolean> raw;
 
-        private RefundInput refund;
+        private RefundUpdateInput refundUpdateInput;
 
         private Builder() {
           // force use of static builder() method
@@ -369,9 +369,9 @@ public class AccountingRefundsUpdateRequest {
         }
 
 
-        public Builder refund(RefundInput refund) {
-            Utils.checkNotNull(refund, "refund");
-            this.refund = refund;
+        public Builder refundUpdateInput(RefundUpdateInput refundUpdateInput) {
+            Utils.checkNotNull(refundUpdateInput, "refundUpdateInput");
+            this.refundUpdateInput = refundUpdateInput;
             return this;
         }
 
@@ -382,7 +382,7 @@ public class AccountingRefundsUpdateRequest {
 
             return new AccountingRefundsUpdateRequest(
                 id, consumerId, appId,
-                serviceId, raw, refund);
+                serviceId, raw, refundUpdateInput);
         }
 
 

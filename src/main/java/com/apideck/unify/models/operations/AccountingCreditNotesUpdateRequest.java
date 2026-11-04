@@ -3,7 +3,7 @@
  */
 package com.apideck.unify.models.operations;
 
-import com.apideck.unify.models.components.CreditNoteInput;
+import com.apideck.unify.models.components.CreditNoteUpdateInput;
 import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
@@ -50,7 +50,7 @@ public class AccountingCreditNotesUpdateRequest {
 
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private CreditNoteInput creditNote;
+    private CreditNoteUpdateInput creditNoteUpdateInput;
 
     @JsonCreator
     public AccountingCreditNotesUpdateRequest(
@@ -59,26 +59,26 @@ public class AccountingCreditNotesUpdateRequest {
             Optional<String> appId,
             Optional<String> serviceId,
             Optional<Boolean> raw,
-            CreditNoteInput creditNote) {
+            CreditNoteUpdateInput creditNoteUpdateInput) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(serviceId, "serviceId");
         Utils.checkNotNull(raw, "raw");
-        Utils.checkNotNull(creditNote, "creditNote");
+        Utils.checkNotNull(creditNoteUpdateInput, "creditNoteUpdateInput");
         this.id = id;
         this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
         this.raw = raw;
-        this.creditNote = creditNote;
+        this.creditNoteUpdateInput = creditNoteUpdateInput;
     }
     
     public AccountingCreditNotesUpdateRequest(
             String id,
-            CreditNoteInput creditNote) {
+            CreditNoteUpdateInput creditNoteUpdateInput) {
         this(id, Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), creditNote);
+            Optional.empty(), Optional.empty(), creditNoteUpdateInput);
     }
 
     /**
@@ -123,8 +123,8 @@ public class AccountingCreditNotesUpdateRequest {
     }
 
     @JsonIgnore
-    public CreditNoteInput creditNote() {
-        return creditNote;
+    public CreditNoteUpdateInput creditNoteUpdateInput() {
+        return creditNoteUpdateInput;
     }
 
     public static Builder builder() {
@@ -219,9 +219,9 @@ public class AccountingCreditNotesUpdateRequest {
         return this;
     }
 
-    public AccountingCreditNotesUpdateRequest withCreditNote(CreditNoteInput creditNote) {
-        Utils.checkNotNull(creditNote, "creditNote");
-        this.creditNote = creditNote;
+    public AccountingCreditNotesUpdateRequest withCreditNoteUpdateInput(CreditNoteUpdateInput creditNoteUpdateInput) {
+        Utils.checkNotNull(creditNoteUpdateInput, "creditNoteUpdateInput");
+        this.creditNoteUpdateInput = creditNoteUpdateInput;
         return this;
     }
 
@@ -240,14 +240,14 @@ public class AccountingCreditNotesUpdateRequest {
             Utils.enhancedDeepEquals(this.appId, other.appId) &&
             Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
             Utils.enhancedDeepEquals(this.raw, other.raw) &&
-            Utils.enhancedDeepEquals(this.creditNote, other.creditNote);
+            Utils.enhancedDeepEquals(this.creditNoteUpdateInput, other.creditNoteUpdateInput);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             id, consumerId, appId,
-            serviceId, raw, creditNote);
+            serviceId, raw, creditNoteUpdateInput);
     }
     
     @Override
@@ -258,7 +258,7 @@ public class AccountingCreditNotesUpdateRequest {
                 "appId", appId,
                 "serviceId", serviceId,
                 "raw", raw,
-                "creditNote", creditNote);
+                "creditNoteUpdateInput", creditNoteUpdateInput);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -274,7 +274,7 @@ public class AccountingCreditNotesUpdateRequest {
 
         private Optional<Boolean> raw;
 
-        private CreditNoteInput creditNote;
+        private CreditNoteUpdateInput creditNoteUpdateInput;
 
         private Builder() {
           // force use of static builder() method
@@ -369,9 +369,9 @@ public class AccountingCreditNotesUpdateRequest {
         }
 
 
-        public Builder creditNote(CreditNoteInput creditNote) {
-            Utils.checkNotNull(creditNote, "creditNote");
-            this.creditNote = creditNote;
+        public Builder creditNoteUpdateInput(CreditNoteUpdateInput creditNoteUpdateInput) {
+            Utils.checkNotNull(creditNoteUpdateInput, "creditNoteUpdateInput");
+            this.creditNoteUpdateInput = creditNoteUpdateInput;
             return this;
         }
 
@@ -382,7 +382,7 @@ public class AccountingCreditNotesUpdateRequest {
 
             return new AccountingCreditNotesUpdateRequest(
                 id, consumerId, appId,
-                serviceId, raw, creditNote);
+                serviceId, raw, creditNoteUpdateInput);
         }
 
 

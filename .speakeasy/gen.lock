@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 38254260-287a-40b6-9ac5-c2fcb654c9cc
 management:
-  docChecksum: 0e4766adfae26fad638e04dbba206b4f
-  docVersion: 10.76.0
+  docChecksum: 4df0744ca714a8d3b6bf31216a28fa4a
+  docVersion: 10.77.0
   speakeasyVersion: 1.806.0
   generationVersion: 2.956.1
-  releaseVersion: 0.52.0
-  configChecksum: 025d16edaedf1bbb953906dfe3b6248a
+  releaseVersion: 0.53.0
+  configChecksum: 30a0b378ee162bbeee7c416c6713d7e4
   repoURL: https://github.com/apideck-libraries/sdk-java.git
   installationURL: https://github.com/apideck-libraries/sdk-java
   published: true
 persistentEdits:
-  generation_id: c6700326-ab5b-4416-a4d6-1067e68351c2
-  pristine_commit_hash: cb9e1d1b7dd2a46a7e3c385ce8363a1afecb2434
-  pristine_tree_hash: a370878df722e77cd7b3ef7a7eb464e23ee1aac8
+  generation_id: 6a7aed21-d9b0-4e7f-a7b4-38d43b8b827c
+  pristine_commit_hash: 9221c10d7bb8717a9c059590871f8edf20a8dc57
+  pristine_tree_hash: e5415bad2cccc69853431f638ece736b6db8a909
 features:
   java:
     acceptHeaders: 2.81.2
@@ -719,6 +719,22 @@ trackedFiles:
     id: 08cc561043b2
     last_write_checksum: sha1:19cc667d955231cc83d39f4d5a0b3d686af562d0
     pristine_git_object: 473422e2c94b05c3b9cdc3716be1f19946f763af
+  docs/models/components/BillPaymentUpdateInput.md:
+    id: bae38f0cb5d6
+    last_write_checksum: sha1:0957d86ca2e889e3ef76a334ae482e89875e4bc4
+    pristine_git_object: e5de3e1d7a9e76ea908b228f4176ae667c8b4e78
+  docs/models/components/BillPaymentUpdateInputAllocationType.md:
+    id: 67cd5cc72317
+    last_write_checksum: sha1:9c7c54e32a10090fb13aada496043ec88626004e
+    pristine_git_object: ff15b9cb0c8c9cfff72e217c6a088cd77e89a8cb
+  docs/models/components/BillPaymentUpdateInputAllocations.md:
+    id: 3776308b0025
+    last_write_checksum: sha1:737238acb76278e271268b717d0a445c66939635
+    pristine_git_object: 62a3216cb88828d6610bda13501eb062215f16c3
+  docs/models/components/BillPaymentUpdateInputBillPaymentType.md:
+    id: 7629fe221eab
+    last_write_checksum: sha1:d04fa1fdcaf6758e86563966cf82d45ca75dd83d
+    pristine_git_object: e810f2edadec0f497bc67b026cbba5d91d795707
   docs/models/components/BillStatus.md:
     id: eafe6119b408
     last_write_checksum: sha1:2c2f0b92bb3f97ab16de96e575a238a74d6eeb60
@@ -1343,6 +1359,18 @@ trackedFiles:
     id: c2f79149b72c
     last_write_checksum: sha1:a3ecc9060493cb15e1d65c32892ab2e41c3f23cd
     pristine_git_object: 852a5b1529b60df48fac50d436afe7d147369ea4
+  docs/models/components/CreditNoteUpdateInput.md:
+    id: 3c728f33bfd2
+    last_write_checksum: sha1:4ecdcce7cd2a888a9e6745edaf8d6a4afe8d5dea
+    pristine_git_object: 2a533547e50c379b6dbe3b3f456ac25a2dd26398
+  docs/models/components/CreditNoteUpdateInputCreditNoteStatus.md:
+    id: 438f441661d8
+    last_write_checksum: sha1:45f51d3754377f8161533a85343bdb77783cc11a
+    pristine_git_object: 1aaa7d21d574915de0691ab2b9067cc168a18b5a
+  docs/models/components/CreditNoteUpdateInputCreditNoteType.md:
+    id: 5c890d494430
+    last_write_checksum: sha1:388ce021e4632dd376db0eca7999827fc51d2d61
+    pristine_git_object: b791c6a0d46609d3549f25d7ee51c09726d08f15
   docs/models/components/CreditNotesFilter.md:
     id: 4dbf5ec9a97b
     last_write_checksum: sha1:721c3edb14b49c6e0ddc3fe27e5b13c54e1cbeaa
@@ -2019,6 +2047,14 @@ trackedFiles:
     id: c56758e52cea
     last_write_checksum: sha1:b142cc28998f8ca07cae4d98ddb7644a9bfa8089
     pristine_git_object: 34e59d755adb129c5ec31c376223b21ad2a0dcc7
+  docs/models/components/ExpenseCategoryUpdateInput.md:
+    id: e0bc054a0fda
+    last_write_checksum: sha1:14772ba971b7cf7b5d2f643857a0f8eafdcf8a31
+    pristine_git_object: 1f845423f99e883971b2cf8e7fd0e4b00b2511fd
+  docs/models/components/ExpenseCategoryUpdateInputStatus.md:
+    id: 278d1aebde91
+    last_write_checksum: sha1:78a56e7c8f025d9878c5ced3fed4232732f7323d
+    pristine_git_object: 1cc83b1856d536c67d7707c125f65f60196e5b91
   docs/models/components/ExpenseInput.md:
     id: f0699569c2d2
     last_write_checksum: sha1:66a0100925ef87dc889807fd5a965433c817a4bf
@@ -2059,6 +2095,26 @@ trackedFiles:
     id: a1a7d2821493
     last_write_checksum: sha1:adcbeb04be71d5e5440848b4143904d029b2c45f
     pristine_git_object: b3b629d0228e565e8d22c58eba304f55294c8a18
+  docs/models/components/ExpenseReportUpdateInput.md:
+    id: c14f9cd6c902
+    last_write_checksum: sha1:af1216e8725ac2d151a2449345c2ca8db24a5617
+    pristine_git_object: 44d48f6981fc2043d9bcac7c3efcb65b870ff766
+  docs/models/components/ExpenseReportUpdateInputAccountingPeriod.md:
+    id: d07a786994cc
+    last_write_checksum: sha1:ae694aa74cfa1c227d294955ef37b400c5e9a4eb
+    pristine_git_object: f76c7f52aae0efa2d7829e38b323c227a529c34d
+  docs/models/components/ExpenseReportUpdateInputApprovedBy.md:
+    id: 70daab0e7f74
+    last_write_checksum: sha1:c97a798857d56b6dc6a46e7da134fa8d13e651df
+    pristine_git_object: f624e239aa8b43ea441b3d72e228feeee2acbe96
+  docs/models/components/ExpenseReportUpdateInputEmployee.md:
+    id: b64771ec2bbe
+    last_write_checksum: sha1:441e95bc15e674fb8fb779fc22277a49d0ccbbd7
+    pristine_git_object: 08a1cc00ce9316d64f01afec9aa50ef18776c0e0
+  docs/models/components/ExpenseReportUpdateInputStatus.md:
+    id: 9cd5ca1e2ea0
+    last_write_checksum: sha1:fefda298943a3438dfea36012bdf1915f6616b0e
+    pristine_git_object: 62762bd21aee076cb2bb5c812e817135425fe612
   docs/models/components/ExpenseReportsFilter.md:
     id: 826ddf5ed017
     last_write_checksum: sha1:461e7e3f9a68e74d1069e082abaf2dba1a3b3d1e
@@ -2075,6 +2131,22 @@ trackedFiles:
     id: d15170ebf34c
     last_write_checksum: sha1:4e69995430414dc0d1dce2f8bb0ab89901417f5b
     pristine_git_object: 0f949a10546f206a0d8bdc2872ab287fa17120b5
+  docs/models/components/ExpenseUpdateInput.md:
+    id: cf5d42de15fe
+    last_write_checksum: sha1:2c20c68729d57366779098a576a206592604ace5
+    pristine_git_object: c82dd518349e289c5f10e4320592ad07388031cd
+  docs/models/components/ExpenseUpdateInputExpenseType.md:
+    id: 95ec6a470cf1
+    last_write_checksum: sha1:f48a2a806a5f681738ee67f091b3ff4ac4d5c98a
+    pristine_git_object: 8080e0c55eddb00569dae83fdbe80c15a72ded38
+  docs/models/components/ExpenseUpdateInputPaymentType.md:
+    id: ba587fcd79b0
+    last_write_checksum: sha1:2d899d2791730c723683dbdf010cb29d044c8c6c
+    pristine_git_object: 14a6f0baf529fea306ba11958cf329e28e36d2a9
+  docs/models/components/ExpenseUpdateInputStatus.md:
+    id: 21f348b4cc9f
+    last_write_checksum: sha1:5f5ae293143da1c863294391414ebf861a4f6256
+    pristine_git_object: b3986534c426d84322e02a69ef1279abf810d29c
   docs/models/components/Expenses.md:
     id: 5f710e73030c
     last_write_checksum: sha1:13baaf81b652e35ac418733d29a9437fa1abd366
@@ -3603,6 +3675,10 @@ trackedFiles:
     id: 7f5f06f1cb92
     last_write_checksum: sha1:e1d3112dc4b52b79af5d3483424815ff9db87577
     pristine_git_object: 3c444a0ccb665ac600cfe6d05c336c12aa6156a2
+  docs/models/components/PaymentUpdateInput.md:
+    id: a9f8d8c95cfd
+    last_write_checksum: sha1:c804544efe281f04008281c2121079c6e3052856
+    pristine_git_object: 7a1626cfeb2e54d6ac97bdc30516c8007ca8240e
   docs/models/components/PaymentsFilter.md:
     id: f6689fee2b35
     last_write_checksum: sha1:7015beedaec85d48b17b42d026f84f567c0fb3d1
@@ -3735,6 +3811,42 @@ trackedFiles:
     id: 7d45b8c8da26
     last_write_checksum: sha1:8211457df331a98eaa9e5906f26c5947833ecad6
     pristine_git_object: 8c4ecf09b01a76e81413521f0956ebddfecf9e4c
+  docs/models/components/ProjectUpdateInput.md:
+    id: b588ff09a9e0
+    last_write_checksum: sha1:590413aba346782f7c60369ebbccdc43d8911839
+    pristine_git_object: f01f04da90f3dda0f72349a88ef607806d140b39
+  docs/models/components/ProjectUpdateInputBillingMethod.md:
+    id: 23356995ea70
+    last_write_checksum: sha1:279dcef141c3bd72bf9e310572ec78e3d44dc39a
+    pristine_git_object: 6d1d1242e9cced1364a12c2c2f1c16fec7407830
+  docs/models/components/ProjectUpdateInputDepartment.md:
+    id: ddded5da4bbb
+    last_write_checksum: sha1:e754c79a2335629a3eddd8f00a17630d4968f4c1
+    pristine_git_object: 43b2b9d25f03b7b3e80bf3cecdc98b7e34935cc4
+  docs/models/components/ProjectUpdateInputParentProject.md:
+    id: b96ffdbb81b9
+    last_write_checksum: sha1:47d07e7fbca88845d9fdbccab94e7fce0197b8b8
+    pristine_git_object: 3edf664450e24fad33b89faa0c93675f607098e6
+  docs/models/components/ProjectUpdateInputPriority.md:
+    id: dec6194344a1
+    last_write_checksum: sha1:5d675398b9f7fffe9696f5d89c93a3540b706a20
+    pristine_git_object: 41aed69cd765d161fc16a5d40e44a2765314a289
+  docs/models/components/ProjectUpdateInputProjectPhase.md:
+    id: 623ec7b88f2e
+    last_write_checksum: sha1:0b83110752ac5af6fc472d9a11bc3c5e30c9a6aa
+    pristine_git_object: 6c4ec2b9533120720212625f237a67195cbb4d35
+  docs/models/components/ProjectUpdateInputProjectStatus.md:
+    id: 8fc82ec26f7a
+    last_write_checksum: sha1:72784f4dbb1259934c97abb9c33644ddcb8b506b
+    pristine_git_object: 45901e58ebcc4b0b94bfaefec82e8e3f79c0da8f
+  docs/models/components/ProjectUpdateInputProjectType.md:
+    id: 8ef1f0a393eb
+    last_write_checksum: sha1:61a0fe83cd3901527877932ef5b7db1dc7884b86
+    pristine_git_object: f33dff4db86b1ca40f6ee4a768e8bde75aa574c0
+  docs/models/components/ProjectUpdateInputScheduleStatus.md:
+    id: 61938b417d8e
+    last_write_checksum: sha1:4f9a2c7a84055ee15bafe735b394f1705250645e
+    pristine_git_object: c9acd4a76884cb1ddc73f13aada19431a7efaf60
   docs/models/components/ProjectsFilter.md:
     id: 9becd2fde863
     last_write_checksum: sha1:618dc14379960860702c9e9fba20d296321d8e94
@@ -3831,6 +3943,10 @@ trackedFiles:
     id: d7b997c55c6e
     last_write_checksum: sha1:3cb852accad6dd4fa1726decc002818869a448bf
     pristine_git_object: 2a61dd345e54a942ec6cc8fde3f60d4a341ca001
+  docs/models/components/RefundUpdateInput.md:
+    id: 22f3ab4a145e
+    last_write_checksum: sha1:3bea9ccb500fb94aaf33b9869614404985783913
+    pristine_git_object: 14446ef87be281a3817b5fe7d6450bc9f1e0c0d7
   docs/models/components/RefundsFilter.md:
     id: 4768fbe80bcb
     last_write_checksum: sha1:5f85237aa48aef410a4385a0d14d7da1bdd1b011
@@ -3903,6 +4019,10 @@ trackedFiles:
     id: 289993fd2c41
     last_write_checksum: sha1:29907a5f05d7575080551fa0471d4c95ac7ce131
     pristine_git_object: d6f86003c3eb1f8b75ffc6aea9727d949efb27b9
+  docs/models/components/SalesReceiptUpdateInput.md:
+    id: 6b140f0eef3b
+    last_write_checksum: sha1:45533a5d408e18d3940cac430c0e67d7a9faeb10
+    pristine_git_object: db670740bd49e2d13f2f175cc541484010b1158c
   docs/models/components/SalesReceiptsFilter.md:
     id: 8940ebe46960
     last_write_checksum: sha1:bdb0647be5dae94cf0ba41aaaeb4180bc7a2cec3
@@ -4985,8 +5105,8 @@ trackedFiles:
     pristine_git_object: 03698cb88e3c83b4d5f9afce4bb665caf66fc47b
   docs/models/operations/AccountingBillPaymentsUpdateRequest.md:
     id: 5050a262429c
-    last_write_checksum: sha1:e14122fc3a583d858377704de24f21b4c0572677
-    pristine_git_object: 66a5f2ee71bc708024ccb0c5f6d62d19f522c73d
+    last_write_checksum: sha1:9f093dc5e73cfd45f36c37a496296bd30a6b3ac0
+    pristine_git_object: f0003d0f8ec30e79da1ed9c855b029305673c5b1
   docs/models/operations/AccountingBillPaymentsUpdateResponse.md:
     id: e09ea569ac91
     last_write_checksum: sha1:92e632a50ebf2c1f2e6b42d281e654f318e5d3c6
@@ -5113,8 +5233,8 @@ trackedFiles:
     pristine_git_object: 3c4f43a10fe7bc9b77dc1841a3c268ef67c72157
   docs/models/operations/AccountingCreditNotesUpdateRequest.md:
     id: c488d87b76e6
-    last_write_checksum: sha1:b67ec0786ead07ca108c24e02a00aed08d446a8d
-    pristine_git_object: 30222faa84f8b992abdbe6271a86316c17f25cbb
+    last_write_checksum: sha1:7ca9be313cbef7b3cff3bb294d536710f65fb2c8
+    pristine_git_object: d5abb01df5dc8edcf674c650560bb93caab77ea8
   docs/models/operations/AccountingCreditNotesUpdateResponse.md:
     id: 35bb00f5b90e
     last_write_checksum: sha1:c15ede529631229811064f46d9a82440d9427c09
@@ -5281,8 +5401,8 @@ trackedFiles:
     pristine_git_object: efacca89ef57af62ef66c2df01db2a21da11d9b5
   docs/models/operations/AccountingExpenseCategoriesUpdateRequest.md:
     id: 5797c9625113
-    last_write_checksum: sha1:5d1d6b4e8417d7e2fd379251d5a95fb6661ccbed
-    pristine_git_object: 6333d5a1aee17ff45cea075013feca451c5431d7
+    last_write_checksum: sha1:775b122af11d05f814567717a329dc9ccfbf013c
+    pristine_git_object: 7745a96f18746d82297c27bc0cb6c2fbfae888fc
   docs/models/operations/AccountingExpenseCategoriesUpdateResponse.md:
     id: c68f6c642459
     last_write_checksum: sha1:30cc7a321456bf20e6b55eba606ee97f69ba8d8a
@@ -5321,8 +5441,8 @@ trackedFiles:
     pristine_git_object: 0830b526bea6b2ae5449d78d67f385f5c77f0077
   docs/models/operations/AccountingExpenseReportsUpdateRequest.md:
     id: 0c0b43c11e04
-    last_write_checksum: sha1:c38fc08399b277edc1f2ff6a0f01e27de504ea67
-    pristine_git_object: 270a6095713556bff465055ffe493954e8b7fe84
+    last_write_checksum: sha1:987880d725cb307da5cfc84b812900f6364e13f4
+    pristine_git_object: 8f3374d58a2cdbe15f34c77ac3d65ea8540e95fd
   docs/models/operations/AccountingExpenseReportsUpdateResponse.md:
     id: 68c6fe8e75eb
     last_write_checksum: sha1:42eb089067d9cd707841b28d70b13493725280e5
@@ -5361,8 +5481,8 @@ trackedFiles:
     pristine_git_object: 5e3e152b063bebeea918409b1456b92507aa7a55
   docs/models/operations/AccountingExpensesUpdateRequest.md:
     id: 25fe19c1ebfb
-    last_write_checksum: sha1:a15501d0ebd11d035aaca39da9a0ba8c5297a3f6
-    pristine_git_object: 580c3d0c44018f126fc52faf60b10df65d348216
+    last_write_checksum: sha1:833d4eb923400e8aaadf9ba118881d3b082d43ad
+    pristine_git_object: f50089f8177213dc9868b1fcd3762b43c4e36bd0
   docs/models/operations/AccountingExpensesUpdateResponse.md:
     id: 89196a3f54b2
     last_write_checksum: sha1:77e2eb54dea18b3ace5400e290a7913207750bca
@@ -5761,8 +5881,8 @@ trackedFiles:
     pristine_git_object: 3c3614ea4a25d9a03e4d96e97815ae9c72f0872c
   docs/models/operations/AccountingPaymentsUpdateRequest.md:
     id: b11834761b5c
-    last_write_checksum: sha1:91dafcaaac97652f64165b0404cc901d102fbb27
-    pristine_git_object: dd15b8da2f2fab8cca0ee4c87cfd22143cb11892
+    last_write_checksum: sha1:5c407dfce1112c0bda1b8f4f4969b71f23f5f5f4
+    pristine_git_object: 1352125bc1198e8914ead0733ebb8d39ead4a52c
   docs/models/operations/AccountingPaymentsUpdateResponse.md:
     id: 976c8f996203
     last_write_checksum: sha1:356b094125764dae21280ef2a832d74f16a49c18
@@ -5809,8 +5929,8 @@ trackedFiles:
     pristine_git_object: 1456d6f5093117f2ced1eb7b4b4c497bbfe6b02f
   docs/models/operations/AccountingProjectsUpdateRequest.md:
     id: a5067414bf0c
-    last_write_checksum: sha1:f9637d01109b15b6ae2804b3fbea09252988c0ea
-    pristine_git_object: dbcab5813907dc1b317f0446b946cb2ce35a993e
+    last_write_checksum: sha1:7c414efcaa20e85069cdf681ab7aee359ed40b20
+    pristine_git_object: ab6442ee4cbe978f670776ea4e6cf1890b606fb8
   docs/models/operations/AccountingProjectsUpdateResponse.md:
     id: cacde7e5da24
     last_write_checksum: sha1:2b747a24511853e14df6884e5e4974b9dbaa42ed
@@ -5929,8 +6049,8 @@ trackedFiles:
     pristine_git_object: ed47cf7986c61217144b03611b03ad31303e3ba3
   docs/models/operations/AccountingRefundsUpdateRequest.md:
     id: 19f12766df2a
-    last_write_checksum: sha1:22c4172e875b5bbf5c4486e3461f43984a2333f6
-    pristine_git_object: 45e5744eb54cea4fdc890428b188011330d8055a
+    last_write_checksum: sha1:677b73b1129c2336d657697a3093a26b51ca00fc
+    pristine_git_object: 160cb1fe38f3189098ef4141df8ef34d3d6da77c
   docs/models/operations/AccountingRefundsUpdateResponse.md:
     id: c5584828abcf
     last_write_checksum: sha1:de6da02608e5d33995e274e761b66c778949d0b6
@@ -6009,8 +6129,8 @@ trackedFiles:
     pristine_git_object: fd9eef56e0a8ca7017683762e668b571758d509f
   docs/models/operations/AccountingSalesReceiptsUpdateRequest.md:
     id: 375994fad920
-    last_write_checksum: sha1:1404400d72e7ccb0bf0dc5af6191726bfc08ddef
-    pristine_git_object: d665b34ed85d110447b97a0a5c98912a38fe4dbb
+    last_write_checksum: sha1:405d2f9576600850eb5ef53e4d9a0b56395a2e53
+    pristine_git_object: 7c54bb2a0f61977c58c4de52bc39a80ebab412a9
   docs/models/operations/AccountingSalesReceiptsUpdateResponse.md:
     id: 1fd8262bf739
     last_write_checksum: sha1:ba49dc5bcff07ff88861d39834857aa47802bea4
@@ -7873,8 +7993,8 @@ trackedFiles:
     pristine_git_object: 296d9da7b3cdf61f0cf7518bab368439f59e3ca3
   docs/sdks/billpayments/README.md:
     id: 9436cf9c44bd
-    last_write_checksum: sha1:a7fc31ede16f6f72b98451b334dad87a2d1814ac
-    pristine_git_object: d5ff232be7de80c22958e46eb54306231cf18eb6
+    last_write_checksum: sha1:f3c9ec4a8c094ef2a395c829fb5b88bf44bad821
+    pristine_git_object: 1593d9cd7253b7e3c087beb795f5fca720049048
   docs/sdks/bills/README.md:
     id: 2a9c97966ab7
     last_write_checksum: sha1:9c87bdcb563e240b4b1885c239bbbcc7c55f2ebc
@@ -7961,8 +8081,8 @@ trackedFiles:
     pristine_git_object: f35607e2868c1fe83735d4e8c9ff1ddb7405a880
   docs/sdks/creditnotes/README.md:
     id: 2d6d27cce955
-    last_write_checksum: sha1:de6143abd00f0e8fa674ebfbccc50410c62784cb
-    pristine_git_object: 0102fea85c306bd1760aeb903660e8013c025280
+    last_write_checksum: sha1:4aefcface095ff3299bda106c851686c4ce477be
+    pristine_git_object: 60d1d7e44d48a8938f4b4e57de36fe93c4050674
   docs/sdks/customers/README.md:
     id: 9332759cffc2
     last_write_checksum: sha1:df705780e0d03693f0b00301949d0496294b99c6
@@ -8009,16 +8129,16 @@ trackedFiles:
     pristine_git_object: 7b97063df7a1fff8c57b24b9701a6ce3a9d1742c
   docs/sdks/expensecategories/README.md:
     id: b3b488c373df
-    last_write_checksum: sha1:e29a185eec430620d30f9d8dd8dbbeaec76565b8
-    pristine_git_object: 53e0acf70a68264901ccb38b6965302cfe30707f
+    last_write_checksum: sha1:a874fe06a5e1604c77c817da82cf90898ab980ac
+    pristine_git_object: ab62354e20a5b0e9899258b48534e4297af54f8a
   docs/sdks/expensereports/README.md:
     id: bd1c9bec7278
-    last_write_checksum: sha1:a39d751b9847f9d2d1ef87045d5def62d459b01a
-    pristine_git_object: c809f87775d15a0a927eef47b950095ab6a57150
+    last_write_checksum: sha1:8e7b2bb7692231a9f9448e233b916061be12f302
+    pristine_git_object: 5b7731fa0eff85c78c5ba713d21077d193f3cb60
   docs/sdks/expenses/README.md:
     id: 5692d1aab79d
-    last_write_checksum: sha1:0dc76a57ce80b110f14848abce6a6efb1345c275
-    pristine_git_object: d8d6d6242f19484907affb294c6e3f848bbe0393
+    last_write_checksum: sha1:0fc406f891ea5de5100e558d6b95b15f7ec167c6
+    pristine_git_object: 828feebe4020fb93b99b433e8d076d5e0a39ff53
   docs/sdks/files/README.md:
     id: e576d7a117f0
     last_write_checksum: sha1:b3ee2762037d3a9d446eeb6f20af90b62f924c8e
@@ -8105,8 +8225,8 @@ trackedFiles:
     pristine_git_object: 29c0580e57e521b13c64d3ceb9c6b2949da2e05a
   docs/sdks/payments/README.md:
     id: 0ddb15ec8c20
-    last_write_checksum: sha1:287ae46be63225a7d6cfbaa860a22ea431775e84
-    pristine_git_object: e4cbe31940b3a81ef055d8dbf5f84332352259eb
+    last_write_checksum: sha1:4a9d205c4092200640818304832683d6cd9a9008
+    pristine_git_object: b5a7b2eb3ef33444c6d4a754d98a29bd8abf048e
   docs/sdks/payrolls/README.md:
     id: f6fb115a2746
     last_write_checksum: sha1:f503e6fb78b13583bff00967122f847c24b6d80e
@@ -8125,8 +8245,8 @@ trackedFiles:
     pristine_git_object: e2e60736c1d3203969ed2305e5d5e9ba78ce5d34
   docs/sdks/projects/README.md:
     id: 1c5f71754e17
-    last_write_checksum: sha1:3a3b005f6859a12280380f0b686a07e9d13de2a6
-    pristine_git_object: 109cc0024fa68a3b4029d495ddcebb2c008bba3b
+    last_write_checksum: sha1:155d12b3fd8e0984bf5f9473ce9fbe1854a5f3de
+    pristine_git_object: b050505441cd0225a0cf5db57fad4f167ce00abc
   docs/sdks/proxy/README.md:
     id: 2c72b780f1d0
     last_write_checksum: sha1:a4bdcd06b79a05abc9d0bc14dd6fb859eb77bf2d
@@ -8141,16 +8261,16 @@ trackedFiles:
     pristine_git_object: 49af53dc0385d6f6f9ac463cfdbf8bce9d0a1782
   docs/sdks/refunds/README.md:
     id: 451a9838a921
-    last_write_checksum: sha1:bfe8f713fd4064a83405fbb98bb04c45e0d1216e
-    pristine_git_object: 48afac54af55f78a6d798d37b7a909f91732e3b2
+    last_write_checksum: sha1:4262c41290eab84bcdb4d6c29d05f461d9a9cc80
+    pristine_git_object: 04818d3c4a880e96dd8fc1b4ae0ba4b61afccb43
   docs/sdks/salesorders/README.md:
     id: b59874ba3d1a
     last_write_checksum: sha1:4d7371ccacf401642e0cab77121d12f15afafa3a
     pristine_git_object: 4bac72ccce0e13cd9029f3e21be3074a8c0e4c07
   docs/sdks/salesreceipts/README.md:
     id: 70fd847a91a7
-    last_write_checksum: sha1:2f72f097a970615b6ee9c6c609f1d6f398e4f952
-    pristine_git_object: ea184c2f3c866822619529fe0b8b5ea45586ce66
+    last_write_checksum: sha1:16de97092db1c2caee74ae7c706a0dd3562a0417
+    pristine_git_object: 9fac2ab0ad51748d9ece543fefddb48e04dfdf1f
   docs/sdks/sessions/README.md:
     id: 57ad62844f79
     last_write_checksum: sha1:be24445eedf56ddab29506ce11693e9a0c436c0c
@@ -8209,8 +8329,8 @@ trackedFiles:
     pristine_git_object: c755c6aa377f358344e761e9cc3e7b67bc1fb479
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:08fcaed7c38a7f94e6c6af330269c87b55f460d5
-    pristine_git_object: fa0d12c684dc8a51d04cce4f7a6c25ff3af790aa
+    last_write_checksum: sha1:76bbc75e0d4742cc304bde82d919989e9c1517df
+    pristine_git_object: ebe78317704f42a014836019f544a5bc6549ff91
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -9077,8 +9197,8 @@ trackedFiles:
     pristine_git_object: 7296db7ebcdcff7ee348d1f993fc4aa2a7e6c145
   src/main/java/com/apideck/unify/SDKConfiguration.java:
     id: a2b330a87142
-    last_write_checksum: sha1:c47a739c6c9e4511569aeadcd8016488da53c46b
-    pristine_git_object: 44509c0eb082a9fedda074589b59fef8d5e42f33
+    last_write_checksum: sha1:b924ded5abaf1351718b8e5c7a0be00a8078fa36
+    pristine_git_object: 7196123adc3c880402efea4bef4f8c93ca91dc53
   src/main/java/com/apideck/unify/SalesOrders.java:
     id: 065b0fd99f1f
     last_write_checksum: sha1:263495ead26adefc6a55b3380563b052158968b0
@@ -9819,6 +9939,22 @@ trackedFiles:
     id: f4ecefb3f6e0
     last_write_checksum: sha1:8ff77c45980087a9df68fdfe9ea9bd72cd745c1a
     pristine_git_object: 33404c42ce045202c7f27a99677151ada4ec5001
+  src/main/java/com/apideck/unify/models/components/BillPaymentUpdateInput.java:
+    id: 288f2c90a7ab
+    last_write_checksum: sha1:237ad6c4b9912d40b79d464a73b355a1c5e07a56
+    pristine_git_object: c5ade824bfb6c102c9a5e208e5d711909b426382
+  src/main/java/com/apideck/unify/models/components/BillPaymentUpdateInputAllocationType.java:
+    id: a72133c63ba7
+    last_write_checksum: sha1:3bc002e9e887f3d2ab7a47494225e8fdb89bfb92
+    pristine_git_object: 9966e68e004b8d8ed171e5f9b28247b50d381f09
+  src/main/java/com/apideck/unify/models/components/BillPaymentUpdateInputAllocations.java:
+    id: 26c77d6a4a34
+    last_write_checksum: sha1:5d74dce2e6d9b8133ac7b4cf9955229b898f983f
+    pristine_git_object: f38b2457ade0ffdfad0f666ae186ae0173dd5b27
+  src/main/java/com/apideck/unify/models/components/BillPaymentUpdateInputBillPaymentType.java:
+    id: 0183506ee7e6
+    last_write_checksum: sha1:2a8e3af4f2fb66f0d32c4bdabce2e1c32d86a941
+    pristine_git_object: eb2bec3f7b31bcffd56fcc3e609b6db08d9c3b82
   src/main/java/com/apideck/unify/models/components/BillStatus.java:
     id: 748d146b2c38
     last_write_checksum: sha1:33d0a4bf286fa269e22e7e51e277c032fc40d1f7
@@ -10443,6 +10579,18 @@ trackedFiles:
     id: c9d08e857604
     last_write_checksum: sha1:bc8f44c722fb5a34e6ebb39d02982ef7b0613c24
     pristine_git_object: e47a548f632abd85ec9e48d6251ce78c9293d633
+  src/main/java/com/apideck/unify/models/components/CreditNoteUpdateInput.java:
+    id: 538ea9189126
+    last_write_checksum: sha1:2851efb8d09423290a8aae6c6294152627c27fe4
+    pristine_git_object: 04e65c110e492517da5cbd297a048f60999eb203
+  src/main/java/com/apideck/unify/models/components/CreditNoteUpdateInputCreditNoteStatus.java:
+    id: 0c1d8080915d
+    last_write_checksum: sha1:4493b000b25848133b548144bff7001467eefbeb
+    pristine_git_object: bc667b669d94b47135df49c2c47ba410e0637ea9
+  src/main/java/com/apideck/unify/models/components/CreditNoteUpdateInputCreditNoteType.java:
+    id: 0a2cf872ccb4
+    last_write_checksum: sha1:df24204211943b096afabe1a8dce7b3e24548bf0
+    pristine_git_object: 58be7d0dfeeb66c97d615a217c80dc3732cb220d
   src/main/java/com/apideck/unify/models/components/CreditNotesFilter.java:
     id: bb84f996125e
     last_write_checksum: sha1:8219e3c9cbe247b8074823d6e968f0052133ca1d
@@ -11119,6 +11267,14 @@ trackedFiles:
     id: 4ef0a2659bad
     last_write_checksum: sha1:296cde4e512f6b6cc6dab9ec9f0a6a7c1f6f84d5
     pristine_git_object: df5de48132229c47af85339817f834e0eec1bd0a
+  src/main/java/com/apideck/unify/models/components/ExpenseCategoryUpdateInput.java:
+    id: a027ddd7ddfc
+    last_write_checksum: sha1:d04f59dd62fbe9900e856023846b0f7e4901e162
+    pristine_git_object: f55cef088325d821d07766d7da29775868ef004a
+  src/main/java/com/apideck/unify/models/components/ExpenseCategoryUpdateInputStatus.java:
+    id: 5a683bdd3417
+    last_write_checksum: sha1:c2737cf5689f1244caa57e9ed2f7e5e324ff4ee5
+    pristine_git_object: dae9e7c31428e4fb5836b984aafda25eaa2b511f
   src/main/java/com/apideck/unify/models/components/ExpenseInput.java:
     id: 3981ac315d80
     last_write_checksum: sha1:f49ff761bbaf7357818eecedc21191711183a7ca
@@ -11159,6 +11315,26 @@ trackedFiles:
     id: 80662c4e9578
     last_write_checksum: sha1:3f94e0edb5e9504c1383153fc131461e53ee3369
     pristine_git_object: 2fcbc308a453093f4d573d8793e871320a92d418
+  src/main/java/com/apideck/unify/models/components/ExpenseReportUpdateInput.java:
+    id: 3ac456cbe928
+    last_write_checksum: sha1:2e3e651f93764e876ab32b01a1195bd4e3481d6b
+    pristine_git_object: 6a1d33c6864e47f3af0398627d9c6f699ff23a22
+  src/main/java/com/apideck/unify/models/components/ExpenseReportUpdateInputAccountingPeriod.java:
+    id: 5b2138192680
+    last_write_checksum: sha1:e6895beff8ddde797520d30ec803d267abbb92ec
+    pristine_git_object: cc9e79cdbfa28eba70f5ef91ea936f7da2d82728
+  src/main/java/com/apideck/unify/models/components/ExpenseReportUpdateInputApprovedBy.java:
+    id: 49398d6cf7c8
+    last_write_checksum: sha1:356a310da0329a13f0215eb3dda570a2a8dff8c6
+    pristine_git_object: 3747522df2c1c55dc1a5eed0e6ae20d99e42789d
+  src/main/java/com/apideck/unify/models/components/ExpenseReportUpdateInputEmployee.java:
+    id: 6194dda6626e
+    last_write_checksum: sha1:8397aa599993c1ece474d95112e3fc5e2cdd24a3
+    pristine_git_object: c76ccde65991d1fa2af18d81cf53508c38bf3338
+  src/main/java/com/apideck/unify/models/components/ExpenseReportUpdateInputStatus.java:
+    id: 4e854c5b070b
+    last_write_checksum: sha1:dd29a558f405a2bb70a60be34b1afb3468ab7330
+    pristine_git_object: d73bd80483708eadf99b0dc958211cfec0f47870
   src/main/java/com/apideck/unify/models/components/ExpenseReportsFilter.java:
     id: 2dff48a4295d
     last_write_checksum: sha1:e844867ef157d97f2c6c98a593065b714d1511df
@@ -11175,6 +11351,22 @@ trackedFiles:
     id: eaa714a01736
     last_write_checksum: sha1:47aae2a275d57a9892afa4b8d76a0e80c0ac6649
     pristine_git_object: efd71e1c00294f9fa7212a3f30f2c765f96e914b
+  src/main/java/com/apideck/unify/models/components/ExpenseUpdateInput.java:
+    id: bd6a67fa1360
+    last_write_checksum: sha1:154b0dbd7024235771e32903d2d51ea63b6fa564
+    pristine_git_object: e539e975a1eb97d43c1f875e798e44137e738c87
+  src/main/java/com/apideck/unify/models/components/ExpenseUpdateInputExpenseType.java:
+    id: 25b422d7eee8
+    last_write_checksum: sha1:014cdd6fbe4c80efc32c7526599757f604d88229
+    pristine_git_object: c1abbf209b255d2d7041a512a8aded142c115d7d
+  src/main/java/com/apideck/unify/models/components/ExpenseUpdateInputPaymentType.java:
+    id: f97dd2e11467
+    last_write_checksum: sha1:356a849117cc77a2ab966325d305e95ea2794db8
+    pristine_git_object: 3867b0ad10f839231ede8c4a2dcb2f53fdc72ecd
+  src/main/java/com/apideck/unify/models/components/ExpenseUpdateInputStatus.java:
+    id: a0f2ab426dcd
+    last_write_checksum: sha1:a2949a6c413d1e4dc7781a120265270cdf416db3
+    pristine_git_object: a3ef5fee39b5b64b02d39597e2f2b14760613c97
   src/main/java/com/apideck/unify/models/components/Expenses.java:
     id: 430803c690d3
     last_write_checksum: sha1:d51838164d90f7caac2b445a73e8b8228d03021c
@@ -12707,6 +12899,10 @@ trackedFiles:
     id: 44e28b223303
     last_write_checksum: sha1:90a4826a6b966e33bd53875689bfa078fbf43efb
     pristine_git_object: 4f9c1044a6f44398c63667231eb852946d5816e9
+  src/main/java/com/apideck/unify/models/components/PaymentUpdateInput.java:
+    id: 37aeb672bffd
+    last_write_checksum: sha1:820f9ccc22c6095ba63ba3f33055efb22e1ace20
+    pristine_git_object: 57d807c972fc845d783e13503cf7d289144ad220
   src/main/java/com/apideck/unify/models/components/PaymentsFilter.java:
     id: 8eaedee76441
     last_write_checksum: sha1:65397271f9327e54115dd89abe5531314c29fdbe
@@ -12839,6 +13035,42 @@ trackedFiles:
     id: a509e390607d
     last_write_checksum: sha1:3f6f4fbb563bc316fe76f315497c7b718de04d3a
     pristine_git_object: e21a0f235e23c446ae25bd59aa209e5a0c23c0b5
+  src/main/java/com/apideck/unify/models/components/ProjectUpdateInput.java:
+    id: c50cf9e21f7f
+    last_write_checksum: sha1:24f062bba45e777fbe5707d83647f2b19de1a833
+    pristine_git_object: 01c06e841ee894c1e64bdf34cd18021c658f772a
+  src/main/java/com/apideck/unify/models/components/ProjectUpdateInputBillingMethod.java:
+    id: a7233d2c1358
+    last_write_checksum: sha1:a04bd179c02b4b9af6539d59e9c1c1349b15bde8
+    pristine_git_object: 3dffc0a26af1aa3c73c77e6e8616926502e9cca7
+  src/main/java/com/apideck/unify/models/components/ProjectUpdateInputDepartment.java:
+    id: 0b9e9fead981
+    last_write_checksum: sha1:461fa234235611b1d09b8b3fbc69736943799a90
+    pristine_git_object: 181218a960f1d0df15fea20acc9fe463c9a6cd84
+  src/main/java/com/apideck/unify/models/components/ProjectUpdateInputParentProject.java:
+    id: c7209072c654
+    last_write_checksum: sha1:94c810bbdb5d1a73d445c5f298383bf642aa2589
+    pristine_git_object: aac08ea1404f5e5980b463a1daf3b7c6849580be
+  src/main/java/com/apideck/unify/models/components/ProjectUpdateInputPriority.java:
+    id: 84688a64569d
+    last_write_checksum: sha1:abbd2cce9dc5031d162c9f46bf98b1183cd80474
+    pristine_git_object: e2731cd8d0cc64febca8dc264164dedb0274eccd
+  src/main/java/com/apideck/unify/models/components/ProjectUpdateInputProjectPhase.java:
+    id: 7ec37ed44cfc
+    last_write_checksum: sha1:7189abdaa2d94ceff6ead8676c9363d2e8a73882
+    pristine_git_object: 42cd222995f2efaa4b5757d725158602a859b16b
+  src/main/java/com/apideck/unify/models/components/ProjectUpdateInputProjectStatus.java:
+    id: 030e0ecebc1d
+    last_write_checksum: sha1:1701c1aba088c5b3d70a5d51a82ad80677d861e4
+    pristine_git_object: 44ee7e13be36d36c1301f32b01ff3aa3de76b42d
+  src/main/java/com/apideck/unify/models/components/ProjectUpdateInputProjectType.java:
+    id: 1825bcab99fb
+    last_write_checksum: sha1:50d566c4706b94558dc6ef6cc29770b87f6dc485
+    pristine_git_object: 4f6bb66c5269e9b33b5b00dcecd7d08cb8162d96
+  src/main/java/com/apideck/unify/models/components/ProjectUpdateInputScheduleStatus.java:
+    id: bba05aaf28eb
+    last_write_checksum: sha1:f8926a6929f2b70b4f99d95f66feeedc4d12ffe3
+    pristine_git_object: 115c070cfc8b92a279ec01ac6b46232d652153cd
   src/main/java/com/apideck/unify/models/components/ProjectsFilter.java:
     id: 360cef193bb9
     last_write_checksum: sha1:9b7a214e514a6a9df6a258c9ee875cb54ee56b61
@@ -12935,6 +13167,10 @@ trackedFiles:
     id: d35609529240
     last_write_checksum: sha1:37ca7ee4084c56acc766972b7619754154bce431
     pristine_git_object: 5278ba41f280c72ae16b79921c446c73ac63b4c0
+  src/main/java/com/apideck/unify/models/components/RefundUpdateInput.java:
+    id: c76a2b5cbc0b
+    last_write_checksum: sha1:6a221231d293d7f22ec327c224811cdceda9a5ac
+    pristine_git_object: 3bb6568da1773b021d7ce1471e5478943c8942fd
   src/main/java/com/apideck/unify/models/components/RefundsFilter.java:
     id: 94a3dc02d11d
     last_write_checksum: sha1:f8b031320dc9a7f8e83f8431ed678c3f10b19e47
@@ -13007,6 +13243,10 @@ trackedFiles:
     id: 67391b3d29f6
     last_write_checksum: sha1:28390877048ba1a518ec495846dc2945adf0a238
     pristine_git_object: 18eb21ae81f9525132b4926628d90196b1ea24c0
+  src/main/java/com/apideck/unify/models/components/SalesReceiptUpdateInput.java:
+    id: 5b9279d021a5
+    last_write_checksum: sha1:4fa2a95b3c1fe9f3c07a27f44f4af8eff3071b14
+    pristine_git_object: 3086ae6cfb368a9f777203e9375fd26029f9b3b9
   src/main/java/com/apideck/unify/models/components/SalesReceiptsFilter.java:
     id: faa5e2f836cc
     last_write_checksum: sha1:45cf8050f1036cba86add4182b3b1af001d969d2
@@ -14245,8 +14485,8 @@ trackedFiles:
     pristine_git_object: 89284d21f9cb1286f0acb2f46b3ed4acfa0449dd
   src/main/java/com/apideck/unify/models/operations/AccountingBillPaymentsUpdateRequest.java:
     id: 39fdfe324d81
-    last_write_checksum: sha1:5f23c85ca93c47aa7a7dd483f4ca4ad7f0eecb0e
-    pristine_git_object: 5523fddbb4f3c57a340d70a9d1e363376fddf3ab
+    last_write_checksum: sha1:f867584a6a8d756dc6f4b2ea402e79d3630d008a
+    pristine_git_object: 20b193b247b5753469ff62a4ac6ba94b381ad6ef
   src/main/java/com/apideck/unify/models/operations/AccountingBillPaymentsUpdateRequestBuilder.java:
     id: 8d53b9f37b53
     last_write_checksum: sha1:ea15f357edd905d5df4cdf954742dbb587e2331a
@@ -14437,8 +14677,8 @@ trackedFiles:
     pristine_git_object: eb1ab8a307c29382be220e85eb5c7bffcecc0466
   src/main/java/com/apideck/unify/models/operations/AccountingCreditNotesUpdateRequest.java:
     id: f861f54135e7
-    last_write_checksum: sha1:129b9611ce105b982c77597e8ac37fd1bf1f68b5
-    pristine_git_object: f652249be8d04dff519623b75399e02de986fd84
+    last_write_checksum: sha1:c851e5fffb3d115b952514c423f477acfa502844
+    pristine_git_object: e98df55eb3d4ed7ed08a52d9ec1dd3009277ef00
   src/main/java/com/apideck/unify/models/operations/AccountingCreditNotesUpdateRequestBuilder.java:
     id: fe23f2ed24e8
     last_write_checksum: sha1:6ce0f76e1b9321c246eff52efe335b1e4473bcbe
@@ -14689,8 +14929,8 @@ trackedFiles:
     pristine_git_object: 2f01b2d53740db3aaf5c1a878a26c16ae5332b9a
   src/main/java/com/apideck/unify/models/operations/AccountingExpenseCategoriesUpdateRequest.java:
     id: 5a76350c387e
-    last_write_checksum: sha1:31056582b1ee9c1c1cc96bfdc2822c56b72d9a15
-    pristine_git_object: 9a3155ad23239443b0352d283f8ac7ce629bc18d
+    last_write_checksum: sha1:c4f945370e3d93ad67561fd282a43d003a1b11c0
+    pristine_git_object: fbd5bfe75230819b8709a4f0bdfb8b2871137486
   src/main/java/com/apideck/unify/models/operations/AccountingExpenseCategoriesUpdateRequestBuilder.java:
     id: 6fabe3dfc5fb
     last_write_checksum: sha1:4f14a070c0b1acefc1407e71b9d81d6e027d4fda
@@ -14749,8 +14989,8 @@ trackedFiles:
     pristine_git_object: 082170911a6d098867e746d3b21f906d538c5f90
   src/main/java/com/apideck/unify/models/operations/AccountingExpenseReportsUpdateRequest.java:
     id: 3c4bce7af4e2
-    last_write_checksum: sha1:57b26b5097fe676ee18f1e3899d4b1322d66c98f
-    pristine_git_object: 03034ba9abca15e476f8dec76e04d186833a5270
+    last_write_checksum: sha1:e03b23e89488d23437d268b30d1c6092e22024e4
+    pristine_git_object: 5e29df43f2681d64adbf8be9f5b24339ef833ee1
   src/main/java/com/apideck/unify/models/operations/AccountingExpenseReportsUpdateRequestBuilder.java:
     id: 4afa2e98a90c
     last_write_checksum: sha1:2d867ae3620277f951083fd27947ea8c973d3d24
@@ -14809,8 +15049,8 @@ trackedFiles:
     pristine_git_object: 007eda1e92644be37b3f6bd59b99edadd5149064
   src/main/java/com/apideck/unify/models/operations/AccountingExpensesUpdateRequest.java:
     id: 5614f884db95
-    last_write_checksum: sha1:e12aacee85d39fe93f1739e5d0e4cbf349750e4a
-    pristine_git_object: c5e3b8ec82ff139783dbadb127dd05486d3e09c2
+    last_write_checksum: sha1:04c4ff8c12c3a1583932b0b7edd6ef6f174a754a
+    pristine_git_object: d701d6384981f9ed0afab96ad16c337f23e8fa7c
   src/main/java/com/apideck/unify/models/operations/AccountingExpensesUpdateRequestBuilder.java:
     id: 03c696cc55d4
     last_write_checksum: sha1:16173bb271a80de8bdb6df43bad9ea7614d9079b
@@ -15409,8 +15649,8 @@ trackedFiles:
     pristine_git_object: c7b2ff7e17b6a6af0584ed6a4bab7538839f50a5
   src/main/java/com/apideck/unify/models/operations/AccountingPaymentsUpdateRequest.java:
     id: 5208982a7cf2
-    last_write_checksum: sha1:936ea9b39063fae636c4c22ff81e1897e3e31058
-    pristine_git_object: ed3806da652f9849b226ac38d0792c3f48511f61
+    last_write_checksum: sha1:20932116efe6adad2a9d196c134142ed789fc682
+    pristine_git_object: d36c2403f62cfdf697bf55579da631dd4130b04f
   src/main/java/com/apideck/unify/models/operations/AccountingPaymentsUpdateRequestBuilder.java:
     id: d7a27d687a55
     last_write_checksum: sha1:32e43ecc3edd190a5674288a9631b3915daa2cc7
@@ -15481,8 +15721,8 @@ trackedFiles:
     pristine_git_object: 5f8a5351bc1748464e6048ead055fe936ecbcd77
   src/main/java/com/apideck/unify/models/operations/AccountingProjectsUpdateRequest.java:
     id: aa47cb140dd7
-    last_write_checksum: sha1:dfa435c88a7acdb6974d3a9e4f7a829aec3884f7
-    pristine_git_object: 7e3bb96aec81825e2181499347721b0e686eae11
+    last_write_checksum: sha1:e88af75b949323e26552740bce0bdaa0264c53cb
+    pristine_git_object: a8bbf2756fb9b838470f6af607bac432ee22d3af
   src/main/java/com/apideck/unify/models/operations/AccountingProjectsUpdateRequestBuilder.java:
     id: 374b4ca8ac7a
     last_write_checksum: sha1:e39db5241e3d51d555a546de81fd6ceb45d17ce6
@@ -15661,8 +15901,8 @@ trackedFiles:
     pristine_git_object: c918ea5287015a16076e7df2205da268753fec10
   src/main/java/com/apideck/unify/models/operations/AccountingRefundsUpdateRequest.java:
     id: 1c677cf7ddb9
-    last_write_checksum: sha1:3c1d79e113277aa3253d55a8ef0aa05fb406a6fa
-    pristine_git_object: e4a849f7d2f0db7dbad34ff7aaea15dd15b69134
+    last_write_checksum: sha1:8c5d6b56815e72dc276ab5fd0912b0164622ae28
+    pristine_git_object: a0b6522b5c98628e35e1c1d0ef89c06a9acce2fb
   src/main/java/com/apideck/unify/models/operations/AccountingRefundsUpdateRequestBuilder.java:
     id: 4b0b35d4b4a2
     last_write_checksum: sha1:bc0e3da7bea1e337a23c0eb97932ebc4804a30ec
@@ -15781,8 +16021,8 @@ trackedFiles:
     pristine_git_object: d2a9013f0204be18b62f324b1cad4f4a2ff95fc9
   src/main/java/com/apideck/unify/models/operations/AccountingSalesReceiptsUpdateRequest.java:
     id: 56a03128519f
-    last_write_checksum: sha1:a6cea5f79fd5d56f4203d6e0f32d36732f74f225
-    pristine_git_object: 3c3101112ea04a3f47bb22f9b7ed2a2014ee60a6
+    last_write_checksum: sha1:8ce4e97c82ac99664c833c9482a833f91b994b7e
+    pristine_git_object: 41d0e1f56c869ecadd952969164dae925df7b63b
   src/main/java/com/apideck/unify/models/operations/AccountingSalesReceiptsUpdateRequestBuilder.java:
     id: ea194b8597b5
     last_write_checksum: sha1:bed00460fce9a07baad2b05c46585f9321f4d89c
@@ -21629,8 +21869,8 @@ trackedFiles:
     pristine_git_object: 60e3a4029b50493173c36771f59f35f34b9c345a
   src/main/java/com/apideck/unify/operations/AccountingBillPaymentsUpdate.java:
     id: 094fd3769674
-    last_write_checksum: sha1:7cf580154591c075bc6868c1011ad9e8e1112616
-    pristine_git_object: 03c9a675988ab5ed02858b142d6b36e059d0d51b
+    last_write_checksum: sha1:9a831ed297323463684d1bddbd6225862548eefa
+    pristine_git_object: 6d09c5ad4f2233e173a505851f6b462553a48b72
   src/main/java/com/apideck/unify/operations/AccountingBillsAdd.java:
     id: eb38fd654fdb
     last_write_checksum: sha1:e6d5d192bdb6e6ce5bd3cefba02febb6cde2baaa
@@ -21693,8 +21933,8 @@ trackedFiles:
     pristine_git_object: 500b83d623c7ffe119ef8b6a8fb873359606dcb0
   src/main/java/com/apideck/unify/operations/AccountingCreditNotesUpdate.java:
     id: eab24b7bd3b0
-    last_write_checksum: sha1:416dc2ef6b12b80b55f6ee7789b5f5fb501593ff
-    pristine_git_object: 60aba7502e458b55f145167809583d16ce1b71dc
+    last_write_checksum: sha1:56165b18f599d8deeda46eee28b7e80d3d96f825
+    pristine_git_object: ec831e72da10e92995095a222f918b33061fb5c5
   src/main/java/com/apideck/unify/operations/AccountingCustomersAdd.java:
     id: aa9f692446ee
     last_write_checksum: sha1:108b159b9a91b4c7abd86fe9aa438573e7cf5d43
@@ -21777,8 +22017,8 @@ trackedFiles:
     pristine_git_object: 7b99761b8d1cc1615da579814a27027c6dc5eb12
   src/main/java/com/apideck/unify/operations/AccountingExpenseCategoriesUpdate.java:
     id: b5493be69ac8
-    last_write_checksum: sha1:ab8dfdf9c1f4d8fde99b260f91e417b074c6d24a
-    pristine_git_object: 30b27ad29e18b0dc10d5b9ea185575c2a1c90ab4
+    last_write_checksum: sha1:0dfde96663fabb5fe3c878e380daaf0d03cc9e06
+    pristine_git_object: 603f5b2946e1e569292c0ca6872bc68b78db8781
   src/main/java/com/apideck/unify/operations/AccountingExpenseReportsAdd.java:
     id: 4205db943dd3
     last_write_checksum: sha1:4d0002b6071f999958a088bc2624b139a190a559
@@ -21797,8 +22037,8 @@ trackedFiles:
     pristine_git_object: aa0d31e3f7401166f0e71847e43a4041e7342166
   src/main/java/com/apideck/unify/operations/AccountingExpenseReportsUpdate.java:
     id: 920909cc7393
-    last_write_checksum: sha1:cb8e78c53b5cffaa268c6a38b6dc37d751798aad
-    pristine_git_object: aafca79ef661f81f29b965d10d1159ad95c3df34
+    last_write_checksum: sha1:90e9bb1be02afb611568144212d563d4c334d696
+    pristine_git_object: df6d998b650a1266aec1310d6dc307f2a8bb79ab
   src/main/java/com/apideck/unify/operations/AccountingExpensesAdd.java:
     id: 41a9de38d50f
     last_write_checksum: sha1:4c1045fbae9cc552d201f18f90e7d1b671a76686
@@ -21817,8 +22057,8 @@ trackedFiles:
     pristine_git_object: acc0351bd31e4a521778643a4e8fefe2a9401359
   src/main/java/com/apideck/unify/operations/AccountingExpensesUpdate.java:
     id: 0865254fb33d
-    last_write_checksum: sha1:495c836444ef36f75bb4cddb8904cb91a42d742f
-    pristine_git_object: fe47b20518ee861f65a96cf86a76e8db4a1202f6
+    last_write_checksum: sha1:0bff54fa9c1070fba20a2fcd1fbc62776f07a0ba
+    pristine_git_object: 97a2654e292b66426cd9eea9c803c317c46d7dd4
   src/main/java/com/apideck/unify/operations/AccountingFiscalPeriodsAll.java:
     id: a85ae61642be
     last_write_checksum: sha1:6050a9a6fc0611b235d83b23a142009978d54aaa
@@ -22017,8 +22257,8 @@ trackedFiles:
     pristine_git_object: 1bf9c73b8b84c1c1c0a432284f46e8751a7eed41
   src/main/java/com/apideck/unify/operations/AccountingPaymentsUpdate.java:
     id: 93a7013eb756
-    last_write_checksum: sha1:159a7584163f6816181bf9d12b678250a155ccab
-    pristine_git_object: 9f786d3f8a91aa149e7bd6f1b0a2456b751076e0
+    last_write_checksum: sha1:c4c2967fc072727fa4767754d4ff490952eab0c7
+    pristine_git_object: 140b96af34cfddda69418fa67735ba0b2e7e495c
   src/main/java/com/apideck/unify/operations/AccountingProfitAndLossOne.java:
     id: 567d8ced9ec4
     last_write_checksum: sha1:a7917ffb594bd4b632b4847b9ae0f7b737553c90
@@ -22041,8 +22281,8 @@ trackedFiles:
     pristine_git_object: 61cc39c5afa4ec1aede155784c68f73c8f64d237
   src/main/java/com/apideck/unify/operations/AccountingProjectsUpdate.java:
     id: 4bb8f4f21c9b
-    last_write_checksum: sha1:f1216af19840481463146475d7b9aa41f980322d
-    pristine_git_object: 4760e966e3939963fc37ad3d5aac88522ad14610
+    last_write_checksum: sha1:31a5442fd4bce1608b7ccf38032153361824ad17
+    pristine_git_object: 5c58cd251048dced9dab152e4063516fd9a20e9b
   src/main/java/com/apideck/unify/operations/AccountingPurchaseOrdersAdd.java:
     id: ef169820d005
     last_write_checksum: sha1:33503797222caf75419f972c3cfedd6fdf5e28fc
@@ -22101,8 +22341,8 @@ trackedFiles:
     pristine_git_object: be4040035a50b7db26adb7eb6f3092aa4d15e4dc
   src/main/java/com/apideck/unify/operations/AccountingRefundsUpdate.java:
     id: 07bf563b44b7
-    last_write_checksum: sha1:b790dcee337f24b42b3e8e4425e53b11fa8c20d4
-    pristine_git_object: 1b685d59cf42f3b2e0361c7265454a9c485f1bd2
+    last_write_checksum: sha1:e44c3a6d8aa7841c85916b86f9ff2dae506e4db0
+    pristine_git_object: 7a52c80152847be85c3a0985ad789c3dad8644a2
   src/main/java/com/apideck/unify/operations/AccountingSalesOrdersAdd.java:
     id: c22f767a35ea
     last_write_checksum: sha1:3f33d28bb76ecd00f200eb02b0b828ef336db4be
@@ -22141,8 +22381,8 @@ trackedFiles:
     pristine_git_object: b170e46728c10dcb9c0ffc5f71109fb0c253caea
   src/main/java/com/apideck/unify/operations/AccountingSalesReceiptsUpdate.java:
     id: 7fbef6a6f381
-    last_write_checksum: sha1:bd1a0a4d06a94000ac738f8c53d3e11c58ccd67e
-    pristine_git_object: 3edf9a5bb83947d195c30d33cff2ee89a784e826
+    last_write_checksum: sha1:1b1bfbc0621cbf92c09ca76416e36ad07abf1d38
+    pristine_git_object: ea5a1378aa574a3ce6643839ccdb1a2384867488
   src/main/java/com/apideck/unify/operations/AccountingSubsidiariesAdd.java:
     id: 5cf8dd907b42
     last_write_checksum: sha1:a1165be6e72d129485de315608d2052bd7c5974f
@@ -40991,6 +41231,17 @@ examples:
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: |
+  ## Java SDK Changes:
+  * `apideck.accounting.creditNotes.update()`:  `request` **Changed** (Breaking ⚠️)
+  * `apideck.accounting.payments.update()`:  `request` **Changed** (Breaking ⚠️)
+  * `apideck.accounting.refunds.update()`:  `request` **Changed** (Breaking ⚠️)
+  * `apideck.accounting.salesReceipts.update()`:  `request` **Changed** (Breaking ⚠️)
+  * `apideck.accounting.billPayments.update()`:  `request` **Changed** (Breaking ⚠️)
+  * `apideck.accounting.expenses.update()`:  `request` **Changed** (Breaking ⚠️)
+  * `apideck.accounting.projects.update()`:  `request` **Changed** (Breaking ⚠️)
+  * `apideck.accounting.expenseCategories.update()`:  `request` **Changed** (Breaking ⚠️)
+  * `apideck.accounting.expenseReports.update()`:  `request` **Changed** (Breaking ⚠️)
 generatedFiles:
   - .gitattributes
   - USAGE.md

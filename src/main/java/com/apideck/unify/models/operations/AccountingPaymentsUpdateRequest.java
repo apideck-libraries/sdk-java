@@ -3,7 +3,7 @@
  */
 package com.apideck.unify.models.operations;
 
-import com.apideck.unify.models.components.PaymentInput;
+import com.apideck.unify.models.components.PaymentUpdateInput;
 import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
@@ -57,7 +57,7 @@ public class AccountingPaymentsUpdateRequest {
 
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private PaymentInput payment;
+    private PaymentUpdateInput paymentUpdateInput;
 
     @JsonCreator
     public AccountingPaymentsUpdateRequest(
@@ -67,29 +67,29 @@ public class AccountingPaymentsUpdateRequest {
             Optional<String> serviceId,
             Optional<String> companyId,
             Optional<Boolean> raw,
-            PaymentInput payment) {
+            PaymentUpdateInput paymentUpdateInput) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(serviceId, "serviceId");
         Utils.checkNotNull(companyId, "companyId");
         Utils.checkNotNull(raw, "raw");
-        Utils.checkNotNull(payment, "payment");
+        Utils.checkNotNull(paymentUpdateInput, "paymentUpdateInput");
         this.id = id;
         this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
         this.companyId = companyId;
         this.raw = raw;
-        this.payment = payment;
+        this.paymentUpdateInput = paymentUpdateInput;
     }
     
     public AccountingPaymentsUpdateRequest(
             String id,
-            PaymentInput payment) {
+            PaymentUpdateInput paymentUpdateInput) {
         this(id, Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            payment);
+            paymentUpdateInput);
     }
 
     /**
@@ -143,8 +143,8 @@ public class AccountingPaymentsUpdateRequest {
     }
 
     @JsonIgnore
-    public PaymentInput payment() {
-        return payment;
+    public PaymentUpdateInput paymentUpdateInput() {
+        return paymentUpdateInput;
     }
 
     public static Builder builder() {
@@ -260,9 +260,9 @@ public class AccountingPaymentsUpdateRequest {
         return this;
     }
 
-    public AccountingPaymentsUpdateRequest withPayment(PaymentInput payment) {
-        Utils.checkNotNull(payment, "payment");
-        this.payment = payment;
+    public AccountingPaymentsUpdateRequest withPaymentUpdateInput(PaymentUpdateInput paymentUpdateInput) {
+        Utils.checkNotNull(paymentUpdateInput, "paymentUpdateInput");
+        this.paymentUpdateInput = paymentUpdateInput;
         return this;
     }
 
@@ -282,7 +282,7 @@ public class AccountingPaymentsUpdateRequest {
             Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
             Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
             Utils.enhancedDeepEquals(this.raw, other.raw) &&
-            Utils.enhancedDeepEquals(this.payment, other.payment);
+            Utils.enhancedDeepEquals(this.paymentUpdateInput, other.paymentUpdateInput);
     }
     
     @Override
@@ -290,7 +290,7 @@ public class AccountingPaymentsUpdateRequest {
         return Utils.enhancedHash(
             id, consumerId, appId,
             serviceId, companyId, raw,
-            payment);
+            paymentUpdateInput);
     }
     
     @Override
@@ -302,7 +302,7 @@ public class AccountingPaymentsUpdateRequest {
                 "serviceId", serviceId,
                 "companyId", companyId,
                 "raw", raw,
-                "payment", payment);
+                "paymentUpdateInput", paymentUpdateInput);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -320,7 +320,7 @@ public class AccountingPaymentsUpdateRequest {
 
         private Optional<Boolean> raw;
 
-        private PaymentInput payment;
+        private PaymentUpdateInput paymentUpdateInput;
 
         private Builder() {
           // force use of static builder() method
@@ -436,9 +436,9 @@ public class AccountingPaymentsUpdateRequest {
         }
 
 
-        public Builder payment(PaymentInput payment) {
-            Utils.checkNotNull(payment, "payment");
-            this.payment = payment;
+        public Builder paymentUpdateInput(PaymentUpdateInput paymentUpdateInput) {
+            Utils.checkNotNull(paymentUpdateInput, "paymentUpdateInput");
+            this.paymentUpdateInput = paymentUpdateInput;
             return this;
         }
 
@@ -450,7 +450,7 @@ public class AccountingPaymentsUpdateRequest {
             return new AccountingPaymentsUpdateRequest(
                 id, consumerId, appId,
                 serviceId, companyId, raw,
-                payment);
+                paymentUpdateInput);
         }
 
 

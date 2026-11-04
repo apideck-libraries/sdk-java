@@ -3,7 +3,7 @@
  */
 package com.apideck.unify.models.operations;
 
-import com.apideck.unify.models.components.ExpenseInput;
+import com.apideck.unify.models.components.ExpenseUpdateInput;
 import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
@@ -50,7 +50,7 @@ public class AccountingExpensesUpdateRequest {
 
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private ExpenseInput expense;
+    private ExpenseUpdateInput expenseUpdateInput;
 
     @JsonCreator
     public AccountingExpensesUpdateRequest(
@@ -59,26 +59,26 @@ public class AccountingExpensesUpdateRequest {
             Optional<String> appId,
             Optional<String> serviceId,
             Optional<Boolean> raw,
-            ExpenseInput expense) {
+            ExpenseUpdateInput expenseUpdateInput) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(serviceId, "serviceId");
         Utils.checkNotNull(raw, "raw");
-        Utils.checkNotNull(expense, "expense");
+        Utils.checkNotNull(expenseUpdateInput, "expenseUpdateInput");
         this.id = id;
         this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
         this.raw = raw;
-        this.expense = expense;
+        this.expenseUpdateInput = expenseUpdateInput;
     }
     
     public AccountingExpensesUpdateRequest(
             String id,
-            ExpenseInput expense) {
+            ExpenseUpdateInput expenseUpdateInput) {
         this(id, Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), expense);
+            Optional.empty(), Optional.empty(), expenseUpdateInput);
     }
 
     /**
@@ -123,8 +123,8 @@ public class AccountingExpensesUpdateRequest {
     }
 
     @JsonIgnore
-    public ExpenseInput expense() {
-        return expense;
+    public ExpenseUpdateInput expenseUpdateInput() {
+        return expenseUpdateInput;
     }
 
     public static Builder builder() {
@@ -219,9 +219,9 @@ public class AccountingExpensesUpdateRequest {
         return this;
     }
 
-    public AccountingExpensesUpdateRequest withExpense(ExpenseInput expense) {
-        Utils.checkNotNull(expense, "expense");
-        this.expense = expense;
+    public AccountingExpensesUpdateRequest withExpenseUpdateInput(ExpenseUpdateInput expenseUpdateInput) {
+        Utils.checkNotNull(expenseUpdateInput, "expenseUpdateInput");
+        this.expenseUpdateInput = expenseUpdateInput;
         return this;
     }
 
@@ -240,14 +240,14 @@ public class AccountingExpensesUpdateRequest {
             Utils.enhancedDeepEquals(this.appId, other.appId) &&
             Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
             Utils.enhancedDeepEquals(this.raw, other.raw) &&
-            Utils.enhancedDeepEquals(this.expense, other.expense);
+            Utils.enhancedDeepEquals(this.expenseUpdateInput, other.expenseUpdateInput);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             id, consumerId, appId,
-            serviceId, raw, expense);
+            serviceId, raw, expenseUpdateInput);
     }
     
     @Override
@@ -258,7 +258,7 @@ public class AccountingExpensesUpdateRequest {
                 "appId", appId,
                 "serviceId", serviceId,
                 "raw", raw,
-                "expense", expense);
+                "expenseUpdateInput", expenseUpdateInput);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -274,7 +274,7 @@ public class AccountingExpensesUpdateRequest {
 
         private Optional<Boolean> raw;
 
-        private ExpenseInput expense;
+        private ExpenseUpdateInput expenseUpdateInput;
 
         private Builder() {
           // force use of static builder() method
@@ -369,9 +369,9 @@ public class AccountingExpensesUpdateRequest {
         }
 
 
-        public Builder expense(ExpenseInput expense) {
-            Utils.checkNotNull(expense, "expense");
-            this.expense = expense;
+        public Builder expenseUpdateInput(ExpenseUpdateInput expenseUpdateInput) {
+            Utils.checkNotNull(expenseUpdateInput, "expenseUpdateInput");
+            this.expenseUpdateInput = expenseUpdateInput;
             return this;
         }
 
@@ -382,7 +382,7 @@ public class AccountingExpensesUpdateRequest {
 
             return new AccountingExpensesUpdateRequest(
                 id, consumerId, appId,
-                serviceId, raw, expense);
+                serviceId, raw, expenseUpdateInput);
         }
 
 

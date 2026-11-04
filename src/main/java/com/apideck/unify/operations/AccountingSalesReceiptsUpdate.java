@@ -137,7 +137,7 @@ public class AccountingSalesReceiptsUpdate {
                     typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
-                    "salesReceipt",
+                    "salesReceiptUpdateInput",
                     "json",
                     false);
             if (serializedRequestBody == null) {

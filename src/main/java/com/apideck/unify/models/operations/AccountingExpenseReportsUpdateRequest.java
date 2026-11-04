@@ -3,7 +3,7 @@
  */
 package com.apideck.unify.models.operations;
 
-import com.apideck.unify.models.components.ExpenseReportInput;
+import com.apideck.unify.models.components.ExpenseReportUpdateInput;
 import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
@@ -50,7 +50,7 @@ public class AccountingExpenseReportsUpdateRequest {
 
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private ExpenseReportInput expenseReport;
+    private ExpenseReportUpdateInput expenseReportUpdateInput;
 
     @JsonCreator
     public AccountingExpenseReportsUpdateRequest(
@@ -59,26 +59,26 @@ public class AccountingExpenseReportsUpdateRequest {
             Optional<String> appId,
             Optional<String> serviceId,
             Optional<Boolean> raw,
-            ExpenseReportInput expenseReport) {
+            ExpenseReportUpdateInput expenseReportUpdateInput) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(serviceId, "serviceId");
         Utils.checkNotNull(raw, "raw");
-        Utils.checkNotNull(expenseReport, "expenseReport");
+        Utils.checkNotNull(expenseReportUpdateInput, "expenseReportUpdateInput");
         this.id = id;
         this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
         this.raw = raw;
-        this.expenseReport = expenseReport;
+        this.expenseReportUpdateInput = expenseReportUpdateInput;
     }
     
     public AccountingExpenseReportsUpdateRequest(
             String id,
-            ExpenseReportInput expenseReport) {
+            ExpenseReportUpdateInput expenseReportUpdateInput) {
         this(id, Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), expenseReport);
+            Optional.empty(), Optional.empty(), expenseReportUpdateInput);
     }
 
     /**
@@ -123,8 +123,8 @@ public class AccountingExpenseReportsUpdateRequest {
     }
 
     @JsonIgnore
-    public ExpenseReportInput expenseReport() {
-        return expenseReport;
+    public ExpenseReportUpdateInput expenseReportUpdateInput() {
+        return expenseReportUpdateInput;
     }
 
     public static Builder builder() {
@@ -219,9 +219,9 @@ public class AccountingExpenseReportsUpdateRequest {
         return this;
     }
 
-    public AccountingExpenseReportsUpdateRequest withExpenseReport(ExpenseReportInput expenseReport) {
-        Utils.checkNotNull(expenseReport, "expenseReport");
-        this.expenseReport = expenseReport;
+    public AccountingExpenseReportsUpdateRequest withExpenseReportUpdateInput(ExpenseReportUpdateInput expenseReportUpdateInput) {
+        Utils.checkNotNull(expenseReportUpdateInput, "expenseReportUpdateInput");
+        this.expenseReportUpdateInput = expenseReportUpdateInput;
         return this;
     }
 
@@ -240,14 +240,14 @@ public class AccountingExpenseReportsUpdateRequest {
             Utils.enhancedDeepEquals(this.appId, other.appId) &&
             Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
             Utils.enhancedDeepEquals(this.raw, other.raw) &&
-            Utils.enhancedDeepEquals(this.expenseReport, other.expenseReport);
+            Utils.enhancedDeepEquals(this.expenseReportUpdateInput, other.expenseReportUpdateInput);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             id, consumerId, appId,
-            serviceId, raw, expenseReport);
+            serviceId, raw, expenseReportUpdateInput);
     }
     
     @Override
@@ -258,7 +258,7 @@ public class AccountingExpenseReportsUpdateRequest {
                 "appId", appId,
                 "serviceId", serviceId,
                 "raw", raw,
-                "expenseReport", expenseReport);
+                "expenseReportUpdateInput", expenseReportUpdateInput);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -274,7 +274,7 @@ public class AccountingExpenseReportsUpdateRequest {
 
         private Optional<Boolean> raw;
 
-        private ExpenseReportInput expenseReport;
+        private ExpenseReportUpdateInput expenseReportUpdateInput;
 
         private Builder() {
           // force use of static builder() method
@@ -369,9 +369,9 @@ public class AccountingExpenseReportsUpdateRequest {
         }
 
 
-        public Builder expenseReport(ExpenseReportInput expenseReport) {
-            Utils.checkNotNull(expenseReport, "expenseReport");
-            this.expenseReport = expenseReport;
+        public Builder expenseReportUpdateInput(ExpenseReportUpdateInput expenseReportUpdateInput) {
+            Utils.checkNotNull(expenseReportUpdateInput, "expenseReportUpdateInput");
+            this.expenseReportUpdateInput = expenseReportUpdateInput;
             return this;
         }
 
@@ -382,7 +382,7 @@ public class AccountingExpenseReportsUpdateRequest {
 
             return new AccountingExpenseReportsUpdateRequest(
                 id, consumerId, appId,
-                serviceId, raw, expenseReport);
+                serviceId, raw, expenseReportUpdateInput);
         }
 
 

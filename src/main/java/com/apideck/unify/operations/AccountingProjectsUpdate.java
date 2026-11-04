@@ -137,7 +137,7 @@ public class AccountingProjectsUpdate {
                     typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
-                    "project",
+                    "projectUpdateInput",
                     "json",
                     false);
             if (serializedRequestBody == null) {

@@ -438,8 +438,7 @@ public class Application {
 
         AccountingSalesReceiptsUpdateRequest req = AccountingSalesReceiptsUpdateRequest.builder()
                 .id("<id>")
-                .salesReceipt(SalesReceiptInput.builder()
-                    .totalAmount(49.99)
+                .salesReceiptUpdateInput(SalesReceiptUpdateInput.builder()
                     .number("SR-00001")
                     .customer(LinkedCustomerInput.builder()
                         .id("12345")
@@ -450,6 +449,7 @@ public class Application {
                     .currencyRate(0.69)
                     .taxInclusive(true)
                     .subTotal(250d)
+                    .totalAmount(49.99)
                     .totalTax(25d)
                     .transactionDate(OffsetDateTime.parse("2021-05-01T12:00:00.000Z"))
                     .paymentMethod("cash")

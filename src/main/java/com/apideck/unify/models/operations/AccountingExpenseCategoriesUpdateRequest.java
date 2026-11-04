@@ -3,7 +3,7 @@
  */
 package com.apideck.unify.models.operations;
 
-import com.apideck.unify.models.components.ExpenseCategoryInput;
+import com.apideck.unify.models.components.ExpenseCategoryUpdateInput;
 import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
@@ -50,7 +50,7 @@ public class AccountingExpenseCategoriesUpdateRequest {
 
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private ExpenseCategoryInput expenseCategory;
+    private ExpenseCategoryUpdateInput expenseCategoryUpdateInput;
 
     @JsonCreator
     public AccountingExpenseCategoriesUpdateRequest(
@@ -59,26 +59,26 @@ public class AccountingExpenseCategoriesUpdateRequest {
             Optional<String> appId,
             Optional<String> serviceId,
             Optional<Boolean> raw,
-            ExpenseCategoryInput expenseCategory) {
+            ExpenseCategoryUpdateInput expenseCategoryUpdateInput) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(serviceId, "serviceId");
         Utils.checkNotNull(raw, "raw");
-        Utils.checkNotNull(expenseCategory, "expenseCategory");
+        Utils.checkNotNull(expenseCategoryUpdateInput, "expenseCategoryUpdateInput");
         this.id = id;
         this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
         this.raw = raw;
-        this.expenseCategory = expenseCategory;
+        this.expenseCategoryUpdateInput = expenseCategoryUpdateInput;
     }
     
     public AccountingExpenseCategoriesUpdateRequest(
             String id,
-            ExpenseCategoryInput expenseCategory) {
+            ExpenseCategoryUpdateInput expenseCategoryUpdateInput) {
         this(id, Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), expenseCategory);
+            Optional.empty(), Optional.empty(), expenseCategoryUpdateInput);
     }
 
     /**
@@ -123,8 +123,8 @@ public class AccountingExpenseCategoriesUpdateRequest {
     }
 
     @JsonIgnore
-    public ExpenseCategoryInput expenseCategory() {
-        return expenseCategory;
+    public ExpenseCategoryUpdateInput expenseCategoryUpdateInput() {
+        return expenseCategoryUpdateInput;
     }
 
     public static Builder builder() {
@@ -219,9 +219,9 @@ public class AccountingExpenseCategoriesUpdateRequest {
         return this;
     }
 
-    public AccountingExpenseCategoriesUpdateRequest withExpenseCategory(ExpenseCategoryInput expenseCategory) {
-        Utils.checkNotNull(expenseCategory, "expenseCategory");
-        this.expenseCategory = expenseCategory;
+    public AccountingExpenseCategoriesUpdateRequest withExpenseCategoryUpdateInput(ExpenseCategoryUpdateInput expenseCategoryUpdateInput) {
+        Utils.checkNotNull(expenseCategoryUpdateInput, "expenseCategoryUpdateInput");
+        this.expenseCategoryUpdateInput = expenseCategoryUpdateInput;
         return this;
     }
 
@@ -240,14 +240,14 @@ public class AccountingExpenseCategoriesUpdateRequest {
             Utils.enhancedDeepEquals(this.appId, other.appId) &&
             Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
             Utils.enhancedDeepEquals(this.raw, other.raw) &&
-            Utils.enhancedDeepEquals(this.expenseCategory, other.expenseCategory);
+            Utils.enhancedDeepEquals(this.expenseCategoryUpdateInput, other.expenseCategoryUpdateInput);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             id, consumerId, appId,
-            serviceId, raw, expenseCategory);
+            serviceId, raw, expenseCategoryUpdateInput);
     }
     
     @Override
@@ -258,7 +258,7 @@ public class AccountingExpenseCategoriesUpdateRequest {
                 "appId", appId,
                 "serviceId", serviceId,
                 "raw", raw,
-                "expenseCategory", expenseCategory);
+                "expenseCategoryUpdateInput", expenseCategoryUpdateInput);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -274,7 +274,7 @@ public class AccountingExpenseCategoriesUpdateRequest {
 
         private Optional<Boolean> raw;
 
-        private ExpenseCategoryInput expenseCategory;
+        private ExpenseCategoryUpdateInput expenseCategoryUpdateInput;
 
         private Builder() {
           // force use of static builder() method
@@ -369,9 +369,9 @@ public class AccountingExpenseCategoriesUpdateRequest {
         }
 
 
-        public Builder expenseCategory(ExpenseCategoryInput expenseCategory) {
-            Utils.checkNotNull(expenseCategory, "expenseCategory");
-            this.expenseCategory = expenseCategory;
+        public Builder expenseCategoryUpdateInput(ExpenseCategoryUpdateInput expenseCategoryUpdateInput) {
+            Utils.checkNotNull(expenseCategoryUpdateInput, "expenseCategoryUpdateInput");
+            this.expenseCategoryUpdateInput = expenseCategoryUpdateInput;
             return this;
         }
 
@@ -382,7 +382,7 @@ public class AccountingExpenseCategoriesUpdateRequest {
 
             return new AccountingExpenseCategoriesUpdateRequest(
                 id, consumerId, appId,
-                serviceId, raw, expenseCategory);
+                serviceId, raw, expenseCategoryUpdateInput);
         }
 
 

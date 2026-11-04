@@ -444,8 +444,7 @@ public class Application {
 
         AccountingRefundsUpdateRequest req = AccountingRefundsUpdateRequest.builder()
                 .id("<id>")
-                .refund(RefundInput.builder()
-                    .totalAmount(49.99)
+                .refundUpdateInput(RefundUpdateInput.builder()
                     .number("RF-00001")
                     .customer(LinkedCustomerInput.builder()
                         .id("12345")
@@ -457,6 +456,7 @@ public class Application {
                     .currencyRate(0.69)
                     .taxInclusive(true)
                     .subTotal(250d)
+                    .totalAmount(49.99)
                     .totalTax(25d)
                     .refundDate(OffsetDateTime.parse("2021-05-01T12:00:00.000Z"))
                     .status(RefundStatus.PAID)

@@ -3,7 +3,7 @@
  */
 package com.apideck.unify.models.operations;
 
-import com.apideck.unify.models.components.SalesReceiptInput;
+import com.apideck.unify.models.components.SalesReceiptUpdateInput;
 import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
@@ -57,7 +57,7 @@ public class AccountingSalesReceiptsUpdateRequest {
 
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private SalesReceiptInput salesReceipt;
+    private SalesReceiptUpdateInput salesReceiptUpdateInput;
 
     @JsonCreator
     public AccountingSalesReceiptsUpdateRequest(
@@ -67,29 +67,29 @@ public class AccountingSalesReceiptsUpdateRequest {
             Optional<String> serviceId,
             Optional<Boolean> raw,
             Optional<String> companyId,
-            SalesReceiptInput salesReceipt) {
+            SalesReceiptUpdateInput salesReceiptUpdateInput) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(serviceId, "serviceId");
         Utils.checkNotNull(raw, "raw");
         Utils.checkNotNull(companyId, "companyId");
-        Utils.checkNotNull(salesReceipt, "salesReceipt");
+        Utils.checkNotNull(salesReceiptUpdateInput, "salesReceiptUpdateInput");
         this.id = id;
         this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
         this.raw = raw;
         this.companyId = companyId;
-        this.salesReceipt = salesReceipt;
+        this.salesReceiptUpdateInput = salesReceiptUpdateInput;
     }
     
     public AccountingSalesReceiptsUpdateRequest(
             String id,
-            SalesReceiptInput salesReceipt) {
+            SalesReceiptUpdateInput salesReceiptUpdateInput) {
         this(id, Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            salesReceipt);
+            salesReceiptUpdateInput);
     }
 
     /**
@@ -143,8 +143,8 @@ public class AccountingSalesReceiptsUpdateRequest {
     }
 
     @JsonIgnore
-    public SalesReceiptInput salesReceipt() {
-        return salesReceipt;
+    public SalesReceiptUpdateInput salesReceiptUpdateInput() {
+        return salesReceiptUpdateInput;
     }
 
     public static Builder builder() {
@@ -260,9 +260,9 @@ public class AccountingSalesReceiptsUpdateRequest {
         return this;
     }
 
-    public AccountingSalesReceiptsUpdateRequest withSalesReceipt(SalesReceiptInput salesReceipt) {
-        Utils.checkNotNull(salesReceipt, "salesReceipt");
-        this.salesReceipt = salesReceipt;
+    public AccountingSalesReceiptsUpdateRequest withSalesReceiptUpdateInput(SalesReceiptUpdateInput salesReceiptUpdateInput) {
+        Utils.checkNotNull(salesReceiptUpdateInput, "salesReceiptUpdateInput");
+        this.salesReceiptUpdateInput = salesReceiptUpdateInput;
         return this;
     }
 
@@ -282,7 +282,7 @@ public class AccountingSalesReceiptsUpdateRequest {
             Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
             Utils.enhancedDeepEquals(this.raw, other.raw) &&
             Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
-            Utils.enhancedDeepEquals(this.salesReceipt, other.salesReceipt);
+            Utils.enhancedDeepEquals(this.salesReceiptUpdateInput, other.salesReceiptUpdateInput);
     }
     
     @Override
@@ -290,7 +290,7 @@ public class AccountingSalesReceiptsUpdateRequest {
         return Utils.enhancedHash(
             id, consumerId, appId,
             serviceId, raw, companyId,
-            salesReceipt);
+            salesReceiptUpdateInput);
     }
     
     @Override
@@ -302,7 +302,7 @@ public class AccountingSalesReceiptsUpdateRequest {
                 "serviceId", serviceId,
                 "raw", raw,
                 "companyId", companyId,
-                "salesReceipt", salesReceipt);
+                "salesReceiptUpdateInput", salesReceiptUpdateInput);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -320,7 +320,7 @@ public class AccountingSalesReceiptsUpdateRequest {
 
         private Optional<String> companyId = Optional.empty();
 
-        private SalesReceiptInput salesReceipt;
+        private SalesReceiptUpdateInput salesReceiptUpdateInput;
 
         private Builder() {
           // force use of static builder() method
@@ -436,9 +436,9 @@ public class AccountingSalesReceiptsUpdateRequest {
         }
 
 
-        public Builder salesReceipt(SalesReceiptInput salesReceipt) {
-            Utils.checkNotNull(salesReceipt, "salesReceipt");
-            this.salesReceipt = salesReceipt;
+        public Builder salesReceiptUpdateInput(SalesReceiptUpdateInput salesReceiptUpdateInput) {
+            Utils.checkNotNull(salesReceiptUpdateInput, "salesReceiptUpdateInput");
+            this.salesReceiptUpdateInput = salesReceiptUpdateInput;
             return this;
         }
 
@@ -450,7 +450,7 @@ public class AccountingSalesReceiptsUpdateRequest {
             return new AccountingSalesReceiptsUpdateRequest(
                 id, consumerId, appId,
                 serviceId, raw, companyId,
-                salesReceipt);
+                salesReceiptUpdateInput);
         }
 
 

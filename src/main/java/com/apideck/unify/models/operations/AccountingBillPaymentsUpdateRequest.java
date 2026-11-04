@@ -3,7 +3,7 @@
  */
 package com.apideck.unify.models.operations;
 
-import com.apideck.unify.models.components.BillPaymentInput;
+import com.apideck.unify.models.components.BillPaymentUpdateInput;
 import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
@@ -50,7 +50,7 @@ public class AccountingBillPaymentsUpdateRequest {
 
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private BillPaymentInput billPayment;
+    private BillPaymentUpdateInput billPaymentUpdateInput;
 
     @JsonCreator
     public AccountingBillPaymentsUpdateRequest(
@@ -59,26 +59,26 @@ public class AccountingBillPaymentsUpdateRequest {
             Optional<String> appId,
             Optional<String> serviceId,
             Optional<Boolean> raw,
-            BillPaymentInput billPayment) {
+            BillPaymentUpdateInput billPaymentUpdateInput) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(serviceId, "serviceId");
         Utils.checkNotNull(raw, "raw");
-        Utils.checkNotNull(billPayment, "billPayment");
+        Utils.checkNotNull(billPaymentUpdateInput, "billPaymentUpdateInput");
         this.id = id;
         this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
         this.raw = raw;
-        this.billPayment = billPayment;
+        this.billPaymentUpdateInput = billPaymentUpdateInput;
     }
     
     public AccountingBillPaymentsUpdateRequest(
             String id,
-            BillPaymentInput billPayment) {
+            BillPaymentUpdateInput billPaymentUpdateInput) {
         this(id, Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), billPayment);
+            Optional.empty(), Optional.empty(), billPaymentUpdateInput);
     }
 
     /**
@@ -123,8 +123,8 @@ public class AccountingBillPaymentsUpdateRequest {
     }
 
     @JsonIgnore
-    public BillPaymentInput billPayment() {
-        return billPayment;
+    public BillPaymentUpdateInput billPaymentUpdateInput() {
+        return billPaymentUpdateInput;
     }
 
     public static Builder builder() {
@@ -219,9 +219,9 @@ public class AccountingBillPaymentsUpdateRequest {
         return this;
     }
 
-    public AccountingBillPaymentsUpdateRequest withBillPayment(BillPaymentInput billPayment) {
-        Utils.checkNotNull(billPayment, "billPayment");
-        this.billPayment = billPayment;
+    public AccountingBillPaymentsUpdateRequest withBillPaymentUpdateInput(BillPaymentUpdateInput billPaymentUpdateInput) {
+        Utils.checkNotNull(billPaymentUpdateInput, "billPaymentUpdateInput");
+        this.billPaymentUpdateInput = billPaymentUpdateInput;
         return this;
     }
 
@@ -240,14 +240,14 @@ public class AccountingBillPaymentsUpdateRequest {
             Utils.enhancedDeepEquals(this.appId, other.appId) &&
             Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
             Utils.enhancedDeepEquals(this.raw, other.raw) &&
-            Utils.enhancedDeepEquals(this.billPayment, other.billPayment);
+            Utils.enhancedDeepEquals(this.billPaymentUpdateInput, other.billPaymentUpdateInput);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             id, consumerId, appId,
-            serviceId, raw, billPayment);
+            serviceId, raw, billPaymentUpdateInput);
     }
     
     @Override
@@ -258,7 +258,7 @@ public class AccountingBillPaymentsUpdateRequest {
                 "appId", appId,
                 "serviceId", serviceId,
                 "raw", raw,
-                "billPayment", billPayment);
+                "billPaymentUpdateInput", billPaymentUpdateInput);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -274,7 +274,7 @@ public class AccountingBillPaymentsUpdateRequest {
 
         private Optional<Boolean> raw;
 
-        private BillPaymentInput billPayment;
+        private BillPaymentUpdateInput billPaymentUpdateInput;
 
         private Builder() {
           // force use of static builder() method
@@ -369,9 +369,9 @@ public class AccountingBillPaymentsUpdateRequest {
         }
 
 
-        public Builder billPayment(BillPaymentInput billPayment) {
-            Utils.checkNotNull(billPayment, "billPayment");
-            this.billPayment = billPayment;
+        public Builder billPaymentUpdateInput(BillPaymentUpdateInput billPaymentUpdateInput) {
+            Utils.checkNotNull(billPaymentUpdateInput, "billPaymentUpdateInput");
+            this.billPaymentUpdateInput = billPaymentUpdateInput;
             return this;
         }
 
@@ -382,7 +382,7 @@ public class AccountingBillPaymentsUpdateRequest {
 
             return new AccountingBillPaymentsUpdateRequest(
                 id, consumerId, appId,
-                serviceId, raw, billPayment);
+                serviceId, raw, billPaymentUpdateInput);
         }
 
 

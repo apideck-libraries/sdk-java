@@ -137,7 +137,7 @@ public class AccountingCreditNotesUpdate {
                     typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
-                    "creditNote",
+                    "creditNoteUpdateInput",
                     "json",
                     false);
             if (serializedRequestBody == null) {

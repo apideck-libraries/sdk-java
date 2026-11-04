@@ -137,7 +137,7 @@ public class AccountingExpensesUpdate {
                     typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
-                    "expense",
+                    "expenseUpdateInput",
                     "json",
                     false);
             if (serializedRequestBody == null) {

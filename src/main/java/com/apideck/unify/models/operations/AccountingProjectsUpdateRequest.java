@@ -3,7 +3,7 @@
  */
 package com.apideck.unify.models.operations;
 
-import com.apideck.unify.models.components.ProjectInput;
+import com.apideck.unify.models.components.ProjectUpdateInput;
 import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
@@ -57,7 +57,7 @@ public class AccountingProjectsUpdateRequest {
 
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private ProjectInput project;
+    private ProjectUpdateInput projectUpdateInput;
 
     @JsonCreator
     public AccountingProjectsUpdateRequest(
@@ -67,29 +67,29 @@ public class AccountingProjectsUpdateRequest {
             Optional<String> serviceId,
             Optional<String> companyId,
             Optional<Boolean> raw,
-            ProjectInput project) {
+            ProjectUpdateInput projectUpdateInput) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(serviceId, "serviceId");
         Utils.checkNotNull(companyId, "companyId");
         Utils.checkNotNull(raw, "raw");
-        Utils.checkNotNull(project, "project");
+        Utils.checkNotNull(projectUpdateInput, "projectUpdateInput");
         this.id = id;
         this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
         this.companyId = companyId;
         this.raw = raw;
-        this.project = project;
+        this.projectUpdateInput = projectUpdateInput;
     }
     
     public AccountingProjectsUpdateRequest(
             String id,
-            ProjectInput project) {
+            ProjectUpdateInput projectUpdateInput) {
         this(id, Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            project);
+            projectUpdateInput);
     }
 
     /**
@@ -143,8 +143,8 @@ public class AccountingProjectsUpdateRequest {
     }
 
     @JsonIgnore
-    public ProjectInput project() {
-        return project;
+    public ProjectUpdateInput projectUpdateInput() {
+        return projectUpdateInput;
     }
 
     public static Builder builder() {
@@ -260,9 +260,9 @@ public class AccountingProjectsUpdateRequest {
         return this;
     }
 
-    public AccountingProjectsUpdateRequest withProject(ProjectInput project) {
-        Utils.checkNotNull(project, "project");
-        this.project = project;
+    public AccountingProjectsUpdateRequest withProjectUpdateInput(ProjectUpdateInput projectUpdateInput) {
+        Utils.checkNotNull(projectUpdateInput, "projectUpdateInput");
+        this.projectUpdateInput = projectUpdateInput;
         return this;
     }
 
@@ -282,7 +282,7 @@ public class AccountingProjectsUpdateRequest {
             Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
             Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
             Utils.enhancedDeepEquals(this.raw, other.raw) &&
-            Utils.enhancedDeepEquals(this.project, other.project);
+            Utils.enhancedDeepEquals(this.projectUpdateInput, other.projectUpdateInput);
     }
     
     @Override
@@ -290,7 +290,7 @@ public class AccountingProjectsUpdateRequest {
         return Utils.enhancedHash(
             id, consumerId, appId,
             serviceId, companyId, raw,
-            project);
+            projectUpdateInput);
     }
     
     @Override
@@ -302,7 +302,7 @@ public class AccountingProjectsUpdateRequest {
                 "serviceId", serviceId,
                 "companyId", companyId,
                 "raw", raw,
-                "project", project);
+                "projectUpdateInput", projectUpdateInput);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -320,7 +320,7 @@ public class AccountingProjectsUpdateRequest {
 
         private Optional<Boolean> raw;
 
-        private ProjectInput project;
+        private ProjectUpdateInput projectUpdateInput;
 
         private Builder() {
           // force use of static builder() method
@@ -436,9 +436,9 @@ public class AccountingProjectsUpdateRequest {
         }
 
 
-        public Builder project(ProjectInput project) {
-            Utils.checkNotNull(project, "project");
-            this.project = project;
+        public Builder projectUpdateInput(ProjectUpdateInput projectUpdateInput) {
+            Utils.checkNotNull(projectUpdateInput, "projectUpdateInput");
+            this.projectUpdateInput = projectUpdateInput;
             return this;
         }
 
@@ -450,7 +450,7 @@ public class AccountingProjectsUpdateRequest {
             return new AccountingProjectsUpdateRequest(
                 id, consumerId, appId,
                 serviceId, companyId, raw,
-                project);
+                projectUpdateInput);
         }
 
 

@@ -45,8 +45,8 @@ public class WebhookSupport {
 
     /**
      * Service IDs of connectors that receive events from this connector's webhook URL when the URL's own
-     * connector has no connection for the event. Connectors listed here must use the same webhook event
-     * mapping.
+     * connector has no callable connection for the event. Connectors listed here must use the same webhook
+     * event mapping.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("shared_with")
@@ -112,8 +112,8 @@ public class WebhookSupport {
 
     /**
      * Service IDs of connectors that receive events from this connector's webhook URL when the URL's own
-     * connector has no connection for the event. Connectors listed here must use the same webhook event
-     * mapping.
+     * connector has no callable connection for the event. Connectors listed here must use the same webhook
+     * event mapping.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -194,8 +194,8 @@ public class WebhookSupport {
 
     /**
      * Service IDs of connectors that receive events from this connector's webhook URL when the URL's own
-     * connector has no connection for the event. Connectors listed here must use the same webhook event
-     * mapping.
+     * connector has no callable connection for the event. Connectors listed here must use the same webhook
+     * event mapping.
      */
     public WebhookSupport withSharedWith(List<String> sharedWith) {
         Utils.checkNotNull(sharedWith, "sharedWith");
@@ -206,8 +206,8 @@ public class WebhookSupport {
 
     /**
      * Service IDs of connectors that receive events from this connector's webhook URL when the URL's own
-     * connector has no connection for the event. Connectors listed here must use the same webhook event
-     * mapping.
+     * connector has no callable connection for the event. Connectors listed here must use the same webhook
+     * event mapping.
      */
     public WebhookSupport withSharedWith(Optional<? extends List<String>> sharedWith) {
         Utils.checkNotNull(sharedWith, "sharedWith");
@@ -345,8 +345,8 @@ public class WebhookSupport {
 
         /**
          * Service IDs of connectors that receive events from this connector's webhook URL when the URL's own
-         * connector has no connection for the event. Connectors listed here must use the same webhook event
-         * mapping.
+         * connector has no callable connection for the event. Connectors listed here must use the same webhook
+         * event mapping.
          */
         public Builder sharedWith(List<String> sharedWith) {
             Utils.checkNotNull(sharedWith, "sharedWith");
@@ -356,8 +356,8 @@ public class WebhookSupport {
 
         /**
          * Service IDs of connectors that receive events from this connector's webhook URL when the URL's own
-         * connector has no connection for the event. Connectors listed here must use the same webhook event
-         * mapping.
+         * connector has no callable connection for the event. Connectors listed here must use the same webhook
+         * event mapping.
          */
         public Builder sharedWith(Optional<? extends List<String>> sharedWith) {
             Utils.checkNotNull(sharedWith, "sharedWith");

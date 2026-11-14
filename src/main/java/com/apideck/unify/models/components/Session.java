@@ -27,7 +27,11 @@ public class Session {
     private Optional<? extends ConsumerMetadata> consumerMetadata;
 
     /**
-     * The URL to redirect the user to after the session has been configured.
+     * The URL to redirect the user to after the session has been configured. When your application's OAuth
+     * protection mode is `enforced`, this value must match one of the application's allowed redirect URLs
+     * or redirect URIs (the Hosted Vault callback page is always allowed, and the integration page when
+     * its query is empty or a single registered `redirectToAppUrl`); an unregistered value is rejected
+     * with a 400 `RequestValidationError` and no session is created.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("redirect_uri")
@@ -89,7 +93,11 @@ public class Session {
     }
 
     /**
-     * The URL to redirect the user to after the session has been configured.
+     * The URL to redirect the user to after the session has been configured. When your application's OAuth
+     * protection mode is `enforced`, this value must match one of the application's allowed redirect URLs
+     * or redirect URIs (the Hosted Vault callback page is always allowed, and the integration page when
+     * its query is empty or a single registered `redirectToAppUrl`); an unregistered value is rejected
+     * with a 400 `RequestValidationError` and no session is created.
      */
     @JsonIgnore
     public Optional<String> redirectUri() {
@@ -150,7 +158,11 @@ public class Session {
     }
 
     /**
-     * The URL to redirect the user to after the session has been configured.
+     * The URL to redirect the user to after the session has been configured. When your application's OAuth
+     * protection mode is `enforced`, this value must match one of the application's allowed redirect URLs
+     * or redirect URIs (the Hosted Vault callback page is always allowed, and the integration page when
+     * its query is empty or a single registered `redirectToAppUrl`); an unregistered value is rejected
+     * with a 400 `RequestValidationError` and no session is created.
      */
     public Session withRedirectUri(String redirectUri) {
         Utils.checkNotNull(redirectUri, "redirectUri");
@@ -160,7 +172,11 @@ public class Session {
 
 
     /**
-     * The URL to redirect the user to after the session has been configured.
+     * The URL to redirect the user to after the session has been configured. When your application's OAuth
+     * protection mode is `enforced`, this value must match one of the application's allowed redirect URLs
+     * or redirect URIs (the Hosted Vault callback page is always allowed, and the integration page when
+     * its query is empty or a single registered `redirectToAppUrl`); an unregistered value is rejected
+     * with a 400 `RequestValidationError` and no session is created.
      */
     public Session withRedirectUri(Optional<String> redirectUri) {
         Utils.checkNotNull(redirectUri, "redirectUri");
@@ -299,7 +315,11 @@ public class Session {
 
 
         /**
-         * The URL to redirect the user to after the session has been configured.
+         * The URL to redirect the user to after the session has been configured. When your application's OAuth
+         * protection mode is `enforced`, this value must match one of the application's allowed redirect URLs
+         * or redirect URIs (the Hosted Vault callback page is always allowed, and the integration page when
+         * its query is empty or a single registered `redirectToAppUrl`); an unregistered value is rejected
+         * with a 400 `RequestValidationError` and no session is created.
          */
         public Builder redirectUri(String redirectUri) {
             Utils.checkNotNull(redirectUri, "redirectUri");
@@ -308,7 +328,11 @@ public class Session {
         }
 
         /**
-         * The URL to redirect the user to after the session has been configured.
+         * The URL to redirect the user to after the session has been configured. When your application's OAuth
+         * protection mode is `enforced`, this value must match one of the application's allowed redirect URLs
+         * or redirect URIs (the Hosted Vault callback page is always allowed, and the integration page when
+         * its query is empty or a single registered `redirectToAppUrl`); an unregistered value is rejected
+         * with a 400 `RequestValidationError` and no session is created.
          */
         public Builder redirectUri(Optional<String> redirectUri) {
             Utils.checkNotNull(redirectUri, "redirectUri");

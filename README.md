@@ -51,7 +51,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.apideck:unify:0.55.0'
+implementation 'com.apideck:unify:0.56.0'
 ```
 
 Maven:
@@ -59,7 +59,7 @@ Maven:
 <dependency>
     <groupId>com.apideck</groupId>
     <artifactId>unify</artifactId>
-    <version>0.55.0</version>
+    <version>0.56.0</version>
 </dependency>
 ```
 
@@ -96,7 +96,7 @@ import java.util.Map;
 
 public class Application {
 
-    public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
+    public static void main(String[] args) throws Exception {
 
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
@@ -838,6 +838,7 @@ For full model-specific examples (including Java 11/16/21 variants), see each un
 * [imports](docs/sdks/connections/README.md#imports) - Import connection
 * [migrate](docs/sdks/connections/README.md#migrate) - Migrate connection
 * [token](docs/sdks/connections/README.md#token) - Authorize Access Token
+* [confirm](docs/sdks/connections/README.md#confirm) - Confirm Connection
 
 ### [Vault.ConnectionSettings](docs/sdks/connectionsettings/README.md)
 
@@ -913,7 +914,7 @@ import java.util.Map;
 
 public class Application {
 
-    public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
+    public static void main(String[] args) throws Exception {
 
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
@@ -1037,7 +1038,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Application {
 
-    public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
+    public static void main(String[] args) throws Exception {
 
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
@@ -1098,7 +1099,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Application {
 
-    public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
+    public static void main(String[] args) throws Exception {
 
         Apideck sdk = Apideck.builder()
                 .retryConfig(RetryConfig.builder()
@@ -1178,7 +1179,7 @@ import java.util.Optional;
 
 public class Application {
 
-    public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
+    public static void main(String[] args) throws Exception {
 
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
@@ -1254,6 +1255,7 @@ public class Application {
   * [`com.apideck.unify.models.errors.NotFoundResponse`](./src/main/java/models/errors/com.apideck.unify.models.errors.NotFoundResponse.java): The specified resource was not found. Status code `404`. *
   * [`com.apideck.unify.models.errors.BadRequestResponse`](./src/main/java/models/errors/com.apideck.unify.models.errors.BadRequestResponse.java): Bad Request. Status code `400`. *
   * [`com.apideck.unify.models.errors.UnprocessableResponse`](./src/main/java/models/errors/com.apideck.unify.models.errors.UnprocessableResponse.java): Unprocessable. Status code `422`. *
+  * [`com.apideck.unify.models.errors.MethodNotAllowedResponse`](./src/main/java/models/errors/com.apideck.unify.models.errors.MethodNotAllowedResponse.java): The connector cannot serve this operation. No request was sent to the connector, and retrying will not help. The `Allow` header lists the methods the connector does serve on the same URL. Status code `405`. *
 
 <details><summary>Less common errors (8)</summary>
 
@@ -1265,8 +1267,8 @@ public class Application {
 many more subclasses in the JDK platform).
 
 **Inherit from [`ApideckError`](./src/main/java/models/errors/ApideckError.java)**:
-* [`com.apideck.unify.models.errors.Unauthorized`](./src/main/java/models/errors/com.apideck.unify.models.errors.Unauthorized.java): Unauthorized. Status code `401`. Applicable to 6 of 381 methods.*
-* [`com.apideck.unify.models.errors.ConflictResponse`](./src/main/java/models/errors/com.apideck.unify.models.errors.ConflictResponse.java): Conflict — a connection already exists for the target connector. Status code `409`. Applicable to 1 of 381 methods.*
+* [`com.apideck.unify.models.errors.Unauthorized`](./src/main/java/models/errors/com.apideck.unify.models.errors.Unauthorized.java): Unauthorized. Status code `401`. Applicable to 6 of 382 methods.*
+* [`com.apideck.unify.models.errors.ConflictResponse`](./src/main/java/models/errors/com.apideck.unify.models.errors.ConflictResponse.java): Conflict — a connection already exists for the target connector. Status code `409`. Applicable to 1 of 382 methods.*
 
 
 </details>
@@ -1293,7 +1295,7 @@ import java.util.Map;
 
 public class Application {
 
-    public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
+    public static void main(String[] args) throws Exception {
 
         Apideck sdk = Apideck.builder()
                 .serverURL("https://unify.apideck.com")
@@ -1344,7 +1346,7 @@ import java.nio.charset.StandardCharsets;
 
 public class Application {
 
-    public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
+    public static void main(String[] args) throws Exception {
 
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
@@ -1461,7 +1463,7 @@ import java.util.Map;
 
 public class Application {
 
-    public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
+    public static void main(String[] args) throws Exception {
 
         Apideck sdk = Apideck.builder()
                 .apiKey(System.getenv().getOrDefault("API_KEY", ""))

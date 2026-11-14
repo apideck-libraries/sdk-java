@@ -12,7 +12,7 @@ import java.util.Map;
 
 public class Application {
 
-    public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
+    public static void main(String[] args) throws Exception {
 
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")

@@ -11,6 +11,7 @@
 * [imports](#imports) - Import connection
 * [migrate](#migrate) - Migrate connection
 * [token](#token) - Authorize Access Token
+* [confirm](#confirm) - Confirm Connection
 
 ## list
 
@@ -568,6 +569,95 @@ public class Application {
 ### Response
 
 **[VaultConnectionsTokenResponse](../../models/operations/VaultConnectionsTokenResponse.md)**
+
+### Errors
+
+| Error Type                            | Status Code                           | Content Type                          |
+| ------------------------------------- | ------------------------------------- | ------------------------------------- |
+| models/errors/BadRequestResponse      | 400                                   | application/json                      |
+| models/errors/UnauthorizedResponse    | 401                                   | application/json                      |
+| models/errors/PaymentRequiredResponse | 402                                   | application/json                      |
+| models/errors/NotFoundResponse        | 404                                   | application/json                      |
+| models/errors/UnprocessableResponse   | 422                                   | application/json                      |
+| models/errors/APIException            | 4XX, 5XX                              | \*/\*                                 |
+
+## confirm
+
+Confirms an OAuth connection after the callback by redeeming its confirm token.
+
+The confirm step is required when your application's OAuth protection mode was `enforced` when the
+authorization flow started. In that case Vault completes the OAuth exchange but leaves the connection
+**unconfirmed** and not callable, and the callback redirects to your `redirect_uri` with a hash
+fragment containing a `confirm_token`, the `service_id` and the `unified_api`, plus the `nonce` when
+the authorize request included one and the `target_origin` when it included an `opener_origin`:
+`#confirm_token=<token>&service_id=<service_id>&unified_api=<unified_api>&nonce=<nonce>&target_origin=<origin>`.
+Call this endpoint with that `confirm_token` to confirm the connection and make it callable.
+
+The `confirm_token` is single use and expires 30 minutes after the callback. Only confirm tokens are
+accepted; other tokens (such as an authorize `state`) are rejected. In the `off`
+protection mode there is no confirm step: the connection is callable immediately after the
+callback and no `confirm_token` is issued.
+
+Authenticate in one of two ways:
+
+- With the Vault session JWT as the bearer token (`Authorization: Bearer <session token>`) and the
+  `x-apideck-auth-type: JWT` header, as Hosted Vault and Vault JS do. The application and consumer
+  are taken from the session.
+- With your API key (`Authorization: Bearer <API key>`) plus the `x-apideck-app-id` and
+  `x-apideck-consumer-id` headers, from your backend.
+
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="vault.connectionsConfirm" method="post" path="/vault/connections/{unified_api}/{service_id}/confirm" -->
+```java
+package hello.world;
+
+import com.apideck.unify.Apideck;
+import com.apideck.unify.models.components.ConfirmConnection;
+import com.apideck.unify.models.errors.*;
+import com.apideck.unify.models.operations.VaultConnectionsConfirmRequest;
+import com.apideck.unify.models.operations.VaultConnectionsConfirmResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
+
+        Apideck sdk = Apideck.builder()
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+            .build();
+
+        VaultConnectionsConfirmRequest req = VaultConnectionsConfirmRequest.builder()
+                .serviceId("pipedrive")
+                .unifiedApi("crm")
+                .confirmConnection(ConfirmConnection.builder()
+                    .confirmToken("550e8400-e29b-41d4-a716-446655440000")
+                    .build())
+                .build();
+
+        VaultConnectionsConfirmResponse res = sdk.vault().connections().confirm()
+                .request(req)
+                .call();
+
+        if (res.confirmConnectionResponse().isPresent()) {
+            System.out.println(res.confirmConnectionResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                   | Type                                                                                        | Required                                                                                    | Description                                                                                 |
+| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `request`                                                                                   | [VaultConnectionsConfirmRequest](../../models/operations/VaultConnectionsConfirmRequest.md) | :heavy_check_mark:                                                                          | The request object to use for the request.                                                  |
+
+### Response
+
+**[VaultConnectionsConfirmResponse](../../models/operations/VaultConnectionsConfirmResponse.md)**
 
 ### Errors
 

@@ -29,7 +29,7 @@ import java.util.Map;
 
 public class Application {
 
-    public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
+    public static void main(String[] args) throws Exception {
 
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
@@ -67,14 +67,15 @@ public class Application {
 
 ### Errors
 
-| Error Type                            | Status Code                           | Content Type                          |
-| ------------------------------------- | ------------------------------------- | ------------------------------------- |
-| models/errors/BadRequestResponse      | 400                                   | application/json                      |
-| models/errors/UnauthorizedResponse    | 401                                   | application/json                      |
-| models/errors/PaymentRequiredResponse | 402                                   | application/json                      |
-| models/errors/NotFoundResponse        | 404                                   | application/json                      |
-| models/errors/UnprocessableResponse   | 422                                   | application/json                      |
-| models/errors/APIException            | 4XX, 5XX                              | \*/\*                                 |
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| models/errors/BadRequestResponse       | 400                                    | application/json                       |
+| models/errors/UnauthorizedResponse     | 401                                    | application/json                       |
+| models/errors/PaymentRequiredResponse  | 402                                    | application/json                       |
+| models/errors/NotFoundResponse         | 404                                    | application/json                       |
+| models/errors/MethodNotAllowedResponse | 405                                    | application/json                       |
+| models/errors/UnprocessableResponse    | 422                                    | application/json                       |
+| models/errors/APIException             | 4XX, 5XX                               | \*/\*                                  |
 
 ## create
 
@@ -97,7 +98,7 @@ import java.util.Map;
 
 public class Application {
 
-    public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
+    public static void main(String[] args) throws Exception {
 
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
@@ -149,14 +150,15 @@ public class Application {
 
 ### Errors
 
-| Error Type                            | Status Code                           | Content Type                          |
-| ------------------------------------- | ------------------------------------- | ------------------------------------- |
-| models/errors/BadRequestResponse      | 400                                   | application/json                      |
-| models/errors/UnauthorizedResponse    | 401                                   | application/json                      |
-| models/errors/PaymentRequiredResponse | 402                                   | application/json                      |
-| models/errors/NotFoundResponse        | 404                                   | application/json                      |
-| models/errors/UnprocessableResponse   | 422                                   | application/json                      |
-| models/errors/APIException            | 4XX, 5XX                              | \*/\*                                 |
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| models/errors/BadRequestResponse       | 400                                    | application/json                       |
+| models/errors/UnauthorizedResponse     | 401                                    | application/json                       |
+| models/errors/PaymentRequiredResponse  | 402                                    | application/json                       |
+| models/errors/NotFoundResponse         | 404                                    | application/json                       |
+| models/errors/MethodNotAllowedResponse | 405                                    | application/json                       |
+| models/errors/UnprocessableResponse    | 422                                    | application/json                       |
+| models/errors/APIException             | 4XX, 5XX                               | \*/\*                                  |
 
 ## get
 
@@ -176,7 +178,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
+    public static void main(String[] args) throws Exception {
 
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
@@ -213,14 +215,15 @@ public class Application {
 
 ### Errors
 
-| Error Type                            | Status Code                           | Content Type                          |
-| ------------------------------------- | ------------------------------------- | ------------------------------------- |
-| models/errors/BadRequestResponse      | 400                                   | application/json                      |
-| models/errors/UnauthorizedResponse    | 401                                   | application/json                      |
-| models/errors/PaymentRequiredResponse | 402                                   | application/json                      |
-| models/errors/NotFoundResponse        | 404                                   | application/json                      |
-| models/errors/UnprocessableResponse   | 422                                   | application/json                      |
-| models/errors/APIException            | 4XX, 5XX                              | \*/\*                                 |
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| models/errors/BadRequestResponse       | 400                                    | application/json                       |
+| models/errors/UnauthorizedResponse     | 401                                    | application/json                       |
+| models/errors/PaymentRequiredResponse  | 402                                    | application/json                       |
+| models/errors/NotFoundResponse         | 404                                    | application/json                       |
+| models/errors/MethodNotAllowedResponse | 405                                    | application/json                       |
+| models/errors/UnprocessableResponse    | 422                                    | application/json                       |
+| models/errors/APIException             | 4XX, 5XX                               | \*/\*                                  |
 
 ## update
 
@@ -243,7 +246,7 @@ import java.util.Map;
 
 public class Application {
 
-    public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
+    public static void main(String[] args) throws Exception {
 
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
@@ -296,14 +299,15 @@ public class Application {
 
 ### Errors
 
-| Error Type                            | Status Code                           | Content Type                          |
-| ------------------------------------- | ------------------------------------- | ------------------------------------- |
-| models/errors/BadRequestResponse      | 400                                   | application/json                      |
-| models/errors/UnauthorizedResponse    | 401                                   | application/json                      |
-| models/errors/PaymentRequiredResponse | 402                                   | application/json                      |
-| models/errors/NotFoundResponse        | 404                                   | application/json                      |
-| models/errors/UnprocessableResponse   | 422                                   | application/json                      |
-| models/errors/APIException            | 4XX, 5XX                              | \*/\*                                 |
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| models/errors/BadRequestResponse       | 400                                    | application/json                       |
+| models/errors/UnauthorizedResponse     | 401                                    | application/json                       |
+| models/errors/PaymentRequiredResponse  | 402                                    | application/json                       |
+| models/errors/NotFoundResponse         | 404                                    | application/json                       |
+| models/errors/MethodNotAllowedResponse | 405                                    | application/json                       |
+| models/errors/UnprocessableResponse    | 422                                    | application/json                       |
+| models/errors/APIException             | 4XX, 5XX                               | \*/\*                                  |
 
 ## delete
 
@@ -323,7 +327,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
+    public static void main(String[] args) throws Exception {
 
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
@@ -359,11 +363,12 @@ public class Application {
 
 ### Errors
 
-| Error Type                            | Status Code                           | Content Type                          |
-| ------------------------------------- | ------------------------------------- | ------------------------------------- |
-| models/errors/BadRequestResponse      | 400                                   | application/json                      |
-| models/errors/UnauthorizedResponse    | 401                                   | application/json                      |
-| models/errors/PaymentRequiredResponse | 402                                   | application/json                      |
-| models/errors/NotFoundResponse        | 404                                   | application/json                      |
-| models/errors/UnprocessableResponse   | 422                                   | application/json                      |
-| models/errors/APIException            | 4XX, 5XX                              | \*/\*                                 |
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| models/errors/BadRequestResponse       | 400                                    | application/json                       |
+| models/errors/UnauthorizedResponse     | 401                                    | application/json                       |
+| models/errors/PaymentRequiredResponse  | 402                                    | application/json                       |
+| models/errors/NotFoundResponse         | 404                                    | application/json                       |
+| models/errors/MethodNotAllowedResponse | 405                                    | application/json                       |
+| models/errors/UnprocessableResponse    | 422                                    | application/json                       |
+| models/errors/APIException             | 4XX, 5XX                               | \*/\*                                  |

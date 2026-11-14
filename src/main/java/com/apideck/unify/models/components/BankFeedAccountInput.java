@@ -13,6 +13,7 @@ import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -83,6 +84,14 @@ public class BankFeedAccountInput {
     private JsonNullable<Double> availableBalance;
 
     /**
+     * When `balance` was true, as an ISO 8601 date-time with a UTC offset. Connectors that record it stamp
+     * the time they received the balance when it is omitted.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("balance_as_of")
+    private JsonNullable<OffsetDateTime> balanceAsOf;
+
+    /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO
      * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
@@ -116,29 +125,32 @@ public class BankFeedAccountInput {
     private JsonNullable<String> country;
 
     /**
-     * The people or businesses that hold the source bank account. Optional; `plaid-exchange` requires at
-     * least one.
+     * The people or businesses that hold the source bank account. Optional; `intuit-bank-feeds` and
+     * `plaid-exchange` require at least one.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("account_holders")
     private Optional<? extends List<BankFeedAccountHolder>> accountHolders;
 
     /**
-     * Email addresses of the account holders. Optional; `plaid-exchange` requires at least one.
+     * Email addresses of the account holders. Optional; `intuit-bank-feeds` and `plaid-exchange` require
+     * at least one.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("emails")
     private Optional<? extends List<Email>> emails;
 
     /**
-     * Addresses of the account holders. Optional; `plaid-exchange` requires at least one.
+     * Addresses of the account holders. Optional; `intuit-bank-feeds` and `plaid-exchange` require at
+     * least one.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("addresses")
     private Optional<? extends List<Address>> addresses;
 
     /**
-     * Phone numbers of the account holders. Optional; `plaid-exchange` requires at least one.
+     * Phone numbers of the account holders. Optional; `intuit-bank-feeds` and `plaid-exchange` require at
+     * least one.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("phone_numbers")
@@ -160,6 +172,7 @@ public class BankFeedAccountInput {
             @JsonProperty("target_account_number") Optional<String> targetAccountNumber,
             @JsonProperty("balance") JsonNullable<Double> balance,
             @JsonProperty("available_balance") JsonNullable<Double> availableBalance,
+            @JsonProperty("balance_as_of") JsonNullable<OffsetDateTime> balanceAsOf,
             @JsonProperty("currency") JsonNullable<? extends Currency> currency,
             @JsonProperty("feed_status") Optional<? extends FeedStatus> feedStatus,
             @JsonProperty("status") Optional<? extends BankFeedAccountStatus> status,
@@ -178,6 +191,7 @@ public class BankFeedAccountInput {
         Utils.checkNotNull(targetAccountNumber, "targetAccountNumber");
         Utils.checkNotNull(balance, "balance");
         Utils.checkNotNull(availableBalance, "availableBalance");
+        Utils.checkNotNull(balanceAsOf, "balanceAsOf");
         Utils.checkNotNull(currency, "currency");
         Utils.checkNotNull(feedStatus, "feedStatus");
         Utils.checkNotNull(status, "status");
@@ -196,6 +210,7 @@ public class BankFeedAccountInput {
         this.targetAccountNumber = targetAccountNumber;
         this.balance = balance;
         this.availableBalance = availableBalance;
+        this.balanceAsOf = balanceAsOf;
         this.currency = currency;
         this.feedStatus = feedStatus;
         this.status = status;
@@ -211,9 +226,10 @@ public class BankFeedAccountInput {
         this(Optional.empty(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), Optional.empty(), Optional.empty(),
             Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty());
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -290,6 +306,15 @@ public class BankFeedAccountInput {
     }
 
     /**
+     * When `balance` was true, as an ISO 8601 date-time with a UTC offset. Connectors that record it stamp
+     * the time they received the balance when it is omitted.
+     */
+    @JsonIgnore
+    public JsonNullable<OffsetDateTime> balanceAsOf() {
+        return balanceAsOf;
+    }
+
+    /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO
      * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
@@ -330,8 +355,8 @@ public class BankFeedAccountInput {
     }
 
     /**
-     * The people or businesses that hold the source bank account. Optional; `plaid-exchange` requires at
-     * least one.
+     * The people or businesses that hold the source bank account. Optional; `intuit-bank-feeds` and
+     * `plaid-exchange` require at least one.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -340,7 +365,8 @@ public class BankFeedAccountInput {
     }
 
     /**
-     * Email addresses of the account holders. Optional; `plaid-exchange` requires at least one.
+     * Email addresses of the account holders. Optional; `intuit-bank-feeds` and `plaid-exchange` require
+     * at least one.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -349,7 +375,8 @@ public class BankFeedAccountInput {
     }
 
     /**
-     * Addresses of the account holders. Optional; `plaid-exchange` requires at least one.
+     * Addresses of the account holders. Optional; `intuit-bank-feeds` and `plaid-exchange` require at
+     * least one.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -358,7 +385,8 @@ public class BankFeedAccountInput {
     }
 
     /**
-     * Phone numbers of the account holders. Optional; `plaid-exchange` requires at least one.
+     * Phone numbers of the account holders. Optional; `intuit-bank-feeds` and `plaid-exchange` require at
+     * least one.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -545,6 +573,26 @@ public class BankFeedAccountInput {
     }
 
     /**
+     * When `balance` was true, as an ISO 8601 date-time with a UTC offset. Connectors that record it stamp
+     * the time they received the balance when it is omitted.
+     */
+    public BankFeedAccountInput withBalanceAsOf(OffsetDateTime balanceAsOf) {
+        Utils.checkNotNull(balanceAsOf, "balanceAsOf");
+        this.balanceAsOf = JsonNullable.of(balanceAsOf);
+        return this;
+    }
+
+    /**
+     * When `balance` was true, as an ISO 8601 date-time with a UTC offset. Connectors that record it stamp
+     * the time they received the balance when it is omitted.
+     */
+    public BankFeedAccountInput withBalanceAsOf(JsonNullable<OffsetDateTime> balanceAsOf) {
+        Utils.checkNotNull(balanceAsOf, "balanceAsOf");
+        this.balanceAsOf = balanceAsOf;
+        return this;
+    }
+
+    /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO
      * 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
@@ -629,8 +677,8 @@ public class BankFeedAccountInput {
     }
 
     /**
-     * The people or businesses that hold the source bank account. Optional; `plaid-exchange` requires at
-     * least one.
+     * The people or businesses that hold the source bank account. Optional; `intuit-bank-feeds` and
+     * `plaid-exchange` require at least one.
      */
     public BankFeedAccountInput withAccountHolders(List<BankFeedAccountHolder> accountHolders) {
         Utils.checkNotNull(accountHolders, "accountHolders");
@@ -640,8 +688,8 @@ public class BankFeedAccountInput {
 
 
     /**
-     * The people or businesses that hold the source bank account. Optional; `plaid-exchange` requires at
-     * least one.
+     * The people or businesses that hold the source bank account. Optional; `intuit-bank-feeds` and
+     * `plaid-exchange` require at least one.
      */
     public BankFeedAccountInput withAccountHolders(Optional<? extends List<BankFeedAccountHolder>> accountHolders) {
         Utils.checkNotNull(accountHolders, "accountHolders");
@@ -650,7 +698,8 @@ public class BankFeedAccountInput {
     }
 
     /**
-     * Email addresses of the account holders. Optional; `plaid-exchange` requires at least one.
+     * Email addresses of the account holders. Optional; `intuit-bank-feeds` and `plaid-exchange` require
+     * at least one.
      */
     public BankFeedAccountInput withEmails(List<Email> emails) {
         Utils.checkNotNull(emails, "emails");
@@ -660,7 +709,8 @@ public class BankFeedAccountInput {
 
 
     /**
-     * Email addresses of the account holders. Optional; `plaid-exchange` requires at least one.
+     * Email addresses of the account holders. Optional; `intuit-bank-feeds` and `plaid-exchange` require
+     * at least one.
      */
     public BankFeedAccountInput withEmails(Optional<? extends List<Email>> emails) {
         Utils.checkNotNull(emails, "emails");
@@ -669,7 +719,8 @@ public class BankFeedAccountInput {
     }
 
     /**
-     * Addresses of the account holders. Optional; `plaid-exchange` requires at least one.
+     * Addresses of the account holders. Optional; `intuit-bank-feeds` and `plaid-exchange` require at
+     * least one.
      */
     public BankFeedAccountInput withAddresses(List<Address> addresses) {
         Utils.checkNotNull(addresses, "addresses");
@@ -679,7 +730,8 @@ public class BankFeedAccountInput {
 
 
     /**
-     * Addresses of the account holders. Optional; `plaid-exchange` requires at least one.
+     * Addresses of the account holders. Optional; `intuit-bank-feeds` and `plaid-exchange` require at
+     * least one.
      */
     public BankFeedAccountInput withAddresses(Optional<? extends List<Address>> addresses) {
         Utils.checkNotNull(addresses, "addresses");
@@ -688,7 +740,8 @@ public class BankFeedAccountInput {
     }
 
     /**
-     * Phone numbers of the account holders. Optional; `plaid-exchange` requires at least one.
+     * Phone numbers of the account holders. Optional; `intuit-bank-feeds` and `plaid-exchange` require at
+     * least one.
      */
     public BankFeedAccountInput withPhoneNumbers(List<PhoneNumber> phoneNumbers) {
         Utils.checkNotNull(phoneNumbers, "phoneNumbers");
@@ -698,7 +751,8 @@ public class BankFeedAccountInput {
 
 
     /**
-     * Phone numbers of the account holders. Optional; `plaid-exchange` requires at least one.
+     * Phone numbers of the account holders. Optional; `intuit-bank-feeds` and `plaid-exchange` require at
+     * least one.
      */
     public BankFeedAccountInput withPhoneNumbers(Optional<? extends List<PhoneNumber>> phoneNumbers) {
         Utils.checkNotNull(phoneNumbers, "phoneNumbers");
@@ -738,6 +792,7 @@ public class BankFeedAccountInput {
             Utils.enhancedDeepEquals(this.targetAccountNumber, other.targetAccountNumber) &&
             Utils.enhancedDeepEquals(this.balance, other.balance) &&
             Utils.enhancedDeepEquals(this.availableBalance, other.availableBalance) &&
+            Utils.enhancedDeepEquals(this.balanceAsOf, other.balanceAsOf) &&
             Utils.enhancedDeepEquals(this.currency, other.currency) &&
             Utils.enhancedDeepEquals(this.feedStatus, other.feedStatus) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
@@ -755,9 +810,10 @@ public class BankFeedAccountInput {
             bankAccountType, sourceAccountId, sourceRoutingNumber,
             sourceAccountNumber, targetAccountId, targetAccountName,
             targetAccountNumber, balance, availableBalance,
-            currency, feedStatus, status,
-            country, accountHolders, emails,
-            addresses, phoneNumbers, customFields);
+            balanceAsOf, currency, feedStatus,
+            status, country, accountHolders,
+            emails, addresses, phoneNumbers,
+            customFields);
     }
     
     @Override
@@ -772,6 +828,7 @@ public class BankFeedAccountInput {
                 "targetAccountNumber", targetAccountNumber,
                 "balance", balance,
                 "availableBalance", availableBalance,
+                "balanceAsOf", balanceAsOf,
                 "currency", currency,
                 "feedStatus", feedStatus,
                 "status", status,
@@ -803,6 +860,8 @@ public class BankFeedAccountInput {
         private JsonNullable<Double> balance = JsonNullable.undefined();
 
         private JsonNullable<Double> availableBalance = JsonNullable.undefined();
+
+        private JsonNullable<OffsetDateTime> balanceAsOf = JsonNullable.undefined();
 
         private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
 
@@ -999,6 +1058,27 @@ public class BankFeedAccountInput {
 
 
         /**
+         * When `balance` was true, as an ISO 8601 date-time with a UTC offset. Connectors that record it stamp
+         * the time they received the balance when it is omitted.
+         */
+        public Builder balanceAsOf(OffsetDateTime balanceAsOf) {
+            Utils.checkNotNull(balanceAsOf, "balanceAsOf");
+            this.balanceAsOf = JsonNullable.of(balanceAsOf);
+            return this;
+        }
+
+        /**
+         * When `balance` was true, as an ISO 8601 date-time with a UTC offset. Connectors that record it stamp
+         * the time they received the balance when it is omitted.
+         */
+        public Builder balanceAsOf(JsonNullable<OffsetDateTime> balanceAsOf) {
+            Utils.checkNotNull(balanceAsOf, "balanceAsOf");
+            this.balanceAsOf = balanceAsOf;
+            return this;
+        }
+
+
+        /**
          * Indicates the associated currency for an amount of money. Values correspond to [ISO
          * 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
@@ -1085,8 +1165,8 @@ public class BankFeedAccountInput {
 
 
         /**
-         * The people or businesses that hold the source bank account. Optional; `plaid-exchange` requires at
-         * least one.
+         * The people or businesses that hold the source bank account. Optional; `intuit-bank-feeds` and
+         * `plaid-exchange` require at least one.
          */
         public Builder accountHolders(List<BankFeedAccountHolder> accountHolders) {
             Utils.checkNotNull(accountHolders, "accountHolders");
@@ -1095,8 +1175,8 @@ public class BankFeedAccountInput {
         }
 
         /**
-         * The people or businesses that hold the source bank account. Optional; `plaid-exchange` requires at
-         * least one.
+         * The people or businesses that hold the source bank account. Optional; `intuit-bank-feeds` and
+         * `plaid-exchange` require at least one.
          */
         public Builder accountHolders(Optional<? extends List<BankFeedAccountHolder>> accountHolders) {
             Utils.checkNotNull(accountHolders, "accountHolders");
@@ -1106,7 +1186,8 @@ public class BankFeedAccountInput {
 
 
         /**
-         * Email addresses of the account holders. Optional; `plaid-exchange` requires at least one.
+         * Email addresses of the account holders. Optional; `intuit-bank-feeds` and `plaid-exchange` require
+         * at least one.
          */
         public Builder emails(List<Email> emails) {
             Utils.checkNotNull(emails, "emails");
@@ -1115,7 +1196,8 @@ public class BankFeedAccountInput {
         }
 
         /**
-         * Email addresses of the account holders. Optional; `plaid-exchange` requires at least one.
+         * Email addresses of the account holders. Optional; `intuit-bank-feeds` and `plaid-exchange` require
+         * at least one.
          */
         public Builder emails(Optional<? extends List<Email>> emails) {
             Utils.checkNotNull(emails, "emails");
@@ -1125,7 +1207,8 @@ public class BankFeedAccountInput {
 
 
         /**
-         * Addresses of the account holders. Optional; `plaid-exchange` requires at least one.
+         * Addresses of the account holders. Optional; `intuit-bank-feeds` and `plaid-exchange` require at
+         * least one.
          */
         public Builder addresses(List<Address> addresses) {
             Utils.checkNotNull(addresses, "addresses");
@@ -1134,7 +1217,8 @@ public class BankFeedAccountInput {
         }
 
         /**
-         * Addresses of the account holders. Optional; `plaid-exchange` requires at least one.
+         * Addresses of the account holders. Optional; `intuit-bank-feeds` and `plaid-exchange` require at
+         * least one.
          */
         public Builder addresses(Optional<? extends List<Address>> addresses) {
             Utils.checkNotNull(addresses, "addresses");
@@ -1144,7 +1228,8 @@ public class BankFeedAccountInput {
 
 
         /**
-         * Phone numbers of the account holders. Optional; `plaid-exchange` requires at least one.
+         * Phone numbers of the account holders. Optional; `intuit-bank-feeds` and `plaid-exchange` require at
+         * least one.
          */
         public Builder phoneNumbers(List<PhoneNumber> phoneNumbers) {
             Utils.checkNotNull(phoneNumbers, "phoneNumbers");
@@ -1153,7 +1238,8 @@ public class BankFeedAccountInput {
         }
 
         /**
-         * Phone numbers of the account holders. Optional; `plaid-exchange` requires at least one.
+         * Phone numbers of the account holders. Optional; `intuit-bank-feeds` and `plaid-exchange` require at
+         * least one.
          */
         public Builder phoneNumbers(Optional<? extends List<PhoneNumber>> phoneNumbers) {
             Utils.checkNotNull(phoneNumbers, "phoneNumbers");
@@ -1180,9 +1266,10 @@ public class BankFeedAccountInput {
                 bankAccountType, sourceAccountId, sourceRoutingNumber,
                 sourceAccountNumber, targetAccountId, targetAccountName,
                 targetAccountNumber, balance, availableBalance,
-                currency, feedStatus, status,
-                country, accountHolders, emails,
-                addresses, phoneNumbers, customFields);
+                balanceAsOf, currency, feedStatus,
+                status, country, accountHolders,
+                emails, addresses, phoneNumbers,
+                customFields);
         }
 
     }

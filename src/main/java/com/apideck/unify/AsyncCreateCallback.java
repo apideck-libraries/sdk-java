@@ -40,6 +40,9 @@ public class AsyncCreateCallback {
      * 
      * <p>This endpoint creates a callback state that can be used to issue requests to the callback endpoint.
      * 
+     * <p>Call it with your API key. For an application with `enforced` OAuth protection, a Vault session
+     * token (`x-apideck-auth-type: JWT`) gets a `401`, because a callback state skips the browser binding.
+     * 
      * @return The async call builder
      */
     public VaultCreateCallbackStateRequestBuilder state() {
@@ -50,6 +53,9 @@ public class AsyncCreateCallback {
      * Create Callback State
      * 
      * <p>This endpoint creates a callback state that can be used to issue requests to the callback endpoint.
+     * 
+     * <p>Call it with your API key. For an application with `enforced` OAuth protection, a Vault session
+     * token (`x-apideck-auth-type: JWT`) gets a `401`, because a callback state skips the browser binding.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<VaultCreateCallbackStateResponse>} - The async response
@@ -62,6 +68,9 @@ public class AsyncCreateCallback {
      * Create Callback State
      * 
      * <p>This endpoint creates a callback state that can be used to issue requests to the callback endpoint.
+     * 
+     * <p>Call it with your API key. For an application with `enforced` OAuth protection, a Vault session
+     * token (`x-apideck-auth-type: JWT`) gets a `401`, because a callback state skips the browser binding.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options

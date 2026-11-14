@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -53,6 +54,24 @@ public class WebhookSupport {
     private Optional<? extends List<String>> sharedWith;
 
     /**
+     * Where the vendor stores the webhook target URL. `app` means one URL per vendor developer app, which
+     * customers on Apideck's own credentials cannot configure. `tenant` means each customer's vendor
+     * account holds its own URL.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("target_url_scope")
+    private Optional<? extends TargetURLScope> targetUrlScope;
+
+    /**
+     * Whether Unify accepts webhook URLs scoped to a vendor developer app for this connector, rather than
+     * to one Apideck application. Events delivered to such a URL reach every connection that the vendor
+     * app authorized.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("vendor_app_url")
+    private Optional<Boolean> vendorAppUrl;
+
+    /**
      * Virtual webhook config for the connector.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -65,22 +84,29 @@ public class WebhookSupport {
             @JsonProperty("subscription_level") Optional<? extends SubscriptionLevel> subscriptionLevel,
             @JsonProperty("managed_via") Optional<? extends ManagedVia> managedVia,
             @JsonProperty("shared_with") Optional<? extends List<String>> sharedWith,
+            @JsonProperty("target_url_scope") Optional<? extends TargetURLScope> targetUrlScope,
+            @JsonProperty("vendor_app_url") Optional<Boolean> vendorAppUrl,
             @JsonProperty("virtual_webhooks") Optional<? extends VirtualWebhooks> virtualWebhooks) {
         Utils.checkNotNull(mode, "mode");
         Utils.checkNotNull(subscriptionLevel, "subscriptionLevel");
         Utils.checkNotNull(managedVia, "managedVia");
         Utils.checkNotNull(sharedWith, "sharedWith");
+        Utils.checkNotNull(targetUrlScope, "targetUrlScope");
+        Utils.checkNotNull(vendorAppUrl, "vendorAppUrl");
         Utils.checkNotNull(virtualWebhooks, "virtualWebhooks");
         this.mode = mode;
         this.subscriptionLevel = subscriptionLevel;
         this.managedVia = managedVia;
         this.sharedWith = sharedWith;
+        this.targetUrlScope = targetUrlScope;
+        this.vendorAppUrl = vendorAppUrl;
         this.virtualWebhooks = virtualWebhooks;
     }
     
     public WebhookSupport() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -119,6 +145,27 @@ public class WebhookSupport {
     @JsonIgnore
     public Optional<List<String>> sharedWith() {
         return (Optional<List<String>>) sharedWith;
+    }
+
+    /**
+     * Where the vendor stores the webhook target URL. `app` means one URL per vendor developer app, which
+     * customers on Apideck's own credentials cannot configure. `tenant` means each customer's vendor
+     * account holds its own URL.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<TargetURLScope> targetUrlScope() {
+        return (Optional<TargetURLScope>) targetUrlScope;
+    }
+
+    /**
+     * Whether Unify accepts webhook URLs scoped to a vendor developer app for this connector, rather than
+     * to one Apideck application. Events delivered to such a URL reach every connection that the vendor
+     * app authorized.
+     */
+    @JsonIgnore
+    public Optional<Boolean> vendorAppUrl() {
+        return vendorAppUrl;
     }
 
     /**
@@ -216,6 +263,52 @@ public class WebhookSupport {
     }
 
     /**
+     * Where the vendor stores the webhook target URL. `app` means one URL per vendor developer app, which
+     * customers on Apideck's own credentials cannot configure. `tenant` means each customer's vendor
+     * account holds its own URL.
+     */
+    public WebhookSupport withTargetUrlScope(TargetURLScope targetUrlScope) {
+        Utils.checkNotNull(targetUrlScope, "targetUrlScope");
+        this.targetUrlScope = Optional.ofNullable(targetUrlScope);
+        return this;
+    }
+
+
+    /**
+     * Where the vendor stores the webhook target URL. `app` means one URL per vendor developer app, which
+     * customers on Apideck's own credentials cannot configure. `tenant` means each customer's vendor
+     * account holds its own URL.
+     */
+    public WebhookSupport withTargetUrlScope(Optional<? extends TargetURLScope> targetUrlScope) {
+        Utils.checkNotNull(targetUrlScope, "targetUrlScope");
+        this.targetUrlScope = targetUrlScope;
+        return this;
+    }
+
+    /**
+     * Whether Unify accepts webhook URLs scoped to a vendor developer app for this connector, rather than
+     * to one Apideck application. Events delivered to such a URL reach every connection that the vendor
+     * app authorized.
+     */
+    public WebhookSupport withVendorAppUrl(boolean vendorAppUrl) {
+        Utils.checkNotNull(vendorAppUrl, "vendorAppUrl");
+        this.vendorAppUrl = Optional.ofNullable(vendorAppUrl);
+        return this;
+    }
+
+
+    /**
+     * Whether Unify accepts webhook URLs scoped to a vendor developer app for this connector, rather than
+     * to one Apideck application. Events delivered to such a URL reach every connection that the vendor
+     * app authorized.
+     */
+    public WebhookSupport withVendorAppUrl(Optional<Boolean> vendorAppUrl) {
+        Utils.checkNotNull(vendorAppUrl, "vendorAppUrl");
+        this.vendorAppUrl = vendorAppUrl;
+        return this;
+    }
+
+    /**
      * Virtual webhook config for the connector.
      */
     public WebhookSupport withVirtualWebhooks(VirtualWebhooks virtualWebhooks) {
@@ -248,6 +341,8 @@ public class WebhookSupport {
             Utils.enhancedDeepEquals(this.subscriptionLevel, other.subscriptionLevel) &&
             Utils.enhancedDeepEquals(this.managedVia, other.managedVia) &&
             Utils.enhancedDeepEquals(this.sharedWith, other.sharedWith) &&
+            Utils.enhancedDeepEquals(this.targetUrlScope, other.targetUrlScope) &&
+            Utils.enhancedDeepEquals(this.vendorAppUrl, other.vendorAppUrl) &&
             Utils.enhancedDeepEquals(this.virtualWebhooks, other.virtualWebhooks);
     }
     
@@ -255,7 +350,8 @@ public class WebhookSupport {
     public int hashCode() {
         return Utils.enhancedHash(
             mode, subscriptionLevel, managedVia,
-            sharedWith, virtualWebhooks);
+            sharedWith, targetUrlScope, vendorAppUrl,
+            virtualWebhooks);
     }
     
     @Override
@@ -265,6 +361,8 @@ public class WebhookSupport {
                 "subscriptionLevel", subscriptionLevel,
                 "managedVia", managedVia,
                 "sharedWith", sharedWith,
+                "targetUrlScope", targetUrlScope,
+                "vendorAppUrl", vendorAppUrl,
                 "virtualWebhooks", virtualWebhooks);
     }
 
@@ -278,6 +376,10 @@ public class WebhookSupport {
         private Optional<? extends ManagedVia> managedVia = Optional.empty();
 
         private Optional<? extends List<String>> sharedWith = Optional.empty();
+
+        private Optional<? extends TargetURLScope> targetUrlScope = Optional.empty();
+
+        private Optional<Boolean> vendorAppUrl = Optional.empty();
 
         private Optional<? extends VirtualWebhooks> virtualWebhooks = Optional.empty();
 
@@ -367,6 +469,52 @@ public class WebhookSupport {
 
 
         /**
+         * Where the vendor stores the webhook target URL. `app` means one URL per vendor developer app, which
+         * customers on Apideck's own credentials cannot configure. `tenant` means each customer's vendor
+         * account holds its own URL.
+         */
+        public Builder targetUrlScope(TargetURLScope targetUrlScope) {
+            Utils.checkNotNull(targetUrlScope, "targetUrlScope");
+            this.targetUrlScope = Optional.ofNullable(targetUrlScope);
+            return this;
+        }
+
+        /**
+         * Where the vendor stores the webhook target URL. `app` means one URL per vendor developer app, which
+         * customers on Apideck's own credentials cannot configure. `tenant` means each customer's vendor
+         * account holds its own URL.
+         */
+        public Builder targetUrlScope(Optional<? extends TargetURLScope> targetUrlScope) {
+            Utils.checkNotNull(targetUrlScope, "targetUrlScope");
+            this.targetUrlScope = targetUrlScope;
+            return this;
+        }
+
+
+        /**
+         * Whether Unify accepts webhook URLs scoped to a vendor developer app for this connector, rather than
+         * to one Apideck application. Events delivered to such a URL reach every connection that the vendor
+         * app authorized.
+         */
+        public Builder vendorAppUrl(boolean vendorAppUrl) {
+            Utils.checkNotNull(vendorAppUrl, "vendorAppUrl");
+            this.vendorAppUrl = Optional.ofNullable(vendorAppUrl);
+            return this;
+        }
+
+        /**
+         * Whether Unify accepts webhook URLs scoped to a vendor developer app for this connector, rather than
+         * to one Apideck application. Events delivered to such a URL reach every connection that the vendor
+         * app authorized.
+         */
+        public Builder vendorAppUrl(Optional<Boolean> vendorAppUrl) {
+            Utils.checkNotNull(vendorAppUrl, "vendorAppUrl");
+            this.vendorAppUrl = vendorAppUrl;
+            return this;
+        }
+
+
+        /**
          * Virtual webhook config for the connector.
          */
         public Builder virtualWebhooks(VirtualWebhooks virtualWebhooks) {
@@ -388,7 +536,8 @@ public class WebhookSupport {
 
             return new WebhookSupport(
                 mode, subscriptionLevel, managedVia,
-                sharedWith, virtualWebhooks);
+                sharedWith, targetUrlScope, vendorAppUrl,
+                virtualWebhooks);
         }
 
     }

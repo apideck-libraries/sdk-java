@@ -8,6 +8,9 @@ import static com.apideck.unify.operations.Operations.RequestOperation;
 import com.apideck.unify.models.operations.VaultConnectionsAllRequest;
 import com.apideck.unify.models.operations.VaultConnectionsAllRequestBuilder;
 import com.apideck.unify.models.operations.VaultConnectionsAllResponse;
+import com.apideck.unify.models.operations.VaultConnectionsConfirmRequest;
+import com.apideck.unify.models.operations.VaultConnectionsConfirmRequestBuilder;
+import com.apideck.unify.models.operations.VaultConnectionsConfirmResponse;
 import com.apideck.unify.models.operations.VaultConnectionsDeleteRequest;
 import com.apideck.unify.models.operations.VaultConnectionsDeleteRequestBuilder;
 import com.apideck.unify.models.operations.VaultConnectionsDeleteResponse;
@@ -27,6 +30,7 @@ import com.apideck.unify.models.operations.VaultConnectionsUpdateRequest;
 import com.apideck.unify.models.operations.VaultConnectionsUpdateRequestBuilder;
 import com.apideck.unify.models.operations.VaultConnectionsUpdateResponse;
 import com.apideck.unify.operations.VaultConnectionsAll;
+import com.apideck.unify.operations.VaultConnectionsConfirm;
 import com.apideck.unify.operations.VaultConnectionsDelete;
 import com.apideck.unify.operations.VaultConnectionsImport;
 import com.apideck.unify.operations.VaultConnectionsMigrate;
@@ -445,6 +449,115 @@ public class Connections {
     public VaultConnectionsTokenResponse token(VaultConnectionsTokenRequest request, Optional<Options> options) {
         RequestOperation<VaultConnectionsTokenRequest, VaultConnectionsTokenResponse> operation
               = new VaultConnectionsToken.Sync(sdkConfiguration, options, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Confirm Connection
+     * 
+     * <p>Confirms an OAuth connection after the callback by redeeming its confirm token.
+     * 
+     * <p>The confirm step is required when your application's OAuth protection mode was `enforced` when the
+     * authorization flow started. In that case Vault completes the OAuth exchange but leaves the
+     * connection
+     * **unconfirmed** and not callable, and the callback redirects to your `redirect_uri` with a hash
+     * fragment containing a `confirm_token`, the `service_id` and the `unified_api`, plus the `nonce` when
+     * the authorize request included one and the `target_origin` when it included an `opener_origin`:
+     * `#confirm_token=&lt;token&gt;&amp;service_id=&lt;service_id&gt;&amp;unified_api=&lt;unified_api&gt;&amp;nonce=&lt;nonce&gt;&amp;target_origin=&lt;origin&gt;`.
+     * Call this endpoint with that `confirm_token` to confirm the connection and make it callable.
+     * 
+     * <p>The `confirm_token` is single use and expires 30 minutes after the callback. Only confirm tokens are
+     * accepted; other tokens (such as an authorize `state`) are rejected. In the `off`
+     * protection mode there is no confirm step: the connection is callable immediately after the
+     * callback and no `confirm_token` is issued.
+     * 
+     * <p>Authenticate in one of two ways:
+     * 
+     * <p>- With the Vault session JWT as the bearer token (`Authorization: Bearer &lt;session token&gt;`) and
+     * the
+     * `x-apideck-auth-type: JWT` header, as Hosted Vault and Vault JS do. The application and consumer
+     * are taken from the session.
+     * - With your API key (`Authorization: Bearer &lt;API key&gt;`) plus the `x-apideck-app-id` and
+     * `x-apideck-consumer-id` headers, from your backend.
+     * 
+     * @return The call builder
+     */
+    public VaultConnectionsConfirmRequestBuilder confirm() {
+        return new VaultConnectionsConfirmRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Confirm Connection
+     * 
+     * <p>Confirms an OAuth connection after the callback by redeeming its confirm token.
+     * 
+     * <p>The confirm step is required when your application's OAuth protection mode was `enforced` when the
+     * authorization flow started. In that case Vault completes the OAuth exchange but leaves the
+     * connection
+     * **unconfirmed** and not callable, and the callback redirects to your `redirect_uri` with a hash
+     * fragment containing a `confirm_token`, the `service_id` and the `unified_api`, plus the `nonce` when
+     * the authorize request included one and the `target_origin` when it included an `opener_origin`:
+     * `#confirm_token=&lt;token&gt;&amp;service_id=&lt;service_id&gt;&amp;unified_api=&lt;unified_api&gt;&amp;nonce=&lt;nonce&gt;&amp;target_origin=&lt;origin&gt;`.
+     * Call this endpoint with that `confirm_token` to confirm the connection and make it callable.
+     * 
+     * <p>The `confirm_token` is single use and expires 30 minutes after the callback. Only confirm tokens are
+     * accepted; other tokens (such as an authorize `state`) are rejected. In the `off`
+     * protection mode there is no confirm step: the connection is callable immediately after the
+     * callback and no `confirm_token` is issued.
+     * 
+     * <p>Authenticate in one of two ways:
+     * 
+     * <p>- With the Vault session JWT as the bearer token (`Authorization: Bearer &lt;session token&gt;`) and
+     * the
+     * `x-apideck-auth-type: JWT` header, as Hosted Vault and Vault JS do. The application and consumer
+     * are taken from the session.
+     * - With your API key (`Authorization: Bearer &lt;API key&gt;`) plus the `x-apideck-app-id` and
+     * `x-apideck-consumer-id` headers, from your backend.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public VaultConnectionsConfirmResponse confirm(VaultConnectionsConfirmRequest request) {
+        return confirm(request, Optional.empty());
+    }
+
+    /**
+     * Confirm Connection
+     * 
+     * <p>Confirms an OAuth connection after the callback by redeeming its confirm token.
+     * 
+     * <p>The confirm step is required when your application's OAuth protection mode was `enforced` when the
+     * authorization flow started. In that case Vault completes the OAuth exchange but leaves the
+     * connection
+     * **unconfirmed** and not callable, and the callback redirects to your `redirect_uri` with a hash
+     * fragment containing a `confirm_token`, the `service_id` and the `unified_api`, plus the `nonce` when
+     * the authorize request included one and the `target_origin` when it included an `opener_origin`:
+     * `#confirm_token=&lt;token&gt;&amp;service_id=&lt;service_id&gt;&amp;unified_api=&lt;unified_api&gt;&amp;nonce=&lt;nonce&gt;&amp;target_origin=&lt;origin&gt;`.
+     * Call this endpoint with that `confirm_token` to confirm the connection and make it callable.
+     * 
+     * <p>The `confirm_token` is single use and expires 30 minutes after the callback. Only confirm tokens are
+     * accepted; other tokens (such as an authorize `state`) are rejected. In the `off`
+     * protection mode there is no confirm step: the connection is callable immediately after the
+     * callback and no `confirm_token` is issued.
+     * 
+     * <p>Authenticate in one of two ways:
+     * 
+     * <p>- With the Vault session JWT as the bearer token (`Authorization: Bearer &lt;session token&gt;`) and
+     * the
+     * `x-apideck-auth-type: JWT` header, as Hosted Vault and Vault JS do. The application and consumer
+     * are taken from the session.
+     * - With your API key (`Authorization: Bearer &lt;API key&gt;`) plus the `x-apideck-app-id` and
+     * `x-apideck-consumer-id` headers, from your backend.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public VaultConnectionsConfirmResponse confirm(VaultConnectionsConfirmRequest request, Optional<Options> options) {
+        RequestOperation<VaultConnectionsConfirmRequest, VaultConnectionsConfirmResponse> operation
+              = new VaultConnectionsConfirm.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

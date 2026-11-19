@@ -20,8 +20,8 @@ import java.util.concurrent.ScheduledExecutorService;
 public class SDKConfiguration {
 
     private static final String LANGUAGE = "java";
-    public static final String OPENAPI_DOC_VERSION = "10.84.4";
-    public static final String SDK_VERSION = "0.58.0";
+    public static final String OPENAPI_DOC_VERSION = "10.85.0";
+    public static final String SDK_VERSION = "0.59.0";
     public static final String GEN_VERSION = "2.961.1";
     private static final String BASE_PACKAGE = "com.apideck.unify";
     public static final String USER_AGENT = 

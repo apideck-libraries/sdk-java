@@ -205,6 +205,11 @@ public class BillLineItemInput {
     @JsonProperty("purchase_order")
     private JsonNullable<? extends LinkedPurchaseOrder> purchaseOrder;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("custom_fields")
+    private Optional<? extends List<CustomField>> customFields;
+
     /**
      * A list of linked tracking categories.
      */
@@ -271,6 +276,7 @@ public class BillLineItemInput {
             @JsonProperty("tax_rate") Optional<? extends LinkedTaxRateInput> taxRate,
             @JsonProperty("ledger_account") JsonNullable<? extends LinkedLedgerAccount> ledgerAccount,
             @JsonProperty("purchase_order") JsonNullable<? extends LinkedPurchaseOrder> purchaseOrder,
+            @JsonProperty("custom_fields") Optional<? extends List<CustomField>> customFields,
             @JsonProperty("tracking_categories") JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories,
             @JsonProperty("customer") JsonNullable<? extends LinkedCustomerInput> customer,
             @JsonProperty("rebilling") JsonNullable<? extends Rebilling> rebilling,
@@ -304,6 +310,7 @@ public class BillLineItemInput {
         Utils.checkNotNull(taxRate, "taxRate");
         Utils.checkNotNull(ledgerAccount, "ledgerAccount");
         Utils.checkNotNull(purchaseOrder, "purchaseOrder");
+        Utils.checkNotNull(customFields, "customFields");
         Utils.checkNotNull(trackingCategories, "trackingCategories");
         Utils.checkNotNull(customer, "customer");
         Utils.checkNotNull(rebilling, "rebilling");
@@ -337,6 +344,7 @@ public class BillLineItemInput {
         this.taxRate = taxRate;
         this.ledgerAccount = ledgerAccount;
         this.purchaseOrder = purchaseOrder;
+        this.customFields = customFields;
         this.trackingCategories = trackingCategories;
         this.customer = customer;
         this.rebilling = rebilling;
@@ -354,8 +362,9 @@ public class BillLineItemInput {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+            Optional.empty());
     }
 
     /**
@@ -567,6 +576,12 @@ public class BillLineItemInput {
     @JsonIgnore
     public JsonNullable<LinkedPurchaseOrder> purchaseOrder() {
         return (JsonNullable<LinkedPurchaseOrder>) purchaseOrder;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<CustomField>> customFields() {
+        return (Optional<List<CustomField>>) customFields;
     }
 
     /**
@@ -1090,6 +1105,19 @@ public class BillLineItemInput {
         return this;
     }
 
+    public BillLineItemInput withCustomFields(List<CustomField> customFields) {
+        Utils.checkNotNull(customFields, "customFields");
+        this.customFields = Optional.ofNullable(customFields);
+        return this;
+    }
+
+
+    public BillLineItemInput withCustomFields(Optional<? extends List<CustomField>> customFields) {
+        Utils.checkNotNull(customFields, "customFields");
+        this.customFields = customFields;
+        return this;
+    }
+
     /**
      * A list of linked tracking categories.
      */
@@ -1221,6 +1249,7 @@ public class BillLineItemInput {
             Utils.enhancedDeepEquals(this.taxRate, other.taxRate) &&
             Utils.enhancedDeepEquals(this.ledgerAccount, other.ledgerAccount) &&
             Utils.enhancedDeepEquals(this.purchaseOrder, other.purchaseOrder) &&
+            Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
             Utils.enhancedDeepEquals(this.trackingCategories, other.trackingCategories) &&
             Utils.enhancedDeepEquals(this.customer, other.customer) &&
             Utils.enhancedDeepEquals(this.rebilling, other.rebilling) &&
@@ -1240,8 +1269,9 @@ public class BillLineItemInput {
             prepaid, taxApplicableOn, taxRecoverability,
             taxMethod, retentionAmount, paymentAmount,
             item, taxRate, ledgerAccount,
-            purchaseOrder, trackingCategories, customer,
-            rebilling, rowVersion, worktags);
+            purchaseOrder, customFields, trackingCategories,
+            customer, rebilling, rowVersion,
+            worktags);
     }
     
     @Override
@@ -1275,6 +1305,7 @@ public class BillLineItemInput {
                 "taxRate", taxRate,
                 "ledgerAccount", ledgerAccount,
                 "purchaseOrder", purchaseOrder,
+                "customFields", customFields,
                 "trackingCategories", trackingCategories,
                 "customer", customer,
                 "rebilling", rebilling,
@@ -1340,6 +1371,8 @@ public class BillLineItemInput {
         private JsonNullable<? extends LinkedLedgerAccount> ledgerAccount = JsonNullable.undefined();
 
         private JsonNullable<? extends LinkedPurchaseOrder> purchaseOrder = JsonNullable.undefined();
+
+        private Optional<? extends List<CustomField>> customFields = Optional.empty();
 
         private JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories = JsonNullable.undefined();
 
@@ -1852,6 +1885,19 @@ public class BillLineItemInput {
         }
 
 
+        public Builder customFields(List<CustomField> customFields) {
+            Utils.checkNotNull(customFields, "customFields");
+            this.customFields = Optional.ofNullable(customFields);
+            return this;
+        }
+
+        public Builder customFields(Optional<? extends List<CustomField>> customFields) {
+            Utils.checkNotNull(customFields, "customFields");
+            this.customFields = customFields;
+            return this;
+        }
+
+
         /**
          * A list of linked tracking categories.
          */
@@ -1960,8 +2006,9 @@ public class BillLineItemInput {
                 prepaid, taxApplicableOn, taxRecoverability,
                 taxMethod, retentionAmount, paymentAmount,
                 item, taxRate, ledgerAccount,
-                purchaseOrder, trackingCategories, customer,
-                rebilling, rowVersion, worktags);
+                purchaseOrder, customFields, trackingCategories,
+                customer, rebilling, rowVersion,
+                worktags);
         }
 
     }

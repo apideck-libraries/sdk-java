@@ -216,6 +216,14 @@ public class Bill {
     @JsonProperty("status")
     private JsonNullable<? extends BillStatus> status;
 
+    /**
+     * Whether the bill is on payment hold. A bill on hold is not ready to pay, whatever its status. Not
+     * returned by connectors that do not report a payment hold.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("payment_hold")
+    private JsonNullable<Boolean> paymentHold;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ledger_account")
@@ -417,6 +425,7 @@ public class Bill {
             @JsonProperty("tax_code") JsonNullable<String> taxCode,
             @JsonProperty("notes") JsonNullable<String> notes,
             @JsonProperty("status") JsonNullable<? extends BillStatus> status,
+            @JsonProperty("payment_hold") JsonNullable<Boolean> paymentHold,
             @JsonProperty("ledger_account") JsonNullable<? extends LinkedLedgerAccount> ledgerAccount,
             @JsonProperty("payment_method") JsonNullable<String> paymentMethod,
             @JsonProperty("channel") JsonNullable<String> channel,
@@ -470,6 +479,7 @@ public class Bill {
         Utils.checkNotNull(taxCode, "taxCode");
         Utils.checkNotNull(notes, "notes");
         Utils.checkNotNull(status, "status");
+        Utils.checkNotNull(paymentHold, "paymentHold");
         Utils.checkNotNull(ledgerAccount, "ledgerAccount");
         Utils.checkNotNull(paymentMethod, "paymentMethod");
         Utils.checkNotNull(channel, "channel");
@@ -523,6 +533,7 @@ public class Bill {
         this.taxCode = taxCode;
         this.notes = notes;
         this.status = status;
+        this.paymentHold = paymentHold;
         this.ledgerAccount = ledgerAccount;
         this.paymentMethod = paymentMethod;
         this.channel = channel;
@@ -562,13 +573,13 @@ public class Bill {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined(), Optional.empty());
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -791,6 +802,15 @@ public class Bill {
     @JsonIgnore
     public JsonNullable<BillStatus> status() {
         return (JsonNullable<BillStatus>) status;
+    }
+
+    /**
+     * Whether the bill is on payment hold. A bill on hold is not ready to pay, whatever its status. Not
+     * returned by connectors that do not report a payment hold.
+     */
+    @JsonIgnore
+    public JsonNullable<Boolean> paymentHold() {
+        return paymentHold;
     }
 
     @SuppressWarnings("unchecked")
@@ -1491,6 +1511,26 @@ public class Bill {
         return this;
     }
 
+    /**
+     * Whether the bill is on payment hold. A bill on hold is not ready to pay, whatever its status. Not
+     * returned by connectors that do not report a payment hold.
+     */
+    public Bill withPaymentHold(boolean paymentHold) {
+        Utils.checkNotNull(paymentHold, "paymentHold");
+        this.paymentHold = JsonNullable.of(paymentHold);
+        return this;
+    }
+
+    /**
+     * Whether the bill is on payment hold. A bill on hold is not ready to pay, whatever its status. Not
+     * returned by connectors that do not report a payment hold.
+     */
+    public Bill withPaymentHold(JsonNullable<Boolean> paymentHold) {
+        Utils.checkNotNull(paymentHold, "paymentHold");
+        this.paymentHold = paymentHold;
+        return this;
+    }
+
     public Bill withLedgerAccount(LinkedLedgerAccount ledgerAccount) {
         Utils.checkNotNull(ledgerAccount, "ledgerAccount");
         this.ledgerAccount = JsonNullable.of(ledgerAccount);
@@ -1967,6 +2007,7 @@ public class Bill {
             Utils.enhancedDeepEquals(this.taxCode, other.taxCode) &&
             Utils.enhancedDeepEquals(this.notes, other.notes) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.paymentHold, other.paymentHold) &&
             Utils.enhancedDeepEquals(this.ledgerAccount, other.ledgerAccount) &&
             Utils.enhancedDeepEquals(this.paymentMethod, other.paymentMethod) &&
             Utils.enhancedDeepEquals(this.channel, other.channel) &&
@@ -2006,15 +2047,15 @@ public class Bill {
             terms, termsId, balance,
             deposit, subTotal, totalTax,
             total, taxCode, notes,
-            status, ledgerAccount, paymentMethod,
-            channel, language, accountingByRow,
-            bankAccount, discountPercentage, templateId,
-            approvedBy, amortizationType, taxMethod,
-            documentReceived, sourceDocumentUrl, paymentAllocations,
-            trackingCategories, updatedBy, createdBy,
-            updatedAt, createdAt, rowVersion,
-            customFields, customMappings, passThrough,
-            accountingPeriod, attachments);
+            status, paymentHold, ledgerAccount,
+            paymentMethod, channel, language,
+            accountingByRow, bankAccount, discountPercentage,
+            templateId, approvedBy, amortizationType,
+            taxMethod, documentReceived, sourceDocumentUrl,
+            paymentAllocations, trackingCategories, updatedBy,
+            createdBy, updatedAt, createdAt,
+            rowVersion, customFields, customMappings,
+            passThrough, accountingPeriod, attachments);
     }
     
     @Override
@@ -2048,6 +2089,7 @@ public class Bill {
                 "taxCode", taxCode,
                 "notes", notes,
                 "status", status,
+                "paymentHold", paymentHold,
                 "ledgerAccount", ledgerAccount,
                 "paymentMethod", paymentMethod,
                 "channel", channel,
@@ -2133,6 +2175,8 @@ public class Bill {
         private JsonNullable<String> notes = JsonNullable.undefined();
 
         private JsonNullable<? extends BillStatus> status = JsonNullable.undefined();
+
+        private JsonNullable<Boolean> paymentHold = JsonNullable.undefined();
 
         private JsonNullable<? extends LinkedLedgerAccount> ledgerAccount = JsonNullable.undefined();
 
@@ -2707,6 +2751,27 @@ public class Bill {
         }
 
 
+        /**
+         * Whether the bill is on payment hold. A bill on hold is not ready to pay, whatever its status. Not
+         * returned by connectors that do not report a payment hold.
+         */
+        public Builder paymentHold(boolean paymentHold) {
+            Utils.checkNotNull(paymentHold, "paymentHold");
+            this.paymentHold = JsonNullable.of(paymentHold);
+            return this;
+        }
+
+        /**
+         * Whether the bill is on payment hold. A bill on hold is not ready to pay, whatever its status. Not
+         * returned by connectors that do not report a payment hold.
+         */
+        public Builder paymentHold(JsonNullable<Boolean> paymentHold) {
+            Utils.checkNotNull(paymentHold, "paymentHold");
+            this.paymentHold = paymentHold;
+            return this;
+        }
+
+
         public Builder ledgerAccount(LinkedLedgerAccount ledgerAccount) {
             Utils.checkNotNull(ledgerAccount, "ledgerAccount");
             this.ledgerAccount = JsonNullable.of(ledgerAccount);
@@ -3177,15 +3242,15 @@ public class Bill {
                 terms, termsId, balance,
                 deposit, subTotal, totalTax,
                 total, taxCode, notes,
-                status, ledgerAccount, paymentMethod,
-                channel, language, accountingByRow,
-                bankAccount, discountPercentage, templateId,
-                approvedBy, amortizationType, taxMethod,
-                documentReceived, sourceDocumentUrl, paymentAllocations,
-                trackingCategories, updatedBy, createdBy,
-                updatedAt, createdAt, rowVersion,
-                customFields, customMappings, passThrough,
-                accountingPeriod, attachments);
+                status, paymentHold, ledgerAccount,
+                paymentMethod, channel, language,
+                accountingByRow, bankAccount, discountPercentage,
+                templateId, approvedBy, amortizationType,
+                taxMethod, documentReceived, sourceDocumentUrl,
+                paymentAllocations, trackingCategories, updatedBy,
+                createdBy, updatedAt, createdAt,
+                rowVersion, customFields, customMappings,
+                passThrough, accountingPeriod, attachments);
         }
 
     }

@@ -121,6 +121,14 @@ public class Quote {
     private JsonNullable<String> reference;
 
     /**
+     * A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer
+     * will match the PO number in the quote to the Purchase Order.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("po_number")
+    private JsonNullable<String> poNumber;
+
+    /**
      * Quote status
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -299,6 +307,7 @@ public class Quote {
             @JsonProperty("terms") JsonNullable<String> terms,
             @JsonProperty("terms_id") JsonNullable<String> termsId,
             @JsonProperty("reference") JsonNullable<String> reference,
+            @JsonProperty("po_number") JsonNullable<String> poNumber,
             @JsonProperty("status") JsonNullable<? extends QuoteStatus> status,
             @JsonProperty("currency") JsonNullable<? extends Currency> currency,
             @JsonProperty("currency_rate") JsonNullable<Double> currencyRate,
@@ -337,6 +346,7 @@ public class Quote {
         Utils.checkNotNull(terms, "terms");
         Utils.checkNotNull(termsId, "termsId");
         Utils.checkNotNull(reference, "reference");
+        Utils.checkNotNull(poNumber, "poNumber");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(currency, "currency");
         Utils.checkNotNull(currencyRate, "currencyRate");
@@ -375,6 +385,7 @@ public class Quote {
         this.terms = terms;
         this.termsId = termsId;
         this.reference = reference;
+        this.poNumber = poNumber;
         this.status = status;
         this.currency = currency;
         this.currencyRate = currencyRate;
@@ -410,11 +421,11 @@ public class Quote {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty());
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -528,6 +539,15 @@ public class Quote {
     @JsonIgnore
     public JsonNullable<String> reference() {
         return reference;
+    }
+
+    /**
+     * A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer
+     * will match the PO number in the quote to the Purchase Order.
+     */
+    @JsonIgnore
+    public JsonNullable<String> poNumber() {
+        return poNumber;
     }
 
     /**
@@ -982,6 +1002,26 @@ public class Quote {
     }
 
     /**
+     * A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer
+     * will match the PO number in the quote to the Purchase Order.
+     */
+    public Quote withPoNumber(String poNumber) {
+        Utils.checkNotNull(poNumber, "poNumber");
+        this.poNumber = JsonNullable.of(poNumber);
+        return this;
+    }
+
+    /**
+     * A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer
+     * will match the PO number in the quote to the Purchase Order.
+     */
+    public Quote withPoNumber(JsonNullable<String> poNumber) {
+        Utils.checkNotNull(poNumber, "poNumber");
+        this.poNumber = poNumber;
+        return this;
+    }
+
+    /**
      * Quote status
      */
     public Quote withStatus(QuoteStatus status) {
@@ -1424,6 +1464,7 @@ public class Quote {
             Utils.enhancedDeepEquals(this.terms, other.terms) &&
             Utils.enhancedDeepEquals(this.termsId, other.termsId) &&
             Utils.enhancedDeepEquals(this.reference, other.reference) &&
+            Utils.enhancedDeepEquals(this.poNumber, other.poNumber) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.currency, other.currency) &&
             Utils.enhancedDeepEquals(this.currencyRate, other.currencyRate) &&
@@ -1457,15 +1498,15 @@ public class Quote {
             customer, invoiceId, salesOrderId,
             companyId, departmentId, projectId,
             quoteDate, expiryDate, terms,
-            termsId, reference, status,
-            currency, currencyRate, taxInclusive,
-            subTotal, totalTax, taxCode,
-            discountPercentage, discountAmount, total,
-            customerMemo, lineItems, billingAddress,
-            shippingAddress, trackingCategories, templateId,
-            sourceDocumentUrl, customFields, rowVersion,
-            updatedBy, createdBy, updatedAt,
-            createdAt, passThrough);
+            termsId, reference, poNumber,
+            status, currency, currencyRate,
+            taxInclusive, subTotal, totalTax,
+            taxCode, discountPercentage, discountAmount,
+            total, customerMemo, lineItems,
+            billingAddress, shippingAddress, trackingCategories,
+            templateId, sourceDocumentUrl, customFields,
+            rowVersion, updatedBy, createdBy,
+            updatedAt, createdAt, passThrough);
     }
     
     @Override
@@ -1485,6 +1526,7 @@ public class Quote {
                 "terms", terms,
                 "termsId", termsId,
                 "reference", reference,
+                "poNumber", poNumber,
                 "status", status,
                 "currency", currency,
                 "currencyRate", currencyRate,
@@ -1541,6 +1583,8 @@ public class Quote {
         private JsonNullable<String> termsId = JsonNullable.undefined();
 
         private JsonNullable<String> reference = JsonNullable.undefined();
+
+        private JsonNullable<String> poNumber = JsonNullable.undefined();
 
         private JsonNullable<? extends QuoteStatus> status = JsonNullable.undefined();
 
@@ -1857,6 +1901,27 @@ public class Quote {
         public Builder reference(JsonNullable<String> reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = reference;
+            return this;
+        }
+
+
+        /**
+         * A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer
+         * will match the PO number in the quote to the Purchase Order.
+         */
+        public Builder poNumber(String poNumber) {
+            Utils.checkNotNull(poNumber, "poNumber");
+            this.poNumber = JsonNullable.of(poNumber);
+            return this;
+        }
+
+        /**
+         * A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer
+         * will match the PO number in the quote to the Purchase Order.
+         */
+        public Builder poNumber(JsonNullable<String> poNumber) {
+            Utils.checkNotNull(poNumber, "poNumber");
+            this.poNumber = poNumber;
             return this;
         }
 
@@ -2305,15 +2370,15 @@ public class Quote {
                 customer, invoiceId, salesOrderId,
                 companyId, departmentId, projectId,
                 quoteDate, expiryDate, terms,
-                termsId, reference, status,
-                currency, currencyRate, taxInclusive,
-                subTotal, totalTax, taxCode,
-                discountPercentage, discountAmount, total,
-                customerMemo, lineItems, billingAddress,
-                shippingAddress, trackingCategories, templateId,
-                sourceDocumentUrl, customFields, rowVersion,
-                updatedBy, createdBy, updatedAt,
-                createdAt, passThrough);
+                termsId, reference, poNumber,
+                status, currency, currencyRate,
+                taxInclusive, subTotal, totalTax,
+                taxCode, discountPercentage, discountAmount,
+                total, customerMemo, lineItems,
+                billingAddress, shippingAddress, trackingCategories,
+                templateId, sourceDocumentUrl, customFields,
+                rowVersion, updatedBy, createdBy,
+                updatedAt, createdAt, passThrough);
         }
 
     }

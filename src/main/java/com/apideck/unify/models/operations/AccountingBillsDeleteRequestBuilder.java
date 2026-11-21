@@ -11,12 +11,14 @@ import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
+import java.time.Duration;
 import java.util.Optional;
 
 public class AccountingBillsDeleteRequestBuilder {
 
     private AccountingBillsDeleteRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -41,10 +43,23 @@ public class AccountingBillsDeleteRequestBuilder {
         this.retryConfig = retryConfig;
         return this;
     }
+                
+    public AccountingBillsDeleteRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public AccountingBillsDeleteRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
     public AccountingBillsDeleteResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
+            .timeout(timeout)
             .build());
 
         RequestOperation<AccountingBillsDeleteRequest, AccountingBillsDeleteResponse> operation

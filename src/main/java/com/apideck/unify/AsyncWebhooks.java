@@ -88,6 +88,24 @@ public class AsyncWebhooks {
      * @param appId The ID of your Unify application
      * @param cursor Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
      * @param limit Number of results to return. Minimum 1, Maximum 200, Default 20
+     * @return {@code CompletableFuture<WebhookWebhooksAllResponse>} - The async response
+     */
+    public CompletableFuture<WebhookWebhooksAllResponse> list(
+            Optional<String> appId, JsonNullable<String> cursor,
+            Optional<Long> limit) {
+        return list(
+                appId, cursor, limit,
+                Optional.empty());
+    }
+
+    /**
+     * List webhook subscriptions
+     * 
+     * <p>List all webhook subscriptions
+     * 
+     * @param appId The ID of your Unify application
+     * @param cursor Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
+     * @param limit Number of results to return. Minimum 1, Maximum 200, Default 20
      * @param options additional options
      * @return {@code CompletableFuture<WebhookWebhooksAllResponse>} - The async response
      */
@@ -179,6 +197,32 @@ public class AsyncWebhooks {
      * 
      * @param appId The ID of your Unify application
      * @param createWebhookRequest 
+     * @return {@code CompletableFuture<WebhookWebhooksAddResponse>} - The async response
+     */
+    public CompletableFuture<WebhookWebhooksAddResponse> create(Optional<String> appId, CreateWebhookRequest createWebhookRequest) {
+        return create(appId, createWebhookRequest, Optional.empty());
+    }
+
+    /**
+     * Create webhook subscription
+     * 
+     * <p>Create a webhook subscription to receive events.
+     * 
+     * <p>**Delivery URL Validation**: The provided `delivery_url` will be validated synchronously by sending
+     * an HTTP POST request with an HMAC signature. If validation fails (network error, timeout, non-2xx
+     * response), the webhook will still be created but with `status: "disabled"` and `disabled_reason:
+     * "delivery_url_validation_failed"`.
+     * 
+     * <p>**Delivery Timeout**: Each delivery attempt has a hard 60-second timeout. Endpoints that do not
+     * respond within 60 seconds are recorded as failed deliveries (`success: false`, `status_code: 0` on
+     * the event log) and follow the standard retry policy. Endpoints should acknowledge requests quickly
+     * (HTTP 2xx) and defer work asynchronously.
+     * 
+     * <p>**Important**: Always check the `status` and `disabled_reason` fields in the response to ensure the
+     * webhook is active.
+     * 
+     * @param appId The ID of your Unify application
+     * @param createWebhookRequest 
      * @param options additional options
      * @return {@code CompletableFuture<WebhookWebhooksAddResponse>} - The async response
      */
@@ -221,6 +265,19 @@ public class AsyncWebhooks {
      */
     public CompletableFuture<WebhookWebhooksOneResponse> get(String id) {
         return get(id, Optional.empty(), Optional.empty());
+    }
+
+    /**
+     * Get webhook subscription
+     * 
+     * <p>Get the webhook subscription details
+     * 
+     * @param id JWT Webhook token that represents the unifiedApi and applicationId associated to the event source.
+     * @param appId The ID of your Unify application
+     * @return {@code CompletableFuture<WebhookWebhooksOneResponse>} - The async response
+     */
+    public CompletableFuture<WebhookWebhooksOneResponse> get(String id, Optional<String> appId) {
+        return get(id, appId, Optional.empty());
     }
 
     /**
@@ -324,6 +381,37 @@ public class AsyncWebhooks {
      * @param id JWT Webhook token that represents the unifiedApi and applicationId associated to the event source.
      * @param appId The ID of your Unify application
      * @param updateWebhookRequest 
+     * @return {@code CompletableFuture<WebhookWebhooksUpdateResponse>} - The async response
+     */
+    public CompletableFuture<WebhookWebhooksUpdateResponse> update(
+            String id, Optional<String> appId,
+            UpdateWebhookRequest updateWebhookRequest) {
+        return update(
+                id, appId, updateWebhookRequest,
+                Optional.empty());
+    }
+
+    /**
+     * Update webhook subscription
+     * 
+     * <p>Update a webhook subscription.
+     * 
+     * <p>**Delivery URL Validation**: When updating the `delivery_url`, it will be validated synchronously by
+     * sending an HTTP POST request with an HMAC signature. If validation fails (network error, timeout,
+     * non-2xx response), the webhook will still be updated but with `status: "disabled"` and
+     * `disabled_reason: "delivery_url_validation_failed"`. Validation only occurs when the URL is changed.
+     * 
+     * <p>**Delivery Timeout**: Each delivery attempt has a hard 60-second timeout. Endpoints that do not
+     * respond within 60 seconds are recorded as failed deliveries (`success: false`, `status_code: 0` on
+     * the event log) and follow the standard retry policy. Endpoints should acknowledge requests quickly
+     * (HTTP 2xx) and defer work asynchronously.
+     * 
+     * <p>**Important**: Always check the `status` and `disabled_reason` fields in the response to ensure the
+     * webhook is active.
+     * 
+     * @param id JWT Webhook token that represents the unifiedApi and applicationId associated to the event source.
+     * @param appId The ID of your Unify application
+     * @param updateWebhookRequest 
      * @param options additional options
      * @return {@code CompletableFuture<WebhookWebhooksUpdateResponse>} - The async response
      */
@@ -367,6 +455,19 @@ public class AsyncWebhooks {
      */
     public CompletableFuture<WebhookWebhooksDeleteResponse> delete(String id) {
         return delete(id, Optional.empty(), Optional.empty());
+    }
+
+    /**
+     * Delete webhook subscription
+     * 
+     * <p>Delete a webhook subscription
+     * 
+     * @param id JWT Webhook token that represents the unifiedApi and applicationId associated to the event source.
+     * @param appId The ID of your Unify application
+     * @return {@code CompletableFuture<WebhookWebhooksDeleteResponse>} - The async response
+     */
+    public CompletableFuture<WebhookWebhooksDeleteResponse> delete(String id, Optional<String> appId) {
+        return delete(id, appId, Optional.empty());
     }
 
     /**

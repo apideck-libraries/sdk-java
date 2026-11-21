@@ -12,6 +12,7 @@ import com.apideck.unify.utils.Headers;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
+import java.time.Duration;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
@@ -19,6 +20,7 @@ public class AccountingJournalsUpdateRequestBuilder {
 
     private AccountingJournalsUpdateRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -43,10 +45,23 @@ public class AccountingJournalsUpdateRequestBuilder {
         this.retryConfig = retryConfig;
         return this;
     }
+                
+    public AccountingJournalsUpdateRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public AccountingJournalsUpdateRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
     public CompletableFuture<AccountingJournalsUpdateResponse> call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
+            .timeout(timeout)
             .build());
 
         AsyncRequestOperation<AccountingJournalsUpdateRequest, AccountingJournalsUpdateResponse> operation

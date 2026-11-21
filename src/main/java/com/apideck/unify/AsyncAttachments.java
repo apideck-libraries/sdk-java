@@ -124,6 +124,19 @@ public class AsyncAttachments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param serverURL Overrides the server URL.
+     * @return {@code CompletableFuture<AccountingAttachmentsUploadResponse>} - The async response
+     */
+    public CompletableFuture<AccountingAttachmentsUploadResponse> upload(AccountingAttachmentsUploadRequest request, Optional<String> serverURL) {
+        return upload(request, serverURL, Optional.empty());
+    }
+
+    /**
+     * Upload attachment
+     * 
+     * <p>Upload attachment
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
      * @param options additional options
      * @return {@code CompletableFuture<AccountingAttachmentsUploadResponse>} - The async response
      */

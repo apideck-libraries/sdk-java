@@ -18,6 +18,7 @@ import com.apideck.unify.utils.pagination.AsyncPaginator;
 import com.apideck.unify.utils.pagination.CursorTracker;
 import java.lang.String;
 import java.net.http.HttpResponse;
+import java.time.Duration;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Flow;
@@ -28,6 +29,7 @@ public class AccountingTrackingCategoriesAllRequestBuilder {
 
     private AccountingTrackingCategoriesAllRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -52,10 +54,23 @@ public class AccountingTrackingCategoriesAllRequestBuilder {
         this.retryConfig = retryConfig;
         return this;
     }
+                
+    public AccountingTrackingCategoriesAllRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public AccountingTrackingCategoriesAllRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
     public CompletableFuture<AccountingTrackingCategoriesAllResponse> call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
+            .timeout(timeout)
             .build());
 
         AsyncRequestOperation<AccountingTrackingCategoriesAllRequest, AccountingTrackingCategoriesAllResponse> operation
@@ -85,6 +100,7 @@ public class AccountingTrackingCategoriesAllRequestBuilder {
         AccountingTrackingCategoriesAllRequest request = this.request;
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
+            .timeout(timeout)
             .build());
 
         AsyncRequestOperation<AccountingTrackingCategoriesAllRequest, AccountingTrackingCategoriesAllResponse> operation

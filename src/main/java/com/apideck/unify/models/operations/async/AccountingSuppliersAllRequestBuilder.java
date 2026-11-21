@@ -18,6 +18,7 @@ import com.apideck.unify.utils.pagination.AsyncPaginator;
 import com.apideck.unify.utils.pagination.CursorTracker;
 import java.lang.String;
 import java.net.http.HttpResponse;
+import java.time.Duration;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Flow;
@@ -28,6 +29,7 @@ public class AccountingSuppliersAllRequestBuilder {
 
     private AccountingSuppliersAllRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -52,10 +54,23 @@ public class AccountingSuppliersAllRequestBuilder {
         this.retryConfig = retryConfig;
         return this;
     }
+                
+    public AccountingSuppliersAllRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public AccountingSuppliersAllRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
     public CompletableFuture<AccountingSuppliersAllResponse> call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
+            .timeout(timeout)
             .build());
 
         AsyncRequestOperation<AccountingSuppliersAllRequest, AccountingSuppliersAllResponse> operation
@@ -85,6 +100,7 @@ public class AccountingSuppliersAllRequestBuilder {
         AccountingSuppliersAllRequest request = this.request;
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
+            .timeout(timeout)
             .build());
 
         AsyncRequestOperation<AccountingSuppliersAllRequest, AccountingSuppliersAllResponse> operation

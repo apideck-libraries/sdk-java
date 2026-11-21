@@ -121,6 +121,20 @@ public class Attachments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param serverURL Overrides the server URL.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public AccountingAttachmentsUploadResponse upload(AccountingAttachmentsUploadRequest request, Optional<String> serverURL) {
+        return upload(request, serverURL, Optional.empty());
+    }
+
+    /**
+     * Upload attachment
+     * 
+     * <p>Upload attachment
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails

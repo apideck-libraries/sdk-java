@@ -87,6 +87,19 @@ public class AsyncConsumers {
      * 
      * @param appId The ID of your Unify application
      * @param createConsumerRequest 
+     * @return {@code CompletableFuture<VaultConsumersAddResponse>} - The async response
+     */
+    public CompletableFuture<VaultConsumersAddResponse> create(Optional<String> appId, CreateConsumerRequest createConsumerRequest) {
+        return create(appId, createConsumerRequest, Optional.empty());
+    }
+
+    /**
+     * Create consumer
+     * 
+     * <p>Create a consumer
+     * 
+     * @param appId The ID of your Unify application
+     * @param createConsumerRequest 
      * @param options additional options
      * @return {@code CompletableFuture<VaultConsumersAddResponse>} - The async response
      */
@@ -130,6 +143,25 @@ public class AsyncConsumers {
         return list(
                 Optional.empty(), Optional.empty(), JsonNullable.undefined(),
                 Optional.empty(), Optional.empty());
+    }
+
+    /**
+     * Get all consumers
+     * 
+     * <p>This endpoint includes all application consumers, along with an aggregated count of requests made.
+     * 
+     * @param appId The ID of your Unify application
+     * @param filter 
+     * @param cursor Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
+     * @param limit Number of results to return. Minimum 1, Maximum 200, Default 20
+     * @return {@code CompletableFuture<VaultConsumersAllResponse>} - The async response
+     */
+    public CompletableFuture<VaultConsumersAllResponse> list(
+            Optional<String> appId, Optional<? extends ConsumersFilter> filter,
+            JsonNullable<String> cursor, Optional<Long> limit) {
+        return list(
+                appId, filter, cursor,
+                limit, Optional.empty());
     }
 
     /**
@@ -195,6 +227,19 @@ public class AsyncConsumers {
      * 
      * @param appId The ID of your Unify application
      * @param consumerId ID of the consumer to return
+     * @return {@code CompletableFuture<VaultConsumersOneResponse>} - The async response
+     */
+    public CompletableFuture<VaultConsumersOneResponse> get(Optional<String> appId, String consumerId) {
+        return get(appId, consumerId, Optional.empty());
+    }
+
+    /**
+     * Get consumer
+     * 
+     * <p>Consumer detail including their aggregated counts with the connections they have authorized.
+     * 
+     * @param appId The ID of your Unify application
+     * @param consumerId ID of the consumer to return
      * @param options additional options
      * @return {@code CompletableFuture<VaultConsumersOneResponse>} - The async response
      */
@@ -250,6 +295,24 @@ public class AsyncConsumers {
      * @param appId The ID of your Unify application
      * @param consumerId ID of the consumer to return
      * @param updateConsumerRequest 
+     * @return {@code CompletableFuture<VaultConsumersUpdateResponse>} - The async response
+     */
+    public CompletableFuture<VaultConsumersUpdateResponse> update(
+            Optional<String> appId, String consumerId,
+            UpdateConsumerRequest updateConsumerRequest) {
+        return update(
+                appId, consumerId, updateConsumerRequest,
+                Optional.empty());
+    }
+
+    /**
+     * Update consumer
+     * 
+     * <p>Update consumer metadata such as name and email.
+     * 
+     * @param appId The ID of your Unify application
+     * @param consumerId ID of the consumer to return
+     * @param updateConsumerRequest 
      * @param options additional options
      * @return {@code CompletableFuture<VaultConsumersUpdateResponse>} - The async response
      */
@@ -293,6 +356,19 @@ public class AsyncConsumers {
      */
     public CompletableFuture<VaultConsumersDeleteResponse> delete(String consumerId) {
         return delete(Optional.empty(), consumerId, Optional.empty());
+    }
+
+    /**
+     * Delete consumer
+     * 
+     * <p>Delete consumer and all their connections, including credentials.
+     * 
+     * @param appId The ID of your Unify application
+     * @param consumerId ID of the consumer to return
+     * @return {@code CompletableFuture<VaultConsumersDeleteResponse>} - The async response
+     */
+    public CompletableFuture<VaultConsumersDeleteResponse> delete(Optional<String> appId, String consumerId) {
+        return delete(appId, consumerId, Optional.empty());
     }
 
     /**

@@ -70,6 +70,24 @@ public class AsyncApiResources {
      * @param appId The ID of your Unify application
      * @param id ID of the record you are acting upon.
      * @param resourceId ID of the resource you are acting upon.
+     * @return {@code CompletableFuture<ConnectorApiResourcesOneResponse>} - The async response
+     */
+    public CompletableFuture<ConnectorApiResourcesOneResponse> get(
+            Optional<String> appId, String id,
+            String resourceId) {
+        return get(
+                appId, id, resourceId,
+                Optional.empty());
+    }
+
+    /**
+     * Get API Resource
+     * 
+     * <p>Get API Resource
+     * 
+     * @param appId The ID of your Unify application
+     * @param id ID of the record you are acting upon.
+     * @param resourceId ID of the resource you are acting upon.
      * @param options additional options
      * @return {@code CompletableFuture<ConnectorApiResourcesOneResponse>} - The async response
      */

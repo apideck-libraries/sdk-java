@@ -20,6 +20,7 @@ import java.io.InputStream;
 import java.lang.Iterable;
 import java.lang.String;
 import java.net.http.HttpResponse;
+import java.time.Duration;
 import java.util.Iterator;
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -28,6 +29,7 @@ public class AccountingQuotesAllRequestBuilder {
 
     private AccountingQuotesAllRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -52,10 +54,23 @@ public class AccountingQuotesAllRequestBuilder {
         this.retryConfig = retryConfig;
         return this;
     }
+                
+    public AccountingQuotesAllRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public AccountingQuotesAllRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
     public AccountingQuotesAllResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
+            .timeout(timeout)
             .build());
 
         RequestOperation<AccountingQuotesAllRequest, AccountingQuotesAllResponse> operation
@@ -80,6 +95,7 @@ public class AccountingQuotesAllRequestBuilder {
     public Iterable<AccountingQuotesAllResponse> callAsIterable() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
+            .timeout(timeout)
             .build());
 
         RequestOperation<AccountingQuotesAllRequest, AccountingQuotesAllResponse> operation

@@ -71,6 +71,25 @@ public class AsyncCustomMappings {
      * @param appId The ID of your Unify application
      * @param unifiedApi Unified API
      * @param serviceId Service ID of the resource to return
+     * @return {@code CompletableFuture<VaultCustomMappingsAllResponse>} - The async response
+     */
+    public CompletableFuture<VaultCustomMappingsAllResponse> list(
+            Optional<String> consumerId, Optional<String> appId,
+            String unifiedApi, String serviceId) {
+        return list(
+                consumerId, appId, unifiedApi,
+                serviceId, Optional.empty());
+    }
+
+    /**
+     * List custom mappings
+     * 
+     * <p>This endpoint returns a list of custom mappings.
+     * 
+     * @param consumerId ID of the consumer which you want to get or push data from
+     * @param appId The ID of your Unify application
+     * @param unifiedApi Unified API
+     * @param serviceId Service ID of the resource to return
      * @param options additional options
      * @return {@code CompletableFuture<VaultCustomMappingsAllResponse>} - The async response
      */

@@ -74,6 +74,25 @@ public class Apis {
      * @param cursor Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
      * @param limit Number of results to return. Minimum 1, Maximum 200, Default 20
      * @param filter 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ConnectorApisAllResponse list(
+            Optional<String> appId, JsonNullable<String> cursor,
+            Optional<Long> limit, Optional<? extends ApisFilter> filter) {
+        return list(appId, cursor, limit,
+            filter, Optional.empty());
+    }
+
+    /**
+     * List APIs
+     * 
+     * <p>List APIs
+     * 
+     * @param appId The ID of your Unify application
+     * @param cursor Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
+     * @param limit Number of results to return. Minimum 1, Maximum 200, Default 20
+     * @param filter 
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
@@ -117,6 +136,20 @@ public class Apis {
      */
     public ConnectorApisOneResponse get(String id) {
         return get(Optional.empty(), id, Optional.empty());
+    }
+
+    /**
+     * Get API
+     * 
+     * <p>Get API
+     * 
+     * @param appId The ID of your Unify application
+     * @param id ID of the record you are acting upon.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ConnectorApisOneResponse get(Optional<String> appId, String id) {
+        return get(appId, id, Optional.empty());
     }
 
     /**

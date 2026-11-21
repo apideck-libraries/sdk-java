@@ -14,6 +14,7 @@ import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
@@ -23,6 +24,7 @@ public class VaultConsumersUpdateRequestBuilder {
     private String consumerId;
     private UpdateConsumerRequest updateConsumerRequest;
     private Optional<RetryConfig> retryConfig = Optional.empty();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -65,6 +67,18 @@ public class VaultConsumersUpdateRequestBuilder {
         this.retryConfig = retryConfig;
         return this;
     }
+                
+    public VaultConsumersUpdateRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public VaultConsumersUpdateRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private VaultConsumersUpdateRequest buildRequest() {
@@ -79,6 +93,7 @@ public class VaultConsumersUpdateRequestBuilder {
     public CompletableFuture<VaultConsumersUpdateResponse> call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
+            .timeout(timeout)
             .build());
 
         AsyncRequestOperation<VaultConsumersUpdateRequest, VaultConsumersUpdateResponse> operation

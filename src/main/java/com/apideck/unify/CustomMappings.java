@@ -69,6 +69,25 @@ public class CustomMappings {
      * @param appId The ID of your Unify application
      * @param unifiedApi Unified API
      * @param serviceId Service ID of the resource to return
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public VaultCustomMappingsAllResponse list(
+            Optional<String> consumerId, Optional<String> appId,
+            String unifiedApi, String serviceId) {
+        return list(consumerId, appId, unifiedApi,
+            serviceId, Optional.empty());
+    }
+
+    /**
+     * List custom mappings
+     * 
+     * <p>This endpoint returns a list of custom mappings.
+     * 
+     * @param consumerId ID of the consumer which you want to get or push data from
+     * @param appId The ID of your Unify application
+     * @param unifiedApi Unified API
+     * @param serviceId Service ID of the resource to return
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails

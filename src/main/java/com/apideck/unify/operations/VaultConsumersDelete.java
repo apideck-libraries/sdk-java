@@ -41,6 +41,7 @@ import java.lang.String;
 import java.lang.Throwable;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.time.Duration;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -55,6 +56,7 @@ public class VaultConsumersDelete {
         final SDKConfiguration sdkConfiguration;
         final String baseUrl;
         final SecuritySource securitySource;
+        final Optional<Duration> timeout;
         final List<String> retryStatusCodes;
         final RetryConfig retryConfig;
         final HTTPClient client;
@@ -69,7 +71,8 @@ public class VaultConsumersDelete {
             this.baseUrl = this.sdkConfiguration.serverUrl();
             this.securitySource = this.sdkConfiguration.securitySource();
             options
-                    .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
+                    .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG, Options.Option.TIMEOUT)));
+            this.timeout = options.flatMap(Options::timeout).or(sdkConfiguration::timeout);
             this.retryStatusCodes = List.of("408", "500", "502", "503", "504");
             this.retryConfig = options
                     .flatMap(Options::retryConfig)
@@ -124,7 +127,8 @@ public class VaultConsumersDelete {
                     this.baseUrl,
                     "/vault/consumers/{consumer_id}",
                     request, this.operationGlobals);
-            HTTPRequest req = new HTTPRequest(url, "DELETE");
+            HTTPRequest req = new HTTPRequest(url, "DELETE")
+                    .timeout(this.timeout);
             req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
@@ -273,7 +277,6 @@ public class VaultConsumersDelete {
     public static class Async extends Base
             implements AsyncRequestOperation<VaultConsumersDeleteRequest, com.apideck.unify.models.operations.async.VaultConsumersDeleteResponse> {
         private final ScheduledExecutorService retryScheduler;
-
         public Async(
                 SDKConfiguration sdkConfiguration, Optional<Options> options,
                 ScheduledExecutorService retryScheduler, Headers _headers) {

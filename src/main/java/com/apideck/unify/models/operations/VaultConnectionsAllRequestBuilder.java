@@ -13,6 +13,7 @@ import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
 import java.lang.Boolean;
 import java.lang.String;
+import java.time.Duration;
 import java.util.Optional;
 
 public class VaultConnectionsAllRequestBuilder {
@@ -22,6 +23,7 @@ public class VaultConnectionsAllRequestBuilder {
     private Optional<String> api = Optional.empty();
     private Optional<Boolean> configured = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -88,6 +90,18 @@ public class VaultConnectionsAllRequestBuilder {
         this.retryConfig = retryConfig;
         return this;
     }
+                
+    public VaultConnectionsAllRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public VaultConnectionsAllRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private VaultConnectionsAllRequest buildRequest() {
@@ -103,6 +117,7 @@ public class VaultConnectionsAllRequestBuilder {
     public VaultConnectionsAllResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
+            .timeout(timeout)
             .build());
 
         RequestOperation<VaultConnectionsAllRequest, VaultConnectionsAllResponse> operation

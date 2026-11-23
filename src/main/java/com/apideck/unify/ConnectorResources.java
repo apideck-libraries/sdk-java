@@ -70,6 +70,25 @@ public class ConnectorResources {
      * @param id ID of the record you are acting upon.
      * @param resourceId ID of the resource you are acting upon.
      * @param unifiedApi Name of Apideck Unified API
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ConnectorConnectorResourcesOneResponse get(
+            Optional<String> appId, String id,
+            String resourceId, Optional<? extends UnifiedApi> unifiedApi) {
+        return get(appId, id, resourceId,
+            unifiedApi, Optional.empty());
+    }
+
+    /**
+     * Get Connector Resource
+     * 
+     * <p>Get Connector Resource
+     * 
+     * @param appId The ID of your Unify application
+     * @param id ID of the record you are acting upon.
+     * @param resourceId ID of the resource you are acting upon.
+     * @param unifiedApi Name of Apideck Unified API
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails

@@ -76,6 +76,25 @@ public class AsyncConnectors {
      * @param cursor Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
      * @param limit Number of results to return. Minimum 1, Maximum 200, Default 20
      * @param filter 
+     * @return {@code CompletableFuture<ConnectorConnectorsAllResponse>} - The async response
+     */
+    public CompletableFuture<ConnectorConnectorsAllResponse> list(
+            Optional<String> appId, JsonNullable<String> cursor,
+            Optional<Long> limit, Optional<? extends ConnectorsFilter> filter) {
+        return list(
+                appId, cursor, limit,
+                filter, Optional.empty());
+    }
+
+    /**
+     * List Connectors
+     * 
+     * <p>List Connectors
+     * 
+     * @param appId The ID of your Unify application
+     * @param cursor Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
+     * @param limit Number of results to return. Minimum 1, Maximum 200, Default 20
+     * @param filter 
      * @param options additional options
      * @return {@code CompletableFuture<ConnectorConnectorsAllResponse>} - The async response
      */
@@ -121,6 +140,19 @@ public class AsyncConnectors {
      */
     public CompletableFuture<ConnectorConnectorsOneResponse> get(String id) {
         return get(Optional.empty(), id, Optional.empty());
+    }
+
+    /**
+     * Get Connector
+     * 
+     * <p>Get Connector
+     * 
+     * @param appId The ID of your Unify application
+     * @param id ID of the record you are acting upon.
+     * @return {@code CompletableFuture<ConnectorConnectorsOneResponse>} - The async response
+     */
+    public CompletableFuture<ConnectorConnectorsOneResponse> get(Optional<String> appId, String id) {
+        return get(appId, id, Optional.empty());
     }
 
     /**

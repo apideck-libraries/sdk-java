@@ -72,6 +72,25 @@ public class ConsumerRequestCounts {
      * @param consumerId ID of the consumer to return
      * @param startDatetime Scopes results to requests that happened after datetime
      * @param endDatetime Scopes results to requests that happened before datetime
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public VaultConsumerRequestCountsAllResponse list(
+            Optional<String> appId, String consumerId,
+            String startDatetime, String endDatetime) {
+        return list(appId, consumerId, startDatetime,
+            endDatetime, Optional.empty());
+    }
+
+    /**
+     * Consumer request counts
+     * 
+     * <p>Get consumer request counts within a given datetime range.
+     * 
+     * @param appId The ID of your Unify application
+     * @param consumerId ID of the consumer to return
+     * @param startDatetime Scopes results to requests that happened after datetime
+     * @param endDatetime Scopes results to requests that happened before datetime
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails

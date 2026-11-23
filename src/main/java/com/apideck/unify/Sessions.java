@@ -79,6 +79,28 @@ public class Sessions {
      * @param consumerId ID of the consumer which you want to get or push data from
      * @param appId The ID of your Unify application
      * @param session 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public VaultSessionsCreateResponse create(
+            Optional<String> consumerId, Optional<String> appId,
+            Optional<? extends Session> session) {
+        return create(consumerId, appId, session,
+            Optional.empty());
+    }
+
+    /**
+     * Create Session
+     * 
+     * <p>Making a POST request to this endpoint will initiate a Hosted Vault session. Redirect the consumer
+     * to the returned
+     * URL to allow temporary access to manage their integrations and settings.
+     * 
+     * <p>Note: This is a short lived token that will expire after 1 hour (TTL: 3600).
+     * 
+     * @param consumerId ID of the consumer which you want to get or push data from
+     * @param appId The ID of your Unify application
+     * @param session 
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails

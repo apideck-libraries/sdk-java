@@ -47,6 +47,14 @@ public class CustomFieldFinder {
     private Optional<? extends Object> value;
 
     /**
+     * The declared data type of the custom field. Only returned by connectors that can read the field's
+     * definition; omitted otherwise.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("type")
+    private Optional<? extends CustomFieldFinderType> type;
+
+    /**
      * JSONPath finder for retrieving this value when mapping a response payload from downstream
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -59,22 +67,25 @@ public class CustomFieldFinder {
             @JsonProperty("name") JsonNullable<String> name,
             @JsonProperty("description") JsonNullable<String> description,
             @JsonProperty("value") Optional<? extends Object> value,
+            @JsonProperty("type") Optional<? extends CustomFieldFinderType> type,
             @JsonProperty("finder") Optional<String> finder) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(value, "value");
+        Utils.checkNotNull(type, "type");
         Utils.checkNotNull(finder, "finder");
         this.id = id;
         this.name = name;
         this.description = description;
         this.value = value;
+        this.type = type;
         this.finder = finder;
     }
     
     public CustomFieldFinder() {
         this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -108,6 +119,16 @@ public class CustomFieldFinder {
     @JsonIgnore
     public Optional<Object> value() {
         return (Optional<Object>) value;
+    }
+
+    /**
+     * The declared data type of the custom field. Only returned by connectors that can read the field's
+     * definition; omitted otherwise.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<CustomFieldFinderType> type() {
+        return (Optional<CustomFieldFinderType>) type;
     }
 
     /**
@@ -198,6 +219,27 @@ public class CustomFieldFinder {
     }
 
     /**
+     * The declared data type of the custom field. Only returned by connectors that can read the field's
+     * definition; omitted otherwise.
+     */
+    public CustomFieldFinder withType(CustomFieldFinderType type) {
+        Utils.checkNotNull(type, "type");
+        this.type = Optional.ofNullable(type);
+        return this;
+    }
+
+
+    /**
+     * The declared data type of the custom field. Only returned by connectors that can read the field's
+     * definition; omitted otherwise.
+     */
+    public CustomFieldFinder withType(Optional<? extends CustomFieldFinderType> type) {
+        Utils.checkNotNull(type, "type");
+        this.type = type;
+        return this;
+    }
+
+    /**
      * JSONPath finder for retrieving this value when mapping a response payload from downstream
      */
     public CustomFieldFinder withFinder(String finder) {
@@ -230,6 +272,7 @@ public class CustomFieldFinder {
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.description, other.description) &&
             Utils.enhancedDeepEquals(this.value, other.value) &&
+            Utils.enhancedDeepEquals(this.type, other.type) &&
             Utils.enhancedDeepEquals(this.finder, other.finder);
     }
     
@@ -237,7 +280,7 @@ public class CustomFieldFinder {
     public int hashCode() {
         return Utils.enhancedHash(
             id, name, description,
-            value, finder);
+            value, type, finder);
     }
     
     @Override
@@ -247,6 +290,7 @@ public class CustomFieldFinder {
                 "name", name,
                 "description", description,
                 "value", value,
+                "type", type,
                 "finder", finder);
     }
 
@@ -260,6 +304,8 @@ public class CustomFieldFinder {
         private JsonNullable<String> description = JsonNullable.undefined();
 
         private Optional<? extends Object> value = Optional.empty();
+
+        private Optional<? extends CustomFieldFinderType> type = Optional.empty();
 
         private Optional<String> finder = Optional.empty();
 
@@ -345,6 +391,27 @@ public class CustomFieldFinder {
 
 
         /**
+         * The declared data type of the custom field. Only returned by connectors that can read the field's
+         * definition; omitted otherwise.
+         */
+        public Builder type(CustomFieldFinderType type) {
+            Utils.checkNotNull(type, "type");
+            this.type = Optional.ofNullable(type);
+            return this;
+        }
+
+        /**
+         * The declared data type of the custom field. Only returned by connectors that can read the field's
+         * definition; omitted otherwise.
+         */
+        public Builder type(Optional<? extends CustomFieldFinderType> type) {
+            Utils.checkNotNull(type, "type");
+            this.type = type;
+            return this;
+        }
+
+
+        /**
          * JSONPath finder for retrieving this value when mapping a response payload from downstream
          */
         public Builder finder(String finder) {
@@ -366,7 +433,7 @@ public class CustomFieldFinder {
 
             return new CustomFieldFinder(
                 id, name, description,
-                value, finder);
+                value, type, finder);
         }
 
     }

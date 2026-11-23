@@ -13,6 +13,7 @@ import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
@@ -22,6 +23,7 @@ public class ConnectorConnectorDocsOneRequestBuilder {
     private String id;
     private String docId;
     private Optional<RetryConfig> retryConfig = Optional.empty();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -64,6 +66,18 @@ public class ConnectorConnectorDocsOneRequestBuilder {
         this.retryConfig = retryConfig;
         return this;
     }
+                
+    public ConnectorConnectorDocsOneRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public ConnectorConnectorDocsOneRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private ConnectorConnectorDocsOneRequest buildRequest() {
@@ -78,6 +92,7 @@ public class ConnectorConnectorDocsOneRequestBuilder {
     public CompletableFuture<ConnectorConnectorDocsOneResponse> call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
+            .timeout(timeout)
             .build());
 
         AsyncRequestOperation<ConnectorConnectorDocsOneRequest, ConnectorConnectorDocsOneResponse> operation

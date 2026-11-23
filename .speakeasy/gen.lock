@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 38254260-287a-40b6-9ac5-c2fcb654c9cc
 management:
-  docChecksum: 6428a6e1378f467cd997c60f85641019
+  docChecksum: e371d78829add2711f138d59d3862e34
   docVersion: 10.89.0
   speakeasyVersion: 1.811.0
   generationVersion: 2.968.1
-  releaseVersion: 0.61.0
-  configChecksum: ef52835cc0cf9aacb3706dcca29bd40c
+  releaseVersion: 0.61.1
+  configChecksum: 3e9af2f44f2b72a43485601b904f6421
   repoURL: https://github.com/apideck-libraries/sdk-java.git
   installationURL: https://github.com/apideck-libraries/sdk-java
   published: true
 persistentEdits:
-  generation_id: bd77deb1-e5cd-4e87-862a-96d11f6534f9
-  pristine_commit_hash: 3263aeade7d5bc46207934743988bcf0c83b70c1
-  pristine_tree_hash: f4158b375a26e9554b430a0b6b658f11ef06f511
+  generation_id: a45d2de4-5b7d-4a41-8faa-b6952d6d8d97
+  pristine_commit_hash: a50d79a7d5c7dd924f198ce6648cdabf843b54f1
+  pristine_tree_hash: 2c4896c3f6a7b305d61ef4c4ff0d24c48559e54c
 features:
   java:
     acceptHeaders: 2.81.2
@@ -8373,8 +8373,8 @@ trackedFiles:
     pristine_git_object: c755c6aa377f358344e761e9cc3e7b67bc1fb479
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:914d511cb2d79f8e01e62ea800266889e2dfd849
-    pristine_git_object: 124e6d05b0e168efb058154e3f2fc6cf6538514e
+    last_write_checksum: sha1:fe8932e52b247ef14c6efdb19795b9a001a5439a
+    pristine_git_object: 15225466bed66875aa6e71ec153aba51f7f5c7ec
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -9241,8 +9241,8 @@ trackedFiles:
     pristine_git_object: 7296db7ebcdcff7ee348d1f993fc4aa2a7e6c145
   src/main/java/com/apideck/unify/SDKConfiguration.java:
     id: a2b330a87142
-    last_write_checksum: sha1:24b8d784d69b9326043fa65d649ff6e25efbb439
-    pristine_git_object: da2da3a60d13851d30c10bf92817b603a02331a7
+    last_write_checksum: sha1:0e0487d68b13fc46684479edbcfcafee8d7300d9
+    pristine_git_object: 4c1ff0c78f71d56f7aaa37d939c61c80cf7a95ee
   src/main/java/com/apideck/unify/SalesOrders.java:
     id: 065b0fd99f1f
     last_write_checksum: sha1:263495ead26adefc6a55b3380563b052158968b0
@@ -42037,9 +42037,6 @@ examples:
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: |
-  ## Java SDK Changes:
-  * `apideck.vault.customFields.list()`:  `response.data[].type` **Added**
 generatedFiles:
   - .gitattributes
   - USAGE.md

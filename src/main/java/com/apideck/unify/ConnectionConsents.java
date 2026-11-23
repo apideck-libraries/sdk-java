@@ -69,6 +69,25 @@ public class ConnectionConsents {
      * @param appId The ID of your Unify application
      * @param serviceId Service ID of the resource to return
      * @param unifiedApi Unified API
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public VaultConnectionConsentsAllResponse list(
+            Optional<String> consumerId, Optional<String> appId,
+            String serviceId, String unifiedApi) {
+        return list(consumerId, appId, serviceId,
+            unifiedApi, Optional.empty());
+    }
+
+    /**
+     * Get consent records
+     * 
+     * <p>Get all consent records for a connection
+     * 
+     * @param consumerId ID of the consumer which you want to get or push data from
+     * @param appId The ID of your Unify application
+     * @param serviceId Service ID of the resource to return
+     * @param unifiedApi Unified API
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails

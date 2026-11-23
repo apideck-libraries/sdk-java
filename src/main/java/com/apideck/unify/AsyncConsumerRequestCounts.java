@@ -74,6 +74,25 @@ public class AsyncConsumerRequestCounts {
      * @param consumerId ID of the consumer to return
      * @param startDatetime Scopes results to requests that happened after datetime
      * @param endDatetime Scopes results to requests that happened before datetime
+     * @return {@code CompletableFuture<VaultConsumerRequestCountsAllResponse>} - The async response
+     */
+    public CompletableFuture<VaultConsumerRequestCountsAllResponse> list(
+            Optional<String> appId, String consumerId,
+            String startDatetime, String endDatetime) {
+        return list(
+                appId, consumerId, startDatetime,
+                endDatetime, Optional.empty());
+    }
+
+    /**
+     * Consumer request counts
+     * 
+     * <p>Get consumer request counts within a given datetime range.
+     * 
+     * @param appId The ID of your Unify application
+     * @param consumerId ID of the consumer to return
+     * @param startDatetime Scopes results to requests that happened after datetime
+     * @param endDatetime Scopes results to requests that happened before datetime
      * @param options additional options
      * @return {@code CompletableFuture<VaultConsumerRequestCountsAllResponse>} - The async response
      */

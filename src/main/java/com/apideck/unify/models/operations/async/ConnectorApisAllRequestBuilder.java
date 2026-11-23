@@ -22,6 +22,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import java.lang.Long;
 import java.lang.String;
 import java.net.http.HttpResponse;
+import java.time.Duration;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Flow;
@@ -39,6 +40,7 @@ public class ConnectorApisAllRequestBuilder {
                             new TypeReference<Optional<Long>>() {});
     private Optional<? extends ApisFilter> filter = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -105,6 +107,18 @@ public class ConnectorApisAllRequestBuilder {
         this.retryConfig = retryConfig;
         return this;
     }
+                
+    public ConnectorApisAllRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public ConnectorApisAllRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private ConnectorApisAllRequest buildRequest() {
@@ -123,6 +137,7 @@ public class ConnectorApisAllRequestBuilder {
     public CompletableFuture<ConnectorApisAllResponse> call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
+            .timeout(timeout)
             .build());
 
         AsyncRequestOperation<ConnectorApisAllRequest, ConnectorApisAllResponse> operation
@@ -153,6 +168,7 @@ public class ConnectorApisAllRequestBuilder {
         ConnectorApisAllRequest request = this.buildRequest();
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
+            .timeout(timeout)
             .build());
 
         AsyncRequestOperation<ConnectorApisAllRequest, ConnectorApisAllResponse> operation

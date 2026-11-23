@@ -70,6 +70,24 @@ public class AsyncApiResourceCoverage {
      * @param appId The ID of your Unify application
      * @param id ID of the record you are acting upon.
      * @param resourceId ID of the resource you are acting upon.
+     * @return {@code CompletableFuture<ConnectorApiResourceCoverageOneResponse>} - The async response
+     */
+    public CompletableFuture<ConnectorApiResourceCoverageOneResponse> get(
+            Optional<String> appId, String id,
+            String resourceId) {
+        return get(
+                appId, id, resourceId,
+                Optional.empty());
+    }
+
+    /**
+     * Get API Resource Coverage
+     * 
+     * <p>Get API Resource Coverage
+     * 
+     * @param appId The ID of your Unify application
+     * @param id ID of the record you are acting upon.
+     * @param resourceId ID of the resource you are acting upon.
      * @param options additional options
      * @return {@code CompletableFuture<ConnectorApiResourceCoverageOneResponse>} - The async response
      */

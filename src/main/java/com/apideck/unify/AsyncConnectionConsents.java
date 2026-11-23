@@ -71,6 +71,25 @@ public class AsyncConnectionConsents {
      * @param appId The ID of your Unify application
      * @param serviceId Service ID of the resource to return
      * @param unifiedApi Unified API
+     * @return {@code CompletableFuture<VaultConnectionConsentsAllResponse>} - The async response
+     */
+    public CompletableFuture<VaultConnectionConsentsAllResponse> list(
+            Optional<String> consumerId, Optional<String> appId,
+            String serviceId, String unifiedApi) {
+        return list(
+                consumerId, appId, serviceId,
+                unifiedApi, Optional.empty());
+    }
+
+    /**
+     * Get consent records
+     * 
+     * <p>Get all consent records for a connection
+     * 
+     * @param consumerId ID of the consumer which you want to get or push data from
+     * @param appId The ID of your Unify application
+     * @param serviceId Service ID of the resource to return
+     * @param unifiedApi Unified API
      * @param options additional options
      * @return {@code CompletableFuture<VaultConnectionConsentsAllResponse>} - The async response
      */

@@ -72,6 +72,25 @@ public class AsyncConnectorResources {
      * @param id ID of the record you are acting upon.
      * @param resourceId ID of the resource you are acting upon.
      * @param unifiedApi Name of Apideck Unified API
+     * @return {@code CompletableFuture<ConnectorConnectorResourcesOneResponse>} - The async response
+     */
+    public CompletableFuture<ConnectorConnectorResourcesOneResponse> get(
+            Optional<String> appId, String id,
+            String resourceId, Optional<? extends UnifiedApi> unifiedApi) {
+        return get(
+                appId, id, resourceId,
+                unifiedApi, Optional.empty());
+    }
+
+    /**
+     * Get Connector Resource
+     * 
+     * <p>Get Connector Resource
+     * 
+     * @param appId The ID of your Unify application
+     * @param id ID of the record you are acting upon.
+     * @param resourceId ID of the resource you are acting upon.
+     * @param unifiedApi Name of Apideck Unified API
      * @param options additional options
      * @return {@code CompletableFuture<ConnectorConnectorResourcesOneResponse>} - The async response
      */

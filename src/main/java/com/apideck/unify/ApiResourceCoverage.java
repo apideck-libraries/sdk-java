@@ -68,6 +68,24 @@ public class ApiResourceCoverage {
      * @param appId The ID of your Unify application
      * @param id ID of the record you are acting upon.
      * @param resourceId ID of the resource you are acting upon.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ConnectorApiResourceCoverageOneResponse get(
+            Optional<String> appId, String id,
+            String resourceId) {
+        return get(appId, id, resourceId,
+            Optional.empty());
+    }
+
+    /**
+     * Get API Resource Coverage
+     * 
+     * <p>Get API Resource Coverage
+     * 
+     * @param appId The ID of your Unify application
+     * @param id ID of the record you are acting upon.
+     * @param resourceId ID of the resource you are acting upon.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails

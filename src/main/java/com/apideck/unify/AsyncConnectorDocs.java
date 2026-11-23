@@ -70,6 +70,24 @@ public class AsyncConnectorDocs {
      * @param appId The ID of your Unify application
      * @param id ID of the record you are acting upon.
      * @param docId ID of the Doc
+     * @return {@code CompletableFuture<ConnectorConnectorDocsOneResponse>} - The async response
+     */
+    public CompletableFuture<ConnectorConnectorDocsOneResponse> get(
+            Optional<String> appId, String id,
+            String docId) {
+        return get(
+                appId, id, docId,
+                Optional.empty());
+    }
+
+    /**
+     * Get Connector Doc content
+     * 
+     * <p>Get Connector Doc content
+     * 
+     * @param appId The ID of your Unify application
+     * @param id ID of the record you are acting upon.
+     * @param docId ID of the Doc
      * @param options additional options
      * @return {@code CompletableFuture<ConnectorConnectorDocsOneResponse>} - The async response
      */

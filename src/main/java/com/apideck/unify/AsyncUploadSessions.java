@@ -94,6 +94,23 @@ public class AsyncUploadSessions {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param serverURL Overrides the server URL.
+     * @return {@code CompletableFuture<FileStorageUploadSessionsAddResponse>} - The async response
+     */
+    public CompletableFuture<FileStorageUploadSessionsAddResponse> create(FileStorageUploadSessionsAddRequest request, Optional<String> serverURL) {
+        return create(request, serverURL, Optional.empty());
+    }
+
+    /**
+     * Start Upload Session
+     * 
+     * <p>Start an Upload Session. Upload sessions are used to upload large files, use the [Upload
+     * File](#operation/filesUpload) endpoint to upload smaller files (up to 100MB). Note that the base URL
+     * is upload.apideck.com instead of unify.apideck.com.
+     * 
+     * <p>For more information on uploads, refer to the [file upload guide](/guides/file-upload).
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
      * @param options additional options
      * @return {@code CompletableFuture<FileStorageUploadSessionsAddResponse>} - The async response
      */
@@ -138,6 +155,23 @@ public class AsyncUploadSessions {
      */
     public CompletableFuture<FileStorageUploadSessionsOneResponse> get(FileStorageUploadSessionsOneRequest request) {
         return get(request, Optional.empty(), Optional.empty());
+    }
+
+    /**
+     * Get Upload Session
+     * 
+     * <p>Get Upload Session. Use the `part_size` to split your file into parts. Upload the parts to the
+     * [Upload part of File](#operation/uploadSessionsUpload) endpoint.
+     * 
+     * <p>Note that the base URL is upload.apideck.com instead of unify.apideck.com. For more information on
+     * uploads, refer to the [file upload guide](/guides/file-upload).
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return {@code CompletableFuture<FileStorageUploadSessionsOneResponse>} - The async response
+     */
+    public CompletableFuture<FileStorageUploadSessionsOneResponse> get(FileStorageUploadSessionsOneRequest request, Optional<String> serverURL) {
+        return get(request, serverURL, Optional.empty());
     }
 
     /**
@@ -197,6 +231,24 @@ public class AsyncUploadSessions {
      */
     public CompletableFuture<FileStorageUploadSessionsUploadResponse> upload(FileStorageUploadSessionsUploadRequest request) {
         return upload(request, Optional.empty(), Optional.empty());
+    }
+
+    /**
+     * Upload part of File to Upload Session
+     * 
+     * <p>Upload part of File to Upload Session (max 100MB). Get `part_size` from [Get Upload
+     * Session](#operation/uploadSessionsOne) first. Every File part (except the last one) uploaded to this
+     * endpoint should have Content-Length equal to `part_size`.
+     * 
+     * <p>Note that the base URL is upload.apideck.com instead of unify.apideck.com. For more information on
+     * uploads, refer to the [file upload guide](/guides/file-upload).
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return {@code CompletableFuture<FileStorageUploadSessionsUploadResponse>} - The async response
+     */
+    public CompletableFuture<FileStorageUploadSessionsUploadResponse> upload(FileStorageUploadSessionsUploadRequest request, Optional<String> serverURL) {
+        return upload(request, serverURL, Optional.empty());
     }
 
     /**
@@ -300,6 +352,23 @@ public class AsyncUploadSessions {
      */
     public CompletableFuture<FileStorageUploadSessionsFinishResponse> finish(FileStorageUploadSessionsFinishRequest request) {
         return finish(request, Optional.empty(), Optional.empty());
+    }
+
+    /**
+     * Finish Upload Session
+     * 
+     * <p>Finish Upload Session. Only call this endpoint after all File parts have been uploaded to [Upload
+     * part of File](#operation/uploadSessionsUpload). Note that the base URL is upload.apideck.com instead
+     * of unify.apideck.com.
+     * 
+     * <p>For more information on uploads, refer to the [file upload guide](/guides/file-upload).
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param serverURL Overrides the server URL.
+     * @return {@code CompletableFuture<FileStorageUploadSessionsFinishResponse>} - The async response
+     */
+    public CompletableFuture<FileStorageUploadSessionsFinishResponse> finish(FileStorageUploadSessionsFinishRequest request, Optional<String> serverURL) {
+        return finish(request, serverURL, Optional.empty());
     }
 
     /**

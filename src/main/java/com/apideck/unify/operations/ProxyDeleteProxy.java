@@ -38,6 +38,7 @@ import java.lang.Throwable;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
+import java.time.Duration;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -53,6 +54,7 @@ public class ProxyDeleteProxy {
         final SDKConfiguration sdkConfiguration;
         final String baseUrl;
         final SecuritySource securitySource;
+        final Optional<Duration> timeout;
         final List<String> retryStatusCodes;
         final RetryConfig retryConfig;
         final HTTPClient client;
@@ -67,7 +69,8 @@ public class ProxyDeleteProxy {
             this.baseUrl = this.sdkConfiguration.serverUrl();
             this.securitySource = this.sdkConfiguration.securitySource();
             options
-                    .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
+                    .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG, Options.Option.TIMEOUT)));
+            this.timeout = options.flatMap(Options::timeout).or(sdkConfiguration::timeout);
             this.retryStatusCodes = List.of("408", "500", "502", "503", "504");
             this.retryConfig = options
                     .flatMap(Options::retryConfig)
@@ -122,7 +125,8 @@ public class ProxyDeleteProxy {
             String url = Utils.generateURL(
                     this.baseUrl,
                     "/proxy");
-            HTTPRequest req = new HTTPRequest(url, "DELETE");
+            HTTPRequest req = new HTTPRequest(url, "DELETE")
+                    .timeout(this.timeout);
             req.addHeader("Accept", "application/json;q=1, text/csv;q=0.9, text/plain;q=0.7, application/octet-stream;q=0.6, application/pdf;q=0.4, application/xml;q=0.3, text/html;q=0")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
@@ -273,7 +277,6 @@ public class ProxyDeleteProxy {
     public static class Async extends Base
             implements AsyncRequestOperation<ProxyDeleteProxyRequest, com.apideck.unify.models.operations.async.ProxyDeleteProxyResponse> {
         private final ScheduledExecutorService retryScheduler;
-
         public Async(
                 SDKConfiguration sdkConfiguration, Optional<Options> options,
                 ScheduledExecutorService retryScheduler, Headers _headers) {

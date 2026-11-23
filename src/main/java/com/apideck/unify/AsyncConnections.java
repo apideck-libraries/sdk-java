@@ -107,6 +107,28 @@ public class AsyncConnections {
      * @param appId The ID of your Unify application
      * @param api Scope results to Unified API
      * @param configured Scopes results to connections that have been configured or not
+     * @return {@code CompletableFuture<VaultConnectionsAllResponse>} - The async response
+     */
+    public CompletableFuture<VaultConnectionsAllResponse> list(
+            Optional<String> consumerId, Optional<String> appId,
+            Optional<String> api, Optional<Boolean> configured) {
+        return list(
+                consumerId, appId, api,
+                configured, Optional.empty());
+    }
+
+    /**
+     * Get all connections
+     * 
+     * <p>This endpoint includes all the configured integrations and contains the required assets
+     * to build an integrations page where your users can install integrations.
+     * OAuth2 supported integrations will contain authorize and revoke links to handle the authentication
+     * flows.
+     * 
+     * @param consumerId ID of the consumer which you want to get or push data from
+     * @param appId The ID of your Unify application
+     * @param api Scope results to Unified API
+     * @param configured Scopes results to connections that have been configured or not
      * @param options additional options
      * @return {@code CompletableFuture<VaultConnectionsAllResponse>} - The async response
      */
@@ -154,6 +176,25 @@ public class AsyncConnections {
     public CompletableFuture<VaultConnectionsOneResponse> get(String serviceId, String unifiedApi) {
         return get(
                 Optional.empty(), Optional.empty(), serviceId,
+                unifiedApi, Optional.empty());
+    }
+
+    /**
+     * Get connection
+     * 
+     * <p>Get a connection
+     * 
+     * @param consumerId ID of the consumer which you want to get or push data from
+     * @param appId The ID of your Unify application
+     * @param serviceId Service ID of the resource to return
+     * @param unifiedApi Unified API
+     * @return {@code CompletableFuture<VaultConnectionsOneResponse>} - The async response
+     */
+    public CompletableFuture<VaultConnectionsOneResponse> get(
+            Optional<String> consumerId, Optional<String> appId,
+            String serviceId, String unifiedApi) {
+        return get(
+                consumerId, appId, serviceId,
                 unifiedApi, Optional.empty());
     }
 
@@ -255,6 +296,25 @@ public class AsyncConnections {
     public CompletableFuture<VaultConnectionsDeleteResponse> delete(String serviceId, String unifiedApi) {
         return delete(
                 Optional.empty(), Optional.empty(), serviceId,
+                unifiedApi, Optional.empty());
+    }
+
+    /**
+     * Deletes a connection
+     * 
+     * <p>Deletes a connection
+     * 
+     * @param consumerId ID of the consumer which you want to get or push data from
+     * @param appId The ID of your Unify application
+     * @param serviceId Service ID of the resource to return
+     * @param unifiedApi Unified API
+     * @return {@code CompletableFuture<VaultConnectionsDeleteResponse>} - The async response
+     */
+    public CompletableFuture<VaultConnectionsDeleteResponse> delete(
+            Optional<String> consumerId, Optional<String> appId,
+            String serviceId, String unifiedApi) {
+        return delete(
+                consumerId, appId, serviceId,
                 unifiedApi, Optional.empty());
     }
 

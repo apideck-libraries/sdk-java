@@ -23,6 +23,7 @@ import java.lang.Iterable;
 import java.lang.Long;
 import java.lang.String;
 import java.net.http.HttpResponse;
+import java.time.Duration;
 import java.util.Iterator;
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -37,6 +38,7 @@ public class WebhookWebhooksAllRequestBuilder {
                             "20",
                             new TypeReference<Optional<Long>>() {});
     private Optional<RetryConfig> retryConfig = Optional.empty();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -91,6 +93,18 @@ public class WebhookWebhooksAllRequestBuilder {
         this.retryConfig = retryConfig;
         return this;
     }
+                
+    public WebhookWebhooksAllRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public WebhookWebhooksAllRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private WebhookWebhooksAllRequest buildRequest() {
@@ -108,6 +122,7 @@ public class WebhookWebhooksAllRequestBuilder {
     public WebhookWebhooksAllResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
+            .timeout(timeout)
             .build());
 
         RequestOperation<WebhookWebhooksAllRequest, WebhookWebhooksAllResponse> operation
@@ -133,6 +148,7 @@ public class WebhookWebhooksAllRequestBuilder {
     public Iterable<WebhookWebhooksAllResponse> callAsIterable() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
+            .timeout(timeout)
             .build());
 
         RequestOperation<WebhookWebhooksAllRequest, WebhookWebhooksAllResponse> operation

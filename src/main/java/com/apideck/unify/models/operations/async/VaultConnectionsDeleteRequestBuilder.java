@@ -13,6 +13,7 @@ import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
@@ -23,6 +24,7 @@ public class VaultConnectionsDeleteRequestBuilder {
     private String serviceId;
     private String unifiedApi;
     private Optional<RetryConfig> retryConfig = Optional.empty();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -77,6 +79,18 @@ public class VaultConnectionsDeleteRequestBuilder {
         this.retryConfig = retryConfig;
         return this;
     }
+                
+    public VaultConnectionsDeleteRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public VaultConnectionsDeleteRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private VaultConnectionsDeleteRequest buildRequest() {
@@ -92,6 +106,7 @@ public class VaultConnectionsDeleteRequestBuilder {
     public CompletableFuture<VaultConnectionsDeleteResponse> call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
+            .timeout(timeout)
             .build());
 
         AsyncRequestOperation<VaultConnectionsDeleteRequest, VaultConnectionsDeleteResponse> operation

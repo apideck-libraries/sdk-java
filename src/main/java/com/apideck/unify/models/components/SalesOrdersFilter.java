@@ -41,28 +41,38 @@ public class SalesOrdersFilter {
     @SpeakeasyMetadata("queryParam:name=subsidiary_id")
     private Optional<String> subsidiaryId;
 
+    /**
+     * Filter by the purchase order number (customer reference) set on the sales order. Exact match; more
+     * than one sales order can carry the same PO number.
+     */
+    @SpeakeasyMetadata("queryParam:name=po_number")
+    private Optional<String> poNumber;
+
     @JsonCreator
     public SalesOrdersFilter(
             Optional<OffsetDateTime> updatedSince,
             Optional<OffsetDateTime> createdSince,
             Optional<String> number,
             Optional<String> customerId,
-            Optional<String> subsidiaryId) {
+            Optional<String> subsidiaryId,
+            Optional<String> poNumber) {
         Utils.checkNotNull(updatedSince, "updatedSince");
         Utils.checkNotNull(createdSince, "createdSince");
         Utils.checkNotNull(number, "number");
         Utils.checkNotNull(customerId, "customerId");
         Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+        Utils.checkNotNull(poNumber, "poNumber");
         this.updatedSince = updatedSince;
         this.createdSince = createdSince;
         this.number = number;
         this.customerId = customerId;
         this.subsidiaryId = subsidiaryId;
+        this.poNumber = poNumber;
     }
     
     public SalesOrdersFilter() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -98,6 +108,15 @@ public class SalesOrdersFilter {
     @JsonIgnore
     public Optional<String> subsidiaryId() {
         return subsidiaryId;
+    }
+
+    /**
+     * Filter by the purchase order number (customer reference) set on the sales order. Exact match; more
+     * than one sales order can carry the same PO number.
+     */
+    @JsonIgnore
+    public Optional<String> poNumber() {
+        return poNumber;
     }
 
     public static Builder builder() {
@@ -190,6 +209,27 @@ public class SalesOrdersFilter {
         return this;
     }
 
+    /**
+     * Filter by the purchase order number (customer reference) set on the sales order. Exact match; more
+     * than one sales order can carry the same PO number.
+     */
+    public SalesOrdersFilter withPoNumber(String poNumber) {
+        Utils.checkNotNull(poNumber, "poNumber");
+        this.poNumber = Optional.ofNullable(poNumber);
+        return this;
+    }
+
+
+    /**
+     * Filter by the purchase order number (customer reference) set on the sales order. Exact match; more
+     * than one sales order can carry the same PO number.
+     */
+    public SalesOrdersFilter withPoNumber(Optional<String> poNumber) {
+        Utils.checkNotNull(poNumber, "poNumber");
+        this.poNumber = poNumber;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -204,14 +244,15 @@ public class SalesOrdersFilter {
             Utils.enhancedDeepEquals(this.createdSince, other.createdSince) &&
             Utils.enhancedDeepEquals(this.number, other.number) &&
             Utils.enhancedDeepEquals(this.customerId, other.customerId) &&
-            Utils.enhancedDeepEquals(this.subsidiaryId, other.subsidiaryId);
+            Utils.enhancedDeepEquals(this.subsidiaryId, other.subsidiaryId) &&
+            Utils.enhancedDeepEquals(this.poNumber, other.poNumber);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             updatedSince, createdSince, number,
-            customerId, subsidiaryId);
+            customerId, subsidiaryId, poNumber);
     }
     
     @Override
@@ -221,7 +262,8 @@ public class SalesOrdersFilter {
                 "createdSince", createdSince,
                 "number", number,
                 "customerId", customerId,
-                "subsidiaryId", subsidiaryId);
+                "subsidiaryId", subsidiaryId,
+                "poNumber", poNumber);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -236,6 +278,8 @@ public class SalesOrdersFilter {
         private Optional<String> customerId = Optional.empty();
 
         private Optional<String> subsidiaryId = Optional.empty();
+
+        private Optional<String> poNumber = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -326,11 +370,32 @@ public class SalesOrdersFilter {
             return this;
         }
 
+
+        /**
+         * Filter by the purchase order number (customer reference) set on the sales order. Exact match; more
+         * than one sales order can carry the same PO number.
+         */
+        public Builder poNumber(String poNumber) {
+            Utils.checkNotNull(poNumber, "poNumber");
+            this.poNumber = Optional.ofNullable(poNumber);
+            return this;
+        }
+
+        /**
+         * Filter by the purchase order number (customer reference) set on the sales order. Exact match; more
+         * than one sales order can carry the same PO number.
+         */
+        public Builder poNumber(Optional<String> poNumber) {
+            Utils.checkNotNull(poNumber, "poNumber");
+            this.poNumber = poNumber;
+            return this;
+        }
+
         public SalesOrdersFilter build() {
 
             return new SalesOrdersFilter(
                 updatedSince, createdSince, number,
-                customerId, subsidiaryId);
+                customerId, subsidiaryId, poNumber);
         }
 
     }

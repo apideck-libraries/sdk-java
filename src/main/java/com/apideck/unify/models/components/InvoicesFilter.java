@@ -61,6 +61,13 @@ public class InvoicesFilter {
     @SpeakeasyMetadata("queryParam:name=customer_id")
     private Optional<String> customerId;
 
+    /**
+     * Filter by the purchase order number (customer reference) set on the invoice. Exact match; more than
+     * one invoice can carry the same PO number.
+     */
+    @SpeakeasyMetadata("queryParam:name=po_number")
+    private Optional<String> poNumber;
+
     @JsonCreator
     public InvoicesFilter(
             Optional<String> ids,
@@ -70,7 +77,8 @@ public class InvoicesFilter {
             Optional<String> number,
             Optional<String> supplierId,
             Optional<String> subsidiaryId,
-            Optional<String> customerId) {
+            Optional<String> customerId,
+            Optional<String> poNumber) {
         Utils.checkNotNull(ids, "ids");
         Utils.checkNotNull(idSince, "idSince");
         Utils.checkNotNull(updatedSince, "updatedSince");
@@ -79,6 +87,7 @@ public class InvoicesFilter {
         Utils.checkNotNull(supplierId, "supplierId");
         Utils.checkNotNull(subsidiaryId, "subsidiaryId");
         Utils.checkNotNull(customerId, "customerId");
+        Utils.checkNotNull(poNumber, "poNumber");
         this.ids = ids;
         this.idSince = idSince;
         this.updatedSince = updatedSince;
@@ -87,12 +96,13 @@ public class InvoicesFilter {
         this.supplierId = supplierId;
         this.subsidiaryId = subsidiaryId;
         this.customerId = customerId;
+        this.poNumber = poNumber;
     }
     
     public InvoicesFilter() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -154,6 +164,15 @@ public class InvoicesFilter {
     @JsonIgnore
     public Optional<String> customerId() {
         return customerId;
+    }
+
+    /**
+     * Filter by the purchase order number (customer reference) set on the invoice. Exact match; more than
+     * one invoice can carry the same PO number.
+     */
+    @JsonIgnore
+    public Optional<String> poNumber() {
+        return poNumber;
     }
 
     public static Builder builder() {
@@ -307,6 +326,27 @@ public class InvoicesFilter {
         return this;
     }
 
+    /**
+     * Filter by the purchase order number (customer reference) set on the invoice. Exact match; more than
+     * one invoice can carry the same PO number.
+     */
+    public InvoicesFilter withPoNumber(String poNumber) {
+        Utils.checkNotNull(poNumber, "poNumber");
+        this.poNumber = Optional.ofNullable(poNumber);
+        return this;
+    }
+
+
+    /**
+     * Filter by the purchase order number (customer reference) set on the invoice. Exact match; more than
+     * one invoice can carry the same PO number.
+     */
+    public InvoicesFilter withPoNumber(Optional<String> poNumber) {
+        Utils.checkNotNull(poNumber, "poNumber");
+        this.poNumber = poNumber;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -324,7 +364,8 @@ public class InvoicesFilter {
             Utils.enhancedDeepEquals(this.number, other.number) &&
             Utils.enhancedDeepEquals(this.supplierId, other.supplierId) &&
             Utils.enhancedDeepEquals(this.subsidiaryId, other.subsidiaryId) &&
-            Utils.enhancedDeepEquals(this.customerId, other.customerId);
+            Utils.enhancedDeepEquals(this.customerId, other.customerId) &&
+            Utils.enhancedDeepEquals(this.poNumber, other.poNumber);
     }
     
     @Override
@@ -332,7 +373,7 @@ public class InvoicesFilter {
         return Utils.enhancedHash(
             ids, idSince, updatedSince,
             createdSince, number, supplierId,
-            subsidiaryId, customerId);
+            subsidiaryId, customerId, poNumber);
     }
     
     @Override
@@ -345,7 +386,8 @@ public class InvoicesFilter {
                 "number", number,
                 "supplierId", supplierId,
                 "subsidiaryId", subsidiaryId,
-                "customerId", customerId);
+                "customerId", customerId,
+                "poNumber", poNumber);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -366,6 +408,8 @@ public class InvoicesFilter {
         private Optional<String> subsidiaryId = Optional.empty();
 
         private Optional<String> customerId = Optional.empty();
+
+        private Optional<String> poNumber = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -517,12 +561,33 @@ public class InvoicesFilter {
             return this;
         }
 
+
+        /**
+         * Filter by the purchase order number (customer reference) set on the invoice. Exact match; more than
+         * one invoice can carry the same PO number.
+         */
+        public Builder poNumber(String poNumber) {
+            Utils.checkNotNull(poNumber, "poNumber");
+            this.poNumber = Optional.ofNullable(poNumber);
+            return this;
+        }
+
+        /**
+         * Filter by the purchase order number (customer reference) set on the invoice. Exact match; more than
+         * one invoice can carry the same PO number.
+         */
+        public Builder poNumber(Optional<String> poNumber) {
+            Utils.checkNotNull(poNumber, "poNumber");
+            this.poNumber = poNumber;
+            return this;
+        }
+
         public InvoicesFilter build() {
 
             return new InvoicesFilter(
                 ids, idSince, updatedSince,
                 createdSince, number, supplierId,
-                subsidiaryId, customerId);
+                subsidiaryId, customerId, poNumber);
         }
 
     }

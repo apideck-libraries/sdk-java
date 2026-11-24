@@ -49,6 +49,26 @@ public class AccountingLedgerAccountsAddRequest {
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-company-id")
     private Optional<String> companyId;
 
+    /**
+     * A unique key you generate for one create or update, to make retrying it safe. If the request times
+     * out or fails with an uncertain outcome, resend it with the same key and the same body: the record is
+     * created, or the update applied, at most once. Keys are 1-255 printable ASCII characters (a UUID is
+     * recommended) and are accepted bare or as a quoted string.
+     * 
+     * <p>A key is remembered for 24 hours from its first use, or for the connector's own deduplication window
+     * where that is shorter (Xero: 6 minutes; Sage Intacct REST: 1 hour); after that, the same key is
+     * treated as a new request, so retry within the window. Some connectors also replay an error to
+     * retries with the same key: if retries keep returning the same error, check whether the record exists
+     * before sending it again with a new key. Reusing a key with a different body returns 422, and
+     * retrying while the first attempt is still running returns 409.
+     * 
+     * <p>A key is bound to its first request even if that request was rejected, so after fixing a rejected
+     * body, send it with a new key. Connectors that cannot honour the key on this operation reject the
+     * request with 400 instead of writing unprotected.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=idempotency-key")
+    private Optional<String> idempotencyKey;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private LedgerAccountInput ledgerAccount;
@@ -60,25 +80,29 @@ public class AccountingLedgerAccountsAddRequest {
             Optional<String> appId,
             Optional<String> serviceId,
             Optional<String> companyId,
+            Optional<String> idempotencyKey,
             LedgerAccountInput ledgerAccount) {
         Utils.checkNotNull(raw, "raw");
         Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(serviceId, "serviceId");
         Utils.checkNotNull(companyId, "companyId");
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         Utils.checkNotNull(ledgerAccount, "ledgerAccount");
         this.raw = raw;
         this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
         this.companyId = companyId;
+        this.idempotencyKey = idempotencyKey;
         this.ledgerAccount = ledgerAccount;
     }
     
     public AccountingLedgerAccountsAddRequest(
             LedgerAccountInput ledgerAccount) {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), ledgerAccount);
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            ledgerAccount);
     }
 
     /**
@@ -121,6 +145,28 @@ public class AccountingLedgerAccountsAddRequest {
     @JsonIgnore
     public Optional<String> companyId() {
         return companyId;
+    }
+
+    /**
+     * A unique key you generate for one create or update, to make retrying it safe. If the request times
+     * out or fails with an uncertain outcome, resend it with the same key and the same body: the record is
+     * created, or the update applied, at most once. Keys are 1-255 printable ASCII characters (a UUID is
+     * recommended) and are accepted bare or as a quoted string.
+     * 
+     * <p>A key is remembered for 24 hours from its first use, or for the connector's own deduplication window
+     * where that is shorter (Xero: 6 minutes; Sage Intacct REST: 1 hour); after that, the same key is
+     * treated as a new request, so retry within the window. Some connectors also replay an error to
+     * retries with the same key: if retries keep returning the same error, check whether the record exists
+     * before sending it again with a new key. Reusing a key with a different body returns 422, and
+     * retrying while the first attempt is still running returns 409.
+     * 
+     * <p>A key is bound to its first request even if that request was rejected, so after fixing a rejected
+     * body, send it with a new key. Connectors that cannot honour the key on this operation reject the
+     * request with 400 instead of writing unprotected.
+     */
+    @JsonIgnore
+    public Optional<String> idempotencyKey() {
+        return idempotencyKey;
     }
 
     @JsonIgnore
@@ -232,6 +278,53 @@ public class AccountingLedgerAccountsAddRequest {
         return this;
     }
 
+    /**
+     * A unique key you generate for one create or update, to make retrying it safe. If the request times
+     * out or fails with an uncertain outcome, resend it with the same key and the same body: the record is
+     * created, or the update applied, at most once. Keys are 1-255 printable ASCII characters (a UUID is
+     * recommended) and are accepted bare or as a quoted string.
+     * 
+     * <p>A key is remembered for 24 hours from its first use, or for the connector's own deduplication window
+     * where that is shorter (Xero: 6 minutes; Sage Intacct REST: 1 hour); after that, the same key is
+     * treated as a new request, so retry within the window. Some connectors also replay an error to
+     * retries with the same key: if retries keep returning the same error, check whether the record exists
+     * before sending it again with a new key. Reusing a key with a different body returns 422, and
+     * retrying while the first attempt is still running returns 409.
+     * 
+     * <p>A key is bound to its first request even if that request was rejected, so after fixing a rejected
+     * body, send it with a new key. Connectors that cannot honour the key on this operation reject the
+     * request with 400 instead of writing unprotected.
+     */
+    public AccountingLedgerAccountsAddRequest withIdempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+        return this;
+    }
+
+
+    /**
+     * A unique key you generate for one create or update, to make retrying it safe. If the request times
+     * out or fails with an uncertain outcome, resend it with the same key and the same body: the record is
+     * created, or the update applied, at most once. Keys are 1-255 printable ASCII characters (a UUID is
+     * recommended) and are accepted bare or as a quoted string.
+     * 
+     * <p>A key is remembered for 24 hours from its first use, or for the connector's own deduplication window
+     * where that is shorter (Xero: 6 minutes; Sage Intacct REST: 1 hour); after that, the same key is
+     * treated as a new request, so retry within the window. Some connectors also replay an error to
+     * retries with the same key: if retries keep returning the same error, check whether the record exists
+     * before sending it again with a new key. Reusing a key with a different body returns 422, and
+     * retrying while the first attempt is still running returns 409.
+     * 
+     * <p>A key is bound to its first request even if that request was rejected, so after fixing a rejected
+     * body, send it with a new key. Connectors that cannot honour the key on this operation reject the
+     * request with 400 instead of writing unprotected.
+     */
+    public AccountingLedgerAccountsAddRequest withIdempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
+        return this;
+    }
+
     public AccountingLedgerAccountsAddRequest withLedgerAccount(LedgerAccountInput ledgerAccount) {
         Utils.checkNotNull(ledgerAccount, "ledgerAccount");
         this.ledgerAccount = ledgerAccount;
@@ -253,6 +346,7 @@ public class AccountingLedgerAccountsAddRequest {
             Utils.enhancedDeepEquals(this.appId, other.appId) &&
             Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
             Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
+            Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey) &&
             Utils.enhancedDeepEquals(this.ledgerAccount, other.ledgerAccount);
     }
     
@@ -260,7 +354,8 @@ public class AccountingLedgerAccountsAddRequest {
     public int hashCode() {
         return Utils.enhancedHash(
             raw, consumerId, appId,
-            serviceId, companyId, ledgerAccount);
+            serviceId, companyId, idempotencyKey,
+            ledgerAccount);
     }
     
     @Override
@@ -271,6 +366,7 @@ public class AccountingLedgerAccountsAddRequest {
                 "appId", appId,
                 "serviceId", serviceId,
                 "companyId", companyId,
+                "idempotencyKey", idempotencyKey,
                 "ledgerAccount", ledgerAccount);
     }
 
@@ -286,6 +382,8 @@ public class AccountingLedgerAccountsAddRequest {
         private Optional<String> serviceId = Optional.empty();
 
         private Optional<String> companyId = Optional.empty();
+
+        private Optional<String> idempotencyKey = Optional.empty();
 
         private LedgerAccountInput ledgerAccount;
 
@@ -393,6 +491,53 @@ public class AccountingLedgerAccountsAddRequest {
         }
 
 
+        /**
+         * A unique key you generate for one create or update, to make retrying it safe. If the request times
+         * out or fails with an uncertain outcome, resend it with the same key and the same body: the record is
+         * created, or the update applied, at most once. Keys are 1-255 printable ASCII characters (a UUID is
+         * recommended) and are accepted bare or as a quoted string.
+         * 
+         * <p>A key is remembered for 24 hours from its first use, or for the connector's own deduplication window
+         * where that is shorter (Xero: 6 minutes; Sage Intacct REST: 1 hour); after that, the same key is
+         * treated as a new request, so retry within the window. Some connectors also replay an error to
+         * retries with the same key: if retries keep returning the same error, check whether the record exists
+         * before sending it again with a new key. Reusing a key with a different body returns 422, and
+         * retrying while the first attempt is still running returns 409.
+         * 
+         * <p>A key is bound to its first request even if that request was rejected, so after fixing a rejected
+         * body, send it with a new key. Connectors that cannot honour the key on this operation reject the
+         * request with 400 instead of writing unprotected.
+         */
+        public Builder idempotencyKey(String idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+            return this;
+        }
+
+        /**
+         * A unique key you generate for one create or update, to make retrying it safe. If the request times
+         * out or fails with an uncertain outcome, resend it with the same key and the same body: the record is
+         * created, or the update applied, at most once. Keys are 1-255 printable ASCII characters (a UUID is
+         * recommended) and are accepted bare or as a quoted string.
+         * 
+         * <p>A key is remembered for 24 hours from its first use, or for the connector's own deduplication window
+         * where that is shorter (Xero: 6 minutes; Sage Intacct REST: 1 hour); after that, the same key is
+         * treated as a new request, so retry within the window. Some connectors also replay an error to
+         * retries with the same key: if retries keep returning the same error, check whether the record exists
+         * before sending it again with a new key. Reusing a key with a different body returns 422, and
+         * retrying while the first attempt is still running returns 409.
+         * 
+         * <p>A key is bound to its first request even if that request was rejected, so after fixing a rejected
+         * body, send it with a new key. Connectors that cannot honour the key on this operation reject the
+         * request with 400 instead of writing unprotected.
+         */
+        public Builder idempotencyKey(Optional<String> idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = idempotencyKey;
+            return this;
+        }
+
+
         public Builder ledgerAccount(LedgerAccountInput ledgerAccount) {
             Utils.checkNotNull(ledgerAccount, "ledgerAccount");
             this.ledgerAccount = ledgerAccount;
@@ -406,7 +551,8 @@ public class AccountingLedgerAccountsAddRequest {
 
             return new AccountingLedgerAccountsAddRequest(
                 raw, consumerId, appId,
-                serviceId, companyId, ledgerAccount);
+                serviceId, companyId, idempotencyKey,
+                ledgerAccount);
         }
 
 

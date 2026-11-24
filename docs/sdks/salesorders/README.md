@@ -47,6 +47,7 @@ public class Application {
                     .createdSince(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
                     .number("SO000123")
                     .customerId("123abc")
+                    .poNumber("PO-4521")
                     .build())
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))

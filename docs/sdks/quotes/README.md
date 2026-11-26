@@ -277,6 +277,7 @@ public class Application {
                     .build())
                 .serviceId("salesforce")
                 .companyId("12345")
+                .idempotencyKey("your-unique-key-per-create")
                 .build();
 
         AccountingQuotesAddResponse res = sdk.accounting().quotes().create()

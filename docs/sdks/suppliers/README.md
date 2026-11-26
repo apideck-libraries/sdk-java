@@ -268,6 +268,7 @@ public class Application {
                     .build())
                 .serviceId("salesforce")
                 .companyId("12345")
+                .idempotencyKey("your-unique-key-per-create")
                 .build();
 
         AccountingSuppliersAddResponse res = sdk.accounting().suppliers().create()

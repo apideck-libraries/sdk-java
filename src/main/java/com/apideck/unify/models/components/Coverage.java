@@ -33,6 +33,13 @@ public class Coverage {
     private Optional<String> downstreamName;
 
     /**
+     * Status of the resource. Resources with status live or beta are callable.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("status")
+    private Optional<? extends ResourceStatus> status;
+
+    /**
      * Indicates if pagination (cursor and limit parameters) is supported on the list endpoint of the
      * resource.
      */
@@ -84,6 +91,7 @@ public class Coverage {
     public Coverage(
             @JsonProperty("downstream_id") Optional<String> downstreamId,
             @JsonProperty("downstream_name") Optional<String> downstreamName,
+            @JsonProperty("status") Optional<? extends ResourceStatus> status,
             @JsonProperty("pagination_supported") Optional<Boolean> paginationSupported,
             @JsonProperty("pagination") Optional<? extends PaginationCoverage> pagination,
             @JsonProperty("supported_operations") Optional<? extends List<String>> supportedOperations,
@@ -93,6 +101,7 @@ public class Coverage {
             @JsonProperty("supported_list_fields") Optional<? extends List<SupportedProperty>> supportedListFields) {
         Utils.checkNotNull(downstreamId, "downstreamId");
         Utils.checkNotNull(downstreamName, "downstreamName");
+        Utils.checkNotNull(status, "status");
         Utils.checkNotNull(paginationSupported, "paginationSupported");
         Utils.checkNotNull(pagination, "pagination");
         Utils.checkNotNull(supportedOperations, "supportedOperations");
@@ -102,6 +111,7 @@ public class Coverage {
         Utils.checkNotNull(supportedListFields, "supportedListFields");
         this.downstreamId = downstreamId;
         this.downstreamName = downstreamName;
+        this.status = status;
         this.paginationSupported = paginationSupported;
         this.pagination = pagination;
         this.supportedOperations = supportedOperations;
@@ -114,7 +124,8 @@ public class Coverage {
     public Coverage() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -131,6 +142,15 @@ public class Coverage {
     @JsonIgnore
     public Optional<String> downstreamName() {
         return downstreamName;
+    }
+
+    /**
+     * Status of the resource. Resources with status live or beta are callable.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<ResourceStatus> status() {
+        return (Optional<ResourceStatus>) status;
     }
 
     /**
@@ -233,6 +253,25 @@ public class Coverage {
     public Coverage withDownstreamName(Optional<String> downstreamName) {
         Utils.checkNotNull(downstreamName, "downstreamName");
         this.downstreamName = downstreamName;
+        return this;
+    }
+
+    /**
+     * Status of the resource. Resources with status live or beta are callable.
+     */
+    public Coverage withStatus(ResourceStatus status) {
+        Utils.checkNotNull(status, "status");
+        this.status = Optional.ofNullable(status);
+        return this;
+    }
+
+
+    /**
+     * Status of the resource. Resources with status live or beta are callable.
+     */
+    public Coverage withStatus(Optional<? extends ResourceStatus> status) {
+        Utils.checkNotNull(status, "status");
+        this.status = status;
         return this;
     }
 
@@ -377,6 +416,7 @@ public class Coverage {
         return 
             Utils.enhancedDeepEquals(this.downstreamId, other.downstreamId) &&
             Utils.enhancedDeepEquals(this.downstreamName, other.downstreamName) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.paginationSupported, other.paginationSupported) &&
             Utils.enhancedDeepEquals(this.pagination, other.pagination) &&
             Utils.enhancedDeepEquals(this.supportedOperations, other.supportedOperations) &&
@@ -389,9 +429,10 @@ public class Coverage {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            downstreamId, downstreamName, paginationSupported,
-            pagination, supportedOperations, supportedFilters,
-            supportedSortBy, supportedFields, supportedListFields);
+            downstreamId, downstreamName, status,
+            paginationSupported, pagination, supportedOperations,
+            supportedFilters, supportedSortBy, supportedFields,
+            supportedListFields);
     }
     
     @Override
@@ -399,6 +440,7 @@ public class Coverage {
         return Utils.toString(Coverage.class,
                 "downstreamId", downstreamId,
                 "downstreamName", downstreamName,
+                "status", status,
                 "paginationSupported", paginationSupported,
                 "pagination", pagination,
                 "supportedOperations", supportedOperations,
@@ -414,6 +456,8 @@ public class Coverage {
         private Optional<String> downstreamId = Optional.empty();
 
         private Optional<String> downstreamName = Optional.empty();
+
+        private Optional<? extends ResourceStatus> status = Optional.empty();
 
         private Optional<Boolean> paginationSupported = Optional.empty();
 
@@ -468,6 +512,25 @@ public class Coverage {
         public Builder downstreamName(Optional<String> downstreamName) {
             Utils.checkNotNull(downstreamName, "downstreamName");
             this.downstreamName = downstreamName;
+            return this;
+        }
+
+
+        /**
+         * Status of the resource. Resources with status live or beta are callable.
+         */
+        public Builder status(ResourceStatus status) {
+            Utils.checkNotNull(status, "status");
+            this.status = Optional.ofNullable(status);
+            return this;
+        }
+
+        /**
+         * Status of the resource. Resources with status live or beta are callable.
+         */
+        public Builder status(Optional<? extends ResourceStatus> status) {
+            Utils.checkNotNull(status, "status");
+            this.status = status;
             return this;
         }
 
@@ -603,9 +666,10 @@ public class Coverage {
         public Coverage build() {
 
             return new Coverage(
-                downstreamId, downstreamName, paginationSupported,
-                pagination, supportedOperations, supportedFilters,
-                supportedSortBy, supportedFields, supportedListFields);
+                downstreamId, downstreamName, status,
+                paginationSupported, pagination, supportedOperations,
+                supportedFilters, supportedSortBy, supportedFields,
+                supportedListFields);
         }
 
     }

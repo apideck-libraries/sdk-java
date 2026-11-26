@@ -5,12 +5,16 @@ package com.apideck.unify;
 
 import static com.apideck.unify.operations.Operations.RequestOperation;
 
+import com.apideck.unify.models.operations.AccountingGoodsReceiptsAddRequest;
+import com.apideck.unify.models.operations.AccountingGoodsReceiptsAddRequestBuilder;
+import com.apideck.unify.models.operations.AccountingGoodsReceiptsAddResponse;
 import com.apideck.unify.models.operations.AccountingGoodsReceiptsAllRequest;
 import com.apideck.unify.models.operations.AccountingGoodsReceiptsAllRequestBuilder;
 import com.apideck.unify.models.operations.AccountingGoodsReceiptsAllResponse;
 import com.apideck.unify.models.operations.AccountingGoodsReceiptsOneRequest;
 import com.apideck.unify.models.operations.AccountingGoodsReceiptsOneRequestBuilder;
 import com.apideck.unify.models.operations.AccountingGoodsReceiptsOneResponse;
+import com.apideck.unify.operations.AccountingGoodsReceiptsAdd;
 import com.apideck.unify.operations.AccountingGoodsReceiptsAll;
 import com.apideck.unify.operations.AccountingGoodsReceiptsOne;
 import com.apideck.unify.utils.Headers;
@@ -74,6 +78,55 @@ public class GoodsReceipts {
     public AccountingGoodsReceiptsAllResponse list(AccountingGoodsReceiptsAllRequest request, Optional<Options> options) {
         RequestOperation<AccountingGoodsReceiptsAllRequest, AccountingGoodsReceiptsAllResponse> operation
               = new AccountingGoodsReceiptsAll.Sync(sdkConfiguration, options, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Create Goods Receipt
+     * 
+     * <p>Create a Goods Receipt against a purchase order. `purchase_order_id` is required and every line
+     * names the purchase order line it receives against; a receipt that is not tied to a purchase order
+     * cannot be created. The response returns the `id` of the new receipt only: read it with `GET
+     * /accounting/goods-receipts/{id}` to see the posted document.
+     * 
+     * @return The call builder
+     */
+    public AccountingGoodsReceiptsAddRequestBuilder create() {
+        return new AccountingGoodsReceiptsAddRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Create Goods Receipt
+     * 
+     * <p>Create a Goods Receipt against a purchase order. `purchase_order_id` is required and every line
+     * names the purchase order line it receives against; a receipt that is not tied to a purchase order
+     * cannot be created. The response returns the `id` of the new receipt only: read it with `GET
+     * /accounting/goods-receipts/{id}` to see the posted document.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public AccountingGoodsReceiptsAddResponse create(AccountingGoodsReceiptsAddRequest request) {
+        return create(request, Optional.empty());
+    }
+
+    /**
+     * Create Goods Receipt
+     * 
+     * <p>Create a Goods Receipt against a purchase order. `purchase_order_id` is required and every line
+     * names the purchase order line it receives against; a receipt that is not tied to a purchase order
+     * cannot be created. The response returns the `id` of the new receipt only: read it with `GET
+     * /accounting/goods-receipts/{id}` to see the posted document.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public AccountingGoodsReceiptsAddResponse create(AccountingGoodsReceiptsAddRequest request, Optional<Options> options) {
+        RequestOperation<AccountingGoodsReceiptsAddRequest, AccountingGoodsReceiptsAddResponse> operation
+              = new AccountingGoodsReceiptsAdd.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
